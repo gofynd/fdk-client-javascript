@@ -50,7 +50,8 @@ const catalog = new Catalog(conf);
 * [getFollowIDsByType](#getFollowIDsByType)
 
 
-*getProducts* - List the products
+#### getProducts
+List the products
 
 ```javascript
 // Promise
@@ -76,7 +77,8 @@ List all the products associated with a brand, collection or category in a reque
 ---
 
 
-*getProductDetailByIdentifier* - Get a product
+#### getProductDetailByIdentifier
+Get a product
 
 ```javascript
 // Promise
@@ -98,7 +100,8 @@ Products are the core resource of an application. Products can be associated by 
 ---
 
 
-*getProductSizesByIdentifier* - Get the sizes of a product
+#### getProductSizesByIdentifier
+Get the sizes of a product
 
 ```javascript
 // Promise
@@ -121,7 +124,8 @@ A product can exist in multiple sizes. Use this API to fetch all the available s
 ---
 
 
-*getProductPriceByIdentifier* - Get price a product
+#### getProductPriceByIdentifier
+Get price a product
 
 ```javascript
 // Promise
@@ -146,7 +150,8 @@ Any available product can exist in multiple sizes. Sometimes prices may vary amo
 ---
 
 
-*getProductSellersByIdentifier* - List sellers of a product
+#### getProductSellersByIdentifier
+List sellers of a product
 
 ```javascript
 // Promise
@@ -172,7 +177,8 @@ A product of a particular size can be sold by multiple sellers. Use this API to 
 ---
 
 
-*getProductSimilarByIdentifier* - Get similar products
+#### getProductSimilarByIdentifier
+Get similar products
 
 ```javascript
 // Promise
@@ -195,7 +201,8 @@ Get products similar to the one specified by the `identifier`. If successful, it
 ---
 
 
-*getProductVariantsByIdentifier* - Get variant of a particular product
+#### getProductVariantsByIdentifier
+Get variant of a particular product
 
 ```javascript
 // Promise
@@ -217,7 +224,8 @@ A product can have a different type of variants varies from color to shade etc. 
 ---
 
 
-*getProductStockByIdentifier* - Get the stock of a product
+#### getProductStockByIdentifier
+Get the stock of a product
 
 ```javascript
 // Promise
@@ -242,7 +250,8 @@ Retrieve the available stock of the products. You can use this API to retrieve s
 ---
 
 
-*getProductStockForTimeByIdentifier* - Get the stock of a product
+#### getProductStockForTimeByIdentifier
+Get the stock of a product
 
 ```javascript
 // Promise
@@ -265,7 +274,8 @@ Retrieve the available stock of the products. You can use this api to get stock 
 ---
 
 
-*getBrands* - List all the brands
+#### getBrands
+List all the brands
 
 ```javascript
 // Promise
@@ -288,7 +298,8 @@ A brand is the name under which a product is being sold. Use this API to list al
 ---
 
 
-*getBrandDetailByIdentifier* - Get metadata of a brand
+#### getBrandDetailByIdentifier
+Get metadata of a brand
 
 ```javascript
 // Promise
@@ -310,7 +321,8 @@ Fetch metadata of a brand. If successful, returns a metadata object specified in
 ---
 
 
-*getCategories* - List all the categories
+#### getCategories
+List all the categories
 
 ```javascript
 // Promise
@@ -331,7 +343,8 @@ List all the categories. You can optionally pass filter the brands by the depart
 ---
 
 
-*getCategoryDetailByIdentifier* - Get metadata of a category
+#### getCategoryDetailByIdentifier
+Get metadata of a category
 
 ```javascript
 // Promise
@@ -353,7 +366,8 @@ Fetch metadata of a category. If successful, returns a metadata object specified
 ---
 
 
-*getHomeProducts* - List the products
+#### getHomeProducts
+List the products
 
 ```javascript
 // Promise
@@ -377,7 +391,8 @@ List all the products associated with a brand, collection or category in a rando
 ---
 
 
-** - List all the departments
+#### 
+List all the departments
 
 ```javascript
 // Promise
@@ -397,7 +412,8 @@ Departments are a way to categorise similar products. A product can lie in multi
 ---
 
 
-*getSearchResults* - Get relevant suggestions for a search query
+#### getSearchResults
+Get relevant suggestions for a search query
 
 ```javascript
 // Promise
@@ -418,7 +434,8 @@ Retrieves a list of suggestions for a given search query. Each suggestion is a v
 ---
 
 
-*getCollections* - List all the collections
+#### getCollections
+List all the collections
 
 ```javascript
 // Promise
@@ -438,7 +455,8 @@ A Collection allows you to organize your products into hierarchical groups. For 
 ---
 
 
-*getCollectionItemsBySlug* - Get the items in a collection
+#### getCollectionItemsBySlug
+Get the items in a collection
 
 ```javascript
 // Promise
@@ -459,7 +477,8 @@ Get items in a collection specified by its `slug`.
 ---
 
 
-*getCollectionDetailBySlug* - Get a particular collection
+#### getCollectionDetailBySlug
+Get a particular collection
 
 ```javascript
 // Promise
@@ -480,7 +499,8 @@ Get the details of a collection by its `slug`. If successful, returns a Collecti
 ---
 
 
-*getFollowProducts* - Get a list of followed Products
+#### getFollowProducts
+Get a list of followed Products
 
 ```javascript
 // Promise
@@ -501,7 +521,8 @@ A User can follow a Product they like. This API retrieves the products the user 
 ---
 
 
-*unfollowProductById* - UnFollow a Product
+#### unfollowProductById
+UnFollow a Product
 
 ```javascript
 // Promise
@@ -523,7 +544,8 @@ You can undo a followed Product or Brand by its uid, we refer this action as _un
 ---
 
 
-*saveFollowProductById* - Follow a particular Product
+#### saveFollowProductById
+Follow a particular Product
 
 ```javascript
 // Promise
@@ -545,7 +567,8 @@ Follow a particular Product specified by its uid. Pass the uid of the product in
 ---
 
 
-*getFollowProductCountById* - Get Follow Count
+#### getFollowProductCountById
+Get Follow Count
 
 ```javascript
 // Promise
@@ -567,7 +590,8 @@ Get count of followers for given collection type and collection id.
 ---
 
 
-*getFollowIDsByType* - Get the Uids of followed product, brand and collection.
+#### getFollowIDsByType
+Get the Uids of followed product, brand and collection.
 
 ```javascript
 // Promise
@@ -631,7 +655,8 @@ const cart = new Cart(conf);
 * [updateCartWithSharedItems](#updateCartWithSharedItems)
 
 
-*getCart* - Fetch all Items Added to  Cart
+#### getCart
+Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
@@ -656,7 +681,8 @@ Get all the details of a items added to cart  by uid. If successful, returns a C
 ---
 
 
-*getCartLastModified* - Fetch Last-Modified timestamp
+#### getCartLastModified
+Fetch Last-Modified timestamp
 
 ```javascript
 // Promise
@@ -680,7 +706,8 @@ Fetch Last-Modified timestamp in header metadata
 ---
 
 
-*addItemsToCart* - Add Items to Cart
+#### addItemsToCart
+Add Items to Cart
 
 ```javascript
 // Promise
@@ -703,7 +730,8 @@ const data = await addItemsToCart(x-application-id, x-application-token, x-curre
 ---
 
 
-*updateCart* - Update Items already added to Cart
+#### updateCart
+Update Items already added to Cart
 
 ```javascript
 // Promise
@@ -726,7 +754,8 @@ Request object containing attributes like item_quantity and item_size which can 
 ---
 
 
-*getCartItemCount* - Cart item count
+#### getCartItemCount
+Cart item count
 
 ```javascript
 // Promise
@@ -750,7 +779,8 @@ Get total count of item present in cart
 ---
 
 
-*getCouponList* - Fetch Coupon
+#### getCouponList
+Fetch Coupon
 
 ```javascript
 // Promise
@@ -774,7 +804,8 @@ Get all the details of a coupons applicable to cart  by uid. If successful, retu
 ---
 
 
-*applyCoupon* - Apply Coupon
+#### applyCoupon
+Apply Coupon
 
 ```javascript
 // Promise
@@ -801,7 +832,8 @@ const data = await applyCoupon(i, b, p, x-application-id, x-application-token, x
 ---
 
 
-*removeCoupon* - Remove Coupon Applied
+#### removeCoupon
+Remove Coupon Applied
 
 ```javascript
 // Promise
@@ -825,7 +857,8 @@ Remove Coupon applied on the cart by passing uid in request body.
 ---
 
 
-*getBulkDiscountOffers* - Get discount offers based on quantity
+#### getBulkDiscountOffers
+Get discount offers based on quantity
 
 ```javascript
 // Promise
@@ -852,7 +885,8 @@ List applicable offers along with current, next and best offer for given product
 ---
 
 
-*getAddressList* - Fetch Address
+#### getAddressList
+Fetch Address
 
 ```javascript
 // Promise
@@ -880,7 +914,8 @@ Get all the addresses associated with the account. If successful, returns a Addr
 ---
 
 
-*addAddress* - Add Address to the account
+#### addAddress
+Add Address to the account
 
 ```javascript
 // Promise
@@ -903,7 +938,8 @@ const data = await addAddress(x-application-id, x-application-token, x-currency-
 ---
 
 
-*getAddressById* - Fetch Single Address
+#### getAddressById
+Fetch Single Address
 
 ```javascript
 // Promise
@@ -932,7 +968,8 @@ Get a addresses with the given id. If successful, returns a Address resource in 
 ---
 
 
-*updateAddress* - Update Address alreay added to account
+#### updateAddress
+Update Address alreay added to account
 
 ```javascript
 // Promise
@@ -956,7 +993,8 @@ Request object containing attributes mentioned in  &lt;font color=&quot;blue&quo
 ---
 
 
-*removeAddress* - Remove Address Associated to the account
+#### removeAddress
+Remove Address Associated to the account
 
 ```javascript
 // Promise
@@ -980,7 +1018,8 @@ Delete a Address by it&#39;s address_id. Returns an object that tells whether th
 ---
 
 
-*selectCartAddress* - Select Address from All Addresses
+#### selectCartAddress
+Select Address from All Addresses
 
 ```javascript
 // Promise
@@ -1003,7 +1042,8 @@ const data = await selectCartAddress(x-application-id, x-application-token, x-cu
 ---
 
 
-*getCartPaymentModes* - Gte Cart Payment for valid coupon
+#### getCartPaymentModes
+Gte Cart Payment for valid coupon
 
 ```javascript
 // Promise
@@ -1032,7 +1072,8 @@ Validate coupon for selected payment mode
 ---
 
 
-*selectCartPaymentMode* - Update Cart Payment
+#### selectCartPaymentMode
+Update Cart Payment
 
 ```javascript
 // Promise
@@ -1056,7 +1097,8 @@ Update Cart Payment for Your Account
 ---
 
 
-*getCartShipments* - Get delivery date and options before checkout
+#### getCartShipments
+Get delivery date and options before checkout
 
 ```javascript
 // Promise
@@ -1082,7 +1124,8 @@ Shipment break up item wise with delivery date. Actual                      deli
 ---
 
 
-*checkoutCart* - Checkout Cart
+#### checkoutCart
+Checkout Cart
 
 ```javascript
 // Promise
@@ -1105,7 +1148,8 @@ Checkout all items in cart to payment and order generation.                     
 ---
 
 
-*updateCartMeta* - Update Cart Meta
+#### updateCartMeta
+Update Cart Meta
 
 ```javascript
 // Promise
@@ -1129,7 +1173,8 @@ Update cart meta like checkout_mode, gstin.
 ---
 
 
-*getCartShareLink* - Generate Cart sharing link token
+#### getCartShareLink
+Generate Cart sharing link token
 
 ```javascript
 // Promise
@@ -1152,7 +1197,8 @@ Generates shared cart snapshot and returns shortlink token
 ---
 
 
-*getCartSharedItems* - Get shared cart snapshot and cart response
+#### getCartSharedItems
+Get shared cart snapshot and cart response
 
 ```javascript
 // Promise
@@ -1176,7 +1222,8 @@ Returns shared cart response for sent token with `shared_cart_details`          
 ---
 
 
-*updateCartWithSharedItems* - Merge or Replace existing cart
+#### updateCartWithSharedItems
+Merge or Replace existing cart
 
 ```javascript
 // Promise
@@ -1229,7 +1276,8 @@ const lead = new Lead(conf);
 * [getTokenForVideRoom](#getTokenForVideRoom)
 
 
-*getTicket* - Get Tickets
+#### getTicket
+Get Tickets
 
 ```javascript
 // Promise
@@ -1252,7 +1300,8 @@ Get Tickets
 ---
 
 
-*createHistoryForTicket* - Create history for Ticket
+#### createHistoryForTicket
+Create history for Ticket
 
 ```javascript
 // Promise
@@ -1275,7 +1324,8 @@ Create history for Ticket
 ---
 
 
-*createTicket* - Create Ticket
+#### createTicket
+Create Ticket
 
 ```javascript
 // Promise
@@ -1297,7 +1347,8 @@ Create Ticket
 ---
 
 
-*getForm* - Get Custom Form
+#### getForm
+Get Custom Form
 
 ```javascript
 // Promise
@@ -1320,7 +1371,8 @@ Get Custom Form
 ---
 
 
-*submitForm* - Submit Form Response
+#### submitForm
+Submit Form Response
 
 ```javascript
 // Promise
@@ -1343,7 +1395,8 @@ Submit Form Response
 ---
 
 
-*getParticipantsInsideVideoRoom* - Get participants of Video Room
+#### getParticipantsInsideVideoRoom
+Get participants of Video Room
 
 ```javascript
 // Promise
@@ -1366,7 +1419,8 @@ Get participants of Video Room
 ---
 
 
-*getTokenForVideRoom* - Get Token to join Video Room
+#### getTokenForVideRoom
+Get Token to join Video Room
 
 ```javascript
 // Promise
