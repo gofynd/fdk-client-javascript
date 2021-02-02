@@ -46,11 +46,11 @@
     }
 
     /*
-        Model: Media,
+        Model: ProductSortOn,
         Type: object
     */
     
-    class Media {
+    class ProductSortOn {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -73,6 +73,17 @@
     */
     
     class ProductListingAction {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Media,
+        Type: object
+    */
+    
+    class Media {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -123,17 +134,6 @@
     }
 
     /*
-        Model: ProductSortOn,
-        Type: object
-    */
-    
-    class ProductSortOn {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: ProductSearchSchemaV1,
         Type: object
     */
@@ -167,11 +167,11 @@
     }
 
     /*
-        Model: ProductSizeStores,
+        Model: ProductSize,
         Type: object
     */
     
-    class ProductSizeStores {
+    class ProductSize {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -200,11 +200,11 @@
     }
 
     /*
-        Model: ProductSize,
+        Model: ProductSizeStores,
         Type: object
     */
     
-    class ProductSize {
+    class ProductSizeStores {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -222,11 +222,11 @@
     }
 
     /*
-        Model: ProductSizePriceArticleAssignment,
+        Model: ProductStockPrice,
         Type: object
     */
     
-    class ProductSizePriceArticleAssignment {
+    class ProductStockPrice {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -244,11 +244,11 @@
     }
 
     /*
-        Model: ProductStockPrice,
+        Model: ProductSizePriceArticleAssignment,
         Type: object
     */
     
-    class ProductStockPrice {
+    class ProductSizePriceArticleAssignment {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -552,22 +552,22 @@
     }
 
     /*
-        Model: CollectionListingFilterType,
+        Model: CollectionListingFilterTag,
         Type: object
     */
     
-    class CollectionListingFilterType {
+    class CollectionListingFilterTag {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: CollectionListingFilterTag,
+        Model: CollectionListingFilterType,
         Type: object
     */
     
-    class CollectionListingFilterTag {
+    class CollectionListingFilterType {
         constructor(_body) {
             Object.assign(this, body);
         }

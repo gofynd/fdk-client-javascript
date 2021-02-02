@@ -12,7 +12,7 @@
 
 ## Catalog
 
-```
+```javascript
 const { Configuration, Catalog } = require('fdk-client-nodejs/application')
 const conf = new Configuration({
     ApplicationID: "507f191e810c19729de860ea",
@@ -50,9 +50,9 @@ const catalog = new Catalog(conf);
 * [getFollowIDsByType](#getFollowIDsByType)
 
 
-#### getProducts - List the products
+*getProducts* - List the products
 
-```
+```javascript
 getProducts(q, category, brand, sort_on, page_id, page_size, opts);
 ```
 
@@ -71,9 +71,9 @@ List all the products associated with a brand, collection or category in a reque
 ---
 
 
-#### getProductDetailByIdentifier - Get a product
+*getProductDetailByIdentifier* - Get a product
 
-```
+```javascript
 getProductDetailByIdentifier(id, slug, opts);
 ```
 
@@ -88,9 +88,9 @@ Products are the core resource of an application. Products can be associated by 
 ---
 
 
-#### getProductSizesByIdentifier - Get the sizes of a product
+*getProductSizesByIdentifier* - Get the sizes of a product
 
-```
+```javascript
 getProductSizesByIdentifier(id, slug, store, opts);
 ```
 
@@ -106,9 +106,9 @@ A product can exist in multiple sizes. Use this API to fetch all the available s
 ---
 
 
-#### getProductPriceByIdentifier - Get price a product
+*getProductPriceByIdentifier* - Get price a product
 
-```
+```javascript
 getProductPriceByIdentifier(id, slug, size, pincode, store, opts);
 ```
 
@@ -126,9 +126,9 @@ Any available product can exist in multiple sizes. Sometimes prices may vary amo
 ---
 
 
-#### getProductSellersByIdentifier - List sellers of a product
+*getProductSellersByIdentifier* - List sellers of a product
 
-```
+```javascript
 getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts);
 ```
 
@@ -147,9 +147,9 @@ A product of a particular size can be sold by multiple sellers. Use this API to 
 ---
 
 
-#### getProductSimilarByIdentifier - Get similar products
+*getProductSimilarByIdentifier* - Get similar products
 
-```
+```javascript
 getProductSimilarByIdentifier(id, slug, tag_identifier, opts);
 ```
 
@@ -165,9 +165,9 @@ Get products similar to the one specified by the `identifier`. If successful, it
 ---
 
 
-#### getProductVariantsByIdentifier - Get variant of a particular product
+*getProductVariantsByIdentifier* - Get variant of a particular product
 
-```
+```javascript
 getProductVariantsByIdentifier(id, slug, opts);
 ```
 
@@ -182,9 +182,9 @@ A product can have a different type of variants varies from color to shade etc. 
 ---
 
 
-#### getProductStockByIdentifier - Get the stock of a product
+*getProductStockByIdentifier* - Get the stock of a product
 
-```
+```javascript
 getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts);
 ```
 
@@ -202,9 +202,9 @@ Retrieve the available stock of the products. You can use this API to retrieve s
 ---
 
 
-#### getProductStockForTimeByIdentifier - Get the stock of a product
+*getProductStockForTimeByIdentifier* - Get the stock of a product
 
-```
+```javascript
 getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts);
 ```
 
@@ -220,9 +220,9 @@ Retrieve the available stock of the products. You can use this api to get stock 
 ---
 
 
-#### getBrands - List all the brands
+*getBrands* - List all the brands
 
-```
+```javascript
 getBrands(department, page_no, page_size, opts);
 ```
 
@@ -238,9 +238,9 @@ A brand is the name under which a product is being sold. Use this API to list al
 ---
 
 
-#### getBrandDetailByIdentifier - Get metadata of a brand
+*getBrandDetailByIdentifier* - Get metadata of a brand
 
-```
+```javascript
 getBrandDetailByIdentifier(id, slug, opts);
 ```
 
@@ -255,9 +255,9 @@ Fetch metadata of a brand. If successful, returns a metadata object specified in
 ---
 
 
-#### getCategories - List all the categories
+*getCategories* - List all the categories
 
-```
+```javascript
 getCategories(department, opts);
 ```
 
@@ -271,9 +271,9 @@ List all the categories. You can optionally pass filter the brands by the depart
 ---
 
 
-#### getCategoryDetailByIdentifier - Get metadata of a category
+*getCategoryDetailByIdentifier* - Get metadata of a category
 
-```
+```javascript
 getCategoryDetailByIdentifier(id, slug, opts);
 ```
 
@@ -288,9 +288,9 @@ Fetch metadata of a category. If successful, returns a metadata object specified
 ---
 
 
-#### getHomeProducts - List the products
+*getHomeProducts* - List the products
 
-```
+```javascript
 getHomeProducts(f.session, sort_on, page_id, page_size, opts);
 ```
 
@@ -307,9 +307,9 @@ List all the products associated with a brand, collection or category in a rando
 ---
 
 
-####  - List all the departments
+** - List all the departments
 
-```
+```javascript
 (opts);
 ```
 
@@ -322,9 +322,9 @@ Departments are a way to categorise similar products. A product can lie in multi
 ---
 
 
-#### getSearchResults - Get relevant suggestions for a search query
+*getSearchResults* - Get relevant suggestions for a search query
 
-```
+```javascript
 getSearchResults(q, opts);
 ```
 
@@ -338,9 +338,9 @@ Retrieves a list of suggestions for a given search query. Each suggestion is a v
 ---
 
 
-#### getCollections - List all the collections
+*getCollections* - List all the collections
 
-```
+```javascript
 getCollections(opts);
 ```
 
@@ -353,9 +353,9 @@ A Collection allows you to organize your products into hierarchical groups. For 
 ---
 
 
-#### getCollectionItemsBySlug - Get the items in a collection
+*getCollectionItemsBySlug* - Get the items in a collection
 
-```
+```javascript
 getCollectionItemsBySlug(slug, opts);
 ```
 
@@ -369,9 +369,9 @@ Get items in a collection specified by its `slug`.
 ---
 
 
-#### getCollectionDetailBySlug - Get a particular collection
+*getCollectionDetailBySlug* - Get a particular collection
 
-```
+```javascript
 getCollectionDetailBySlug(slug, opts);
 ```
 
@@ -385,9 +385,9 @@ Get the details of a collection by its `slug`. If successful, returns a Collecti
 ---
 
 
-#### getFollowProducts - Get a list of followed Products
+*getFollowProducts* - Get a list of followed Products
 
-```
+```javascript
 getFollowProducts(f.session, opts);
 ```
 
@@ -401,9 +401,9 @@ A User can follow a Product they like. This API retrieves the products the user 
 ---
 
 
-#### unfollowProductById - UnFollow a Product
+*unfollowProductById* - UnFollow a Product
 
-```
+```javascript
 unfollowProductById(product_id, f.session, opts);
 ```
 
@@ -418,9 +418,9 @@ You can undo a followed Product or Brand by its uid, we refer this action as _un
 ---
 
 
-#### saveFollowProductById - Follow a particular Product
+*saveFollowProductById* - Follow a particular Product
 
-```
+```javascript
 saveFollowProductById(product_id, f.session, opts);
 ```
 
@@ -435,9 +435,9 @@ Follow a particular Product specified by its uid. Pass the uid of the product in
 ---
 
 
-#### getFollowProductCountById - Get Follow Count
+*getFollowProductCountById* - Get Follow Count
 
-```
+```javascript
 getFollowProductCountById(collection_type, collection_id, opts);
 ```
 
@@ -452,9 +452,9 @@ Get count of followers for given collection type and collection id.
 ---
 
 
-#### getFollowIDsByType - Get the Uids of followed product, brand and collection.
+*getFollowIDsByType* - Get the Uids of followed product, brand and collection.
 
-```
+```javascript
 getFollowIDsByType(opts);
 ```
 
@@ -474,7 +474,7 @@ You can get the uids of all the followed Product, Brand and Collections.
 
 ## Cart
 
-```
+```javascript
 const { Configuration, Cart } = require('fdk-client-nodejs/application')
 const conf = new Configuration({
     ApplicationID: "507f191e810c19729de860ea",
@@ -511,9 +511,9 @@ const cart = new Cart(conf);
 * [updateCartWithSharedItems](#updateCartWithSharedItems)
 
 
-#### getCart - Fetch all Items Added to  Cart
+*getCart* - Fetch all Items Added to  Cart
 
-```
+```javascript
 getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -531,9 +531,9 @@ Get all the details of a items added to cart  by uid. If successful, returns a C
 ---
 
 
-#### getCartLastModified - Fetch Last-Modified timestamp
+*getCartLastModified* - Fetch Last-Modified timestamp
 
-```
+```javascript
 getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -550,9 +550,9 @@ Fetch Last-Modified timestamp in header metadata
 ---
 
 
-#### addItemsToCart - Add Items to Cart
+*addItemsToCart* - Add Items to Cart
 
-```
+```javascript
 addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -568,9 +568,9 @@ addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
 ---
 
 
-#### updateCart - Update Items already added to Cart
+*updateCart* - Update Items already added to Cart
 
-```
+```javascript
 updateCart(x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -586,9 +586,9 @@ Request object containing attributes like item_quantity and item_size which can 
 ---
 
 
-#### getCartItemCount - Cart item count
+*getCartItemCount* - Cart item count
 
-```
+```javascript
 getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -605,9 +605,9 @@ Get total count of item present in cart
 ---
 
 
-#### getCouponList - Fetch Coupon
+*getCouponList* - Fetch Coupon
 
-```
+```javascript
 getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -624,9 +624,9 @@ Get all the details of a coupons applicable to cart  by uid. If successful, retu
 ---
 
 
-#### applyCoupon - Apply Coupon
+*applyCoupon* - Apply Coupon
 
-```
+```javascript
 applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -646,9 +646,9 @@ applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opt
 ---
 
 
-#### removeCoupon - Remove Coupon Applied
+*removeCoupon* - Remove Coupon Applied
 
-```
+```javascript
 removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -665,9 +665,9 @@ Remove Coupon applied on the cart by passing uid in request body.
 ---
 
 
-#### getBulkDiscountOffers - Get discount offers based on quantity
+*getBulkDiscountOffers* - Get discount offers based on quantity
 
-```
+```javascript
 getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -687,9 +687,9 @@ List applicable offers along with current, next and best offer for given product
 ---
 
 
-#### getAddressList - Fetch Address
+*getAddressList* - Fetch Address
 
-```
+```javascript
 getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -710,9 +710,9 @@ Get all the addresses associated with the account. If successful, returns a Addr
 ---
 
 
-#### addAddress - Add Address to the account
+*addAddress* - Add Address to the account
 
-```
+```javascript
 addAddress(x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -728,9 +728,9 @@ addAddress(x-application-id, x-application-token, x-currency-code, opts);
 ---
 
 
-#### getAddressById - Fetch Single Address
+*getAddressById* - Fetch Single Address
 
-```
+```javascript
 getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -752,9 +752,9 @@ Get a addresses with the given id. If successful, returns a Address resource in 
 ---
 
 
-#### updateAddress - Update Address alreay added to account
+*updateAddress* - Update Address alreay added to account
 
-```
+```javascript
 updateAddress(id, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -771,9 +771,9 @@ Request object containing attributes mentioned in  &lt;font color=&quot;blue&quo
 ---
 
 
-#### removeAddress - Remove Address Associated to the account
+*removeAddress* - Remove Address Associated to the account
 
-```
+```javascript
 removeAddress(id, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -790,9 +790,9 @@ Delete a Address by it&#39;s address_id. Returns an object that tells whether th
 ---
 
 
-#### selectCartAddress - Select Address from All Addresses
+*selectCartAddress* - Select Address from All Addresses
 
-```
+```javascript
 selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -808,9 +808,9 @@ selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
 ---
 
 
-#### getCartPaymentModes - Gte Cart Payment for valid coupon
+*getCartPaymentModes* - Gte Cart Payment for valid coupon
 
-```
+```javascript
 getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -832,9 +832,9 @@ Validate coupon for selected payment mode
 ---
 
 
-#### selectCartPaymentMode - Update Cart Payment
+*selectCartPaymentMode* - Update Cart Payment
 
-```
+```javascript
 selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -851,9 +851,9 @@ Update Cart Payment for Your Account
 ---
 
 
-#### getCartShipments - Get delivery date and options before checkout
+*getCartShipments* - Get delivery date and options before checkout
 
-```
+```javascript
 getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -872,9 +872,9 @@ Shipment break up item wise with delivery date. Actual                      deli
 ---
 
 
-#### checkoutCart - Checkout Cart
+*checkoutCart* - Checkout Cart
 
-```
+```javascript
 checkoutCart(x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -890,9 +890,9 @@ Checkout all items in cart to payment and order generation.                     
 ---
 
 
-#### updateCartMeta - Update Cart Meta
+*updateCartMeta* - Update Cart Meta
 
-```
+```javascript
 updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -909,9 +909,9 @@ Update cart meta like checkout_mode, gstin.
 ---
 
 
-#### getCartShareLink - Generate Cart sharing link token
+*getCartShareLink* - Generate Cart sharing link token
 
-```
+```javascript
 getCartShareLink(x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -927,9 +927,9 @@ Generates shared cart snapshot and returns shortlink token
 ---
 
 
-#### getCartSharedItems - Get shared cart snapshot and cart response
+*getCartSharedItems* - Get shared cart snapshot and cart response
 
-```
+```javascript
 getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -946,9 +946,9 @@ Returns shared cart response for sent token with `shared_cart_details`          
 ---
 
 
-#### updateCartWithSharedItems - Merge or Replace existing cart
+*updateCartWithSharedItems* - Merge or Replace existing cart
 
-```
+```javascript
 updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts);
 ```
 
@@ -973,7 +973,7 @@ Merge or Replace cart based on `action` parameter with shared cart of `token`
 
 ## Lead
 
-```
+```javascript
 const { Configuration, Lead } = require('fdk-client-nodejs/application')
 const conf = new Configuration({
     ApplicationID: "507f191e810c19729de860ea",
@@ -994,9 +994,9 @@ const lead = new Lead(conf);
 * [getTokenForVideRoom](#getTokenForVideRoom)
 
 
-#### getTicket - Get Tickets
+*getTicket* - Get Tickets
 
-```
+```javascript
 getTicket(id, x-application-id, x-application-token, opts);
 ```
 
@@ -1012,9 +1012,9 @@ Get Tickets
 ---
 
 
-#### createHistoryForTicket - Create history for Ticket
+*createHistoryForTicket* - Create history for Ticket
 
-```
+```javascript
 createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts);
 ```
 
@@ -1030,9 +1030,9 @@ Create history for Ticket
 ---
 
 
-#### createTicket - Create Ticket
+*createTicket* - Create Ticket
 
-```
+```javascript
 createTicket(x-application-id, x-application-token, opts);
 ```
 
@@ -1047,9 +1047,9 @@ Create Ticket
 ---
 
 
-#### getForm - Get Custom Form
+*getForm* - Get Custom Form
 
-```
+```javascript
 getForm(slug, x-application-id, x-application-token, opts);
 ```
 
@@ -1065,9 +1065,9 @@ Get Custom Form
 ---
 
 
-#### submitForm - Submit Form Response
+*submitForm* - Submit Form Response
 
-```
+```javascript
 submitForm(slug, x-application-id, x-application-token, opts);
 ```
 
@@ -1083,9 +1083,9 @@ Submit Form Response
 ---
 
 
-#### getParticipantsInsideVideoRoom - Get participants of Video Room
+*getParticipantsInsideVideoRoom* - Get participants of Video Room
 
-```
+```javascript
 getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts);
 ```
 
@@ -1101,9 +1101,9 @@ Get participants of Video Room
 ---
 
 
-#### getTokenForVideRoom - Get Token to join Video Room
+*getTokenForVideRoom* - Get Token to join Video Room
 
-```
+```javascript
 getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts);
 ```
 
