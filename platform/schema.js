@@ -2,6 +2,692 @@
 
 
     /*
+        Model: ProductPage,
+        Type: object
+    */
+    
+    class ProductPage {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductFiltersValue,
+        Type: object
+    */
+    
+    class ProductFiltersValue {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductFiltersKey,
+        Type: object
+    */
+    
+    class ProductFiltersKey {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductFilters,
+        Type: object
+    */
+    
+    class ProductFilters {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSortOn,
+        Type: object
+    */
+    
+    class ProductSortOn {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductListingActionPage,
+        Type: object
+    */
+    
+    class ProductListingActionPage {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductListingAction,
+        Type: object
+    */
+    
+    class ProductListingAction {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Media,
+        Type: object
+    */
+    
+    class Media {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductBrand,
+        Type: object
+    */
+    
+    class ProductBrand {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductDetailAttribute,
+        Type: object
+    */
+    
+    class ProductDetailAttribute {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductDetailGroupedAttribute,
+        Type: object
+    */
+    
+    class ProductDetailGroupedAttribute {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductDetailSchemaV1,
+        Type: object
+    */
+    
+    class ProductDetailSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSearchSchemaV1,
+        Type: object
+    */
+    
+    class ProductSearchSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ErrorSchemaV1,
+        Type: object
+    */
+    
+    class ErrorSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Error,
+        Type: object
+    */
+    
+    class Error {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSize,
+        Type: object
+    */
+    
+    class ProductSize {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Price,
+        Type: object
+    */
+    
+    class Price {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductListingPrice,
+        Type: object
+    */
+    
+    class ProductListingPrice {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSizeStores,
+        Type: object
+    */
+    
+    class ProductSizeStores {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSizesSchemaV1,
+        Type: object
+    */
+    
+    class ProductSizesSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductStockPrice,
+        Type: object
+    */
+    
+    class ProductStockPrice {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSeller,
+        Type: object
+    */
+    
+    class ProductSeller {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSizePriceArticleAssignment,
+        Type: object
+    */
+    
+    class ProductSizePriceArticleAssignment {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSizePriceSchemaV1,
+        Type: object
+    */
+    
+    class ProductSizePriceSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSizeSellerFilter,
+        Type: object
+    */
+    
+    class ProductSizeSellerFilter {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSizeSellerSchemaV1,
+        Type: object
+    */
+    
+    class ProductSizeSellerSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSimilarItem,
+        Type: object
+    */
+    
+    class ProductSimilarItem {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: SimilarProductByTagSchemaV1,
+        Type: object
+    */
+    
+    class SimilarProductByTagSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductVariantItemSchemaV1,
+        Type: object
+    */
+    
+    class ProductVariantItemSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductVariantSchemaV1,
+        Type: object
+    */
+    
+    class ProductVariantSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: StoreDetail,
+        Type: object
+    */
+    
+    class StoreDetail {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CompanyDetail,
+        Type: object
+    */
+    
+    class CompanyDetail {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductStockStatusItem,
+        Type: object
+    */
+    
+    class ProductStockStatusItem {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductStockStatusSchemaV1,
+        Type: object
+    */
+    
+    class ProductStockStatusSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductStockStatusPollSchemaV1,
+        Type: object
+    */
+    
+    class ProductStockStatusPollSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ImageUrls,
+        Type: object
+    */
+    
+    class ImageUrls {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: BrandItem,
+        Type: object
+    */
+    
+    class BrandItem {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: BrandListingSchemaV1,
+        Type: object
+    */
+    
+    class BrandListingSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: BrandMetaV1,
+        Type: object
+    */
+    
+    class BrandMetaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: DepartmentIdentifier,
+        Type: object
+    */
+    
+    class DepartmentIdentifier {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CategoryItems,
+        Type: object
+    */
+    
+    class CategoryItems {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: DepartmentCategoryTree,
+        Type: object
+    */
+    
+    class DepartmentCategoryTree {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CategoryListingSchemaV1,
+        Type: object
+    */
+    
+    class CategoryListingSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CategoryMetaV1,
+        Type: object
+    */
+    
+    class CategoryMetaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Page,
+        Type: object
+    */
+    
+    class Page {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: HomeListingSchemaV1,
+        Type: object
+    */
+    
+    class HomeListingSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: DepartmentSchemaV1,
+        Type: object
+    */
+    
+    class DepartmentSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: AutocompleteItemSchemaV1,
+        Type: object
+    */
+    
+    class AutocompleteItemSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: AutoCompleteSchemaV1,
+        Type: object
+    */
+    
+    class AutoCompleteSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GetCollectionNest,
+        Type: object
+    */
+    
+    class GetCollectionNest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CollectionListingFilterTag,
+        Type: object
+    */
+    
+    class CollectionListingFilterTag {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CollectionListingFilterType,
+        Type: object
+    */
+    
+    class CollectionListingFilterType {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CollectionListingFilter,
+        Type: object
+    */
+    
+    class CollectionListingFilter {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GetCollectionResponseSchemaV1,
+        Type: object
+    */
+    
+    class GetCollectionResponseSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GetCollectionItemResponseSchemaV1,
+        Type: object
+    */
+    
+    class GetCollectionItemResponseSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CollectionResponseV1,
+        Type: object
+    */
+    
+    class CollectionResponseV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: NextPage,
+        Type: object
+    */
+    
+    class NextPage {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GetFollowResponse,
+        Type: object
+    */
+    
+    class GetFollowResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: PlatformFollowPostResponseSchemaV1,
+        Type: object
+    */
+    
+    class PlatformFollowPostResponseSchemaV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: FollowCountResponseV1,
+        Type: object
+    */
+    
+    class FollowCountResponseV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: FollowUidsData,
+        Type: object
+    */
+    
+    class FollowUidsData {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: FollowUidsResponseV1,
+        Type: object
+    */
+    
+    class FollowUidsResponseV1 {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+
+
+
+
+    /*
         Model: GetCartV1Serializer,
         Type: object
     */
@@ -645,692 +1331,6 @@
     */
     
     class SharedPlatformV1Cart {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-
-
-
-
-    /*
-        Model: ProductPage,
-        Type: object
-    */
-    
-    class ProductPage {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductFiltersValue,
-        Type: object
-    */
-    
-    class ProductFiltersValue {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductFiltersKey,
-        Type: object
-    */
-    
-    class ProductFiltersKey {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductFilters,
-        Type: object
-    */
-    
-    class ProductFilters {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: Media,
-        Type: object
-    */
-    
-    class Media {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductListingActionPage,
-        Type: object
-    */
-    
-    class ProductListingActionPage {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductListingAction,
-        Type: object
-    */
-    
-    class ProductListingAction {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductBrand,
-        Type: object
-    */
-    
-    class ProductBrand {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductDetailAttribute,
-        Type: object
-    */
-    
-    class ProductDetailAttribute {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductDetailGroupedAttribute,
-        Type: object
-    */
-    
-    class ProductDetailGroupedAttribute {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductDetailSchemaV1,
-        Type: object
-    */
-    
-    class ProductDetailSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSortOn,
-        Type: object
-    */
-    
-    class ProductSortOn {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSearchSchemaV1,
-        Type: object
-    */
-    
-    class ProductSearchSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ErrorSchemaV1,
-        Type: object
-    */
-    
-    class ErrorSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: Error,
-        Type: object
-    */
-    
-    class Error {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSizeStores,
-        Type: object
-    */
-    
-    class ProductSizeStores {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: Price,
-        Type: object
-    */
-    
-    class Price {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductListingPrice,
-        Type: object
-    */
-    
-    class ProductListingPrice {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSize,
-        Type: object
-    */
-    
-    class ProductSize {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSizesSchemaV1,
-        Type: object
-    */
-    
-    class ProductSizesSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSizePriceArticleAssignment,
-        Type: object
-    */
-    
-    class ProductSizePriceArticleAssignment {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSeller,
-        Type: object
-    */
-    
-    class ProductSeller {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductStockPrice,
-        Type: object
-    */
-    
-    class ProductStockPrice {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSizePriceSchemaV1,
-        Type: object
-    */
-    
-    class ProductSizePriceSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSizeSellerFilter,
-        Type: object
-    */
-    
-    class ProductSizeSellerFilter {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSizeSellerSchemaV1,
-        Type: object
-    */
-    
-    class ProductSizeSellerSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSimilarItem,
-        Type: object
-    */
-    
-    class ProductSimilarItem {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: SimilarProductByTagSchemaV1,
-        Type: object
-    */
-    
-    class SimilarProductByTagSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductVariantItemSchemaV1,
-        Type: object
-    */
-    
-    class ProductVariantItemSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductVariantSchemaV1,
-        Type: object
-    */
-    
-    class ProductVariantSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: StoreDetail,
-        Type: object
-    */
-    
-    class StoreDetail {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CompanyDetail,
-        Type: object
-    */
-    
-    class CompanyDetail {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductStockStatusItem,
-        Type: object
-    */
-    
-    class ProductStockStatusItem {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductStockStatusSchemaV1,
-        Type: object
-    */
-    
-    class ProductStockStatusSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductStockStatusPollSchemaV1,
-        Type: object
-    */
-    
-    class ProductStockStatusPollSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ImageUrls,
-        Type: object
-    */
-    
-    class ImageUrls {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: BrandItem,
-        Type: object
-    */
-    
-    class BrandItem {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: BrandListingSchemaV1,
-        Type: object
-    */
-    
-    class BrandListingSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: BrandMetaV1,
-        Type: object
-    */
-    
-    class BrandMetaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: DepartmentIdentifier,
-        Type: object
-    */
-    
-    class DepartmentIdentifier {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CategoryItems,
-        Type: object
-    */
-    
-    class CategoryItems {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: DepartmentCategoryTree,
-        Type: object
-    */
-    
-    class DepartmentCategoryTree {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CategoryListingSchemaV1,
-        Type: object
-    */
-    
-    class CategoryListingSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CategoryMetaV1,
-        Type: object
-    */
-    
-    class CategoryMetaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: Page,
-        Type: object
-    */
-    
-    class Page {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: HomeListingSchemaV1,
-        Type: object
-    */
-    
-    class HomeListingSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: DepartmentSchemaV1,
-        Type: object
-    */
-    
-    class DepartmentSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: AutocompleteItemSchemaV1,
-        Type: object
-    */
-    
-    class AutocompleteItemSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: AutoCompleteSchemaV1,
-        Type: object
-    */
-    
-    class AutoCompleteSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: GetCollectionNest,
-        Type: object
-    */
-    
-    class GetCollectionNest {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionListingFilterType,
-        Type: object
-    */
-    
-    class CollectionListingFilterType {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionListingFilterTag,
-        Type: object
-    */
-    
-    class CollectionListingFilterTag {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionListingFilter,
-        Type: object
-    */
-    
-    class CollectionListingFilter {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: GetCollectionResponseSchemaV1,
-        Type: object
-    */
-    
-    class GetCollectionResponseSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: GetCollectionItemResponseSchemaV1,
-        Type: object
-    */
-    
-    class GetCollectionItemResponseSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionResponseV1,
-        Type: object
-    */
-    
-    class CollectionResponseV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: NextPage,
-        Type: object
-    */
-    
-    class NextPage {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: GetFollowResponse,
-        Type: object
-    */
-    
-    class GetFollowResponse {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: PlatformFollowPostResponseSchemaV1,
-        Type: object
-    */
-    
-    class PlatformFollowPostResponseSchemaV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: FollowCountResponseV1,
-        Type: object
-    */
-    
-    class FollowCountResponseV1 {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: FollowUidsData,
-        Type: object
-    */
-    
-    class FollowUidsData {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: FollowUidsResponseV1,
-        Type: object
-    */
-    
-    class FollowUidsResponseV1 {
         constructor(_body) {
             Object.assign(this, body);
         }

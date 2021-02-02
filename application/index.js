@@ -5,6 +5,83 @@ const Credential = require("./credential");
 
 
 const { 
+    ProductPage,
+    ProductFiltersValue,
+    ProductFiltersKey,
+    ProductFilters,
+    ProductSortOn,
+    ProductListingActionPage,
+    ProductListingAction,
+    Media,
+    ProductBrand,
+    ProductDetailAttribute,
+    ProductDetailGroupedAttribute,
+    ProductDetailSchemaV1,
+    ProductSearchSchemaV1,
+    ErrorSchemaV1,
+    Error,
+    ProductSize,
+    Price,
+    ProductListingPrice,
+    ProductSizeStores,
+    ProductSizesSchemaV1,
+    ProductStockPrice,
+    ProductSeller,
+    ProductSizePriceArticleAssignment,
+    ProductSizePriceSchemaV1,
+    ProductSizeSellerFilter,
+    ProductSizeSellerSchemaV1,
+    ProductSimilarItem,
+    SimilarProductByTagSchemaV1,
+    ProductVariantItemSchemaV1,
+    ProductVariantSchemaV1,
+    StoreDetail,
+    CompanyDetail,
+    ProductStockStatusItem,
+    ProductStockStatusSchemaV1,
+    ProductStockStatusPollSchemaV1,
+    ImageUrls,
+    BrandItem,
+    BrandListingSchemaV1,
+    BrandMetaV1,
+    DepartmentIdentifier,
+    CategoryItems,
+    DepartmentCategoryTree,
+    CategoryListingSchemaV1,
+    CategoryMetaV1,
+    Page,
+    HomeListingSchemaV1,
+    DepartmentSchemaV1,
+    AutocompleteItemSchemaV1,
+    AutoCompleteSchemaV1,
+    GetCollectionNest,
+    CollectionListingFilterTag,
+    CollectionListingFilterType,
+    CollectionListingFilter,
+    GetCollectionResponseSchemaV1,
+    GetCollectionItemResponseSchemaV1,
+    CollectionResponseV1,
+    NextPage,
+    GetFollowResponse,
+    PlatformFollowPostResponseSchemaV1,
+    FollowCountResponseV1,
+    FollowUidsData,
+    FollowUidsResponseV1
+} = require("./schema");
+
+    
+class  {
+    constructor(_credential) {
+        this.credential = _credential;
+    }
+    
+}
+
+
+exports.Catalog = Catalog;
+
+
+const { 
     GetCartV1Serializer,
     ProductCart,
     CartV1Serializer,
@@ -76,83 +153,6 @@ class  {
 
 
 exports.Cart = Cart;
-
-
-const { 
-    ProductPage,
-    ProductFiltersValue,
-    ProductFiltersKey,
-    ProductFilters,
-    Media,
-    ProductListingActionPage,
-    ProductListingAction,
-    ProductBrand,
-    ProductDetailAttribute,
-    ProductDetailGroupedAttribute,
-    ProductDetailSchemaV1,
-    ProductSortOn,
-    ProductSearchSchemaV1,
-    ErrorSchemaV1,
-    Error,
-    ProductSizeStores,
-    Price,
-    ProductListingPrice,
-    ProductSize,
-    ProductSizesSchemaV1,
-    ProductSizePriceArticleAssignment,
-    ProductSeller,
-    ProductStockPrice,
-    ProductSizePriceSchemaV1,
-    ProductSizeSellerFilter,
-    ProductSizeSellerSchemaV1,
-    ProductSimilarItem,
-    SimilarProductByTagSchemaV1,
-    ProductVariantItemSchemaV1,
-    ProductVariantSchemaV1,
-    StoreDetail,
-    CompanyDetail,
-    ProductStockStatusItem,
-    ProductStockStatusSchemaV1,
-    ProductStockStatusPollSchemaV1,
-    ImageUrls,
-    BrandItem,
-    BrandListingSchemaV1,
-    BrandMetaV1,
-    DepartmentIdentifier,
-    CategoryItems,
-    DepartmentCategoryTree,
-    CategoryListingSchemaV1,
-    CategoryMetaV1,
-    Page,
-    HomeListingSchemaV1,
-    DepartmentSchemaV1,
-    AutocompleteItemSchemaV1,
-    AutoCompleteSchemaV1,
-    GetCollectionNest,
-    CollectionListingFilterType,
-    CollectionListingFilterTag,
-    CollectionListingFilter,
-    GetCollectionResponseSchemaV1,
-    GetCollectionItemResponseSchemaV1,
-    CollectionResponseV1,
-    NextPage,
-    GetFollowResponse,
-    PlatformFollowPostResponseSchemaV1,
-    FollowCountResponseV1,
-    FollowUidsData,
-    FollowUidsResponseV1
-} = require("./schema");
-
-    
-class  {
-    constructor(_credential) {
-        this.credential = _credential;
-    }
-    
-}
-
-
-exports.Catalog = Catalog;
 
 
 const { 
