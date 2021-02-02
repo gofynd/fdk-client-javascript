@@ -50,11 +50,9 @@ const catalog = new Catalog(conf);
 * [getFollowIDsByType](#getFollowIDsByType)
 
 
-#### getProducts
+#### getProducts - List the products
 
-___ getProducts(q, category, brand, sort_on, page_id, page_size, opts) ___
-
-**Summary:** List the products
+*getProducts(q, category, brand, sort_on, page_id, page_size, opts)*
 
 **Parameters:**
 
@@ -70,11 +68,9 @@ ___ getProducts(q, category, brand, sort_on, page_id, page_size, opts) ___
 **Description:** List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductSearchSchemaV1`
 
 
-#### getProductDetailByIdentifier
+#### getProductDetailByIdentifier - Get a product
 
-___ getProductDetailByIdentifier(id, slug, opts) ___
-
-**Summary:** Get a product
+*getProductDetailByIdentifier(id, slug, opts)*
 
 **Parameters:**
 
@@ -86,11 +82,9 @@ ___ getProductDetailByIdentifier(id, slug, opts) ___
 **Description:** Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **identifier**. If successful, returns a Product resource in the response body specified in `ProductDetailSchemaV1`
 
 
-#### getProductSizesByIdentifier
+#### getProductSizesByIdentifier - Get the sizes of a product
 
-___ getProductSizesByIdentifier(id, slug, store, opts) ___
-
-**Summary:** Get the sizes of a product
+*getProductSizesByIdentifier(id, slug, store, opts)*
 
 **Parameters:**
 
@@ -103,11 +97,9 @@ ___ getProductSizesByIdentifier(id, slug, store, opts) ___
 **Description:** A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizesSchemaV1`
 
 
-#### getProductPriceByIdentifier
+#### getProductPriceByIdentifier - Get price a product
 
-___ getProductPriceByIdentifier(id, slug, size, pincode, store, opts) ___
-
-**Summary:** Get price a product
+*getProductPriceByIdentifier(id, slug, size, pincode, store, opts)*
 
 **Parameters:**
 
@@ -122,11 +114,9 @@ ___ getProductPriceByIdentifier(id, slug, size, pincode, store, opts) ___
 **Description:** Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size.
 
 
-#### getProductSellersByIdentifier
+#### getProductSellersByIdentifier - List sellers of a product
 
-___ getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts) ___
-
-**Summary:** List sellers of a product
+*getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts)*
 
 **Parameters:**
 
@@ -142,11 +132,9 @@ ___ getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, o
 **Description:** A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
 
 
-#### getProductSimilarByIdentifier
+#### getProductSimilarByIdentifier - Get similar products
 
-___ getProductSimilarByIdentifier(id, slug, tag_identifier, opts) ___
-
-**Summary:** Get similar products
+*getProductSimilarByIdentifier(id, slug, tag_identifier, opts)*
 
 **Parameters:**
 
@@ -159,11 +147,9 @@ ___ getProductSimilarByIdentifier(id, slug, tag_identifier, opts) ___
 **Description:** Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on tag as described in `SimilarProductByTagSchemaV1`
 
 
-#### getProductVariantsByIdentifier
+#### getProductVariantsByIdentifier - Get variant of a particular product
 
-___ getProductVariantsByIdentifier(id, slug, opts) ___
-
-**Summary:** Get variant of a particular product
+*getProductVariantsByIdentifier(id, slug, opts)*
 
 **Parameters:**
 
@@ -175,11 +161,9 @@ ___ getProductVariantsByIdentifier(id, slug, opts) ___
 **Description:** A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantSchemaV1`
 
 
-#### getProductStockByIdentifier
+#### getProductStockByIdentifier - Get the stock of a product
 
-___ getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts) ___
-
-**Summary:** Get the stock of a product
+*getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts)*
 
 **Parameters:**
 
@@ -194,11 +178,9 @@ ___ getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts) ___
 **Description:** Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Currently a maximum of 50 distinct product IDs can be given in a single API request
 
 
-#### getProductStockForTimeByIdentifier
+#### getProductStockForTimeByIdentifier - Get the stock of a product
 
-___ getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts) ___
-
-**Summary:** Get the stock of a product
+*getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts)*
 
 **Parameters:**
 
@@ -211,11 +193,9 @@ ___ getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts) ___
 **Description:** Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
 
 
-#### getBrands
+#### getBrands - List all the brands
 
-___ getBrands(department, page_no, page_size, opts) ___
-
-**Summary:** List all the brands
+*getBrands(department, page_no, page_size, opts)*
 
 **Parameters:**
 
@@ -228,11 +208,9 @@ ___ getBrands(department, page_no, page_size, opts) ___
 **Description:** A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingSchemaV1`
 
 
-#### getBrandDetailByIdentifier
+#### getBrandDetailByIdentifier - Get metadata of a brand
 
-___ getBrandDetailByIdentifier(id, slug, opts) ___
-
-**Summary:** Get metadata of a brand
+*getBrandDetailByIdentifier(id, slug, opts)*
 
 **Parameters:**
 
@@ -244,11 +222,9 @@ ___ getBrandDetailByIdentifier(id, slug, opts) ___
 **Description:** Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandMetaV1`
 
 
-#### getCategories
+#### getCategories - List all the categories
 
-___ getCategories(department, opts) ___
-
-**Summary:** List all the categories
+*getCategories(department, opts)*
 
 **Parameters:**
 
@@ -259,11 +235,9 @@ ___ getCategories(department, opts) ___
 **Description:** List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingSchemaV1`
 
 
-#### getCategoryDetailByIdentifier
+#### getCategoryDetailByIdentifier - Get metadata of a category
 
-___ getCategoryDetailByIdentifier(id, slug, opts) ___
-
-**Summary:** Get metadata of a category
+*getCategoryDetailByIdentifier(id, slug, opts)*
 
 **Parameters:**
 
@@ -275,11 +249,9 @@ ___ getCategoryDetailByIdentifier(id, slug, opts) ___
 **Description:** Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaV1`
 
 
-#### getHomeProducts
+#### getHomeProducts - List the products
 
-___ getHomeProducts(f.session, sort_on, page_id, page_size, opts) ___
-
-**Summary:** List the products
+*getHomeProducts(f.session, sort_on, page_id, page_size, opts)*
 
 **Parameters:**
 
@@ -293,11 +265,9 @@ ___ getHomeProducts(f.session, sort_on, page_id, page_size, opts) ___
 **Description:** List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingSchemaV1`
 
 
-#### 
+####  - List all the departments
 
-___ (opts) ___
-
-**Summary:** List all the departments
+*(opts)*
 
 **Parameters:**
 
@@ -307,11 +277,9 @@ ___ (opts) ___
 **Description:** Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentSchemaV1`
 
 
-#### getSearchResults
+#### getSearchResults - Get relevant suggestions for a search query
 
-___ getSearchResults(q, opts) ___
-
-**Summary:** Get relevant suggestions for a search query
+*getSearchResults(q, opts)*
 
 **Parameters:**
 
@@ -322,11 +290,9 @@ ___ getSearchResults(q, opts) ___
 **Description:** Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that&#39;s generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
 
 
-#### getCollections
+#### getCollections - List all the collections
 
-___ getCollections(opts) ___
-
-**Summary:** List all the collections
+*getCollections(opts)*
 
 **Parameters:**
 
@@ -336,11 +302,9 @@ ___ getCollections(opts) ___
 **Description:** A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
 
 
-#### getCollectionItemsBySlug
+#### getCollectionItemsBySlug - Get the items in a collection
 
-___ getCollectionItemsBySlug(slug, opts) ___
-
-**Summary:** Get the items in a collection
+*getCollectionItemsBySlug(slug, opts)*
 
 **Parameters:**
 
@@ -351,11 +315,9 @@ ___ getCollectionItemsBySlug(slug, opts) ___
 **Description:** Get items in a collection specified by its `slug`.
 
 
-#### getCollectionDetailBySlug
+#### getCollectionDetailBySlug - Get a particular collection
 
-___ getCollectionDetailBySlug(slug, opts) ___
-
-**Summary:** Get a particular collection
+*getCollectionDetailBySlug(slug, opts)*
 
 **Parameters:**
 
@@ -366,11 +328,9 @@ ___ getCollectionDetailBySlug(slug, opts) ___
 **Description:** Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionResponseV1`
 
 
-#### getFollowProducts
+#### getFollowProducts - Get a list of followed Products
 
-___ getFollowProducts(f.session, opts) ___
-
-**Summary:** Get a list of followed Products
+*getFollowProducts(f.session, opts)*
 
 **Parameters:**
 
@@ -381,11 +341,9 @@ ___ getFollowProducts(f.session, opts) ___
 **Description:** A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
 
 
-#### unfollowProductById
+#### unfollowProductById - UnFollow a Product
 
-___ unfollowProductById(product_id, f.session, opts) ___
-
-**Summary:** UnFollow a Product
+*unfollowProductById(product_id, f.session, opts)*
 
 **Parameters:**
 
@@ -397,11 +355,9 @@ ___ unfollowProductById(product_id, f.session, opts) ___
 **Description:** You can undo a followed Product or Brand by its uid, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 
-#### saveFollowProductById
+#### saveFollowProductById - Follow a particular Product
 
-___ saveFollowProductById(product_id, f.session, opts) ___
-
-**Summary:** Follow a particular Product
+*saveFollowProductById(product_id, f.session, opts)*
 
 **Parameters:**
 
@@ -413,11 +369,9 @@ ___ saveFollowProductById(product_id, f.session, opts) ___
 **Description:** Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 
-#### getFollowProductCountById
+#### getFollowProductCountById - Get Follow Count
 
-___ getFollowProductCountById(collection_type, collection_id, opts) ___
-
-**Summary:** Get Follow Count
+*getFollowProductCountById(collection_type, collection_id, opts)*
 
 **Parameters:**
 
@@ -429,11 +383,9 @@ ___ getFollowProductCountById(collection_type, collection_id, opts) ___
 **Description:** Get count of followers for given collection type and collection id.
 
 
-#### getFollowIDsByType
+#### getFollowIDsByType - Get the Uids of followed product, brand and collection.
 
-___ getFollowIDsByType(opts) ___
-
-**Summary:** Get the Uids of followed product, brand and collection.
+*getFollowIDsByType(opts)*
 
 **Parameters:**
 
@@ -486,11 +438,9 @@ const cart = new Cart(conf);
 * [updateCartWithSharedItems](#updateCartWithSharedItems)
 
 
-#### getCart
+#### getCart - Fetch all Items Added to  Cart
 
-___ getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Fetch all Items Added to  Cart
+*getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -505,11 +455,9 @@ ___ getCart(uid, assign_card_id, x-application-id, x-application-token, x-curren
 **Description:** Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartV1Serializer
 
 
-#### getCartLastModified
+#### getCartLastModified - Fetch Last-Modified timestamp
 
-___ getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Fetch Last-Modified timestamp
+*getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -523,11 +471,9 @@ ___ getCartLastModified(uid, x-application-id, x-application-token, x-currency-c
 **Description:** Fetch Last-Modified timestamp in header metadata
 
 
-#### addItemsToCart
+#### addItemsToCart - Add Items to Cart
 
-___ addItemsToCart(x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Add Items to Cart
+*addItemsToCart(x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -540,11 +486,9 @@ ___ addItemsToCart(x-application-id, x-application-token, x-currency-code, opts)
 **Description:** &lt;p&gt;Add Items to cart. See `CartV1Serializer` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;seller_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;store_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;/ul&gt;
 
 
-#### updateCart
+#### updateCart - Update Items already added to Cart
 
-___ updateCart(x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Update Items already added to Cart
+*updateCart(x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -557,11 +501,9 @@ ___ updateCart(x-application-id, x-application-token, x-currency-code, opts) ___
 **Description:** Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;font color=&quot;monochrome&quot;&gt;operation&lt;/font&gt; Operation for current api call. &lt;b&gt;update_item&lt;/b&gt; for update items. &lt;b&gt;remove_item&lt;/b&gt; for removing items.&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;article_id&lt;/font&gt;   &quot;/content​/v1​/products​/{identifier}​/sizes​/price​/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_index&lt;/font&gt;  item position in the cart (must be greater than or equal to 0)&lt;/li&gt; &lt;/ul&gt;
 
 
-#### getCartItemCount
+#### getCartItemCount - Cart item count
 
-___ getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Cart item count
+*getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -575,11 +517,9 @@ ___ getCartItemCount(uid, x-application-id, x-application-token, x-currency-code
 **Description:** Get total count of item present in cart
 
 
-#### getCouponList
+#### getCouponList - Fetch Coupon
 
-___ getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Fetch Coupon
+*getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -593,11 +533,9 @@ ___ getCouponList(uid, x-application-id, x-application-token, x-currency-code, o
 **Description:** Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponseSchema
 
 
-#### applyCoupon
+#### applyCoupon - Apply Coupon
 
-___ applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Apply Coupon
+*applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -614,11 +552,9 @@ ___ applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code,
 &lt;/ul&gt;
 
 
-#### removeCoupon
+#### removeCoupon - Remove Coupon Applied
 
-___ removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Remove Coupon Applied
+*removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -632,11 +568,9 @@ ___ removeCoupon(uid, x-application-id, x-application-token, x-currency-code, op
 **Description:** Remove Coupon applied on the cart by passing uid in request body.
 
 
-#### getBulkDiscountOffers
+#### getBulkDiscountOffers - Get discount offers based on quantity
 
-___ getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Get discount offers based on quantity
+*getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -653,11 +587,9 @@ ___ getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-ap
 **Description:** List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
 
 
-#### getAddressList
+#### getAddressList - Fetch Address
 
-___ getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Fetch Address
+*getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -675,11 +607,9 @@ ___ getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-i
 **Description:** Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
 
 
-#### addAddress
+#### addAddress - Add Address to the account
 
-___ addAddress(x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Add Address to the account
+*addAddress(x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -692,11 +622,9 @@ ___ addAddress(x-application-id, x-application-token, x-currency-code, opts) ___
 **Description:** &lt;p&gt;Add Address to account. See `SaveAddressRequestSchema` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
 
 
-#### getAddressById
+#### getAddressById - Fetch Single Address
 
-___ getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Fetch Single Address
+*getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -715,11 +643,9 @@ ___ getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-applicati
 **Description:** Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
 
 
-#### updateAddress
+#### updateAddress - Update Address alreay added to account
 
-___ updateAddress(id, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Update Address alreay added to account
+*updateAddress(id, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -733,11 +659,9 @@ ___ updateAddress(id, x-application-id, x-application-token, x-currency-code, op
 **Description:** Request object containing attributes mentioned in  &lt;font color=&quot;blue&quot;&gt;UpdateAddressRequestSchema &lt;/font&gt; can be updated .these attributes are :&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;is_default_address&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;landmark&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;area&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;pincode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;email&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_type&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;name&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
 
 
-#### removeAddress
+#### removeAddress - Remove Address Associated to the account
 
-___ removeAddress(id, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Remove Address Associated to the account
+*removeAddress(id, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -751,11 +675,9 @@ ___ removeAddress(id, x-application-id, x-application-token, x-currency-code, op
 **Description:** Delete a Address by it&#39;s address_id. Returns an object that tells whether the address was deleted successfully
 
 
-#### selectCartAddress
+#### selectCartAddress - Select Address from All Addresses
 
-___ selectCartAddress(x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Select Address from All Addresses
+*selectCartAddress(x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -768,11 +690,9 @@ ___ selectCartAddress(x-application-id, x-application-token, x-currency-code, op
 **Description:** &lt;p&gt;Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequestSchema` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;billing_address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
 
 
-#### getCartPaymentModes
+#### getCartPaymentModes - Gte Cart Payment for valid coupon
 
-___ getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Gte Cart Payment for valid coupon
+*getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -791,11 +711,9 @@ ___ getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggre
 **Description:** Validate coupon for selected payment mode
 
 
-#### selectCartPaymentMode
+#### selectCartPaymentMode - Update Cart Payment
 
-___ selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Update Cart Payment
+*selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -809,11 +727,9 @@ ___ selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency
 **Description:** Update Cart Payment for Your Account
 
 
-#### getCartShipments
+#### getCartShipments - Get delivery date and options before checkout
 
-___ getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Get delivery date and options before checkout
+*getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -829,11 +745,9 @@ ___ getCartShipments(p, uid, address_id, x-application-id, x-application-token, 
 **Description:** Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
 
-#### checkoutCart
+#### checkoutCart - Checkout Cart
 
-___ checkoutCart(x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Checkout Cart
+*checkoutCart(x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -846,11 +760,9 @@ ___ checkoutCart(x-application-id, x-application-token, x-currency-code, opts) _
 **Description:** Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
 
 
-#### updateCartMeta
+#### updateCartMeta - Update Cart Meta
 
-___ updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Update Cart Meta
+*updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -864,11 +776,9 @@ ___ updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, 
 **Description:** Update cart meta like checkout_mode, gstin.
 
 
-#### getCartShareLink
+#### getCartShareLink - Generate Cart sharing link token
 
-___ getCartShareLink(x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Generate Cart sharing link token
+*getCartShareLink(x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -881,11 +791,9 @@ ___ getCartShareLink(x-application-id, x-application-token, x-currency-code, opt
 **Description:** Generates shared cart snapshot and returns shortlink token
 
 
-#### getCartSharedItems
+#### getCartSharedItems - Get shared cart snapshot and cart response
 
-___ getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Get shared cart snapshot and cart response
+*getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -899,11 +807,9 @@ ___ getCartSharedItems(token, x-application-id, x-application-token, x-currency-
 **Description:** Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
 
 
-#### updateCartWithSharedItems
+#### updateCartWithSharedItems - Merge or Replace existing cart
 
-___ updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts) ___
-
-**Summary:** Merge or Replace existing cart
+*updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts)*
 
 **Parameters:**
 
@@ -945,11 +851,9 @@ const lead = new Lead(conf);
 * [getTokenForVideRoom](#getTokenForVideRoom)
 
 
-#### getTicket
+#### getTicket - Get Tickets
 
-___ getTicket(id, x-application-id, x-application-token, opts) ___
-
-**Summary:** Get Tickets
+*getTicket(id, x-application-id, x-application-token, opts)*
 
 **Parameters:**
 
@@ -962,11 +866,9 @@ ___ getTicket(id, x-application-id, x-application-token, opts) ___
 **Description:** Get Tickets
 
 
-#### createHistoryForTicket
+#### createHistoryForTicket - Create history for Ticket
 
-___ createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts) ___
-
-**Summary:** Create history for Ticket
+*createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts)*
 
 **Parameters:**
 
@@ -979,11 +881,9 @@ ___ createHistoryForTicket(ticket_id, x-application-id, x-application-token, opt
 **Description:** Create history for Ticket
 
 
-#### createTicket
+#### createTicket - Create Ticket
 
-___ createTicket(x-application-id, x-application-token, opts) ___
-
-**Summary:** Create Ticket
+*createTicket(x-application-id, x-application-token, opts)*
 
 **Parameters:**
 
@@ -995,11 +895,9 @@ ___ createTicket(x-application-id, x-application-token, opts) ___
 **Description:** Create Ticket
 
 
-#### getForm
+#### getForm - Get Custom Form
 
-___ getForm(slug, x-application-id, x-application-token, opts) ___
-
-**Summary:** Get Custom Form
+*getForm(slug, x-application-id, x-application-token, opts)*
 
 **Parameters:**
 
@@ -1012,11 +910,9 @@ ___ getForm(slug, x-application-id, x-application-token, opts) ___
 **Description:** Get Custom Form
 
 
-#### submitForm
+#### submitForm - Submit Form Response
 
-___ submitForm(slug, x-application-id, x-application-token, opts) ___
-
-**Summary:** Submit Form Response
+*submitForm(slug, x-application-id, x-application-token, opts)*
 
 **Parameters:**
 
@@ -1029,11 +925,9 @@ ___ submitForm(slug, x-application-id, x-application-token, opts) ___
 **Description:** Submit Form Response
 
 
-#### getParticipantsInsideVideoRoom
+#### getParticipantsInsideVideoRoom - Get participants of Video Room
 
-___ getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts) ___
-
-**Summary:** Get participants of Video Room
+*getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts)*
 
 **Parameters:**
 
@@ -1046,11 +940,9 @@ ___ getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-
 **Description:** Get participants of Video Room
 
 
-#### getTokenForVideRoom
+#### getTokenForVideRoom - Get Token to join Video Room
 
-___ getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts) ___
-
-**Summary:** Get Token to join Video Room
+*getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts)*
 
 **Parameters:**
 
