@@ -55,10 +55,10 @@ List the products
 
 ```javascript
 // Promise
-const promise = getProducts(q, category, brand, sort_on, page_id, page_size, opts);
+const promise = catalog.getProducts(q, category, brand, sort_on, page_id, page_size, opts);
 
 // Async/Await
-const data = await getProducts(q, category, brand, sort_on, page_id, page_size, opts);
+const data = await catalog.getProducts(q, category, brand, sort_on, page_id, page_size, opts);
 
 ```
 
@@ -82,10 +82,10 @@ Get a product
 
 ```javascript
 // Promise
-const promise = getProductDetailByIdentifier(id, slug, opts);
+const promise = catalog.getProductDetailByIdentifier(id, slug, opts);
 
 // Async/Await
-const data = await getProductDetailByIdentifier(id, slug, opts);
+const data = await catalog.getProductDetailByIdentifier(id, slug, opts);
 
 ```
 
@@ -105,10 +105,10 @@ Get the sizes of a product
 
 ```javascript
 // Promise
-const promise = getProductSizesByIdentifier(id, slug, store, opts);
+const promise = catalog.getProductSizesByIdentifier(id, slug, store, opts);
 
 // Async/Await
-const data = await getProductSizesByIdentifier(id, slug, store, opts);
+const data = await catalog.getProductSizesByIdentifier(id, slug, store, opts);
 
 ```
 
@@ -129,10 +129,10 @@ Get price a product
 
 ```javascript
 // Promise
-const promise = getProductPriceByIdentifier(id, slug, size, pincode, store, opts);
+const promise = catalog.getProductPriceByIdentifier(id, slug, size, pincode, store, opts);
 
 // Async/Await
-const data = await getProductPriceByIdentifier(id, slug, size, pincode, store, opts);
+const data = await catalog.getProductPriceByIdentifier(id, slug, size, pincode, store, opts);
 
 ```
 
@@ -155,10 +155,10 @@ List sellers of a product
 
 ```javascript
 // Promise
-const promise = getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts);
+const promise = catalog.getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts);
 
 // Async/Await
-const data = await getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts);
+const data = await catalog.getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts);
 
 ```
 
@@ -182,10 +182,10 @@ Get similar products
 
 ```javascript
 // Promise
-const promise = getProductSimilarByIdentifier(id, slug, tag_identifier, opts);
+const promise = catalog.getProductSimilarByIdentifier(id, slug, tag_identifier, opts);
 
 // Async/Await
-const data = await getProductSimilarByIdentifier(id, slug, tag_identifier, opts);
+const data = await catalog.getProductSimilarByIdentifier(id, slug, tag_identifier, opts);
 
 ```
 
@@ -206,10 +206,10 @@ Get variant of a particular product
 
 ```javascript
 // Promise
-const promise = getProductVariantsByIdentifier(id, slug, opts);
+const promise = catalog.getProductVariantsByIdentifier(id, slug, opts);
 
 // Async/Await
-const data = await getProductVariantsByIdentifier(id, slug, opts);
+const data = await catalog.getProductVariantsByIdentifier(id, slug, opts);
 
 ```
 
@@ -229,10 +229,10 @@ Get the stock of a product
 
 ```javascript
 // Promise
-const promise = getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts);
+const promise = catalog.getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts);
 
 // Async/Await
-const data = await getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts);
+const data = await catalog.getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts);
 
 ```
 
@@ -255,10 +255,10 @@ Get the stock of a product
 
 ```javascript
 // Promise
-const promise = getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts);
+const promise = catalog.getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts);
 
 // Async/Await
-const data = await getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts);
+const data = await catalog.getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts);
 
 ```
 
@@ -279,10 +279,10 @@ List all the brands
 
 ```javascript
 // Promise
-const promise = getBrands(department, page_no, page_size, opts);
+const promise = catalog.getBrands(department, page_no, page_size, opts);
 
 // Async/Await
-const data = await getBrands(department, page_no, page_size, opts);
+const data = await catalog.getBrands(department, page_no, page_size, opts);
 
 ```
 
@@ -303,10 +303,10 @@ Get metadata of a brand
 
 ```javascript
 // Promise
-const promise = getBrandDetailByIdentifier(id, slug, opts);
+const promise = catalog.getBrandDetailByIdentifier(id, slug, opts);
 
 // Async/Await
-const data = await getBrandDetailByIdentifier(id, slug, opts);
+const data = await catalog.getBrandDetailByIdentifier(id, slug, opts);
 
 ```
 
@@ -326,10 +326,10 @@ List all the categories
 
 ```javascript
 // Promise
-const promise = getCategories(department, opts);
+const promise = catalog.getCategories(department, opts);
 
 // Async/Await
-const data = await getCategories(department, opts);
+const data = await catalog.getCategories(department, opts);
 
 ```
 
@@ -348,10 +348,10 @@ Get metadata of a category
 
 ```javascript
 // Promise
-const promise = getCategoryDetailByIdentifier(id, slug, opts);
+const promise = catalog.getCategoryDetailByIdentifier(id, slug, opts);
 
 // Async/Await
-const data = await getCategoryDetailByIdentifier(id, slug, opts);
+const data = await catalog.getCategoryDetailByIdentifier(id, slug, opts);
 
 ```
 
@@ -371,10 +371,10 @@ List the products
 
 ```javascript
 // Promise
-const promise = getHomeProducts(f.session, sort_on, page_id, page_size, opts);
+const promise = catalog.getHomeProducts(f.session, sort_on, page_id, page_size, opts);
 
 // Async/Await
-const data = await getHomeProducts(f.session, sort_on, page_id, page_size, opts);
+const data = await catalog.getHomeProducts(f.session, sort_on, page_id, page_size, opts);
 
 ```
 
@@ -396,10 +396,10 @@ List all the departments
 
 ```javascript
 // Promise
-const promise = (opts);
+const promise = catalog.(opts);
 
 // Async/Await
-const data = await (opts);
+const data = await catalog.(opts);
 
 ```
 
@@ -417,10 +417,10 @@ Get relevant suggestions for a search query
 
 ```javascript
 // Promise
-const promise = getSearchResults(q, opts);
+const promise = catalog.getSearchResults(q, opts);
 
 // Async/Await
-const data = await getSearchResults(q, opts);
+const data = await catalog.getSearchResults(q, opts);
 
 ```
 
@@ -439,10 +439,10 @@ List all the collections
 
 ```javascript
 // Promise
-const promise = getCollections(opts);
+const promise = catalog.getCollections(opts);
 
 // Async/Await
-const data = await getCollections(opts);
+const data = await catalog.getCollections(opts);
 
 ```
 
@@ -460,10 +460,10 @@ Get the items in a collection
 
 ```javascript
 // Promise
-const promise = getCollectionItemsBySlug(slug, opts);
+const promise = catalog.getCollectionItemsBySlug(slug, opts);
 
 // Async/Await
-const data = await getCollectionItemsBySlug(slug, opts);
+const data = await catalog.getCollectionItemsBySlug(slug, opts);
 
 ```
 
@@ -482,10 +482,10 @@ Get a particular collection
 
 ```javascript
 // Promise
-const promise = getCollectionDetailBySlug(slug, opts);
+const promise = catalog.getCollectionDetailBySlug(slug, opts);
 
 // Async/Await
-const data = await getCollectionDetailBySlug(slug, opts);
+const data = await catalog.getCollectionDetailBySlug(slug, opts);
 
 ```
 
@@ -504,10 +504,10 @@ Get a list of followed Products
 
 ```javascript
 // Promise
-const promise = getFollowProducts(f.session, opts);
+const promise = catalog.getFollowProducts(f.session, opts);
 
 // Async/Await
-const data = await getFollowProducts(f.session, opts);
+const data = await catalog.getFollowProducts(f.session, opts);
 
 ```
 
@@ -526,10 +526,10 @@ UnFollow a Product
 
 ```javascript
 // Promise
-const promise = unfollowProductById(product_id, f.session, opts);
+const promise = catalog.unfollowProductById(product_id, f.session, opts);
 
 // Async/Await
-const data = await unfollowProductById(product_id, f.session, opts);
+const data = await catalog.unfollowProductById(product_id, f.session, opts);
 
 ```
 
@@ -549,10 +549,10 @@ Follow a particular Product
 
 ```javascript
 // Promise
-const promise = saveFollowProductById(product_id, f.session, opts);
+const promise = catalog.saveFollowProductById(product_id, f.session, opts);
 
 // Async/Await
-const data = await saveFollowProductById(product_id, f.session, opts);
+const data = await catalog.saveFollowProductById(product_id, f.session, opts);
 
 ```
 
@@ -572,10 +572,10 @@ Get Follow Count
 
 ```javascript
 // Promise
-const promise = getFollowProductCountById(collection_type, collection_id, opts);
+const promise = catalog.getFollowProductCountById(collection_type, collection_id, opts);
 
 // Async/Await
-const data = await getFollowProductCountById(collection_type, collection_id, opts);
+const data = await catalog.getFollowProductCountById(collection_type, collection_id, opts);
 
 ```
 
@@ -595,10 +595,10 @@ Get the Uids of followed product, brand and collection.
 
 ```javascript
 // Promise
-const promise = getFollowIDsByType(opts);
+const promise = catalog.getFollowIDsByType(opts);
 
 // Async/Await
-const data = await getFollowIDsByType(opts);
+const data = await catalog.getFollowIDsByType(opts);
 
 ```
 
@@ -660,10 +660,10 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -686,10 +686,10 @@ Fetch Last-Modified timestamp
 
 ```javascript
 // Promise
-const promise = getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -711,10 +711,10 @@ Add Items to Cart
 
 ```javascript
 // Promise
-const promise = addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -735,10 +735,10 @@ Update Items already added to Cart
 
 ```javascript
 // Promise
-const promise = updateCart(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.updateCart(x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await updateCart(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.updateCart(x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -759,10 +759,10 @@ Cart item count
 
 ```javascript
 // Promise
-const promise = getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -784,10 +784,10 @@ Fetch Coupon
 
 ```javascript
 // Promise
-const promise = getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -809,10 +809,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -837,10 +837,10 @@ Remove Coupon Applied
 
 ```javascript
 // Promise
-const promise = removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -862,10 +862,10 @@ Get discount offers based on quantity
 
 ```javascript
 // Promise
-const promise = getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -890,10 +890,10 @@ Fetch Address
 
 ```javascript
 // Promise
-const promise = getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -919,10 +919,10 @@ Add Address to the account
 
 ```javascript
 // Promise
-const promise = addAddress(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.addAddress(x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await addAddress(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.addAddress(x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -943,10 +943,10 @@ Fetch Single Address
 
 ```javascript
 // Promise
-const promise = getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -973,10 +973,10 @@ Update Address alreay added to account
 
 ```javascript
 // Promise
-const promise = updateAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.updateAddress(id, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await updateAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.updateAddress(id, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -998,10 +998,10 @@ Remove Address Associated to the account
 
 ```javascript
 // Promise
-const promise = removeAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.removeAddress(id, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await removeAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.removeAddress(id, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -1023,10 +1023,10 @@ Select Address from All Addresses
 
 ```javascript
 // Promise
-const promise = selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -1047,10 +1047,10 @@ Gte Cart Payment for valid coupon
 
 ```javascript
 // Promise
-const promise = getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -1077,10 +1077,10 @@ Update Cart Payment
 
 ```javascript
 // Promise
-const promise = selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -1102,10 +1102,10 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -1129,10 +1129,10 @@ Checkout Cart
 
 ```javascript
 // Promise
-const promise = checkoutCart(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.checkoutCart(x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await checkoutCart(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.checkoutCart(x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -1153,10 +1153,10 @@ Update Cart Meta
 
 ```javascript
 // Promise
-const promise = updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -1178,10 +1178,10 @@ Generate Cart sharing link token
 
 ```javascript
 // Promise
-const promise = getCartShareLink(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartShareLink(x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getCartShareLink(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartShareLink(x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -1202,10 +1202,10 @@ Get shared cart snapshot and cart response
 
 ```javascript
 // Promise
-const promise = getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -1227,10 +1227,10 @@ Merge or Replace existing cart
 
 ```javascript
 // Promise
-const promise = updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts);
 
 // Async/Await
-const data = await updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts);
 
 ```
 
@@ -1281,10 +1281,10 @@ Get Tickets
 
 ```javascript
 // Promise
-const promise = getTicket(id, x-application-id, x-application-token, opts);
+const promise = lead.getTicket(id, x-application-id, x-application-token, opts);
 
 // Async/Await
-const data = await getTicket(id, x-application-id, x-application-token, opts);
+const data = await lead.getTicket(id, x-application-id, x-application-token, opts);
 
 ```
 
@@ -1305,10 +1305,10 @@ Create history for Ticket
 
 ```javascript
 // Promise
-const promise = createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts);
+const promise = lead.createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts);
 
 // Async/Await
-const data = await createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts);
+const data = await lead.createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts);
 
 ```
 
@@ -1329,10 +1329,10 @@ Create Ticket
 
 ```javascript
 // Promise
-const promise = createTicket(x-application-id, x-application-token, opts);
+const promise = lead.createTicket(x-application-id, x-application-token, opts);
 
 // Async/Await
-const data = await createTicket(x-application-id, x-application-token, opts);
+const data = await lead.createTicket(x-application-id, x-application-token, opts);
 
 ```
 
@@ -1352,10 +1352,10 @@ Get Custom Form
 
 ```javascript
 // Promise
-const promise = getForm(slug, x-application-id, x-application-token, opts);
+const promise = lead.getForm(slug, x-application-id, x-application-token, opts);
 
 // Async/Await
-const data = await getForm(slug, x-application-id, x-application-token, opts);
+const data = await lead.getForm(slug, x-application-id, x-application-token, opts);
 
 ```
 
@@ -1376,10 +1376,10 @@ Submit Form Response
 
 ```javascript
 // Promise
-const promise = submitForm(slug, x-application-id, x-application-token, opts);
+const promise = lead.submitForm(slug, x-application-id, x-application-token, opts);
 
 // Async/Await
-const data = await submitForm(slug, x-application-id, x-application-token, opts);
+const data = await lead.submitForm(slug, x-application-id, x-application-token, opts);
 
 ```
 
@@ -1400,10 +1400,10 @@ Get participants of Video Room
 
 ```javascript
 // Promise
-const promise = getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts);
+const promise = lead.getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts);
 
 // Async/Await
-const data = await getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts);
+const data = await lead.getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts);
 
 ```
 
@@ -1424,10 +1424,10 @@ Get Token to join Video Room
 
 ```javascript
 // Promise
-const promise = getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts);
+const promise = lead.getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts);
 
 // Async/Await
-const data = await getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts);
+const data = await lead.getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts);
 
 ```
 
