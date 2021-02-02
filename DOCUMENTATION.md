@@ -62,9 +62,6 @@ const data = await catalog.getProducts(q, category, brand, sort_on, page_id, pag
 
 ```
 
-List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductSearchSchemaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | q | string |  | 
@@ -73,6 +70,8 @@ List all the products associated with a brand, collection or category in a reque
 | sort_on | string |  | 
 | page_id | string |  | 
 | page_size | integer |  | 
+
+List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductSearchSchemaV1`
 
 ---
 
@@ -89,13 +88,12 @@ const data = await catalog.getProductDetailByIdentifier(id, slug, opts);
 
 ```
 
-Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **identifier**. If successful, returns a Product resource in the response body specified in `ProductDetailSchemaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
+
+Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **identifier**. If successful, returns a Product resource in the response body specified in `ProductDetailSchemaV1`
 
 ---
 
@@ -112,14 +110,13 @@ const data = await catalog.getProductSizesByIdentifier(id, slug, store, opts);
 
 ```
 
-A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizesSchemaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
 | store | string |  | 
+
+A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizesSchemaV1`
 
 ---
 
@@ -136,9 +133,6 @@ const data = await catalog.getProductPriceByIdentifier(id, slug, size, pincode, 
 
 ```
 
-Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size.
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | string |  | 
@@ -146,6 +140,8 @@ Any available product can exist in multiple sizes. Sometimes prices may vary amo
 | size | string |  | 
 | pincode | integer |  | 
 | store | string |  | 
+
+Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size.
 
 ---
 
@@ -162,9 +158,6 @@ const data = await catalog.getProductSellersByIdentifier(id, slug, size, pincode
 
 ```
 
-A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | string |  | 
@@ -173,6 +166,8 @@ A product of a particular size can be sold by multiple sellers. Use this API to 
 | pincode | integer |  | 
 | page_no | integer |  | 
 | page_size | integer |  | 
+
+A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
 
 ---
 
@@ -189,14 +184,13 @@ const data = await catalog.getProductSimilarByIdentifier(id, slug, tag_identifie
 
 ```
 
-Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on tag as described in `SimilarProductByTagSchemaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
 | tag_identifier | string |  | 
+
+Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on tag as described in `SimilarProductByTagSchemaV1`
 
 ---
 
@@ -213,13 +207,12 @@ const data = await catalog.getProductVariantsByIdentifier(id, slug, opts);
 
 ```
 
-A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantSchemaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
+
+A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantSchemaV1`
 
 ---
 
@@ -236,9 +229,6 @@ const data = await catalog.getProductStockByIdentifier(item_id, alu, sku_code, e
 
 ```
 
-Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Currently a maximum of 50 distinct product IDs can be given in a single API request
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | item_id | string |  | 
@@ -246,6 +236,8 @@ Retrieve the available stock of the products. You can use this API to retrieve s
 | sku_code | string |  | 
 | ean | string |  | 
 | upc | string |  | 
+
+Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Currently a maximum of 50 distinct product IDs can be given in a single API request
 
 ---
 
@@ -262,14 +254,13 @@ const data = await catalog.getProductStockForTimeByIdentifier(timestamp, page_si
 
 ```
 
-Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | timestamp | string |  | 
 | page_size | integer |  | 
 | page_id | string |  | 
+
+Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
 
 ---
 
@@ -286,14 +277,13 @@ const data = await catalog.getBrands(department, page_no, page_size, opts);
 
 ```
 
-A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingSchemaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | department | string |  | 
 | page_no | integer |  | 
 | page_size | integer |  | 
+
+A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingSchemaV1`
 
 ---
 
@@ -310,13 +300,12 @@ const data = await catalog.getBrandDetailByIdentifier(id, slug, opts);
 
 ```
 
-Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandMetaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
+
+Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandMetaV1`
 
 ---
 
@@ -333,12 +322,11 @@ const data = await catalog.getCategories(department, opts);
 
 ```
 
-List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingSchemaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | department | string |  | 
+
+List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingSchemaV1`
 
 ---
 
@@ -355,13 +343,12 @@ const data = await catalog.getCategoryDetailByIdentifier(id, slug, opts);
 
 ```
 
-Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
+
+Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaV1`
 
 ---
 
@@ -378,15 +365,14 @@ const data = await catalog.getHomeProducts(f.session, sort_on, page_id, page_siz
 
 ```
 
-List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingSchemaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | f.session | string |  | 
 | sort_on | string |  | 
 | page_id | string |  | 
 | page_size | integer |  | 
+
+List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingSchemaV1`
 
 ---
 
@@ -403,11 +389,10 @@ const data = await catalog.(opts);
 
 ```
 
-Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentSchemaV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
+
+Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentSchemaV1`
 
 ---
 
@@ -424,12 +409,11 @@ const data = await catalog.getSearchResults(q, opts);
 
 ```
 
-Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that&#39;s generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | q | string |  | 
+
+Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that&#39;s generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
 
 ---
 
@@ -446,11 +430,10 @@ const data = await catalog.getCollections(opts);
 
 ```
 
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
+
+A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
 
 ---
 
@@ -467,12 +450,11 @@ const data = await catalog.getCollectionItemsBySlug(slug, opts);
 
 ```
 
-Get items in a collection specified by its `slug`.
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | slug | string |  | 
+
+Get items in a collection specified by its `slug`.
 
 ---
 
@@ -489,12 +471,11 @@ const data = await catalog.getCollectionDetailBySlug(slug, opts);
 
 ```
 
-Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionResponseV1`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | slug | string |  | 
+
+Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionResponseV1`
 
 ---
 
@@ -511,12 +492,11 @@ const data = await catalog.getFollowProducts(f.session, opts);
 
 ```
 
-A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | f.session | string |  | 
+
+A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
 
 ---
 
@@ -533,13 +513,12 @@ const data = await catalog.unfollowProductById(product_id, f.session, opts);
 
 ```
 
-You can undo a followed Product or Brand by its uid, we refer this action as _unfollow_. Pass the uid of the product in request URL
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | product_id | string |  | 
 | f.session | string |  | 
+
+You can undo a followed Product or Brand by its uid, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 ---
 
@@ -556,13 +535,12 @@ const data = await catalog.saveFollowProductById(product_id, f.session, opts);
 
 ```
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | product_id | integer |  | 
 | f.session | string |  | 
+
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 ---
 
@@ -579,13 +557,12 @@ const data = await catalog.getFollowProductCountById(collection_type, collection
 
 ```
 
-Get count of followers for given collection type and collection id.
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | collection_type | string |  | 
 | collection_id | string |  | 
+
+Get count of followers for given collection type and collection id.
 
 ---
 
@@ -602,11 +579,10 @@ const data = await catalog.getFollowIDsByType(opts);
 
 ```
 
-You can get the uids of all the followed Product, Brand and Collections.
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
+
+You can get the uids of all the followed Product, Brand and Collections.
 
 ---
 
@@ -667,9 +643,6 @@ const data = await cart.getCart(uid, assign_card_id, x-application-id, x-applica
 
 ```
 
-Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartV1Serializer
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
@@ -677,6 +650,8 @@ Get all the details of a items added to cart  by uid. If successful, returns a C
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartV1Serializer
 
 ---
 
@@ -693,15 +668,14 @@ const data = await cart.getCartLastModified(uid, x-application-id, x-application
 
 ```
 
-Fetch Last-Modified timestamp in header metadata
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Fetch Last-Modified timestamp in header metadata
 
 ---
 
@@ -718,14 +692,13 @@ const data = await cart.addItemsToCart(x-application-id, x-application-token, x-
 
 ```
 
-&lt;p&gt;Add Items to cart. See `CartV1Serializer` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;seller_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;store_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;/ul&gt;
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+&lt;p&gt;Add Items to cart. See `CartV1Serializer` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;seller_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;store_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;/ul&gt;
 
 ---
 
@@ -742,14 +715,13 @@ const data = await cart.updateCart(x-application-id, x-application-token, x-curr
 
 ```
 
-Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;font color=&quot;monochrome&quot;&gt;operation&lt;/font&gt; Operation for current api call. &lt;b&gt;update_item&lt;/b&gt; for update items. &lt;b&gt;remove_item&lt;/b&gt; for removing items.&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;article_id&lt;/font&gt;   &quot;/content​/v1​/products​/{identifier}​/sizes​/price​/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_index&lt;/font&gt;  item position in the cart (must be greater than or equal to 0)&lt;/li&gt; &lt;/ul&gt;
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;font color=&quot;monochrome&quot;&gt;operation&lt;/font&gt; Operation for current api call. &lt;b&gt;update_item&lt;/b&gt; for update items. &lt;b&gt;remove_item&lt;/b&gt; for removing items.&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;article_id&lt;/font&gt;   &quot;/content​/v1​/products​/{identifier}​/sizes​/price​/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_index&lt;/font&gt;  item position in the cart (must be greater than or equal to 0)&lt;/li&gt; &lt;/ul&gt;
 
 ---
 
@@ -766,15 +738,14 @@ const data = await cart.getCartItemCount(uid, x-application-id, x-application-to
 
 ```
 
-Get total count of item present in cart
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | uid | integer |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Get total count of item present in cart
 
 ---
 
@@ -791,15 +762,14 @@ const data = await cart.getCouponList(uid, x-application-id, x-application-token
 
 ```
 
-Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponseSchema
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponseSchema
 
 ---
 
@@ -816,10 +786,6 @@ const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-tok
 
 ```
 
-&lt;p&gt;Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;coupon_code&lt;/font&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | i | boolean | items | 
@@ -828,6 +794,9 @@ const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-tok
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+&lt;p&gt;Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;coupon_code&lt;/font&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 ---
 
@@ -844,15 +813,14 @@ const data = await cart.removeCoupon(uid, x-application-id, x-application-token,
 
 ```
 
-Remove Coupon applied on the cart by passing uid in request body.
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | uid | integer |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Remove Coupon applied on the cart by passing uid in request body.
 
 ---
 
@@ -869,9 +837,6 @@ const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-
 
 ```
 
-List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | item_id | integer |  | 
@@ -881,6 +846,8 @@ List applicable offers along with current, next and best offer for given product
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
 
 ---
 
@@ -897,9 +864,6 @@ const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, defa
 
 ```
 
-Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
@@ -910,6 +874,8 @@ Get all the addresses associated with the account. If successful, returns a Addr
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
 
 ---
 
@@ -926,14 +892,13 @@ const data = await cart.addAddress(x-application-id, x-application-token, x-curr
 
 ```
 
-&lt;p&gt;Add Address to account. See `SaveAddressRequestSchema` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+&lt;p&gt;Add Address to account. See `SaveAddressRequestSchema` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
 
 ---
 
@@ -950,9 +915,6 @@ const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, 
 
 ```
 
-Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | integer | address_id | 
@@ -964,6 +926,8 @@ Get a addresses with the given id. If successful, returns a Address resource in 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
 
 ---
 
@@ -980,15 +944,14 @@ const data = await cart.updateAddress(id, x-application-id, x-application-token,
 
 ```
 
-Request object containing attributes mentioned in  &lt;font color=&quot;blue&quot;&gt;UpdateAddressRequestSchema &lt;/font&gt; can be updated .these attributes are :&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;is_default_address&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;landmark&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;area&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;pincode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;email&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_type&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;name&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | integer |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Request object containing attributes mentioned in  &lt;font color=&quot;blue&quot;&gt;UpdateAddressRequestSchema &lt;/font&gt; can be updated .these attributes are :&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;is_default_address&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;landmark&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;area&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;pincode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;email&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_type&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;name&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
 
 ---
 
@@ -1005,15 +968,14 @@ const data = await cart.removeAddress(id, x-application-id, x-application-token,
 
 ```
 
-Delete a Address by it&#39;s address_id. Returns an object that tells whether the address was deleted successfully
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | integer |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Delete a Address by it&#39;s address_id. Returns an object that tells whether the address was deleted successfully
 
 ---
 
@@ -1030,14 +992,13 @@ const data = await cart.selectCartAddress(x-application-id, x-application-token,
 
 ```
 
-&lt;p&gt;Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequestSchema` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;billing_address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+&lt;p&gt;Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequestSchema` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;billing_address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
 
 ---
 
@@ -1054,9 +1015,6 @@ const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payme
 
 ```
 
-Validate coupon for selected payment mode
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | uid | string | unique identification number | 
@@ -1068,6 +1026,8 @@ Validate coupon for selected payment mode
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Validate coupon for selected payment mode
 
 ---
 
@@ -1084,15 +1044,14 @@ const data = await cart.selectCartPaymentMode(uid, x-application-id, x-applicati
 
 ```
 
-Update Cart Payment for Your Account
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | uid | string | unique identification number | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Update Cart Payment for Your Account
 
 ---
 
@@ -1109,9 +1068,6 @@ const data = await cart.getCartShipments(p, uid, address_id, x-application-id, x
 
 ```
 
-Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | p | boolean |  | 
@@ -1120,6 +1076,8 @@ Shipment break up item wise with delivery date. Actual                      deli
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
 ---
 
@@ -1136,14 +1094,13 @@ const data = await cart.checkoutCart(x-application-id, x-application-token, x-cu
 
 ```
 
-Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
 
 ---
 
@@ -1160,15 +1117,14 @@ const data = await cart.updateCartMeta(uid, x-application-id, x-application-toke
 
 ```
 
-Update cart meta like checkout_mode, gstin.
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | uid | integer |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Update cart meta like checkout_mode, gstin.
 
 ---
 
@@ -1185,14 +1141,13 @@ const data = await cart.getCartShareLink(x-application-id, x-application-token, 
 
 ```
 
-Generates shared cart snapshot and returns shortlink token
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Generates shared cart snapshot and returns shortlink token
 
 ---
 
@@ -1209,15 +1164,14 @@ const data = await cart.getCartSharedItems(token, x-application-id, x-applicatio
 
 ```
 
-Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | token | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
 
 ---
 
@@ -1234,9 +1188,6 @@ const data = await cart.updateCartWithSharedItems(token, action, x-application-i
 
 ```
 
-Merge or Replace cart based on `action` parameter with shared cart of `token`
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | token | string |  | 
@@ -1244,6 +1195,8 @@ Merge or Replace cart based on `action` parameter with shared cart of `token`
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
+
+Merge or Replace cart based on `action` parameter with shared cart of `token`
 
 ---
 
@@ -1288,14 +1241,13 @@ const data = await lead.getTicket(id, x-application-id, x-application-token, opt
 
 ```
 
-Get Tickets
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | id | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
+
+Get Tickets
 
 ---
 
@@ -1312,14 +1264,13 @@ const data = await lead.createHistoryForTicket(ticket_id, x-application-id, x-ap
 
 ```
 
-Create history for Ticket
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | ticket_id | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
+
+Create history for Ticket
 
 ---
 
@@ -1336,13 +1287,12 @@ const data = await lead.createTicket(x-application-id, x-application-token, opts
 
 ```
 
-Create Ticket
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
+
+Create Ticket
 
 ---
 
@@ -1359,14 +1309,13 @@ const data = await lead.getForm(slug, x-application-id, x-application-token, opt
 
 ```
 
-Get Custom Form
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | slug | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
+
+Get Custom Form
 
 ---
 
@@ -1383,14 +1332,13 @@ const data = await lead.submitForm(slug, x-application-id, x-application-token, 
 
 ```
 
-Submit Form Response
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | slug | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
+
+Submit Form Response
 
 ---
 
@@ -1407,14 +1355,13 @@ const data = await lead.getParticipantsInsideVideoRoom(unique_name, x-applicatio
 
 ```
 
-Get participants of Video Room
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | unique_name | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
+
+Get participants of Video Room
 
 ---
 
@@ -1431,14 +1378,13 @@ const data = await lead.getTokenForVideRoom(unique_name, x-application-id, x-app
 
 ```
 
-Get Token to join Video Room
-
-
 | Argument  |  Type  | About |
 | --------- | ----  | --- |
 | unique_name | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
+
+Get Token to join Video Room
 
 ---
 
