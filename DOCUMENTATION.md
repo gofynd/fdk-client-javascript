@@ -34,7 +34,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
 | assign_card_id | integer | assign card id | 
 | x-application-id | string |  | 
@@ -48,7 +48,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -61,7 +61,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
@@ -73,7 +73,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
@@ -85,7 +85,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | uid | integer |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -98,7 +98,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -111,7 +111,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | i | boolean | items | 
 | b | boolean | breakups | 
 | p | boolean | payment | 
@@ -126,7 +126,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | uid | integer |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -139,7 +139,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | item_id | integer |  | 
 | article_id | string |  | 
 | uid | integer |  | 
@@ -155,7 +155,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
 | mobile_no | integer | mobile_no | 
 | checkout_mode | string | checkout_mode | 
@@ -172,7 +172,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
@@ -184,7 +184,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | integer | address_id | 
 | uid | integer | unique identification number of cart affiliate | 
 | mobile_no | integer | mobile_no | 
@@ -202,7 +202,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | integer |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -215,7 +215,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | integer |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -228,7 +228,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
@@ -240,7 +240,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | uid | string | unique identification number | 
 | address_id | string | Address of customer | 
 | payment_mode | string | selected payment mode of customer | 
@@ -258,7 +258,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | uid | string | unique identification number | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -271,7 +271,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | p | boolean |  | 
 | uid | integer |  | 
 | address_id | integer |  | 
@@ -286,7 +286,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
@@ -298,7 +298,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | uid | integer |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -311,7 +311,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 | x-currency-code | string |  | 
@@ -323,7 +323,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | token | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -336,7 +336,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | token | string |  | 
 | action | string |  | 
 | x-application-id | string |  | 
@@ -385,7 +385,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | q | string |  | 
 | category | string |  | 
 | brand | string |  | 
@@ -400,7 +400,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
 
@@ -411,7 +411,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
 | store | string |  | 
@@ -423,7 +423,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
 | size | string |  | 
@@ -437,7 +437,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
 | size | string |  | 
@@ -452,7 +452,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
 | tag_identifier | string |  | 
@@ -464,7 +464,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
 
@@ -475,7 +475,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | item_id | string |  | 
 | alu | string |  | 
 | sku_code | string |  | 
@@ -489,7 +489,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | timestamp | string |  | 
 | page_size | integer |  | 
 | page_id | string |  | 
@@ -501,7 +501,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | department | string |  | 
 | page_no | integer |  | 
 | page_size | integer |  | 
@@ -513,7 +513,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
 
@@ -524,7 +524,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | department | string |  | 
 
 
@@ -534,7 +534,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
 
@@ -545,7 +545,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | f.session | string |  | 
 | sort_on | string |  | 
 | page_id | string |  | 
@@ -558,7 +558,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 
 
 
@@ -567,7 +567,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | q | string |  | 
 
 
@@ -577,7 +577,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 
 
 
@@ -586,7 +586,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | slug | string |  | 
 
 
@@ -596,7 +596,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | slug | string |  | 
 
 
@@ -606,7 +606,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | f.session | string |  | 
 
 
@@ -616,7 +616,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | product_id | string |  | 
 | f.session | string |  | 
 
@@ -627,7 +627,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | product_id | integer |  | 
 | f.session | string |  | 
 
@@ -638,7 +638,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | collection_type | string |  | 
 | collection_id | string |  | 
 
@@ -649,7 +649,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 
 
 
@@ -676,7 +676,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | id | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -688,7 +688,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | ticket_id | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -700,7 +700,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
 
@@ -711,7 +711,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | slug | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -723,7 +723,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | slug | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -735,7 +735,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | unique_name | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -747,7 +747,7 @@
 **Parameters:**
 
 | Argument  |  Type  | About |
-| --------- |: ---- :|: --- :|
+| --------- | ----  | --- |
 | unique_name | string |  | 
 | x-application-id | string |  | 
 | x-application-token | string |  | 
