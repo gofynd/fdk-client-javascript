@@ -53,7 +53,12 @@ const catalog = new Catalog(conf);
 *getProducts* - List the products
 
 ```javascript
-getProducts(q, category, brand, sort_on, page_id, page_size, opts);
+// Promise
+const promise = getProducts(q, category, brand, sort_on, page_id, page_size, opts);
+
+// Async/Await
+const data = await getProducts(q, category, brand, sort_on, page_id, page_size, opts);
+
 ```
 
 List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductSearchSchemaV1`
@@ -74,7 +79,12 @@ List all the products associated with a brand, collection or category in a reque
 *getProductDetailByIdentifier* - Get a product
 
 ```javascript
-getProductDetailByIdentifier(id, slug, opts);
+// Promise
+const promise = getProductDetailByIdentifier(id, slug, opts);
+
+// Async/Await
+const data = await getProductDetailByIdentifier(id, slug, opts);
+
 ```
 
 Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **identifier**. If successful, returns a Product resource in the response body specified in `ProductDetailSchemaV1`
@@ -91,7 +101,12 @@ Products are the core resource of an application. Products can be associated by 
 *getProductSizesByIdentifier* - Get the sizes of a product
 
 ```javascript
-getProductSizesByIdentifier(id, slug, store, opts);
+// Promise
+const promise = getProductSizesByIdentifier(id, slug, store, opts);
+
+// Async/Await
+const data = await getProductSizesByIdentifier(id, slug, store, opts);
+
 ```
 
 A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizesSchemaV1`
@@ -109,7 +124,12 @@ A product can exist in multiple sizes. Use this API to fetch all the available s
 *getProductPriceByIdentifier* - Get price a product
 
 ```javascript
-getProductPriceByIdentifier(id, slug, size, pincode, store, opts);
+// Promise
+const promise = getProductPriceByIdentifier(id, slug, size, pincode, store, opts);
+
+// Async/Await
+const data = await getProductPriceByIdentifier(id, slug, size, pincode, store, opts);
+
 ```
 
 Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size.
@@ -129,7 +149,12 @@ Any available product can exist in multiple sizes. Sometimes prices may vary amo
 *getProductSellersByIdentifier* - List sellers of a product
 
 ```javascript
-getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts);
+// Promise
+const promise = getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts);
+
+// Async/Await
+const data = await getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts);
+
 ```
 
 A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
@@ -150,7 +175,12 @@ A product of a particular size can be sold by multiple sellers. Use this API to 
 *getProductSimilarByIdentifier* - Get similar products
 
 ```javascript
-getProductSimilarByIdentifier(id, slug, tag_identifier, opts);
+// Promise
+const promise = getProductSimilarByIdentifier(id, slug, tag_identifier, opts);
+
+// Async/Await
+const data = await getProductSimilarByIdentifier(id, slug, tag_identifier, opts);
+
 ```
 
 Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on tag as described in `SimilarProductByTagSchemaV1`
@@ -168,7 +198,12 @@ Get products similar to the one specified by the `identifier`. If successful, it
 *getProductVariantsByIdentifier* - Get variant of a particular product
 
 ```javascript
-getProductVariantsByIdentifier(id, slug, opts);
+// Promise
+const promise = getProductVariantsByIdentifier(id, slug, opts);
+
+// Async/Await
+const data = await getProductVariantsByIdentifier(id, slug, opts);
+
 ```
 
 A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantSchemaV1`
@@ -185,7 +220,12 @@ A product can have a different type of variants varies from color to shade etc. 
 *getProductStockByIdentifier* - Get the stock of a product
 
 ```javascript
-getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts);
+// Promise
+const promise = getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts);
+
+// Async/Await
+const data = await getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts);
+
 ```
 
 Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Currently a maximum of 50 distinct product IDs can be given in a single API request
@@ -205,7 +245,12 @@ Retrieve the available stock of the products. You can use this API to retrieve s
 *getProductStockForTimeByIdentifier* - Get the stock of a product
 
 ```javascript
-getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts);
+// Promise
+const promise = getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts);
+
+// Async/Await
+const data = await getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts);
+
 ```
 
 Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
@@ -223,7 +268,12 @@ Retrieve the available stock of the products. You can use this api to get stock 
 *getBrands* - List all the brands
 
 ```javascript
-getBrands(department, page_no, page_size, opts);
+// Promise
+const promise = getBrands(department, page_no, page_size, opts);
+
+// Async/Await
+const data = await getBrands(department, page_no, page_size, opts);
+
 ```
 
 A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingSchemaV1`
@@ -241,7 +291,12 @@ A brand is the name under which a product is being sold. Use this API to list al
 *getBrandDetailByIdentifier* - Get metadata of a brand
 
 ```javascript
-getBrandDetailByIdentifier(id, slug, opts);
+// Promise
+const promise = getBrandDetailByIdentifier(id, slug, opts);
+
+// Async/Await
+const data = await getBrandDetailByIdentifier(id, slug, opts);
+
 ```
 
 Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandMetaV1`
@@ -258,7 +313,12 @@ Fetch metadata of a brand. If successful, returns a metadata object specified in
 *getCategories* - List all the categories
 
 ```javascript
-getCategories(department, opts);
+// Promise
+const promise = getCategories(department, opts);
+
+// Async/Await
+const data = await getCategories(department, opts);
+
 ```
 
 List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingSchemaV1`
@@ -274,7 +334,12 @@ List all the categories. You can optionally pass filter the brands by the depart
 *getCategoryDetailByIdentifier* - Get metadata of a category
 
 ```javascript
-getCategoryDetailByIdentifier(id, slug, opts);
+// Promise
+const promise = getCategoryDetailByIdentifier(id, slug, opts);
+
+// Async/Await
+const data = await getCategoryDetailByIdentifier(id, slug, opts);
+
 ```
 
 Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaV1`
@@ -291,7 +356,12 @@ Fetch metadata of a category. If successful, returns a metadata object specified
 *getHomeProducts* - List the products
 
 ```javascript
-getHomeProducts(f.session, sort_on, page_id, page_size, opts);
+// Promise
+const promise = getHomeProducts(f.session, sort_on, page_id, page_size, opts);
+
+// Async/Await
+const data = await getHomeProducts(f.session, sort_on, page_id, page_size, opts);
+
 ```
 
 List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingSchemaV1`
@@ -310,7 +380,12 @@ List all the products associated with a brand, collection or category in a rando
 ** - List all the departments
 
 ```javascript
-(opts);
+// Promise
+const promise = (opts);
+
+// Async/Await
+const data = await (opts);
+
 ```
 
 Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentSchemaV1`
@@ -325,7 +400,12 @@ Departments are a way to categorise similar products. A product can lie in multi
 *getSearchResults* - Get relevant suggestions for a search query
 
 ```javascript
-getSearchResults(q, opts);
+// Promise
+const promise = getSearchResults(q, opts);
+
+// Async/Await
+const data = await getSearchResults(q, opts);
+
 ```
 
 Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that&#39;s generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
@@ -341,7 +421,12 @@ Retrieves a list of suggestions for a given search query. Each suggestion is a v
 *getCollections* - List all the collections
 
 ```javascript
-getCollections(opts);
+// Promise
+const promise = getCollections(opts);
+
+// Async/Await
+const data = await getCollections(opts);
+
 ```
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
@@ -356,7 +441,12 @@ A Collection allows you to organize your products into hierarchical groups. For 
 *getCollectionItemsBySlug* - Get the items in a collection
 
 ```javascript
-getCollectionItemsBySlug(slug, opts);
+// Promise
+const promise = getCollectionItemsBySlug(slug, opts);
+
+// Async/Await
+const data = await getCollectionItemsBySlug(slug, opts);
+
 ```
 
 Get items in a collection specified by its `slug`.
@@ -372,7 +462,12 @@ Get items in a collection specified by its `slug`.
 *getCollectionDetailBySlug* - Get a particular collection
 
 ```javascript
-getCollectionDetailBySlug(slug, opts);
+// Promise
+const promise = getCollectionDetailBySlug(slug, opts);
+
+// Async/Await
+const data = await getCollectionDetailBySlug(slug, opts);
+
 ```
 
 Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionResponseV1`
@@ -388,7 +483,12 @@ Get the details of a collection by its `slug`. If successful, returns a Collecti
 *getFollowProducts* - Get a list of followed Products
 
 ```javascript
-getFollowProducts(f.session, opts);
+// Promise
+const promise = getFollowProducts(f.session, opts);
+
+// Async/Await
+const data = await getFollowProducts(f.session, opts);
+
 ```
 
 A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
@@ -404,7 +504,12 @@ A User can follow a Product they like. This API retrieves the products the user 
 *unfollowProductById* - UnFollow a Product
 
 ```javascript
-unfollowProductById(product_id, f.session, opts);
+// Promise
+const promise = unfollowProductById(product_id, f.session, opts);
+
+// Async/Await
+const data = await unfollowProductById(product_id, f.session, opts);
+
 ```
 
 You can undo a followed Product or Brand by its uid, we refer this action as _unfollow_. Pass the uid of the product in request URL
@@ -421,7 +526,12 @@ You can undo a followed Product or Brand by its uid, we refer this action as _un
 *saveFollowProductById* - Follow a particular Product
 
 ```javascript
-saveFollowProductById(product_id, f.session, opts);
+// Promise
+const promise = saveFollowProductById(product_id, f.session, opts);
+
+// Async/Await
+const data = await saveFollowProductById(product_id, f.session, opts);
+
 ```
 
 Follow a particular Product specified by its uid. Pass the uid of the product in request URL
@@ -438,7 +548,12 @@ Follow a particular Product specified by its uid. Pass the uid of the product in
 *getFollowProductCountById* - Get Follow Count
 
 ```javascript
-getFollowProductCountById(collection_type, collection_id, opts);
+// Promise
+const promise = getFollowProductCountById(collection_type, collection_id, opts);
+
+// Async/Await
+const data = await getFollowProductCountById(collection_type, collection_id, opts);
+
 ```
 
 Get count of followers for given collection type and collection id.
@@ -455,7 +570,12 @@ Get count of followers for given collection type and collection id.
 *getFollowIDsByType* - Get the Uids of followed product, brand and collection.
 
 ```javascript
-getFollowIDsByType(opts);
+// Promise
+const promise = getFollowIDsByType(opts);
+
+// Async/Await
+const data = await getFollowIDsByType(opts);
+
 ```
 
 You can get the uids of all the followed Product, Brand and Collections.
@@ -514,7 +634,12 @@ const cart = new Cart(conf);
 *getCart* - Fetch all Items Added to  Cart
 
 ```javascript
-getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartV1Serializer
@@ -534,7 +659,12 @@ Get all the details of a items added to cart  by uid. If successful, returns a C
 *getCartLastModified* - Fetch Last-Modified timestamp
 
 ```javascript
-getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Fetch Last-Modified timestamp in header metadata
@@ -553,7 +683,12 @@ Fetch Last-Modified timestamp in header metadata
 *addItemsToCart* - Add Items to Cart
 
 ```javascript
-addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 &lt;p&gt;Add Items to cart. See `CartV1Serializer` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;seller_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;store_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;/ul&gt;
@@ -571,7 +706,12 @@ addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
 *updateCart* - Update Items already added to Cart
 
 ```javascript
-updateCart(x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = updateCart(x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await updateCart(x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;font color=&quot;monochrome&quot;&gt;operation&lt;/font&gt; Operation for current api call. &lt;b&gt;update_item&lt;/b&gt; for update items. &lt;b&gt;remove_item&lt;/b&gt; for removing items.&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;article_id&lt;/font&gt;   &quot;/content​/v1​/products​/{identifier}​/sizes​/price​/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_index&lt;/font&gt;  item position in the cart (must be greater than or equal to 0)&lt;/li&gt; &lt;/ul&gt;
@@ -589,7 +729,12 @@ Request object containing attributes like item_quantity and item_size which can 
 *getCartItemCount* - Cart item count
 
 ```javascript
-getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Get total count of item present in cart
@@ -608,7 +753,12 @@ Get total count of item present in cart
 *getCouponList* - Fetch Coupon
 
 ```javascript
-getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponseSchema
@@ -627,7 +777,12 @@ Get all the details of a coupons applicable to cart  by uid. If successful, retu
 *applyCoupon* - Apply Coupon
 
 ```javascript
-applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 &lt;p&gt;Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;coupon_code&lt;/font&gt;&lt;/li&gt;
@@ -649,7 +804,12 @@ applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opt
 *removeCoupon* - Remove Coupon Applied
 
 ```javascript
-removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Remove Coupon applied on the cart by passing uid in request body.
@@ -668,7 +828,12 @@ Remove Coupon applied on the cart by passing uid in request body.
 *getBulkDiscountOffers* - Get discount offers based on quantity
 
 ```javascript
-getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
@@ -690,7 +855,12 @@ List applicable offers along with current, next and best offer for given product
 *getAddressList* - Fetch Address
 
 ```javascript
-getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
@@ -713,7 +883,12 @@ Get all the addresses associated with the account. If successful, returns a Addr
 *addAddress* - Add Address to the account
 
 ```javascript
-addAddress(x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = addAddress(x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await addAddress(x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 &lt;p&gt;Add Address to account. See `SaveAddressRequestSchema` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
@@ -731,7 +906,12 @@ addAddress(x-application-id, x-application-token, x-currency-code, opts);
 *getAddressById* - Fetch Single Address
 
 ```javascript
-getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
@@ -755,7 +935,12 @@ Get a addresses with the given id. If successful, returns a Address resource in 
 *updateAddress* - Update Address alreay added to account
 
 ```javascript
-updateAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = updateAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await updateAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Request object containing attributes mentioned in  &lt;font color=&quot;blue&quot;&gt;UpdateAddressRequestSchema &lt;/font&gt; can be updated .these attributes are :&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;is_default_address&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;landmark&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;area&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;pincode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;email&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_type&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;name&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
@@ -774,7 +959,12 @@ Request object containing attributes mentioned in  &lt;font color=&quot;blue&quo
 *removeAddress* - Remove Address Associated to the account
 
 ```javascript
-removeAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = removeAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await removeAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Delete a Address by it&#39;s address_id. Returns an object that tells whether the address was deleted successfully
@@ -793,7 +983,12 @@ Delete a Address by it&#39;s address_id. Returns an object that tells whether th
 *selectCartAddress* - Select Address from All Addresses
 
 ```javascript
-selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 &lt;p&gt;Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequestSchema` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;billing_address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
@@ -811,7 +1006,12 @@ selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
 *getCartPaymentModes* - Gte Cart Payment for valid coupon
 
 ```javascript
-getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Validate coupon for selected payment mode
@@ -835,7 +1035,12 @@ Validate coupon for selected payment mode
 *selectCartPaymentMode* - Update Cart Payment
 
 ```javascript
-selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Update Cart Payment for Your Account
@@ -854,7 +1059,12 @@ Update Cart Payment for Your Account
 *getCartShipments* - Get delivery date and options before checkout
 
 ```javascript
-getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
@@ -875,7 +1085,12 @@ Shipment break up item wise with delivery date. Actual                      deli
 *checkoutCart* - Checkout Cart
 
 ```javascript
-checkoutCart(x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = checkoutCart(x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await checkoutCart(x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
@@ -893,7 +1108,12 @@ Checkout all items in cart to payment and order generation.                     
 *updateCartMeta* - Update Cart Meta
 
 ```javascript
-updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Update cart meta like checkout_mode, gstin.
@@ -912,7 +1132,12 @@ Update cart meta like checkout_mode, gstin.
 *getCartShareLink* - Generate Cart sharing link token
 
 ```javascript
-getCartShareLink(x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getCartShareLink(x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getCartShareLink(x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Generates shared cart snapshot and returns shortlink token
@@ -930,7 +1155,12 @@ Generates shared cart snapshot and returns shortlink token
 *getCartSharedItems* - Get shared cart snapshot and cart response
 
 ```javascript
-getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
@@ -949,7 +1179,12 @@ Returns shared cart response for sent token with `shared_cart_details`          
 *updateCartWithSharedItems* - Merge or Replace existing cart
 
 ```javascript
-updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts);
+// Promise
+const promise = updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts);
+
+// Async/Await
+const data = await updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts);
+
 ```
 
 Merge or Replace cart based on `action` parameter with shared cart of `token`
@@ -997,7 +1232,12 @@ const lead = new Lead(conf);
 *getTicket* - Get Tickets
 
 ```javascript
-getTicket(id, x-application-id, x-application-token, opts);
+// Promise
+const promise = getTicket(id, x-application-id, x-application-token, opts);
+
+// Async/Await
+const data = await getTicket(id, x-application-id, x-application-token, opts);
+
 ```
 
 Get Tickets
@@ -1015,7 +1255,12 @@ Get Tickets
 *createHistoryForTicket* - Create history for Ticket
 
 ```javascript
-createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts);
+// Promise
+const promise = createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts);
+
+// Async/Await
+const data = await createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts);
+
 ```
 
 Create history for Ticket
@@ -1033,7 +1278,12 @@ Create history for Ticket
 *createTicket* - Create Ticket
 
 ```javascript
-createTicket(x-application-id, x-application-token, opts);
+// Promise
+const promise = createTicket(x-application-id, x-application-token, opts);
+
+// Async/Await
+const data = await createTicket(x-application-id, x-application-token, opts);
+
 ```
 
 Create Ticket
@@ -1050,7 +1300,12 @@ Create Ticket
 *getForm* - Get Custom Form
 
 ```javascript
-getForm(slug, x-application-id, x-application-token, opts);
+// Promise
+const promise = getForm(slug, x-application-id, x-application-token, opts);
+
+// Async/Await
+const data = await getForm(slug, x-application-id, x-application-token, opts);
+
 ```
 
 Get Custom Form
@@ -1068,7 +1323,12 @@ Get Custom Form
 *submitForm* - Submit Form Response
 
 ```javascript
-submitForm(slug, x-application-id, x-application-token, opts);
+// Promise
+const promise = submitForm(slug, x-application-id, x-application-token, opts);
+
+// Async/Await
+const data = await submitForm(slug, x-application-id, x-application-token, opts);
+
 ```
 
 Submit Form Response
@@ -1086,7 +1346,12 @@ Submit Form Response
 *getParticipantsInsideVideoRoom* - Get participants of Video Room
 
 ```javascript
-getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts);
+// Promise
+const promise = getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts);
+
+// Async/Await
+const data = await getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts);
+
 ```
 
 Get participants of Video Room
@@ -1104,7 +1369,12 @@ Get participants of Video Room
 *getTokenForVideRoom* - Get Token to join Video Room
 
 ```javascript
-getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts);
+// Promise
+const promise = getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts);
+
+// Async/Await
+const data = await getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts);
+
 ```
 
 Get Token to join Video Room
