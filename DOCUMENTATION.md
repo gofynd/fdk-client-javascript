@@ -24,33 +24,33 @@ const catalog = new Catalog(conf);
 
 ### Methods
 
-* [getProducts](#getProducts)
-* [getProductDetailByIdentifier](#getProductDetailByIdentifier)
-* [getProductSizesByIdentifier](#getProductSizesByIdentifier)
-* [getProductPriceByIdentifier](#getProductPriceByIdentifier)
-* [getProductSellersByIdentifier](#getProductSellersByIdentifier)
-* [getProductSimilarByIdentifier](#getProductSimilarByIdentifier)
-* [getProductVariantsByIdentifier](#getProductVariantsByIdentifier)
-* [getProductStockByIdentifier](#getProductStockByIdentifier)
-* [getProductStockForTimeByIdentifier](#getProductStockForTimeByIdentifier)
-* [getBrands](#getBrands)
-* [getBrandDetailByIdentifier](#getBrandDetailByIdentifier)
-* [getCategories](#getCategories)
-* [getCategoryDetailByIdentifier](#getCategoryDetailByIdentifier)
-* [getHomeProducts](#getHomeProducts)
-* [](#)
-* [getSearchResults](#getSearchResults)
-* [getCollections](#getCollections)
-* [getCollectionItemsBySlug](#getCollectionItemsBySlug)
-* [getCollectionDetailBySlug](#getCollectionDetailBySlug)
-* [getFollowProducts](#getFollowProducts)
-* [unfollowProductById](#unfollowProductById)
-* [saveFollowProductById](#saveFollowProductById)
-* [getFollowProductCountById](#getFollowProductCountById)
-* [getFollowIDsByType](#getFollowIDsByType)
+* Catalog#[getProducts](#getProducts)
+* Catalog#[getProductDetailByIdentifier](#getProductDetailByIdentifier)
+* Catalog#[getProductSizesByIdentifier](#getProductSizesByIdentifier)
+* Catalog#[getProductPriceByIdentifier](#getProductPriceByIdentifier)
+* Catalog#[getProductSellersByIdentifier](#getProductSellersByIdentifier)
+* Catalog#[getProductSimilarByIdentifier](#getProductSimilarByIdentifier)
+* Catalog#[getProductVariantsByIdentifier](#getProductVariantsByIdentifier)
+* Catalog#[getProductStockByIdentifier](#getProductStockByIdentifier)
+* Catalog#[getProductStockForTimeByIdentifier](#getProductStockForTimeByIdentifier)
+* Catalog#[getBrands](#getBrands)
+* Catalog#[getBrandDetailByIdentifier](#getBrandDetailByIdentifier)
+* Catalog#[getCategories](#getCategories)
+* Catalog#[getCategoryDetailByIdentifier](#getCategoryDetailByIdentifier)
+* Catalog#[getHomeProducts](#getHomeProducts)
+* Catalog#[](#)
+* Catalog#[getSearchResults](#getSearchResults)
+* Catalog#[getCollections](#getCollections)
+* Catalog#[getCollectionItemsBySlug](#getCollectionItemsBySlug)
+* Catalog#[getCollectionDetailBySlug](#getCollectionDetailBySlug)
+* Catalog#[getFollowProducts](#getFollowProducts)
+* Catalog#[unfollowProductById](#unfollowProductById)
+* Catalog#[saveFollowProductById](#saveFollowProductById)
+* Catalog#[getFollowProductCountById](#getFollowProductCountById)
+* Catalog#[getFollowIDsByType](#getFollowIDsByType)
 
 
-#### getProducts
+#### Catalog#getProducts
 List the products
 
 ```javascript
@@ -77,7 +77,7 @@ List all the products associated with a brand, collection or category in a reque
 ---
 
 
-#### getProductDetailByIdentifier
+#### Catalog#getProductDetailByIdentifier
 Get a product
 
 ```javascript
@@ -100,7 +100,7 @@ Products are the core resource of an application. Products can be associated by 
 ---
 
 
-#### getProductSizesByIdentifier
+#### Catalog#getProductSizesByIdentifier
 Get the sizes of a product
 
 ```javascript
@@ -124,7 +124,7 @@ A product can exist in multiple sizes. Use this API to fetch all the available s
 ---
 
 
-#### getProductPriceByIdentifier
+#### Catalog#getProductPriceByIdentifier
 Get price a product
 
 ```javascript
@@ -150,7 +150,7 @@ Any available product can exist in multiple sizes. Sometimes prices may vary amo
 ---
 
 
-#### getProductSellersByIdentifier
+#### Catalog#getProductSellersByIdentifier
 List sellers of a product
 
 ```javascript
@@ -177,7 +177,7 @@ A product of a particular size can be sold by multiple sellers. Use this API to 
 ---
 
 
-#### getProductSimilarByIdentifier
+#### Catalog#getProductSimilarByIdentifier
 Get similar products
 
 ```javascript
@@ -201,7 +201,7 @@ Get products similar to the one specified by the `identifier`. If successful, it
 ---
 
 
-#### getProductVariantsByIdentifier
+#### Catalog#getProductVariantsByIdentifier
 Get variant of a particular product
 
 ```javascript
@@ -224,7 +224,7 @@ A product can have a different type of variants varies from color to shade etc. 
 ---
 
 
-#### getProductStockByIdentifier
+#### Catalog#getProductStockByIdentifier
 Get the stock of a product
 
 ```javascript
@@ -250,7 +250,7 @@ Retrieve the available stock of the products. You can use this API to retrieve s
 ---
 
 
-#### getProductStockForTimeByIdentifier
+#### Catalog#getProductStockForTimeByIdentifier
 Get the stock of a product
 
 ```javascript
@@ -274,7 +274,7 @@ Retrieve the available stock of the products. You can use this api to get stock 
 ---
 
 
-#### getBrands
+#### Catalog#getBrands
 List all the brands
 
 ```javascript
@@ -298,7 +298,7 @@ A brand is the name under which a product is being sold. Use this API to list al
 ---
 
 
-#### getBrandDetailByIdentifier
+#### Catalog#getBrandDetailByIdentifier
 Get metadata of a brand
 
 ```javascript
@@ -321,7 +321,7 @@ Fetch metadata of a brand. If successful, returns a metadata object specified in
 ---
 
 
-#### getCategories
+#### Catalog#getCategories
 List all the categories
 
 ```javascript
@@ -343,7 +343,7 @@ List all the categories. You can optionally pass filter the brands by the depart
 ---
 
 
-#### getCategoryDetailByIdentifier
+#### Catalog#getCategoryDetailByIdentifier
 Get metadata of a category
 
 ```javascript
@@ -366,7 +366,7 @@ Fetch metadata of a category. If successful, returns a metadata object specified
 ---
 
 
-#### getHomeProducts
+#### Catalog#getHomeProducts
 List the products
 
 ```javascript
@@ -391,7 +391,7 @@ List all the products associated with a brand, collection or category in a rando
 ---
 
 
-#### 
+#### Catalog#
 List all the departments
 
 ```javascript
@@ -412,7 +412,7 @@ Departments are a way to categorise similar products. A product can lie in multi
 ---
 
 
-#### getSearchResults
+#### Catalog#getSearchResults
 Get relevant suggestions for a search query
 
 ```javascript
@@ -434,7 +434,7 @@ Retrieves a list of suggestions for a given search query. Each suggestion is a v
 ---
 
 
-#### getCollections
+#### Catalog#getCollections
 List all the collections
 
 ```javascript
@@ -455,7 +455,7 @@ A Collection allows you to organize your products into hierarchical groups. For 
 ---
 
 
-#### getCollectionItemsBySlug
+#### Catalog#getCollectionItemsBySlug
 Get the items in a collection
 
 ```javascript
@@ -477,7 +477,7 @@ Get items in a collection specified by its `slug`.
 ---
 
 
-#### getCollectionDetailBySlug
+#### Catalog#getCollectionDetailBySlug
 Get a particular collection
 
 ```javascript
@@ -499,7 +499,7 @@ Get the details of a collection by its `slug`. If successful, returns a Collecti
 ---
 
 
-#### getFollowProducts
+#### Catalog#getFollowProducts
 Get a list of followed Products
 
 ```javascript
@@ -521,7 +521,7 @@ A User can follow a Product they like. This API retrieves the products the user 
 ---
 
 
-#### unfollowProductById
+#### Catalog#unfollowProductById
 UnFollow a Product
 
 ```javascript
@@ -544,7 +544,7 @@ You can undo a followed Product or Brand by its uid, we refer this action as _un
 ---
 
 
-#### saveFollowProductById
+#### Catalog#saveFollowProductById
 Follow a particular Product
 
 ```javascript
@@ -567,7 +567,7 @@ Follow a particular Product specified by its uid. Pass the uid of the product in
 ---
 
 
-#### getFollowProductCountById
+#### Catalog#getFollowProductCountById
 Get Follow Count
 
 ```javascript
@@ -590,7 +590,7 @@ Get count of followers for given collection type and collection id.
 ---
 
 
-#### getFollowIDsByType
+#### Catalog#getFollowIDsByType
 Get the Uids of followed product, brand and collection.
 
 ```javascript
@@ -630,32 +630,32 @@ const cart = new Cart(conf);
 
 ### Methods
 
-* [getCart](#getCart)
-* [getCartLastModified](#getCartLastModified)
-* [addItemsToCart](#addItemsToCart)
-* [updateCart](#updateCart)
-* [getCartItemCount](#getCartItemCount)
-* [getCouponList](#getCouponList)
-* [applyCoupon](#applyCoupon)
-* [removeCoupon](#removeCoupon)
-* [getBulkDiscountOffers](#getBulkDiscountOffers)
-* [getAddressList](#getAddressList)
-* [addAddress](#addAddress)
-* [getAddressById](#getAddressById)
-* [updateAddress](#updateAddress)
-* [removeAddress](#removeAddress)
-* [selectCartAddress](#selectCartAddress)
-* [getCartPaymentModes](#getCartPaymentModes)
-* [selectCartPaymentMode](#selectCartPaymentMode)
-* [getCartShipments](#getCartShipments)
-* [checkoutCart](#checkoutCart)
-* [updateCartMeta](#updateCartMeta)
-* [getCartShareLink](#getCartShareLink)
-* [getCartSharedItems](#getCartSharedItems)
-* [updateCartWithSharedItems](#updateCartWithSharedItems)
+* Cart#[getCart](#getCart)
+* Cart#[getCartLastModified](#getCartLastModified)
+* Cart#[addItemsToCart](#addItemsToCart)
+* Cart#[updateCart](#updateCart)
+* Cart#[getCartItemCount](#getCartItemCount)
+* Cart#[getCouponList](#getCouponList)
+* Cart#[applyCoupon](#applyCoupon)
+* Cart#[removeCoupon](#removeCoupon)
+* Cart#[getBulkDiscountOffers](#getBulkDiscountOffers)
+* Cart#[getAddressList](#getAddressList)
+* Cart#[addAddress](#addAddress)
+* Cart#[getAddressById](#getAddressById)
+* Cart#[updateAddress](#updateAddress)
+* Cart#[removeAddress](#removeAddress)
+* Cart#[selectCartAddress](#selectCartAddress)
+* Cart#[getCartPaymentModes](#getCartPaymentModes)
+* Cart#[selectCartPaymentMode](#selectCartPaymentMode)
+* Cart#[getCartShipments](#getCartShipments)
+* Cart#[checkoutCart](#checkoutCart)
+* Cart#[updateCartMeta](#updateCartMeta)
+* Cart#[getCartShareLink](#getCartShareLink)
+* Cart#[getCartSharedItems](#getCartSharedItems)
+* Cart#[updateCartWithSharedItems](#updateCartWithSharedItems)
 
 
-#### getCart
+#### Cart#getCart
 Fetch all Items Added to  Cart
 
 ```javascript
@@ -681,7 +681,7 @@ Get all the details of a items added to cart  by uid. If successful, returns a C
 ---
 
 
-#### getCartLastModified
+#### Cart#getCartLastModified
 Fetch Last-Modified timestamp
 
 ```javascript
@@ -706,7 +706,7 @@ Fetch Last-Modified timestamp in header metadata
 ---
 
 
-#### addItemsToCart
+#### Cart#addItemsToCart
 Add Items to Cart
 
 ```javascript
@@ -730,7 +730,7 @@ const data = await cart.addItemsToCart(x-application-id, x-application-token, x-
 ---
 
 
-#### updateCart
+#### Cart#updateCart
 Update Items already added to Cart
 
 ```javascript
@@ -754,7 +754,7 @@ Request object containing attributes like item_quantity and item_size which can 
 ---
 
 
-#### getCartItemCount
+#### Cart#getCartItemCount
 Cart item count
 
 ```javascript
@@ -779,7 +779,7 @@ Get total count of item present in cart
 ---
 
 
-#### getCouponList
+#### Cart#getCouponList
 Fetch Coupon
 
 ```javascript
@@ -804,7 +804,7 @@ Get all the details of a coupons applicable to cart  by uid. If successful, retu
 ---
 
 
-#### applyCoupon
+#### Cart#applyCoupon
 Apply Coupon
 
 ```javascript
@@ -832,7 +832,7 @@ const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-tok
 ---
 
 
-#### removeCoupon
+#### Cart#removeCoupon
 Remove Coupon Applied
 
 ```javascript
@@ -857,7 +857,7 @@ Remove Coupon applied on the cart by passing uid in request body.
 ---
 
 
-#### getBulkDiscountOffers
+#### Cart#getBulkDiscountOffers
 Get discount offers based on quantity
 
 ```javascript
@@ -885,7 +885,7 @@ List applicable offers along with current, next and best offer for given product
 ---
 
 
-#### getAddressList
+#### Cart#getAddressList
 Fetch Address
 
 ```javascript
@@ -914,7 +914,7 @@ Get all the addresses associated with the account. If successful, returns a Addr
 ---
 
 
-#### addAddress
+#### Cart#addAddress
 Add Address to the account
 
 ```javascript
@@ -938,7 +938,7 @@ const data = await cart.addAddress(x-application-id, x-application-token, x-curr
 ---
 
 
-#### getAddressById
+#### Cart#getAddressById
 Fetch Single Address
 
 ```javascript
@@ -968,7 +968,7 @@ Get a addresses with the given id. If successful, returns a Address resource in 
 ---
 
 
-#### updateAddress
+#### Cart#updateAddress
 Update Address alreay added to account
 
 ```javascript
@@ -993,7 +993,7 @@ Request object containing attributes mentioned in  &lt;font color=&quot;blue&quo
 ---
 
 
-#### removeAddress
+#### Cart#removeAddress
 Remove Address Associated to the account
 
 ```javascript
@@ -1018,7 +1018,7 @@ Delete a Address by it&#39;s address_id. Returns an object that tells whether th
 ---
 
 
-#### selectCartAddress
+#### Cart#selectCartAddress
 Select Address from All Addresses
 
 ```javascript
@@ -1042,7 +1042,7 @@ const data = await cart.selectCartAddress(x-application-id, x-application-token,
 ---
 
 
-#### getCartPaymentModes
+#### Cart#getCartPaymentModes
 Gte Cart Payment for valid coupon
 
 ```javascript
@@ -1072,7 +1072,7 @@ Validate coupon for selected payment mode
 ---
 
 
-#### selectCartPaymentMode
+#### Cart#selectCartPaymentMode
 Update Cart Payment
 
 ```javascript
@@ -1097,7 +1097,7 @@ Update Cart Payment for Your Account
 ---
 
 
-#### getCartShipments
+#### Cart#getCartShipments
 Get delivery date and options before checkout
 
 ```javascript
@@ -1124,7 +1124,7 @@ Shipment break up item wise with delivery date. Actual                      deli
 ---
 
 
-#### checkoutCart
+#### Cart#checkoutCart
 Checkout Cart
 
 ```javascript
@@ -1148,7 +1148,7 @@ Checkout all items in cart to payment and order generation.                     
 ---
 
 
-#### updateCartMeta
+#### Cart#updateCartMeta
 Update Cart Meta
 
 ```javascript
@@ -1173,7 +1173,7 @@ Update cart meta like checkout_mode, gstin.
 ---
 
 
-#### getCartShareLink
+#### Cart#getCartShareLink
 Generate Cart sharing link token
 
 ```javascript
@@ -1197,7 +1197,7 @@ Generates shared cart snapshot and returns shortlink token
 ---
 
 
-#### getCartSharedItems
+#### Cart#getCartSharedItems
 Get shared cart snapshot and cart response
 
 ```javascript
@@ -1222,7 +1222,7 @@ Returns shared cart response for sent token with `shared_cart_details`          
 ---
 
 
-#### updateCartWithSharedItems
+#### Cart#updateCartWithSharedItems
 Merge or Replace existing cart
 
 ```javascript
@@ -1267,16 +1267,16 @@ const lead = new Lead(conf);
 
 ### Methods
 
-* [getTicket](#getTicket)
-* [createHistoryForTicket](#createHistoryForTicket)
-* [createTicket](#createTicket)
-* [getForm](#getForm)
-* [submitForm](#submitForm)
-* [getParticipantsInsideVideoRoom](#getParticipantsInsideVideoRoom)
-* [getTokenForVideRoom](#getTokenForVideRoom)
+* Lead#[getTicket](#getTicket)
+* Lead#[createHistoryForTicket](#createHistoryForTicket)
+* Lead#[createTicket](#createTicket)
+* Lead#[getForm](#getForm)
+* Lead#[submitForm](#submitForm)
+* Lead#[getParticipantsInsideVideoRoom](#getParticipantsInsideVideoRoom)
+* Lead#[getTokenForVideRoom](#getTokenForVideRoom)
 
 
-#### getTicket
+#### Lead#getTicket
 Get Tickets
 
 ```javascript
@@ -1300,7 +1300,7 @@ Get Tickets
 ---
 
 
-#### createHistoryForTicket
+#### Lead#createHistoryForTicket
 Create history for Ticket
 
 ```javascript
@@ -1324,7 +1324,7 @@ Create history for Ticket
 ---
 
 
-#### createTicket
+#### Lead#createTicket
 Create Ticket
 
 ```javascript
@@ -1347,7 +1347,7 @@ Create Ticket
 ---
 
 
-#### getForm
+#### Lead#getForm
 Get Custom Form
 
 ```javascript
@@ -1371,7 +1371,7 @@ Get Custom Form
 ---
 
 
-#### submitForm
+#### Lead#submitForm
 Submit Form Response
 
 ```javascript
@@ -1395,7 +1395,7 @@ Submit Form Response
 ---
 
 
-#### getParticipantsInsideVideoRoom
+#### Lead#getParticipantsInsideVideoRoom
 Get participants of Video Room
 
 ```javascript
@@ -1419,7 +1419,7 @@ Get participants of Video Room
 ---
 
 
-#### getTokenForVideRoom
+#### Lead#getTokenForVideRoom
 Get Token to join Video Room
 
 ```javascript
