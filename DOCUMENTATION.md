@@ -1,6 +1,26 @@
+# API Classes
+
+
+* [Cart](#Cart)
+* [Catalog](#Catalog)
+* [Lead](#Lead)
+
+----
+----
+
 
 
 ## Cart
+
+```
+const { Configuration } = require('fdk-client-nodejs/application')
+const new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const {classData.className | lowercase }} = new Cart()
+
+```
 
 ### Methods
 
@@ -29,7 +49,7 @@
 * [updateCartWithSharedItems](#updateCartWithSharedItems)
 
 
-#### getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code,  optionals)
+#### getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -43,7 +63,7 @@
 
 
 
-#### getCartLastModified(uid, x-application-id, x-application-token, x-currency-code,  optionals)
+#### getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -56,7 +76,7 @@
 
 
 
-#### addItemsToCart(x-application-id, x-application-token, x-currency-code,  optionals)
+#### addItemsToCart(x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -68,7 +88,7 @@
 
 
 
-#### updateCart(x-application-id, x-application-token, x-currency-code,  optionals)
+#### updateCart(x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -80,7 +100,7 @@
 
 
 
-#### getCartItemCount(uid, x-application-id, x-application-token, x-currency-code,  optionals)
+#### getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -93,7 +113,7 @@
 
 
 
-#### getCouponList(uid, x-application-id, x-application-token, x-currency-code,  optionals)
+#### getCouponList(uid, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -106,7 +126,7 @@
 
 
 
-#### applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code,  optionals)
+#### applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -121,7 +141,7 @@
 
 
 
-#### removeCoupon(uid, x-application-id, x-application-token, x-currency-code,  optionals)
+#### removeCoupon(uid, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -134,7 +154,7 @@
 
 
 
-#### getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code,  optionals)
+#### getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -150,7 +170,7 @@
 
 
 
-#### getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code,  optionals)
+#### getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -167,7 +187,7 @@
 
 
 
-#### addAddress(x-application-id, x-application-token, x-currency-code,  optionals)
+#### addAddress(x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -179,7 +199,7 @@
 
 
 
-#### getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code,  optionals)
+#### getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -197,7 +217,7 @@
 
 
 
-#### updateAddress(id, x-application-id, x-application-token, x-currency-code,  optionals)
+#### updateAddress(id, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -210,7 +230,7 @@
 
 
 
-#### removeAddress(id, x-application-id, x-application-token, x-currency-code,  optionals)
+#### removeAddress(id, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -223,7 +243,7 @@
 
 
 
-#### selectCartAddress(x-application-id, x-application-token, x-currency-code,  optionals)
+#### selectCartAddress(x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -235,7 +255,7 @@
 
 
 
-#### getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code,  optionals)
+#### getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -253,7 +273,7 @@
 
 
 
-#### selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code,  optionals)
+#### selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -266,7 +286,7 @@
 
 
 
-#### getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code,  optionals)
+#### getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -281,7 +301,7 @@
 
 
 
-#### checkoutCart(x-application-id, x-application-token, x-currency-code,  optionals)
+#### checkoutCart(x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -293,7 +313,7 @@
 
 
 
-#### updateCartMeta(uid, x-application-id, x-application-token, x-currency-code,  optionals)
+#### updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -306,7 +326,7 @@
 
 
 
-#### getCartShareLink(x-application-id, x-application-token, x-currency-code,  optionals)
+#### getCartShareLink(x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -318,7 +338,7 @@
 
 
 
-#### getCartSharedItems(token, x-application-id, x-application-token, x-currency-code,  optionals)
+#### getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -331,7 +351,7 @@
 
 
 
-#### updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code,  optionals)
+#### updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, optionals)
 
 **Parameters:**
 
@@ -349,8 +369,17 @@
 ---
 
 
-
 ## Catalog
+
+```
+const { Configuration } = require('fdk-client-nodejs/application')
+const new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const {classData.className | lowercase }} = new Catalog()
+
+```
 
 ### Methods
 
@@ -380,7 +409,7 @@
 * [getFollowIDsByType](#getFollowIDsByType)
 
 
-#### getProducts(q, category, brand, sort_on, page_id, page_size,  optionals)
+#### getProducts(q, category, brand, sort_on, page_id, page_size, optionals)
 
 **Parameters:**
 
@@ -395,7 +424,7 @@
 
 
 
-#### getProductDetailByIdentifier(id, slug,  optionals)
+#### getProductDetailByIdentifier(id, slug, optionals)
 
 **Parameters:**
 
@@ -406,7 +435,7 @@
 
 
 
-#### getProductSizesByIdentifier(id, slug, store,  optionals)
+#### getProductSizesByIdentifier(id, slug, store, optionals)
 
 **Parameters:**
 
@@ -418,7 +447,7 @@
 
 
 
-#### getProductPriceByIdentifier(id, slug, size, pincode, store,  optionals)
+#### getProductPriceByIdentifier(id, slug, size, pincode, store, optionals)
 
 **Parameters:**
 
@@ -432,7 +461,7 @@
 
 
 
-#### getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size,  optionals)
+#### getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, optionals)
 
 **Parameters:**
 
@@ -447,7 +476,7 @@
 
 
 
-#### getProductSimilarByIdentifier(id, slug, tag_identifier,  optionals)
+#### getProductSimilarByIdentifier(id, slug, tag_identifier, optionals)
 
 **Parameters:**
 
@@ -459,7 +488,7 @@
 
 
 
-#### getProductVariantsByIdentifier(id, slug,  optionals)
+#### getProductVariantsByIdentifier(id, slug, optionals)
 
 **Parameters:**
 
@@ -470,7 +499,7 @@
 
 
 
-#### getProductStockByIdentifier(item_id, alu, sku_code, ean, upc,  optionals)
+#### getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, optionals)
 
 **Parameters:**
 
@@ -484,7 +513,7 @@
 
 
 
-#### getProductStockForTimeByIdentifier(timestamp, page_size, page_id,  optionals)
+#### getProductStockForTimeByIdentifier(timestamp, page_size, page_id, optionals)
 
 **Parameters:**
 
@@ -496,7 +525,7 @@
 
 
 
-#### getBrands(department, page_no, page_size,  optionals)
+#### getBrands(department, page_no, page_size, optionals)
 
 **Parameters:**
 
@@ -508,7 +537,7 @@
 
 
 
-#### getBrandDetailByIdentifier(id, slug,  optionals)
+#### getBrandDetailByIdentifier(id, slug, optionals)
 
 **Parameters:**
 
@@ -519,7 +548,7 @@
 
 
 
-#### getCategories(department,  optionals)
+#### getCategories(department, optionals)
 
 **Parameters:**
 
@@ -529,7 +558,7 @@
 
 
 
-#### getCategoryDetailByIdentifier(id, slug,  optionals)
+#### getCategoryDetailByIdentifier(id, slug, optionals)
 
 **Parameters:**
 
@@ -540,7 +569,7 @@
 
 
 
-#### getHomeProducts(f.session, sort_on, page_id, page_size,  optionals)
+#### getHomeProducts(f.session, sort_on, page_id, page_size, optionals)
 
 **Parameters:**
 
@@ -553,7 +582,7 @@
 
 
 
-#### ( optionals)
+#### (optionals)
 
 **Parameters:**
 
@@ -562,7 +591,7 @@
 
 
 
-#### getSearchResults(q,  optionals)
+#### getSearchResults(q, optionals)
 
 **Parameters:**
 
@@ -572,7 +601,7 @@
 
 
 
-#### getCollections( optionals)
+#### getCollections(optionals)
 
 **Parameters:**
 
@@ -581,17 +610,7 @@
 
 
 
-#### getCollectionItemsBySlug(slug,  optionals)
-
-**Parameters:**
-
-| Argument  |  Type  | About |
-| --------- | ----  | --- |
-| slug | string |  | 
-
-
-
-#### getCollectionDetailBySlug(slug,  optionals)
+#### getCollectionItemsBySlug(slug, optionals)
 
 **Parameters:**
 
@@ -601,7 +620,17 @@
 
 
 
-#### getFollowProducts(f.session,  optionals)
+#### getCollectionDetailBySlug(slug, optionals)
+
+**Parameters:**
+
+| Argument  |  Type  | About |
+| --------- | ----  | --- |
+| slug | string |  | 
+
+
+
+#### getFollowProducts(f.session, optionals)
 
 **Parameters:**
 
@@ -611,7 +640,7 @@
 
 
 
-#### unfollowProductById(product_id, f.session,  optionals)
+#### unfollowProductById(product_id, f.session, optionals)
 
 **Parameters:**
 
@@ -622,7 +651,7 @@
 
 
 
-#### saveFollowProductById(product_id, f.session,  optionals)
+#### saveFollowProductById(product_id, f.session, optionals)
 
 **Parameters:**
 
@@ -633,7 +662,7 @@
 
 
 
-#### getFollowProductCountById(collection_type, collection_id,  optionals)
+#### getFollowProductCountById(collection_type, collection_id, optionals)
 
 **Parameters:**
 
@@ -644,7 +673,7 @@
 
 
 
-#### getFollowIDsByType( optionals)
+#### getFollowIDsByType(optionals)
 
 **Parameters:**
 
@@ -657,8 +686,17 @@
 ---
 
 
-
 ## Lead
+
+```
+const { Configuration } = require('fdk-client-nodejs/application')
+const new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const {classData.className | lowercase }} = new Lead()
+
+```
 
 ### Methods
 
@@ -671,7 +709,7 @@
 * [getTokenForVideRoom](#getTokenForVideRoom)
 
 
-#### getTicket(id, x-application-id, x-application-token,  optionals)
+#### getTicket(id, x-application-id, x-application-token, optionals)
 
 **Parameters:**
 
@@ -683,7 +721,7 @@
 
 
 
-#### createHistoryForTicket(ticket_id, x-application-id, x-application-token,  optionals)
+#### createHistoryForTicket(ticket_id, x-application-id, x-application-token, optionals)
 
 **Parameters:**
 
@@ -695,7 +733,7 @@
 
 
 
-#### createTicket(x-application-id, x-application-token,  optionals)
+#### createTicket(x-application-id, x-application-token, optionals)
 
 **Parameters:**
 
@@ -706,19 +744,7 @@
 
 
 
-#### getForm(slug, x-application-id, x-application-token,  optionals)
-
-**Parameters:**
-
-| Argument  |  Type  | About |
-| --------- | ----  | --- |
-| slug | string |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-
-
-
-#### submitForm(slug, x-application-id, x-application-token,  optionals)
+#### getForm(slug, x-application-id, x-application-token, optionals)
 
 **Parameters:**
 
@@ -730,7 +756,19 @@
 
 
 
-#### getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token,  optionals)
+#### submitForm(slug, x-application-id, x-application-token, optionals)
+
+**Parameters:**
+
+| Argument  |  Type  | About |
+| --------- | ----  | --- |
+| slug | string |  | 
+| x-application-id | string |  | 
+| x-application-token | string |  | 
+
+
+
+#### getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, optionals)
 
 **Parameters:**
 
@@ -742,7 +780,7 @@
 
 
 
-#### getTokenForVideRoom(unique_name, x-application-id, x-application-token,  optionals)
+#### getTokenForVideRoom(unique_name, x-application-id, x-application-token, optionals)
 
 **Parameters:**
 
@@ -756,4 +794,3 @@
 
 
 ---
-
