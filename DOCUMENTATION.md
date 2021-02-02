@@ -62,7 +62,7 @@ const data = await catalog.getProducts(q, category, brand, sort_on, page_id, pag
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | q | string |  | 
 | category | string |  | 
@@ -88,7 +88,7 @@ const data = await catalog.getProductDetailByIdentifier(id, slug, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
@@ -110,7 +110,7 @@ const data = await catalog.getProductSizesByIdentifier(id, slug, store, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
@@ -133,7 +133,7 @@ const data = await catalog.getProductPriceByIdentifier(id, slug, size, pincode, 
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
@@ -158,7 +158,7 @@ const data = await catalog.getProductSellersByIdentifier(id, slug, size, pincode
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
@@ -184,7 +184,7 @@ const data = await catalog.getProductSimilarByIdentifier(id, slug, tag_identifie
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
@@ -207,7 +207,7 @@ const data = await catalog.getProductVariantsByIdentifier(id, slug, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
@@ -229,7 +229,7 @@ const data = await catalog.getProductStockByIdentifier(item_id, alu, sku_code, e
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | item_id | string |  | 
 | alu | string |  | 
@@ -254,7 +254,7 @@ const data = await catalog.getProductStockForTimeByIdentifier(timestamp, page_si
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | timestamp | string |  | 
 | page_size | integer |  | 
@@ -277,7 +277,7 @@ const data = await catalog.getBrands(department, page_no, page_size, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | department | string |  | 
 | page_no | integer |  | 
@@ -300,7 +300,7 @@ const data = await catalog.getBrandDetailByIdentifier(id, slug, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
@@ -322,7 +322,7 @@ const data = await catalog.getCategories(department, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | department | string |  | 
 
@@ -343,7 +343,7 @@ const data = await catalog.getCategoryDetailByIdentifier(id, slug, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string |  | 
 | slug | string |  | 
@@ -365,7 +365,7 @@ const data = await catalog.getHomeProducts(f.session, sort_on, page_id, page_siz
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | f.session | string |  | 
 | sort_on | string |  | 
@@ -389,7 +389,7 @@ const data = await catalog.(opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
 Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentSchemaV1`
@@ -409,7 +409,7 @@ const data = await catalog.getSearchResults(q, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | q | string |  | 
 
@@ -430,7 +430,7 @@ const data = await catalog.getCollections(opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
@@ -450,7 +450,7 @@ const data = await catalog.getCollectionItemsBySlug(slug, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string |  | 
 
@@ -471,7 +471,7 @@ const data = await catalog.getCollectionDetailBySlug(slug, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string |  | 
 
@@ -492,7 +492,7 @@ const data = await catalog.getFollowProducts(f.session, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | f.session | string |  | 
 
@@ -513,7 +513,7 @@ const data = await catalog.unfollowProductById(product_id, f.session, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | product_id | string |  | 
 | f.session | string |  | 
@@ -535,7 +535,7 @@ const data = await catalog.saveFollowProductById(product_id, f.session, opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | product_id | integer |  | 
 | f.session | string |  | 
@@ -557,7 +557,7 @@ const data = await catalog.getFollowProductCountById(collection_type, collection
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string |  | 
 | collection_id | string |  | 
@@ -579,7 +579,7 @@ const data = await catalog.getFollowIDsByType(opts);
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
 You can get the uids of all the followed Product, Brand and Collections.
@@ -643,7 +643,7 @@ const data = await cart.getCart(uid, assign_card_id, x-application-id, x-applica
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
 | assign_card_id | integer | assign card id | 
@@ -668,7 +668,7 @@ const data = await cart.getCartLastModified(uid, x-application-id, x-application
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
 | x-application-id | string |  | 
@@ -692,7 +692,7 @@ const data = await cart.addItemsToCart(x-application-id, x-application-token, x-
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -715,7 +715,7 @@ const data = await cart.updateCart(x-application-id, x-application-token, x-curr
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -738,7 +738,7 @@ const data = await cart.getCartItemCount(uid, x-application-id, x-application-to
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
 | x-application-id | string |  | 
@@ -762,7 +762,7 @@ const data = await cart.getCouponList(uid, x-application-id, x-application-token
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
 | x-application-id | string |  | 
@@ -786,7 +786,7 @@ const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-tok
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | i | boolean | items | 
 | b | boolean | breakups | 
@@ -813,7 +813,7 @@ const data = await cart.removeCoupon(uid, x-application-id, x-application-token,
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
 | x-application-id | string |  | 
@@ -837,7 +837,7 @@ const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | item_id | integer |  | 
 | article_id | string |  | 
@@ -864,7 +864,7 @@ const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, defa
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer | unique identification number of cart affiliate | 
 | mobile_no | integer | mobile_no | 
@@ -892,7 +892,7 @@ const data = await cart.addAddress(x-application-id, x-application-token, x-curr
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -915,7 +915,7 @@ const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, 
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | integer | address_id | 
 | uid | integer | unique identification number of cart affiliate | 
@@ -944,7 +944,7 @@ const data = await cart.updateAddress(id, x-application-id, x-application-token,
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | integer |  | 
 | x-application-id | string |  | 
@@ -968,7 +968,7 @@ const data = await cart.removeAddress(id, x-application-id, x-application-token,
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | integer |  | 
 | x-application-id | string |  | 
@@ -992,7 +992,7 @@ const data = await cart.selectCartAddress(x-application-id, x-application-token,
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -1015,7 +1015,7 @@ const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payme
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | string | unique identification number | 
 | address_id | string | Address of customer | 
@@ -1044,7 +1044,7 @@ const data = await cart.selectCartPaymentMode(uid, x-application-id, x-applicati
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | string | unique identification number | 
 | x-application-id | string |  | 
@@ -1068,7 +1068,7 @@ const data = await cart.getCartShipments(p, uid, address_id, x-application-id, x
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | p | boolean |  | 
 | uid | integer |  | 
@@ -1094,7 +1094,7 @@ const data = await cart.checkoutCart(x-application-id, x-application-token, x-cu
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -1117,7 +1117,7 @@ const data = await cart.updateCartMeta(uid, x-application-id, x-application-toke
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
 | x-application-id | string |  | 
@@ -1141,7 +1141,7 @@ const data = await cart.getCartShareLink(x-application-id, x-application-token, 
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -1164,7 +1164,7 @@ const data = await cart.getCartSharedItems(token, x-application-id, x-applicatio
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | token | string |  | 
 | x-application-id | string |  | 
@@ -1188,7 +1188,7 @@ const data = await cart.updateCartWithSharedItems(token, action, x-application-i
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | token | string |  | 
 | action | string |  | 
@@ -1241,7 +1241,7 @@ const data = await lead.getTicket(id, x-application-id, x-application-token, opt
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string |  | 
 | x-application-id | string |  | 
@@ -1264,7 +1264,7 @@ const data = await lead.createHistoryForTicket(ticket_id, x-application-id, x-ap
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | ticket_id | string |  | 
 | x-application-id | string |  | 
@@ -1287,7 +1287,7 @@ const data = await lead.createTicket(x-application-id, x-application-token, opts
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | x-application-id | string |  | 
 | x-application-token | string |  | 
@@ -1309,7 +1309,7 @@ const data = await lead.getForm(slug, x-application-id, x-application-token, opt
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string |  | 
 | x-application-id | string |  | 
@@ -1332,7 +1332,7 @@ const data = await lead.submitForm(slug, x-application-id, x-application-token, 
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string |  | 
 | x-application-id | string |  | 
@@ -1355,7 +1355,7 @@ const data = await lead.getParticipantsInsideVideoRoom(unique_name, x-applicatio
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | unique_name | string |  | 
 | x-application-id | string |  | 
@@ -1378,7 +1378,7 @@ const data = await lead.getTokenForVideRoom(unique_name, x-application-id, x-app
 
 ```
 
-| Argument  |  Type  | About |
+| Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | unique_name | string |  | 
 | x-application-id | string |  | 
