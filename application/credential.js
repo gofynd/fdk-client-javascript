@@ -10,7 +10,7 @@ const MongoIDRegExp = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i
 
 const DEFAULT_DOMAIN = "https://api.fynd.com";
 
-class Credential {
+class Configuration {
     constructor(_conf, _opts) {
         this.ApplicationId = _conf.ApplicationId || "";
         this.ApplicationToken = _conf.ApplicationToken || ""; 
@@ -38,4 +38,4 @@ class Credential {
 }
 
 
-module.exports = Credential;
+module.exports = Configuration;

@@ -1,9 +1,9 @@
 const axiosInstance = require("../common/axios_helpers");
 
-function execute(credential, method, iurl, pathParam, queryParams, data) {
+function execute(conf, method, iurl, pathParam, queryParams, data) {
 
     const token = Buffer
-        .from(`${credential.ApplicationId}:${credential.ApplicationToken}`,'utf8')
+        .from(`${conf.ApplicationId}:${conf.ApplicationToken}`,'utf8')
         .toString('base64');
 
     const rawRequest = {

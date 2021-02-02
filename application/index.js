@@ -5,111 +5,43 @@ const Credential = require("./credential");
 
 
 const { 
-    ApplicationDetail,
-    PlatformVersionRequest,
-    ApplicationVersionResquest,
-    Device,
-    Os,
-    Application,
-    ApplicationInventory,
-    ApplicationFeature,
-    ApplicationInformation,
-    ApplicationLegal,
-    ApplicationSeo,
-    ApplicationStaff,
-    ApplicationTheme,
-    AvailableTheme,
-    IntegrationConfiguration,
-    Integration,
-    PlatformBuildConfiguration,
-    PlatformBuildVersion,
-    PlatformVersion
-} = require("./schema");
-
-    
-class  {
-    constructor(_credential) {
-        this.credential = _credential;
-    }
-    
-}
-
-
-exports.ApplicationX = ApplicationX;
-
-
-const { 
-    ApplicationDetail,
-    PlatformVersionRequest,
-    ApplicationVersionResquest,
-    Device,
-    Os,
-    Application,
-    ApplicationInventory,
-    ApplicationFeature,
-    ApplicationInformation,
-    ApplicationLegal,
-    ApplicationSeo,
-    ApplicationStaff,
-    ApplicationTheme,
-    AvailableTheme,
-    IntegrationConfiguration,
-    Integration,
-    PlatformBuildConfiguration,
-    PlatformBuildVersion,
-    PlatformVersion
-} = require("./schema");
-
-    
-class  {
-    constructor(_credential) {
-        this.credential = _credential;
-    }
-    
-}
-
-
-exports.ApplicationP = ApplicationP;
-
-
-const { 
     GetCartV1Serializer,
     ProductCart,
     CartV1Serializer,
-    PaymentOption,
-    PaymentFlow,
-    PaymentFlows,
-    PaymentOptions,
-    CartCurrency,
-    ProductAvailability,
-    ProductPrice,
-    ProductPriceInfo,
-    BaseInfo,
-    CategoryInfo,
-    ActionQuery,
-    Action,
-    Image,
-    Product,
-    PlatformCartProductInfoV1,
-    DisplayBreakup,
     LoyaltyPoints,
+    DisplayBreakup,
     CouponBreakup,
     RawBreakup,
     BaseCartBreakup,
+    ProductPrice,
+    ProductPriceInfo,
+    ProductAvailability,
+    BaseInfo,
+    ActionQuery,
+    Action,
+    CategoryInfo,
+    Image,
+    Product,
+    PlatformCartProductInfoV1,
+    PaymentFlow,
+    PaymentFlows,
+    PaymentOption,
+    PaymentOptions,
+    CartCurrency,
     PlatformV1Cart,
     UpdateProductCart,
     UpdateCartV1Serializer,
     PageCoupon,
     Coupon,
     GetCouponResponse,
-    Loyality,
-    GetCoupon,
     RawCoupon,
+    GetCoupon,
+    Loyality,
     SaveCoupon,
     SaveCouponResponse,
-    OfferSeller,
     OfferPrice,
     OfferItem,
+    OfferSeller,
     BulkPriceOffer,
     BulkPriceResponse,
     Address,
@@ -131,19 +63,7 @@ const {
     CartCheckoutResponse,
     Meta,
     SharedCartDetails,
-    SharedPlatformV1Cart,
-    CartItem,
-    CartItems,
-    OpenapiCartDetailsResponse,
-    OrderCartItem,
-    AddressSerializer,
-    OpenApiFiles,
-    OpenApiCheckoutReq,
-    ConfirmPaymentReqSerializer,
-    CartViewRequestSerializer,
-    AddressSerializerV1,
-    ServiceablityReqSerializer,
-    CartDetailsResponseSerializer
+    SharedPlatformV1Cart
 } = require("./schema");
 
     
@@ -159,134 +79,68 @@ exports.Cart = Cart;
 
 
 const { 
+    ProductPage,
     ProductFiltersValue,
     ProductFiltersKey,
     ProductFilters,
-    ProductPage,
-    Empty,
+    Media,
+    ProductListingActionPage,
     ProductListingAction,
-    ProductListingImage,
     ProductBrand,
-    Price,
-    ProductListingPrice,
-    ProductListing,
-    ProductSortOn,
-    ProductSearch,
-    Error,
-    Image,
     ProductDetailAttribute,
     ProductDetailGroupedAttribute,
-    ProductDetail,
+    ProductDetailSchemaV1,
+    ProductSortOn,
+    ProductSearchSchemaV1,
+    ErrorSchemaV1,
+    Error,
     ProductSizeStores,
+    Price,
+    ProductListingPrice,
     ProductSize,
-    ProductSizes,
-    ProductSeller,
+    ProductSizesSchemaV1,
     ProductSizePriceArticleAssignment,
+    ProductSeller,
     ProductStockPrice,
-    ProductSizePrice,
-    ProductSizeSellerArticleSchema,
-    ProductSizeSellerData,
+    ProductSizePriceSchemaV1,
     ProductSizeSellerFilter,
-    ProductSizeSeller,
+    ProductSizeSellerSchemaV1,
     ProductSimilarItem,
-    SimilarProductByTag,
-    ProductVariantItem,
-    ProductVariant,
+    SimilarProductByTagSchemaV1,
+    ProductVariantItemSchemaV1,
+    ProductVariantSchemaV1,
     StoreDetail,
     CompanyDetail,
     ProductStockStatusItem,
-    ProductStockStatus,
-    UploadAlterProduct,
-    AlterProductDetailsPost,
-    PostAlterProducts,
-    OneImageData,
-    User,
-    GetOneAlterProduct,
-    UploadAlterProductSchemaResponse,
-    GetAlterProducts,
-    HomeListingPage,
-    HomeListing,
-    BrandItem,
-    BrandListing,
-    BannerImage,
+    ProductStockStatusSchemaV1,
+    ProductStockStatusPollSchemaV1,
     ImageUrls,
-    BrandMeta,
-    CategoryItems,
-    WrappedCategoryTree,
-    DepartmentCategoryTree,
+    BrandItem,
+    BrandListingSchemaV1,
+    BrandMetaV1,
     DepartmentIdentifier,
-    CategoryListing,
-    CategoryMeta,
-    Department,
-    AutocompleteItem,
-    AutoComplete,
-    CollectionListingAction,
+    CategoryItems,
+    DepartmentCategoryTree,
+    CategoryListingSchemaV1,
+    CategoryMetaV1,
+    Page,
+    HomeListingSchemaV1,
+    DepartmentSchemaV1,
+    AutocompleteItemSchemaV1,
+    AutoCompleteSchemaV1,
     GetCollectionNest,
-    CollectionListingFilterTag,
     CollectionListingFilterType,
+    CollectionListingFilterTag,
     CollectionListingFilter,
-    GetCollectionResponse,
-    ProductFiltersKeySchemaExtended,
-    CollectionItemFilter,
-    GetCollectionItemsResponse,
-    CollectionItem,
-    Collections,
+    GetCollectionResponseSchemaV1,
+    GetCollectionItemResponseSchemaV1,
+    CollectionResponseV1,
     NextPage,
     GetFollowResponse,
-    PlatformFollowPostResponse,
-    FollowCountResponse,
+    PlatformFollowPostResponseSchemaV1,
+    FollowCountResponseV1,
     FollowUidsData,
-    FollowUidsResponse,
-    CollectionImage,
-    CollectionBanner,
-    CollectionBadge,
-    UserInfo,
-    Schedule,
-    CreateCollection,
-    CollectionResponseList,
-    CreateCollectionResponse,
-    AffiliateCollectionDetailViewDelete,
-    ItemQueryForAffiliateCollection,
-    AffiliateCollectionItemsViewPostRequest,
-    AffiliateCollectionItemsViewPostResponse,
-    ProductSize1,
-    ConfigurationProductConfig,
-    ConfigurationProductSimilar,
-    ConfigurationProductVariantConfig,
-    ConfigurationProductVariant,
-    ConfigurationProduct,
-    ConfigurationListingSortConfig,
-    ConfigurationListingSort,
-    ConfigurationBucketPoints,
-    ConfigurationListingFilterValue,
-    ConfigurationListingFilterConfig,
-    ConfigurationListingFilter,
-    ConfigurationListing,
-    AppConfiguration,
-    AppCatalogConfiguration,
-    GetAppCatalogConfiguration,
-    GetCatalogConfigurationDetailsProduct,
-    GetCatalogConfigurationDetailsSchemaListing,
-    GetCatalogConfigurationDetails,
-    Store,
-    StoreListing,
-    CatalogInsightBrand,
-    CatalogInsightItem,
-    CatalogInsightResponse,
-    SearchKeywordResult,
-    CreateSearchKeyword,
-    GetSearchWordsData,
-    CreateSearchWordsResponse,
-    GetSearchWordsResponse,
-    GetSearchWordsDetailResponse,
-    DeleteResponse,
-    AutocompletePageAction,
-    AutocompleteAction,
-    AutocompleteResult,
-    CreateAutocompleteKeyword,
-    GetAutocompleteWordsData,
-    CreateAutocompleteWordsResponse,
-    GetAutocompleteWordsResponse
+    FollowUidsResponseV1
 } = require("./schema");
 
     
@@ -298,7 +152,28 @@ class  {
 }
 
 
-exports.Product = Product;
+exports.Catalog = Catalog;
+
+
+const { 
+    Priority,
+    Status,
+    Category,
+    CustomForm,
+    TicketHistory,
+    Ticket
+} = require("./schema");
+
+    
+class  {
+    constructor(_credential) {
+        this.credential = _credential;
+    }
+    
+}
+
+
+exports.Lead = Lead;
 
 exports.Credential = Credential
 
