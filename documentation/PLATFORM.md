@@ -10,10 +10,9 @@
 
 
 * [Billing](#Billing) - 
-
-** [Billing#getPublicPlanDetailedList](#billinggetpublicplandetailedlist)
-** [Billing#getPublicPlanDetailedById](#billinggetpublicplandetailedbyid)
-** [Billing#getPublicPlanList](#billinggetpublicplanlist)
+  * [Billing#getPublicPlanDetailedList](#billinggetpublicplandetailedlist)
+  * [Billing#getPublicPlanDetailedById](#billinggetpublicplandetailedbyid)
+  * [Billing#getPublicPlanList](#billinggetpublicplanlist)
  
 
 ---

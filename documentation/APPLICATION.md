@@ -3,7 +3,7 @@
 
 * [Catalog](#Catalog) - Application Front API&#39;s leverages Fynd&#39;s real-time inventory integration with over 400+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
 * [Cart](#Cart) - Open API leverages Fynd&#39;s real-time inventory integration with over 200+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
-* [Lead](#Lead) - Handles communication between Administrator &lt;-&gt; Staff and Staff &lt;-&gt; Users 
+* [Lead](#Lead) - Handles communication between Staff and Users 
 
 ----
 ----
@@ -12,70 +12,67 @@
 
 
 * [Catalog](#Catalog) - Application Front API&#39;s leverages Fynd&#39;s real-time inventory integration with over 400+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app.
-
-** [Catalog#getProductDetailBySlug](#cataloggetproductdetailbyslug)
-** [Catalog#getProductSizesBySlug](#cataloggetproductsizesbyslug)
-** [Catalog#getProductPriceBySlug](#cataloggetproductpricebyslug)
-** [Catalog#getProductSellersBySlug](#cataloggetproductsellersbyslug)
-** [Catalog#getProductComparisonBySlugs](#cataloggetproductcomparisonbyslugs)
-** [Catalog#getSimilarComparisonProductBySlug](#cataloggetsimilarcomparisonproductbyslug)
-** [Catalog#getComparedFrequentlyProductBySlug](#cataloggetcomparedfrequentlyproductbyslug)
-** [Catalog#getProductSimilarByIdentifier](#cataloggetproductsimilarbyidentifier)
-** [Catalog#getProductVariantsBySlug](#cataloggetproductvariantsbyslug)
-** [Catalog#getProductStockByIdentifier](#cataloggetproductstockbyidentifier)
-** [Catalog#getProductStockForTimeByIdentifier](#cataloggetproductstockfortimebyidentifier)
-** [Catalog#getProducts](#cataloggetproducts)
-** [Catalog#getBrands](#cataloggetbrands)
-** [Catalog#getBrandDetailBySlug](#cataloggetbranddetailbyslug)
-** [Catalog#getCategories](#cataloggetcategories)
-** [Catalog#getCategoryDetailBySlug](#cataloggetcategorydetailbyslug)
-** [Catalog#getHomeProducts](#cataloggethomeproducts)
-** [Catalog#](#catalog)
-** [Catalog#getSearchResults](#cataloggetsearchresults)
-** [Catalog#getCollections](#cataloggetcollections)
-** [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
-** [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
-** [Catalog#getFollowedListing](#cataloggetfollowedlisting)
-** [Catalog#unfollowById](#catalogunfollowbyid)
-** [Catalog#followById](#catalogfollowbyid)
-** [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
-** [Catalog#getFollowIds](#cataloggetfollowids)
+  * [Catalog#getProductDetailBySlug](#cataloggetproductdetailbyslug)
+  * [Catalog#getProductSizesBySlug](#cataloggetproductsizesbyslug)
+  * [Catalog#getProductPriceBySlug](#cataloggetproductpricebyslug)
+  * [Catalog#getProductSellersBySlug](#cataloggetproductsellersbyslug)
+  * [Catalog#getProductComparisonBySlugs](#cataloggetproductcomparisonbyslugs)
+  * [Catalog#getSimilarComparisonProductBySlug](#cataloggetsimilarcomparisonproductbyslug)
+  * [Catalog#getComparedFrequentlyProductBySlug](#cataloggetcomparedfrequentlyproductbyslug)
+  * [Catalog#getProductSimilarByIdentifier](#cataloggetproductsimilarbyidentifier)
+  * [Catalog#getProductVariantsBySlug](#cataloggetproductvariantsbyslug)
+  * [Catalog#getProductStockByIdentifier](#cataloggetproductstockbyidentifier)
+  * [Catalog#getProductStockForTimeByIdentifier](#cataloggetproductstockfortimebyidentifier)
+  * [Catalog#getProducts](#cataloggetproducts)
+  * [Catalog#getBrands](#cataloggetbrands)
+  * [Catalog#getBrandDetailBySlug](#cataloggetbranddetailbyslug)
+  * [Catalog#getCategories](#cataloggetcategories)
+  * [Catalog#getCategoryDetailBySlug](#cataloggetcategorydetailbyslug)
+  * [Catalog#getHomeProducts](#cataloggethomeproducts)
+  * [Catalog#](#catalog)
+  * [Catalog#getSearchResults](#cataloggetsearchresults)
+  * [Catalog#getCollections](#cataloggetcollections)
+  * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
+  * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
+  * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
+  * [Catalog#unfollowById](#catalogunfollowbyid)
+  * [Catalog#followById](#catalogfollowbyid)
+  * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
+  * [Catalog#getFollowIds](#cataloggetfollowids)
  
 * [Cart](#Cart) - Open API leverages Fynd&#39;s real-time inventory integration with over 200+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app.
-
-** [Cart#getCart](#cartgetcart)
-** [Cart#getCartLastModified](#cartgetcartlastmodified)
-** [Cart#addItemsToCart](#cartadditemstocart)
-** [Cart#updateCart](#cartupdatecart)
-** [Cart#getCartItemCount](#cartgetcartitemcount)
-** [Cart#getCouponList](#cartgetcouponlist)
-** [Cart#applyCoupon](#cartapplycoupon)
-** [Cart#removeCoupon](#cartremovecoupon)
-** [Cart#getBulkDiscountOffers](#cartgetbulkdiscountoffers)
-** [Cart#getAddressList](#cartgetaddresslist)
-** [Cart#addAddress](#cartaddaddress)
-** [Cart#getAddressById](#cartgetaddressbyid)
-** [Cart#updateAddress](#cartupdateaddress)
-** [Cart#removeAddress](#cartremoveaddress)
-** [Cart#selectCartAddress](#cartselectcartaddress)
-** [Cart#getCartPaymentModes](#cartgetcartpaymentmodes)
-** [Cart#selectCartPaymentMode](#cartselectcartpaymentmode)
-** [Cart#getCartShipments](#cartgetcartshipments)
-** [Cart#checkoutCart](#cartcheckoutcart)
-** [Cart#updateCartMeta](#cartupdatecartmeta)
-** [Cart#getCartShareLink](#cartgetcartsharelink)
-** [Cart#getCartSharedItems](#cartgetcartshareditems)
-** [Cart#updateCartWithSharedItems](#cartupdatecartwithshareditems)
+  * [Cart#getCart](#cartgetcart)
+  * [Cart#getCartLastModified](#cartgetcartlastmodified)
+  * [Cart#addItemsToCart](#cartadditemstocart)
+  * [Cart#updateCart](#cartupdatecart)
+  * [Cart#getCartItemCount](#cartgetcartitemcount)
+  * [Cart#getCouponList](#cartgetcouponlist)
+  * [Cart#applyCoupon](#cartapplycoupon)
+  * [Cart#removeCoupon](#cartremovecoupon)
+  * [Cart#getBulkDiscountOffers](#cartgetbulkdiscountoffers)
+  * [Cart#getAddressList](#cartgetaddresslist)
+  * [Cart#addAddress](#cartaddaddress)
+  * [Cart#getAddressById](#cartgetaddressbyid)
+  * [Cart#updateAddress](#cartupdateaddress)
+  * [Cart#removeAddress](#cartremoveaddress)
+  * [Cart#selectCartAddress](#cartselectcartaddress)
+  * [Cart#getCartPaymentModes](#cartgetcartpaymentmodes)
+  * [Cart#selectCartPaymentMode](#cartselectcartpaymentmode)
+  * [Cart#getCartShipments](#cartgetcartshipments)
+  * [Cart#checkoutCart](#cartcheckoutcart)
+  * [Cart#updateCartMeta](#cartupdatecartmeta)
+  * [Cart#getCartShareLink](#cartgetcartsharelink)
+  * [Cart#getCartSharedItems](#cartgetcartshareditems)
+  * [Cart#updateCartWithSharedItems](#cartupdatecartwithshareditems)
  
-* [Lead](#Lead) - Handles communication between Administrator &lt;-&gt; Staff and Staff &lt;-&gt; Users
-
-** [Lead#getTicket](#leadgetticket)
-** [Lead#createHistoryForTicket](#leadcreatehistoryforticket)
-** [Lead#createTicket](#leadcreateticket)
-** [Lead#getForm](#leadgetform)
-** [Lead#submitForm](#leadsubmitform)
-** [Lead#getParticipantsInsideVideoRoom](#leadgetparticipantsinsidevideoroom)
-** [Lead#getTokenForVideRoom](#leadgettokenforvideroom)
+* [Lead](#Lead) - Handles communication between Staff and Users
+  * [Lead#getTicket](#leadgetticket)
+  * [Lead#createHistoryForTicket](#leadcreatehistoryforticket)
+  * [Lead#createTicket](#leadcreateticket)
+  * [Lead#getCustomForm](#leadgetcustomform)
+  * [Lead#submitCustomForm](#leadsubmitcustomform)
+  * [Lead#getParticipantsInsideVideoRoom](#leadgetparticipantsinsidevideoroom)
+  * [Lead#getTokenForVideoRoom](#leadgettokenforvideoroom)
  
 
 ---
@@ -1298,47 +1295,43 @@ const lead = new Lead(conf);
 
 
 #### Lead#getTicket
-Get Tickets
+Get Ticket with the specific id
 
 ```javascript
 // Promise
-const promise = lead.getTicket(id, x-application-id, x-application-token, );
+const promise = lead.getTicket(id, );
 
 // Async/Await
-const data = await lead.getTicket(id, x-application-id, x-application-token, );
+const data = await lead.getTicket(id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | string |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
 
-Get Tickets
+Get Ticket with the specific id, this is used to view the ticket details
 
 ---
 
 
 #### Lead#createHistoryForTicket
-Create history for Ticket
+Create history for specific Ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistoryForTicket(ticket_id, x-application-id, x-application-token, );
+const promise = lead.createHistoryForTicket(ticket_id, );
 
 // Async/Await
-const data = await lead.createHistoryForTicket(ticket_id, x-application-id, x-application-token, );
+const data = await lead.createHistoryForTicket(ticket_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | ticket_id | string |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
 
-Create history for Ticket
+Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
 ---
 
@@ -1348,111 +1341,101 @@ Create Ticket
 
 ```javascript
 // Promise
-const promise = lead.createTicket(x-application-id, x-application-token, );
+const promise = lead.createTicket();
 
 // Async/Await
-const data = await lead.createTicket(x-application-id, x-application-token, );
+const data = await lead.createTicket();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string |  | 
-| x-application-token | string |  | 
 
-Create Ticket
+This is used to Create Ticket.
 
 ---
 
 
-#### Lead#getForm
-Get Custom Form
+#### Lead#getCustomForm
+Get specific Custom Form using it&#39;s slug
 
 ```javascript
 // Promise
-const promise = lead.getForm(slug, x-application-id, x-application-token, );
+const promise = lead.getCustomForm(slug, );
 
 // Async/Await
-const data = await lead.getForm(slug, x-application-id, x-application-token, );
+const data = await lead.getCustomForm(slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
 
-Get Custom Form
+Get specific Custom Form using it&#39;s slug, this is used to view the form.
 
 ---
 
 
-#### Lead#submitForm
-Submit Form Response
+#### Lead#submitCustomForm
+Submit Response for a specific Custom Form using it&#39;s slug
 
 ```javascript
 // Promise
-const promise = lead.submitForm(slug, x-application-id, x-application-token, );
+const promise = lead.submitCustomForm(slug, );
 
 // Async/Await
-const data = await lead.submitForm(slug, x-application-id, x-application-token, );
+const data = await lead.submitCustomForm(slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
 
-Submit Form Response
+Submit Response for a specific Custom Form using it&#39;s slug, this response is then used to create a ticket on behalf of the user.
 
 ---
 
 
 #### Lead#getParticipantsInsideVideoRoom
-Get participants of Video Room
+Get participants of a specific Video Room using it&#39;s unique name
 
 ```javascript
 // Promise
-const promise = lead.getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, );
+const promise = lead.getParticipantsInsideVideoRoom(unique_name, );
 
 // Async/Await
-const data = await lead.getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, );
+const data = await lead.getParticipantsInsideVideoRoom(unique_name, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | unique_name | string |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
 
-Get participants of Video Room
+Get participants of a specific Video Room using it&#39;s unique name, this can be used to check if people are already there in the room and also to show their names.
 
 ---
 
 
-#### Lead#getTokenForVideRoom
-Get Token to join Video Room
+#### Lead#getTokenForVideoRoom
+Get Token to join a specific Video Room using it&#39;s unqiue name
 
 ```javascript
 // Promise
-const promise = lead.getTokenForVideRoom(unique_name, x-application-id, x-application-token, );
+const promise = lead.getTokenForVideoRoom(unique_name, );
 
 // Async/Await
-const data = await lead.getTokenForVideRoom(unique_name, x-application-id, x-application-token, );
+const data = await lead.getTokenForVideoRoom(unique_name, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | unique_name | string |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
 
-Get Token to join Video Room
+Get Token to join a specific Video Room using it&#39;s unqiue name, this Token is your ticket to Room and also creates your identity there.
 
 ---
 

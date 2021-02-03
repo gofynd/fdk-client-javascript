@@ -5,26 +5,26 @@ const Configuration = require("./configuration");
 
 
 const { 
-    ProductDetailAttribute,
-    ProductDetailGroupedAttribute,
-    Media,
     ProductListingActionPage,
     ProductListingAction,
+    Media,
     ProductBrand,
+    ProductDetailAttribute,
+    ProductDetailGroupedAttribute,
     ProductDetail,
     Error,
-    ProductSizeStores,
-    ProductSize,
     Price,
     ProductListingPrice,
+    ProductSize,
+    ProductSizeStores,
     ProductSizes,
-    ArticleAssignment,
-    Seller,
     ProductStockPrice,
+    Seller,
     Store,
+    ArticleAssignment,
     ProductSizePriceResponse,
-    ProductSizeSellerFilter,
     ProductPage,
+    ProductSizeSellerFilter,
     ProductSizeSellersResponse,
     AttributeDetail,
     ProductsComparisonResponse,
@@ -35,14 +35,14 @@ const {
     ProductVariantItemResponse,
     ProductVariantResponse,
     ProductVariantsResponse,
-    CompanyDetail,
     StoreDetail,
+    CompanyDetail,
     ProductStockStatusItem,
     ProductStockStatusResponse,
     ProductStockPolling,
     ProductSortOn,
-    ProductFiltersValue,
     ProductFiltersKey,
+    ProductFiltersValue,
     ProductFilters,
     ProductListingResponse,
     ImageUrls,
@@ -895,9 +895,17 @@ exports.Cart = Cart;
 
 
 const { 
+    Context,
+    CreatedOn,
+    Asset,
+    Content,
+    APIError,
+    AddTicketPayload,
     Priority,
     Status,
     Category,
+    SubmitButton,
+    PollForAssignment,
     CustomForm,
     TicketHistory,
     Ticket
@@ -911,119 +919,105 @@ class Lead {
     
     /**
     *
-    * Summary: Get Tickets
-    * Description:  Get Tickets
+    * Summary: Get Ticket with the specific id
+    * Description:  Get Ticket with the specific id, this is used to view the ticket details
     **/
     getTicket(
         id, opts
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/services/application/lead/ticket/{id}",
+            "/services/application/lead/v1.0/ticket/{id}",
         );
     }
     
     /**
     *
-    * Summary: Create history for Ticket
-    * Description:  Create history for Ticket
+    * Summary: Create history for specific Ticket
+    * Description:  Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
     **/
     createHistoryForTicket(
         ticketId, opts
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "post",
-            "/services/application/lead/ticket/{ticket_id}/history",
+            "/services/application/lead/v1.0/ticket/{ticket_id}/history",
         );
     }
     
     /**
     *
     * Summary: Create Ticket
-    * Description:  Create Ticket
+    * Description:  This is used to Create Ticket.
     **/
     createTicket(
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "post",
-            "/services/application/lead/ticket/",
+            "/services/application/lead/v1.0/ticket/",
         );
     }
     
     /**
     *
-    * Summary: Get Custom Form
-    * Description:  Get Custom Form
+    * Summary: Get specific Custom Form using it&#39;s slug
+    * Description:  Get specific Custom Form using it&#39;s slug, this is used to view the form.
     **/
-    getForm(
+    getCustomForm(
         slug, opts
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/services/application/lead/form/{slug}",
+            "/services/application/lead/v1.0/form/{slug}",
         );
     }
     
     /**
     *
-    * Summary: Submit Form Response
-    * Description:  Submit Form Response
+    * Summary: Submit Response for a specific Custom Form using it&#39;s slug
+    * Description:  Submit Response for a specific Custom Form using it&#39;s slug, this response is then used to create a ticket on behalf of the user.
     **/
-    submitForm(
+    submitCustomForm(
         slug, opts
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "post",
-            "/services/application/lead/form/{slug}/submit",
+            "/services/application/lead/v1.0/form/{slug}/submit",
         );
     }
     
     /**
     *
-    * Summary: Get participants of Video Room
-    * Description:  Get participants of Video Room
+    * Summary: Get participants of a specific Video Room using it&#39;s unique name
+    * Description:  Get participants of a specific Video Room using it&#39;s unique name, this can be used to check if people are already there in the room and also to show their names.
     **/
     getParticipantsInsideVideoRoom(
         uniqueName, opts
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/services/application/room/{unique_name}/participants",
+            "/services/application/lead/v1.0/video/room/{unique_name}/participants",
         );
     }
     
     /**
     *
-    * Summary: Get Token to join Video Room
-    * Description:  Get Token to join Video Room
+    * Summary: Get Token to join a specific Video Room using it&#39;s unqiue name
+    * Description:  Get Token to join a specific Video Room using it&#39;s unqiue name, this Token is your ticket to Room and also creates your identity there.
     **/
-    getTokenForVideRoom(
+    getTokenForVideoRoom(
         uniqueName, opts
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/services/application/room/{unique_name}/token",
+            "/services/application/lead/v1.0/video/room/{unique_name}/token",
         );
     }
     
