@@ -5,11 +5,6 @@ const Configuration = require("./configuration");
 
 
 const { 
-    ProductPage,
-    ProductFiltersValue,
-    ProductFiltersKey,
-    ProductFilters,
-    ProductSortOn,
     ProductListingActionPage,
     ProductListingAction,
     Media,
@@ -17,12 +12,17 @@ const {
     ProductDetailAttribute,
     ProductDetailGroupedAttribute,
     ProductDetailSchemaV1,
+    ProductPage,
+    ProductFiltersValue,
+    ProductFiltersKey,
+    ProductFilters,
+    ProductSortOn,
     ProductSearchSchemaV1,
     ErrorSchemaV1,
     Error,
-    ProductSize,
     Price,
     ProductListingPrice,
+    ProductSize,
     ProductSizeStores,
     ProductSizesSchemaV1,
     ProductStockPrice,
@@ -35,8 +35,8 @@ const {
     SimilarProductByTagSchemaV1,
     ProductVariantItemSchemaV1,
     ProductVariantSchemaV1,
-    StoreDetail,
     CompanyDetail,
+    StoreDetail,
     ProductStockStatusItem,
     ProductStockStatusSchemaV1,
     ProductStockStatusPollSchemaV1,
@@ -44,9 +44,9 @@ const {
     BrandItem,
     BrandListingSchemaV1,
     BrandMetaV1,
-    DepartmentIdentifier,
     CategoryItems,
     DepartmentCategoryTree,
+    DepartmentIdentifier,
     CategoryListingSchemaV1,
     CategoryMetaV1,
     Page,
@@ -365,22 +365,6 @@ class Catalog {
     
     /**
     *
-    * Summary: UnFollow a Product
-    * Description:  You can undo a followed Product or Brand by its uid, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    **/
-    unfollowProductById(
-        productId, opts
-        fSession, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "delete",
-            "/service/application/catalog/v1.0/follow/products/{product_id}",
-        );
-    }
-    
-    /**
-    *
     * Summary: Follow a particular Product
     * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     **/
@@ -391,6 +375,22 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "post",
+            "/service/application/catalog/v1.0/follow/products/{product_id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: UnFollow a Product
+    * Description:  You can undo a followed Product or Brand by its uid, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    **/
+    unfollowProductById(
+        productId, opts
+        fSession, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
             "/service/application/catalog/v1.0/follow/products/{product_id}",
         );
     }
@@ -436,40 +436,40 @@ const {
     GetCartV1Serializer,
     ProductCart,
     CartV1Serializer,
-    LoyaltyPoints,
-    DisplayBreakup,
-    CouponBreakup,
-    RawBreakup,
-    BaseCartBreakup,
-    ProductPrice,
-    ProductPriceInfo,
-    ProductAvailability,
-    BaseInfo,
-    ActionQuery,
-    Action,
-    CategoryInfo,
-    Image,
-    Product,
-    PlatformCartProductInfoV1,
     PaymentFlow,
     PaymentFlows,
     PaymentOption,
     PaymentOptions,
     CartCurrency,
+    ProductPrice,
+    ProductPriceInfo,
+    ProductAvailability,
+    ActionQuery,
+    Action,
+    CategoryInfo,
+    Image,
+    BaseInfo,
+    Product,
+    PlatformCartProductInfoV1,
+    DisplayBreakup,
+    LoyaltyPoints,
+    RawBreakup,
+    CouponBreakup,
+    BaseCartBreakup,
     PlatformV1Cart,
     UpdateProductCart,
     UpdateCartV1Serializer,
     PageCoupon,
     Coupon,
     GetCouponResponse,
+    Loyality,
     RawCoupon,
     GetCoupon,
-    Loyality,
     SaveCoupon,
     SaveCouponResponse,
+    OfferSeller,
     OfferPrice,
     OfferItem,
-    OfferSeller,
     BulkPriceOffer,
     BulkPriceResponse,
     Address,
@@ -484,10 +484,10 @@ const {
     ShipmentResponse,
     ShipmentCart,
     CartCheckoutRequestSerializer,
-    OrderData,
     DeliverySlot,
     DeliverySlotDate,
     CheckCart,
+    OrderData,
     CartCheckoutResponse,
     Meta,
     SharedCartDetails,

@@ -2,61 +2,6 @@
 
 
     /*
-        Model: ProductPage,
-        Type: object
-    */
-    
-    class ProductPage {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductFiltersValue,
-        Type: object
-    */
-    
-    class ProductFiltersValue {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductFiltersKey,
-        Type: object
-    */
-    
-    class ProductFiltersKey {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductFilters,
-        Type: object
-    */
-    
-    class ProductFilters {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductSortOn,
-        Type: object
-    */
-    
-    class ProductSortOn {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: ProductListingActionPage,
         Type: object
     */
@@ -134,6 +79,61 @@
     }
 
     /*
+        Model: ProductPage,
+        Type: object
+    */
+    
+    class ProductPage {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductFiltersValue,
+        Type: object
+    */
+    
+    class ProductFiltersValue {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductFiltersKey,
+        Type: object
+    */
+    
+    class ProductFiltersKey {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductFilters,
+        Type: object
+    */
+    
+    class ProductFilters {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSortOn,
+        Type: object
+    */
+    
+    class ProductSortOn {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
         Model: ProductSearchSchemaV1,
         Type: object
     */
@@ -167,17 +167,6 @@
     }
 
     /*
-        Model: ProductSize,
-        Type: object
-    */
-    
-    class ProductSize {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: Price,
         Type: object
     */
@@ -194,6 +183,17 @@
     */
     
     class ProductListingPrice {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSize,
+        Type: object
+    */
+    
+    class ProductSize {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -332,22 +332,22 @@
     }
 
     /*
-        Model: StoreDetail,
+        Model: CompanyDetail,
         Type: object
     */
     
-    class StoreDetail {
+    class CompanyDetail {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: CompanyDetail,
+        Model: StoreDetail,
         Type: object
     */
     
-    class CompanyDetail {
+    class StoreDetail {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -431,17 +431,6 @@
     }
 
     /*
-        Model: DepartmentIdentifier,
-        Type: object
-    */
-    
-    class DepartmentIdentifier {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: CategoryItems,
         Type: object
     */
@@ -458,6 +447,17 @@
     */
     
     class DepartmentCategoryTree {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: DepartmentIdentifier,
+        Type: object
+    */
+    
+    class DepartmentIdentifier {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -721,55 +721,55 @@
     }
 
     /*
-        Model: LoyaltyPoints,
+        Model: PaymentFlow,
         Type: object
     */
     
-    class LoyaltyPoints {
+    class PaymentFlow {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: DisplayBreakup,
+        Model: PaymentFlows,
         Type: object
     */
     
-    class DisplayBreakup {
+    class PaymentFlows {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: CouponBreakup,
+        Model: PaymentOption,
         Type: object
     */
     
-    class CouponBreakup {
+    class PaymentOption {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: RawBreakup,
+        Model: PaymentOptions,
         Type: object
     */
     
-    class RawBreakup {
+    class PaymentOptions {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: BaseCartBreakup,
+        Model: CartCurrency,
         Type: object
     */
     
-    class BaseCartBreakup {
+    class CartCurrency {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -803,17 +803,6 @@
     */
     
     class ProductAvailability {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: BaseInfo,
-        Type: object
-    */
-    
-    class BaseInfo {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -864,6 +853,17 @@
     }
 
     /*
+        Model: BaseInfo,
+        Type: object
+    */
+    
+    class BaseInfo {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
         Model: Product,
         Type: object
     */
@@ -886,55 +886,55 @@
     }
 
     /*
-        Model: PaymentFlow,
+        Model: DisplayBreakup,
         Type: object
     */
     
-    class PaymentFlow {
+    class DisplayBreakup {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: PaymentFlows,
+        Model: LoyaltyPoints,
         Type: object
     */
     
-    class PaymentFlows {
+    class LoyaltyPoints {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: PaymentOption,
+        Model: RawBreakup,
         Type: object
     */
     
-    class PaymentOption {
+    class RawBreakup {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: PaymentOptions,
+        Model: CouponBreakup,
         Type: object
     */
     
-    class PaymentOptions {
+    class CouponBreakup {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: CartCurrency,
+        Model: BaseCartBreakup,
         Type: object
     */
     
-    class CartCurrency {
+    class BaseCartBreakup {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -1007,6 +1007,17 @@
     }
 
     /*
+        Model: Loyality,
+        Type: object
+    */
+    
+    class Loyality {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
         Model: RawCoupon,
         Type: object
     */
@@ -1023,17 +1034,6 @@
     */
     
     class GetCoupon {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: Loyality,
-        Type: object
-    */
-    
-    class Loyality {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -1062,6 +1062,17 @@
     }
 
     /*
+        Model: OfferSeller,
+        Type: object
+    */
+    
+    class OfferSeller {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
         Model: OfferPrice,
         Type: object
     */
@@ -1078,17 +1089,6 @@
     */
     
     class OfferItem {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: OfferSeller,
-        Type: object
-    */
-    
-    class OfferSeller {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -1249,17 +1249,6 @@
     }
 
     /*
-        Model: OrderData,
-        Type: object
-    */
-    
-    class OrderData {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: DeliverySlot,
         Type: object
     */
@@ -1287,6 +1276,17 @@
     */
     
     class CheckCart {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: OrderData,
+        Type: object
+    */
+    
+    class OrderData {
         constructor(_body) {
             Object.assign(this, body);
         }
