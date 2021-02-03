@@ -1,6 +1,11 @@
+
 const APIClient = require("./api_client");
-const Credential = require("./credential");
+const Configuration = require("./configuration");
+
+const { 
+    Billing,
+} = require("./operations");
 
 
-exports.Credential = Credential
+exports.Configuration = Configuration;
 

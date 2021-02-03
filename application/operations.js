@@ -5,68 +5,73 @@ const Configuration = require("./configuration");
 
 
 const { 
-    ProductListingActionPage,
-    ProductListingAction,
-    Media,
-    ProductBrand,
     ProductDetailAttribute,
     ProductDetailGroupedAttribute,
-    ProductDetailSchemaV1,
-    ProductPage,
-    ProductFiltersValue,
-    ProductFiltersKey,
-    ProductFilters,
-    ProductSortOn,
-    ProductSearchSchemaV1,
-    ErrorSchemaV1,
+    Media,
+    ProductListingActionPage,
+    ProductListingAction,
+    ProductBrand,
+    ProductDetail,
     Error,
+    ProductSizeStores,
+    ProductSize,
     Price,
     ProductListingPrice,
-    ProductSize,
-    ProductSizeStores,
-    ProductSizesSchemaV1,
+    ProductSizes,
+    ArticleAssignment,
+    Seller,
     ProductStockPrice,
-    ProductSeller,
-    ProductSizePriceArticleAssignment,
-    ProductSizePriceSchemaV1,
+    Store,
+    ProductSizePriceResponse,
     ProductSizeSellerFilter,
-    ProductSizeSellerSchemaV1,
+    ProductPage,
+    ProductSizeSellersResponse,
+    AttributeDetail,
+    ProductsComparisonResponse,
+    ProductCompareResponse,
+    ProductFrequentlyComparedSimilarResponse,
     ProductSimilarItem,
-    SimilarProductByTagSchemaV1,
-    ProductVariantItemSchemaV1,
-    ProductVariantSchemaV1,
+    SimilarProductByTypeResponse,
+    ProductVariantItemResponse,
+    ProductVariantResponse,
+    ProductVariantsResponse,
     CompanyDetail,
     StoreDetail,
     ProductStockStatusItem,
-    ProductStockStatusSchemaV1,
-    ProductStockStatusPollSchemaV1,
+    ProductStockStatusResponse,
+    ProductStockPolling,
+    ProductSortOn,
+    ProductFiltersValue,
+    ProductFiltersKey,
+    ProductFilters,
+    ProductListingResponse,
     ImageUrls,
     BrandItem,
-    BrandListingSchemaV1,
-    BrandMetaV1,
+    BrandListingResponse,
+    BrandDetailResponse,
+    DepartmentIdentifier,
     CategoryItems,
     DepartmentCategoryTree,
-    DepartmentIdentifier,
-    CategoryListingSchemaV1,
-    CategoryMetaV1,
+    CategoryListingResponse,
+    CategoryMetaResponse,
     Page,
-    HomeListingSchemaV1,
-    DepartmentSchemaV1,
-    AutocompleteItemSchemaV1,
-    AutoCompleteSchemaV1,
-    GetCollectionNest,
+    HomeListingResponse,
+    Department,
+    DepartmentResponse,
+    AutocompleteItem,
+    AutoCompleteResponse,
+    GetCollectionDetailNest,
     CollectionListingFilterTag,
     CollectionListingFilterType,
     CollectionListingFilter,
-    GetCollectionResponseSchemaV1,
-    GetCollectionItemResponseSchemaV1,
-    CollectionResponseV1,
-    NextPage,
-    GetFollowResponse,
-    PlatformFollowPostResponseSchemaV1,
-    FollowCountResponseV1,
-    FollowUidsData,
-    FollowUidsResponseV1
+    GetCollectionListingResponse,
+    GetCollectionListingItemsResponse,
+    CollectionDetailResponse,
+    GetFollowListingResponse,
+    FollowPostResponse,
+    FollowerCountResponse,
+    FollowIdsData,
+    FollowIdsResponse
 } = require("./schema");
 
     
@@ -77,58 +82,47 @@ class Catalog {
     
     /**
     *
-    * Summary: List the products
-    * Description:  List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductSearchSchemaV1`
-    **/
-    getProducts(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/catalog/v1.0/products/",
-        );
-    }
-    
-    /**
-    *
     * Summary: Get a product
-    * Description:  Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **identifier**. If successful, returns a Product resource in the response body specified in `ProductDetailSchemaV1`
+    * Description:  Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
     **/
-    getProductDetailByIdentifier(
+    getProductDetailBySlug(
+        slug, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/products/detail/",
+            "/service/application/catalog/v1.0/products/{slug}/",
         );
     }
     
     /**
     *
     * Summary: Get the sizes of a product
-    * Description:  A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizesSchemaV1`
+    * Description:  A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
     **/
-    getProductSizesByIdentifier(
+    getProductSizesBySlug(
+        slug, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/products/sizes/",
+            "/service/application/catalog/v1.0/products/{slug}/sizes/",
         );
     }
     
     /**
     *
-    * Summary: Get price a product
-    * Description:  Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size.
+    * Summary: Get price a product size
+    * Description:  Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
     **/
-    getProductPriceByIdentifier(
+    getProductPriceBySlug(
+        slug, opts
         size, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/products/sizes/price/",
+            "/service/application/catalog/v1.0/products/{slug}/sizes/{size}/price/",
         );
     }
     
@@ -137,49 +131,97 @@ class Catalog {
     * Summary: List sellers of a product
     * Description:  A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
     **/
-    getProductSellersByIdentifier(
+    getProductSellersBySlug(
+        slug, opts
         size, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/products/sizes/sellers/",
+            "/service/application/catalog/v1.0/products/{slug}/sizes/{size}/sellers/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Compare products
+    * Description:  Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
+    **/
+    getProductComparisonBySlugs(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/catalog/v1.0/products/compare/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get comparison between similar products
+    * Description:  Compare between the features of the given set of products Use this API to compare how one product ranks against other products
+    **/
+    getSimilarComparisonProductBySlug(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/catalog/v1.0/products/{slug}/similar/compare/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get comparison between frequently compared products with the given product
+    * Description:  Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
+    **/
+    getComparedFrequentlyProductBySlug(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently/",
         );
     }
     
     /**
     *
     * Summary: Get similar products
-    * Description:  Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on tag as described in `SimilarProductByTagSchemaV1`
+    * Description:  Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
     **/
     getProductSimilarByIdentifier(
-        tagIdentifier, opts
+        slug, opts
+        similarType, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/products/similar/{tag_identifier}/",
+            "/service/application/catalog/v1.0/products/{slug}/similar/{similar_type}/",
         );
     }
     
     /**
     *
     * Summary: Get variant of a particular product
-    * Description:  A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantSchemaV1`
+    * Description:  A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
     **/
-    getProductVariantsByIdentifier(
+    getProductVariantsBySlug(
+        slug, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/products/variant/",
+            "/service/application/catalog/v1.0/products/{slug}/variants/",
         );
     }
     
     /**
     *
     * Summary: Get the stock of a product
-    * Description:  Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Currently a maximum of 50 distinct product IDs can be given in a single API request
+    * Description:  Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
     **/
     getProductStockByIdentifier(
     ) {
@@ -207,8 +249,22 @@ class Catalog {
     
     /**
     *
+    * Summary: List the products
+    * Description:  List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
+    **/
+    getProducts(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/catalog/v1.0/products/",
+        );
+    }
+    
+    /**
+    *
     * Summary: List all the brands
-    * Description:  A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingSchemaV1`
+    * Description:  A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
     **/
     getBrands(
     ) {
@@ -222,21 +278,22 @@ class Catalog {
     /**
     *
     * Summary: Get metadata of a brand
-    * Description:  Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandMetaV1`
+    * Description:  Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
     **/
-    getBrandDetailByIdentifier(
+    getBrandDetailBySlug(
+        slug, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/brands/detail/",
+            "/service/application/catalog/v1.0/brands/{slug}/",
         );
     }
     
     /**
     *
     * Summary: List all the categories
-    * Description:  List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingSchemaV1`
+    * Description:  List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
     **/
     getCategories(
     ) {
@@ -250,21 +307,22 @@ class Catalog {
     /**
     *
     * Summary: Get metadata of a category
-    * Description:  Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaV1`
+    * Description:  Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
     **/
-    getCategoryDetailByIdentifier(
+    getCategoryDetailBySlug(
+        slug, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/categories/detail/",
+            "/service/application/catalog/v1.0/categories/{slug}/",
         );
     }
     
     /**
     *
     * Summary: List the products
-    * Description:  List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingSchemaV1`
+    * Description:  List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
     **/
     getHomeProducts(
     ) {
@@ -278,7 +336,7 @@ class Catalog {
     /**
     *
     * Summary: List all the departments
-    * Description:  Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentSchemaV1`
+    * Description:  Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
     **/
     (
     ) {
@@ -336,7 +394,7 @@ class Catalog {
     /**
     *
     * Summary: Get a particular collection
-    * Description:  Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionResponseV1`
+    * Description:  Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
     **/
     getCollectionDetailBySlug(
         slug, opts
@@ -344,22 +402,38 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/collections/{slug}",
+            "/service/application/catalog/v1.0/collections/{slug}/",
         );
     }
     
     /**
     *
-    * Summary: Get a list of followed Products
+    * Summary: Get a list of followed Products, Brands, Collections
     * Description:  A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
     **/
-    getFollowProducts(
-        fSession, opts
+    getFollowedListing(
+        collectionType, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/follow/products/",
+            "/service/application/catalog/v1.0/follow/{collection_type}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: UnFollow a Product
+    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    **/
+    unfollowById(
+        collectionType, opts
+        collectionId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
         );
     }
     
@@ -368,30 +442,14 @@ class Catalog {
     * Summary: Follow a particular Product
     * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     **/
-    saveFollowProductById(
-        productId, opts
-        fSession, opts
+    followById(
+        collectionType, opts
+        collectionId, opts
     ) {
         return APIClient.execute(
             this._conf,
             "post",
-            "/service/application/catalog/v1.0/follow/products/{product_id}",
-        );
-    }
-    
-    /**
-    *
-    * Summary: UnFollow a Product
-    * Description:  You can undo a followed Product or Brand by its uid, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    **/
-    unfollowProductById(
-        productId, opts
-        fSession, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "delete",
-            "/service/application/catalog/v1.0/follow/products/{product_id}",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
         );
     }
     
@@ -400,28 +458,28 @@ class Catalog {
     * Summary: Get Follow Count
     * Description:  Get count of followers for given collection type and collection id.
     **/
-    getFollowProductCountById(
+    getFollowerCountById(
         collectionType, opts
         collectionId, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
         );
     }
     
     /**
     *
-    * Summary: Get the Uids of followed product, brand and collection.
-    * Description:  You can get the uids of all the followed Product, Brand and Collections.
+    * Summary: Get the Ids of followed product, brand and collection.
+    * Description:  You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
     **/
-    getFollowIDsByType(
+    getFollowIds(
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/follow/all/uids/",
+            "/service/application/catalog/v1.0/follow/ids/",
         );
     }
     

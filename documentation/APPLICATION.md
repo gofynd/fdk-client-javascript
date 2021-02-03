@@ -1,7 +1,7 @@
-# FDK Application Front API Classes
+# FDK Application Front API Documentaion
 
 
-* [Catalog](#Catalog) - Open API leverages Fynd&#39;s real-time inventory integration with over 400+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
+* [Catalog](#Catalog) - Application Front API&#39;s leverages Fynd&#39;s real-time inventory integration with over 400+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
 * [Cart](#Cart) - Open API leverages Fynd&#39;s real-time inventory integration with over 200+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
 * [Lead](#Lead) - Handles communication between Administrator &lt;-&gt; Staff and Staff &lt;-&gt; Users 
 
@@ -11,68 +11,71 @@
 ### Classes and Methods
 
 
-* [Catalog](#Catalog) - Open API leverages Fynd&#39;s real-time inventory integration with over 400+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app.
+* [Catalog](#Catalog) - Application Front API&#39;s leverages Fynd&#39;s real-time inventory integration with over 400+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app.
 
-* * [Catalog#getProducts](#cataloggetproducts)
-* * [Catalog#getProductDetailByIdentifier](#cataloggetproductdetailbyidentifier)
-* * [Catalog#getProductSizesByIdentifier](#cataloggetproductsizesbyidentifier)
-* * [Catalog#getProductPriceByIdentifier](#cataloggetproductpricebyidentifier)
-* * [Catalog#getProductSellersByIdentifier](#cataloggetproductsellersbyidentifier)
-* * [Catalog#getProductSimilarByIdentifier](#cataloggetproductsimilarbyidentifier)
-* * [Catalog#getProductVariantsByIdentifier](#cataloggetproductvariantsbyidentifier)
-* * [Catalog#getProductStockByIdentifier](#cataloggetproductstockbyidentifier)
-* * [Catalog#getProductStockForTimeByIdentifier](#cataloggetproductstockfortimebyidentifier)
-* * [Catalog#getBrands](#cataloggetbrands)
-* * [Catalog#getBrandDetailByIdentifier](#cataloggetbranddetailbyidentifier)
-* * [Catalog#getCategories](#cataloggetcategories)
-* * [Catalog#getCategoryDetailByIdentifier](#cataloggetcategorydetailbyidentifier)
-* * [Catalog#getHomeProducts](#cataloggethomeproducts)
-* * [Catalog#](#catalog)
-* * [Catalog#getSearchResults](#cataloggetsearchresults)
-* * [Catalog#getCollections](#cataloggetcollections)
-* * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
-* * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
-* * [Catalog#getFollowProducts](#cataloggetfollowproducts)
-* * [Catalog#saveFollowProductById](#catalogsavefollowproductbyid)
-* * [Catalog#unfollowProductById](#catalogunfollowproductbyid)
-* * [Catalog#getFollowProductCountById](#cataloggetfollowproductcountbyid)
-* * [Catalog#getFollowIDsByType](#cataloggetfollowidsbytype)
+** [Catalog#getProductDetailBySlug](#cataloggetproductdetailbyslug)
+** [Catalog#getProductSizesBySlug](#cataloggetproductsizesbyslug)
+** [Catalog#getProductPriceBySlug](#cataloggetproductpricebyslug)
+** [Catalog#getProductSellersBySlug](#cataloggetproductsellersbyslug)
+** [Catalog#getProductComparisonBySlugs](#cataloggetproductcomparisonbyslugs)
+** [Catalog#getSimilarComparisonProductBySlug](#cataloggetsimilarcomparisonproductbyslug)
+** [Catalog#getComparedFrequentlyProductBySlug](#cataloggetcomparedfrequentlyproductbyslug)
+** [Catalog#getProductSimilarByIdentifier](#cataloggetproductsimilarbyidentifier)
+** [Catalog#getProductVariantsBySlug](#cataloggetproductvariantsbyslug)
+** [Catalog#getProductStockByIdentifier](#cataloggetproductstockbyidentifier)
+** [Catalog#getProductStockForTimeByIdentifier](#cataloggetproductstockfortimebyidentifier)
+** [Catalog#getProducts](#cataloggetproducts)
+** [Catalog#getBrands](#cataloggetbrands)
+** [Catalog#getBrandDetailBySlug](#cataloggetbranddetailbyslug)
+** [Catalog#getCategories](#cataloggetcategories)
+** [Catalog#getCategoryDetailBySlug](#cataloggetcategorydetailbyslug)
+** [Catalog#getHomeProducts](#cataloggethomeproducts)
+** [Catalog#](#catalog)
+** [Catalog#getSearchResults](#cataloggetsearchresults)
+** [Catalog#getCollections](#cataloggetcollections)
+** [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
+** [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
+** [Catalog#getFollowedListing](#cataloggetfollowedlisting)
+** [Catalog#unfollowById](#catalogunfollowbyid)
+** [Catalog#followById](#catalogfollowbyid)
+** [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
+** [Catalog#getFollowIds](#cataloggetfollowids)
  
 * [Cart](#Cart) - Open API leverages Fynd&#39;s real-time inventory integration with over 200+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app.
 
-* * [Cart#getCart](#cartgetcart)
-* * [Cart#getCartLastModified](#cartgetcartlastmodified)
-* * [Cart#addItemsToCart](#cartadditemstocart)
-* * [Cart#updateCart](#cartupdatecart)
-* * [Cart#getCartItemCount](#cartgetcartitemcount)
-* * [Cart#getCouponList](#cartgetcouponlist)
-* * [Cart#applyCoupon](#cartapplycoupon)
-* * [Cart#removeCoupon](#cartremovecoupon)
-* * [Cart#getBulkDiscountOffers](#cartgetbulkdiscountoffers)
-* * [Cart#getAddressList](#cartgetaddresslist)
-* * [Cart#addAddress](#cartaddaddress)
-* * [Cart#getAddressById](#cartgetaddressbyid)
-* * [Cart#updateAddress](#cartupdateaddress)
-* * [Cart#removeAddress](#cartremoveaddress)
-* * [Cart#selectCartAddress](#cartselectcartaddress)
-* * [Cart#getCartPaymentModes](#cartgetcartpaymentmodes)
-* * [Cart#selectCartPaymentMode](#cartselectcartpaymentmode)
-* * [Cart#getCartShipments](#cartgetcartshipments)
-* * [Cart#checkoutCart](#cartcheckoutcart)
-* * [Cart#updateCartMeta](#cartupdatecartmeta)
-* * [Cart#getCartShareLink](#cartgetcartsharelink)
-* * [Cart#getCartSharedItems](#cartgetcartshareditems)
-* * [Cart#updateCartWithSharedItems](#cartupdatecartwithshareditems)
+** [Cart#getCart](#cartgetcart)
+** [Cart#getCartLastModified](#cartgetcartlastmodified)
+** [Cart#addItemsToCart](#cartadditemstocart)
+** [Cart#updateCart](#cartupdatecart)
+** [Cart#getCartItemCount](#cartgetcartitemcount)
+** [Cart#getCouponList](#cartgetcouponlist)
+** [Cart#applyCoupon](#cartapplycoupon)
+** [Cart#removeCoupon](#cartremovecoupon)
+** [Cart#getBulkDiscountOffers](#cartgetbulkdiscountoffers)
+** [Cart#getAddressList](#cartgetaddresslist)
+** [Cart#addAddress](#cartaddaddress)
+** [Cart#getAddressById](#cartgetaddressbyid)
+** [Cart#updateAddress](#cartupdateaddress)
+** [Cart#removeAddress](#cartremoveaddress)
+** [Cart#selectCartAddress](#cartselectcartaddress)
+** [Cart#getCartPaymentModes](#cartgetcartpaymentmodes)
+** [Cart#selectCartPaymentMode](#cartselectcartpaymentmode)
+** [Cart#getCartShipments](#cartgetcartshipments)
+** [Cart#checkoutCart](#cartcheckoutcart)
+** [Cart#updateCartMeta](#cartupdatecartmeta)
+** [Cart#getCartShareLink](#cartgetcartsharelink)
+** [Cart#getCartSharedItems](#cartgetcartshareditems)
+** [Cart#updateCartWithSharedItems](#cartupdatecartwithshareditems)
  
 * [Lead](#Lead) - Handles communication between Administrator &lt;-&gt; Staff and Staff &lt;-&gt; Users
 
-* * [Lead#getTicket](#leadgetticket)
-* * [Lead#createHistoryForTicket](#leadcreatehistoryforticket)
-* * [Lead#createTicket](#leadcreateticket)
-* * [Lead#getForm](#leadgetform)
-* * [Lead#submitForm](#leadsubmitform)
-* * [Lead#getParticipantsInsideVideoRoom](#leadgetparticipantsinsidevideoroom)
-* * [Lead#getTokenForVideRoom](#leadgettokenforvideroom)
+** [Lead#getTicket](#leadgetticket)
+** [Lead#createHistoryForTicket](#leadcreatehistoryforticket)
+** [Lead#createTicket](#leadcreateticket)
+** [Lead#getForm](#leadgetform)
+** [Lead#submitForm](#leadsubmitform)
+** [Lead#getParticipantsInsideVideoRoom](#leadgetparticipantsinsidevideoroom)
+** [Lead#getTokenForVideRoom](#leadgettokenforvideroom)
  
 
 ---
@@ -93,117 +96,87 @@ const catalog = new Catalog(conf);
 ```
 
 
-#### Catalog#getProducts
-List the products
-
-```javascript
-// Promise
-const promise = catalog.getProducts(q, category, brand, sort_on, page_id, page_size, opts);
-
-// Async/Await
-const data = await catalog.getProducts(q, category, brand, sort_on, page_id, page_size, opts);
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| q | string |  | 
-| category | string |  | 
-| brand | string |  | 
-| sort_on | string |  | 
-| page_id | string |  | 
-| page_size | integer |  | 
-
-List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductSearchSchemaV1`
-
----
-
-
-#### Catalog#getProductDetailByIdentifier
+#### Catalog#getProductDetailBySlug
 Get a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductDetailByIdentifier(id, slug, opts);
+const promise = catalog.getProductDetailBySlug(slug, );
 
 // Async/Await
-const data = await catalog.getProductDetailByIdentifier(id, slug, opts);
+const data = await catalog.getProductDetailBySlug(slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string |  | 
 | slug | string |  | 
 
-Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **identifier**. If successful, returns a Product resource in the response body specified in `ProductDetailSchemaV1`
+Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
 
 ---
 
 
-#### Catalog#getProductSizesByIdentifier
+#### Catalog#getProductSizesBySlug
 Get the sizes of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductSizesByIdentifier(id, slug, store, opts);
+const promise = catalog.getProductSizesBySlug(slug, store_id, );
 
 // Async/Await
-const data = await catalog.getProductSizesByIdentifier(id, slug, store, opts);
+const data = await catalog.getProductSizesBySlug(slug, store_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string |  | 
 | slug | string |  | 
-| store | string |  | 
+| store_id | string |  | 
 
-A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizesSchemaV1`
+A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
 
 ---
 
 
-#### Catalog#getProductPriceByIdentifier
-Get price a product
+#### Catalog#getProductPriceBySlug
+Get price a product size
 
 ```javascript
 // Promise
-const promise = catalog.getProductPriceByIdentifier(id, slug, size, pincode, store, opts);
+const promise = catalog.getProductPriceBySlug(slug, size, pincode, store_id, );
 
 // Async/Await
-const data = await catalog.getProductPriceByIdentifier(id, slug, size, pincode, store, opts);
+const data = await catalog.getProductPriceBySlug(slug, size, pincode, store_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string |  | 
 | slug | string |  | 
 | size | string |  | 
 | pincode | integer |  | 
-| store | string |  | 
+| store_id | string |  | 
 
-Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size.
+Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
 
 ---
 
 
-#### Catalog#getProductSellersByIdentifier
+#### Catalog#getProductSellersBySlug
 List sellers of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts);
+const promise = catalog.getProductSellersBySlug(slug, size, pincode, page_no, page_size, );
 
 // Async/Await
-const data = await catalog.getProductSellersByIdentifier(id, slug, size, pincode, page_no, page_size, opts);
+const data = await catalog.getProductSellersBySlug(slug, size, pincode, page_no, page_size, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string |  | 
 | slug | string |  | 
 | size | string |  | 
 | pincode | integer |  | 
@@ -215,47 +188,108 @@ A product of a particular size can be sold by multiple sellers. Use this API to 
 ---
 
 
+#### Catalog#getProductComparisonBySlugs
+Compare products
+
+```javascript
+// Promise
+const promise = catalog.getProductComparisonBySlugs(slug, );
+
+// Async/Await
+const data = await catalog.getProductComparisonBySlugs(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string |  | 
+
+Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
+
+---
+
+
+#### Catalog#getSimilarComparisonProductBySlug
+Get comparison between similar products
+
+```javascript
+// Promise
+const promise = catalog.getSimilarComparisonProductBySlug(slug, );
+
+// Async/Await
+const data = await catalog.getSimilarComparisonProductBySlug(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string |  | 
+
+Compare between the features of the given set of products Use this API to compare how one product ranks against other products
+
+---
+
+
+#### Catalog#getComparedFrequentlyProductBySlug
+Get comparison between frequently compared products with the given product
+
+```javascript
+// Promise
+const promise = catalog.getComparedFrequentlyProductBySlug(slug, );
+
+// Async/Await
+const data = await catalog.getComparedFrequentlyProductBySlug(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string |  | 
+
+Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
+
+---
+
+
 #### Catalog#getProductSimilarByIdentifier
 Get similar products
 
 ```javascript
 // Promise
-const promise = catalog.getProductSimilarByIdentifier(id, slug, tag_identifier, opts);
+const promise = catalog.getProductSimilarByIdentifier(slug, similar_type, );
 
 // Async/Await
-const data = await catalog.getProductSimilarByIdentifier(id, slug, tag_identifier, opts);
+const data = await catalog.getProductSimilarByIdentifier(slug, similar_type, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string |  | 
 | slug | string |  | 
-| tag_identifier | string |  | 
+| similar_type | string |  | 
 
-Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on tag as described in `SimilarProductByTagSchemaV1`
+Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
 
 ---
 
 
-#### Catalog#getProductVariantsByIdentifier
+#### Catalog#getProductVariantsBySlug
 Get variant of a particular product
 
 ```javascript
 // Promise
-const promise = catalog.getProductVariantsByIdentifier(id, slug, opts);
+const promise = catalog.getProductVariantsBySlug(slug, );
 
 // Async/Await
-const data = await catalog.getProductVariantsByIdentifier(id, slug, opts);
+const data = await catalog.getProductVariantsBySlug(slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string |  | 
 | slug | string |  | 
 
-A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantSchemaV1`
+A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
 
 ---
 
@@ -265,10 +299,10 @@ Get the stock of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts);
+const promise = catalog.getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, );
 
 // Async/Await
-const data = await catalog.getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, opts);
+const data = await catalog.getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, );
 
 ```
 
@@ -280,7 +314,7 @@ const data = await catalog.getProductStockByIdentifier(item_id, alu, sku_code, e
 | ean | string |  | 
 | upc | string |  | 
 
-Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Currently a maximum of 50 distinct product IDs can be given in a single API request
+Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
 
 ---
 
@@ -290,10 +324,10 @@ Get the stock of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts);
+const promise = catalog.getProductStockForTimeByIdentifier(timestamp, page_size, page_id, );
 
 // Async/Await
-const data = await catalog.getProductStockForTimeByIdentifier(timestamp, page_size, page_id, opts);
+const data = await catalog.getProductStockForTimeByIdentifier(timestamp, page_size, page_id, );
 
 ```
 
@@ -308,15 +342,39 @@ Retrieve the available stock of the products. You can use this api to get stock 
 ---
 
 
+#### Catalog#getProducts
+List the products
+
+```javascript
+// Promise
+const promise = catalog.getProducts(q, sort_on, page_id, page_size, );
+
+// Async/Await
+const data = await catalog.getProducts(q, sort_on, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| q | string |  | 
+| sort_on | string |  | 
+| page_id | string |  | 
+| page_size | integer |  | 
+
+List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
+
+---
+
+
 #### Catalog#getBrands
 List all the brands
 
 ```javascript
 // Promise
-const promise = catalog.getBrands(department, page_no, page_size, opts);
+const promise = catalog.getBrands(department, page_no, page_size, );
 
 // Async/Await
-const data = await catalog.getBrands(department, page_no, page_size, opts);
+const data = await catalog.getBrands(department, page_no, page_size, );
 
 ```
 
@@ -326,29 +384,28 @@ const data = await catalog.getBrands(department, page_no, page_size, opts);
 | page_no | integer |  | 
 | page_size | integer |  | 
 
-A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingSchemaV1`
+A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
 
 ---
 
 
-#### Catalog#getBrandDetailByIdentifier
+#### Catalog#getBrandDetailBySlug
 Get metadata of a brand
 
 ```javascript
 // Promise
-const promise = catalog.getBrandDetailByIdentifier(id, slug, opts);
+const promise = catalog.getBrandDetailBySlug(slug, );
 
 // Async/Await
-const data = await catalog.getBrandDetailByIdentifier(id, slug, opts);
+const data = await catalog.getBrandDetailBySlug(slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string |  | 
 | slug | string |  | 
 
-Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandMetaV1`
+Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
 
 ---
 
@@ -358,10 +415,10 @@ List all the categories
 
 ```javascript
 // Promise
-const promise = catalog.getCategories(department, opts);
+const promise = catalog.getCategories(department, );
 
 // Async/Await
-const data = await catalog.getCategories(department, opts);
+const data = await catalog.getCategories(department, );
 
 ```
 
@@ -369,29 +426,28 @@ const data = await catalog.getCategories(department, opts);
 | --------- | ----  | --- |
 | department | string |  | 
 
-List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingSchemaV1`
+List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
 
 ---
 
 
-#### Catalog#getCategoryDetailByIdentifier
+#### Catalog#getCategoryDetailBySlug
 Get metadata of a category
 
 ```javascript
 // Promise
-const promise = catalog.getCategoryDetailByIdentifier(id, slug, opts);
+const promise = catalog.getCategoryDetailBySlug(slug, );
 
 // Async/Await
-const data = await catalog.getCategoryDetailByIdentifier(id, slug, opts);
+const data = await catalog.getCategoryDetailBySlug(slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string |  | 
 | slug | string |  | 
 
-Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaV1`
+Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
 
 ---
 
@@ -401,21 +457,20 @@ List the products
 
 ```javascript
 // Promise
-const promise = catalog.getHomeProducts(f.session, sort_on, page_id, page_size, opts);
+const promise = catalog.getHomeProducts(sort_on, page_id, page_size, );
 
 // Async/Await
-const data = await catalog.getHomeProducts(f.session, sort_on, page_id, page_size, opts);
+const data = await catalog.getHomeProducts(sort_on, page_id, page_size, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| f.session | string |  | 
 | sort_on | string |  | 
 | page_id | string |  | 
 | page_size | integer |  | 
 
-List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingSchemaV1`
+List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
 
 ---
 
@@ -425,17 +480,17 @@ List all the departments
 
 ```javascript
 // Promise
-const promise = catalog.(opts);
+const promise = catalog.();
 
 // Async/Await
-const data = await catalog.(opts);
+const data = await catalog.();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentSchemaV1`
+Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
 
 ---
 
@@ -445,10 +500,10 @@ Get relevant suggestions for a search query
 
 ```javascript
 // Promise
-const promise = catalog.getSearchResults(q, opts);
+const promise = catalog.getSearchResults(q, );
 
 // Async/Await
-const data = await catalog.getSearchResults(q, opts);
+const data = await catalog.getSearchResults(q, );
 
 ```
 
@@ -466,15 +521,17 @@ List all the collections
 
 ```javascript
 // Promise
-const promise = catalog.getCollections(opts);
+const promise = catalog.getCollections(page_id, page_size, );
 
 // Async/Await
-const data = await catalog.getCollections(opts);
+const data = await catalog.getCollections(page_id, page_size, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| page_id | string |  | 
+| page_size | integer |  | 
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
 
@@ -486,16 +543,19 @@ Get the items in a collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollectionItemsBySlug(slug, opts);
+const promise = catalog.getCollectionItemsBySlug(slug, sort_on, page_id, page_size, );
 
 // Async/Await
-const data = await catalog.getCollectionItemsBySlug(slug, opts);
+const data = await catalog.getCollectionItemsBySlug(slug, sort_on, page_id, page_size, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string |  | 
+| sort_on | string |  | 
+| page_id | string |  | 
+| page_size | integer |  | 
 
 Get items in a collection specified by its `slug`.
 
@@ -507,10 +567,10 @@ Get a particular collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollectionDetailBySlug(slug, opts);
+const promise = catalog.getCollectionDetailBySlug(slug, );
 
 // Async/Await
-const data = await catalog.getCollectionDetailBySlug(slug, opts);
+const data = await catalog.getCollectionDetailBySlug(slug, );
 
 ```
 
@@ -518,85 +578,85 @@ const data = await catalog.getCollectionDetailBySlug(slug, opts);
 | --------- | ----  | --- |
 | slug | string |  | 
 
-Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionResponseV1`
+Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
 
 ---
 
 
-#### Catalog#getFollowProducts
-Get a list of followed Products
+#### Catalog#getFollowedListing
+Get a list of followed Products, Brands, Collections
 
 ```javascript
 // Promise
-const promise = catalog.getFollowProducts(f.session, opts);
+const promise = catalog.getFollowedListing(collection_type, );
 
 // Async/Await
-const data = await catalog.getFollowProducts(f.session, opts);
+const data = await catalog.getFollowedListing(collection_type, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| f.session | string |  | 
+| collection_type | string |  | 
 
 A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
 
 ---
 
 
-#### Catalog#saveFollowProductById
-Follow a particular Product
+#### Catalog#unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.saveFollowProductById(product_id, f.session, opts);
+const promise = catalog.unfollowById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.saveFollowProductById(product_id, f.session, opts);
+const data = await catalog.unfollowById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| product_id | integer |  | 
-| f.session | string |  | 
+| collection_type | string |  | 
+| collection_id | integer |  | 
+
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+
+---
+
+
+#### Catalog#followById
+Follow a particular Product
+
+```javascript
+// Promise
+const promise = catalog.followById(collection_type, collection_id, );
+
+// Async/Await
+const data = await catalog.followById(collection_type, collection_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| collection_type | string |  | 
+| collection_id | integer |  | 
 
 Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 ---
 
 
-#### Catalog#unfollowProductById
-UnFollow a Product
-
-```javascript
-// Promise
-const promise = catalog.unfollowProductById(product_id, f.session, opts);
-
-// Async/Await
-const data = await catalog.unfollowProductById(product_id, f.session, opts);
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| product_id | string |  | 
-| f.session | string |  | 
-
-You can undo a followed Product or Brand by its uid, we refer this action as _unfollow_. Pass the uid of the product in request URL
-
----
-
-
-#### Catalog#getFollowProductCountById
+#### Catalog#getFollowerCountById
 Get Follow Count
 
 ```javascript
 // Promise
-const promise = catalog.getFollowProductCountById(collection_type, collection_id, opts);
+const promise = catalog.getFollowerCountById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.getFollowProductCountById(collection_type, collection_id, opts);
+const data = await catalog.getFollowerCountById(collection_type, collection_id, );
 
 ```
 
@@ -610,22 +670,23 @@ Get count of followers for given collection type and collection id.
 ---
 
 
-#### Catalog#getFollowIDsByType
-Get the Uids of followed product, brand and collection.
+#### Catalog#getFollowIds
+Get the Ids of followed product, brand and collection.
 
 ```javascript
 // Promise
-const promise = catalog.getFollowIDsByType(opts);
+const promise = catalog.getFollowIds(collection_type, );
 
 // Async/Await
-const data = await catalog.getFollowIDsByType(opts);
+const data = await catalog.getFollowIds(collection_type, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| collection_type | string |  | 
 
-You can get the uids of all the followed Product, Brand and Collections.
+You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
 
 ---
 
@@ -653,10 +714,10 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = cart.getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -678,10 +739,10 @@ Fetch Last-Modified timestamp
 
 ```javascript
 // Promise
-const promise = cart.getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -702,10 +763,10 @@ Add Items to Cart
 
 ```javascript
 // Promise
-const promise = cart.addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.addItemsToCart(x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.addItemsToCart(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.addItemsToCart(x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -725,10 +786,10 @@ Update Items already added to Cart
 
 ```javascript
 // Promise
-const promise = cart.updateCart(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.updateCart(x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.updateCart(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.updateCart(x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -748,10 +809,10 @@ Cart item count
 
 ```javascript
 // Promise
-const promise = cart.getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -772,10 +833,10 @@ Fetch Coupon
 
 ```javascript
 // Promise
-const promise = cart.getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCouponList(uid, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getCouponList(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCouponList(uid, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -796,10 +857,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = cart.applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -823,10 +884,10 @@ Remove Coupon Applied
 
 ```javascript
 // Promise
-const promise = cart.removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.removeCoupon(uid, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.removeCoupon(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.removeCoupon(uid, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -847,10 +908,10 @@ Get discount offers based on quantity
 
 ```javascript
 // Promise
-const promise = cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -874,10 +935,10 @@ Fetch Address
 
 ```javascript
 // Promise
-const promise = cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -902,10 +963,10 @@ Add Address to the account
 
 ```javascript
 // Promise
-const promise = cart.addAddress(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.addAddress(x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.addAddress(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.addAddress(x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -925,10 +986,10 @@ Fetch Single Address
 
 ```javascript
 // Promise
-const promise = cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -954,10 +1015,10 @@ Update Address alreay added to account
 
 ```javascript
 // Promise
-const promise = cart.updateAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.updateAddress(id, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.updateAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.updateAddress(id, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -978,10 +1039,10 @@ Remove Address Associated to the account
 
 ```javascript
 // Promise
-const promise = cart.removeAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.removeAddress(id, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.removeAddress(id, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.removeAddress(id, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -1002,10 +1063,10 @@ Select Address from All Addresses
 
 ```javascript
 // Promise
-const promise = cart.selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.selectCartAddress(x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.selectCartAddress(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.selectCartAddress(x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -1025,10 +1086,10 @@ Gte Cart Payment for valid coupon
 
 ```javascript
 // Promise
-const promise = cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -1054,10 +1115,10 @@ Update Cart Payment
 
 ```javascript
 // Promise
-const promise = cart.selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -1078,10 +1139,10 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = cart.getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -1104,10 +1165,10 @@ Checkout Cart
 
 ```javascript
 // Promise
-const promise = cart.checkoutCart(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.checkoutCart(x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.checkoutCart(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.checkoutCart(x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -1127,10 +1188,10 @@ Update Cart Meta
 
 ```javascript
 // Promise
-const promise = cart.updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -1151,10 +1212,10 @@ Generate Cart sharing link token
 
 ```javascript
 // Promise
-const promise = cart.getCartShareLink(x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartShareLink(x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getCartShareLink(x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartShareLink(x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -1174,10 +1235,10 @@ Get shared cart snapshot and cart response
 
 ```javascript
 // Promise
-const promise = cart.getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -1198,10 +1259,10 @@ Merge or Replace existing cart
 
 ```javascript
 // Promise
-const promise = cart.updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts);
+const promise = cart.updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, );
 
 // Async/Await
-const data = await cart.updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, opts);
+const data = await cart.updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, );
 
 ```
 
@@ -1241,10 +1302,10 @@ Get Tickets
 
 ```javascript
 // Promise
-const promise = lead.getTicket(id, x-application-id, x-application-token, opts);
+const promise = lead.getTicket(id, x-application-id, x-application-token, );
 
 // Async/Await
-const data = await lead.getTicket(id, x-application-id, x-application-token, opts);
+const data = await lead.getTicket(id, x-application-id, x-application-token, );
 
 ```
 
@@ -1264,10 +1325,10 @@ Create history for Ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts);
+const promise = lead.createHistoryForTicket(ticket_id, x-application-id, x-application-token, );
 
 // Async/Await
-const data = await lead.createHistoryForTicket(ticket_id, x-application-id, x-application-token, opts);
+const data = await lead.createHistoryForTicket(ticket_id, x-application-id, x-application-token, );
 
 ```
 
@@ -1287,10 +1348,10 @@ Create Ticket
 
 ```javascript
 // Promise
-const promise = lead.createTicket(x-application-id, x-application-token, opts);
+const promise = lead.createTicket(x-application-id, x-application-token, );
 
 // Async/Await
-const data = await lead.createTicket(x-application-id, x-application-token, opts);
+const data = await lead.createTicket(x-application-id, x-application-token, );
 
 ```
 
@@ -1309,10 +1370,10 @@ Get Custom Form
 
 ```javascript
 // Promise
-const promise = lead.getForm(slug, x-application-id, x-application-token, opts);
+const promise = lead.getForm(slug, x-application-id, x-application-token, );
 
 // Async/Await
-const data = await lead.getForm(slug, x-application-id, x-application-token, opts);
+const data = await lead.getForm(slug, x-application-id, x-application-token, );
 
 ```
 
@@ -1332,10 +1393,10 @@ Submit Form Response
 
 ```javascript
 // Promise
-const promise = lead.submitForm(slug, x-application-id, x-application-token, opts);
+const promise = lead.submitForm(slug, x-application-id, x-application-token, );
 
 // Async/Await
-const data = await lead.submitForm(slug, x-application-id, x-application-token, opts);
+const data = await lead.submitForm(slug, x-application-id, x-application-token, );
 
 ```
 
@@ -1355,10 +1416,10 @@ Get participants of Video Room
 
 ```javascript
 // Promise
-const promise = lead.getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts);
+const promise = lead.getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, );
 
 // Async/Await
-const data = await lead.getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, opts);
+const data = await lead.getParticipantsInsideVideoRoom(unique_name, x-application-id, x-application-token, );
 
 ```
 
@@ -1378,10 +1439,10 @@ Get Token to join Video Room
 
 ```javascript
 // Promise
-const promise = lead.getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts);
+const promise = lead.getTokenForVideRoom(unique_name, x-application-id, x-application-token, );
 
 // Async/Await
-const data = await lead.getTokenForVideRoom(unique_name, x-application-id, x-application-token, opts);
+const data = await lead.getTokenForVideRoom(unique_name, x-application-id, x-application-token, );
 
 ```
 

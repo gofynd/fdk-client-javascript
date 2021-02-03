@@ -9,8 +9,5 @@ const {
 } = require("./operations");
 
 
-exports.Catalog = Catalog;
-exports.Cart = Cart;
-exports.Lead = Lead;
 exports.Configuration = Configuration;
 
