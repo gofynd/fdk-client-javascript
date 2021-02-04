@@ -5,7 +5,6 @@ const {
     Catalog,
     Cart,
     Lead,
-    Theme,
 } = require("./operations");
 
 
