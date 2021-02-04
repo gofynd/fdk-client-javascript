@@ -9,7 +9,7 @@
 ### Classes and Methods
 
 
-* [Billing](#Billing) - 
+* [Billing](#Billing)
   * [Billing#getPublicPlanDetailedList](#billinggetpublicplandetailedlist)
   * [Billing#getPublicPlanDetailedById](#billinggetpublicplandetailedbyid)
   * [Billing#getPublicPlanList](#billinggetpublicplanlist)

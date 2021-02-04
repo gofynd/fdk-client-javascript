@@ -11,7 +11,7 @@
 ### Classes and Methods
 
 
-* [Catalog](#Catalog) - Application Front API&#39;s leverages Fynd&#39;s real-time inventory integration with over 400+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app.
+* [Catalog](#Catalog)
   * [Catalog#getProductDetailBySlug](#cataloggetproductdetailbyslug)
   * [Catalog#getProductSizesBySlug](#cataloggetproductsizesbyslug)
   * [Catalog#getProductPriceBySlug](#cataloggetproductpricebyslug)
@@ -40,7 +40,7 @@
   * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
   * [Catalog#getFollowIds](#cataloggetfollowids)
  
-* [Cart](#Cart) - Open API leverages Fynd&#39;s real-time inventory integration with over 200+ brands &amp; 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app.
+* [Cart](#Cart)
   * [Cart#getCart](#cartgetcart)
   * [Cart#getCartLastModified](#cartgetcartlastmodified)
   * [Cart#addItemsToCart](#cartadditemstocart)
@@ -65,7 +65,7 @@
   * [Cart#getCartSharedItems](#cartgetcartshareditems)
   * [Cart#updateCartWithSharedItems](#cartupdatecartwithshareditems)
  
-* [Lead](#Lead) - Handles communication between Staff and Users
+* [Lead](#Lead)
   * [Lead#getTicket](#leadgetticket)
   * [Lead#createHistoryForTicket](#leadcreatehistoryforticket)
   * [Lead#createTicket](#leadcreateticket)
