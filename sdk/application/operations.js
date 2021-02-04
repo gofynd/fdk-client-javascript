@@ -336,7 +336,7 @@ class Catalog {
     /**
     *
     * Summary: List all the departments
-    * Description:  Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
+    * Description:  Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
     **/
     (
     ) {
@@ -350,7 +350,7 @@ class Catalog {
     /**
     *
     * Summary: Get relevant suggestions for a search query
-    * Description:  Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that&#39;s generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
+    * Description:  Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
     **/
     getSearchResults(
         q, opts
@@ -589,7 +589,7 @@ class Cart {
     /**
     *
     * Summary: Add Items to Cart
-    * Description:  &lt;p&gt;Add Items to cart. See `CartV1Serializer` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;seller_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;store_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;/ul&gt;
+    * Description:  <p>Add Items to cart. See `CartV1Serializer` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api's</p> <ul> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">seller_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">store_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> </ul>
     **/
     addItemsToCart(
     ) {
@@ -603,7 +603,7 @@ class Cart {
     /**
     *
     * Summary: Update Items already added to Cart
-    * Description:  Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;font color=&quot;monochrome&quot;&gt;operation&lt;/font&gt; Operation for current api call. &lt;b&gt;update_item&lt;/b&gt; for update items. &lt;b&gt;remove_item&lt;/b&gt; for removing items.&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;article_id&lt;/font&gt;   &quot;/content​/v1​/products​/{identifier}​/sizes​/price​/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_index&lt;/font&gt;  item position in the cart (must be greater than or equal to 0)&lt;/li&gt; &lt;/ul&gt;
+    * Description:  Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
     **/
     updateCart(
     ) {
@@ -645,8 +645,8 @@ class Cart {
     /**
     *
     * Summary: Apply Coupon
-    * Description:  &lt;p&gt;Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;coupon_code&lt;/font&gt;&lt;/li&gt;
-&lt;/ul&gt;
+    * Description:  <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
+</ul>
     **/
     applyCoupon(
     ) {
@@ -688,7 +688,7 @@ class Cart {
     /**
     *
     * Summary: Fetch Address
-    * Description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
+    * Description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
     **/
     getAddressList(
     ) {
@@ -702,7 +702,7 @@ class Cart {
     /**
     *
     * Summary: Add Address to the account
-    * Description:  &lt;p&gt;Add Address to account. See `SaveAddressRequestSchema` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+    * Description:  <p>Add Address to account. See `SaveAddressRequestSchema` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
     **/
     addAddress(
     ) {
@@ -716,7 +716,7 @@ class Cart {
     /**
     *
     * Summary: Fetch Single Address
-    * Description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
+    * Description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
     **/
     getAddressById(
         id, opts
@@ -731,7 +731,7 @@ class Cart {
     /**
     *
     * Summary: Update Address alreay added to account
-    * Description:  Request object containing attributes mentioned in  &lt;font color=&quot;blue&quot;&gt;UpdateAddressRequestSchema &lt;/font&gt; can be updated .these attributes are :&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;is_default_address&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;landmark&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;area&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;pincode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;email&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_type&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;name&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
+    * Description:  Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequestSchema </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
     **/
     updateAddress(
         id, opts
@@ -746,7 +746,7 @@ class Cart {
     /**
     *
     * Summary: Remove Address Associated to the account
-    * Description:  Delete a Address by it&#39;s address_id. Returns an object that tells whether the address was deleted successfully
+    * Description:  Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
     **/
     removeAddress(
         id, opts
@@ -761,7 +761,7 @@ class Cart {
     /**
     *
     * Summary: Select Address from All Addresses
-    * Description:  &lt;p&gt;Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequestSchema` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;billing_address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
+    * Description:  <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequestSchema` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
     **/
     selectCartAddress(
     ) {
@@ -963,8 +963,8 @@ class Lead {
     
     /**
     *
-    * Summary: Get specific Custom Form using it&#39;s slug
-    * Description:  Get specific Custom Form using it&#39;s slug, this is used to view the form.
+    * Summary: Get specific Custom Form using it's slug
+    * Description:  Get specific Custom Form using it's slug, this is used to view the form.
     **/
     getCustomForm(
         slug, opts
@@ -978,8 +978,8 @@ class Lead {
     
     /**
     *
-    * Summary: Submit Response for a specific Custom Form using it&#39;s slug
-    * Description:  Submit Response for a specific Custom Form using it&#39;s slug, this response is then used to create a ticket on behalf of the user.
+    * Summary: Submit Response for a specific Custom Form using it's slug
+    * Description:  Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
     **/
     submitCustomForm(
         slug, opts
@@ -993,8 +993,8 @@ class Lead {
     
     /**
     *
-    * Summary: Get participants of a specific Video Room using it&#39;s unique name
-    * Description:  Get participants of a specific Video Room using it&#39;s unique name, this can be used to check if people are already there in the room and also to show their names.
+    * Summary: Get participants of a specific Video Room using it's unique name
+    * Description:  Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
     **/
     getParticipantsInsideVideoRoom(
         uniqueName, opts
@@ -1008,8 +1008,8 @@ class Lead {
     
     /**
     *
-    * Summary: Get Token to join a specific Video Room using it&#39;s unqiue name
-    * Description:  Get Token to join a specific Video Room using it&#39;s unqiue name, this Token is your ticket to Room and also creates your identity there.
+    * Summary: Get Token to join a specific Video Room using it's unqiue name
+    * Description:  Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
     **/
     getTokenForVideoRoom(
         uniqueName, opts
@@ -1025,5 +1025,101 @@ class Lead {
 
 
 exports.Lead = Lead;
+
+
+
+const { 
+    CustomPage,
+    CustomBlog,
+    TagsSchema,
+    ThemesSchema,
+    pagesSchema,
+    availableSectionSchema,
+    sectionSchema
+} = require("./schema");
+
+    
+class Theme {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Get Page by slug
+    * Description:  Use this API to fetch a custom page using `slug`
+    **/
+    getCustomPage(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/theme/v1.0/custom/page/{slug}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Blog by slug
+    * Description:  Use this API to fetch a blog using `slug`
+    **/
+    getBlog(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/theme/v1.0/custom/blog/{slug}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Tags for application
+    * Description:  
+    **/
+    getFPITags(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/theme/v1.0/tags",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get applied theme for an application
+    * Description:  
+    **/
+    getAppliedTheme(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/theme/v1.0/applied-theme",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get theme for preview
+    * Description:  
+    **/
+    getThemeForPreview(
+        themeId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/theme/v1.0/{themeId}/preview",
+        );
+    }
+    
+}
+
+
+exports.Theme = Theme;
 
 
