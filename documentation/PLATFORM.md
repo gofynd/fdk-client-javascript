@@ -44,11 +44,15 @@ const data = await billing.getPublicPlanDetailedList(, );
 
 ```
 
+
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 |  |  |  | 
 
+
 Get all public visible plans with detailed componet data
+
 
 ---
 
@@ -65,11 +69,15 @@ const data = await billing.getPublicPlanDetailedById(plan_id, );
 
 ```
 
+
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | plan_id | string |  | 
 
+
 Get Plan detaild with component data by plan_id.
+
 
 ---
 
@@ -86,11 +94,15 @@ const data = await billing.getPublicPlanList(, );
 
 ```
 
+
+
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 |  |  |  | 
 
+
 Get all public visible plans
+
 
 ---
 

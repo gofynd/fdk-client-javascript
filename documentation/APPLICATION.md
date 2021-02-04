@@ -12,68 +12,220 @@
 
 
 * [Catalog](#Catalog)
-  * [Catalog#getProductDetailBySlug](#cataloggetproductdetailbyslug)
-  * [Catalog#getProductSizesBySlug](#cataloggetproductsizesbyslug)
-  * [Catalog#getProductPriceBySlug](#cataloggetproductpricebyslug)
-  * [Catalog#getProductSellersBySlug](#cataloggetproductsellersbyslug)
-  * [Catalog#getProductComparisonBySlugs](#cataloggetproductcomparisonbyslugs)
-  * [Catalog#getSimilarComparisonProductBySlug](#cataloggetsimilarcomparisonproductbyslug)
-  * [Catalog#getComparedFrequentlyProductBySlug](#cataloggetcomparedfrequentlyproductbyslug)
-  * [Catalog#getProductSimilarByIdentifier](#cataloggetproductsimilarbyidentifier)
-  * [Catalog#getProductVariantsBySlug](#cataloggetproductvariantsbyslug)
-  * [Catalog#getProductStockByIdentifier](#cataloggetproductstockbyidentifier)
-  * [Catalog#getProductStockForTimeByIdentifier](#cataloggetproductstockfortimebyidentifier)
-  * [Catalog#getProducts](#cataloggetproducts)
-  * [Catalog#getBrands](#cataloggetbrands)
-  * [Catalog#getBrandDetailBySlug](#cataloggetbranddetailbyslug)
-  * [Catalog#getCategories](#cataloggetcategories)
-  * [Catalog#getCategoryDetailBySlug](#cataloggetcategorydetailbyslug)
-  * [Catalog#getHomeProducts](#cataloggethomeproducts)
-  * [Catalog#](#catalog)
-  * [Catalog#getSearchResults](#cataloggetsearchresults)
-  * [Catalog#getCollections](#cataloggetcollections)
-  * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
-  * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
-  * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
-  * [Catalog#unfollowById](#catalogunfollowbyid)
-  * [Catalog#followById](#catalogfollowbyid)
-  * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
-  * [Catalog#getFollowIds](#cataloggetfollowids)
- 
+  * Methods
+    * [Catalog#getProductDetailBySlug](#cataloggetproductdetailbyslug)
+    * [Catalog#getProductSizesBySlug](#cataloggetproductsizesbyslug)
+    * [Catalog#getProductPriceBySlug](#cataloggetproductpricebyslug)
+    * [Catalog#getProductSellersBySlug](#cataloggetproductsellersbyslug)
+    * [Catalog#getProductComparisonBySlugs](#cataloggetproductcomparisonbyslugs)
+    * [Catalog#getSimilarComparisonProductBySlug](#cataloggetsimilarcomparisonproductbyslug)
+    * [Catalog#getComparedFrequentlyProductBySlug](#cataloggetcomparedfrequentlyproductbyslug)
+    * [Catalog#getProductSimilarByIdentifier](#cataloggetproductsimilarbyidentifier)
+    * [Catalog#getProductVariantsBySlug](#cataloggetproductvariantsbyslug)
+    * [Catalog#getProductStockByIdentifier](#cataloggetproductstockbyidentifier)
+    * [Catalog#getProductStockForTimeByIdentifier](#cataloggetproductstockfortimebyidentifier)
+    * [Catalog#getProducts](#cataloggetproducts)
+    * [Catalog#getBrands](#cataloggetbrands)
+    * [Catalog#getBrandDetailBySlug](#cataloggetbranddetailbyslug)
+    * [Catalog#getCategories](#cataloggetcategories)
+    * [Catalog#getCategoryDetailBySlug](#cataloggetcategorydetailbyslug)
+    * [Catalog#getHomeProducts](#cataloggethomeproducts)
+    * [Catalog#](#catalog)
+    * [Catalog#getSearchResults](#cataloggetsearchresults)
+    * [Catalog#getCollections](#cataloggetcollections)
+    * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
+    * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
+    * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
+    * [Catalog#followById](#catalogfollowbyid)
+    * [Catalog#unfollowById](#catalogunfollowbyid)
+    * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
+    * [Catalog#getFollowIds](#cataloggetfollowids)
+    
+  * Models
+    * [ProductDetailAttribute](ProductDetailAttribute)
+    * [ProductDetailGroupedAttribute](ProductDetailGroupedAttribute)
+    * [ProductListingActionPage](ProductListingActionPage)
+    * [ProductListingAction](ProductListingAction)
+    * [Media](Media)
+    * [ProductBrand](ProductBrand)
+    * [ProductDetail](ProductDetail)
+    * [Error](Error)
+    * [ProductSizeStores](ProductSizeStores)
+    * [Price](Price)
+    * [ProductListingPrice](ProductListingPrice)
+    * [ProductSize](ProductSize)
+    * [ProductSizes](ProductSizes)
+    * [ArticleAssignment](ArticleAssignment)
+    * [Seller](Seller)
+    * [ProductStockPrice](ProductStockPrice)
+    * [Store](Store)
+    * [ProductSizePriceResponse](ProductSizePriceResponse)
+    * [ProductPage](ProductPage)
+    * [ProductSizeSellerFilter](ProductSizeSellerFilter)
+    * [ProductSizeSellersResponse](ProductSizeSellersResponse)
+    * [AttributeDetail](AttributeDetail)
+    * [ProductsComparisonResponse](ProductsComparisonResponse)
+    * [ProductCompareResponse](ProductCompareResponse)
+    * [ProductFrequentlyComparedSimilarResponse](ProductFrequentlyComparedSimilarResponse)
+    * [ProductSimilarItem](ProductSimilarItem)
+    * [SimilarProductByTypeResponse](SimilarProductByTypeResponse)
+    * [ProductVariantItemResponse](ProductVariantItemResponse)
+    * [ProductVariantResponse](ProductVariantResponse)
+    * [ProductVariantsResponse](ProductVariantsResponse)
+    * [StoreDetail](StoreDetail)
+    * [CompanyDetail](CompanyDetail)
+    * [ProductStockStatusItem](ProductStockStatusItem)
+    * [ProductStockStatusResponse](ProductStockStatusResponse)
+    * [ProductStockPolling](ProductStockPolling)
+    * [ProductFiltersKey](ProductFiltersKey)
+    * [ProductFiltersValue](ProductFiltersValue)
+    * [ProductFilters](ProductFilters)
+    * [ProductSortOn](ProductSortOn)
+    * [ProductListingResponse](ProductListingResponse)
+    * [ImageUrls](ImageUrls)
+    * [BrandItem](BrandItem)
+    * [BrandListingResponse](BrandListingResponse)
+    * [BrandDetailResponse](BrandDetailResponse)
+    * [DepartmentIdentifier](DepartmentIdentifier)
+    * [CategoryItems](CategoryItems)
+    * [DepartmentCategoryTree](DepartmentCategoryTree)
+    * [CategoryListingResponse](CategoryListingResponse)
+    * [CategoryMetaResponse](CategoryMetaResponse)
+    * [Page](Page)
+    * [HomeListingResponse](HomeListingResponse)
+    * [Department](Department)
+    * [DepartmentResponse](DepartmentResponse)
+    * [AutocompleteItem](AutocompleteItem)
+    * [AutoCompleteResponse](AutoCompleteResponse)
+    * [GetCollectionDetailNest](GetCollectionDetailNest)
+    * [CollectionListingFilterTag](CollectionListingFilterTag)
+    * [CollectionListingFilterType](CollectionListingFilterType)
+    * [CollectionListingFilter](CollectionListingFilter)
+    * [GetCollectionListingResponse](GetCollectionListingResponse)
+    * [GetCollectionListingItemsResponse](GetCollectionListingItemsResponse)
+    * [CollectionDetailResponse](CollectionDetailResponse)
+    * [GetFollowListingResponse](GetFollowListingResponse)
+    * [FollowPostResponse](FollowPostResponse)
+    * [FollowerCountResponse](FollowerCountResponse)
+    * [FollowIdsData](FollowIdsData)
+    * [FollowIdsResponse](FollowIdsResponse)
+    
+
 * [Cart](#Cart)
-  * [Cart#getCart](#cartgetcart)
-  * [Cart#getCartLastModified](#cartgetcartlastmodified)
-  * [Cart#addItemsToCart](#cartadditemstocart)
-  * [Cart#updateCart](#cartupdatecart)
-  * [Cart#getCartItemCount](#cartgetcartitemcount)
-  * [Cart#getCouponList](#cartgetcouponlist)
-  * [Cart#applyCoupon](#cartapplycoupon)
-  * [Cart#removeCoupon](#cartremovecoupon)
-  * [Cart#getBulkDiscountOffers](#cartgetbulkdiscountoffers)
-  * [Cart#getAddressList](#cartgetaddresslist)
-  * [Cart#addAddress](#cartaddaddress)
-  * [Cart#getAddressById](#cartgetaddressbyid)
-  * [Cart#updateAddress](#cartupdateaddress)
-  * [Cart#removeAddress](#cartremoveaddress)
-  * [Cart#selectCartAddress](#cartselectcartaddress)
-  * [Cart#getCartPaymentModes](#cartgetcartpaymentmodes)
-  * [Cart#selectCartPaymentMode](#cartselectcartpaymentmode)
-  * [Cart#getCartShipments](#cartgetcartshipments)
-  * [Cart#checkoutCart](#cartcheckoutcart)
-  * [Cart#updateCartMeta](#cartupdatecartmeta)
-  * [Cart#getCartShareLink](#cartgetcartsharelink)
-  * [Cart#getCartSharedItems](#cartgetcartshareditems)
-  * [Cart#updateCartWithSharedItems](#cartupdatecartwithshareditems)
- 
+  * Methods
+    * [Cart#getCart](#cartgetcart)
+    * [Cart#getCartLastModified](#cartgetcartlastmodified)
+    * [Cart#addItemsToCart](#cartadditemstocart)
+    * [Cart#updateCart](#cartupdatecart)
+    * [Cart#getCartItemCount](#cartgetcartitemcount)
+    * [Cart#getCouponList](#cartgetcouponlist)
+    * [Cart#applyCoupon](#cartapplycoupon)
+    * [Cart#removeCoupon](#cartremovecoupon)
+    * [Cart#getBulkDiscountOffers](#cartgetbulkdiscountoffers)
+    * [Cart#getAddressList](#cartgetaddresslist)
+    * [Cart#addAddress](#cartaddaddress)
+    * [Cart#getAddressById](#cartgetaddressbyid)
+    * [Cart#updateAddress](#cartupdateaddress)
+    * [Cart#removeAddress](#cartremoveaddress)
+    * [Cart#selectCartAddress](#cartselectcartaddress)
+    * [Cart#getCartPaymentModes](#cartgetcartpaymentmodes)
+    * [Cart#selectCartPaymentMode](#cartselectcartpaymentmode)
+    * [Cart#getCartShipments](#cartgetcartshipments)
+    * [Cart#checkoutCart](#cartcheckoutcart)
+    * [Cart#updateCartMeta](#cartupdatecartmeta)
+    * [Cart#getCartShareLink](#cartgetcartsharelink)
+    * [Cart#getCartSharedItems](#cartgetcartshareditems)
+    * [Cart#updateCartWithSharedItems](#cartupdatecartwithshareditems)
+    
+  * Models
+    * [GetCartV1Serializer](GetCartV1Serializer)
+    * [ProductCart](ProductCart)
+    * [CartV1Serializer](CartV1Serializer)
+    * [PaymentFlow](PaymentFlow)
+    * [PaymentFlows](PaymentFlows)
+    * [PaymentOption](PaymentOption)
+    * [PaymentOptions](PaymentOptions)
+    * [CartCurrency](CartCurrency)
+    * [ProductPrice](ProductPrice)
+    * [ProductPriceInfo](ProductPriceInfo)
+    * [ProductAvailability](ProductAvailability)
+    * [ActionQuery](ActionQuery)
+    * [Action](Action)
+    * [CategoryInfo](CategoryInfo)
+    * [Image](Image)
+    * [BaseInfo](BaseInfo)
+    * [Product](Product)
+    * [PlatformCartProductInfoV1](PlatformCartProductInfoV1)
+    * [DisplayBreakup](DisplayBreakup)
+    * [LoyaltyPoints](LoyaltyPoints)
+    * [RawBreakup](RawBreakup)
+    * [CouponBreakup](CouponBreakup)
+    * [BaseCartBreakup](BaseCartBreakup)
+    * [PlatformV1Cart](PlatformV1Cart)
+    * [UpdateProductCart](UpdateProductCart)
+    * [UpdateCartV1Serializer](UpdateCartV1Serializer)
+    * [PageCoupon](PageCoupon)
+    * [Coupon](Coupon)
+    * [GetCouponResponse](GetCouponResponse)
+    * [Loyality](Loyality)
+    * [RawCoupon](RawCoupon)
+    * [GetCoupon](GetCoupon)
+    * [SaveCoupon](SaveCoupon)
+    * [SaveCouponResponse](SaveCouponResponse)
+    * [OfferSeller](OfferSeller)
+    * [OfferPrice](OfferPrice)
+    * [OfferItem](OfferItem)
+    * [BulkPriceOffer](BulkPriceOffer)
+    * [BulkPriceResponse](BulkPriceResponse)
+    * [Address](Address)
+    * [GetAddressResponse](GetAddressResponse)
+    * [SaveAddressRequest](SaveAddressRequest)
+    * [SaveAddressResponse](SaveAddressResponse)
+    * [UpdateAddressRequest](UpdateAddressRequest)
+    * [UpdateAddressResponse](UpdateAddressResponse)
+    * [DeleteAddressResponse](DeleteAddressResponse)
+    * [SelectCartAddressRequest](SelectCartAddressRequest)
+    * [UpdateCartPaymentRequest](UpdateCartPaymentRequest)
+    * [ShipmentResponse](ShipmentResponse)
+    * [ShipmentCart](ShipmentCart)
+    * [CartCheckoutRequestSerializer](CartCheckoutRequestSerializer)
+    * [DeliverySlot](DeliverySlot)
+    * [DeliverySlotDate](DeliverySlotDate)
+    * [CheckCart](CheckCart)
+    * [OrderData](OrderData)
+    * [CartCheckoutResponse](CartCheckoutResponse)
+    * [Meta](Meta)
+    * [SharedCartDetails](SharedCartDetails)
+    * [SharedPlatformV1Cart](SharedPlatformV1Cart)
+    
+
 * [Lead](#Lead)
-  * [Lead#getTicket](#leadgetticket)
-  * [Lead#createHistoryForTicket](#leadcreatehistoryforticket)
-  * [Lead#createTicket](#leadcreateticket)
-  * [Lead#getCustomForm](#leadgetcustomform)
-  * [Lead#submitCustomForm](#leadsubmitcustomform)
-  * [Lead#getParticipantsInsideVideoRoom](#leadgetparticipantsinsidevideoroom)
-  * [Lead#getTokenForVideoRoom](#leadgettokenforvideoroom)
- 
+  * Methods
+    * [Lead#getTicket](#leadgetticket)
+    * [Lead#createHistoryForTicket](#leadcreatehistoryforticket)
+    * [Lead#createTicket](#leadcreateticket)
+    * [Lead#getCustomForm](#leadgetcustomform)
+    * [Lead#submitCustomForm](#leadsubmitcustomform)
+    * [Lead#getParticipantsInsideVideoRoom](#leadgetparticipantsinsidevideoroom)
+    * [Lead#getTokenForVideoRoom](#leadgettokenforvideoroom)
+    
+  * Models
+    * [Context](Context)
+    * [CreatedOn](CreatedOn)
+    * [Asset](Asset)
+    * [Content](Content)
+    * [APIError](APIError)
+    * [AddTicketPayload](AddTicketPayload)
+    * [Priority](Priority)
+    * [Status](Status)
+    * [Category](Category)
+    * [SubmitButton](SubmitButton)
+    * [PollForAssignment](PollForAssignment)
+    * [CustomForm](CustomForm)
+    * [TicketHistory](TicketHistory)
+    * [Ticket](Ticket)
+    
+
 
 ---
 ---
@@ -111,6 +263,30 @@ const data = await catalog.getProductDetailBySlug(slug, );
 
 Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
 
+Success Response:
+
+
+
+The Product object. See example below or refer `ProductDetail` for details.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductDetail&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -132,6 +308,30 @@ const data = await catalog.getProductSizesBySlug(slug, store_id, );
 | store_id | string |  | 
 
 A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
+
+Success Response:
+
+
+
+The ProductSize object. See example below or refer `ProductSizes` for details.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductSizes&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -156,6 +356,30 @@ const data = await catalog.getProductPriceBySlug(slug, size, pincode, store_id, 
 | store_id | string |  | 
 
 Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
+
+Success Response:
+
+
+
+The ProductSizePrice object. See example below or refer `ProductSizePriceResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductSizePriceResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -182,6 +406,30 @@ const data = await catalog.getProductSellersBySlug(slug, size, pincode, page_no,
 
 A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
 
+Success Response:
+
+
+
+The ProductSizeSeller object. See example below or refer `ProductSizeSellersResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductSizeSellersResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -202,6 +450,30 @@ const data = await catalog.getProductComparisonBySlugs(slug, );
 | slug | string |  | 
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
+
+Success Response:
+
+
+
+The comparison between the products. See example below or refer `ProductsComparisonResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductsComparisonResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -224,6 +496,30 @@ const data = await catalog.getSimilarComparisonProductBySlug(slug, );
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products
 
+Success Response:
+
+
+
+The comparison between products similar to given product. See example below or refer `ProductCompareResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductCompareResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -244,6 +540,30 @@ const data = await catalog.getComparedFrequentlyProductBySlug(slug, );
 | slug | string |  | 
 
 Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
+
+Success Response:
+
+
+
+The comparison between products similar to given product. See example below or refer `ProductFrequentlyComparedSimilarResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductFrequentlyComparedSimilarResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -267,6 +587,30 @@ const data = await catalog.getProductSimilarByIdentifier(slug, similar_type, );
 
 Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
 
+Success Response:
+
+
+
+Similar Products based on type passed in the request path. Refer `SimilarProductByTypeResponse` for response structure
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/SimilarProductByTypeResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -287,6 +631,30 @@ const data = await catalog.getProductVariantsBySlug(slug, );
 | slug | string |  | 
 
 A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
+
+Success Response:
+
+
+
+See example below or refer `ProductVariantsResponse` for details. For `display_type:image`, `color` key will be present otherwise `value` key will be preset.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductVariantsResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -313,6 +681,30 @@ const data = await catalog.getProductStockByIdentifier(item_id, alu, sku_code, e
 
 Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
 
+Success Response:
+
+
+
+The ProductStockStatus object. See example below or refer `ProductStockStatusResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductStockStatusResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -335,6 +727,30 @@ const data = await catalog.getProductStockForTimeByIdentifier(timestamp, page_si
 | page_id | string |  | 
 
 Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
+
+Success Response:
+
+
+
+The ProductStockStatus object. See example below or refer `ProductStockPolling` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductStockPolling&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -360,6 +776,30 @@ const data = await catalog.getProducts(q, sort_on, page_id, page_size, );
 
 List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
 
+Success Response:
+
+
+
+List of Products. See example below or refer `ProductListingResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ProductListingResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -383,6 +823,30 @@ const data = await catalog.getBrands(department, page_no, page_size, );
 
 A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
 
+Success Response:
+
+
+
+List of Brands. See example below or refer `BrandListingResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/BrandListingResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -403,6 +867,30 @@ const data = await catalog.getBrandDetailBySlug(slug, );
 | slug | string |  | 
 
 Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
+
+Success Response:
+
+
+
+The Metadata object. See example below or refer `BrandDetailResponse` for details.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/BrandDetailResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -425,6 +913,30 @@ const data = await catalog.getCategories(department, );
 
 List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
 
+Success Response:
+
+
+
+List of Categories. See example below or refer `CategoryListingResponse` for details.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/CategoryListingResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -445,6 +957,30 @@ const data = await catalog.getCategoryDetailBySlug(slug, );
 | slug | string |  | 
 
 Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
+
+Success Response:
+
+
+
+The Metadata object. See example below or refer `CategoryMetaResponse` for details.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/CategoryMetaResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -469,6 +1005,30 @@ const data = await catalog.getHomeProducts(sort_on, page_id, page_size, );
 
 List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
 
+Success Response:
+
+
+
+List of Products. See example below or refer `HomeListingResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/HomeListingResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -488,6 +1048,30 @@ const data = await catalog.();
 | --------- | ----  | --- |
 
 Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the &#39;Women&#39;s Fashion&#39; Department while a handbag can lie in &#39;Women&#39;s Accessories&#39; Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
+
+Success Response:
+
+
+
+List of Departments. See example below or refer `DepartmentResponse` for details.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/DepartmentResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -510,6 +1094,30 @@ const data = await catalog.getSearchResults(q, );
 
 Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that&#39;s generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
 
+Success Response:
+
+
+
+Lists of autocomplete suggestions for the search query `q`. See example response below or refer `AutoCompleteResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/AutoCompleteResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -531,6 +1139,30 @@ const data = await catalog.getCollections(page_id, page_size, );
 | page_size | integer |  | 
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
+
+Success Response:
+
+
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/GetCollectionListingResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -556,6 +1188,30 @@ const data = await catalog.getCollectionItemsBySlug(slug, sort_on, page_id, page
 
 Get items in a collection specified by its `slug`.
 
+Success Response:
+
+
+
+The attached items of an collection. See example below or refer `GetCollectionListingItemsResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/GetCollectionListingItemsResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -576,6 +1232,30 @@ const data = await catalog.getCollectionDetailBySlug(slug, );
 | slug | string |  | 
 
 Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
+
+Success Response:
+
+
+
+The Collection object. See example below or refer `CollectionDetailResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/CollectionDetailResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -598,27 +1278,29 @@ const data = await catalog.getFollowedListing(collection_type, );
 
 A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
 
----
+Success Response:
 
 
-#### Catalog#unfollowById
-UnFollow a Product
 
-```javascript
-// Promise
-const promise = catalog.unfollowById(collection_type, collection_id, );
+The Followed resource object. See example below or refer `GetFollowListingResponse` for details.
 
-// Async/Await
-const data = await catalog.unfollowById(collection_type, collection_id, );
 
-```
+Content Type: `application/json`
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| collection_type | string |  | 
-| collection_id | integer |  | 
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/GetFollowListingResponse&quot;}`
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -642,6 +1324,76 @@ const data = await catalog.followById(collection_type, collection_id, );
 
 Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
+Success Response:
+
+
+
+The response object. See example below or refer `FollowPostResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/FollowPostResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Catalog#unfollowById
+UnFollow a Product
+
+```javascript
+// Promise
+const promise = catalog.unfollowById(collection_type, collection_id, );
+
+// Async/Await
+const data = await catalog.unfollowById(collection_type, collection_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| collection_type | string |  | 
+| collection_id | integer |  | 
+
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+
+Success Response:
+
+
+
+The response object. See example below or refer `FollowPostResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/FollowPostResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -664,6 +1416,30 @@ const data = await catalog.getFollowerCountById(collection_type, collection_id, 
 
 Get count of followers for given collection type and collection id.
 
+Success Response:
+
+
+
+The response object. See example below or refer `FollowerCountResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/FollowerCountResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -685,11 +1461,34 @@ const data = await catalog.getFollowIds(collection_type, );
 
 You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
 
+Success Response:
+
+
+
+The response object. See example below or refer `FollowIdsResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/FollowIdsResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
 
----
 ---
 
 
@@ -728,6 +1527,28 @@ const data = await cart.getCart(uid, assign_card_id, x-application-id, x-applica
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartV1Serializer
 
+Success Response:
+
+
+
+The Cart object. See example below or refer GetCartV1Serializer for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/GetCartV1Serializer&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
 ---
 
 
@@ -752,6 +1573,20 @@ const data = await cart.getCartLastModified(uid, x-application-id, x-application
 
 Fetch Last-Modified timestamp in header metadata
 
+Success Response:
+
+
+
+Fetch Last-Modified Timestamp Response
+
+
+
+
+
+Error Response:
+
+
+
 ---
 
 
@@ -775,6 +1610,28 @@ const data = await cart.addItemsToCart(x-application-id, x-application-token, x-
 
 &lt;p&gt;Add Items to cart. See `CartV1Serializer` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;seller_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;store_id&lt;/font&gt;  &quot;/platform/content/v1/products/{slug}/sizes/price&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;/ul&gt;
 
+Success Response:
+
+
+
+Response of the cart object including all item details included in .the cart,coupons etc.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/PlatformV1Cart&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
 ---
 
 
@@ -797,6 +1654,28 @@ const data = await cart.updateCart(x-application-id, x-application-token, x-curr
 | x-currency-code | string |  | 
 
 Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api&#39;s&lt;/p&gt; &lt;ul&gt; &lt;li&gt;&lt;font color=&quot;monochrome&quot;&gt;operation&lt;/font&gt; Operation for current api call. &lt;b&gt;update_item&lt;/b&gt; for update items. &lt;b&gt;remove_item&lt;/b&gt; for removing items.&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_id&lt;/font&gt;  &quot;/platform/content/v1/products/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_size&lt;/font&gt;   &quot;/platform/content/v1/products/{slug}/sizes/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;quantity&lt;/font&gt;  item quantity (must be greater than or equal to 1)&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;article_id&lt;/font&gt;   &quot;/content​/v1​/products​/{identifier}​/sizes​/price​/&quot;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;item_index&lt;/font&gt;  item position in the cart (must be greater than or equal to 0)&lt;/li&gt; &lt;/ul&gt;
+
+Success Response:
+
+
+
+Response of the cart object including all item with their updated details included in .the cart,coupons etc..
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/PlatformV1Cart&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 ---
 
@@ -822,6 +1701,28 @@ const data = await cart.getCartItemCount(uid, x-application-id, x-application-to
 
 Get total count of item present in cart
 
+Success Response:
+
+
+
+OK
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;user_cart_items_count&quot;:{&quot;type&quot;:&quot;integer&quot;,&quot;description&quot;:&quot;Item count present in cart&quot;}}}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
 ---
 
 
@@ -845,6 +1746,28 @@ const data = await cart.getCouponList(uid, x-application-id, x-application-token
 | x-currency-code | string |  | 
 
 Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponseSchema
+
+Success Response:
+
+
+
+Returns The Couppon object which has list of all available_coupon applicale for the cart. See example below or refer GetCouponResponseSchema for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/GetCouponResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 ---
 
@@ -873,6 +1796,16 @@ const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-tok
 &lt;p&gt;Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;coupon_code&lt;/font&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
+Success Response:
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -896,6 +1829,28 @@ const data = await cart.removeCoupon(uid, x-application-id, x-application-token,
 | x-currency-code | string |  | 
 
 Remove Coupon applied on the cart by passing uid in request body.
+
+Success Response:
+
+
+
+Response of the Coupon object including all item details included in .the cart,coupons removed etc.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/PlatformV1Cart&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 ---
 
@@ -923,6 +1878,30 @@ const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-
 | x-currency-code | string |  | 
 
 List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
+
+Success Response:
+
+
+
+Offers found or not found with valid input
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/BulkPriceResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -952,6 +1931,28 @@ const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, defa
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
 
+Success Response:
+
+
+
+Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponseSchema for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/GetAddressResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
 ---
 
 
@@ -974,6 +1975,28 @@ const data = await cart.addAddress(x-application-id, x-application-token, x-curr
 | x-currency-code | string |  | 
 
 &lt;p&gt;Add Address to account. See `SaveAddressRequestSchema` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+
+Success Response:
+
+
+
+Return Address Id on successfull completion of the request.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/SaveAddressResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 ---
 
@@ -1004,6 +2027,28 @@ const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, 
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;mobile_no&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;checkout_mode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;tags&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;default&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
 
+Success Response:
+
+
+
+Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponseSchema for details
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/GetAddressResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
 ---
 
 
@@ -1027,6 +2072,16 @@ const data = await cart.updateAddress(id, x-application-id, x-application-token,
 | x-currency-code | string |  | 
 
 Request object containing attributes mentioned in  &lt;font color=&quot;blue&quot;&gt;UpdateAddressRequestSchema &lt;/font&gt; can be updated .these attributes are :&lt;/p&gt; &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;is_default_address&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;landmark&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;area&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;pincode&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;email&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_type&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;name&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
+
+Success Response:
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -1052,6 +2107,16 @@ const data = await cart.removeAddress(id, x-application-id, x-application-token,
 
 Delete a Address by it&#39;s address_id. Returns an object that tells whether the address was deleted successfully
 
+Success Response:
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -1074,6 +2139,18 @@ const data = await cart.selectCartAddress(x-application-id, x-application-token,
 | x-currency-code | string |  | 
 
 &lt;p&gt;Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequestSchema` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. &lt;ul&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;billing_address_id&lt;/font&gt;&lt;/li&gt; &lt;li&gt; &lt;font color=&quot;monochrome&quot;&gt;uid&lt;/font&gt;&lt;/li&gt; &lt;/ul&gt;
+
+Success Response:
+
+
+
+Error Response:
+
+
+
+
+
+
 
 ---
 
@@ -1104,6 +2181,28 @@ const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payme
 
 Validate coupon for selected payment mode
 
+Success Response:
+
+
+
+Cart Affiliates.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/PaymentOptions&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
 ---
 
 
@@ -1127,6 +2226,28 @@ const data = await cart.selectCartPaymentMode(uid, x-application-id, x-applicati
 | x-currency-code | string |  | 
 
 Update Cart Payment for Your Account
+
+Success Response:
+
+
+
+Cart Affiliates.
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/PaymentOptions&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 ---
 
@@ -1154,6 +2275,30 @@ const data = await cart.getCartShipments(p, uid, address_id, x-application-id, x
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
+Success Response:
+
+
+
+OK
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/ShipmentCart&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -1176,6 +2321,28 @@ const data = await cart.checkoutCart(x-application-id, x-application-token, x-cu
 | x-currency-code | string |  | 
 
 Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
+
+Success Response:
+
+
+
+OK
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/CartCheckoutResponse&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 ---
 
@@ -1201,6 +2368,30 @@ const data = await cart.updateCartMeta(uid, x-application-id, x-application-toke
 
 Update cart meta like checkout_mode, gstin.
 
+Success Response:
+
+
+
+Cart meta updated successfully
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;message&quot;:{&quot;type&quot;:&quot;string&quot;}}}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -1223,6 +2414,28 @@ const data = await cart.getCartShareLink(x-application-id, x-application-token, 
 | x-currency-code | string |  | 
 
 Generates shared cart snapshot and returns shortlink token
+
+Success Response:
+
+
+
+Token Generated successfully
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;token&quot;:{&quot;type&quot;:&quot;string&quot;},&quot;share_url&quot;:{&quot;type&quot;:&quot;string&quot;}}}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 ---
 
@@ -1247,6 +2460,30 @@ const data = await cart.getCartSharedItems(token, x-application-id, x-applicatio
 | x-currency-code | string |  | 
 
 Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
+
+Success Response:
+
+
+
+Cart for valid token
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;cart&quot;:{&quot;$ref&quot;:&quot;#/components/schemas/SharedPlatformV1Cart&quot;},&quot;error&quot;:{&quot;type&quot;:&quot;string&quot;}}}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -1273,11 +2510,32 @@ const data = await cart.updateCartWithSharedItems(token, action, x-application-i
 
 Merge or Replace cart based on `action` parameter with shared cart of `token`
 
----
+Success Response:
+
+
+
+Success of Merge or Replace of cart with `shared_cart_details`                    containing shared cart details in response
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;type&quot;:&quot;object&quot;,&quot;properties&quot;:{&quot;cart&quot;:{&quot;$ref&quot;:&quot;#/components/schemas/SharedPlatformV1Cart&quot;}}}`
+
+
+
+
+
+
+
+
+Error Response:
 
 
 
 ---
+
+
+
 ---
 
 
@@ -1312,6 +2570,30 @@ const data = await lead.getTicket(id, );
 
 Get Ticket with the specific id, this is used to view the ticket details
 
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/Ticket&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -1333,6 +2615,32 @@ const data = await lead.createHistoryForTicket(ticket_id, );
 
 Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/TicketHistory&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
 ---
 
 
@@ -1352,6 +2660,30 @@ const data = await lead.createTicket();
 | --------- | ----  | --- |
 
 This is used to Create Ticket.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/Ticket&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 ---
 
@@ -1374,6 +2706,30 @@ const data = await lead.getCustomForm(slug, );
 
 Get specific Custom Form using it&#39;s slug, this is used to view the form.
 
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;$ref&quot;:&quot;#/components/schemas/CustomForm&quot;}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -1394,6 +2750,32 @@ const data = await lead.submitCustomForm(slug, );
 | slug | string |  | 
 
 Submit Response for a specific Custom Form using it&#39;s slug, this response is then used to create a ticket on behalf of the user.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;properties&quot;:{&quot;ticket&quot;:{&quot;$ref&quot;:&quot;#/components/schemas/Ticket&quot;}}}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
 
 ---
 
@@ -1416,6 +2798,30 @@ const data = await lead.getParticipantsInsideVideoRoom(unique_name, );
 
 Get participants of a specific Video Room using it&#39;s unique name, this can be used to check if people are already there in the room and also to show their names.
 
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;properties&quot;:{&quot;participants&quot;:{&quot;type&quot;:&quot;array&quot;}}}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
 
@@ -1437,8 +2843,35 @@ const data = await lead.getTokenForVideoRoom(unique_name, );
 
 Get Token to join a specific Video Room using it&#39;s unqiue name, this Token is your ticket to Room and also creates your identity there.
 
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{&quot;properties&quot;:{&quot;access_token&quot;:{&quot;type&quot;:&quot;string&quot;}}}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
 ---
 
+
+
+---
 
 
 ---

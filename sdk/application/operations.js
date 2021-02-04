@@ -18,13 +18,13 @@ const {
     ProductListingPrice,
     ProductSize,
     ProductSizes,
-    Store,
-    ProductStockPrice,
     ArticleAssignment,
     Seller,
+    ProductStockPrice,
+    Store,
     ProductSizePriceResponse,
-    ProductSizeSellerFilter,
     ProductPage,
+    ProductSizeSellerFilter,
     ProductSizeSellersResponse,
     AttributeDetail,
     ProductsComparisonResponse,
@@ -423,22 +423,6 @@ class Catalog {
     
     /**
     *
-    * Summary: UnFollow a Product
-    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    **/
-    unfollowById(
-        collectionType, opts
-        collectionId, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "delete",
-            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
-        );
-    }
-    
-    /**
-    *
     * Summary: Follow a particular Product
     * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     **/
@@ -449,6 +433,22 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "post",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: UnFollow a Product
+    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    **/
+    unfollowById(
+        collectionType, opts
+        collectionId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
             "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
         );
     }
