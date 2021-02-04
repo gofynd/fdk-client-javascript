@@ -18,13 +18,13 @@ const {
     ProductListingPrice,
     ProductSize,
     ProductSizes,
-    Store,
-    ProductStockPrice,
     ArticleAssignment,
     Seller,
+    ProductStockPrice,
+    Store,
     ProductSizePriceResponse,
-    ProductSizeSellerFilter,
     ProductPage,
+    ProductSizeSellerFilter,
     ProductSizeSellersResponse,
     AttributeDetail,
     ProductsComparisonResponse,
@@ -423,22 +423,6 @@ class Catalog {
     
     /**
     *
-    * Summary: UnFollow a Product
-    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    **/
-    unfollowById(
-        collectionType, opts
-        collectionId, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "delete",
-            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
-        );
-    }
-    
-    /**
-    *
     * Summary: Follow a particular Product
     * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     **/
@@ -449,6 +433,22 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "post",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: UnFollow a Product
+    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    **/
+    unfollowById(
+        collectionType, opts
+        collectionId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
             "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
         );
     }
@@ -1025,5 +1025,101 @@ class Lead {
 
 
 exports.Lead = Lead;
+
+
+
+const { 
+    CustomPage,
+    CustomBlog,
+    TagsSchema,
+    ThemesSchema,
+    pagesSchema,
+    availableSectionSchema,
+    sectionSchema
+} = require("./schema");
+
+    
+class Theme {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Get Page by slug
+    * Description:  Use this API to fetch a custom page using `slug`
+    **/
+    getCustomPage(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/theme/v1.0/custom/page/{slug}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Blog by slug
+    * Description:  Use this API to fetch a blog using `slug`
+    **/
+    getBlog(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/theme/v1.0/custom/blog/{slug}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Tags for application
+    * Description:  
+    **/
+    getFPITags(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/theme/v1.0/tags",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get applied theme for an application
+    * Description:  
+    **/
+    getAppliedTheme(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/theme/v1.0/applied-theme",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get theme for preview
+    * Description:  
+    **/
+    getThemeForPreview(
+        themeId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/theme/v1.0/{themeId}/preview",
+        );
+    }
+    
+}
+
+
+exports.Theme = Theme;
 
 

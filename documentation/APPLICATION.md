@@ -4,6 +4,7 @@
 * [Catalog](#Catalog) - Application Front API's leverages Fynd's real-time inventory integration with over 400+ brands & 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
 * [Cart](#Cart) - Open API leverages Fynd's real-time inventory integration with over 200+ brands & 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
 * [Lead](#Lead) - Handles communication between Staff and Users 
+* [Theme](#Theme) - Responsible for themes and on the fly script injections 
 
 ----
 ----
@@ -36,8 +37,8 @@
     * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
     * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
     * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
-    * [Catalog#unfollowById](#catalogunfollowbyid)
     * [Catalog#followById](#catalogfollowbyid)
+    * [Catalog#unfollowById](#catalogunfollowbyid)
     * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
     * [Catalog#getFollowIds](#cataloggetfollowids)
     
@@ -80,6 +81,16 @@
     * [Lead#submitCustomForm](#leadsubmitcustomform)
     * [Lead#getParticipantsInsideVideoRoom](#leadgetparticipantsinsidevideoroom)
     * [Lead#getTokenForVideoRoom](#leadgettokenforvideoroom)
+    
+   
+
+* [Theme](#Theme)
+  * Methods
+    * [Theme#getCustomPage](#themegetcustompage)
+    * [Theme#getBlog](#themegetblog)
+    * [Theme#getFPITags](#themegetfpitags)
+    * [Theme#getAppliedTheme](#themegetappliedtheme)
+    * [Theme#getThemeForPreview](#themegetthemeforpreview)
     
    
 
@@ -1208,15 +1219,15 @@ Error Response:
 ---
 
 
-#### Catalog#unfollowById
-UnFollow a Product
+#### Catalog#followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collection_type, collection_id, );
+const promise = catalog.followById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.unfollowById(collection_type, collection_id, );
+const data = await catalog.followById(collection_type, collection_id, );
 
 ```
 
@@ -1225,7 +1236,7 @@ const data = await catalog.unfollowById(collection_type, collection_id, );
 | collection_type | string |  | 
 | collection_id | integer |  | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -1256,15 +1267,15 @@ Error Response:
 ---
 
 
-#### Catalog#followById
-Follow a particular Product
+#### Catalog#unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collection_type, collection_id, );
+const promise = catalog.unfollowById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.followById(collection_type, collection_id, );
+const data = await catalog.unfollowById(collection_type, collection_id, );
 
 ```
 
@@ -1273,7 +1284,7 @@ const data = await catalog.followById(collection_type, collection_id, );
 | collection_type | string |  | 
 | collection_id | integer |  | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -5984,6 +5995,310 @@ Default
 
 
 Error Response:
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Theme
+
+```javascript
+const { Configuration, Theme } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const theme = new Theme(conf);
+
+```
+
+
+#### Theme#getCustomPage
+Get Page by slug
+
+```javascript
+// Promise
+const promise = theme.getCustomPage(slug, );
+
+// Async/Await
+const data = await theme.getCustomPage(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string |  | 
+
+Use this API to fetch a custom page using `slug`
+
+Success Response:
+
+
+
+A JSON object with page details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CustomPage"
+}`
+
+
+Examples: 
+
+
+Custom Blog
+```javascript
+{
+  "$ref": "#/components/examples/CustomPage"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Theme#getBlog
+Get Blog by slug
+
+```javascript
+// Promise
+const promise = theme.getBlog(slug, );
+
+// Async/Await
+const data = await theme.getBlog(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string |  | 
+
+Use this API to fetch a blog using `slug`
+
+Success Response:
+
+
+
+A JSON object with blog details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CustomBlog"
+}`
+
+
+Examples: 
+
+
+Custom Blog
+```javascript
+{
+  "$ref": "#/components/examples/CustomBlog"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Theme#getFPITags
+Get Tags for application
+
+```javascript
+// Promise
+const promise = theme.getFPITags();
+
+// Async/Await
+const data = await theme.getFPITags();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+A JSON object of tags
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/TagsSchema"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Theme#getAppliedTheme
+Get applied theme for an application
+
+```javascript
+// Promise
+const promise = theme.getAppliedTheme();
+
+// Async/Await
+const data = await theme.getAppliedTheme();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+A JSON object of theme
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ThemesSchema"
+}`
+
+
+Examples: 
+
+
+Applied Theme
+```javascript
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Theme#getThemeForPreview
+Get theme for preview
+
+```javascript
+// Promise
+const promise = theme.getThemeForPreview(themeId, );
+
+// Async/Await
+const data = await theme.getThemeForPreview(themeId, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| themeId | string |  | 
+
+
+
+Success Response:
+
+
+
+A JSON object of theme
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ThemesSchema"
+}`
+
+
+Examples: 
+
+
+Preview Theme
+```javascript
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 
 
