@@ -6,6 +6,7 @@ const {
     Cart,
     Lead,
     Theme,
+    Communication,
 } = require("./operations");
 
 

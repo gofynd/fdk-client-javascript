@@ -1,10 +1,11 @@
 # FDK Application Front API Documentaion
 
 
-* [Catalog](#Catalog) - Application Front API's leverages Fynd's real-time inventory integration with over 400+ brands & 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
+* [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Cart](#Cart) - Open API leverages Fynd's real-time inventory integration with over 200+ brands & 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes and on the fly script injections 
+* [Communication](#Communication) -  
 
 ----
 ----
@@ -23,8 +24,8 @@
     * [Catalog#getComparedFrequentlyProductBySlug](#cataloggetcomparedfrequentlyproductbyslug)
     * [Catalog#getProductSimilarByIdentifier](#cataloggetproductsimilarbyidentifier)
     * [Catalog#getProductVariantsBySlug](#cataloggetproductvariantsbyslug)
-    * [Catalog#getProductStockByIdentifier](#cataloggetproductstockbyidentifier)
-    * [Catalog#getProductStockForTimeByIdentifier](#cataloggetproductstockfortimebyidentifier)
+    * [Catalog#getProductStockByIds](#cataloggetproductstockbyids)
+    * [Catalog#getProductStockForTimeByIds](#cataloggetproductstockfortimebyids)
     * [Catalog#getProducts](#cataloggetproducts)
     * [Catalog#getBrands](#cataloggetbrands)
     * [Catalog#getBrandDetailBySlug](#cataloggetbranddetailbyslug)
@@ -37,8 +38,8 @@
     * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
     * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
     * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
-    * [Catalog#followById](#catalogfollowbyid)
     * [Catalog#unfollowById](#catalogunfollowbyid)
+    * [Catalog#followById](#catalogfollowbyid)
     * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
     * [Catalog#getFollowIds](#cataloggetfollowids)
     
@@ -94,6 +95,14 @@
     
    
 
+* [Communication](#Communication)
+  * Methods
+    * [Communication#getCommunicationConsent](#communicationgetcommunicationconsent)
+    * [Communication#postCommunicationConsent](#communicationpostcommunicationconsent)
+    * [Communication#updatePushtoken](#communicationupdatepushtoken)
+    
+   
+
 
 ---
 ---
@@ -127,7 +136,7 @@ const data = await catalog.getProductDetailBySlug(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **/v1.0/products/** | 
 
 Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
 
@@ -174,8 +183,8 @@ const data = await catalog.getProductSizesBySlug(slug, store_id, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
-| store_id | string |  | 
+| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **/v1.0/products/** | 
+| store_id | string | The store id of the product whose sizes need to be retrieved | 
 
 A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
 
@@ -222,10 +231,10 @@ const data = await catalog.getProductPriceBySlug(slug, size, pincode, store_id, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
-| size | string |  | 
-| pincode | integer |  | 
-| store_id | string |  | 
+| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **/v1.0/products/** | 
+| size | string | The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **/v1.0/products/{slug}/sizes/** | 
+| pincode | integer | The pincode of the product for which the price needs to be retrieved. | 
+| store_id | string | The store of the product whose size level price need to be retrieved | 
 
 Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
 
@@ -272,11 +281,11 @@ const data = await catalog.getProductSellersBySlug(slug, size, pincode, page_no,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
-| size | string |  | 
-| pincode | integer |  | 
-| page_no | integer |  | 
-| page_size | integer |  | 
+| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **/v1.0/products/** | 
+| size | string | The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **/v1.0.0/products/sizes** | 
+| pincode | integer | The pincode of the product for which the price needs to be retrieved. | 
+| page_no | integer | The page number to navigate through the given set of results. | 
+| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
 
 A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
 
@@ -323,7 +332,7 @@ const data = await catalog.getProductComparisonBySlugs(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **/v1.0/products/** | 
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
 
@@ -370,7 +379,7 @@ const data = await catalog.getSimilarComparisonProductBySlug(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **/v1.0/products/** | 
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products
 
@@ -417,7 +426,7 @@ const data = await catalog.getComparedFrequentlyProductBySlug(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **/v1.0/products/** | 
 
 Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
 
@@ -464,8 +473,8 @@ const data = await catalog.getProductSimilarByIdentifier(slug, similar_type, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
-| similar_type | string |  | 
+| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **/v1.0/products/** | 
+| similar_type | string | The tag_identifier is used to fetch the particular type of similar product such as basic, visual, price, seller, category and spec. | 
 
 Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
 
@@ -512,7 +521,7 @@ const data = await catalog.getProductVariantsBySlug(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **/v1.0/products/** | 
 
 A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
 
@@ -545,25 +554,25 @@ Error Response:
 ---
 
 
-#### Catalog#getProductStockByIdentifier
+#### Catalog#getProductStockByIds
 Get the stock of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, );
+const promise = catalog.getProductStockByIds(item_id, alu, sku_code, ean, upc, );
 
 // Async/Await
-const data = await catalog.getProductStockByIdentifier(item_id, alu, sku_code, ean, upc, );
+const data = await catalog.getProductStockByIds(item_id, alu, sku_code, ean, upc, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| item_id | string |  | 
-| alu | string |  | 
-| sku_code | string |  | 
-| ean | string |  | 
-| upc | string |  | 
+| item_id | string | Product id to get product stock (Max. 50 allowed) | 
+| alu | string | Product identifier alu to get product stock (Max. 50 allowed) | 
+| sku_code | string | Product identifier sku_code to get product stock (Max. 50 allowed) | 
+| ean | string | Product identifier ean to get product stock (Max. 50 allowed) | 
+| upc | string | Product identifier upc to get product stock (Max. 50 allowed) | 
 
 Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
 
@@ -596,23 +605,23 @@ Error Response:
 ---
 
 
-#### Catalog#getProductStockForTimeByIdentifier
+#### Catalog#getProductStockForTimeByIds
 Get the stock of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductStockForTimeByIdentifier(timestamp, page_size, page_id, );
+const promise = catalog.getProductStockForTimeByIds(timestamp, page_size, page_id, );
 
 // Async/Await
-const data = await catalog.getProductStockForTimeByIdentifier(timestamp, page_size, page_id, );
+const data = await catalog.getProductStockForTimeByIds(timestamp, page_size, page_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| timestamp | string |  | 
-| page_size | integer |  | 
-| page_id | string |  | 
+| timestamp | string | timestamp in UTC format (2020-07-23T10:27:50Z) | 
+| page_size | integer | Limit of number of items for stock status default 12 | 
+| page_id | string | will give next page results | 
 
 Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
 
@@ -650,19 +659,20 @@ List the products
 
 ```javascript
 // Promise
-const promise = catalog.getProducts(q, sort_on, page_id, page_size, );
+const promise = catalog.getProducts(q, f, sort_on, page_id, page_size, );
 
 // Async/Await
-const data = await catalog.getProducts(q, sort_on, page_id, page_size, );
+const data = await catalog.getProducts(q, f, sort_on, page_id, page_size, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| q | string |  | 
-| sort_on | string |  | 
-| page_id | string |  | 
-| page_size | integer |  | 
+| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
+| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
+| sort_on | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
+| page_id | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
 
 List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
 
@@ -709,9 +719,9 @@ const data = await catalog.getBrands(department, page_no, page_size, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| department | string |  | 
-| page_no | integer |  | 
-| page_size | integer |  | 
+| department | string | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **/v1.0/departments/** API | 
+| page_no | integer | The page number to navigate through the given set of results | 
+| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
 
 A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
 
@@ -758,7 +768,7 @@ const data = await catalog.getBrandDetailBySlug(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | The unique identifier of a brand. i.e; `slug` of a brand. You can retrieve these from the APIs that list brands like **/v1.0/brands/** | 
 
 Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
 
@@ -805,7 +815,7 @@ const data = await catalog.getCategories(department, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| department | string |  | 
+| department | string | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **/v1.0/departments/** API | 
 
 List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
 
@@ -852,7 +862,7 @@ const data = await catalog.getCategoryDetailBySlug(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | The unique identifier of a category. i.e; `slug` of a category. You can retrieve these from the APIs that list categories like **/v1.0/categories/** | 
 
 Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
 
@@ -899,9 +909,9 @@ const data = await catalog.getHomeProducts(sort_on, page_id, page_size, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| sort_on | string |  | 
-| page_id | string |  | 
-| page_size | integer |  | 
+| sort_on | string | Each response will contain **sort_on** param, which should be sent back to make pagination work. | 
+| page_id | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
 
 List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
 
@@ -994,7 +1004,7 @@ const data = await catalog.getSearchResults(q, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| q | string |  | 
+| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
 
 Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
 
@@ -1041,8 +1051,8 @@ const data = await catalog.getCollections(page_id, page_size, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| page_id | string |  | 
-| page_size | integer |  | 
+| page_id | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
 
@@ -1080,19 +1090,20 @@ Get the items in a collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollectionItemsBySlug(slug, sort_on, page_id, page_size, );
+const promise = catalog.getCollectionItemsBySlug(slug, f, sort_on, page_id, page_size, );
 
 // Async/Await
-const data = await catalog.getCollectionItemsBySlug(slug, sort_on, page_id, page_size, );
+const data = await catalog.getCollectionItemsBySlug(slug, f, sort_on, page_id, page_size, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
-| sort_on | string |  | 
-| page_id | string |  | 
-| page_size | integer |  | 
+| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items | 
+| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
+| sort_on | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
+| page_id | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
 
 Get items in a collection specified by its `slug`.
 
@@ -1139,7 +1150,7 @@ const data = await catalog.getCollectionDetailBySlug(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. | 
 
 Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
 
@@ -1186,7 +1197,7 @@ const data = await catalog.getFollowedListing(collection_type, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| collection_type | string |  | 
+| collection_type | string | Type of collection followed. i. e. products, brands, collections | 
 
 A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
 
@@ -1219,24 +1230,24 @@ Error Response:
 ---
 
 
-#### Catalog#followById
-Follow a particular Product
+#### Catalog#unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collection_type, collection_id, );
+const promise = catalog.unfollowById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.followById(collection_type, collection_id, );
+const data = await catalog.unfollowById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| collection_type | string |  | 
-| collection_id | integer |  | 
+| collection_type | string | Type of collection followed. i. e. products, brands, collections | 
+| collection_id | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -1267,24 +1278,24 @@ Error Response:
 ---
 
 
-#### Catalog#unfollowById
-UnFollow a Product
+#### Catalog#followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collection_type, collection_id, );
+const promise = catalog.followById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.unfollowById(collection_type, collection_id, );
+const data = await catalog.followById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| collection_type | string |  | 
-| collection_id | integer |  | 
+| collection_type | string | Type of collection followed. i. e. products, brands, collections | 
+| collection_id | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -1329,8 +1340,8 @@ const data = await catalog.getFollowerCountById(collection_type, collection_id, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| collection_type | string |  | 
-| collection_id | string |  | 
+| collection_type | string | the `type` of the collection products/brands/collections. | 
+| collection_id | string | the `id` of the product/brand/collection. | 
 
 Get count of followers for given collection type and collection id.
 
@@ -1377,7 +1388,7 @@ const data = await catalog.getFollowIds(collection_type, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| collection_type | string |  | 
+| collection_type | string | Type of collection followed. i. e. products, brands, collections | 
 
 You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
 
@@ -1441,11 +1452,11 @@ const data = await cart.getCart(uid, assign_card_id, x-application-id, x-applica
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | unique identification number of cart affiliate | 
-| assign_card_id | integer | assign card id | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| uid | integer |  | 
+| assign_card_id | integer |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartV1Serializer
 
@@ -1490,10 +1501,10 @@ const data = await cart.getCartLastModified(uid, x-application-id, x-application
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | unique identification number of cart affiliate | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| uid | integer |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Fetch Last-Modified timestamp in header metadata
 
@@ -1528,9 +1539,9 @@ const data = await cart.addItemsToCart(x-application-id, x-application-token, x-
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 <p>Add Items to cart. See `CartV1Serializer` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api's</p> <ul> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">seller_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">store_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> </ul>
 
@@ -2208,9 +2219,9 @@ const data = await cart.updateCart(x-application-id, x-application-token, x-curr
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
@@ -2617,10 +2628,10 @@ const data = await cart.getCartItemCount(uid, x-application-id, x-application-to
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| uid | integer | Cart id | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Get total count of item present in cart
 
@@ -2671,10 +2682,10 @@ const data = await cart.getCouponList(uid, x-application-id, x-application-token
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | unique identification number of cart affiliate | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| uid | integer |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponseSchema
 
@@ -2719,12 +2730,12 @@ const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-tok
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| i | boolean | items | 
-| b | boolean | breakups | 
-| p | boolean | payment | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| i | boolean |  | 
+| b | boolean |  | 
+| p | boolean |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
 </ul>
@@ -2756,10 +2767,10 @@ const data = await cart.removeCoupon(uid, x-application-id, x-application-token,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| uid | integer | Cart id | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Remove Coupon applied on the cart by passing uid in request body.
 
@@ -2804,13 +2815,13 @@ const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| item_id | integer |  | 
-| article_id | string |  | 
-| uid | integer |  | 
-| slug | string |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| item_id | integer | Item id | 
+| article_id | string | Article mongo id | 
+| uid | integer | Item id | 
+| slug | string | Item unique url from product page | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
 
@@ -2928,14 +2939,14 @@ const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, defa
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | unique identification number of cart affiliate | 
-| mobile_no | integer | mobile_no | 
-| checkout_mode | string | checkout_mode | 
-| tags | integer | tags | 
-| default | integer | default | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| uid | integer |  | 
+| mobile_no | integer |  | 
+| checkout_mode | string |  | 
+| tags | integer |  | 
+| default | integer |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -2980,9 +2991,9 @@ const data = await cart.addAddress(x-application-id, x-application-token, x-curr
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 <p>Add Address to account. See `SaveAddressRequestSchema` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
 
@@ -3027,15 +3038,15 @@ const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer | address_id | 
-| uid | integer | unique identification number of cart affiliate | 
-| mobile_no | integer | mobile_no | 
-| checkout_mode | string | checkout_mode | 
-| tags | integer | tags | 
-| default | integer | default | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| id | integer |  | 
+| uid | integer |  | 
+| mobile_no | integer |  | 
+| checkout_mode | string |  | 
+| tags | integer |  | 
+| default | integer |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
@@ -3080,10 +3091,10 @@ const data = await cart.updateAddress(id, x-application-id, x-application-token,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| id | integer | Address id | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequestSchema </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
 
@@ -3114,10 +3125,10 @@ const data = await cart.removeAddress(id, x-application-id, x-application-token,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| id | integer | Address id | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
 
@@ -3148,9 +3159,9 @@ const data = await cart.selectCartAddress(x-application-id, x-application-token,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequestSchema` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
 
@@ -3183,15 +3194,15 @@ const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payme
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | string | unique identification number | 
-| address_id | string | Address of customer | 
-| payment_mode | string | selected payment mode of customer | 
-| payment_identifier | string | identifier of payment like ICIC, PAYTM | 
-| aggregator_name | string | payment gateway identifier | 
-| merchant_code | string | identifier of payment like NB_ICIC, PAYTM | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| uid | string |  | 
+| address_id | string |  | 
+| payment_mode | string |  | 
+| payment_identifier | string |  | 
+| aggregator_name | string |  | 
+| merchant_code | string |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Validate coupon for selected payment mode
 
@@ -3236,10 +3247,10 @@ const data = await cart.selectCartPaymentMode(uid, x-application-id, x-applicati
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | string | unique identification number | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| uid | string |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Update Cart Payment for Your Account
 
@@ -3284,12 +3295,12 @@ const data = await cart.getCartShipments(p, uid, address_id, x-application-id, x
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| p | boolean |  | 
-| uid | integer |  | 
-| address_id | integer |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| p | boolean | Get payment options or not | 
+| uid | integer | Cart id | 
+| address_id | integer | Address id | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
@@ -3976,9 +3987,9 @@ const data = await cart.checkoutCart(x-application-id, x-application-token, x-cu
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
 
@@ -4400,10 +4411,10 @@ const data = await cart.updateCartMeta(uid, x-application-id, x-application-toke
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| uid | integer | Cart id received in get cart. | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Update cart meta like checkout_mode, gstin.
 
@@ -4455,9 +4466,9 @@ const data = await cart.getCartShareLink(x-application-id, x-application-token, 
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Generates shared cart snapshot and returns shortlink token
 
@@ -4524,10 +4535,10 @@ const data = await cart.getCartSharedItems(token, x-application-id, x-applicatio
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| token | string |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| token | string | Shared short link token. | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
 
@@ -4582,11 +4593,11 @@ const data = await cart.updateCartWithSharedItems(token, action, x-application-i
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| token | string |  | 
-| action | string |  | 
-| x-application-id | string |  | 
-| x-application-token | string |  | 
-| x-currency-code | string |  | 
+| token | string | Shared short link token. | 
+| action | string | Operation to perform on existing cart, whether to merge or replace. | 
+| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
+| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
+| x-currency-code | string | User selected currency code default value is INR | 
 
 Merge or Replace cart based on `action` parameter with shared cart of `token`
 
@@ -4939,7 +4950,7 @@ const data = await lead.getTicket(id, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string |  | 
+| id | string | ID of ticket to be retrieved | 
 
 Get Ticket with the specific id, this is used to view the ticket details
 
@@ -5188,7 +5199,7 @@ const data = await lead.createHistoryForTicket(ticket_id, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| ticket_id | string |  | 
+| ticket_id | string | Ticket ID for which history is created | 
 
 Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
@@ -5530,7 +5541,7 @@ const data = await lead.getCustomForm(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | Slug of form whose response is getting submitted | 
 
 Get specific Custom Form using it's slug, this is used to view the form.
 
@@ -5632,7 +5643,7 @@ const data = await lead.submitCustomForm(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | Slug of form whose response is getting submitted | 
 
 Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
 
@@ -5889,7 +5900,7 @@ const data = await lead.getParticipantsInsideVideoRoom(unique_name, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| unique_name | string |  | 
+| unique_name | string | Unique name of Video Room | 
 
 Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
 
@@ -5953,7 +5964,7 @@ const data = await lead.getTokenForVideoRoom(unique_name, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| unique_name | string |  | 
+| unique_name | string | Unique name of Video Room | 
 
 Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
 
@@ -6034,7 +6045,7 @@ const data = await theme.getCustomPage(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
 
 Use this API to fetch a custom page using `slug`
 
@@ -6094,7 +6105,7 @@ const data = await theme.getBlog(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string |  | 
+| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
 
 Use this API to fetch a blog using `slug`
 
@@ -6261,7 +6272,7 @@ const data = await theme.getThemeForPreview(themeId, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| themeId | string |  | 
+| themeId | string | ID of the theme to be retrieved | 
 
 
 
@@ -6299,6 +6310,206 @@ Preview Theme
 Error Response:
 
 
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Communication
+
+```javascript
+const { Configuration, Communication } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const communication = new Communication(conf);
+
+```
+
+
+#### Communication#getCommunicationConsent
+Get communication consent
+
+```javascript
+// Promise
+const promise = communication.getCommunicationConsent();
+
+// Async/Await
+const data = await communication.getCommunicationConsent();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get communication consent
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CommunicationConsent"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CommunicationConsent"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Communication#postCommunicationConsent
+Create/Update communication consent
+
+```javascript
+// Promise
+const promise = communication.postCommunicationConsent();
+
+// Async/Await
+const data = await communication.postCommunicationConsent();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create/Update communication consent
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CommunicationConsentRes"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CommunicationConsentRes"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Communication#updatePushtoken
+Update push token of a user
+
+```javascript
+// Promise
+const promise = communication.updatePushtoken();
+
+// Async/Await
+const data = await communication.updatePushtoken();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update push token of a user
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/PushtokenRes"
+}`
+
+
+Examples: 
+
+
+create
+```javascript
+{
+  "$ref": "#/components/examples/PushtokenResponseCreate"
+}
+```
+
+update
+```javascript
+{
+  "$ref": "#/components/examples/PushtokenResponseUpdate"
+}
+```
+
+reset
+```javascript
+{
+  "$ref": "#/components/examples/PushtokenResponseReset"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
 
 
 

@@ -5,22 +5,22 @@ const Configuration = require("./configuration");
 
 
 const { 
-    ProductDetailAttribute,
-    ProductDetailGroupedAttribute,
+    Media,
     ProductListingActionPage,
     ProductListingAction,
-    Media,
     ProductBrand,
+    ProductDetailAttribute,
+    ProductDetailGroupedAttribute,
     ProductDetail,
     Error,
-    ProductSizeStores,
+    ProductSize,
     Price,
     ProductListingPrice,
-    ProductSize,
+    ProductSizeStores,
     ProductSizes,
-    ArticleAssignment,
     Seller,
     ProductStockPrice,
+    ArticleAssignment,
     Store,
     ProductSizePriceResponse,
     ProductPage,
@@ -40,8 +40,8 @@ const {
     ProductStockStatusItem,
     ProductStockStatusResponse,
     ProductStockPolling,
-    ProductFiltersKey,
     ProductFiltersValue,
+    ProductFiltersKey,
     ProductFilters,
     ProductSortOn,
     ProductListingResponse,
@@ -49,9 +49,9 @@ const {
     BrandItem,
     BrandListingResponse,
     BrandDetailResponse,
-    DepartmentIdentifier,
     CategoryItems,
     DepartmentCategoryTree,
+    DepartmentIdentifier,
     CategoryListingResponse,
     CategoryMetaResponse,
     Page,
@@ -223,7 +223,7 @@ class Catalog {
     * Summary: Get the stock of a product
     * Description:  Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
     **/
-    getProductStockByIdentifier(
+    getProductStockByIds(
     ) {
         return APIClient.execute(
             this._conf,
@@ -237,7 +237,7 @@ class Catalog {
     * Summary: Get the stock of a product
     * Description:  Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
     **/
-    getProductStockForTimeByIdentifier(
+    getProductStockForTimeByIds(
         timestamp, opts
     ) {
         return APIClient.execute(
@@ -423,22 +423,6 @@ class Catalog {
     
     /**
     *
-    * Summary: Follow a particular Product
-    * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-    **/
-    followById(
-        collectionType, opts
-        collectionId, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "post",
-            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
-        );
-    }
-    
-    /**
-    *
     * Summary: UnFollow a Product
     * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
     **/
@@ -449,6 +433,22 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "delete",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Follow a particular Product
+    * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+    **/
+    followById(
+        collectionType, opts
+        collectionId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
             "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
         );
     }
@@ -1121,5 +1121,68 @@ class Theme {
 
 
 exports.Theme = Theme;
+
+
+
+const { 
+    CommunicationConsentReq,
+    CommunicationConsentRes,
+    CommunicationConsent,
+    PushtokenReq,
+    PushtokenRes
+} = require("./schema");
+
+    
+class Communication {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Get communication consent
+    * Description:  Get communication consent
+    **/
+    getCommunicationConsent(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/communication/v1.0/consent",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Create/Update communication consent
+    * Description:  Create/Update communication consent
+    **/
+    postCommunicationConsent(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/communication/v1.0/consent",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update push token of a user
+    * Description:  Update push token of a user
+    **/
+    updatePushtoken(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/platform/communication/v1.0/pn-token",
+        );
+    }
+    
+}
+
+
+exports.Communication = Communication;
 
 
