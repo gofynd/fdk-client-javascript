@@ -1188,6 +1188,130 @@ exports.Communication = Communication;
 
 
 const { 
+    qrResp,
+    redirect_device,
+    redirects,
+    shortUrlReq,
+    shortUrlRes
+} = require("./schema");
+
+    
+class Share {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Create application QR Code
+    * Description:  Create application QR Code
+    **/
+    getApplicationQRCode(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/share/v1.0/qr/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Create product QR Code
+    * Description:  Create product QR Code
+    **/
+    getProductQRCodeBySlug(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/share/v1.0/qr/products/{slug}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Create collection QR Code
+    * Description:  Create collection QR Code
+    **/
+    getCollectionQRCodeBySlug(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/share/v1.0/qr/collection/{slug}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Create url QR Code
+    * Description:  Create url QR Code
+    **/
+    getUrlQRCode(
+        url, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/share/v1.0/qr/url/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Create short url
+    * Description:  Create short url
+    **/
+    createShortUrl(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/share/v1.0/links/short-url/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get short url by hash
+    * Description:  Get short url by hash
+    **/
+    getShortUrlbyHash(
+        hash, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/share/v1.0/links/short-url/{hash}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get original url by hash
+    * Description:  Get original url by hash
+    **/
+    getOriginalShortUrlByHash(
+        hash, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/share/v1.0/links/short-url/{hash}/original/",
+        );
+    }
+    
+}
+
+
+exports.Share = Share;
+
+
+
+const { 
     failedResponse,
     cdn,
     upload,

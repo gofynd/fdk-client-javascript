@@ -6,6 +6,7 @@
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes and on the fly script injections 
 * [Communication](#Communication) -  
+* [Share](#Share) - Short link and Qr code 
 * [FileStorage](#FileStorage) - File Storage 
 
 ----
@@ -101,6 +102,18 @@
     * [Communication#getCommunicationConsent](#communicationgetcommunicationconsent)
     * [Communication#postCommunicationConsent](#communicationpostcommunicationconsent)
     * [Communication#updatePushtoken](#communicationupdatepushtoken)
+    
+   
+
+* [Share](#Share)
+  * Methods
+    * [Share#getApplicationQRCode](#sharegetapplicationqrcode)
+    * [Share#getProductQRCodeBySlug](#sharegetproductqrcodebyslug)
+    * [Share#getCollectionQRCodeBySlug](#sharegetcollectionqrcodebyslug)
+    * [Share#getUrlQRCode](#sharegeturlqrcode)
+    * [Share#createShortUrl](#sharecreateshorturl)
+    * [Share#getShortUrlbyHash](#sharegetshorturlbyhash)
+    * [Share#getOriginalShortUrlByHash](#sharegetoriginalshorturlbyhash)
     
    
 
@@ -6520,6 +6533,336 @@ reset
 Error Response:
 
 
+
+
+
+---
+
+
+
+---
+
+
+## Share
+
+```javascript
+const { Configuration, Share } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const share = new Share(conf);
+
+```
+
+
+#### Share#getApplicationQRCode
+Create application QR Code
+
+```javascript
+// Promise
+const promise = share.getApplicationQRCode();
+
+// Async/Await
+const data = await share.getApplicationQRCode();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create application QR Code
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/qrResp"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Share#getProductQRCodeBySlug
+Create product QR Code
+
+```javascript
+// Promise
+const promise = share.getProductQRCodeBySlug(slug, );
+
+// Async/Await
+const data = await share.getProductQRCodeBySlug(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | Id or Slug of product | 
+
+Create product QR Code
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/qrResp"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Share#getCollectionQRCodeBySlug
+Create collection QR Code
+
+```javascript
+// Promise
+const promise = share.getCollectionQRCodeBySlug(slug, );
+
+// Async/Await
+const data = await share.getCollectionQRCodeBySlug(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | Id or Slug of collection | 
+
+Create collection QR Code
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/qrResp"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Share#getUrlQRCode
+Create url QR Code
+
+```javascript
+// Promise
+const promise = share.getUrlQRCode(url, );
+
+// Async/Await
+const data = await share.getUrlQRCode(url, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| url | string | Url | 
+
+Create url QR Code
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/qrResp"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Share#createShortUrl
+Create short url
+
+```javascript
+// Promise
+const promise = share.createShortUrl();
+
+// Async/Await
+const data = await share.createShortUrl();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create short url
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/shortUrlRes"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Share#getShortUrlbyHash
+Get short url by hash
+
+```javascript
+// Promise
+const promise = share.getShortUrlbyHash(hash, );
+
+// Async/Await
+const data = await share.getShortUrlbyHash(hash, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| hash | string | Hash of short url | 
+
+Get short url by hash
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/shortUrlRes"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Share#getOriginalShortUrlByHash
+Get original url by hash
+
+```javascript
+// Promise
+const promise = share.getOriginalShortUrlByHash(hash, );
+
+// Async/Await
+const data = await share.getOriginalShortUrlByHash(hash, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| hash | string | Hash of short url | 
+
+Get original url by hash
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/shortUrlRes"
+}`
+
+
+
+
+
+
+
+
+Error Response:
 
 
 
