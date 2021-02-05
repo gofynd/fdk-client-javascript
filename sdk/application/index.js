@@ -7,6 +7,7 @@ const {
     Lead,
     Theme,
     Communication,
+    FileStorage,
 } = require("./operations");
 
 

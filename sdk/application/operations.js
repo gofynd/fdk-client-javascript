@@ -13,15 +13,15 @@ const {
     ProductDetailGroupedAttribute,
     ProductDetail,
     Error,
+    ProductSizeStores,
     ProductSize,
     Price,
     ProductListingPrice,
-    ProductSizeStores,
     ProductSizes,
-    Seller,
     ProductStockPrice,
-    ArticleAssignment,
+    Seller,
     Store,
+    ArticleAssignment,
     ProductSizePriceResponse,
     ProductPage,
     ProductSizeSellerFilter,
@@ -40,10 +40,10 @@ const {
     ProductStockStatusItem,
     ProductStockStatusResponse,
     ProductStockPolling,
+    ProductSortOn,
     ProductFiltersValue,
     ProductFiltersKey,
     ProductFilters,
-    ProductSortOn,
     ProductListingResponse,
     ImageUrls,
     BrandItem,
@@ -61,8 +61,8 @@ const {
     AutocompleteItem,
     AutoCompleteResponse,
     GetCollectionDetailNest,
-    CollectionListingFilterTag,
     CollectionListingFilterType,
+    CollectionListingFilterTag,
     CollectionListingFilter,
     GetCollectionListingResponse,
     GetCollectionListingItemsResponse,
@@ -1184,5 +1184,93 @@ class Communication {
 
 
 exports.Communication = Communication;
+
+
+
+const { 
+    failedResponse,
+    cdn,
+    upload,
+    startResponse,
+    startRequest,
+    completeResponse
+} = require("./schema");
+
+    
+class FileStorage {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
+    * Description:  Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
+    **/
+    uploadStart(
+        namespace, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/assets/v1.0/uploads/{namespace}/start/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
+    * Description:  Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
+    **/
+    uploadComplete(
+        namespace, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/assets/v1.0/uploads/{namespace}/complete/",
+        );
+    }
+    
+}
+
+
+exports.FileStorage = FileStorage;
 
 

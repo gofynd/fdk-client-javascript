@@ -6,6 +6,7 @@
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes and on the fly script injections 
 * [Communication](#Communication) -  
+* [FileStorage](#FileStorage) - File Storage 
 
 ----
 ----
@@ -100,6 +101,13 @@
     * [Communication#getCommunicationConsent](#communicationgetcommunicationconsent)
     * [Communication#postCommunicationConsent](#communicationpostcommunicationconsent)
     * [Communication#updatePushtoken](#communicationupdatepushtoken)
+    
+   
+
+* [FileStorage](#FileStorage)
+  * Methods
+    * [FileStorage#uploadStart](#filestorageuploadstart)
+    * [FileStorage#uploadComplete](#filestorageuploadcomplete)
     
    
 
@@ -6501,6 +6509,153 @@ reset
   "$ref": "#/components/examples/PushtokenResponseReset"
 }
 ```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+
+---
+
+
+## FileStorage
+
+```javascript
+const { Configuration, FileStorage } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const filestorage = new FileStorage(conf);
+
+```
+
+
+#### FileStorage#uploadStart
+This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
+
+```javascript
+// Promise
+const promise = filestorage.uploadStart(namespace, );
+
+// Async/Await
+const data = await filestorage.uploadStart(namespace, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| namespace | string | bucket name | 
+
+Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/startResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### FileStorage#uploadComplete
+This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
+
+```javascript
+// Promise
+const promise = filestorage.uploadComplete(namespace, );
+
+// Async/Await
+const data = await filestorage.uploadComplete(namespace, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| namespace | string | bucket name | 
+
+Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/completeResponse"
+}`
 
 
 
