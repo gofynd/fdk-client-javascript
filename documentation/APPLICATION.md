@@ -8,6 +8,7 @@
 * [Communication](#Communication) -  
 * [Share](#Share) - Short link and Qr code 
 * [FileStorage](#FileStorage) - File Storage 
+* [Configuration](#Configuration) -  
 
 ----
 ----
@@ -119,8 +120,29 @@
 
 * [FileStorage](#FileStorage)
   * Methods
-    * [FileStorage#uploadStart](#filestorageuploadstart)
-    * [FileStorage#uploadComplete](#filestorageuploadcomplete)
+    * [FileStorage#startUpload](#filestoragestartupload)
+    * [FileStorage#completeUpload](#filestoragecompleteupload)
+    
+   
+
+* [Configuration](#Configuration)
+  * Methods
+    * [Configuration#getApplication](#configurationgetapplication)
+    * [Configuration#getOwnerInfo](#configurationgetownerinfo)
+    * [Configuration#getBasicDetails](#configurationgetbasicdetails)
+    * [Configuration#getIntegrationTokens](#configurationgetintegrationtokens)
+    * [Configuration#](#configuration)
+    * [Configuration#getLiveAnnouncements](#configurationgetliveannouncements)
+    * [Configuration#getOrderingStores](#configurationgetorderingstores)
+    * [Configuration#getFeatures](#configurationgetfeatures)
+    * [Configuration#getContactInfo](#configurationgetcontactinfo)
+    * [Configuration#getLegalTerms](#configurationgetlegalterms)
+    * [Configuration#getSeoInfo](#configurationgetseoinfo)
+    * [Configuration#getCustomerSupport](#configurationgetcustomersupport)
+    * [Configuration#getFaqs](#configurationgetfaqs)
+    * [Configuration#getCurrencies](#configurationgetcurrencies)
+    * [Configuration#getCurrenciesById](#configurationgetcurrenciesbyid)
+    * [Configuration#getLanguages](#configurationgetlanguages)
     
    
 
@@ -6886,15 +6908,15 @@ const filestorage = new FileStorage(conf);
 ```
 
 
-#### FileStorage#uploadStart
+#### FileStorage#startUpload
 This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
 
 ```javascript
 // Promise
-const promise = filestorage.uploadStart(namespace, );
+const promise = filestorage.startUpload(namespace, );
 
 // Async/Await
-const data = await filestorage.uploadStart(namespace, );
+const data = await filestorage.startUpload(namespace, );
 
 ```
 
@@ -6951,15 +6973,15 @@ Error Response:
 ---
 
 
-#### FileStorage#uploadComplete
+#### FileStorage#completeUpload
 This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
 
 ```javascript
 // Promise
-const promise = filestorage.uploadComplete(namespace, );
+const promise = filestorage.completeUpload(namespace, );
 
 // Async/Await
-const data = await filestorage.uploadComplete(namespace, );
+const data = await filestorage.completeUpload(namespace, );
 
 ```
 
@@ -7010,6 +7032,708 @@ Schema: `{
 Error Response:
 
 
+
+
+
+---
+
+
+
+---
+
+
+## Configuration
+
+```javascript
+const { Configuration, Configuration } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const configuration = new Configuration(conf);
+
+```
+
+
+#### Configuration#getApplication
+Get current application details
+
+```javascript
+// Promise
+const promise = configuration.getApplication();
+
+// Async/Await
+const data = await configuration.getApplication();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get current application details.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Application"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Configuration#getOwnerInfo
+Get basic details of application
+
+```javascript
+// Promise
+const promise = configuration.getOwnerInfo();
+
+// Async/Await
+const data = await configuration.getOwnerInfo();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get application information with owner and seller basic details
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationAboutResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Configuration#getBasicDetails
+Get basic application details
+
+```javascript
+// Promise
+const promise = configuration.getBasicDetails();
+
+// Async/Await
+const data = await configuration.getBasicDetails();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get basic application details like name
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationDetailResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Configuration#getIntegrationTokens
+Get integration tokens
+
+```javascript
+// Promise
+const promise = configuration.getIntegrationTokens();
+
+// Async/Await
+const data = await configuration.getIntegrationTokens();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/TokensResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Configuration#
+Check if a new app version is available
+
+```javascript
+// Promise
+const promise = configuration.();
+
+// Async/Await
+const data = await configuration.();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Before launching the app (android/iOS), check if a new version is available. Response gives 3 update modes viz. FORCE, AVAILABLE, UP_TO_DATE. `FORCE`- Application should be updated necessarily. `AVAILABLE`- A new version available. But its not necessary to update. `UP_TO_DATE`- Application is at the latest version. These 3 modes are computed at the backend based on the lastest version of app available and the oldest version of app supported by the system.
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Configuration#getLiveAnnouncements
+Get live announcements
+
+```javascript
+// Promise
+const promise = configuration.getLiveAnnouncements();
+
+// Async/Await
+const data = await configuration.getLiveAnnouncements();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get live announcements for each or all pages with page slug of page and end date schedule.
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Configuration#getOrderingStores
+Get deployment meta stores
+
+```javascript
+// Promise
+const promise = configuration.getOrderingStores();
+
+// Async/Await
+const data = await configuration.getOrderingStores();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get deployment meta stores.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/OrderingStores"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Configuration#getFeatures
+Get features of application
+
+```javascript
+// Promise
+const promise = configuration.getFeatures();
+
+// Async/Await
+const data = await configuration.getFeatures();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get features of application
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AppFeatureResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Configuration#getContactInfo
+Get application information
+
+```javascript
+// Promise
+const promise = configuration.getContactInfo();
+
+// Async/Await
+const data = await configuration.getContactInfo();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationInformation"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Configuration#getLegalTerms
+Get legal information
+
+```javascript
+// Promise
+const promise = configuration.getLegalTerms();
+
+// Async/Await
+const data = await configuration.getLegalTerms();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationLegal"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Configuration#getSeoInfo
+Get seo of application
+
+```javascript
+// Promise
+const promise = configuration.getSeoInfo();
+
+// Async/Await
+const data = await configuration.getSeoInfo();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get seo of application
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationSeoResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Configuration#getCustomerSupport
+Get support information
+
+```javascript
+// Promise
+const promise = configuration.getCustomerSupport();
+
+// Async/Await
+const data = await configuration.getCustomerSupport();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get contact details for customer support. Including emails and phone numbers.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationSupport"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Configuration#getFaqs
+Get frequently asked questions
+
+```javascript
+// Promise
+const promise = configuration.getFaqs();
+
+// Async/Await
+const data = await configuration.getFaqs();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationFaqResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Configuration#getCurrencies
+Get application enabled currencies
+
+```javascript
+// Promise
+const promise = configuration.getCurrencies();
+
+// Async/Await
+const data = await configuration.getCurrencies();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get currency list for allowed currencies under current application
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Configuration#getCurrenciesById
+Get currency by id
+
+```javascript
+// Promise
+const promise = configuration.getCurrenciesById(id, );
+
+// Async/Await
+const data = await configuration.getCurrenciesById(id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Currency object id | 
+
+Get currency object with symbol and name information by id.
+
+Success Response:
+
+
+
+Success response
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Currency"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Configuration#getLanguages
+Get list of languages
+
+```javascript
+// Promise
+const promise = configuration.getLanguages();
+
+// Async/Await
+const data = await configuration.getLanguages();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get list of supported languages under application.
+
+Success Response:
+
+
+
+Success response
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LanguageResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
 
 
 

@@ -1349,7 +1349,7 @@ After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to comp
 This operation will return the url for the uploaded file.
 
     **/
-    uploadStart(
+    startUpload(
         namespace, opts
     ) {
         return APIClient.execute(
@@ -1382,7 +1382,7 @@ After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to comp
 This operation will return the url for the uploaded file.
 
     **/
-    uploadComplete(
+    completeUpload(
         namespace, opts
     ) {
         return APIClient.execute(
@@ -1396,5 +1396,269 @@ This operation will return the url for the uploaded file.
 
 
 exports.FileStorage = FileStorage;
+
+
+
+const { 
+    Currency,
+    Domain,
+    Application,
+    NotFound,
+    ApplicationAboutResponse,
+    ApplicationDetailResponse,
+    AppVersionRequest,
+    ApplicationVersionRequest,
+    Device,
+    OS,
+    AppFeatureResponse,
+    Announcement,
+    Store,
+    OrderingStores,
+    ApplicationInformation,
+    Faq,
+    ApplicationLegal,
+    SEO,
+    ApplicationSeoResponse,
+    ApplicationSupport,
+    ApplicationFaqResponse,
+    LanguageResponse,
+    TokensResponse
+} = require("./schema");
+
+    
+class Configuration {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Get current application details
+    * Description:  Get current application details.
+    **/
+    getApplication(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/application",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get basic details of application
+    * Description:  Get application information with owner and seller basic details
+    **/
+    getOwnerInfo(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/about",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get basic application details
+    * Description:  Get basic application details like name
+    **/
+    getBasicDetails(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/detail",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get integration tokens
+    * Description:  Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+    **/
+    getIntegrationTokens(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/token",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Check if a new app version is available
+    * Description:  Before launching the app (android/iOS), check if a new version is available. Response gives 3 update modes viz. FORCE, AVAILABLE, UP_TO_DATE. `FORCE`- Application should be updated necessarily. `AVAILABLE`- A new version available. But its not necessary to update. `UP_TO_DATE`- Application is at the latest version. These 3 modes are computed at the backend based on the lastest version of app available and the oldest version of app supported by the system.
+    **/
+    (
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/configuration/v1.0/version",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get live announcements
+    * Description:  Get live announcements for each or all pages with page slug of page and end date schedule.
+    **/
+    getLiveAnnouncements(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/announcements",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get deployment meta stores
+    * Description:  Get deployment meta stores.
+    **/
+    getOrderingStores(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/deploymentmeta/stores",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get features of application
+    * Description:  Get features of application
+    **/
+    getFeatures(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/feature",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get application information
+    * Description:  Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+    **/
+    getContactInfo(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/information",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get legal information
+    * Description:  Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+    **/
+    getLegalTerms(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/legal",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get seo of application
+    * Description:  Get seo of application
+    **/
+    getSeoInfo(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/seo",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get support information
+    * Description:  Get contact details for customer support. Including emails and phone numbers.
+    **/
+    getCustomerSupport(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/support",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get frequently asked questions
+    * Description:  Get frequently asked questions list. These will be helpful for users to using website.
+    **/
+    getFaqs(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/faqs",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get application enabled currencies
+    * Description:  Get currency list for allowed currencies under current application
+    **/
+    getCurrencies(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/currencies",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get currency by id
+    * Description:  Get currency object with symbol and name information by id.
+    **/
+    getCurrenciesById(
+        id, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/currency/{id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get list of languages
+    * Description:  Get list of supported languages under application.
+    **/
+    getLanguages(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/configuration/v1.0/languages",
+        );
+    }
+    
+}
+
+
+exports.Configuration = Configuration;
 
 

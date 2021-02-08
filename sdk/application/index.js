@@ -9,6 +9,7 @@ const {
     Communication,
     Share,
     FileStorage,
+    Configuration,
 } = require("./operations");
 
 
