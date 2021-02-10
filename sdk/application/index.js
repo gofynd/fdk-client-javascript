@@ -10,6 +10,10 @@ const {
     Share,
     FileStorage,
     Configuration,
+    Payment,
+    Order,
+    Rewards,
+    Feedback,
 } = require("./operations");
 
 

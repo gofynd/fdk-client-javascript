@@ -13,18 +13,18 @@ const {
     ProductDetailGroupedAttribute,
     ProductDetail,
     Error,
-    ProductSizeStores,
     ProductSize,
+    ProductSizeStores,
     Price,
     ProductListingPrice,
     ProductSizes,
+    Store,
     ProductStockPrice,
     Seller,
-    Store,
     ArticleAssignment,
     ProductSizePriceResponse,
-    ProductPage,
     ProductSizeSellerFilter,
+    ProductPage,
     ProductSizeSellersResponse,
     AttributeDetail,
     ProductsComparisonResponse,
@@ -41,17 +41,17 @@ const {
     ProductStockStatusResponse,
     ProductStockPolling,
     ProductSortOn,
-    ProductFiltersValue,
     ProductFiltersKey,
+    ProductFiltersValue,
     ProductFilters,
     ProductListingResponse,
     ImageUrls,
     BrandItem,
     BrandListingResponse,
     BrandDetailResponse,
+    DepartmentIdentifier,
     CategoryItems,
     DepartmentCategoryTree,
-    DepartmentIdentifier,
     CategoryListingResponse,
     CategoryMetaResponse,
     Page,
@@ -61,8 +61,8 @@ const {
     AutocompleteItem,
     AutoCompleteResponse,
     GetCollectionDetailNest,
-    CollectionListingFilterType,
     CollectionListingFilterTag,
+    CollectionListingFilterType,
     CollectionListingFilter,
     GetCollectionListingResponse,
     GetCollectionListingItemsResponse,
@@ -423,22 +423,6 @@ class Catalog {
     
     /**
     *
-    * Summary: UnFollow a Product
-    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    **/
-    unfollowById(
-        collectionType, opts
-        collectionId, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "delete",
-            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
-        );
-    }
-    
-    /**
-    *
     * Summary: Follow a particular Product
     * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     **/
@@ -449,6 +433,22 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "post",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: UnFollow a Product
+    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    **/
+    unfollowById(
+        collectionType, opts
+        collectionId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
             "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
         );
     }
@@ -491,43 +491,43 @@ exports.Catalog = Catalog;
 
 
 const { 
-    GetCartV1Serializer,
-    ProductCart,
-    CartV1Serializer,
+    GetCartResponse,
+    AddProductCart,
+    AddCartRequest,
+    CartCurrency,
+    RawBreakup,
+    BaseLoyaltyPoints,
+    CouponBreakup,
+    DisplayBreakup,
+    BaseCartBreakup,
     PaymentFlow,
     PaymentFlows,
     PaymentOption,
     PaymentOptions,
-    CartCurrency,
-    ProductPrice,
-    ProductPriceInfo,
     ProductAvailability,
-    ActionQuery,
-    Action,
     CategoryInfo,
     Image,
     BaseInfo,
+    ActionQuery,
+    Action,
     Product,
-    PlatformCartProductInfoV1,
-    DisplayBreakup,
-    LoyaltyPoints,
-    RawBreakup,
-    CouponBreakup,
-    BaseCartBreakup,
-    PlatformV1Cart,
+    ProductPrice,
+    ProductPriceInfo,
+    CartProductInfo,
+    CartResponse,
     UpdateProductCart,
-    UpdateCartV1Serializer,
+    UpdateCartRequest,
     PageCoupon,
     Coupon,
     GetCouponResponse,
-    Loyality,
-    RawCoupon,
-    GetCoupon,
+    RawCartCoupon,
+    LoyaltyPoints,
+    CartCoupon,
     SaveCoupon,
     SaveCouponResponse,
-    OfferSeller,
     OfferPrice,
     OfferItem,
+    OfferSeller,
     BulkPriceOffer,
     BulkPriceResponse,
     Address,
@@ -540,8 +540,8 @@ const {
     SelectCartAddressRequest,
     UpdateCartPaymentRequest,
     ShipmentResponse,
-    ShipmentCart,
-    CartCheckoutRequestSerializer,
+    CartShipmentsResponse,
+    CartCheckoutRequest,
     DeliverySlot,
     DeliverySlotDate,
     CheckCart,
@@ -549,7 +549,7 @@ const {
     CartCheckoutResponse,
     Meta,
     SharedCartDetails,
-    SharedPlatformV1Cart
+    SharedCartResponse
 } = require("./schema");
 
     
@@ -561,7 +561,7 @@ class Cart {
     /**
     *
     * Summary: Fetch all Items Added to  Cart
-    * Description:  Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartV1Serializer
+    * Description:  Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartResponse
     **/
     getCart(
     ) {
@@ -589,7 +589,7 @@ class Cart {
     /**
     *
     * Summary: Add Items to Cart
-    * Description:  <p>Add Items to cart. See `CartV1Serializer` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api's</p> <ul> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">seller_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">store_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> </ul>
+    * Description:  <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api's</p> <ul> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">seller_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">store_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> </ul>
     **/
     addItemsToCart(
     ) {
@@ -631,7 +631,7 @@ class Cart {
     /**
     *
     * Summary: Fetch Coupon
-    * Description:  Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponseSchema
+    * Description:  Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
     **/
     getCouponList(
     ) {
@@ -688,7 +688,7 @@ class Cart {
     /**
     *
     * Summary: Fetch Address
-    * Description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    * Description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
     **/
     getAddressList(
     ) {
@@ -702,7 +702,7 @@ class Cart {
     /**
     *
     * Summary: Add Address to the account
-    * Description:  <p>Add Address to account. See `SaveAddressRequestSchema` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+    * Description:  <p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
     **/
     addAddress(
     ) {
@@ -716,7 +716,7 @@ class Cart {
     /**
     *
     * Summary: Fetch Single Address
-    * Description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    * Description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
     **/
     getAddressById(
         id, opts
@@ -731,7 +731,7 @@ class Cart {
     /**
     *
     * Summary: Update Address alreay added to account
-    * Description:  Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequestSchema </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+    * Description:  Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
     **/
     updateAddress(
         id, opts
@@ -761,7 +761,7 @@ class Cart {
     /**
     *
     * Summary: Select Address from All Addresses
-    * Description:  <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequestSchema` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+    * Description:  <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
     **/
     selectCartAddress(
     ) {
@@ -1029,10 +1029,9 @@ exports.Lead = Lead;
 
 
 const { 
-    CustomPage,
-    CustomBlog,
+    CustomPageBlogs,
     TagsSchema,
-    ThemesSchema,
+    Themesv3Schema,
     pagesSchema,
     availableSectionSchema,
     sectionSchema
@@ -1046,31 +1045,35 @@ class Theme {
     
     /**
     *
-    * Summary: Get Page by slug
-    * Description:  Use this API to fetch a custom page using `slug`
+    * Summary: Get Blog by slug
+    * Description:  
     **/
     getCustomPage(
+        xApplicationId, opts
+        xApplicationToken, opts
         slug, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/theme/v1.0/custom/page/{slug}",
+            "/v1.0/custom/page/{slug}",
         );
     }
     
     /**
     *
     * Summary: Get Blog by slug
-    * Description:  Use this API to fetch a blog using `slug`
+    * Description:  
     **/
-    getBlog(
+    getCustomBlog(
+        xApplicationId, opts
+        xApplicationToken, opts
         slug, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/theme/v1.0/custom/blog/{slug}",
+            "/v1.0/custom/blog/{slug}",
         );
     }
     
@@ -1079,12 +1082,14 @@ class Theme {
     * Summary: Get Tags for application
     * Description:  
     **/
-    getFPITags(
+    getApplicationTags(
+        xApplicationId, opts
+        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/theme/v1.0/tags",
+            "/v1.0/tags",
         );
     }
     
@@ -1094,11 +1099,13 @@ class Theme {
     * Description:  
     **/
     getAppliedTheme(
+        xApplicationId, opts
+        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/theme/v1.0/applied-theme",
+            "/v1.0/applied-theme",
         );
     }
     
@@ -1113,7 +1120,7 @@ class Theme {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/theme/v1.0/{themeId}/preview",
+            "/v1.0/{themeId}/preview",
         );
     }
     
@@ -1154,10 +1161,10 @@ class Communication {
     
     /**
     *
-    * Summary: Create/Update communication consent
-    * Description:  Create/Update communication consent
+    * Summary: Upsert communication consent
+    * Description:  Upsert communication consent
     **/
-    postCommunicationConsent(
+    upsertCommunicationConsent(
     ) {
         return APIClient.execute(
             this._conf,
@@ -1168,10 +1175,10 @@ class Communication {
     
     /**
     *
-    * Summary: Update push token of a user
-    * Description:  Update push token of a user
+    * Summary: Upsert push token of a user
+    * Description:  Upsert push token of a user
     **/
-    updatePushtoken(
+    upsertPushtoken(
     ) {
         return APIClient.execute(
             this._conf,
@@ -1660,5 +1667,917 @@ class Configuration {
 
 
 exports.Configuration = Configuration;
+
+
+
+const { 
+    AggregatorConfigDetail,
+    AggregatorsConfigDetailResponse,
+    ErrorCodeAndDescription,
+    HttpErrorCodeAndResponse,
+    AttachCardRequest,
+    AttachCardsResponse,
+    CardPaymentGateway,
+    ActiveCardPaymentGatewayResponse,
+    ListCardsResponse,
+    DeletehCardRequest,
+    DeleteCardsResponse,
+    ValidateCustomerRequest,
+    ValidateCustomerResponse,
+    ChargeCustomerRequest,
+    ChargeCustomerResponse,
+    PaymentInitializationRequest,
+    PaymentInitializationResponse,
+    PaymentStatusUpdateRequest,
+    PaymentStatusUpdateResponse,
+    OrderBeneficiaryDetails,
+    OrderBeneficiaryResponse,
+    NotFoundResourceError,
+    IfscCodeResponse,
+    InternalErrorResponse,
+    AddBeneficiaryViaOtpVerificationRequest,
+    AddBeneficiaryViaOtpVerificationResponse,
+    WrongOtpError,
+    BankDetails,
+    AddBeneficiaryDetailsRequest,
+    WalletOtpRequest,
+    WalletOtpResponse,
+    SetDefaultBeneficiaryRequest,
+    SetDefaultBeneficiaryResponse
+} = require("./schema");
+
+    
+class Payment {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Get payment gateway keys
+    * Description:  Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
+    **/
+    getAggregatorsConfig(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/payment/v1.0/config/aggregators/key",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Attach a saved card to customer.
+    * Description:  Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
+    **/
+    attachCardToCustomer(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/payment/v1.0/card/attach",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Fetch active payment gateway for card
+    * Description:  Fetch active payment gateway along with customer id for cards payments.
+    **/
+    getActiveCardAggregator(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/payment/v1.0/card/aggregator",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Fetch the list of saved cards of user.
+    * Description:  Fetch the list of saved cards of user from active payment gateway.
+    **/
+    getActiveUserCards(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/payment/v1.0/cards",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Delete an user card.
+    * Description:  Delete an added user card on payment gateway and remove from cache.
+    **/
+    deleteUserCard(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/payment/v1.0/card/remove",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Validate customer for payment.
+    * Description:  Validate customer for payment i.e Simpl paylater, Rupifi loan.
+    **/
+    verifyCustomerForPayment(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/payment/v1.0/payment/customer/validation",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Verify and charge payment
+    * Description:  Verify and charge payment server to server for Simpl & Mswipe.
+    **/
+    verifyAndChargePayment(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/payment/v1.0/payment/confirm/charge",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Payment Initialisation server to server for UPI and BharatQR.
+    * Description:  Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
+    **/
+    initialisePayment(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/payment/v1.0/payment/request",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Continous polling to check status of payment on server.
+    * Description:  Continous polling on interval to check status of payment untill timeout.
+    **/
+    checkAndUpdatePaymentStatus(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/payment/v1.0/payment/confirm/polling",
+        );
+    }
+    
+    /**
+    *
+    * Summary: List User Beneficiary
+    * Description:  Get all active  beneficiary details added by the user for refund
+    **/
+    getUserBeneficiariesDetail(
+        orderId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/payment/v1.0/refund/beneficiary/user",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Ifsc Code Verification
+    * Description:  Get True/False for correct IFSC Code for adding bank details for refund
+    **/
+    verifyIfscCode(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/payment/v1.0/ifsc-code/verify",
+        );
+    }
+    
+    /**
+    *
+    * Summary: List Order Beneficiary
+    * Description:  Get all active  beneficiary details added by the user for refund
+    **/
+    getOrderBeneficiariesDetail(
+        orderId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/payment/v1.0/refund/beneficiaries/order",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Save Beneficiary details on otp validation.
+    * Description:  Save Beneficiary details on otp validation.
+    **/
+    verifyOtpAndAddBeneficiaryForBank(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/payment/v1.0/refund/verification/bank",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Save bank details for cancelled/returned order
+    * Description:  Use this API to save bank details for returned/cancelled order to refund amount in his account.
+    **/
+    addBeneficiaryDetails(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/payment/v1.0/refund/account",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Send Otp on Adding wallet beneficiary
+    * Description:  Send Otp on Adding wallet beneficiary for user mobile verification
+    **/
+    verifyOtpAndAddBeneficiaryForWallet(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/payment/v1.0/refund/verification/wallet",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Mark Default Beneficiary For Refund
+    * Description:  Mark Default Beneficiary ot of all Beneficiary Details for Refund
+    **/
+    updateDefaultBeneficiary(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/payment/v1.0/refund/beneficiary/default",
+        );
+    }
+    
+}
+
+
+exports.Payment = Payment;
+
+
+
+const { 
+    OrderById,
+    OrderList,
+    ShipmentById,
+    ShipmentReasons
+} = require("./schema");
+
+    
+class Order {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Get Orders for application based on application Id
+    * Description:  Get Orders
+    **/
+    getOrders(
+        xApplicationId, opts
+        xApplicationToken, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/services/application/v1.0/orders",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Order by order id for application based on application Id
+    * Description:  Get Order By Fynd Order Id
+    **/
+    getOrderById(
+        orderId, opts
+        xApplicationId, opts
+        xApplicationToken, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/services/application/v1.0/orders/{order_id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Shipment by shipment id and order id for application based on application Id
+    * Description:  Get Shipment
+    **/
+    getShipmentById(
+        shipmentId, opts
+        xApplicationId, opts
+        xApplicationToken, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/services/application/v1.0/orders/shipments/{shipment_id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Shipment reasons by shipment id and order id for application based on application Id
+    * Description:  Get Shipment Reasons
+    **/
+    getShipmentReasons(
+        shipmentId, opts
+        xApplicationId, opts
+        xApplicationToken, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/services/application/v1.0/orders/shipments/{shipment_id}/reasons",
+        );
+    }
+    
+}
+
+
+exports.Order = Order;
+
+
+
+const { 
+    Action,
+    Article,
+    Asset,
+    CatalogueOrderRequest,
+    CatalogueOrderResponse,
+    CursorPage,
+    Discount,
+    Error,
+    Offer,
+    OrderDiscountRequest,
+    OrderDiscountResponse,
+    OrderDiscountRuleBucket,
+    PointsHistory,
+    PointsHistoryResponse,
+    PointsResponse,
+    RedeemReferralCodeRequest,
+    RedeemReferralCodeResponse,
+    ReferralDetailsResponse,
+    ShareMessages
+} = require("./schema");
+
+    
+class Rewards {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Get reward points that could be earned on any catalogue product.
+    * Description:  Evaluate the amount of reward points that could be earned on any catalogue product.
+    **/
+    getPointsOnProduct(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/rewards/v1.0/catalogue/offer/order/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+    * Description:  Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+    **/
+    getOrderDiscount(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/rewards/v1.0/user/offers/order-discount/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Total available points of a user for current application
+    * Description:  Total available points of a user for current application
+    **/
+    getUserPoints(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/rewards/v1.0/user/points",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get list of points transactions.
+    * Description:  Get list of points transactions.
+The list of points history is paginated.
+    **/
+    getUserPointsHistory(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/rewards/v1.0/user/points/history/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: User's referral details.
+    * Description:  User's referral details.
+    **/
+    getUserReferralDetails(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/rewards/v1.0/user/referral/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Redeems referral code and credits points to users points account.
+    * Description:  Redeems referral code and credits points to users points account.
+    **/
+    redeemReferralCode(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/rewards/v1.0/user/referral/redeem/",
+        );
+    }
+    
+}
+
+
+exports.Rewards = Rewards;
+
+
+
+const { 
+    Access,
+    AddMediaListRequest,
+    AddMediaRequest,
+    Attribute,
+    AttributeObject,
+    CheckEligibilityResponse,
+    Cloud,
+    CommentRequest,
+    CreateQNARequest,
+    DeviceMeta,
+    ErrorResponse,
+    MediaCloud,
+    MediaMeta,
+    PageCursor,
+    PageNumber,
+    ReportAbuseRequest,
+    SaveAttributeRequest,
+    TagMeta,
+    UpdateAbuseStatusRequest,
+    UpdateAttributeRequest,
+    UpdateCommentRequest,
+    UpdateMediaListRequest,
+    UpdateQNARequest,
+    UpdateReviewRequest,
+    UpdateVoteRequest,
+    Url,
+    VoteRequest,
+    XCursorGetResponse,
+    XInsertResponse,
+    XNumberGetResponse,
+    XUpdateResponse
+} = require("./schema");
+
+    
+class Feedback {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: post a new abuse request
+    * Description:  Report a new abuse for specific entity with description text.
+    **/
+    createAbuseReport(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/feedback/v1.0/abuse",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update abuse details
+    * Description:  Update the abuse details like status and description text.
+    **/
+    updateAbuseReport(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/feedback/v1.0/abuse",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get list of abuse data
+    * Description:  Get the list of abuse data from entity type and entity ID.
+    **/
+    getAbuseReports(
+        entityId, opts
+        entityType, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/abuse/entity/{entity_type}/entity-id/{entity_id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get list of attribute data
+    * Description:  Provides a list of all attribute data.
+    **/
+    getAttributes(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/attributes",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Add a new attribute request
+    * Description:  Add a new attribute with its name, slug and description.
+    **/
+    createAttribute(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/feedback/v1.0/attributes",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get single attribute data
+    * Description:  Get a single attribute data from a given slug.
+    **/
+    getAttribute(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/attributes/{slug}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update attribute details
+    * Description:  Update the attribute's name and description.
+    **/
+    updateAttribute(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/feedback/v1.0/attributes/{slug}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: post a new comment
+    * Description:  This is used to add a new comment for specific entity.
+    **/
+    createComment(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/feedback/v1.0/comment",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update comment status
+    * Description:  Update the comment status (active/approve) or text.
+    **/
+    updateComment(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/feedback/v1.0/comment",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get list of comments
+    * Description:  Get the list of comments from specific entity type.
+    **/
+    getComments(
+        entityType, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/comment/entity/{entity_type}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Checks eligibility and cloud media config
+    * Description:  Checks eligibility to rate and review and cloud media configuration
+    **/
+    checkEligibility(
+        entityType, opts
+        entityId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/config/entity/{entity_type}/entity-id/{entity_id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Delete Media
+    * Description:  Delete Media for the given entity IDs.
+    **/
+    deleteMedia(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
+            "/service/application/feedback/v1.0/media/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Add Media
+    * Description:  Add Media list for specific entity.
+    **/
+    createMedia(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/feedback/v1.0/media/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Media
+    * Description:  Update Media (archive/approve) for the given entity.
+    **/
+    updateMedia(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/feedback/v1.0/media/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Media
+    * Description:  Get Media from the given entity type and entity ID.
+    **/
+    getMedias(
+        entityType, opts
+        entityId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/media/entity/{entity_type}/entity-id/{entity_id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get a review summary
+    * Description:  Review summary gives ratings and attribute metrics of a review per entity
+It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+    **/
+    getReviewSummaries(
+        entityType, opts
+        entityId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/rating/summary/entity/{entity_type}/entity-id/{entity_id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Add customer reviews
+    * Description:  Add customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+    **/
+    createReview(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/feedback/v1.0/review/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update customer reviews
+    * Description:  Update customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+    **/
+    updateReview(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/feedback/v1.0/review/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get list of customer reviews
+    * Description:  This is used to get the list of customer reviews based on entity and provided filters.
+    **/
+    getReviews(
+        entityType, opts
+        entityId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/review/entity/{entity_type}/entity-id/{entity_id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get the templates for product or l3 type
+    * Description:  This is used to get the templates details.
+    **/
+    getTemplates(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/template/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Create a new question
+    * Description:  This is used to create a new question with following data:
+tags, text, type, choices for MCQ type questions, maximum length of answer.
+    **/
+    createQuestion(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/feedback/v1.0/template/qna/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update question
+    * Description:  This is used to update question's status, tags and choices.
+    **/
+    updateQuestion(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/feedback/v1.0/template/qna/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get a list of QnA
+    * Description:  This is used to get a list of questions and its answers.
+    **/
+    getQuestionAndAnswers(
+        entityType, opts
+        entityId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/template/qna/entity/{entity_type}/entity-id/{entity_id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get list of votes
+    * Description:  This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+    **/
+    getVotes(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/feedback/v1.0/vote/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Create a new vote
+    * Description:  This is used to create a new vote and the actions can be upvote or downvote.
+    **/
+    createVote(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/feedback/v1.0/vote/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update vote
+    * Description:  This is used to update the vote and the actions can be upvote or downvote.
+    **/
+    updateVote(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/feedback/v1.0/vote/",
+        );
+    }
+    
+}
+
+
+exports.Feedback = Feedback;
 
 

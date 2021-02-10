@@ -4,11 +4,15 @@
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Cart](#Cart) - Open API leverages Fynd's real-time inventory integration with over 200+ brands & 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
 * [Lead](#Lead) - Handles communication between Staff and Users 
-* [Theme](#Theme) - Responsible for themes and on the fly script injections 
-* [Communication](#Communication) -  
+* [Theme](#Theme) -  
+* [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and Qr code 
 * [FileStorage](#FileStorage) - File Storage 
 * [Configuration](#Configuration) -  
+* [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
+* [Order](#Order) - Handles Platform websites OMS 
+* [Rewards](#Rewards) - Earn and redeem Reward Points 
+* [Feedback](#Feedback) - User Reviews and Rating System 
 
 ----
 ----
@@ -41,8 +45,8 @@
     * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
     * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
     * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
-    * [Catalog#unfollowById](#catalogunfollowbyid)
     * [Catalog#followById](#catalogfollowbyid)
+    * [Catalog#unfollowById](#catalogunfollowbyid)
     * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
     * [Catalog#getFollowIds](#cataloggetfollowids)
     
@@ -91,8 +95,8 @@
 * [Theme](#Theme)
   * Methods
     * [Theme#getCustomPage](#themegetcustompage)
-    * [Theme#getBlog](#themegetblog)
-    * [Theme#getFPITags](#themegetfpitags)
+    * [Theme#getCustomBlog](#themegetcustomblog)
+    * [Theme#getApplicationTags](#themegetapplicationtags)
     * [Theme#getAppliedTheme](#themegetappliedtheme)
     * [Theme#getThemeForPreview](#themegetthemeforpreview)
     
@@ -101,8 +105,8 @@
 * [Communication](#Communication)
   * Methods
     * [Communication#getCommunicationConsent](#communicationgetcommunicationconsent)
-    * [Communication#postCommunicationConsent](#communicationpostcommunicationconsent)
-    * [Communication#updatePushtoken](#communicationupdatepushtoken)
+    * [Communication#upsertCommunicationConsent](#communicationupsertcommunicationconsent)
+    * [Communication#upsertPushtoken](#communicationupsertpushtoken)
     
    
 
@@ -143,6 +147,78 @@
     * [Configuration#getCurrencies](#configurationgetcurrencies)
     * [Configuration#getCurrenciesById](#configurationgetcurrenciesbyid)
     * [Configuration#getLanguages](#configurationgetlanguages)
+    
+   
+
+* [Payment](#Payment)
+  * Methods
+    * [Payment#getAggregatorsConfig](#paymentgetaggregatorsconfig)
+    * [Payment#attachCardToCustomer](#paymentattachcardtocustomer)
+    * [Payment#getActiveCardAggregator](#paymentgetactivecardaggregator)
+    * [Payment#getActiveUserCards](#paymentgetactiveusercards)
+    * [Payment#deleteUserCard](#paymentdeleteusercard)
+    * [Payment#verifyCustomerForPayment](#paymentverifycustomerforpayment)
+    * [Payment#verifyAndChargePayment](#paymentverifyandchargepayment)
+    * [Payment#initialisePayment](#paymentinitialisepayment)
+    * [Payment#checkAndUpdatePaymentStatus](#paymentcheckandupdatepaymentstatus)
+    * [Payment#getUserBeneficiariesDetail](#paymentgetuserbeneficiariesdetail)
+    * [Payment#verifyIfscCode](#paymentverifyifsccode)
+    * [Payment#getOrderBeneficiariesDetail](#paymentgetorderbeneficiariesdetail)
+    * [Payment#verifyOtpAndAddBeneficiaryForBank](#paymentverifyotpandaddbeneficiaryforbank)
+    * [Payment#addBeneficiaryDetails](#paymentaddbeneficiarydetails)
+    * [Payment#verifyOtpAndAddBeneficiaryForWallet](#paymentverifyotpandaddbeneficiaryforwallet)
+    * [Payment#updateDefaultBeneficiary](#paymentupdatedefaultbeneficiary)
+    
+   
+
+* [Order](#Order)
+  * Methods
+    * [Order#getOrders](#ordergetorders)
+    * [Order#getOrderById](#ordergetorderbyid)
+    * [Order#getShipmentById](#ordergetshipmentbyid)
+    * [Order#getShipmentReasons](#ordergetshipmentreasons)
+    
+   
+
+* [Rewards](#Rewards)
+  * Methods
+    * [Rewards#getPointsOnProduct](#rewardsgetpointsonproduct)
+    * [Rewards#getOrderDiscount](#rewardsgetorderdiscount)
+    * [Rewards#getUserPoints](#rewardsgetuserpoints)
+    * [Rewards#getUserPointsHistory](#rewardsgetuserpointshistory)
+    * [Rewards#getUserReferralDetails](#rewardsgetuserreferraldetails)
+    * [Rewards#redeemReferralCode](#rewardsredeemreferralcode)
+    
+   
+
+* [Feedback](#Feedback)
+  * Methods
+    * [Feedback#createAbuseReport](#feedbackcreateabusereport)
+    * [Feedback#updateAbuseReport](#feedbackupdateabusereport)
+    * [Feedback#getAbuseReports](#feedbackgetabusereports)
+    * [Feedback#getAttributes](#feedbackgetattributes)
+    * [Feedback#createAttribute](#feedbackcreateattribute)
+    * [Feedback#getAttribute](#feedbackgetattribute)
+    * [Feedback#updateAttribute](#feedbackupdateattribute)
+    * [Feedback#createComment](#feedbackcreatecomment)
+    * [Feedback#updateComment](#feedbackupdatecomment)
+    * [Feedback#getComments](#feedbackgetcomments)
+    * [Feedback#checkEligibility](#feedbackcheckeligibility)
+    * [Feedback#deleteMedia](#feedbackdeletemedia)
+    * [Feedback#createMedia](#feedbackcreatemedia)
+    * [Feedback#updateMedia](#feedbackupdatemedia)
+    * [Feedback#getMedias](#feedbackgetmedias)
+    * [Feedback#getReviewSummaries](#feedbackgetreviewsummaries)
+    * [Feedback#createReview](#feedbackcreatereview)
+    * [Feedback#updateReview](#feedbackupdatereview)
+    * [Feedback#getReviews](#feedbackgetreviews)
+    * [Feedback#getTemplates](#feedbackgettemplates)
+    * [Feedback#createQuestion](#feedbackcreatequestion)
+    * [Feedback#updateQuestion](#feedbackupdatequestion)
+    * [Feedback#getQuestionAndAnswers](#feedbackgetquestionandanswers)
+    * [Feedback#getVotes](#feedbackgetvotes)
+    * [Feedback#createVote](#feedbackcreatevote)
+    * [Feedback#updateVote](#feedbackupdatevote)
     
    
 
@@ -1273,24 +1349,24 @@ Error Response:
 ---
 
 
-#### Catalog#unfollowById
-UnFollow a Product
+#### Catalog#followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collection_type, collection_id, );
+const promise = catalog.followById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.unfollowById(collection_type, collection_id, );
+const data = await catalog.followById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to unfollow | 
+| collection_id | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -1321,24 +1397,24 @@ Error Response:
 ---
 
 
-#### Catalog#followById
-Follow a particular Product
+#### Catalog#unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collection_type, collection_id, );
+const promise = catalog.unfollowById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.followById(collection_type, collection_id, );
+const data = await catalog.unfollowById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to follow | 
+| collection_id | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -1486,10 +1562,10 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = cart.getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getCart(uid, assign_card_id, );
 
 // Async/Await
-const data = await cart.getCart(uid, assign_card_id, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getCart(uid, assign_card_id, );
 
 ```
 
@@ -1497,23 +1573,20 @@ const data = await cart.getCart(uid, assign_card_id, x-application-id, x-applica
 | --------- | ----  | --- |
 | uid | integer |  | 
 | assign_card_id | integer |  | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
-Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartV1Serializer
+Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartResponse
 
 Success Response:
 
 
 
-The Cart object. See example below or refer GetCartV1Serializer for details
+The Cart object. See example below or refer GetCartResponse for details
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/GetCartV1Serializer"
+  "$ref": "#/components/schemas/GetCartResponse"
 }`
 
 
@@ -1535,19 +1608,16 @@ Fetch Last-Modified timestamp
 
 ```javascript
 // Promise
-const promise = cart.getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getCartLastModified(uid, );
 
 // Async/Await
-const data = await cart.getCartLastModified(uid, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getCartLastModified(uid, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Fetch Last-Modified timestamp in header metadata
 
@@ -1573,20 +1643,17 @@ Add Items to Cart
 
 ```javascript
 // Promise
-const promise = cart.addItemsToCart(x-application-id, x-application-token, x-currency-code, );
+const promise = cart.addItemsToCart();
 
 // Async/Await
-const data = await cart.addItemsToCart(x-application-id, x-application-token, x-currency-code, );
+const data = await cart.addItemsToCart();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
-<p>Add Items to cart. See `CartV1Serializer` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api's</p> <ul> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">seller_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">store_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> </ul>
+<p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api's</p> <ul> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">seller_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">store_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> </ul>
 
 Success Response:
 
@@ -1598,7 +1665,7 @@ Response of the cart object including all item details included in .the cart,cou
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/PlatformV1Cart"
+  "$ref": "#/components/schemas/CartResponse"
 }`
 
 
@@ -2253,18 +2320,15 @@ Update Items already added to Cart
 
 ```javascript
 // Promise
-const promise = cart.updateCart(x-application-id, x-application-token, x-currency-code, );
+const promise = cart.updateCart();
 
 // Async/Await
-const data = await cart.updateCart(x-application-id, x-application-token, x-currency-code, );
+const data = await cart.updateCart();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
@@ -2278,7 +2342,7 @@ Response of the cart object including all item with their updated details includ
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/PlatformV1Cart"
+  "$ref": "#/components/schemas/CartResponse"
 }`
 
 
@@ -2662,19 +2726,16 @@ Cart item count
 
 ```javascript
 // Promise
-const promise = cart.getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getCartItemCount(uid, );
 
 // Async/Await
-const data = await cart.getCartItemCount(uid, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getCartItemCount(uid, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer | Cart id | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Get total count of item present in cart
 
@@ -2716,27 +2777,24 @@ Fetch Coupon
 
 ```javascript
 // Promise
-const promise = cart.getCouponList(uid, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getCouponList(uid, );
 
 // Async/Await
-const data = await cart.getCouponList(uid, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getCouponList(uid, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
-Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponseSchema
+Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
 
 Success Response:
 
 
 
-Returns The Couppon object which has list of all available_coupon applicale for the cart. See example below or refer GetCouponResponseSchema for details
+Returns The Couppon object which has list of all available_coupon applicale for the cart. See example below or refer GetCouponResponse for details
 
 
 Content Type: `application/json`
@@ -2764,10 +2822,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = cart.applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.applyCoupon(i, b, p, );
 
 // Async/Await
-const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.applyCoupon(i, b, p, );
 
 ```
 
@@ -2776,9 +2834,6 @@ const data = await cart.applyCoupon(i, b, p, x-application-id, x-application-tok
 | i | boolean |  | 
 | b | boolean |  | 
 | p | boolean |  | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
 </ul>
@@ -2801,19 +2856,16 @@ Remove Coupon Applied
 
 ```javascript
 // Promise
-const promise = cart.removeCoupon(uid, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.removeCoupon(uid, );
 
 // Async/Await
-const data = await cart.removeCoupon(uid, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.removeCoupon(uid, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer | Cart id | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Remove Coupon applied on the cart by passing uid in request body.
 
@@ -2827,7 +2879,7 @@ Response of the Coupon object including all item details included in .the cart,c
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/PlatformV1Cart"
+  "$ref": "#/components/schemas/CartResponse"
 }`
 
 
@@ -2849,10 +2901,10 @@ Get discount offers based on quantity
 
 ```javascript
 // Promise
-const promise = cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
 
 // Async/Await
-const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
 
 ```
 
@@ -2862,9 +2914,6 @@ const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, x-
 | article_id | string | Article mongo id | 
 | uid | integer | Item id | 
 | slug | string | Item unique url from product page | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
 
@@ -2973,10 +3022,10 @@ Fetch Address
 
 ```javascript
 // Promise
-const promise = cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, );
 
 // Async/Await
-const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, );
 
 ```
 
@@ -2987,17 +3036,14 @@ const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, defa
 | checkout_mode | string |  | 
 | tags | integer |  | 
 | default | integer |  | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
-Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
 Success Response:
 
 
 
-Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponseSchema for details
+Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
 
 
 Content Type: `application/json`
@@ -3025,20 +3071,17 @@ Add Address to the account
 
 ```javascript
 // Promise
-const promise = cart.addAddress(x-application-id, x-application-token, x-currency-code, );
+const promise = cart.addAddress();
 
 // Async/Await
-const data = await cart.addAddress(x-application-id, x-application-token, x-currency-code, );
+const data = await cart.addAddress();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
-<p>Add Address to account. See `SaveAddressRequestSchema` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+<p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
 
 Success Response:
 
@@ -3072,10 +3115,10 @@ Fetch Single Address
 
 ```javascript
 // Promise
-const promise = cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, default, );
 
 // Async/Await
-const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, default, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, default, );
 
 ```
 
@@ -3087,17 +3130,14 @@ const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, 
 | checkout_mode | string |  | 
 | tags | integer |  | 
 | default | integer |  | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
-Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponseSchema.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
 Success Response:
 
 
 
-Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponseSchema for details
+Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
 
 
 Content Type: `application/json`
@@ -3125,21 +3165,18 @@ Update Address alreay added to account
 
 ```javascript
 // Promise
-const promise = cart.updateAddress(id, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.updateAddress(id, );
 
 // Async/Await
-const data = await cart.updateAddress(id, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.updateAddress(id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | integer | Address id | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
-Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequestSchema </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
 
 Success Response:
 
@@ -3159,19 +3196,16 @@ Remove Address Associated to the account
 
 ```javascript
 // Promise
-const promise = cart.removeAddress(id, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.removeAddress(id, );
 
 // Async/Await
-const data = await cart.removeAddress(id, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.removeAddress(id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | id | integer | Address id | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
 
@@ -3193,20 +3227,17 @@ Select Address from All Addresses
 
 ```javascript
 // Promise
-const promise = cart.selectCartAddress(x-application-id, x-application-token, x-currency-code, );
+const promise = cart.selectCartAddress();
 
 // Async/Await
-const data = await cart.selectCartAddress(x-application-id, x-application-token, x-currency-code, );
+const data = await cart.selectCartAddress();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
-<p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequestSchema` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+<p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
 
 Success Response:
 
@@ -3228,10 +3259,10 @@ Gte Cart Payment for valid coupon
 
 ```javascript
 // Promise
-const promise = cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
 
 // Async/Await
-const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
 
 ```
 
@@ -3243,9 +3274,6 @@ const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payme
 | payment_identifier | string |  | 
 | aggregator_name | string |  | 
 | merchant_code | string |  | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Validate coupon for selected payment mode
 
@@ -3281,19 +3309,16 @@ Update Cart Payment
 
 ```javascript
 // Promise
-const promise = cart.selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.selectCartPaymentMode(uid, );
 
 // Async/Await
-const data = await cart.selectCartPaymentMode(uid, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.selectCartPaymentMode(uid, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | string |  | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Update Cart Payment for Your Account
 
@@ -3329,10 +3354,10 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = cart.getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getCartShipments(p, uid, address_id, );
 
 // Async/Await
-const data = await cart.getCartShipments(p, uid, address_id, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getCartShipments(p, uid, address_id, );
 
 ```
 
@@ -3341,9 +3366,6 @@ const data = await cart.getCartShipments(p, uid, address_id, x-application-id, x
 | p | boolean | Get payment options or not | 
 | uid | integer | Cart id | 
 | address_id | integer | Address id | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
@@ -3357,7 +3379,7 @@ OK
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ShipmentCart"
+  "$ref": "#/components/schemas/CartShipmentsResponse"
 }`
 
 
@@ -4021,18 +4043,15 @@ Checkout Cart
 
 ```javascript
 // Promise
-const promise = cart.checkoutCart(x-application-id, x-application-token, x-currency-code, );
+const promise = cart.checkoutCart();
 
 // Async/Await
-const data = await cart.checkoutCart(x-application-id, x-application-token, x-currency-code, );
+const data = await cart.checkoutCart();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
 
@@ -4445,19 +4464,16 @@ Update Cart Meta
 
 ```javascript
 // Promise
-const promise = cart.updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.updateCartMeta(uid, );
 
 // Async/Await
-const data = await cart.updateCartMeta(uid, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.updateCartMeta(uid, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer | Cart id received in get cart. | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Update cart meta like checkout_mode, gstin.
 
@@ -4500,18 +4516,15 @@ Generate Cart sharing link token
 
 ```javascript
 // Promise
-const promise = cart.getCartShareLink(x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getCartShareLink();
 
 // Async/Await
-const data = await cart.getCartShareLink(x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getCartShareLink();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Generates shared cart snapshot and returns shortlink token
 
@@ -4569,19 +4582,16 @@ Get shared cart snapshot and cart response
 
 ```javascript
 // Promise
-const promise = cart.getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.getCartSharedItems(token, );
 
 // Async/Await
-const data = await cart.getCartSharedItems(token, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.getCartSharedItems(token, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | token | string | Shared short link token. | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
 
@@ -4598,7 +4608,7 @@ Schema: `{
   "type": "object",
   "properties": {
     "cart": {
-      "$ref": "#/components/schemas/SharedPlatformV1Cart"
+      "$ref": "#/components/schemas/SharedCartResponse"
     },
     "error": {
       "type": "string"
@@ -4627,10 +4637,10 @@ Merge or Replace existing cart
 
 ```javascript
 // Promise
-const promise = cart.updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, );
+const promise = cart.updateCartWithSharedItems(token, action, );
 
 // Async/Await
-const data = await cart.updateCartWithSharedItems(token, action, x-application-id, x-application-token, x-currency-code, );
+const data = await cart.updateCartWithSharedItems(token, action, );
 
 ```
 
@@ -4638,9 +4648,6 @@ const data = await cart.updateCartWithSharedItems(token, action, x-application-i
 | --------- | ----  | --- |
 | token | string | Shared short link token. | 
 | action | string | Operation to perform on existing cart, whether to merge or replace. | 
-| x-application-id | string | Application identifier for authorization.This field is mandatory but you dont need to add ApplicationID here if you have already authenticated. | 
-| x-application-token | string | Application token for authorization.This field is mandatory but you dont need to add ApplicationToken here if you have already authenticated. | 
-| x-currency-code | string | User selected currency code default value is INR | 
 
 Merge or Replace cart based on `action` parameter with shared cart of `token`
 
@@ -4657,7 +4664,7 @@ Schema: `{
   "type": "object",
   "properties": {
     "cart": {
-      "$ref": "#/components/schemas/SharedPlatformV1Cart"
+      "$ref": "#/components/schemas/SharedCartResponse"
     }
   }
 }`
@@ -6075,22 +6082,24 @@ const theme = new Theme(conf);
 
 
 #### Theme#getCustomPage
-Get Page by slug
+Get Blog by slug
 
 ```javascript
 // Promise
-const promise = theme.getCustomPage(slug, );
+const promise = theme.getCustomPage(x-application-id, x-application-token, slug, );
 
 // Async/Await
-const data = await theme.getCustomPage(slug, );
+const data = await theme.getCustomPage(x-application-id, x-application-token, slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
+| x-application-id | string | Application ID | 
+| x-application-token | string | Application Token | 
+| slug | string | Slug of the page to be retrieved | 
 
-Use this API to fetch a custom page using `slug`
+
 
 Success Response:
 
@@ -6102,19 +6111,8 @@ A JSON object with page details
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/CustomPage"
+  "$ref": "#/components/schemas/CustomPageBlogs"
 }`
-
-
-Examples: 
-
-
-Custom Blog
-```javascript
-{
-  "$ref": "#/components/examples/CustomPage"
-}
-```
 
 
 
@@ -6129,28 +6127,28 @@ Error Response:
 
 
 
-
-
 ---
 
 
-#### Theme#getBlog
+#### Theme#getCustomBlog
 Get Blog by slug
 
 ```javascript
 // Promise
-const promise = theme.getBlog(slug, );
+const promise = theme.getCustomBlog(x-application-id, x-application-token, slug, );
 
 // Async/Await
-const data = await theme.getBlog(slug, );
+const data = await theme.getCustomBlog(x-application-id, x-application-token, slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
+| x-application-id | string | Application ID | 
+| x-application-token | string | Application Token | 
+| slug | string | Slug of the blog to be retrieved | 
 
-Use this API to fetch a blog using `slug`
+
 
 Success Response:
 
@@ -6162,19 +6160,8 @@ A JSON object with blog details
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/CustomBlog"
+  "$ref": "#/components/schemas/CustomPageBlogs"
 }`
-
-
-Examples: 
-
-
-Custom Blog
-```javascript
-{
-  "$ref": "#/components/examples/CustomBlog"
-}
-```
 
 
 
@@ -6189,25 +6176,25 @@ Error Response:
 
 
 
-
-
 ---
 
 
-#### Theme#getFPITags
+#### Theme#getApplicationTags
 Get Tags for application
 
 ```javascript
 // Promise
-const promise = theme.getFPITags();
+const promise = theme.getApplicationTags(x-application-id, x-application-token, );
 
 // Async/Await
-const data = await theme.getFPITags();
+const data = await theme.getApplicationTags(x-application-id, x-application-token, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| x-application-id | string | Application ID | 
+| x-application-token | string | Application Token | 
 
 
 
@@ -6247,15 +6234,17 @@ Get applied theme for an application
 
 ```javascript
 // Promise
-const promise = theme.getAppliedTheme();
+const promise = theme.getAppliedTheme(x-application-id, x-application-token, );
 
 // Async/Await
-const data = await theme.getAppliedTheme();
+const data = await theme.getAppliedTheme(x-application-id, x-application-token, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| x-application-id | string | Application ID | 
+| x-application-token | string | Application Token | 
 
 
 
@@ -6263,25 +6252,14 @@ Success Response:
 
 
 
-A JSON object of theme
+A JSON object with of theme
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ThemesSchema"
+  "$ref": "#/components/schemas/Themesv3Schema"
 }`
-
-
-Examples: 
-
-
-Applied Theme
-```javascript
-{
-  "$ref": "#/components/examples/Themes"
-}
-```
 
 
 
@@ -6291,8 +6269,6 @@ Applied Theme
 
 
 Error Response:
-
-
 
 
 
@@ -6323,25 +6299,14 @@ Success Response:
 
 
 
-A JSON object of theme
+A JSON object with of theme
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ThemesSchema"
+  "$ref": "#/components/schemas/Themesv3Schema"
 }`
-
-
-Examples: 
-
-
-Preview Theme
-```javascript
-{
-  "$ref": "#/components/examples/Themes"
-}
-```
 
 
 
@@ -6351,8 +6316,6 @@ Preview Theme
 
 
 Error Response:
-
-
 
 
 
@@ -6433,22 +6396,22 @@ Error Response:
 ---
 
 
-#### Communication#postCommunicationConsent
-Create/Update communication consent
+#### Communication#upsertCommunicationConsent
+Upsert communication consent
 
 ```javascript
 // Promise
-const promise = communication.postCommunicationConsent();
+const promise = communication.upsertCommunicationConsent();
 
 // Async/Await
-const data = await communication.postCommunicationConsent();
+const data = await communication.upsertCommunicationConsent();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Create/Update communication consent
+Upsert communication consent
 
 Success Response:
 
@@ -6490,22 +6453,22 @@ Error Response:
 ---
 
 
-#### Communication#updatePushtoken
-Update push token of a user
+#### Communication#upsertPushtoken
+Upsert push token of a user
 
 ```javascript
 // Promise
-const promise = communication.updatePushtoken();
+const promise = communication.upsertPushtoken();
 
 // Async/Await
-const data = await communication.updatePushtoken();
+const data = await communication.upsertPushtoken();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Update push token of a user
+Upsert push token of a user
 
 Success Response:
 
@@ -7734,6 +7697,2560 @@ Schema: `{
 
 
 Error Response:
+
+
+
+---
+
+
+
+---
+
+
+## Payment
+
+```javascript
+const { Configuration, Payment } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const payment = new Payment(conf);
+
+```
+
+
+#### Payment#getAggregatorsConfig
+Get payment gateway keys
+
+```javascript
+// Promise
+const promise = payment.getAggregatorsConfig();
+
+// Async/Await
+const data = await payment.getAggregatorsConfig();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
+
+Success Response:
+
+
+
+Keys of all payment gateway
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AggregatorsConfigDetailResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#attachCardToCustomer
+Attach a saved card to customer.
+
+```javascript
+// Promise
+const promise = payment.attachCardToCustomer();
+
+// Async/Await
+const data = await payment.attachCardToCustomer();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
+
+Success Response:
+
+
+
+List of cards objects
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AttachCardsResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#getActiveCardAggregator
+Fetch active payment gateway for card
+
+```javascript
+// Promise
+const promise = payment.getActiveCardAggregator(refresh, );
+
+// Async/Await
+const data = await payment.getActiveCardAggregator(refresh, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| refresh | boolean |  | 
+
+Fetch active payment gateway along with customer id for cards payments.
+
+Success Response:
+
+
+
+Object of payment gateway and customer id
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ActiveCardPaymentGatewayResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#getActiveUserCards
+Fetch the list of saved cards of user.
+
+```javascript
+// Promise
+const promise = payment.getActiveUserCards(force_refresh, );
+
+// Async/Await
+const data = await payment.getActiveUserCards(force_refresh, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| force_refresh | boolean |  | 
+
+Fetch the list of saved cards of user from active payment gateway.
+
+Success Response:
+
+
+
+List of cards objects
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ListCardsResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#deleteUserCard
+Delete an user card.
+
+```javascript
+// Promise
+const promise = payment.deleteUserCard();
+
+// Async/Await
+const data = await payment.deleteUserCard();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Delete an added user card on payment gateway and remove from cache.
+
+Success Response:
+
+
+
+List of cards objects
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/DeleteCardsResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#verifyCustomerForPayment
+Validate customer for payment.
+
+```javascript
+// Promise
+const promise = payment.verifyCustomerForPayment();
+
+// Async/Await
+const data = await payment.verifyCustomerForPayment();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Validate customer for payment i.e Simpl paylater, Rupifi loan.
+
+Success Response:
+
+
+
+List of cards objects
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ValidateCustomerResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#verifyAndChargePayment
+Verify and charge payment
+
+```javascript
+// Promise
+const promise = payment.verifyAndChargePayment();
+
+// Async/Await
+const data = await payment.verifyAndChargePayment();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Verify and charge payment server to server for Simpl & Mswipe.
+
+Success Response:
+
+
+
+List of cards objects
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ChargeCustomerResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#initialisePayment
+Payment Initialisation server to server for UPI and BharatQR.
+
+```javascript
+// Promise
+const promise = payment.initialisePayment();
+
+// Async/Await
+const data = await payment.initialisePayment();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
+
+Success Response:
+
+
+
+List of cards objects
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/PaymentInitializationResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#checkAndUpdatePaymentStatus
+Continous polling to check status of payment on server.
+
+```javascript
+// Promise
+const promise = payment.checkAndUpdatePaymentStatus();
+
+// Async/Await
+const data = await payment.checkAndUpdatePaymentStatus();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Continous polling on interval to check status of payment untill timeout.
+
+Success Response:
+
+
+
+List of cards objects
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/PaymentStatusUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#getUserBeneficiariesDetail
+List User Beneficiary
+
+```javascript
+// Promise
+const promise = payment.getUserBeneficiariesDetail(order_id, );
+
+// Async/Await
+const data = await payment.getUserBeneficiariesDetail(order_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| order_id | string |  | 
+
+Get all active  beneficiary details added by the user for refund
+
+Success Response:
+
+
+
+List User Beneficiary
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/OrderBeneficiaryResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#verifyIfscCode
+Ifsc Code Verification
+
+```javascript
+// Promise
+const promise = payment.verifyIfscCode(ifsc_code, );
+
+// Async/Await
+const data = await payment.verifyIfscCode(ifsc_code, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| ifsc_code | string |  | 
+
+Get True/False for correct IFSC Code for adding bank details for refund
+
+Success Response:
+
+
+
+Bank details on correct Ifsc Code
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/IfscCodeResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#getOrderBeneficiariesDetail
+List Order Beneficiary
+
+```javascript
+// Promise
+const promise = payment.getOrderBeneficiariesDetail(order_id, );
+
+// Async/Await
+const data = await payment.getOrderBeneficiariesDetail(order_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| order_id | string |  | 
+
+Get all active  beneficiary details added by the user for refund
+
+Success Response:
+
+
+
+List Order Beneficiary
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/OrderBeneficiaryResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#verifyOtpAndAddBeneficiaryForBank
+Save Beneficiary details on otp validation.
+
+```javascript
+// Promise
+const promise = payment.verifyOtpAndAddBeneficiaryForBank();
+
+// Async/Await
+const data = await payment.verifyOtpAndAddBeneficiaryForBank();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Save Beneficiary details on otp validation.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AddBeneficiaryViaOtpVerificationResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#addBeneficiaryDetails
+Save bank details for cancelled/returned order
+
+```javascript
+// Promise
+const promise = payment.addBeneficiaryDetails();
+
+// Async/Await
+const data = await payment.addBeneficiaryDetails();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Use this API to save bank details for returned/cancelled order to refund amount in his account.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: ``
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#verifyOtpAndAddBeneficiaryForWallet
+Send Otp on Adding wallet beneficiary
+
+```javascript
+// Promise
+const promise = payment.verifyOtpAndAddBeneficiaryForWallet();
+
+// Async/Await
+const data = await payment.verifyOtpAndAddBeneficiaryForWallet();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Send Otp on Adding wallet beneficiary for user mobile verification
+
+Success Response:
+
+
+
+WalletOtp
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/WalletOtpResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Payment#updateDefaultBeneficiary
+Mark Default Beneficiary For Refund
+
+```javascript
+// Promise
+const promise = payment.updateDefaultBeneficiary();
+
+// Async/Await
+const data = await payment.updateDefaultBeneficiary();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Mark Default Beneficiary ot of all Beneficiary Details for Refund
+
+Success Response:
+
+
+
+Set Default Beneficiary Response.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SetDefaultBeneficiaryResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Order
+
+```javascript
+const { Configuration, Order } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const order = new Order(conf);
+
+```
+
+
+#### Order#getOrders
+Get Orders for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getOrders(page_no, page_size, x-application-id, x-application-token, );
+
+// Async/Await
+const data = await order.getOrders(page_no, page_size, x-application-id, x-application-token, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| page_no | string | Current page number | 
+| page_size | string | Page limit | 
+| x-application-id | string | Current Application ID | 
+| x-application-token | string | Current Application Token | 
+
+Get Orders
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/OrderList"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Order#getOrderById
+Get Order by order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getOrderById(order_id, x-application-id, x-application-token, );
+
+// Async/Await
+const data = await order.getOrderById(order_id, x-application-id, x-application-token, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| order_id | string | Order Id | 
+| x-application-id | string | Current Application ID | 
+| x-application-token | string | Current Application Token | 
+
+Get Order By Fynd Order Id
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/OrderById"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Order#getShipmentById
+Get Shipment by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getShipmentById(shipment_id, x-application-id, x-application-token, );
+
+// Async/Await
+const data = await order.getShipmentById(shipment_id, x-application-id, x-application-token, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipment_id | string | Shipment Id | 
+| x-application-id | string | Current Application ID | 
+| x-application-token | string | Current Application Token | 
+
+Get Shipment
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ShipmentById"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Order#getShipmentReasons
+Get Shipment reasons by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getShipmentReasons(shipment_id, x-application-id, x-application-token, );
+
+// Async/Await
+const data = await order.getShipmentReasons(shipment_id, x-application-id, x-application-token, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipment_id | string | Shipment Id | 
+| x-application-id | string | Current Application ID | 
+| x-application-token | string | Current Application Token | 
+
+Get Shipment Reasons
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ShipmentReasons"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+
+---
+
+
+## Rewards
+
+```javascript
+const { Configuration, Rewards } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const rewards = new Rewards(conf);
+
+```
+
+
+#### Rewards#getPointsOnProduct
+Get reward points that could be earned on any catalogue product.
+
+```javascript
+// Promise
+const promise = rewards.getPointsOnProduct();
+
+// Async/Await
+const data = await rewards.getPointsOnProduct();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Evaluate the amount of reward points that could be earned on any catalogue product.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CatalogueOrderResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Rewards#getOrderDiscount
+Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+
+```javascript
+// Promise
+const promise = rewards.getOrderDiscount();
+
+// Async/Await
+const data = await rewards.getOrderDiscount();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/OrderDiscountResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Rewards#getUserPoints
+Total available points of a user for current application
+
+```javascript
+// Promise
+const promise = rewards.getUserPoints();
+
+// Async/Await
+const data = await rewards.getUserPoints();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Total available points of a user for current application
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/PointsResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Rewards#getUserPointsHistory
+Get list of points transactions.
+
+```javascript
+// Promise
+const promise = rewards.getUserPointsHistory(pageID, pageSize, );
+
+// Async/Await
+const data = await rewards.getUserPointsHistory(pageID, pageSize, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pageID | string | PageID is the ID of the requested page. For first request it should be kept empty. | 
+| pageSize | integer | PageSize is the number of requested items in response. | 
+
+Get list of points transactions.
+The list of points history is paginated.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/PointsHistoryResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Rewards#getUserReferralDetails
+User's referral details.
+
+```javascript
+// Promise
+const promise = rewards.getUserReferralDetails();
+
+// Async/Await
+const data = await rewards.getUserReferralDetails();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+User's referral details.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ReferralDetailsResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Rewards#redeemReferralCode
+Redeems referral code and credits points to users points account.
+
+```javascript
+// Promise
+const promise = rewards.redeemReferralCode();
+
+// Async/Await
+const data = await rewards.redeemReferralCode();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Redeems referral code and credits points to users points account.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/RedeemReferralCodeResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Feedback
+
+```javascript
+const { Configuration, Feedback } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const feedback = new Feedback(conf);
+
+```
+
+
+#### Feedback#createAbuseReport
+post a new abuse request
+
+```javascript
+// Promise
+const promise = feedback.createAbuseReport();
+
+// Async/Await
+const data = await feedback.createAbuseReport();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Report a new abuse for specific entity with description text.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#updateAbuseReport
+Update abuse details
+
+```javascript
+// Promise
+const promise = feedback.updateAbuseReport();
+
+// Async/Await
+const data = await feedback.updateAbuseReport();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update the abuse details like status and description text.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#getAbuseReports
+Get list of abuse data
+
+```javascript
+// Promise
+const promise = feedback.getAbuseReports(entity_id, entity_type, id, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getAbuseReports(entity_id, entity_type, id, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_id | string | entity id | 
+| entity_type | string | entity type | 
+| id | string | abuse id | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+Get the list of abuse data from entity type and entity ID.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XNumberGetResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#getAttributes
+Get list of attribute data
+
+```javascript
+// Promise
+const promise = feedback.getAttributes();
+
+// Async/Await
+const data = await feedback.getAttributes();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Provides a list of all attribute data.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XNumberGetResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#createAttribute
+Add a new attribute request
+
+```javascript
+// Promise
+const promise = feedback.createAttribute();
+
+// Async/Await
+const data = await feedback.createAttribute();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Add a new attribute with its name, slug and description.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#getAttribute
+Get single attribute data
+
+```javascript
+// Promise
+const promise = feedback.getAttribute(slug, );
+
+// Async/Await
+const data = await feedback.getAttribute(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | Slug of attribute | 
+
+Get a single attribute data from a given slug.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Attribute"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#updateAttribute
+Update attribute details
+
+```javascript
+// Promise
+const promise = feedback.updateAttribute(slug, );
+
+// Async/Await
+const data = await feedback.updateAttribute(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | Slug of attribute | 
+
+Update the attribute's name and description.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#createComment
+post a new comment
+
+```javascript
+// Promise
+const promise = feedback.createComment();
+
+// Async/Await
+const data = await feedback.createComment();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to add a new comment for specific entity.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#updateComment
+Update comment status
+
+```javascript
+// Promise
+const promise = feedback.updateComment();
+
+// Async/Await
+const data = await feedback.updateComment();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update the comment status (active/approve) or text.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#getComments
+Get list of comments
+
+```javascript
+// Promise
+const promise = feedback.getComments(entity_type, id, entity_id, user_id, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getComments(entity_type, id, entity_id, user_id, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| id | string | comment id | 
+| entity_id | string | entity id | 
+| user_id | string | user id - flag/filter to get comments for user | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+Get the list of comments from specific entity type.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#checkEligibility
+Checks eligibility and cloud media config
+
+```javascript
+// Promise
+const promise = feedback.checkEligibility(entity_type, entity_id, );
+
+// Async/Await
+const data = await feedback.checkEligibility(entity_type, entity_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| entity_id | string | entity id | 
+
+Checks eligibility to rate and review and cloud media configuration
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CheckEligibilityResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#deleteMedia
+Delete Media
+
+```javascript
+// Promise
+const promise = feedback.deleteMedia();
+
+// Async/Await
+const data = await feedback.deleteMedia();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Delete Media for the given entity IDs.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#createMedia
+Add Media
+
+```javascript
+// Promise
+const promise = feedback.createMedia();
+
+// Async/Await
+const data = await feedback.createMedia();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Add Media list for specific entity.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#updateMedia
+Update Media
+
+```javascript
+// Promise
+const promise = feedback.updateMedia();
+
+// Async/Await
+const data = await feedback.updateMedia();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update Media (archive/approve) for the given entity.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#getMedias
+Get Media
+
+```javascript
+// Promise
+const promise = feedback.getMedias(entity_type, entity_id, id, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getMedias(entity_type, entity_id, id, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| entity_id | string | entity id | 
+| id | string | vote id | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+Get Media from the given entity type and entity ID.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#getReviewSummaries
+Get a review summary
+
+```javascript
+// Promise
+const promise = feedback.getReviewSummaries(entity_type, entity_id, id, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getReviewSummaries(entity_type, entity_id, id, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| entity_id | string | entity id | 
+| id | string | review summary identifier | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+Review summary gives ratings and attribute metrics of a review per entity
+It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+
+Success Response:
+
+
+
+success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#createReview
+Add customer reviews
+
+```javascript
+// Promise
+const promise = feedback.createReview();
+
+// Async/Await
+const data = await feedback.createReview();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Add customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#updateReview
+Update customer reviews
+
+```javascript
+// Promise
+const promise = feedback.updateReview();
+
+// Async/Await
+const data = await feedback.updateReview();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#getReviews
+Get list of customer reviews
+
+```javascript
+// Promise
+const promise = feedback.getReviews(entity_type, entity_id, id, user_id, media, rating, attribute_rating, facets, sort, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getReviews(entity_type, entity_id, id, user_id, media, rating, attribute_rating, facets, sort, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| entity_id | string | entity id | 
+| id | string | review id | 
+| user_id | string | user id | 
+| media | string | media type e.g. image | video | video_file | video_link | 
+| rating | array | rating filter, 1-5 | 
+| attribute_rating | array | attribute rating filter | 
+| facets | boolean | facets (true|false) | 
+| sort | string | sort by : default | top | recent | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+This is used to get the list of customer reviews based on entity and provided filters.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#getTemplates
+Get the templates for product or l3 type
+
+```javascript
+// Promise
+const promise = feedback.getTemplates(template_id, entity_id, entity_type, );
+
+// Async/Await
+const data = await feedback.getTemplates(template_id, entity_id, entity_type, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| template_id | string | template id | 
+| entity_id | string | entity id | 
+| entity_type | string | entity type e.g. product | l3 | 
+
+This is used to get the templates details.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#createQuestion
+Create a new question
+
+```javascript
+// Promise
+const promise = feedback.createQuestion();
+
+// Async/Await
+const data = await feedback.createQuestion();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to create a new question with following data:
+tags, text, type, choices for MCQ type questions, maximum length of answer.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#updateQuestion
+Update question
+
+```javascript
+// Promise
+const promise = feedback.updateQuestion();
+
+// Async/Await
+const data = await feedback.updateQuestion();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to update question's status, tags and choices.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#getQuestionAndAnswers
+Get a list of QnA
+
+```javascript
+// Promise
+const promise = feedback.getQuestionAndAnswers(entity_type, entity_id, id, show_answer, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getQuestionAndAnswers(entity_type, entity_id, id, show_answer, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| entity_id | string | entity id | 
+| id | string | qna id | 
+| show_answer | boolean | show answer flag | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+This is used to get a list of questions and its answers.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#getVotes
+Get list of votes
+
+```javascript
+// Promise
+const promise = feedback.getVotes(id, ref_type, );
+
+// Async/Await
+const data = await feedback.getVotes(id, ref_type, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | vote id | 
+| ref_type | string | entity type e.g. review | comment | 
+
+This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XNumberGetResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#createVote
+Create a new vote
+
+```javascript
+// Promise
+const promise = feedback.createVote();
+
+// Async/Await
+const data = await feedback.createVote();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to create a new vote and the actions can be upvote or downvote.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+---
+
+
+#### Feedback#updateVote
+Update vote
+
+```javascript
+// Promise
+const promise = feedback.updateVote();
+
+// Async/Await
+const data = await feedback.updateVote();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to update the vote and the actions can be upvote or downvote.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 
 
