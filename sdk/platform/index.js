@@ -3,6 +3,7 @@ const Configuration = require("./configuration");
 
 const { 
     Billing,
+    Communication,
 } = require("./operations");
 
 
