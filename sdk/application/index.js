@@ -16,6 +16,7 @@ const {
     Order,
     Rewards,
     Feedback,
+    PosCart,
 } = require("./operations");
 
 
