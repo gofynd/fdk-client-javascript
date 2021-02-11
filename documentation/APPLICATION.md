@@ -10,7 +10,7 @@
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and Qr code 
 * [FileStorage](#FileStorage) - File Storage 
-* [Configuration](#Configuration) -  
+* [Configuration](#Configuration) - Application configuration apis 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [Rewards](#Rewards) - Earn and redeem Reward Points 
@@ -188,17 +188,12 @@
     * [Configuration#getOwnerInfo](#configurationgetownerinfo)
     * [Configuration#getBasicDetails](#configurationgetbasicdetails)
     * [Configuration#getIntegrationTokens](#configurationgetintegrationtokens)
-    * [Configuration#](#configuration)
-    * [Configuration#getLiveAnnouncements](#configurationgetliveannouncements)
+    * [Configuration#getAppVersion](#configurationgetappversion)
     * [Configuration#getOrderingStores](#configurationgetorderingstores)
     * [Configuration#getFeatures](#configurationgetfeatures)
     * [Configuration#getContactInfo](#configurationgetcontactinfo)
-    * [Configuration#getLegalTerms](#configurationgetlegalterms)
-    * [Configuration#getSeoInfo](#configurationgetseoinfo)
-    * [Configuration#getCustomerSupport](#configurationgetcustomersupport)
-    * [Configuration#getFaqs](#configurationgetfaqs)
     * [Configuration#getCurrencies](#configurationgetcurrencies)
-    * [Configuration#getCurrenciesById](#configurationgetcurrenciesbyid)
+    * [Configuration#getCurrencyById](#configurationgetcurrencybyid)
     * [Configuration#getLanguages](#configurationgetlanguages)
     
    
@@ -230,6 +225,8 @@
     * [Order#getOrderById](#ordergetorderbyid)
     * [Order#getShipmentById](#ordergetshipmentbyid)
     * [Order#getShipmentReasons](#ordergetshipmentreasons)
+    * [Order#updateShipmentStatus](#orderupdateshipmentstatus)
+    * [Order#trackShipment](#ordertrackshipment)
     
    
 
@@ -9510,7 +9507,7 @@ Error Response:
 
 
 #### Configuration#getOwnerInfo
-Get basic details of application
+Get application, owner and seller information
 
 ```javascript
 // Promise
@@ -9641,15 +9638,15 @@ Error Response:
 ---
 
 
-#### Configuration#
+#### Configuration#getAppVersion
 Check if a new app version is available
 
 ```javascript
 // Promise
-const promise = configuration.();
+const promise = configuration.getAppVersion();
 
 // Async/Await
-const data = await configuration.();
+const data = await configuration.getAppVersion();
 
 ```
 
@@ -9671,40 +9668,6 @@ Success Response:
 Error Response:
 
 
-
-
-
----
-
-
-#### Configuration#getLiveAnnouncements
-Get live announcements
-
-```javascript
-// Promise
-const promise = configuration.getLiveAnnouncements();
-
-// Async/Await
-const data = await configuration.getLiveAnnouncements();
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get live announcements for each or all pages with page slug of page and end date schedule.
-
-Success Response:
-
-
-
-
-
-
-
-
-
-Error Response:
 
 
 
@@ -9847,184 +9810,6 @@ Error Response:
 ---
 
 
-#### Configuration#getLegalTerms
-Get legal information
-
-```javascript
-// Promise
-const promise = configuration.getLegalTerms();
-
-// Async/Await
-const data = await configuration.getLegalTerms();
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-
-Success Response:
-
-
-
-Success
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApplicationLegal"
-}`
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
----
-
-
-#### Configuration#getSeoInfo
-Get seo of application
-
-```javascript
-// Promise
-const promise = configuration.getSeoInfo();
-
-// Async/Await
-const data = await configuration.getSeoInfo();
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get seo of application
-
-Success Response:
-
-
-
-Success
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApplicationSeoResponse"
-}`
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
-
-
----
-
-
-#### Configuration#getCustomerSupport
-Get support information
-
-```javascript
-// Promise
-const promise = configuration.getCustomerSupport();
-
-// Async/Await
-const data = await configuration.getCustomerSupport();
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get contact details for customer support. Including emails and phone numbers.
-
-Success Response:
-
-
-
-Success
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApplicationSupport"
-}`
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
----
-
-
-#### Configuration#getFaqs
-Get frequently asked questions
-
-```javascript
-// Promise
-const promise = configuration.getFaqs();
-
-// Async/Await
-const data = await configuration.getFaqs();
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get frequently asked questions list. These will be helpful for users to using website.
-
-Success Response:
-
-
-
-Success
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApplicationFaqResponse"
-}`
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
----
-
-
 #### Configuration#getCurrencies
 Get application enabled currencies
 
@@ -10059,15 +9844,15 @@ Error Response:
 ---
 
 
-#### Configuration#getCurrenciesById
+#### Configuration#getCurrencyById
 Get currency by id
 
 ```javascript
 // Promise
-const promise = configuration.getCurrenciesById(id, );
+const promise = configuration.getCurrencyById(id, );
 
 // Async/Await
-const data = await configuration.getCurrenciesById(id, );
+const data = await configuration.getCurrencyById(id, );
 
 ```
 
@@ -10958,10 +10743,10 @@ Get Orders for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getOrders(page_no, page_size, x-application-id, x-application-token, );
+const promise = order.getOrders(page_no, page_size, from_date, to_date, );
 
 // Async/Await
-const data = await order.getOrders(page_no, page_size, x-application-id, x-application-token, );
+const data = await order.getOrders(page_no, page_size, from_date, to_date, );
 
 ```
 
@@ -10969,8 +10754,8 @@ const data = await order.getOrders(page_no, page_size, x-application-id, x-appli
 | --------- | ----  | --- |
 | page_no | string | Current page number | 
 | page_size | string | Page limit | 
-| x-application-id | string | Current Application ID | 
-| x-application-token | string | Current Application Token | 
+| from_date | string | From Date | 
+| to_date | string | To Date | 
 
 Get Orders
 
@@ -10998,6 +10783,10 @@ Error Response:
 
 
 
+
+
+
+
 ---
 
 
@@ -11006,18 +10795,16 @@ Get Order by order id for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getOrderById(order_id, x-application-id, x-application-token, );
+const promise = order.getOrderById(order_id, );
 
 // Async/Await
-const data = await order.getOrderById(order_id, x-application-id, x-application-token, );
+const data = await order.getOrderById(order_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | order_id | string | Order Id | 
-| x-application-id | string | Current Application ID | 
-| x-application-token | string | Current Application Token | 
 
 Get Order By Fynd Order Id
 
@@ -11045,6 +10832,10 @@ Error Response:
 
 
 
+
+
+
+
 ---
 
 
@@ -11053,18 +10844,16 @@ Get Shipment by shipment id and order id for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getShipmentById(shipment_id, x-application-id, x-application-token, );
+const promise = order.getShipmentById(shipment_id, );
 
 // Async/Await
-const data = await order.getShipmentById(shipment_id, x-application-id, x-application-token, );
+const data = await order.getShipmentById(shipment_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | shipment_id | string | Shipment Id | 
-| x-application-id | string | Current Application ID | 
-| x-application-token | string | Current Application Token | 
 
 Get Shipment
 
@@ -11092,6 +10881,10 @@ Error Response:
 
 
 
+
+
+
+
 ---
 
 
@@ -11100,18 +10893,16 @@ Get Shipment reasons by shipment id and order id for application based on applic
 
 ```javascript
 // Promise
-const promise = order.getShipmentReasons(shipment_id, x-application-id, x-application-token, );
+const promise = order.getShipmentReasons(shipment_id, );
 
 // Async/Await
-const data = await order.getShipmentReasons(shipment_id, x-application-id, x-application-token, );
+const data = await order.getShipmentReasons(shipment_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | shipment_id | string | Shipment Id | 
-| x-application-id | string | Current Application ID | 
-| x-application-token | string | Current Application Token | 
 
 Get Shipment Reasons
 
@@ -11136,6 +10927,108 @@ Schema: `{
 
 
 Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Order#updateShipmentStatus
+Update Shipment status by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.updateShipmentStatus(shipment_id, );
+
+// Async/Await
+const data = await order.updateShipmentStatus(shipment_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipment_id | string | Shipment Id | 
+
+Update Shipment Status
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ShipmentStatusUpdate"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Order#trackShipment
+Track Shipment by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.trackShipment(shipment_id, );
+
+// Async/Await
+const data = await order.trackShipment(shipment_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipment_id | string | Shipment Id | 
+
+Shipment Track
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ShipmentTrack"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
 
 
 

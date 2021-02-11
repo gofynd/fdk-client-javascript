@@ -2027,16 +2027,9 @@ const {
     Device,
     OS,
     AppFeatureResponse,
-    Announcement,
     Store,
     OrderingStores,
     ApplicationInformation,
-    Faq,
-    ApplicationLegal,
-    SEO,
-    ApplicationSeoResponse,
-    ApplicationSupport,
-    ApplicationFaqResponse,
     LanguageResponse,
     TokensResponse
 } = require("./schema");
@@ -2063,7 +2056,7 @@ class Configuration {
     
     /**
     *
-    * Summary: Get basic details of application
+    * Summary: Get application, owner and seller information
     * Description:  Get application information with owner and seller basic details
     **/
     getOwnerInfo(
@@ -2108,26 +2101,12 @@ class Configuration {
     * Summary: Check if a new app version is available
     * Description:  Before launching the app (android/iOS), check if a new version is available. Response gives 3 update modes viz. FORCE, AVAILABLE, UP_TO_DATE. `FORCE`- Application should be updated necessarily. `AVAILABLE`- A new version available. But its not necessary to update. `UP_TO_DATE`- Application is at the latest version. These 3 modes are computed at the backend based on the lastest version of app available and the oldest version of app supported by the system.
     **/
-    (
+    getAppVersion(
     ) {
         return APIClient.execute(
             this._conf,
             "post",
             "/service/application/configuration/v1.0/version",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get live announcements
-    * Description:  Get live announcements for each or all pages with page slug of page and end date schedule.
-    **/
-    getLiveAnnouncements(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/configuration/v1.0/announcements",
         );
     }
     
@@ -2175,62 +2154,6 @@ class Configuration {
     
     /**
     *
-    * Summary: Get legal information
-    * Description:  Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-    **/
-    getLegalTerms(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/configuration/v1.0/legal",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get seo of application
-    * Description:  Get seo of application
-    **/
-    getSeoInfo(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/configuration/v1.0/seo",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get support information
-    * Description:  Get contact details for customer support. Including emails and phone numbers.
-    **/
-    getCustomerSupport(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/configuration/v1.0/support",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get frequently asked questions
-    * Description:  Get frequently asked questions list. These will be helpful for users to using website.
-    **/
-    getFaqs(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/configuration/v1.0/faqs",
-        );
-    }
-    
-    /**
-    *
     * Summary: Get application enabled currencies
     * Description:  Get currency list for allowed currencies under current application
     **/
@@ -2248,7 +2171,7 @@ class Configuration {
     * Summary: Get currency by id
     * Description:  Get currency object with symbol and name information by id.
     **/
-    getCurrenciesById(
+    getCurrencyById(
         id, opts
     ) {
         return APIClient.execute(
@@ -2555,10 +2478,14 @@ exports.Payment = Payment;
 
 
 const { 
+    ApefaceApiError,
     OrderById,
     OrderList,
     ShipmentById,
-    ShipmentReasons
+    ShipmentReasons,
+    ShipmentStatusUpdateBody,
+    ShipmentStatusUpdate,
+    ShipmentTrack
 } = require("./schema");
 
     
@@ -2573,8 +2500,6 @@ class Order {
     * Description:  Get Orders
     **/
     getOrders(
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
@@ -2590,8 +2515,6 @@ class Order {
     **/
     getOrderById(
         orderId, opts
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
@@ -2607,8 +2530,6 @@ class Order {
     **/
     getShipmentById(
         shipmentId, opts
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
@@ -2624,13 +2545,41 @@ class Order {
     **/
     getShipmentReasons(
         shipmentId, opts
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
             "/services/application/v1.0/orders/shipments/{shipment_id}/reasons",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Shipment status by shipment id and order id for application based on application Id
+    * Description:  Update Shipment Status
+    **/
+    updateShipmentStatus(
+        shipmentId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/services/application/v1.0/orders/shipments/{shipment_id}/status",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Track Shipment by shipment id and order id for application based on application Id
+    * Description:  Shipment Track
+    **/
+    trackShipment(
+        shipmentId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/services/application/v1.0/orders/shipments/{shipment_id}/track",
         );
     }
     
