@@ -13,14 +13,14 @@ const {
     ProductDetailGroupedAttribute,
     ProductDetail,
     Error,
-    ProductSizeStores,
-    ProductSize,
     Price,
     ProductListingPrice,
+    ProductSizeStores,
+    ProductSize,
     ProductSizes,
+    ProductStockPrice,
     Seller,
     Store,
-    ProductStockPrice,
     ArticleAssignment,
     ProductSizePriceResponse,
     ProductSizeSellerFilter,
@@ -35,15 +35,15 @@ const {
     ProductVariantItemResponse,
     ProductVariantResponse,
     ProductVariantsResponse,
-    CompanyDetail,
     StoreDetail,
+    CompanyDetail,
     ProductStockStatusItem,
     ProductStockStatusResponse,
     ProductStockPolling,
-    ProductSortOn,
     ProductFiltersValue,
     ProductFiltersKey,
     ProductFilters,
+    ProductSortOn,
     ProductListingResponse,
     ImageUrls,
     BrandItem,
@@ -60,10 +60,10 @@ const {
     DepartmentResponse,
     AutocompleteItem,
     AutoCompleteResponse,
-    GetCollectionDetailNest,
     CollectionListingFilterTag,
     CollectionListingFilterType,
     CollectionListingFilter,
+    GetCollectionDetailNest,
     GetCollectionListingResponse,
     GetCollectionListingItemsResponse,
     CollectionDetailResponse,
@@ -423,22 +423,6 @@ class Catalog {
     
     /**
     *
-    * Summary: UnFollow a Product
-    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    **/
-    unfollowById(
-        collectionType, opts
-        collectionId, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "delete",
-            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
-        );
-    }
-    
-    /**
-    *
     * Summary: Follow a particular Product
     * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     **/
@@ -449,6 +433,22 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "post",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: UnFollow a Product
+    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    **/
+    unfollowById(
+        collectionType, opts
+        collectionId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
             "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
         );
     }
@@ -494,26 +494,26 @@ const {
     GetCartResponse,
     AddProductCart,
     AddCartRequest,
-    CartCurrency,
-    RawBreakup,
-    BaseLoyaltyPoints,
-    CouponBreakup,
-    DisplayBreakup,
-    BaseCartBreakup,
-    PaymentFlow,
-    PaymentFlows,
-    PaymentOption,
-    PaymentOptions,
     ProductAvailability,
-    CategoryInfo,
-    Image,
-    BaseInfo,
     ActionQuery,
     Action,
+    CategoryInfo,
+    BaseInfo,
+    Image,
     Product,
     ProductPrice,
     ProductPriceInfo,
     CartProductInfo,
+    PaymentFlow,
+    PaymentFlows,
+    PaymentOption,
+    PaymentOptions,
+    CartCurrency,
+    BaseLoyaltyPoints,
+    RawBreakup,
+    DisplayBreakup,
+    CouponBreakup,
+    BaseCartBreakup,
     CartResponse,
     UpdateProductCart,
     UpdateCartRequest,
@@ -525,9 +525,9 @@ const {
     CartCoupon,
     SaveCoupon,
     SaveCouponResponse,
+    OfferSeller,
     OfferPrice,
     OfferItem,
-    OfferSeller,
     BulkPriceOffer,
     BulkPriceResponse,
     Address,
@@ -568,7 +568,7 @@ class Cart {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/cart/v1.0/details",
+            "/service/application/cart/v1.0/detail",
         );
     }
     
@@ -582,21 +582,21 @@ class Cart {
         return APIClient.execute(
             this._conf,
             "head",
-            "/service/application/cart/v1.0/details",
+            "/service/application/cart/v1.0/detail",
         );
     }
     
     /**
     *
     * Summary: Add Items to Cart
-    * Description:  <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api's</p> <ul> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">seller_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">store_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> </ul>
+    * Description:  <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
     **/
-    addItemsToCart(
+    addItems(
     ) {
         return APIClient.execute(
             this._conf,
             "post",
-            "/service/application/cart/v1.0/details",
+            "/service/application/cart/v1.0/detail",
         );
     }
     
@@ -610,7 +610,7 @@ class Cart {
         return APIClient.execute(
             this._conf,
             "put",
-            "/service/application/cart/v1.0/details",
+            "/service/application/cart/v1.0/detail",
         );
     }
     
@@ -619,7 +619,7 @@ class Cart {
     * Summary: Cart item count
     * Description:  Get total count of item present in cart
     **/
-    getCartItemCount(
+    getItemCount(
     ) {
         return APIClient.execute(
             this._conf,
@@ -633,7 +633,7 @@ class Cart {
     * Summary: Fetch Coupon
     * Description:  Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
     **/
-    getCouponList(
+    getCoupons(
     ) {
         return APIClient.execute(
             this._conf,
@@ -690,7 +690,7 @@ class Cart {
     * Summary: Fetch Address
     * Description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
     **/
-    getAddressList(
+    getAddresses(
     ) {
         return APIClient.execute(
             this._conf,
@@ -763,7 +763,7 @@ class Cart {
     * Summary: Select Address from All Addresses
     * Description:  <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
     **/
-    selectCartAddress(
+    selectAddress(
     ) {
         return APIClient.execute(
             this._conf,
@@ -774,10 +774,10 @@ class Cart {
     
     /**
     *
-    * Summary: Gte Cart Payment for valid coupon
+    * Summary: Get Cart Payment for valid coupon
     * Description:  Validate coupon for selected payment mode
     **/
-    getCartPaymentModes(
+    getPaymentModes(
     ) {
         return APIClient.execute(
             this._conf,
@@ -791,7 +791,7 @@ class Cart {
     * Summary: Update Cart Payment
     * Description:  Update Cart Payment for Your Account
     **/
-    selectCartPaymentMode(
+    selectPaymentMode(
     ) {
         return APIClient.execute(
             this._conf,
@@ -805,7 +805,7 @@ class Cart {
     * Summary: Get delivery date and options before checkout
     * Description:  Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
     **/
-    getCartShipments(
+    getShipments(
     ) {
         return APIClient.execute(
             this._conf,
@@ -1029,9 +1029,7 @@ exports.Lead = Lead;
 
 
 const { 
-    CustomPageBlogs,
-    TagsSchema,
-    Themesv3Schema,
+    ThemesSchema,
     pagesSchema,
     availableSectionSchema,
     sectionSchema
@@ -1045,67 +1043,15 @@ class Theme {
     
     /**
     *
-    * Summary: Get Blog by slug
-    * Description:  
-    **/
-    getCustomPage(
-        xApplicationId, opts
-        xApplicationToken, opts
-        slug, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/v1.0/custom/page/{slug}",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get Blog by slug
-    * Description:  
-    **/
-    getCustomBlog(
-        xApplicationId, opts
-        xApplicationToken, opts
-        slug, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/v1.0/custom/blog/{slug}",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get Tags for application
-    * Description:  
-    **/
-    getApplicationTags(
-        xApplicationId, opts
-        xApplicationToken, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/v1.0/tags",
-        );
-    }
-    
-    /**
-    *
     * Summary: Get applied theme for an application
     * Description:  
     **/
     getAppliedTheme(
-        xApplicationId, opts
-        xApplicationToken, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/v1.0/applied-theme",
+            "/service/application/theme/v1.0/applied-theme",
         );
     }
     
@@ -1120,7 +1066,7 @@ class Theme {
         return APIClient.execute(
             this._conf,
             "get",
-            "/v1.0/{themeId}/preview",
+            "/service/application/theme/v1.0/{themeId}/preview",
         );
     }
     
@@ -1128,6 +1074,669 @@ class Theme {
 
 
 exports.Theme = Theme;
+
+
+
+const { 
+    PlatformSchema,
+    UserSchema
+} = require("./schema");
+
+    
+class User {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Login/Register with Facebook
+    * Description:  Used to login or register with Facebook
+    **/
+    loginWithFacebook(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/login/facebook-token",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Login/Register with Google
+    * Description:  Used to login or register with Google
+    **/
+    loginWithGoogle(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/login/google-token",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Login/Register with Google for android
+    * Description:  Used to login or register with Google for android
+    **/
+    loginWithGoogleAndroid(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/login/google-android",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Login/Register with Google for ios
+    * Description:  Used to login or register with google for ios
+    **/
+    loginWithGoogleIOS(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/login/google-ios",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Login/Register with OTP
+    * Description:  Used to login or register with OTP
+    **/
+    loginWithOTP(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/login/otp",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Login/Register with password
+    * Description:  Used to login or register with email & password
+    **/
+    loginWithEmailAndPassword(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/login/password",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Reset Password
+    * Description:  Used to reset account password
+    **/
+    sendResetPasswordEmail(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/login/password/reset",
+        );
+    }
+    
+    /**
+    *
+    * Summary: 
+    * Description:  
+    **/
+    forgotPassword(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/userauthentication/v1.0/login/password/reset/forgot",
+        );
+    }
+    
+    /**
+    *
+    * Summary: 
+    * Description:  Send code incase of reset password
+    **/
+    sendResetToken(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/login/password/reset/token",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Login/Register with token
+    * Description:  Login/Register with token
+    **/
+    loginWithToken(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/login/token",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Registration Form
+    * Description:  Register using form
+    **/
+    registerWithForm(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/register/form",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Verify email
+    * Description:  Used to verify email
+    **/
+    verifyEmail(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/verify/email",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Verify mobile
+    * Description:  Verify mobile
+    **/
+    verifyMobile(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/verify/mobile",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Check if user has password
+    * Description:  Checks if user is using password or not
+    **/
+    hasPassword(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/user/authentication/v1.0/has-password",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update user password
+    * Description:  Used to update user password
+    **/
+    updatePassword(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/password",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Logout user
+    * Description:  Used to log out user
+    **/
+    logout(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/user/authentication/v1.0/logout",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Send OTP on mobile
+    * Description:  Used to send otp to mobile
+    **/
+    sendOTPOnMobile(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/otp/mobile/send",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Verify OTP on mobile
+    * Description:  Used to verify otp sent to mobile
+    **/
+    verifyMobileOTP(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/otp/mobile/verify",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Send OTP on email
+    * Description:  Used to send otp to email
+    **/
+    sendOTPOnEmail(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/otp/email/send",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Verify OTP on email
+    * Description:  Used to verify otp sent to email
+    **/
+    verifyEmailOTP(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/authentication/v1.0/otp/email/verify",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get logged in user
+    * Description:  Used to get logged in user details
+    **/
+    getLoggedInUser(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/user/authentication/v1.0/session",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get list of sessions
+    * Description:  Lists all active sessions
+    **/
+    getListOfActiveSessions(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/user/authentication/v1.0/sessions",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get platform config
+    * Description:  Used to get platform config
+    **/
+    getPlatformConfig(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/user/platform/v1.0/config",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Edit Profile Details
+    * Description:  Used to update profile
+    **/
+    updateProfile(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/profile/v1.0/detail",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Add mobile number to profile
+    * Description:  Used to add new mobile number to profile
+    **/
+    addMobileNumber(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/user/profile/v1.0/mobile",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Delete mobile number from profile
+    * Description:  Used to delete mobile number from profile
+    **/
+    deleteMobileNumber(
+        active, opts
+        primary, opts
+        verified, opts
+        countryCode, opts
+        phone, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
+            "/service/application/user/profile/v1.0/mobile",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Set mobile as primary
+    * Description:  Used to set a mobile number as primary
+    **/
+    setMobileNumberAsPrimary(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/profile/v1.0/mobile/primary",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Send verification link to mobile
+    * Description:  Used to send verification link to a mobile number
+    **/
+    sendVerificationLinkToMobile(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/profile/v1.0/mobile/link/send",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Add email to profile
+    * Description:  Used to add new email to profile
+    **/
+    addEmail(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/user/profile/v1.0/email",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Delete email from profile
+    * Description:  Used to delete email from profile
+    **/
+    deleteEmail(
+        active, opts
+        primary, opts
+        verified, opts
+        email, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
+            "/service/application/user/profile/v1.0/email",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Set email as primary
+    * Description:  Used to set an email as primart
+    **/
+    setEmailAsPrimary(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/profile/v1.0/email/primary",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Send verification link to email
+    * Description:  Used to sent verification to an email
+    **/
+    sendVerificationLinkToEmail(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/user/profile/v1.0/email/link/send",
+        );
+    }
+    
+}
+
+
+exports.User = User;
+
+
+
+const { 
+    ApplicationLegal,
+    Seo,
+    Announcement,
+    Navigation,
+    NavigationRef,
+    LandingPage,
+    Slideshow,
+    Faq,
+    CustomPage,
+    CustomBlog,
+    Support,
+    TagsSchema
+} = require("./schema");
+
+    
+class Content {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Get live announcements
+    * Description:  Get live announcements for each or all pages with page slug of page and end date schedule.
+    **/
+    getAnnouncements(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/announcements",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Blog by slug
+    * Description:  Use this API to fetch a blog using `slug`
+    **/
+    getBlog(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/blogs/{slug}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get frequently asked questions
+    * Description:  Get frequently asked questions list. These will be helpful for users to using website.
+    **/
+    getFaqs(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/faqs",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get landing page
+    * Description:  Use this API to fetch a landing page
+    **/
+    getLandingPage(
+        xDevicePlatform, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/landing-page",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get legal information
+    * Description:  Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+    **/
+    getLegalInformation(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/legal",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get navigation
+    * Description:  Use this API to fetch a navigation
+    **/
+    getNavigations(
+        xDevicePlatform, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/navigations/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Page by slug
+    * Description:  Use this API to fetch a custom page using `slug`
+    **/
+    getPage(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/pages/{slug}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get seo of application
+    * Description:  Get seo of application
+    **/
+    getSeo(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/seo",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get slideshow by slug
+    * Description:  Use this API to fetch a slideshow using `slug`
+    **/
+    getSlideshow(
+        slug, opts
+        xDevicePlatform, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/slideshow/{slug}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get support information
+    * Description:  Get contact details for customer support. Including emails and phone numbers
+    **/
+    getSupportInformation(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/support",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Tags for application
+    * Description:  
+    **/
+    getFPITags(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/content/v1.0/tags",
+        );
+    }
+    
+}
+
+
+exports.Content = Content;
 
 
 

@@ -6,6 +6,8 @@ const {
     Cart,
     Lead,
     Theme,
+    User,
+    Content,
     Communication,
     Share,
     FileStorage,

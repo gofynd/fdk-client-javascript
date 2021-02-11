@@ -2,9 +2,11 @@
 
 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
-* [Cart](#Cart) - Open API leverages Fynd's real-time inventory integration with over 200+ brands & 8000+ stores and makes it easy for developers and businesses to build a full fledged omni-channel fashion e-commerce app. 
+* [Cart](#Cart) - Cart APIs 
 * [Lead](#Lead) - Handles communication between Staff and Users 
-* [Theme](#Theme) -  
+* [Theme](#Theme) - Responsible for themes and on the fly script injections 
+* [User](#User) -  
+* [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and Qr code 
 * [FileStorage](#FileStorage) - File Storage 
@@ -45,8 +47,8 @@
     * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
     * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
     * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
-    * [Catalog#unfollowById](#catalogunfollowbyid)
     * [Catalog#followById](#catalogfollowbyid)
+    * [Catalog#unfollowById](#catalogunfollowbyid)
     * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
     * [Catalog#getFollowIds](#cataloggetfollowids)
     
@@ -56,22 +58,22 @@
   * Methods
     * [Cart#getCart](#cartgetcart)
     * [Cart#getCartLastModified](#cartgetcartlastmodified)
-    * [Cart#addItemsToCart](#cartadditemstocart)
+    * [Cart#addItems](#cartadditems)
     * [Cart#updateCart](#cartupdatecart)
-    * [Cart#getCartItemCount](#cartgetcartitemcount)
-    * [Cart#getCouponList](#cartgetcouponlist)
+    * [Cart#getItemCount](#cartgetitemcount)
+    * [Cart#getCoupons](#cartgetcoupons)
     * [Cart#applyCoupon](#cartapplycoupon)
     * [Cart#removeCoupon](#cartremovecoupon)
     * [Cart#getBulkDiscountOffers](#cartgetbulkdiscountoffers)
-    * [Cart#getAddressList](#cartgetaddresslist)
+    * [Cart#getAddresses](#cartgetaddresses)
     * [Cart#addAddress](#cartaddaddress)
     * [Cart#getAddressById](#cartgetaddressbyid)
     * [Cart#updateAddress](#cartupdateaddress)
     * [Cart#removeAddress](#cartremoveaddress)
-    * [Cart#selectCartAddress](#cartselectcartaddress)
-    * [Cart#getCartPaymentModes](#cartgetcartpaymentmodes)
-    * [Cart#selectCartPaymentMode](#cartselectcartpaymentmode)
-    * [Cart#getCartShipments](#cartgetcartshipments)
+    * [Cart#selectAddress](#cartselectaddress)
+    * [Cart#getPaymentModes](#cartgetpaymentmodes)
+    * [Cart#selectPaymentMode](#cartselectpaymentmode)
+    * [Cart#getShipments](#cartgetshipments)
     * [Cart#checkoutCart](#cartcheckoutcart)
     * [Cart#updateCartMeta](#cartupdatecartmeta)
     * [Cart#getCartShareLink](#cartgetcartsharelink)
@@ -94,11 +96,61 @@
 
 * [Theme](#Theme)
   * Methods
-    * [Theme#getCustomPage](#themegetcustompage)
-    * [Theme#getCustomBlog](#themegetcustomblog)
-    * [Theme#getApplicationTags](#themegetapplicationtags)
     * [Theme#getAppliedTheme](#themegetappliedtheme)
     * [Theme#getThemeForPreview](#themegetthemeforpreview)
+    
+   
+
+* [User](#User)
+  * Methods
+    * [User#loginWithFacebook](#userloginwithfacebook)
+    * [User#loginWithGoogle](#userloginwithgoogle)
+    * [User#loginWithGoogleAndroid](#userloginwithgoogleandroid)
+    * [User#loginWithGoogleIOS](#userloginwithgoogleios)
+    * [User#loginWithOTP](#userloginwithotp)
+    * [User#loginWithEmailAndPassword](#userloginwithemailandpassword)
+    * [User#sendResetPasswordEmail](#usersendresetpasswordemail)
+    * [User#forgotPassword](#userforgotpassword)
+    * [User#sendResetToken](#usersendresettoken)
+    * [User#loginWithToken](#userloginwithtoken)
+    * [User#registerWithForm](#userregisterwithform)
+    * [User#verifyEmail](#userverifyemail)
+    * [User#verifyMobile](#userverifymobile)
+    * [User#hasPassword](#userhaspassword)
+    * [User#updatePassword](#userupdatepassword)
+    * [User#logout](#userlogout)
+    * [User#sendOTPOnMobile](#usersendotponmobile)
+    * [User#verifyMobileOTP](#userverifymobileotp)
+    * [User#sendOTPOnEmail](#usersendotponemail)
+    * [User#verifyEmailOTP](#userverifyemailotp)
+    * [User#getLoggedInUser](#usergetloggedinuser)
+    * [User#getListOfActiveSessions](#usergetlistofactivesessions)
+    * [User#getPlatformConfig](#usergetplatformconfig)
+    * [User#updateProfile](#userupdateprofile)
+    * [User#addMobileNumber](#useraddmobilenumber)
+    * [User#deleteMobileNumber](#userdeletemobilenumber)
+    * [User#setMobileNumberAsPrimary](#usersetmobilenumberasprimary)
+    * [User#sendVerificationLinkToMobile](#usersendverificationlinktomobile)
+    * [User#addEmail](#useraddemail)
+    * [User#deleteEmail](#userdeleteemail)
+    * [User#setEmailAsPrimary](#usersetemailasprimary)
+    * [User#sendVerificationLinkToEmail](#usersendverificationlinktoemail)
+    
+   
+
+* [Content](#Content)
+  * Methods
+    * [Content#getAnnouncements](#contentgetannouncements)
+    * [Content#getBlog](#contentgetblog)
+    * [Content#getFaqs](#contentgetfaqs)
+    * [Content#getLandingPage](#contentgetlandingpage)
+    * [Content#getLegalInformation](#contentgetlegalinformation)
+    * [Content#getNavigations](#contentgetnavigations)
+    * [Content#getPage](#contentgetpage)
+    * [Content#getSeo](#contentgetseo)
+    * [Content#getSlideshow](#contentgetslideshow)
+    * [Content#getSupportInformation](#contentgetsupportinformation)
+    * [Content#getFPITags](#contentgetfpitags)
     
    
 
@@ -778,10 +830,10 @@ List the products
 
 ```javascript
 // Promise
-const promise = catalog.getProducts(q, f, sort_on, page_id, page_size, );
+const promise = catalog.getProducts(q, f, sort_on, page_id, page_size, page_no, page_type, );
 
 // Async/Await
-const data = await catalog.getProducts(q, f, sort_on, page_id, page_size, );
+const data = await catalog.getProducts(q, f, sort_on, page_id, page_size, page_no, page_type, );
 
 ```
 
@@ -792,6 +844,8 @@ const data = await catalog.getProducts(q, f, sort_on, page_id, page_size, );
 | sort_on | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
 | page_id | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
 | page_size | integer | Number of items to retrieve in each page. Default is 12. | 
+| page_no | integer | If page_type is number then pass it to fetch page items. Default is 1. | 
+| page_type | str | For pagination type should be cursor or number. Default is cursor. | 
 
 List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
 
@@ -1349,24 +1403,24 @@ Error Response:
 ---
 
 
-#### Catalog#unfollowById
-UnFollow a Product
+#### Catalog#followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collection_type, collection_id, );
+const promise = catalog.followById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.unfollowById(collection_type, collection_id, );
+const data = await catalog.followById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to unfollow | 
+| collection_id | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -1397,24 +1451,24 @@ Error Response:
 ---
 
 
-#### Catalog#followById
-Follow a particular Product
+#### Catalog#unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collection_type, collection_id, );
+const promise = catalog.unfollowById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.followById(collection_type, collection_id, );
+const data = await catalog.unfollowById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to follow | 
+| collection_id | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -1638,22 +1692,22 @@ Error Response:
 ---
 
 
-#### Cart#addItemsToCart
+#### Cart#addItems
 Add Items to Cart
 
 ```javascript
 // Promise
-const promise = cart.addItemsToCart();
+const promise = cart.addItems();
 
 // Async/Await
-const data = await cart.addItemsToCart();
+const data = await cart.addItems();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-<p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items ,coupons available etc.these attributes will be fetched from the folowing api's</p> <ul> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">seller_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">store_id</font>  "/platform/content/v1/products/{slug}/sizes/price"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> </ul>
+<p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
 
 Success Response:
 
@@ -2721,15 +2775,15 @@ Error Response:
 ---
 
 
-#### Cart#getCartItemCount
+#### Cart#getItemCount
 Cart item count
 
 ```javascript
 // Promise
-const promise = cart.getCartItemCount(uid, );
+const promise = cart.getItemCount(uid, );
 
 // Async/Await
-const data = await cart.getCartItemCount(uid, );
+const data = await cart.getItemCount(uid, );
 
 ```
 
@@ -2772,15 +2826,15 @@ Error Response:
 ---
 
 
-#### Cart#getCouponList
+#### Cart#getCoupons
 Fetch Coupon
 
 ```javascript
 // Promise
-const promise = cart.getCouponList(uid, );
+const promise = cart.getCoupons(uid, );
 
 // Async/Await
-const data = await cart.getCouponList(uid, );
+const data = await cart.getCoupons(uid, );
 
 ```
 
@@ -3017,15 +3071,15 @@ Error Response:
 ---
 
 
-#### Cart#getAddressList
+#### Cart#getAddresses
 Fetch Address
 
 ```javascript
 // Promise
-const promise = cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, );
+const promise = cart.getAddresses(uid, mobile_no, checkout_mode, tags, default, );
 
 // Async/Await
-const data = await cart.getAddressList(uid, mobile_no, checkout_mode, tags, default, );
+const data = await cart.getAddresses(uid, mobile_no, checkout_mode, tags, default, );
 
 ```
 
@@ -3222,15 +3276,15 @@ Error Response:
 ---
 
 
-#### Cart#selectCartAddress
+#### Cart#selectAddress
 Select Address from All Addresses
 
 ```javascript
 // Promise
-const promise = cart.selectCartAddress();
+const promise = cart.selectAddress();
 
 // Async/Await
-const data = await cart.selectCartAddress();
+const data = await cart.selectAddress();
 
 ```
 
@@ -3254,15 +3308,15 @@ Error Response:
 ---
 
 
-#### Cart#getCartPaymentModes
-Gte Cart Payment for valid coupon
+#### Cart#getPaymentModes
+Get Cart Payment for valid coupon
 
 ```javascript
 // Promise
-const promise = cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
+const promise = cart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
 
 // Async/Await
-const data = await cart.getCartPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
+const data = await cart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
 
 ```
 
@@ -3304,15 +3358,15 @@ Error Response:
 ---
 
 
-#### Cart#selectCartPaymentMode
+#### Cart#selectPaymentMode
 Update Cart Payment
 
 ```javascript
 // Promise
-const promise = cart.selectCartPaymentMode(uid, );
+const promise = cart.selectPaymentMode(uid, );
 
 // Async/Await
-const data = await cart.selectCartPaymentMode(uid, );
+const data = await cart.selectPaymentMode(uid, );
 
 ```
 
@@ -3349,15 +3403,15 @@ Error Response:
 ---
 
 
-#### Cart#getCartShipments
+#### Cart#getShipments
 Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = cart.getCartShipments(p, uid, address_id, );
+const promise = cart.getShipments(p, uid, address_id, );
 
 // Async/Await
-const data = await cart.getCartShipments(p, uid, address_id, );
+const data = await cart.getShipments(p, uid, address_id, );
 
 ```
 
@@ -6081,170 +6135,20 @@ const theme = new Theme(conf);
 ```
 
 
-#### Theme#getCustomPage
-Get Blog by slug
-
-```javascript
-// Promise
-const promise = theme.getCustomPage(x-application-id, x-application-token, slug, );
-
-// Async/Await
-const data = await theme.getCustomPage(x-application-id, x-application-token, slug, );
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| x-application-id | string | Application ID | 
-| x-application-token | string | Application Token | 
-| slug | string | Slug of the page to be retrieved | 
-
-
-
-Success Response:
-
-
-
-A JSON object with page details
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CustomPageBlogs"
-}`
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
-
-
----
-
-
-#### Theme#getCustomBlog
-Get Blog by slug
-
-```javascript
-// Promise
-const promise = theme.getCustomBlog(x-application-id, x-application-token, slug, );
-
-// Async/Await
-const data = await theme.getCustomBlog(x-application-id, x-application-token, slug, );
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| x-application-id | string | Application ID | 
-| x-application-token | string | Application Token | 
-| slug | string | Slug of the blog to be retrieved | 
-
-
-
-Success Response:
-
-
-
-A JSON object with blog details
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CustomPageBlogs"
-}`
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
-
-
----
-
-
-#### Theme#getApplicationTags
-Get Tags for application
-
-```javascript
-// Promise
-const promise = theme.getApplicationTags(x-application-id, x-application-token, );
-
-// Async/Await
-const data = await theme.getApplicationTags(x-application-id, x-application-token, );
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| x-application-id | string | Application ID | 
-| x-application-token | string | Application Token | 
-
-
-
-Success Response:
-
-
-
-A JSON object of tags
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/TagsSchema"
-}`
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
-
-
-
-
----
-
-
 #### Theme#getAppliedTheme
 Get applied theme for an application
 
 ```javascript
 // Promise
-const promise = theme.getAppliedTheme(x-application-id, x-application-token, );
+const promise = theme.getAppliedTheme();
 
 // Async/Await
-const data = await theme.getAppliedTheme(x-application-id, x-application-token, );
+const data = await theme.getAppliedTheme();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| x-application-id | string | Application ID | 
-| x-application-token | string | Application Token | 
 
 
 
@@ -6252,14 +6156,25 @@ Success Response:
 
 
 
-A JSON object with of theme
+A JSON object of theme
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/Themesv3Schema"
+  "$ref": "#/components/schemas/ThemesSchema"
 }`
+
+
+Examples: 
+
+
+Applied Theme
+```javascript
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
 
 
 
@@ -6269,6 +6184,8 @@ Schema: `{
 
 
 Error Response:
+
+
 
 
 
@@ -6299,13 +6216,265 @@ Success Response:
 
 
 
-A JSON object with of theme
+A JSON object of theme
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/Themesv3Schema"
+  "$ref": "#/components/schemas/ThemesSchema"
+}`
+
+
+Examples: 
+
+
+Preview Theme
+```javascript
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## User
+
+```javascript
+const { Configuration, User } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const user = new User(conf);
+
+```
+
+
+#### User#loginWithFacebook
+Login/Register with Facebook
+
+```javascript
+// Promise
+const promise = user.loginWithFacebook();
+
+// Async/Await
+const data = await user.loginWithFacebook();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Facebook
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#loginWithGoogle
+Login/Register with Google
+
+```javascript
+// Promise
+const promise = user.loginWithGoogle();
+
+// Async/Await
+const data = await user.loginWithGoogle();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#loginWithGoogleAndroid
+Login/Register with Google for android
+
+```javascript
+// Promise
+const promise = user.loginWithGoogleAndroid();
+
+// Async/Await
+const data = await user.loginWithGoogleAndroid();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google for android
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#loginWithGoogleIOS
+Login/Register with Google for ios
+
+```javascript
+// Promise
+const promise = user.loginWithGoogleIOS();
+
+// Async/Await
+const data = await user.loginWithGoogleIOS();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with google for ios
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#loginWithOTP
+Login/Register with OTP
+
+```javascript
+// Promise
+const promise = user.loginWithOTP(platform, );
+
+// Async/Await
+const data = await user.loginWithOTP(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to login or register with OTP
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "resend_timer": {
+      "type": "integer"
+    },
+    "resendToken": {
+      "type": "string"
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "mobile": {
+      "type": "string"
+    },
+    "country_code": {
+      "type": "string"
+    }
+  }
 }`
 
 
@@ -6316,6 +6485,2253 @@ Schema: `{
 
 
 Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#loginWithEmailAndPassword
+Login/Register with password
+
+```javascript
+// Promise
+const promise = user.loginWithEmailAndPassword();
+
+// Async/Await
+const data = await user.loginWithEmailAndPassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with email & password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#sendResetPasswordEmail
+Reset Password
+
+```javascript
+// Promise
+const promise = user.sendResetPasswordEmail(platform, );
+
+// Async/Await
+const data = await user.sendResetPasswordEmail(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to reset account password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#forgotPassword
+
+
+```javascript
+// Promise
+const promise = user.forgotPassword();
+
+// Async/Await
+const data = await user.forgotPassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#sendResetToken
+
+
+```javascript
+// Promise
+const promise = user.sendResetToken();
+
+// Async/Await
+const data = await user.sendResetToken();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Send code incase of reset password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#loginWithToken
+Login/Register with token
+
+```javascript
+// Promise
+const promise = user.loginWithToken();
+
+// Async/Await
+const data = await user.loginWithToken();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Login/Register with token
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+
+
+---
+
+
+#### User#registerWithForm
+Registration Form
+
+```javascript
+// Promise
+const promise = user.registerWithForm(platform, );
+
+// Async/Await
+const data = await user.registerWithForm(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Register using form
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "resend_timer": {
+      "type": "integer"
+    },
+    "resendToken": {
+      "type": "string"
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "mobile": {
+      "type": "string"
+    },
+    "country_code": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#verifyEmail
+Verify email
+
+```javascript
+// Promise
+const promise = user.verifyEmail();
+
+// Async/Await
+const data = await user.verifyEmail();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to verify email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#verifyMobile
+Verify mobile
+
+```javascript
+// Promise
+const promise = user.verifyMobile();
+
+// Async/Await
+const data = await user.verifyMobile();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Verify mobile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#hasPassword
+Check if user has password
+
+```javascript
+// Promise
+const promise = user.hasPassword();
+
+// Async/Await
+const data = await user.hasPassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Checks if user is using password or not
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "boolean"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#updatePassword
+Update user password
+
+```javascript
+// Promise
+const promise = user.updatePassword();
+
+// Async/Await
+const data = await user.updatePassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to update user password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#logout
+Logout user
+
+```javascript
+// Promise
+const promise = user.logout();
+
+// Async/Await
+const data = await user.logout();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to log out user
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "logout": {
+      "type": "boolean"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#sendOTPOnMobile
+Send OTP on mobile
+
+```javascript
+// Promise
+const promise = user.sendOTPOnMobile(platform, );
+
+// Async/Await
+const data = await user.sendOTPOnMobile(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to mobile
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#verifyMobileOTP
+Verify OTP on mobile
+
+```javascript
+// Promise
+const promise = user.verifyMobileOTP(platform, );
+
+// Async/Await
+const data = await user.verifyMobileOTP(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to mobile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    },
+    "userExists": {
+      "type": "boolean"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/verifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#sendOTPOnEmail
+Send OTP on email
+
+```javascript
+// Promise
+const promise = user.sendOTPOnEmail(platform, );
+
+// Async/Await
+const data = await user.sendOTPOnEmail(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to email
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#verifyEmailOTP
+Verify OTP on email
+
+```javascript
+// Promise
+const promise = user.verifyEmailOTP(platform, );
+
+// Async/Await
+const data = await user.verifyEmailOTP(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    },
+    "userExists": {
+      "type": "boolean"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/verifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#getLoggedInUser
+Get logged in user
+
+```javascript
+// Promise
+const promise = user.getLoggedInUser();
+
+// Async/Await
+const data = await user.getLoggedInUser();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to get logged in user details
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/UserSchema"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExample"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#getListOfActiveSessions
+Get list of sessions
+
+```javascript
+// Promise
+const promise = user.getListOfActiveSessions();
+
+// Async/Await
+const data = await user.getListOfActiveSessions();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Lists all active sessions
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "sessions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#getPlatformConfig
+Get platform config
+
+```javascript
+// Promise
+const promise = user.getPlatformConfig(name, );
+
+// Async/Await
+const data = await user.getPlatformConfig(name, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| name | string | Name | 
+
+Used to get platform config
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#updateProfile
+Edit Profile Details
+
+```javascript
+// Promise
+const promise = user.updateProfile(platform, );
+
+// Async/Await
+const data = await user.updateProfile(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to update profile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#addMobileNumber
+Add mobile number to profile
+
+```javascript
+// Promise
+const promise = user.addMobileNumber(platform, );
+
+// Async/Await
+const data = await user.addMobileNumber(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new mobile number to profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    },
+    "verifyMobileLink": {
+      "type": "boolean"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/verifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#deleteMobileNumber
+Delete mobile number from profile
+
+```javascript
+// Promise
+const promise = user.deleteMobileNumber(platform, active, primary, verified, country_code, phone, );
+
+// Async/Await
+const data = await user.deleteMobileNumber(platform, active, primary, verified, country_code, phone, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Active mobile number | 
+| primary | boolean | Primary number | 
+| verified | boolean | Verified Number | 
+| country_code | string | Country code of phone number | 
+| phone | string | Phone number | 
+
+Used to delete mobile number from profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#setMobileNumberAsPrimary
+Set mobile as primary
+
+```javascript
+// Promise
+const promise = user.setMobileNumberAsPrimary();
+
+// Async/Await
+const data = await user.setMobileNumberAsPrimary();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set a mobile number as primary
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#sendVerificationLinkToMobile
+Send verification link to mobile
+
+```javascript
+// Promise
+const promise = user.sendVerificationLinkToMobile(platform, );
+
+// Async/Await
+const data = await user.sendVerificationLinkToMobile(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send verification link to a mobile number
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "verifyMobileLink": {
+      "type": "boolean"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/verifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#addEmail
+Add email to profile
+
+```javascript
+// Promise
+const promise = user.addEmail(platform, );
+
+// Async/Await
+const data = await user.addEmail(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new email to profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    },
+    "verify_email_link": {
+      "type": "boolean"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/verifyEmailOTP"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#deleteEmail
+Delete email from profile
+
+```javascript
+// Promise
+const promise = user.deleteEmail(platform, active, primary, verified, email, );
+
+// Async/Await
+const data = await user.deleteEmail(platform, active, primary, verified, email, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Whether email id is active | 
+| primary | boolean | Whether email id is primary email | 
+| verified | boolean | Whether email id is verified | 
+| email | string | Email ID to be deleted | 
+
+Used to delete email from profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#setEmailAsPrimary
+Set email as primary
+
+```javascript
+// Promise
+const promise = user.setEmailAsPrimary();
+
+// Async/Await
+const data = await user.setEmailAsPrimary();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set an email as primart
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserSchema"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### User#sendVerificationLinkToEmail
+Send verification link to email
+
+```javascript
+// Promise
+const promise = user.sendVerificationLinkToEmail(platform, );
+
+// Async/Await
+const data = await user.sendVerificationLinkToEmail(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to sent verification to an email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "verify_email_link": {
+      "type": "boolean"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Content
+
+```javascript
+const { Configuration, Content } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const content = new Content(conf);
+
+```
+
+
+#### Content#getAnnouncements
+Get live announcements
+
+```javascript
+// Promise
+const promise = content.getAnnouncements();
+
+// Async/Await
+const data = await content.getAnnouncements();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get live announcements for each or all pages with page slug of page and end date schedule.
+
+Success Response:
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Content#getBlog
+Get Blog by slug
+
+```javascript
+// Promise
+const promise = content.getBlog(slug, );
+
+// Async/Await
+const data = await content.getBlog(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
+
+Use this API to fetch a blog using `slug`
+
+Success Response:
+
+
+
+A JSON object with blog details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CustomBlog"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CustomBlog"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Content#getFaqs
+Get frequently asked questions
+
+```javascript
+// Promise
+const promise = content.getFaqs();
+
+// Async/Await
+const data = await content.getFaqs();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "faqs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Faq"
+      }
+    }
+  }
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/AppFaqs"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Content#getLandingPage
+Get landing page
+
+```javascript
+// Promise
+const promise = content.getLandingPage(x-device-platform, );
+
+// Async/Await
+const data = await content.getLandingPage(x-device-platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a landing page
+
+Success Response:
+
+
+
+A JSON object with landing details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LandingPage"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/LandingPage"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Content#getLegalInformation
+Get legal information
+
+```javascript
+// Promise
+const promise = content.getLegalInformation();
+
+// Async/Await
+const data = await content.getLegalInformation();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationLegal"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/Legal"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Content#getNavigations
+Get navigation
+
+```javascript
+// Promise
+const promise = content.getNavigations(x-device-platform, );
+
+// Async/Await
+const data = await content.getNavigations(x-device-platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a navigation
+
+Success Response:
+
+
+
+A JSON object with navigation details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Navigation"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Navigation"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Content#getPage
+Get Page by slug
+
+```javascript
+// Promise
+const promise = content.getPage(slug, );
+
+// Async/Await
+const data = await content.getPage(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
+
+Use this API to fetch a custom page using `slug`
+
+Success Response:
+
+
+
+A JSON object with page details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CustomPage"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CustomPage"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Content#getSeo
+Get seo of application
+
+```javascript
+// Promise
+const promise = content.getSeo();
+
+// Async/Await
+const data = await content.getSeo();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get seo of application
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Seo"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "robots_txt": {
+          "type": "string"
+        },
+        "sitemap_enabled": {
+          "type": "boolean"
+        }
+      }
+    }
+  ]
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Content#getSlideshow
+Get slideshow by slug
+
+```javascript
+// Promise
+const promise = content.getSlideshow(slug, x-device-platform, );
+
+// Async/Await
+const data = await content.getSlideshow(slug, x-device-platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow | 
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a slideshow using `slug`
+
+Success Response:
+
+
+
+A JSON object with slideshow details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Slideshow"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Slideshow"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Content#getSupportInformation
+Get support information
+
+```javascript
+// Promise
+const promise = content.getSupportInformation();
+
+// Async/Await
+const data = await content.getSupportInformation();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get contact details for customer support. Including emails and phone numbers
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Support"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Support"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+
+
+
+
+---
+
+
+#### Content#getFPITags
+Get Tags for application
+
+```javascript
+// Promise
+const promise = content.getFPITags();
+
+// Async/Await
+const data = await content.getFPITags();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+A JSON object of tags
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/TagsSchema"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 
 
