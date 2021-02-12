@@ -48,8 +48,8 @@
     * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
     * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
     * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
-    * [Catalog#unfollowById](#catalogunfollowbyid)
     * [Catalog#followById](#catalogfollowbyid)
+    * [Catalog#unfollowById](#catalogunfollowbyid)
     * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
     * [Catalog#getFollowIds](#cataloggetfollowids)
     
@@ -1429,24 +1429,24 @@ Error Response:
 ---
 
 
-#### Catalog#unfollowById
-UnFollow a Product
+#### Catalog#followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collection_type, collection_id, );
+const promise = catalog.followById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.unfollowById(collection_type, collection_id, );
+const data = await catalog.followById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to unfollow | 
+| collection_id | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -1477,24 +1477,24 @@ Error Response:
 ---
 
 
-#### Catalog#followById
-Follow a particular Product
+#### Catalog#unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collection_type, collection_id, );
+const promise = catalog.unfollowById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.followById(collection_type, collection_id, );
+const data = await catalog.unfollowById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to follow | 
+| collection_id | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 Success Response:
 
