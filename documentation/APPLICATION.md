@@ -8,7 +8,7 @@
 * [User](#User) -  
 * [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
-* [Share](#Share) - Short link and Qr code 
+* [Share](#Share) - Short link and QR Code 
 * [FileStorage](#FileStorage) - File Storage 
 * [Configuration](#Configuration) - Application configuration apis 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
@@ -42,7 +42,7 @@
     * [Catalog#getCategories](#cataloggetcategories)
     * [Catalog#getCategoryDetailBySlug](#cataloggetcategorydetailbyslug)
     * [Catalog#getHomeProducts](#cataloggethomeproducts)
-    * [Catalog#](#catalog)
+    * [Catalog#getDepartments](#cataloggetdepartments)
     * [Catalog#getSearchResults](#cataloggetsearchresults)
     * [Catalog#getCollections](#cataloggetcollections)
     * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
@@ -169,9 +169,9 @@
     * [Share#getProductQRCodeBySlug](#sharegetproductqrcodebyslug)
     * [Share#getCollectionQRCodeBySlug](#sharegetcollectionqrcodebyslug)
     * [Share#getUrlQRCode](#sharegeturlqrcode)
-    * [Share#createShortUrl](#sharecreateshorturl)
-    * [Share#getShortUrlbyHash](#sharegetshorturlbyhash)
-    * [Share#getOriginalShortUrlByHash](#sharegetoriginalshorturlbyhash)
+    * [Share#createShortLink](#sharecreateshortlink)
+    * [Share#getShortLinkByHash](#sharegetshortlinkbyhash)
+    * [Share#getOriginalShortLinkByHash](#sharegetoriginalshortlinkbyhash)
     
    
 
@@ -871,7 +871,7 @@ const data = await catalog.getProducts(q, f, sort_on, page_id, page_size, page_n
 | page_id | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
 | page_size | integer | Number of items to retrieve in each page. Default is 12. | 
 | page_no | integer | If page_type is number then pass it to fetch page items. Default is 1. | 
-| page_type | str | For pagination type should be cursor or number. Default is cursor. | 
+| page_type | string | For pagination type should be cursor or number. Default is cursor. | 
 
 List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
 
@@ -1143,15 +1143,15 @@ Error Response:
 ---
 
 
-#### Catalog#
+#### Catalog#getDepartments
 List all the departments
 
 ```javascript
 // Promise
-const promise = catalog.();
+const promise = catalog.getDepartments();
 
 // Async/Await
-const data = await catalog.();
+const data = await catalog.getDepartments();
 
 ```
 
@@ -9162,22 +9162,22 @@ Error Response:
 ---
 
 
-#### Share#createShortUrl
-Create short url
+#### Share#createShortLink
+Create short link
 
 ```javascript
 // Promise
-const promise = share.createShortUrl();
+const promise = share.createShortLink();
 
 // Async/Await
-const data = await share.createShortUrl();
+const data = await share.createShortLink();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Create short url
+Create short link
 
 Success Response:
 
@@ -9206,15 +9206,15 @@ Error Response:
 ---
 
 
-#### Share#getShortUrlbyHash
-Get short url by hash
+#### Share#getShortLinkByHash
+Get short link by hash
 
 ```javascript
 // Promise
-const promise = share.getShortUrlbyHash(hash, );
+const promise = share.getShortLinkByHash(hash, );
 
 // Async/Await
-const data = await share.getShortUrlbyHash(hash, );
+const data = await share.getShortLinkByHash(hash, );
 
 ```
 
@@ -9222,7 +9222,7 @@ const data = await share.getShortUrlbyHash(hash, );
 | --------- | ----  | --- |
 | hash | string | Hash of short url | 
 
-Get short url by hash
+Get short link by hash
 
 Success Response:
 
@@ -9251,15 +9251,15 @@ Error Response:
 ---
 
 
-#### Share#getOriginalShortUrlByHash
-Get original url by hash
+#### Share#getOriginalShortLinkByHash
+Get original link by hash
 
 ```javascript
 // Promise
-const promise = share.getOriginalShortUrlByHash(hash, );
+const promise = share.getOriginalShortLinkByHash(hash, );
 
 // Async/Await
-const data = await share.getOriginalShortUrlByHash(hash, );
+const data = await share.getOriginalShortLinkByHash(hash, );
 
 ```
 
@@ -9267,7 +9267,7 @@ const data = await share.getOriginalShortUrlByHash(hash, );
 | --------- | ----  | --- |
 | hash | string | Hash of short url | 
 
-Get original url by hash
+Get original link by hash
 
 Success Response:
 

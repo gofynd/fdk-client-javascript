@@ -18,13 +18,13 @@ const {
     ProductListingPrice,
     ProductSizeStores,
     ProductSizes,
+    ArticleAssignment,
     Seller,
     ProductStockPrice,
     Store,
-    ArticleAssignment,
     ProductSizePriceResponse,
-    ProductPage,
     ProductSizeSellerFilter,
+    ProductPage,
     ProductSizeSellersResponse,
     AttributeDetail,
     ProductsComparisonResponse,
@@ -35,23 +35,23 @@ const {
     ProductVariantItemResponse,
     ProductVariantResponse,
     ProductVariantsResponse,
-    StoreDetail,
     CompanyDetail,
+    StoreDetail,
     ProductStockStatusItem,
     ProductStockStatusResponse,
     ProductStockPolling,
-    ProductFiltersValue,
-    ProductFiltersKey,
-    ProductFilters,
     ProductSortOn,
+    ProductFiltersKey,
+    ProductFiltersValue,
+    ProductFilters,
     ProductListingResponse,
     ImageUrls,
     BrandItem,
     BrandListingResponse,
     BrandDetailResponse,
-    DepartmentIdentifier,
     CategoryItems,
     DepartmentCategoryTree,
+    DepartmentIdentifier,
     CategoryListingResponse,
     CategoryMetaResponse,
     Page,
@@ -60,10 +60,10 @@ const {
     DepartmentResponse,
     AutocompleteItem,
     AutoCompleteResponse,
-    GetCollectionDetailNest,
-    CollectionListingFilterType,
     CollectionListingFilterTag,
+    CollectionListingFilterType,
     CollectionListingFilter,
+    GetCollectionDetailNest,
     GetCollectionListingResponse,
     GetCollectionListingItemsResponse,
     CollectionDetailResponse,
@@ -338,7 +338,7 @@ class Catalog {
     * Summary: List all the departments
     * Description:  Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
     **/
-    (
+    getDepartments(
     ) {
         return APIClient.execute(
             this._conf,
@@ -1878,45 +1878,45 @@ class Share {
     
     /**
     *
-    * Summary: Create short url
-    * Description:  Create short url
+    * Summary: Create short link
+    * Description:  Create short link
     **/
-    createShortUrl(
+    createShortLink(
     ) {
         return APIClient.execute(
             this._conf,
             "post",
-            "/service/application/share/v1.0/links/short-url/",
+            "/service/application/share/v1.0/links/short-link/",
         );
     }
     
     /**
     *
-    * Summary: Get short url by hash
-    * Description:  Get short url by hash
+    * Summary: Get short link by hash
+    * Description:  Get short link by hash
     **/
-    getShortUrlbyHash(
+    getShortLinkByHash(
         hash, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/share/v1.0/links/short-url/{hash}/",
+            "/service/application/share/v1.0/links/short-link/{hash}/",
         );
     }
     
     /**
     *
-    * Summary: Get original url by hash
-    * Description:  Get original url by hash
+    * Summary: Get original link by hash
+    * Description:  Get original link by hash
     **/
-    getOriginalShortUrlByHash(
+    getOriginalShortLinkByHash(
         hash, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/share/v1.0/links/short-url/{hash}/original/",
+            "/service/application/share/v1.0/links/short-link/{hash}/original/",
         );
     }
     
