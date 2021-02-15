@@ -5,12 +5,12 @@ const Configuration = require("./configuration");
 
 
 const { 
-    ProductDetailAttribute,
-    ProductDetailGroupedAttribute,
+    Media,
     ProductListingActionPage,
     ProductListingAction,
-    Media,
     ProductBrand,
+    ProductDetailAttribute,
+    ProductDetailGroupedAttribute,
     ProductDetail,
     Error,
     ProductSize,
@@ -18,13 +18,13 @@ const {
     ProductListingPrice,
     ProductSizeStores,
     ProductSizes,
-    ProductStockPrice,
     ArticleAssignment,
     Seller,
+    ProductStockPrice,
     Store,
     ProductSizePriceResponse,
-    ProductPage,
     ProductSizeSellerFilter,
+    ProductPage,
     ProductSizeSellersResponse,
     AttributeDetail,
     ProductsComparisonResponse,
@@ -49,9 +49,9 @@ const {
     BrandItem,
     BrandListingResponse,
     BrandDetailResponse,
-    DepartmentIdentifier,
     CategoryItems,
     DepartmentCategoryTree,
+    DepartmentIdentifier,
     CategoryListingResponse,
     CategoryMetaResponse,
     Page,
@@ -60,10 +60,10 @@ const {
     DepartmentResponse,
     AutocompleteItem,
     AutoCompleteResponse,
-    GetCollectionDetailNest,
     CollectionListingFilterTag,
     CollectionListingFilterType,
     CollectionListingFilter,
+    GetCollectionDetailNest,
     GetCollectionListingResponse,
     GetCollectionListingItemsResponse,
     CollectionDetailResponse,
@@ -423,22 +423,6 @@ class Catalog {
     
     /**
     *
-    * Summary: Follow a particular Product
-    * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-    **/
-    followById(
-        collectionType, opts
-        collectionId, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "post",
-            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
-        );
-    }
-    
-    /**
-    *
     * Summary: UnFollow a Product
     * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
     **/
@@ -449,6 +433,22 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "delete",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Follow a particular Product
+    * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+    **/
+    followById(
+        collectionType, opts
+        collectionId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
             "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
         );
     }
@@ -895,6 +895,9 @@ exports.Cart = Cart;
 
 
 const { 
+    GetTokenForVideoRoomResponse,
+    GetParticipantsInsideVideoRoomResponse,
+    SubmitCustomFormResponse,
     Context,
     CreatedOn,
     Asset,
@@ -928,7 +931,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "get",
-            "/services/application/lead/v1.0/ticket/{id}",
+            "/service/application/lead/v1.0/ticket/{id}",
         );
     }
     
@@ -943,7 +946,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "post",
-            "/services/application/lead/v1.0/ticket/{ticket_id}/history",
+            "/service/application/lead/v1.0/ticket/{ticket_id}/history",
         );
     }
     
@@ -957,7 +960,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "post",
-            "/services/application/lead/v1.0/ticket/",
+            "/service/application/lead/v1.0/ticket/",
         );
     }
     
@@ -972,7 +975,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "get",
-            "/services/application/lead/v1.0/form/{slug}",
+            "/service/application/lead/v1.0/form/{slug}",
         );
     }
     
@@ -987,7 +990,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "post",
-            "/services/application/lead/v1.0/form/{slug}/submit",
+            "/service/application/lead/v1.0/form/{slug}/submit",
         );
     }
     
@@ -1002,7 +1005,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "get",
-            "/services/application/lead/v1.0/video/room/{unique_name}/participants",
+            "/service/application/lead/v1.0/video/room/{unique_name}/participants",
         );
     }
     
@@ -1017,7 +1020,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "get",
-            "/services/application/lead/v1.0/video/room/{unique_name}/token",
+            "/service/application/lead/v1.0/video/room/{unique_name}/token",
         );
     }
     
@@ -1804,11 +1807,11 @@ exports.Communication = Communication;
 
 
 const { 
-    qrResp,
-    redirect_device,
-    redirects,
-    shortUrlReq,
-    shortUrlRes
+    QRCodeResp,
+    RedirectDevice,
+    Redirects,
+    ShortUrlReq,
+    ShortUrlRes
 } = require("./schema");
 
     
@@ -2226,7 +2229,7 @@ const {
     OrderBeneficiaryResponse,
     NotFoundResourceError,
     IfscCodeResponse,
-    InternalErrorResponse,
+    ErrorCodeDescription,
     AddBeneficiaryViaOtpVerificationRequest,
     AddBeneficiaryViaOtpVerificationResponse,
     WrongOtpError,

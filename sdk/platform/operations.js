@@ -665,3 +665,229 @@ class Communication {
 exports.Communication = Communication;
 
 
+
+const { 
+    PaymentGatewayConfigResponse,
+    ErrorCodeDescription,
+    PaymentGatewayConfig,
+    PaymentGatewayConfigRequest,
+    PaymentGatewayToBeReviewed,
+    ErrorCodeAndDescription,
+    HttpErrorCodeAndResponse,
+    PaymentOptionsDetails,
+    PaymentOptionsResponse,
+    PayoutsResponse,
+    PayoutRequest,
+    PayoutResponse,
+    UpdatePayoutResponse,
+    UpdatePayoutRequest,
+    DeletePayoutResponse,
+    SubscriptionPaymentMethodResponse,
+    DeleteSubscriptionPaymentMethodResponse,
+    SubscriptionConfigResponse,
+    SaveSubscriptionSetupIntentRequest,
+    SaveSubscriptionSetupIntentResponse
+} = require("./schema");
+
+    
+class Payment {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Get All Brand Payment Gateway Config Secret
+    * Description:  Get All Brand Payment Gateway Config Secret
+    **/
+    getBrandPaymentGatewayConfig(
+        companyId, opts
+        applicationId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/platform/payment/v1.0/company/{company_id}/application/{application_id}/aggregator/request",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Save Config Secret For Brand Payment Gateway
+    * Description:  Save Config Secret For Brand Payment Gateway
+    **/
+    saveBrandPaymentGatewayConfig(
+        companyId, opts
+        applicationId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/platform/payment/v1.0/company/{company_id}/application/{application_id}/aggregator/request",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get All Valid Payment Options
+    * Description:  Use this API to get Get All Valid Payment Options for making payment
+    **/
+    (
+        companyId, opts
+        applicationId, opts
+        refresh, opts
+        requestType, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/platform/payment/v1.0/company/{company_id}/application/{application_id}/payment/options",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get All Payouts
+    * Description:  Get All Payouts
+    **/
+    getAllPayouts(
+        companyId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/platform/payment/v1.0/company/{company_id}/payouts",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Save Payout
+    * Description:  Save Payout
+    **/
+    savePayout(
+        companyId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/platform/payment/v1.0/company/{company_id}/payouts",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Payout
+    * Description:  Update Payout
+    **/
+    updatePayout(
+        companyId, opts
+        uniqueTransferNo, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/platform/payment/v1.0/company/{company_id}/payouts/{unique_transfer_no}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Partial Update Payout
+    * Description:  Partial Update Payout
+    **/
+    activateAndDectivatePayout(
+        companyId, opts
+        uniqueTransferNo, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "patch",
+            "/service/platform/payment/v1.0/company/{company_id}/payouts/{unique_transfer_no}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Delete Payout
+    * Description:  Delete Payout
+    **/
+    deletePayout(
+        companyId, opts
+        uniqueTransferNo, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
+            "/service/platform/payment/v1.0/company/{company_id}/payouts/{unique_transfer_no}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: List Subscription Payment Method
+    * Description:  Get all  Subscription  Payment Method
+    **/
+    getSubscriptionPaymentMethod(
+        companyId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/platform/payment/v1.0/company/{company_id}/subscription/methods",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Delete Subscription Payment Method
+    * Description:  Uses this api to Delete Subscription Payment Method
+    **/
+    deleteSubscriptionPaymentMethod(
+        companyId, opts
+        uniqueExternalId, opts
+        paymentMethodId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
+            "/service/platform/payment/v1.0/company/{company_id}/subscription/methods",
+        );
+    }
+    
+    /**
+    *
+    * Summary: List Subscription Config
+    * Description:  Get all  Subscription Config details
+    **/
+    getSubscriptionConfig(
+        companyId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/platform/payment/v1.0/company/{company_id}/subscription/configs",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Save Subscription Setup Intent
+    * Description:  Uses this api to Save Subscription Setup Intent
+    **/
+    saveSubscriptionSetupIntent(
+        companyId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/platform/payment/v1.0/company/{company_id}/subscription/setup/intent",
+        );
+    }
+    
+}
+
+
+exports.Payment = Payment;
+
+

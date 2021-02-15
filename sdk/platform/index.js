@@ -4,6 +4,7 @@ const Configuration = require("./configuration");
 const { 
     Billing,
     Communication,
+    Payment,
 } = require("./operations");
 
 

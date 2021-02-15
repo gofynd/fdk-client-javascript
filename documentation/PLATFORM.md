@@ -3,6 +3,7 @@
 
 * [Billing](#Billing) - Handle platform subscription 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
+* [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 
 ----
 ----
@@ -54,6 +55,20 @@
   * [Communication#updateSmsTemplateById](#communicationupdatesmstemplatebyid)
   * [Communication#deleteSmsTemplateById](#communicationdeletesmstemplatebyid)
   * [Communication#getSystemSystemTemplates](#communicationgetsystemsystemtemplates)
+ 
+* [Payment](#Payment)
+  * [Payment#getBrandPaymentGatewayConfig](#paymentgetbrandpaymentgatewayconfig)
+  * [Payment#saveBrandPaymentGatewayConfig](#paymentsavebrandpaymentgatewayconfig)
+  * [Payment#](#payment)
+  * [Payment#getAllPayouts](#paymentgetallpayouts)
+  * [Payment#savePayout](#paymentsavepayout)
+  * [Payment#updatePayout](#paymentupdatepayout)
+  * [Payment#activateAndDectivatePayout](#paymentactivateanddectivatepayout)
+  * [Payment#deletePayout](#paymentdeletepayout)
+  * [Payment#getSubscriptionPaymentMethod](#paymentgetsubscriptionpaymentmethod)
+  * [Payment#deleteSubscriptionPaymentMethod](#paymentdeletesubscriptionpaymentmethod)
+  * [Payment#getSubscriptionConfig](#paymentgetsubscriptionconfig)
+  * [Payment#saveSubscriptionSetupIntent](#paymentsavesubscriptionsetupintent)
  
 
 ---
@@ -1036,6 +1051,334 @@ const data = await communication.getSystemSystemTemplates();
 
 
 Get system sms templates
+
+
+---
+
+
+
+---
+---
+
+
+## Payment
+
+```javascript
+const { Configuration, Payment } = require('fdk-client-nodejs/platform')
+const conf = new Configuration({
+    OAuth2Token: "5ljdffg191e810c19729de860ea"
+});
+const payment = new Payment(conf);
+
+```
+
+
+#### Payment#getBrandPaymentGatewayConfig
+Get All Brand Payment Gateway Config Secret
+
+```javascript
+// Promise
+const promise = payment.getBrandPaymentGatewayConfig(company_id, application_id, );
+
+// Async/Await
+const data = await payment.getBrandPaymentGatewayConfig(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+| application_id | string | Application id | 
+
+
+Get All Brand Payment Gateway Config Secret
+
+
+---
+
+
+#### Payment#saveBrandPaymentGatewayConfig
+Save Config Secret For Brand Payment Gateway
+
+```javascript
+// Promise
+const promise = payment.saveBrandPaymentGatewayConfig(company_id, application_id, );
+
+// Async/Await
+const data = await payment.saveBrandPaymentGatewayConfig(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+| application_id | string | Application id | 
+
+
+Save Config Secret For Brand Payment Gateway
+
+
+---
+
+
+#### Payment#
+Get All Valid Payment Options
+
+```javascript
+// Promise
+const promise = payment.(company_id, application_id, refresh, request_type, );
+
+// Async/Await
+const data = await payment.(company_id, application_id, refresh, request_type, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+| application_id | string | Application id | 
+| refresh | boolean |  | 
+| request_type | string |  | 
+
+
+Use this API to get Get All Valid Payment Options for making payment
+
+
+---
+
+
+#### Payment#getAllPayouts
+Get All Payouts
+
+```javascript
+// Promise
+const promise = payment.getAllPayouts(company_id, unique_external_id, );
+
+// Async/Await
+const data = await payment.getAllPayouts(company_id, unique_external_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+| unique_external_id | string | Fetch payouts using unique external id | 
+
+
+Get All Payouts
+
+
+---
+
+
+#### Payment#savePayout
+Save Payout
+
+```javascript
+// Promise
+const promise = payment.savePayout(company_id, );
+
+// Async/Await
+const data = await payment.savePayout(company_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+
+
+Save Payout
+
+
+---
+
+
+#### Payment#updatePayout
+Update Payout
+
+```javascript
+// Promise
+const promise = payment.updatePayout(company_id, unique_transfer_no, );
+
+// Async/Await
+const data = await payment.updatePayout(company_id, unique_transfer_no, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+| unique_transfer_no | string | Unique transfer id | 
+
+
+Update Payout
+
+
+---
+
+
+#### Payment#activateAndDectivatePayout
+Partial Update Payout
+
+```javascript
+// Promise
+const promise = payment.activateAndDectivatePayout(company_id, unique_transfer_no, );
+
+// Async/Await
+const data = await payment.activateAndDectivatePayout(company_id, unique_transfer_no, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+| unique_transfer_no | string | Unique transfer id | 
+
+
+Partial Update Payout
+
+
+---
+
+
+#### Payment#deletePayout
+Delete Payout
+
+```javascript
+// Promise
+const promise = payment.deletePayout(company_id, unique_transfer_no, );
+
+// Async/Await
+const data = await payment.deletePayout(company_id, unique_transfer_no, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+| unique_transfer_no | string | Unique transfer id | 
+
+
+Delete Payout
+
+
+---
+
+
+#### Payment#getSubscriptionPaymentMethod
+List Subscription Payment Method
+
+```javascript
+// Promise
+const promise = payment.getSubscriptionPaymentMethod(company_id, );
+
+// Async/Await
+const data = await payment.getSubscriptionPaymentMethod(company_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+
+
+Get all  Subscription  Payment Method
+
+
+---
+
+
+#### Payment#deleteSubscriptionPaymentMethod
+Delete Subscription Payment Method
+
+```javascript
+// Promise
+const promise = payment.deleteSubscriptionPaymentMethod(company_id, unique_external_id, payment_method_id, );
+
+// Async/Await
+const data = await payment.deleteSubscriptionPaymentMethod(company_id, unique_external_id, payment_method_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+| unique_external_id | string |  | 
+| payment_method_id | string |  | 
+
+
+Uses this api to Delete Subscription Payment Method
+
+
+---
+
+
+#### Payment#getSubscriptionConfig
+List Subscription Config
+
+```javascript
+// Promise
+const promise = payment.getSubscriptionConfig(company_id, );
+
+// Async/Await
+const data = await payment.getSubscriptionConfig(company_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+
+
+Get all  Subscription Config details
+
+
+---
+
+
+#### Payment#saveSubscriptionSetupIntent
+Save Subscription Setup Intent
+
+```javascript
+// Promise
+const promise = payment.saveSubscriptionSetupIntent(company_id, );
+
+// Async/Await
+const data = await payment.saveSubscriptionSetupIntent(company_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | integer | Company Id | 
+
+
+Uses this api to Save Subscription Setup Intent
 
 
 ---

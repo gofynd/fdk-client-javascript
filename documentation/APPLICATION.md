@@ -4,7 +4,7 @@
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Cart](#Cart) - Cart APIs 
 * [Lead](#Lead) - Handles communication between Staff and Users 
-* [Theme](#Theme) - Responsible for themes and on the fly script injections 
+* [Theme](#Theme) - Responsible for themes 
 * [User](#User) -  
 * [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
@@ -48,8 +48,8 @@
     * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
     * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
     * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
-    * [Catalog#followById](#catalogfollowbyid)
     * [Catalog#unfollowById](#catalogunfollowbyid)
+    * [Catalog#followById](#catalogfollowbyid)
     * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
     * [Catalog#getFollowIds](#cataloggetfollowids)
     
@@ -1429,24 +1429,24 @@ Error Response:
 ---
 
 
-#### Catalog#followById
-Follow a particular Product
+#### Catalog#unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collection_type, collection_id, );
+const promise = catalog.unfollowById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.followById(collection_type, collection_id, );
+const data = await catalog.unfollowById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to follow | 
+| collection_id | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -1477,24 +1477,24 @@ Error Response:
 ---
 
 
-#### Catalog#unfollowById
-UnFollow a Product
+#### Catalog#followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collection_type, collection_id, );
+const promise = catalog.followById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.unfollowById(collection_type, collection_id, );
+const data = await catalog.followById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to unfollow | 
+| collection_id | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -5787,11 +5787,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "properties": {
-    "ticket": {
-      "$ref": "#/components/schemas/Ticket"
-    }
-  }
+  "$ref": "#/components/schemas/SubmitCustomFormResponse"
 }`
 
 
@@ -6044,11 +6040,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "properties": {
-    "participants": {
-      "type": "array"
-    }
-  }
+  "$ref": "#/components/schemas/GetParticipantsInsideVideoRoomResponse"
 }`
 
 
@@ -6108,11 +6100,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "properties": {
-    "access_token": {
-      "type": "string"
-    }
-  }
+  "$ref": "#/components/schemas/GetTokenForVideoRoomResponse"
 }`
 
 
@@ -9010,7 +8998,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/qrResp"
+  "$ref": "#/components/schemas/QRCodeResp"
 }`
 
 
@@ -9055,7 +9043,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/qrResp"
+  "$ref": "#/components/schemas/QRCodeResp"
 }`
 
 
@@ -9100,7 +9088,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/qrResp"
+  "$ref": "#/components/schemas/QRCodeResp"
 }`
 
 
@@ -9145,7 +9133,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/qrResp"
+  "$ref": "#/components/schemas/QRCodeResp"
 }`
 
 
@@ -9189,7 +9177,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/shortUrlRes"
+  "$ref": "#/components/schemas/ShortUrlRes"
 }`
 
 
@@ -9234,7 +9222,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/shortUrlRes"
+  "$ref": "#/components/schemas/ShortUrlRes"
 }`
 
 
@@ -9279,7 +9267,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/shortUrlRes"
+  "$ref": "#/components/schemas/ShortUrlRes"
 }`
 
 
