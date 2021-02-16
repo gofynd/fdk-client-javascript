@@ -5,7 +5,7 @@
 * [Cart](#Cart) - Cart APIs 
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
-* [User](#User) -  
+* [User](#User) - Authentication Service 
 * [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and QR Code 
@@ -195,6 +195,7 @@
     * [Configuration#getCurrencies](#configurationgetcurrencies)
     * [Configuration#getCurrencyById](#configurationgetcurrencybyid)
     * [Configuration#getLanguages](#configurationgetlanguages)
+    * [Configuration#](#configuration)
     
    
 
@@ -856,10 +857,10 @@ List the products
 
 ```javascript
 // Promise
-const promise = catalog.getProducts(q, f, sort_on, page_id, page_size, page_no, page_type, );
+const promise = catalog.getProducts(q, f, filters, sort_on, page_id, page_size, page_no, page_type, );
 
 // Async/Await
-const data = await catalog.getProducts(q, f, sort_on, page_id, page_size, page_no, page_type, );
+const data = await catalog.getProducts(q, f, filters, sort_on, page_id, page_size, page_no, page_type, );
 
 ```
 
@@ -867,6 +868,7 @@ const data = await catalog.getProducts(q, f, sort_on, page_id, page_size, page_n
 | --------- | ----  | --- |
 | q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
 | f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
+| filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
 | sort_on | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
 | page_id | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
 | page_size | integer | Number of items to retrieve in each page. Default is 12. | 
@@ -1289,10 +1291,10 @@ Get the items in a collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollectionItemsBySlug(slug, f, sort_on, page_id, page_size, );
+const promise = catalog.getCollectionItemsBySlug(slug, f, filters, sort_on, page_id, page_size, );
 
 // Async/Await
-const data = await catalog.getCollectionItemsBySlug(slug, f, sort_on, page_id, page_size, );
+const data = await catalog.getCollectionItemsBySlug(slug, f, filters, sort_on, page_id, page_size, );
 
 ```
 
@@ -1300,6 +1302,7 @@ const data = await catalog.getCollectionItemsBySlug(slug, f, sort_on, page_id, p
 | --------- | ----  | --- |
 | slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items | 
 | f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
+| filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
 | sort_on | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
 | page_id | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
 | page_size | integer | Number of items to retrieve in each page. Default is 12. | 
@@ -9915,6 +9918,57 @@ Schema: `{
 
 
 Error Response:
+
+
+
+---
+
+
+#### Configuration#
+Select deployment store
+
+```javascript
+// Promise
+const promise = configuration.();
+
+// Async/Await
+const data = await configuration.();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Select deployment store.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
 
 
 
