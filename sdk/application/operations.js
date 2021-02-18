@@ -1810,8 +1810,8 @@ const {
     QRCodeResp,
     RedirectDevice,
     Redirects,
-    ShortUrlReq,
-    ShortUrlRes
+    ShortLinkReq,
+    ShortLinkRes
 } = require("./schema");
 
     
@@ -1829,7 +1829,7 @@ class Share {
     ) {
         return APIClient.execute(
             this._conf,
-            "get",
+            "post",
             "/service/application/share/v1.0/qr/",
         );
     }
@@ -1844,7 +1844,7 @@ class Share {
     ) {
         return APIClient.execute(
             this._conf,
-            "get",
+            "post",
             "/service/application/share/v1.0/qr/products/{slug}/",
         );
     }
@@ -1859,7 +1859,7 @@ class Share {
     ) {
         return APIClient.execute(
             this._conf,
-            "get",
+            "post",
             "/service/application/share/v1.0/qr/collection/{slug}/",
         );
     }
@@ -1874,7 +1874,7 @@ class Share {
     ) {
         return APIClient.execute(
             this._conf,
-            "get",
+            "post",
             "/service/application/share/v1.0/qr/url/",
         );
     }

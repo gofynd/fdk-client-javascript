@@ -358,9 +358,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -406,9 +420,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -456,9 +484,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -507,9 +549,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -554,9 +610,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -601,9 +671,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -648,9 +732,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -696,9 +794,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -743,9 +855,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -794,9 +920,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -843,9 +983,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -897,9 +1051,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -946,9 +1114,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -993,9 +1175,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1040,9 +1236,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1087,9 +1297,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1136,9 +1360,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1182,9 +1420,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1229,9 +1481,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1277,9 +1543,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1329,9 +1609,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1376,9 +1670,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1423,9 +1731,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1471,9 +1793,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1519,9 +1855,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1567,9 +1917,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -1614,9 +1978,23 @@ Schema: `{
 
 
 
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -2925,9 +3303,23 @@ Success Response:
 
 
 
+Response of the Coupon object including all item details included in .the cart,coupons applied etc.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SaveCouponResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -3091,9 +3483,28 @@ Offers not found
 
 
 
+Unhandled api error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -3265,9 +3676,23 @@ Success Response:
 
 
 
+Response of the Address object containing address_id and sucess message.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/UpdateAddressResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -3296,9 +3721,23 @@ Success Response:
 
 
 
+Status object. Tells whether the operation was successful. See example below or refer DeleteAddressResponse
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/DeleteAddressResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -3326,11 +3765,71 @@ Success Response:
 
 
 
+Response of the Address object containing Cart Object and success message.  .
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CartResponse"
+}`
+
+
+
+
+
+
+
+
+Address or Pincode Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+Address Not Found
+```javascript
+{
+  "value": {
+    "status": "ERROR",
+    "message": "ADDRESS_NOT_FOUND"
+  }
+}
+```
+
+Pincode Not Serviciable
+```javascript
+{
+  "value": {
+    "status": "ERROR",
+    "message": "PINCODE_NOT_SERVICIABLE"
+  }
+}
+```
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -4112,9 +4611,28 @@ Shipment Generation Failed
 
 
 
+Unhandled api error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -4585,9 +5103,26 @@ Schema: `{
 
 
 
+Missing required Field
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "array",
+  "items": {
+    "type": "string"
+  }
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -4706,9 +5241,31 @@ Schema: `{
 
 
 
+No cart found for sent token
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "cart": {
+      "type": "object"
+    },
+    "error": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -5309,9 +5866,23 @@ Default
 
 
 
+Ticket not found with the specified ID
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/APIError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -5401,11 +5972,39 @@ Default
 
 
 
+Something seems wrong with the input
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/APIError"
+}`
+
+
+
+
+
+
+
+
+Ticket not found with the specified ID
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/APIError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -5651,9 +6250,23 @@ Default
 
 
 
+Something seems wrong with the input
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/APIError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -5753,9 +6366,23 @@ Default
 
 
 
+Form not found with specified slug
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/APIError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -6004,11 +6631,39 @@ Default
 
 
 
+Something seems wrong with the input
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/APIError"
+}`
+
+
+
+
+
+
+
+
+Form not found with the specified ID
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/APIError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6066,9 +6721,23 @@ Default
 
 
 
+Video Room not found with the specified unique name
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/APIError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -6126,9 +6795,23 @@ Default
 
 
 
+Video Room not found with the specified unique name
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/APIError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -6200,11 +6883,19 @@ Applied Theme
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6260,11 +6951,19 @@ Preview Theme
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6315,11 +7014,19 @@ Success Response:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6353,11 +7060,19 @@ Success Response:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6391,11 +7106,19 @@ Success Response:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6429,11 +7152,19 @@ Success Response:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6501,11 +7232,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6554,11 +7293,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6608,11 +7355,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6672,11 +7427,34 @@ default
 
 
 
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6725,11 +7503,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6789,13 +7575,40 @@ default
 
 
 
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
-
-
 
 
 
@@ -6863,11 +7676,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6916,11 +7737,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -6969,11 +7798,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7022,11 +7859,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7075,11 +7920,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7128,11 +7981,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7167,11 +8028,19 @@ Success Response:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7235,11 +8104,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7274,11 +8151,19 @@ Success Response:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7342,11 +8227,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7401,11 +8294,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7457,11 +8358,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7496,11 +8405,19 @@ Success Response:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7561,11 +8478,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7629,11 +8554,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7699,11 +8632,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7763,11 +8704,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7828,11 +8777,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7896,11 +8853,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -7965,11 +8930,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8029,11 +9002,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8083,11 +9064,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8138,11 +9127,19 @@ Success Response:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8198,11 +9195,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8265,11 +9270,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8325,11 +9338,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8384,11 +9405,19 @@ Success
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8444,11 +9473,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8504,11 +9541,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8578,11 +9623,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8639,11 +9692,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8698,11 +9759,19 @@ default
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8746,11 +9815,19 @@ Schema: `{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -8877,9 +9954,23 @@ default
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/responses/BadRequest"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -8948,9 +10039,23 @@ reset
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/responses/BadRequest"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -9032,7 +10137,7 @@ const data = await share.getProductQRCodeBySlug(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | Id or Slug of product | 
+| slug | string | The unique identifier of a product | 
 
 Create product QR Code
 
@@ -9077,7 +10182,7 @@ const data = await share.getCollectionQRCodeBySlug(slug, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | Id or Slug of collection | 
+| slug | string | The unique identifier of a collection | 
 
 Create collection QR Code
 
@@ -9180,7 +10285,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ShortUrlRes"
+  "$ref": "#/components/schemas/ShortLinkRes"
 }`
 
 
@@ -9211,7 +10316,7 @@ const data = await share.getShortLinkByHash(hash, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| hash | string | Hash of short url | 
+| hash | string | Hash of short link | 
 
 Get short link by hash
 
@@ -9225,7 +10330,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ShortUrlRes"
+  "$ref": "#/components/schemas/ShortLinkRes"
 }`
 
 
@@ -9256,7 +10361,7 @@ const data = await share.getOriginalShortLinkByHash(hash, );
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| hash | string | Hash of short url | 
+| hash | string | Hash of short link | 
 
 Get original link by hash
 
@@ -9270,7 +10375,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ShortUrlRes"
+  "$ref": "#/components/schemas/ShortLinkRes"
 }`
 
 
@@ -9360,9 +10465,23 @@ Schema: `{
 
 
 
+Failed
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/failedResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -9425,9 +10544,23 @@ Schema: `{
 
 
 
+Failed
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/failedResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -9488,9 +10621,23 @@ Schema: `{
 
 
 
+Not found
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFound"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -9656,9 +10803,13 @@ Success Response:
 
 
 
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -9702,9 +10853,23 @@ Schema: `{
 
 
 
+Not found
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFound"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -9748,9 +10913,23 @@ Schema: `{
 
 
 
+Not found
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFound"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -9966,9 +11145,23 @@ Schema: `{
 
 
 
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFound"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -10029,11 +11222,39 @@ Schema: `{
 
 
 
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10077,11 +11298,35 @@ Schema: `{
 
 
 
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: ``
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: ``
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10126,11 +11371,39 @@ Schema: `{
 
 
 
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10175,11 +11448,39 @@ Schema: `{
 
 
 
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10223,11 +11524,39 @@ Schema: `{
 
 
 
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10271,11 +11600,39 @@ Schema: `{
 
 
 
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10319,11 +11676,39 @@ Schema: `{
 
 
 
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10367,11 +11752,39 @@ Schema: `{
 
 
 
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10415,11 +11828,39 @@ Schema: `{
 
 
 
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10464,11 +11905,39 @@ Schema: `{
 
 
 
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFoundResourceError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10513,11 +11982,39 @@ Schema: `{
 
 
 
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFoundResourceError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorCodeDescription"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10562,11 +12059,39 @@ Schema: `{
 
 
 
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFoundResourceError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10610,11 +12135,39 @@ Schema: `{
 
 
 
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/WrongOtpError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10656,11 +12209,39 @@ Schema: ``
 
 
 
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFoundResourceError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10704,11 +12285,39 @@ Schema: `{
 
 
 
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFoundResourceError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10752,11 +12361,39 @@ Schema: `{
 
 
 
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SetDefaultBeneficiaryResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10821,11 +12458,39 @@ Schema: `{
 
 
 
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10870,11 +12535,39 @@ Schema: `{
 
 
 
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10919,11 +12612,39 @@ Schema: `{
 
 
 
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -10968,11 +12689,39 @@ Schema: `{
 
 
 
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -11017,11 +12766,39 @@ Schema: `{
 
 
 
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -11066,11 +12843,39 @@ Schema: `{
 
 
 
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -11131,9 +12936,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Error"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11177,9 +12996,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Error"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11223,9 +13056,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Error"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11272,9 +13119,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Error"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11318,9 +13179,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Error"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11364,9 +13239,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Error"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11427,9 +13316,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11473,9 +13376,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11524,9 +13441,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11570,9 +13501,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11616,9 +13561,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11663,9 +13622,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11710,9 +13683,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11756,9 +13743,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11802,9 +13803,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11854,9 +13869,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11902,9 +13931,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11948,9 +13991,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -11994,9 +14051,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12040,9 +14111,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12091,9 +14176,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12143,9 +14242,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12190,9 +14303,23 @@ Schema: `{
 
 
 
+Bad Request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12237,9 +14364,23 @@ Schema: `{
 
 
 
+Bad Request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12294,9 +14435,23 @@ Schema: `{
 
 
 
+Bad Request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12343,9 +14498,23 @@ Schema: `{
 
 
 
+Bad Request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12390,9 +14559,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12436,9 +14619,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12488,9 +14685,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12536,9 +14747,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12582,9 +14807,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -12628,9 +14867,23 @@ Schema: `{
 
 
 
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -13939,9 +16192,23 @@ Success Response:
 
 
 
+Response of the Coupon object including all item details included in .the cart,coupons applied etc.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SaveCouponResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -14105,9 +16372,28 @@ Offers not found
 
 
 
+Unhandled api error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -14279,9 +16565,23 @@ Success Response:
 
 
 
+Response of the Address object containing address_id and sucess message.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/UpdateAddressResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -14310,9 +16610,23 @@ Success Response:
 
 
 
+Status object. Tells whether the operation was successful. See example below or refer DeleteAddressResponse
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/DeleteAddressResponse"
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -14340,11 +16654,71 @@ Success Response:
 
 
 
+Response of the Address object containing Cart Object and success message.  .
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CartResponse"
+}`
+
+
+
+
+
+
+
+
+Address or Pincode Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+Examples: 
+
+
+Address Not Found
+```javascript
+{
+  "value": {
+    "status": "ERROR",
+    "message": "ADDRESS_NOT_FOUND"
+  }
+}
+```
+
+Pincode Not Serviciable
+```javascript
+{
+  "value": {
+    "status": "ERROR",
+    "message": "PINCODE_NOT_SERVICIABLE"
+  }
+}
+```
+
+
+
+
+
+
+
+
 Error Response:
-
-
-
-
 
 
 
@@ -15128,9 +17502,28 @@ Shipment Generation Failed
 
 
 
+Unhandled api error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -15602,9 +17995,26 @@ Schema: `{
 
 
 
+Missing required Field
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "array",
+  "items": {
+    "type": "string"
+  }
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
@@ -15723,9 +18133,31 @@ Schema: `{
 
 
 
+No cart found for sent token
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "cart": {
+      "type": "object"
+    },
+    "error": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
 Error Response:
-
-
 
 
 
