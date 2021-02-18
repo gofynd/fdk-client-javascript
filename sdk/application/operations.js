@@ -5,9 +5,9 @@ const Configuration = require("./configuration");
 
 
 const { 
+    Media,
     ProductListingActionPage,
     ProductListingAction,
-    Media,
     ProductBrand,
     ProductDetailAttribute,
     ProductDetailGroupedAttribute,
@@ -18,13 +18,13 @@ const {
     Price,
     ProductListingPrice,
     ProductSizes,
-    Store,
     Seller,
     ProductStockPrice,
     ArticleAssignment,
+    Store,
     ProductSizePriceResponse,
-    ProductPage,
     ProductSizeSellerFilter,
+    ProductPage,
     ProductSizeSellersResponse,
     AttributeDetail,
     ProductsComparisonResponse,
@@ -40,10 +40,10 @@ const {
     ProductStockStatusItem,
     ProductStockStatusResponse,
     ProductStockPolling,
-    ProductFiltersValue,
-    ProductFiltersKey,
-    ProductFilters,
     ProductSortOn,
+    ProductFiltersKey,
+    ProductFiltersValue,
+    ProductFilters,
     ProductListingResponse,
     ImageUrls,
     BrandItem,
@@ -61,22 +61,22 @@ const {
     AutocompleteItem,
     AutoCompleteResponse,
     SeoDetail,
-    GetCollectionDetailNest,
-    CollectionListingFilterType,
-    CollectionListingFilterTag,
-    CollectionListingFilter,
-    GetCollectionListingResponse,
-    CollectionBadge,
-    UserInfo,
-    Schedule,
     CollectionImage,
     CollectionBanner,
+    UserInfo,
+    Schedule,
+    CollectionBadge,
     CreateCollection,
     CollectionDetailResponse,
-    GetCollectionListingItemsResponse,
+    GetCollectionDetailNest,
+    CollectionListingFilterTag,
+    CollectionListingFilterType,
+    CollectionListingFilter,
+    GetCollectionListingResponse,
     CollectionItem,
     CollectionItemsRequest,
     CollectionItemsResponse,
+    GetCollectionListingItemsResponse,
     CollectionsUpdateDetailResponse,
     CollectionDetailViewDeleteResponse,
     GetFollowListingResponse,
@@ -379,20 +379,6 @@ class Catalog {
     
     /**
     *
-    * Summary: List all the collections
-    * Description:  A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
-    **/
-    getCollections(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/catalog/v1.0/collections/",
-        );
-    }
-    
-    /**
-    *
     * Summary: Add a Collection
     * Description:  Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
     **/
@@ -407,16 +393,15 @@ class Catalog {
     
     /**
     *
-    * Summary: Get the items in a collection
-    * Description:  Get items in a collection specified by its `slug`.
+    * Summary: List all the collections
+    * Description:  A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
     **/
-    getCollectionItemsBySlug(
-        slug, opts
+    getCollections(
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/collections/{slug}/items/",
+            "/service/application/catalog/v1.0/collections/",
         );
     }
     
@@ -431,6 +416,21 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "post",
+            "/service/application/catalog/v1.0/collections/{slug}/items/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get the items in a collection
+    * Description:  Get items in a collection specified by its `slug`.
+    **/
+    getCollectionItemsBySlug(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
             "/service/application/catalog/v1.0/collections/{slug}/items/",
         );
     }

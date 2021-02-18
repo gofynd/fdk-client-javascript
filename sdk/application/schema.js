@@ -2,6 +2,17 @@
 
 
     /*
+        Model: Media,
+        Type: object
+    */
+    
+    class Media {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
         Model: ProductListingActionPage,
         Type: object
     */
@@ -18,17 +29,6 @@
     */
     
     class ProductListingAction {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: Media,
-        Type: object
-    */
-    
-    class Media {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -145,17 +145,6 @@
     }
 
     /*
-        Model: Store,
-        Type: object
-    */
-    
-    class Store {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: Seller,
         Type: object
     */
@@ -189,6 +178,17 @@
     }
 
     /*
+        Model: Store,
+        Type: object
+    */
+    
+    class Store {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
         Model: ProductSizePriceResponse,
         Type: object
     */
@@ -200,22 +200,22 @@
     }
 
     /*
-        Model: ProductPage,
+        Model: ProductSizeSellerFilter,
         Type: object
     */
     
-    class ProductPage {
+    class ProductSizeSellerFilter {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: ProductSizeSellerFilter,
+        Model: ProductPage,
         Type: object
     */
     
-    class ProductSizeSellerFilter {
+    class ProductPage {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -387,11 +387,11 @@
     }
 
     /*
-        Model: ProductFiltersValue,
+        Model: ProductSortOn,
         Type: object
     */
     
-    class ProductFiltersValue {
+    class ProductSortOn {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -409,22 +409,22 @@
     }
 
     /*
-        Model: ProductFilters,
+        Model: ProductFiltersValue,
         Type: object
     */
     
-    class ProductFilters {
+    class ProductFiltersValue {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: ProductSortOn,
+        Model: ProductFilters,
         Type: object
     */
     
-    class ProductSortOn {
+    class ProductFilters {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -618,66 +618,22 @@
     }
 
     /*
-        Model: GetCollectionDetailNest,
+        Model: CollectionImage,
         Type: object
     */
     
-    class GetCollectionDetailNest {
+    class CollectionImage {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: CollectionListingFilterType,
+        Model: CollectionBanner,
         Type: object
     */
     
-    class CollectionListingFilterType {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionListingFilterTag,
-        Type: object
-    */
-    
-    class CollectionListingFilterTag {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionListingFilter,
-        Type: object
-    */
-    
-    class CollectionListingFilter {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: GetCollectionListingResponse,
-        Type: object
-    */
-    
-    class GetCollectionListingResponse {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionBadge,
-        Type: object
-    */
-    
-    class CollectionBadge {
+    class CollectionBanner {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -706,22 +662,11 @@
     }
 
     /*
-        Model: CollectionImage,
+        Model: CollectionBadge,
         Type: object
     */
     
-    class CollectionImage {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionBanner,
-        Type: object
-    */
-    
-    class CollectionBanner {
+    class CollectionBadge {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -750,11 +695,55 @@
     }
 
     /*
-        Model: GetCollectionListingItemsResponse,
+        Model: GetCollectionDetailNest,
         Type: object
     */
     
-    class GetCollectionListingItemsResponse {
+    class GetCollectionDetailNest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CollectionListingFilterTag,
+        Type: object
+    */
+    
+    class CollectionListingFilterTag {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CollectionListingFilterType,
+        Type: object
+    */
+    
+    class CollectionListingFilterType {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CollectionListingFilter,
+        Type: object
+    */
+    
+    class CollectionListingFilter {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GetCollectionListingResponse,
+        Type: object
+    */
+    
+    class GetCollectionListingResponse {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -788,6 +777,17 @@
     */
     
     class CollectionItemsResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GetCollectionListingItemsResponse,
+        Type: object
+    */
+    
+    class GetCollectionListingItemsResponse {
         constructor(_body) {
             Object.assign(this, body);
         }
