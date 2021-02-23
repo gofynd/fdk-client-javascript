@@ -35,9 +35,9 @@
   * [Communication#updateAudienceById](#communicationupdateaudiencebyid)
   * [Communication#getNSampleRecordsFromCsv](#communicationgetnsamplerecordsfromcsv)
   * [Communication#getEmailProviders](#communicationgetemailproviders)
-  * [Communication#createEmailProvider](#communicationcreateemailprovider)
   * [Communication#getEmailProviderById](#communicationgetemailproviderbyid)
   * [Communication#updateEmailProviderById](#communicationupdateemailproviderbyid)
+  * [Communication#createEmailProvider](#communicationcreateemailprovider)
   * [Communication#getEmailTemplates](#communicationgetemailtemplates)
   * [Communication#createEmailTemplate](#communicationcreateemailtemplate)
   * [Communication#getSystemEmailTemplates](#communicationgetsystememailtemplates)
@@ -580,38 +580,22 @@ Get email providers
 
 ```javascript
 // Promise
-const promise = communication.getEmailProviders();
+const promise = communication.getEmailProviders(, , );
 
 // Async/Await
-const data = await communication.getEmailProviders();
+const data = await communication.getEmailProviders(, , );
 
 ```
 
 
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+|  |  |  | 
+|  |  |  | 
 
 
 Get email providers
-
-
----
-
-
-#### Communication#createEmailProvider
-Create email provider
-
-```javascript
-// Promise
-const promise = communication.createEmailProvider();
-
-// Async/Await
-const data = await communication.createEmailProvider();
-
-```
-
-
-
-
-Create email provider
 
 
 ---
@@ -662,6 +646,27 @@ const data = await communication.updateEmailProviderById(, );
 
 
 Update email provider by id
+
+
+---
+
+
+#### Communication#createEmailProvider
+Create email provider
+
+```javascript
+// Promise
+const promise = communication.createEmailProvider();
+
+// Async/Await
+const data = await communication.createEmailProvider();
+
+```
+
+
+
+
+Create email provider
 
 
 ---
@@ -810,14 +815,19 @@ Get communication logs
 
 ```javascript
 // Promise
-const promise = communication.getCommunicationLogs();
+const promise = communication.getCommunicationLogs(, , );
 
 // Async/Await
-const data = await communication.getCommunicationLogs();
+const data = await communication.getCommunicationLogs(, , );
 
 ```
 
 
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+|  |  |  | 
+|  |  |  | 
 
 
 Get communication logs

@@ -4,7 +4,8 @@ const Configuration = require("./configuration");
 const { 
     Catalog,
     Lead,
-    Share,
+    Order,
+    PosCart,
 } = require("./operations");
 
 

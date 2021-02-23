@@ -2,17 +2,6 @@
 
 
     /*
-        Model: Media,
-        Type: object
-    */
-    
-    class Media {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: ProductListingActionPage,
         Type: object
     */
@@ -29,6 +18,17 @@
     */
     
     class ProductListingAction {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Media,
+        Type: object
+    */
+    
+    class Media {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -90,17 +90,6 @@
     }
 
     /*
-        Model: ProductSize,
-        Type: object
-    */
-    
-    class ProductSize {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: ProductSizeStores,
         Type: object
     */
@@ -134,22 +123,22 @@
     }
 
     /*
-        Model: ProductSizes,
+        Model: ProductSize,
         Type: object
     */
     
-    class ProductSizes {
+    class ProductSize {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: Seller,
+        Model: ProductSizes,
         Type: object
     */
     
-    class Seller {
+    class ProductSizes {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -178,6 +167,17 @@
     }
 
     /*
+        Model: Seller,
+        Type: object
+    */
+    
+    class Seller {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
         Model: Store,
         Type: object
     */
@@ -200,22 +200,22 @@
     }
 
     /*
-        Model: ProductSizeSellerFilter,
+        Model: ProductPage,
         Type: object
     */
     
-    class ProductSizeSellerFilter {
+    class ProductPage {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: ProductPage,
+        Model: ProductSizeSellerFilter,
         Type: object
     */
     
-    class ProductPage {
+    class ProductSizeSellerFilter {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -332,22 +332,22 @@
     }
 
     /*
-        Model: StoreDetail,
+        Model: CompanyDetail,
         Type: object
     */
     
-    class StoreDetail {
+    class CompanyDetail {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: CompanyDetail,
+        Model: StoreDetail,
         Type: object
     */
     
-    class CompanyDetail {
+    class StoreDetail {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -387,11 +387,11 @@
     }
 
     /*
-        Model: ProductSortOn,
+        Model: ProductFiltersValue,
         Type: object
     */
     
-    class ProductSortOn {
+    class ProductFiltersValue {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -409,22 +409,33 @@
     }
 
     /*
-        Model: ProductFiltersValue,
+        Model: ProductFilters,
         Type: object
     */
     
-    class ProductFiltersValue {
+    class ProductFilters {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: ProductFilters,
+        Model: ProductSortOn,
         Type: object
     */
     
-    class ProductFilters {
+    class ProductSortOn {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductListingDetail,
+        Type: object
+    */
+    
+    class ProductListingDetail {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -486,6 +497,17 @@
     }
 
     /*
+        Model: DepartmentIdentifier,
+        Type: object
+    */
+    
+    class DepartmentIdentifier {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
         Model: CategoryItems,
         Type: object
     */
@@ -502,17 +524,6 @@
     */
     
     class DepartmentCategoryTree {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: DepartmentIdentifier,
-        Type: object
-    */
-    
-    class DepartmentIdentifier {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -607,11 +618,33 @@
     }
 
     /*
-        Model: SeoDetail,
+        Model: CollectionBadge,
         Type: object
     */
     
-    class SeoDetail {
+    class CollectionBadge {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Schedule,
+        Type: object
+    */
+    
+    class Schedule {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: UserInfo,
+        Type: object
+    */
+    
+    class UserInfo {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -640,33 +673,11 @@
     }
 
     /*
-        Model: UserInfo,
+        Model: SeoDetail,
         Type: object
     */
     
-    class UserInfo {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: Schedule,
-        Type: object
-    */
-    
-    class Schedule {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionBadge,
-        Type: object
-    */
-    
-    class CollectionBadge {
+    class SeoDetail {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -695,11 +706,11 @@
     }
 
     /*
-        Model: GetCollectionDetailNest,
+        Model: CollectionListingFilterType,
         Type: object
     */
     
-    class GetCollectionDetailNest {
+    class CollectionListingFilterType {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -717,22 +728,22 @@
     }
 
     /*
-        Model: CollectionListingFilterType,
+        Model: CollectionListingFilter,
         Type: object
     */
     
-    class CollectionListingFilterType {
+    class CollectionListingFilter {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: CollectionListingFilter,
+        Model: GetCollectionDetailNest,
         Type: object
     */
     
-    class CollectionListingFilter {
+    class GetCollectionDetailNest {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -777,17 +788,6 @@
     */
     
     class CollectionItemsResponse {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: GetCollectionListingItemsResponse,
-        Type: object
-    */
-    
-    class GetCollectionListingItemsResponse {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -906,6 +906,28 @@
 
 
 
+
+    /*
+        Model: TicketList,
+        Type: 
+    */
+    
+    class TicketList {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Filter,
+        Type: 
+    */
+    
+    class Filter {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
 
     /*
         Model: TicketHistoryPayload,
@@ -1121,55 +1143,829 @@
 
 
     /*
-        Model: QRCodeResp,
+        Model: ApefaceApiError,
         Type: object
     */
     
-    class QRCodeResp {
+    class ApefaceApiError {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: RedirectDevice,
-        Type: object
+        Model: OrderById,
+        Type: 
     */
     
-    class RedirectDevice {
+    class OrderById {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: Redirects,
-        Type: object
+        Model: OrderList,
+        Type: 
     */
     
-    class Redirects {
+    class OrderList {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: ShortLinkReq,
-        Type: object
+        Model: ShipmentById,
+        Type: 
     */
     
-    class ShortLinkReq {
+    class ShipmentById {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: ShortLinkRes,
+        Model: ShipmentReasons,
+        Type: 
+    */
+    
+    class ShipmentReasons {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ShipmentStatusUpdateBody,
+        Type: 
+    */
+    
+    class ShipmentStatusUpdateBody {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ShipmentStatusUpdate,
+        Type: 
+    */
+    
+    class ShipmentStatusUpdate {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ShipmentTrack,
+        Type: 
+    */
+    
+    class ShipmentTrack {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+
+
+
+
+    /*
+        Model: GetCartResponse,
         Type: object
     */
     
-    class ShortLinkRes {
+    class GetCartResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: AddProductCart,
+        Type: object
+    */
+    
+    class AddProductCart {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: AddCartRequest,
+        Type: object
+    */
+    
+    class AddCartRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartCurrency,
+        Type: object
+    */
+    
+    class CartCurrency {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: RawBreakup,
+        Type: object
+    */
+    
+    class RawBreakup {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: BaseLoyaltyPoints,
+        Type: object
+    */
+    
+    class BaseLoyaltyPoints {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CouponBreakup,
+        Type: object
+    */
+    
+    class CouponBreakup {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: DisplayBreakup,
+        Type: object
+    */
+    
+    class DisplayBreakup {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: BaseCartBreakup,
+        Type: object
+    */
+    
+    class BaseCartBreakup {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductPrice,
+        Type: object
+    */
+    
+    class ProductPrice {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductPriceInfo,
+        Type: object
+    */
+    
+    class ProductPriceInfo {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductAvailability,
+        Type: object
+    */
+    
+    class ProductAvailability {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ActionQuery,
+        Type: object
+    */
+    
+    class ActionQuery {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Action,
+        Type: object
+    */
+    
+    class Action {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CategoryInfo,
+        Type: object
+    */
+    
+    class CategoryInfo {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: BaseInfo,
+        Type: object
+    */
+    
+    class BaseInfo {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Image,
+        Type: object
+    */
+    
+    class Image {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Product,
+        Type: object
+    */
+    
+    class Product {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartProductInfo,
+        Type: object
+    */
+    
+    class CartProductInfo {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: PaymentFlow,
+        Type: object
+    */
+    
+    class PaymentFlow {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: PaymentFlows,
+        Type: object
+    */
+    
+    class PaymentFlows {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: PaymentOption,
+        Type: object
+    */
+    
+    class PaymentOption {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: PaymentOptions,
+        Type: object
+    */
+    
+    class PaymentOptions {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartResponse,
+        Type: object
+    */
+    
+    class CartResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: UpdateProductCart,
+        Type: object
+    */
+    
+    class UpdateProductCart {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: UpdateCartRequest,
+        Type: object
+    */
+    
+    class UpdateCartRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartItemCountResponse,
+        Type: object
+    */
+    
+    class CartItemCountResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Coupon,
+        Type: object
+    */
+    
+    class Coupon {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: PageCoupon,
+        Type: object
+    */
+    
+    class PageCoupon {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GetCouponResponse,
+        Type: object
+    */
+    
+    class GetCouponResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ApplyCouponRequest,
+        Type: object
+    */
+    
+    class ApplyCouponRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: RawCartCoupon,
+        Type: object
+    */
+    
+    class RawCartCoupon {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: LoyaltyPoints,
+        Type: object
+    */
+    
+    class LoyaltyPoints {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartCoupon,
+        Type: object
+    */
+    
+    class CartCoupon {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: SaveCoupon,
+        Type: object
+    */
+    
+    class SaveCoupon {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: SaveCouponResponse,
+        Type: object
+    */
+    
+    class SaveCouponResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: OfferSeller,
+        Type: object
+    */
+    
+    class OfferSeller {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: OfferPrice,
+        Type: object
+    */
+    
+    class OfferPrice {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: OfferItem,
+        Type: object
+    */
+    
+    class OfferItem {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: BulkPriceOffer,
+        Type: object
+    */
+    
+    class BulkPriceOffer {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: BulkPriceResponse,
+        Type: object
+    */
+    
+    class BulkPriceResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GeoLocation,
+        Type: object
+    */
+    
+    class GeoLocation {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Address,
+        Type: object
+    */
+    
+    class Address {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GetAddressResponse,
+        Type: object
+    */
+    
+    class GetAddressResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: SaveAddressRequest,
+        Type: object
+    */
+    
+    class SaveAddressRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: SaveAddressResponse,
+        Type: object
+    */
+    
+    class SaveAddressResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: UpdateAddressRequest,
+        Type: object
+    */
+    
+    class UpdateAddressRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: UpdateAddressResponse,
+        Type: object
+    */
+    
+    class UpdateAddressResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: DeleteAddressResponse,
+        Type: object
+    */
+    
+    class DeleteAddressResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: SelectCartAddressRequest,
+        Type: object
+    */
+    
+    class SelectCartAddressRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: UpdateCartPaymentRequest,
+        Type: object
+    */
+    
+    class UpdateCartPaymentRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ShipmentResponse,
+        Type: object
+    */
+    
+    class ShipmentResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartShipmentsResponse,
+        Type: object
+    */
+    
+    class CartShipmentsResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: UpdateCartShipmentItem,
+        Type: object
+    */
+    
+    class UpdateCartShipmentItem {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: UpdateCartShipmentRequest,
+        Type: object
+    */
+    
+    class UpdateCartShipmentRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartCheckoutRequest,
+        Type: object
+    */
+    
+    class CartCheckoutRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CheckCart,
+        Type: object
+    */
+    
+    class CheckCart {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: OrderData,
+        Type: object
+    */
+    
+    class OrderData {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartCheckoutResponse,
+        Type: object
+    */
+    
+    class CartCheckoutResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartMetaRequest,
+        Type: object
+    */
+    
+    class CartMetaRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartMetaResponse,
+        Type: object
+    */
+    
+    class CartMetaResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CartMetaMissingResponse,
+        Type: object
+    */
+    
+    class CartMetaMissingResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GetShareCartLinkRequest,
+        Type: object
+    */
+    
+    class GetShareCartLinkRequest {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: GetShareCartLinkResponse,
+        Type: object
+    */
+    
+    class GetShareCartLinkResponse {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: SharedCartDetails,
+        Type: object
+    */
+    
+    class SharedCartDetails {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: SharedCart,
+        Type: object
+    */
+    
+    class SharedCart {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: SharedCartResponse,
+        Type: object
+    */
+    
+    class SharedCartResponse {
         constructor(_body) {
             Object.assign(this, body);
         }

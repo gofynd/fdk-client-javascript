@@ -375,21 +375,7 @@ class Communication {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/platform/communication/v1.0/email/providers",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Create email provider
-    * Description:  Create email provider
-    **/
-    createEmailProvider(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "post",
-            "/service/platform/communication/v1.0/email/providers",
+            "/service/platform/communication/v1.0/company/{company}/application/{application}/email/providers",
         );
     }
     
@@ -418,6 +404,20 @@ class Communication {
             this._conf,
             "put",
             "/service/platform/communication/v1.0/email/providers/{id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Create email provider
+    * Description:  Create email provider
+    **/
+    createEmailProvider(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/platform/communication/v1.0/email/providers",
         );
     }
     
@@ -515,7 +515,7 @@ class Communication {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/platform/communication/v1.0/log",
+            "/service/platform/communication/v1.0/company/{company}/application/{application}/log",
         );
     }
     
