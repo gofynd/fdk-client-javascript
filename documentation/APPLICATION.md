@@ -3,7 +3,7 @@
 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Lead](#Lead) - Handles communication between Staff and Users 
-* [Order](#Order) - Handles Platform websites OMS 
+* [Share](#Share) - Short link and QR Code 
 * [PosCart](#PosCart) - Cart APIs 
 
 ----
@@ -33,16 +33,16 @@
     * [Catalog#getHomeProducts](#cataloggethomeproducts)
     * [Catalog#getDepartments](#cataloggetdepartments)
     * [Catalog#getSearchResults](#cataloggetsearchresults)
-    * [Catalog#addCollection](#catalogaddcollection)
     * [Catalog#getCollections](#cataloggetcollections)
-    * [Catalog#addCollectionItemsBySlug](#catalogaddcollectionitemsbyslug)
+    * [Catalog#addCollection](#catalogaddcollection)
     * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
+    * [Catalog#addCollectionItemsBySlug](#catalogaddcollectionitemsbyslug)
+    * [Catalog#deleteCollectionDetailBySlug](#catalogdeletecollectiondetailbyslug)
     * [Catalog#updateCollectionDetailBySlug](#catalogupdatecollectiondetailbyslug)
     * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
-    * [Catalog#deleteCollectionDetailBySlug](#catalogdeletecollectiondetailbyslug)
     * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
-    * [Catalog#followById](#catalogfollowbyid)
     * [Catalog#unfollowById](#catalogunfollowbyid)
+    * [Catalog#followById](#catalogfollowbyid)
     * [Catalog#getFollowerCountById](#cataloggetfollowercountbyid)
     * [Catalog#getFollowIds](#cataloggetfollowids)
     * [Catalog#getStores](#cataloggetstores)
@@ -61,14 +61,15 @@
     
    
 
-* [Order](#Order)
+* [Share](#Share)
   * Methods
-    * [Order#getOrders](#ordergetorders)
-    * [Order#getOrderById](#ordergetorderbyid)
-    * [Order#getShipmentById](#ordergetshipmentbyid)
-    * [Order#getShipmentReasons](#ordergetshipmentreasons)
-    * [Order#updateShipmentStatus](#orderupdateshipmentstatus)
-    * [Order#trackShipment](#ordertrackshipment)
+    * [Share#getApplicationQRCode](#sharegetapplicationqrcode)
+    * [Share#getProductQRCodeBySlug](#sharegetproductqrcodebyslug)
+    * [Share#getCollectionQRCodeBySlug](#sharegetcollectionqrcodebyslug)
+    * [Share#getUrlQRCode](#sharegeturlqrcode)
+    * [Share#createShortLink](#sharecreateshortlink)
+    * [Share#getShortLinkByHash](#sharegetshortlinkbyhash)
+    * [Share#getOriginalShortLinkByHash](#sharegetoriginalshortlinkbyhash)
     
    
 
@@ -1304,6 +1305,68 @@ Error Response:
 ---
 
 
+#### Catalog#getCollections
+List all the collections
+
+```javascript
+// Promise
+const promise = catalog.getCollections(page_id, page_size, );
+
+// Async/Await
+const data = await catalog.getCollections(page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| page_id | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
+| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
+
+A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
+
+Success Response:
+
+
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/GetCollectionListingResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
 #### Catalog#addCollection
 Add a Collection
 
@@ -1364,36 +1427,40 @@ Error Response:
 ---
 
 
-#### Catalog#getCollections
-List all the collections
+#### Catalog#getCollectionItemsBySlug
+Get the items in a collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollections(page_id, page_size, );
+const promise = catalog.getCollectionItemsBySlug(slug, f, filters, sort_on, page_id, page_size, );
 
 // Async/Await
-const data = await catalog.getCollections(page_id, page_size, );
+const data = await catalog.getCollectionItemsBySlug(slug, f, filters, sort_on, page_id, page_size, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items | 
+| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts`` | 
+| filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
+| sort_on | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
 | page_id | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
 | page_size | integer | Number of items to retrieve in each page. Default is 12. | 
 
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
+Get items in a collection specified by its `slug`.
 
 Success Response:
 
 
 
-List of collections. See example below or refer `GetCollectionListingResponse` for details
+The attached items of an collection. See example below or refer `ProductListingResponse` for details
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/GetCollectionListingResponse"
+  "$ref": "#/components/schemas/ProductListingResponse"
 }`
 
 
@@ -1487,40 +1554,35 @@ Error Response:
 ---
 
 
-#### Catalog#getCollectionItemsBySlug
-Get the items in a collection
+#### Catalog#deleteCollectionDetailBySlug
+Delete a Collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollectionItemsBySlug(slug, f, filters, sort_on, page_id, page_size, );
+const promise = catalog.deleteCollectionDetailBySlug(slug, );
 
 // Async/Await
-const data = await catalog.getCollectionItemsBySlug(slug, f, filters, sort_on, page_id, page_size, );
+const data = await catalog.deleteCollectionDetailBySlug(slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items | 
-| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts`` | 
-| filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
-| sort_on | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
-| page_id | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
-| page_size | integer | Number of items to retrieve in each page. Default is 12. | 
+| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to delete. | 
 
-Get items in a collection specified by its `slug`.
+Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
 
 Success Response:
 
 
 
-The attached items of an collection. See example below or refer `ProductListingResponse` for details
+Status object. Tells whether the operation was successful. See example below or refer `CollectionDetailViewDeleteResponse`
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ProductListingResponse"
+  "$ref": "#/components/schemas/CollectionDetailViewDeleteResponse"
 }`
 
 
@@ -1675,67 +1737,6 @@ Error Response:
 ---
 
 
-#### Catalog#deleteCollectionDetailBySlug
-Delete a Collection
-
-```javascript
-// Promise
-const promise = catalog.deleteCollectionDetailBySlug(slug, );
-
-// Async/Await
-const data = await catalog.deleteCollectionDetailBySlug(slug, );
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to delete. | 
-
-Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
-
-Success Response:
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `CollectionDetailViewDeleteResponse`
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CollectionDetailViewDeleteResponse"
-}`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
----
-
-
 #### Catalog#getFollowedListing
 Get a list of followed Products, Brands, Collections
 
@@ -1797,24 +1798,24 @@ Error Response:
 ---
 
 
-#### Catalog#followById
-Follow a particular Product
+#### Catalog#unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collection_type, collection_id, );
+const promise = catalog.unfollowById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.followById(collection_type, collection_id, );
+const data = await catalog.unfollowById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to follow | 
+| collection_id | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -1859,24 +1860,24 @@ Error Response:
 ---
 
 
-#### Catalog#unfollowById
-UnFollow a Product
+#### Catalog#followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collection_type, collection_id, );
+const promise = catalog.followById(collection_type, collection_id, );
 
 // Async/Await
-const data = await catalog.unfollowById(collection_type, collection_id, );
+const data = await catalog.followById(collection_type, collection_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collection_type | string | Type of collection followed. i. e. products, brands, collections | 
-| collection_id | integer | the `id` of the collection type you want to unfollow | 
+| collection_id | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 Success Response:
 
@@ -3179,39 +3180,35 @@ Error Response:
 ---
 
 
-## Order
+## Share
 
 ```javascript
-const { Configuration, Order } = require('fdk-client-nodejs/application')
+const { Configuration, Share } = require('fdk-client-nodejs/application')
 const conf = new Configuration({
     ApplicationID: "507f191e810c19729de860ea",
     ApplicationToken: "hu67dfhddf"
 });
-const order = new Order(conf);
+const share = new Share(conf);
 
 ```
 
 
-#### Order#getOrders
-Get Orders for application based on application Id
+#### Share#getApplicationQRCode
+Create application QR Code
 
 ```javascript
 // Promise
-const promise = order.getOrders(page_no, page_size, from_date, to_date, );
+const promise = share.getApplicationQRCode();
 
 // Async/Await
-const data = await order.getOrders(page_no, page_size, from_date, to_date, );
+const data = await share.getApplicationQRCode();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| page_no | string | Current page number | 
-| page_size | string | Page limit | 
-| from_date | string | From Date | 
-| to_date | string | To Date | 
 
-Get Orders
+Create application QR Code
 
 Success Response:
 
@@ -3223,39 +3220,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/OrderList"
-}`
-
-
-
-
-
-
-
-
-API Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
+  "$ref": "#/components/schemas/QRCodeResp"
 }`
 
 
@@ -3272,23 +3237,23 @@ Error Response:
 ---
 
 
-#### Order#getOrderById
-Get Order by order id for application based on application Id
+#### Share#getProductQRCodeBySlug
+Create product QR Code
 
 ```javascript
 // Promise
-const promise = order.getOrderById(order_id, );
+const promise = share.getProductQRCodeBySlug(slug, );
 
 // Async/Await
-const data = await order.getOrderById(order_id, );
+const data = await share.getProductQRCodeBySlug(slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| order_id | string | Order Id | 
+| slug | string | The unique identifier of a product | 
 
-Get Order By Fynd Order Id
+Create product QR Code
 
 Success Response:
 
@@ -3300,39 +3265,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/OrderById"
-}`
-
-
-
-
-
-
-
-
-API Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
+  "$ref": "#/components/schemas/QRCodeResp"
 }`
 
 
@@ -3349,23 +3282,23 @@ Error Response:
 ---
 
 
-#### Order#getShipmentById
-Get Shipment by shipment id and order id for application based on application Id
+#### Share#getCollectionQRCodeBySlug
+Create collection QR Code
 
 ```javascript
 // Promise
-const promise = order.getShipmentById(shipment_id, );
+const promise = share.getCollectionQRCodeBySlug(slug, );
 
 // Async/Await
-const data = await order.getShipmentById(shipment_id, );
+const data = await share.getCollectionQRCodeBySlug(slug, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipment_id | string | Shipment Id | 
+| slug | string | The unique identifier of a collection | 
 
-Get Shipment
+Create collection QR Code
 
 Success Response:
 
@@ -3377,39 +3310,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ShipmentById"
-}`
-
-
-
-
-
-
-
-
-API Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
+  "$ref": "#/components/schemas/QRCodeResp"
 }`
 
 
@@ -3426,23 +3327,23 @@ Error Response:
 ---
 
 
-#### Order#getShipmentReasons
-Get Shipment reasons by shipment id and order id for application based on application Id
+#### Share#getUrlQRCode
+Create url QR Code
 
 ```javascript
 // Promise
-const promise = order.getShipmentReasons(shipment_id, );
+const promise = share.getUrlQRCode(url, );
 
 // Async/Await
-const data = await order.getShipmentReasons(shipment_id, );
+const data = await share.getUrlQRCode(url, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipment_id | string | Shipment Id | 
+| url | string | Url | 
 
-Get Shipment Reasons
+Create url QR Code
 
 Success Response:
 
@@ -3454,39 +3355,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ShipmentReasons"
-}`
-
-
-
-
-
-
-
-
-API Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
+  "$ref": "#/components/schemas/QRCodeResp"
 }`
 
 
@@ -3503,23 +3372,22 @@ Error Response:
 ---
 
 
-#### Order#updateShipmentStatus
-Update Shipment status by shipment id and order id for application based on application Id
+#### Share#createShortLink
+Create short link
 
 ```javascript
 // Promise
-const promise = order.updateShipmentStatus(shipment_id, );
+const promise = share.createShortLink();
 
 // Async/Await
-const data = await order.updateShipmentStatus(shipment_id, );
+const data = await share.createShortLink();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipment_id | string | Shipment Id | 
 
-Update Shipment Status
+Create short link
 
 Success Response:
 
@@ -3531,39 +3399,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ShipmentStatusUpdate"
-}`
-
-
-
-
-
-
-
-
-API Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
+  "$ref": "#/components/schemas/ShortLinkRes"
 }`
 
 
@@ -3580,23 +3416,23 @@ Error Response:
 ---
 
 
-#### Order#trackShipment
-Track Shipment by shipment id and order id for application based on application Id
+#### Share#getShortLinkByHash
+Get short link by hash
 
 ```javascript
 // Promise
-const promise = order.trackShipment(shipment_id, );
+const promise = share.getShortLinkByHash(hash, );
 
 // Async/Await
-const data = await order.trackShipment(shipment_id, );
+const data = await share.getShortLinkByHash(hash, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipment_id | string | Shipment Id | 
+| hash | string | Hash of short link | 
 
-Shipment Track
+Get short link by hash
 
 Success Response:
 
@@ -3608,7 +3444,7 @@ Success
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ShipmentTrack"
+  "$ref": "#/components/schemas/ShortLinkRes"
 }`
 
 
@@ -3618,29 +3454,42 @@ Schema: `{
 
 
 
-API Error
+Error Response:
+
+
+
+---
+
+
+#### Share#getOriginalShortLinkByHash
+Get original link by hash
+
+```javascript
+// Promise
+const promise = share.getOriginalShortLinkByHash(hash, );
+
+// Async/Await
+const data = await share.getOriginalShortLinkByHash(hash, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| hash | string | Hash of short link | 
+
+Get original link by hash
+
+Success Response:
+
+
+
+Success
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
-}`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ApefaceApiError"
+  "$ref": "#/components/schemas/ShortLinkRes"
 }`
 
 

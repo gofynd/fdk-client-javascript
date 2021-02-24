@@ -5,17 +5,17 @@ const Configuration = require("./configuration");
 
 
 const { 
+    ProductDetailAttribute,
+    ProductDetailGroupedAttribute,
     ProductListingActionPage,
     ProductListingAction,
     Media,
     ProductBrand,
-    ProductDetailAttribute,
-    ProductDetailGroupedAttribute,
     ProductDetail,
     ErrorResponse,
-    ProductSizeStores,
     Price,
     ProductListingPrice,
+    ProductSizeStores,
     ProductSize,
     ProductSizes,
     ProductStockPrice,
@@ -35,16 +35,16 @@ const {
     ProductVariantItemResponse,
     ProductVariantResponse,
     ProductVariantsResponse,
-    CompanyDetail,
     StoreDetail,
+    CompanyDetail,
     ProductStockStatusItem,
     ProductStockStatusResponse,
     ProductStockPolling,
-    ProductFiltersValue,
-    ProductFiltersKey,
-    ProductFilters,
-    ProductSortOn,
     ProductListingDetail,
+    ProductSortOn,
+    ProductFiltersKey,
+    ProductFiltersValue,
+    ProductFilters,
     ProductListingResponse,
     ImageUrls,
     BrandItem,
@@ -61,24 +61,24 @@ const {
     DepartmentResponse,
     AutocompleteItem,
     AutoCompleteResponse,
-    CollectionBadge,
-    Schedule,
-    UserInfo,
-    CollectionImage,
-    CollectionBanner,
     SeoDetail,
-    CreateCollection,
-    CollectionDetailResponse,
+    GetCollectionDetailNest,
     CollectionListingFilterType,
     CollectionListingFilterTag,
     CollectionListingFilter,
-    GetCollectionDetailNest,
     GetCollectionListingResponse,
+    CollectionImage,
+    CollectionBanner,
+    Schedule,
+    UserInfo,
+    CollectionBadge,
+    CreateCollection,
+    CollectionDetailResponse,
     CollectionItem,
     CollectionItemsRequest,
     CollectionItemsResponse,
-    CollectionsUpdateDetailResponse,
     CollectionDetailViewDeleteResponse,
+    CollectionsUpdateDetailResponse,
     GetFollowListingResponse,
     FollowPostResponse,
     FollowerCountResponse,
@@ -379,6 +379,20 @@ class Catalog {
     
     /**
     *
+    * Summary: List all the collections
+    * Description:  A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
+    **/
+    getCollections(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/catalog/v1.0/collections/",
+        );
+    }
+    
+    /**
+    *
     * Summary: Add a Collection
     * Description:  Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
     **/
@@ -393,15 +407,16 @@ class Catalog {
     
     /**
     *
-    * Summary: List all the collections
-    * Description:  A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
+    * Summary: Get the items in a collection
+    * Description:  Get items in a collection specified by its `slug`.
     **/
-    getCollections(
+    getCollectionItemsBySlug(
+        slug, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/collections/",
+            "/service/application/catalog/v1.0/collections/{slug}/items/",
         );
     }
     
@@ -422,16 +437,16 @@ class Catalog {
     
     /**
     *
-    * Summary: Get the items in a collection
-    * Description:  Get items in a collection specified by its `slug`.
+    * Summary: Delete a Collection
+    * Description:  Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
     **/
-    getCollectionItemsBySlug(
+    deleteCollectionDetailBySlug(
         slug, opts
     ) {
         return APIClient.execute(
             this._conf,
-            "get",
-            "/service/application/catalog/v1.0/collections/{slug}/items/",
+            "delete",
+            "/service/application/catalog/v1.0/collections/{slug}/",
         );
     }
     
@@ -467,21 +482,6 @@ class Catalog {
     
     /**
     *
-    * Summary: Delete a Collection
-    * Description:  Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
-    **/
-    deleteCollectionDetailBySlug(
-        slug, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "delete",
-            "/service/application/catalog/v1.0/collections/{slug}/",
-        );
-    }
-    
-    /**
-    *
     * Summary: Get a list of followed Products, Brands, Collections
     * Description:  A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
     **/
@@ -497,22 +497,6 @@ class Catalog {
     
     /**
     *
-    * Summary: Follow a particular Product
-    * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-    **/
-    followById(
-        collectionType, opts
-        collectionId, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "post",
-            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
-        );
-    }
-    
-    /**
-    *
     * Summary: UnFollow a Product
     * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
     **/
@@ -523,6 +507,22 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "delete",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Follow a particular Product
+    * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+    **/
+    followById(
+        collectionType, opts
+        collectionId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
             "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
         );
     }
@@ -720,115 +720,126 @@ exports.Lead = Lead;
 
 
 const { 
-    ApefaceApiError,
-    OrderById,
-    OrderList,
-    ShipmentById,
-    ShipmentReasons,
-    ShipmentStatusUpdateBody,
-    ShipmentStatusUpdate,
-    ShipmentTrack
+    QRCodeResp,
+    RedirectDevice,
+    Redirects,
+    ShortLinkReq,
+    ShortLinkRes
 } = require("./schema");
 
     
-class Order {
+class Share {
     constructor(_conf) {
         this._conf = _conf;
     }
     
     /**
     *
-    * Summary: Get Orders for application based on application Id
-    * Description:  Get Orders
+    * Summary: Create application QR Code
+    * Description:  Create application QR Code
     **/
-    getOrders(
+    getApplicationQRCode(
     ) {
         return APIClient.execute(
             this._conf,
-            "get",
-            "/services/application/v1.0/orders",
+            "post",
+            "/service/application/share/v1.0/qr/",
         );
     }
     
     /**
     *
-    * Summary: Get Order by order id for application based on application Id
-    * Description:  Get Order By Fynd Order Id
+    * Summary: Create product QR Code
+    * Description:  Create product QR Code
     **/
-    getOrderById(
-        orderId, opts
+    getProductQRCodeBySlug(
+        slug, opts
     ) {
         return APIClient.execute(
             this._conf,
-            "get",
-            "/services/application/v1.0/orders/{order_id}",
+            "post",
+            "/service/application/share/v1.0/qr/products/{slug}/",
         );
     }
     
     /**
     *
-    * Summary: Get Shipment by shipment id and order id for application based on application Id
-    * Description:  Get Shipment
+    * Summary: Create collection QR Code
+    * Description:  Create collection QR Code
     **/
-    getShipmentById(
-        shipmentId, opts
+    getCollectionQRCodeBySlug(
+        slug, opts
     ) {
         return APIClient.execute(
             this._conf,
-            "get",
-            "/services/application/v1.0/orders/shipments/{shipment_id}",
+            "post",
+            "/service/application/share/v1.0/qr/collection/{slug}/",
         );
     }
     
     /**
     *
-    * Summary: Get Shipment reasons by shipment id and order id for application based on application Id
-    * Description:  Get Shipment Reasons
+    * Summary: Create url QR Code
+    * Description:  Create url QR Code
     **/
-    getShipmentReasons(
-        shipmentId, opts
+    getUrlQRCode(
+        url, opts
     ) {
         return APIClient.execute(
             this._conf,
-            "get",
-            "/services/application/v1.0/orders/shipments/{shipment_id}/reasons",
+            "post",
+            "/service/application/share/v1.0/qr/url/",
         );
     }
     
     /**
     *
-    * Summary: Update Shipment status by shipment id and order id for application based on application Id
-    * Description:  Update Shipment Status
+    * Summary: Create short link
+    * Description:  Create short link
     **/
-    updateShipmentStatus(
-        shipmentId, opts
+    createShortLink(
     ) {
         return APIClient.execute(
             this._conf,
-            "put",
-            "/services/application/v1.0/orders/shipments/{shipment_id}/status",
+            "post",
+            "/service/application/share/v1.0/links/short-link/",
         );
     }
     
     /**
     *
-    * Summary: Track Shipment by shipment id and order id for application based on application Id
-    * Description:  Shipment Track
+    * Summary: Get short link by hash
+    * Description:  Get short link by hash
     **/
-    trackShipment(
-        shipmentId, opts
+    getShortLinkByHash(
+        hash, opts
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/services/application/v1.0/orders/shipments/{shipment_id}/track",
+            "/service/application/share/v1.0/links/short-link/{hash}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get original link by hash
+    * Description:  Get original link by hash
+    **/
+    getOriginalShortLinkByHash(
+        hash, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/share/v1.0/links/short-link/{hash}/original/",
         );
     }
     
 }
 
 
-exports.Order = Order;
+exports.Share = Share;
 
 
 

@@ -2,6 +2,28 @@
 
 
     /*
+        Model: ProductDetailAttribute,
+        Type: object
+    */
+    
+    class ProductDetailAttribute {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductDetailGroupedAttribute,
+        Type: object
+    */
+    
+    class ProductDetailGroupedAttribute {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
         Model: ProductListingActionPage,
         Type: object
     */
@@ -46,28 +68,6 @@
     }
 
     /*
-        Model: ProductDetailAttribute,
-        Type: object
-    */
-    
-    class ProductDetailAttribute {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductDetailGroupedAttribute,
-        Type: object
-    */
-    
-    class ProductDetailGroupedAttribute {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: ProductDetail,
         Type: object
     */
@@ -90,17 +90,6 @@
     }
 
     /*
-        Model: ProductSizeStores,
-        Type: object
-    */
-    
-    class ProductSizeStores {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: Price,
         Type: object
     */
@@ -117,6 +106,17 @@
     */
     
     class ProductListingPrice {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductSizeStores,
+        Type: object
+    */
+    
+    class ProductSizeStores {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -332,22 +332,22 @@
     }
 
     /*
-        Model: CompanyDetail,
+        Model: StoreDetail,
         Type: object
     */
     
-    class CompanyDetail {
+    class StoreDetail {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: StoreDetail,
+        Model: CompanyDetail,
         Type: object
     */
     
-    class StoreDetail {
+    class CompanyDetail {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -387,33 +387,11 @@
     }
 
     /*
-        Model: ProductFiltersValue,
+        Model: ProductListingDetail,
         Type: object
     */
     
-    class ProductFiltersValue {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductFiltersKey,
-        Type: object
-    */
-    
-    class ProductFiltersKey {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ProductFilters,
-        Type: object
-    */
-    
-    class ProductFilters {
+    class ProductListingDetail {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -431,11 +409,33 @@
     }
 
     /*
-        Model: ProductListingDetail,
+        Model: ProductFiltersKey,
         Type: object
     */
     
-    class ProductListingDetail {
+    class ProductFiltersKey {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductFiltersValue,
+        Type: object
+    */
+    
+    class ProductFiltersValue {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: ProductFilters,
+        Type: object
+    */
+    
+    class ProductFilters {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -618,61 +618,6 @@
     }
 
     /*
-        Model: CollectionBadge,
-        Type: object
-    */
-    
-    class CollectionBadge {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: Schedule,
-        Type: object
-    */
-    
-    class Schedule {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: UserInfo,
-        Type: object
-    */
-    
-    class UserInfo {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionImage,
-        Type: object
-    */
-    
-    class CollectionImage {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionBanner,
-        Type: object
-    */
-    
-    class CollectionBanner {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
         Model: SeoDetail,
         Type: object
     */
@@ -684,22 +629,11 @@
     }
 
     /*
-        Model: CreateCollection,
+        Model: GetCollectionDetailNest,
         Type: object
     */
     
-    class CreateCollection {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: CollectionDetailResponse,
-        Type: object
-    */
-    
-    class CollectionDetailResponse {
+    class GetCollectionDetailNest {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -739,22 +673,88 @@
     }
 
     /*
-        Model: GetCollectionDetailNest,
+        Model: GetCollectionListingResponse,
         Type: object
     */
     
-    class GetCollectionDetailNest {
+    class GetCollectionListingResponse {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: GetCollectionListingResponse,
+        Model: CollectionImage,
         Type: object
     */
     
-    class GetCollectionListingResponse {
+    class CollectionImage {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CollectionBanner,
+        Type: object
+    */
+    
+    class CollectionBanner {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: Schedule,
+        Type: object
+    */
+    
+    class Schedule {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: UserInfo,
+        Type: object
+    */
+    
+    class UserInfo {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CollectionBadge,
+        Type: object
+    */
+    
+    class CollectionBadge {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CreateCollection,
+        Type: object
+    */
+    
+    class CreateCollection {
+        constructor(_body) {
+            Object.assign(this, body);
+        }
+    }
+
+    /*
+        Model: CollectionDetailResponse,
+        Type: object
+    */
+    
+    class CollectionDetailResponse {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -794,22 +794,22 @@
     }
 
     /*
-        Model: CollectionsUpdateDetailResponse,
+        Model: CollectionDetailViewDeleteResponse,
         Type: object
     */
     
-    class CollectionsUpdateDetailResponse {
+    class CollectionDetailViewDeleteResponse {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: CollectionDetailViewDeleteResponse,
+        Model: CollectionsUpdateDetailResponse,
         Type: object
     */
     
-    class CollectionDetailViewDeleteResponse {
+    class CollectionsUpdateDetailResponse {
         constructor(_body) {
             Object.assign(this, body);
         }
@@ -1143,88 +1143,55 @@
 
 
     /*
-        Model: ApefaceApiError,
+        Model: QRCodeResp,
         Type: object
     */
     
-    class ApefaceApiError {
+    class QRCodeResp {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: OrderById,
-        Type: 
+        Model: RedirectDevice,
+        Type: object
     */
     
-    class OrderById {
+    class RedirectDevice {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: OrderList,
-        Type: 
+        Model: Redirects,
+        Type: object
     */
     
-    class OrderList {
+    class Redirects {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: ShipmentById,
-        Type: 
+        Model: ShortLinkReq,
+        Type: object
     */
     
-    class ShipmentById {
+    class ShortLinkReq {
         constructor(_body) {
             Object.assign(this, body);
         }
     }
 
     /*
-        Model: ShipmentReasons,
-        Type: 
+        Model: ShortLinkRes,
+        Type: object
     */
     
-    class ShipmentReasons {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ShipmentStatusUpdateBody,
-        Type: 
-    */
-    
-    class ShipmentStatusUpdateBody {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ShipmentStatusUpdate,
-        Type: 
-    */
-    
-    class ShipmentStatusUpdate {
-        constructor(_body) {
-            Object.assign(this, body);
-        }
-    }
-
-    /*
-        Model: ShipmentTrack,
-        Type: 
-    */
-    
-    class ShipmentTrack {
+    class ShortLinkRes {
         constructor(_body) {
             Object.assign(this, body);
         }
