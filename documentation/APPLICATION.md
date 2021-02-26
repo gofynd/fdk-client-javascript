@@ -3,8 +3,15 @@
 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Lead](#Lead) - Handles communication between Staff and Users 
+* [Theme](#Theme) - Responsible for themes 
+* [User](#User) - Authentication Service 
+* [Content](#Content) - Content 
+* [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and QR Code 
-* [PosCart](#PosCart) - Cart APIs 
+* [FileStorage](#FileStorage) - File Storage 
+* [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
+* [Order](#Order) - Handles Platform websites OMS 
+* [Feedback](#Feedback) - User Reviews and Rating System 
 
 ----
 ----
@@ -61,6 +68,74 @@
     
    
 
+* [Theme](#Theme)
+  * Methods
+    * [Theme#getAppliedTheme](#themegetappliedtheme)
+    * [Theme#getThemeForPreview](#themegetthemeforpreview)
+    
+   
+
+* [User](#User)
+  * Methods
+    * [User#loginWithFacebook](#userloginwithfacebook)
+    * [User#loginWithGoogle](#userloginwithgoogle)
+    * [User#loginWithGoogleAndroid](#userloginwithgoogleandroid)
+    * [User#loginWithGoogleIOS](#userloginwithgoogleios)
+    * [User#loginWithOTP](#userloginwithotp)
+    * [User#loginWithEmailAndPassword](#userloginwithemailandpassword)
+    * [User#sendResetPasswordEmail](#usersendresetpasswordemail)
+    * [User#forgotPassword](#userforgotpassword)
+    * [User#sendResetToken](#usersendresettoken)
+    * [User#loginWithToken](#userloginwithtoken)
+    * [User#registerWithForm](#userregisterwithform)
+    * [User#verifyEmail](#userverifyemail)
+    * [User#verifyMobile](#userverifymobile)
+    * [User#hasPassword](#userhaspassword)
+    * [User#updatePassword](#userupdatepassword)
+    * [User#logout](#userlogout)
+    * [User#sendOTPOnMobile](#usersendotponmobile)
+    * [User#verifyMobileOTP](#userverifymobileotp)
+    * [User#sendOTPOnEmail](#usersendotponemail)
+    * [User#verifyEmailOTP](#userverifyemailotp)
+    * [User#getLoggedInUser](#usergetloggedinuser)
+    * [User#getListOfActiveSessions](#usergetlistofactivesessions)
+    * [User#getPlatformConfig](#usergetplatformconfig)
+    * [User#updateProfile](#userupdateprofile)
+    * [User#addMobileNumber](#useraddmobilenumber)
+    * [User#deleteMobileNumber](#userdeletemobilenumber)
+    * [User#setMobileNumberAsPrimary](#usersetmobilenumberasprimary)
+    * [User#sendVerificationLinkToMobile](#usersendverificationlinktomobile)
+    * [User#addEmail](#useraddemail)
+    * [User#deleteEmail](#userdeleteemail)
+    * [User#setEmailAsPrimary](#usersetemailasprimary)
+    * [User#sendVerificationLinkToEmail](#usersendverificationlinktoemail)
+    
+   
+
+* [Content](#Content)
+  * Methods
+    * [Content#getAnnouncements](#contentgetannouncements)
+    * [Content#getBlog](#contentgetblog)
+    * [Content#getFaqs](#contentgetfaqs)
+    * [Content#getLandingPage](#contentgetlandingpage)
+    * [Content#getLegalInformation](#contentgetlegalinformation)
+    * [Content#getNavigations](#contentgetnavigations)
+    * [Content#getPage](#contentgetpage)
+    * [Content#getSeoConfiguration](#contentgetseoconfiguration)
+    * [Content#getSlideshow](#contentgetslideshow)
+    * [Content#getSupportInformation](#contentgetsupportinformation)
+    * [Content#getFPITags](#contentgetfpitags)
+    
+   
+
+* [Communication](#Communication)
+  * Methods
+    * [Communication#getCommunicationConsent](#communicationgetcommunicationconsent)
+    * [Communication#upsertCommunicationConsent](#communicationupsertcommunicationconsent)
+    * [Communication#upsertPushtoken](#communicationupsertpushtoken)
+    
+   
+
 * [Share](#Share)
   * Methods
     * [Share#getApplicationQRCode](#sharegetapplicationqrcode)
@@ -73,32 +148,75 @@
     
    
 
-* [PosCart](#PosCart)
+* [FileStorage](#FileStorage)
   * Methods
-    * [PosCart#getCart](#poscartgetcart)
-    * [PosCart#getCartLastModified](#poscartgetcartlastmodified)
-    * [PosCart#addItems](#poscartadditems)
-    * [PosCart#updateCart](#poscartupdatecart)
-    * [PosCart#getItemCount](#poscartgetitemcount)
-    * [PosCart#getCoupons](#poscartgetcoupons)
-    * [PosCart#applyCoupon](#poscartapplycoupon)
-    * [PosCart#removeCoupon](#poscartremovecoupon)
-    * [PosCart#getBulkDiscountOffers](#poscartgetbulkdiscountoffers)
-    * [PosCart#getAddresses](#poscartgetaddresses)
-    * [PosCart#addAddress](#poscartaddaddress)
-    * [PosCart#getAddressById](#poscartgetaddressbyid)
-    * [PosCart#updateAddress](#poscartupdateaddress)
-    * [PosCart#removeAddress](#poscartremoveaddress)
-    * [PosCart#selectAddress](#poscartselectaddress)
-    * [PosCart#getPaymentModes](#poscartgetpaymentmodes)
-    * [PosCart#selectPaymentMode](#poscartselectpaymentmode)
-    * [PosCart#getShipments](#poscartgetshipments)
-    * [PosCart#updateShipments](#poscartupdateshipments)
-    * [PosCart#checkoutCart](#poscartcheckoutcart)
-    * [PosCart#updateCartMeta](#poscartupdatecartmeta)
-    * [PosCart#getCartShareLink](#poscartgetcartsharelink)
-    * [PosCart#getCartSharedItems](#poscartgetcartshareditems)
-    * [PosCart#updateCartWithSharedItems](#poscartupdatecartwithshareditems)
+    * [FileStorage#completeUpload](#filestoragecompleteupload)
+    * [FileStorage#startUpload](#filestoragestartupload)
+    
+   
+
+* [Payment](#Payment)
+  * Methods
+    * [Payment#getAggregatorsConfig](#paymentgetaggregatorsconfig)
+    * [Payment#attachCardToCustomer](#paymentattachcardtocustomer)
+    * [Payment#getActiveCardAggregator](#paymentgetactivecardaggregator)
+    * [Payment#getActiveUserCards](#paymentgetactiveusercards)
+    * [Payment#deleteUserCard](#paymentdeleteusercard)
+    * [Payment#verifyCustomerForPayment](#paymentverifycustomerforpayment)
+    * [Payment#verifyAndChargePayment](#paymentverifyandchargepayment)
+    * [Payment#initialisePayment](#paymentinitialisepayment)
+    * [Payment#checkAndUpdatePaymentStatus](#paymentcheckandupdatepaymentstatus)
+    * [Payment#getPaymentModeRoutes](#paymentgetpaymentmoderoutes)
+    * [Payment#getPosPaymentModeRoutes](#paymentgetpospaymentmoderoutes)
+    * [Payment#getUserBeneficiariesDetail](#paymentgetuserbeneficiariesdetail)
+    * [Payment#verifyIfscCode](#paymentverifyifsccode)
+    * [Payment#getOrderBeneficiariesDetail](#paymentgetorderbeneficiariesdetail)
+    * [Payment#verifyOtpAndAddBeneficiaryForBank](#paymentverifyotpandaddbeneficiaryforbank)
+    * [Payment#addBeneficiaryDetails](#paymentaddbeneficiarydetails)
+    * [Payment#verifyOtpAndAddBeneficiaryForWallet](#paymentverifyotpandaddbeneficiaryforwallet)
+    * [Payment#updateDefaultBeneficiary](#paymentupdatedefaultbeneficiary)
+    
+   
+
+* [Order](#Order)
+  * Methods
+    * [Order#getOrders](#ordergetorders)
+    * [Order#getOrderById](#ordergetorderbyid)
+    * [Order#getShipmentById](#ordergetshipmentbyid)
+    * [Order#getShipmentReasons](#ordergetshipmentreasons)
+    * [Order#updateShipmentStatus](#orderupdateshipmentstatus)
+    * [Order#trackShipment](#ordertrackshipment)
+    
+   
+
+* [Feedback](#Feedback)
+  * Methods
+    * [Feedback#createAbuseReport](#feedbackcreateabusereport)
+    * [Feedback#updateAbuseReport](#feedbackupdateabusereport)
+    * [Feedback#getAbuseReports](#feedbackgetabusereports)
+    * [Feedback#getAttributes](#feedbackgetattributes)
+    * [Feedback#createAttribute](#feedbackcreateattribute)
+    * [Feedback#getAttribute](#feedbackgetattribute)
+    * [Feedback#updateAttribute](#feedbackupdateattribute)
+    * [Feedback#createComment](#feedbackcreatecomment)
+    * [Feedback#updateComment](#feedbackupdatecomment)
+    * [Feedback#getComments](#feedbackgetcomments)
+    * [Feedback#checkEligibility](#feedbackcheckeligibility)
+    * [Feedback#deleteMedia](#feedbackdeletemedia)
+    * [Feedback#createMedia](#feedbackcreatemedia)
+    * [Feedback#updateMedia](#feedbackupdatemedia)
+    * [Feedback#getMedias](#feedbackgetmedias)
+    * [Feedback#getReviewSummaries](#feedbackgetreviewsummaries)
+    * [Feedback#createReview](#feedbackcreatereview)
+    * [Feedback#updateReview](#feedbackupdatereview)
+    * [Feedback#getReviews](#feedbackgetreviews)
+    * [Feedback#getTemplates](#feedbackgettemplates)
+    * [Feedback#createQuestion](#feedbackcreatequestion)
+    * [Feedback#updateQuestion](#feedbackupdatequestion)
+    * [Feedback#getQuestionAndAnswers](#feedbackgetquestionandanswers)
+    * [Feedback#getVotes](#feedbackgetvotes)
+    * [Feedback#createVote](#feedbackcreatevote)
+    * [Feedback#updateVote](#feedbackupdatevote)
     
    
 
@@ -3180,6 +3298,3209 @@ Error Response:
 ---
 
 
+## Theme
+
+```javascript
+const { Configuration, Theme } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const theme = new Theme(conf);
+
+```
+
+
+#### Theme#getAppliedTheme
+Get applied theme for an application
+
+```javascript
+// Promise
+const promise = theme.getAppliedTheme();
+
+// Async/Await
+const data = await theme.getAppliedTheme();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+A JSON object of theme
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ThemesSchema"
+}`
+
+
+Examples: 
+
+
+Applied Theme
+```javascript
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Theme#getThemeForPreview
+Get theme for preview
+
+```javascript
+// Promise
+const promise = theme.getThemeForPreview(theme_id, );
+
+// Async/Await
+const data = await theme.getThemeForPreview(theme_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| theme_id | string | ID of the theme to be retrieved | 
+
+
+
+Success Response:
+
+
+
+A JSON object of theme
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ThemesSchema"
+}`
+
+
+Examples: 
+
+
+Preview Theme
+```javascript
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+
+---
+
+
+## User
+
+```javascript
+const { Configuration, User } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const user = new User(conf);
+
+```
+
+
+#### User#loginWithFacebook
+Login/Register with Facebook
+
+```javascript
+// Promise
+const promise = user.loginWithFacebook();
+
+// Async/Await
+const data = await user.loginWithFacebook();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Facebook
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AuthSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithGoogle
+Login/Register with Google
+
+```javascript
+// Promise
+const promise = user.loginWithGoogle();
+
+// Async/Await
+const data = await user.loginWithGoogle();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AuthSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithGoogleAndroid
+Login/Register with Google for android
+
+```javascript
+// Promise
+const promise = user.loginWithGoogleAndroid();
+
+// Async/Await
+const data = await user.loginWithGoogleAndroid();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google for android
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AuthSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithGoogleIOS
+Login/Register with Google for ios
+
+```javascript
+// Promise
+const promise = user.loginWithGoogleIOS();
+
+// Async/Await
+const data = await user.loginWithGoogleIOS();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with google for ios
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AuthSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithOTP
+Login/Register with OTP
+
+```javascript
+// Promise
+const promise = user.loginWithOTP(platform, );
+
+// Async/Await
+const data = await user.loginWithOTP(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to login or register with OTP
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SendOtpResponse"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/SendOtpResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithEmailAndPassword
+Login/Register with password
+
+```javascript
+// Promise
+const promise = user.loginWithEmailAndPassword();
+
+// Async/Await
+const data = await user.loginWithEmailAndPassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with email & password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendResetPasswordEmail
+Reset Password
+
+```javascript
+// Promise
+const promise = user.sendResetPasswordEmail(platform, );
+
+// Async/Await
+const data = await user.sendResetPasswordEmail(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to reset account password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ResetPasswordSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#forgotPassword
+
+
+```javascript
+// Promise
+const promise = user.forgotPassword();
+
+// Async/Await
+const data = await user.forgotPassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendResetToken
+
+
+```javascript
+// Promise
+const promise = user.sendResetToken();
+
+// Async/Await
+const data = await user.sendResetToken();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Send code incase of reset password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ResetPasswordSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithToken
+Login/Register with token
+
+```javascript
+// Promise
+const promise = user.loginWithToken();
+
+// Async/Await
+const data = await user.loginWithToken();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Login/Register with token
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#registerWithForm
+Registration Form
+
+```javascript
+// Promise
+const promise = user.registerWithForm(platform, );
+
+// Async/Await
+const data = await user.registerWithForm(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Register using form
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/RegisterFormSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#verifyEmail
+Verify email
+
+```javascript
+// Promise
+const promise = user.verifyEmail();
+
+// Async/Await
+const data = await user.verifyEmail();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to verify email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyEmailSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#verifyMobile
+Verify mobile
+
+```javascript
+// Promise
+const promise = user.verifyMobile();
+
+// Async/Await
+const data = await user.verifyMobile();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Verify mobile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyEmailSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#hasPassword
+Check if user has password
+
+```javascript
+// Promise
+const promise = user.hasPassword();
+
+// Async/Await
+const data = await user.hasPassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Checks if user is using password or not
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HasPasswordSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#updatePassword
+Update user password
+
+```javascript
+// Promise
+const promise = user.updatePassword();
+
+// Async/Await
+const data = await user.updatePassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to update user password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyEmailSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#logout
+Logout user
+
+```javascript
+// Promise
+const promise = user.logout();
+
+// Async/Await
+const data = await user.logout();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to log out user
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LogoutSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendOTPOnMobile
+Send OTP on mobile
+
+```javascript
+// Promise
+const promise = user.sendOTPOnMobile(platform, );
+
+// Async/Await
+const data = await user.sendOTPOnMobile(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to mobile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/OtpSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#verifyMobileOTP
+Verify OTP on mobile
+
+```javascript
+// Promise
+const promise = user.verifyMobileOTP(platform, );
+
+// Async/Await
+const data = await user.verifyMobileOTP(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to mobile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyOtpSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendOTPOnEmail
+Send OTP on email
+
+```javascript
+// Promise
+const promise = user.sendOTPOnEmail(platform, );
+
+// Async/Await
+const data = await user.sendOTPOnEmail(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/EmailOtpSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#verifyEmailOTP
+Verify OTP on email
+
+```javascript
+// Promise
+const promise = user.verifyEmailOTP(platform, );
+
+// Async/Await
+const data = await user.verifyEmailOTP(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyOtpSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#getLoggedInUser
+Get logged in user
+
+```javascript
+// Promise
+const promise = user.getLoggedInUser();
+
+// Async/Await
+const data = await user.getLoggedInUser();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to get logged in user details
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/UserSchema"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExample"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#getListOfActiveSessions
+Get list of sessions
+
+```javascript
+// Promise
+const promise = user.getListOfActiveSessions();
+
+// Async/Await
+const data = await user.getListOfActiveSessions();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Lists all active sessions
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SessionListSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#getPlatformConfig
+Get platform config
+
+```javascript
+// Promise
+const promise = user.getPlatformConfig(name, );
+
+// Async/Await
+const data = await user.getPlatformConfig(name, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| name | string | Name | 
+
+Used to get platform config
+
+Success Response:
+
+
+
+Platform Config
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/PlatformSchema"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#updateProfile
+Edit Profile Details
+
+```javascript
+// Promise
+const promise = user.updateProfile(platform, );
+
+// Async/Await
+const data = await user.updateProfile(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to update profile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#addMobileNumber
+Add mobile number to profile
+
+```javascript
+// Promise
+const promise = user.addMobileNumber(platform, );
+
+// Async/Await
+const data = await user.addMobileNumber(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new mobile number to profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyMobileOTPSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#deleteMobileNumber
+Delete mobile number from profile
+
+```javascript
+// Promise
+const promise = user.deleteMobileNumber(platform, active, primary, verified, country_code, phone, );
+
+// Async/Await
+const data = await user.deleteMobileNumber(platform, active, primary, verified, country_code, phone, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Active mobile number | 
+| primary | boolean | Primary number | 
+| verified | boolean | Verified Number | 
+| country_code | string | Country code of phone number | 
+| phone | string | Phone number | 
+
+Used to delete mobile number from profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#setMobileNumberAsPrimary
+Set mobile as primary
+
+```javascript
+// Promise
+const promise = user.setMobileNumberAsPrimary();
+
+// Async/Await
+const data = await user.setMobileNumberAsPrimary();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set a mobile number as primary
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendVerificationLinkToMobile
+Send verification link to mobile
+
+```javascript
+// Promise
+const promise = user.sendVerificationLinkToMobile(platform, );
+
+// Async/Await
+const data = await user.sendVerificationLinkToMobile(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send verification link to a mobile number
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SendMobileVerifyLinkSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#addEmail
+Add email to profile
+
+```javascript
+// Promise
+const promise = user.addEmail(platform, );
+
+// Async/Await
+const data = await user.addEmail(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new email to profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyEmailOTPSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyEmailOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#deleteEmail
+Delete email from profile
+
+```javascript
+// Promise
+const promise = user.deleteEmail(platform, active, primary, verified, email, );
+
+// Async/Await
+const data = await user.deleteEmail(platform, active, primary, verified, email, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Whether email id is active | 
+| primary | boolean | Whether email id is primary email | 
+| verified | boolean | Whether email id is verified | 
+| email | string | Email ID to be deleted | 
+
+Used to delete email from profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#setEmailAsPrimary
+Set email as primary
+
+```javascript
+// Promise
+const promise = user.setEmailAsPrimary();
+
+// Async/Await
+const data = await user.setEmailAsPrimary();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set an email as primart
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendVerificationLinkToEmail
+Send verification link to email
+
+```javascript
+// Promise
+const promise = user.sendVerificationLinkToEmail(platform, );
+
+// Async/Await
+const data = await user.sendVerificationLinkToEmail(platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to sent verification to an email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SendEmailVerifyLinkSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+
+---
+
+
+## Content
+
+```javascript
+const { Configuration, Content } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const content = new Content(conf);
+
+```
+
+
+#### Content#getAnnouncements
+Get live announcements
+
+```javascript
+// Promise
+const promise = content.getAnnouncements();
+
+// Async/Await
+const data = await content.getAnnouncements();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get live announcements for each or all pages with page slug of page and end date schedule.
+
+Success Response:
+
+
+
+Announcement api response. announcements object contains page slug name as propery with list of announcements enabled for that page. `$all` is special page slug to indicate show announcemnt on all pages.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AnnouncementsResponseSchema"
+}`
+
+
+Examples: 
+
+
+Announcements enabled
+```javascript
+{
+  "$ref": "#/components/examples/AnnouncementEnabledExample"
+}
+```
+
+No Announcement enabled
+```javascript
+{
+  "value": {
+    "announcements": [],
+    "refresh_rate": 900,
+    "refresh_pages": []
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getBlog
+Get Blog by slug
+
+```javascript
+// Promise
+const promise = content.getBlog(slug, );
+
+// Async/Await
+const data = await content.getBlog(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
+
+Use this API to fetch a blog using `slug`
+
+Success Response:
+
+
+
+A JSON object with blog details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CustomBlog"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CustomBlog"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getFaqs
+Get frequently asked questions
+
+```javascript
+// Promise
+const promise = content.getFaqs();
+
+// Async/Await
+const data = await content.getFaqs();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/FaqResponseSchema"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/AppFaqs"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getLandingPage
+Get landing page
+
+```javascript
+// Promise
+const promise = content.getLandingPage(x-device-platform, );
+
+// Async/Await
+const data = await content.getLandingPage(x-device-platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a landing page
+
+Success Response:
+
+
+
+A JSON object with landing details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LandingPage"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/LandingPage"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getLegalInformation
+Get legal information
+
+```javascript
+// Promise
+const promise = content.getLegalInformation();
+
+// Async/Await
+const data = await content.getLegalInformation();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationLegal"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/Legal"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getNavigations
+Get navigation
+
+```javascript
+// Promise
+const promise = content.getNavigations(x-device-platform, );
+
+// Async/Await
+const data = await content.getNavigations(x-device-platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a navigation
+
+Success Response:
+
+
+
+A JSON object with navigation details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Navigation"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Navigation"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getPage
+Get Page by slug
+
+```javascript
+// Promise
+const promise = content.getPage(slug, );
+
+// Async/Await
+const data = await content.getPage(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
+
+Use this API to fetch a custom page using `slug`
+
+Success Response:
+
+
+
+A JSON object with page details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CustomPage"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CustomPage"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getSeoConfiguration
+Get seo of application
+
+```javascript
+// Promise
+const promise = content.getSeoConfiguration();
+
+// Async/Await
+const data = await content.getSeoConfiguration();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get seo of application
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SeoResponseSchema"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getSlideshow
+Get slideshow by slug
+
+```javascript
+// Promise
+const promise = content.getSlideshow(slug, x-device-platform, );
+
+// Async/Await
+const data = await content.getSlideshow(slug, x-device-platform, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow | 
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a slideshow using `slug`
+
+Success Response:
+
+
+
+A JSON object with slideshow details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Slideshow"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Slideshow"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getSupportInformation
+Get support information
+
+```javascript
+// Promise
+const promise = content.getSupportInformation();
+
+// Async/Await
+const data = await content.getSupportInformation();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get contact details for customer support. Including emails and phone numbers
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Support"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Support"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getFPITags
+Get Tags for application
+
+```javascript
+// Promise
+const promise = content.getFPITags();
+
+// Async/Await
+const data = await content.getFPITags();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+A JSON object of tags
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/TagsSchema"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+
+---
+
+
+## Communication
+
+```javascript
+const { Configuration, Communication } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const communication = new Communication(conf);
+
+```
+
+
+#### Communication#getCommunicationConsent
+Get communication consent
+
+```javascript
+// Promise
+const promise = communication.getCommunicationConsent();
+
+// Async/Await
+const data = await communication.getCommunicationConsent();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get communication consent
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CommunicationConsent"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CommunicationConsent"
+}
+```
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Communication#upsertCommunicationConsent
+Upsert communication consent
+
+```javascript
+// Promise
+const promise = communication.upsertCommunicationConsent();
+
+// Async/Await
+const data = await communication.upsertCommunicationConsent();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Upsert communication consent
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CommunicationConsentRes"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CommunicationConsentRes"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/responses/BadRequest"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Communication#upsertPushtoken
+Upsert push token of a user
+
+```javascript
+// Promise
+const promise = communication.upsertPushtoken();
+
+// Async/Await
+const data = await communication.upsertPushtoken();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Upsert push token of a user
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/PushtokenRes"
+}`
+
+
+Examples: 
+
+
+create
+```javascript
+{
+  "$ref": "#/components/examples/PushtokenResponseCreate"
+}
+```
+
+update
+```javascript
+{
+  "$ref": "#/components/examples/PushtokenResponseUpdate"
+}
+```
+
+reset
+```javascript
+{
+  "$ref": "#/components/examples/PushtokenResponseReset"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/responses/BadRequest"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+
+---
+
+
 ## Share
 
 ```javascript
@@ -3510,49 +6831,83 @@ Error Response:
 ---
 
 
-## PosCart
+## FileStorage
 
 ```javascript
-const { Configuration, PosCart } = require('fdk-client-nodejs/application')
+const { Configuration, FileStorage } = require('fdk-client-nodejs/application')
 const conf = new Configuration({
     ApplicationID: "507f191e810c19729de860ea",
     ApplicationToken: "hu67dfhddf"
 });
-const poscart = new PosCart(conf);
+const filestorage = new FileStorage(conf);
 
 ```
 
 
-#### PosCart#getCart
-Fetch all Items Added to  Cart
+#### FileStorage#completeUpload
+This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
 
 ```javascript
 // Promise
-const promise = poscart.getCart(uid, assign_card_id, );
+const promise = filestorage.completeUpload(namespace, company_id, );
 
 // Async/Await
-const data = await poscart.getCart(uid, assign_card_id, );
+const data = await filestorage.completeUpload(namespace, company_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
-| assign_card_id | integer |  | 
+| namespace | string | bucket name | 
+| company_id | integer | company_id | 
 
-Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in GetCartResponse
+Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
 
 Success Response:
 
 
 
-The Cart object. See example below or refer GetCartResponse for details
+Success
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/GetCartResponse"
+  "$ref": "#/components/schemas/CompleteResponse"
+}`
+
+
+
+
+
+
+
+
+Failed
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/FailedResponse"
 }`
 
 
@@ -3569,1153 +6924,70 @@ Error Response:
 ---
 
 
-#### PosCart#getCartLastModified
-Fetch Last-Modified timestamp
+#### FileStorage#startUpload
+This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
 
 ```javascript
 // Promise
-const promise = poscart.getCartLastModified(uid, );
+const promise = filestorage.startUpload(namespace, company_id, );
 
 // Async/Await
-const data = await poscart.getCartLastModified(uid, );
+const data = await filestorage.startUpload(namespace, company_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| namespace | string | bucket name | 
+| company_id | integer | company_id | 
 
-Fetch Last-Modified timestamp in header metadata
+Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
 
 Success Response:
 
 
 
-Fetch Last-Modified Timestamp Response
-
-
-
-
-
-Error Response:
-
-
-
----
-
-
-#### PosCart#addItems
-Add Items to Cart
-
-```javascript
-// Promise
-const promise = poscart.addItems();
-
-// Async/Await
-const data = await poscart.addItems();
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-<p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
-
-Success Response:
-
-
-
-Response of the cart object including all item details included in .the cart,coupons etc.
+Success
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/CartResponse"
+  "$ref": "#/components/schemas/StartResponse"
 }`
 
 
-Examples: 
-
-
-Product has been added to your cart
-```javascript
-{
-  "value": {
-    "message": "Product has been added to your cart",
-    "success": true,
-    "cart": {
-      "breakup_values": {
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 17486,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -3540,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 13946,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 13946,
-            "currency_code": "INR"
-          }
-        ],
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -3540,
-          "fynd_cash": 0,
-          "gst_charges": 1529.96,
-          "mrp_total": 17486,
-          "subtotal": 13946,
-          "total": 13946,
-          "vog": 12416.04,
-          "you_saved": 0
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        }
-      },
-      "items": [
-        {
-          "key": "751083_10",
-          "article": {
-            "type": "article",
-            "uid": "612_9_SE61201_19100302_10",
-            "size": "10",
-            "seller": {
-              "uid": 612,
-              "name": "SSR ENTERPRISE"
-            },
-            "store": {
-              "uid": 4431,
-              "name": "Motilal Nagar 1, Goregaon"
-            },
-            "quantity": 4,
-            "price": {
-              "base": {
-                "marked": 3999,
-                "effective": 2399,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 3999,
-                "effective": 2399,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 4798,
-              "marked": 7998,
-              "effective": 4798,
-              "selling": 4798,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4798,
-              "marked": 7998,
-              "effective": 4798,
-              "selling": 4798,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "10"
-            ],
-            "other_store_quantity": 2,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 751083,
-            "name": "Carson 2",
-            "slug": "puma-carson-2-751083-6ad98d",
-            "brand": {
-              "uid": 9,
-              "name": "Puma"
-            },
-            "categories": [
-              {
-                "uid": 165,
-                "name": "Outdoor Sports Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/puma-carson-2-751083-6ad98d/",
-              "query": {
-                "product_slug": [
-                  "puma-carson-2-751083-6ad98d"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 2,
-          "message": "",
-          "bulk_offer": {},
-          "discount": "41% OFF"
-        },
-        {
-          "key": "246228_S",
-          "article": {
-            "type": "article",
-            "uid": "46_235_TM62_M11029ONDSXNS_S",
-            "size": "S",
-            "seller": {
-              "uid": 46,
-              "name": "RELIANCE BRANDS LIMITED"
-            },
-            "store": {
-              "uid": 4550,
-              "name": "VR Mall"
-            },
-            "quantity": 1,
-            "price": {
-              "base": {
-                "marked": 4490,
-                "effective": 4490,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 4490,
-                "effective": 4490,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 4490,
-              "marked": 4490,
-              "effective": 4490,
-              "selling": 4490,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4490,
-              "marked": 4490,
-              "effective": 4490,
-              "selling": 4490,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "L",
-              "M",
-              "S",
-              "XL",
-              "XXL"
-            ],
-            "other_store_quantity": 0,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 246228,
-            "name": "Blue Solid T-Shirt",
-            "slug": "superdry-blue-solid-t-shirt-2",
-            "brand": {
-              "uid": 235,
-              "name": "Superdry"
-            },
-            "categories": [
-              {
-                "uid": 192,
-                "name": "T-Shirts"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/superdry-blue-solid-t-shirt-2/",
-              "query": {
-                "product_slug": [
-                  "superdry-blue-solid-t-shirt-2"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": ""
-        },
-        {
-          "key": "443175_S",
-          "article": {
-            "type": "article",
-            "uid": "162_207_1271_LJ03LBLUDN88_S",
-            "size": "S",
-            "seller": {
-              "uid": 162,
-              "name": "GO FASHION INDIA PRIVATE LIMITED"
-            },
-            "store": {
-              "uid": 5784,
-              "name": "Vega City mall"
-            },
-            "quantity": 3,
-            "price": {
-              "base": {
-                "marked": 1599,
-                "effective": 1599,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 1599,
-                "effective": 1599,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 1599,
-              "marked": 1599,
-              "effective": 1599,
-              "selling": 1599,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 1599,
-              "marked": 1599,
-              "effective": 1599,
-              "selling": 1599,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "XL",
-              "M",
-              "L",
-              "S"
-            ],
-            "other_store_quantity": 8,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 443175,
-            "name": "Light Blue Denim Jeggings",
-            "slug": "go-colors-light-blue-denim-jeggings-443175-3c688c",
-            "brand": {
-              "uid": 207,
-              "name": "Go Colors"
-            },
-            "categories": [
-              {
-                "uid": 267,
-                "name": "Jeggings"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/go-colors-light-blue-denim-jeggings-443175-3c688c/",
-              "query": {
-                "product_slug": [
-                  "go-colors-light-blue-denim-jeggings-443175-3c688c"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": ""
-        },
-        {
-          "key": "778937_OS",
-          "article": {
-            "type": "article",
-            "uid": "686_963_IC68601_PWUPC01977_OS",
-            "size": "OS",
-            "seller": {
-              "uid": 686,
-              "name": "INDUS CORPORATION"
-            },
-            "store": {
-              "uid": 5059,
-              "name": "Vidyaranyapura Main Road"
-            },
-            "quantity": 3,
-            "price": {
-              "base": {
-                "marked": 3399,
-                "effective": 3059,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 3399,
-                "effective": 3059,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 3059,
-              "marked": 3399,
-              "effective": 3059,
-              "selling": 3059,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 3059,
-              "marked": 3399,
-              "effective": 3059,
-              "selling": 3059,
-              "currency_code": "INR"
-            }
-          },
-          "availability": {
-            "sizes": [
-              "OS"
-            ],
-            "other_store_quantity": 2,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 778937,
-            "name": "Colourful Carnival Bouncer",
-            "slug": "fisher-price-colourful-carnival-bouncer-778937-fafa1f",
-            "brand": {
-              "uid": 963,
-              "name": "Fisher-Price"
-            },
-            "categories": [
-              {
-                "uid": 576,
-                "name": "Cradles"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/fisher-price-colourful-carnival-bouncer-778937-fafa1f/",
-              "query": {
-                "product_slug": [
-                  "fisher-price-colourful-carnival-bouncer-778937-fafa1f"
-                ]
-              }
-            }
-          },
-          "coupon_message": "",
-          "quantity": 1,
-          "message": "",
-          "bulk_offer": {},
-          "discount": "11% OFF"
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 7927,
-      "uid": "7927",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Tue, 03 Sep 2019 06:00:43 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "result": {}
-  }
-}
-```
-
-Sorry, item is out of stock
-```javascript
-{
-  "value": {
-    "message": "Sorry, item is out of stock",
-    "success": false,
-    "cart": {
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -202000,
-          "fynd_cash": 0,
-          "gst_charges": 4804.71,
-          "mrp_total": 302899,
-          "subtotal": 100899,
-          "total": 100899,
-          "vog": 96094.29,
-          "you_saved": 0
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 302899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -202000,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 100899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 100899,
-            "currency_code": "INR"
-          }
-        ],
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        }
-      },
-      "items": [
-        {
-          "bulk_offer": {},
-          "discount": "67% OFF",
-          "article": {
-            "type": "article",
-            "uid": "604_902_SSTC60401_636BLUE_1",
-            "size": "1",
-            "seller": {
-              "uid": 604,
-              "name": "SHRI SHANTINATH TRADING COMPANY"
-            },
-            "store": {
-              "uid": 4579,
-              "name": "Gandhi Nagar"
-            },
-            "quantity": 108,
-            "price": {
-              "base": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "key": "707569_1",
-          "availability": {
-            "sizes": [
-              "1",
-              "8",
-              "7",
-              "2",
-              "9",
-              "5",
-              "3",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 707569,
-            "name": "Blue and Gold Printed Ethnic Set",
-            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-            "brand": {
-              "uid": 902,
-              "name": ""
-            },
-            "categories": [
-              {
-                "uid": 525,
-                "name": ""
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-              "query": {
-                "product_slug": [
-                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-                ]
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            }
-          },
-          "message": "",
-          "quantity": 101
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 54,
-      "uid": "54",
-      "gstin": null,
-      "checkout_mode": "self",
-      "restrict_checkout": false,
-      "is_valid": false,
-      "last_modified": "Tue, 03 Sep 2019 09:55:40 GMT"
-    },
-    "result": {}
-  }
-}
-```
 
 
 
 
 
 
-
-
-Error Response:
-
-
-
----
-
-
-#### PosCart#updateCart
-Update Items already added to Cart
-
-```javascript
-// Promise
-const promise = poscart.updateCart();
-
-// Async/Await
-const data = await poscart.updateCart();
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-
-Success Response:
-
-
-
-Response of the cart object including all item with their updated details included in .the cart,coupons etc..
+Failed
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/CartResponse"
-}`
-
-
-Examples: 
-
-
-Nothing updated
-```javascript
-{
-  "value": {
-    "cart": {
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": -202000,
-          "fynd_cash": 0,
-          "gst_charges": 4804.71,
-          "mrp_total": 302899,
-          "subtotal": 100899,
-          "total": 100899,
-          "vog": 96094.29,
-          "you_saved": 0
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 302899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Discount",
-            "key": "discount",
-            "value": -202000,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 100899,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 100899,
-            "currency_code": "INR"
-          }
-        ],
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        }
-      },
-      "items": [
-        {
-          "bulk_offer": {},
-          "discount": "67% OFF",
-          "article": {
-            "type": "article",
-            "uid": "604_902_SSTC60401_636BLUE_1",
-            "size": "1",
-            "seller": {
-              "uid": 604,
-              "name": "SHRI SHANTINATH TRADING COMPANY"
-            },
-            "store": {
-              "uid": 4579,
-              "name": "Gandhi Nagar"
-            },
-            "quantity": 108,
-            "price": {
-              "base": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2999,
-                "effective": 999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "key": "707569_1",
-          "availability": {
-            "sizes": [
-              "1",
-              "8",
-              "7",
-              "2",
-              "9",
-              "5",
-              "3",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "product": {
-            "type": "product",
-            "uid": 707569,
-            "name": "Blue and Gold Printed Ethnic Set",
-            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-            "brand": {
-              "uid": 902,
-              "name": ""
-            },
-            "categories": [
-              {
-                "uid": 525,
-                "name": ""
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-              "query": {
-                "product_slug": [
-                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-                ]
-              }
-            }
-          },
-          "price": {
-            "base": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 100899,
-              "marked": 302899,
-              "effective": 100899,
-              "selling": 100899,
-              "currency_code": "INR"
-            }
-          },
-          "message": "",
-          "quantity": 101
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 54,
-      "uid": "54",
-      "gstin": null,
-      "checkout_mode": "self",
-      "restrict_checkout": false,
-      "is_valid": true,
-      "last_modified": "Tue, 03 Sep 2019 10:19:20 GMT"
-    },
-    "result": {
-      "707569_90": {
-        "success": true,
-        "message": "Nothing updated"
-      }
-    },
-    "message": "Nothing updated",
-    "success": true
-  }
-}
-```
-
-Item updated in the cart
-```javascript
-{
-  "value": {
-    "cart": {
-      "breakup_values": {
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 838.83,
-          "mrp_total": 5499,
-          "subtotal": 5499,
-          "total": 5499,
-          "vog": 4660.17,
-          "you_saved": 0
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 5499,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 5499,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 5499,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "items": [
-        {
-          "key": "437414_7",
-          "message": "",
-          "bulk_offer": {},
-          "price": {
-            "base": {
-              "add_on": 5499,
-              "marked": 5499,
-              "effective": 5499,
-              "selling": 5499,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 5499,
-              "marked": 5499,
-              "effective": 5499,
-              "selling": 5499,
-              "currency_code": "INR"
-            }
-          },
-          "quantity": 1,
-          "discount": "",
-          "product": {
-            "type": "product",
-            "uid": 437414,
-            "name": "Suede Classic",
-            "slug": "puma-suede-classic-437414-6e6bbf",
-            "brand": {
-              "uid": 9,
-              "name": "Puma"
-            },
-            "categories": [
-              {
-                "uid": 165,
-                "name": "Outdoor Sports Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_35656851/1_1511171811830.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_35656851/1_1511171811830.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/puma-suede-classic-437414-6e6bbf/",
-              "query": {
-                "product_slug": [
-                  "puma-suede-classic-437414-6e6bbf"
-                ]
-              }
-            }
-          },
-          "article": {
-            "type": "article",
-            "uid": "507_9_96099_35656851_7",
-            "size": "7",
-            "seller": {
-              "uid": 507,
-              "name": "PUMA SPORTS INDIA PVT LTD"
-            },
-            "store": {
-              "uid": 3632,
-              "name": "Colaba Causway"
-            },
-            "quantity": 5,
-            "price": {
-              "base": {
-                "marked": 5499,
-                "effective": 5499,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 5499,
-                "effective": 5499,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "availability": {
-            "sizes": [
-              "10",
-              "11",
-              "6",
-              "9",
-              "7",
-              "8"
-            ],
-            "other_store_quantity": 22,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          }
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 12426,
-      "uid": "12426",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:51:42 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "result": {
-      "437414_7": {
-        "success": true,
-        "message": "Item updated in the bag"
-      }
-    },
-    "message": "Item updated in the bag",
-    "success": true
-  }
-}
-```
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
----
-
-
-#### PosCart#getItemCount
-Cart item count
-
-```javascript
-// Promise
-const promise = poscart.getItemCount(uid, );
-
-// Async/Await
-const data = await poscart.getItemCount(uid, );
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer | Cart id | 
-
-Get total count of item present in cart
-
-Success Response:
-
-
-
-OK
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartItemCountResponse"
+  "$ref": "#/components/schemas/FailedResponse"
 }`
 
 
@@ -4732,35 +7004,85 @@ Error Response:
 ---
 
 
-#### PosCart#getCoupons
-Fetch Coupon
+
+---
+
+
+## Payment
+
+```javascript
+const { Configuration, Payment } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const payment = new Payment(conf);
+
+```
+
+
+#### Payment#getAggregatorsConfig
+Get payment gateway keys
 
 ```javascript
 // Promise
-const promise = poscart.getCoupons(uid, );
+const promise = payment.getAggregatorsConfig(x-api-token, refresh, );
 
 // Async/Await
-const data = await poscart.getCoupons(uid, );
+const data = await payment.getAggregatorsConfig(x-api-token, refresh, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
+| x-api-token | string | api token | 
+| refresh | boolean | refresh cache | 
 
-Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
+Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
 
 Success Response:
 
 
 
-Returns The Couppon object which has list of all available_coupon applicale for the cart. See example below or refer GetCouponResponse for details
+Keys of all payment gateway
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/GetCouponResponse"
+  "$ref": "#/components/schemas/AggregatorsConfigDetailResponse"
+}`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -4777,38 +7099,139 @@ Error Response:
 ---
 
 
-#### PosCart#applyCoupon
-Apply Coupon
+#### Payment#attachCardToCustomer
+Attach a saved card to customer.
 
 ```javascript
 // Promise
-const promise = poscart.applyCoupon(i, b, p, );
+const promise = payment.attachCardToCustomer();
 
 // Async/Await
-const data = await poscart.applyCoupon(i, b, p, );
+const data = await payment.attachCardToCustomer();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| i | boolean |  | 
-| b | boolean |  | 
-| p | boolean |  | 
 
-<p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
-</ul>
+Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
 
 Success Response:
 
 
 
-Response of the Coupon object including all item details included in .the cart,coupons applied etc.
+List of cards objects
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/SaveCouponResponse"
+  "$ref": "#/components/schemas/AttachCardsResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: ``
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: ``
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Payment#getActiveCardAggregator
+Fetch active payment gateway for card
+
+```javascript
+// Promise
+const promise = payment.getActiveCardAggregator(refresh, );
+
+// Async/Await
+const data = await payment.getActiveCardAggregator(refresh, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| refresh | boolean |  | 
+
+Fetch active payment gateway along with customer id for cards payments.
+
+Success Response:
+
+
+
+Object of payment gateway and customer id
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ActiveCardPaymentGatewayResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -4825,35 +7248,67 @@ Error Response:
 ---
 
 
-#### PosCart#removeCoupon
-Remove Coupon Applied
+#### Payment#getActiveUserCards
+Fetch the list of saved cards of user.
 
 ```javascript
 // Promise
-const promise = poscart.removeCoupon(uid, );
+const promise = payment.getActiveUserCards(force_refresh, );
 
 // Async/Await
-const data = await poscart.removeCoupon(uid, );
+const data = await payment.getActiveUserCards(force_refresh, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer | Cart id | 
+| force_refresh | boolean |  | 
 
-Remove Coupon applied on the cart by passing uid in request body.
+Fetch the list of saved cards of user from active payment gateway.
 
 Success Response:
 
 
 
-Response of the Coupon object including all item details included in .the cart,coupons removed etc.
+List of cards objects
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/CartResponse"
+  "$ref": "#/components/schemas/ListCardsResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -4870,130 +7325,66 @@ Error Response:
 ---
 
 
-#### PosCart#getBulkDiscountOffers
-Get discount offers based on quantity
+#### Payment#deleteUserCard
+Delete an user card.
 
 ```javascript
 // Promise
-const promise = poscart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
+const promise = payment.deleteUserCard();
 
 // Async/Await
-const data = await poscart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
+const data = await payment.deleteUserCard();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| item_id | integer | Item id | 
-| article_id | string | Article mongo id | 
-| uid | integer | Item id | 
-| slug | string | Item unique url from product page | 
 
-List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
+Delete an added user card on payment gateway and remove from cache.
 
 Success Response:
 
 
 
-Offers found or not found with valid input
+List of cards objects
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/BulkPriceResponse"
+  "$ref": "#/components/schemas/DeleteCardsResponse"
 }`
 
 
-Examples: 
-
-
-Offers found
-```javascript
-{
-  "value": {
-    "data": [
-      {
-        "seller": {
-          "uid": 248,
-          "name": "MANYAVAR CREATIONS PRIVATE LIMITED"
-        },
-        "offers": [
-          {
-            "quantity": 1,
-            "auto_applied": true,
-            "margin": 10,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3599.1,
-              "currency_code": "INR"
-            },
-            "total": 3599.1
-          },
-          {
-            "quantity": 3,
-            "auto_applied": true,
-            "margin": 20,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3199.2,
-              "currency_code": "INR"
-            },
-            "total": 9597.6
-          },
-          {
-            "quantity": 9,
-            "auto_applied": true,
-            "margin": 30,
-            "type": "bundle",
-            "price": {
-              "marked": 3999,
-              "effective": 3999,
-              "bulk_effective": 3443.4444444444,
-              "currency_code": "INR"
-            },
-            "total": 30991,
-            "best": true
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-Offers not found
-```javascript
-{
-  "value": {
-    "data": []
-  }
-}
-```
 
 
 
 
 
 
-
-
-Unhandled api error
+Bad request error
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  }
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -5010,39 +7401,66 @@ Error Response:
 ---
 
 
-#### PosCart#getAddresses
-Fetch Address
+#### Payment#verifyCustomerForPayment
+Validate customer for payment.
 
 ```javascript
 // Promise
-const promise = poscart.getAddresses(uid, mobile_no, checkout_mode, tags, is_default, );
+const promise = payment.verifyCustomerForPayment();
 
 // Async/Await
-const data = await poscart.getAddresses(uid, mobile_no, checkout_mode, tags, is_default, );
+const data = await payment.verifyCustomerForPayment();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | integer |  | 
-| mobile_no | integer |  | 
-| checkout_mode | string |  | 
-| tags | integer |  | 
-| is_default | boolean |  | 
 
-Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Validate customer for payment i.e Simpl paylater, Rupifi loan.
 
 Success Response:
 
 
 
-Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
+List of cards objects
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/GetAddressResponse"
+  "$ref": "#/components/schemas/ValidateCustomerResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -5059,34 +7477,66 @@ Error Response:
 ---
 
 
-#### PosCart#addAddress
-Add Address to the account
+#### Payment#verifyAndChargePayment
+Verify and charge payment
 
 ```javascript
 // Promise
-const promise = poscart.addAddress();
+const promise = payment.verifyAndChargePayment();
 
 // Async/Await
-const data = await poscart.addAddress();
+const data = await payment.verifyAndChargePayment();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-<p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+Verify and charge payment server to server for Simpl & Mswipe.
 
 Success Response:
 
 
 
-Return Address Id on successfull completion of the request.
+List of cards objects
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/SaveAddressResponse"
+  "$ref": "#/components/schemas/ChargeCustomerResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -5103,40 +7553,66 @@ Error Response:
 ---
 
 
-#### PosCart#getAddressById
-Fetch Single Address
+#### Payment#initialisePayment
+Payment Initialisation server to server for UPI and BharatQR.
 
 ```javascript
 // Promise
-const promise = poscart.getAddressById(id, uid, mobile_no, checkout_mode, tags, is_default, );
+const promise = payment.initialisePayment();
 
 // Async/Await
-const data = await poscart.getAddressById(id, uid, mobile_no, checkout_mode, tags, is_default, );
+const data = await payment.initialisePayment();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer |  | 
-| uid | integer |  | 
-| mobile_no | integer |  | 
-| checkout_mode | string |  | 
-| tags | integer |  | 
-| is_default | boolean |  | 
 
-Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
 
 Success Response:
 
 
 
-Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
+List of cards objects
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/GetAddressResponse"
+  "$ref": "#/components/schemas/PaymentInitializationResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -5153,35 +7629,66 @@ Error Response:
 ---
 
 
-#### PosCart#updateAddress
-Update Address alreay added to account
+#### Payment#checkAndUpdatePaymentStatus
+Continous polling to check status of payment on server.
 
 ```javascript
 // Promise
-const promise = poscart.updateAddress(id, );
+const promise = payment.checkAndUpdatePaymentStatus();
 
 // Async/Await
-const data = await poscart.updateAddress(id, );
+const data = await payment.checkAndUpdatePaymentStatus();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer | Address id | 
 
-Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+Continous polling on interval to check status of payment untill timeout.
 
 Success Response:
 
 
 
-Response of the Address object containing address_id and sucess message.
+List of cards objects
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/UpdateAddressResponse"
+  "$ref": "#/components/schemas/PaymentStatusUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -5198,35 +7705,73 @@ Error Response:
 ---
 
 
-#### PosCart#removeAddress
-Remove Address Associated to the account
+#### Payment#getPaymentModeRoutes
+Get All Valid Payment Options
 
 ```javascript
 // Promise
-const promise = poscart.removeAddress(id, );
+const promise = payment.getPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, delivery_address, );
 
 // Async/Await
-const data = await poscart.removeAddress(id, );
+const data = await payment.getPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, delivery_address, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | integer | Address id | 
+| amount | integer | Payment amount | 
+| cart_id | string | Cart id | 
+| pincode | integer | Pincode | 
+| checkout_mode | string | Checkout mode | 
+| refresh | boolean |  | 
+| assign_card_id | string | selected card id | 
+| delivery_address | string | URIencoded json delivery address of cart for annonymous user | 
 
-Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
+Use this API to get Get All Valid Payment Options for making payment
 
 Success Response:
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer DeleteAddressResponse
+Success
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/DeleteAddressResponse"
+  "$ref": "#/components/schemas/PaymentOptionsResponse"
+}`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -5243,34 +7788,42 @@ Error Response:
 ---
 
 
-#### PosCart#selectAddress
-Select Address from All Addresses
+#### Payment#getPosPaymentModeRoutes
+Get All Valid Payment Options for POS
 
 ```javascript
 // Promise
-const promise = poscart.selectAddress();
+const promise = payment.getPosPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, order_type, delivery_address, );
 
 // Async/Await
-const data = await poscart.selectAddress();
+const data = await payment.getPosPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, order_type, delivery_address, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| amount | integer | Payment amount | 
+| cart_id | string | Cart id | 
+| pincode | integer | Pincode | 
+| checkout_mode | string | Checkout mode | 
+| refresh | boolean |  | 
+| assign_card_id | string | selected card id | 
+| order_type | string | Order type | 
+| delivery_address | string | URIencoded json delivery address of cart for annonymous user | 
 
-<p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+Use this API to get Get All Valid Payment Options for making payment
 
 Success Response:
 
 
 
-Response of the Address object containing Cart Object and success message.  .
+Success
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/CartResponse"
+  "$ref": "#/components/schemas/PaymentOptionsResponse"
 }`
 
 
@@ -5280,95 +7833,29 @@ Schema: `{
 
 
 
-Address or Pincode Error
+Bad Request Error
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "type": "object",
-  "properties": {
-    "status": {
-      "type": "string"
-    },
-    "message": {
-      "type": "string"
-    }
-  }
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
-Examples: 
-
-
-Address Not Found
-```javascript
-{
-  "value": {
-    "status": "ERROR",
-    "message": "ADDRESS_NOT_FOUND"
-  }
-}
-```
-
-Pincode Not Serviciable
-```javascript
-{
-  "value": {
-    "status": "ERROR",
-    "message": "PINCODE_NOT_SERVICIABLE"
-  }
-}
-```
 
 
 
 
 
 
-
-
-Error Response:
-
-
-
----
-
-
-#### PosCart#getPaymentModes
-Get Cart Payment for valid coupon
-
-```javascript
-// Promise
-const promise = poscart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
-
-// Async/Await
-const data = await poscart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | string |  | 
-| address_id | string |  | 
-| payment_mode | string |  | 
-| payment_identifier | string |  | 
-| aggregator_name | string |  | 
-| merchant_code | string |  | 
-
-Validate coupon for selected payment mode
-
-Success Response:
-
-
-
-Cart Affiliates.
+Internal Server Error
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/PaymentOptions"
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -5385,35 +7872,67 @@ Error Response:
 ---
 
 
-#### PosCart#selectPaymentMode
-Update Cart Payment
+#### Payment#getUserBeneficiariesDetail
+List User Beneficiary
 
 ```javascript
 // Promise
-const promise = poscart.selectPaymentMode(uid, );
+const promise = payment.getUserBeneficiariesDetail(order_id, );
 
 // Async/Await
-const data = await poscart.selectPaymentMode(uid, );
+const data = await payment.getUserBeneficiariesDetail(order_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | string |  | 
+| order_id | string |  | 
 
-Update Cart Payment for Your Account
+Get all active  beneficiary details added by the user for refund
 
 Success Response:
 
 
 
-Cart Affiliates.
+List User Beneficiary
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/PaymentOptions"
+  "$ref": "#/components/schemas/OrderBeneficiaryResponse"
+}`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFoundResourceError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -5430,700 +7949,67 @@ Error Response:
 ---
 
 
-#### PosCart#getShipments
-Get delivery date and options before checkout
+#### Payment#verifyIfscCode
+Ifsc Code Verification
 
 ```javascript
 // Promise
-const promise = poscart.getShipments(pick_at_store_uid, ordering_store_id, p, uid, address_id, );
+const promise = payment.verifyIfscCode(ifsc_code, );
 
 // Async/Await
-const data = await poscart.getShipments(pick_at_store_uid, ordering_store_id, p, uid, address_id, );
+const data = await payment.verifyIfscCode(ifsc_code, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pick_at_store_uid | integer |  | 
-| ordering_store_id | integer |  | 
-| p | boolean | Get payment options or not | 
-| uid | integer | Cart id | 
-| address_id | integer | Address id | 
+| ifsc_code | string |  | 
 
-Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
+Get True/False for correct IFSC Code for adding bank details for refund
 
 Success Response:
 
 
 
-OK
+Bank details on correct Ifsc Code
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/CartShipmentsResponse"
+  "$ref": "#/components/schemas/IfscCodeResponse"
 }`
 
 
-Examples: 
-
-
-Shipment Generated
-```javascript
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [
-      {
-        "fulfillment_id": 3009,
-        "shipment_type": "single_shipment",
-        "fulfillment_type": "store",
-        "dp_id": "29",
-        "dp_options": {
-          "4": {
-            "f_priority": 4,
-            "r_priority": 5,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "7": {
-            "f_priority": 3,
-            "r_priority": 4,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "29": {
-            "f_priority": 1,
-            "r_priority": 2,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          }
-        },
-        "promise": {
-          "timestamp": {
-            "min": 1566678108,
-            "max": 1567023708
-          },
-          "formatted": {
-            "min": "Aug 24",
-            "max": "Aug 28"
-          }
-        },
-        "box_type": "Small Courier bag",
-        "shipments": 1,
-        "items": [
-          {
-            "quantity": 1,
-            "product": {
-              "type": "product",
-              "uid": 820312,
-              "name": "Navy Blue Melange Shorts",
-              "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-              "brand": {
-                "uid": 610,
-                "name": "883 Police"
-              },
-              "categories": [
-                {
-                  "uid": 193,
-                  "name": "Shorts"
-                }
-              ],
-              "images": [
-                {
-                  "aspect_ratio": "16:25",
-                  "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-                  "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-                }
-              ],
-              "action": {
-                "type": "product",
-                "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-                "query": {
-                  "product_slug": [
-                    "883-police-navy-blue-melange-shorts-820312-4943a8"
-                  ]
-                }
-              }
-            },
-            "discount": "",
-            "bulk_offer": {},
-            "key": "820312_L",
-            "price": {
-              "base": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              }
-            },
-            "article": {
-              "type": "article",
-              "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-              "size": "L",
-              "seller": {
-                "uid": 381,
-                "name": "INTERSOURCE GARMENTS PVT LTD"
-              },
-              "store": {
-                "uid": 3009,
-                "name": "Kormangala"
-              },
-              "quantity": 2,
-              "price": {
-                "base": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                },
-                "converted": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                }
-              }
-            },
-            "availability": {
-              "sizes": [
-                "L",
-                "XL",
-                "XXL"
-              ],
-              "other_store_quantity": 1,
-              "out_of_stock": false,
-              "deliverable": true,
-              "is_valid": true
-            },
-            "coupon_message": "",
-            "message": ""
-          }
-        ]
-      }
-    ],
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": true
-  }
-}
-```
-
-Shipment Generation Failed
-```javascript
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [],
-    "message": "Shipments could not be generated. Please Try again after some time.",
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": false
-  }
-}
-```
 
 
 
 
 
 
-
-
-Unhandled api error
+Bad Request Error
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  }
+  "$ref": "#/components/schemas/NotFoundResourceError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorCodeDescription"
 }`
 
 
@@ -6140,701 +8026,67 @@ Error Response:
 ---
 
 
-#### PosCart#updateShipments
-Update shipment delivery type and quantity before checkout
+#### Payment#getOrderBeneficiariesDetail
+List Order Beneficiary
 
 ```javascript
 // Promise
-const promise = poscart.updateShipments(i, p, uid, address_id, order_type, );
+const promise = payment.getOrderBeneficiariesDetail(order_id, );
 
 // Async/Await
-const data = await poscart.updateShipments(i, p, uid, address_id, order_type, );
+const data = await payment.getOrderBeneficiariesDetail(order_id, );
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| i | boolean | Get items or not | 
-| p | boolean | Get payment options or not | 
-| uid | integer | Cart id | 
-| address_id | integer | Address id | 
-| order_type | string | Order is hand over or home delivery | 
+| order_id | string |  | 
 
-Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
+Get all active  beneficiary details added by the user for refund
 
 Success Response:
 
 
 
-OK
+List Order Beneficiary
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/CartShipmentsResponse"
+  "$ref": "#/components/schemas/OrderBeneficiaryResponse"
 }`
 
 
-Examples: 
-
-
-Shipment Generated
-```javascript
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [
-      {
-        "fulfillment_id": 3009,
-        "shipment_type": "single_shipment",
-        "fulfillment_type": "store",
-        "dp_id": "29",
-        "order_type": "PickAtStore",
-        "dp_options": {
-          "4": {
-            "f_priority": 4,
-            "r_priority": 5,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "7": {
-            "f_priority": 3,
-            "r_priority": 4,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          },
-          "29": {
-            "f_priority": 1,
-            "r_priority": 2,
-            "is_cod": true,
-            "is_prepaid": true,
-            "is_reverse": true
-          }
-        },
-        "promise": {
-          "timestamp": {
-            "min": 1566678108,
-            "max": 1567023708
-          },
-          "formatted": {
-            "min": "Aug 24",
-            "max": "Aug 28"
-          }
-        },
-        "box_type": "Small Courier bag",
-        "shipments": 1,
-        "items": [
-          {
-            "quantity": 1,
-            "product": {
-              "type": "product",
-              "uid": 820312,
-              "name": "Navy Blue Melange Shorts",
-              "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-              "brand": {
-                "uid": 610,
-                "name": "883 Police"
-              },
-              "categories": [
-                {
-                  "uid": 193,
-                  "name": "Shorts"
-                }
-              ],
-              "images": [
-                {
-                  "aspect_ratio": "16:25",
-                  "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-                  "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-                }
-              ],
-              "action": {
-                "type": "product",
-                "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-                "query": {
-                  "product_slug": [
-                    "883-police-navy-blue-melange-shorts-820312-4943a8"
-                  ]
-                }
-              }
-            },
-            "discount": "",
-            "bulk_offer": {},
-            "key": "820312_L",
-            "price": {
-              "base": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "add_on": 1999,
-                "marked": 1999,
-                "effective": 1999,
-                "selling": 1999,
-                "currency_code": "INR"
-              }
-            },
-            "article": {
-              "type": "article",
-              "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-              "size": "L",
-              "seller": {
-                "uid": 381,
-                "name": "INTERSOURCE GARMENTS PVT LTD"
-              },
-              "store": {
-                "uid": 3009,
-                "name": "Kormangala"
-              },
-              "quantity": 2,
-              "price": {
-                "base": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                },
-                "converted": {
-                  "marked": 1999,
-                  "effective": 1999,
-                  "currency_code": "INR"
-                }
-              }
-            },
-            "availability": {
-              "sizes": [
-                "L",
-                "XL",
-                "XXL"
-              ],
-              "other_store_quantity": 1,
-              "out_of_stock": false,
-              "deliverable": true,
-              "is_valid": true
-            },
-            "coupon_message": "",
-            "message": ""
-          }
-        ]
-      }
-    ],
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": true
-  }
-}
-```
-
-Shipment Generation Failed
-```javascript
-{
-  "value": {
-    "items": [],
-    "cart_id": 7501,
-    "uid": "7501",
-    "success": true,
-    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-    "payment_options": {
-      "payment_option": [
-        {
-          "name": "COD",
-          "display_name": "Cash on Delivery",
-          "display_priority": 1,
-          "payment_mode_id": 11,
-          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-          "logo_url": {
-            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-          },
-          "list": []
-        },
-        {
-          "name": "CARD",
-          "display_priority": 2,
-          "payment_mode_id": 2,
-          "display_name": "Card",
-          "list": []
-        },
-        {
-          "name": "NB",
-          "display_priority": 3,
-          "payment_mode_id": 3,
-          "display_name": "Net Banking",
-          "list": [
-            {
-              "aggregator_name": "Razorpay",
-              "bank_name": "ICICI Bank",
-              "bank_code": "ICIC",
-              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-              },
-              "merchant_code": "NB_ICICI",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "WL",
-          "display_priority": 4,
-          "payment_mode_id": 4,
-          "display_name": "Wallet",
-          "list": [
-            {
-              "wallet_name": "Paytm",
-              "wallet_code": "paytm",
-              "wallet_id": 4,
-              "merchant_code": "PAYTM",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-              },
-              "aggregator_name": "Juspay",
-              "display_priority": 1
-            }
-          ]
-        },
-        {
-          "name": "UPI",
-          "display_priority": 9,
-          "payment_mode_id": 6,
-          "display_name": "UPI",
-          "list": [
-            {
-              "aggregator_name": "UPI_Razorpay",
-              "name": "UPI",
-              "display_name": "BHIM UPI",
-              "code": "UPI",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-              },
-              "merchant_code": "UPI",
-              "timeout": 240,
-              "retry_count": 0,
-              "fynd_vpa": "shopsense.rzp@hdfcbank",
-              "intent_flow": true,
-              "intent_app_error_list": [
-                "com.csam.icici.bank.imobile",
-                "in.org.npci.upiapp",
-                "com.whatsapp"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "PL",
-          "display_priority": 11,
-          "payment_mode_id": 1,
-          "display_name": "Pay Later",
-          "list": [
-            {
-              "aggregator_name": "Simpl",
-              "name": "Simpl",
-              "code": "simpl",
-              "merchant_code": "SIMPL",
-              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-              "logo_url": {
-                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-              }
-            }
-          ]
-        }
-      ],
-      "payment_flows": {
-        "Simpl": {
-          "data": {
-            "gateway": {
-              "route": "simpl",
-              "entity": "sdk",
-              "is_customer_validation_required": true,
-              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-              "sdk": {
-                "config": {
-                  "redirect": false,
-                  "callback_url": null,
-                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                },
-                "data": {
-                  "user_phone": "8452996729",
-                  "user_email": "paymentsdummy@gofynd.com"
-                }
-              },
-              "return_url": null
-            }
-          },
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "Juspay": {
-          "data": {},
-          "api_link": "https://sandbox.juspay.in/txns",
-          "payment_flow": "api"
-        },
-        "Razorpay": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "sdk"
-        },
-        "UPI_Razorpay": {
-          "data": {},
-          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-          "payment_flow": "api"
-        },
-        "Fynd": {
-          "data": {},
-          "api_link": "",
-          "payment_flow": "api"
-        }
-      },
-      "default": {}
-    },
-    "user_type": "Store User",
-    "cod_charges": 0,
-    "order_id": null,
-    "cod_available": true,
-    "cod_message": "No additional COD charges applicable",
-    "delivery_charges": 0,
-    "delivery_charge_order_value": 0,
-    "delivery_slots": [
-      {
-        "date": "Sat, 24 Aug",
-        "delivery_slot": [
-          {
-            "delivery_slot_timing": "By 9:00 PM",
-            "default": true,
-            "delivery_slot_id": 1
-          }
-        ]
-      }
-    ],
-    "store_code": "",
-    "store_emps": [],
-    "breakup_values": {
-      "loyalty_points": {
-        "total": 0,
-        "applicable": 0,
-        "is_applied": false,
-        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-      },
-      "coupon": {
-        "type": "cash",
-        "code": "",
-        "uid": null,
-        "value": 0,
-        "is_applied": false,
-        "message": "Sorry! Invalid Coupon"
-      },
-      "raw": {
-        "cod_charge": 0,
-        "convenience_fee": 0,
-        "coupon": 0,
-        "delivery_charge": 0,
-        "discount": 0,
-        "fynd_cash": 0,
-        "gst_charges": 214.18,
-        "mrp_total": 1999,
-        "subtotal": 1999,
-        "total": 1999,
-        "vog": 1784.82,
-        "you_saved": 0
-      },
-      "display": [
-        {
-          "display": "MRP Total",
-          "key": "mrp_total",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Subtotal",
-          "key": "subtotal",
-          "value": 1999,
-          "currency_code": "INR"
-        },
-        {
-          "display": "Total",
-          "key": "total",
-          "value": 1999,
-          "currency_code": "INR"
-        }
-      ]
-    },
-    "shipments": [],
-    "message": "Shipments could not be generated. Please Try again after some time.",
-    "delivery_charge_info": "",
-    "coupon_text": "View all offers",
-    "gstin": null,
-    "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
-    "restrict_checkout": false,
-    "is_valid": false
-  }
-}
-```
 
 
 
 
 
 
-
-
-Unhandled api error
+Bad Request Error
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "type": "object",
-  "properties": {
-    "message": {
-      "type": "string"
-    }
-  }
+  "$ref": "#/components/schemas/NotFoundResourceError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -6851,457 +8103,34 @@ Error Response:
 ---
 
 
-#### PosCart#checkoutCart
-Checkout Cart
+#### Payment#verifyOtpAndAddBeneficiaryForBank
+Save Beneficiary details on otp validation.
 
 ```javascript
 // Promise
-const promise = poscart.checkoutCart(uid, );
+const promise = payment.verifyOtpAndAddBeneficiaryForBank();
 
 // Async/Await
-const data = await poscart.checkoutCart(uid, );
+const data = await payment.verifyOtpAndAddBeneficiaryForBank();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| uid | boolean |  | 
 
-Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
-
-Success Response:
-
-
-
-OK
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CartCheckoutResponse"
-}`
-
-
-Examples: 
-
-
-Address id not found
-```javascript
-{
-  "value": {
-    "success": false,
-    "message": "No address found with address id {address_id}"
-  }
-}
-```
-
-Missing address_id
-```javascript
-{
-  "value": {
-    "address_id": [
-      "Missing data for required field."
-    ]
-  }
-}
-```
-
-Successful checkout cod payment
-```javascript
-{
-  "value": {
-    "success": true,
-    "cart": {
-      "success": true,
-      "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
-      "payment_options": {
-        "payment_option": [
-          {
-            "name": "COD",
-            "display_name": "Cash on Delivery",
-            "display_priority": 1,
-            "payment_mode_id": 11,
-            "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-            "logo_url": {
-              "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
-              "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
-            },
-            "list": []
-          },
-          {
-            "name": "CARD",
-            "display_priority": 2,
-            "payment_mode_id": 2,
-            "display_name": "Card",
-            "list": []
-          },
-          {
-            "name": "NB",
-            "display_priority": 3,
-            "payment_mode_id": 3,
-            "display_name": "Net Banking",
-            "list": [
-              {
-                "aggregator_name": "Razorpay",
-                "bank_name": "ICICI Bank",
-                "bank_code": "ICIC",
-                "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
-                },
-                "merchant_code": "NB_ICICI",
-                "display_priority": 1
-              }
-            ]
-          },
-          {
-            "name": "WL",
-            "display_priority": 4,
-            "payment_mode_id": 4,
-            "display_name": "Wallet",
-            "list": [
-              {
-                "wallet_name": "Paytm",
-                "wallet_code": "paytm",
-                "wallet_id": 4,
-                "merchant_code": "PAYTM",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
-                },
-                "aggregator_name": "Juspay",
-                "display_priority": 1
-              }
-            ]
-          },
-          {
-            "name": "UPI",
-            "display_priority": 9,
-            "payment_mode_id": 6,
-            "display_name": "UPI",
-            "list": [
-              {
-                "aggregator_name": "UPI_Razorpay",
-                "name": "UPI",
-                "display_name": "BHIM UPI",
-                "code": "UPI",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
-                },
-                "merchant_code": "UPI",
-                "timeout": 240,
-                "retry_count": 0,
-                "fynd_vpa": "shopsense.rzp@hdfcbank",
-                "intent_flow": true,
-                "intent_app_error_list": [
-                  "com.csam.icici.bank.imobile",
-                  "in.org.npci.upiapp",
-                  "com.whatsapp"
-                ]
-              }
-            ]
-          },
-          {
-            "name": "PL",
-            "display_priority": 11,
-            "payment_mode_id": 1,
-            "display_name": "Pay Later",
-            "list": [
-              {
-                "aggregator_name": "Simpl",
-                "name": "Simpl",
-                "code": "simpl",
-                "merchant_code": "SIMPL",
-                "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                "logo_url": {
-                  "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
-                  "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
-                }
-              }
-            ]
-          }
-        ],
-        "payment_flows": {
-          "Simpl": {
-            "data": {
-              "gateway": {
-                "route": "simpl",
-                "entity": "sdk",
-                "is_customer_validation_required": true,
-                "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
-                "sdk": {
-                  "config": {
-                    "redirect": false,
-                    "callback_url": null,
-                    "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
-                  },
-                  "data": {
-                    "user_phone": "8452996729",
-                    "user_email": "paymentsdummy@gofynd.com"
-                  }
-                },
-                "return_url": null
-              }
-            },
-            "api_link": "",
-            "payment_flow": "sdk"
-          },
-          "Juspay": {
-            "data": {},
-            "api_link": "https://sandbox.juspay.in/txns",
-            "payment_flow": "api"
-          },
-          "Razorpay": {
-            "data": {},
-            "api_link": "",
-            "payment_flow": "sdk"
-          },
-          "UPI_Razorpay": {
-            "data": {},
-            "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
-            "payment_flow": "api"
-          },
-          "Fynd": {
-            "data": {},
-            "api_link": "",
-            "payment_flow": "api"
-          }
-        },
-        "default": {}
-      },
-      "user_type": "Store User",
-      "cod_charges": 0,
-      "order_id": "FY5D5E215CF287584CE6",
-      "cod_available": true,
-      "cod_message": "No additional COD charges applicable",
-      "delivery_charges": 0,
-      "delivery_charge_order_value": 0,
-      "delivery_slots": [
-        {
-          "date": "Sat, 24 Aug",
-          "delivery_slot": [
-            {
-              "delivery_slot_timing": "By 9:00 PM",
-              "default": true,
-              "delivery_slot_id": 1
-            }
-          ]
-        }
-      ],
-      "store_code": "",
-      "store_emps": [],
-      "breakup_values": {
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid Coupon"
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 214.18,
-          "mrp_total": 1999,
-          "subtotal": 1999,
-          "total": 1999,
-          "vog": 1784.82,
-          "you_saved": 0
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 1999,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 1999,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 1999,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "items": [
-        {
-          "key": "820312_L",
-          "message": "",
-          "bulk_offer": {},
-          "price": {
-            "base": {
-              "add_on": 1999,
-              "marked": 1999,
-              "effective": 1999,
-              "selling": 1999,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 1999,
-              "marked": 1999,
-              "effective": 1999,
-              "selling": 1999,
-              "currency_code": "INR"
-            }
-          },
-          "quantity": 1,
-          "discount": "",
-          "product": {
-            "type": "product",
-            "uid": 820312,
-            "name": "Navy Blue Melange Shorts",
-            "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
-            "brand": {
-              "uid": 610,
-              "name": "883 Police"
-            },
-            "categories": [
-              {
-                "uid": 193,
-                "name": "Shorts"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
-              "query": {
-                "product_slug": [
-                  "883-police-navy-blue-melange-shorts-820312-4943a8"
-                ]
-              }
-            }
-          },
-          "article": {
-            "type": "article",
-            "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
-            "size": "L",
-            "seller": {
-              "uid": 381,
-              "name": "INTERSOURCE GARMENTS PVT LTD"
-            },
-            "store": {
-              "uid": 3009,
-              "name": "Kormangala"
-            },
-            "quantity": 2,
-            "price": {
-              "base": {
-                "marked": 1999,
-                "effective": 1999,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 1999,
-                "effective": 1999,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "coupon_message": "",
-          "availability": {
-            "sizes": [
-              "L",
-              "XL",
-              "XXL"
-            ],
-            "other_store_quantity": 1,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          }
-        }
-      ],
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "cart_id": 7483,
-      "uid": "7483",
-      "gstin": null,
-      "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:58:44 GMT",
-      "restrict_checkout": false,
-      "is_valid": true
-    },
-    "callback_url": "https://api.addsale.com/gringotts/api/v1/external/payment-callback/",
-    "app_intercept_url": "http://uniket-testing.addsale.link/cart/order-status",
-    "message": "",
-    "data": {
-      "order_id": "FY5D5E215CF287584CE6"
-    },
-    "order_id": "FY5D5E215CF287584CE6"
-  }
-}
-```
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
----
-
-
-#### PosCart#updateCartMeta
-Update Cart Meta
-
-```javascript
-// Promise
-const promise = poscart.updateCartMeta(uid, );
-
-// Async/Await
-const data = await poscart.updateCartMeta(uid, );
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | integer | Cart id received in get cart. | 
-
-Update cart meta like checkout_mode, gstin.
+Save Beneficiary details on otp validation.
 
 Success Response:
 
 
 
-Cart meta updated successfully
+Success
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/CartMetaResponse"
+  "$ref": "#/components/schemas/AddBeneficiaryViaOtpVerificationResponse"
 }`
 
 
@@ -7311,13 +8140,29 @@ Schema: `{
 
 
 
-Missing required Field
+Bad Request Error
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/CartMetaMissingResponse"
+  "$ref": "#/components/schemas/WrongOtpError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -7334,93 +8179,34 @@ Error Response:
 ---
 
 
-#### PosCart#getCartShareLink
-Generate Cart sharing link token
+#### Payment#addBeneficiaryDetails
+Save bank details for cancelled/returned order
 
 ```javascript
 // Promise
-const promise = poscart.getCartShareLink();
+const promise = payment.addBeneficiaryDetails();
 
 // Async/Await
-const data = await poscart.getCartShareLink();
+const data = await payment.addBeneficiaryDetails();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Generates shared cart snapshot and returns shortlink token
+Use this API to save bank details for returned/cancelled order to refund amount in his account.
 
 Success Response:
 
 
 
-Token Generated successfully
+Success
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/GetShareCartLinkResponse"
-}`
-
-
-Examples: 
-
-
-Token Generated
-```javascript
-{
-  "value": {
-    "token": "ZweG1XyX",
-    "share_url": "https://uniket-testing.addsale.link/shared-cart/ZweG1XyX"
-  }
-}
-```
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
----
-
-
-#### PosCart#getCartSharedItems
-Get shared cart snapshot and cart response
-
-```javascript
-// Promise
-const promise = poscart.getCartSharedItems(token, );
-
-// Async/Await
-const data = await poscart.getCartSharedItems(token, );
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| token | string | Shared short link token. | 
-
-Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
-
-Success Response:
-
-
-
-Cart for valid token
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/SharedCartResponse"
+  "$ref": "#/components/schemas/RefundAccountResponse"
 }`
 
 
@@ -7430,13 +8216,29 @@ Schema: `{
 
 
 
-No cart found for sent token
+Bad Request Error
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/SharedCartResponse"
+  "$ref": "#/components/schemas/NotFoundResourceError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
 }`
 
 
@@ -7453,323 +8255,2253 @@ Error Response:
 ---
 
 
-#### PosCart#updateCartWithSharedItems
-Merge or Replace existing cart
+#### Payment#verifyOtpAndAddBeneficiaryForWallet
+Send Otp on Adding wallet beneficiary
 
 ```javascript
 // Promise
-const promise = poscart.updateCartWithSharedItems(token, action, );
+const promise = payment.verifyOtpAndAddBeneficiaryForWallet();
 
 // Async/Await
-const data = await poscart.updateCartWithSharedItems(token, action, );
+const data = await payment.verifyOtpAndAddBeneficiaryForWallet();
 
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| token | string | Shared short link token. | 
-| action | string | Operation to perform on existing cart, whether to merge or replace. | 
 
-Merge or Replace cart based on `action` parameter with shared cart of `token`
+Send Otp on Adding wallet beneficiary for user mobile verification
 
 Success Response:
 
 
 
-Success of Merge or Replace of cart with `shared_cart_details`                    containing shared cart details in response
+WalletOtp
 
 
 Content Type: `application/json`
 
 Schema: `{
-  "$ref": "#/components/schemas/SharedCartResponse"
+  "$ref": "#/components/schemas/WalletOtpResponse"
 }`
 
 
-Examples: 
 
 
-Cart Merged/Replaced
+
+
+
+
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/NotFoundResourceError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Payment#updateDefaultBeneficiary
+Mark Default Beneficiary For Refund
+
 ```javascript
-{
-  "value": {
-    "cart": {
-      "shared_cart_details": {
-        "token": "BQ9jySQ9",
-        "user": {
-          "user_id": "23109086",
-          "is_anonymous": false
-        },
-        "meta": {
-          "selected_staff": "",
-          "ordering_store": null
-        },
-        "selected_staff": "",
-        "ordering_store": null,
-        "source": {},
-        "created_on": "2019-12-18T14:00:07.165000"
-      },
-      "items": [
-        {
-          "key": "791651_6",
-          "discount": "",
-          "bulk_offer": {},
-          "coupon_message": "",
-          "article": {
-            "type": "article",
-            "uid": "304_1054_9036_R1005753_6",
-            "size": "6",
-            "seller": {
-              "uid": 304,
-              "name": "LEAYAN GLOBAL PVT. LTD."
-            },
-            "store": {
-              "uid": 5322,
-              "name": "Vaisali Nagar"
-            },
-            "quantity": 1,
-            "price": {
-              "base": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "product": {
-            "type": "product",
-            "uid": 791651,
-            "name": "Black Running Shoes",
-            "slug": "furo-black-running-shoes-791651-f8bcc3",
-            "brand": {
-              "uid": 1054,
-              "name": "Furo"
-            },
-            "categories": [
-              {
-                "uid": 160,
-                "name": "Running Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-              "query": {
-                "product_slug": [
-                  "furo-black-running-shoes-791651-f8bcc3"
-                ]
-              }
-            }
-          },
-          "message": "",
-          "quantity": 1,
-          "availability": {
-            "sizes": [
-              "7",
-              "8",
-              "9",
-              "10",
-              "6"
-            ],
-            "other_store_quantity": 12,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "price": {
-            "base": {
-              "add_on": 2095,
-              "marked": 2095,
-              "effective": 2095,
-              "selling": 2095,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 2095,
-              "marked": 2095,
-              "effective": 2095,
-              "selling": 2095,
-              "currency_code": "INR"
-            }
-          }
-        },
-        {
-          "key": "791651_7",
-          "discount": "",
-          "bulk_offer": {},
-          "coupon_message": "",
-          "article": {
-            "type": "article",
-            "uid": "304_1054_9036_R1005753_7",
-            "size": "7",
-            "seller": {
-              "uid": 304,
-              "name": "LEAYAN GLOBAL PVT. LTD."
-            },
-            "store": {
-              "uid": 5322,
-              "name": "Vaisali Nagar"
-            },
-            "quantity": 2,
-            "price": {
-              "base": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              },
-              "converted": {
-                "marked": 2095,
-                "effective": 2095,
-                "currency_code": "INR"
-              }
-            }
-          },
-          "product": {
-            "type": "product",
-            "uid": 791651,
-            "name": "Black Running Shoes",
-            "slug": "furo-black-running-shoes-791651-f8bcc3",
-            "brand": {
-              "uid": 1054,
-              "name": "Furo"
-            },
-            "categories": [
-              {
-                "uid": 160,
-                "name": "Running Shoes"
-              }
-            ],
-            "images": [
-              {
-                "aspect_ratio": "16:25",
-                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
-                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
-              }
-            ],
-            "action": {
-              "type": "product",
-              "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
-              "query": {
-                "product_slug": [
-                  "furo-black-running-shoes-791651-f8bcc3"
-                ]
-              }
-            }
-          },
-          "message": "",
-          "quantity": 2,
-          "availability": {
-            "sizes": [
-              "7",
-              "8",
-              "9",
-              "10",
-              "6"
-            ],
-            "other_store_quantity": 7,
-            "out_of_stock": false,
-            "deliverable": true,
-            "is_valid": true
-          },
-          "price": {
-            "base": {
-              "add_on": 4190,
-              "marked": 4190,
-              "effective": 4190,
-              "selling": 4190,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "add_on": 4190,
-              "marked": 4190,
-              "effective": 4190,
-              "selling": 4190,
-              "currency_code": "INR"
-            }
-          }
-        }
-      ],
-      "cart_id": 13055,
-      "uid": "13055",
-      "breakup_values": {
-        "raw": {
-          "cod_charge": 0,
-          "convenience_fee": 0,
-          "coupon": 0,
-          "delivery_charge": 0,
-          "discount": 0,
-          "fynd_cash": 0,
-          "gst_charges": 958.73,
-          "mrp_total": 6285,
-          "subtotal": 6285,
-          "total": 6285,
-          "vog": 5326.27,
-          "you_saved": 0
-        },
-        "loyalty_points": {
-          "total": 0,
-          "applicable": 0,
-          "is_applied": false,
-          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-        },
-        "coupon": {
-          "type": "cash",
-          "code": "",
-          "uid": null,
-          "value": 0,
-          "is_applied": false,
-          "message": "Sorry! Invalid coupon"
-        },
-        "display": [
-          {
-            "display": "MRP Total",
-            "key": "mrp_total",
-            "value": 6285,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Subtotal",
-            "key": "subtotal",
-            "value": 6285,
-            "currency_code": "INR"
-          },
-          {
-            "display": "Total",
-            "key": "total",
-            "value": 6285,
-            "currency_code": "INR"
-          }
-        ]
-      },
-      "delivery_charge_info": "",
-      "coupon_text": "View all offers",
-      "gstin": null,
-      "comment": "",
-      "checkout_mode": "self",
-      "payment_selection_lock": {
-        "enabled": false,
-        "default_options": "COD",
-        "payment_identifier": null
-      },
-      "restrict_checkout": false,
-      "is_valid": true,
-      "last_modified": "Mon, 16 Dec 2019 07:02:18 GMT"
-    }
-  }
-}
+// Promise
+const promise = payment.updateDefaultBeneficiary();
+
+// Async/Await
+const data = await payment.updateDefaultBeneficiary();
+
 ```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Mark Default Beneficiary ot of all Beneficiary Details for Refund
+
+Success Response:
+
+
+
+Set Default Beneficiary Response.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SetDefaultBeneficiaryResponse"
+}`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SetDefaultBeneficiaryResponse"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HttpErrorCodeAndResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+
+---
+
+
+## Order
+
+```javascript
+const { Configuration, Order } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const order = new Order(conf);
+
+```
+
+
+#### Order#getOrders
+Get Orders for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getOrders(page_no, page_size, from_date, to_date, );
+
+// Async/Await
+const data = await order.getOrders(page_no, page_size, from_date, to_date, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| page_no | string | Current page number | 
+| page_size | string | Page limit | 
+| from_date | string | From Date | 
+| to_date | string | To Date | 
+
+Get Orders
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/OrderList"
+}`
+
+
+
+
+
+
+
+
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Order#getOrderById
+Get Order by order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getOrderById(order_id, );
+
+// Async/Await
+const data = await order.getOrderById(order_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| order_id | string | Order Id | 
+
+Get Order By Fynd Order Id
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/OrderById"
+}`
+
+
+
+
+
+
+
+
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Order#getShipmentById
+Get Shipment by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getShipmentById(shipment_id, );
+
+// Async/Await
+const data = await order.getShipmentById(shipment_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipment_id | string | Shipment Id | 
+
+Get Shipment
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ShipmentById"
+}`
+
+
+
+
+
+
+
+
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Order#getShipmentReasons
+Get Shipment reasons by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getShipmentReasons(shipment_id, );
+
+// Async/Await
+const data = await order.getShipmentReasons(shipment_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipment_id | string | Shipment Id | 
+
+Get Shipment Reasons
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ShipmentReasons"
+}`
+
+
+
+
+
+
+
+
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Order#updateShipmentStatus
+Update Shipment status by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.updateShipmentStatus(shipment_id, );
+
+// Async/Await
+const data = await order.updateShipmentStatus(shipment_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipment_id | string | Shipment Id | 
+
+Update Shipment Status
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ShipmentStatusUpdate"
+}`
+
+
+
+
+
+
+
+
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Order#trackShipment
+Track Shipment by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.trackShipment(shipment_id, );
+
+// Async/Await
+const data = await order.trackShipment(shipment_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipment_id | string | Shipment Id | 
+
+Shipment Track
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ShipmentTrack"
+}`
+
+
+
+
+
+
+
+
+API Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApefaceApiError"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+
+---
+
+
+## Feedback
+
+```javascript
+const { Configuration, Feedback } = require('fdk-client-nodejs/application')
+const conf = new Configuration({
+    ApplicationID: "507f191e810c19729de860ea",
+    ApplicationToken: "hu67dfhddf"
+});
+const feedback = new Feedback(conf);
+
+```
+
+
+#### Feedback#createAbuseReport
+post a new abuse request
+
+```javascript
+// Promise
+const promise = feedback.createAbuseReport();
+
+// Async/Await
+const data = await feedback.createAbuseReport();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Report a new abuse for specific entity with description text.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#updateAbuseReport
+Update abuse details
+
+```javascript
+// Promise
+const promise = feedback.updateAbuseReport();
+
+// Async/Await
+const data = await feedback.updateAbuseReport();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update the abuse details like status and description text.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#getAbuseReports
+Get list of abuse data
+
+```javascript
+// Promise
+const promise = feedback.getAbuseReports(entity_id, entity_type, id, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getAbuseReports(entity_id, entity_type, id, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_id | string | entity id | 
+| entity_type | string | entity type | 
+| id | string | abuse id | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+Get the list of abuse data from entity type and entity ID.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XNumberGetResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#getAttributes
+Get list of attribute data
+
+```javascript
+// Promise
+const promise = feedback.getAttributes();
+
+// Async/Await
+const data = await feedback.getAttributes();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Provides a list of all attribute data.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XNumberGetResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#createAttribute
+Add a new attribute request
+
+```javascript
+// Promise
+const promise = feedback.createAttribute();
+
+// Async/Await
+const data = await feedback.createAttribute();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Add a new attribute with its name, slug and description.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#getAttribute
+Get single attribute data
+
+```javascript
+// Promise
+const promise = feedback.getAttribute(slug, );
+
+// Async/Await
+const data = await feedback.getAttribute(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | Slug of attribute | 
+
+Get a single attribute data from a given slug.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Attribute"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#updateAttribute
+Update attribute details
+
+```javascript
+// Promise
+const promise = feedback.updateAttribute(slug, );
+
+// Async/Await
+const data = await feedback.updateAttribute(slug, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | Slug of attribute | 
+
+Update the attribute's name and description.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#createComment
+post a new comment
+
+```javascript
+// Promise
+const promise = feedback.createComment();
+
+// Async/Await
+const data = await feedback.createComment();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to add a new comment for specific entity.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#updateComment
+Update comment status
+
+```javascript
+// Promise
+const promise = feedback.updateComment();
+
+// Async/Await
+const data = await feedback.updateComment();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update the comment status (active/approve) or text.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#getComments
+Get list of comments
+
+```javascript
+// Promise
+const promise = feedback.getComments(entity_type, id, entity_id, user_id, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getComments(entity_type, id, entity_id, user_id, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| id | string | comment id | 
+| entity_id | string | entity id | 
+| user_id | string | user id - flag/filter to get comments for user | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+Get the list of comments from specific entity type.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#checkEligibility
+Checks eligibility and cloud media config
+
+```javascript
+// Promise
+const promise = feedback.checkEligibility(entity_type, entity_id, );
+
+// Async/Await
+const data = await feedback.checkEligibility(entity_type, entity_id, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| entity_id | string | entity id | 
+
+Checks eligibility to rate and review and cloud media configuration
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CheckEligibilityResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#deleteMedia
+Delete Media
+
+```javascript
+// Promise
+const promise = feedback.deleteMedia();
+
+// Async/Await
+const data = await feedback.deleteMedia();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Delete Media for the given entity IDs.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#createMedia
+Add Media
+
+```javascript
+// Promise
+const promise = feedback.createMedia();
+
+// Async/Await
+const data = await feedback.createMedia();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Add Media list for specific entity.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#updateMedia
+Update Media
+
+```javascript
+// Promise
+const promise = feedback.updateMedia();
+
+// Async/Await
+const data = await feedback.updateMedia();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update Media (archive/approve) for the given entity.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#getMedias
+Get Media
+
+```javascript
+// Promise
+const promise = feedback.getMedias(entity_type, entity_id, id, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getMedias(entity_type, entity_id, id, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| entity_id | string | entity id | 
+| id | string | vote id | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+Get Media from the given entity type and entity ID.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#getReviewSummaries
+Get a review summary
+
+```javascript
+// Promise
+const promise = feedback.getReviewSummaries(entity_type, entity_id, id, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getReviewSummaries(entity_type, entity_id, id, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| entity_id | string | entity id | 
+| id | string | review summary identifier | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+Review summary gives ratings and attribute metrics of a review per entity
+It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+
+Success Response:
+
+
+
+success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#createReview
+Add customer reviews
+
+```javascript
+// Promise
+const promise = feedback.createReview();
+
+// Async/Await
+const data = await feedback.createReview();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Add customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#updateReview
+Update customer reviews
+
+```javascript
+// Promise
+const promise = feedback.updateReview();
+
+// Async/Await
+const data = await feedback.updateReview();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Update customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#getReviews
+Get list of customer reviews
+
+```javascript
+// Promise
+const promise = feedback.getReviews(entity_type, entity_id, id, user_id, media, rating, attribute_rating, facets, sort, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getReviews(entity_type, entity_id, id, user_id, media, rating, attribute_rating, facets, sort, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| entity_id | string | entity id | 
+| id | string | review id | 
+| user_id | string | user id | 
+| media | string | media type e.g. image | video | video_file | video_link | 
+| rating | array | rating filter, 1-5 | 
+| attribute_rating | array | attribute rating filter | 
+| facets | boolean | facets (true|false) | 
+| sort | string | sort by : default | top | recent | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+This is used to get the list of customer reviews based on entity and provided filters.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#getTemplates
+Get the templates for product or l3 type
+
+```javascript
+// Promise
+const promise = feedback.getTemplates(template_id, entity_id, entity_type, );
+
+// Async/Await
+const data = await feedback.getTemplates(template_id, entity_id, entity_type, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| template_id | string | template id | 
+| entity_id | string | entity id | 
+| entity_type | string | entity type e.g. product | l3 | 
+
+This is used to get the templates details.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#createQuestion
+Create a new question
+
+```javascript
+// Promise
+const promise = feedback.createQuestion();
+
+// Async/Await
+const data = await feedback.createQuestion();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to create a new question with following data:
+tags, text, type, choices for MCQ type questions, maximum length of answer.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#updateQuestion
+Update question
+
+```javascript
+// Promise
+const promise = feedback.updateQuestion();
+
+// Async/Await
+const data = await feedback.updateQuestion();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to update question's status, tags and choices.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#getQuestionAndAnswers
+Get a list of QnA
+
+```javascript
+// Promise
+const promise = feedback.getQuestionAndAnswers(entity_type, entity_id, id, show_answer, page_id, page_size, );
+
+// Async/Await
+const data = await feedback.getQuestionAndAnswers(entity_type, entity_id, id, show_answer, page_id, page_size, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| entity_type | string | entity type | 
+| entity_id | string | entity id | 
+| id | string | qna id | 
+| show_answer | boolean | show answer flag | 
+| page_id | string | pagination page id | 
+| page_size | string | pagination page size | 
+
+This is used to get a list of questions and its answers.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XCursorGetResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#getVotes
+Get list of votes
+
+```javascript
+// Promise
+const promise = feedback.getVotes(id, ref_type, );
+
+// Async/Await
+const data = await feedback.getVotes(id, ref_type, );
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | vote id | 
+| ref_type | string | entity type e.g. review | comment | 
+
+This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XNumberGetResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#createVote
+Create a new vote
+
+```javascript
+// Promise
+const promise = feedback.createVote();
+
+// Async/Await
+const data = await feedback.createVote();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to create a new vote and the actions can be upvote or downvote.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XInsertResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Feedback#updateVote
+Update vote
+
+```javascript
+// Promise
+const promise = feedback.updateVote();
+
+// Async/Await
+const data = await feedback.updateVote();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+This is used to update the vote and the actions can be upvote or downvote.
+
+Success Response:
+
+
+
+ok
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/XUpdateResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
 
 
 

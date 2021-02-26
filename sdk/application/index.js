@@ -4,8 +4,15 @@ const Configuration = require("./configuration");
 const { 
     Catalog,
     Lead,
+    Theme,
+    User,
+    Content,
+    Communication,
     Share,
-    PosCart,
+    FileStorage,
+    Payment,
+    Order,
+    Feedback,
 } = require("./operations");
 
 
