@@ -5,9 +5,9 @@ const Configuration = require("./configuration");
 
 
 const { 
+    Media,
     ProductListingActionPage,
     ProductListingAction,
-    Media,
     ProductBrand,
     ProductDetailAttribute,
     ProductDetailGroupedAttribute,
@@ -18,9 +18,9 @@ const {
     ProductListingPrice,
     ProductSizeStores,
     ProductSizes,
-    ProductStockPrice,
-    Store,
     ArticleAssignment,
+    Store,
+    ProductStockPrice,
     Seller,
     ProductSizePriceResponse,
     ProductPage,
@@ -35,8 +35,8 @@ const {
     ProductVariantItemResponse,
     ProductVariantResponse,
     ProductVariantsResponse,
-    StoreDetail,
     CompanyDetail,
+    StoreDetail,
     ProductStockStatusItem,
     ProductStockStatusResponse,
     ProductStockPolling,
@@ -61,24 +61,24 @@ const {
     DepartmentResponse,
     AutocompleteItem,
     AutoCompleteResponse,
+    CollectionBadge,
+    CollectionImage,
+    CollectionBanner,
+    UserInfo,
+    Schedule,
     SeoDetail,
+    CreateCollection,
+    CollectionDetailResponse,
     GetCollectionDetailNest,
     CollectionListingFilterTag,
     CollectionListingFilterType,
     CollectionListingFilter,
     GetCollectionListingResponse,
-    UserInfo,
-    CollectionImage,
-    CollectionBanner,
-    Schedule,
-    CollectionBadge,
-    CreateCollection,
-    CollectionDetailResponse,
     CollectionItem,
     CollectionItemsRequest,
     CollectionItemsResponse,
-    CollectionDetailViewDeleteResponse,
     CollectionsUpdateDetailResponse,
+    CollectionDetailViewDeleteResponse,
     GetFollowListingResponse,
     FollowPostResponse,
     FollowerCountResponse,
@@ -87,14 +87,87 @@ const {
     LatLong,
     Store1,
     StoreListingResponse,
+    CartCurrency,
+    CategoryInfo,
+    BaseInfo,
+    ActionQuery,
+    Action,
+    Image,
+    Product,
+    ProductAvailability,
+    ProductPrice,
+    ProductPriceInfo,
+    CartProductInfo,
+    DisplayBreakup,
+    CouponBreakup,
+    RawBreakup,
+    LoyaltyPoints,
+    CartBreakup,
+    PaymentFlow,
+    PaymentFlows,
+    PaymentOption,
+    PaymentOptions,
+    CartResponse,
+    AddProductCart,
+    AddCartRequest,
+    AddCartResponse,
+    UpdateProductCart,
+    UpdateCartRequest,
+    UpdateCartResponse,
+    CartItemCountResponse,
+    PageCoupon,
+    Coupon,
+    GetCouponResponse,
+    ApplyCouponRequest,
+    CartCoupon,
+    RawCartCoupon,
+    SaveCoupon,
+    SaveCouponResponse,
+    OfferPrice,
+    OfferItem,
+    OfferSeller,
+    BulkPriceOffer,
+    BulkPriceResponse,
+    GeoLocation,
+    Address,
+    GetAddressResponse,
+    SaveAddressRequest,
+    SaveAddressResponse,
+    UpdateAddressRequest,
+    UpdateAddressResponse,
+    DeleteAddressResponse,
+    SelectCartAddressRequest,
+    UpdateCartPaymentRequest,
+    ShipmentResponse,
+    CartShipmentsResponse,
+    CartCheckoutRequest,
+    CheckCart,
+    OrderData,
+    CartCheckoutResponse,
+    CartMetaRequest,
+    CartMetaResponse,
+    CartMetaMissingResponse,
+    GetShareCartLinkRequest,
+    GetShareCartLinkResponse,
+    SharedCartDetails,
+    SharedCart,
+    SharedCartResponse,
     TicketList,
+    TicketHistoryList,
+    CustomFormList,
+    CreateCustomFormPayload,
+    EditCustomFormPayload,
+    EditTicketPayload,
+    AgentChangePayload,
+    CreateVideoRoomResponse,
+    CreateVideoRoomPayload,
     Filter,
     TicketHistoryPayload,
     CustomFormSubmissionPayload,
     GetTokenForVideoRoomResponse,
     GetParticipantsInsideVideoRoomResponse,
     SubmitCustomFormResponse,
-    Context,
+    TicketContext,
     CreatedOn,
     Asset,
     Content,
@@ -108,6 +181,11 @@ const {
     CustomForm,
     TicketHistory,
     Ticket,
+    PaginationSchema,
+    ThemesListingResponseSchema,
+    AddThemeRequestSchema,
+    UpgradableThemeSchema,
+    FontsSchema,
     ThemesSchema,
     pagesSchema,
     availableSectionSchema,
@@ -144,25 +222,10 @@ const {
     VerifyEmailOTPSuccess,
     SendMobileVerifyLinkSuccess,
     SendEmailVerifyLinkSuccess,
+    UserSearchResponseSchema,
+    CustomerListResponseSchema,
     PlatformSchema,
     UserSchema,
-    ApplicationLegal,
-    Seo,
-    StorefrontAnnouncement,
-    AdminAnnouncementSchema,
-    ScheduleSchema,
-    Navigation,
-    NavigationRef,
-    LandingPage,
-    Slideshow,
-    AnnouncementsResponseSchema,
-    FaqResponseSchema,
-    SeoResponseSchema,
-    Faq,
-    CustomPage,
-    CustomBlog,
-    Support,
-    TagsSchema,
     CommunicationConsentReq,
     CommunicationConsentRes,
     CommunicationConsent,
@@ -223,6 +286,23 @@ const {
     ShipmentStatusUpdateBody,
     ShipmentStatusUpdate,
     ShipmentTrack,
+    Article,
+    CatalogueOrderRequest,
+    CatalogueOrderResponse,
+    CursorPage,
+    Discount,
+    Error,
+    Offer,
+    OrderDiscountRequest,
+    OrderDiscountResponse,
+    OrderDiscountRuleBucket,
+    PointsHistory,
+    PointsHistoryResponse,
+    PointsResponse,
+    RedeemReferralCodeRequest,
+    RedeemReferralCodeResponse,
+    ReferralDetailsResponse,
+    ShareMessages,
     Access,
     AddMediaListRequest,
     AddMediaRequest,
@@ -252,7 +332,11 @@ const {
     XCursorGetResponse,
     XInsertResponse,
     XNumberGetResponse,
-    XUpdateResponse
+    XUpdateResponse,
+    UpdateCartShipmentItem,
+    UpdateCartShipmentRequest,
+    CartDeliveryModesResponse,
+    StoreDetailsResponse
 } = require("./schema");
 
     
@@ -545,20 +629,6 @@ class Catalog {
     
     /**
     *
-    * Summary: List all the collections
-    * Description:  A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
-    **/
-    getCollections(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/catalog/v1.0/collections/",
-        );
-    }
-    
-    /**
-    *
     * Summary: Add a Collection
     * Description:  Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
     **/
@@ -573,16 +643,15 @@ class Catalog {
     
     /**
     *
-    * Summary: Get the items in a collection
-    * Description:  Get items in a collection specified by its `slug`.
+    * Summary: List all the collections
+    * Description:  A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
     **/
-    getCollectionItemsBySlug(
-        slug, opts
+    getCollections(
     ) {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/catalog/v1.0/collections/{slug}/items/",
+            "/service/application/catalog/v1.0/collections/",
         );
     }
     
@@ -603,16 +672,16 @@ class Catalog {
     
     /**
     *
-    * Summary: Delete a Collection
-    * Description:  Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
+    * Summary: Get the items in a collection
+    * Description:  Get items in a collection specified by its `slug`.
     **/
-    deleteCollectionDetailBySlug(
+    getCollectionItemsBySlug(
         slug, opts
     ) {
         return APIClient.execute(
             this._conf,
-            "delete",
-            "/service/application/catalog/v1.0/collections/{slug}/",
+            "get",
+            "/service/application/catalog/v1.0/collections/{slug}/items/",
         );
     }
     
@@ -627,6 +696,21 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "put",
+            "/service/application/catalog/v1.0/collections/{slug}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Delete a Collection
+    * Description:  Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
+    **/
+    deleteCollectionDetailBySlug(
+        slug, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
             "/service/application/catalog/v1.0/collections/{slug}/",
         );
     }
@@ -663,22 +747,6 @@ class Catalog {
     
     /**
     *
-    * Summary: UnFollow a Product
-    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    **/
-    unfollowById(
-        collectionType, opts
-        collectionId, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "delete",
-            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
-        );
-    }
-    
-    /**
-    *
     * Summary: Follow a particular Product
     * Description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     **/
@@ -689,6 +757,22 @@ class Catalog {
         return APIClient.execute(
             this._conf,
             "post",
+            "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: UnFollow a Product
+    * Description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    **/
+    unfollowById(
+        collectionType, opts
+        collectionId, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
             "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
         );
     }
@@ -748,6 +832,351 @@ const {
 } = require("./schema");
 
     
+class Cart {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Fetch all Items Added to  Cart
+    * Description:  Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+    **/
+    getCart(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/cart/v1.0/detail",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Fetch Last-Modified timestamp
+    * Description:  Fetch Last-Modified timestamp in header metadata
+    **/
+    getCartLastModified(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "head",
+            "/service/application/cart/v1.0/detail",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Add Items to Cart
+    * Description:  <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
+    **/
+    addItems(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/cart/v1.0/detail",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Items already added to Cart
+    * Description:  Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+    **/
+    updateCart(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/cart/v1.0/detail",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Cart item count
+    * Description:  Get total count of item present in cart
+    **/
+    getItemCount(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/cart/v1.0/basic",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Fetch Coupon
+    * Description:  Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
+    **/
+    getCoupons(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/cart/v1.0/coupon",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Apply Coupon
+    * Description:  <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
+</ul>
+    **/
+    applyCoupon(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/cart/v1.0/coupon",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Remove Coupon Applied
+    * Description:  Remove Coupon applied on the cart by passing uid in request body.
+    **/
+    removeCoupon(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
+            "/service/application/cart/v1.0/coupon",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get discount offers based on quantity
+    * Description:  List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
+    **/
+    getBulkDiscountOffers(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/cart/v1.0/bulk-price",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Fetch Address
+    * Description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    **/
+    getAddresses(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/cart/v1.0/address",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Add Address to the account
+    * Description:  <p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+    **/
+    addAddress(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/cart/v1.0/address",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Fetch Single Address
+    * Description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    **/
+    getAddressById(
+        id, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/cart/v1.0/address/{id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Address alreay added to account
+    * Description:  Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+    **/
+    updateAddress(
+        id, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/cart/v1.0/address/{id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Remove Address Associated to the account
+    * Description:  Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
+    **/
+    removeAddress(
+        id, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
+            "/service/application/cart/v1.0/address/{id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Select Address from All Addresses
+    * Description:  <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+    **/
+    selectAddress(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/cart/v1.0/select-address",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Cart Payment for valid coupon
+    * Description:  Validate coupon for selected payment mode
+    **/
+    getPaymentModes(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/cart/v1.0/payment",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Cart Payment
+    * Description:  Update Cart Payment for Your Account
+    **/
+    selectPaymentMode(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/cart/v1.0/payment",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get delivery date and options before checkout
+    * Description:  Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
+    **/
+    getShipments(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/cart/v1.0/shipment",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Checkout Cart
+    * Description:  Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
+    **/
+    checkoutCart(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/cart/v1.0/checkout",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Cart Meta
+    * Description:  Update cart meta like checkout_mode, gstin.
+    **/
+    updateCartMeta(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/cart/v1.0/meta",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Generate Cart sharing link token
+    * Description:  Generates shared cart snapshot and returns shortlink token
+    **/
+    getCartShareLink(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/cart/v1.0/share-cart",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get shared cart snapshot and cart response
+    * Description:  Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
+    **/
+    getCartSharedItems(
+        token, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/cart/v1.0/share-cart/{token}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Merge or Replace existing cart
+    * Description:  Merge or Replace cart based on `action` parameter with shared cart of `token`
+    **/
+    updateCartWithSharedItems(
+        token, opts
+        action, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/cart/v1.0/share-cart/{token}/{action}",
+        );
+    }
+    
+}
+
+
+exports.Cart = Cart;
+
+
+
+const { 
+} = require("./schema");
+
+    
 class Lead {
     constructor(_conf) {
         this._conf = _conf;
@@ -764,7 +1193,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/lead/v1.0/ticket/{id}",
+            "service/application/lead/v1.0/ticket/{id}",
         );
     }
     
@@ -779,7 +1208,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "post",
-            "/service/application/lead/v1.0/ticket/{ticket_id}/history",
+            "service/application/lead/v1.0/ticket/{ticket_id}/history",
         );
     }
     
@@ -793,7 +1222,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "post",
-            "/service/application/lead/v1.0/ticket/",
+            "service/application/lead/v1.0/ticket/",
         );
     }
     
@@ -808,7 +1237,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/lead/v1.0/form/{slug}",
+            "service/application/lead/v1.0/form/{slug}",
         );
     }
     
@@ -823,7 +1252,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "post",
-            "/service/application/lead/v1.0/form/{slug}/submit",
+            "service/application/lead/v1.0/form/{slug}/submit",
         );
     }
     
@@ -838,7 +1267,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/lead/v1.0/video/room/{unique_name}/participants",
+            "service/application/lead/v1.0/video/room/{unique_name}/participants",
         );
     }
     
@@ -853,7 +1282,7 @@ class Lead {
         return APIClient.execute(
             this._conf,
             "get",
-            "/service/application/lead/v1.0/video/room/{unique_name}/token",
+            "service/application/lead/v1.0/video/room/{unique_name}/token",
         );
     }
     
@@ -1379,182 +1808,6 @@ class User {
 
 
 exports.User = User;
-
-
-
-const { 
-} = require("./schema");
-
-    
-class Content {
-    constructor(_conf) {
-        this._conf = _conf;
-    }
-    
-    /**
-    *
-    * Summary: Get live announcements
-    * Description:  Get live announcements for each or all pages with page slug of page and end date schedule.
-    **/
-    getAnnouncements(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/announcements",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get Blog by slug
-    * Description:  Use this API to fetch a blog using `slug`
-    **/
-    getBlog(
-        slug, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/blogs/{slug}",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get frequently asked questions
-    * Description:  Get frequently asked questions list. These will be helpful for users to using website.
-    **/
-    getFaqs(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/faqs",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get landing page
-    * Description:  Use this API to fetch a landing page
-    **/
-    getLandingPage(
-        xDevicePlatform, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/landing-page",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get legal information
-    * Description:  Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-    **/
-    getLegalInformation(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/legal",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get navigation
-    * Description:  Use this API to fetch a navigation
-    **/
-    getNavigations(
-        xDevicePlatform, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/navigations/",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get Page by slug
-    * Description:  Use this API to fetch a custom page using `slug`
-    **/
-    getPage(
-        slug, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/pages/{slug}",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get seo of application
-    * Description:  Get seo of application
-    **/
-    getSeoConfiguration(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/seo",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get slideshow by slug
-    * Description:  Use this API to fetch a slideshow using `slug`
-    **/
-    getSlideshow(
-        slug, opts
-        xDevicePlatform, opts
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/slideshow/{slug}",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get support information
-    * Description:  Get contact details for customer support. Including emails and phone numbers
-    **/
-    getSupportInformation(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/support",
-        );
-    }
-    
-    /**
-    *
-    * Summary: Get Tags for application
-    * Description:  
-    **/
-    getFPITags(
-    ) {
-        return APIClient.execute(
-            this._conf,
-            "get",
-            "/service/application/content/v1.0/tags",
-        );
-    }
-    
-}
-
-
-exports.Content = Content;
 
 
 
@@ -2208,6 +2461,107 @@ const {
 } = require("./schema");
 
     
+class Rewards {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Get reward points that could be earned on any catalogue product.
+    * Description:  Evaluate the amount of reward points that could be earned on any catalogue product.
+    **/
+    getPointsOnProduct(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/rewards/v1.0/catalogue/offer/order/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+    * Description:  Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+    **/
+    getOrderDiscount(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/rewards/v1.0/user/offers/order-discount/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Total available points of a user for current application
+    * Description:  Total available points of a user for current application
+    **/
+    getUserPoints(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/rewards/v1.0/user/points",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get list of points transactions.
+    * Description:  Get list of points transactions.
+The list of points history is paginated.
+    **/
+    getUserPointsHistory(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/rewards/v1.0/user/points/history/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: User's referral details.
+    * Description:  User's referral details.
+    **/
+    getUserReferralDetails(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/rewards/v1.0/user/referral/",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Redeems referral code and credits points to users points account.
+    * Description:  Redeems referral code and credits points to users points account.
+    **/
+    redeemReferralCode(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/rewards/v1.0/user/referral/redeem/",
+        );
+    }
+    
+}
+
+
+exports.Rewards = Rewards;
+
+
+
+const { 
+} = require("./schema");
+
+    
 class Feedback {
     constructor(_conf) {
         this._conf = _conf;
@@ -2600,5 +2954,394 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
 
 
 exports.Feedback = Feedback;
+
+
+
+const { 
+} = require("./schema");
+
+    
+class PosCart {
+    constructor(_conf) {
+        this._conf = _conf;
+    }
+    
+    /**
+    *
+    * Summary: Fetch all Items Added to  Cart
+    * Description:  Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+    **/
+    getCart(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/detail",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Fetch Last-Modified timestamp
+    * Description:  Fetch Last-Modified timestamp in header metadata
+    **/
+    getCartLastModified(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "head",
+            "/service/application/pos/cart/v1.0/detail",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Add Items to Cart
+    * Description:  <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
+    **/
+    addItems(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/pos/cart/v1.0/detail",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Items already added to Cart
+    * Description:  Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+    **/
+    updateCart(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/pos/cart/v1.0/detail",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Cart item count
+    * Description:  Get total count of item present in cart
+    **/
+    getItemCount(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/basic",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Fetch Coupon
+    * Description:  Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
+    **/
+    getCoupons(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/coupon",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Apply Coupon
+    * Description:  <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
+</ul>
+    **/
+    applyCoupon(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/pos/cart/v1.0/coupon",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Remove Coupon Applied
+    * Description:  Remove Coupon applied on the cart by passing uid in request body.
+    **/
+    removeCoupon(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
+            "/service/application/pos/cart/v1.0/coupon",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get discount offers based on quantity
+    * Description:  List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
+    **/
+    getBulkDiscountOffers(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/bulk-price",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Fetch Address
+    * Description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    **/
+    getAddresses(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/address",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Add Address to the account
+    * Description:  <p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+    **/
+    addAddress(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/pos/cart/v1.0/address",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Fetch Single Address
+    * Description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    **/
+    getAddressById(
+        id, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/address/{id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Address alreay added to account
+    * Description:  Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+    **/
+    updateAddress(
+        id, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/pos/cart/v1.0/address/{id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Remove Address Associated to the account
+    * Description:  Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
+    **/
+    removeAddress(
+        id, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "delete",
+            "/service/application/pos/cart/v1.0/address/{id}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Select Address from All Addresses
+    * Description:  <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+    **/
+    selectAddress(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/pos/cart/v1.0/select-address",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get Cart Payment for valid coupon
+    * Description:  Validate coupon for selected payment mode
+    **/
+    getPaymentModes(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/payment",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Cart Payment
+    * Description:  Update Cart Payment for Your Account
+    **/
+    selectPaymentMode(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/pos/cart/v1.0/payment",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get delivery date and options before checkout
+    * Description:  Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
+    **/
+    getShipments(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/shipment",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update shipment delivery type and quantity before checkout
+    * Description:  Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
+    **/
+    updateShipments(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/pos/cart/v1.0/shipment",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Checkout Cart
+    * Description:  Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
+    **/
+    checkoutCart(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/pos/cart/v1.0/checkout",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Update Cart Meta
+    * Description:  Update cart meta like checkout_mode, gstin.
+    **/
+    updateCartMeta(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "put",
+            "/service/application/pos/cart/v1.0/meta",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get available delivery modes for cart
+    * Description:  Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
+    **/
+    getAvailableDeliveryModes(
+        areaCode, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/available-delivery-mode",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get list of stores for give uids
+    * Description:  Get list of stores by providing pick up available store uids.
+    **/
+    getStoreAddressByUid(
+        areaCode, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/store-address",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Generate Cart sharing link token
+    * Description:  Generates shared cart snapshot and returns shortlink token
+    **/
+    getCartShareLink(
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/pos/cart/v1.0/share-cart",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Get shared cart snapshot and cart response
+    * Description:  Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
+    **/
+    getCartSharedItems(
+        token, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "get",
+            "/service/application/pos/cart/v1.0/share-cart/{token}",
+        );
+    }
+    
+    /**
+    *
+    * Summary: Merge or Replace existing cart
+    * Description:  Merge or Replace cart based on `action` parameter with shared cart of `token`
+    **/
+    updateCartWithSharedItems(
+        token, opts
+        action, opts
+    ) {
+        return APIClient.execute(
+            this._conf,
+            "post",
+            "/service/application/pos/cart/v1.0/share-cart/{token}/{action}",
+        );
+    }
+    
+}
+
+
+exports.PosCart = PosCart;
 
 
