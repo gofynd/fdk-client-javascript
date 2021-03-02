@@ -18,13 +18,12 @@ Using this method, you can `require` fdkjavascriptclient like so:
 const {
   ApplicationConfig,
   ApplicationClient,
-} = require("fdkjavascriptclient");
+} = require("fdk-client-javascript");
 ```
 
 ### Sample Usage:
 
 ```javascript
-
 const config = new ApplicationConfig({
   applicationID: "APPLICATION_ID",
   applicationToken: "APPLICATION_TOKEN",
@@ -45,6 +44,14 @@ async function getTheme() {
 }
 
 getTheme();
+```
+
+### TypeScript
+
+fdk-client-javascript includes definitions.
+
+```typescript
+import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 ```
 
 ### Documentation
