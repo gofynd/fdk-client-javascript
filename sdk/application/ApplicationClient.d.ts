@@ -1,0 +1,32 @@
+export = ApplicationClient;
+declare class ApplicationClient {
+    constructor(config: any);
+    catalog: Catalog;
+    cart: Cart;
+    lead: Lead;
+    theme: Theme;
+    user: User;
+    content: Content;
+    communication: Communication;
+    share: Share;
+    fileStorage: FileStorage;
+    payment: Payment;
+    order: Order;
+    rewards: Rewards;
+    feedback: Feedback;
+    posCart: PosCart;
+}
+import { Catalog } from "./Models";
+import { Cart } from "./Models";
+import { Lead } from "./Models";
+import { Theme } from "./Models";
+import { User } from "./Models";
+import { Content } from "./Models";
+import { Communication } from "./Models";
+import { Share } from "./Models";
+import { FileStorage } from "./Models";
+import { Payment } from "./Models";
+import { Order } from "./Models";
+import { Rewards } from "./Models";
+import { Feedback } from "./Models";
+import { PosCart } from "./Models";
