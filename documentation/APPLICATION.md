@@ -6,6 +6,7 @@
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
+* [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and QR Code 
 * [FileStorage](#FileStorage) - File Storage 
@@ -46,9 +47,9 @@
     * [Catalog#getCollections](#cataloggetcollections)
     * [Catalog#addCollectionItemsBySlug](#catalogaddcollectionitemsbyslug)
     * [Catalog#getCollectionItemsBySlug](#cataloggetcollectionitemsbyslug)
-    * [Catalog#updateCollectionDetailBySlug](#catalogupdatecollectiondetailbyslug)
     * [Catalog#deleteCollectionDetailBySlug](#catalogdeletecollectiondetailbyslug)
     * [Catalog#getCollectionDetailBySlug](#cataloggetcollectiondetailbyslug)
+    * [Catalog#updateCollectionDetailBySlug](#catalogupdatecollectiondetailbyslug)
     * [Catalog#getFollowedListing](#cataloggetfollowedlisting)
     * [Catalog#followById](#catalogfollowbyid)
     * [Catalog#unfollowById](#catalogunfollowbyid)
@@ -139,6 +140,22 @@
     * [User#deleteEmail](#userdeleteemail)
     * [User#setEmailAsPrimary](#usersetemailasprimary)
     * [User#sendVerificationLinkToEmail](#usersendverificationlinktoemail)
+    
+   
+
+* [Content](#Content)
+  * Methods
+    * [Content#getAnnouncements](#contentgetannouncements)
+    * [Content#getBlog](#contentgetblog)
+    * [Content#getFaqs](#contentgetfaqs)
+    * [Content#getLandingPage](#contentgetlandingpage)
+    * [Content#getLegalInformation](#contentgetlegalinformation)
+    * [Content#getNavigations](#contentgetnavigations)
+    * [Content#getPage](#contentgetpage)
+    * [Content#getSeoConfiguration](#contentgetseoconfiguration)
+    * [Content#getSlideshow](#contentgetslideshow)
+    * [Content#getSupportInformation](#contentgetsupportinformation)
+    * [Content#getTags](#contentgettags)
     
    
 
@@ -285,12 +302,15 @@
 ## Catalog
 
 ```javascript
-const { Configuration, Catalog } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const catalog = new Catalog(conf);
+const applicationClient = new ApplicationClient(config);
+const catalog = applicationClient.catalog;
 
 ```
 
@@ -300,10 +320,10 @@ Get a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductDetailBySlug(slug, );
+const promise = catalog.getProductDetailBySlug(slug);
 
 // Async/Await
-const data = await catalog.getProductDetailBySlug(slug, );
+const data = await catalog.getProductDetailBySlug(slug);
 
 ```
 
@@ -361,10 +381,10 @@ Get the sizes of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductSizesBySlug(slug, store_id, );
+const promise = catalog.getProductSizesBySlug(slug,store_id);
 
 // Async/Await
-const data = await catalog.getProductSizesBySlug(slug, store_id, );
+const data = await catalog.getProductSizesBySlug(slug,store_id);
 
 ```
 
@@ -423,10 +443,10 @@ Get price a product size
 
 ```javascript
 // Promise
-const promise = catalog.getProductPriceBySlug(slug, size, pincode, store_id, );
+const promise = catalog.getProductPriceBySlug(slug,size,pincode,store_id);
 
 // Async/Await
-const data = await catalog.getProductPriceBySlug(slug, size, pincode, store_id, );
+const data = await catalog.getProductPriceBySlug(slug,size,pincode,store_id);
 
 ```
 
@@ -487,10 +507,10 @@ List sellers of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductSellersBySlug(slug, size, pincode, page_no, page_size, );
+const promise = catalog.getProductSellersBySlug(slug,size,pincode,page_no,page_size);
 
 // Async/Await
-const data = await catalog.getProductSellersBySlug(slug, size, pincode, page_no, page_size, );
+const data = await catalog.getProductSellersBySlug(slug,size,pincode,page_no,page_size);
 
 ```
 
@@ -552,10 +572,10 @@ Compare products
 
 ```javascript
 // Promise
-const promise = catalog.getProductComparisonBySlugs(slug, );
+const promise = catalog.getProductComparisonBySlugs(slug);
 
 // Async/Await
-const data = await catalog.getProductComparisonBySlugs(slug, );
+const data = await catalog.getProductComparisonBySlugs(slug);
 
 ```
 
@@ -613,10 +633,10 @@ Get comparison between similar products
 
 ```javascript
 // Promise
-const promise = catalog.getSimilarComparisonProductBySlug(slug, );
+const promise = catalog.getSimilarComparisonProductBySlug(slug);
 
 // Async/Await
-const data = await catalog.getSimilarComparisonProductBySlug(slug, );
+const data = await catalog.getSimilarComparisonProductBySlug(slug);
 
 ```
 
@@ -674,10 +694,10 @@ Get comparison between frequently compared products with the given product
 
 ```javascript
 // Promise
-const promise = catalog.getComparedFrequentlyProductBySlug(slug, );
+const promise = catalog.getComparedFrequentlyProductBySlug(slug);
 
 // Async/Await
-const data = await catalog.getComparedFrequentlyProductBySlug(slug, );
+const data = await catalog.getComparedFrequentlyProductBySlug(slug);
 
 ```
 
@@ -735,10 +755,10 @@ Get similar products
 
 ```javascript
 // Promise
-const promise = catalog.getProductSimilarByIdentifier(slug, similar_type, );
+const promise = catalog.getProductSimilarByIdentifier(slug,similar_type);
 
 // Async/Await
-const data = await catalog.getProductSimilarByIdentifier(slug, similar_type, );
+const data = await catalog.getProductSimilarByIdentifier(slug,similar_type);
 
 ```
 
@@ -797,10 +817,10 @@ Get variant of a particular product
 
 ```javascript
 // Promise
-const promise = catalog.getProductVariantsBySlug(slug, );
+const promise = catalog.getProductVariantsBySlug(slug);
 
 // Async/Await
-const data = await catalog.getProductVariantsBySlug(slug, );
+const data = await catalog.getProductVariantsBySlug(slug);
 
 ```
 
@@ -858,10 +878,10 @@ Get the stock of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductStockByIds(item_id, alu, sku_code, ean, upc, );
+const promise = catalog.getProductStockByIds(item_id,alu,sku_code,ean,upc);
 
 // Async/Await
-const data = await catalog.getProductStockByIds(item_id, alu, sku_code, ean, upc, );
+const data = await catalog.getProductStockByIds(item_id,alu,sku_code,ean,upc);
 
 ```
 
@@ -923,10 +943,10 @@ Get the stock of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductStockForTimeByIds(timestamp, page_size, page_id, );
+const promise = catalog.getProductStockForTimeByIds(timestamp,page_size,page_id);
 
 // Async/Await
-const data = await catalog.getProductStockForTimeByIds(timestamp, page_size, page_id, );
+const data = await catalog.getProductStockForTimeByIds(timestamp,page_size,page_id);
 
 ```
 
@@ -986,10 +1006,10 @@ List the products
 
 ```javascript
 // Promise
-const promise = catalog.getProducts(q, f, filters, sort_on, page_id, page_size, page_no, page_type, );
+const promise = catalog.getProducts(q,f,filters,sort_on,page_id,page_size,page_no,page_type);
 
 // Async/Await
-const data = await catalog.getProducts(q, f, filters, sort_on, page_id, page_size, page_no, page_type, );
+const data = await catalog.getProducts(q,f,filters,sort_on,page_id,page_size,page_no,page_type);
 
 ```
 
@@ -1054,10 +1074,10 @@ List all the brands
 
 ```javascript
 // Promise
-const promise = catalog.getBrands(department, page_no, page_size, );
+const promise = catalog.getBrands(department,page_no,page_size);
 
 // Async/Await
-const data = await catalog.getBrands(department, page_no, page_size, );
+const data = await catalog.getBrands(department,page_no,page_size);
 
 ```
 
@@ -1117,10 +1137,10 @@ Get metadata of a brand
 
 ```javascript
 // Promise
-const promise = catalog.getBrandDetailBySlug(slug, );
+const promise = catalog.getBrandDetailBySlug(slug);
 
 // Async/Await
-const data = await catalog.getBrandDetailBySlug(slug, );
+const data = await catalog.getBrandDetailBySlug(slug);
 
 ```
 
@@ -1178,10 +1198,10 @@ List all the categories
 
 ```javascript
 // Promise
-const promise = catalog.getCategories(department, );
+const promise = catalog.getCategories(department);
 
 // Async/Await
-const data = await catalog.getCategories(department, );
+const data = await catalog.getCategories(department);
 
 ```
 
@@ -1239,10 +1259,10 @@ Get metadata of a category
 
 ```javascript
 // Promise
-const promise = catalog.getCategoryDetailBySlug(slug, );
+const promise = catalog.getCategoryDetailBySlug(slug);
 
 // Async/Await
-const data = await catalog.getCategoryDetailBySlug(slug, );
+const data = await catalog.getCategoryDetailBySlug(slug);
 
 ```
 
@@ -1300,10 +1320,10 @@ List the products
 
 ```javascript
 // Promise
-const promise = catalog.getHomeProducts(sort_on, page_id, page_size, );
+const promise = catalog.getHomeProducts(sort_on,page_id,page_size);
 
 // Async/Await
-const data = await catalog.getHomeProducts(sort_on, page_id, page_size, );
+const data = await catalog.getHomeProducts(sort_on,page_id,page_size);
 
 ```
 
@@ -1423,10 +1443,10 @@ Get relevant suggestions for a search query
 
 ```javascript
 // Promise
-const promise = catalog.getSearchResults(q, );
+const promise = catalog.getSearchResults(q);
 
 // Async/Await
-const data = await catalog.getSearchResults(q, );
+const data = await catalog.getSearchResults(q);
 
 ```
 
@@ -1544,10 +1564,10 @@ List all the collections
 
 ```javascript
 // Promise
-const promise = catalog.getCollections(page_id, page_size, );
+const promise = catalog.getCollections(page_id,page_size);
 
 // Async/Await
-const data = await catalog.getCollections(page_id, page_size, );
+const data = await catalog.getCollections(page_id,page_size);
 
 ```
 
@@ -1606,10 +1626,10 @@ Add items to a collection
 
 ```javascript
 // Promise
-const promise = catalog.addCollectionItemsBySlug(slug, );
+const promise = catalog.addCollectionItemsBySlug(slug);
 
 // Async/Await
-const data = await catalog.addCollectionItemsBySlug(slug, );
+const data = await catalog.addCollectionItemsBySlug(slug);
 
 ```
 
@@ -1667,10 +1687,10 @@ Get the items in a collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollectionItemsBySlug(slug, f, filters, sort_on, page_id, page_size, );
+const promise = catalog.getCollectionItemsBySlug(slug,f,filters,sort_on,page_id,page_size);
 
 // Async/Await
-const data = await catalog.getCollectionItemsBySlug(slug, f, filters, sort_on, page_id, page_size, );
+const data = await catalog.getCollectionItemsBySlug(slug,f,filters,sort_on,page_id,page_size);
 
 ```
 
@@ -1728,76 +1748,15 @@ Error Response:
 ---
 
 
-#### Catalog#updateCollectionDetailBySlug
-Update a collection
-
-```javascript
-// Promise
-const promise = catalog.updateCollectionDetailBySlug(slug, );
-
-// Async/Await
-const data = await catalog.updateCollectionDetailBySlug(slug, );
-
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to update. | 
-
-Update a collection by it's slug. On successful request, returns the updated collection
-
-Success Response:
-
-
-
-The Collection object. See example below or refer `CollectionsUpdateDetailResponse` for details.
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/CollectionsUpdateDetailResponse"
-}`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Content Type: `application/json`
-
-Schema: `{
-  "$ref": "#/components/schemas/ErrorResponse"
-}`
-
-
-
-
-
-
-
-
-Error Response:
-
-
-
----
-
-
 #### Catalog#deleteCollectionDetailBySlug
 Delete a Collection
 
 ```javascript
 // Promise
-const promise = catalog.deleteCollectionDetailBySlug(slug, );
+const promise = catalog.deleteCollectionDetailBySlug(slug);
 
 // Async/Await
-const data = await catalog.deleteCollectionDetailBySlug(slug, );
+const data = await catalog.deleteCollectionDetailBySlug(slug);
 
 ```
 
@@ -1855,10 +1814,10 @@ Get a particular collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollectionDetailBySlug(slug, );
+const promise = catalog.getCollectionDetailBySlug(slug);
 
 // Async/Await
-const data = await catalog.getCollectionDetailBySlug(slug, );
+const data = await catalog.getCollectionDetailBySlug(slug);
 
 ```
 
@@ -1911,15 +1870,76 @@ Error Response:
 ---
 
 
+#### Catalog#updateCollectionDetailBySlug
+Update a collection
+
+```javascript
+// Promise
+const promise = catalog.updateCollectionDetailBySlug(slug);
+
+// Async/Await
+const data = await catalog.updateCollectionDetailBySlug(slug);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to update. | 
+
+Update a collection by it's slug. On successful request, returns the updated collection
+
+Success Response:
+
+
+
+The Collection object. See example below or refer `CollectionsUpdateDetailResponse` for details.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CollectionsUpdateDetailResponse"
+}`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ErrorResponse"
+}`
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
 #### Catalog#getFollowedListing
 Get a list of followed Products, Brands, Collections
 
 ```javascript
 // Promise
-const promise = catalog.getFollowedListing(collection_type, );
+const promise = catalog.getFollowedListing(collection_type);
 
 // Async/Await
-const data = await catalog.getFollowedListing(collection_type, );
+const data = await catalog.getFollowedListing(collection_type);
 
 ```
 
@@ -1977,10 +1997,10 @@ Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collection_type, collection_id, );
+const promise = catalog.followById(collection_type,collection_id);
 
 // Async/Await
-const data = await catalog.followById(collection_type, collection_id, );
+const data = await catalog.followById(collection_type,collection_id);
 
 ```
 
@@ -2039,10 +2059,10 @@ UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collection_type, collection_id, );
+const promise = catalog.unfollowById(collection_type,collection_id);
 
 // Async/Await
-const data = await catalog.unfollowById(collection_type, collection_id, );
+const data = await catalog.unfollowById(collection_type,collection_id);
 
 ```
 
@@ -2101,10 +2121,10 @@ Get Follow Count
 
 ```javascript
 // Promise
-const promise = catalog.getFollowerCountById(collection_type, collection_id, );
+const promise = catalog.getFollowerCountById(collection_type,collection_id);
 
 // Async/Await
-const data = await catalog.getFollowerCountById(collection_type, collection_id, );
+const data = await catalog.getFollowerCountById(collection_type,collection_id);
 
 ```
 
@@ -2163,10 +2183,10 @@ Get the Ids of followed product, brand and collection.
 
 ```javascript
 // Promise
-const promise = catalog.getFollowIds(collection_type, );
+const promise = catalog.getFollowIds(collection_type);
 
 // Async/Await
-const data = await catalog.getFollowIds(collection_type, );
+const data = await catalog.getFollowIds(collection_type);
 
 ```
 
@@ -2224,10 +2244,10 @@ List store meta information.
 
 ```javascript
 // Promise
-const promise = catalog.getStores(page_no, page_size, q, range, latitude, longitude, );
+const promise = catalog.getStores(page_no,page_size,q,range,latitude,longitude);
 
 // Async/Await
-const data = await catalog.getStores(page_no, page_size, q, range, latitude, longitude, );
+const data = await catalog.getStores(page_no,page_size,q,range,latitude,longitude);
 
 ```
 
@@ -2292,12 +2312,15 @@ Error Response:
 ## Cart
 
 ```javascript
-const { Configuration, Cart } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const cart = new Cart(conf);
+const applicationClient = new ApplicationClient(config);
+const cart = applicationClient.cart;
 
 ```
 
@@ -2307,10 +2330,10 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = cart.getCart(uid, assign_card_id, );
+const promise = cart.getCart(uid,assign_card_id);
 
 // Async/Await
-const data = await cart.getCart(uid, assign_card_id, );
+const data = await cart.getCart(uid,assign_card_id);
 
 ```
 
@@ -2353,10 +2376,10 @@ Fetch Last-Modified timestamp
 
 ```javascript
 // Promise
-const promise = cart.getCartLastModified(uid, );
+const promise = cart.getCartLastModified(uid);
 
 // Async/Await
-const data = await cart.getCartLastModified(uid, );
+const data = await cart.getCartLastModified(uid);
 
 ```
 
@@ -3471,10 +3494,10 @@ Cart item count
 
 ```javascript
 // Promise
-const promise = cart.getItemCount(uid, );
+const promise = cart.getItemCount(uid);
 
 // Async/Await
-const data = await cart.getItemCount(uid, );
+const data = await cart.getItemCount(uid);
 
 ```
 
@@ -3516,10 +3539,10 @@ Fetch Coupon
 
 ```javascript
 // Promise
-const promise = cart.getCoupons(uid, );
+const promise = cart.getCoupons(uid);
 
 // Async/Await
-const data = await cart.getCoupons(uid, );
+const data = await cart.getCoupons(uid);
 
 ```
 
@@ -3561,10 +3584,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = cart.applyCoupon(i, b, p, );
+const promise = cart.applyCoupon(i,b,p);
 
 // Async/Await
-const data = await cart.applyCoupon(i, b, p, );
+const data = await cart.applyCoupon(i,b,p);
 
 ```
 
@@ -3609,10 +3632,10 @@ Remove Coupon Applied
 
 ```javascript
 // Promise
-const promise = cart.removeCoupon(uid, );
+const promise = cart.removeCoupon(uid);
 
 // Async/Await
-const data = await cart.removeCoupon(uid, );
+const data = await cart.removeCoupon(uid);
 
 ```
 
@@ -3654,10 +3677,10 @@ Get discount offers based on quantity
 
 ```javascript
 // Promise
-const promise = cart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
+const promise = cart.getBulkDiscountOffers(item_id,article_id,uid,slug);
 
 // Async/Await
-const data = await cart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
+const data = await cart.getBulkDiscountOffers(item_id,article_id,uid,slug);
 
 ```
 
@@ -3794,10 +3817,10 @@ Fetch Address
 
 ```javascript
 // Promise
-const promise = cart.getAddresses(uid, mobile_no, checkout_mode, tags, is_default, );
+const promise = cart.getAddresses(uid,mobile_no,checkout_mode,tags,is_default);
 
 // Async/Await
-const data = await cart.getAddresses(uid, mobile_no, checkout_mode, tags, is_default, );
+const data = await cart.getAddresses(uid,mobile_no,checkout_mode,tags,is_default);
 
 ```
 
@@ -3887,10 +3910,10 @@ Fetch Single Address
 
 ```javascript
 // Promise
-const promise = cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, is_default, );
+const promise = cart.getAddressById(id,uid,mobile_no,checkout_mode,tags,is_default);
 
 // Async/Await
-const data = await cart.getAddressById(id, uid, mobile_no, checkout_mode, tags, is_default, );
+const data = await cart.getAddressById(id,uid,mobile_no,checkout_mode,tags,is_default);
 
 ```
 
@@ -3937,10 +3960,10 @@ Update Address alreay added to account
 
 ```javascript
 // Promise
-const promise = cart.updateAddress(id, );
+const promise = cart.updateAddress(id);
 
 // Async/Await
-const data = await cart.updateAddress(id, );
+const data = await cart.updateAddress(id);
 
 ```
 
@@ -3982,10 +4005,10 @@ Remove Address Associated to the account
 
 ```javascript
 // Promise
-const promise = cart.removeAddress(id, );
+const promise = cart.removeAddress(id);
 
 // Async/Await
-const data = await cart.removeAddress(id, );
+const data = await cart.removeAddress(id);
 
 ```
 
@@ -4119,10 +4142,10 @@ Get Cart Payment for valid coupon
 
 ```javascript
 // Promise
-const promise = cart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
+const promise = cart.getPaymentModes(uid,address_id,payment_mode,payment_identifier,aggregator_name,merchant_code);
 
 // Async/Await
-const data = await cart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
+const data = await cart.getPaymentModes(uid,address_id,payment_mode,payment_identifier,aggregator_name,merchant_code);
 
 ```
 
@@ -4169,10 +4192,10 @@ Update Cart Payment
 
 ```javascript
 // Promise
-const promise = cart.selectPaymentMode(uid, );
+const promise = cart.selectPaymentMode(uid);
 
 // Async/Await
-const data = await cart.selectPaymentMode(uid, );
+const data = await cart.selectPaymentMode(uid);
 
 ```
 
@@ -4214,10 +4237,10 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = cart.getShipments(p, uid, address_id, );
+const promise = cart.getShipments(p,uid,address_id);
 
 // Async/Await
-const data = await cart.getShipments(p, uid, address_id, );
+const data = await cart.getShipments(p,uid,address_id);
 
 ```
 
@@ -5343,10 +5366,10 @@ Update Cart Meta
 
 ```javascript
 // Promise
-const promise = cart.updateCartMeta(uid, );
+const promise = cart.updateCartMeta(uid);
 
 // Async/Await
-const data = await cart.updateCartMeta(uid, );
+const data = await cart.updateCartMeta(uid);
 
 ```
 
@@ -5462,10 +5485,10 @@ Get shared cart snapshot and cart response
 
 ```javascript
 // Promise
-const promise = cart.getCartSharedItems(token, );
+const promise = cart.getCartSharedItems(token);
 
 // Async/Await
-const data = await cart.getCartSharedItems(token, );
+const data = await cart.getCartSharedItems(token);
 
 ```
 
@@ -5523,10 +5546,10 @@ Merge or Replace existing cart
 
 ```javascript
 // Promise
-const promise = cart.updateCartWithSharedItems(token, action, );
+const promise = cart.updateCartWithSharedItems(token,action);
 
 // Async/Await
-const data = await cart.updateCartWithSharedItems(token, action, );
+const data = await cart.updateCartWithSharedItems(token,action);
 
 ```
 
@@ -5857,12 +5880,15 @@ Error Response:
 ## Lead
 
 ```javascript
-const { Configuration, Lead } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const lead = new Lead(conf);
+const applicationClient = new ApplicationClient(config);
+const lead = applicationClient.lead;
 
 ```
 
@@ -5872,10 +5898,10 @@ Get Ticket with the specific id
 
 ```javascript
 // Promise
-const promise = lead.getTicket(id, );
+const promise = lead.getTicket(id);
 
 // Async/Await
-const data = await lead.getTicket(id, );
+const data = await lead.getTicket(id);
 
 ```
 
@@ -6119,10 +6145,10 @@ Create history for specific Ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistoryForTicket(ticket_id, );
+const promise = lead.createHistoryForTicket(ticket_id);
 
 // Async/Await
-const data = await lead.createHistoryForTicket(ticket_id, );
+const data = await lead.createHistoryForTicket(ticket_id);
 
 ```
 
@@ -6455,10 +6481,10 @@ Get specific Custom Form using it's slug
 
 ```javascript
 // Promise
-const promise = lead.getCustomForm(slug, );
+const promise = lead.getCustomForm(slug);
 
 // Async/Await
-const data = await lead.getCustomForm(slug, );
+const data = await lead.getCustomForm(slug);
 
 ```
 
@@ -6555,10 +6581,10 @@ Submit Response for a specific Custom Form using it's slug
 
 ```javascript
 // Promise
-const promise = lead.submitCustomForm(slug, );
+const promise = lead.submitCustomForm(slug);
 
 // Async/Await
-const data = await lead.submitCustomForm(slug, );
+const data = await lead.submitCustomForm(slug);
 
 ```
 
@@ -6804,10 +6830,10 @@ Get participants of a specific Video Room using it's unique name
 
 ```javascript
 // Promise
-const promise = lead.getParticipantsInsideVideoRoom(unique_name, );
+const promise = lead.getParticipantsInsideVideoRoom(unique_name);
 
 // Async/Await
-const data = await lead.getParticipantsInsideVideoRoom(unique_name, );
+const data = await lead.getParticipantsInsideVideoRoom(unique_name);
 
 ```
 
@@ -6862,10 +6888,10 @@ Get Token to join a specific Video Room using it's unqiue name
 
 ```javascript
 // Promise
-const promise = lead.getTokenForVideoRoom(unique_name, );
+const promise = lead.getTokenForVideoRoom(unique_name);
 
 // Async/Await
-const data = await lead.getTokenForVideoRoom(unique_name, );
+const data = await lead.getTokenForVideoRoom(unique_name);
 
 ```
 
@@ -6922,12 +6948,15 @@ Error Response:
 ## Theme
 
 ```javascript
-const { Configuration, Theme } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const theme = new Theme(conf);
+const applicationClient = new ApplicationClient(config);
+const theme = applicationClient.theme;
 
 ```
 
@@ -7004,10 +7033,10 @@ Get theme for preview
 
 ```javascript
 // Promise
-const promise = theme.getThemeForPreview(theme_id, );
+const promise = theme.getThemeForPreview(theme_id);
 
 // Async/Await
-const data = await theme.getThemeForPreview(theme_id, );
+const data = await theme.getThemeForPreview(theme_id);
 
 ```
 
@@ -7074,12 +7103,15 @@ Error Response:
 ## User
 
 ```javascript
-const { Configuration, User } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const user = new User(conf);
+const applicationClient = new ApplicationClient(config);
+const user = applicationClient.user;
 
 ```
 
@@ -7357,10 +7389,10 @@ Login/Register with OTP
 
 ```javascript
 // Promise
-const promise = user.loginWithOTP(platform, );
+const promise = user.loginWithOTP(platform);
 
 // Async/Await
-const data = await user.loginWithOTP(platform, );
+const data = await user.loginWithOTP(platform);
 
 ```
 
@@ -7492,10 +7524,10 @@ Reset Password
 
 ```javascript
 // Promise
-const promise = user.sendResetPasswordEmail(platform, );
+const promise = user.sendResetPasswordEmail(platform);
 
 // Async/Await
-const data = await user.sendResetPasswordEmail(platform, );
+const data = await user.sendResetPasswordEmail(platform);
 
 ```
 
@@ -7760,10 +7792,10 @@ Registration Form
 
 ```javascript
 // Promise
-const promise = user.registerWithForm(platform, );
+const promise = user.registerWithForm(platform);
 
 // Async/Await
-const data = await user.registerWithForm(platform, );
+const data = await user.registerWithForm(platform);
 
 ```
 
@@ -8097,10 +8129,10 @@ Send OTP on mobile
 
 ```javascript
 // Promise
-const promise = user.sendOTPOnMobile(platform, );
+const promise = user.sendOTPOnMobile(platform);
 
 // Async/Await
-const data = await user.sendOTPOnMobile(platform, );
+const data = await user.sendOTPOnMobile(platform);
 
 ```
 
@@ -8154,10 +8186,10 @@ Verify OTP on mobile
 
 ```javascript
 // Promise
-const promise = user.verifyMobileOTP(platform, );
+const promise = user.verifyMobileOTP(platform);
 
 // Async/Await
-const data = await user.verifyMobileOTP(platform, );
+const data = await user.verifyMobileOTP(platform);
 
 ```
 
@@ -8222,10 +8254,10 @@ Send OTP on email
 
 ```javascript
 // Promise
-const promise = user.sendOTPOnEmail(platform, );
+const promise = user.sendOTPOnEmail(platform);
 
 // Async/Await
-const data = await user.sendOTPOnEmail(platform, );
+const data = await user.sendOTPOnEmail(platform);
 
 ```
 
@@ -8279,10 +8311,10 @@ Verify OTP on email
 
 ```javascript
 // Promise
-const promise = user.verifyEmailOTP(platform, );
+const promise = user.verifyEmailOTP(platform);
 
 // Async/Await
-const data = await user.verifyEmailOTP(platform, );
+const data = await user.verifyEmailOTP(platform);
 
 ```
 
@@ -8470,10 +8502,10 @@ Get platform config
 
 ```javascript
 // Promise
-const promise = user.getPlatformConfig(name, );
+const promise = user.getPlatformConfig(name);
 
 // Async/Await
-const data = await user.getPlatformConfig(name, );
+const data = await user.getPlatformConfig(name);
 
 ```
 
@@ -8527,10 +8559,10 @@ Edit Profile Details
 
 ```javascript
 // Promise
-const promise = user.updateProfile(platform, );
+const promise = user.updateProfile(platform);
 
 // Async/Await
-const data = await user.updateProfile(platform, );
+const data = await user.updateProfile(platform);
 
 ```
 
@@ -8595,10 +8627,10 @@ Add mobile number to profile
 
 ```javascript
 // Promise
-const promise = user.addMobileNumber(platform, );
+const promise = user.addMobileNumber(platform);
 
 // Async/Await
-const data = await user.addMobileNumber(platform, );
+const data = await user.addMobileNumber(platform);
 
 ```
 
@@ -8663,10 +8695,10 @@ Delete mobile number from profile
 
 ```javascript
 // Promise
-const promise = user.deleteMobileNumber(platform, active, primary, verified, country_code, phone, );
+const promise = user.deleteMobileNumber(platform,active,primary,verified,country_code,phone);
 
 // Async/Await
-const data = await user.deleteMobileNumber(platform, active, primary, verified, country_code, phone, );
+const data = await user.deleteMobileNumber(platform,active,primary,verified,country_code,phone);
 
 ```
 
@@ -8803,10 +8835,10 @@ Send verification link to mobile
 
 ```javascript
 // Promise
-const promise = user.sendVerificationLinkToMobile(platform, );
+const promise = user.sendVerificationLinkToMobile(platform);
 
 // Async/Await
-const data = await user.sendVerificationLinkToMobile(platform, );
+const data = await user.sendVerificationLinkToMobile(platform);
 
 ```
 
@@ -8871,10 +8903,10 @@ Add email to profile
 
 ```javascript
 // Promise
-const promise = user.addEmail(platform, );
+const promise = user.addEmail(platform);
 
 // Async/Await
-const data = await user.addEmail(platform, );
+const data = await user.addEmail(platform);
 
 ```
 
@@ -8939,10 +8971,10 @@ Delete email from profile
 
 ```javascript
 // Promise
-const promise = user.deleteEmail(platform, active, primary, verified, email, );
+const promise = user.deleteEmail(platform,active,primary,verified,email);
 
 // Async/Await
-const data = await user.deleteEmail(platform, active, primary, verified, email, );
+const data = await user.deleteEmail(platform,active,primary,verified,email);
 
 ```
 
@@ -9078,10 +9110,10 @@ Send verification link to email
 
 ```javascript
 // Promise
-const promise = user.sendVerificationLinkToEmail(platform, );
+const promise = user.sendVerificationLinkToEmail(platform);
 
 // Async/Await
-const data = await user.sendVerificationLinkToEmail(platform, );
+const data = await user.sendVerificationLinkToEmail(platform);
 
 ```
 
@@ -9134,15 +9166,781 @@ Error Response:
 ---
 
 
+## Content
+
+```javascript
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
+});
+const applicationClient = new ApplicationClient(config);
+const content = applicationClient.content;
+
+```
+
+
+#### Content#getAnnouncements
+Get live announcements
+
+```javascript
+// Promise
+const promise = content.getAnnouncements();
+
+// Async/Await
+const data = await content.getAnnouncements();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get live announcements for each or all pages with page slug of page and end date schedule.
+
+Success Response:
+
+
+
+Announcement api response. announcements object contains page slug name as propery with list of announcements enabled for that page. `$all` is special page slug to indicate show announcemnt on all pages.
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AnnouncementsResponseSchema"
+}`
+
+
+Examples: 
+
+
+Announcements enabled
+```javascript
+{
+  "$ref": "#/components/examples/AnnouncementEnabledExample"
+}
+```
+
+No Announcement enabled
+```javascript
+{
+  "value": {
+    "announcements": [],
+    "refresh_rate": 900,
+    "refresh_pages": []
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getBlog
+Get Blog by slug
+
+```javascript
+// Promise
+const promise = content.getBlog(slug);
+
+// Async/Await
+const data = await content.getBlog(slug);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
+
+Use this API to fetch a blog using `slug`
+
+Success Response:
+
+
+
+A JSON object with blog details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CustomBlog"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CustomBlog"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getFaqs
+Get frequently asked questions
+
+```javascript
+// Promise
+const promise = content.getFaqs();
+
+// Async/Await
+const data = await content.getFaqs();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/FaqResponseSchema"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/AppFaqs"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getLandingPage
+Get landing page
+
+```javascript
+// Promise
+const promise = content.getLandingPage(x-device-platform);
+
+// Async/Await
+const data = await content.getLandingPage(x-device-platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a landing page
+
+Success Response:
+
+
+
+A JSON object with landing details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LandingPage"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/LandingPage"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getLegalInformation
+Get legal information
+
+```javascript
+// Promise
+const promise = content.getLegalInformation();
+
+// Async/Await
+const data = await content.getLegalInformation();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ApplicationLegal"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/Legal"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getNavigations
+Get navigation
+
+```javascript
+// Promise
+const promise = content.getNavigations(x-device-platform);
+
+// Async/Await
+const data = await content.getNavigations(x-device-platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a navigation
+
+Success Response:
+
+
+
+A JSON object with navigation details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Navigation"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Navigation"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getPage
+Get Page by slug
+
+```javascript
+// Promise
+const promise = content.getPage(slug);
+
+// Async/Await
+const data = await content.getPage(slug);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
+
+Use this API to fetch a custom page using `slug`
+
+Success Response:
+
+
+
+A JSON object with page details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/CustomPage"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/CustomPage"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getSeoConfiguration
+Get seo of application
+
+```javascript
+// Promise
+const promise = content.getSeoConfiguration();
+
+// Async/Await
+const data = await content.getSeoConfiguration();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get seo of application
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Seo"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getSlideshow
+Get slideshow by slug
+
+```javascript
+// Promise
+const promise = content.getSlideshow(slug,x-device-platform);
+
+// Async/Await
+const data = await content.getSlideshow(slug,x-device-platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow | 
+| x-device-platform | string | Platform | 
+
+Use this API to fetch a slideshow using `slug`
+
+Success Response:
+
+
+
+A JSON object with slideshow details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Slideshow"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Slideshow"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getSupportInformation
+Get support information
+
+```javascript
+// Promise
+const promise = content.getSupportInformation();
+
+// Async/Await
+const data = await content.getSupportInformation();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get contact details for customer support. Including emails and phone numbers
+
+Success Response:
+
+
+
+Success
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/Support"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/Support"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### Content#getTags
+Get Tags for application
+
+```javascript
+// Promise
+const promise = content.getTags();
+
+// Async/Await
+const data = await content.getTags();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+A JSON object of tags
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/TagsSchema"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+
+---
+
+
 ## Communication
 
 ```javascript
-const { Configuration, Communication } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const communication = new Communication(conf);
+const applicationClient = new ApplicationClient(config);
+const communication = applicationClient.communication;
 
 ```
 
@@ -9365,12 +10163,15 @@ Error Response:
 ## Share
 
 ```javascript
-const { Configuration, Share } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const share = new Share(conf);
+const applicationClient = new ApplicationClient(config);
+const share = applicationClient.share;
 
 ```
 
@@ -9424,10 +10225,10 @@ Create product QR Code
 
 ```javascript
 // Promise
-const promise = share.getProductQRCodeBySlug(slug, );
+const promise = share.getProductQRCodeBySlug(slug);
 
 // Async/Await
-const data = await share.getProductQRCodeBySlug(slug, );
+const data = await share.getProductQRCodeBySlug(slug);
 
 ```
 
@@ -9469,10 +10270,10 @@ Create collection QR Code
 
 ```javascript
 // Promise
-const promise = share.getCollectionQRCodeBySlug(slug, );
+const promise = share.getCollectionQRCodeBySlug(slug);
 
 // Async/Await
-const data = await share.getCollectionQRCodeBySlug(slug, );
+const data = await share.getCollectionQRCodeBySlug(slug);
 
 ```
 
@@ -9514,10 +10315,10 @@ Create url QR Code
 
 ```javascript
 // Promise
-const promise = share.getUrlQRCode(url, );
+const promise = share.getUrlQRCode(url);
 
 // Async/Await
-const data = await share.getUrlQRCode(url, );
+const data = await share.getUrlQRCode(url);
 
 ```
 
@@ -9603,10 +10404,10 @@ Get short link by hash
 
 ```javascript
 // Promise
-const promise = share.getShortLinkByHash(hash, );
+const promise = share.getShortLinkByHash(hash);
 
 // Async/Await
-const data = await share.getShortLinkByHash(hash, );
+const data = await share.getShortLinkByHash(hash);
 
 ```
 
@@ -9648,10 +10449,10 @@ Get original link by hash
 
 ```javascript
 // Promise
-const promise = share.getOriginalShortLinkByHash(hash, );
+const promise = share.getOriginalShortLinkByHash(hash);
 
 // Async/Await
-const data = await share.getOriginalShortLinkByHash(hash, );
+const data = await share.getOriginalShortLinkByHash(hash);
 
 ```
 
@@ -9695,12 +10496,15 @@ Error Response:
 ## FileStorage
 
 ```javascript
-const { Configuration, FileStorage } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const filestorage = new FileStorage(conf);
+const applicationClient = new ApplicationClient(config);
+const filestorage = applicationClient.filestorage;
 
 ```
 
@@ -9710,10 +10514,10 @@ This will complete the upload process. After successfully uploading file, you ca
 
 ```javascript
 // Promise
-const promise = filestorage.completeUpload(namespace, company_id, );
+const promise = filestorage.completeUpload(namespace,company_id);
 
 // Async/Await
-const data = await filestorage.completeUpload(namespace, company_id, );
+const data = await filestorage.completeUpload(namespace,company_id);
 
 ```
 
@@ -9790,10 +10594,10 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 ```javascript
 // Promise
-const promise = filestorage.startUpload(namespace, company_id, );
+const promise = filestorage.startUpload(namespace,company_id);
 
 // Async/Await
-const data = await filestorage.startUpload(namespace, company_id, );
+const data = await filestorage.startUpload(namespace,company_id);
 
 ```
 
@@ -9872,12 +10676,15 @@ Error Response:
 ## Payment
 
 ```javascript
-const { Configuration, Payment } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const payment = new Payment(conf);
+const applicationClient = new ApplicationClient(config);
+const payment = applicationClient.payment;
 
 ```
 
@@ -9887,10 +10694,10 @@ Get payment gateway keys
 
 ```javascript
 // Promise
-const promise = payment.getAggregatorsConfig(x-api-token, refresh, );
+const promise = payment.getAggregatorsConfig(x-api-token,refresh);
 
 // Async/Await
-const data = await payment.getAggregatorsConfig(x-api-token, refresh, );
+const data = await payment.getAggregatorsConfig(x-api-token,refresh);
 
 ```
 
@@ -10037,10 +10844,10 @@ Fetch active payment gateway for card
 
 ```javascript
 // Promise
-const promise = payment.getActiveCardAggregator(refresh, );
+const promise = payment.getActiveCardAggregator(refresh);
 
 // Async/Await
-const data = await payment.getActiveCardAggregator(refresh, );
+const data = await payment.getActiveCardAggregator(refresh);
 
 ```
 
@@ -10114,10 +10921,10 @@ Fetch the list of saved cards of user.
 
 ```javascript
 // Promise
-const promise = payment.getActiveUserCards(force_refresh, );
+const promise = payment.getActiveUserCards(force_refresh);
 
 // Async/Await
-const data = await payment.getActiveUserCards(force_refresh, );
+const data = await payment.getActiveUserCards(force_refresh);
 
 ```
 
@@ -10571,10 +11378,10 @@ Get All Valid Payment Options
 
 ```javascript
 // Promise
-const promise = payment.getPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, delivery_address, );
+const promise = payment.getPaymentModeRoutes(amount,cart_id,pincode,checkout_mode,refresh,assign_card_id,delivery_address);
 
 // Async/Await
-const data = await payment.getPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, delivery_address, );
+const data = await payment.getPaymentModeRoutes(amount,cart_id,pincode,checkout_mode,refresh,assign_card_id,delivery_address);
 
 ```
 
@@ -10654,10 +11461,10 @@ Get All Valid Payment Options for POS
 
 ```javascript
 // Promise
-const promise = payment.getPosPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, order_type, delivery_address, );
+const promise = payment.getPosPaymentModeRoutes(amount,cart_id,pincode,checkout_mode,refresh,assign_card_id,order_type,delivery_address);
 
 // Async/Await
-const data = await payment.getPosPaymentModeRoutes(amount, cart_id, pincode, checkout_mode, refresh, assign_card_id, order_type, delivery_address, );
+const data = await payment.getPosPaymentModeRoutes(amount,cart_id,pincode,checkout_mode,refresh,assign_card_id,order_type,delivery_address);
 
 ```
 
@@ -10738,10 +11545,10 @@ List User Beneficiary
 
 ```javascript
 // Promise
-const promise = payment.getUserBeneficiariesDetail(order_id, );
+const promise = payment.getUserBeneficiariesDetail(order_id);
 
 // Async/Await
-const data = await payment.getUserBeneficiariesDetail(order_id, );
+const data = await payment.getUserBeneficiariesDetail(order_id);
 
 ```
 
@@ -10815,10 +11622,10 @@ Ifsc Code Verification
 
 ```javascript
 // Promise
-const promise = payment.verifyIfscCode(ifsc_code, );
+const promise = payment.verifyIfscCode(ifsc_code);
 
 // Async/Await
-const data = await payment.verifyIfscCode(ifsc_code, );
+const data = await payment.verifyIfscCode(ifsc_code);
 
 ```
 
@@ -10892,10 +11699,10 @@ List Order Beneficiary
 
 ```javascript
 // Promise
-const promise = payment.getOrderBeneficiariesDetail(order_id, );
+const promise = payment.getOrderBeneficiariesDetail(order_id);
 
 // Async/Await
-const data = await payment.getOrderBeneficiariesDetail(order_id, );
+const data = await payment.getOrderBeneficiariesDetail(order_id);
 
 ```
 
@@ -11275,12 +12082,15 @@ Error Response:
 ## Order
 
 ```javascript
-const { Configuration, Order } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const order = new Order(conf);
+const applicationClient = new ApplicationClient(config);
+const order = applicationClient.order;
 
 ```
 
@@ -11290,10 +12100,10 @@ Get Orders for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getOrders(page_no, page_size, from_date, to_date, );
+const promise = order.getOrders(page_no,page_size,from_date,to_date);
 
 // Async/Await
-const data = await order.getOrders(page_no, page_size, from_date, to_date, );
+const data = await order.getOrders(page_no,page_size,from_date,to_date);
 
 ```
 
@@ -11370,10 +12180,10 @@ Get Order by order id for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getOrderById(order_id, );
+const promise = order.getOrderById(order_id);
 
 // Async/Await
-const data = await order.getOrderById(order_id, );
+const data = await order.getOrderById(order_id);
 
 ```
 
@@ -11447,10 +12257,10 @@ Get Shipment by shipment id and order id for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getShipmentById(shipment_id, );
+const promise = order.getShipmentById(shipment_id);
 
 // Async/Await
-const data = await order.getShipmentById(shipment_id, );
+const data = await order.getShipmentById(shipment_id);
 
 ```
 
@@ -11524,10 +12334,10 @@ Get Shipment reasons by shipment id and order id for application based on applic
 
 ```javascript
 // Promise
-const promise = order.getShipmentReasons(shipment_id, );
+const promise = order.getShipmentReasons(shipment_id);
 
 // Async/Await
-const data = await order.getShipmentReasons(shipment_id, );
+const data = await order.getShipmentReasons(shipment_id);
 
 ```
 
@@ -11601,10 +12411,10 @@ Update Shipment status by shipment id and order id for application based on appl
 
 ```javascript
 // Promise
-const promise = order.updateShipmentStatus(shipment_id, );
+const promise = order.updateShipmentStatus(shipment_id);
 
 // Async/Await
-const data = await order.updateShipmentStatus(shipment_id, );
+const data = await order.updateShipmentStatus(shipment_id);
 
 ```
 
@@ -11678,10 +12488,10 @@ Track Shipment by shipment id and order id for application based on application 
 
 ```javascript
 // Promise
-const promise = order.trackShipment(shipment_id, );
+const promise = order.trackShipment(shipment_id);
 
 // Async/Await
-const data = await order.trackShipment(shipment_id, );
+const data = await order.trackShipment(shipment_id);
 
 ```
 
@@ -11757,12 +12567,15 @@ Error Response:
 ## Rewards
 
 ```javascript
-const { Configuration, Rewards } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const rewards = new Rewards(conf);
+const applicationClient = new ApplicationClient(config);
+const rewards = applicationClient.rewards;
 
 ```
 
@@ -11952,10 +12765,10 @@ Get list of points transactions.
 
 ```javascript
 // Promise
-const promise = rewards.getUserPointsHistory(pageID, pageSize, );
+const promise = rewards.getUserPointsHistory(pageID,pageSize);
 
 // Async/Await
-const data = await rewards.getUserPointsHistory(pageID, pageSize, );
+const data = await rewards.getUserPointsHistory(pageID,pageSize);
 
 ```
 
@@ -12137,12 +12950,15 @@ Error Response:
 ## Feedback
 
 ```javascript
-const { Configuration, Feedback } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const feedback = new Feedback(conf);
+const applicationClient = new ApplicationClient(config);
+const feedback = applicationClient.feedback;
 
 ```
 
@@ -12272,10 +13088,10 @@ Get list of abuse data
 
 ```javascript
 // Promise
-const promise = feedback.getAbuseReports(entity_id, entity_type, id, page_id, page_size, );
+const promise = feedback.getAbuseReports(entity_id,entity_type,id,page_id,page_size);
 
 // Async/Await
-const data = await feedback.getAbuseReports(entity_id, entity_type, id, page_id, page_size, );
+const data = await feedback.getAbuseReports(entity_id,entity_type,id,page_id,page_size);
 
 ```
 
@@ -12457,10 +13273,10 @@ Get single attribute data
 
 ```javascript
 // Promise
-const promise = feedback.getAttribute(slug, );
+const promise = feedback.getAttribute(slug);
 
 // Async/Await
-const data = await feedback.getAttribute(slug, );
+const data = await feedback.getAttribute(slug);
 
 ```
 
@@ -12518,10 +13334,10 @@ Update attribute details
 
 ```javascript
 // Promise
-const promise = feedback.updateAttribute(slug, );
+const promise = feedback.updateAttribute(slug);
 
 // Async/Await
-const data = await feedback.updateAttribute(slug, );
+const data = await feedback.updateAttribute(slug);
 
 ```
 
@@ -12699,10 +13515,10 @@ Get list of comments
 
 ```javascript
 // Promise
-const promise = feedback.getComments(entity_type, id, entity_id, user_id, page_id, page_size, );
+const promise = feedback.getComments(entity_type,id,entity_id,user_id,page_id,page_size);
 
 // Async/Await
-const data = await feedback.getComments(entity_type, id, entity_id, user_id, page_id, page_size, );
+const data = await feedback.getComments(entity_type,id,entity_id,user_id,page_id,page_size);
 
 ```
 
@@ -12765,10 +13581,10 @@ Checks eligibility and cloud media config
 
 ```javascript
 // Promise
-const promise = feedback.checkEligibility(entity_type, entity_id, );
+const promise = feedback.checkEligibility(entity_type,entity_id);
 
 // Async/Await
-const data = await feedback.checkEligibility(entity_type, entity_id, );
+const data = await feedback.checkEligibility(entity_type,entity_id);
 
 ```
 
@@ -13007,10 +13823,10 @@ Get Media
 
 ```javascript
 // Promise
-const promise = feedback.getMedias(entity_type, entity_id, id, page_id, page_size, );
+const promise = feedback.getMedias(entity_type,entity_id,id,page_id,page_size);
 
 // Async/Await
-const data = await feedback.getMedias(entity_type, entity_id, id, page_id, page_size, );
+const data = await feedback.getMedias(entity_type,entity_id,id,page_id,page_size);
 
 ```
 
@@ -13072,10 +13888,10 @@ Get a review summary
 
 ```javascript
 // Promise
-const promise = feedback.getReviewSummaries(entity_type, entity_id, id, page_id, page_size, );
+const promise = feedback.getReviewSummaries(entity_type,entity_id,id,page_id,page_size);
 
 // Async/Await
-const data = await feedback.getReviewSummaries(entity_type, entity_id, id, page_id, page_size, );
+const data = await feedback.getReviewSummaries(entity_type,entity_id,id,page_id,page_size);
 
 ```
 
@@ -13260,10 +14076,10 @@ Get list of customer reviews
 
 ```javascript
 // Promise
-const promise = feedback.getReviews(entity_type, entity_id, id, user_id, media, rating, attribute_rating, facets, sort, page_id, page_size, );
+const promise = feedback.getReviews(entity_type,entity_id,id,user_id,media,rating,attribute_rating,facets,sort,page_id,page_size);
 
 // Async/Await
-const data = await feedback.getReviews(entity_type, entity_id, id, user_id, media, rating, attribute_rating, facets, sort, page_id, page_size, );
+const data = await feedback.getReviews(entity_type,entity_id,id,user_id,media,rating,attribute_rating,facets,sort,page_id,page_size);
 
 ```
 
@@ -13331,10 +14147,10 @@ Get the templates for product or l3 type
 
 ```javascript
 // Promise
-const promise = feedback.getTemplates(template_id, entity_id, entity_type, );
+const promise = feedback.getTemplates(template_id,entity_id,entity_type);
 
 // Async/Await
-const data = await feedback.getTemplates(template_id, entity_id, entity_type, );
+const data = await feedback.getTemplates(template_id,entity_id,entity_type);
 
 ```
 
@@ -13515,10 +14331,10 @@ Get a list of QnA
 
 ```javascript
 // Promise
-const promise = feedback.getQuestionAndAnswers(entity_type, entity_id, id, show_answer, page_id, page_size, );
+const promise = feedback.getQuestionAndAnswers(entity_type,entity_id,id,show_answer,page_id,page_size);
 
 // Async/Await
-const data = await feedback.getQuestionAndAnswers(entity_type, entity_id, id, show_answer, page_id, page_size, );
+const data = await feedback.getQuestionAndAnswers(entity_type,entity_id,id,show_answer,page_id,page_size);
 
 ```
 
@@ -13581,10 +14397,10 @@ Get list of votes
 
 ```javascript
 // Promise
-const promise = feedback.getVotes(id, ref_type, );
+const promise = feedback.getVotes(id,ref_type);
 
 // Async/Await
-const data = await feedback.getVotes(id, ref_type, );
+const data = await feedback.getVotes(id,ref_type);
 
 ```
 
@@ -13765,12 +14581,15 @@ Error Response:
 ## PosCart
 
 ```javascript
-const { Configuration, PosCart } = require('fdk-client-nodejs/application')
-const conf = new Configuration({
-    ApplicationID: "507f191e810c19729de860ea",
-    ApplicationToken: "hu67dfhddf"
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
 });
-const poscart = new PosCart(conf);
+const applicationClient = new ApplicationClient(config);
+const poscart = applicationClient.poscart;
 
 ```
 
@@ -13780,10 +14599,10 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = poscart.getCart(uid, assign_card_id, );
+const promise = poscart.getCart(uid,assign_card_id);
 
 // Async/Await
-const data = await poscart.getCart(uid, assign_card_id, );
+const data = await poscart.getCart(uid,assign_card_id);
 
 ```
 
@@ -13826,10 +14645,10 @@ Fetch Last-Modified timestamp
 
 ```javascript
 // Promise
-const promise = poscart.getCartLastModified(uid, );
+const promise = poscart.getCartLastModified(uid);
 
 // Async/Await
-const data = await poscart.getCartLastModified(uid, );
+const data = await poscart.getCartLastModified(uid);
 
 ```
 
@@ -14944,10 +15763,10 @@ Cart item count
 
 ```javascript
 // Promise
-const promise = poscart.getItemCount(uid, );
+const promise = poscart.getItemCount(uid);
 
 // Async/Await
-const data = await poscart.getItemCount(uid, );
+const data = await poscart.getItemCount(uid);
 
 ```
 
@@ -14989,10 +15808,10 @@ Fetch Coupon
 
 ```javascript
 // Promise
-const promise = poscart.getCoupons(uid, );
+const promise = poscart.getCoupons(uid);
 
 // Async/Await
-const data = await poscart.getCoupons(uid, );
+const data = await poscart.getCoupons(uid);
 
 ```
 
@@ -15034,10 +15853,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = poscart.applyCoupon(i, b, p, );
+const promise = poscart.applyCoupon(i,b,p);
 
 // Async/Await
-const data = await poscart.applyCoupon(i, b, p, );
+const data = await poscart.applyCoupon(i,b,p);
 
 ```
 
@@ -15082,10 +15901,10 @@ Remove Coupon Applied
 
 ```javascript
 // Promise
-const promise = poscart.removeCoupon(uid, );
+const promise = poscart.removeCoupon(uid);
 
 // Async/Await
-const data = await poscart.removeCoupon(uid, );
+const data = await poscart.removeCoupon(uid);
 
 ```
 
@@ -15127,10 +15946,10 @@ Get discount offers based on quantity
 
 ```javascript
 // Promise
-const promise = poscart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
+const promise = poscart.getBulkDiscountOffers(item_id,article_id,uid,slug);
 
 // Async/Await
-const data = await poscart.getBulkDiscountOffers(item_id, article_id, uid, slug, );
+const data = await poscart.getBulkDiscountOffers(item_id,article_id,uid,slug);
 
 ```
 
@@ -15267,10 +16086,10 @@ Fetch Address
 
 ```javascript
 // Promise
-const promise = poscart.getAddresses(uid, mobile_no, checkout_mode, tags, is_default, );
+const promise = poscart.getAddresses(uid,mobile_no,checkout_mode,tags,is_default);
 
 // Async/Await
-const data = await poscart.getAddresses(uid, mobile_no, checkout_mode, tags, is_default, );
+const data = await poscart.getAddresses(uid,mobile_no,checkout_mode,tags,is_default);
 
 ```
 
@@ -15360,10 +16179,10 @@ Fetch Single Address
 
 ```javascript
 // Promise
-const promise = poscart.getAddressById(id, uid, mobile_no, checkout_mode, tags, is_default, );
+const promise = poscart.getAddressById(id,uid,mobile_no,checkout_mode,tags,is_default);
 
 // Async/Await
-const data = await poscart.getAddressById(id, uid, mobile_no, checkout_mode, tags, is_default, );
+const data = await poscart.getAddressById(id,uid,mobile_no,checkout_mode,tags,is_default);
 
 ```
 
@@ -15410,10 +16229,10 @@ Update Address alreay added to account
 
 ```javascript
 // Promise
-const promise = poscart.updateAddress(id, );
+const promise = poscart.updateAddress(id);
 
 // Async/Await
-const data = await poscart.updateAddress(id, );
+const data = await poscart.updateAddress(id);
 
 ```
 
@@ -15455,10 +16274,10 @@ Remove Address Associated to the account
 
 ```javascript
 // Promise
-const promise = poscart.removeAddress(id, );
+const promise = poscart.removeAddress(id);
 
 // Async/Await
-const data = await poscart.removeAddress(id, );
+const data = await poscart.removeAddress(id);
 
 ```
 
@@ -15592,10 +16411,10 @@ Get Cart Payment for valid coupon
 
 ```javascript
 // Promise
-const promise = poscart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
+const promise = poscart.getPaymentModes(uid,address_id,payment_mode,payment_identifier,aggregator_name,merchant_code);
 
 // Async/Await
-const data = await poscart.getPaymentModes(uid, address_id, payment_mode, payment_identifier, aggregator_name, merchant_code, );
+const data = await poscart.getPaymentModes(uid,address_id,payment_mode,payment_identifier,aggregator_name,merchant_code);
 
 ```
 
@@ -15642,10 +16461,10 @@ Update Cart Payment
 
 ```javascript
 // Promise
-const promise = poscart.selectPaymentMode(uid, );
+const promise = poscart.selectPaymentMode(uid);
 
 // Async/Await
-const data = await poscart.selectPaymentMode(uid, );
+const data = await poscart.selectPaymentMode(uid);
 
 ```
 
@@ -15687,10 +16506,10 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = poscart.getShipments(pick_at_store_uid, ordering_store_id, p, uid, address_id, );
+const promise = poscart.getShipments(pick_at_store_uid,ordering_store_id,p,uid,address_id);
 
 // Async/Await
-const data = await poscart.getShipments(pick_at_store_uid, ordering_store_id, p, uid, address_id, );
+const data = await poscart.getShipments(pick_at_store_uid,ordering_store_id,p,uid,address_id);
 
 ```
 
@@ -16397,10 +17216,10 @@ Update shipment delivery type and quantity before checkout
 
 ```javascript
 // Promise
-const promise = poscart.updateShipments(i, p, uid, address_id, order_type, );
+const promise = poscart.updateShipments(i,p,uid,address_id,order_type);
 
 // Async/Await
-const data = await poscart.updateShipments(i, p, uid, address_id, order_type, );
+const data = await poscart.updateShipments(i,p,uid,address_id,order_type);
 
 ```
 
@@ -17108,10 +17927,10 @@ Checkout Cart
 
 ```javascript
 // Promise
-const promise = poscart.checkoutCart(uid, );
+const promise = poscart.checkoutCart(uid);
 
 // Async/Await
-const data = await poscart.checkoutCart(uid, );
+const data = await poscart.checkoutCart(uid);
 
 ```
 
@@ -17530,10 +18349,10 @@ Update Cart Meta
 
 ```javascript
 // Promise
-const promise = poscart.updateCartMeta(uid, );
+const promise = poscart.updateCartMeta(uid);
 
 // Async/Await
-const data = await poscart.updateCartMeta(uid, );
+const data = await poscart.updateCartMeta(uid);
 
 ```
 
@@ -17591,10 +18410,10 @@ Get available delivery modes for cart
 
 ```javascript
 // Promise
-const promise = poscart.getAvailableDeliveryModes(area_code, uid, );
+const promise = poscart.getAvailableDeliveryModes(area_code,uid);
 
 // Async/Await
-const data = await poscart.getAvailableDeliveryModes(area_code, uid, );
+const data = await poscart.getAvailableDeliveryModes(area_code,uid);
 
 ```
 
@@ -17637,10 +18456,10 @@ Get list of stores for give uids
 
 ```javascript
 // Promise
-const promise = poscart.getStoreAddressByUid(area_code, );
+const promise = poscart.getStoreAddressByUid(area_code);
 
 // Async/Await
-const data = await poscart.getStoreAddressByUid(area_code, );
+const data = await poscart.getStoreAddressByUid(area_code);
 
 ```
 
@@ -17740,10 +18559,10 @@ Get shared cart snapshot and cart response
 
 ```javascript
 // Promise
-const promise = poscart.getCartSharedItems(token, );
+const promise = poscart.getCartSharedItems(token);
 
 // Async/Await
-const data = await poscart.getCartSharedItems(token, );
+const data = await poscart.getCartSharedItems(token);
 
 ```
 
@@ -17801,10 +18620,10 @@ Merge or Replace existing cart
 
 ```javascript
 // Promise
-const promise = poscart.updateCartWithSharedItems(token, action, );
+const promise = poscart.updateCartWithSharedItems(token,action);
 
 // Async/Await
-const data = await poscart.updateCartWithSharedItems(token, action, );
+const data = await poscart.updateCartWithSharedItems(token,action);
 
 ```
 

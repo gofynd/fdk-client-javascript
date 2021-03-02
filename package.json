@@ -1,5 +1,5 @@
 {
-  "name": "FDK JavaScript Client",
+  "name": "fdkjavascriptclient",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,8 @@
   "author": "Jigar Dafda<jigar.dafda@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "crypto-js": "^4.0.0",
+    "querystring": "^0.2.1"
   }
 }
