@@ -10,8 +10,8 @@ const applicationClient = new ApplicationClient(config);
 
 async function getTheme() {
   try {
-    const res = await applicationClient.theme.getThemeForPreview('5fa24cdd29e03d7c24fc35cf');
-    console.log(res);
+    const theme = await applicationClient.theme.getThemeForPreview('5fa24cdd29e03d7c24fc35cf');
+    console.log(theme.information.name);
   } catch (err) {
       console.log(err);
   }

@@ -9,10 +9,10 @@ Get started with the Javascript Development SDK for Fynd Platform
 ### Usage
 
 ```
-npm install fdkjavascriptclient --save
+npm install fdk-client-javascript --save
 ```
 
-Using this method, you can `require` fdkjavascriptclient like so:
+Using this method, you can `require` fdk-client-javascript like so:
 
 ```js
 const {
@@ -25,30 +25,27 @@ const {
 
 ```javascript
 const config = new ApplicationConfig({
-  applicationID: "APPLICATION_ID",
-  applicationToken: "APPLICATION_TOKEN",
-  domain: "DOMAIN_FYND_PLATFORM",
+  applicationID: "YOUR_APPLICATION_ID",
+  applicationToken: "YOUR_APPLICATION_TOKEN",
 });
 
 const applicationClient = new ApplicationClient(config);
 
-async function getTheme() {
+async function getProductDetails() {
   try {
-    const res = await applicationClient.theme.getThemeForPreview(
-      "5fa24cdd29e03d7c24fc35cf"
-    );
-    console.log(res);
+    const product = await applicationClient.catalog.getProductDetailBySlug('product-slug');
+    console.log(product.name);
   } catch (err) {
     console.log(err);
   }
 }
 
-getTheme();
+getProductDetails();
 ```
 
 ### TypeScript
 
-fdk-client-javascript includes definitions.
+fdk-client-javascript includes Typescript definitions.
 
 ```typescript
 import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
@@ -58,4 +55,3 @@ import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 
 - [Application Front](documentation/APPLICATION.md)
 - [Platform](documentation/PLATFORM.md)
-- [Code Examples](documentation/EXAMPLES.md)
