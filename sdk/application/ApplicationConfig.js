@@ -10,6 +10,10 @@ const MongoIDRegExp = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i;
 const DEFAULT_DOMAIN = "https://api.fynd.com";
 
 class ApplicationConfig {
+  /**
+   * @param  {object} _conf
+   * @param  {object} _opts
+   */
   constructor(_conf, _opts) {
     this.applicationID = _conf.applicationID || "";
     this.applicationToken = _conf.applicationToken || "";
@@ -25,7 +29,6 @@ class ApplicationConfig {
     if (!this.applicationToken) {
       throw new CredentialValidationError("No Application Token Present");
     }
-    console.log("this.applicationID", this.applicationID);
     if (!MongoIDRegExp.test(this.applicationID)) {
       throw new CredentialValidationError(
         "Invalid Application ID. It should be Mongo ID"
