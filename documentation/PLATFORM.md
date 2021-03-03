@@ -2,6 +2,8 @@
 
 
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Theme](#Theme) - Responsible for themes 
+* [Content](#Content) - Content 
 
 ----
 ----
@@ -28,6 +30,55 @@
   * [Lead#getTokenForVideoRoom](#leadgettokenforvideoroom)
   * [Lead#getVideoParticipants](#leadgetvideoparticipants)
   * [Lead#createVideoRoom](#leadcreatevideoroom)
+ 
+* [Theme](#Theme)
+  * [Theme#getThemeLibrary](#themegetthemelibrary)
+  * [Theme#addToThemeLibrary](#themeaddtothemelibrary)
+  * [Theme#applyTheme](#themeapplytheme)
+  * [Theme#isUpgradable](#themeisupgradable)
+  * [Theme#upgradeTheme](#themeupgradetheme)
+  * [Theme#getPublicThemes](#themegetpublicthemes)
+  * [Theme#createTheme](#themecreatetheme)
+  * [Theme#getAppliedTheme](#themegetappliedtheme)
+  * [Theme#getFonts](#themegetfonts)
+  * [Theme#getThemeById](#themegetthemebyid)
+  * [Theme#updateTheme](#themeupdatetheme)
+  * [Theme#deleteTheme](#themedeletetheme)
+  * [Theme#getThemeForPreview](#themegetthemeforpreview)
+  * [Theme#publishTheme](#themepublishtheme)
+  * [Theme#unpublishTheme](#themeunpublishtheme)
+  * [Theme#archiveTheme](#themearchivetheme)
+  * [Theme#unarchiveTheme](#themeunarchivetheme)
+ 
+* [Content](#Content)
+  * [Content#getAnnouncementsList](#contentgetannouncementslist)
+  * [Content#createAnnouncement](#contentcreateannouncement)
+  * [Content#getAnnouncementById](#contentgetannouncementbyid)
+  * [Content#updateAnnouncement](#contentupdateannouncement)
+  * [Content#updateAnnouncementSchedule](#contentupdateannouncementschedule)
+  * [Content#deleteAnnouncement](#contentdeleteannouncement)
+  * [Content#getFaqCategories](#contentgetfaqcategories)
+  * [Content#getFaqCategoryBySlugOrId](#contentgetfaqcategorybyslugorid)
+  * [Content#createFaqCategory](#contentcreatefaqcategory)
+  * [Content#updateFaqCategory](#contentupdatefaqcategory)
+  * [Content#deleteFaqCategory](#contentdeletefaqcategory)
+  * [Content#getFaqsByCategoryIdOrSlug](#contentgetfaqsbycategoryidorslug)
+  * [Content#addFaqToFaqCategory](#contentaddfaqtofaqcategory)
+  * [Content#updateFaq](#contentupdatefaq)
+  * [Content#deleteFaq](#contentdeletefaq)
+  * [Content#getLegalInformation](#contentgetlegalinformation)
+  * [Content#updateLegalInformation](#contentupdatelegalinformation)
+  * [Content#getSeoConfiguration](#contentgetseoconfiguration)
+  * [Content#updateSeoConfiguration](#contentupdateseoconfiguration)
+  * [Content#getSupportInformation](#contentgetsupportinformation)
+  * [Content#updateSupportInformation](#contentupdatesupportinformation)
+  * [Content#createTag](#contentcreatetag)
+  * [Content#updateTag](#contentupdatetag)
+  * [Content#deleteAllTags](#contentdeletealltags)
+  * [Content#getTags](#contentgettags)
+  * [Content#addTag](#contentaddtag)
+  * [Content#removeTag](#contentremovetag)
+  * [Content#editTag](#contentedittag)
  
 
 ---
@@ -520,6 +571,1238 @@ const data = await lead.createVideoRoom(company_id, application_id, );
 
 
 Get video room id.
+
+
+---
+
+
+
+---
+---
+
+
+## Theme
+
+```javascript
+const { Configuration, Theme } = require('fdk-client-nodejs/platform')
+const conf = new Configuration({
+    OAuth2Token: "5ljdffg191e810c19729de860ea"
+});
+const theme = new Theme(conf);
+
+```
+
+
+#### Theme#getThemeLibrary
+Gets list of themes in theme library
+
+```javascript
+// Promise
+const promise = theme.getThemeLibrary(company_id, application_id, page_size, page_no, );
+
+// Async/Await
+const data = await theme.getThemeLibrary(company_id, application_id, page_size, page_no, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| page_size | integer | Number of items to retrieve in each page. Default is 10. | 
+| page_no | integer | Page number. Default is 1. | 
+
+
+Gets list of themes in theme library
+
+
+---
+
+
+#### Theme#addToThemeLibrary
+Add theme to theme library
+
+```javascript
+// Promise
+const promise = theme.addToThemeLibrary(company_id, application_id, );
+
+// Async/Await
+const data = await theme.addToThemeLibrary(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Add theme to theme library
+
+
+---
+
+
+#### Theme#applyTheme
+Apply theme
+
+```javascript
+// Promise
+const promise = theme.applyTheme(company_id, application_id, );
+
+// Async/Await
+const data = await theme.applyTheme(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Apply theme
+
+
+---
+
+
+#### Theme#isUpgradable
+Checks if theme is upgradable
+
+```javascript
+// Promise
+const promise = theme.isUpgradable(company_id, application_id, theme_id, );
+
+// Async/Await
+const data = await theme.isUpgradable(company_id, application_id, theme_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| theme_id | string | Theme ID | 
+
+
+Checks if theme is upgradable
+
+
+---
+
+
+#### Theme#upgradeTheme
+Upgrades theme
+
+```javascript
+// Promise
+const promise = theme.upgradeTheme(company_id, application_id, theme_id, );
+
+// Async/Await
+const data = await theme.upgradeTheme(company_id, application_id, theme_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| theme_id | string | Theme ID | 
+
+
+Upgrades theme
+
+
+---
+
+
+#### Theme#getPublicThemes
+Gets public themes
+
+```javascript
+// Promise
+const promise = theme.getPublicThemes(company_id, application_id, page_size, page_no, );
+
+// Async/Await
+const data = await theme.getPublicThemes(company_id, application_id, page_size, page_no, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| page_size | integer | Number of items to retrieve in each page. Default is 10. | 
+| page_no | integer | Page number. Default is 1. | 
+
+
+Gets public themes
+
+
+---
+
+
+#### Theme#createTheme
+Create new theme
+
+```javascript
+// Promise
+const promise = theme.createTheme(company_id, application_id, );
+
+// Async/Await
+const data = await theme.createTheme(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Create new theme
+
+
+---
+
+
+#### Theme#getAppliedTheme
+Get applied theme
+
+```javascript
+// Promise
+const promise = theme.getAppliedTheme(company_id, application_id, );
+
+// Async/Await
+const data = await theme.getAppliedTheme(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Get applied theme
+
+
+---
+
+
+#### Theme#getFonts
+Gets fonts
+
+```javascript
+// Promise
+const promise = theme.getFonts(company_id, application_id, );
+
+// Async/Await
+const data = await theme.getFonts(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Gets fonts
+
+
+---
+
+
+#### Theme#getThemeById
+Gets theme by id
+
+```javascript
+// Promise
+const promise = theme.getThemeById(company_id, application_id, theme_id, );
+
+// Async/Await
+const data = await theme.getThemeById(company_id, application_id, theme_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| theme_id | string | Theme ID | 
+
+
+Gets theme by id
+
+
+---
+
+
+#### Theme#updateTheme
+Update theme
+
+```javascript
+// Promise
+const promise = theme.updateTheme(company_id, application_id, theme_id, );
+
+// Async/Await
+const data = await theme.updateTheme(company_id, application_id, theme_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| theme_id | string | Theme ID | 
+
+
+Update theme
+
+
+---
+
+
+#### Theme#deleteTheme
+Delete theme
+
+```javascript
+// Promise
+const promise = theme.deleteTheme(company_id, application_id, theme_id, );
+
+// Async/Await
+const data = await theme.deleteTheme(company_id, application_id, theme_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| theme_id | string | Theme ID | 
+
+
+Delete theme
+
+
+---
+
+
+#### Theme#getThemeForPreview
+Gets theme for preview
+
+```javascript
+// Promise
+const promise = theme.getThemeForPreview(company_id, application_id, theme_id, );
+
+// Async/Await
+const data = await theme.getThemeForPreview(company_id, application_id, theme_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| theme_id | string | Theme ID | 
+
+
+Gets theme for preview
+
+
+---
+
+
+#### Theme#publishTheme
+Publish theme
+
+```javascript
+// Promise
+const promise = theme.publishTheme(company_id, application_id, theme_id, );
+
+// Async/Await
+const data = await theme.publishTheme(company_id, application_id, theme_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| theme_id | string | Theme ID | 
+
+
+Publish theme
+
+
+---
+
+
+#### Theme#unpublishTheme
+Unpublish theme
+
+```javascript
+// Promise
+const promise = theme.unpublishTheme(company_id, application_id, theme_id, );
+
+// Async/Await
+const data = await theme.unpublishTheme(company_id, application_id, theme_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| theme_id | string | Theme ID | 
+
+
+Unpublish theme
+
+
+---
+
+
+#### Theme#archiveTheme
+Archive theme
+
+```javascript
+// Promise
+const promise = theme.archiveTheme(company_id, application_id, theme_id, );
+
+// Async/Await
+const data = await theme.archiveTheme(company_id, application_id, theme_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| theme_id | string | Theme ID | 
+
+
+Archive theme
+
+
+---
+
+
+#### Theme#unarchiveTheme
+Unarchive theme
+
+```javascript
+// Promise
+const promise = theme.unarchiveTheme(company_id, application_id, theme_id, );
+
+// Async/Await
+const data = await theme.unarchiveTheme(company_id, application_id, theme_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| theme_id | string | Theme ID | 
+
+
+Unarchive theme
+
+
+---
+
+
+
+---
+---
+
+
+## Content
+
+```javascript
+const { Configuration, Content } = require('fdk-client-nodejs/platform')
+const conf = new Configuration({
+    OAuth2Token: "5ljdffg191e810c19729de860ea"
+});
+const content = new Content(conf);
+
+```
+
+
+#### Content#getAnnouncementsList
+Get annoucements list
+
+```javascript
+// Promise
+const promise = content.getAnnouncementsList(company_id, application_id, );
+
+// Async/Await
+const data = await content.getAnnouncementsList(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Get list of announcements
+
+
+---
+
+
+#### Content#createAnnouncement
+Create an annoucement
+
+```javascript
+// Promise
+const promise = content.createAnnouncement(company_id, application_id, );
+
+// Async/Await
+const data = await content.createAnnouncement(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Create an announcement
+
+
+---
+
+
+#### Content#getAnnouncementById
+Get annoucement by id
+
+```javascript
+// Promise
+const promise = content.getAnnouncementById(company_id, application_id, announcementId, );
+
+// Async/Await
+const data = await content.getAnnouncementById(company_id, application_id, announcementId, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+
+Get announcement by id
+
+
+---
+
+
+#### Content#updateAnnouncement
+Update an annoucement
+
+```javascript
+// Promise
+const promise = content.updateAnnouncement(company_id, application_id, announcementId, );
+
+// Async/Await
+const data = await content.updateAnnouncement(company_id, application_id, announcementId, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+
+Update an announcement
+
+
+---
+
+
+#### Content#updateAnnouncementSchedule
+Update schedule or published status of an annoucement
+
+```javascript
+// Promise
+const promise = content.updateAnnouncementSchedule(company_id, application_id, announcementId, );
+
+// Async/Await
+const data = await content.updateAnnouncementSchedule(company_id, application_id, announcementId, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+
+Update schedule or published status of an announcement
+
+
+---
+
+
+#### Content#deleteAnnouncement
+Delete annoucement by id
+
+```javascript
+// Promise
+const promise = content.deleteAnnouncement(company_id, application_id, announcementId, );
+
+// Async/Await
+const data = await content.deleteAnnouncement(company_id, application_id, announcementId, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+
+Delete announcement by id
+
+
+---
+
+
+#### Content#getFaqCategories
+Get FAQ categories list
+
+```javascript
+// Promise
+const promise = content.getFaqCategories(company_id, application_id, );
+
+// Async/Await
+const data = await content.getFaqCategories(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Get list of FAQ categories
+
+
+---
+
+
+#### Content#getFaqCategoryBySlugOrId
+Get FAQ category by slug or id
+
+```javascript
+// Promise
+const promise = content.getFaqCategoryBySlugOrId(company_id, application_id, idOrSlug, );
+
+// Async/Await
+const data = await content.getFaqCategoryBySlugOrId(company_id, application_id, idOrSlug, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| idOrSlug | string | Slug or Id of FAQ Category | 
+
+
+Get FAQ category by slug or id
+
+
+---
+
+
+#### Content#createFaqCategory
+Creates a FAQ category
+
+```javascript
+// Promise
+const promise = content.createFaqCategory(company_id, application_id, );
+
+// Async/Await
+const data = await content.createFaqCategory(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Add Faq Category
+
+
+---
+
+
+#### Content#updateFaqCategory
+Updates a FAQ category
+
+```javascript
+// Promise
+const promise = content.updateFaqCategory(company_id, application_id, id, );
+
+// Async/Await
+const data = await content.updateFaqCategory(company_id, application_id, id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| id | string | Faq category ID | 
+
+
+Update Faq Category
+
+
+---
+
+
+#### Content#deleteFaqCategory
+Deletes a FAQ category
+
+```javascript
+// Promise
+const promise = content.deleteFaqCategory(company_id, application_id, id, );
+
+// Async/Await
+const data = await content.deleteFaqCategory(company_id, application_id, id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| id | string | Faq category ID | 
+
+
+Delete Faq Category
+
+
+---
+
+
+#### Content#getFaqsByCategoryIdOrSlug
+Get FAQs of a Faq Category id or slug
+
+```javascript
+// Promise
+const promise = content.getFaqsByCategoryIdOrSlug(company_id, application_id, idOrSlug, );
+
+// Async/Await
+const data = await content.getFaqsByCategoryIdOrSlug(company_id, application_id, idOrSlug, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| idOrSlug | string | Faq category ID or slug | 
+
+
+Get FAQs of a Faq Category `id` or `slug`
+
+
+---
+
+
+#### Content#addFaqToFaqCategory
+Creates FAQs for category whose `id` is specified
+
+```javascript
+// Promise
+const promise = content.addFaqToFaqCategory(company_id, application_id, categoryId, );
+
+// Async/Await
+const data = await content.addFaqToFaqCategory(company_id, application_id, categoryId, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| categoryId | string | Faq category ID | 
+
+
+Creates FAQs for category whose `id` is specified
+
+
+---
+
+
+#### Content#updateFaq
+Updates FAQ
+
+```javascript
+// Promise
+const promise = content.updateFaq(company_id, application_id, categoryId, faqId, );
+
+// Async/Await
+const data = await content.updateFaq(company_id, application_id, categoryId, faqId, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| categoryId | string | Faq category ID | 
+| faqId | string | Faq ID | 
+
+
+Updates FAQ
+
+
+---
+
+
+#### Content#deleteFaq
+Delete FAQ
+
+```javascript
+// Promise
+const promise = content.deleteFaq(company_id, application_id, categoryId, faqId, );
+
+// Async/Await
+const data = await content.deleteFaq(company_id, application_id, categoryId, faqId, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| categoryId | string | Faq category ID | 
+| faqId | string | Faq ID | 
+
+
+Delete FAQ
+
+
+---
+
+
+#### Content#getLegalInformation
+Get legal information
+
+```javascript
+// Promise
+const promise = content.getLegalInformation(company_id, application_id, );
+
+// Async/Await
+const data = await content.getLegalInformation(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+
+---
+
+
+#### Content#updateLegalInformation
+Save legal information
+
+```javascript
+// Promise
+const promise = content.updateLegalInformation(company_id, application_id, );
+
+// Async/Await
+const data = await content.updateLegalInformation(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+
+
+---
+
+
+#### Content#getSeoConfiguration
+Get seo of application
+
+```javascript
+// Promise
+const promise = content.getSeoConfiguration(company_id, application_id, );
+
+// Async/Await
+const data = await content.getSeoConfiguration(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Get seo of application
+
+
+---
+
+
+#### Content#updateSeoConfiguration
+Update seo of application
+
+```javascript
+// Promise
+const promise = content.updateSeoConfiguration(company_id, application_id, );
+
+// Async/Await
+const data = await content.updateSeoConfiguration(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Update seo of application
+
+
+---
+
+
+#### Content#getSupportInformation
+Get support information
+
+```javascript
+// Promise
+const promise = content.getSupportInformation(company_id, application_id, );
+
+// Async/Await
+const data = await content.getSupportInformation(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Get contact details for customer support. Including emails and phone numbers
+
+
+---
+
+
+#### Content#updateSupportInformation
+Update support data of application
+
+```javascript
+// Promise
+const promise = content.updateSupportInformation(company_id, application_id, );
+
+// Async/Await
+const data = await content.updateSupportInformation(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Update support data of application
+
+
+---
+
+
+#### Content#createTag
+Creates Tag
+
+```javascript
+// Promise
+const promise = content.createTag(company_id, application_id, );
+
+// Async/Await
+const data = await content.createTag(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Create tags
+
+
+---
+
+
+#### Content#updateTag
+Updates a Tag
+
+```javascript
+// Promise
+const promise = content.updateTag(company_id, application_id, );
+
+// Async/Await
+const data = await content.updateTag(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Update tag
+
+
+---
+
+
+#### Content#deleteAllTags
+Delete tags for application
+
+```javascript
+// Promise
+const promise = content.deleteAllTags(company_id, application_id, );
+
+// Async/Await
+const data = await content.deleteAllTags(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Delete tags for application
+
+
+---
+
+
+#### Content#getTags
+Get tags for application
+
+```javascript
+// Promise
+const promise = content.getTags(company_id, application_id, );
+
+// Async/Await
+const data = await content.getTags(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Get tags for application
+
+
+---
+
+
+#### Content#addTag
+Adds a Tag
+
+```javascript
+// Promise
+const promise = content.addTag(company_id, application_id, );
+
+// Async/Await
+const data = await content.addTag(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Add tag
+
+
+---
+
+
+#### Content#removeTag
+Removes a Tag
+
+```javascript
+// Promise
+const promise = content.removeTag(company_id, application_id, );
+
+// Async/Await
+const data = await content.removeTag(company_id, application_id, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+
+
+Remove a particular tag
+
+
+---
+
+
+#### Content#editTag
+Edits a Tag by Id
+
+```javascript
+// Promise
+const promise = content.editTag(company_id, application_id, tagId, );
+
+// Async/Await
+const data = await content.editTag(company_id, application_id, tagId, );
+
+```
+
+
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| company_id | string | Company ID | 
+| application_id | string | Application ID | 
+| tagId | string | Tag ID | 
+
+
+Edits a particular tag
 
 
 ---
