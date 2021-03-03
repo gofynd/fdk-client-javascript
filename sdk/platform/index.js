@@ -1,6 +1,6 @@
 const APIClient = require("./api_client");
 const Configuration = require("./configuration");
 
-const { Lead, Theme, Content } = require("./operations");
+const { Lead } = require("./operations");
 
 exports.Configuration = Configuration;

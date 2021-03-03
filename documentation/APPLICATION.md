@@ -5,6 +5,7 @@
 * [Cart](#Cart) - Cart APIs 
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
+* [User](#User) - Authentication Service 
 * [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and QR Code 
@@ -98,6 +99,43 @@
   * Methods
     * [Theme#getAppliedTheme](#themegetappliedtheme)
     * [Theme#getThemeForPreview](#themegetthemeforpreview)
+    
+   
+
+* [User](#User)
+  * Methods
+    * [User#loginWithFacebook](#userloginwithfacebook)
+    * [User#loginWithGoogle](#userloginwithgoogle)
+    * [User#loginWithGoogleAndroid](#userloginwithgoogleandroid)
+    * [User#loginWithGoogleIOS](#userloginwithgoogleios)
+    * [User#loginWithOTP](#userloginwithotp)
+    * [User#loginWithEmailAndPassword](#userloginwithemailandpassword)
+    * [User#sendResetPasswordEmail](#usersendresetpasswordemail)
+    * [User#forgotPassword](#userforgotpassword)
+    * [User#sendResetToken](#usersendresettoken)
+    * [User#loginWithToken](#userloginwithtoken)
+    * [User#registerWithForm](#userregisterwithform)
+    * [User#verifyEmail](#userverifyemail)
+    * [User#verifyMobile](#userverifymobile)
+    * [User#hasPassword](#userhaspassword)
+    * [User#updatePassword](#userupdatepassword)
+    * [User#logout](#userlogout)
+    * [User#sendOTPOnMobile](#usersendotponmobile)
+    * [User#verifyMobileOTP](#userverifymobileotp)
+    * [User#sendOTPOnEmail](#usersendotponemail)
+    * [User#verifyEmailOTP](#userverifyemailotp)
+    * [User#getLoggedInUser](#usergetloggedinuser)
+    * [User#getListOfActiveSessions](#usergetlistofactivesessions)
+    * [User#getPlatformConfig](#usergetplatformconfig)
+    * [User#updateProfile](#userupdateprofile)
+    * [User#addMobileNumber](#useraddmobilenumber)
+    * [User#deleteMobileNumber](#userdeletemobilenumber)
+    * [User#setMobileNumberAsPrimary](#usersetmobilenumberasprimary)
+    * [User#sendVerificationLinkToMobile](#usersendverificationlinktomobile)
+    * [User#addEmail](#useraddemail)
+    * [User#deleteEmail](#userdeleteemail)
+    * [User#setEmailAsPrimary](#usersetemailasprimary)
+    * [User#sendVerificationLinkToEmail](#usersendverificationlinktoemail)
     
    
 
@@ -6783,6 +6821,2072 @@ Preview Theme
   "$ref": "#/components/examples/Themes"
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+
+---
+
+
+## User
+
+```javascript
+const { ApplicationConfig, ApplicationClient } = require('fdkclientjavascript');
+const config = new ApplicationConfig({
+    applicationID: "507f191e810c19729de860ea",
+    applicationToken: "hu67dfhddf",
+    domain: "https://api.fyndx0.de",
+
+});
+const applicationClient = new ApplicationClient(config);
+const user = applicationClient.user;
+
+```
+
+
+#### User#loginWithFacebook
+Login/Register with Facebook
+
+```javascript
+// Promise
+const promise = user.loginWithFacebook();
+
+// Async/Await
+const data = await user.loginWithFacebook();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Facebook
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AuthSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithGoogle
+Login/Register with Google
+
+```javascript
+// Promise
+const promise = user.loginWithGoogle();
+
+// Async/Await
+const data = await user.loginWithGoogle();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AuthSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithGoogleAndroid
+Login/Register with Google for android
+
+```javascript
+// Promise
+const promise = user.loginWithGoogleAndroid();
+
+// Async/Await
+const data = await user.loginWithGoogleAndroid();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google for android
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AuthSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithGoogleIOS
+Login/Register with Google for ios
+
+```javascript
+// Promise
+const promise = user.loginWithGoogleIOS();
+
+// Async/Await
+const data = await user.loginWithGoogleIOS();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with google for ios
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/AuthSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithOTP
+Login/Register with OTP
+
+```javascript
+// Promise
+const promise = user.loginWithOTP(platform);
+
+// Async/Await
+const data = await user.loginWithOTP(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to login or register with OTP
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SendOtpResponse"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/SendOtpResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithEmailAndPassword
+Login/Register with password
+
+```javascript
+// Promise
+const promise = user.loginWithEmailAndPassword();
+
+// Async/Await
+const data = await user.loginWithEmailAndPassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with email & password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendResetPasswordEmail
+Reset Password
+
+```javascript
+// Promise
+const promise = user.sendResetPasswordEmail(platform);
+
+// Async/Await
+const data = await user.sendResetPasswordEmail(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to reset account password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ResetPasswordSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#forgotPassword
+
+
+```javascript
+// Promise
+const promise = user.forgotPassword();
+
+// Async/Await
+const data = await user.forgotPassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendResetToken
+
+
+```javascript
+// Promise
+const promise = user.sendResetToken();
+
+// Async/Await
+const data = await user.sendResetToken();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Send code incase of reset password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/ResetPasswordSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#loginWithToken
+Login/Register with token
+
+```javascript
+// Promise
+const promise = user.loginWithToken();
+
+// Async/Await
+const data = await user.loginWithToken();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Login/Register with token
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+Success
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    }
+  }
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#registerWithForm
+Registration Form
+
+```javascript
+// Promise
+const promise = user.registerWithForm(platform);
+
+// Async/Await
+const data = await user.registerWithForm(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Register using form
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/RegisterFormSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#verifyEmail
+Verify email
+
+```javascript
+// Promise
+const promise = user.verifyEmail();
+
+// Async/Await
+const data = await user.verifyEmail();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to verify email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyEmailSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#verifyMobile
+Verify mobile
+
+```javascript
+// Promise
+const promise = user.verifyMobile();
+
+// Async/Await
+const data = await user.verifyMobile();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Verify mobile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyEmailSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#hasPassword
+Check if user has password
+
+```javascript
+// Promise
+const promise = user.hasPassword();
+
+// Async/Await
+const data = await user.hasPassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Checks if user is using password or not
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/HasPasswordSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#updatePassword
+Update user password
+
+```javascript
+// Promise
+const promise = user.updatePassword();
+
+// Async/Await
+const data = await user.updatePassword();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to update user password
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyEmailSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#logout
+Logout user
+
+```javascript
+// Promise
+const promise = user.logout();
+
+// Async/Await
+const data = await user.logout();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to log out user
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LogoutSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendOTPOnMobile
+Send OTP on mobile
+
+```javascript
+// Promise
+const promise = user.sendOTPOnMobile(platform);
+
+// Async/Await
+const data = await user.sendOTPOnMobile(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to mobile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/OtpSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#verifyMobileOTP
+Verify OTP on mobile
+
+```javascript
+// Promise
+const promise = user.verifyMobileOTP(platform);
+
+// Async/Await
+const data = await user.verifyMobileOTP(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to mobile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyOtpSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendOTPOnEmail
+Send OTP on email
+
+```javascript
+// Promise
+const promise = user.sendOTPOnEmail(platform);
+
+// Async/Await
+const data = await user.sendOTPOnEmail(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/EmailOtpSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#verifyEmailOTP
+Verify OTP on email
+
+```javascript
+// Promise
+const promise = user.verifyEmailOTP(platform);
+
+// Async/Await
+const data = await user.verifyEmailOTP(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyOtpSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#getLoggedInUser
+Get logged in user
+
+```javascript
+// Promise
+const promise = user.getLoggedInUser();
+
+// Async/Await
+const data = await user.getLoggedInUser();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to get logged in user details
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/UserSchema"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExample"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#getListOfActiveSessions
+Get list of sessions
+
+```javascript
+// Promise
+const promise = user.getListOfActiveSessions();
+
+// Async/Await
+const data = await user.getListOfActiveSessions();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Lists all active sessions
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SessionListSuccess"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#getPlatformConfig
+Get platform config
+
+```javascript
+// Promise
+const promise = user.getPlatformConfig(name);
+
+// Async/Await
+const data = await user.getPlatformConfig(name);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| name | string | Name | 
+
+Used to get platform config
+
+Success Response:
+
+
+
+Platform Config
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/PlatformSchema"
+}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#updateProfile
+Edit Profile Details
+
+```javascript
+// Promise
+const promise = user.updateProfile(platform);
+
+// Async/Await
+const data = await user.updateProfile(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to update profile
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#addMobileNumber
+Add mobile number to profile
+
+```javascript
+// Promise
+const promise = user.addMobileNumber(platform);
+
+// Async/Await
+const data = await user.addMobileNumber(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new mobile number to profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyMobileOTPSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#deleteMobileNumber
+Delete mobile number from profile
+
+```javascript
+// Promise
+const promise = user.deleteMobileNumber(platform,active,primary,verified,country_code,phone);
+
+// Async/Await
+const data = await user.deleteMobileNumber(platform,active,primary,verified,country_code,phone);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Active mobile number | 
+| primary | boolean | Primary number | 
+| verified | boolean | Verified Number | 
+| country_code | string | Country code of phone number | 
+| phone | string | Phone number | 
+
+Used to delete mobile number from profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#setMobileNumberAsPrimary
+Set mobile as primary
+
+```javascript
+// Promise
+const promise = user.setMobileNumberAsPrimary();
+
+// Async/Await
+const data = await user.setMobileNumberAsPrimary();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set a mobile number as primary
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendVerificationLinkToMobile
+Send verification link to mobile
+
+```javascript
+// Promise
+const promise = user.sendVerificationLinkToMobile(platform);
+
+// Async/Await
+const data = await user.sendVerificationLinkToMobile(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send verification link to a mobile number
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SendMobileVerifyLinkSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#addEmail
+Add email to profile
+
+```javascript
+// Promise
+const promise = user.addEmail(platform);
+
+// Async/Await
+const data = await user.addEmail(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new email to profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/VerifyEmailOTPSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/VerifyEmailOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#deleteEmail
+Delete email from profile
+
+```javascript
+// Promise
+const promise = user.deleteEmail(platform,active,primary,verified,email);
+
+// Async/Await
+const data = await user.deleteEmail(platform,active,primary,verified,email);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Whether email id is active | 
+| primary | boolean | Whether email id is primary email | 
+| verified | boolean | Whether email id is verified | 
+| email | string | Email ID to be deleted | 
+
+Used to delete email from profile
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#setEmailAsPrimary
+Set email as primary
+
+```javascript
+// Promise
+const promise = user.setEmailAsPrimary();
+
+// Async/Await
+const data = await user.setEmailAsPrimary();
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set an email as primart
+
+Success Response:
+
+
+
+A JSON object with user details
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/LoginSuccess"
+}`
+
+
+Examples: 
+
+
+default
+```javascript
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Error Response:
+
+
+
+---
+
+
+#### User#sendVerificationLinkToEmail
+Send verification link to email
+
+```javascript
+// Promise
+const promise = user.sendVerificationLinkToEmail(platform);
+
+// Async/Await
+const data = await user.sendVerificationLinkToEmail(platform);
+
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to sent verification to an email
+
+Success Response:
+
+
+
+
+
+
+Content Type: `application/json`
+
+Schema: `{
+  "$ref": "#/components/schemas/SendEmailVerifyLinkSuccess"
+}`
 
 
 

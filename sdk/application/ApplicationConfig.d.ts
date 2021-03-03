@@ -1,10 +1,6 @@
 export = ApplicationConfig;
 declare class ApplicationConfig {
-    /**
-     * @param  {object} _conf
-     * @param  {object} _opts
-     */
-    constructor(_conf: object, _opts: object);
+    constructor(_conf: any, _opts: any);
     applicationID: any;
     applicationToken: any;
     opts: any;
