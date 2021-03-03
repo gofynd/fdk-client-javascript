@@ -25,7 +25,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/platform/lead/v1.0/company/${companyId}/ticket`,
+      `service/platform/lead/v1.0/company/${companyId}/ticket`,
       query,
       {}
     );
@@ -44,7 +44,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/platform/lead/v1.0/company/${companyId}/ticket`,
+      `service/platform/lead/v1.0/company/${companyId}/ticket`,
       query,
       body
     );
@@ -73,7 +73,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket`,
       query,
       {}
     );
@@ -96,7 +96,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}`,
+      `service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}`,
       query,
       {}
     );
@@ -120,7 +120,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "put",
-      `/service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}`,
+      `service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}`,
       query,
       body
     );
@@ -145,7 +145,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/platform/lead/v1.0/company/${companyId}/ticket/application/${applicationId}/${ticketId}`,
+      `service/platform/lead/v1.0/company/${companyId}/ticket/application/${applicationId}/${ticketId}`,
       query,
       {}
     );
@@ -171,7 +171,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "put",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}`,
       query,
       body
     );
@@ -195,7 +195,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}/history`,
+      `service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}/history`,
       query,
       body
     );
@@ -218,7 +218,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}/history`,
+      `service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}/history`,
       query,
       {}
     );
@@ -244,7 +244,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}/history`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}/history`,
       query,
       body
     );
@@ -269,7 +269,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}/history`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}/history`,
       query,
       {}
     );
@@ -294,7 +294,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form/${slug}`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form/${slug}`,
       query,
       {}
     );
@@ -320,7 +320,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "put",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form/${slug}`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form/${slug}`,
       query,
       body
     );
@@ -343,7 +343,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form`,
       query,
       {}
     );
@@ -367,7 +367,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form`,
       query,
       body
     );
@@ -392,7 +392,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room/${uniqueName}/token`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room/${uniqueName}/token`,
       query,
       {}
     );
@@ -417,7 +417,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room/${uniqueName}/participants`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room/${uniqueName}/participants`,
       query,
       {}
     );
@@ -425,13 +425,13 @@ class Lead {
 
   /**
     *
-    * Summary: Open a video room.
-    * Description:  Open a video room.
+    * Summary: Get video room id
+    * Description:  Get video room id.
      * @param { string } companyId - Company ID of the application
      * @param { string } applicationId - Application ID for video room
      body: CreateVideoRoomPayload,
     **/
-  openVideoRoom(
+  createVideoRoom(
     companyId = required("companyId"),
     applicationId = required("applicationId"),
     body
@@ -441,32 +441,9 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room`,
+      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room`,
       query,
       body
-    );
-  }
-
-  /**
-    *
-    * Summary: Close the video room and force all participants to leave.
-    * Description:  Close the video room and force all participants to leave.
-     * @param { string } companyId - Company ID of the application
-     * @param { string } applicationId - Application ID for video room
-     
-    **/
-  closeVideoRoom(
-    companyId = required("companyId"),
-    applicationId = required("applicationId")
-  ) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room`,
-      query,
-      {}
     );
   }
 }

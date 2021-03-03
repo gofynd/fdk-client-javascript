@@ -4,7 +4,7 @@ export class Catalog {
     /**
       *
       * Summary: Get a product
-      * Description:  Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given ``slug``. If successful, returns a Product resource in the response body specified in `ProductDetail`
+      * Description:  Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
        * @param { string } slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
        
       **/
@@ -109,10 +109,10 @@ export class Catalog {
       * Summary: List the products
       * Description:  List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
        * @param { string } [q] - The search query. This can be a partial or complete name of a either a product, brand or category
-       * @param { string } [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts``
+       * @param { string } [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
        * @param { boolean } [filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
        * @param { string } [sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-       * @param { string } [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+       * @param { string } [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
        * @param { number } [pageSize] - Number of items to retrieve in each page. Default is 12.
        * @param { number } [pageNo] - If page_type is number then pass it to fetch page items. Default is 1.
        * @param { string } [pageType] - For pagination type should be cursor or number. Default is cursor.
@@ -157,8 +157,8 @@ export class Catalog {
       *
       * Summary: List the products
       * Description:  List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
-       * @param { string } [sortOn] - Each response will contain ``sort_on`` param, which should be sent back to make pagination work.
-       * @param { string } [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+       * @param { string } [sortOn] - Each response will contain **sort_on** param, which should be sent back to make pagination work.
+       * @param { string } [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
        * @param { number } [pageSize] - Number of items to retrieve in each page. Default is 12.
        
       **/
@@ -180,49 +180,26 @@ export class Catalog {
     getSearchResults(q?: string): any;
     /**
       *
-      * Summary: Add a Collection
-      * Description:  Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
-       body: CreateCollection,
-      **/
-    addCollection(body: any): any;
-    /**
-      *
       * Summary: List all the collections
       * Description:  A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
-       * @param { string } [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+       * @param { string } [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
        * @param { number } [pageSize] - Number of items to retrieve in each page. Default is 12.
        
       **/
     getCollections(pageId?: string, pageSize?: number): any;
     /**
       *
-      * Summary: Add items to a collection
-      * Description:  Adds items to a collection specified by its `slug`. See `CollectionItemsRequest` for the list of attributes needed to add items to an collection.
-       * @param { string } slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to add items into.
-       body: CollectionItemsRequest,
-      **/
-    addCollectionItemsBySlug(slug: string, body: any): any;
-    /**
-      *
       * Summary: Get the items in a collection
       * Description:  Get items in a collection specified by its `slug`.
        * @param { string } slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items
-       * @param { string } [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts``
+       * @param { string } [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
        * @param { boolean } [filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
        * @param { string } [sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-       * @param { string } [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+       * @param { string } [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
        * @param { number } [pageSize] - Number of items to retrieve in each page. Default is 12.
        
       **/
     getCollectionItemsBySlug(slug?: string, f?: string, filters?: boolean, sortOn?: string, pageId?: string, pageSize?: number): any;
-    /**
-      *
-      * Summary: Delete a Collection
-      * Description:  Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
-       * @param { string } slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to delete.
-       
-      **/
-    deleteCollectionDetailBySlug(slug?: string): any;
     /**
       *
       * Summary: Get a particular collection
@@ -231,14 +208,6 @@ export class Catalog {
        
       **/
     getCollectionDetailBySlug(slug?: string): any;
-    /**
-      *
-      * Summary: Update a collection
-      * Description:  Update a collection by it's slug. On successful request, returns the updated collection
-       * @param { string } slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to update.
-       
-      **/
-    updateCollectionDetailBySlug(slug?: string): any;
     /**
       *
       * Summary: Get a list of followed Products, Brands, Collections
@@ -579,258 +548,6 @@ export class Theme {
        
       **/
     getThemeForPreview(themeId?: string): any;
-}
-export class User {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-      *
-      * Summary: Login/Register with Facebook
-      * Description:  Used to login or register with Facebook
-       body: OAuthRequestSchema,
-      **/
-    loginWithFacebook(body: any): any;
-    /**
-      *
-      * Summary: Login/Register with Google
-      * Description:  Used to login or register with Google
-       body: OAuthRequestSchema,
-      **/
-    loginWithGoogle(body: any): any;
-    /**
-      *
-      * Summary: Login/Register with Google for android
-      * Description:  Used to login or register with Google for android
-       body: OAuthRequestSchema,
-      **/
-    loginWithGoogleAndroid(body: any): any;
-    /**
-      *
-      * Summary: Login/Register with Google for ios
-      * Description:  Used to login or register with google for ios
-       body: OAuthRequestSchema,
-      **/
-    loginWithGoogleIOS(body: any): any;
-    /**
-      *
-      * Summary: Login/Register with OTP
-      * Description:  Used to login or register with OTP
-       * @param { string } [platform] - Platform
-       body: SendOtpRequestSchema,
-      **/
-    loginWithOTP(body: any, platform?: string): any;
-    /**
-      *
-      * Summary: Login/Register with password
-      * Description:  Used to login or register with email & password
-       body: PasswordLoginRequestSchema,
-      **/
-    loginWithEmailAndPassword(body: any): any;
-    /**
-      *
-      * Summary: Reset Password
-      * Description:  Used to reset account password
-       * @param { string } [platform] - Platform
-       body: SendResetPasswordEmailRequestSchema,
-      **/
-    sendResetPasswordEmail(body: any, platform?: string): any;
-    /**
-      *
-      * Summary:
-      * Description:
-       body: ForgotPasswordRequestSchema,
-      **/
-    forgotPassword(body: any): any;
-    /**
-      *
-      * Summary:
-      * Description:  Send code incase of reset password
-       body: CodeRequestBodySchema,
-      **/
-    sendResetToken(body: any): any;
-    /**
-      *
-      * Summary: Login/Register with token
-      * Description:  Login/Register with token
-       body: TokenRequestBodySchema,
-      **/
-    loginWithToken(body: any): any;
-    /**
-      *
-      * Summary: Registration Form
-      * Description:  Register using form
-       * @param { string } [platform] - Platform
-       body: FormRegisterRequestSchema,
-      **/
-    registerWithForm(body: any, platform?: string): any;
-    /**
-      *
-      * Summary: Verify email
-      * Description:  Used to verify email
-       body: CodeRequestBodySchema,
-      **/
-    verifyEmail(body: any): any;
-    /**
-      *
-      * Summary: Verify mobile
-      * Description:  Verify mobile
-       body: CodeRequestBodySchema,
-      **/
-    verifyMobile(body: any): any;
-    /**
-      *
-      * Summary: Check if user has password
-      * Description:  Checks if user is using password or not
-       
-      **/
-    hasPassword(): any;
-    /**
-      *
-      * Summary: Update user password
-      * Description:  Used to update user password
-       body: UpdatePasswordRequestSchema,
-      **/
-    updatePassword(body: any): any;
-    /**
-      *
-      * Summary: Logout user
-      * Description:  Used to log out user
-       
-      **/
-    logout(): any;
-    /**
-      *
-      * Summary: Send OTP on mobile
-      * Description:  Used to send otp to mobile
-       * @param { string } [platform] - Platform
-       body: SendMobileOtpRequestSchema,
-      **/
-    sendOTPOnMobile(body: any, platform?: string): any;
-    /**
-      *
-      * Summary: Verify OTP on mobile
-      * Description:  Used to verify otp sent to mobile
-       * @param { string } [platform] - Platform
-       body: VerifyOtpRequestSchema,
-      **/
-    verifyMobileOTP(body: any, platform?: string): any;
-    /**
-      *
-      * Summary: Send OTP on email
-      * Description:  Used to send otp to email
-       * @param { string } [platform] - Platform
-       body: SendEmailOtpRequestSchema,
-      **/
-    sendOTPOnEmail(body: any, platform?: string): any;
-    /**
-      *
-      * Summary: Verify OTP on email
-      * Description:  Used to verify otp sent to email
-       * @param { string } [platform] - Platform
-       body: VerifyOtpRequestSchema,
-      **/
-    verifyEmailOTP(body: any, platform?: string): any;
-    /**
-      *
-      * Summary: Get logged in user
-      * Description:  Used to get logged in user details
-       
-      **/
-    getLoggedInUser(): any;
-    /**
-      *
-      * Summary: Get list of sessions
-      * Description:  Lists all active sessions
-       
-      **/
-    getListOfActiveSessions(): any;
-    /**
-      *
-      * Summary: Get platform config
-      * Description:  Used to get platform config
-       * @param { string } [name] - Name
-       
-      **/
-    getPlatformConfig(name?: string): any;
-    /**
-      *
-      * Summary: Edit Profile Details
-      * Description:  Used to update profile
-       * @param { string } [platform] - Platform
-       body: EditProfileRequestSchema,
-      **/
-    updateProfile(body: any, platform?: string): any;
-    /**
-      *
-      * Summary: Add mobile number to profile
-      * Description:  Used to add new mobile number to profile
-       * @param { string } [platform] - Platform
-       body: EditMobileRequestSchema,
-      **/
-    addMobileNumber(body: any, platform?: string): any;
-    /**
-      *
-      * Summary: Delete mobile number from profile
-      * Description:  Used to delete mobile number from profile
-       * @param { string } [platform] - Platform
-       * @param { boolean } active - Active mobile number
-       * @param { boolean } primary - Primary number
-       * @param { boolean } verified - Verified Number
-       * @param { string } countryCode - Country code of phone number
-       * @param { string } phone - Phone number
-       
-      **/
-    deleteMobileNumber(active?: boolean, primary?: boolean, verified?: boolean, countryCode?: string, phone?: string, platform?: string): any;
-    /**
-      *
-      * Summary: Set mobile as primary
-      * Description:  Used to set a mobile number as primary
-       body: SendVerificationLinkMobileRequestSchema,
-      **/
-    setMobileNumberAsPrimary(body: any): any;
-    /**
-      *
-      * Summary: Send verification link to mobile
-      * Description:  Used to send verification link to a mobile number
-       * @param { string } [platform] - Platform
-       body: SendVerificationLinkMobileRequestSchema,
-      **/
-    sendVerificationLinkToMobile(body: any, platform?: string): any;
-    /**
-      *
-      * Summary: Add email to profile
-      * Description:  Used to add new email to profile
-       * @param { string } [platform] - Platform
-       body: EditEmailRequestSchema,
-      **/
-    addEmail(body: any, platform?: string): any;
-    /**
-      *
-      * Summary: Delete email from profile
-      * Description:  Used to delete email from profile
-       * @param { string } [platform] - Platform
-       * @param { boolean } active - Whether email id is active
-       * @param { boolean } primary - Whether email id is primary email
-       * @param { boolean } verified - Whether email id is verified
-       * @param { string } email - Email ID to be deleted
-       
-      **/
-    deleteEmail(active?: boolean, primary?: boolean, verified?: boolean, email?: string, platform?: string): any;
-    /**
-      *
-      * Summary: Set email as primary
-      * Description:  Used to set an email as primart
-       body: EditEmailRequestSchema,
-      **/
-    setEmailAsPrimary(body: any): any;
-    /**
-      *
-      * Summary: Send verification link to email
-      * Description:  Used to sent verification to an email
-       * @param { string } [platform] - Platform
-       body: EditEmailRequestSchema,
-      **/
-    sendVerificationLinkToEmail(body: any, platform?: string): any;
 }
 export class Content {
     constructor(_conf: any);
@@ -1721,18 +1438,6 @@ export class PosCart {
        
       **/
     getShipments(pickAtStoreUid?: number, orderingStoreId?: number, p?: boolean, uid?: number, addressId?: number): any;
-    /**
-      *
-      * Summary: Update shipment delivery type and quantity before checkout
-      * Description:  Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
-       * @param { boolean } [i] - Get items or not
-       * @param { boolean } [p] - Get payment options or not
-       * @param { number } [uid] - Cart id
-       * @param { number } [addressId] - Address id
-       * @param { string } [orderType] - Order is hand over or home delivery
-       body: UpdateCartShipmentRequest,
-      **/
-    updateShipments(body: any, i?: boolean, p?: boolean, uid?: number, addressId?: number, orderType?: string): any;
     /**
       *
       * Summary: Checkout Cart

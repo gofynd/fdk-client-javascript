@@ -166,20 +166,11 @@ export class Lead {
     getVideoParticipants(companyId?: string, applicationId?: string, uniqueName?: string): any;
     /**
       *
-      * Summary: Open a video room.
-      * Description:  Open a video room.
+      * Summary: Get video room id
+      * Description:  Get video room id.
        * @param { string } companyId - Company ID of the application
        * @param { string } applicationId - Application ID for video room
        body: CreateVideoRoomPayload,
       **/
-    openVideoRoom(companyId: string, applicationId: string, body: any): any;
-    /**
-      *
-      * Summary: Close the video room and force all participants to leave.
-      * Description:  Close the video room and force all participants to leave.
-       * @param { string } companyId - Company ID of the application
-       * @param { string } applicationId - Application ID for video room
-       
-      **/
-    closeVideoRoom(companyId?: string, applicationId?: string): any;
+    createVideoRoom(companyId: string, applicationId: string, body: any): any;
 }

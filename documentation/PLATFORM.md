@@ -27,8 +27,7 @@
   * [Lead#createCustomForm](#leadcreatecustomform)
   * [Lead#getTokenForVideoRoom](#leadgettokenforvideoroom)
   * [Lead#getVideoParticipants](#leadgetvideoparticipants)
-  * [Lead#openVideoRoom](#leadopenvideoroom)
-  * [Lead#closeVideoRoom](#leadclosevideoroom)
+  * [Lead#createVideoRoom](#leadcreatevideoroom)
  
 
 ---
@@ -500,15 +499,15 @@ Get participants of a specific Video Room using it's unique name, this can be us
 ---
 
 
-#### Lead#openVideoRoom
-Open a video room.
+#### Lead#createVideoRoom
+Get video room id
 
 ```javascript
 // Promise
-const promise = lead.openVideoRoom(company_id, application_id, );
+const promise = lead.createVideoRoom(company_id, application_id, );
 
 // Async/Await
-const data = await lead.openVideoRoom(company_id, application_id, );
+const data = await lead.createVideoRoom(company_id, application_id, );
 
 ```
 
@@ -520,33 +519,7 @@ const data = await lead.openVideoRoom(company_id, application_id, );
 | application_id | string | Application ID for video room | 
 
 
-Open a video room.
-
-
----
-
-
-#### Lead#closeVideoRoom
-Close the video room and force all participants to leave.
-
-```javascript
-// Promise
-const promise = lead.closeVideoRoom(company_id, application_id, );
-
-// Async/Await
-const data = await lead.closeVideoRoom(company_id, application_id, );
-
-```
-
-
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| company_id | string | Company ID of the application | 
-| application_id | string | Application ID for video room | 
-
-
-Close the video room and force all participants to leave.
+Get video room id.
 
 
 ---

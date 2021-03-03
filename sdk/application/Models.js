@@ -10,7 +10,7 @@ class Catalog {
   /**
     *
     * Summary: Get a product
-    * Description:  Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given ``slug``. If successful, returns a Product resource in the response body specified in `ProductDetail`
+    * Description:  Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
      * @param { string } slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
      
     **/
@@ -269,10 +269,10 @@ class Catalog {
     * Summary: List the products
     * Description:  List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
      * @param { string } [q] - The search query. This can be a partial or complete name of a either a product, brand or category
-     * @param { string } [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts``
+     * @param { string } [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
      * @param { boolean } [filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
      * @param { string } [sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-     * @param { string } [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+     * @param { string } [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
      * @param { number } [pageSize] - Number of items to retrieve in each page. Default is 12.
      * @param { number } [pageNo] - If page_type is number then pass it to fetch page items. Default is 1.
      * @param { string } [pageType] - For pagination type should be cursor or number. Default is cursor.
@@ -384,8 +384,8 @@ class Catalog {
     *
     * Summary: List the products
     * Description:  List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
-     * @param { string } [sortOn] - Each response will contain ``sort_on`` param, which should be sent back to make pagination work.
-     * @param { string } [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+     * @param { string } [sortOn] - Each response will contain **sort_on** param, which should be sent back to make pagination work.
+     * @param { string } [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
      * @param { number } [pageSize] - Number of items to retrieve in each page. Default is 12.
      
     **/
@@ -444,27 +444,9 @@ class Catalog {
 
   /**
     *
-    * Summary: Add a Collection
-    * Description:  Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
-     body: CreateCollection,
-    **/
-  addCollection(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/catalog/v1.0/collections/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
     * Summary: List all the collections
     * Description:  A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
-     * @param { string } [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+     * @param { string } [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
      * @param { number } [pageSize] - Number of items to retrieve in each page. Default is 12.
      
     **/
@@ -484,32 +466,13 @@ class Catalog {
 
   /**
     *
-    * Summary: Add items to a collection
-    * Description:  Adds items to a collection specified by its `slug`. See `CollectionItemsRequest` for the list of attributes needed to add items to an collection.
-     * @param { string } slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to add items into.
-     body: CollectionItemsRequest,
-    **/
-  addCollectionItemsBySlug(slug = required("slug"), body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/catalog/v1.0/collections/${slug}/items/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
     * Summary: Get the items in a collection
     * Description:  Get items in a collection specified by its `slug`.
      * @param { string } slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items
-     * @param { string } [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts``
+     * @param { string } [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
      * @param { boolean } [filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
      * @param { string } [sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-     * @param { string } [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+     * @param { string } [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
      * @param { number } [pageSize] - Number of items to retrieve in each page. Default is 12.
      
     **/
@@ -539,25 +502,6 @@ class Catalog {
 
   /**
     *
-    * Summary: Delete a Collection
-    * Description:  Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
-     * @param { string } slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to delete.
-     
-    **/
-  deleteCollectionDetailBySlug(slug = required("slug")) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/catalog/v1.0/collections/${slug}/`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
     * Summary: Get a particular collection
     * Description:  Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
      * @param { string } slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve.
@@ -569,25 +513,6 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/collections/${slug}/`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * Summary: Update a collection
-    * Description:  Update a collection by it's slug. On successful request, returns the updated collection
-     * @param { string } slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to update.
-     
-    **/
-  updateCollectionDetailBySlug(slug = required("slug")) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
       `/service/application/catalog/v1.0/collections/${slug}/`,
       query,
       {}
@@ -1263,7 +1188,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/lead/v1.0/ticket/${id}`,
+      `service/application/lead/v1.0/ticket/${id}`,
       query,
       {}
     );
@@ -1282,7 +1207,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/lead/v1.0/ticket/${ticketId}/history`,
+      `service/application/lead/v1.0/ticket/${ticketId}/history`,
       query,
       body
     );
@@ -1300,7 +1225,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/lead/v1.0/ticket/`,
+      `service/application/lead/v1.0/ticket/`,
       query,
       body
     );
@@ -1319,7 +1244,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/lead/v1.0/form/${slug}`,
+      `service/application/lead/v1.0/form/${slug}`,
       query,
       {}
     );
@@ -1338,7 +1263,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/lead/v1.0/form/${slug}/submit`,
+      `service/application/lead/v1.0/form/${slug}/submit`,
       query,
       body
     );
@@ -1357,7 +1282,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/lead/v1.0/video/room/${uniqueName}/participants`,
+      `service/application/lead/v1.0/video/room/${uniqueName}/participants`,
       query,
       {}
     );
@@ -1376,7 +1301,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/lead/v1.0/video/room/${uniqueName}/token`,
+      `service/application/lead/v1.0/video/room/${uniqueName}/token`,
       query,
       {}
     );
@@ -1422,649 +1347,6 @@ class Theme {
       `/service/application/theme/v1.0/${themeId}/preview`,
       query,
       {}
-    );
-  }
-}
-
-class User {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * Summary: Login/Register with Facebook
-    * Description:  Used to login or register with Facebook
-     body: OAuthRequestSchema,
-    **/
-  loginWithFacebook(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/facebook-token`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Login/Register with Google
-    * Description:  Used to login or register with Google
-     body: OAuthRequestSchema,
-    **/
-  loginWithGoogle(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-token`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Login/Register with Google for android
-    * Description:  Used to login or register with Google for android
-     body: OAuthRequestSchema,
-    **/
-  loginWithGoogleAndroid(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-android`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Login/Register with Google for ios
-    * Description:  Used to login or register with google for ios
-     body: OAuthRequestSchema,
-    **/
-  loginWithGoogleIOS(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-ios`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Login/Register with OTP
-    * Description:  Used to login or register with OTP
-     * @param { string } [platform] - Platform
-     body: SendOtpRequestSchema,
-    **/
-  loginWithOTP(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/otp`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Login/Register with password
-    * Description:  Used to login or register with email & password
-     body: PasswordLoginRequestSchema,
-    **/
-  loginWithEmailAndPassword(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Reset Password
-    * Description:  Used to reset account password
-     * @param { string } [platform] - Platform
-     body: SendResetPasswordEmailRequestSchema,
-    **/
-  sendResetPasswordEmail(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password/reset`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: 
-    * Description:  
-     body: ForgotPasswordRequestSchema,
-    **/
-  forgotPassword(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/userauthentication/v1.0/login/password/reset/forgot`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: 
-    * Description:  Send code incase of reset password
-     body: CodeRequestBodySchema,
-    **/
-  sendResetToken(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password/reset/token`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Login/Register with token
-    * Description:  Login/Register with token
-     body: TokenRequestBodySchema,
-    **/
-  loginWithToken(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/token`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Registration Form
-    * Description:  Register using form
-     * @param { string } [platform] - Platform
-     body: FormRegisterRequestSchema,
-    **/
-  registerWithForm(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/register/form`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Verify email
-    * Description:  Used to verify email
-     body: CodeRequestBodySchema,
-    **/
-  verifyEmail(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/verify/email`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Verify mobile
-    * Description:  Verify mobile
-     body: CodeRequestBodySchema,
-    **/
-  verifyMobile(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/verify/mobile`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Check if user has password
-    * Description:  Checks if user is using password or not
-     
-    **/
-  hasPassword() {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/has-password`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * Summary: Update user password
-    * Description:  Used to update user password
-     body: UpdatePasswordRequestSchema,
-    **/
-  updatePassword(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/password`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Logout user
-    * Description:  Used to log out user
-     
-    **/
-  logout() {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/logout`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * Summary: Send OTP on mobile
-    * Description:  Used to send otp to mobile
-     * @param { string } [platform] - Platform
-     body: SendMobileOtpRequestSchema,
-    **/
-  sendOTPOnMobile(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/mobile/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Verify OTP on mobile
-    * Description:  Used to verify otp sent to mobile
-     * @param { string } [platform] - Platform
-     body: VerifyOtpRequestSchema,
-    **/
-  verifyMobileOTP(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/mobile/verify`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Send OTP on email
-    * Description:  Used to send otp to email
-     * @param { string } [platform] - Platform
-     body: SendEmailOtpRequestSchema,
-    **/
-  sendOTPOnEmail(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/email/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Verify OTP on email
-    * Description:  Used to verify otp sent to email
-     * @param { string } [platform] - Platform
-     body: VerifyOtpRequestSchema,
-    **/
-  verifyEmailOTP(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/email/verify`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Get logged in user
-    * Description:  Used to get logged in user details
-     
-    **/
-  getLoggedInUser() {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/session`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * Summary: Get list of sessions
-    * Description:  Lists all active sessions
-     
-    **/
-  getListOfActiveSessions() {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/sessions`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * Summary: Get platform config
-    * Description:  Used to get platform config
-     * @param { string } [name] - Name
-     
-    **/
-  getPlatformConfig(name) {
-    const query = {};
-    query["name"] = name;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/platform/v1.0/config`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * Summary: Edit Profile Details
-    * Description:  Used to update profile
-     * @param { string } [platform] - Platform
-     body: EditProfileRequestSchema,
-    **/
-  updateProfile(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/detail`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Add mobile number to profile
-    * Description:  Used to add new mobile number to profile
-     * @param { string } [platform] - Platform
-     body: EditMobileRequestSchema,
-    **/
-  addMobileNumber(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/user/profile/v1.0/mobile`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Delete mobile number from profile
-    * Description:  Used to delete mobile number from profile
-     * @param { string } [platform] - Platform
-     * @param { boolean } active - Active mobile number
-     * @param { boolean } primary - Primary number
-     * @param { boolean } verified - Verified Number
-     * @param { string } countryCode - Country code of phone number
-     * @param { string } phone - Phone number
-     
-    **/
-  deleteMobileNumber(
-    active = required("active"),
-    primary = required("primary"),
-    verified = required("verified"),
-    countryCode = required("countryCode"),
-    phone = required("phone"),
-    platform
-  ) {
-    const query = {};
-    query["platform"] = platform;
-    query["active"] = active;
-    query["primary"] = primary;
-    query["verified"] = verified;
-    query["country_code"] = countryCode;
-    query["phone"] = phone;
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/user/profile/v1.0/mobile`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * Summary: Set mobile as primary
-    * Description:  Used to set a mobile number as primary
-     body: SendVerificationLinkMobileRequestSchema,
-    **/
-  setMobileNumberAsPrimary(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/mobile/primary`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Send verification link to mobile
-    * Description:  Used to send verification link to a mobile number
-     * @param { string } [platform] - Platform
-     body: SendVerificationLinkMobileRequestSchema,
-    **/
-  sendVerificationLinkToMobile(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/mobile/link/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Add email to profile
-    * Description:  Used to add new email to profile
-     * @param { string } [platform] - Platform
-     body: EditEmailRequestSchema,
-    **/
-  addEmail(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/user/profile/v1.0/email`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Delete email from profile
-    * Description:  Used to delete email from profile
-     * @param { string } [platform] - Platform
-     * @param { boolean } active - Whether email id is active
-     * @param { boolean } primary - Whether email id is primary email
-     * @param { boolean } verified - Whether email id is verified
-     * @param { string } email - Email ID to be deleted
-     
-    **/
-  deleteEmail(
-    active = required("active"),
-    primary = required("primary"),
-    verified = required("verified"),
-    email = required("email"),
-    platform
-  ) {
-    const query = {};
-    query["platform"] = platform;
-    query["active"] = active;
-    query["primary"] = primary;
-    query["verified"] = verified;
-    query["email"] = email;
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/user/profile/v1.0/email`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * Summary: Set email as primary
-    * Description:  Used to set an email as primart
-     body: EditEmailRequestSchema,
-    **/
-  setEmailAsPrimary(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/email/primary`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * Summary: Send verification link to email
-    * Description:  Used to sent verification to an email
-     * @param { string } [platform] - Platform
-     body: EditEmailRequestSchema,
-    **/
-  sendVerificationLinkToEmail(body, platform) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/email/link/send`,
-      query,
-      body
     );
   }
 }
@@ -4229,34 +3511,6 @@ class PosCart {
 
   /**
     *
-    * Summary: Update shipment delivery type and quantity before checkout
-    * Description:  Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
-     * @param { boolean } [i] - Get items or not
-     * @param { boolean } [p] - Get payment options or not
-     * @param { number } [uid] - Cart id
-     * @param { number } [addressId] - Address id
-     * @param { string } [orderType] - Order is hand over or home delivery
-     body: UpdateCartShipmentRequest,
-    **/
-  updateShipments(body, i, p, uid, addressId, orderType) {
-    const query = {};
-    query["i"] = i;
-    query["p"] = p;
-    query["uid"] = uid;
-    query["address_id"] = addressId;
-    query["order_type"] = orderType;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/pos/cart/v1.0/shipment`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
     * Summary: Checkout Cart
     * Description:  Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
      * @param { boolean } [uid] - 
@@ -4403,7 +3657,6 @@ module.exports = {
   Cart,
   Lead,
   Theme,
-  User,
   Content,
   Communication,
   Share,
