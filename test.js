@@ -2,16 +2,15 @@ const { ApplicationConfig, ApplicationClient } = require("../../../output/javasc
 
 const config = new ApplicationConfig({
   applicationID: "5fa24ca5756695531fa1eefb",
-  applicationToken: "4twvAQZB3",
-  domain: "https://api.fyndx0.de",
+  applicationToken: "4twvAQZB3"
 });
 
 const applicationClient = new ApplicationClient(config);
 
 async function getTheme() {
   try {
-    const theme = await applicationClient.theme.getThemeForPreview('5fa24cdd29e03d7c24fc35cf');
-    console.log(theme.information.name);
+    const cart = await applicationClient.cart.getCart();
+    console.log(cart);
   } catch (err) {
       console.log(err);
   }

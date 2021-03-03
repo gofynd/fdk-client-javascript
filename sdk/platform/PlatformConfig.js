@@ -7,31 +7,34 @@ class CredentialValidationError extends Error {
 
 const MongoIDRegExp = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i;
 
-class Credential {
+class ApplicationConfig {
+  /**
+   * @param  {object} _conf
+   * @param  {object} _opts
+   */
   constructor(_conf, _opts) {
-    this.ApplicationId = _conf.ApplicationId || "";
-    this.ApplicationToken = _conf.ApplicationToken || "";
+    this.applicationID = _conf.applicationID || "";
+    this.applicationToken = _conf.applicationToken || "";
     this.opts = _opts || {};
     this.validate();
   }
 
   validate() {
-    if (!this.ApplicationId) {
+    if (!this.applicationID) {
       throw new CredentialValidationError("No Application ID Present");
     }
-    if (!this.ApplicationToken) {
+    if (!this.applicationToken) {
       throw new CredentialValidationError("No Application Token Present");
     }
-    console.log("this.ApplicationId", this.ApplicationId);
-    if (!MongoIDRegExp.test(this.ApplicationId)) {
+    if (!MongoIDRegExp.test(this.applicationID)) {
       throw new CredentialValidationError(
         "Invalid Application ID. It should be Mongo ID"
       );
     }
-    if (this.ApplicationToken.length < 5) {
+    if (this.applicationToken.length < 5) {
       throw new CredentialValidationError("Invalid Application Token");
     }
   }
 }
 
-module.exports = Credential;
+module.exports = ApplicationConfig;

@@ -3,6 +3,7 @@ const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
 const axios = require("axios");
 const { transformRequestOptions } = require("./TransformRequestOptions.js");
 const { sign } = require("./RequestSigner");
+const FDKError = require("./FDKError");
 const DEFAULT_DOMAIN = "https://api.fyndx0.de";
 
 function getTransformer(config) {
@@ -82,7 +83,21 @@ fdkAxios.interceptors.response.use(
     return response.data; // IF 2XX then return response.data only
   },
   function (error) {
-    return Promise.reject(error.response && error.response.statusText); // Any status codes that falls outside the range of 2xx cause this function to trigger
+    if (error.response) {
+      // Request made and server responded
+      throw new FDKError(
+        error.response.data.message || error.message,
+        error.response.data.stack || error.stack,
+        error.response.statusText,
+        error.response.status
+      );
+    } else if (error.request) {
+      // The request was made but no error.response was received
+      throw new FDKError(error.message, error.stack, error.code, error.code);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      throw new FDKError(error.message, error.stack);
+    }
   }
 );
 

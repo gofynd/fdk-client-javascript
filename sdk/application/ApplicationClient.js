@@ -13,7 +13,7 @@ const {
   Rewards,
   Feedback,
   PosCart,
-} = require("./Models");
+} = require("./ApplicationModels");
 
 class ApplicationClient {
   constructor(config) {

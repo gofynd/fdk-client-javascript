@@ -7,8 +7,6 @@ class CredentialValidationError extends Error {
 
 const MongoIDRegExp = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i;
 
-const DEFAULT_DOMAIN = "https://api.fynd.com";
-
 class ApplicationConfig {
   /**
    * @param  {object} _conf
@@ -18,7 +16,6 @@ class ApplicationConfig {
     this.applicationID = _conf.applicationID || "";
     this.applicationToken = _conf.applicationToken || "";
     this.opts = _opts || {};
-    this.domain = _conf.domain || DEFAULT_DOMAIN;
     this.validate();
   }
 
