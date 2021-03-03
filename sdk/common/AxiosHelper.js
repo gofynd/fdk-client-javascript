@@ -3,8 +3,6 @@ const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
 const axios = require("axios");
 const { transformRequestOptions } = require("./TransformRequestOptions.js");
 const { sign } = require("./RequestSigner");
-const DEFAULT_DOMAIN = "https://api.fyndx0.de";
-
 function getTransformer(config) {
   const { transformRequest } = config;
 
@@ -21,7 +19,7 @@ function getTransformer(config) {
   );
 }
 
-function requestInterceptorFn(options) {
+function interceptorFn(options) {
   return (config) => {
     if (!config.url) {
       throw new Error(
@@ -68,24 +66,19 @@ function requestInterceptorFn(options) {
         headers: headersToSign,
       };
       sign(signingOptions);
+      // console.log(signingOptions);
 
       config.headers = signingOptions.headers;
+      // console.log("config", config);
     }
     return config;
   };
 }
-const fdkAxios = axios.create({ baseURL: DEFAULT_DOMAIN });
+const fdkAxios = axios.create();
 
-fdkAxios.interceptors.request.use(requestInterceptorFn({}));
-fdkAxios.interceptors.response.use(
-  function (response) {
-    return response.data; // IF 2XX then return response.data only
-  },
-  function (error) {
-    return Promise.reject(error.response && error.response.statusText); // Any status codes that falls outside the range of 2xx cause this function to trigger
-  }
-);
+fdkAxios.interceptors.request.use(interceptorFn({}));
 
 module.exports = {
   fdkAxios,
+  interceptorFn,
 };
