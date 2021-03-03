@@ -1,7 +1,37 @@
 const APIClient = require("./api_client");
 const Configuration = require("./configuration");
 
-const {} = require("./schema");
+const {
+  TicketList,
+  TicketHistoryList,
+  CustomFormList,
+  CreateCustomFormPayload,
+  EditCustomFormPayload,
+  EditTicketPayload,
+  AgentChangePayload,
+  CreateVideoRoomResponse,
+  CreateVideoRoomPayload,
+  Filter,
+  TicketHistoryPayload,
+  CustomFormSubmissionPayload,
+  GetTokenForVideoRoomResponse,
+  GetParticipantsInsideVideoRoomResponse,
+  SubmitCustomFormResponse,
+  TicketContext,
+  CreatedOn,
+  Asset,
+  TicketContent,
+  APIError,
+  AddTicketPayload,
+  Priority,
+  Status,
+  Category,
+  SubmitButton,
+  PollForAssignment,
+  CustomForm,
+  TicketHistory,
+  Ticket,
+} = require("./schema");
 
 class Lead {
   constructor(_conf) {
