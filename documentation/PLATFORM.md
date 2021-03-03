@@ -45,10 +45,10 @@ Gets the list of company level tickets and/or ticket filters depending on query 
 
 ```javascript
 // Promise
-const promise = lead.getTickets(company_id,items,filters);
+const promise = lead.getTickets(companyId,items,filters);
 
 // Async/Await
-const data = await lead.getTickets(company_id,items,filters);
+const data = await lead.getTickets(companyId,items,filters);
 ```
 
 | Argument  |  Type  | Description |
@@ -458,10 +458,10 @@ Creates a company level ticket
 
 ```javascript
 // Promise
-const promise = lead.createTicket(company_id);
+const promise = lead.createTicket(companyId,body);
 
 // Async/Await
-const data = await lead.createTicket(company_id);
+const data = await lead.createTicket(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -696,10 +696,10 @@ Gets the list of Application level Tickets and/or ticket filters depending on qu
 
 ```javascript
 // Promise
-const promise = lead.getTickets(company_id,application_id,items,filters);
+const promise = lead.getTickets(companyId,applicationId,items,filters);
 
 // Async/Await
-const data = await lead.getTickets(company_id,application_id,items,filters);
+const data = await lead.getTickets(companyId,applicationId,items,filters);
 ```
 
 | Argument  |  Type  | Description |
@@ -1110,10 +1110,10 @@ Retreives ticket details of a company level ticket with ticket ID
 
 ```javascript
 // Promise
-const promise = lead.getTicket(company_id,ticket_id);
+const promise = lead.getTicket(companyId,ticketId);
 
 // Async/Await
-const data = await lead.getTicket(company_id,ticket_id);
+const data = await lead.getTicket(companyId,ticketId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1349,10 +1349,10 @@ Edits ticket details of a company level ticket
 
 ```javascript
 // Promise
-const promise = lead.editTicket(company_id,ticket_id);
+const promise = lead.editTicket(companyId,ticketId,body);
 
 // Async/Await
-const data = await lead.editTicket(company_id,ticket_id);
+const data = await lead.editTicket(companyId,ticketId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -1588,10 +1588,10 @@ Retreives ticket details of a application level ticket
 
 ```javascript
 // Promise
-const promise = lead.getTicket(company_id,application_id,ticket_id);
+const promise = lead.getTicket(companyId,applicationId,ticketId);
 
 // Async/Await
-const data = await lead.getTicket(company_id,application_id,ticket_id);
+const data = await lead.getTicket(companyId,applicationId,ticketId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1829,10 +1829,10 @@ Edits ticket details of a application level ticket
 
 ```javascript
 // Promise
-const promise = lead.editTicket(company_id,application_id,ticket_id);
+const promise = lead.editTicket(companyId,applicationId,ticketId,body);
 
 // Async/Await
-const data = await lead.editTicket(company_id,application_id,ticket_id);
+const data = await lead.editTicket(companyId,applicationId,ticketId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -2070,10 +2070,10 @@ Create history for specific company level ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistory(company_id,ticket_id);
+const promise = lead.createHistory(companyId,ticketId,body);
 
 // Async/Await
-const data = await lead.createHistory(company_id,ticket_id);
+const data = await lead.createHistory(companyId,ticketId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -2153,10 +2153,10 @@ Gets history list for specific company level ticket
 
 ```javascript
 // Promise
-const promise = lead.getTicketHistory(company_id,ticket_id);
+const promise = lead.getTicketHistory(companyId,ticketId);
 
 // Async/Await
-const data = await lead.getTicketHistory(company_id,ticket_id);
+const data = await lead.getTicketHistory(companyId,ticketId);
 ```
 
 | Argument  |  Type  | Description |
@@ -2340,10 +2340,10 @@ Create history for specific application level ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistory(company_id,application_id,ticket_id);
+const promise = lead.createHistory(companyId,applicationId,ticketId,body);
 
 // Async/Await
-const data = await lead.createHistory(company_id,application_id,ticket_id);
+const data = await lead.createHistory(companyId,applicationId,ticketId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -2424,10 +2424,10 @@ Gets history list for specific application level ticket
 
 ```javascript
 // Promise
-const promise = lead.getTicketHistory(company_id,application_id,ticket_id);
+const promise = lead.getTicketHistory(companyId,applicationId,ticketId);
 
 // Async/Await
-const data = await lead.getTicketHistory(company_id,application_id,ticket_id);
+const data = await lead.getTicketHistory(companyId,applicationId,ticketId);
 ```
 
 | Argument  |  Type  | Description |
@@ -2612,10 +2612,10 @@ Get specific custom form using it's slug
 
 ```javascript
 // Promise
-const promise = lead.getCustomForm(company_id,application_id,slug);
+const promise = lead.getCustomForm(companyId,applicationId,slug);
 
 // Async/Await
-const data = await lead.getCustomForm(company_id,application_id,slug);
+const data = await lead.getCustomForm(companyId,applicationId,slug);
 ```
 
 | Argument  |  Type  | Description |
@@ -2706,10 +2706,10 @@ Edit the given custom form
 
 ```javascript
 // Promise
-const promise = lead.editCustomForm(company_id,application_id,slug);
+const promise = lead.editCustomForm(companyId,applicationId,slug,body);
 
 // Async/Await
-const data = await lead.editCustomForm(company_id,application_id,slug);
+const data = await lead.editCustomForm(companyId,applicationId,slug,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -2810,10 +2810,10 @@ Get list of custom form
 
 ```javascript
 // Promise
-const promise = lead.getCustomForms(company_id,application_id);
+const promise = lead.getCustomForms(companyId,applicationId);
 
 // Async/Await
-const data = await lead.getCustomForms(company_id,application_id);
+const data = await lead.getCustomForms(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
@@ -2992,10 +2992,10 @@ Creates a new custom form
 
 ```javascript
 // Promise
-const promise = lead.createCustomForm(company_id,application_id);
+const promise = lead.createCustomForm(companyId,applicationId,body);
 
 // Async/Await
-const data = await lead.createCustomForm(company_id,application_id);
+const data = await lead.createCustomForm(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -3095,10 +3095,10 @@ Get Token to join a specific Video Room using it's unqiue name
 
 ```javascript
 // Promise
-const promise = lead.getTokenForVideoRoom(company_id,application_id,unique_name);
+const promise = lead.getTokenForVideoRoom(companyId,applicationId,uniqueName);
 
 // Async/Await
-const data = await lead.getTokenForVideoRoom(company_id,application_id,unique_name);
+const data = await lead.getTokenForVideoRoom(companyId,applicationId,uniqueName);
 ```
 
 | Argument  |  Type  | Description |
@@ -3147,10 +3147,10 @@ Get participants of a specific Video Room using it's unique name
 
 ```javascript
 // Promise
-const promise = lead.getVideoParticipants(company_id,application_id,unique_name);
+const promise = lead.getVideoParticipants(companyId,applicationId,uniqueName);
 
 // Async/Await
-const data = await lead.getVideoParticipants(company_id,application_id,unique_name);
+const data = await lead.getVideoParticipants(companyId,applicationId,uniqueName);
 ```
 
 | Argument  |  Type  | Description |
@@ -3199,10 +3199,10 @@ Get video room id
 
 ```javascript
 // Promise
-const promise = lead.createVideoRoom(company_id,application_id);
+const promise = lead.createVideoRoom(companyId,applicationId,body);
 
 // Async/Await
-const data = await lead.createVideoRoom(company_id,application_id);
+const data = await lead.createVideoRoom(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |

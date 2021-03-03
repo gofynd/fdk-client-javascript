@@ -337,10 +337,10 @@ Get the sizes of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductSizesBySlug(slug,store_id);
+const promise = catalog.getProductSizesBySlug(slug,storeId);
 
 // Async/Await
-const data = await catalog.getProductSizesBySlug(slug,store_id);
+const data = await catalog.getProductSizesBySlug(slug,storeId);
 ```
 
 | Argument  |  Type  | Description |
@@ -387,10 +387,10 @@ Get price a product size
 
 ```javascript
 // Promise
-const promise = catalog.getProductPriceBySlug(slug,size,pincode,store_id);
+const promise = catalog.getProductPriceBySlug(slug,size,pincode,storeId);
 
 // Async/Await
-const data = await catalog.getProductPriceBySlug(slug,size,pincode,store_id);
+const data = await catalog.getProductPriceBySlug(slug,size,pincode,storeId);
 ```
 
 | Argument  |  Type  | Description |
@@ -439,10 +439,10 @@ List sellers of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductSellersBySlug(slug,size,pincode,page_no,page_size);
+const promise = catalog.getProductSellersBySlug(slug,size,pincode,pageNo,pageSize);
 
 // Async/Await
-const data = await catalog.getProductSellersBySlug(slug,size,pincode,page_no,page_size);
+const data = await catalog.getProductSellersBySlug(slug,size,pincode,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -639,10 +639,10 @@ Get similar products
 
 ```javascript
 // Promise
-const promise = catalog.getProductSimilarByIdentifier(slug,similar_type);
+const promise = catalog.getProductSimilarByIdentifier(slug,similarType);
 
 // Async/Await
-const data = await catalog.getProductSimilarByIdentifier(slug,similar_type);
+const data = await catalog.getProductSimilarByIdentifier(slug,similarType);
 ```
 
 | Argument  |  Type  | Description |
@@ -738,10 +738,10 @@ Get the stock of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductStockByIds(item_id,alu,sku_code,ean,upc);
+const promise = catalog.getProductStockByIds(itemId,alu,skuCode,ean,upc);
 
 // Async/Await
-const data = await catalog.getProductStockByIds(item_id,alu,sku_code,ean,upc);
+const data = await catalog.getProductStockByIds(itemId,alu,skuCode,ean,upc);
 ```
 
 | Argument  |  Type  | Description |
@@ -791,10 +791,10 @@ Get the stock of a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductStockForTimeByIds(timestamp,page_size,page_id);
+const promise = catalog.getProductStockForTimeByIds(timestamp,pageSize,pageId);
 
 // Async/Await
-const data = await catalog.getProductStockForTimeByIds(timestamp,page_size,page_id);
+const data = await catalog.getProductStockForTimeByIds(timestamp,pageSize,pageId);
 ```
 
 | Argument  |  Type  | Description |
@@ -842,10 +842,10 @@ List the products
 
 ```javascript
 // Promise
-const promise = catalog.getProducts(q,f,filters,sort_on,page_id,page_size,page_no,page_type);
+const promise = catalog.getProducts(q,f,filters,sortOn,pageId,pageSize,pageNo,pageType);
 
 // Async/Await
-const data = await catalog.getProducts(q,f,filters,sort_on,page_id,page_size,page_no,page_type);
+const data = await catalog.getProducts(q,f,filters,sortOn,pageId,pageSize,pageNo,pageType);
 ```
 
 | Argument  |  Type  | Description |
@@ -898,10 +898,10 @@ List all the brands
 
 ```javascript
 // Promise
-const promise = catalog.getBrands(department,page_no,page_size);
+const promise = catalog.getBrands(department,pageNo,pageSize);
 
 // Async/Await
-const data = await catalog.getBrands(department,page_no,page_size);
+const data = await catalog.getBrands(department,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -1096,10 +1096,10 @@ List the products
 
 ```javascript
 // Promise
-const promise = catalog.getHomeProducts(sort_on,page_id,page_size);
+const promise = catalog.getHomeProducts(sortOn,pageId,pageSize);
 
 // Async/Await
-const data = await catalog.getHomeProducts(sort_on,page_id,page_size);
+const data = await catalog.getHomeProducts(sortOn,pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -1244,10 +1244,10 @@ List all the collections
 
 ```javascript
 // Promise
-const promise = catalog.getCollections(page_id,page_size);
+const promise = catalog.getCollections(pageId,pageSize);
 
 // Async/Await
-const data = await catalog.getCollections(page_id,page_size);
+const data = await catalog.getCollections(pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -1294,10 +1294,10 @@ Get the items in a collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollectionItemsBySlug(slug,f,filters,sort_on,page_id,page_size);
+const promise = catalog.getCollectionItemsBySlug(slug,f,filters,sortOn,pageId,pageSize);
 
 // Async/Await
-const data = await catalog.getCollectionItemsBySlug(slug,f,filters,sort_on,page_id,page_size);
+const data = await catalog.getCollectionItemsBySlug(slug,f,filters,sortOn,pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -1397,10 +1397,10 @@ Get a list of followed Products, Brands, Collections
 
 ```javascript
 // Promise
-const promise = catalog.getFollowedListing(collection_type);
+const promise = catalog.getFollowedListing(collectionType);
 
 // Async/Await
-const data = await catalog.getFollowedListing(collection_type);
+const data = await catalog.getFollowedListing(collectionType);
 ```
 
 | Argument  |  Type  | Description |
@@ -1446,10 +1446,10 @@ Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collection_type,collection_id);
+const promise = catalog.followById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.followById(collection_type,collection_id);
+const data = await catalog.followById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1496,10 +1496,10 @@ UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collection_type,collection_id);
+const promise = catalog.unfollowById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.unfollowById(collection_type,collection_id);
+const data = await catalog.unfollowById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1546,10 +1546,10 @@ Get Follow Count
 
 ```javascript
 // Promise
-const promise = catalog.getFollowerCountById(collection_type,collection_id);
+const promise = catalog.getFollowerCountById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.getFollowerCountById(collection_type,collection_id);
+const data = await catalog.getFollowerCountById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1596,10 +1596,10 @@ Get the Ids of followed product, brand and collection.
 
 ```javascript
 // Promise
-const promise = catalog.getFollowIds(collection_type);
+const promise = catalog.getFollowIds(collectionType);
 
 // Async/Await
-const data = await catalog.getFollowIds(collection_type);
+const data = await catalog.getFollowIds(collectionType);
 ```
 
 | Argument  |  Type  | Description |
@@ -1645,10 +1645,10 @@ List store meta information.
 
 ```javascript
 // Promise
-const promise = catalog.getStores(page_no,page_size,q,range,latitude,longitude);
+const promise = catalog.getStores(pageNo,pageSize,q,range,latitude,longitude);
 
 // Async/Await
-const data = await catalog.getStores(page_no,page_size,q,range,latitude,longitude);
+const data = await catalog.getStores(pageNo,pageSize,q,range,latitude,longitude);
 ```
 
 | Argument  |  Type  | Description |
@@ -1706,10 +1706,10 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = cart.getCart(uid,assign_card_id);
+const promise = cart.getCart(uid,assignCardId);
 
 // Async/Await
-const data = await cart.getCart(uid,assign_card_id);
+const data = await cart.getCart(uid,assignCardId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1775,10 +1775,10 @@ Add Items to Cart
 
 ```javascript
 // Promise
-const promise = cart.addItems();
+const promise = cart.addItems(body);
 
 // Async/Await
-const data = await cart.addItems();
+const data = await cart.addItems(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -2444,10 +2444,10 @@ Update Items already added to Cart
 
 ```javascript
 // Promise
-const promise = cart.updateCart();
+const promise = cart.updateCart(body);
 
 // Async/Await
-const data = await cart.updateCart();
+const data = await cart.updateCart(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -2916,10 +2916,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = cart.applyCoupon(i,b,p);
+const promise = cart.applyCoupon(body,i,b,p);
 
 // Async/Await
-const data = await cart.applyCoupon(i,b,p);
+const data = await cart.applyCoupon(body,i,b,p);
 ```
 
 | Argument  |  Type  | Description |
@@ -2993,10 +2993,10 @@ Get discount offers based on quantity
 
 ```javascript
 // Promise
-const promise = cart.getBulkDiscountOffers(item_id,article_id,uid,slug);
+const promise = cart.getBulkDiscountOffers(itemId,articleId,uid,slug);
 
 // Async/Await
-const data = await cart.getBulkDiscountOffers(item_id,article_id,uid,slug);
+const data = await cart.getBulkDiscountOffers(itemId,articleId,uid,slug);
 ```
 
 | Argument  |  Type  | Description |
@@ -3116,10 +3116,10 @@ Fetch Address
 
 ```javascript
 // Promise
-const promise = cart.getAddresses(uid,mobile_no,checkout_mode,tags,is_default);
+const promise = cart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
 
 // Async/Await
-const data = await cart.getAddresses(uid,mobile_no,checkout_mode,tags,is_default);
+const data = await cart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
 ```
 
 | Argument  |  Type  | Description |
@@ -3157,10 +3157,10 @@ Add Address to the account
 
 ```javascript
 // Promise
-const promise = cart.addAddress();
+const promise = cart.addAddress(body);
 
 // Async/Await
-const data = await cart.addAddress();
+const data = await cart.addAddress(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -3193,10 +3193,10 @@ Fetch Single Address
 
 ```javascript
 // Promise
-const promise = cart.getAddressById(id,uid,mobile_no,checkout_mode,tags,is_default);
+const promise = cart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefault);
 
 // Async/Await
-const data = await cart.getAddressById(id,uid,mobile_no,checkout_mode,tags,is_default);
+const data = await cart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefault);
 ```
 
 | Argument  |  Type  | Description |
@@ -3235,10 +3235,10 @@ Update Address alreay added to account
 
 ```javascript
 // Promise
-const promise = cart.updateAddress(id);
+const promise = cart.updateAddress(id,body);
 
 // Async/Await
-const data = await cart.updateAddress(id);
+const data = await cart.updateAddress(id,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -3309,10 +3309,10 @@ Select Address from All Addresses
 
 ```javascript
 // Promise
-const promise = cart.selectAddress();
+const promise = cart.selectAddress(body);
 
 // Async/Await
-const data = await cart.selectAddress();
+const data = await cart.selectAddress(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -3381,10 +3381,10 @@ Get Cart Payment for valid coupon
 
 ```javascript
 // Promise
-const promise = cart.getPaymentModes(uid,address_id,payment_mode,payment_identifier,aggregator_name,merchant_code);
+const promise = cart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
 
 // Async/Await
-const data = await cart.getPaymentModes(uid,address_id,payment_mode,payment_identifier,aggregator_name,merchant_code);
+const data = await cart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
 ```
 
 | Argument  |  Type  | Description |
@@ -3423,10 +3423,10 @@ Update Cart Payment
 
 ```javascript
 // Promise
-const promise = cart.selectPaymentMode(uid);
+const promise = cart.selectPaymentMode(body,uid);
 
 // Async/Await
-const data = await cart.selectPaymentMode(uid);
+const data = await cart.selectPaymentMode(body,uid);
 ```
 
 | Argument  |  Type  | Description |
@@ -3460,10 +3460,10 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = cart.getShipments(p,uid,address_id);
+const promise = cart.getShipments(p,uid,addressId);
 
 // Async/Await
-const data = await cart.getShipments(p,uid,address_id);
+const data = await cart.getShipments(p,uid,addressId);
 ```
 
 | Argument  |  Type  | Description |
@@ -4151,10 +4151,10 @@ Checkout Cart
 
 ```javascript
 // Promise
-const promise = cart.checkoutCart();
+const promise = cart.checkoutCart(body);
 
 // Async/Await
-const data = await cart.checkoutCart();
+const data = await cart.checkoutCart(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -4564,10 +4564,10 @@ Update Cart Meta
 
 ```javascript
 // Promise
-const promise = cart.updateCartMeta(uid);
+const promise = cart.updateCartMeta(body,uid);
 
 // Async/Await
-const data = await cart.updateCartMeta(uid);
+const data = await cart.updateCartMeta(body,uid);
 ```
 
 | Argument  |  Type  | Description |
@@ -4613,10 +4613,10 @@ Generate Cart sharing link token
 
 ```javascript
 // Promise
-const promise = cart.getCartShareLink();
+const promise = cart.getCartShareLink(body);
 
 // Async/Await
-const data = await cart.getCartShareLink();
+const data = await cart.getCartShareLink(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -5282,10 +5282,10 @@ Create history for specific Ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistoryForTicket(ticket_id);
+const promise = lead.createHistoryForTicket(ticketId,body);
 
 // Async/Await
-const data = await lead.createHistoryForTicket(ticket_id);
+const data = await lead.createHistoryForTicket(ticketId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -5364,10 +5364,10 @@ Create Ticket
 
 ```javascript
 // Promise
-const promise = lead.createTicket();
+const promise = lead.createTicket(body);
 
 // Async/Await
-const data = await lead.createTicket();
+const data = await lead.createTicket(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -5694,10 +5694,10 @@ Submit Response for a specific Custom Form using it's slug
 
 ```javascript
 // Promise
-const promise = lead.submitCustomForm(slug);
+const promise = lead.submitCustomForm(slug,body);
 
 // Async/Await
-const data = await lead.submitCustomForm(slug);
+const data = await lead.submitCustomForm(slug,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -5935,10 +5935,10 @@ Get participants of a specific Video Room using it's unique name
 
 ```javascript
 // Promise
-const promise = lead.getParticipantsInsideVideoRoom(unique_name);
+const promise = lead.getParticipantsInsideVideoRoom(uniqueName);
 
 // Async/Await
-const data = await lead.getParticipantsInsideVideoRoom(unique_name);
+const data = await lead.getParticipantsInsideVideoRoom(uniqueName);
 ```
 
 | Argument  |  Type  | Description |
@@ -5985,10 +5985,10 @@ Get Token to join a specific Video Room using it's unqiue name
 
 ```javascript
 // Promise
-const promise = lead.getTokenForVideoRoom(unique_name);
+const promise = lead.getTokenForVideoRoom(uniqueName);
 
 // Async/Await
-const data = await lead.getTokenForVideoRoom(unique_name);
+const data = await lead.getTokenForVideoRoom(uniqueName);
 ```
 
 | Argument  |  Type  | Description |
@@ -6101,10 +6101,10 @@ Get theme for preview
 
 ```javascript
 // Promise
-const promise = theme.getThemeForPreview(theme_id);
+const promise = theme.getThemeForPreview(themeId);
 
 // Async/Await
-const data = await theme.getThemeForPreview(theme_id);
+const data = await theme.getThemeForPreview(themeId);
 ```
 
 | Argument  |  Type  | Description |
@@ -6168,10 +6168,10 @@ Login/Register with Facebook
 
 ```javascript
 // Promise
-const promise = user.loginWithFacebook();
+const promise = user.loginWithFacebook(body);
 
 // Async/Await
-const data = await user.loginWithFacebook();
+const data = await user.loginWithFacebook(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -6227,10 +6227,10 @@ Login/Register with Google
 
 ```javascript
 // Promise
-const promise = user.loginWithGoogle();
+const promise = user.loginWithGoogle(body);
 
 // Async/Await
-const data = await user.loginWithGoogle();
+const data = await user.loginWithGoogle(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -6286,10 +6286,10 @@ Login/Register with Google for android
 
 ```javascript
 // Promise
-const promise = user.loginWithGoogleAndroid();
+const promise = user.loginWithGoogleAndroid(body);
 
 // Async/Await
-const data = await user.loginWithGoogleAndroid();
+const data = await user.loginWithGoogleAndroid(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -6345,10 +6345,10 @@ Login/Register with Google for ios
 
 ```javascript
 // Promise
-const promise = user.loginWithGoogleIOS();
+const promise = user.loginWithGoogleIOS(body);
 
 // Async/Await
-const data = await user.loginWithGoogleIOS();
+const data = await user.loginWithGoogleIOS(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -6404,10 +6404,10 @@ Login/Register with OTP
 
 ```javascript
 // Promise
-const promise = user.loginWithOTP(platform);
+const promise = user.loginWithOTP(body,platform);
 
 // Async/Await
-const data = await user.loginWithOTP(platform);
+const data = await user.loginWithOTP(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -6464,10 +6464,10 @@ Login/Register with password
 
 ```javascript
 // Promise
-const promise = user.loginWithEmailAndPassword();
+const promise = user.loginWithEmailAndPassword(body);
 
 // Async/Await
-const data = await user.loginWithEmailAndPassword();
+const data = await user.loginWithEmailAndPassword(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -6523,10 +6523,10 @@ Reset Password
 
 ```javascript
 // Promise
-const promise = user.sendResetPasswordEmail(platform);
+const promise = user.sendResetPasswordEmail(body,platform);
 
 // Async/Await
-const data = await user.sendResetPasswordEmail(platform);
+const data = await user.sendResetPasswordEmail(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -6572,10 +6572,10 @@ Schema: `ResetPasswordSuccess`
 
 ```javascript
 // Promise
-const promise = user.forgotPassword();
+const promise = user.forgotPassword(body);
 
 // Async/Await
-const data = await user.forgotPassword();
+const data = await user.forgotPassword(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -6631,10 +6631,10 @@ Success
 
 ```javascript
 // Promise
-const promise = user.sendResetToken();
+const promise = user.sendResetToken(body);
 
 // Async/Await
-const data = await user.sendResetToken();
+const data = await user.sendResetToken(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -6679,10 +6679,10 @@ Login/Register with token
 
 ```javascript
 // Promise
-const promise = user.loginWithToken();
+const promise = user.loginWithToken(body);
 
 // Async/Await
-const data = await user.loginWithToken();
+const data = await user.loginWithToken(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -6750,10 +6750,10 @@ Registration Form
 
 ```javascript
 // Promise
-const promise = user.registerWithForm(platform);
+const promise = user.registerWithForm(body,platform);
 
 // Async/Await
-const data = await user.registerWithForm(platform);
+const data = await user.registerWithForm(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -6799,10 +6799,10 @@ Verify email
 
 ```javascript
 // Promise
-const promise = user.verifyEmail();
+const promise = user.verifyEmail(body);
 
 // Async/Await
-const data = await user.verifyEmail();
+const data = await user.verifyEmail(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -6847,10 +6847,10 @@ Verify mobile
 
 ```javascript
 // Promise
-const promise = user.verifyMobile();
+const promise = user.verifyMobile(body);
 
 // Async/Await
-const data = await user.verifyMobile();
+const data = await user.verifyMobile(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -6943,10 +6943,10 @@ Update user password
 
 ```javascript
 // Promise
-const promise = user.updatePassword();
+const promise = user.updatePassword(body);
 
 // Async/Await
-const data = await user.updatePassword();
+const data = await user.updatePassword(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -7039,10 +7039,10 @@ Send OTP on mobile
 
 ```javascript
 // Promise
-const promise = user.sendOTPOnMobile(platform);
+const promise = user.sendOTPOnMobile(body,platform);
 
 // Async/Await
-const data = await user.sendOTPOnMobile(platform);
+const data = await user.sendOTPOnMobile(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -7088,10 +7088,10 @@ Verify OTP on mobile
 
 ```javascript
 // Promise
-const promise = user.verifyMobileOTP(platform);
+const promise = user.verifyMobileOTP(body,platform);
 
 // Async/Await
-const data = await user.verifyMobileOTP(platform);
+const data = await user.verifyMobileOTP(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -7148,10 +7148,10 @@ Send OTP on email
 
 ```javascript
 // Promise
-const promise = user.sendOTPOnEmail(platform);
+const promise = user.sendOTPOnEmail(body,platform);
 
 // Async/Await
-const data = await user.sendOTPOnEmail(platform);
+const data = await user.sendOTPOnEmail(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -7197,10 +7197,10 @@ Verify OTP on email
 
 ```javascript
 // Promise
-const promise = user.verifyEmailOTP(platform);
+const promise = user.verifyEmailOTP(body,platform);
 
 // Async/Await
-const data = await user.verifyEmailOTP(platform);
+const data = await user.verifyEmailOTP(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -7413,10 +7413,10 @@ Edit Profile Details
 
 ```javascript
 // Promise
-const promise = user.updateProfile(platform);
+const promise = user.updateProfile(body,platform);
 
 // Async/Await
-const data = await user.updateProfile(platform);
+const data = await user.updateProfile(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -7473,10 +7473,10 @@ Add mobile number to profile
 
 ```javascript
 // Promise
-const promise = user.addMobileNumber(platform);
+const promise = user.addMobileNumber(body,platform);
 
 // Async/Await
-const data = await user.addMobileNumber(platform);
+const data = await user.addMobileNumber(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -7533,10 +7533,10 @@ Delete mobile number from profile
 
 ```javascript
 // Promise
-const promise = user.deleteMobileNumber(platform,active,primary,verified,country_code,phone);
+const promise = user.deleteMobileNumber(active,primary,verified,countryCode,phone,platform);
 
 // Async/Await
-const data = await user.deleteMobileNumber(platform,active,primary,verified,country_code,phone);
+const data = await user.deleteMobileNumber(active,primary,verified,countryCode,phone,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -7598,10 +7598,10 @@ Set mobile as primary
 
 ```javascript
 // Promise
-const promise = user.setMobileNumberAsPrimary();
+const promise = user.setMobileNumberAsPrimary(body);
 
 // Async/Await
-const data = await user.setMobileNumberAsPrimary();
+const data = await user.setMobileNumberAsPrimary(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -7657,10 +7657,10 @@ Send verification link to mobile
 
 ```javascript
 // Promise
-const promise = user.sendVerificationLinkToMobile(platform);
+const promise = user.sendVerificationLinkToMobile(body,platform);
 
 // Async/Await
-const data = await user.sendVerificationLinkToMobile(platform);
+const data = await user.sendVerificationLinkToMobile(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -7717,10 +7717,10 @@ Add email to profile
 
 ```javascript
 // Promise
-const promise = user.addEmail(platform);
+const promise = user.addEmail(body,platform);
 
 // Async/Await
-const data = await user.addEmail(platform);
+const data = await user.addEmail(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -7777,10 +7777,10 @@ Delete email from profile
 
 ```javascript
 // Promise
-const promise = user.deleteEmail(platform,active,primary,verified,email);
+const promise = user.deleteEmail(active,primary,verified,email,platform);
 
 // Async/Await
-const data = await user.deleteEmail(platform,active,primary,verified,email);
+const data = await user.deleteEmail(active,primary,verified,email,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -7841,10 +7841,10 @@ Set email as primary
 
 ```javascript
 // Promise
-const promise = user.setEmailAsPrimary();
+const promise = user.setEmailAsPrimary(body);
 
 // Async/Await
-const data = await user.setEmailAsPrimary();
+const data = await user.setEmailAsPrimary(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -7900,10 +7900,10 @@ Send verification link to email
 
 ```javascript
 // Promise
-const promise = user.sendVerificationLinkToEmail(platform);
+const promise = user.sendVerificationLinkToEmail(body,platform);
 
 // Async/Await
-const data = await user.sendVerificationLinkToEmail(platform);
+const data = await user.sendVerificationLinkToEmail(body,platform);
 ```
 
 | Argument  |  Type  | Description |
@@ -8145,10 +8145,10 @@ Get landing page
 
 ```javascript
 // Promise
-const promise = content.getLandingPage(x-device-platform);
+const promise = content.getLandingPage(xDevicePlatform);
 
 // Async/Await
-const data = await content.getLandingPage(x-device-platform);
+const data = await content.getLandingPage(xDevicePlatform);
 ```
 
 | Argument  |  Type  | Description |
@@ -8264,10 +8264,10 @@ Get navigation
 
 ```javascript
 // Promise
-const promise = content.getNavigations(x-device-platform);
+const promise = content.getNavigations(xDevicePlatform);
 
 // Async/Await
-const data = await content.getNavigations(x-device-platform);
+const data = await content.getNavigations(xDevicePlatform);
 ```
 
 | Argument  |  Type  | Description |
@@ -8443,10 +8443,10 @@ Get slideshow by slug
 
 ```javascript
 // Promise
-const promise = content.getSlideshow(slug,x-device-platform);
+const promise = content.getSlideshow(slug,xDevicePlatform);
 
 // Async/Await
-const data = await content.getSlideshow(slug,x-device-platform);
+const data = await content.getSlideshow(slug,xDevicePlatform);
 ```
 
 | Argument  |  Type  | Description |
@@ -8665,10 +8665,10 @@ Upsert communication consent
 
 ```javascript
 // Promise
-const promise = communication.upsertCommunicationConsent();
+const promise = communication.upsertCommunicationConsent(body);
 
 // Async/Await
-const data = await communication.upsertCommunicationConsent();
+const data = await communication.upsertCommunicationConsent(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -8724,10 +8724,10 @@ Upsert push token of a user
 
 ```javascript
 // Promise
-const promise = communication.upsertPushtoken();
+const promise = communication.upsertPushtoken(body);
 
 // Async/Await
-const data = await communication.upsertPushtoken();
+const data = await communication.upsertPushtoken(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -8951,10 +8951,10 @@ Create short link
 
 ```javascript
 // Promise
-const promise = share.createShortLink();
+const promise = share.createShortLink(body);
 
 // Async/Await
-const data = await share.createShortLink();
+const data = await share.createShortLink(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -9068,10 +9068,10 @@ This will complete the upload process. After successfully uploading file, you ca
 
 ```javascript
 // Promise
-const promise = filestorage.completeUpload(namespace,company_id);
+const promise = filestorage.completeUpload(namespace,companyId,body);
 
 // Async/Await
-const data = await filestorage.completeUpload(namespace,company_id);
+const data = await filestorage.completeUpload(namespace,companyId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -9136,10 +9136,10 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 ```javascript
 // Promise
-const promise = filestorage.startUpload(namespace,company_id);
+const promise = filestorage.startUpload(namespace,companyId,body);
 
 // Async/Await
-const data = await filestorage.startUpload(namespace,company_id);
+const data = await filestorage.startUpload(namespace,companyId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -9211,10 +9211,10 @@ Get payment gateway keys
 
 ```javascript
 // Promise
-const promise = payment.getAggregatorsConfig(x-api-token,refresh);
+const promise = payment.getAggregatorsConfig(xApiToken,refresh);
 
 // Async/Await
-const data = await payment.getAggregatorsConfig(x-api-token,refresh);
+const data = await payment.getAggregatorsConfig(xApiToken,refresh);
 ```
 
 | Argument  |  Type  | Description |
@@ -9273,10 +9273,10 @@ Attach a saved card to customer.
 
 ```javascript
 // Promise
-const promise = payment.attachCardToCustomer();
+const promise = payment.attachCardToCustomer(body);
 
 // Async/Await
-const data = await payment.attachCardToCustomer();
+const data = await payment.attachCardToCustomer(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -9394,10 +9394,10 @@ Fetch the list of saved cards of user.
 
 ```javascript
 // Promise
-const promise = payment.getActiveUserCards(force_refresh);
+const promise = payment.getActiveUserCards(forceRefresh);
 
 // Async/Await
-const data = await payment.getActiveUserCards(force_refresh);
+const data = await payment.getActiveUserCards(forceRefresh);
 ```
 
 | Argument  |  Type  | Description |
@@ -9455,10 +9455,10 @@ Delete an user card.
 
 ```javascript
 // Promise
-const promise = payment.deleteUserCard();
+const promise = payment.deleteUserCard(body);
 
 // Async/Await
-const data = await payment.deleteUserCard();
+const data = await payment.deleteUserCard(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -9515,10 +9515,10 @@ Validate customer for payment.
 
 ```javascript
 // Promise
-const promise = payment.verifyCustomerForPayment();
+const promise = payment.verifyCustomerForPayment(body);
 
 // Async/Await
-const data = await payment.verifyCustomerForPayment();
+const data = await payment.verifyCustomerForPayment(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -9575,10 +9575,10 @@ Verify and charge payment
 
 ```javascript
 // Promise
-const promise = payment.verifyAndChargePayment();
+const promise = payment.verifyAndChargePayment(body);
 
 // Async/Await
-const data = await payment.verifyAndChargePayment();
+const data = await payment.verifyAndChargePayment(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -9635,10 +9635,10 @@ Payment Initialisation server to server for UPI and BharatQR.
 
 ```javascript
 // Promise
-const promise = payment.initialisePayment();
+const promise = payment.initialisePayment(body);
 
 // Async/Await
-const data = await payment.initialisePayment();
+const data = await payment.initialisePayment(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -9695,10 +9695,10 @@ Continous polling to check status of payment on server.
 
 ```javascript
 // Promise
-const promise = payment.checkAndUpdatePaymentStatus();
+const promise = payment.checkAndUpdatePaymentStatus(body);
 
 // Async/Await
-const data = await payment.checkAndUpdatePaymentStatus();
+const data = await payment.checkAndUpdatePaymentStatus(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -9755,10 +9755,10 @@ Get All Valid Payment Options
 
 ```javascript
 // Promise
-const promise = payment.getPaymentModeRoutes(amount,cart_id,pincode,checkout_mode,refresh,assign_card_id,delivery_address);
+const promise = payment.getPaymentModeRoutes(amount,cartId,pincode,checkoutMode,refresh,assignCardId,deliveryAddress);
 
 // Async/Await
-const data = await payment.getPaymentModeRoutes(amount,cart_id,pincode,checkout_mode,refresh,assign_card_id,delivery_address);
+const data = await payment.getPaymentModeRoutes(amount,cartId,pincode,checkoutMode,refresh,assignCardId,deliveryAddress);
 ```
 
 | Argument  |  Type  | Description |
@@ -9822,10 +9822,10 @@ Get All Valid Payment Options for POS
 
 ```javascript
 // Promise
-const promise = payment.getPosPaymentModeRoutes(amount,cart_id,pincode,checkout_mode,refresh,assign_card_id,order_type,delivery_address);
+const promise = payment.getPosPaymentModeRoutes(amount,cartId,pincode,checkoutMode,orderType,refresh,assignCardId,deliveryAddress);
 
 // Async/Await
-const data = await payment.getPosPaymentModeRoutes(amount,cart_id,pincode,checkout_mode,refresh,assign_card_id,order_type,delivery_address);
+const data = await payment.getPosPaymentModeRoutes(amount,cartId,pincode,checkoutMode,orderType,refresh,assignCardId,deliveryAddress);
 ```
 
 | Argument  |  Type  | Description |
@@ -9890,10 +9890,10 @@ List User Beneficiary
 
 ```javascript
 // Promise
-const promise = payment.getUserBeneficiariesDetail(order_id);
+const promise = payment.getUserBeneficiariesDetail(orderId);
 
 // Async/Await
-const data = await payment.getUserBeneficiariesDetail(order_id);
+const data = await payment.getUserBeneficiariesDetail(orderId);
 ```
 
 | Argument  |  Type  | Description |
@@ -9951,10 +9951,10 @@ Ifsc Code Verification
 
 ```javascript
 // Promise
-const promise = payment.verifyIfscCode(ifsc_code);
+const promise = payment.verifyIfscCode(ifscCode);
 
 // Async/Await
-const data = await payment.verifyIfscCode(ifsc_code);
+const data = await payment.verifyIfscCode(ifscCode);
 ```
 
 | Argument  |  Type  | Description |
@@ -10012,10 +10012,10 @@ List Order Beneficiary
 
 ```javascript
 // Promise
-const promise = payment.getOrderBeneficiariesDetail(order_id);
+const promise = payment.getOrderBeneficiariesDetail(orderId);
 
 // Async/Await
-const data = await payment.getOrderBeneficiariesDetail(order_id);
+const data = await payment.getOrderBeneficiariesDetail(orderId);
 ```
 
 | Argument  |  Type  | Description |
@@ -10073,10 +10073,10 @@ Save Beneficiary details on otp validation.
 
 ```javascript
 // Promise
-const promise = payment.verifyOtpAndAddBeneficiaryForBank();
+const promise = payment.verifyOtpAndAddBeneficiaryForBank(body);
 
 // Async/Await
-const data = await payment.verifyOtpAndAddBeneficiaryForBank();
+const data = await payment.verifyOtpAndAddBeneficiaryForBank(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -10133,10 +10133,10 @@ Save bank details for cancelled/returned order
 
 ```javascript
 // Promise
-const promise = payment.addBeneficiaryDetails();
+const promise = payment.addBeneficiaryDetails(body);
 
 // Async/Await
-const data = await payment.addBeneficiaryDetails();
+const data = await payment.addBeneficiaryDetails(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -10193,10 +10193,10 @@ Send Otp on Adding wallet beneficiary
 
 ```javascript
 // Promise
-const promise = payment.verifyOtpAndAddBeneficiaryForWallet();
+const promise = payment.verifyOtpAndAddBeneficiaryForWallet(body);
 
 // Async/Await
-const data = await payment.verifyOtpAndAddBeneficiaryForWallet();
+const data = await payment.verifyOtpAndAddBeneficiaryForWallet(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -10253,10 +10253,10 @@ Mark Default Beneficiary For Refund
 
 ```javascript
 // Promise
-const promise = payment.updateDefaultBeneficiary();
+const promise = payment.updateDefaultBeneficiary(body);
 
 // Async/Await
-const data = await payment.updateDefaultBeneficiary();
+const data = await payment.updateDefaultBeneficiary(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -10320,10 +10320,10 @@ Get Orders for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getOrders(page_no,page_size,from_date,to_date);
+const promise = order.getOrders(pageNo,pageSize,fromDate,toDate);
 
 // Async/Await
-const data = await order.getOrders(page_no,page_size,from_date,to_date);
+const data = await order.getOrders(pageNo,pageSize,fromDate,toDate);
 ```
 
 | Argument  |  Type  | Description |
@@ -10384,10 +10384,10 @@ Get Order by order id for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getOrderById(order_id);
+const promise = order.getOrderById(orderId);
 
 // Async/Await
-const data = await order.getOrderById(order_id);
+const data = await order.getOrderById(orderId);
 ```
 
 | Argument  |  Type  | Description |
@@ -10445,10 +10445,10 @@ Get Shipment by shipment id and order id for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getShipmentById(shipment_id);
+const promise = order.getShipmentById(shipmentId);
 
 // Async/Await
-const data = await order.getShipmentById(shipment_id);
+const data = await order.getShipmentById(shipmentId);
 ```
 
 | Argument  |  Type  | Description |
@@ -10506,10 +10506,10 @@ Get Shipment reasons by shipment id and order id for application based on applic
 
 ```javascript
 // Promise
-const promise = order.getShipmentReasons(shipment_id);
+const promise = order.getShipmentReasons(shipmentId);
 
 // Async/Await
-const data = await order.getShipmentReasons(shipment_id);
+const data = await order.getShipmentReasons(shipmentId);
 ```
 
 | Argument  |  Type  | Description |
@@ -10567,10 +10567,10 @@ Update Shipment status by shipment id and order id for application based on appl
 
 ```javascript
 // Promise
-const promise = order.updateShipmentStatus(shipment_id);
+const promise = order.updateShipmentStatus(shipmentId,body);
 
 // Async/Await
-const data = await order.updateShipmentStatus(shipment_id);
+const data = await order.updateShipmentStatus(shipmentId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -10628,10 +10628,10 @@ Track Shipment by shipment id and order id for application based on application 
 
 ```javascript
 // Promise
-const promise = order.trackShipment(shipment_id);
+const promise = order.trackShipment(shipmentId);
 
 // Async/Await
-const data = await order.trackShipment(shipment_id);
+const data = await order.trackShipment(shipmentId);
 ```
 
 | Argument  |  Type  | Description |
@@ -10696,10 +10696,10 @@ Get reward points that could be earned on any catalogue product.
 
 ```javascript
 // Promise
-const promise = rewards.getPointsOnProduct();
+const promise = rewards.getPointsOnProduct(body);
 
 // Async/Await
-const data = await rewards.getPointsOnProduct();
+const data = await rewards.getPointsOnProduct(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -10744,10 +10744,10 @@ Calculates the discount on order-amount based on amount ranges configured in ord
 
 ```javascript
 // Promise
-const promise = rewards.getOrderDiscount();
+const promise = rewards.getOrderDiscount(body);
 
 // Async/Await
-const data = await rewards.getOrderDiscount();
+const data = await rewards.getOrderDiscount(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -10840,10 +10840,10 @@ Get list of points transactions.
 
 ```javascript
 // Promise
-const promise = rewards.getUserPointsHistory(pageID,pageSize);
+const promise = rewards.getUserPointsHistory(pageId,pageSize);
 
 // Async/Await
-const data = await rewards.getUserPointsHistory(pageID,pageSize);
+const data = await rewards.getUserPointsHistory(pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -10939,10 +10939,10 @@ Redeems referral code and credits points to users points account.
 
 ```javascript
 // Promise
-const promise = rewards.redeemReferralCode();
+const promise = rewards.redeemReferralCode(body);
 
 // Async/Await
-const data = await rewards.redeemReferralCode();
+const data = await rewards.redeemReferralCode(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -10994,10 +10994,10 @@ post a new abuse request
 
 ```javascript
 // Promise
-const promise = feedback.createAbuseReport();
+const promise = feedback.createAbuseReport(body);
 
 // Async/Await
-const data = await feedback.createAbuseReport();
+const data = await feedback.createAbuseReport(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -11042,10 +11042,10 @@ Update abuse details
 
 ```javascript
 // Promise
-const promise = feedback.updateAbuseReport();
+const promise = feedback.updateAbuseReport(body);
 
 // Async/Await
-const data = await feedback.updateAbuseReport();
+const data = await feedback.updateAbuseReport(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -11090,10 +11090,10 @@ Get list of abuse data
 
 ```javascript
 // Promise
-const promise = feedback.getAbuseReports(entity_id,entity_type,id,page_id,page_size);
+const promise = feedback.getAbuseReports(entityId,entityType,id,pageId,pageSize);
 
 // Async/Await
-const data = await feedback.getAbuseReports(entity_id,entity_type,id,page_id,page_size);
+const data = await feedback.getAbuseReports(entityId,entityType,id,pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -11191,10 +11191,10 @@ Add a new attribute request
 
 ```javascript
 // Promise
-const promise = feedback.createAttribute();
+const promise = feedback.createAttribute(body);
 
 // Async/Await
-const data = await feedback.createAttribute();
+const data = await feedback.createAttribute(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -11288,10 +11288,10 @@ Update attribute details
 
 ```javascript
 // Promise
-const promise = feedback.updateAttribute(slug);
+const promise = feedback.updateAttribute(slug,body);
 
 // Async/Await
-const data = await feedback.updateAttribute(slug);
+const data = await feedback.updateAttribute(slug,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -11337,10 +11337,10 @@ post a new comment
 
 ```javascript
 // Promise
-const promise = feedback.createComment();
+const promise = feedback.createComment(body);
 
 // Async/Await
-const data = await feedback.createComment();
+const data = await feedback.createComment(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -11385,10 +11385,10 @@ Update comment status
 
 ```javascript
 // Promise
-const promise = feedback.updateComment();
+const promise = feedback.updateComment(body);
 
 // Async/Await
-const data = await feedback.updateComment();
+const data = await feedback.updateComment(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -11433,10 +11433,10 @@ Get list of comments
 
 ```javascript
 // Promise
-const promise = feedback.getComments(entity_type,id,entity_id,user_id,page_id,page_size);
+const promise = feedback.getComments(entityType,id,entityId,userId,pageId,pageSize);
 
 // Async/Await
-const data = await feedback.getComments(entity_type,id,entity_id,user_id,page_id,page_size);
+const data = await feedback.getComments(entityType,id,entityId,userId,pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -11487,10 +11487,10 @@ Checks eligibility and cloud media config
 
 ```javascript
 // Promise
-const promise = feedback.checkEligibility(entity_type,entity_id);
+const promise = feedback.checkEligibility(entityType,entityId);
 
 // Async/Await
-const data = await feedback.checkEligibility(entity_type,entity_id);
+const data = await feedback.checkEligibility(entityType,entityId);
 ```
 
 | Argument  |  Type  | Description |
@@ -11585,10 +11585,10 @@ Add Media
 
 ```javascript
 // Promise
-const promise = feedback.createMedia();
+const promise = feedback.createMedia(body);
 
 // Async/Await
-const data = await feedback.createMedia();
+const data = await feedback.createMedia(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -11633,10 +11633,10 @@ Update Media
 
 ```javascript
 // Promise
-const promise = feedback.updateMedia();
+const promise = feedback.updateMedia(body);
 
 // Async/Await
-const data = await feedback.updateMedia();
+const data = await feedback.updateMedia(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -11681,10 +11681,10 @@ Get Media
 
 ```javascript
 // Promise
-const promise = feedback.getMedias(entity_type,entity_id,id,page_id,page_size);
+const promise = feedback.getMedias(entityType,entityId,id,pageId,pageSize);
 
 // Async/Await
-const data = await feedback.getMedias(entity_type,entity_id,id,page_id,page_size);
+const data = await feedback.getMedias(entityType,entityId,id,pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -11734,10 +11734,10 @@ Get a review summary
 
 ```javascript
 // Promise
-const promise = feedback.getReviewSummaries(entity_type,entity_id,id,page_id,page_size);
+const promise = feedback.getReviewSummaries(entityType,entityId,id,pageId,pageSize);
 
 // Async/Await
-const data = await feedback.getReviewSummaries(entity_type,entity_id,id,page_id,page_size);
+const data = await feedback.getReviewSummaries(entityType,entityId,id,pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -11788,10 +11788,10 @@ Add customer reviews
 
 ```javascript
 // Promise
-const promise = feedback.createReview();
+const promise = feedback.createReview(body);
 
 // Async/Await
-const data = await feedback.createReview();
+const data = await feedback.createReview(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -11837,10 +11837,10 @@ Update customer reviews
 
 ```javascript
 // Promise
-const promise = feedback.updateReview();
+const promise = feedback.updateReview(body);
 
 // Async/Await
-const data = await feedback.updateReview();
+const data = await feedback.updateReview(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -11886,10 +11886,10 @@ Get list of customer reviews
 
 ```javascript
 // Promise
-const promise = feedback.getReviews(entity_type,entity_id,id,user_id,media,rating,attribute_rating,facets,sort,page_id,page_size);
+const promise = feedback.getReviews(entityType,entityId,id,userId,media,rating,attributeRating,facets,sort,pageId,pageSize);
 
 // Async/Await
-const data = await feedback.getReviews(entity_type,entity_id,id,user_id,media,rating,attribute_rating,facets,sort,page_id,page_size);
+const data = await feedback.getReviews(entityType,entityId,id,userId,media,rating,attributeRating,facets,sort,pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -11945,10 +11945,10 @@ Get the templates for product or l3 type
 
 ```javascript
 // Promise
-const promise = feedback.getTemplates(template_id,entity_id,entity_type);
+const promise = feedback.getTemplates(templateId,entityId,entityType);
 
 // Async/Await
-const data = await feedback.getTemplates(template_id,entity_id,entity_type);
+const data = await feedback.getTemplates(templateId,entityId,entityType);
 ```
 
 | Argument  |  Type  | Description |
@@ -11996,10 +11996,10 @@ Create a new question
 
 ```javascript
 // Promise
-const promise = feedback.createQuestion();
+const promise = feedback.createQuestion(body);
 
 // Async/Await
-const data = await feedback.createQuestion();
+const data = await feedback.createQuestion(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -12045,10 +12045,10 @@ Update question
 
 ```javascript
 // Promise
-const promise = feedback.updateQuestion();
+const promise = feedback.updateQuestion(body);
 
 // Async/Await
-const data = await feedback.updateQuestion();
+const data = await feedback.updateQuestion(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -12093,10 +12093,10 @@ Get a list of QnA
 
 ```javascript
 // Promise
-const promise = feedback.getQuestionAndAnswers(entity_type,entity_id,id,show_answer,page_id,page_size);
+const promise = feedback.getQuestionAndAnswers(entityType,entityId,id,showAnswer,pageId,pageSize);
 
 // Async/Await
-const data = await feedback.getQuestionAndAnswers(entity_type,entity_id,id,show_answer,page_id,page_size);
+const data = await feedback.getQuestionAndAnswers(entityType,entityId,id,showAnswer,pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -12147,10 +12147,10 @@ Get list of votes
 
 ```javascript
 // Promise
-const promise = feedback.getVotes(id,ref_type);
+const promise = feedback.getVotes(id,refType);
 
 // Async/Await
-const data = await feedback.getVotes(id,ref_type);
+const data = await feedback.getVotes(id,refType);
 ```
 
 | Argument  |  Type  | Description |
@@ -12197,10 +12197,10 @@ Create a new vote
 
 ```javascript
 // Promise
-const promise = feedback.createVote();
+const promise = feedback.createVote(body);
 
 // Async/Await
-const data = await feedback.createVote();
+const data = await feedback.createVote(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -12245,10 +12245,10 @@ Update vote
 
 ```javascript
 // Promise
-const promise = feedback.updateVote();
+const promise = feedback.updateVote(body);
 
 // Async/Await
-const data = await feedback.updateVote();
+const data = await feedback.updateVote(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -12300,10 +12300,10 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = poscart.getCart(uid,assign_card_id);
+const promise = poscart.getCart(uid,assignCardId);
 
 // Async/Await
-const data = await poscart.getCart(uid,assign_card_id);
+const data = await poscart.getCart(uid,assignCardId);
 ```
 
 | Argument  |  Type  | Description |
@@ -12369,10 +12369,10 @@ Add Items to Cart
 
 ```javascript
 // Promise
-const promise = poscart.addItems();
+const promise = poscart.addItems(body);
 
 // Async/Await
-const data = await poscart.addItems();
+const data = await poscart.addItems(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -13038,10 +13038,10 @@ Update Items already added to Cart
 
 ```javascript
 // Promise
-const promise = poscart.updateCart();
+const promise = poscart.updateCart(body);
 
 // Async/Await
-const data = await poscart.updateCart();
+const data = await poscart.updateCart(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -13510,10 +13510,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = poscart.applyCoupon(i,b,p);
+const promise = poscart.applyCoupon(body,i,b,p);
 
 // Async/Await
-const data = await poscart.applyCoupon(i,b,p);
+const data = await poscart.applyCoupon(body,i,b,p);
 ```
 
 | Argument  |  Type  | Description |
@@ -13587,10 +13587,10 @@ Get discount offers based on quantity
 
 ```javascript
 // Promise
-const promise = poscart.getBulkDiscountOffers(item_id,article_id,uid,slug);
+const promise = poscart.getBulkDiscountOffers(itemId,articleId,uid,slug);
 
 // Async/Await
-const data = await poscart.getBulkDiscountOffers(item_id,article_id,uid,slug);
+const data = await poscart.getBulkDiscountOffers(itemId,articleId,uid,slug);
 ```
 
 | Argument  |  Type  | Description |
@@ -13710,10 +13710,10 @@ Fetch Address
 
 ```javascript
 // Promise
-const promise = poscart.getAddresses(uid,mobile_no,checkout_mode,tags,is_default);
+const promise = poscart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
 
 // Async/Await
-const data = await poscart.getAddresses(uid,mobile_no,checkout_mode,tags,is_default);
+const data = await poscart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
 ```
 
 | Argument  |  Type  | Description |
@@ -13751,10 +13751,10 @@ Add Address to the account
 
 ```javascript
 // Promise
-const promise = poscart.addAddress();
+const promise = poscart.addAddress(body);
 
 // Async/Await
-const data = await poscart.addAddress();
+const data = await poscart.addAddress(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -13787,10 +13787,10 @@ Fetch Single Address
 
 ```javascript
 // Promise
-const promise = poscart.getAddressById(id,uid,mobile_no,checkout_mode,tags,is_default);
+const promise = poscart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefault);
 
 // Async/Await
-const data = await poscart.getAddressById(id,uid,mobile_no,checkout_mode,tags,is_default);
+const data = await poscart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefault);
 ```
 
 | Argument  |  Type  | Description |
@@ -13829,10 +13829,10 @@ Update Address alreay added to account
 
 ```javascript
 // Promise
-const promise = poscart.updateAddress(id);
+const promise = poscart.updateAddress(id,body);
 
 // Async/Await
-const data = await poscart.updateAddress(id);
+const data = await poscart.updateAddress(id,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -13903,10 +13903,10 @@ Select Address from All Addresses
 
 ```javascript
 // Promise
-const promise = poscart.selectAddress();
+const promise = poscart.selectAddress(body);
 
 // Async/Await
-const data = await poscart.selectAddress();
+const data = await poscart.selectAddress(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -13975,10 +13975,10 @@ Get Cart Payment for valid coupon
 
 ```javascript
 // Promise
-const promise = poscart.getPaymentModes(uid,address_id,payment_mode,payment_identifier,aggregator_name,merchant_code);
+const promise = poscart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
 
 // Async/Await
-const data = await poscart.getPaymentModes(uid,address_id,payment_mode,payment_identifier,aggregator_name,merchant_code);
+const data = await poscart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
 ```
 
 | Argument  |  Type  | Description |
@@ -14017,10 +14017,10 @@ Update Cart Payment
 
 ```javascript
 // Promise
-const promise = poscart.selectPaymentMode(uid);
+const promise = poscart.selectPaymentMode(body,uid);
 
 // Async/Await
-const data = await poscart.selectPaymentMode(uid);
+const data = await poscart.selectPaymentMode(body,uid);
 ```
 
 | Argument  |  Type  | Description |
@@ -14054,10 +14054,10 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = poscart.getShipments(pick_at_store_uid,ordering_store_id,p,uid,address_id);
+const promise = poscart.getShipments(pickAtStoreUid,orderingStoreId,p,uid,addressId);
 
 // Async/Await
-const data = await poscart.getShipments(pick_at_store_uid,ordering_store_id,p,uid,address_id);
+const data = await poscart.getShipments(pickAtStoreUid,orderingStoreId,p,uid,addressId);
 ```
 
 | Argument  |  Type  | Description |
@@ -14747,10 +14747,10 @@ Checkout Cart
 
 ```javascript
 // Promise
-const promise = poscart.checkoutCart(uid);
+const promise = poscart.checkoutCart(body,uid);
 
 // Async/Await
-const data = await poscart.checkoutCart(uid);
+const data = await poscart.checkoutCart(body,uid);
 ```
 
 | Argument  |  Type  | Description |
@@ -15161,10 +15161,10 @@ Update Cart Meta
 
 ```javascript
 // Promise
-const promise = poscart.updateCartMeta(uid);
+const promise = poscart.updateCartMeta(body,uid);
 
 // Async/Await
-const data = await poscart.updateCartMeta(uid);
+const data = await poscart.updateCartMeta(body,uid);
 ```
 
 | Argument  |  Type  | Description |
@@ -15210,10 +15210,10 @@ Get available delivery modes for cart
 
 ```javascript
 // Promise
-const promise = poscart.getAvailableDeliveryModes(area_code,uid);
+const promise = poscart.getAvailableDeliveryModes(areaCode,uid);
 
 // Async/Await
-const data = await poscart.getAvailableDeliveryModes(area_code,uid);
+const data = await poscart.getAvailableDeliveryModes(areaCode,uid);
 ```
 
 | Argument  |  Type  | Description |
@@ -15248,10 +15248,10 @@ Get list of stores for give uids
 
 ```javascript
 // Promise
-const promise = poscart.getStoreAddressByUid(area_code);
+const promise = poscart.getStoreAddressByUid(areaCode);
 
 // Async/Await
-const data = await poscart.getStoreAddressByUid(area_code);
+const data = await poscart.getStoreAddressByUid(areaCode);
 ```
 
 | Argument  |  Type  | Description |
@@ -15285,10 +15285,10 @@ Generate Cart sharing link token
 
 ```javascript
 // Promise
-const promise = poscart.getCartShareLink();
+const promise = poscart.getCartShareLink(body);
 
 // Async/Await
-const data = await poscart.getCartShareLink();
+const data = await poscart.getCartShareLink(body);
 ```
 
 | Argument  |  Type  | Description |
