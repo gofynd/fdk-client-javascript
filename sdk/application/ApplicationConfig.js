@@ -10,7 +10,7 @@ const MongoIDRegExp = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i;
 class ApplicationConfig {
   /**
    * @param  {object} _conf
-   * @param  {object} _opts
+   * @param  {object} [_opts]
    */
   constructor(_conf, _opts) {
     this.applicationID = _conf.applicationID || "";

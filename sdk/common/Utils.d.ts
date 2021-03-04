@@ -1,1 +1,1 @@
-export function required(name: any): never;
+export function isRequired(name: any): never;
