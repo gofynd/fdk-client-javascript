@@ -1439,6 +1439,357 @@ class Content {
   }
 }
 
+class CompanyProfile {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+   *
+   * @summary:  Create a Seller account.
+   * @description:  This API allows to create a seller account on Fynd Platform.
+   * @param  {CompanyStoreSerializerRequest} body
+   **/
+  registerCompany(body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/company-profile/v1.0/onboard/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get company profile
+    * @description:  This API allows to view the company profile of the seller account.
+    * @param  {string} companyId - A `company_id` is a unique identifier for a particular seller account.
+    
+    **/
+  cbsOnboardGet(companyId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${companyId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Edit company profile
+   * @description:  This API allows to edit the company profile of the seller account.
+   * @param  {string} companyId - A `company_id` is a unique identifier for a particular seller account.
+   * @param  {CompanyStoreSerializerRequest} body
+   **/
+  cbsOnboardEdit(companyId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "patch",
+      `/service/platform/company-profile/v1.0/company/${companyId}`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get list of companies
+    * @description:  This API allows to view all the companies created by the seller.
+    * @param  {string} [sortBy] - Helps to sort the company list on the basis of last accessed, ascending or descending order.
+    * @param  {string} [q] - Query that is to be searched.
+    * @param  {string} [stage] - to filter companies on basis of verified or unverified companies.
+    * @param  {number} [pageNo] - The page number to navigate through the given set of results
+    * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 10.
+    
+    **/
+  companyList(sortBy, q, stage, pageNo, pageSize) {
+    const query = {};
+    query["sort_by"] = sortBy;
+    query["q"] = q;
+    query["stage"] = stage;
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/company-profile/v1.0/companies/`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get company metrics
+    * @description:  This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+    * @param  {string} companyId - A `company_id` is a unique identifier for a particular seller account.
+    
+    **/
+  getCompanyMetrics(companyId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${companyId}/metrics`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get data associated to countries
+    * @description:  This API gets meta associated to countries for eg valid documents.
+    * @param  {string} [type] - The type of entity. This can be company or store. By default it is company.
+    * @param  {string} [stage] - Ths stage from where the API is called. This can be profile & onboarding. By default it is profile.
+    
+    **/
+  getCountries(type, stage) {
+    const query = {};
+    query["type"] = type;
+    query["stage"] = stage;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/company-profile/v1.0/countries`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Verify GST/PAN against legal name.
+   * @description:  This API is used to verify legal name againt GST/PAN number.
+   * @param  {GstPanResponseSerializer} body
+   **/
+  verifyGstPan(body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/company-profile/v1.0/documents/verification/config`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Edit a brand.
+   * @description:  This API allows to edit meta of a brand.
+   * @param  {string} brandId - Id of the brand to be viewed.
+   * @param  {CreateUpdateBrandRequestSerializer} body
+   **/
+  editBrand(brandId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/company-profile/v1.0/brand/${brandId}`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get a single brand.
+    * @description:  This API helps to get data associated to a particular brand.
+    * @param  {string} brandId - Id of the brand to be viewed.
+    
+    **/
+  getBrand(brandId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/company-profile/v1.0/brand/${brandId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Create a Brand.
+   * @description:  This API allows to create a brand associated to a company.
+   * @param  {CreateUpdateBrandRequestSerializer} body
+   **/
+  createBrand(body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/company-profile/v1.0/onboard/brand`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get brands associated to a company
+    * @description:  This API helps to get view brands associated to a particular company.
+    * @param  {string} companyId - Id of the company.
+    
+    **/
+  getCompanyBrands(companyId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${companyId}/company-brand`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Create a company brand mapping.
+   * @description:  This API allows to create a company brand mapping, for a already existing brand in the system.
+   * @param  {string} companyId - Id of the company inside which the brand is to be mapped.
+   * @param  {CompanyBrandPostRequestSerializer} body
+   **/
+  createCompanyBrand(companyId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${companyId}/company-brand`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get list of locations
+    * @description:  This API allows to view all the locations asscoiated to a company.
+    * @param  {string} companyId - Id of the company whose locations are to fetched
+    * @param  {string} [storeType] - Helps to sort the location list on the basis of location type.
+    * @param  {string} [q] - Query that is to be searched.
+    * @param  {string} [stage] - to filter companies on basis of verified or unverified companies.
+    * @param  {number} [pageNo] - The page number to navigate through the given set of results
+    * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 10.
+    
+    **/
+  locationList(companyId, storeType, q, stage, pageNo, pageSize) {
+    const query = {};
+    query["store_type"] = storeType;
+    query["q"] = q;
+    query["stage"] = stage;
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${companyId}/location`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Create a location asscoiated to a company.
+   * @description:  This API allows to create a location associated to a company.
+   * @param  {string} companyId - Id of the company inside which the location is to be created.
+   * @param  {LocationSerializer} body
+   **/
+  createLocation(companyId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${companyId}/location`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Edit a location asscoiated to a company.
+   * @description:  This API allows to edit a location associated to a company.
+   * @param  {string} companyId - Id of the company inside which the location is to be created.
+   * @param  {string} locationId - Id of the location which you want to edit.
+   * @param  {LocationSerializer} body
+   **/
+  editLocation(companyId, locationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/company-profile/v1.0/company/${companyId}/location/${locationId}`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get a single location.
+    * @description:  This API helps to get data associated to a particular location.
+    * @param  {string} companyId - Id of the company inside which the location lies.
+    * @param  {string} locationId - Id of the location which you want to view.
+    
+    **/
+  getSingleLocation(companyId, locationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${companyId}/location/${locationId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get constant data asccoiated to company, brand, locations.
+    * @description:  This API gets constant data asccoiated to company, brand, locations.
+    * @param  {string} [choiceType] - Lists all the constants associated to the passed choice types. Acceptable choice types for the API are as follows, business_type, market_channels, company_type, address_type, brand_tier, store_type, account_type, weekday, admin_stage, stage, verification_stage, integration_type, identifier_type, item_dimension_measure_unit, item_weight_measure_unit, colors, channels, designations, manufacturer, variants, item_types, manufacturing_time_unit.
+    
+    **/
+  getChoices(choiceType) {
+    const query = {};
+    query["choice_type"] = choiceType;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/company-profile/v1.0/choices`,
+      query,
+      {}
+    );
+  }
+}
+
 class Inventory {
   constructor(_conf) {
     this._conf = _conf;
@@ -1623,5 +1974,6 @@ module.exports = {
   Theme,
   User,
   Content,
+  CompanyProfile,
   Inventory,
 };

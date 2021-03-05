@@ -668,6 +668,155 @@ export class Content {
      **/
     editTag(companyId: string, applicationId: string, tagId: string, body: any): any;
 }
+export class CompanyProfile {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+     *
+     * @summary:  Create a Seller account.
+     * @description:  This API allows to create a seller account on Fynd Platform.
+     * @param  {CompanyStoreSerializerRequest} body
+     **/
+    registerCompany(body: any): any;
+    /**
+      *
+      * @summary:  Get company profile
+      * @description:  This API allows to view the company profile of the seller account.
+      * @param  {string} companyId - A `company_id` is a unique identifier for a particular seller account.
+      
+      **/
+    cbsOnboardGet(companyId: string): any;
+    /**
+     *
+     * @summary:  Edit company profile
+     * @description:  This API allows to edit the company profile of the seller account.
+     * @param  {string} companyId - A `company_id` is a unique identifier for a particular seller account.
+     * @param  {CompanyStoreSerializerRequest} body
+     **/
+    cbsOnboardEdit(companyId: string, body: any): any;
+    /**
+      *
+      * @summary:  Get list of companies
+      * @description:  This API allows to view all the companies created by the seller.
+      * @param  {string} [sortBy] - Helps to sort the company list on the basis of last accessed, ascending or descending order.
+      * @param  {string} [q] - Query that is to be searched.
+      * @param  {string} [stage] - to filter companies on basis of verified or unverified companies.
+      * @param  {number} [pageNo] - The page number to navigate through the given set of results
+      * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 10.
+      
+      **/
+    companyList(sortBy?: string, q?: string, stage?: string, pageNo?: number, pageSize?: number): any;
+    /**
+      *
+      * @summary:  Get company metrics
+      * @description:  This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+      * @param  {string} companyId - A `company_id` is a unique identifier for a particular seller account.
+      
+      **/
+    getCompanyMetrics(companyId: string): any;
+    /**
+      *
+      * @summary:  Get data associated to countries
+      * @description:  This API gets meta associated to countries for eg valid documents.
+      * @param  {string} [type] - The type of entity. This can be company or store. By default it is company.
+      * @param  {string} [stage] - Ths stage from where the API is called. This can be profile & onboarding. By default it is profile.
+      
+      **/
+    getCountries(type?: string, stage?: string): any;
+    /**
+     *
+     * @summary:  Verify GST/PAN against legal name.
+     * @description:  This API is used to verify legal name againt GST/PAN number.
+     * @param  {GstPanResponseSerializer} body
+     **/
+    verifyGstPan(body: any): any;
+    /**
+     *
+     * @summary:  Edit a brand.
+     * @description:  This API allows to edit meta of a brand.
+     * @param  {string} brandId - Id of the brand to be viewed.
+     * @param  {CreateUpdateBrandRequestSerializer} body
+     **/
+    editBrand(brandId: string, body: any): any;
+    /**
+      *
+      * @summary:  Get a single brand.
+      * @description:  This API helps to get data associated to a particular brand.
+      * @param  {string} brandId - Id of the brand to be viewed.
+      
+      **/
+    getBrand(brandId: string): any;
+    /**
+     *
+     * @summary:  Create a Brand.
+     * @description:  This API allows to create a brand associated to a company.
+     * @param  {CreateUpdateBrandRequestSerializer} body
+     **/
+    createBrand(body: any): any;
+    /**
+      *
+      * @summary:  Get brands associated to a company
+      * @description:  This API helps to get view brands associated to a particular company.
+      * @param  {string} companyId - Id of the company.
+      
+      **/
+    getCompanyBrands(companyId: string): any;
+    /**
+     *
+     * @summary:  Create a company brand mapping.
+     * @description:  This API allows to create a company brand mapping, for a already existing brand in the system.
+     * @param  {string} companyId - Id of the company inside which the brand is to be mapped.
+     * @param  {CompanyBrandPostRequestSerializer} body
+     **/
+    createCompanyBrand(companyId: string, body: any): any;
+    /**
+      *
+      * @summary:  Get list of locations
+      * @description:  This API allows to view all the locations asscoiated to a company.
+      * @param  {string} companyId - Id of the company whose locations are to fetched
+      * @param  {string} [storeType] - Helps to sort the location list on the basis of location type.
+      * @param  {string} [q] - Query that is to be searched.
+      * @param  {string} [stage] - to filter companies on basis of verified or unverified companies.
+      * @param  {number} [pageNo] - The page number to navigate through the given set of results
+      * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 10.
+      
+      **/
+    locationList(companyId: string, storeType?: string, q?: string, stage?: string, pageNo?: number, pageSize?: number): any;
+    /**
+     *
+     * @summary:  Create a location asscoiated to a company.
+     * @description:  This API allows to create a location associated to a company.
+     * @param  {string} companyId - Id of the company inside which the location is to be created.
+     * @param  {LocationSerializer} body
+     **/
+    createLocation(companyId: string, body: any): any;
+    /**
+     *
+     * @summary:  Edit a location asscoiated to a company.
+     * @description:  This API allows to edit a location associated to a company.
+     * @param  {string} companyId - Id of the company inside which the location is to be created.
+     * @param  {string} locationId - Id of the location which you want to edit.
+     * @param  {LocationSerializer} body
+     **/
+    editLocation(companyId: string, locationId: string, body: any): any;
+    /**
+      *
+      * @summary:  Get a single location.
+      * @description:  This API helps to get data associated to a particular location.
+      * @param  {string} companyId - Id of the company inside which the location lies.
+      * @param  {string} locationId - Id of the location which you want to view.
+      
+      **/
+    getSingleLocation(companyId: string, locationId: string): any;
+    /**
+      *
+      * @summary:  Get constant data asccoiated to company, brand, locations.
+      * @description:  This API gets constant data asccoiated to company, brand, locations.
+      * @param  {string} [choiceType] - Lists all the constants associated to the passed choice types. Acceptable choice types for the API are as follows, business_type, market_channels, company_type, address_type, brand_tier, store_type, account_type, weekday, admin_stage, stage, verification_stage, integration_type, identifier_type, item_dimension_measure_unit, item_weight_measure_unit, colors, channels, designations, manufacturer, variants, item_types, manufacturing_time_unit.
+      
+      **/
+    getChoices(choiceType?: string): any;
+}
 export class Inventory {
     constructor(_conf: any);
     _conf: any;
