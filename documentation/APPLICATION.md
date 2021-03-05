@@ -44,8 +44,12 @@
     * [getDepartments](#getdepartments)
     * [getSearchResults](#getsearchresults)
     * [getCollections](#getcollections)
+    * [addCollection](#addcollection)
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
+    * [addCollectionItemsBySlug](#addcollectionitemsbyslug)
+    * [updateCollectionDetailBySlug](#updatecollectiondetailbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
+    * [deleteCollectionDetailBySlug](#deletecollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
     * [unfollowById](#unfollowbyid)
     * [followById](#followbyid)
@@ -139,6 +143,10 @@
     * [getAnnouncements](#getannouncements)
     * [getBlog](#getblog)
     * [getFaqs](#getfaqs)
+    * [getFaqCategories](#getfaqcategories)
+    * [getFaqByIdOrSlug](#getfaqbyidorslug)
+    * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
+    * [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
     * [getLandingPage](#getlandingpage)
     * [getLegalInformation](#getlegalinformation)
     * [getNavigations](#getnavigations)
@@ -265,6 +273,7 @@
     * [getPaymentModes](#getpaymentmodes)
     * [selectPaymentMode](#selectpaymentmode)
     * [getShipments](#getshipments)
+    * [updateShipments](#updateshipments)
     * [checkoutCart](#checkoutcart)
     * [updateCartMeta](#updatecartmeta)
     * [getAvailableDeliveryModes](#getavailabledeliverymodes)
@@ -298,7 +307,7 @@ const data = await catalog.getProductDetailBySlug(slug);
 | --------- | ----  | --- |
 | slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
 
-Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
+Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given ``slug``. If successful, returns a Product resource in the response body specified in `ProductDetail`
 
 *Success Response:*
 
@@ -851,10 +860,10 @@ const data = await catalog.getProducts(q,f,filters,sortOn,pageId,pageSize,pageNo
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
-| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
+| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts`` | 
 | filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
 | sortOn | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
-| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| pageId | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 | pageNo | integer | If page_type is number then pass it to fetch page items. Default is 1. | 
 | pageType | string | For pagination type should be cursor or number. Default is cursor. | 
@@ -1104,8 +1113,8 @@ const data = await catalog.getHomeProducts(sortOn,pageId,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| sortOn | string | Each response will contain **sort_on** param, which should be sent back to make pagination work. | 
-| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| sortOn | string | Each response will contain ``sort_on`` param, which should be sent back to make pagination work. | 
+| pageId | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
@@ -1252,7 +1261,7 @@ const data = await catalog.getCollections(pageId,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| pageId | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
@@ -1265,6 +1274,54 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
 
 
 Schema: `GetCollectionListingResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addCollection
+Add a Collection
+
+```javascript
+// Promise
+const promise = catalog.addCollection(body);
+
+// Async/Await
+const data = await catalog.addCollection(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
+
+*Success Response:*
+
+
+
+List of all the collections including the one you added. See example below or refer `CollectionDetailResponse` for details
+
+
+Schema: `CollectionDetailResponse`
 
 
 
@@ -1303,10 +1360,10 @@ const data = await catalog.getCollectionItemsBySlug(slug,f,filters,sortOn,pageId
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items | 
-| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
+| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts`` | 
 | filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
 | sortOn | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
-| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| pageId | string | Each response will contain ``page_id`` param, which should be sent back to make pagination work. | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 Get items in a collection specified by its `slug`.
@@ -1319,6 +1376,104 @@ The attached items of an collection. See example below or refer `ProductListingR
 
 
 Schema: `ProductListingResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addCollectionItemsBySlug
+Add items to a collection
+
+```javascript
+// Promise
+const promise = catalog.addCollectionItemsBySlug(slug,body);
+
+// Async/Await
+const data = await catalog.addCollectionItemsBySlug(slug,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to add items into. | 
+
+Adds items to a collection specified by its `slug`. See `CollectionItemsRequest` for the list of attributes needed to add items to an collection.
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful.
+
+
+Schema: `CollectionItemsResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCollectionDetailBySlug
+Update a collection
+
+```javascript
+// Promise
+const promise = catalog.updateCollectionDetailBySlug(slug);
+
+// Async/Await
+const data = await catalog.updateCollectionDetailBySlug(slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to update. | 
+
+Update a collection by it's slug. On successful request, returns the updated collection
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `CollectionsUpdateDetailResponse` for details.
+
+
+Schema: `CollectionsUpdateDetailResponse`
 
 
 
@@ -1368,6 +1523,55 @@ The Collection object. See example below or refer `CollectionDetailResponse` for
 
 
 Schema: `CollectionDetailResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteCollectionDetailBySlug
+Delete a Collection
+
+```javascript
+// Promise
+const promise = catalog.deleteCollectionDetailBySlug(slug);
+
+// Async/Await
+const data = await catalog.deleteCollectionDetailBySlug(slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to delete. | 
+
+Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `CollectionDetailViewDeleteResponse`
+
+
+Schema: `CollectionDetailViewDeleteResponse`
 
 
 
@@ -8140,20 +8344,214 @@ default
 ---
 
 
+#### getFaqCategories
+Get FAQ categories list
+
+```javascript
+// Promise
+const promise = content.getFaqCategories();
+
+// Async/Await
+const data = await content.getFaqCategories();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get list of FAQ categories
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoriesSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqByIdOrSlug
+Get frequently asked question
+
+```javascript
+// Promise
+const promise = content.getFaqByIdOrSlug(idOrSlug);
+
+// Async/Await
+const data = await content.getFaqByIdOrSlug(idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| idOrSlug | string | Slug or Id of FAQ | 
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FaqSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategoryBySlugOrId
+Get FAQ category by slug or id
+
+```javascript
+// Promise
+const promise = content.getFaqCategoryBySlugOrId(idOrSlug);
+
+// Async/Await
+const data = await content.getFaqCategoryBySlugOrId(idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| idOrSlug | string | Slug or Id of FAQ Category | 
+
+Get FAQ category by slug or id
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoryByIdOrSlugSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqsByCategoryIdOrSlug
+Get FAQs of a Faq Category id or slug
+
+```javascript
+// Promise
+const promise = content.getFaqsByCategoryIdOrSlug(idOrSlug);
+
+// Async/Await
+const data = await content.getFaqsByCategoryIdOrSlug(idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| idOrSlug | string | Faq category ID or slug | 
+
+Get FAQs of a Faq Category `id` or `slug`
+
+*Success Response:*
+
+
+
+Get FAQs by slug/id of FAQ Category
+
+
+Schema: `GetFaqSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getLandingPage
 Get landing page
 
 ```javascript
 // Promise
-const promise = content.getLandingPage(xDevicePlatform);
+const promise = content.getLandingPage();
 
 // Async/Await
-const data = await content.getLandingPage(xDevicePlatform);
+const data = await content.getLandingPage();
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| xDevicePlatform | string | Platform | 
 
 Use this API to fetch a landing page
 
@@ -8264,15 +8662,14 @@ Get navigation
 
 ```javascript
 // Promise
-const promise = content.getNavigations(xDevicePlatform);
+const promise = content.getNavigations();
 
 // Async/Await
-const data = await content.getNavigations(xDevicePlatform);
+const data = await content.getNavigations();
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| xDevicePlatform | string | Platform | 
 
 Use this API to fetch a navigation
 
@@ -8443,16 +8840,15 @@ Get slideshow by slug
 
 ```javascript
 // Promise
-const promise = content.getSlideshow(slug,xDevicePlatform);
+const promise = content.getSlideshow(slug);
 
 // Async/Await
-const data = await content.getSlideshow(slug,xDevicePlatform);
+const data = await content.getSlideshow(slug);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow | 
-| xDevicePlatform | string | Platform | 
 
 Use this API to fetch a slideshow using `slug`
 
@@ -14326,6 +14722,700 @@ Shipment Generated
         "shipment_type": "single_shipment",
         "fulfillment_type": "store",
         "dp_id": "29",
+        "dp_options": {
+          "4": {
+            "f_priority": 4,
+            "r_priority": 5,
+            "is_cod": true,
+            "is_prepaid": true,
+            "is_reverse": true
+          },
+          "7": {
+            "f_priority": 3,
+            "r_priority": 4,
+            "is_cod": true,
+            "is_prepaid": true,
+            "is_reverse": true
+          },
+          "29": {
+            "f_priority": 1,
+            "r_priority": 2,
+            "is_cod": true,
+            "is_prepaid": true,
+            "is_reverse": true
+          }
+        },
+        "promise": {
+          "timestamp": {
+            "min": 1566678108,
+            "max": 1567023708
+          },
+          "formatted": {
+            "min": "Aug 24",
+            "max": "Aug 28"
+          }
+        },
+        "box_type": "Small Courier bag",
+        "shipments": 1,
+        "items": [
+          {
+            "quantity": 1,
+            "product": {
+              "type": "product",
+              "uid": 820312,
+              "name": "Navy Blue Melange Shorts",
+              "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+              "brand": {
+                "uid": 610,
+                "name": "883 Police"
+              },
+              "categories": [
+                {
+                  "uid": 193,
+                  "name": "Shorts"
+                }
+              ],
+              "images": [
+                {
+                  "aspect_ratio": "16:25",
+                  "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+                  "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+                }
+              ],
+              "action": {
+                "type": "product",
+                "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+                "query": {
+                  "product_slug": [
+                    "883-police-navy-blue-melange-shorts-820312-4943a8"
+                  ]
+                }
+              }
+            },
+            "discount": "",
+            "bulk_offer": {},
+            "key": "820312_L",
+            "price": {
+              "base": {
+                "add_on": 1999,
+                "marked": 1999,
+                "effective": 1999,
+                "selling": 1999,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "add_on": 1999,
+                "marked": 1999,
+                "effective": 1999,
+                "selling": 1999,
+                "currency_code": "INR"
+              }
+            },
+            "article": {
+              "type": "article",
+              "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+              "size": "L",
+              "seller": {
+                "uid": 381,
+                "name": "INTERSOURCE GARMENTS PVT LTD"
+              },
+              "store": {
+                "uid": 3009,
+                "name": "Kormangala"
+              },
+              "quantity": 2,
+              "price": {
+                "base": {
+                  "marked": 1999,
+                  "effective": 1999,
+                  "currency_code": "INR"
+                },
+                "converted": {
+                  "marked": 1999,
+                  "effective": 1999,
+                  "currency_code": "INR"
+                }
+              }
+            },
+            "availability": {
+              "sizes": [
+                "L",
+                "XL",
+                "XXL"
+              ],
+              "other_store_quantity": 1,
+              "out_of_stock": false,
+              "deliverable": true,
+              "is_valid": true
+            },
+            "coupon_message": "",
+            "message": ""
+          }
+        ]
+      }
+    ],
+    "delivery_charge_info": "",
+    "coupon_text": "View all offers",
+    "gstin": null,
+    "checkout_mode": "self",
+    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
+    "restrict_checkout": false,
+    "is_valid": true
+  }
+}
+```
+
+Shipment Generation Failed
+```json
+{
+  "value": {
+    "items": [],
+    "cart_id": 7501,
+    "uid": "7501",
+    "success": true,
+    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
+    "payment_options": {
+      "payment_option": [
+        {
+          "name": "COD",
+          "display_name": "Cash on Delivery",
+          "display_priority": 1,
+          "payment_mode_id": 11,
+          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
+          "logo_url": {
+            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
+            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
+          },
+          "list": []
+        },
+        {
+          "name": "CARD",
+          "display_priority": 2,
+          "payment_mode_id": 2,
+          "display_name": "Card",
+          "list": []
+        },
+        {
+          "name": "NB",
+          "display_priority": 3,
+          "payment_mode_id": 3,
+          "display_name": "Net Banking",
+          "list": [
+            {
+              "aggregator_name": "Razorpay",
+              "bank_name": "ICICI Bank",
+              "bank_code": "ICIC",
+              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
+              "logo_url": {
+                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
+                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
+              },
+              "merchant_code": "NB_ICICI",
+              "display_priority": 1
+            }
+          ]
+        },
+        {
+          "name": "WL",
+          "display_priority": 4,
+          "payment_mode_id": 4,
+          "display_name": "Wallet",
+          "list": [
+            {
+              "wallet_name": "Paytm",
+              "wallet_code": "paytm",
+              "wallet_id": 4,
+              "merchant_code": "PAYTM",
+              "logo_url": {
+                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
+                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
+              },
+              "aggregator_name": "Juspay",
+              "display_priority": 1
+            }
+          ]
+        },
+        {
+          "name": "UPI",
+          "display_priority": 9,
+          "payment_mode_id": 6,
+          "display_name": "UPI",
+          "list": [
+            {
+              "aggregator_name": "UPI_Razorpay",
+              "name": "UPI",
+              "display_name": "BHIM UPI",
+              "code": "UPI",
+              "logo_url": {
+                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
+                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
+              },
+              "merchant_code": "UPI",
+              "timeout": 240,
+              "retry_count": 0,
+              "fynd_vpa": "shopsense.rzp@hdfcbank",
+              "intent_flow": true,
+              "intent_app_error_list": [
+                "com.csam.icici.bank.imobile",
+                "in.org.npci.upiapp",
+                "com.whatsapp"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "PL",
+          "display_priority": 11,
+          "payment_mode_id": 1,
+          "display_name": "Pay Later",
+          "list": [
+            {
+              "aggregator_name": "Simpl",
+              "name": "Simpl",
+              "code": "simpl",
+              "merchant_code": "SIMPL",
+              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
+              "logo_url": {
+                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
+                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
+              }
+            }
+          ]
+        }
+      ],
+      "payment_flows": {
+        "Simpl": {
+          "data": {
+            "gateway": {
+              "route": "simpl",
+              "entity": "sdk",
+              "is_customer_validation_required": true,
+              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
+              "sdk": {
+                "config": {
+                  "redirect": false,
+                  "callback_url": null,
+                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
+                },
+                "data": {
+                  "user_phone": "8452996729",
+                  "user_email": "paymentsdummy@gofynd.com"
+                }
+              },
+              "return_url": null
+            }
+          },
+          "api_link": "",
+          "payment_flow": "sdk"
+        },
+        "Juspay": {
+          "data": {},
+          "api_link": "https://sandbox.juspay.in/txns",
+          "payment_flow": "api"
+        },
+        "Razorpay": {
+          "data": {},
+          "api_link": "",
+          "payment_flow": "sdk"
+        },
+        "UPI_Razorpay": {
+          "data": {},
+          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
+          "payment_flow": "api"
+        },
+        "Fynd": {
+          "data": {},
+          "api_link": "",
+          "payment_flow": "api"
+        }
+      },
+      "default": {}
+    },
+    "user_type": "Store User",
+    "cod_charges": 0,
+    "order_id": null,
+    "cod_available": true,
+    "cod_message": "No additional COD charges applicable",
+    "delivery_charges": 0,
+    "delivery_charge_order_value": 0,
+    "delivery_slots": [
+      {
+        "date": "Sat, 24 Aug",
+        "delivery_slot": [
+          {
+            "delivery_slot_timing": "By 9:00 PM",
+            "default": true,
+            "delivery_slot_id": 1
+          }
+        ]
+      }
+    ],
+    "store_code": "",
+    "store_emps": [],
+    "breakup_values": {
+      "loyalty_points": {
+        "total": 0,
+        "applicable": 0,
+        "is_applied": false,
+        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+      },
+      "coupon": {
+        "type": "cash",
+        "code": "",
+        "uid": null,
+        "value": 0,
+        "is_applied": false,
+        "message": "Sorry! Invalid Coupon"
+      },
+      "raw": {
+        "cod_charge": 0,
+        "convenience_fee": 0,
+        "coupon": 0,
+        "delivery_charge": 0,
+        "discount": 0,
+        "fynd_cash": 0,
+        "gst_charges": 214.18,
+        "mrp_total": 1999,
+        "subtotal": 1999,
+        "total": 1999,
+        "vog": 1784.82,
+        "you_saved": 0
+      },
+      "display": [
+        {
+          "display": "MRP Total",
+          "key": "mrp_total",
+          "value": 1999,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Subtotal",
+          "key": "subtotal",
+          "value": 1999,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Total",
+          "key": "total",
+          "value": 1999,
+          "currency_code": "INR"
+        }
+      ]
+    },
+    "shipments": [],
+    "message": "Shipments could not be generated. Please Try again after some time.",
+    "delivery_charge_info": "",
+    "coupon_text": "View all offers",
+    "gstin": null,
+    "checkout_mode": "self",
+    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
+    "restrict_checkout": false,
+    "is_valid": false
+  }
+}
+```
+
+
+
+
+
+
+
+
+Unhandled api error
+
+
+Schema: `object`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateShipments
+Update shipment delivery type and quantity before checkout
+
+```javascript
+// Promise
+const promise = poscart.updateShipments(body,i,p,uid,addressId,orderType);
+
+// Async/Await
+const data = await poscart.updateShipments(body,i,p,uid,addressId,orderType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| i | boolean | Get items or not | 
+| p | boolean | Get payment options or not | 
+| uid | integer | Cart id | 
+| addressId | integer | Address id | 
+| orderType | string | Order is hand over or home delivery | 
+
+Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
+
+*Success Response:*
+
+
+
+OK
+
+
+Schema: `CartShipmentsResponse`
+
+
+*Examples:*
+
+
+Shipment Generated
+```json
+{
+  "value": {
+    "items": [],
+    "cart_id": 7501,
+    "uid": "7501",
+    "success": true,
+    "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
+    "payment_options": {
+      "payment_option": [
+        {
+          "name": "COD",
+          "display_name": "Cash on Delivery",
+          "display_priority": 1,
+          "payment_mode_id": 11,
+          "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
+          "logo_url": {
+            "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png",
+            "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/cod.png"
+          },
+          "list": []
+        },
+        {
+          "name": "CARD",
+          "display_priority": 2,
+          "payment_mode_id": 2,
+          "display_name": "Card",
+          "list": []
+        },
+        {
+          "name": "NB",
+          "display_priority": 3,
+          "payment_mode_id": 3,
+          "display_name": "Net Banking",
+          "list": [
+            {
+              "aggregator_name": "Razorpay",
+              "bank_name": "ICICI Bank",
+              "bank_code": "ICIC",
+              "url": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
+              "logo_url": {
+                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png",
+                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/NB_ICICI.png"
+              },
+              "merchant_code": "NB_ICICI",
+              "display_priority": 1
+            }
+          ]
+        },
+        {
+          "name": "WL",
+          "display_priority": 4,
+          "payment_mode_id": 4,
+          "display_name": "Wallet",
+          "list": [
+            {
+              "wallet_name": "Paytm",
+              "wallet_code": "paytm",
+              "wallet_id": 4,
+              "merchant_code": "PAYTM",
+              "logo_url": {
+                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_small.png",
+                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/paytm_logo_large.png"
+              },
+              "aggregator_name": "Juspay",
+              "display_priority": 1
+            }
+          ]
+        },
+        {
+          "name": "UPI",
+          "display_priority": 9,
+          "payment_mode_id": 6,
+          "display_name": "UPI",
+          "list": [
+            {
+              "aggregator_name": "UPI_Razorpay",
+              "name": "UPI",
+              "display_name": "BHIM UPI",
+              "code": "UPI",
+              "logo_url": {
+                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_100x78.png",
+                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/upi_150x100.png"
+              },
+              "merchant_code": "UPI",
+              "timeout": 240,
+              "retry_count": 0,
+              "fynd_vpa": "shopsense.rzp@hdfcbank",
+              "intent_flow": true,
+              "intent_app_error_list": [
+                "com.csam.icici.bank.imobile",
+                "in.org.npci.upiapp",
+                "com.whatsapp"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "PL",
+          "display_priority": 11,
+          "payment_mode_id": 1,
+          "display_name": "Pay Later",
+          "list": [
+            {
+              "aggregator_name": "Simpl",
+              "name": "Simpl",
+              "code": "simpl",
+              "merchant_code": "SIMPL",
+              "logo": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
+              "logo_url": {
+                "small": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png",
+                "large": "https://d2co8r51m5ca2d.cloudfront.net/payments_assets/simpl_logo.png"
+              }
+            }
+          ]
+        }
+      ],
+      "payment_flows": {
+        "Simpl": {
+          "data": {
+            "gateway": {
+              "route": "simpl",
+              "entity": "sdk",
+              "is_customer_validation_required": true,
+              "cust_validation_url": "https://api.addsale.com/gringotts/api/v1/validate-customer/",
+              "sdk": {
+                "config": {
+                  "redirect": false,
+                  "callback_url": null,
+                  "action_url": "https://api.addsale.com/avis/api/v1/payments/charge-gringotts-transaction/"
+                },
+                "data": {
+                  "user_phone": "8452996729",
+                  "user_email": "paymentsdummy@gofynd.com"
+                }
+              },
+              "return_url": null
+            }
+          },
+          "api_link": "",
+          "payment_flow": "sdk"
+        },
+        "Juspay": {
+          "data": {},
+          "api_link": "https://sandbox.juspay.in/txns",
+          "payment_flow": "api"
+        },
+        "Razorpay": {
+          "data": {},
+          "api_link": "",
+          "payment_flow": "sdk"
+        },
+        "UPI_Razorpay": {
+          "data": {},
+          "api_link": "https://api.addsale.com/gringotts/api/v1/external/payment-initialisation/",
+          "payment_flow": "api"
+        },
+        "Fynd": {
+          "data": {},
+          "api_link": "",
+          "payment_flow": "api"
+        }
+      },
+      "default": {}
+    },
+    "user_type": "Store User",
+    "cod_charges": 0,
+    "order_id": null,
+    "cod_available": true,
+    "cod_message": "No additional COD charges applicable",
+    "delivery_charges": 0,
+    "delivery_charge_order_value": 0,
+    "delivery_slots": [
+      {
+        "date": "Sat, 24 Aug",
+        "delivery_slot": [
+          {
+            "delivery_slot_timing": "By 9:00 PM",
+            "default": true,
+            "delivery_slot_id": 1
+          }
+        ]
+      }
+    ],
+    "store_code": "",
+    "store_emps": [],
+    "breakup_values": {
+      "loyalty_points": {
+        "total": 0,
+        "applicable": 0,
+        "is_applied": false,
+        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+      },
+      "coupon": {
+        "type": "cash",
+        "code": "",
+        "uid": null,
+        "value": 0,
+        "is_applied": false,
+        "message": "Sorry! Invalid Coupon"
+      },
+      "raw": {
+        "cod_charge": 0,
+        "convenience_fee": 0,
+        "coupon": 0,
+        "delivery_charge": 0,
+        "discount": 0,
+        "fynd_cash": 0,
+        "gst_charges": 214.18,
+        "mrp_total": 1999,
+        "subtotal": 1999,
+        "total": 1999,
+        "vog": 1784.82,
+        "you_saved": 0
+      },
+      "display": [
+        {
+          "display": "MRP Total",
+          "key": "mrp_total",
+          "value": 1999,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Subtotal",
+          "key": "subtotal",
+          "value": 1999,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Total",
+          "key": "total",
+          "value": 1999,
+          "currency_code": "INR"
+        }
+      ]
+    },
+    "shipments": [
+      {
+        "fulfillment_id": 3009,
+        "shipment_type": "single_shipment",
+        "fulfillment_type": "store",
+        "dp_id": "29",
+        "order_type": "PickAtStore",
         "dp_options": {
           "4": {
             "f_priority": 4,

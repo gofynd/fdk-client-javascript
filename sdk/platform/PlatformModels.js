@@ -23,7 +23,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `service/platform/lead/v1.0/company/${companyId}/ticket`,
+      `/service/platform/lead/v1.0/company/${companyId}/ticket`,
       query,
       {}
     );
@@ -42,7 +42,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `service/platform/lead/v1.0/company/${companyId}/ticket`,
+      `/service/platform/lead/v1.0/company/${companyId}/ticket`,
       query,
       body
     );
@@ -66,7 +66,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket`,
       query,
       {}
     );
@@ -86,7 +86,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}`,
+      `/service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}`,
       query,
       {}
     );
@@ -106,7 +106,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "put",
-      `service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}`,
+      `/service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}`,
       query,
       body
     );
@@ -127,7 +127,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `service/platform/lead/v1.0/company/${companyId}/ticket/application/${applicationId}/${ticketId}`,
+      `/service/platform/lead/v1.0/company/${companyId}/ticket/application/${applicationId}/${ticketId}`,
       query,
       {}
     );
@@ -148,7 +148,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "put",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}`,
       query,
       body
     );
@@ -168,7 +168,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}/history`,
+      `/service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}/history`,
       query,
       body
     );
@@ -188,7 +188,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}/history`,
+      `/service/platform/lead/v1.0/company/${companyId}/ticket/${ticketId}/history`,
       query,
       {}
     );
@@ -209,7 +209,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}/history`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}/history`,
       query,
       body
     );
@@ -230,7 +230,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}/history`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/ticket/${ticketId}/history`,
       query,
       {}
     );
@@ -251,7 +251,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form/${slug}`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form/${slug}`,
       query,
       {}
     );
@@ -272,7 +272,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "put",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form/${slug}`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form/${slug}`,
       query,
       body
     );
@@ -292,7 +292,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form`,
       query,
       {}
     );
@@ -312,7 +312,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/form`,
       query,
       body
     );
@@ -333,7 +333,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room/${uniqueName}/token`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room/${uniqueName}/token`,
       query,
       {}
     );
@@ -354,7 +354,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room/${uniqueName}/participants`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room/${uniqueName}/participants`,
       query,
       {}
     );
@@ -362,25 +362,1266 @@ class Lead {
 
   /**
    *
-   * @summary:  Get video room id
-   * @description:  Get video room id.
+   * @summary:  Open a video room.
+   * @description:  Open a video room.
    * @param  {string} companyId - Company ID of the application
    * @param  {string} applicationId - Application ID for video room
    * @param  {CreateVideoRoomPayload} body
    **/
-  createVideoRoom(companyId, applicationId, body) {
+  openVideoRoom(companyId, applicationId, body) {
     const query = {};
 
     return APIClient.execute(
       this._conf,
       "post",
-      `service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room`,
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Close the video room and force all participants to leave.
+    * @description:  Close the video room and force all participants to leave.
+    * @param  {string} companyId - Company ID of the application
+    * @param  {string} applicationId - Application ID for video room
+    
+    **/
+  closeVideoRoom(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      `/service/platform/lead/v1.0/company/${companyId}/application/${applicationId}/video/room`,
+      query,
+      {}
+    );
+  }
+}
+
+class Theme {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary:  Gets list of themes in theme library
+    * @description:  Gets list of themes in theme library
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 10.
+    * @param  {number} [pageNo] - Page number. Default is 1.
+    
+    **/
+  getThemeLibrary(companyId, applicationId, pageSize, pageNo) {
+    const query = {};
+    query["page_size"] = pageSize;
+    query["page_no"] = pageNo;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/library`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Add theme to theme library
+   * @description:  Add theme to theme library
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {AddThemeRequestSchema} body
+   **/
+  addToThemeLibrary(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/library`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Apply theme
+   * @description:  Apply theme
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {AddThemeRequestSchema} body
+   **/
+  applyTheme(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/apply`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Checks if theme is upgradable
+    * @description:  Checks if theme is upgradable
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} themeId - Theme ID
+    
+    **/
+  isUpgradable(companyId, applicationId, themeId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/${themeId}/upgradable`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Upgrades theme
+    * @description:  Upgrades theme
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} themeId - Theme ID
+    
+    **/
+  upgradeTheme(companyId, applicationId, themeId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/${themeId}/upgrade`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Gets public themes
+    * @description:  Gets public themes
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 10.
+    * @param  {number} [pageNo] - Page number. Default is 1.
+    
+    **/
+  getPublicThemes(companyId, applicationId, pageSize, pageNo) {
+    const query = {};
+    query["page_size"] = pageSize;
+    query["page_no"] = pageNo;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/public/library`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Create new theme
+   * @description:  Create new theme
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {ThemesSchema} body
+   **/
+  createTheme(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get applied theme
+    * @description:  Get applied theme
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    
+    **/
+  getAppliedTheme(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Gets fonts
+    * @description:  Gets fonts
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    
+    **/
+  getFonts(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/fonts`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Gets theme by id
+    * @description:  Gets theme by id
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} themeId - Theme ID
+    
+    **/
+  getThemeById(companyId, applicationId, themeId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/${themeId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Update theme
+   * @description:  Update theme
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {string} themeId - Theme ID
+   * @param  {ThemesSchema} body
+   **/
+  updateTheme(companyId, applicationId, themeId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/${themeId}`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Delete theme
+    * @description:  Delete theme
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} themeId - Theme ID
+    
+    **/
+  deleteTheme(companyId, applicationId, themeId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/${themeId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Gets theme for preview
+    * @description:  Gets theme for preview
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} themeId - Theme ID
+    
+    **/
+  getThemeForPreview(companyId, applicationId, themeId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/${themeId}/preview`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Publish theme
+    * @description:  Publish theme
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} themeId - Theme ID
+    
+    **/
+  publishTheme(companyId, applicationId, themeId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/${themeId}/publish`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Unpublish theme
+    * @description:  Unpublish theme
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} themeId - Theme ID
+    
+    **/
+  unpublishTheme(companyId, applicationId, themeId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/${themeId}/unpublish`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Archive theme
+    * @description:  Archive theme
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} themeId - Theme ID
+    
+    **/
+  archiveTheme(companyId, applicationId, themeId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/${themeId}/archive`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Unarchive theme
+    * @description:  Unarchive theme
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} themeId - Theme ID
+    
+    **/
+  unarchiveTheme(companyId, applicationId, themeId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/theme/v1.0/company/${companyId}/application/${applicationId}/${themeId}/unarchive`,
+      query,
+      {}
+    );
+  }
+}
+
+class User {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary:  Gets list of customers
+    * @description:  Used to get application customers list
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} [q] - The search query. This can be a partial or complete name of a either a product, brand or category
+    * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 10.
+    * @param  {number} [pageNo] - Page number. Default is 1.
+    
+    **/
+  getCustomers(companyId, applicationId, q, pageSize, pageNo) {
+    const query = {};
+    query["q"] = q;
+    query["page_size"] = pageSize;
+    query["page_no"] = pageNo;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/user/v1.0/company/${companyId}/application/${applicationId}/customers/list`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Search users
+    * @description:  Search users
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} [query] - The search query. This can be a partial or complete name of a either a product, brand or category
+    
+    **/
+  searchUsers(companyId, applicationId, query) {
+    const query = {};
+    query["query"] = query;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/user/v1.0/company/${companyId}/application/${applicationId}/customers/search`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get platform config
+    * @description:  Used to get platform config
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    
+    **/
+  getPlatformConfig(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/user/v1.0/company/${companyId}/application/${applicationId}/platform/config`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Update platform config
+   * @description:  Used to update platform config
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {PlatformSchema} body
+   **/
+  updatePlatformConfig(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/user/v1.0/company/${companyId}/application/${applicationId}/platform/config`,
       query,
       body
     );
   }
 }
 
+class Content {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary:  Get annoucements list
+    * @description:  Get list of announcements
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    
+    **/
+  getAnnouncementsList(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/announcements`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Create an annoucement
+   * @description:  Create an announcement
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {AdminAnnouncementSchema} body
+   **/
+  createAnnouncement(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/announcements`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get annoucement by id
+    * @description:  Get announcement by id
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} announcementId - Announcement ID
+    
+    **/
+  getAnnouncementById(companyId, applicationId, announcementId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/announcements/${announcementId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Update an annoucement
+   * @description:  Update an announcement
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {string} announcementId - Announcement ID
+   * @param  {AdminAnnouncementSchema} body
+   **/
+  updateAnnouncement(companyId, applicationId, announcementId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/announcements/${announcementId}`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Update schedule or published status of an annoucement
+   * @description:  Update schedule or published status of an announcement
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {string} announcementId - Announcement ID
+   * @param  {ScheduleSchema} body
+   **/
+  updateAnnouncementSchedule(companyId, applicationId, announcementId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "patch",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/announcements/${announcementId}`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Delete annoucement by id
+    * @description:  Delete announcement by id
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} announcementId - Announcement ID
+    
+    **/
+  deleteAnnouncement(companyId, applicationId, announcementId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/announcements/${announcementId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get FAQ categories list
+    * @description:  Get list of FAQ categories
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    
+    **/
+  getFaqCategories(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/faq/categories`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get FAQ category by slug or id
+    * @description:  Get FAQ category by slug or id
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} idOrSlug - Slug or Id of FAQ Category
+    
+    **/
+  getFaqCategoryBySlugOrId(companyId, applicationId, idOrSlug) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/faq/category/${idOrSlug}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Creates a FAQ category
+   * @description:  Add Faq Category
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {CreateFaqCategoryRequestSchema} body
+   **/
+  createFaqCategory(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/faq/category`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Updates a FAQ category
+   * @description:  Update Faq Category
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {string} id - Faq category ID
+   * @param  {UpdateFaqCategoryRequestSchema} body
+   **/
+  updateFaqCategory(companyId, applicationId, id, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/faq/category/${id}`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Deletes a FAQ category
+    * @description:  Delete Faq Category
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} id - Faq category ID
+    
+    **/
+  deleteFaqCategory(companyId, applicationId, id) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/faq/category/${id}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get FAQs of a Faq Category id or slug
+    * @description:  Get FAQs of a Faq Category `id` or `slug`
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} idOrSlug - Faq category ID or slug
+    
+    **/
+  getFaqsByCategoryIdOrSlug(companyId, applicationId, idOrSlug) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/faq/category/${idOrSlug}/faqs`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Creates FAQs for category whose `id` is specified
+   * @description:  Creates FAQs for category whose `id` is specified
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {string} categoryId - Faq category ID
+   * @param  {CreateFaqSchema} body
+   **/
+  addFaqToFaqCategory(companyId, applicationId, categoryId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/faq/category/${categoryId}/faqs`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Updates FAQ
+   * @description:  Updates FAQ
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {string} categoryId - Faq category ID
+   * @param  {string} faqId - Faq ID
+   * @param  {CreateFaqSchema} body
+   **/
+  updateFaq(companyId, applicationId, categoryId, faqId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/faq/category/${categoryId}/faq/${faqId}`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Delete FAQ
+    * @description:  Delete FAQ
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    * @param  {string} categoryId - Faq category ID
+    * @param  {string} faqId - Faq ID
+    
+    **/
+  deleteFaq(companyId, applicationId, categoryId, faqId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/faq/category/${categoryId}/faq/${faqId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get legal information
+    * @description:  Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    
+    **/
+  getLegalInformation(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/legal`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Save legal information
+   * @description:  Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {ApplicationLegal} body
+   **/
+  updateLegalInformation(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/legal`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get seo of application
+    * @description:  Get seo of application
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    
+    **/
+  getSeoConfiguration(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/seo`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Update seo of application
+   * @description:  Update seo of application
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {Seo} body
+   **/
+  updateSeoConfiguration(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/seo`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get support information
+    * @description:  Get contact details for customer support. Including emails and phone numbers
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    
+    **/
+  getSupportInformation(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/support`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Update support data of application
+   * @description:  Update support data of application
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {Support} body
+   **/
+  updateSupportInformation(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/support`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Creates Tag
+   * @description:  Create tags
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {CreateTagRequestSchema} body
+   **/
+  createTag(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/tags`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Updates a Tag
+   * @description:  Update tag
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {CreateTagRequestSchema} body
+   **/
+  updateTag(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/tags`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Delete tags for application
+    * @description:  Delete tags for application
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    
+    **/
+  deleteAllTags(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/tags`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get tags for application
+    * @description:  Get tags for application
+    * @param  {string} companyId - Company ID
+    * @param  {string} applicationId - Application ID
+    
+    **/
+  getTags(companyId, applicationId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/tags`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Adds a Tag
+   * @description:  Add tag
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {CreateTagRequestSchema} body
+   **/
+  addTag(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/tags/add`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Removes a Tag
+   * @description:  Remove a particular tag
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {RemoveHandpickedSchema} body
+   **/
+  removeTag(companyId, applicationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/tags/remove/handpicked`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Edits a Tag by Id
+   * @description:  Edits a particular tag
+   * @param  {string} companyId - Company ID
+   * @param  {string} applicationId - Application ID
+   * @param  {string} tagId - Tag ID
+   * @param  {UpdateHandpickedSchema} body
+   **/
+  editTag(companyId, applicationId, tagId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/content/v1.0/company/${companyId}/application/${applicationId}/tags/remove/handpicked/${tagId}`,
+      query,
+      body
+    );
+  }
+}
+
+class Inventory {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary:  Get All Job Configs
+    * @description:  REST Endpoint that returns all job configs
+    * @param  {number} [pageNo] - Page Number
+    * @param  {number} [pageSize] - Page Size
+    
+    **/
+  getJobs(pageNo, pageSize) {
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/configurations/v1.0/jobs`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Updates An Existing Job Config
+   * @description:  REST Endpoint that updates a job config
+   * @param  {string} [xUserData] -
+   * @param  {JobConfigDTO} body
+   **/
+  update(body, xUserData) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/configurations/v1.0/jobs`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary:  Creates A New Job Config
+   * @description:  REST Endpoint that creates a new job config
+   * @param  {string} [xUserData] -
+   * @param  {JobConfigDTO} body
+   **/
+  create(body, xUserData) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/configurations/v1.0/jobs`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get Job Configs Defaults
+    * @description:  REST Endpoint that returns default fields job configs by company And integration
+    
+    **/
+  getJobConfigDefaults() {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/configurations/v1.0/jobs/defaults`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get Job Configs For A Company
+    * @description:  REST Endpoint that returns all job configs for a company
+    * @param  {number} companyId - Company Id
+    * @param  {number} [pageNo] - Page Number
+    * @param  {number} [pageSize] - Page Size
+    
+    **/
+  getJobsByCompany(companyId, pageNo, pageSize) {
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/configurations/v1.0/jobs/company/${companyId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get Job Configs By Company And Integration
+    * @description:  REST Endpoint that returns all job configs by company And integration
+    * @param  {number} companyId - Company Id
+    * @param  {string} integrationId - Integration Id
+    * @param  {number} [pageNo] - Page Number
+    * @param  {number} [pageSize] - Page Size
+    
+    **/
+  getJobByCompanyAndIntegration(companyId, integrationId, pageNo, pageSize) {
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/configurations/v1.0/jobs/company/${companyId}/integration/${integrationId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get Job Config By Code
+    * @description:  REST Endpoint that returns job config by code
+    * @param  {string} code - Job Code
+    
+    **/
+  getJobByCode(code) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/configurations/v1.0/jobs/code/${code}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Get Job Codes By Company And Integration
+    * @description:  REST Endpoint that returns all job codes by company And integration
+    * @param  {number} companyId - Company Id
+    * @param  {string} integrationId - Integration Id
+    * @param  {number} [pageNo] - Page Number
+    * @param  {number} [pageSize] - Page Size
+    
+    **/
+  getJobCodesByCompanyAndIntegration(
+    companyId,
+    integrationId,
+    pageNo,
+    pageSize
+  ) {
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/configurations/v1.0/jobs/code/company/${companyId}/integration/${integrationId}`,
+      query,
+      {}
+    );
+  }
+}
+
 module.exports = {
   Lead,
+  Theme,
+  User,
+  Content,
+  Inventory,
 };
