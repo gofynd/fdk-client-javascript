@@ -1588,25 +1588,6 @@ class CompanyProfile {
   }
 
   /**
-   *
-   * @summary:  Edit a brand.
-   * @description:  This API allows to edit meta of a brand.
-   * @param  {string} brandId - Id of the brand to be viewed.
-   * @param  {CreateUpdateBrandRequestSerializer} body
-   **/
-  editBrand(brandId, body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/platform/company-profile/v1.0/brand/${brandId}`,
-      query,
-      body
-    );
-  }
-
-  /**
     *
     * @summary:  Get a single brand.
     * @description:  This API helps to get data associated to a particular brand.
@@ -1622,6 +1603,25 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/brand/${brandId}`,
       query,
       {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Edit a brand.
+   * @description:  This API allows to edit meta of a brand.
+   * @param  {string} brandId - Id of the brand to be viewed.
+   * @param  {CreateUpdateBrandRequestSerializer} body
+   **/
+  editBrand(brandId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/company-profile/v1.0/brand/${brandId}`,
+      query,
+      body
     );
   }
 
@@ -1730,26 +1730,6 @@ class CompanyProfile {
   }
 
   /**
-   *
-   * @summary:  Edit a location asscoiated to a company.
-   * @description:  This API allows to edit a location associated to a company.
-   * @param  {string} companyId - Id of the company inside which the location is to be created.
-   * @param  {string} locationId - Id of the location which you want to edit.
-   * @param  {LocationSerializer} body
-   **/
-  editLocation(companyId, locationId, body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/platform/company-profile/v1.0/company/${companyId}/location/${locationId}`,
-      query,
-      body
-    );
-  }
-
-  /**
     *
     * @summary:  Get a single location.
     * @description:  This API helps to get data associated to a particular location.
@@ -1766,6 +1746,26 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${companyId}/location/${locationId}`,
       query,
       {}
+    );
+  }
+
+  /**
+   *
+   * @summary:  Edit a location asscoiated to a company.
+   * @description:  This API allows to edit a location associated to a company.
+   * @param  {string} companyId - Id of the company inside which the location is to be created.
+   * @param  {string} locationId - Id of the location which you want to edit.
+   * @param  {LocationSerializer} body
+   **/
+  editLocation(companyId, locationId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/platform/company-profile/v1.0/company/${companyId}/location/${locationId}`,
+      query,
+      body
     );
   }
 

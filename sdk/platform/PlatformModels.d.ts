@@ -731,14 +731,6 @@ export class CompanyProfile {
      **/
     verifyGstPan(body: any): any;
     /**
-     *
-     * @summary:  Edit a brand.
-     * @description:  This API allows to edit meta of a brand.
-     * @param  {string} brandId - Id of the brand to be viewed.
-     * @param  {CreateUpdateBrandRequestSerializer} body
-     **/
-    editBrand(brandId: string, body: any): any;
-    /**
       *
       * @summary:  Get a single brand.
       * @description:  This API helps to get data associated to a particular brand.
@@ -746,6 +738,14 @@ export class CompanyProfile {
       
       **/
     getBrand(brandId: string): any;
+    /**
+     *
+     * @summary:  Edit a brand.
+     * @description:  This API allows to edit meta of a brand.
+     * @param  {string} brandId - Id of the brand to be viewed.
+     * @param  {CreateUpdateBrandRequestSerializer} body
+     **/
+    editBrand(brandId: string, body: any): any;
     /**
      *
      * @summary:  Create a Brand.
@@ -791,15 +791,6 @@ export class CompanyProfile {
      **/
     createLocation(companyId: string, body: any): any;
     /**
-     *
-     * @summary:  Edit a location asscoiated to a company.
-     * @description:  This API allows to edit a location associated to a company.
-     * @param  {string} companyId - Id of the company inside which the location is to be created.
-     * @param  {string} locationId - Id of the location which you want to edit.
-     * @param  {LocationSerializer} body
-     **/
-    editLocation(companyId: string, locationId: string, body: any): any;
-    /**
       *
       * @summary:  Get a single location.
       * @description:  This API helps to get data associated to a particular location.
@@ -808,6 +799,15 @@ export class CompanyProfile {
       
       **/
     getSingleLocation(companyId: string, locationId: string): any;
+    /**
+     *
+     * @summary:  Edit a location asscoiated to a company.
+     * @description:  This API allows to edit a location associated to a company.
+     * @param  {string} companyId - Id of the company inside which the location is to be created.
+     * @param  {string} locationId - Id of the location which you want to edit.
+     * @param  {LocationSerializer} body
+     **/
+    editLocation(companyId: string, locationId: string, body: any): any;
     /**
       *
       * @summary:  Get constant data asccoiated to company, brand, locations.
