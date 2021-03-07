@@ -632,12 +632,16 @@ class Cart {
     * @summary:  Fetch all Items Added to  Cart
     * @description:  Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
     * @param  {number} [uid] - 
+    * @param  {boolean} [i] - 
+    * @param  {boolean} [b] - 
     * @param  {number} [assignCardId] - 
     
     **/
-  getCart(uid, assignCardId) {
+  getCart(uid, i, b, assignCardId) {
     const query = {};
     query["uid"] = uid;
+    query["i"] = i;
+    query["b"] = b;
     query["assign_card_id"] = assignCardId;
 
     return APIClient.execute(
@@ -673,10 +677,14 @@ class Cart {
    *
    * @summary:  Add Items to Cart
    * @description:  <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
+   * @param  {boolean} [i] -
+   * @param  {boolean} [b] -
    * @param  {AddCartRequest} body
    **/
-  addItems(body) {
+  addItems(body, i, b) {
     const query = {};
+    query["i"] = i;
+    query["b"] = b;
 
     return APIClient.execute(
       this._conf,
@@ -691,10 +699,16 @@ class Cart {
    *
    * @summary:  Update Items already added to Cart
    * @description:  Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+   * @param  {number} [uid] -
+   * @param  {boolean} [i] -
+   * @param  {boolean} [b] -
    * @param  {UpdateCartRequest} body
    **/
-  updateCart(body) {
+  updateCart(body, uid, i, b) {
     const query = {};
+    query["uid"] = uid;
+    query["i"] = i;
+    query["b"] = b;
 
     return APIClient.execute(
       this._conf,
@@ -819,7 +833,7 @@ class Cart {
   /**
     *
     * @summary:  Fetch Address
-    * @description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    * @description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
     * @param  {number} [uid] - 
     * @param  {number} [mobileNo] - 
     * @param  {string} [checkoutMode] - 
@@ -847,8 +861,8 @@ class Cart {
   /**
    *
    * @summary:  Add Address to the account
-   * @description:  <p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
-   * @param  {SaveAddressRequest} body
+   * @description:  <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+   * @param  {UpdateAddressRequest} body
    **/
   addAddress(body) {
     const query = {};
@@ -865,7 +879,7 @@ class Cart {
   /**
     *
     * @summary:  Fetch Single Address
-    * @description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    * @description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
     * @param  {number} id - 
     * @param  {number} [uid] - 
     * @param  {number} [mobileNo] - 
@@ -933,10 +947,16 @@ class Cart {
    *
    * @summary:  Select Address from All Addresses
    * @description:  <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+   * @param  {number} [uid] -
+   * @param  {boolean} [i] -
+   * @param  {boolean} [b] -
    * @param  {SelectCartAddressRequest} body
    **/
-  selectAddress(body) {
+  selectAddress(body, uid, i, b) {
     const query = {};
+    query["uid"] = uid;
+    query["i"] = i;
+    query["b"] = b;
 
     return APIClient.execute(
       this._conf,
@@ -1011,13 +1031,15 @@ class Cart {
     * @param  {boolean} [p] - Get payment options or not
     * @param  {number} [uid] - Cart id
     * @param  {number} [addressId] - Address id
+    * @param  {number} [areaCode] - Destination pincode.
     
     **/
-  getShipments(p, uid, addressId) {
+  getShipments(p, uid, addressId, areaCode) {
     const query = {};
     query["p"] = p;
     query["uid"] = uid;
     query["address_id"] = addressId;
+    query["area_code"] = areaCode;
 
     return APIClient.execute(
       this._conf,
@@ -3719,12 +3741,16 @@ class PosCart {
     * @summary:  Fetch all Items Added to  Cart
     * @description:  Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
     * @param  {number} [uid] - 
+    * @param  {boolean} [i] - 
+    * @param  {boolean} [b] - 
     * @param  {number} [assignCardId] - 
     
     **/
-  getCart(uid, assignCardId) {
+  getCart(uid, i, b, assignCardId) {
     const query = {};
     query["uid"] = uid;
+    query["i"] = i;
+    query["b"] = b;
     query["assign_card_id"] = assignCardId;
 
     return APIClient.execute(
@@ -3760,10 +3786,14 @@ class PosCart {
    *
    * @summary:  Add Items to Cart
    * @description:  <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
+   * @param  {boolean} [i] -
+   * @param  {boolean} [b] -
    * @param  {AddCartRequest} body
    **/
-  addItems(body) {
+  addItems(body, i, b) {
     const query = {};
+    query["i"] = i;
+    query["b"] = b;
 
     return APIClient.execute(
       this._conf,
@@ -3778,10 +3808,16 @@ class PosCart {
    *
    * @summary:  Update Items already added to Cart
    * @description:  Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+   * @param  {number} [uid] -
+   * @param  {boolean} [i] -
+   * @param  {boolean} [b] -
    * @param  {UpdateCartRequest} body
    **/
-  updateCart(body) {
+  updateCart(body, uid, i, b) {
     const query = {};
+    query["uid"] = uid;
+    query["i"] = i;
+    query["b"] = b;
 
     return APIClient.execute(
       this._conf,
@@ -3906,7 +3942,7 @@ class PosCart {
   /**
     *
     * @summary:  Fetch Address
-    * @description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    * @description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
     * @param  {number} [uid] - 
     * @param  {number} [mobileNo] - 
     * @param  {string} [checkoutMode] - 
@@ -3934,8 +3970,8 @@ class PosCart {
   /**
    *
    * @summary:  Add Address to the account
-   * @description:  <p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
-   * @param  {SaveAddressRequest} body
+   * @description:  <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+   * @param  {UpdateAddressRequest} body
    **/
   addAddress(body) {
     const query = {};
@@ -3952,7 +3988,7 @@ class PosCart {
   /**
     *
     * @summary:  Fetch Single Address
-    * @description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+    * @description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
     * @param  {number} id - 
     * @param  {number} [uid] - 
     * @param  {number} [mobileNo] - 
@@ -4020,10 +4056,16 @@ class PosCart {
    *
    * @summary:  Select Address from All Addresses
    * @description:  <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+   * @param  {number} [uid] -
+   * @param  {boolean} [i] -
+   * @param  {boolean} [b] -
    * @param  {SelectCartAddressRequest} body
    **/
-  selectAddress(body) {
+  selectAddress(body, uid, i, b) {
     const query = {};
+    query["uid"] = uid;
+    query["i"] = i;
+    query["b"] = b;
 
     return APIClient.execute(
       this._conf,
@@ -4100,15 +4142,17 @@ class PosCart {
     * @param  {boolean} [p] - Get payment options or not
     * @param  {number} [uid] - Cart id
     * @param  {number} [addressId] - Address id
+    * @param  {number} [areaCode] - Destination pincode.
     
     **/
-  getShipments(pickAtStoreUid, orderingStoreId, p, uid, addressId) {
+  getShipments(pickAtStoreUid, orderingStoreId, p, uid, addressId, areaCode) {
     const query = {};
     query["pick_at_store_uid"] = pickAtStoreUid;
     query["ordering_store_id"] = orderingStoreId;
     query["p"] = p;
     query["uid"] = uid;
     query["address_id"] = addressId;
+    query["area_code"] = areaCode;
 
     return APIClient.execute(
       this._conf,

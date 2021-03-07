@@ -1711,15 +1711,17 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = cart.getCart(uid,assignCardId);
+const promise = cart.getCart(uid,i,b,assignCardId);
 
 // Async/Await
-const data = await cart.getCart(uid,assignCardId);
+const data = await cart.getCart(uid,i,b,assignCardId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
+| i | boolean |  | 
+| b | boolean |  | 
 | assignCardId | integer |  | 
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
@@ -1780,14 +1782,16 @@ Add Items to Cart
 
 ```javascript
 // Promise
-const promise = cart.addItems(body);
+const promise = cart.addItems(body,i,b);
 
 // Async/Await
-const data = await cart.addItems(body);
+const data = await cart.addItems(body,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| i | boolean |  | 
+| b | boolean |  | 
 
 <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
 
@@ -2449,14 +2453,17 @@ Update Items already added to Cart
 
 ```javascript
 // Promise
-const promise = cart.updateCart(body);
+const promise = cart.updateCart(body,uid,i,b);
 
 // Async/Await
-const data = await cart.updateCart(body);
+const data = await cart.updateCart(body,uid,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| uid | integer |  | 
+| i | boolean |  | 
+| b | boolean |  | 
 
 Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
@@ -2943,7 +2950,7 @@ const data = await cart.applyCoupon(body,i,b,p);
 Response of the Coupon object including all item details included in .the cart,coupons applied etc.
 
 
-Schema: `SaveCouponResponse`
+Schema: `CartResponse`
 
 
 
@@ -3135,16 +3142,16 @@ const data = await cart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
 | tags | integer |  | 
 | isDefault | boolean |  | 
 
-Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
 *Success Response:*
 
 
 
-Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
+Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressesResponse for details
 
 
-Schema: `GetAddressResponse`
+Schema: `GetAddressesResponse`
 
 
 
@@ -3171,7 +3178,7 @@ const data = await cart.addAddress(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-<p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+<p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
 
 *Success Response:*
 
@@ -3213,16 +3220,16 @@ const data = await cart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefau
 | tags | integer |  | 
 | isDefault | boolean |  | 
 
-Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
 *Success Response:*
 
 
 
-Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
+Returns The Address object which has list of all address saved for the account. See example below or refer AddressResponse for details
 
 
-Schema: `GetAddressResponse`
+Schema: `AddressResponse`
 
 
 
@@ -3314,14 +3321,17 @@ Select Address from All Addresses
 
 ```javascript
 // Promise
-const promise = cart.selectAddress(body);
+const promise = cart.selectAddress(body,uid,i,b);
 
 // Async/Await
-const data = await cart.selectAddress(body);
+const data = await cart.selectAddress(body,uid,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| uid | integer |  | 
+| i | boolean |  | 
+| b | boolean |  | 
 
 <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
 
@@ -3407,7 +3417,7 @@ Validate coupon for selected payment mode
 
 
 
-Cart Affiliates.
+Cart response with payment options
 
 
 Schema: `PaymentOptions`
@@ -3444,7 +3454,7 @@ Update Cart Payment for Your Account
 
 
 
-Cart Affiliates.
+Cart response with payment options
 
 
 Schema: `PaymentOptions`
@@ -3465,10 +3475,10 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = cart.getShipments(p,uid,addressId);
+const promise = cart.getShipments(p,uid,addressId,areaCode);
 
 // Async/Await
-const data = await cart.getShipments(p,uid,addressId);
+const data = await cart.getShipments(p,uid,addressId,areaCode);
 ```
 
 | Argument  |  Type  | Description |
@@ -3476,6 +3486,7 @@ const data = await cart.getShipments(p,uid,addressId);
 | p | boolean | Get payment options or not | 
 | uid | integer | Cart id | 
 | addressId | integer | Address id | 
+| areaCode | integer | Destination pincode. | 
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
@@ -12497,15 +12508,17 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = poscart.getCart(uid,assignCardId);
+const promise = poscart.getCart(uid,i,b,assignCardId);
 
 // Async/Await
-const data = await poscart.getCart(uid,assignCardId);
+const data = await poscart.getCart(uid,i,b,assignCardId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
+| i | boolean |  | 
+| b | boolean |  | 
 | assignCardId | integer |  | 
 
 Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
@@ -12566,14 +12579,16 @@ Add Items to Cart
 
 ```javascript
 // Promise
-const promise = poscart.addItems(body);
+const promise = poscart.addItems(body,i,b);
 
 // Async/Await
-const data = await poscart.addItems(body);
+const data = await poscart.addItems(body,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| i | boolean |  | 
+| b | boolean |  | 
 
 <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
 
@@ -13235,14 +13250,17 @@ Update Items already added to Cart
 
 ```javascript
 // Promise
-const promise = poscart.updateCart(body);
+const promise = poscart.updateCart(body,uid,i,b);
 
 // Async/Await
-const data = await poscart.updateCart(body);
+const data = await poscart.updateCart(body,uid,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| uid | integer |  | 
+| i | boolean |  | 
+| b | boolean |  | 
 
 Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
 
@@ -13729,7 +13747,7 @@ const data = await poscart.applyCoupon(body,i,b,p);
 Response of the Coupon object including all item details included in .the cart,coupons applied etc.
 
 
-Schema: `SaveCouponResponse`
+Schema: `CartResponse`
 
 
 
@@ -13921,16 +13939,16 @@ const data = await poscart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault
 | tags | integer |  | 
 | isDefault | boolean |  | 
 
-Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
 *Success Response:*
 
 
 
-Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
+Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressesResponse for details
 
 
-Schema: `GetAddressResponse`
+Schema: `GetAddressesResponse`
 
 
 
@@ -13957,7 +13975,7 @@ const data = await poscart.addAddress(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-<p>Add Address to account. See `SaveAddressRequest` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+<p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
 
 *Success Response:*
 
@@ -13999,16 +14017,16 @@ const data = await poscart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDe
 | tags | integer |  | 
 | isDefault | boolean |  | 
 
-Get a addresses with the given id. If successful, returns a Address resource in the response body specified in GetAddressResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
 
 *Success Response:*
 
 
 
-Returns The Address object which has list of all address saved for the account. See example below or refer GetAddressResponse for details
+Returns The Address object which has list of all address saved for the account. See example below or refer AddressResponse for details
 
 
-Schema: `GetAddressResponse`
+Schema: `AddressResponse`
 
 
 
@@ -14100,14 +14118,17 @@ Select Address from All Addresses
 
 ```javascript
 // Promise
-const promise = poscart.selectAddress(body);
+const promise = poscart.selectAddress(body,uid,i,b);
 
 // Async/Await
-const data = await poscart.selectAddress(body);
+const data = await poscart.selectAddress(body,uid,i,b);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| uid | integer |  | 
+| i | boolean |  | 
+| b | boolean |  | 
 
 <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
 
@@ -14193,7 +14214,7 @@ Validate coupon for selected payment mode
 
 
 
-Cart Affiliates.
+Cart response with payment options
 
 
 Schema: `PaymentOptions`
@@ -14230,7 +14251,7 @@ Update Cart Payment for Your Account
 
 
 
-Cart Affiliates.
+Cart response with payment options
 
 
 Schema: `PaymentOptions`
@@ -14251,10 +14272,10 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = poscart.getShipments(pickAtStoreUid,orderingStoreId,p,uid,addressId);
+const promise = poscart.getShipments(pickAtStoreUid,orderingStoreId,p,uid,addressId,areaCode);
 
 // Async/Await
-const data = await poscart.getShipments(pickAtStoreUid,orderingStoreId,p,uid,addressId);
+const data = await poscart.getShipments(pickAtStoreUid,orderingStoreId,p,uid,addressId,areaCode);
 ```
 
 | Argument  |  Type  | Description |
@@ -14264,6 +14285,7 @@ const data = await poscart.getShipments(pickAtStoreUid,orderingStoreId,p,uid,add
 | p | boolean | Get payment options or not | 
 | uid | integer | Cart id | 
 | addressId | integer | Address id | 
+| areaCode | integer | Destination pincode. | 
 
 Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
 
