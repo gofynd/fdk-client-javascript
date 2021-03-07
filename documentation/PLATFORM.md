@@ -110,13 +110,14 @@
     * [getBrand](#getbrand)
     * [editBrand](#editbrand)
     * [createBrand](#createbrand)
-    * [getCompanyBrands](#getcompanybrands)
     * [createCompanyBrand](#createcompanybrand)
-    * [locationList](#locationlist)
+    * [getCompanyBrands](#getcompanybrands)
     * [createLocation](#createlocation)
+    * [locationList](#locationlist)
     * [getSingleLocation](#getsinglelocation)
     * [editLocation](#editlocation)
     * [getChoices](#getchoices)
+    * [validateSeller](#validateseller)
     
 
 * [Inventory](#Inventory)
@@ -6694,6 +6695,55 @@ Schema: `ErrorResponse`
 ---
 
 
+#### createCompanyBrand
+Create a company brand mapping.
+
+```javascript
+// Promise
+const promise = companyprofile.createCompanyBrand(companyId,body);
+
+// Async/Await
+const data = await companyprofile.createCompanyBrand(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the brand is to be mapped. | 
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCompanyBrands
 Get brands associated to a company
 
@@ -6743,22 +6793,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createCompanyBrand
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```javascript
 // Promise
-const promise = companyprofile.createCompanyBrand(companyId,body);
+const promise = companyprofile.createLocation(companyId,body);
 
 // Async/Await
-const data = await companyprofile.createCompanyBrand(companyId,body);
+const data = await companyprofile.createLocation(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
+| companyId | string | Id of the company inside which the location is to be created. | 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -6822,55 +6872,6 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
 
 Schema: `LocationListSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createLocation
-Create a location asscoiated to a company.
-
-```javascript
-// Promise
-const promise = companyprofile.createLocation(companyId,body);
-
-// Async/Await
-const data = await companyprofile.createLocation(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-
-This API allows to create a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -7020,6 +7021,55 @@ Choice object. See example below or refer `ChoicesResponseSchema` for details
 
 
 Schema: `ChoicesResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### validateSeller
+Validate a seller
+
+```javascript
+// Promise
+const promise = companyprofile.validateSeller(companyId);
+
+// Async/Await
+const data = await companyprofile.validateSeller(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the seller to be validated. | 
+
+This API helps in validating a seller and returns the Seller name
+
+*Success Response:*
+
+
+
+Validate response. See example below or refer `ValidateResponseSchema` for details
+
+
+Schema: `ValidateResponse`
 
 
 

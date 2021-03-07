@@ -754,6 +754,14 @@ export class CompanyProfile {
      **/
     createBrand(body: any): any;
     /**
+     *
+     * @summary:  Create a company brand mapping.
+     * @description:  This API allows to create a company brand mapping, for a already existing brand in the system.
+     * @param  {string} companyId - Id of the company inside which the brand is to be mapped.
+     * @param  {CompanyBrandPostRequestSerializer} body
+     **/
+    createCompanyBrand(companyId: string, body: any): any;
+    /**
       *
       * @summary:  Get brands associated to a company
       * @description:  This API helps to get view brands associated to a particular company.
@@ -763,12 +771,12 @@ export class CompanyProfile {
     getCompanyBrands(companyId: string): any;
     /**
      *
-     * @summary:  Create a company brand mapping.
-     * @description:  This API allows to create a company brand mapping, for a already existing brand in the system.
-     * @param  {string} companyId - Id of the company inside which the brand is to be mapped.
-     * @param  {CompanyBrandPostRequestSerializer} body
+     * @summary:  Create a location asscoiated to a company.
+     * @description:  This API allows to create a location associated to a company.
+     * @param  {string} companyId - Id of the company inside which the location is to be created.
+     * @param  {LocationSerializer} body
      **/
-    createCompanyBrand(companyId: string, body: any): any;
+    createLocation(companyId: string, body: any): any;
     /**
       *
       * @summary:  Get list of locations
@@ -782,14 +790,6 @@ export class CompanyProfile {
       
       **/
     locationList(companyId: string, storeType?: string, q?: string, stage?: string, pageNo?: number, pageSize?: number): any;
-    /**
-     *
-     * @summary:  Create a location asscoiated to a company.
-     * @description:  This API allows to create a location associated to a company.
-     * @param  {string} companyId - Id of the company inside which the location is to be created.
-     * @param  {LocationSerializer} body
-     **/
-    createLocation(companyId: string, body: any): any;
     /**
       *
       * @summary:  Get a single location.
@@ -816,6 +816,14 @@ export class CompanyProfile {
       
       **/
     getChoices(choiceType?: string): any;
+    /**
+      *
+      * @summary:  Validate a seller
+      * @description:  This API helps in validating a seller and returns the Seller name
+      * @param  {string} companyId - Id of the seller to be validated.
+      
+      **/
+    validateSeller(companyId: string): any;
 }
 export class Inventory {
     constructor(_conf: any);

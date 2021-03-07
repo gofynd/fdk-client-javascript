@@ -1644,6 +1644,25 @@ class CompanyProfile {
   }
 
   /**
+   *
+   * @summary:  Create a company brand mapping.
+   * @description:  This API allows to create a company brand mapping, for a already existing brand in the system.
+   * @param  {string} companyId - Id of the company inside which the brand is to be mapped.
+   * @param  {CompanyBrandPostRequestSerializer} body
+   **/
+  createCompanyBrand(companyId, body) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${companyId}/company-brand`,
+      query,
+      body
+    );
+  }
+
+  /**
     *
     * @summary:  Get brands associated to a company
     * @description:  This API helps to get view brands associated to a particular company.
@@ -1664,18 +1683,18 @@ class CompanyProfile {
 
   /**
    *
-   * @summary:  Create a company brand mapping.
-   * @description:  This API allows to create a company brand mapping, for a already existing brand in the system.
-   * @param  {string} companyId - Id of the company inside which the brand is to be mapped.
-   * @param  {CompanyBrandPostRequestSerializer} body
+   * @summary:  Create a location asscoiated to a company.
+   * @description:  This API allows to create a location associated to a company.
+   * @param  {string} companyId - Id of the company inside which the location is to be created.
+   * @param  {LocationSerializer} body
    **/
-  createCompanyBrand(companyId, body) {
+  createLocation(companyId, body) {
     const query = {};
 
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/platform/company-profile/v1.0/company/${companyId}/company-brand`,
+      `/service/platform/company-profile/v1.0/company/${companyId}/location`,
       query,
       body
     );
@@ -1707,25 +1726,6 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${companyId}/location`,
       query,
       {}
-    );
-  }
-
-  /**
-   *
-   * @summary:  Create a location asscoiated to a company.
-   * @description:  This API allows to create a location associated to a company.
-   * @param  {string} companyId - Id of the company inside which the location is to be created.
-   * @param  {LocationSerializer} body
-   **/
-  createLocation(companyId, body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/platform/company-profile/v1.0/company/${companyId}/location`,
-      query,
-      body
     );
   }
 
@@ -1784,6 +1784,25 @@ class CompanyProfile {
       this._conf,
       "get",
       `/service/platform/company-profile/v1.0/choices`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  Validate a seller
+    * @description:  This API helps in validating a seller and returns the Seller name
+    * @param  {string} companyId - Id of the seller to be validated.
+    
+    **/
+  validateSeller(companyId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${companyId}/validate`,
       query,
       {}
     );

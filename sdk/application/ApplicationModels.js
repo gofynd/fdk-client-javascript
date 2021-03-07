@@ -8,7 +8,7 @@ class Catalog {
   /**
     *
     * @summary:  Get a product
-    * @description:  Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given ``slug``. If successful, returns a Product resource in the response body specified in `ProductDetail`
+    * @description:  Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
     * @param  {string} slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
     
     **/
@@ -249,10 +249,10 @@ class Catalog {
     * @summary:  List the products
     * @description:  List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
     * @param  {string} [q] - The search query. This can be a partial or complete name of a either a product, brand or category
-    * @param  {string} [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts``
+    * @param  {string} [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
     * @param  {boolean} [filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
     * @param  {string} [sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-    * @param  {string} [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+    * @param  {string} [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
     * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 12.
     * @param  {number} [pageNo] - If page_type is number then pass it to fetch page items. Default is 1.
     * @param  {string} [pageType] - For pagination type should be cursor or number. Default is cursor.
@@ -364,8 +364,8 @@ class Catalog {
     *
     * @summary:  List the products
     * @description:  List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
-    * @param  {string} [sortOn] - Each response will contain ``sort_on`` param, which should be sent back to make pagination work.
-    * @param  {string} [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+    * @param  {string} [sortOn] - Each response will contain **sort_on** param, which should be sent back to make pagination work.
+    * @param  {string} [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
     * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 12.
     
     **/
@@ -426,7 +426,7 @@ class Catalog {
     *
     * @summary:  List all the collections
     * @description:  A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
-    * @param  {string} [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+    * @param  {string} [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
     * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 12.
     
     **/
@@ -445,32 +445,14 @@ class Catalog {
   }
 
   /**
-   *
-   * @summary:  Add a Collection
-   * @description:  Create a collection. See `CreateCollection` for the list of attributes needed to create a collection and **collections/query-options** for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionDetailResponse`
-   * @param  {CreateCollection} body
-   **/
-  addCollection(body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/catalog/v1.0/collections/`,
-      query,
-      body
-    );
-  }
-
-  /**
     *
     * @summary:  Get the items in a collection
     * @description:  Get items in a collection specified by its `slug`.
     * @param  {string} slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items
-    * @param  {string} [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in ``f`` parameter in this format. ``?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts``
+    * @param  {string} [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
     * @param  {boolean} [filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
     * @param  {string} [sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-    * @param  {string} [pageId] - Each response will contain ``page_id`` param, which should be sent back to make pagination work.
+    * @param  {string} [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
     * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 12.
     
     **/
@@ -492,44 +474,6 @@ class Catalog {
   }
 
   /**
-   *
-   * @summary:  Add items to a collection
-   * @description:  Adds items to a collection specified by its `slug`. See `CollectionItemsRequest` for the list of attributes needed to add items to an collection.
-   * @param  {string} slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to add items into.
-   * @param  {CollectionItemsRequest} body
-   **/
-  addCollectionItemsBySlug(slug, body) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/catalog/v1.0/collections/${slug}/items/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary:  Update a collection
-    * @description:  Update a collection by it's slug. On successful request, returns the updated collection
-    * @param  {string} slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to update.
-    
-    **/
-  updateCollectionDetailBySlug(slug) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/catalog/v1.0/collections/${slug}/`,
-      query,
-      {}
-    );
-  }
-
-  /**
     *
     * @summary:  Get a particular collection
     * @description:  Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
@@ -542,25 +486,6 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/collections/${slug}/`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary:  Delete a Collection
-    * @description:  Delete a collection by it's slug. Returns an object that tells whether the collection was deleted successfully
-    * @param  {string} slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to delete.
-    
-    **/
-  deleteCollectionDetailBySlug(slug) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
       `/service/application/catalog/v1.0/collections/${slug}/`,
       query,
       {}
