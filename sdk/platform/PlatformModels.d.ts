@@ -668,6 +668,287 @@ export class Content {
      **/
     editTag(companyId: string, applicationId: string, tagId: string, body: any): any;
 }
+export class Communication {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+      *
+      * @summary:  Get campaigns
+      * @description:  Get campaigns
+      
+      **/
+    getCampaigns(): any;
+    /**
+     *
+     * @summary:  Create campaign
+     * @description:  Create campaign
+     * @param  {CampaignReq} body
+     **/
+    createCampaign(body: any): any;
+    /**
+      *
+      * @summary:  Get campaign by id
+      * @description:  Get campaign by id
+      * @param  {string} id - Campaign id
+      
+      **/
+    getCampaignById(id: string): any;
+    /**
+     *
+     * @summary:  Update campaign by id
+     * @description:  Update campaign by id
+     * @param  {string} id - Campaign id
+     * @param  {CampaignReq} body
+     **/
+    updateCampaignById(id: string, body: any): any;
+    /**
+      *
+      * @summary:  Get stats of campaign by id
+      * @description:  Get stats of campaign by id
+      * @param  {string} id - Campaign id
+      
+      **/
+    getStatsOfCampaignById(id: string): any;
+    /**
+      *
+      * @summary:  Get audiences
+      * @description:  Get audiences
+      
+      **/
+    getAudiences(): any;
+    /**
+     *
+     * @summary:  Create audience
+     * @description:  Create audience
+     * @param  {AudienceReq} body
+     **/
+    createAudience(body: any): any;
+    /**
+     *
+     * @summary:  Get bigquery headers
+     * @description:  Get bigquery headers
+     * @param  {BigqueryHeadersReq} body
+     **/
+    getBigqueryHeaders(body: any): any;
+    /**
+      *
+      * @summary:  Get audience by id
+      * @description:  Get audience by id
+      * @param  {string} id - Audience id
+      
+      **/
+    getAudienceById(id: string): any;
+    /**
+     *
+     * @summary:  Update audience by id
+     * @description:  Update audience by id
+     * @param  {string} id - Audience id
+     * @param  {AudienceReq} body
+     **/
+    updateAudienceById(id: string, body: any): any;
+    /**
+     *
+     * @summary:  Get n sample records from csv
+     * @description:  Get n sample records from csv
+     * @param  {GetNRecordsCsvReq} body
+     **/
+    getNSampleRecordsFromCsv(body: any): any;
+    /**
+      *
+      * @summary:  Get email providers
+      * @description:  Get email providers
+      * @param  {string} companyId - Company id
+      * @param  {string} applicationId - Application id
+      
+      **/
+    getEmailProviders(companyId: string, applicationId: string): any;
+    /**
+     *
+     * @summary:  Create email provider
+     * @description:  Create email provider
+     * @param  {EmailProviderReq} body
+     **/
+    createEmailProvider(body: any): any;
+    /**
+      *
+      * @summary:  Get email provider by id
+      * @description:  Get email provider by id
+      * @param  {string} id - Email provider id
+      
+      **/
+    getEmailProviderById(id: string): any;
+    /**
+     *
+     * @summary:  Update email provider by id
+     * @description:  Update email provider by id
+     * @param  {string} id - Email provider id
+     * @param  {EmailProviderReq} body
+     **/
+    updateEmailProviderById(id: string, body: any): any;
+    /**
+      *
+      * @summary:  Get email templates
+      * @description:  Get email templates
+      
+      **/
+    getEmailTemplates(): any;
+    /**
+     *
+     * @summary:  Create email template
+     * @description:  Create email template
+     * @param  {EmailTemplateReq} body
+     **/
+    createEmailTemplate(body: any): any;
+    /**
+      *
+      * @summary:  Get system email templates
+      * @description:  Get system email templates
+      
+      **/
+    getSystemEmailTemplates(): any;
+    /**
+      *
+      * @summary:  Get email template by id
+      * @description:  Get email template by id
+      * @param  {string} id - Email template id
+      
+      **/
+    getEmailTemplateById(id: string): any;
+    /**
+     *
+     * @summary:  Update email template by id
+     * @description:  Update email template by id
+     * @param  {string} id - Email template id
+     * @param  {EmailTemplateReq} body
+     **/
+    updateEmailTemplateById(id: string, body: any): any;
+    /**
+      *
+      * @summary:  Delete email template by id
+      * @description:  Delete email template by id
+      * @param  {string} id - Email template id
+      
+      **/
+    deleteEmailTemplateById(id: string): any;
+    /**
+      *
+      * @summary:  Get event subscriptions
+      * @description:  Get event subscriptions
+      * @param  {string} companyId - Company id
+      * @param  {string} applicationId - Application id
+      
+      **/
+    getEventSubscriptions(companyId: string, applicationId: string): any;
+    /**
+      *
+      * @summary:  Get jobs
+      * @description:  Get jobs
+      * @param  {string} companyId - Company id
+      * @param  {string} applicationId - Application id
+      
+      **/
+    getJobs(companyId: string, applicationId: string): any;
+    /**
+     *
+     * @summary:  Trigger campaign job
+     * @description:  Trigger campaign job
+     * @param  {TriggerJobRequest} body
+     **/
+    triggerCampaignJob(body: any): any;
+    /**
+      *
+      * @summary:  Get job logs
+      * @description:  Get job logs
+      * @param  {string} companyId - Company id
+      * @param  {string} applicationId - Application id
+      
+      **/
+    getJobLogs(companyId: string, applicationId: string): any;
+    /**
+      *
+      * @summary:  Get communication logs
+      * @description:  Get communication logs
+      * @param  {string} companyId - Company id
+      * @param  {string} applicationId - Application id
+      
+      **/
+    getCommunicationLogs(companyId: string, applicationId: string): any;
+    /**
+      *
+      * @summary:  Get sms providers
+      * @description:  Get sms providers
+      
+      **/
+    getSmsProviders(): any;
+    /**
+     *
+     * @summary:  Create sms provider
+     * @description:  Create sms provider
+     * @param  {SmsProviderReq} body
+     **/
+    createSmsProvider(body: any): any;
+    /**
+      *
+      * @summary:  Get sms provider by id
+      * @description:  Get sms provider by id
+      * @param  {string} id - Sms provider id
+      
+      **/
+    getSmsProviderById(id: string): any;
+    /**
+     *
+     * @summary:  Update sms provider by id
+     * @description:  Update sms provider by id
+     * @param  {string} id - Sms provider id
+     * @param  {SmsProviderReq} body
+     **/
+    updateSmsProviderById(id: string, body: any): any;
+    /**
+      *
+      * @summary:  Get sms templates
+      * @description:  Get sms templates
+      
+      **/
+    getSmsTemplates(): any;
+    /**
+     *
+     * @summary:  Create sms template
+     * @description:  Create sms template
+     * @param  {SmsTemplateReq} body
+     **/
+    createSmsTemplate(body: any): any;
+    /**
+      *
+      * @summary:  Get sms template by id
+      * @description:  Get sms template by id
+      * @param  {string} id - Sms template id
+      
+      **/
+    getSmsTemplateById(id: string): any;
+    /**
+     *
+     * @summary:  Update sms template by id
+     * @description:  Update sms template by id
+     * @param  {string} id - Sms template id
+     * @param  {SmsTemplateReq} body
+     **/
+    updateSmsTemplateById(id: string, body: any): any;
+    /**
+      *
+      * @summary:  Delete sms template by id
+      * @description:  Delete sms template by id
+      * @param  {string} id - Sms template id
+      
+      **/
+    deleteSmsTemplateById(id: string): any;
+    /**
+      *
+      * @summary:  Get system sms templates
+      * @description:  Get system sms templates
+      
+      **/
+    getSystemSystemTemplates(): any;
+}
 export class CompanyProfile {
     constructor(_conf: any);
     _conf: any;
@@ -679,14 +960,6 @@ export class CompanyProfile {
      **/
     registerCompany(body: any): any;
     /**
-      *
-      * @summary:  Get company profile
-      * @description:  This API allows to view the company profile of the seller account.
-      * @param  {string} companyId - A `company_id` is a unique identifier for a particular seller account.
-      
-      **/
-    cbsOnboardGet(companyId: string): any;
-    /**
      *
      * @summary:  Edit company profile
      * @description:  This API allows to edit the company profile of the seller account.
@@ -694,6 +967,14 @@ export class CompanyProfile {
      * @param  {CompanyStoreSerializerRequest} body
      **/
     cbsOnboardEdit(companyId: string, body: any): any;
+    /**
+      *
+      * @summary:  Get company profile
+      * @description:  This API allows to view the company profile of the seller account.
+      * @param  {string} companyId - A `company_id` is a unique identifier for a particular seller account.
+      
+      **/
+    cbsOnboardGet(companyId: string): any;
     /**
       *
       * @summary:  Get list of companies
@@ -731,14 +1012,6 @@ export class CompanyProfile {
      **/
     verifyGstPan(body: any): any;
     /**
-      *
-      * @summary:  Get a single brand.
-      * @description:  This API helps to get data associated to a particular brand.
-      * @param  {string} brandId - Id of the brand to be viewed.
-      
-      **/
-    getBrand(brandId: string): any;
-    /**
      *
      * @summary:  Edit a brand.
      * @description:  This API allows to edit meta of a brand.
@@ -746,6 +1019,14 @@ export class CompanyProfile {
      * @param  {CreateUpdateBrandRequestSerializer} body
      **/
     editBrand(brandId: string, body: any): any;
+    /**
+      *
+      * @summary:  Get a single brand.
+      * @description:  This API helps to get data associated to a particular brand.
+      * @param  {string} brandId - Id of the brand to be viewed.
+      
+      **/
+    getBrand(brandId: string): any;
     /**
      *
      * @summary:  Create a Brand.
@@ -791,15 +1072,6 @@ export class CompanyProfile {
       **/
     locationList(companyId: string, storeType?: string, q?: string, stage?: string, pageNo?: number, pageSize?: number): any;
     /**
-      *
-      * @summary:  Get a single location.
-      * @description:  This API helps to get data associated to a particular location.
-      * @param  {string} companyId - Id of the company inside which the location lies.
-      * @param  {string} locationId - Id of the location which you want to view.
-      
-      **/
-    getSingleLocation(companyId: string, locationId: string): any;
-    /**
      *
      * @summary:  Edit a location asscoiated to a company.
      * @description:  This API allows to edit a location associated to a company.
@@ -808,6 +1080,15 @@ export class CompanyProfile {
      * @param  {LocationSerializer} body
      **/
     editLocation(companyId: string, locationId: string, body: any): any;
+    /**
+      *
+      * @summary:  Get a single location.
+      * @description:  This API helps to get data associated to a particular location.
+      * @param  {string} companyId - Id of the company inside which the location lies.
+      * @param  {string} locationId - Id of the location which you want to view.
+      
+      **/
+    getSingleLocation(companyId: string, locationId: string): any;
     /**
       *
       * @summary:  Get constant data asccoiated to company, brand, locations.

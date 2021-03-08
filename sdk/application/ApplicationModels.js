@@ -513,26 +513,6 @@ class Catalog {
 
   /**
     *
-    * @summary:  UnFollow a Product
-    * @description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    * @param  {string} collectionType - Type of collection followed. i. e. products, brands, collections
-    * @param  {number} collectionId - the `id` of the collection type you want to unfollow
-    
-    **/
-  unfollowById(collectionType, collectionId) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
     * @summary:  Follow a particular Product
     * @description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     * @param  {string} collectionType - Type of collection followed. i. e. products, brands, collections
@@ -545,6 +525,26 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "post",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary:  UnFollow a Product
+    * @description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    * @param  {string} collectionType - Type of collection followed. i. e. products, brands, collections
+    * @param  {number} collectionId - the `id` of the collection type you want to unfollow
+    
+    **/
+  unfollowById(collectionType, collectionId) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       {}

@@ -218,15 +218,6 @@ export class Catalog {
     getFollowedListing(collectionType: string): any;
     /**
       *
-      * @summary:  UnFollow a Product
-      * @description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-      * @param  {string} collectionType - Type of collection followed. i. e. products, brands, collections
-      * @param  {number} collectionId - the `id` of the collection type you want to unfollow
-      
-      **/
-    unfollowById(collectionType: string, collectionId: number): any;
-    /**
-      *
       * @summary:  Follow a particular Product
       * @description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
       * @param  {string} collectionType - Type of collection followed. i. e. products, brands, collections
@@ -234,6 +225,15 @@ export class Catalog {
       
       **/
     followById(collectionType: string, collectionId: number): any;
+    /**
+      *
+      * @summary:  UnFollow a Product
+      * @description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+      * @param  {string} collectionType - Type of collection followed. i. e. products, brands, collections
+      * @param  {number} collectionId - the `id` of the collection type you want to unfollow
+      
+      **/
+    unfollowById(collectionType: string, collectionId: number): any;
     /**
       *
       * @summary:  Get Follow Count
