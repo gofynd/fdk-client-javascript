@@ -2,7 +2,7 @@
 FDK Extension Helper Library
 
 
-```
+```javascript
     const bodyParser = require('body-parser');
     const express = require('express');
     const cookieParser = require('cookie-parser');
