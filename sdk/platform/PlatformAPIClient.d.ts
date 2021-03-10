@@ -8,4 +8,5 @@ declare class APIClient {
      * @param  {object} body
      */
     static execute(conf: object, method: string, url: string, query: object, body: object): any;
+    get(url: any, config: any): Promise<any>;
 }

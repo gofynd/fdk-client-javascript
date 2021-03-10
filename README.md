@@ -21,7 +21,7 @@ const {
 } = require("fdk-client-javascript");
 ```
 
-### Sample Usage:
+### Sample Usage (ApplicationClient):
 
 ```javascript
 const config = new ApplicationConfig({
@@ -33,7 +33,9 @@ const applicationClient = new ApplicationClient(config);
 
 async function getProductDetails() {
   try {
-    const product = await applicationClient.catalog.getProductDetailBySlug('product-slug');
+    const product = await applicationClient.catalog.getProductDetailBySlug(
+      "product-slug"
+    );
     console.log(product.name);
   } catch (err) {
     console.log(err);
@@ -41,6 +43,40 @@ async function getProductDetails() {
 }
 
 getProductDetails();
+```
+
+### Sample Usage (PlatformClient):
+
+```javascript
+const { PlatformConfig, PlatformClient } = require("fdk-client-javascript");
+
+let platformConfig = new PlatformConfig({
+  company: 1,
+  baseUrl: "api.fyndx0.de",
+});
+
+async function getData() {
+  try {
+    // get token using staff API (Will be replaced by OAuth 2.0 flow)
+    const token = await platformConfig.oauthClient.getTokenForInternal();
+    platformConfig.oauthClient.setToken(token.access_token);
+    const client = new PlatformClient(platformConfig);
+
+    // API's without application_id
+    const tickets = await client.lead.getTickets();
+    console.log("tickets", tickets);
+
+    // API's with application_id
+    const themes = await client
+      .application("5fa24ca5756695531fa1eefb")
+      .user.getCustomers();
+    console.log("themes", themes);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+getData();
 ```
 
 ### TypeScript

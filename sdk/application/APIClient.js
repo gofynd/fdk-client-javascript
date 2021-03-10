@@ -17,7 +17,7 @@ class APIClient {
     const rawRequest = {
       method: method,
       url: url,
-      query: query,
+      params: query,
       data: body,
       headers: {
         Authorization: "Bearer " + token,

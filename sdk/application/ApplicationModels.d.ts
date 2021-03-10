@@ -3,1020 +3,1457 @@ export class Catalog {
     _conf: any;
     /**
       *
-      * @summary:  Get a product
-      * @description:  Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
-      * @param  {string} slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
+      * @summary: Get a product
+      * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
       
       **/
-    getProductDetailBySlug(slug: string): any;
+    getProductDetailBySlug({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Get the sizes of a product
-      * @description:  A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
-      * @param  {string} slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-      * @param  {string} [storeId] - The store id of the product whose sizes need to be retrieved
+      * @summary: Get the sizes of a product
+      * @description: A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
+      * @param {string} [arg.storeId] - The store id of the product whose sizes need to be retrieved
       
       **/
-    getProductSizesBySlug(slug: string, storeId?: string): any;
+    getProductSizesBySlug({ slug, storeId }?: {
+        slug: string;
+        storeId?: string;
+    }): any;
     /**
       *
-      * @summary:  Get price a product size
-      * @description:  Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
-      * @param  {string} slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-      * @param  {string} size - The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0/products/{slug}/sizes/**
-      * @param  {number} [pincode] - The pincode of the product for which the price needs to be retrieved.
-      * @param  {string} [storeId] - The store of the product whose size level price need to be retrieved
+      * @summary: Get price a product size
+      * @description: Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
+      * @param {string} arg.size - The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0/products/{slug}/sizes/**
+      * @param {number} [arg.pincode] - The pincode of the product for which the price needs to be retrieved.
+      * @param {string} [arg.storeId] - The store of the product whose size level price need to be retrieved
       
       **/
-    getProductPriceBySlug(slug: string, size: string, pincode?: number, storeId?: string): any;
+    getProductPriceBySlug({ slug, size, pincode, storeId }?: {
+        slug: string;
+        size: string;
+        pincode?: number;
+        storeId?: string;
+    }): any;
     /**
       *
-      * @summary:  List sellers of a product
-      * @description:  A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
-      * @param  {string} slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-      * @param  {string} size - The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0.0/products/sizes**
-      * @param  {number} [pincode] - The pincode of the product for which the price needs to be retrieved.
-      * @param  {number} [pageNo] - The page number to navigate through the given set of results.
-      * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 12.
+      * @summary: List sellers of a product
+      * @description: A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
+      * @param {string} arg.size - The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0.0/products/sizes**
+      * @param {number} [arg.pincode] - The pincode of the product for which the price needs to be retrieved.
+      * @param {number} [arg.pageNo] - The page number to navigate through the given set of results.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
       
       **/
-    getProductSellersBySlug(slug: string, size: string, pincode?: number, pageNo?: number, pageSize?: number): any;
+    getProductSellersBySlug({ slug, size, pincode, pageNo, pageSize }?: {
+        slug: string;
+        size: string;
+        pincode?: number;
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  Compare products
-      * @description:  Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
-      * @param  {string} slug - The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/**
+      * @summary: Compare products
+      * @description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/**
       
       **/
-    getProductComparisonBySlugs(slug: string): any;
+    getProductComparisonBySlugs({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Get comparison between similar products
-      * @description:  Compare between the features of the given set of products Use this API to compare how one product ranks against other products
-      * @param  {string} slug - The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **v1.0/products/**
+      * @summary: Get comparison between similar products
+      * @description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **v1.0/products/**
       
       **/
-    getSimilarComparisonProductBySlug(slug: string): any;
+    getSimilarComparisonProductBySlug({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Get comparison between frequently compared products with the given product
-      * @description:  Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
-      * @param  {string} slug - The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **v1.0/products/**
+      * @summary: Get comparison between frequently compared products with the given product
+      * @description: Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **v1.0/products/**
       
       **/
-    getComparedFrequentlyProductBySlug(slug: string): any;
+    getComparedFrequentlyProductBySlug({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Get similar products
-      * @description:  Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
-      * @param  {string} slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-      * @param  {string} similarType - The tag_identifier is used to fetch the particular type of similar product such as basic, visual, price, seller, category and spec.
+      * @summary: Get similar products
+      * @description: Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
+      * @param {string} arg.similarType - The tag_identifier is used to fetch the particular type of similar product such as basic, visual, price, seller, category and spec.
       
       **/
-    getProductSimilarByIdentifier(slug: string, similarType: string): any;
+    getProductSimilarByIdentifier({ slug, similarType }?: {
+        slug: string;
+        similarType: string;
+    }): any;
     /**
       *
-      * @summary:  Get variant of a particular product
-      * @description:  A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
-      * @param  {string} slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
+      * @summary: Get variant of a particular product
+      * @description: A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
       
       **/
-    getProductVariantsBySlug(slug: string): any;
+    getProductVariantsBySlug({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Get the stock of a product
-      * @description:  Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
-      * @param  {string} [itemId] - Product id to get product stock (Max. 50 allowed)
-      * @param  {string} [alu] - Product identifier alu to get product stock (Max. 50 allowed)
-      * @param  {string} [skuCode] - Product identifier sku_code to get product stock (Max. 50 allowed)
-      * @param  {string} [ean] - Product identifier ean to get product stock (Max. 50 allowed)
-      * @param  {string} [upc] - Product identifier upc to get product stock (Max. 50 allowed)
+      * @summary: Get the stock of a product
+      * @description: Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.itemId] - Product id to get product stock (Max. 50 allowed)
+      * @param {string} [arg.alu] - Product identifier alu to get product stock (Max. 50 allowed)
+      * @param {string} [arg.skuCode] - Product identifier sku_code to get product stock (Max. 50 allowed)
+      * @param {string} [arg.ean] - Product identifier ean to get product stock (Max. 50 allowed)
+      * @param {string} [arg.upc] - Product identifier upc to get product stock (Max. 50 allowed)
       
       **/
-    getProductStockByIds(itemId?: string, alu?: string, skuCode?: string, ean?: string, upc?: string): any;
+    getProductStockByIds({ itemId, alu, skuCode, ean, upc }?: {
+        itemId?: string;
+        alu?: string;
+        skuCode?: string;
+        ean?: string;
+        upc?: string;
+    }): any;
     /**
       *
-      * @summary:  Get the stock of a product
-      * @description:  Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
-      * @param  {string} timestamp - timestamp in UTC format (2020-07-23T10:27:50Z)
-      * @param  {number} [pageSize] - Limit of number of items for stock status default 12
-      * @param  {string} [pageId] - will give next page results
+      * @summary: Get the stock of a product
+      * @description: Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
+      * @param {Object} arg - arg object.
+      * @param {string} arg.timestamp - timestamp in UTC format (2020-07-23T10:27:50Z)
+      * @param {number} [arg.pageSize] - Limit of number of items for stock status default 12
+      * @param {string} [arg.pageId] - will give next page results
       
       **/
-    getProductStockForTimeByIds(timestamp: string, pageSize?: number, pageId?: string): any;
+    getProductStockForTimeByIds({ timestamp, pageSize, pageId }?: {
+        timestamp: string;
+        pageSize?: number;
+        pageId?: string;
+    }): any;
     /**
       *
-      * @summary:  List the products
-      * @description:  List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
-      * @param  {string} [q] - The search query. This can be a partial or complete name of a either a product, brand or category
-      * @param  {string} [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
-      * @param  {boolean} [filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
-      * @param  {string} [sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-      * @param  {string} [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
-      * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 12.
-      * @param  {number} [pageNo] - If page_type is number then pass it to fetch page items. Default is 1.
-      * @param  {string} [pageType] - For pagination type should be cursor or number. Default is cursor.
+      * @summary: List the products
+      * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
+      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
+      * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
+      * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
+      * @param {string} [arg.pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
+      * @param {number} [arg.pageNo] - If page_type is number then pass it to fetch page items. Default is 1.
+      * @param {string} [arg.pageType] - For pagination type should be cursor or number. Default is cursor.
       
       **/
-    getProducts(q?: string, f?: string, filters?: boolean, sortOn?: string, pageId?: string, pageSize?: number, pageNo?: number, pageType?: string): any;
+    getProducts({ q, f, filters, sortOn, pageId, pageSize, pageNo, pageType, }?: {
+        q?: string;
+        f?: string;
+        filters?: boolean;
+        sortOn?: string;
+        pageId?: string;
+        pageSize?: number;
+        pageNo?: number;
+        pageType?: string;
+    }): any;
     /**
       *
-      * @summary:  List all the brands
-      * @description:  A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-      * @param  {string} [department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
-      * @param  {number} [pageNo] - The page number to navigate through the given set of results
-      * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 12.
+      * @summary: List the products
+      * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
+      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
+      * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
+      * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
       
       **/
-    getBrands(department?: string, pageNo?: number, pageSize?: number): any;
+    getProductsPaginator({ q, f, filters, sortOn, pageSize }?: {
+        q?: string;
+        f?: string;
+        filters?: boolean;
+        sortOn?: string;
+        pageSize?: number;
+    }): Paginator;
     /**
       *
-      * @summary:  Get metadata of a brand
-      * @description:  Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
-      * @param  {string} slug - The unique identifier of a brand. i.e; `slug` of a brand. You can retrieve these from the APIs that list brands like **v1.0/brands/**
+      * @summary: List all the brands
+      * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
+      * @param {number} [arg.pageNo] - The page number to navigate through the given set of results
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
       
       **/
-    getBrandDetailBySlug(slug: string): any;
+    getBrands({ department, pageNo, pageSize }?: {
+        department?: string;
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  List all the categories
-      * @description:  List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
-      * @param  {string} [department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
+      * @summary: Get metadata of a brand
+      * @description: Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier of a brand. i.e; `slug` of a brand. You can retrieve these from the APIs that list brands like **v1.0/brands/**
       
       **/
-    getCategories(department?: string): any;
+    getBrandDetailBySlug({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Get metadata of a category
-      * @description:  Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
-      * @param  {string} slug - The unique identifier of a category. i.e; `slug` of a category. You can retrieve these from the APIs that list categories like **v1.0/categories/**
+      * @summary: List all the categories
+      * @description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
       
       **/
-    getCategoryDetailBySlug(slug: string): any;
+    getCategories({ department }?: {
+        department?: string;
+    }): any;
     /**
       *
-      * @summary:  List the products
-      * @description:  List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
-      * @param  {string} [sortOn] - Each response will contain **sort_on** param, which should be sent back to make pagination work.
-      * @param  {string} [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
-      * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 12.
+      * @summary: Get metadata of a category
+      * @description: Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier of a category. i.e; `slug` of a category. You can retrieve these from the APIs that list categories like **v1.0/categories/**
       
       **/
-    getHomeProducts(sortOn?: string, pageId?: string, pageSize?: number): any;
+    getCategoryDetailBySlug({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  List all the departments
-      * @description:  Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
+      * @summary: List the products
+      * @description: List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.sortOn] - Each response will contain **sort_on** param, which should be sent back to make pagination work.
+      * @param {string} [arg.pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
       
       **/
-    getDepartments(): any;
+    getHomeProducts({ sortOn, pageId, pageSize }?: {
+        sortOn?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  Get relevant suggestions for a search query
-      * @description:  Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
-      * @param  {string} q - The search query. This can be a partial or complete name of a either a product, brand or category
+      * @summary: List all the departments
+      * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
+      * @param {Object} arg - arg object.
       
       **/
-    getSearchResults(q: string): any;
+    getDepartments({}?: any): any;
     /**
       *
-      * @summary:  List all the collections
-      * @description:  A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
-      * @param  {string} [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
-      * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 12.
+      * @summary: Get relevant suggestions for a search query
+      * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.q - The search query. This can be a partial or complete name of a either a product, brand or category
       
       **/
-    getCollections(pageId?: string, pageSize?: number): any;
+    getSearchResults({ q }?: {
+        q: string;
+    }): any;
     /**
       *
-      * @summary:  Get the items in a collection
-      * @description:  Get items in a collection specified by its `slug`.
-      * @param  {string} slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items
-      * @param  {string} [f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
-      * @param  {boolean} [filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
-      * @param  {string} [sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-      * @param  {string} [pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
-      * @param  {number} [pageSize] - Number of items to retrieve in each page. Default is 12.
+      * @summary: List all the collections
+      * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
       
       **/
-    getCollectionItemsBySlug(slug: string, f?: string, filters?: boolean, sortOn?: string, pageId?: string, pageSize?: number): any;
+    getCollections({ pageId, pageSize }?: {
+        pageId?: string;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  Get a particular collection
-      * @description:  Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
-      * @param  {string} slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve.
+      * @summary: Get the items in a collection
+      * @description: Get items in a collection specified by its `slug`.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items
+      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
+      * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
+      * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
+      * @param {string} [arg.pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
       
       **/
-    getCollectionDetailBySlug(slug: string): any;
+    getCollectionItemsBySlug({ slug, f, filters, sortOn, pageId, pageSize, }?: {
+        slug: string;
+        f?: string;
+        filters?: boolean;
+        sortOn?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  Get a list of followed Products, Brands, Collections
-      * @description:  A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
-      * @param  {string} collectionType - Type of collection followed. i. e. products, brands, collections
+      * @summary: Get a particular collection
+      * @description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve.
       
       **/
-    getFollowedListing(collectionType: string): any;
+    getCollectionDetailBySlug({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Follow a particular Product
-      * @description:  Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-      * @param  {string} collectionType - Type of collection followed. i. e. products, brands, collections
-      * @param  {number} collectionId - the `id` of the collection type you want to follow
+      * @summary: Get a list of followed Products, Brands, Collections
+      * @description: A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
       
       **/
-    followById(collectionType: string, collectionId: number): any;
+    getFollowedListing({ collectionType }?: {
+        collectionType: string;
+    }): any;
     /**
       *
-      * @summary:  UnFollow a Product
-      * @description:  You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-      * @param  {string} collectionType - Type of collection followed. i. e. products, brands, collections
-      * @param  {number} collectionId - the `id` of the collection type you want to unfollow
+      * @summary: UnFollow a Product
+      * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+      * @param {Object} arg - arg object.
+      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+      * @param {number} arg.collectionId - the `id` of the collection type you want to unfollow
       
       **/
-    unfollowById(collectionType: string, collectionId: number): any;
+    unfollowById({ collectionType, collectionId }?: {
+        collectionType: string;
+        collectionId: number;
+    }): any;
     /**
       *
-      * @summary:  Get Follow Count
-      * @description:  Get count of followers for given collection type and collection id.
-      * @param  {string} collectionType - the `type` of the collection products/brands/collections.
-      * @param  {string} collectionId - the `id` of the product/brand/collection.
+      * @summary: Follow a particular Product
+      * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+      * @param {Object} arg - arg object.
+      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+      * @param {number} arg.collectionId - the `id` of the collection type you want to follow
       
       **/
-    getFollowerCountById(collectionType: string, collectionId: string): any;
+    followById({ collectionType, collectionId }?: {
+        collectionType: string;
+        collectionId: number;
+    }): any;
     /**
       *
-      * @summary:  Get the Ids of followed product, brand and collection.
-      * @description:  You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
-      * @param  {string} [collectionType] - Type of collection followed. i. e. products, brands, collections
+      * @summary: Get Follow Count
+      * @description: Get count of followers for given collection type and collection id.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.collectionType - the `type` of the collection products/brands/collections.
+      * @param {string} arg.collectionId - the `id` of the product/brand/collection.
       
       **/
-    getFollowIds(collectionType?: string): any;
+    getFollowerCountById({ collectionType, collectionId }?: {
+        collectionType: string;
+        collectionId: string;
+    }): any;
     /**
       *
-      * @summary:  List store meta information.
-      * @description:  Use this API to get list of stores for specific application. If successful, returns list of stores specified in `StoreListingResponse`
-      * @param  {number} [pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
-      * @param  {number} [pageSize] - Number of items to retrieve in each page.
-      * @param  {string} [q] - This can be used to search a particulr store by its name or store_code.
-      * @param  {number} [range] - This can be used to retrieve store within a particular range. For eg range=10000 (in meters)
-      * @param  {number} [latitude] - This should be the latitude of the location from which one needs to retreive the nearest stores.
-      * @param  {number} [longitude] - This should be the longitude of the location from which one needs to retreive the nearest stores.
+      * @summary: Get the Ids of followed product, brand and collection.
+      * @description: You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.collectionType] - Type of collection followed. i. e. products, brands, collections
       
       **/
-    getStores(pageNo?: number, pageSize?: number, q?: string, range?: number, latitude?: number, longitude?: number): any;
+    getFollowIds({ collectionType }?: {
+        collectionType?: string;
+    }): any;
+    /**
+      *
+      * @summary: List store meta information.
+      * @description: Use this API to get list of stores for specific application. If successful, returns list of stores specified in `StoreListingResponse`
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+      * @param {string} [arg.q] - This can be used to search a particulr store by its name or store_code.
+      * @param {number} [arg.range] - This can be used to retrieve store within a particular range. For eg range=10000 (in meters)
+      * @param {number} [arg.latitude] - This should be the latitude of the location from which one needs to retreive the nearest stores.
+      * @param {number} [arg.longitude] - This should be the longitude of the location from which one needs to retreive the nearest stores.
+      
+      **/
+    getStores({ pageNo, pageSize, q, range, latitude, longitude }?: {
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+        range?: number;
+        latitude?: number;
+        longitude?: number;
+    }): any;
 }
 export class Cart {
     constructor(_conf: any);
     _conf: any;
     /**
       *
-      * @summary:  Fetch all Items Added to  Cart
-      * @description:  Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
-      * @param  {number} [uid] -
-      * @param  {boolean} [i] -
-      * @param  {boolean} [b] -
-      * @param  {number} [assignCardId] -
+      * @summary: Fetch all Items Added to  Cart
+      * @description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] -
+      * @param {boolean} [arg.i] -
+      * @param {boolean} [arg.b] -
+      * @param {number} [arg.assignCardId] -
       
       **/
-    getCart(uid?: number, i?: boolean, b?: boolean, assignCardId?: number): any;
+    getCart({ uid, i, b, assignCardId }?: {
+        uid?: number;
+        i?: boolean;
+        b?: boolean;
+        assignCardId?: number;
+    }): any;
     /**
       *
-      * @summary:  Fetch Last-Modified timestamp
-      * @description:  Fetch Last-Modified timestamp in header metadata
-      * @param  {number} [uid] -
+      * @summary: Fetch Last-Modified timestamp
+      * @description: Fetch Last-Modified timestamp in header metadata
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] -
       
       **/
-    getCartLastModified(uid?: number): any;
+    getCartLastModified({ uid }?: {
+        uid?: number;
+    }): any;
     /**
      *
-     * @summary:  Add Items to Cart
-     * @description:  <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
-     * @param  {boolean} [i] -
-     * @param  {boolean} [b] -
-     * @param  {AddCartRequest} body
+     * @summary: Add Items to Cart
+     * @description: <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
+     * @param {Object} arg - arg object.
+     * @param {boolean} [arg.i] -
+     * @param {boolean} [arg.b] -
+     * @param {AddCartRequest} arg.body
      **/
-    addItems(body: any, i?: boolean, b?: boolean): any;
+    addItems({ body, i, b }?: {
+        i?: boolean;
+        b?: boolean;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Update Items already added to Cart
-     * @description:  Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-     * @param  {number} [uid] -
-     * @param  {boolean} [i] -
-     * @param  {boolean} [b] -
-     * @param  {UpdateCartRequest} body
+     * @summary: Update Items already added to Cart
+     * @description: Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+     * @param {Object} arg - arg object.
+     * @param {number} [arg.uid] -
+     * @param {boolean} [arg.i] -
+     * @param {boolean} [arg.b] -
+     * @param {UpdateCartRequest} arg.body
      **/
-    updateCart(body: any, uid?: number, i?: boolean, b?: boolean): any;
+    updateCart({ body, uid, i, b }?: {
+        uid?: number;
+        i?: boolean;
+        b?: boolean;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Cart item count
-      * @description:  Get total count of item present in cart
-      * @param  {number} [uid] - Cart id
+      * @summary: Cart item count
+      * @description: Get total count of item present in cart
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] - Cart id
       
       **/
-    getItemCount(uid?: number): any;
+    getItemCount({ uid }?: {
+        uid?: number;
+    }): any;
     /**
       *
-      * @summary:  Fetch Coupon
-      * @description:  Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
-      * @param  {number} [uid] -
+      * @summary: Fetch Coupon
+      * @description: Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] -
       
       **/
-    getCoupons(uid?: number): any;
+    getCoupons({ uid }?: {
+        uid?: number;
+    }): any;
     /**
       *
-      * @summary:  Apply Coupon
-      * @description:  <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
+      * @summary: Apply Coupon
+      * @description: <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
   </ul>
-      * @param  {boolean} [i] -
-      * @param  {boolean} [b] -
-      * @param  {boolean} [p] -
-      * @param  {ApplyCouponRequest} body
+      * @param {Object} arg - arg object.
+      * @param {boolean} [arg.i] -
+      * @param {boolean} [arg.b] -
+      * @param {boolean} [arg.p] -
+      * @param {ApplyCouponRequest} arg.body
       **/
-    applyCoupon(body: any, i?: boolean, b?: boolean, p?: boolean): any;
+    applyCoupon({ body, i, b, p }?: {
+        i?: boolean;
+        b?: boolean;
+        p?: boolean;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Remove Coupon Applied
-      * @description:  Remove Coupon applied on the cart by passing uid in request body.
-      * @param  {number} [uid] - Cart id
+      * @summary: Remove Coupon Applied
+      * @description: Remove Coupon applied on the cart by passing uid in request body.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] - Cart id
       
       **/
-    removeCoupon(uid?: number): any;
+    removeCoupon({ uid }?: {
+        uid?: number;
+    }): any;
     /**
       *
-      * @summary:  Get discount offers based on quantity
-      * @description:  List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
-      * @param  {number} [itemId] - Item id
-      * @param  {string} [articleId] - Article mongo id
-      * @param  {number} [uid] - Item id
-      * @param  {string} [slug] - Item unique url from product page
+      * @summary: Get discount offers based on quantity
+      * @description: List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.itemId] - Item id
+      * @param {string} [arg.articleId] - Article mongo id
+      * @param {number} [arg.uid] - Item id
+      * @param {string} [arg.slug] - Item unique url from product page
       
       **/
-    getBulkDiscountOffers(itemId?: number, articleId?: string, uid?: number, slug?: string): any;
+    getBulkDiscountOffers({ itemId, articleId, uid, slug }?: {
+        itemId?: number;
+        articleId?: string;
+        uid?: number;
+        slug?: string;
+    }): any;
     /**
       *
-      * @summary:  Fetch Address
-      * @description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-      * @param  {number} [uid] -
-      * @param  {number} [mobileNo] -
-      * @param  {string} [checkoutMode] -
-      * @param  {number} [tags] -
-      * @param  {boolean} [isDefault] -
+      * @summary: Fetch Address
+      * @description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] -
+      * @param {number} [arg.mobileNo] -
+      * @param {string} [arg.checkoutMode] -
+      * @param {number} [arg.tags] -
+      * @param {boolean} [arg.isDefault] -
       
       **/
-    getAddresses(uid?: number, mobileNo?: number, checkoutMode?: string, tags?: number, isDefault?: boolean): any;
+    getAddresses({ uid, mobileNo, checkoutMode, tags, isDefault }?: {
+        uid?: number;
+        mobileNo?: number;
+        checkoutMode?: string;
+        tags?: number;
+        isDefault?: boolean;
+    }): any;
     /**
      *
-     * @summary:  Add Address to the account
-     * @description:  <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
-     * @param  {UpdateAddressRequest} body
+     * @summary: Add Address to the account
+     * @description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+     * @param {Object} arg - arg object.
+     * @param {UpdateAddressRequest} arg.body
      **/
-    addAddress(body: any): any;
+    addAddress({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Fetch Single Address
-      * @description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-      * @param  {number} id -
-      * @param  {number} [uid] -
-      * @param  {number} [mobileNo] -
-      * @param  {string} [checkoutMode] -
-      * @param  {number} [tags] -
-      * @param  {boolean} [isDefault] -
+      * @summary: Fetch Single Address
+      * @description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+      * @param {Object} arg - arg object.
+      * @param {number} arg.id -
+      * @param {number} [arg.uid] -
+      * @param {number} [arg.mobileNo] -
+      * @param {string} [arg.checkoutMode] -
+      * @param {number} [arg.tags] -
+      * @param {boolean} [arg.isDefault] -
       
       **/
-    getAddressById(id: number, uid?: number, mobileNo?: number, checkoutMode?: string, tags?: number, isDefault?: boolean): any;
+    getAddressById({ id, uid, mobileNo, checkoutMode, tags, isDefault }?: {
+        id: number;
+        uid?: number;
+        mobileNo?: number;
+        checkoutMode?: string;
+        tags?: number;
+        isDefault?: boolean;
+    }): any;
     /**
      *
-     * @summary:  Update Address alreay added to account
-     * @description:  Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
-     * @param  {number} id - Address id
-     * @param  {UpdateAddressRequest} body
+     * @summary: Update Address alreay added to account
+     * @description: Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+     * @param {Object} arg - arg object.
+     * @param {number} arg.id - Address id
+     * @param {UpdateAddressRequest} arg.body
      **/
-    updateAddress(id: number, body: any): any;
+    updateAddress({ id, body }?: {
+        id: number;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Remove Address Associated to the account
-      * @description:  Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
-      * @param  {number} id - Address id
+      * @summary: Remove Address Associated to the account
+      * @description: Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
+      * @param {Object} arg - arg object.
+      * @param {number} arg.id - Address id
       
       **/
-    removeAddress(id: number): any;
+    removeAddress({ id }?: {
+        id: number;
+    }): any;
     /**
      *
-     * @summary:  Select Address from All Addresses
-     * @description:  <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
-     * @param  {number} [uid] -
-     * @param  {boolean} [i] -
-     * @param  {boolean} [b] -
-     * @param  {SelectCartAddressRequest} body
+     * @summary: Select Address from All Addresses
+     * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+     * @param {Object} arg - arg object.
+     * @param {number} [arg.uid] -
+     * @param {boolean} [arg.i] -
+     * @param {boolean} [arg.b] -
+     * @param {SelectCartAddressRequest} arg.body
      **/
-    selectAddress(body: any, uid?: number, i?: boolean, b?: boolean): any;
+    selectAddress({ body, uid, i, b }?: {
+        uid?: number;
+        i?: boolean;
+        b?: boolean;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get Cart Payment for valid coupon
-      * @description:  Validate coupon for selected payment mode
-      * @param  {string} [uid] -
-      * @param  {string} [addressId] -
-      * @param  {string} [paymentMode] -
-      * @param  {string} [paymentIdentifier] -
-      * @param  {string} [aggregatorName] -
-      * @param  {string} [merchantCode] -
+      * @summary: Get Cart Payment for valid coupon
+      * @description: Validate coupon for selected payment mode
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.uid] -
+      * @param {string} [arg.addressId] -
+      * @param {string} [arg.paymentMode] -
+      * @param {string} [arg.paymentIdentifier] -
+      * @param {string} [arg.aggregatorName] -
+      * @param {string} [arg.merchantCode] -
       
       **/
-    getPaymentModes(uid?: string, addressId?: string, paymentMode?: string, paymentIdentifier?: string, aggregatorName?: string, merchantCode?: string): any;
+    getPaymentModes({ uid, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
+        uid?: string;
+        addressId?: string;
+        paymentMode?: string;
+        paymentIdentifier?: string;
+        aggregatorName?: string;
+        merchantCode?: string;
+    }): any;
     /**
      *
-     * @summary:  Update Cart Payment
-     * @description:  Update Cart Payment for Your Account
-     * @param  {string} [uid] -
-     * @param  {UpdateCartPaymentRequest} body
+     * @summary: Update Cart Payment
+     * @description: Update Cart Payment for Your Account
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.uid] -
+     * @param {UpdateCartPaymentRequest} arg.body
      **/
-    selectPaymentMode(body: any, uid?: string): any;
+    selectPaymentMode({ body, uid }?: {
+        uid?: string;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get delivery date and options before checkout
-      * @description:  Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
-      * @param  {boolean} [p] - Get payment options or not
-      * @param  {number} [uid] - Cart id
-      * @param  {number} [addressId] - Address id
-      * @param  {number} [areaCode] - Destination pincode.
+      * @summary: Get delivery date and options before checkout
+      * @description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
+      * @param {Object} arg - arg object.
+      * @param {boolean} [arg.p] - Get payment options or not
+      * @param {number} [arg.uid] - Cart id
+      * @param {number} [arg.addressId] - Address id
+      * @param {number} [arg.areaCode] - Destination pincode.
       
       **/
-    getShipments(p?: boolean, uid?: number, addressId?: number, areaCode?: number): any;
+    getShipments({ p, uid, addressId, areaCode }?: {
+        p?: boolean;
+        uid?: number;
+        addressId?: number;
+        areaCode?: number;
+    }): any;
     /**
      *
-     * @summary:  Checkout Cart
-     * @description:  Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
-     * @param  {CartCheckoutRequest} body
+     * @summary: Checkout Cart
+     * @description: Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
+     * @param {Object} arg - arg object.
+     * @param {CartCheckoutRequest} arg.body
      **/
-    checkoutCart(body: any): any;
+    checkoutCart({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Update Cart Meta
-     * @description:  Update cart meta like checkout_mode, gstin.
-     * @param  {number} [uid] - Cart id received in get cart.
-     * @param  {CartMetaRequest} body
+     * @summary: Update Cart Meta
+     * @description: Update cart meta like checkout_mode, gstin.
+     * @param {Object} arg - arg object.
+     * @param {number} [arg.uid] - Cart id received in get cart.
+     * @param {CartMetaRequest} arg.body
      **/
-    updateCartMeta(body: any, uid?: number): any;
+    updateCartMeta({ body, uid }?: {
+        uid?: number;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Generate Cart sharing link token
-     * @description:  Generates shared cart snapshot and returns shortlink token
-     * @param  {GetShareCartLinkRequest} body
+     * @summary: Generate Cart sharing link token
+     * @description: Generates shared cart snapshot and returns shortlink token
+     * @param {Object} arg - arg object.
+     * @param {GetShareCartLinkRequest} arg.body
      **/
-    getCartShareLink(body: any): any;
+    getCartShareLink({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get shared cart snapshot and cart response
-      * @description:  Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
-      * @param  {string} token - Shared short link token.
+      * @summary: Get shared cart snapshot and cart response
+      * @description: Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.token - Shared short link token.
       
       **/
-    getCartSharedItems(token: string): any;
+    getCartSharedItems({ token }?: {
+        token: string;
+    }): any;
     /**
       *
-      * @summary:  Merge or Replace existing cart
-      * @description:  Merge or Replace cart based on `action` parameter with shared cart of `token`
-      * @param  {string} token - Shared short link token.
-      * @param  {string} action - Operation to perform on existing cart, whether to merge or replace.
+      * @summary: Merge or Replace existing cart
+      * @description: Merge or Replace cart based on `action` parameter with shared cart of `token`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.token - Shared short link token.
+      * @param {string} arg.action - Operation to perform on existing cart, whether to merge or replace.
       
       **/
-    updateCartWithSharedItems(token: string, action: string): any;
+    updateCartWithSharedItems({ token, action }?: {
+        token: string;
+        action: string;
+    }): any;
 }
 export class Lead {
     constructor(_conf: any);
     _conf: any;
     /**
       *
-      * @summary:  Get Ticket with the specific id
-      * @description:  Get Ticket with the specific id, this is used to view the ticket details
-      * @param  {string} id - ID of ticket to be retrieved
+      * @summary: Get Ticket with the specific id
+      * @description: Get Ticket with the specific id, this is used to view the ticket details
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - ID of ticket to be retrieved
       
       **/
-    getTicket(id: string): any;
+    getTicket({ id }?: {
+        id: string;
+    }): any;
     /**
      *
-     * @summary:  Create history for specific Ticket
-     * @description:  Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-     * @param  {string} ticketId - Ticket ID for which history is created
-     * @param  {TicketHistoryPayload} body
+     * @summary: Create history for specific Ticket
+     * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.ticketId - Ticket ID for which history is created
+     * @param {TicketHistoryPayload} arg.body
      **/
-    createHistoryForTicket(ticketId: string, body: any): any;
+    createHistoryForTicket({ ticketId, body }?: {
+        ticketId: string;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Create Ticket
-     * @description:  This is used to Create Ticket.
-     * @param  {AddTicketPayload} body
+     * @summary: Create Ticket
+     * @description: This is used to Create Ticket.
+     * @param {Object} arg - arg object.
+     * @param {AddTicketPayload} arg.body
      **/
-    createTicket(body: any): any;
+    createTicket({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get specific Custom Form using it's slug
-      * @description:  Get specific Custom Form using it's slug, this is used to view the form.
-      * @param  {string} slug - Slug of form whose response is getting submitted
+      * @summary: Get specific Custom Form using it's slug
+      * @description: Get specific Custom Form using it's slug, this is used to view the form.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - Slug of form whose response is getting submitted
       
       **/
-    getCustomForm(slug: string): any;
+    getCustomForm({ slug }?: {
+        slug: string;
+    }): any;
     /**
      *
-     * @summary:  Submit Response for a specific Custom Form using it's slug
-     * @description:  Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
-     * @param  {string} slug - Slug of form whose response is getting submitted
-     * @param  {CustomFormSubmissionPayload} body
+     * @summary: Submit Response for a specific Custom Form using it's slug
+     * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.slug - Slug of form whose response is getting submitted
+     * @param {CustomFormSubmissionPayload} arg.body
      **/
-    submitCustomForm(slug: string, body: any): any;
+    submitCustomForm({ slug, body }?: {
+        slug: string;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get participants of a specific Video Room using it's unique name
-      * @description:  Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
-      * @param  {string} uniqueName - Unique name of Video Room
+      * @summary: Get participants of a specific Video Room using it's unique name
+      * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.uniqueName - Unique name of Video Room
       
       **/
-    getParticipantsInsideVideoRoom(uniqueName: string): any;
+    getParticipantsInsideVideoRoom({ uniqueName }?: {
+        uniqueName: string;
+    }): any;
     /**
       *
-      * @summary:  Get Token to join a specific Video Room using it's unqiue name
-      * @description:  Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-      * @param  {string} uniqueName - Unique name of Video Room
+      * @summary: Get Token to join a specific Video Room using it's unqiue name
+      * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.uniqueName - Unique name of Video Room
       
       **/
-    getTokenForVideoRoom(uniqueName: string): any;
+    getTokenForVideoRoom({ uniqueName }?: {
+        uniqueName: string;
+    }): any;
 }
 export class Theme {
     constructor(_conf: any);
     _conf: any;
     /**
       *
-      * @summary:  Get applied theme for an application
+      * @summary: Get applied theme for an application
       * @description:
+      * @param {Object} arg - arg object.
       
       **/
-    getAppliedTheme(): any;
+    getAppliedTheme({}?: any): any;
     /**
       *
-      * @summary:  Get theme for preview
+      * @summary: Get theme for preview
       * @description:
-      * @param  {string} themeId - ID of the theme to be retrieved
+      * @param {Object} arg - arg object.
+      * @param {string} arg.themeId - ID of the theme to be retrieved
       
       **/
-    getThemeForPreview(themeId: string): any;
+    getThemeForPreview({ themeId }?: {
+        themeId: string;
+    }): any;
 }
 export class User {
     constructor(_conf: any);
     _conf: any;
     /**
      *
-     * @summary:  Login/Register with Facebook
-     * @description:  Used to login or register with Facebook
-     * @param  {OAuthRequestSchema} body
+     * @summary: Login/Register with Facebook
+     * @description: Used to login or register with Facebook
+     * @param {Object} arg - arg object.
+     * @param {OAuthRequestSchema} arg.body
      **/
-    loginWithFacebook(body: any): any;
+    loginWithFacebook({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Login/Register with Google
-     * @description:  Used to login or register with Google
-     * @param  {OAuthRequestSchema} body
+     * @summary: Login/Register with Google
+     * @description: Used to login or register with Google
+     * @param {Object} arg - arg object.
+     * @param {OAuthRequestSchema} arg.body
      **/
-    loginWithGoogle(body: any): any;
+    loginWithGoogle({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Login/Register with Google for android
-     * @description:  Used to login or register with Google for android
-     * @param  {OAuthRequestSchema} body
+     * @summary: Login/Register with Google for android
+     * @description: Used to login or register with Google for android
+     * @param {Object} arg - arg object.
+     * @param {OAuthRequestSchema} arg.body
      **/
-    loginWithGoogleAndroid(body: any): any;
+    loginWithGoogleAndroid({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Login/Register with Google for ios
-     * @description:  Used to login or register with google for ios
-     * @param  {OAuthRequestSchema} body
+     * @summary: Login/Register with Google for ios
+     * @description: Used to login or register with google for ios
+     * @param {Object} arg - arg object.
+     * @param {OAuthRequestSchema} arg.body
      **/
-    loginWithGoogleIOS(body: any): any;
+    loginWithGoogleIOS({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Login/Register with OTP
-     * @description:  Used to login or register with OTP
-     * @param  {string} [platform] - Platform
-     * @param  {SendOtpRequestSchema} body
+     * @summary: Login/Register with OTP
+     * @description: Used to login or register with OTP
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {SendOtpRequestSchema} arg.body
      **/
-    loginWithOTP(body: any, platform?: string): any;
+    loginWithOTP({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Login/Register with password
-     * @description:  Used to login or register with email & password
-     * @param  {PasswordLoginRequestSchema} body
+     * @summary: Login/Register with password
+     * @description: Used to login or register with email & password
+     * @param {Object} arg - arg object.
+     * @param {PasswordLoginRequestSchema} arg.body
      **/
-    loginWithEmailAndPassword(body: any): any;
+    loginWithEmailAndPassword({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Reset Password
-     * @description:  Used to reset account password
-     * @param  {string} [platform] - Platform
-     * @param  {SendResetPasswordEmailRequestSchema} body
+     * @summary: Reset Password
+     * @description: Used to reset account password
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {SendResetPasswordEmailRequestSchema} arg.body
      **/
-    sendResetPasswordEmail(body: any, platform?: string): any;
+    sendResetPasswordEmail({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
      *
      * @summary:
      * @description:
-     * @param  {ForgotPasswordRequestSchema} body
+     * @param {Object} arg - arg object.
+     * @param {ForgotPasswordRequestSchema} arg.body
      **/
-    forgotPassword(body: any): any;
+    forgotPassword({ body }?: {
+        body: any;
+    }): any;
     /**
      *
      * @summary:
-     * @description:  Send code incase of reset password
-     * @param  {CodeRequestBodySchema} body
+     * @description: Send code incase of reset password
+     * @param {Object} arg - arg object.
+     * @param {CodeRequestBodySchema} arg.body
      **/
-    sendResetToken(body: any): any;
+    sendResetToken({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Login/Register with token
-     * @description:  Login/Register with token
-     * @param  {TokenRequestBodySchema} body
+     * @summary: Login/Register with token
+     * @description: Login/Register with token
+     * @param {Object} arg - arg object.
+     * @param {TokenRequestBodySchema} arg.body
      **/
-    loginWithToken(body: any): any;
+    loginWithToken({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Registration Form
-     * @description:  Register using form
-     * @param  {string} [platform] - Platform
-     * @param  {FormRegisterRequestSchema} body
+     * @summary: Registration Form
+     * @description: Register using form
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {FormRegisterRequestSchema} arg.body
      **/
-    registerWithForm(body: any, platform?: string): any;
+    registerWithForm({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Verify email
-     * @description:  Used to verify email
-     * @param  {CodeRequestBodySchema} body
+     * @summary: Verify email
+     * @description: Used to verify email
+     * @param {Object} arg - arg object.
+     * @param {CodeRequestBodySchema} arg.body
      **/
-    verifyEmail(body: any): any;
+    verifyEmail({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Verify mobile
-     * @description:  Verify mobile
-     * @param  {CodeRequestBodySchema} body
+     * @summary: Verify mobile
+     * @description: Verify mobile
+     * @param {Object} arg - arg object.
+     * @param {CodeRequestBodySchema} arg.body
      **/
-    verifyMobile(body: any): any;
+    verifyMobile({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Check if user has password
-      * @description:  Checks if user is using password or not
+      * @summary: Check if user has password
+      * @description: Checks if user is using password or not
+      * @param {Object} arg - arg object.
       
       **/
-    hasPassword(): any;
+    hasPassword({}?: any): any;
     /**
      *
-     * @summary:  Update user password
-     * @description:  Used to update user password
-     * @param  {UpdatePasswordRequestSchema} body
+     * @summary: Update user password
+     * @description: Used to update user password
+     * @param {Object} arg - arg object.
+     * @param {UpdatePasswordRequestSchema} arg.body
      **/
-    updatePassword(body: any): any;
+    updatePassword({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Logout user
-      * @description:  Used to log out user
+      * @summary: Logout user
+      * @description: Used to log out user
+      * @param {Object} arg - arg object.
       
       **/
-    logout(): any;
+    logout({}?: any): any;
     /**
      *
-     * @summary:  Send OTP on mobile
-     * @description:  Used to send otp to mobile
-     * @param  {string} [platform] - Platform
-     * @param  {SendMobileOtpRequestSchema} body
+     * @summary: Send OTP on mobile
+     * @description: Used to send otp to mobile
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {SendMobileOtpRequestSchema} arg.body
      **/
-    sendOTPOnMobile(body: any, platform?: string): any;
+    sendOTPOnMobile({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Verify OTP on mobile
-     * @description:  Used to verify otp sent to mobile
-     * @param  {string} [platform] - Platform
-     * @param  {VerifyOtpRequestSchema} body
+     * @summary: Verify OTP on mobile
+     * @description: Used to verify otp sent to mobile
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {VerifyOtpRequestSchema} arg.body
      **/
-    verifyMobileOTP(body: any, platform?: string): any;
+    verifyMobileOTP({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Send OTP on email
-     * @description:  Used to send otp to email
-     * @param  {string} [platform] - Platform
-     * @param  {SendEmailOtpRequestSchema} body
+     * @summary: Send OTP on email
+     * @description: Used to send otp to email
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {SendEmailOtpRequestSchema} arg.body
      **/
-    sendOTPOnEmail(body: any, platform?: string): any;
+    sendOTPOnEmail({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Verify OTP on email
-     * @description:  Used to verify otp sent to email
-     * @param  {string} [platform] - Platform
-     * @param  {VerifyOtpRequestSchema} body
+     * @summary: Verify OTP on email
+     * @description: Used to verify otp sent to email
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {VerifyOtpRequestSchema} arg.body
      **/
-    verifyEmailOTP(body: any, platform?: string): any;
+    verifyEmailOTP({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get logged in user
-      * @description:  Used to get logged in user details
+      * @summary: Get logged in user
+      * @description: Used to get logged in user details
+      * @param {Object} arg - arg object.
       
       **/
-    getLoggedInUser(): any;
+    getLoggedInUser({}?: any): any;
     /**
       *
-      * @summary:  Get list of sessions
-      * @description:  Lists all active sessions
+      * @summary: Get list of sessions
+      * @description: Lists all active sessions
+      * @param {Object} arg - arg object.
       
       **/
-    getListOfActiveSessions(): any;
+    getListOfActiveSessions({}?: any): any;
     /**
       *
-      * @summary:  Get platform config
-      * @description:  Used to get platform config
-      * @param  {string} [name] - Name
+      * @summary: Get platform config
+      * @description: Used to get platform config
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.name] - Name
       
       **/
-    getPlatformConfig(name?: string): any;
+    getPlatformConfig({ name }?: {
+        name?: string;
+    }): any;
     /**
      *
-     * @summary:  Edit Profile Details
-     * @description:  Used to update profile
-     * @param  {string} [platform] - Platform
-     * @param  {EditProfileRequestSchema} body
+     * @summary: Edit Profile Details
+     * @description: Used to update profile
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {EditProfileRequestSchema} arg.body
      **/
-    updateProfile(body: any, platform?: string): any;
+    updateProfile({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Add mobile number to profile
-     * @description:  Used to add new mobile number to profile
-     * @param  {string} [platform] - Platform
-     * @param  {EditMobileRequestSchema} body
+     * @summary: Add mobile number to profile
+     * @description: Used to add new mobile number to profile
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {EditMobileRequestSchema} arg.body
      **/
-    addMobileNumber(body: any, platform?: string): any;
+    addMobileNumber({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Delete mobile number from profile
-      * @description:  Used to delete mobile number from profile
-      * @param  {string} [platform] - Platform
-      * @param  {boolean} active - Active mobile number
-      * @param  {boolean} primary - Primary number
-      * @param  {boolean} verified - Verified Number
-      * @param  {string} countryCode - Country code of phone number
-      * @param  {string} phone - Phone number
+      * @summary: Delete mobile number from profile
+      * @description: Used to delete mobile number from profile
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.platform] - Platform
+      * @param {boolean} arg.active - Active mobile number
+      * @param {boolean} arg.primary - Primary number
+      * @param {boolean} arg.verified - Verified Number
+      * @param {string} arg.countryCode - Country code of phone number
+      * @param {string} arg.phone - Phone number
       
       **/
-    deleteMobileNumber(active: boolean, primary: boolean, verified: boolean, countryCode: string, phone: string, platform?: string): any;
+    deleteMobileNumber({ active, primary, verified, countryCode, phone, platform, }?: {
+        platform?: string;
+        active: boolean;
+        primary: boolean;
+        verified: boolean;
+        countryCode: string;
+        phone: string;
+    }): any;
     /**
      *
-     * @summary:  Set mobile as primary
-     * @description:  Used to set a mobile number as primary
-     * @param  {SendVerificationLinkMobileRequestSchema} body
+     * @summary: Set mobile as primary
+     * @description: Used to set a mobile number as primary
+     * @param {Object} arg - arg object.
+     * @param {SendVerificationLinkMobileRequestSchema} arg.body
      **/
-    setMobileNumberAsPrimary(body: any): any;
+    setMobileNumberAsPrimary({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Send verification link to mobile
-     * @description:  Used to send verification link to a mobile number
-     * @param  {string} [platform] - Platform
-     * @param  {SendVerificationLinkMobileRequestSchema} body
+     * @summary: Send verification link to mobile
+     * @description: Used to send verification link to a mobile number
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {SendVerificationLinkMobileRequestSchema} arg.body
      **/
-    sendVerificationLinkToMobile(body: any, platform?: string): any;
+    sendVerificationLinkToMobile({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Add email to profile
-     * @description:  Used to add new email to profile
-     * @param  {string} [platform] - Platform
-     * @param  {EditEmailRequestSchema} body
+     * @summary: Add email to profile
+     * @description: Used to add new email to profile
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {EditEmailRequestSchema} arg.body
      **/
-    addEmail(body: any, platform?: string): any;
+    addEmail({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Delete email from profile
-      * @description:  Used to delete email from profile
-      * @param  {string} [platform] - Platform
-      * @param  {boolean} active - Whether email id is active
-      * @param  {boolean} primary - Whether email id is primary email
-      * @param  {boolean} verified - Whether email id is verified
-      * @param  {string} email - Email ID to be deleted
+      * @summary: Delete email from profile
+      * @description: Used to delete email from profile
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.platform] - Platform
+      * @param {boolean} arg.active - Whether email id is active
+      * @param {boolean} arg.primary - Whether email id is primary email
+      * @param {boolean} arg.verified - Whether email id is verified
+      * @param {string} arg.email - Email ID to be deleted
       
       **/
-    deleteEmail(active: boolean, primary: boolean, verified: boolean, email: string, platform?: string): any;
+    deleteEmail({ active, primary, verified, email, platform }?: {
+        platform?: string;
+        active: boolean;
+        primary: boolean;
+        verified: boolean;
+        email: string;
+    }): any;
     /**
      *
-     * @summary:  Set email as primary
-     * @description:  Used to set an email as primart
-     * @param  {EditEmailRequestSchema} body
+     * @summary: Set email as primary
+     * @description: Used to set an email as primart
+     * @param {Object} arg - arg object.
+     * @param {EditEmailRequestSchema} arg.body
      **/
-    setEmailAsPrimary(body: any): any;
+    setEmailAsPrimary({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Send verification link to email
-     * @description:  Used to sent verification to an email
-     * @param  {string} [platform] - Platform
-     * @param  {EditEmailRequestSchema} body
+     * @summary: Send verification link to email
+     * @description: Used to sent verification to an email
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.platform] - Platform
+     * @param {EditEmailRequestSchema} arg.body
      **/
-    sendVerificationLinkToEmail(body: any, platform?: string): any;
+    sendVerificationLinkToEmail({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): any;
 }
 export class Content {
     constructor(_conf: any);
     _conf: any;
     /**
       *
-      * @summary:  Get live announcements
-      * @description:  Get live announcements for each or all pages with page slug of page and end date schedule.
+      * @summary: Get live announcements
+      * @description: Get live announcements for each or all pages with page slug of page and end date schedule.
+      * @param {Object} arg - arg object.
       
       **/
-    getAnnouncements(): any;
+    getAnnouncements({}?: any): any;
     /**
       *
-      * @summary:  Get Blog by slug
-      * @description:  Use this API to fetch a blog using `slug`
-      * @param  {string} slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
+      * @summary: Get Blog by slug
+      * @description: Use this API to fetch a blog using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
       
       **/
-    getBlog(slug: string): any;
+    getBlog({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Get frequently asked questions
-      * @description:  Get frequently asked questions list. These will be helpful for users to using website.
+      * @summary: Get frequently asked questions
+      * @description: Get frequently asked questions list. These will be helpful for users to using website.
+      * @param {Object} arg - arg object.
       
       **/
-    getFaqs(): any;
+    getFaqs({}?: any): any;
     /**
       *
-      * @summary:  Get FAQ categories list
-      * @description:  Get list of FAQ categories
+      * @summary: Get FAQ categories list
+      * @description: Get list of FAQ categories
+      * @param {Object} arg - arg object.
       
       **/
-    getFaqCategories(): any;
+    getFaqCategories({}?: any): any;
     /**
       *
-      * @summary:  Get frequently asked question
-      * @description:  Get frequently asked questions list. These will be helpful for users to using website.
-      * @param  {string} idOrSlug - Slug or Id of FAQ
+      * @summary: Get frequently asked question
+      * @description: Get frequently asked questions list. These will be helpful for users to using website.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Slug or Id of FAQ
       
       **/
-    getFaqByIdOrSlug(idOrSlug: string): any;
+    getFaqByIdOrSlug({ idOrSlug }?: {
+        idOrSlug: string;
+    }): any;
     /**
       *
-      * @summary:  Get FAQ category by slug or id
-      * @description:  Get FAQ category by slug or id
-      * @param  {string} idOrSlug - Slug or Id of FAQ Category
+      * @summary: Get FAQ category by slug or id
+      * @description: Get FAQ category by slug or id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
       
       **/
-    getFaqCategoryBySlugOrId(idOrSlug: string): any;
+    getFaqCategoryBySlugOrId({ idOrSlug }?: {
+        idOrSlug: string;
+    }): any;
     /**
       *
-      * @summary:  Get FAQs of a Faq Category id or slug
-      * @description:  Get FAQs of a Faq Category `id` or `slug`
-      * @param  {string} idOrSlug - Faq category ID or slug
+      * @summary: Get FAQs of a Faq Category id or slug
+      * @description: Get FAQs of a Faq Category `id` or `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Faq category ID or slug
       
       **/
-    getFaqsByCategoryIdOrSlug(idOrSlug: string): any;
+    getFaqsByCategoryIdOrSlug({ idOrSlug }?: {
+        idOrSlug: string;
+    }): any;
     /**
       *
-      * @summary:  Get landing page
-      * @description:  Use this API to fetch a landing page
+      * @summary: Get landing page
+      * @description: Use this API to fetch a landing page
+      * @param {Object} arg - arg object.
       
       **/
-    getLandingPage(): any;
+    getLandingPage({}?: any): any;
     /**
       *
-      * @summary:  Get legal information
-      * @description:  Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+      * @summary: Get legal information
+      * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+      * @param {Object} arg - arg object.
       
       **/
-    getLegalInformation(): any;
+    getLegalInformation({}?: any): any;
     /**
       *
-      * @summary:  Get navigation
-      * @description:  Use this API to fetch a navigation
+      * @summary: Get navigation
+      * @description: Use this API to fetch a navigation
+      * @param {Object} arg - arg object.
       
       **/
-    getNavigations(): any;
+    getNavigations({}?: any): any;
     /**
       *
-      * @summary:  Get Page by slug
-      * @description:  Use this API to fetch a custom page using `slug`
-      * @param  {string} slug - The `slug` of a page. Use this parameter to retrieve a particular page
+      * @summary: Get Page by slug
+      * @description: Use this API to fetch a custom page using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
       
       **/
-    getPage(slug: string): any;
+    getPage({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Get seo of application
-      * @description:  Get seo of application
+      * @summary: Get seo of application
+      * @description: Get seo of application
+      * @param {Object} arg - arg object.
       
       **/
-    getSeoConfiguration(): any;
+    getSeoConfiguration({}?: any): any;
     /**
       *
-      * @summary:  Get slideshow by slug
-      * @description:  Use this API to fetch a slideshow using `slug`
-      * @param  {string} slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
+      * @summary: Get slideshow by slug
+      * @description: Use this API to fetch a slideshow using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
       
       **/
-    getSlideshow(slug: string): any;
+    getSlideshow({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Get support information
-      * @description:  Get contact details for customer support. Including emails and phone numbers
+      * @summary: Get support information
+      * @description: Get contact details for customer support. Including emails and phone numbers
+      * @param {Object} arg - arg object.
       
       **/
-    getSupportInformation(): any;
+    getSupportInformation({}?: any): any;
     /**
       *
-      * @summary:  Get Tags for application
+      * @summary: Get Tags for application
       * @description:
+      * @param {Object} arg - arg object.
       
       **/
-    getTags(): any;
+    getTags({}?: any): any;
 }
 export class Communication {
     constructor(_conf: any);
     _conf: any;
     /**
       *
-      * @summary:  Get communication consent
-      * @description:  Get communication consent
+      * @summary: Get communication consent
+      * @description: Get communication consent
+      * @param {Object} arg - arg object.
       
       **/
-    getCommunicationConsent(): any;
+    getCommunicationConsent({}?: any): any;
     /**
      *
-     * @summary:  Upsert communication consent
-     * @description:  Upsert communication consent
-     * @param  {CommunicationConsentReq} body
+     * @summary: Upsert communication consent
+     * @description: Upsert communication consent
+     * @param {Object} arg - arg object.
+     * @param {CommunicationConsentReq} arg.body
      **/
-    upsertCommunicationConsent(body: any): any;
+    upsertCommunicationConsent({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Upsert push token of a user
-     * @description:  Upsert push token of a user
-     * @param  {PushtokenReq} body
+     * @summary: Upsert push token of a user
+     * @description: Upsert push token of a user
+     * @param {Object} arg - arg object.
+     * @param {PushtokenReq} arg.body
      **/
-    upsertPushtoken(body: any): any;
+    upsertPushtoken({ body }?: {
+        body: any;
+    }): any;
 }
 export class Share {
     constructor(_conf: any);
     _conf: any;
     /**
       *
-      * @summary:  Create application QR Code
-      * @description:  Create application QR Code
+      * @summary: Create application QR Code
+      * @description: Create application QR Code
+      * @param {Object} arg - arg object.
       
       **/
-    getApplicationQRCode(): any;
+    getApplicationQRCode({}?: any): any;
     /**
       *
-      * @summary:  Create product QR Code
-      * @description:  Create product QR Code
-      * @param  {string} slug - The unique identifier of a product
+      * @summary: Create product QR Code
+      * @description: Create product QR Code
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier of a product
       
       **/
-    getProductQRCodeBySlug(slug: string): any;
+    getProductQRCodeBySlug({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Create collection QR Code
-      * @description:  Create collection QR Code
-      * @param  {string} slug - The unique identifier of a collection
+      * @summary: Create collection QR Code
+      * @description: Create collection QR Code
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The unique identifier of a collection
       
       **/
-    getCollectionQRCodeBySlug(slug: string): any;
+    getCollectionQRCodeBySlug({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
-      * @summary:  Create url QR Code
-      * @description:  Create url QR Code
-      * @param  {string} url - Url
+      * @summary: Create url QR Code
+      * @description: Create url QR Code
+      * @param {Object} arg - arg object.
+      * @param {string} arg.url - Url
       
       **/
-    getUrlQRCode(url: string): any;
+    getUrlQRCode({ url }?: {
+        url: string;
+    }): any;
     /**
      *
-     * @summary:  Create short link
-     * @description:  Create short link
-     * @param  {ShortLinkReq} body
+     * @summary: Create short link
+     * @description: Create short link
+     * @param {Object} arg - arg object.
+     * @param {ShortLinkReq} arg.body
      **/
-    createShortLink(body: any): any;
+    createShortLink({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get short link by hash
-      * @description:  Get short link by hash
-      * @param  {string} hash - Hash of short link
+      * @summary: Get short link by hash
+      * @description: Get short link by hash
+      * @param {Object} arg - arg object.
+      * @param {string} arg.hash - Hash of short link
       
       **/
-    getShortLinkByHash(hash: string): any;
+    getShortLinkByHash({ hash }?: {
+        hash: string;
+    }): any;
     /**
       *
-      * @summary:  Get original link by hash
-      * @description:  Get original link by hash
-      * @param  {string} hash - Hash of short link
+      * @summary: Get original link by hash
+      * @description: Get original link by hash
+      * @param {Object} arg - arg object.
+      * @param {string} arg.hash - Hash of short link
       
       **/
-    getOriginalShortLinkByHash(hash: string): any;
+    getOriginalShortLinkByHash({ hash }?: {
+        hash: string;
+    }): any;
 }
 export class FileStorage {
     constructor(_conf: any);
     _conf: any;
     /**
       *
-      * @summary:  This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
-      * @description:  Uploads an arbitrarily sized buffer or blob.
+      * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
+      * @description: Uploads an arbitrarily sized buffer or blob.
   
   It has three Major Steps:
   * Start
@@ -1035,15 +1472,20 @@ export class FileStorage {
   After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
   This operation will return the url for the uploaded file.
   
-      * @param  {string} namespace - bucket name
-      * @param  {number} companyId - company_id
-      * @param  {StartResponse} body
+      * @param {Object} arg - arg object.
+      * @param {string} arg.namespace - bucket name
+      * @param {number} arg.companyId - company_id
+      * @param {StartResponse} arg.body
       **/
-    completeUpload(namespace: string, companyId: number, body: any): any;
+    completeUpload({ namespace, companyId, body }?: {
+        namespace: string;
+        companyId: number;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
-      * @description:  Uploads an arbitrarily sized buffer or blob.
+      * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
+      * @description: Uploads an arbitrarily sized buffer or blob.
   
   It has three Major Steps:
   * Start
@@ -1062,751 +1504,1128 @@ export class FileStorage {
   After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
   This operation will return the url for the uploaded file.
   
-      * @param  {string} namespace - bucket name
-      * @param  {number} companyId - company_id
-      * @param  {StartRequest} body
+      * @param {Object} arg - arg object.
+      * @param {string} arg.namespace - bucket name
+      * @param {number} arg.companyId - company_id
+      * @param {StartRequest} arg.body
       **/
-    startUpload(namespace: string, companyId: number, body: any): any;
+    startUpload({ namespace, companyId, body }?: {
+        namespace: string;
+        companyId: number;
+        body: any;
+    }): any;
 }
 export class Payment {
     constructor(_conf: any);
     _conf: any;
     /**
       *
-      * @summary:  Get payment gateway keys
-      * @description:  Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
-      * @param  {string} xApiToken - api token
-      * @param  {boolean} [refresh] - refresh cache
+      * @summary: Get payment gateway keys
+      * @description: Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.xApiToken - api token
+      * @param {boolean} [arg.refresh] - refresh cache
       
       **/
-    getAggregatorsConfig(xApiToken: string, refresh?: boolean): any;
+    getAggregatorsConfig({ xApiToken, refresh }?: {
+        xApiToken: string;
+        refresh?: boolean;
+    }): any;
     /**
      *
-     * @summary:  Attach a saved card to customer.
-     * @description:  Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
-     * @param  {AttachCardRequest} body
+     * @summary: Attach a saved card to customer.
+     * @description: Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
+     * @param {Object} arg - arg object.
+     * @param {AttachCardRequest} arg.body
      **/
-    attachCardToCustomer(body: any): any;
+    attachCardToCustomer({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Fetch active payment gateway for card
-      * @description:  Fetch active payment gateway along with customer id for cards payments.
-      * @param  {boolean} [refresh] -
+      * @summary: Fetch active payment gateway for card
+      * @description: Fetch active payment gateway along with customer id for cards payments.
+      * @param {Object} arg - arg object.
+      * @param {boolean} [arg.refresh] -
       
       **/
-    getActiveCardAggregator(refresh?: boolean): any;
+    getActiveCardAggregator({ refresh }?: {
+        refresh?: boolean;
+    }): any;
     /**
       *
-      * @summary:  Fetch the list of saved cards of user.
-      * @description:  Fetch the list of saved cards of user from active payment gateway.
-      * @param  {boolean} [forceRefresh] -
+      * @summary: Fetch the list of saved cards of user.
+      * @description: Fetch the list of saved cards of user from active payment gateway.
+      * @param {Object} arg - arg object.
+      * @param {boolean} [arg.forceRefresh] -
       
       **/
-    getActiveUserCards(forceRefresh?: boolean): any;
+    getActiveUserCards({ forceRefresh }?: {
+        forceRefresh?: boolean;
+    }): any;
     /**
      *
-     * @summary:  Delete an user card.
-     * @description:  Delete an added user card on payment gateway and remove from cache.
-     * @param  {DeletehCardRequest} body
+     * @summary: Delete an user card.
+     * @description: Delete an added user card on payment gateway and remove from cache.
+     * @param {Object} arg - arg object.
+     * @param {DeletehCardRequest} arg.body
      **/
-    deleteUserCard(body: any): any;
+    deleteUserCard({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Validate customer for payment.
-     * @description:  Validate customer for payment i.e Simpl paylater, Rupifi loan.
-     * @param  {ValidateCustomerRequest} body
+     * @summary: Validate customer for payment.
+     * @description: Validate customer for payment i.e Simpl paylater, Rupifi loan.
+     * @param {Object} arg - arg object.
+     * @param {ValidateCustomerRequest} arg.body
      **/
-    verifyCustomerForPayment(body: any): any;
+    verifyCustomerForPayment({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Verify and charge payment
-     * @description:  Verify and charge payment server to server for Simpl & Mswipe.
-     * @param  {ChargeCustomerRequest} body
+     * @summary: Verify and charge payment
+     * @description: Verify and charge payment server to server for Simpl & Mswipe.
+     * @param {Object} arg - arg object.
+     * @param {ChargeCustomerRequest} arg.body
      **/
-    verifyAndChargePayment(body: any): any;
+    verifyAndChargePayment({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Payment Initialisation server to server for UPI and BharatQR.
-     * @description:  Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
-     * @param  {PaymentInitializationRequest} body
+     * @summary: Payment Initialisation server to server for UPI and BharatQR.
+     * @description: Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
+     * @param {Object} arg - arg object.
+     * @param {PaymentInitializationRequest} arg.body
      **/
-    initialisePayment(body: any): any;
+    initialisePayment({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Continous polling to check status of payment on server.
-     * @description:  Continous polling on interval to check status of payment untill timeout.
-     * @param  {PaymentStatusUpdateRequest} body
+     * @summary: Continous polling to check status of payment on server.
+     * @description: Continous polling on interval to check status of payment untill timeout.
+     * @param {Object} arg - arg object.
+     * @param {PaymentStatusUpdateRequest} arg.body
      **/
-    checkAndUpdatePaymentStatus(body: any): any;
+    checkAndUpdatePaymentStatus({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get All Valid Payment Options
-      * @description:  Use this API to get Get All Valid Payment Options for making payment
-      * @param  {number} amount - Payment amount
-      * @param  {string} cartId - Cart id
-      * @param  {number} pincode - Pincode
-      * @param  {string} checkoutMode - Checkout mode
-      * @param  {boolean} [refresh] -
-      * @param  {string} [assignCardId] - selected card id
-      * @param  {string} [deliveryAddress] - URIencoded json delivery address of cart for annonymous user
+      * @summary: Get All Valid Payment Options
+      * @description: Use this API to get Get All Valid Payment Options for making payment
+      * @param {Object} arg - arg object.
+      * @param {number} arg.amount - Payment amount
+      * @param {string} arg.cartId - Cart id
+      * @param {number} arg.pincode - Pincode
+      * @param {string} arg.checkoutMode - Checkout mode
+      * @param {boolean} [arg.refresh] -
+      * @param {string} [arg.assignCardId] - selected card id
+      * @param {string} [arg.deliveryAddress] - URIencoded json delivery address of cart for annonymous user
       
       **/
-    getPaymentModeRoutes(amount: number, cartId: string, pincode: number, checkoutMode: string, refresh?: boolean, assignCardId?: string, deliveryAddress?: string): any;
+    getPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, refresh, assignCardId, deliveryAddress, }?: {
+        amount: number;
+        cartId: string;
+        pincode: number;
+        checkoutMode: string;
+        refresh?: boolean;
+        assignCardId?: string;
+        deliveryAddress?: string;
+    }): any;
     /**
       *
-      * @summary:  Get All Valid Payment Options for POS
-      * @description:  Use this API to get Get All Valid Payment Options for making payment
-      * @param  {number} amount - Payment amount
-      * @param  {string} cartId - Cart id
-      * @param  {number} pincode - Pincode
-      * @param  {string} checkoutMode - Checkout mode
-      * @param  {boolean} [refresh] -
-      * @param  {string} [assignCardId] - selected card id
-      * @param  {string} orderType - Order type
-      * @param  {string} [deliveryAddress] - URIencoded json delivery address of cart for annonymous user
+      * @summary: Get All Valid Payment Options for POS
+      * @description: Use this API to get Get All Valid Payment Options for making payment
+      * @param {Object} arg - arg object.
+      * @param {number} arg.amount - Payment amount
+      * @param {string} arg.cartId - Cart id
+      * @param {number} arg.pincode - Pincode
+      * @param {string} arg.checkoutMode - Checkout mode
+      * @param {boolean} [arg.refresh] -
+      * @param {string} [arg.assignCardId] - selected card id
+      * @param {string} arg.orderType - Order type
+      * @param {string} [arg.deliveryAddress] - URIencoded json delivery address of cart for annonymous user
       
       **/
-    getPosPaymentModeRoutes(amount: number, cartId: string, pincode: number, checkoutMode: string, orderType: string, refresh?: boolean, assignCardId?: string, deliveryAddress?: string): any;
+    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, assignCardId, deliveryAddress, }?: {
+        amount: number;
+        cartId: string;
+        pincode: number;
+        checkoutMode: string;
+        refresh?: boolean;
+        assignCardId?: string;
+        orderType: string;
+        deliveryAddress?: string;
+    }): any;
     /**
       *
-      * @summary:  List User Beneficiary
-      * @description:  Get all active  beneficiary details added by the user for refund
-      * @param  {string} orderId -
+      * @summary: List User Beneficiary
+      * @description: Get all active  beneficiary details added by the user for refund
+      * @param {Object} arg - arg object.
+      * @param {string} arg.orderId -
       
       **/
-    getUserBeneficiariesDetail(orderId: string): any;
+    getUserBeneficiariesDetail({ orderId }?: {
+        orderId: string;
+    }): any;
     /**
       *
-      * @summary:  Ifsc Code Verification
-      * @description:  Get True/False for correct IFSC Code for adding bank details for refund
-      * @param  {string} [ifscCode] -
+      * @summary: Ifsc Code Verification
+      * @description: Get True/False for correct IFSC Code for adding bank details for refund
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.ifscCode] -
       
       **/
-    verifyIfscCode(ifscCode?: string): any;
+    verifyIfscCode({ ifscCode }?: {
+        ifscCode?: string;
+    }): any;
     /**
       *
-      * @summary:  List Order Beneficiary
-      * @description:  Get all active  beneficiary details added by the user for refund
-      * @param  {string} orderId -
+      * @summary: List Order Beneficiary
+      * @description: Get all active  beneficiary details added by the user for refund
+      * @param {Object} arg - arg object.
+      * @param {string} arg.orderId -
       
       **/
-    getOrderBeneficiariesDetail(orderId: string): any;
+    getOrderBeneficiariesDetail({ orderId }?: {
+        orderId: string;
+    }): any;
     /**
      *
-     * @summary:  Save Beneficiary details on otp validation.
-     * @description:  Save Beneficiary details on otp validation.
-     * @param  {AddBeneficiaryViaOtpVerificationRequest} body
+     * @summary: Save Beneficiary details on otp validation.
+     * @description: Save Beneficiary details on otp validation.
+     * @param {Object} arg - arg object.
+     * @param {AddBeneficiaryViaOtpVerificationRequest} arg.body
      **/
-    verifyOtpAndAddBeneficiaryForBank(body: any): any;
+    verifyOtpAndAddBeneficiaryForBank({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Save bank details for cancelled/returned order
-     * @description:  Use this API to save bank details for returned/cancelled order to refund amount in his account.
-     * @param  {AddBeneficiaryDetailsRequest} body
+     * @summary: Save bank details for cancelled/returned order
+     * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
+     * @param {Object} arg - arg object.
+     * @param {AddBeneficiaryDetailsRequest} arg.body
      **/
-    addBeneficiaryDetails(body: any): any;
+    addBeneficiaryDetails({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Send Otp on Adding wallet beneficiary
-     * @description:  Send Otp on Adding wallet beneficiary for user mobile verification
-     * @param  {WalletOtpRequest} body
+     * @summary: Send Otp on Adding wallet beneficiary
+     * @description: Send Otp on Adding wallet beneficiary for user mobile verification
+     * @param {Object} arg - arg object.
+     * @param {WalletOtpRequest} arg.body
      **/
-    verifyOtpAndAddBeneficiaryForWallet(body: any): any;
+    verifyOtpAndAddBeneficiaryForWallet({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Mark Default Beneficiary For Refund
-     * @description:  Mark Default Beneficiary ot of all Beneficiary Details for Refund
-     * @param  {SetDefaultBeneficiaryRequest} body
+     * @summary: Mark Default Beneficiary For Refund
+     * @description: Mark Default Beneficiary ot of all Beneficiary Details for Refund
+     * @param {Object} arg - arg object.
+     * @param {SetDefaultBeneficiaryRequest} arg.body
      **/
-    updateDefaultBeneficiary(body: any): any;
+    updateDefaultBeneficiary({ body }?: {
+        body: any;
+    }): any;
 }
 export class Order {
     constructor(_conf: any);
     _conf: any;
     /**
       *
-      * @summary:  Get Orders for application based on application Id
-      * @description:  Get Orders
-      * @param  {string} [pageNo] - Current page number
-      * @param  {string} [pageSize] - Page limit
-      * @param  {string} [fromDate] - From Date
-      * @param  {string} [toDate] - To Date
+      * @summary: Get Orders for application based on application Id
+      * @description: Get Orders
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.pageNo] - Current page number
+      * @param {string} [arg.pageSize] - Page limit
+      * @param {string} [arg.fromDate] - From Date
+      * @param {string} [arg.toDate] - To Date
       
       **/
-    getOrders(pageNo?: string, pageSize?: string, fromDate?: string, toDate?: string): any;
+    getOrders({ pageNo, pageSize, fromDate, toDate }?: {
+        pageNo?: string;
+        pageSize?: string;
+        fromDate?: string;
+        toDate?: string;
+    }): any;
     /**
       *
-      * @summary:  Get Order by order id for application based on application Id
-      * @description:  Get Order By Fynd Order Id
-      * @param  {string} orderId - Order Id
+      * @summary: Get Order by order id for application based on application Id
+      * @description: Get Order By Fynd Order Id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.orderId - Order Id
       
       **/
-    getOrderById(orderId: string): any;
+    getOrderById({ orderId }?: {
+        orderId: string;
+    }): any;
     /**
       *
-      * @summary:  Get Shipment by shipment id and order id for application based on application Id
-      * @description:  Get Shipment
-      * @param  {string} shipmentId - Shipment Id
+      * @summary: Get Shipment by shipment id and order id for application based on application Id
+      * @description: Get Shipment
+      * @param {Object} arg - arg object.
+      * @param {string} arg.shipmentId - Shipment Id
       
       **/
-    getShipmentById(shipmentId: string): any;
+    getShipmentById({ shipmentId }?: {
+        shipmentId: string;
+    }): any;
     /**
       *
-      * @summary:  Get Shipment reasons by shipment id and order id for application based on application Id
-      * @description:  Get Shipment Reasons
-      * @param  {string} shipmentId - Shipment Id
+      * @summary: Get Shipment reasons by shipment id and order id for application based on application Id
+      * @description: Get Shipment Reasons
+      * @param {Object} arg - arg object.
+      * @param {string} arg.shipmentId - Shipment Id
       
       **/
-    getShipmentReasons(shipmentId: string): any;
+    getShipmentReasons({ shipmentId }?: {
+        shipmentId: string;
+    }): any;
     /**
      *
-     * @summary:  Update Shipment status by shipment id and order id for application based on application Id
-     * @description:  Update Shipment Status
-     * @param  {string} shipmentId - Shipment Id
-     * @param  {ShipmentStatusUpdateBody} body
+     * @summary: Update Shipment status by shipment id and order id for application based on application Id
+     * @description: Update Shipment Status
+     * @param {Object} arg - arg object.
+     * @param {string} arg.shipmentId - Shipment Id
+     * @param {ShipmentStatusUpdateBody} arg.body
      **/
-    updateShipmentStatus(shipmentId: string, body: any): any;
+    updateShipmentStatus({ shipmentId, body }?: {
+        shipmentId: string;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Track Shipment by shipment id and order id for application based on application Id
-      * @description:  Shipment Track
-      * @param  {string} shipmentId - Shipment Id
+      * @summary: Track Shipment by shipment id and order id for application based on application Id
+      * @description: Shipment Track
+      * @param {Object} arg - arg object.
+      * @param {string} arg.shipmentId - Shipment Id
       
       **/
-    trackShipment(shipmentId: string): any;
+    trackShipment({ shipmentId }?: {
+        shipmentId: string;
+    }): any;
 }
 export class Rewards {
     constructor(_conf: any);
     _conf: any;
     /**
      *
-     * @summary:  Get reward points that could be earned on any catalogue product.
-     * @description:  Evaluate the amount of reward points that could be earned on any catalogue product.
-     * @param  {CatalogueOrderRequest} body
+     * @summary: Get reward points that could be earned on any catalogue product.
+     * @description: Evaluate the amount of reward points that could be earned on any catalogue product.
+     * @param {Object} arg - arg object.
+     * @param {CatalogueOrderRequest} arg.body
      **/
-    getPointsOnProduct(body: any): any;
+    getPointsOnProduct({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
-     * @description:  Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
-     * @param  {OrderDiscountRequest} body
+     * @summary: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+     * @description: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+     * @param {Object} arg - arg object.
+     * @param {OrderDiscountRequest} arg.body
      **/
-    getOrderDiscount(body: any): any;
+    getOrderDiscount({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Total available points of a user for current application
-      * @description:  Total available points of a user for current application
+      * @summary: Total available points of a user for current application
+      * @description: Total available points of a user for current application
+      * @param {Object} arg - arg object.
       
       **/
-    getUserPoints(): any;
+    getUserPoints({}?: any): any;
     /**
       *
-      * @summary:  Get list of points transactions.
-      * @description:  Get list of points transactions.
+      * @summary: Get list of points transactions.
+      * @description: Get list of points transactions.
   The list of points history is paginated.
-      * @param  {string} [pageId] - PageID is the ID of the requested page. For first request it should be kept empty.
-      * @param  {number} [pageSize] - PageSize is the number of requested items in response.
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.pageId] - PageID is the ID of the requested page. For first request it should be kept empty.
+      * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
       
       **/
-    getUserPointsHistory(pageId?: string, pageSize?: number): any;
+    getUserPointsHistory({ pageId, pageSize }?: {
+        pageId?: string;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  User's referral details.
-      * @description:  User's referral details.
+      * @summary: User's referral details.
+      * @description: User's referral details.
+      * @param {Object} arg - arg object.
       
       **/
-    getUserReferralDetails(): any;
+    getUserReferralDetails({}?: any): any;
     /**
      *
-     * @summary:  Redeems referral code and credits points to users points account.
-     * @description:  Redeems referral code and credits points to users points account.
-     * @param  {RedeemReferralCodeRequest} body
+     * @summary: Redeems referral code and credits points to users points account.
+     * @description: Redeems referral code and credits points to users points account.
+     * @param {Object} arg - arg object.
+     * @param {RedeemReferralCodeRequest} arg.body
      **/
-    redeemReferralCode(body: any): any;
+    redeemReferralCode({ body }?: {
+        body: any;
+    }): any;
 }
 export class Feedback {
     constructor(_conf: any);
     _conf: any;
     /**
      *
-     * @summary:  post a new abuse request
-     * @description:  Report a new abuse for specific entity with description text.
-     * @param  {ReportAbuseRequest} body
+     * @summary: post a new abuse request
+     * @description: Report a new abuse for specific entity with description text.
+     * @param {Object} arg - arg object.
+     * @param {ReportAbuseRequest} arg.body
      **/
-    createAbuseReport(body: any): any;
+    createAbuseReport({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Update abuse details
-     * @description:  Update the abuse details like status and description text.
-     * @param  {UpdateAbuseStatusRequest} body
+     * @summary: Update abuse details
+     * @description: Update the abuse details like status and description text.
+     * @param {Object} arg - arg object.
+     * @param {UpdateAbuseStatusRequest} arg.body
      **/
-    updateAbuseReport(body: any): any;
+    updateAbuseReport({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get list of abuse data
-      * @description:  Get the list of abuse data from entity type and entity ID.
-      * @param  {string} entityId - entity id
-      * @param  {string} entityType - entity type
-      * @param  {string} [id] - abuse id
-      * @param  {string} [pageId] - pagination page id
-      * @param  {number} [pageSize] - pagination page size
+      * @summary: Get list of abuse data
+      * @description: Get the list of abuse data from entity type and entity ID.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityId - entity id
+      * @param {string} arg.entityType - entity type
+      * @param {string} [arg.id] - abuse id
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
       
       **/
-    getAbuseReports(entityId: string, entityType: string, id?: string, pageId?: string, pageSize?: number): any;
+    getAbuseReports({ entityId, entityType, id, pageId, pageSize }?: {
+        entityId: string;
+        entityType: string;
+        id?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  Get list of attribute data
-      * @description:  Provides a list of all attribute data.
+      * @summary: Get list of attribute data
+      * @description: Provides a list of all attribute data.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - pagination page number
+      * @param {number} [arg.pageSize] - pagination page size
       
       **/
-    getAttributes(): any;
+    getAttributes({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
     /**
      *
-     * @summary:  Add a new attribute request
-     * @description:  Add a new attribute with its name, slug and description.
-     * @param  {SaveAttributeRequest} body
+     * @summary: Add a new attribute request
+     * @description: Add a new attribute with its name, slug and description.
+     * @param {Object} arg - arg object.
+     * @param {SaveAttributeRequest} arg.body
      **/
-    createAttribute(body: any): any;
+    createAttribute({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get single attribute data
-      * @description:  Get a single attribute data from a given slug.
-      * @param  {string} slug - Slug of attribute
+      * @summary: Get single attribute data
+      * @description: Get a single attribute data from a given slug.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - Slug of attribute
       
       **/
-    getAttribute(slug: string): any;
+    getAttribute({ slug }?: {
+        slug: string;
+    }): any;
     /**
      *
-     * @summary:  Update attribute details
-     * @description:  Update the attribute's name and description.
-     * @param  {string} slug - Slug of attribute
-     * @param  {UpdateAttributeRequest} body
+     * @summary: Update attribute details
+     * @description: Update the attribute's name and description.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.slug - Slug of attribute
+     * @param {UpdateAttributeRequest} arg.body
      **/
-    updateAttribute(slug: string, body: any): any;
+    updateAttribute({ slug, body }?: {
+        slug: string;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  post a new comment
-     * @description:  This is used to add a new comment for specific entity.
-     * @param  {CommentRequest} body
+     * @summary: post a new comment
+     * @description: This is used to add a new comment for specific entity.
+     * @param {Object} arg - arg object.
+     * @param {CommentRequest} arg.body
      **/
-    createComment(body: any): any;
+    createComment({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Update comment status
-     * @description:  Update the comment status (active/approve) or text.
-     * @param  {UpdateCommentRequest} body
+     * @summary: Update comment status
+     * @description: Update the comment status (active/approve) or text.
+     * @param {Object} arg - arg object.
+     * @param {UpdateCommentRequest} arg.body
      **/
-    updateComment(body: any): any;
+    updateComment({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get list of comments
-      * @description:  Get the list of comments from specific entity type.
-      * @param  {string} entityType - entity type
-      * @param  {string} [id] - comment id
-      * @param  {string} [entityId] - entity id
-      * @param  {string} [userId] - user id - flag/filter to get comments for user
-      * @param  {string} [pageId] - pagination page id
-      * @param  {number} [pageSize] - pagination page size
+      * @summary: Get list of comments
+      * @description: Get the list of comments from specific entity type.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} [arg.id] - comment id
+      * @param {string} [arg.entityId] - entity id
+      * @param {string} [arg.userId] - user id - flag/filter to get comments for user
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
       
       **/
-    getComments(entityType: string, id?: string, entityId?: string, userId?: string, pageId?: string, pageSize?: number): any;
+    getComments({ entityType, id, entityId, userId, pageId, pageSize }?: {
+        entityType: string;
+        id?: string;
+        entityId?: string;
+        userId?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  Checks eligibility and cloud media config
-      * @description:  Checks eligibility to rate and review and cloud media configuration
-      * @param  {string} entityType - entity type
-      * @param  {string} entityId - entity id
+      * @summary: Checks eligibility and cloud media config
+      * @description: Checks eligibility to rate and review and cloud media configuration
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
       
       **/
-    checkEligibility(entityType: string, entityId: string): any;
+    checkEligibility({ entityType, entityId }?: {
+        entityType: string;
+        entityId: string;
+    }): any;
     /**
       *
-      * @summary:  Delete Media
-      * @description:  Delete Media for the given entity IDs.
+      * @summary: Delete Media
+      * @description: Delete Media for the given entity IDs.
+      * @param {Object} arg - arg object.
       
       **/
-    deleteMedia(): any;
+    deleteMedia({}?: any): any;
     /**
      *
-     * @summary:  Add Media
-     * @description:  Add Media list for specific entity.
-     * @param  {AddMediaListRequest} body
+     * @summary: Add Media
+     * @description: Add Media list for specific entity.
+     * @param {Object} arg - arg object.
+     * @param {AddMediaListRequest} arg.body
      **/
-    createMedia(body: any): any;
+    createMedia({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Update Media
-     * @description:  Update Media (archive/approve) for the given entity.
-     * @param  {UpdateMediaListRequest} body
+     * @summary: Update Media
+     * @description: Update Media (archive/approve) for the given entity.
+     * @param {Object} arg - arg object.
+     * @param {UpdateMediaListRequest} arg.body
      **/
-    updateMedia(body: any): any;
+    updateMedia({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get Media
-      * @description:  Get Media from the given entity type and entity ID.
-      * @param  {string} entityType - entity type
-      * @param  {string} entityId - entity id
-      * @param  {string} [id] - vote id
-      * @param  {string} [pageId] - pagination page id
-      * @param  {number} [pageSize] - pagination page size
+      * @summary: Get Media
+      * @description: Get Media from the given entity type and entity ID.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - vote id
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
       
       **/
-    getMedias(entityType: string, entityId: string, id?: string, pageId?: string, pageSize?: number): any;
+    getMedias({ entityType, entityId, id, pageId, pageSize }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  Get a review summary
-      * @description:  Review summary gives ratings and attribute metrics of a review per entity
+      * @summary: Get a review summary
+      * @description: Review summary gives ratings and attribute metrics of a review per entity
   It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
-      * @param  {string} entityType - entity type
-      * @param  {string} entityId - entity id
-      * @param  {string} [id] - review summary identifier
-      * @param  {string} [pageId] - pagination page id
-      * @param  {number} [pageSize] - pagination page size
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - review summary identifier
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
       
       **/
-    getReviewSummaries(entityType: string, entityId: string, id?: string, pageId?: string, pageSize?: number): any;
+    getReviewSummaries({ entityType, entityId, id, pageId, pageSize }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  Add customer reviews
-      * @description:  Add customer reviews for specific entity with following data:
+      * @summary: Add customer reviews
+      * @description: Add customer reviews for specific entity with following data:
   attributes rating, entity rating, title, description, media resources and template id.
-      * @param  {UpdateReviewRequest} body
+      * @param {Object} arg - arg object.
+      * @param {UpdateReviewRequest} arg.body
       **/
-    createReview(body: any): any;
+    createReview({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Update customer reviews
-      * @description:  Update customer reviews for specific entity with following data:
+      * @summary: Update customer reviews
+      * @description: Update customer reviews for specific entity with following data:
   attributes rating, entity rating, title, description, media resources and template id.
-      * @param  {UpdateReviewRequest} body
+      * @param {Object} arg - arg object.
+      * @param {UpdateReviewRequest} arg.body
       **/
-    updateReview(body: any): any;
+    updateReview({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get list of customer reviews
-      * @description:  This is used to get the list of customer reviews based on entity and provided filters.
-      * @param  {string} entityType - entity type
-      * @param  {string} entityId - entity id
-      * @param  {string} [id] - review id
-      * @param  {string} [userId] - user id
-      * @param  {string} [media] - media type e.g. image | video | video_file | video_link
-      * @param  {Array<number>} [rating] - rating filter, 1-5
-      * @param  {Array<string>} [attributeRating] - attribute rating filter
-      * @param  {boolean} [facets] - facets (true|false)
-      * @param  {string} [sort] - sort by : default | top | recent
-      * @param  {string} [pageId] - pagination page id
-      * @param  {number} [pageSize] - pagination page size
+      * @summary: Get list of customer reviews
+      * @description: This is used to get the list of customer reviews based on entity and provided filters.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - review id
+      * @param {string} [arg.userId] - user id
+      * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
+      * @param {Array<number>} [arg.rating] - rating filter, 1-5
+      * @param {Array<string>} [arg.attributeRating] - attribute rating filter
+      * @param {boolean} [arg.facets] - facets (true|false)
+      * @param {string} [arg.sort] - sort by : default | top | recent
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
       
       **/
-    getReviews(entityType: string, entityId: string, id?: string, userId?: string, media?: string, rating?: Array<number>, attributeRating?: Array<string>, facets?: boolean, sort?: string, pageId?: string, pageSize?: number): any;
+    getReviews({ entityType, entityId, id, userId, media, rating, attributeRating, facets, sort, pageId, pageSize, }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        userId?: string;
+        media?: string;
+        rating?: Array<number>;
+        attributeRating?: Array<string>;
+        facets?: boolean;
+        sort?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  Get the templates for product or l3 type
-      * @description:  This is used to get the templates details.
-      * @param  {string} [templateId] - template id
-      * @param  {string} [entityId] - entity id
-      * @param  {string} [entityType] - entity type e.g. product | l3
+      * @summary: Get the templates for product or l3 type
+      * @description: This is used to get the templates details.
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.templateId] - template id
+      * @param {string} [arg.entityId] - entity id
+      * @param {string} [arg.entityType] - entity type e.g. product | l3
       
       **/
-    getTemplates(templateId?: string, entityId?: string, entityType?: string): any;
+    getTemplates({ templateId, entityId, entityType }?: {
+        templateId?: string;
+        entityId?: string;
+        entityType?: string;
+    }): any;
     /**
       *
-      * @summary:  Create a new question
-      * @description:  This is used to create a new question with following data:
+      * @summary: Create a new question
+      * @description: This is used to create a new question with following data:
   tags, text, type, choices for MCQ type questions, maximum length of answer.
-      * @param  {CreateQNARequest} body
+      * @param {Object} arg - arg object.
+      * @param {CreateQNARequest} arg.body
       **/
-    createQuestion(body: any): any;
+    createQuestion({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Update question
-     * @description:  This is used to update question's status, tags and choices.
-     * @param  {UpdateQNARequest} body
+     * @summary: Update question
+     * @description: This is used to update question's status, tags and choices.
+     * @param {Object} arg - arg object.
+     * @param {UpdateQNARequest} arg.body
      **/
-    updateQuestion(body: any): any;
+    updateQuestion({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get a list of QnA
-      * @description:  This is used to get a list of questions and its answers.
-      * @param  {string} entityType - entity type
-      * @param  {string} entityId - entity id
-      * @param  {string} [id] - qna id
-      * @param  {boolean} [showAnswer] - show answer flag
-      * @param  {string} [pageId] - pagination page id
-      * @param  {number} [pageSize] - pagination page size
+      * @summary: Get a list of QnA
+      * @description: This is used to get a list of questions and its answers.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - qna id
+      * @param {boolean} [arg.showAnswer] - show answer flag
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
       
       **/
-    getQuestionAndAnswers(entityType: string, entityId: string, id?: string, showAnswer?: boolean, pageId?: string, pageSize?: number): any;
+    getQuestionAndAnswers({ entityType, entityId, id, showAnswer, pageId, pageSize, }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        showAnswer?: boolean;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
     /**
       *
-      * @summary:  Get list of votes
-      * @description:  This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
-      * @param  {string} [id] - vote id
-      * @param  {string} [refType] - entity type e.g. review | comment
+      * @summary: Get list of votes
+      * @description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.id] - vote id
+      * @param {string} [arg.refType] - entity type e.g. review | comment
       
       **/
-    getVotes(id?: string, refType?: string): any;
+    getVotes({ id, refType }?: {
+        id?: string;
+        refType?: string;
+    }): any;
     /**
      *
-     * @summary:  Create a new vote
-     * @description:  This is used to create a new vote and the actions can be upvote or downvote.
-     * @param  {VoteRequest} body
+     * @summary: Create a new vote
+     * @description: This is used to create a new vote and the actions can be upvote or downvote.
+     * @param {Object} arg - arg object.
+     * @param {VoteRequest} arg.body
      **/
-    createVote(body: any): any;
+    createVote({ body }?: {
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Update vote
-     * @description:  This is used to update the vote and the actions can be upvote or downvote.
-     * @param  {UpdateVoteRequest} body
+     * @summary: Update vote
+     * @description: This is used to update the vote and the actions can be upvote or downvote.
+     * @param {Object} arg - arg object.
+     * @param {UpdateVoteRequest} arg.body
      **/
-    updateVote(body: any): any;
+    updateVote({ body }?: {
+        body: any;
+    }): any;
 }
 export class PosCart {
     constructor(_conf: any);
     _conf: any;
     /**
       *
-      * @summary:  Fetch all Items Added to  Cart
-      * @description:  Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
-      * @param  {number} [uid] -
-      * @param  {boolean} [i] -
-      * @param  {boolean} [b] -
-      * @param  {number} [assignCardId] -
+      * @summary: Fetch all Items Added to  Cart
+      * @description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] -
+      * @param {boolean} [arg.i] -
+      * @param {boolean} [arg.b] -
+      * @param {number} [arg.assignCardId] -
       
       **/
-    getCart(uid?: number, i?: boolean, b?: boolean, assignCardId?: number): any;
+    getCart({ uid, i, b, assignCardId }?: {
+        uid?: number;
+        i?: boolean;
+        b?: boolean;
+        assignCardId?: number;
+    }): any;
     /**
       *
-      * @summary:  Fetch Last-Modified timestamp
-      * @description:  Fetch Last-Modified timestamp in header metadata
-      * @param  {number} [uid] -
+      * @summary: Fetch Last-Modified timestamp
+      * @description: Fetch Last-Modified timestamp in header metadata
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] -
       
       **/
-    getCartLastModified(uid?: number): any;
+    getCartLastModified({ uid }?: {
+        uid?: number;
+    }): any;
     /**
      *
-     * @summary:  Add Items to Cart
-     * @description:  <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
-     * @param  {boolean} [i] -
-     * @param  {boolean} [b] -
-     * @param  {AddCartRequest} body
+     * @summary: Add Items to Cart
+     * @description: <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
+     * @param {Object} arg - arg object.
+     * @param {boolean} [arg.i] -
+     * @param {boolean} [arg.b] -
+     * @param {AddCartRequest} arg.body
      **/
-    addItems(body: any, i?: boolean, b?: boolean): any;
+    addItems({ body, i, b }?: {
+        i?: boolean;
+        b?: boolean;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Update Items already added to Cart
-     * @description:  Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-     * @param  {number} [uid] -
-     * @param  {boolean} [i] -
-     * @param  {boolean} [b] -
-     * @param  {UpdateCartRequest} body
+     * @summary: Update Items already added to Cart
+     * @description: Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+     * @param {Object} arg - arg object.
+     * @param {number} [arg.uid] -
+     * @param {boolean} [arg.i] -
+     * @param {boolean} [arg.b] -
+     * @param {UpdateCartRequest} arg.body
      **/
-    updateCart(body: any, uid?: number, i?: boolean, b?: boolean): any;
+    updateCart({ body, uid, i, b }?: {
+        uid?: number;
+        i?: boolean;
+        b?: boolean;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Cart item count
-      * @description:  Get total count of item present in cart
-      * @param  {number} [uid] - Cart id
+      * @summary: Cart item count
+      * @description: Get total count of item present in cart
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] - Cart id
       
       **/
-    getItemCount(uid?: number): any;
+    getItemCount({ uid }?: {
+        uid?: number;
+    }): any;
     /**
       *
-      * @summary:  Fetch Coupon
-      * @description:  Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
-      * @param  {number} [uid] -
+      * @summary: Fetch Coupon
+      * @description: Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] -
       
       **/
-    getCoupons(uid?: number): any;
+    getCoupons({ uid }?: {
+        uid?: number;
+    }): any;
     /**
       *
-      * @summary:  Apply Coupon
-      * @description:  <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
+      * @summary: Apply Coupon
+      * @description: <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
   </ul>
-      * @param  {boolean} [i] -
-      * @param  {boolean} [b] -
-      * @param  {boolean} [p] -
-      * @param  {ApplyCouponRequest} body
+      * @param {Object} arg - arg object.
+      * @param {boolean} [arg.i] -
+      * @param {boolean} [arg.b] -
+      * @param {boolean} [arg.p] -
+      * @param {ApplyCouponRequest} arg.body
       **/
-    applyCoupon(body: any, i?: boolean, b?: boolean, p?: boolean): any;
+    applyCoupon({ body, i, b, p }?: {
+        i?: boolean;
+        b?: boolean;
+        p?: boolean;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Remove Coupon Applied
-      * @description:  Remove Coupon applied on the cart by passing uid in request body.
-      * @param  {number} [uid] - Cart id
+      * @summary: Remove Coupon Applied
+      * @description: Remove Coupon applied on the cart by passing uid in request body.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] - Cart id
       
       **/
-    removeCoupon(uid?: number): any;
+    removeCoupon({ uid }?: {
+        uid?: number;
+    }): any;
     /**
       *
-      * @summary:  Get discount offers based on quantity
-      * @description:  List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
-      * @param  {number} [itemId] - Item id
-      * @param  {string} [articleId] - Article mongo id
-      * @param  {number} [uid] - Item id
-      * @param  {string} [slug] - Item unique url from product page
+      * @summary: Get discount offers based on quantity
+      * @description: List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.itemId] - Item id
+      * @param {string} [arg.articleId] - Article mongo id
+      * @param {number} [arg.uid] - Item id
+      * @param {string} [arg.slug] - Item unique url from product page
       
       **/
-    getBulkDiscountOffers(itemId?: number, articleId?: string, uid?: number, slug?: string): any;
+    getBulkDiscountOffers({ itemId, articleId, uid, slug }?: {
+        itemId?: number;
+        articleId?: string;
+        uid?: number;
+        slug?: string;
+    }): any;
     /**
       *
-      * @summary:  Fetch Address
-      * @description:  Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-      * @param  {number} [uid] -
-      * @param  {number} [mobileNo] -
-      * @param  {string} [checkoutMode] -
-      * @param  {number} [tags] -
-      * @param  {boolean} [isDefault] -
+      * @summary: Fetch Address
+      * @description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.uid] -
+      * @param {number} [arg.mobileNo] -
+      * @param {string} [arg.checkoutMode] -
+      * @param {number} [arg.tags] -
+      * @param {boolean} [arg.isDefault] -
       
       **/
-    getAddresses(uid?: number, mobileNo?: number, checkoutMode?: string, tags?: number, isDefault?: boolean): any;
+    getAddresses({ uid, mobileNo, checkoutMode, tags, isDefault }?: {
+        uid?: number;
+        mobileNo?: number;
+        checkoutMode?: string;
+        tags?: number;
+        isDefault?: boolean;
+    }): any;
     /**
      *
-     * @summary:  Add Address to the account
-     * @description:  <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
-     * @param  {UpdateAddressRequest} body
+     * @summary: Add Address to the account
+     * @description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
+     * @param {Object} arg - arg object.
+     * @param {UpdateAddressRequest} arg.body
      **/
-    addAddress(body: any): any;
+    addAddress({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Fetch Single Address
-      * @description:  Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-      * @param  {number} id -
-      * @param  {number} [uid] -
-      * @param  {number} [mobileNo] -
-      * @param  {string} [checkoutMode] -
-      * @param  {number} [tags] -
-      * @param  {boolean} [isDefault] -
+      * @summary: Fetch Single Address
+      * @description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+      * @param {Object} arg - arg object.
+      * @param {number} arg.id -
+      * @param {number} [arg.uid] -
+      * @param {number} [arg.mobileNo] -
+      * @param {string} [arg.checkoutMode] -
+      * @param {number} [arg.tags] -
+      * @param {boolean} [arg.isDefault] -
       
       **/
-    getAddressById(id: number, uid?: number, mobileNo?: number, checkoutMode?: string, tags?: number, isDefault?: boolean): any;
+    getAddressById({ id, uid, mobileNo, checkoutMode, tags, isDefault }?: {
+        id: number;
+        uid?: number;
+        mobileNo?: number;
+        checkoutMode?: string;
+        tags?: number;
+        isDefault?: boolean;
+    }): any;
     /**
      *
-     * @summary:  Update Address alreay added to account
-     * @description:  Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
-     * @param  {number} id - Address id
-     * @param  {UpdateAddressRequest} body
+     * @summary: Update Address alreay added to account
+     * @description: Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+     * @param {Object} arg - arg object.
+     * @param {number} arg.id - Address id
+     * @param {UpdateAddressRequest} arg.body
      **/
-    updateAddress(id: number, body: any): any;
+    updateAddress({ id, body }?: {
+        id: number;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Remove Address Associated to the account
-      * @description:  Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
-      * @param  {number} id - Address id
+      * @summary: Remove Address Associated to the account
+      * @description: Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
+      * @param {Object} arg - arg object.
+      * @param {number} arg.id - Address id
       
       **/
-    removeAddress(id: number): any;
+    removeAddress({ id }?: {
+        id: number;
+    }): any;
     /**
      *
-     * @summary:  Select Address from All Addresses
-     * @description:  <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
-     * @param  {number} [uid] -
-     * @param  {boolean} [i] -
-     * @param  {boolean} [b] -
-     * @param  {SelectCartAddressRequest} body
+     * @summary: Select Address from All Addresses
+     * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+     * @param {Object} arg - arg object.
+     * @param {number} [arg.uid] -
+     * @param {boolean} [arg.i] -
+     * @param {boolean} [arg.b] -
+     * @param {SelectCartAddressRequest} arg.body
      **/
-    selectAddress(body: any, uid?: number, i?: boolean, b?: boolean): any;
+    selectAddress({ body, uid, i, b }?: {
+        uid?: number;
+        i?: boolean;
+        b?: boolean;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get Cart Payment for valid coupon
-      * @description:  Validate coupon for selected payment mode
-      * @param  {string} [uid] -
-      * @param  {string} [addressId] -
-      * @param  {string} [paymentMode] -
-      * @param  {string} [paymentIdentifier] -
-      * @param  {string} [aggregatorName] -
-      * @param  {string} [merchantCode] -
+      * @summary: Get Cart Payment for valid coupon
+      * @description: Validate coupon for selected payment mode
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.uid] -
+      * @param {string} [arg.addressId] -
+      * @param {string} [arg.paymentMode] -
+      * @param {string} [arg.paymentIdentifier] -
+      * @param {string} [arg.aggregatorName] -
+      * @param {string} [arg.merchantCode] -
       
       **/
-    getPaymentModes(uid?: string, addressId?: string, paymentMode?: string, paymentIdentifier?: string, aggregatorName?: string, merchantCode?: string): any;
+    getPaymentModes({ uid, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
+        uid?: string;
+        addressId?: string;
+        paymentMode?: string;
+        paymentIdentifier?: string;
+        aggregatorName?: string;
+        merchantCode?: string;
+    }): any;
     /**
      *
-     * @summary:  Update Cart Payment
-     * @description:  Update Cart Payment for Your Account
-     * @param  {string} [uid] -
-     * @param  {UpdateCartPaymentRequest} body
+     * @summary: Update Cart Payment
+     * @description: Update Cart Payment for Your Account
+     * @param {Object} arg - arg object.
+     * @param {string} [arg.uid] -
+     * @param {UpdateCartPaymentRequest} arg.body
      **/
-    selectPaymentMode(body: any, uid?: string): any;
+    selectPaymentMode({ body, uid }?: {
+        uid?: string;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get delivery date and options before checkout
-      * @description:  Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
-      * @param  {number} [pickAtStoreUid] -
-      * @param  {number} [orderingStoreId] -
-      * @param  {boolean} [p] - Get payment options or not
-      * @param  {number} [uid] - Cart id
-      * @param  {number} [addressId] - Address id
-      * @param  {number} [areaCode] - Destination pincode.
+      * @summary: Get delivery date and options before checkout
+      * @description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pickAtStoreUid] -
+      * @param {number} [arg.orderingStoreId] -
+      * @param {boolean} [arg.p] - Get payment options or not
+      * @param {number} [arg.uid] - Cart id
+      * @param {number} [arg.addressId] - Address id
+      * @param {number} [arg.areaCode] - Destination pincode.
       
       **/
-    getShipments(pickAtStoreUid?: number, orderingStoreId?: number, p?: boolean, uid?: number, addressId?: number, areaCode?: number): any;
+    getShipments({ pickAtStoreUid, orderingStoreId, p, uid, addressId, areaCode, }?: {
+        pickAtStoreUid?: number;
+        orderingStoreId?: number;
+        p?: boolean;
+        uid?: number;
+        addressId?: number;
+        areaCode?: number;
+    }): any;
     /**
      *
-     * @summary:  Update shipment delivery type and quantity before checkout
-     * @description:  Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
-     * @param  {boolean} [i] - Get items or not
-     * @param  {boolean} [p] - Get payment options or not
-     * @param  {number} [uid] - Cart id
-     * @param  {number} [addressId] - Address id
-     * @param  {string} [orderType] - Order is hand over or home delivery
-     * @param  {UpdateCartShipmentRequest} body
+     * @summary: Update shipment delivery type and quantity before checkout
+     * @description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
+     * @param {Object} arg - arg object.
+     * @param {boolean} [arg.i] - Get items or not
+     * @param {boolean} [arg.p] - Get payment options or not
+     * @param {number} [arg.uid] - Cart id
+     * @param {number} [arg.addressId] - Address id
+     * @param {string} [arg.orderType] - Order is hand over or home delivery
+     * @param {UpdateCartShipmentRequest} arg.body
      **/
-    updateShipments(body: any, i?: boolean, p?: boolean, uid?: number, addressId?: number, orderType?: string): any;
+    updateShipments({ body, i, p, uid, addressId, orderType }?: {
+        i?: boolean;
+        p?: boolean;
+        uid?: number;
+        addressId?: number;
+        orderType?: string;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Checkout Cart
-     * @description:  Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
-     * @param  {boolean} [uid] -
-     * @param  {CartCheckoutRequest} body
+     * @summary: Checkout Cart
+     * @description: Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
+     * @param {Object} arg - arg object.
+     * @param {boolean} [arg.uid] -
+     * @param {CartCheckoutRequest} arg.body
      **/
-    checkoutCart(body: any, uid?: boolean): any;
+    checkoutCart({ body, uid }?: {
+        uid?: boolean;
+        body: any;
+    }): any;
     /**
      *
-     * @summary:  Update Cart Meta
-     * @description:  Update cart meta like checkout_mode, gstin.
-     * @param  {number} [uid] - Cart id received in get cart.
-     * @param  {CartMetaRequest} body
+     * @summary: Update Cart Meta
+     * @description: Update cart meta like checkout_mode, gstin.
+     * @param {Object} arg - arg object.
+     * @param {number} [arg.uid] - Cart id received in get cart.
+     * @param {CartMetaRequest} arg.body
      **/
-    updateCartMeta(body: any, uid?: number): any;
+    updateCartMeta({ body, uid }?: {
+        uid?: number;
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get available delivery modes for cart
-      * @description:  Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
-      * @param  {number} areaCode -
-      * @param  {number} [uid] -
+      * @summary: Get available delivery modes for cart
+      * @description: Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
+      * @param {Object} arg - arg object.
+      * @param {number} arg.areaCode -
+      * @param {number} [arg.uid] -
       
       **/
-    getAvailableDeliveryModes(areaCode: number, uid?: number): any;
+    getAvailableDeliveryModes({ areaCode, uid }?: {
+        areaCode: number;
+        uid?: number;
+    }): any;
     /**
       *
-      * @summary:  Get list of stores for give uids
-      * @description:  Get list of stores by providing pick up available store uids.
-      * @param  {number} areaCode -
+      * @summary: Get list of stores for give uids
+      * @description: Get list of stores by providing pick up available store uids.
+      * @param {Object} arg - arg object.
+      * @param {number} arg.areaCode -
       
       **/
-    getStoreAddressByUid(areaCode: number): any;
+    getStoreAddressByUid({ areaCode }?: {
+        areaCode: number;
+    }): any;
     /**
      *
-     * @summary:  Generate Cart sharing link token
-     * @description:  Generates shared cart snapshot and returns shortlink token
-     * @param  {GetShareCartLinkRequest} body
+     * @summary: Generate Cart sharing link token
+     * @description: Generates shared cart snapshot and returns shortlink token
+     * @param {Object} arg - arg object.
+     * @param {GetShareCartLinkRequest} arg.body
      **/
-    getCartShareLink(body: any): any;
+    getCartShareLink({ body }?: {
+        body: any;
+    }): any;
     /**
       *
-      * @summary:  Get shared cart snapshot and cart response
-      * @description:  Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
-      * @param  {string} token - Shared short link token.
+      * @summary: Get shared cart snapshot and cart response
+      * @description: Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.token - Shared short link token.
       
       **/
-    getCartSharedItems(token: string): any;
+    getCartSharedItems({ token }?: {
+        token: string;
+    }): any;
     /**
       *
-      * @summary:  Merge or Replace existing cart
-      * @description:  Merge or Replace cart based on `action` parameter with shared cart of `token`
-      * @param  {string} token - Shared short link token.
-      * @param  {string} action - Operation to perform on existing cart, whether to merge or replace.
+      * @summary: Merge or Replace existing cart
+      * @description: Merge or Replace cart based on `action` parameter with shared cart of `token`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.token - Shared short link token.
+      * @param {string} arg.action - Operation to perform on existing cart, whether to merge or replace.
       
       **/
-    updateCartWithSharedItems(token: string, action: string): any;
+    updateCartWithSharedItems({ token, action }?: {
+        token: string;
+        action: string;
+    }): any;
 }
+export class Logistic {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+     *
+     * @summary: Get Tat Product
+     * @description: Get Tat Product
+     * @param {Object} arg - arg object.
+     * @param {GetTatProductReqBody} arg.body
+     **/
+    getTatProduct({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get City from Pincode
+      * @description: Get City from Pincode
+      * @param {Object} arg - arg object.
+      * @param {number} arg.pincode - Pincode
+      
+      **/
+    getPincodeCity({ pincode }?: {
+        pincode: number;
+    }): any;
+}
+import Paginator = require("../common/Paginator");

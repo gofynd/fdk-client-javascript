@@ -1,12 +1,21 @@
-export = ApplicationConfig;
-declare class ApplicationConfig {
+export = PlatformConfig;
+declare class PlatformConfig {
     /**
-     * @param  {object} _conf
-     * @param  {object} _opts
+     * @param  {Object} config
+     * @param  {string} config.apiKey
+     * @param  {string} config.company
+     * @param  {string} config.baseUrl
      */
-    constructor(_conf: object, _opts: object);
-    applicationID: any;
-    applicationToken: any;
-    opts: any;
-    validate(): void;
+    constructor(config: {
+        apiKey: string;
+        company: string;
+        baseUrl: string;
+    });
+    apiKey: string;
+    apiSecret: any;
+    company: string;
+    baseUrl: string;
+    oauthClient: OauthClient;
+    getAccessToken(): Promise<any>;
 }
+import OauthClient = require("./OAuthClient");

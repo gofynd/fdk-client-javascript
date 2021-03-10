@@ -15,6 +15,7 @@ declare class ApplicationClient {
     rewards: Rewards;
     feedback: Feedback;
     posCart: PosCart;
+    logistic: Logistic;
 }
 import { Catalog } from "./ApplicationModels";
 import { Cart } from "./ApplicationModels";
@@ -30,3 +31,4 @@ import { Order } from "./ApplicationModels";
 import { Rewards } from "./ApplicationModels";
 import { Feedback } from "./ApplicationModels";
 import { PosCart } from "./ApplicationModels";
+import { Logistic } from "./ApplicationModels";

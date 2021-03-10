@@ -1,40 +1,22 @@
-class CredentialValidationError extends Error {
-  constructor(message) {
-    super(message); // (1)
-    this.name = "CredentialValidationError"; // (2)
-  }
-}
-
-const MongoIDRegExp = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i;
-
-class ApplicationConfig {
+const OauthClient = require("./OAuthClient");
+class PlatformConfig {
   /**
-   * @param  {object} _conf
-   * @param  {object} _opts
+   * @param  {Object} config
+   * @param  {string} config.apiKey
+   * @param  {string} config.company
+   * @param  {string} config.baseUrl
    */
-  constructor(_conf, _opts) {
-    this.applicationID = _conf.applicationID || "";
-    this.applicationToken = _conf.applicationToken || "";
-    this.opts = _opts || {};
-    this.validate();
+  constructor(config) {
+    this.apiKey = config.apiKey;
+    this.apiSecret = config.apiSecret;
+    this.company = config.company;
+    this.baseUrl = config.baseUrl;
+    this.oauthClient = new OauthClient(this);
   }
-
-  validate() {
-    if (!this.applicationID) {
-      throw new CredentialValidationError("No Application ID Present");
-    }
-    if (!this.applicationToken) {
-      throw new CredentialValidationError("No Application Token Present");
-    }
-    if (!MongoIDRegExp.test(this.applicationID)) {
-      throw new CredentialValidationError(
-        "Invalid Application ID. It should be Mongo ID"
-      );
-    }
-    if (this.applicationToken.length < 5) {
-      throw new CredentialValidationError("Invalid Application Token");
-    }
+  async getAccessToken() {
+    let token = await this.oauthClient.getAccessToken();
+    return token.access_token;
   }
 }
 
-module.exports = ApplicationConfig;
+module.exports = PlatformConfig;

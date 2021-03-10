@@ -75,6 +75,10 @@
     * [updateAnnouncement](#updateannouncement)
     * [updateAnnouncementSchedule](#updateannouncementschedule)
     * [deleteAnnouncement](#deleteannouncement)
+    * [updateComponent](#updatecomponent)
+    * [getComponentByID](#getcomponentbyid)
+    * [deleteComponent](#deletecomponent)
+    * [getComponents](#getcomponents)
     * [getFaqCategories](#getfaqcategories)
     * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
     * [createFaqCategory](#createfaqcategory)
@@ -84,6 +88,9 @@
     * [addFaqToFaqCategory](#addfaqtofaqcategory)
     * [updateFaq](#updatefaq)
     * [deleteFaq](#deletefaq)
+    * [createKeyValue](#createkeyvalue)
+    * [getKeyValueByID](#getkeyvaluebyid)
+    * [createLandingPage](#createlandingpage)
     * [getLegalInformation](#getlegalinformation)
     * [updateLegalInformation](#updatelegalinformation)
     * [getSeoConfiguration](#getseoconfiguration)
@@ -141,13 +148,9 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [registerCompany](#registercompany)
     * [cbsOnboardEdit](#cbsonboardedit)
     * [cbsOnboardGet](#cbsonboardget)
-    * [companyList](#companylist)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getCountries](#getcountries)
-    * [verifyGstPan](#verifygstpan)
     * [editBrand](#editbrand)
     * [getBrand](#getbrand)
     * [createBrand](#createbrand)
@@ -157,18 +160,15 @@
     * [locationList](#locationlist)
     * [editLocation](#editlocation)
     * [getSingleLocation](#getsinglelocation)
-    * [getChoices](#getchoices)
-    * [validateSeller](#validateseller)
     
 
 * [Inventory](#Inventory)
   * Methods
-    * [getJobs](#getjobs)
-    * [update](#update)
-    * [create](#create)
-    * [getJobConfigDefaults](#getjobconfigdefaults)
     * [getJobsByCompany](#getjobsbycompany)
+    * [updateJob](#updatejob)
+    * [createJob](#createjob)
     * [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
+    * [getJobConfigDefaults](#getjobconfigdefaults)
     * [getJobByCode](#getjobbycode)
     * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
     
@@ -5095,6 +5095,253 @@ success
 ---
 
 
+#### updateComponent
+Updates a component
+
+```javascript
+// Promise
+const promise = content.updateComponent(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.updateComponent(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | ID of component to be fetched | 
+
+Updates a component for the given component ID
+
+*Success Response:*
+
+
+
+A JSON object with components
+
+
+Schema: `Components`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Components"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponentByID
+Get components by component ID
+
+```javascript
+// Promise
+const promise = content.getComponentByID(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.getComponentByID(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | ID of component to be fetched | 
+
+The endpoint fetches the component by component ID
+
+*Success Response:*
+
+
+
+A JSON object with components
+
+
+Schema: `Components`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Components"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteComponent
+Delete a component from the page
+
+```javascript
+// Promise
+const promise = content.deleteComponent(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteComponent(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | ID of component to be deleted | 
+
+It deletes a component from the page
+
+*Success Response:*
+
+
+
+A JSON object with components
+
+
+Schema: `Components`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Components"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponents
+Get components
+
+```javascript
+// Promise
+const promise = content.getComponents(companyId,applicationId);
+
+// Async/Await
+const data = await content.getComponents(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+The endpoint fetches the components
+
+*Success Response:*
+
+
+
+A JSON object with components
+
+
+Schema: `Components`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Components"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getFaqCategories
 Get FAQ categories list
 
@@ -5530,6 +5777,190 @@ Delete FAQ by id
 
 
 Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createKeyValue
+Create key values for templating
+
+```javascript
+// Promise
+const promise = content.createKeyValue(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createKeyValue(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to create key-values for templating.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `KeyValue`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/KeyValue"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getKeyValueByID
+Get KeyValue by id
+
+```javascript
+// Promise
+const promise = content.getKeyValueByID(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.getKeyValueByID(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | The `id` of a keyvalue. Use this parameter to retrieve a particular keyvalue | 
+
+Use this to fetch a keyvalue by `id`
+
+*Success Response:*
+
+
+
+A JSON object with keyvalue details
+
+
+Schema: `KeyValue`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/KeyValue"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createLandingPage
+Create landing-page
+
+```javascript
+// Promise
+const promise = content.createLandingPage(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createLandingPage(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to create landing-page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `LandingPage`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/LandingPage"
+}
+```
 
 
 
@@ -8134,54 +8565,6 @@ default
 ## CompanyProfile
 
 
-#### registerCompany
-Create a Seller account.
-
-```javascript
-// Promise
-const promise = companyprofile.registerCompany(body);
-
-// Async/Await
-const data = await companyprofile.registerCompany(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This API allows to create a seller account on Fynd Platform.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### cbsOnboardEdit
 Edit company profile
 
@@ -8280,59 +8663,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### companyList
-Get list of companies
-
-```javascript
-// Promise
-const promise = companyprofile.companyList(sortBy,q,stage,pageNo,pageSize);
-
-// Async/Await
-const data = await companyprofile.companyList(sortBy,q,stage,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| sortBy | string | Helps to sort the company list on the basis of last accessed, ascending or descending order. | 
-| q | string | Query that is to be searched. | 
-| stage | string | to filter companies on basis of verified or unverified companies. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-
-This API allows to view all the companies created by the seller.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `CompanyListSerializer` for details
-
-
-Schema: `CompanyListSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCompanyMetrics
 Get company metrics
 
@@ -8358,104 +8688,6 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 
 
 Schema: `MetricsSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCountries
-Get data associated to countries
-
-```javascript
-// Promise
-const promise = companyprofile.getCountries(type,stage);
-
-// Async/Await
-const data = await companyprofile.getCountries(type,stage);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| type | string | The type of entity. This can be company or store. By default it is company. | 
-| stage | string | Ths stage from where the API is called. This can be profile & onboarding. By default it is profile. | 
-
-This API gets meta associated to countries for eg valid documents.
-
-*Success Response:*
-
-
-
-Country Meta. See example below or refer `CountriesResponseSchema` for details
-
-
-Schema: `CountriesResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### verifyGstPan
-Verify GST/PAN against legal name.
-
-```javascript
-// Promise
-const promise = companyprofile.verifyGstPan(body);
-
-// Async/Await
-const data = await companyprofile.verifyGstPan(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This API is used to verify legal name againt GST/PAN number.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -8927,104 +9159,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getChoices
-Get constant data asccoiated to company, brand, locations.
-
-```javascript
-// Promise
-const promise = companyprofile.getChoices(choiceType);
-
-// Async/Await
-const data = await companyprofile.getChoices(choiceType);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| choiceType | string | Lists all the constants associated to the passed choice types. Acceptable choice types for the API are as follows, business_type, market_channels, company_type, address_type, brand_tier, store_type, account_type, weekday, admin_stage, stage, verification_stage, integration_type, identifier_type, item_dimension_measure_unit, item_weight_measure_unit, colors, channels, designations, manufacturer, variants, item_types, manufacturing_time_unit. | 
-
-This API gets constant data asccoiated to company, brand, locations.
-
-*Success Response:*
-
-
-
-Choice object. See example below or refer `ChoicesResponseSchema` for details
-
-
-Schema: `ChoicesResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### validateSeller
-Validate a seller
-
-```javascript
-// Promise
-const promise = companyprofile.validateSeller(companyId);
-
-// Async/Await
-const data = await companyprofile.validateSeller(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the seller to be validated. | 
-
-This API helps in validating a seller and returns the Seller name
-
-*Success Response:*
-
-
-
-Validate response. See example below or refer `ValidateResponseSchema` for details
-
-
-Schema: `ValidateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 
 ---
 
@@ -9032,23 +9166,24 @@ Schema: `ErrorResponse`
 ## Inventory
 
 
-#### getJobs
-Get All Job Configs
+#### getJobsByCompany
+Get Job Configs For A Company
 
 ```javascript
 // Promise
-const promise = inventory.getJobs(pageNo,pageSize);
+const promise = inventory.getJobsByCompany(companyId,pageNo,pageSize);
 
 // Async/Await
-const data = await inventory.getJobs(pageNo,pageSize);
+const data = await inventory.getJobsByCompany(companyId,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | integer | Company Id | 
 | pageNo | integer | Page Number | 
 | pageSize | integer | Page Size | 
 
-REST Endpoint that returns all job configs
+REST Endpoint that returns all job configs for a company
 
 *Success Response:*
 
@@ -9094,19 +9229,20 @@ Schema: `ResponseEnvelopeListJobConfigRawDTO`
 ---
 
 
-#### update
+#### updateJob
 Updates An Existing Job Config
 
 ```javascript
 // Promise
-const promise = inventory.update(body,xUserData);
+const promise = inventory.updateJob(companyId,body,xUserData);
 
 // Async/Await
-const data = await inventory.update(body,xUserData);
+const data = await inventory.updateJob(companyId,body,xUserData);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | integer | Company Id | 
 | xUserData | string |  | 
 
 REST Endpoint that updates a job config
@@ -9167,19 +9303,20 @@ Schema: `ResponseEnvelopeString`
 ---
 
 
-#### create
+#### createJob
 Creates A New Job Config
 
 ```javascript
 // Promise
-const promise = inventory.create(body,xUserData);
+const promise = inventory.createJob(companyId,body,xUserData);
 
 // Async/Await
-const data = await inventory.create(body,xUserData);
+const data = await inventory.createJob(companyId,body,xUserData);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | integer | Company Id | 
 | xUserData | string |  | 
 
 REST Endpoint that creates a new job config
@@ -9240,129 +9377,6 @@ Internal Server Error
 
 
 Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getJobConfigDefaults
-Get Job Configs Defaults
-
-```javascript
-// Promise
-const promise = inventory.getJobConfigDefaults();
-
-// Async/Await
-const data = await inventory.getJobConfigDefaults();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-REST Endpoint that returns default fields job configs by company And integration
-
-*Success Response:*
-
-
-
-Successful operation
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getJobsByCompany
-Get Job Configs For A Company
-
-```javascript
-// Promise
-const promise = inventory.getJobsByCompany(companyId,pageNo,pageSize);
-
-// Async/Await
-const data = await inventory.getJobsByCompany(companyId,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
-
-REST Endpoint that returns all job configs for a company
-
-*Success Response:*
-
-
-
-Successful operation
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
 
 
 
@@ -9439,19 +9453,81 @@ Schema: `ResponseEnvelopeListJobConfigDTO`
 ---
 
 
+#### getJobConfigDefaults
+Get Job Configs Defaults
+
+```javascript
+// Promise
+const promise = inventory.getJobConfigDefaults(companyId);
+
+// Async/Await
+const data = await inventory.getJobConfigDefaults(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+REST Endpoint that returns default fields job configs by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getJobByCode
 Get Job Config By Code
 
 ```javascript
 // Promise
-const promise = inventory.getJobByCode(code);
+const promise = inventory.getJobByCode(companyId,code);
 
 // Async/Await
-const data = await inventory.getJobByCode(code);
+const data = await inventory.getJobByCode(companyId,code);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | integer | Company Id | 
 | code | string | Job Code | 
 
 REST Endpoint that returns job config by code

@@ -13,6 +13,7 @@ const {
   Rewards,
   Feedback,
   PosCart,
+  Logistic,
 } = require("./ApplicationModels");
 
 class ApplicationClient {
@@ -31,6 +32,7 @@ class ApplicationClient {
     this.rewards = new Rewards(config);
     this.feedback = new Feedback(config);
     this.posCart = new PosCart(config);
+    this.logistic = new Logistic(config);
   }
 }
 
