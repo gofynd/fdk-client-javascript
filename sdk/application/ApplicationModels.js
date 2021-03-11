@@ -2137,26 +2137,6 @@ class Content {
 
   /**
     *
-    * @summary: Get Blog by slug
-    * @description: Use this API to fetch a blog using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
-    
-    **/
-  getBlog({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/blogs/${slug}`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
     * @summary: Get frequently asked questions
     * @description: Get frequently asked questions list. These will be helpful for users to using website.
     * @param {Object} arg - arg object.
@@ -2255,25 +2235,6 @@ class Content {
 
   /**
     *
-    * @summary: Get landing page
-    * @description: Use this API to fetch a landing page
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLandingPage({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/landing-page`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
     * @summary: Get legal information
     * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
     * @param {Object} arg - arg object.
@@ -2293,45 +2254,6 @@ class Content {
 
   /**
     *
-    * @summary: Get navigation
-    * @description: Use this API to fetch a navigation
-    * @param {Object} arg - arg object.
-    
-    **/
-  getNavigations({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/navigations/`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Page by slug
-    * @description: Use this API to fetch a custom page using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
-    
-    **/
-  getPage({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/pages/${slug}`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
     * @summary: Get seo of application
     * @description: Get seo of application
     * @param {Object} arg - arg object.
@@ -2344,26 +2266,6 @@ class Content {
       this._conf,
       "get",
       `/service/application/content/v1.0/seo`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary: Get slideshow by slug
-    * @description: Use this API to fetch a slideshow using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
-    
-    **/
-  getSlideshow({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/slideshow/${slug}`,
       query,
       {}
     );

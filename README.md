@@ -57,8 +57,7 @@ let platformConfig = new PlatformConfig({
 
 async function getData() {
   try {
-    // get token using staff API (Will be replaced by OAuth 2.0 flow)
-    const token = await platformConfig.oauthClient.getTokenForInternal();
+    // TODO: get token using OAuth
     platformConfig.oauthClient.setToken(token.access_token);
     const client = new PlatformClient(platformConfig);
 

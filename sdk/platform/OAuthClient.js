@@ -118,17 +118,6 @@ class OAuthClient {
       throw error;
     }
   }
-  async getTokenForInternal() {
-    const rawRequest = {
-      method: "get",
-      url: `https://${this.configuration.baseUrl}/service/panel/authentication/v1.0/company/1/oauth/staff/token`,
-      headers: {
-        Cookie:
-          "x.session=s%3An_z6w_ciyFWKPPNSWK08uMk6m_AFV2yg.rCxq%2Fd81eoTqXVq3XMcNYEiTXoz4GGneic4ynnTFg%2B0;",
-      },
-    };
-    return fdkAxios.request(rawRequest);
-  }
 }
 
 module.exports = OAuthClient;

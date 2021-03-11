@@ -9,5 +9,4 @@ declare class OAuthClient {
     startAuthorization(options: any): string;
     verifyCallback(query: any): Promise<void>;
     getAccessToken(): Promise<any>;
-    getTokenForInternal(): Promise<any>;
 }

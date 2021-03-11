@@ -1209,17 +1209,6 @@ export class Content {
     getAnnouncements({}?: any): any;
     /**
       *
-      * @summary: Get Blog by slug
-      * @description: Use this API to fetch a blog using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
-      
-      **/
-    getBlog({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
       * @summary: Get frequently asked questions
       * @description: Get frequently asked questions list. These will be helpful for users to using website.
       * @param {Object} arg - arg object.
@@ -1269,14 +1258,6 @@ export class Content {
     }): any;
     /**
       *
-      * @summary: Get landing page
-      * @description: Use this API to fetch a landing page
-      * @param {Object} arg - arg object.
-      
-      **/
-    getLandingPage({}?: any): any;
-    /**
-      *
       * @summary: Get legal information
       * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
       * @param {Object} arg - arg object.
@@ -1285,42 +1266,12 @@ export class Content {
     getLegalInformation({}?: any): any;
     /**
       *
-      * @summary: Get navigation
-      * @description: Use this API to fetch a navigation
-      * @param {Object} arg - arg object.
-      
-      **/
-    getNavigations({}?: any): any;
-    /**
-      *
-      * @summary: Get Page by slug
-      * @description: Use this API to fetch a custom page using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
-      
-      **/
-    getPage({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
       * @summary: Get seo of application
       * @description: Get seo of application
       * @param {Object} arg - arg object.
       
       **/
     getSeoConfiguration({}?: any): any;
-    /**
-      *
-      * @summary: Get slideshow by slug
-      * @description: Use this API to fetch a slideshow using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
-      
-      **/
-    getSlideshow({ slug }?: {
-        slug: string;
-    }): any;
     /**
       *
       * @summary: Get support information
