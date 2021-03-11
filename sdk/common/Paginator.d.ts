@@ -1,17 +1,16 @@
 export = Paginator;
 declare class Paginator {
     constructor(pageNo: any);
-    isNext: boolean;
-    nextId: any;
-    pageNo: number;
     setCallback(callback: any): void;
     callback: any;
-    hasNext(): boolean;
+    hasNext(): any;
     setPaginator({ hasNext, nextId, pageNo }: {
         hasNext: any;
         nextId?: any;
-        pageNo?: any;
+        pageNo?: number;
     }): void;
+    isNext: any;
+    nextId: any;
+    pageNo: any;
     next(): any;
-    #private;
 }

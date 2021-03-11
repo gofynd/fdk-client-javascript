@@ -1,9 +1,4 @@
 class Paginator {
-  isNext = true;
-  nextId = undefined;
-  pageNo = 1;
-  #callback;
-
   setCallback(callback) {
     this.callback = callback;
   }
@@ -12,10 +7,11 @@ class Paginator {
     return this.isNext;
   }
 
-  setPaginator({ hasNext, nextId = undefined, pageNo = undefined }) {
+  setPaginator({ hasNext, nextId = undefined, pageNo = 1 }) {
     this.isNext = hasNext;
     this.nextId = nextId;
     this.pageNo = pageNo;
+    this.callback = undefined;
   }
 
   constructor(pageNo) {
