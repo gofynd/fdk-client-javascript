@@ -1395,33 +1395,9 @@ class Content {
   }
 }
 
-class Communication {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-}
-
-class CompanyProfile {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-}
-
-class Inventory {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-}
-
 module.exports = {
   Lead,
   Theme,
   User,
   Content,
-  Communication,
-  CompanyProfile,
-  Inventory,
 };

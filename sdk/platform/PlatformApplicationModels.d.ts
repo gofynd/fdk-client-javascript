@@ -745,18 +745,3 @@ export class Content {
         body: any;
     }): any;
 }
-export class Communication {
-    constructor(config: any, applicationId: any);
-    config: any;
-    applicationId: any;
-}
-export class CompanyProfile {
-    constructor(config: any, applicationId: any);
-    config: any;
-    applicationId: any;
-}
-export class Inventory {
-    constructor(config: any, applicationId: any);
-    config: any;
-    applicationId: any;
-}

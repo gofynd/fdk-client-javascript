@@ -1,9 +1,8 @@
 const APIClient = require("./PlatformAPIClient");
 
 class Lead {
-  constructor(config, applicationId) {
+  constructor(config) {
     this.config = config;
-    this.applicationId = applicationId;
   }
 
   /**
@@ -129,31 +128,9 @@ class Lead {
   }
 }
 
-class Theme {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-}
-
-class User {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-}
-
-class Content {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-}
-
 class Communication {
-  constructor(config, applicationId) {
+  constructor(config) {
     this.config = config;
-    this.applicationId = applicationId;
   }
 
   /**
@@ -867,28 +844,8 @@ class Communication {
 }
 
 class CompanyProfile {
-  constructor(config, applicationId) {
+  constructor(config) {
     this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   *
-   * @summary: Edit company profile
-   * @description: This API allows to edit the company profile of the seller account.
-   * @param {Object} arg - arg object.
-   * @param {CompanyStoreSerializerRequest} arg.body
-   **/
-  cbsOnboardEdit({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/company-profile/v1.0/company/${this.config.company}`,
-      query,
-      body
-    );
   }
 
   /**
@@ -907,6 +864,25 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.company}`,
       query,
       {}
+    );
+  }
+
+  /**
+   *
+   * @summary: Edit company profile
+   * @description: This API allows to edit the company profile of the seller account.
+   * @param {Object} arg - arg object.
+   * @param {CompanyStoreSerializerRequest} arg.body
+   **/
+  cbsOnboardEdit({ body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/company-profile/v1.0/company/${this.config.company}`,
+      query,
+      body
     );
   }
 
@@ -989,25 +965,6 @@ class CompanyProfile {
   }
 
   /**
-   *
-   * @summary: Create a company brand mapping.
-   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
-   * @param {Object} arg - arg object.
-   * @param {CompanyBrandPostRequestSerializer} arg.body
-   **/
-  createCompanyBrand({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.company}/company-brand`,
-      query,
-      body
-    );
-  }
-
-  /**
     *
     * @summary: Get brands associated to a company
     * @description: This API helps to get view brands associated to a particular company.
@@ -1028,18 +985,18 @@ class CompanyProfile {
 
   /**
    *
-   * @summary: Create a location asscoiated to a company.
-   * @description: This API allows to create a location associated to a company.
+   * @summary: Create a company brand mapping.
+   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
    * @param {Object} arg - arg object.
-   * @param {LocationSerializer} arg.body
+   * @param {CompanyBrandPostRequestSerializer} arg.body
    **/
-  createLocation({ body } = {}) {
+  createCompanyBrand({ body } = {}) {
     const query = {};
 
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.company}/location`,
+      `/service/platform/company-profile/v1.0/company/${this.config.company}/company-brand`,
       query,
       body
     );
@@ -1071,6 +1028,25 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.company}/location`,
       query,
       {}
+    );
+  }
+
+  /**
+   *
+   * @summary: Create a location asscoiated to a company.
+   * @description: This API allows to create a location associated to a company.
+   * @param {Object} arg - arg object.
+   * @param {LocationSerializer} arg.body
+   **/
+  createLocation({ body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.company}/location`,
+      query,
+      body
     );
   }
 
@@ -1116,9 +1092,8 @@ class CompanyProfile {
 }
 
 class Inventory {
-  constructor(config, applicationId) {
+  constructor(config) {
     this.config = config;
-    this.applicationId = applicationId;
   }
 
   /**
@@ -1274,9 +1249,6 @@ class Inventory {
 
 module.exports = {
   Lead,
-  Theme,
-  User,
-  Content,
   Communication,
   CompanyProfile,
   Inventory,

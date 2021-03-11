@@ -67,10 +67,10 @@ async function getData() {
     console.log("tickets", tickets);
 
     // API's with application_id
-    const themes = await client
+    const customers = await client
       .application("5fa24ca5756695531fa1eefb")
       .user.getCustomers();
-    console.log("themes", themes);
+    console.log("customers", customers);
   } catch (err) {
     console.log(err);
   }

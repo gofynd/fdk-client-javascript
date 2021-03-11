@@ -8,14 +8,8 @@ declare class Application {
     theme: Theme;
     user: User;
     content: Content;
-    communication: Communication;
-    companyProfile: CompanyProfile;
-    inventory: Inventory;
 }
 import { Lead } from "./PlatformApplicationModels";
 import { Theme } from "./PlatformApplicationModels";
 import { User } from "./PlatformApplicationModels";
 import { Content } from "./PlatformApplicationModels";
-import { Communication } from "./PlatformApplicationModels";
-import { CompanyProfile } from "./PlatformApplicationModels";
-import { Inventory } from "./PlatformApplicationModels";

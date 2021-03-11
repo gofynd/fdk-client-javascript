@@ -1,12 +1,4 @@
-const {
-  Lead,
-  Theme,
-  User,
-  Content,
-  Communication,
-  CompanyProfile,
-  Inventory,
-} = require("./PlatformApplicationModels");
+const { Lead, Theme, User, Content } = require("./PlatformApplicationModels");
 
 class Application {
   constructor(applicationId, config) {
@@ -18,9 +10,6 @@ class Application {
     this.theme = new Theme(config, applicationId);
     this.user = new User(config, applicationId);
     this.content = new Content(config, applicationId);
-    this.communication = new Communication(config, applicationId);
-    this.companyProfile = new CompanyProfile(config, applicationId);
-    this.inventory = new Inventory(config, applicationId);
   }
 }
 

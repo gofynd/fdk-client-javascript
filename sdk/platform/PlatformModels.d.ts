@@ -1,7 +1,6 @@
 export class Lead {
-    constructor(config: any, applicationId: any);
+    constructor(config: any);
     config: any;
-    applicationId: any;
     /**
       *
       * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
@@ -72,25 +71,9 @@ export class Lead {
         ticketId: string;
     }): any;
 }
-export class Theme {
-    constructor(config: any, applicationId: any);
-    config: any;
-    applicationId: any;
-}
-export class User {
-    constructor(config: any, applicationId: any);
-    config: any;
-    applicationId: any;
-}
-export class Content {
-    constructor(config: any, applicationId: any);
-    config: any;
-    applicationId: any;
-}
 export class Communication {
-    constructor(config: any, applicationId: any);
+    constructor(config: any);
     config: any;
-    applicationId: any;
     /**
       *
       * @summary: Get campaigns
@@ -475,9 +458,16 @@ export class Communication {
     getSystemSystemTemplates({}?: any): any;
 }
 export class CompanyProfile {
-    constructor(config: any, applicationId: any);
+    constructor(config: any);
     config: any;
-    applicationId: any;
+    /**
+      *
+      * @summary: Get company profile
+      * @description: This API allows to view the company profile of the seller account.
+      * @param {Object} arg - arg object.
+      
+      **/
+    cbsOnboardGet({}?: any): any;
     /**
      *
      * @summary: Edit company profile
@@ -488,14 +478,6 @@ export class CompanyProfile {
     cbsOnboardEdit({ body }?: {
         body: any;
     }): any;
-    /**
-      *
-      * @summary: Get company profile
-      * @description: This API allows to view the company profile of the seller account.
-      * @param {Object} arg - arg object.
-      
-      **/
-    cbsOnboardGet({}?: any): any;
     /**
       *
       * @summary: Get company metrics
@@ -538,16 +520,6 @@ export class CompanyProfile {
         body: any;
     }): any;
     /**
-     *
-     * @summary: Create a company brand mapping.
-     * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
-     * @param {Object} arg - arg object.
-     * @param {CompanyBrandPostRequestSerializer} arg.body
-     **/
-    createCompanyBrand({ body }?: {
-        body: any;
-    }): any;
-    /**
       *
       * @summary: Get brands associated to a company
       * @description: This API helps to get view brands associated to a particular company.
@@ -557,12 +529,12 @@ export class CompanyProfile {
     getCompanyBrands({}?: any): any;
     /**
      *
-     * @summary: Create a location asscoiated to a company.
-     * @description: This API allows to create a location associated to a company.
+     * @summary: Create a company brand mapping.
+     * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
      * @param {Object} arg - arg object.
-     * @param {LocationSerializer} arg.body
+     * @param {CompanyBrandPostRequestSerializer} arg.body
      **/
-    createLocation({ body }?: {
+    createCompanyBrand({ body }?: {
         body: any;
     }): any;
     /**
@@ -583,6 +555,16 @@ export class CompanyProfile {
         stage?: string;
         pageNo?: number;
         pageSize?: number;
+    }): any;
+    /**
+     *
+     * @summary: Create a location asscoiated to a company.
+     * @description: This API allows to create a location associated to a company.
+     * @param {Object} arg - arg object.
+     * @param {LocationSerializer} arg.body
+     **/
+    createLocation({ body }?: {
+        body: any;
     }): any;
     /**
      *
@@ -609,9 +591,8 @@ export class CompanyProfile {
     }): any;
 }
 export class Inventory {
-    constructor(config: any, applicationId: any);
+    constructor(config: any);
     config: any;
-    applicationId: any;
     /**
       *
       * @summary: Get Job Configs For A Company
