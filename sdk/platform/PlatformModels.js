@@ -849,25 +849,6 @@ class CompanyProfile {
   }
 
   /**
-   *
-   * @summary: Edit company profile
-   * @description: This API allows to edit the company profile of the seller account.
-   * @param {Object} arg - arg object.
-   * @param {CompanyStoreSerializerRequest} arg.body
-   **/
-  cbsOnboardEdit({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
-      query,
-      body
-    );
-  }
-
-  /**
     *
     * @summary: Get company profile
     * @description: This API allows to view the company profile of the seller account.
@@ -883,6 +864,25 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query,
       {}
+    );
+  }
+
+  /**
+   *
+   * @summary: Edit company profile
+   * @description: This API allows to edit the company profile of the seller account.
+   * @param {Object} arg - arg object.
+   * @param {CompanyStoreSerializerRequest} arg.body
+   **/
+  cbsOnboardEdit({ body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
+      query,
+      body
     );
   }
 

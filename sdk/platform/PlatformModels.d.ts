@@ -461,6 +461,14 @@ export class CompanyProfile {
     constructor(config: any);
     config: any;
     /**
+      *
+      * @summary: Get company profile
+      * @description: This API allows to view the company profile of the seller account.
+      * @param {Object} arg - arg object.
+      
+      **/
+    cbsOnboardGet({}?: any): any;
+    /**
      *
      * @summary: Edit company profile
      * @description: This API allows to edit the company profile of the seller account.
@@ -470,14 +478,6 @@ export class CompanyProfile {
     cbsOnboardEdit({ body }?: {
         body: any;
     }): any;
-    /**
-      *
-      * @summary: Get company profile
-      * @description: This API allows to view the company profile of the seller account.
-      * @param {Object} arg - arg object.
-      
-      **/
-    cbsOnboardGet({}?: any): any;
     /**
       *
       * @summary: Get company metrics

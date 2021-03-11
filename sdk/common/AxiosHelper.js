@@ -5,6 +5,7 @@ const { transformRequestOptions } = require("./TransformRequestOptions.js");
 const { sign } = require("./RequestSigner");
 const FDKError = require("./FDKError");
 const DEFAULT_DOMAIN = "https://api.fyndx0.de";
+axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
   const { transformRequest } = config;

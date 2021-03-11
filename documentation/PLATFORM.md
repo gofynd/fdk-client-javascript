@@ -148,8 +148,8 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardEdit](#cbsonboardedit)
     * [cbsOnboardGet](#cbsonboardget)
+    * [cbsOnboardEdit](#cbsonboardedit)
     * [getCompanyMetrics](#getcompanymetrics)
     * [editBrand](#editbrand)
     * [getBrand](#getbrand)
@@ -9225,55 +9225,6 @@ default
 ## CompanyProfile
 
 
-#### cbsOnboardEdit
-Edit company profile
-
-```javascript
-// Promise
-const promise = companyprofile.cbsOnboardEdit(companyId,body);
-
-// Async/Await
-const data = await companyprofile.cbsOnboardEdit(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to edit the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Returns a success message
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### cbsOnboardGet
 Get company profile
 
@@ -9299,6 +9250,55 @@ Company profile object. See example below or refer `GetCompanyProfileSerializerR
 
 
 Schema: `GetCompanyProfileSerializerResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cbsOnboardEdit
+Edit company profile
+
+```javascript
+// Promise
+const promise = companyprofile.cbsOnboardEdit(companyId,body);
+
+// Async/Await
+const data = await companyprofile.cbsOnboardEdit(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to edit the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Returns a success message
+
+
+Schema: `SuccessResponse`
 
 
 
