@@ -2,15 +2,16 @@ const OauthClient = require("./OAuthClient");
 class PlatformConfig {
   /**
    * @param  {Object} config
+   * @param  {string} config.companyId
+   * @param  {string} config.domain
    * @param  {string} config.apiKey
-   * @param  {string} config.company
-   * @param  {string} config.baseUrl
+   * @param  {string} config.apiSecret
    */
   constructor(config) {
+    this.companyId = config.companyId;
+    this.domain = config.domain;
     this.apiKey = config.apiKey;
     this.apiSecret = config.apiSecret;
-    this.company = config.company;
-    this.baseUrl = config.baseUrl;
     this.oauthClient = new OauthClient(this);
   }
   async getAccessToken() {

@@ -18,8 +18,6 @@ class APIClient {
       data: body,
       headers: {
         Authorization: "Bearer " + token,
-        Cookie:
-          "x.session=s%3An_z6w_ciyFWKPPNSWK08uMk6m_AFV2yg.rCxq%2Fd81eoTqXVq3XMcNYEiTXoz4GGneic4ynnTFg%2B0;",
       },
     };
 

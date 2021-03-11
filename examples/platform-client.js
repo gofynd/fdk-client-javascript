@@ -4,8 +4,8 @@ const {
 } = require("../../../../output/javascript/code/index");
 
 let platformConfig = new PlatformConfig({
-  company: 1,
-  baseUrl: "api.fyndx0.de",
+  companyId: 1,
+  domain: "api.fyndx0.de",
 });
 
 async function getData() {

@@ -1,7 +1,7 @@
 export = OAuthClient;
 declare class OAuthClient {
-    constructor(configuration: any);
-    configuration: any;
+    constructor(config: any);
+    config: any;
     token: any;
     refreshToken: any;
     setToken(token: any): void;

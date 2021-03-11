@@ -22,7 +22,7 @@ class Lead {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/lead/v1.0/company/${this.config.company}/ticket`,
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
       query,
       {}
     );
@@ -41,7 +41,7 @@ class Lead {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/lead/v1.0/company/${this.config.company}/ticket`,
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
       query,
       body
     );
@@ -61,7 +61,7 @@ class Lead {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/lead/v1.0/company/${this.config.company}/ticket/${ticketId}`,
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}`,
       query,
       {}
     );
@@ -81,7 +81,7 @@ class Lead {
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/lead/v1.0/company/${this.config.company}/ticket/${ticketId}`,
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}`,
       query,
       body
     );
@@ -101,7 +101,7 @@ class Lead {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/lead/v1.0/company/${this.config.company}/ticket/${ticketId}/history`,
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}/history`,
       query,
       body
     );
@@ -121,7 +121,7 @@ class Lead {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/lead/v1.0/company/${this.config.company}/ticket/${ticketId}/history`,
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}/history`,
       query,
       {}
     );
@@ -146,7 +146,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/campaigns/campaigns`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
       query,
       {}
     );
@@ -165,7 +165,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/campaigns/campaigns`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
       query,
       body
     );
@@ -185,7 +185,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/campaigns/campaigns/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
       query,
       {}
     );
@@ -205,7 +205,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/campaigns/campaigns/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
       query,
       body
     );
@@ -225,7 +225,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/campaigns/get-stats/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
       query,
       {}
     );
@@ -244,7 +244,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sources/datasources`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
       query,
       {}
     );
@@ -263,7 +263,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sources/datasources`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
       query,
       body
     );
@@ -282,7 +282,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sources/bigquery-headers`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
       query,
       body
     );
@@ -302,7 +302,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sources/datasources/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
       query,
       {}
     );
@@ -322,7 +322,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sources/datasources/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
       query,
       body
     );
@@ -341,7 +341,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sources/get-n-records`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
       query,
       body
     );
@@ -362,7 +362,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/email/providers`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
       query,
       {}
     );
@@ -381,7 +381,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/email/providers`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
       query,
       body
     );
@@ -401,7 +401,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/email/providers/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
       query,
       {}
     );
@@ -421,7 +421,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/email/providers/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
       query,
       body
     );
@@ -440,7 +440,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/email/templates`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
       query,
       {}
     );
@@ -459,7 +459,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/email/templates`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
       query,
       body
     );
@@ -478,7 +478,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/email/system-templates`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
       query,
       {}
     );
@@ -498,7 +498,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/email/templates/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
       query,
       {}
     );
@@ -518,7 +518,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/email/templates/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
       query,
       body
     );
@@ -538,7 +538,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "delete",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/email/templates/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
       query,
       {}
     );
@@ -559,7 +559,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/event/event-subscriptions`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
       query,
       {}
     );
@@ -580,7 +580,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/jobs/jobs`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
       query,
       {}
     );
@@ -599,7 +599,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/jobs/trigger-job`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
       query,
       body
     );
@@ -620,7 +620,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/jobs/logs`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
       query,
       {}
     );
@@ -641,7 +641,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/log`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/log`,
       query,
       {}
     );
@@ -660,7 +660,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sms/providers`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
       query,
       {}
     );
@@ -679,7 +679,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sms/providers`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
       query,
       body
     );
@@ -699,7 +699,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sms/providers/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
       query,
       {}
     );
@@ -719,7 +719,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sms/providers/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
       query,
       body
     );
@@ -738,7 +738,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sms/templates`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
       query,
       {}
     );
@@ -757,7 +757,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sms/templates`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
       query,
       body
     );
@@ -777,7 +777,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sms/templates/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
       query,
       {}
     );
@@ -797,7 +797,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sms/templates/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
       query,
       body
     );
@@ -817,7 +817,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "delete",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sms/templates/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
       query,
       {}
     );
@@ -836,7 +836,7 @@ class Communication {
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.company}/application/${this.applicationId}/sms/system-templates`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/system-templates`,
       query,
       {}
     );
@@ -865,7 +865,7 @@ class Inventory {
     return APIClient.execute(
       this.config,
       "get",
-      `/v1.0/company/${this.config.company}/jobs`,
+      `/v1.0/company/${this.config.companyId}/jobs`,
       query,
       {}
     );
@@ -885,7 +885,7 @@ class Inventory {
     return APIClient.execute(
       this.config,
       "put",
-      `/v1.0/company/${this.config.company}/jobs`,
+      `/v1.0/company/${this.config.companyId}/jobs`,
       query,
       body
     );
@@ -905,7 +905,7 @@ class Inventory {
     return APIClient.execute(
       this.config,
       "post",
-      `/v1.0/company/${this.config.company}/jobs`,
+      `/v1.0/company/${this.config.companyId}/jobs`,
       query,
       body
     );
@@ -929,7 +929,7 @@ class Inventory {
     return APIClient.execute(
       this.config,
       "get",
-      `/v1.0/company/${this.config.company}/jobs/integration/${integrationId}`,
+      `/v1.0/company/${this.config.companyId}/jobs/integration/${integrationId}`,
       query,
       {}
     );
@@ -948,7 +948,7 @@ class Inventory {
     return APIClient.execute(
       this.config,
       "get",
-      `/v1.0/company/${this.config.company}/jobs/defaults`,
+      `/v1.0/company/${this.config.companyId}/jobs/defaults`,
       query,
       {}
     );
@@ -968,7 +968,7 @@ class Inventory {
     return APIClient.execute(
       this.config,
       "get",
-      `/v1.0/company/${this.config.company}/jobs/code/${code}`,
+      `/v1.0/company/${this.config.companyId}/jobs/code/${code}`,
       query,
       {}
     );
@@ -992,7 +992,7 @@ class Inventory {
     return APIClient.execute(
       this.config,
       "get",
-      `/v1.0/company/${this.config.company}/jobs/code/integration/${integrationId}`,
+      `/v1.0/company/${this.config.companyId}/jobs/code/integration/${integrationId}`,
       query,
       {}
     );

@@ -8,10 +8,10 @@ const express = require("express");
 const app = express();
 
 let platformConfigExt = new PlatformConfig({
+  companyId: 1,
+  domain: "api.fyndx0.de",
   apiKey: "603dac5406fd2a5282db7c76",
   apiSecret: "mKPAFF6fzUHryy.",
-  company: 1,
-  baseUrl: "api.fyndx0.de",
 });
 
 const options = {

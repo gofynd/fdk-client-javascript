@@ -13,8 +13,8 @@ class FdkOAuthCodeError extends Error {
   }
 }
 class OAuthClient {
-  constructor(configuration) {
-    this.configuration = configuration;
+  constructor(config) {
+    this.config = config;
     this.token = null;
     this.refreshToken = null;
   }
@@ -36,7 +36,7 @@ class OAuthClient {
   }
   startAuthorization(options) {
     let query = {
-      client_id: this.configuration.apiKey,
+      client_id: this.config.apiKey,
       scope: options.scope.join(","),
       redirect_uri: options.redirectUri,
       state: this.__getState(),
@@ -44,7 +44,7 @@ class OAuthClient {
     };
     const queryString = querystring.stringify(query);
     // TODO: store state object in session storage
-    return `https://${this.configuration.baseUrl}/service/panel/authentication/v1.0/company/${this.configuration.company}/oauth/authorize?${queryString}`;
+    return `https://${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/authorize?${queryString}`;
   }
   async verifyCallback(query) {
     if (query.error) {
@@ -58,10 +58,10 @@ class OAuthClient {
         code: query.code,
       };
       const token = Buffer.from(
-        `${this.configuration.apiKey}:${this.configuration.apiSecret}`,
+        `${this.config.apiKey}:${this.config.apiSecret}`,
         "utf8"
       ).toString("base64");
-      let url = `https://${this.configuration.baseUrl}/service/panel/authentication/v1.0/company/${this.configuration.company}/oauth/token`;
+      let url = `https://${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
       const rawRequest = {
         method: "post",
         url: url,
@@ -95,10 +95,10 @@ class OAuthClient {
         refresh_token: this.refreshToken,
       });
       const token = Buffer.from(
-        `${this.configuration.apiKey}:${this.configuration.apiSecret}`,
+        `${this.config.apiKey}:${this.config.apiSecret}`,
         "utf8"
       ).toString("base64");
-      let url = `https://${this.configuration.baseUrl}/service/panel/authentication/v1.0/company/${this.configuration.company}/oauth/token`;
+      let url = `https://${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
       const rawRequest = {
         method: "post",
         url: url,
