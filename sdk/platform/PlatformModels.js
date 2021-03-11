@@ -843,6 +843,254 @@ class Communication {
   }
 }
 
+class CompanyProfile {
+  constructor(config) {
+    this.config = config;
+  }
+
+  /**
+   *
+   * @summary: Edit company profile
+   * @description: This API allows to edit the company profile of the seller account.
+   * @param {Object} arg - arg object.
+   * @param {CompanyStoreSerializerRequest} arg.body
+   **/
+  cbsOnboardEdit({ body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get company profile
+    * @description: This API allows to view the company profile of the seller account.
+    * @param {Object} arg - arg object.
+    
+    **/
+  cbsOnboardGet({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+    *
+    * @summary: Get company metrics
+    * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCompanyMetrics({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/metrics`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary: Edit a brand.
+   * @description: This API allows to edit meta of a brand.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.brandId - Id of the brand to be viewed.
+   * @param {CreateUpdateBrandRequestSerializer} arg.body
+   **/
+  editBrand({ brandId, body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a single brand.
+    * @description: This API helps to get data associated to a particular brand.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.brandId - Id of the brand to be viewed.
+    
+    **/
+  getBrand({ brandId } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary: Create a Brand.
+   * @description: This API allows to create a brand associated to a company.
+   * @param {Object} arg - arg object.
+   * @param {CreateUpdateBrandRequestSerializer} arg.body
+   **/
+  createBrand({ body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Create a company brand mapping.
+   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
+   * @param {Object} arg - arg object.
+   * @param {CompanyBrandPostRequestSerializer} arg.body
+   **/
+  createCompanyBrand({ body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get brands associated to a company
+    * @description: This API helps to get view brands associated to a particular company.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCompanyBrands({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary: Create a location asscoiated to a company.
+   * @description: This API allows to create a location associated to a company.
+   * @param {Object} arg - arg object.
+   * @param {LocationSerializer} arg.body
+   **/
+  createLocation({ body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of locations
+    * @description: This API allows to view all the locations asscoiated to a company.
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.storeType] - Helps to sort the location list on the basis of location type.
+    * @param {string} [arg.q] - Query that is to be searched.
+    * @param {string} [arg.stage] - to filter companies on basis of verified or unverified companies.
+    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 10.
+    
+    **/
+  locationList({ storeType, q, stage, pageNo, pageSize } = {}) {
+    const query = {};
+    query["store_type"] = storeType;
+    query["q"] = q;
+    query["stage"] = stage;
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
+      query,
+      {}
+    );
+  }
+
+  /**
+   *
+   * @summary: Edit a location asscoiated to a company.
+   * @description: This API allows to edit a location associated to a company.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.locationId - Id of the location which you want to edit.
+   * @param {LocationSerializer} arg.body
+   **/
+  editLocation({ locationId, body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a single location.
+    * @description: This API helps to get data associated to a particular location.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.locationId - Id of the location which you want to view.
+    
+    **/
+  getSingleLocation({ locationId } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      query,
+      {}
+    );
+  }
+}
+
 class Inventory {
   constructor(config) {
     this.config = config;
@@ -1002,5 +1250,6 @@ class Inventory {
 module.exports = {
   Lead,
   Communication,
+  CompanyProfile,
   Inventory,
 };

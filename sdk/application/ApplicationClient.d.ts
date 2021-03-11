@@ -10,7 +10,6 @@ declare class ApplicationClient {
     communication: Communication;
     share: Share;
     fileStorage: FileStorage;
-    configuration: Configuration;
     payment: Payment;
     order: Order;
     rewards: Rewards;
@@ -27,7 +26,6 @@ import { Content } from "./ApplicationModels";
 import { Communication } from "./ApplicationModels";
 import { Share } from "./ApplicationModels";
 import { FileStorage } from "./ApplicationModels";
-import { Configuration } from "./ApplicationModels";
 import { Payment } from "./ApplicationModels";
 import { Order } from "./ApplicationModels";
 import { Rewards } from "./ApplicationModels";

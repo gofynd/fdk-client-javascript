@@ -8,7 +8,6 @@ const {
   Communication,
   Share,
   FileStorage,
-  Configuration,
   Payment,
   Order,
   Rewards,
@@ -28,7 +27,6 @@ class ApplicationClient {
     this.communication = new Communication(config);
     this.share = new Share(config);
     this.fileStorage = new FileStorage(config);
-    this.configuration = new Configuration(config);
     this.payment = new Payment(config);
     this.order = new Order(config);
     this.rewards = new Rewards(config);
