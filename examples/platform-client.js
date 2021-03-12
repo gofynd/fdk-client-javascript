@@ -10,9 +10,8 @@ let platformConfig = new PlatformConfig({
 
 async function getData() {
   try {
-    // get token using staff API
-    const token = await platformConfig.oauthClient.getTokenForInternal();
-    platformConfig.oauthClient.setToken(token.access_token);
+    // get token and set token
+platformConfig.oauthClient.setToken("ACCESS_TOKEN");
     const client = new PlatformClient(platformConfig);
 
     // API's without application_id

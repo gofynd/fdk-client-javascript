@@ -4,9 +4,10 @@ const {
 } = require("../../../../output/javascript/code/index");
 
 const config = new ApplicationConfig({
-  applicationID: "5fa24ca5756695531fa1eefb",
-  applicationToken: "4twvAQZB3",
+  applicationID: "APPLICATION_ID",
+  applicationToken: "APPLICATION_TOKEN",
 });
+
 
 const applicationClient = new ApplicationClient(config);
 

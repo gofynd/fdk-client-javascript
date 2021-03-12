@@ -1,8 +1,9 @@
 export = Paginator;
 declare class Paginator {
     constructor(pageNo: any);
-    setCallback(callback: any): void;
+    pageNo: any;
     callback: any;
+    setCallback(callback: any): void;
     hasNext(): any;
     setPaginator({ hasNext, nextId, pageNo }: {
         hasNext: any;
@@ -11,6 +12,5 @@ declare class Paginator {
     }): void;
     isNext: any;
     nextId: any;
-    pageNo: any;
     next(): any;
 }

@@ -46,9 +46,11 @@ function requestInterceptorFn(options) {
           queryParam = `?${transformRequestOptions(params)}`;
         }
       }
-      const transformRequest = getTransformer(config);
-
-      const transformedData = transformRequest(data, headers);
+      let transformedData;
+      if (method != "get") {
+        const transformRequest = getTransformer(config);
+        transformedData = transformRequest(data, headers);
+      }
 
       // Remove all the default Axios headers
       const {
