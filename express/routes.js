@@ -10,6 +10,10 @@ const { sessionMiddleware } = require('./middleware/session_middleware');
 const { extension } = require('./extension');
 const FdkRoutes = express.Router();
 
+FdkRoutes.use(async (req, res, next) => {
+    req.query.cluster = "https://api.fyndx0.de";
+    next();
+});
 function setupRoutes(ext) {
 
     let storage = ext.storage;
@@ -47,11 +51,11 @@ function setupRoutes(ext) {
             let companyId = parseInt(req.query.company_id);
 
             if(!cluster) {
-                res.statusCode(400).json({"message": "cluster not found"});
+                res.status(400).json({"message": "cluster not found"});
             }
 
             let fdkHelper = FdkHelper.getInstance(cluster, ext);
-            let platformConfig = await fdkHelper.getPlatformClientInstance();
+            let platformConfig = await fdkHelper.getPlatformClientInstance(companyId);
 
             let session;
             if(ext.isOnlineAccessMode()) {
@@ -98,8 +102,8 @@ function setupRoutes(ext) {
             } else {
                 redirectUrl = await ext.callbacks.install(req);
             }
-            res.redirect(redirectUrl);
             await SessionStorage.saveSession(session);
+            res.redirect(redirectUrl);
         } catch (error) {
             next(error);
         }
@@ -117,7 +121,7 @@ function setupRoutes(ext) {
             }
 
             let fdkHelper = FdkHelper.getInstance(req.fdkSession.cluster, ext);
-            let platformConfig = await fdkHelper.getPlatformClientInstance();
+            let platformConfig = await fdkHelper.getPlatformClientInstance(req.fdkSession.company_id);
             await platformConfig.oauthClient.verifyCallback(req.query);
             let token = platformConfig.oauthClient.token;
 
@@ -140,7 +144,7 @@ function setupRoutes(ext) {
             await ext.callbacks.uninstall(req);
             res.json({success: true});
         } catch (error) {
-            res.statusCode(500).json({success: false, message: error});
+            res.status(500).json({success: false, message: error});
         }
     });
 

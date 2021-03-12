@@ -1,6 +1,6 @@
 'use strict';
 const Session = require("./session");
-const extension = require("./../extension");
+const { extension } = require("./../extension");
 
 class SessionStorage {
     constructor() {

@@ -1,7 +1,13 @@
 const ngrok = require('ngrok');
+const fs = require('fs');
+const path = require('path');
+
 (async function () {
+    console.log(path.join(__dirname + "/.ngrock"))
+    fs.writeFileSync(path.join(__dirname + "/.ngrock"), "223");
     let url = await ngrok.connect(5070);
     console.log(url);
+    fs.writeFileSync(path.join(__dirname + "/.ngrock"), url);
 
     async function exitHandler(options, exitCode) {
         try {

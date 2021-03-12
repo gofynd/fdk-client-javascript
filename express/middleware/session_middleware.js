@@ -8,7 +8,7 @@ function sessionMiddleware(strict) {
         req.fdkSession = SessionStorage.getSession(sessionId);
 
         if(strict && !req.session) {
-            res.statusCode(401).json({ "message": "unauthorized" });
+            res.status(401).json({ "message": "unauthorized" });
         }
     };
 }

@@ -7,13 +7,17 @@ const {
 const { MemoryStorage } = require("./../express/storage");
 const extensionHandler = require("./extension.handler");
 
+const fs = require('fs');
+const path = require('path');
+
 const app = express();
-app.use(cookieParser());
+app.use(cookieParser("ext.session"));
 app.use(bodyParser.json({
     limit: '2mb'
-}));
+}));    
 
-let baseUrl = "https://19c689d2a7f3.ngrok.io";
+let data = fs.readFileSync(path.join(__dirname + "/.ngrock"));
+let baseUrl = data.toString() || "http://localhost:7070";
 console.log(baseUrl);
 
 let FDKExtension = setupFdk({
@@ -36,4 +40,4 @@ app.use('/_healthz', (req, res, next) => {
         "ok": "ok"
     });
 });
-app.listen(7070);
+app.listen(5070);
