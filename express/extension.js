@@ -5,6 +5,7 @@ const urljoin = require('url-join');
 
 class Extension {
     constructor(data) {
+        this.storage = data.storage;
         this.name = data.name;
         this.prefix_path = data.prefix_path;
         
@@ -33,6 +34,7 @@ class Extension {
         } else {
             this.contact_email = null;
         }
+        this.access_mode = data.access_mode || "offline";
     }
 
     verifyScopes(scopes) {
@@ -62,6 +64,9 @@ class Extension {
         };
     }
 
+    isOnlineAccessMode() {
+        return this.access_mode;
+    }
     async register() {
         // TODO: add code for triggering register extension call explicitly 
     }

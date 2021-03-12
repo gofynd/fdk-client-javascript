@@ -17,7 +17,6 @@ class SessionStorage {
         delete this.sessions[session.id];
         return true;
     }
-    
 }
 
 module.exports = SessionStorage;

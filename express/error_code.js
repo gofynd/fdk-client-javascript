@@ -6,6 +6,13 @@ class InvalidExtensionJson extends Error {
     }
 }
 
+class ClusterMetaMissingEror extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+
 module.exports = {
-    InvalidExtensionJson
+    InvalidExtensionJson,
+    ClusterMetaMissingEror
 };
