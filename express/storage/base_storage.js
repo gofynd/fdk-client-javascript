@@ -13,6 +13,10 @@ class BaseStorage {
         throw Error("Method not implemented");
     }
 
+    async del(key) {
+        throw Error("Method not implemented");
+    }
+
     async setex(key, value, ttl) {
         throw Error("Method not implemented");
     }

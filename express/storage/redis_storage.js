@@ -13,11 +13,15 @@ class RedisStorage extends BaseStorage {
     }
 
     async set(key, value) {
-        return await this.client.set(key, JSON.stringify(value));
+        return await this.client.set(key, value);
     }
 
     async setex(key, value, ttl) {
-        return await this.client.setex(key, JSON.stringify(value), ttl);
+        return await this.client.setex(key, value, ttl);
+    }
+
+    async del(key) {
+        delete this.client.del(key);
     }
 
     async hget(key, hashKey) {

@@ -1,21 +1,27 @@
 'use strict';
+const Session = require("./session");
+const extension = require("./../extension");
 
 class SessionStorage {
     constructor() {
-        this.sessions = {};
     }
 
-    async storeSession(session) {
-        this.sessions[session.id] = session;
+    static async saveSession(session) {
+        let ttl = (new Date() - session.expires) / 1000;
+        ttl = Math.min(ttl, 0);
+        return extension.storage.setex(session.id, JSON.stringify(session.toJSON()), ttl);
     }
 
-    async loadSession(session) {
-        return this.sessions[session.id];
+    static async getSession(sessionId) {
+        let session = extension.storage.get(sessionId);
+        if(session) {
+            session = Session.cloneSession(sessionId, session, false);
+        }
+        return session;
     }
 
-    async deleteSession(session) {
-        delete this.sessions[session.id];
-        return true;
+    static async deleteSession(sessionId) {
+        return extension.storage.del(sessionId);
     }
 }
 

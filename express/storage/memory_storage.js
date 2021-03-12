@@ -21,6 +21,10 @@ class MemoryStorage extends BaseStorage {
         this.__data[key] = value;
     }
 
+    async del(key) {
+        delete this.__data[key];
+    }
+
     async hget(key, hashKey) {
         let hashMap = this.__data[key];
         if(hashMap) {

@@ -1,18 +1,32 @@
 'use strict';
 
-class InvalidExtensionJson extends Error {
+class FdkInvalidExtensionJson extends Error {
     constructor(message) {
         super(message);
     }
 }
 
-class ClusterMetaMissingEror extends Error {
+class FdkClusterMetaMissingEror extends Error {
     constructor(message) {
         super(message);
     }
 }
+
+class FdkSessionNotFoundError extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+class FdkInvalidOAuthError extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+
 
 module.exports = {
-    InvalidExtensionJson,
-    ClusterMetaMissingEror
+    FdkInvalidExtensionJson,
+    FdkClusterMetaMissingEror,
+    FdkSessionNotFoundError,
+    FdkInvalidOAuthError
 };

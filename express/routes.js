@@ -1,18 +1,19 @@
 'use strict';
 const express = require('express');
-const querystring = require('querystring');
-const axios = require('axios');
-const { v4 : uuidv4, v4} = require("uuid");
+const { v4 : uuidv4} = require("uuid");
 const FdkHelper = require("./fdk_helper");
 const Session = require("./session/session");
-
+const SessionStorage = require("./session/session_storage");
+const { FdkSessionNotFoundError, FdkInvalidOAuthError } = require("./error_code");
+const { SESSION_COOKIE_NAME } = require('./constants');
+const { sessionMiddleware } = require('./middleware/session_middleware');
+const { extension } = require('./extension');
 const FdkRoutes = express.Router();
 
 function setupRoutes(ext) {
 
     let storage = ext.storage;
     let callbacks = ext.callbacks;
-
 
     FdkRoutes.get(`/extension.json`, async (req, res) => {
         let data = ext.toJson();
@@ -29,8 +30,8 @@ function setupRoutes(ext) {
          */
         try {
             let cluster = req.body.cluster;
-            await storage.set(cluster, JSON.stringify(req.body));
-            await FdkHelper.getFDKHelperInstance(cluster, ext, req.body);
+            let fpHelper = await FdkHelper.getInstance(cluster, ext);
+            await fpHelper.setClusterMeta(req.body);
             await callbacks.setup(req.body);
             res.json({sucess: true});
         } catch (error) {
@@ -43,97 +44,104 @@ function setupRoutes(ext) {
         // ?company_id=1&cluster=https://api.fynd.com&client_id=123313112122
         try {
             let cluster = req.query.cluster;
+            let companyId = parseInt(req.query.company_id);
+
             if(!cluster) {
                 res.statusCode(400).json({"message": "cluster not found"});
             }
 
-            let fdkHelper = await FdkHelper.getFDKHelperInstance(cluster, ext);
+            let fdkHelper = FdkHelper.getInstance(cluster, ext);
+            let platformConfig = await fdkHelper.getPlatformClientInstance();
 
             let session;
             if(ext.isOnlineAccessMode()) {
-                session = new Session(Session.generateSessionId(false));
+                session = new Session(Session.generateSessionId(true));
             } else {
                 let sid = Session.generateSessionId(false, {
                     cluster: cluster,
-                    company_id: req.query.company_id
+                    companyId: companyId
                 });
-                session = new Session(sid);
+                session = await SessionStorage.getSession(sid);
+                if(!session) {
+                    session = new Session(sid);
+                }
             }
 
-            escape.set
+            if(session.isNew) {
+                session.cluster = cluster;
+                session.company_id = companyId;
+                session.scope = ext.scopes;
+                session.expires = new Date(Date.now() + 100000);
+            }
 
+            req.fdkSession = session;
+            req.extension = extension;
 
-            let platformConfig = await fdkHelper.getPlatformClientInstance();
-
-            let clusterMeta = await storage.get(cluster);
-            let company_id = req.query.company_id;
-            // For online mode check details 
-            let companyToken = await storage.hget(req.query.cluster, company_id);
-            if(!companyToken) {
-                let platformConfig = new PlatformConfig({
-                    companyId: parseInt(req.query.company_id),
-                    domain: new URL(clusterMeta.cluster).host,
-                    apiKey: clusterMeta.client_id,
-                    apiSecret: clusterMeta.secret[0]
-                });
-
+            res.cookie(SESSION_COOKIE_NAME, session.id, { 
+                secure: true,
+                httpOnly: true,
+                expires: session.expires,
+                signed: true,
+                sameSite: true
+            });
+            
+            let redirectUrl;
+            if(!session.accessToken) {
+                session.state = uuidv4();
                 // start authorization flow
-                // Replace with fdk client
-                let state = uuidv4();
-                let query = {
-                    client_id: clusterMeta.client_id,
-                    scope: ext.scopes.join(","),
-                    redirect_uri: ext.getAuthCallback(),
-                    state: state,
-                    access_mode: ext.access_mode,
-                    response_type: "code"
-                };
-                const queryString = querystring.stringify(query);
-
-                res.cookie('state',state, { maxAge: 3600, httpOnly: true });
-                res.redirect(`${clusterMeta.cluster}/service/panel/authentication/v1.0/company/${company_id}/oauth/authorize?${queryString}`);
+                redirectUrl = platformConfig.oauthClient.startAuthorization({
+                    scope: session.scope,
+                    redirectUri: ext.getAuthCallback(),
+                    state: session.state,
+                    access_mode: ext.access_mode
+                });
             } else {
-                res.redirect(`${ext.base_url}`);
+                redirectUrl = await ext.callbacks.install(req);
             }
+            res.redirect(redirectUrl);
+            await SessionStorage.saveSession(session);
         } catch (error) {
-            console.error(error);
-            res.status(500, { message: error.message});
+            next(error);
         }
     });
 
-    FdkRoutes.get(`${ext.prefix_path}/auth`, async (req, res, next) => {
-        // ?code=ddjfhdsjfsfh&client_id=jsfnsajfhkasf&company_id=1&cluster=https://api.fynd.com
-        let clusterMeta = await storage.get(req.query.cluster);
-        let platformConfig = new PlatformConfig({
-            companyId: parseInt(req.query.company_id),
-            domain: new URL(clusterMeta.cluster).host,
-        });
-
-        let reqData = {
-            grant_type: "authorization_code",
-            code: req.query.code
-        };
-
-        
-        const token = Buffer.from(`${clusterMeta.client_id}:${clusterMeta.secret[0]}`,'utf8').toString('base64');
-
-        let url = `${clusterMeta.cluster}/service/panel/authentication/v1.0/company/${req.query.company_id}/oauth/token`;
-        let resultRes = await axios.post(url, querystring.stringify(reqData), {
-            headers: { 
-                'Authorization': `Basic ${token}`, 
-                'Content-Type': 'application/x-www-form-urlencoded'
+    FdkRoutes.get(`${ext.prefix_path}/auth`, sessionMiddleware(false), async (req, res, next) => {
+        // ?code=ddjfhdsjfsfh&client_id=jsfnsajfhkasf&company_id=1&cluster=https://api.fynd.com&state=jashoh
+        try {
+            if(!req.fdkSession) {
+                throw new FdkSessionNotFoundError("Can not complete oauth process as session not found");
             }
-        });
 
-        // store this access token it can be reused in subsequant call
-        // for online access mode store data in session instead of global
-        await storage.hset(clusterMeta.cluster, req.query.company_id, JSON.stringify(resultRes.data));
-        await ext.callbacks.auth(req, res, next);
-        // res.redirect(ext.base_url);
+            if(req.fdkSession.state !== req.query.state) {
+                throw new FdkInvalidOAuthError("Invalid oauth call");
+            }
+
+            let fdkHelper = FdkHelper.getInstance(req.fdkSession.cluster, ext);
+            let platformConfig = await fdkHelper.getPlatformClientInstance();
+            await platformConfig.oauthClient.verifyCallback(req.query);
+            let token = platformConfig.oauthClient.token;
+
+            req.fdkSession.expires = new Date(Date.now() + token.expires_in * 1000);
+            req.fdkSession.access_token = token.access_token;
+            req.fdkSession.current_user = token.current_user;
+            req.fdkSession.refresh_token = token.refresh_token;
+            await SessionStorage.saveSession(req.fdkSession);
+
+            req.extension = extension;
+            let redirectUrl = await ext.callbacks.auth(req);
+            res.redirect(redirectUrl);
+        } catch (error) {
+            next(error);
+        }
     });
 
     FdkRoutes.post(`${ext.prefix_path}/uninstall`, async (req, res, next) => {
-        await ext.callbacks.uninstall(req, res, next);
+        try {
+            await ext.callbacks.uninstall(req);
+            res.json({success: true});
+        } catch (error) {
+            res.statusCode(500).json({success: false, message: error});
+        }
     });
 
     return FdkRoutes;
