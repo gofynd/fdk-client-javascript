@@ -1,6 +1,6 @@
 const {
   Lead,
-  Communication,
+  Payment,
   CompanyProfile,
   Inventory,
 } = require("./PlatformModels");
@@ -10,7 +10,7 @@ class PlatformClient {
   constructor(config) {
     this.config = config;
     this.lead = new Lead(config);
-    this.communication = new Communication(config);
+    this.payment = new Payment(config);
     this.companyProfile = new CompanyProfile(config);
     this.inventory = new Inventory(config);
   }

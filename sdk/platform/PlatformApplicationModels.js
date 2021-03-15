@@ -25,7 +25,7 @@ class Lead {
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -45,7 +45,7 @@ class Lead {
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -105,7 +105,7 @@ class Lead {
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}/history`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -125,7 +125,7 @@ class Lead {
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form/${slug}`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -164,7 +164,7 @@ class Lead {
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -203,7 +203,7 @@ class Lead {
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}/token`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -223,7 +223,7 @@ class Lead {
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}/participants`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -261,7 +261,7 @@ class Lead {
       "delete",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room`,
       queryObj,
-      {}
+      undefined
     );
   }
 }
@@ -291,7 +291,7 @@ class Theme {
       "get",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -349,7 +349,7 @@ class Theme {
       "get",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgradable`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -369,7 +369,7 @@ class Theme {
       "put",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgrade`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -392,7 +392,7 @@ class Theme {
       "get",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/public/library`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -430,7 +430,7 @@ class Theme {
       "put",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -449,7 +449,7 @@ class Theme {
       "get",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/fonts`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -469,7 +469,7 @@ class Theme {
       "get",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -509,7 +509,7 @@ class Theme {
       "delete",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -529,7 +529,7 @@ class Theme {
       "get",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/preview`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -549,7 +549,7 @@ class Theme {
       "put",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/publish`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -569,7 +569,7 @@ class Theme {
       "put",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unpublish`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -589,7 +589,7 @@ class Theme {
       "put",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/archive`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -609,7 +609,7 @@ class Theme {
       "put",
       `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unarchive`,
       queryObj,
-      {}
+      undefined
     );
   }
 }
@@ -641,7 +641,7 @@ class User {
       "get",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/list`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -662,7 +662,7 @@ class User {
       "get",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/search`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -681,7 +681,7 @@ class User {
       "get",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
       queryObj,
-      {}
+      undefined
     );
   }
 
@@ -705,7 +705,7 @@ class User {
   }
 }
 
-class Content {
+class Communication {
   constructor(config, applicationId) {
     this.config = config;
     this.applicationId = applicationId;
@@ -713,37 +713,37 @@ class Content {
 
   /**
     *
-    * @summary: Get annoucements list
-    * @description: Get list of announcements
+    * @summary: Get campaigns
+    * @description: Get campaigns
     * @param {Object} arg - arg object.
     
     **/
-  getAnnouncementsList({} = {}) {
+  getCampaigns({} = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
       queryObj,
-      {}
+      undefined
     );
   }
 
   /**
    *
-   * @summary: Create an annoucement
-   * @description: Create an announcement
+   * @summary: Create campaign
+   * @description: Create campaign
    * @param {Object} arg - arg object.
-   * @param {AdminAnnouncementSchema} arg.body
+   * @param {CampaignReq} arg.body
    **/
-  createAnnouncement({ body } = {}) {
+  createCampaign({ body } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
       queryObj,
       body
     );
@@ -751,59 +751,39 @@ class Content {
 
   /**
     *
-    * @summary: Get annoucement by id
-    * @description: Get announcement by id
+    * @summary: Get campaign by id
+    * @description: Get campaign by id
     * @param {Object} arg - arg object.
-    * @param {string} arg.announcementId - Announcement ID
+    * @param {string} arg.id - Campaign id
     
     **/
-  getAnnouncementById({ announcementId } = {}) {
+  getCampaignById({ id } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
       queryObj,
-      {}
+      undefined
     );
   }
 
   /**
    *
-   * @summary: Update an annoucement
-   * @description: Update an announcement
+   * @summary: Update campaign by id
+   * @description: Update campaign by id
    * @param {Object} arg - arg object.
-   * @param {string} arg.announcementId - Announcement ID
-   * @param {AdminAnnouncementSchema} arg.body
+   * @param {string} arg.id - Campaign id
+   * @param {CampaignReq} arg.body
    **/
-  updateAnnouncement({ announcementId, body } = {}) {
+  updateCampaignById({ id, body } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update schedule or published status of an annoucement
-   * @description: Update schedule or published status of an announcement
-   * @param {Object} arg - arg object.
-   * @param {string} arg.announcementId - Announcement ID
-   * @param {ScheduleSchema} arg.body
-   **/
-  updateAnnouncementSchedule({ announcementId, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
       queryObj,
       body
     );
@@ -811,156 +791,684 @@ class Content {
 
   /**
     *
-    * @summary: Delete annoucement by id
-    * @description: Delete announcement by id
+    * @summary: Get stats of campaign by id
+    * @description: Get stats of campaign by id
     * @param {Object} arg - arg object.
-    * @param {string} arg.announcementId - Announcement ID
+    * @param {string} arg.id - Campaign id
     
     **/
-  deleteAnnouncement({ announcementId } = {}) {
+  getStatsOfCampaignById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get audiences
+    * @description: Get audiences
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAudiences({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create audience
+   * @description: Create audience
+   * @param {Object} arg - arg object.
+   * @param {AudienceReq} arg.body
+   **/
+  createAudience({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Get bigquery headers
+   * @description: Get bigquery headers
+   * @param {Object} arg - arg object.
+   * @param {BigqueryHeadersReq} arg.body
+   **/
+  getBigqueryHeaders({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get audience by id
+    * @description: Get audience by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Audience id
+    
+    **/
+  getAudienceById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update audience by id
+   * @description: Update audience by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Audience id
+   * @param {AudienceReq} arg.body
+   **/
+  updateAudienceById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Get n sample records from csv
+   * @description: Get n sample records from csv
+   * @param {Object} arg - arg object.
+   * @param {GetNRecordsCsvReq} arg.body
+   **/
+  getNSampleRecordsFromCsv({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get email providers
+    * @description: Get email providers
+    * @param {Object} arg - arg object.
+    
+    **/
+  getEmailProviders({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create email provider
+   * @description: Create email provider
+   * @param {Object} arg - arg object.
+   * @param {EmailProviderReq} arg.body
+   **/
+  createEmailProvider({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get email provider by id
+    * @description: Get email provider by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Email provider id
+    
+    **/
+  getEmailProviderById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update email provider by id
+   * @description: Update email provider by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Email provider id
+   * @param {EmailProviderReq} arg.body
+   **/
+  updateEmailProviderById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get email templates
+    * @description: Get email templates
+    * @param {Object} arg - arg object.
+    
+    **/
+  getEmailTemplates({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create email template
+   * @description: Create email template
+   * @param {Object} arg - arg object.
+   * @param {EmailTemplateReq} arg.body
+   **/
+  createEmailTemplate({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get system email templates
+    * @description: Get system email templates
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSystemEmailTemplates({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get email template by id
+    * @description: Get email template by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Email template id
+    
+    **/
+  getEmailTemplateById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update email template by id
+   * @description: Update email template by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Email template id
+   * @param {EmailTemplateReq} arg.body
+   **/
+  updateEmailTemplateById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete email template by id
+    * @description: Delete email template by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Email template id
+    
+    **/
+  deleteEmailTemplateById({ id } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
       queryObj,
-      {}
+      undefined
     );
   }
 
   /**
     *
-    * @summary: Updates a component
-    * @description: Updates a component for the given component ID
+    * @summary: Get event subscriptions
+    * @description: Get event subscriptions
     * @param {Object} arg - arg object.
-    * @param {string} arg.id - ID of component to be fetched
     
     **/
-  updateComponent({ id } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/components/${id}`,
-      queryObj,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary: Get components by component ID
-    * @description: The endpoint fetches the component by component ID
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - ID of component to be fetched
-    
-    **/
-  getComponentByID({ id } = {}) {
+  getEventSubscriptions({} = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/components/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
       queryObj,
-      {}
+      undefined
     );
   }
 
   /**
     *
-    * @summary: Delete a component from the page
-    * @description: It deletes a component from the page
+    * @summary: Get jobs
+    * @description: Get jobs
     * @param {Object} arg - arg object.
-    * @param {string} arg.id - ID of component to be deleted
     
     **/
-  deleteComponent({ id } = {}) {
+  getJobs({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Trigger campaign job
+   * @description: Trigger campaign job
+   * @param {Object} arg - arg object.
+   * @param {TriggerJobRequest} arg.body
+   **/
+  triggerCampaignJob({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get job logs
+    * @description: Get job logs
+    * @param {Object} arg - arg object.
+    
+    **/
+  getJobLogs({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get communication logs
+    * @description: Get communication logs
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCommunicationLogs({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/log`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Upsert push token of a user
+   * @description: Upsert push token of a user
+   * @param {Object} arg - arg object.
+   * @param {PushtokenReq} arg.body
+   **/
+  upsertPushtoken({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pn/token`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get sms providers
+    * @description: Get sms providers
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSmsProviders({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create sms provider
+   * @description: Create sms provider
+   * @param {Object} arg - arg object.
+   * @param {SmsProviderReq} arg.body
+   **/
+  createSmsProvider({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get sms provider by id
+    * @description: Get sms provider by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Sms provider id
+    
+    **/
+  getSmsProviderById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update sms provider by id
+   * @description: Update sms provider by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Sms provider id
+   * @param {SmsProviderReq} arg.body
+   **/
+  updateSmsProviderById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get sms templates
+    * @description: Get sms templates
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSmsTemplates({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create sms template
+   * @description: Create sms template
+   * @param {Object} arg - arg object.
+   * @param {SmsTemplateReq} arg.body
+   **/
+  createSmsTemplate({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get sms template by id
+    * @description: Get sms template by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Sms template id
+    
+    **/
+  getSmsTemplateById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update sms template by id
+   * @description: Update sms template by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Sms template id
+   * @param {SmsTemplateReq} arg.body
+   **/
+  updateSmsTemplateById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete sms template by id
+    * @description: Delete sms template by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Sms template id
+    
+    **/
+  deleteSmsTemplateById({ id } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/components/${id}`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
       queryObj,
-      {}
+      undefined
     );
   }
 
   /**
     *
-    * @summary: Get components
-    * @description: The endpoint fetches the components
+    * @summary: Get system sms templates
+    * @description: Get system sms templates
     * @param {Object} arg - arg object.
     
     **/
-  getComponents({} = {}) {
+  getSystemSystemTemplates({} = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/components`,
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/system-templates`,
       queryObj,
-      {}
+      undefined
     );
+  }
+}
+
+class Payment {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
   }
 
   /**
     *
-    * @summary: Get FAQ categories list
-    * @description: Get list of FAQ categories
+    * @summary: Get All Brand Payment Gateway Config Secret
+    * @description: Get All Brand Payment Gateway Config Secret
     * @param {Object} arg - arg object.
     
     **/
-  getFaqCategories({} = {}) {
+  getBrandPaymentGatewayConfig({} = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/categories`,
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
       queryObj,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQ category by slug or id
-    * @description: Get FAQ category by slug or id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
-    
-    **/
-  getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}`,
-      queryObj,
-      {}
+      undefined
     );
   }
 
   /**
    *
-   * @summary: Creates a FAQ category
-   * @description: Add Faq Category
+   * @summary: Save Config Secret For Brand Payment Gateway
+   * @description: Save Config Secret For Brand Payment Gateway
    * @param {Object} arg - arg object.
-   * @param {CreateFaqCategoryRequestSchema} arg.body
+   * @param {PaymentGatewayConfigRequest} arg.body
    **/
-  createFaqCategory({ body } = {}) {
+  saveBrandPaymentGatewayConfig({ body } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category`,
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
       queryObj,
       body
     );
@@ -968,19 +1476,18 @@ class Content {
 
   /**
    *
-   * @summary: Updates a FAQ category
-   * @description: Update Faq Category
+   * @summary: Save Config Secret For Brand Payment Gateway
+   * @description: Save Config Secret For Brand Payment Gateway
    * @param {Object} arg - arg object.
-   * @param {string} arg.id - Faq category ID
-   * @param {UpdateFaqCategoryRequestSchema} arg.body
+   * @param {PaymentGatewayConfigRequest} arg.body
    **/
-  updateFaqCategory({ id, body } = {}) {
+  updateBrandPaymentGatewayConfig({ body } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
       queryObj,
       body
     );
@@ -988,409 +1495,24 @@ class Content {
 
   /**
     *
-    * @summary: Deletes a FAQ category
-    * @description: Delete Faq Category
+    * @summary: Get All Valid Payment Options
+    * @description: Use this API to get Get All Valid Payment Options for making payment
     * @param {Object} arg - arg object.
-    * @param {string} arg.id - Faq category ID
+    * @param {boolean} arg.refresh - 
+    * @param {string} arg.requestType - 
     
     **/
-  deleteFaqCategory({ id } = {}) {
+  getPaymentModeRoutes({ refresh, requestType } = {}) {
     const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
-      queryObj,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQs of a Faq Category id or slug
-    * @description: Get FAQs of a Faq Category `id` or `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Faq category ID or slug
-    
-    **/
-  getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
-    const queryObj = {};
+    queryObj["refresh"] = refresh;
+    queryObj["request_type"] = requestType;
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}/faqs`,
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options`,
       queryObj,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Creates FAQs for category whose `id` is specified
-   * @description: Creates FAQs for category whose `id` is specified
-   * @param {Object} arg - arg object.
-   * @param {string} arg.categoryId - Faq category ID
-   * @param {CreateFaqSchema} arg.body
-   **/
-  addFaqToFaqCategory({ categoryId, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faqs`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Updates FAQ
-   * @description: Updates FAQ
-   * @param {Object} arg - arg object.
-   * @param {string} arg.categoryId - Faq category ID
-   * @param {string} arg.faqId - Faq ID
-   * @param {CreateFaqSchema} arg.body
-   **/
-  updateFaq({ categoryId, faqId, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete FAQ
-    * @description: Delete FAQ
-    * @param {Object} arg - arg object.
-    * @param {string} arg.categoryId - Faq category ID
-    * @param {string} arg.faqId - Faq ID
-    
-    **/
-  deleteFaq({ categoryId, faqId } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
-      queryObj,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Create key values for templating
-   * @description: Use this to create key-values for templating.
-   * @param {Object} arg - arg object.
-   * @param {KeyValueRequestBody} arg.body
-   **/
-  createKeyValue({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/key-values/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get KeyValue by id
-    * @description: Use this to fetch a keyvalue by `id`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - The `id` of a keyvalue. Use this parameter to retrieve a particular keyvalue
-    
-    **/
-  getKeyValueByID({ id } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/key-values/${id}`,
-      queryObj,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Create landing-page
-   * @description: Use this to create landing-page.
-   * @param {Object} arg - arg object.
-   * @param {KeyValueRequestBody} arg.body
-   **/
-  createLandingPage({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get legal information
-    * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLegalInformation({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
-      queryObj,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Save legal information
-   * @description: Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
-   * @param {Object} arg - arg object.
-   * @param {ApplicationLegal} arg.body
-   **/
-  updateLegalInformation({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get seo of application
-    * @description: Get seo of application
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSeoConfiguration({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
-      queryObj,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Update seo of application
-   * @description: Update seo of application
-   * @param {Object} arg - arg object.
-   * @param {Seo} arg.body
-   **/
-  updateSeoConfiguration({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get support information
-    * @description: Get contact details for customer support. Including emails and phone numbers
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSupportInformation({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
-      queryObj,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Update support data of application
-   * @description: Update support data of application
-   * @param {Object} arg - arg object.
-   * @param {Support} arg.body
-   **/
-  updateSupportInformation({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Creates Tag
-   * @description: Create tags
-   * @param {Object} arg - arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   **/
-  createTag({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Updates a Tag
-   * @description: Update tag
-   * @param {Object} arg - arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   **/
-  updateTag({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete tags for application
-    * @description: Delete tags for application
-    * @param {Object} arg - arg object.
-    
-    **/
-  deleteAllTags({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary: Get tags for application
-    * @description: Get tags for application
-    * @param {Object} arg - arg object.
-    
-    **/
-  getTags({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Adds a Tag
-   * @description: Add tag
-   * @param {Object} arg - arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   **/
-  addTag({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/add`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Removes a Tag
-   * @description: Remove a particular tag
-   * @param {Object} arg - arg object.
-   * @param {RemoveHandpickedSchema} arg.body
-   **/
-  removeTag({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Edits a Tag by Id
-   * @description: Edits a particular tag
-   * @param {Object} arg - arg object.
-   * @param {string} arg.tagId - Tag ID
-   * @param {UpdateHandpickedSchema} arg.body
-   **/
-  editTag({ tagId, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked/${tagId}`,
-      queryObj,
-      body
+      undefined
     );
   }
 }
@@ -1399,5 +1521,6 @@ module.exports = {
   Lead,
   Theme,
   User,
-  Content,
+  Communication,
+  Payment,
 };

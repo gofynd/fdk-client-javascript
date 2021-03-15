@@ -380,368 +380,421 @@ export class User {
         body: any;
     }): any;
 }
-export class Content {
+export class Communication {
     constructor(config: any, applicationId: any);
     config: any;
     applicationId: any;
     /**
       *
-      * @summary: Get annoucements list
-      * @description: Get list of announcements
+      * @summary: Get campaigns
+      * @description: Get campaigns
       * @param {Object} arg - arg object.
       
       **/
-    getAnnouncementsList({}?: any): any;
+    getCampaigns({}?: any): any;
     /**
      *
-     * @summary: Create an annoucement
-     * @description: Create an announcement
+     * @summary: Create campaign
+     * @description: Create campaign
      * @param {Object} arg - arg object.
-     * @param {AdminAnnouncementSchema} arg.body
+     * @param {CampaignReq} arg.body
      **/
-    createAnnouncement({ body }?: {
+    createCampaign({ body }?: {
         body: any;
     }): any;
     /**
       *
-      * @summary: Get annoucement by id
-      * @description: Get announcement by id
+      * @summary: Get campaign by id
+      * @description: Get campaign by id
       * @param {Object} arg - arg object.
-      * @param {string} arg.announcementId - Announcement ID
+      * @param {string} arg.id - Campaign id
       
       **/
-    getAnnouncementById({ announcementId }?: {
-        announcementId: string;
-    }): any;
-    /**
-     *
-     * @summary: Update an annoucement
-     * @description: Update an announcement
-     * @param {Object} arg - arg object.
-     * @param {string} arg.announcementId - Announcement ID
-     * @param {AdminAnnouncementSchema} arg.body
-     **/
-    updateAnnouncement({ announcementId, body }?: {
-        announcementId: string;
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Update schedule or published status of an annoucement
-     * @description: Update schedule or published status of an announcement
-     * @param {Object} arg - arg object.
-     * @param {string} arg.announcementId - Announcement ID
-     * @param {ScheduleSchema} arg.body
-     **/
-    updateAnnouncementSchedule({ announcementId, body }?: {
-        announcementId: string;
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Delete annoucement by id
-      * @description: Delete announcement by id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.announcementId - Announcement ID
-      
-      **/
-    deleteAnnouncement({ announcementId }?: {
-        announcementId: string;
-    }): any;
-    /**
-      *
-      * @summary: Updates a component
-      * @description: Updates a component for the given component ID
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - ID of component to be fetched
-      
-      **/
-    updateComponent({ id }?: {
+    getCampaignById({ id }?: {
         id: string;
     }): any;
     /**
-      *
-      * @summary: Get components by component ID
-      * @description: The endpoint fetches the component by component ID
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - ID of component to be fetched
-      
-      **/
-    getComponentByID({ id }?: {
-        id: string;
-    }): any;
-    /**
-      *
-      * @summary: Delete a component from the page
-      * @description: It deletes a component from the page
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - ID of component to be deleted
-      
-      **/
-    deleteComponent({ id }?: {
-        id: string;
-    }): any;
-    /**
-      *
-      * @summary: Get components
-      * @description: The endpoint fetches the components
-      * @param {Object} arg - arg object.
-      
-      **/
-    getComponents({}?: any): any;
-    /**
-      *
-      * @summary: Get FAQ categories list
-      * @description: Get list of FAQ categories
-      * @param {Object} arg - arg object.
-      
-      **/
-    getFaqCategories({}?: any): any;
-    /**
-      *
-      * @summary: Get FAQ category by slug or id
-      * @description: Get FAQ category by slug or id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
-      
-      **/
-    getFaqCategoryBySlugOrId({ idOrSlug }?: {
-        idOrSlug: string;
-    }): any;
-    /**
      *
-     * @summary: Creates a FAQ category
-     * @description: Add Faq Category
+     * @summary: Update campaign by id
+     * @description: Update campaign by id
      * @param {Object} arg - arg object.
-     * @param {CreateFaqCategoryRequestSchema} arg.body
+     * @param {string} arg.id - Campaign id
+     * @param {CampaignReq} arg.body
      **/
-    createFaqCategory({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Updates a FAQ category
-     * @description: Update Faq Category
-     * @param {Object} arg - arg object.
-     * @param {string} arg.id - Faq category ID
-     * @param {UpdateFaqCategoryRequestSchema} arg.body
-     **/
-    updateFaqCategory({ id, body }?: {
+    updateCampaignById({ id, body }?: {
         id: string;
         body: any;
     }): any;
     /**
       *
-      * @summary: Deletes a FAQ category
-      * @description: Delete Faq Category
+      * @summary: Get stats of campaign by id
+      * @description: Get stats of campaign by id
       * @param {Object} arg - arg object.
-      * @param {string} arg.id - Faq category ID
+      * @param {string} arg.id - Campaign id
       
       **/
-    deleteFaqCategory({ id }?: {
+    getStatsOfCampaignById({ id }?: {
         id: string;
     }): any;
     /**
       *
-      * @summary: Get FAQs of a Faq Category id or slug
-      * @description: Get FAQs of a Faq Category `id` or `slug`
+      * @summary: Get audiences
+      * @description: Get audiences
       * @param {Object} arg - arg object.
-      * @param {string} arg.idOrSlug - Faq category ID or slug
       
       **/
-    getFaqsByCategoryIdOrSlug({ idOrSlug }?: {
-        idOrSlug: string;
-    }): any;
+    getAudiences({}?: any): any;
     /**
      *
-     * @summary: Creates FAQs for category whose `id` is specified
-     * @description: Creates FAQs for category whose `id` is specified
+     * @summary: Create audience
+     * @description: Create audience
      * @param {Object} arg - arg object.
-     * @param {string} arg.categoryId - Faq category ID
-     * @param {CreateFaqSchema} arg.body
+     * @param {AudienceReq} arg.body
      **/
-    addFaqToFaqCategory({ categoryId, body }?: {
-        categoryId: string;
+    createAudience({ body }?: {
         body: any;
     }): any;
     /**
      *
-     * @summary: Updates FAQ
-     * @description: Updates FAQ
+     * @summary: Get bigquery headers
+     * @description: Get bigquery headers
      * @param {Object} arg - arg object.
-     * @param {string} arg.categoryId - Faq category ID
-     * @param {string} arg.faqId - Faq ID
-     * @param {CreateFaqSchema} arg.body
+     * @param {BigqueryHeadersReq} arg.body
      **/
-    updateFaq({ categoryId, faqId, body }?: {
-        categoryId: string;
-        faqId: string;
+    getBigqueryHeaders({ body }?: {
         body: any;
     }): any;
     /**
       *
-      * @summary: Delete FAQ
-      * @description: Delete FAQ
+      * @summary: Get audience by id
+      * @description: Get audience by id
       * @param {Object} arg - arg object.
-      * @param {string} arg.categoryId - Faq category ID
-      * @param {string} arg.faqId - Faq ID
+      * @param {string} arg.id - Audience id
       
       **/
-    deleteFaq({ categoryId, faqId }?: {
-        categoryId: string;
-        faqId: string;
-    }): any;
-    /**
-     *
-     * @summary: Create key values for templating
-     * @description: Use this to create key-values for templating.
-     * @param {Object} arg - arg object.
-     * @param {KeyValueRequestBody} arg.body
-     **/
-    createKeyValue({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get KeyValue by id
-      * @description: Use this to fetch a keyvalue by `id`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - The `id` of a keyvalue. Use this parameter to retrieve a particular keyvalue
-      
-      **/
-    getKeyValueByID({ id }?: {
+    getAudienceById({ id }?: {
         id: string;
     }): any;
     /**
      *
-     * @summary: Create landing-page
-     * @description: Use this to create landing-page.
+     * @summary: Update audience by id
+     * @description: Update audience by id
      * @param {Object} arg - arg object.
-     * @param {KeyValueRequestBody} arg.body
+     * @param {string} arg.id - Audience id
+     * @param {AudienceReq} arg.body
      **/
-    createLandingPage({ body }?: {
+    updateAudienceById({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Get n sample records from csv
+     * @description: Get n sample records from csv
+     * @param {Object} arg - arg object.
+     * @param {GetNRecordsCsvReq} arg.body
+     **/
+    getNSampleRecordsFromCsv({ body }?: {
         body: any;
     }): any;
     /**
       *
-      * @summary: Get legal information
-      * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+      * @summary: Get email providers
+      * @description: Get email providers
       * @param {Object} arg - arg object.
       
       **/
-    getLegalInformation({}?: any): any;
+    getEmailProviders({}?: any): any;
     /**
      *
-     * @summary: Save legal information
-     * @description: Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+     * @summary: Create email provider
+     * @description: Create email provider
      * @param {Object} arg - arg object.
-     * @param {ApplicationLegal} arg.body
+     * @param {EmailProviderReq} arg.body
      **/
-    updateLegalInformation({ body }?: {
+    createEmailProvider({ body }?: {
         body: any;
     }): any;
     /**
       *
-      * @summary: Get seo of application
-      * @description: Get seo of application
+      * @summary: Get email provider by id
+      * @description: Get email provider by id
       * @param {Object} arg - arg object.
+      * @param {string} arg.id - Email provider id
       
       **/
-    getSeoConfiguration({}?: any): any;
+    getEmailProviderById({ id }?: {
+        id: string;
+    }): any;
     /**
      *
-     * @summary: Update seo of application
-     * @description: Update seo of application
+     * @summary: Update email provider by id
+     * @description: Update email provider by id
      * @param {Object} arg - arg object.
-     * @param {Seo} arg.body
+     * @param {string} arg.id - Email provider id
+     * @param {EmailProviderReq} arg.body
      **/
-    updateSeoConfiguration({ body }?: {
+    updateEmailProviderById({ id, body }?: {
+        id: string;
         body: any;
     }): any;
     /**
       *
-      * @summary: Get support information
-      * @description: Get contact details for customer support. Including emails and phone numbers
+      * @summary: Get email templates
+      * @description: Get email templates
       * @param {Object} arg - arg object.
       
       **/
-    getSupportInformation({}?: any): any;
+    getEmailTemplates({}?: any): any;
     /**
      *
-     * @summary: Update support data of application
-     * @description: Update support data of application
+     * @summary: Create email template
+     * @description: Create email template
      * @param {Object} arg - arg object.
-     * @param {Support} arg.body
+     * @param {EmailTemplateReq} arg.body
      **/
-    updateSupportInformation({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Creates Tag
-     * @description: Create tags
-     * @param {Object} arg - arg object.
-     * @param {CreateTagRequestSchema} arg.body
-     **/
-    createTag({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Updates a Tag
-     * @description: Update tag
-     * @param {Object} arg - arg object.
-     * @param {CreateTagRequestSchema} arg.body
-     **/
-    updateTag({ body }?: {
+    createEmailTemplate({ body }?: {
         body: any;
     }): any;
     /**
       *
-      * @summary: Delete tags for application
-      * @description: Delete tags for application
+      * @summary: Get system email templates
+      * @description: Get system email templates
       * @param {Object} arg - arg object.
       
       **/
-    deleteAllTags({}?: any): any;
+    getSystemEmailTemplates({}?: any): any;
     /**
       *
-      * @summary: Get tags for application
-      * @description: Get tags for application
+      * @summary: Get email template by id
+      * @description: Get email template by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Email template id
+      
+      **/
+    getEmailTemplateById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Update email template by id
+     * @description: Update email template by id
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Email template id
+     * @param {EmailTemplateReq} arg.body
+     **/
+    updateEmailTemplateById({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Delete email template by id
+      * @description: Delete email template by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Email template id
+      
+      **/
+    deleteEmailTemplateById({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get event subscriptions
+      * @description: Get event subscriptions
       * @param {Object} arg - arg object.
       
       **/
-    getTags({}?: any): any;
+    getEventSubscriptions({}?: any): any;
+    /**
+      *
+      * @summary: Get jobs
+      * @description: Get jobs
+      * @param {Object} arg - arg object.
+      
+      **/
+    getJobs({}?: any): any;
     /**
      *
-     * @summary: Adds a Tag
-     * @description: Add tag
+     * @summary: Trigger campaign job
+     * @description: Trigger campaign job
      * @param {Object} arg - arg object.
-     * @param {CreateTagRequestSchema} arg.body
+     * @param {TriggerJobRequest} arg.body
      **/
-    addTag({ body }?: {
+    triggerCampaignJob({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get job logs
+      * @description: Get job logs
+      * @param {Object} arg - arg object.
+      
+      **/
+    getJobLogs({}?: any): any;
+    /**
+      *
+      * @summary: Get communication logs
+      * @description: Get communication logs
+      * @param {Object} arg - arg object.
+      
+      **/
+    getCommunicationLogs({}?: any): any;
+    /**
+     *
+     * @summary: Upsert push token of a user
+     * @description: Upsert push token of a user
+     * @param {Object} arg - arg object.
+     * @param {PushtokenReq} arg.body
+     **/
+    upsertPushtoken({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get sms providers
+      * @description: Get sms providers
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSmsProviders({}?: any): any;
+    /**
+     *
+     * @summary: Create sms provider
+     * @description: Create sms provider
+     * @param {Object} arg - arg object.
+     * @param {SmsProviderReq} arg.body
+     **/
+    createSmsProvider({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get sms provider by id
+      * @description: Get sms provider by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Sms provider id
+      
+      **/
+    getSmsProviderById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Update sms provider by id
+     * @description: Update sms provider by id
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Sms provider id
+     * @param {SmsProviderReq} arg.body
+     **/
+    updateSmsProviderById({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get sms templates
+      * @description: Get sms templates
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSmsTemplates({}?: any): any;
+    /**
+     *
+     * @summary: Create sms template
+     * @description: Create sms template
+     * @param {Object} arg - arg object.
+     * @param {SmsTemplateReq} arg.body
+     **/
+    createSmsTemplate({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get sms template by id
+      * @description: Get sms template by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Sms template id
+      
+      **/
+    getSmsTemplateById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Update sms template by id
+     * @description: Update sms template by id
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Sms template id
+     * @param {SmsTemplateReq} arg.body
+     **/
+    updateSmsTemplateById({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Delete sms template by id
+      * @description: Delete sms template by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Sms template id
+      
+      **/
+    deleteSmsTemplateById({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get system sms templates
+      * @description: Get system sms templates
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSystemSystemTemplates({}?: any): any;
+}
+export class Payment {
+    constructor(config: any, applicationId: any);
+    config: any;
+    applicationId: any;
+    /**
+      *
+      * @summary: Get All Brand Payment Gateway Config Secret
+      * @description: Get All Brand Payment Gateway Config Secret
+      * @param {Object} arg - arg object.
+      
+      **/
+    getBrandPaymentGatewayConfig({}?: any): any;
+    /**
+     *
+     * @summary: Save Config Secret For Brand Payment Gateway
+     * @description: Save Config Secret For Brand Payment Gateway
+     * @param {Object} arg - arg object.
+     * @param {PaymentGatewayConfigRequest} arg.body
+     **/
+    saveBrandPaymentGatewayConfig({ body }?: {
         body: any;
     }): any;
     /**
      *
-     * @summary: Removes a Tag
-     * @description: Remove a particular tag
+     * @summary: Save Config Secret For Brand Payment Gateway
+     * @description: Save Config Secret For Brand Payment Gateway
      * @param {Object} arg - arg object.
-     * @param {RemoveHandpickedSchema} arg.body
+     * @param {PaymentGatewayConfigRequest} arg.body
      **/
-    removeTag({ body }?: {
+    updateBrandPaymentGatewayConfig({ body }?: {
         body: any;
     }): any;
     /**
-     *
-     * @summary: Edits a Tag by Id
-     * @description: Edits a particular tag
-     * @param {Object} arg - arg object.
-     * @param {string} arg.tagId - Tag ID
-     * @param {UpdateHandpickedSchema} arg.body
-     **/
-    editTag({ tagId, body }?: {
-        tagId: string;
-        body: any;
+      *
+      * @summary: Get All Valid Payment Options
+      * @description: Use this API to get Get All Valid Payment Options for making payment
+      * @param {Object} arg - arg object.
+      * @param {boolean} arg.refresh -
+      * @param {string} arg.requestType -
+      
+      **/
+    getPaymentModeRoutes({ refresh, requestType }?: {
+        refresh: boolean;
+        requestType: string;
     }): any;
 }

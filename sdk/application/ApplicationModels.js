@@ -22,7 +22,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/${slug}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -44,7 +44,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/${slug}/sizes/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -69,7 +69,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/${slug}/sizes/${size}/price/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -96,7 +96,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/${slug}/sizes/${size}/sellers/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -117,7 +117,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/compare/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -137,7 +137,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/${slug}/similar/compare/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -157,7 +157,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/${slug}/similar/compared-frequently/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -178,7 +178,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/${slug}/similar/${similarType}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -198,7 +198,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/${slug}/variants/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -227,7 +227,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/stock-status/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -252,7 +252,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/stock-status/poll/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -296,7 +296,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/products/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -334,7 +334,7 @@ class Catalog {
       });
       return data;
     };
-    paginator.setCallback(callback.bind(this));
+    paginator.setCallback(callback);
     return paginator;
   }
 
@@ -359,7 +359,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/brands/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -379,7 +379,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/brands/${slug}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -400,7 +400,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/categories/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -420,7 +420,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/categories/${slug}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -445,7 +445,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/home/listing/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -464,7 +464,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/departments/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -485,7 +485,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/auto-complete/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -508,7 +508,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/collections/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -545,7 +545,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/collections/${slug}/items/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -565,7 +565,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/collections/${slug}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -585,7 +585,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/follow/${collectionType}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -606,7 +606,7 @@ class Catalog {
       "post",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -627,7 +627,7 @@ class Catalog {
       "delete",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -648,7 +648,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/count/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -669,7 +669,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/follow/ids/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -700,7 +700,7 @@ class Catalog {
       "get",
       `/service/application/catalog/v1.0/locations/`,
       query,
-      {}
+      undefined
     );
   }
 }
@@ -733,7 +733,7 @@ class Cart {
       "get",
       `/service/application/cart/v1.0/detail`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -754,7 +754,7 @@ class Cart {
       "head",
       `/service/application/cart/v1.0/detail`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -823,7 +823,7 @@ class Cart {
       "get",
       `/service/application/cart/v1.0/basic`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -844,7 +844,7 @@ class Cart {
       "get",
       `/service/application/cart/v1.0/coupon`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -891,7 +891,7 @@ class Cart {
       "delete",
       `/service/application/cart/v1.0/coupon`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -918,7 +918,7 @@ class Cart {
       "get",
       `/service/application/cart/v1.0/bulk-price`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -947,7 +947,7 @@ class Cart {
       "get",
       `/service/application/cart/v1.0/address`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -956,7 +956,7 @@ class Cart {
    * @summary: Add Address to the account
    * @description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
    * @param {Object} arg - arg object.
-   * @param {UpdateAddressRequest} arg.body
+   * @param {Address} arg.body
    **/
   addAddress({ body } = {}) {
     const query = {};
@@ -996,17 +996,17 @@ class Cart {
       "get",
       `/service/application/cart/v1.0/address/${id}`,
       query,
-      {}
+      undefined
     );
   }
 
   /**
    *
    * @summary: Update Address alreay added to account
-   * @description: Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+   * @description: Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
    * @param {Object} arg - arg object.
    * @param {number} arg.id - Address id
-   * @param {UpdateAddressRequest} arg.body
+   * @param {Address} arg.body
    **/
   updateAddress({ id, body } = {}) {
     const query = {};
@@ -1036,7 +1036,7 @@ class Cart {
       "delete",
       `/service/application/cart/v1.0/address/${id}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1099,7 +1099,7 @@ class Cart {
       "get",
       `/service/application/cart/v1.0/payment`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1132,7 +1132,7 @@ class Cart {
     * @param {boolean} [arg.p] - Get payment options or not
     * @param {number} [arg.uid] - Cart id
     * @param {number} [arg.addressId] - Address id
-    * @param {number} [arg.areaCode] - Destination pincode.
+    * @param {string} [arg.areaCode] - Destination pincode.
     
     **/
   getShipments({ p, uid, addressId, areaCode } = {}) {
@@ -1147,7 +1147,7 @@ class Cart {
       "get",
       `/service/application/cart/v1.0/shipment`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1226,7 +1226,7 @@ class Cart {
       "get",
       `/service/application/cart/v1.0/share-cart/${token}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1247,7 +1247,7 @@ class Cart {
       "post",
       `/service/application/cart/v1.0/share-cart/${token}/${action}`,
       query,
-      {}
+      undefined
     );
   }
 }
@@ -1273,7 +1273,7 @@ class Lead {
       "get",
       `/service/application/lead/v1.0/ticket/${id}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1332,7 +1332,7 @@ class Lead {
       "get",
       `/service/application/lead/v1.0/form/${slug}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1372,7 +1372,7 @@ class Lead {
       "get",
       `/service/application/lead/v1.0/video/room/${uniqueName}/participants`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1392,7 +1392,7 @@ class Lead {
       "get",
       `/service/application/lead/v1.0/video/room/${uniqueName}/token`,
       query,
-      {}
+      undefined
     );
   }
 }
@@ -1417,7 +1417,7 @@ class Theme {
       "get",
       `/service/application/theme/v1.0/applied-theme`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1437,7 +1437,7 @@ class Theme {
       "get",
       `/service/application/theme/v1.0/${themeId}/preview`,
       query,
-      {}
+      undefined
     );
   }
 }
@@ -1715,7 +1715,7 @@ class User {
       "get",
       `/service/application/user/authentication/v1.0/has-password`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1753,7 +1753,7 @@ class User {
       "get",
       `/service/application/user/authentication/v1.0/logout`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1856,7 +1856,7 @@ class User {
       "get",
       `/service/application/user/authentication/v1.0/session`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1875,7 +1875,7 @@ class User {
       "get",
       `/service/application/user/authentication/v1.0/sessions`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1896,7 +1896,7 @@ class User {
       "get",
       `/service/application/user/platform/v1.0/config`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -1976,7 +1976,7 @@ class User {
       "delete",
       `/service/application/user/profile/v1.0/mobile`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2066,7 +2066,7 @@ class User {
       "delete",
       `/service/application/user/profile/v1.0/email`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2131,7 +2131,27 @@ class Content {
       "get",
       `/service/application/content/v1.0/announcements`,
       query,
-      {}
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Blog by slug
+    * @description: Use this API to fetch a blog using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
+    
+    **/
+  getBlog({ slug } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/blogs/${slug}`,
+      query,
+      undefined
     );
   }
 
@@ -2150,7 +2170,7 @@ class Content {
       "get",
       `/service/application/content/v1.0/faq`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2169,7 +2189,7 @@ class Content {
       "get",
       `/service/application/content/v1.0/faq/categories`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2189,7 +2209,7 @@ class Content {
       "get",
       `/service/application/content/v1.0/faq/${idOrSlug}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2209,7 +2229,7 @@ class Content {
       "get",
       `/service/application/content/v1.0/faq/category/${idOrSlug}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2229,7 +2249,26 @@ class Content {
       "get",
       `/service/application/content/v1.0/faq/category/${idOrSlug}/faqs`,
       query,
-      {}
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get landing page
+    * @description: Use this API to fetch a landing page
+    * @param {Object} arg - arg object.
+    
+    **/
+  getLandingPage({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/landing-page`,
+      query,
+      undefined
     );
   }
 
@@ -2248,7 +2287,46 @@ class Content {
       "get",
       `/service/application/content/v1.0/legal`,
       query,
-      {}
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get navigation
+    * @description: Use this API to fetch a navigation
+    * @param {Object} arg - arg object.
+    
+    **/
+  getNavigations({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/navigations/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Page by slug
+    * @description: Use this API to fetch a custom page using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
+    
+    **/
+  getPage({ slug } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/pages/${slug}`,
+      query,
+      undefined
     );
   }
 
@@ -2267,7 +2345,27 @@ class Content {
       "get",
       `/service/application/content/v1.0/seo`,
       query,
-      {}
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get slideshow by slug
+    * @description: Use this API to fetch a slideshow using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
+    
+    **/
+  getSlideshow({ slug } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/slideshow/${slug}`,
+      query,
+      undefined
     );
   }
 
@@ -2286,7 +2384,7 @@ class Content {
       "get",
       `/service/application/content/v1.0/support`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2305,7 +2403,7 @@ class Content {
       "get",
       `/service/application/content/v1.0/tags`,
       query,
-      {}
+      undefined
     );
   }
 }
@@ -2330,7 +2428,7 @@ class Communication {
       "get",
       `/service/application/communication/v1.0/consent`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2366,7 +2464,7 @@ class Communication {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/platform/communication/v1.0/pn-token`,
+      `/service/application/communication/v1.0/pn-token`,
       query,
       body
     );
@@ -2393,7 +2491,7 @@ class Share {
       "post",
       `/service/application/share/v1.0/qr/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2413,7 +2511,7 @@ class Share {
       "post",
       `/service/application/share/v1.0/qr/products/${slug}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2433,7 +2531,7 @@ class Share {
       "post",
       `/service/application/share/v1.0/qr/collection/${slug}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2454,7 +2552,7 @@ class Share {
       "post",
       `/service/application/share/v1.0/qr/url/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2493,7 +2591,7 @@ class Share {
       "get",
       `/service/application/share/v1.0/links/short-link/${hash}/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2513,7 +2611,7 @@ class Share {
       "get",
       `/service/application/share/v1.0/links/short-link/${hash}/original/`,
       query,
-      {}
+      undefined
     );
   }
 }
@@ -2602,6 +2700,272 @@ This operation will return the url for the uploaded file.
   }
 }
 
+class Configuration {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary: Get current application details
+    * @description: Get current application details.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getApplication({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/application`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get application, owner and seller information
+    * @description: Get application information with owner and seller basic details
+    * @param {Object} arg - arg object.
+    
+    **/
+  getOwnerInfo({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/about`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get basic application details
+    * @description: Get basic application details like name
+    * @param {Object} arg - arg object.
+    
+    **/
+  getBasicDetails({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/detail`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get integration tokens
+    * @description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getIntegrationTokens({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/token`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Check if a new app version is available
+   * @description: Before launching the app (android/iOS), check if a new version is available. Response gives 3 update modes viz. FORCE, AVAILABLE, UP_TO_DATE. `FORCE`- Application should be updated necessarily. `AVAILABLE`- A new version available. But its not necessary to update. `UP_TO_DATE`- Application is at the latest version. These 3 modes are computed at the backend based on the lastest version of app available and the oldest version of app supported by the system.
+   * @param {Object} arg - arg object.
+   * @param {AppVersionRequest} arg.body
+   **/
+  getAppVersion({ body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/configuration/v1.0/version`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get deployment meta stores
+    * @description: Get deployment meta stores.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Current page no
+    * @param {number} [arg.pageSize] - Current request items count
+    * @param {string} [arg.q] - Search ordering store by name or store code
+    
+    **/
+  getOrderingStores({ pageNo, pageSize, q } = {}) {
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+    query["q"] = q;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/ordering-store/stores`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get features of application
+    * @description: Get features of application
+    * @param {Object} arg - arg object.
+    
+    **/
+  getFeatures({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/feature`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get application information
+    * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getContactInfo({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/information`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get application enabled currencies
+    * @description: Get currency list for allowed currencies under current application
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCurrencies({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/currencies`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get currency by id
+    * @description: Get currency object with symbol and name information by id.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Currency object id
+    
+    **/
+  getCurrencyById({ id } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/currency/${id}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of languages
+    * @description: Get list of supported languages under application.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getLanguages({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/languages`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
+    * @description: Unset ordering store cookie.
+    * @param {Object} arg - arg object.
+    
+    **/
+  removeOrderingStoreCookie({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/application/current/ordering-store/select`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Staff List.
+    * @description: Get a staff list based on the user's session token passed in the header.
+    * @param {Object} arg - arg object.
+    * @param {boolean} [arg.orderIncent] - This is to check which staff members are applicable for order incentives.
+    * @param {number} [arg.orderingStore] - This is to filter staff members from only selected ordering store.
+    * @param {string} [arg.user] - Get single staff member details using staff user mongo id
+    
+    **/
+  getAppStaffs({ orderIncent, orderingStore, user } = {}) {
+    const query = {};
+    query["order_incent"] = orderIncent;
+    query["ordering_store"] = orderingStore;
+    query["user"] = user;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/staff`,
+      query,
+      undefined
+    );
+  }
+}
+
 class Payment {
   constructor(_conf) {
     this._conf = _conf;
@@ -2625,7 +2989,7 @@ class Payment {
       "get",
       `/service/application/payment/v1.0/config/aggregators/key`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2665,7 +3029,7 @@ class Payment {
       "get",
       `/service/application/payment/v1.0/card/aggregator`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2686,7 +3050,7 @@ class Payment {
       "get",
       `/service/application/payment/v1.0/cards`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2822,7 +3186,7 @@ class Payment {
       "get",
       `/service/application/payment/v1.0/payment/options`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2866,7 +3230,7 @@ class Payment {
       "get",
       `/service/application/payment/v1.0/payment/options/pos`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2887,7 +3251,7 @@ class Payment {
       "get",
       `/service/application/payment/v1.0/refund/beneficiary/user`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2908,7 +3272,7 @@ class Payment {
       "get",
       `/service/application/payment/v1.0/ifsc-code/verify`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -2929,7 +3293,7 @@ class Payment {
       "get",
       `/service/application/payment/v1.0/refund/beneficiaries/order`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3038,7 +3402,7 @@ class Order {
       "get",
       `/service/application/v1.0/orders`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3058,7 +3422,7 @@ class Order {
       "get",
       `/service/application/v1.0/orders/${orderId}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3078,7 +3442,7 @@ class Order {
       "get",
       `/service/application/v1.0/orders/shipments/${shipmentId}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3098,7 +3462,7 @@ class Order {
       "get",
       `/service/application/v1.0/orders/shipments/${shipmentId}/reasons`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3138,7 +3502,7 @@ class Order {
       "get",
       `/service/application/v1.0/orders/shipments/${shipmentId}/track`,
       query,
-      {}
+      undefined
     );
   }
 }
@@ -3201,7 +3565,7 @@ class Rewards {
       "get",
       `/service/application/rewards/v1.0/user/points`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3225,7 +3589,7 @@ The list of points history is paginated.
       "get",
       `/service/application/rewards/v1.0/user/points/history/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3244,7 +3608,7 @@ The list of points history is paginated.
       "get",
       `/service/application/rewards/v1.0/user/referral/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3334,7 +3698,7 @@ class Feedback {
       "get",
       `/service/application/feedback/v1.0/abuse/entity/${entityType}/entity-id/${entityId}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3357,7 +3721,7 @@ class Feedback {
       "get",
       `/service/application/feedback/v1.0/attributes`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3396,7 +3760,7 @@ class Feedback {
       "get",
       `/service/application/feedback/v1.0/attributes/${slug}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3484,7 +3848,7 @@ class Feedback {
       "get",
       `/service/application/feedback/v1.0/comment/entity/${entityType}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3505,7 +3869,7 @@ class Feedback {
       "get",
       `/service/application/feedback/v1.0/config/entity/${entityType}/entity-id/${entityId}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3524,7 +3888,7 @@ class Feedback {
       "delete",
       `/service/application/feedback/v1.0/media/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3589,7 +3953,7 @@ class Feedback {
       "get",
       `/service/application/feedback/v1.0/media/entity/${entityType}/entity-id/${entityId}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3617,7 +3981,7 @@ It gives following response data: review count, rating average. review metrics /
       "get",
       `/service/application/feedback/v1.0/rating/summary/entity/${entityType}/entity-id/${entityId}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3708,7 +4072,7 @@ attributes rating, entity rating, title, description, media resources and templa
       "get",
       `/service/application/feedback/v1.0/review/entity/${entityType}/entity-id/${entityId}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3733,7 +4097,7 @@ attributes rating, entity rating, title, description, media resources and templa
       "get",
       `/service/application/feedback/v1.0/template/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3808,7 +4172,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
       "get",
       `/service/application/feedback/v1.0/template/qna/entity/${entityType}/entity-id/${entityId}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3831,7 +4195,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
       "get",
       `/service/application/feedback/v1.0/vote/`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3902,7 +4266,7 @@ class PosCart {
       "get",
       `/service/application/pos/cart/v1.0/detail`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3923,7 +4287,7 @@ class PosCart {
       "head",
       `/service/application/pos/cart/v1.0/detail`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -3992,7 +4356,7 @@ class PosCart {
       "get",
       `/service/application/pos/cart/v1.0/basic`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4013,7 +4377,7 @@ class PosCart {
       "get",
       `/service/application/pos/cart/v1.0/coupon`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4060,7 +4424,7 @@ class PosCart {
       "delete",
       `/service/application/pos/cart/v1.0/coupon`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4087,7 +4451,7 @@ class PosCart {
       "get",
       `/service/application/pos/cart/v1.0/bulk-price`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4116,7 +4480,7 @@ class PosCart {
       "get",
       `/service/application/pos/cart/v1.0/address`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4125,7 +4489,7 @@ class PosCart {
    * @summary: Add Address to the account
    * @description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
    * @param {Object} arg - arg object.
-   * @param {UpdateAddressRequest} arg.body
+   * @param {Address} arg.body
    **/
   addAddress({ body } = {}) {
     const query = {};
@@ -4165,17 +4529,17 @@ class PosCart {
       "get",
       `/service/application/pos/cart/v1.0/address/${id}`,
       query,
-      {}
+      undefined
     );
   }
 
   /**
    *
    * @summary: Update Address alreay added to account
-   * @description: Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+   * @description: Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
    * @param {Object} arg - arg object.
    * @param {number} arg.id - Address id
-   * @param {UpdateAddressRequest} arg.body
+   * @param {Address} arg.body
    **/
   updateAddress({ id, body } = {}) {
     const query = {};
@@ -4205,7 +4569,7 @@ class PosCart {
       "delete",
       `/service/application/pos/cart/v1.0/address/${id}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4268,7 +4632,7 @@ class PosCart {
       "get",
       `/service/application/pos/cart/v1.0/payment`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4303,7 +4667,8 @@ class PosCart {
     * @param {boolean} [arg.p] - Get payment options or not
     * @param {number} [arg.uid] - Cart id
     * @param {number} [arg.addressId] - Address id
-    * @param {number} [arg.areaCode] - Destination pincode.
+    * @param {string} [arg.areaCode] - Destination pincode.
+    * @param {string} [arg.orderType] - Order type of shipment
     
     **/
   getShipments({
@@ -4313,6 +4678,7 @@ class PosCart {
     uid,
     addressId,
     areaCode,
+    orderType,
   } = {}) {
     const query = {};
     query["pick_at_store_uid"] = pickAtStoreUid;
@@ -4321,13 +4687,14 @@ class PosCart {
     query["uid"] = uid;
     query["address_id"] = addressId;
     query["area_code"] = areaCode;
+    query["order_type"] = orderType;
 
     return APIClient.execute(
       this._conf,
       "get",
       `/service/application/pos/cart/v1.0/shipment`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4407,7 +4774,7 @@ class PosCart {
     * @summary: Get available delivery modes for cart
     * @description: Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
     * @param {Object} arg - arg object.
-    * @param {number} arg.areaCode - 
+    * @param {string} arg.areaCode - 
     * @param {number} [arg.uid] - 
     
     **/
@@ -4421,7 +4788,7 @@ class PosCart {
       "get",
       `/service/application/pos/cart/v1.0/available-delivery-mode`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4430,19 +4797,19 @@ class PosCart {
     * @summary: Get list of stores for give uids
     * @description: Get list of stores by providing pick up available store uids.
     * @param {Object} arg - arg object.
-    * @param {number} arg.areaCode - 
+    * @param {number} arg.storeUid - 
     
     **/
-  getStoreAddressByUid({ areaCode } = {}) {
+  getStoreAddressByUid({ storeUid } = {}) {
     const query = {};
-    query["area_code"] = areaCode;
+    query["store_uid"] = storeUid;
 
     return APIClient.execute(
       this._conf,
       "get",
       `/service/application/pos/cart/v1.0/store-address`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4481,7 +4848,7 @@ class PosCart {
       "get",
       `/service/application/pos/cart/v1.0/share-cart/${token}`,
       query,
-      {}
+      undefined
     );
   }
 
@@ -4502,7 +4869,7 @@ class PosCart {
       "post",
       `/service/application/pos/cart/v1.0/share-cart/${token}/${action}`,
       query,
-      {}
+      undefined
     );
   }
 }
@@ -4547,7 +4914,7 @@ class Logistic {
       "get",
       `/service/application/v1.0/logistics/pincode/${pincode}`,
       query,
-      {}
+      undefined
     );
   }
 }
@@ -4562,6 +4929,7 @@ module.exports = {
   Communication,
   Share,
   FileStorage,
+  Configuration,
   Payment,
   Order,
   Rewards,

@@ -1,6 +1,6 @@
 const querystring = require("querystring");
-const crypto = require("crypto"); // this library needs to be changes as per frontend
 const { fdkAxios } = require("../common/AxiosHelper");
+const { sign } = require("../common/RequestSigner");
 
 class FdkTokenIssueError extends Error {
   constructor(message) {
@@ -18,40 +18,46 @@ class OAuthClient {
     this.token = null;
     this.refreshToken = null;
   }
+
   setToken(token) {
     this.token = token;
     this.refreshToken = this.token.refresh_token
       ? this.token.refresh_token
       : null;
   }
-  __getState() {
-    const length = 15;
-    const bytes = crypto.randomBytes(length);
-    const state = bytes
-      .map((byte) => {
-        return byte % 10;
-      })
-      .join("");
-    return state;
-  }
+
   startAuthorization(options) {
     let query = {
       client_id: this.config.apiKey,
       scope: options.scope.join(","),
       redirect_uri: options.redirectUri,
-      state: this.__getState(),
-      access_mode: options.isOnline ? "online" : "offline",
+      state: options.state,
+      access_mode: options.access_mode,
+      response_type: "code",
     };
     const queryString = querystring.stringify(query);
-    // TODO: store state object in session storage
-    return `https://${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/authorize?${queryString}`;
+
+    let reqPath = `/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/authorize?${queryString}`;
+    let signingOptions = {
+      method: "GET",
+      host: this.config.domain,
+      path: reqPath,
+      body: null,
+      headers: {},
+      signQuery: true,
+    };
+    signingOptions = sign(signingOptions);
+
+    return `https://${this.config.domain}${signingOptions.path}`;
   }
+
   async verifyCallback(query) {
     if (query.error) {
       throw new FdkOAuthCodeError(query.error_description, {
         error: query.error,
       });
     }
+
     try {
       let reqData = {
         grant_type: "authorization_code",

@@ -7,9 +7,11 @@ declare class Application {
     lead: Lead;
     theme: Theme;
     user: User;
-    content: Content;
+    communication: Communication;
+    payment: Payment;
 }
 import { Lead } from "./PlatformApplicationModels";
 import { Theme } from "./PlatformApplicationModels";
 import { User } from "./PlatformApplicationModels";
-import { Content } from "./PlatformApplicationModels";
+import { Communication } from "./PlatformApplicationModels";
+import { Payment } from "./PlatformApplicationModels";

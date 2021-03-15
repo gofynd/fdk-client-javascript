@@ -4,8 +4,8 @@
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
-* [Content](#Content) - Content 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
+* [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [CompanyProfile](#CompanyProfile) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Inventory](#Inventory) -  
 
@@ -67,45 +67,6 @@
     * [updatePlatformConfig](#updateplatformconfig)
     
 
-* [Content](#Content)
-  * Methods
-    * [getAnnouncementsList](#getannouncementslist)
-    * [createAnnouncement](#createannouncement)
-    * [getAnnouncementById](#getannouncementbyid)
-    * [updateAnnouncement](#updateannouncement)
-    * [updateAnnouncementSchedule](#updateannouncementschedule)
-    * [deleteAnnouncement](#deleteannouncement)
-    * [updateComponent](#updatecomponent)
-    * [getComponentByID](#getcomponentbyid)
-    * [deleteComponent](#deletecomponent)
-    * [getComponents](#getcomponents)
-    * [getFaqCategories](#getfaqcategories)
-    * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
-    * [createFaqCategory](#createfaqcategory)
-    * [updateFaqCategory](#updatefaqcategory)
-    * [deleteFaqCategory](#deletefaqcategory)
-    * [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
-    * [addFaqToFaqCategory](#addfaqtofaqcategory)
-    * [updateFaq](#updatefaq)
-    * [deleteFaq](#deletefaq)
-    * [createKeyValue](#createkeyvalue)
-    * [getKeyValueByID](#getkeyvaluebyid)
-    * [createLandingPage](#createlandingpage)
-    * [getLegalInformation](#getlegalinformation)
-    * [updateLegalInformation](#updatelegalinformation)
-    * [getSeoConfiguration](#getseoconfiguration)
-    * [updateSeoConfiguration](#updateseoconfiguration)
-    * [getSupportInformation](#getsupportinformation)
-    * [updateSupportInformation](#updatesupportinformation)
-    * [createTag](#createtag)
-    * [updateTag](#updatetag)
-    * [deleteAllTags](#deletealltags)
-    * [getTags](#gettags)
-    * [addTag](#addtag)
-    * [removeTag](#removetag)
-    * [editTag](#edittag)
-    
-
 * [Communication](#Communication)
   * Methods
     * [getCampaigns](#getcampaigns)
@@ -134,6 +95,7 @@
     * [triggerCampaignJob](#triggercampaignjob)
     * [getJobLogs](#getjoblogs)
     * [getCommunicationLogs](#getcommunicationlogs)
+    * [upsertPushtoken](#upsertpushtoken)
     * [getSmsProviders](#getsmsproviders)
     * [createSmsProvider](#createsmsprovider)
     * [getSmsProviderById](#getsmsproviderbyid)
@@ -146,20 +108,37 @@
     * [getSystemSystemTemplates](#getsystemsystemtemplates)
     
 
+* [Payment](#Payment)
+  * Methods
+    * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
+    * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
+    * [updateBrandPaymentGatewayConfig](#updatebrandpaymentgatewayconfig)
+    * [getPaymentModeRoutes](#getpaymentmoderoutes)
+    * [getAllPayouts](#getallpayouts)
+    * [savePayout](#savepayout)
+    * [updatePayout](#updatepayout)
+    * [activateAndDectivatePayout](#activateanddectivatepayout)
+    * [deletePayout](#deletepayout)
+    * [getSubscriptionPaymentMethod](#getsubscriptionpaymentmethod)
+    * [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
+    * [getSubscriptionConfig](#getsubscriptionconfig)
+    * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
+    
+
 * [CompanyProfile](#CompanyProfile)
   * Methods
     * [cbsOnboardEdit](#cbsonboardedit)
     * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [createCompanyBrand](#createcompanybrand)
     * [getCompanyBrands](#getcompanybrands)
     * [createLocation](#createlocation)
     * [locationList](#locationlist)
-    * [editLocation](#editlocation)
     * [getSingleLocation](#getsinglelocation)
+    * [editLocation](#editlocation)
     
 
 * [Inventory](#Inventory)
@@ -187,10 +166,10 @@ Gets the list of company level tickets and/or ticket filters depending on query 
 
 ```javascript
 // Promise
-const promise = lead.getTickets(companyId,items,filters);
+const promise = lead.getTickets(companyId,items,filters,pageNo,pageSize);
 
 // Async/Await
-const data = await lead.getTickets(companyId,items,filters);
+const data = await lead.getTickets(companyId,items,filters,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -198,6 +177,8 @@ const data = await lead.getTickets(companyId,items,filters);
 | companyId | string | Company ID for which the data will be returned | 
 | items | boolean | Decides that the reponse will contain the list of tickets | 
 | filters | boolean | Decides that the reponse will contain the ticket filters | 
+| pageNo | integer | The page number to navigate through the given set of results. | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 Gets the list of company level tickets and/or ticket filters
 
@@ -4974,2364 +4955,6 @@ Schema: `AuthenticationApiError`
 ---
 
 
-## Content
-
-
-#### getAnnouncementsList
-Get annoucements list
-
-```javascript
-// Promise
-const promise = content.getAnnouncementsList(companyId,applicationId);
-
-// Async/Await
-const data = await content.getAnnouncementsList(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get list of announcements
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `GetAnnouncementListSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/GetAnnouncementList"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createAnnouncement
-Create an annoucement
-
-```javascript
-// Promise
-const promise = content.createAnnouncement(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.createAnnouncement(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Create an announcement
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CreateAnnouncementSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/CreateAnnouncement"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAnnouncementById
-Get annoucement by id
-
-```javascript
-// Promise
-const promise = content.getAnnouncementById(companyId,applicationId,announcementId);
-
-// Async/Await
-const data = await content.getAnnouncementById(companyId,applicationId,announcementId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
-
-Get announcement by id
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `AdminAnnouncementSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/Announcement"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAnnouncement
-Update an annoucement
-
-```javascript
-// Promise
-const promise = content.updateAnnouncement(companyId,applicationId,announcementId,body);
-
-// Async/Await
-const data = await content.updateAnnouncement(companyId,applicationId,announcementId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
-
-Update an announcement
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CreateAnnouncementSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/UpdateAnnouncement"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAnnouncementSchedule
-Update schedule or published status of an annoucement
-
-```javascript
-// Promise
-const promise = content.updateAnnouncementSchedule(companyId,applicationId,announcementId,body);
-
-// Async/Await
-const data = await content.updateAnnouncementSchedule(companyId,applicationId,announcementId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
-
-Update schedule or published status of an announcement
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CreateAnnouncementSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/PatchAnnouncement"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteAnnouncement
-Delete annoucement by id
-
-```javascript
-// Promise
-const promise = content.deleteAnnouncement(companyId,applicationId,announcementId);
-
-// Async/Await
-const data = await content.deleteAnnouncement(companyId,applicationId,announcementId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
-
-Delete announcement by id
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CreateAnnouncementSchema`
-
-
-*Examples:*
-
-
-success
-```json
-{
-  "$ref": "#/components/examples/DeleteAnnouncement"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateComponent
-Updates a component
-
-```javascript
-// Promise
-const promise = content.updateComponent(companyId,applicationId,id);
-
-// Async/Await
-const data = await content.updateComponent(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | ID of component to be fetched | 
-
-Updates a component for the given component ID
-
-*Success Response:*
-
-
-
-A JSON object with components
-
-
-Schema: `Components`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Components"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getComponentByID
-Get components by component ID
-
-```javascript
-// Promise
-const promise = content.getComponentByID(companyId,applicationId,id);
-
-// Async/Await
-const data = await content.getComponentByID(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | ID of component to be fetched | 
-
-The endpoint fetches the component by component ID
-
-*Success Response:*
-
-
-
-A JSON object with components
-
-
-Schema: `Components`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Components"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteComponent
-Delete a component from the page
-
-```javascript
-// Promise
-const promise = content.deleteComponent(companyId,applicationId,id);
-
-// Async/Await
-const data = await content.deleteComponent(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | ID of component to be deleted | 
-
-It deletes a component from the page
-
-*Success Response:*
-
-
-
-A JSON object with components
-
-
-Schema: `Components`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Components"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getComponents
-Get components
-
-```javascript
-// Promise
-const promise = content.getComponents(companyId,applicationId);
-
-// Async/Await
-const data = await content.getComponents(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-The endpoint fetches the components
-
-*Success Response:*
-
-
-
-A JSON object with components
-
-
-Schema: `Components`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Components"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getFaqCategories
-Get FAQ categories list
-
-```javascript
-// Promise
-const promise = content.getFaqCategories(companyId,applicationId);
-
-// Async/Await
-const data = await content.getFaqCategories(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get list of FAQ categories
-
-*Success Response:*
-
-
-
-Get FAQ Categories
-
-
-Schema: `GetFaqCategoriesSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getFaqCategoryBySlugOrId
-Get FAQ category by slug or id
-
-```javascript
-// Promise
-const promise = content.getFaqCategoryBySlugOrId(companyId,applicationId,idOrSlug);
-
-// Async/Await
-const data = await content.getFaqCategoryBySlugOrId(companyId,applicationId,idOrSlug);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| idOrSlug | string | Slug or Id of FAQ Category | 
-
-Get FAQ category by slug or id
-
-*Success Response:*
-
-
-
-Get FAQ Categories
-
-
-Schema: `GetFaqCategoryByIdOrSlugSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createFaqCategory
-Creates a FAQ category
-
-```javascript
-// Promise
-const promise = content.createFaqCategory(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.createFaqCategory(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Add Faq Category
-
-*Success Response:*
-
-
-
-Create a FAQ Category
-
-
-Schema: `CreateFaqCategorySchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateFaqCategory
-Updates a FAQ category
-
-```javascript
-// Promise
-const promise = content.updateFaqCategory(companyId,applicationId,id,body);
-
-// Async/Await
-const data = await content.updateFaqCategory(companyId,applicationId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Faq category ID | 
-
-Update Faq Category
-
-*Success Response:*
-
-
-
-Update a FAQ Category
-
-
-Schema: `CreateFaqCategorySchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteFaqCategory
-Deletes a FAQ category
-
-```javascript
-// Promise
-const promise = content.deleteFaqCategory(companyId,applicationId,id);
-
-// Async/Await
-const data = await content.deleteFaqCategory(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Faq category ID | 
-
-Delete Faq Category
-
-*Success Response:*
-
-
-
-Delete a FAQ Category
-
-
-Schema: `CreateFaqCategorySchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getFaqsByCategoryIdOrSlug
-Get FAQs of a Faq Category id or slug
-
-```javascript
-// Promise
-const promise = content.getFaqsByCategoryIdOrSlug(companyId,applicationId,idOrSlug);
-
-// Async/Await
-const data = await content.getFaqsByCategoryIdOrSlug(companyId,applicationId,idOrSlug);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| idOrSlug | string | Faq category ID or slug | 
-
-Get FAQs of a Faq Category `id` or `slug`
-
-*Success Response:*
-
-
-
-Get FAQs by slug/id of FAQ Category
-
-
-Schema: `GetFaqSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addFaqToFaqCategory
-Creates FAQs for category whose `id` is specified
-
-```javascript
-// Promise
-const promise = content.addFaqToFaqCategory(companyId,applicationId,categoryId,body);
-
-// Async/Await
-const data = await content.addFaqToFaqCategory(companyId,applicationId,categoryId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
-
-Creates FAQs for category whose `id` is specified
-
-*Success Response:*
-
-
-
-Create a FAQ for FAQ Category
-
-
-Schema: `CreateFaqResponseSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateFaq
-Updates FAQ
-
-```javascript
-// Promise
-const promise = content.updateFaq(companyId,applicationId,categoryId,faqId,body);
-
-// Async/Await
-const data = await content.updateFaq(companyId,applicationId,categoryId,faqId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
-| faqId | string | Faq ID | 
-
-Updates FAQ
-
-*Success Response:*
-
-
-
-Update FAQ by id
-
-
-Schema: `CreateFaqResponseSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteFaq
-Delete FAQ
-
-```javascript
-// Promise
-const promise = content.deleteFaq(companyId,applicationId,categoryId,faqId);
-
-// Async/Await
-const data = await content.deleteFaq(companyId,applicationId,categoryId,faqId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
-| faqId | string | Faq ID | 
-
-Delete FAQ
-
-*Success Response:*
-
-
-
-Delete FAQ by id
-
-
-Schema: `CreateFaqResponseSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createKeyValue
-Create key values for templating
-
-```javascript
-// Promise
-const promise = content.createKeyValue(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.createKeyValue(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Use this to create key-values for templating.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `KeyValue`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/KeyValue"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getKeyValueByID
-Get KeyValue by id
-
-```javascript
-// Promise
-const promise = content.getKeyValueByID(companyId,applicationId,id);
-
-// Async/Await
-const data = await content.getKeyValueByID(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | The `id` of a keyvalue. Use this parameter to retrieve a particular keyvalue | 
-
-Use this to fetch a keyvalue by `id`
-
-*Success Response:*
-
-
-
-A JSON object with keyvalue details
-
-
-Schema: `KeyValue`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/KeyValue"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createLandingPage
-Create landing-page
-
-```javascript
-// Promise
-const promise = content.createLandingPage(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.createLandingPage(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Use this to create landing-page.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `LandingPage`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/LandingPage"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getLegalInformation
-Get legal information
-
-```javascript
-// Promise
-const promise = content.getLegalInformation(companyId,applicationId);
-
-// Async/Await
-const data = await content.getLegalInformation(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationLegal`
-
-
-*Examples:*
-
-
-Success
-```json
-{
-  "$ref": "#/components/examples/Legal"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateLegalInformation
-Save legal information
-
-```javascript
-// Promise
-const promise = content.updateLegalInformation(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.updateLegalInformation(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationLegal`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getSeoConfiguration
-Get seo of application
-
-```javascript
-// Promise
-const promise = content.getSeoConfiguration(companyId,applicationId);
-
-// Async/Await
-const data = await content.getSeoConfiguration(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get seo of application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Seo`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Seo"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateSeoConfiguration
-Update seo of application
-
-```javascript
-// Promise
-const promise = content.updateSeoConfiguration(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.updateSeoConfiguration(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Update seo of application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Seo`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Seo"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getSupportInformation
-Get support information
-
-```javascript
-// Promise
-const promise = content.getSupportInformation(companyId,applicationId);
-
-// Async/Await
-const data = await content.getSupportInformation(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get contact details for customer support. Including emails and phone numbers
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Support`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Support"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateSupportInformation
-Update support data of application
-
-```javascript
-// Promise
-const promise = content.updateSupportInformation(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.updateSupportInformation(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Update support data of application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Support`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createTag
-Creates Tag
-
-```javascript
-// Promise
-const promise = content.createTag(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.createTag(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Create tags
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateTag
-Updates a Tag
-
-```javascript
-// Promise
-const promise = content.updateTag(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.updateTag(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Update tag
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteAllTags
-Delete tags for application
-
-```javascript
-// Promise
-const promise = content.deleteAllTags(companyId,applicationId);
-
-// Async/Await
-const data = await content.deleteAllTags(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Delete tags for application
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getTags
-Get tags for application
-
-```javascript
-// Promise
-const promise = content.getTags(companyId,applicationId);
-
-// Async/Await
-const data = await content.getTags(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get tags for application
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addTag
-Adds a Tag
-
-```javascript
-// Promise
-const promise = content.addTag(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.addTag(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Add tag
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### removeTag
-Removes a Tag
-
-```javascript
-// Promise
-const promise = content.removeTag(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.removeTag(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Remove a particular tag
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### editTag
-Edits a Tag by Id
-
-```javascript
-// Promise
-const promise = content.editTag(companyId,applicationId,tagId,body);
-
-// Async/Await
-const data = await content.editTag(companyId,applicationId,tagId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| tagId | string | Tag ID | 
-
-Edits a particular tag
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
 ## Communication
 
 
@@ -7340,14 +4963,16 @@ Get campaigns
 
 ```javascript
 // Promise
-const promise = communication.getCampaigns();
+const promise = communication.getCampaigns(companyId,applicationId);
 
 // Async/Await
-const data = await communication.getCampaigns();
+const data = await communication.getCampaigns(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get campaigns
 
@@ -7387,14 +5012,16 @@ Create campaign
 
 ```javascript
 // Promise
-const promise = communication.createCampaign(body);
+const promise = communication.createCampaign(companyId,applicationId,body);
 
 // Async/Await
-const data = await communication.createCampaign(body);
+const data = await communication.createCampaign(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create campaign
 
@@ -7434,14 +5061,16 @@ Get campaign by id
 
 ```javascript
 // Promise
-const promise = communication.getCampaignById(id);
+const promise = communication.getCampaignById(companyId,applicationId,id);
 
 // Async/Await
-const data = await communication.getCampaignById(id);
+const data = await communication.getCampaignById(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Campaign id | 
 
 Get campaign by id
@@ -7494,14 +5123,16 @@ Update campaign by id
 
 ```javascript
 // Promise
-const promise = communication.updateCampaignById(id,body);
+const promise = communication.updateCampaignById(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await communication.updateCampaignById(id,body);
+const data = await communication.updateCampaignById(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Campaign id | 
 
 Update campaign by id
@@ -7554,14 +5185,16 @@ Get stats of campaign by id
 
 ```javascript
 // Promise
-const promise = communication.getStatsOfCampaignById(id);
+const promise = communication.getStatsOfCampaignById(companyId,applicationId,id);
 
 // Async/Await
-const data = await communication.getStatsOfCampaignById(id);
+const data = await communication.getStatsOfCampaignById(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Campaign id | 
 
 Get stats of campaign by id
@@ -7614,14 +5247,16 @@ Get audiences
 
 ```javascript
 // Promise
-const promise = communication.getAudiences();
+const promise = communication.getAudiences(companyId,applicationId);
 
 // Async/Await
-const data = await communication.getAudiences();
+const data = await communication.getAudiences(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get audiences
 
@@ -7661,14 +5296,16 @@ Create audience
 
 ```javascript
 // Promise
-const promise = communication.createAudience(body);
+const promise = communication.createAudience(companyId,applicationId,body);
 
 // Async/Await
-const data = await communication.createAudience(body);
+const data = await communication.createAudience(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create audience
 
@@ -7708,14 +5345,16 @@ Get bigquery headers
 
 ```javascript
 // Promise
-const promise = communication.getBigqueryHeaders(body);
+const promise = communication.getBigqueryHeaders(companyId,applicationId,body);
 
 // Async/Await
-const data = await communication.getBigqueryHeaders(body);
+const data = await communication.getBigqueryHeaders(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get bigquery headers
 
@@ -7767,14 +5406,16 @@ Get audience by id
 
 ```javascript
 // Promise
-const promise = communication.getAudienceById(id);
+const promise = communication.getAudienceById(companyId,applicationId,id);
 
 // Async/Await
-const data = await communication.getAudienceById(id);
+const data = await communication.getAudienceById(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Audience id | 
 
 Get audience by id
@@ -7827,14 +5468,16 @@ Update audience by id
 
 ```javascript
 // Promise
-const promise = communication.updateAudienceById(id,body);
+const promise = communication.updateAudienceById(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await communication.updateAudienceById(id,body);
+const data = await communication.updateAudienceById(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Audience id | 
 
 Update audience by id
@@ -7887,14 +5530,16 @@ Get n sample records from csv
 
 ```javascript
 // Promise
-const promise = communication.getNSampleRecordsFromCsv(body);
+const promise = communication.getNSampleRecordsFromCsv(companyId,applicationId,body);
 
 // Async/Await
-const data = await communication.getNSampleRecordsFromCsv(body);
+const data = await communication.getNSampleRecordsFromCsv(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get n sample records from csv
 
@@ -7995,14 +5640,16 @@ Create email provider
 
 ```javascript
 // Promise
-const promise = communication.createEmailProvider(body);
+const promise = communication.createEmailProvider(companyId,applicationId,body);
 
 // Async/Await
-const data = await communication.createEmailProvider(body);
+const data = await communication.createEmailProvider(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create email provider
 
@@ -8042,14 +5689,16 @@ Get email provider by id
 
 ```javascript
 // Promise
-const promise = communication.getEmailProviderById(id);
+const promise = communication.getEmailProviderById(companyId,applicationId,id);
 
 // Async/Await
-const data = await communication.getEmailProviderById(id);
+const data = await communication.getEmailProviderById(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Email provider id | 
 
 Get email provider by id
@@ -8090,14 +5739,16 @@ Update email provider by id
 
 ```javascript
 // Promise
-const promise = communication.updateEmailProviderById(id,body);
+const promise = communication.updateEmailProviderById(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await communication.updateEmailProviderById(id,body);
+const data = await communication.updateEmailProviderById(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Email provider id | 
 
 Update email provider by id
@@ -8138,14 +5789,16 @@ Get email templates
 
 ```javascript
 // Promise
-const promise = communication.getEmailTemplates();
+const promise = communication.getEmailTemplates(companyId,applicationId);
 
 // Async/Await
-const data = await communication.getEmailTemplates();
+const data = await communication.getEmailTemplates(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get email templates
 
@@ -8185,14 +5838,16 @@ Create email template
 
 ```javascript
 // Promise
-const promise = communication.createEmailTemplate(body);
+const promise = communication.createEmailTemplate(companyId,applicationId,body);
 
 // Async/Await
-const data = await communication.createEmailTemplate(body);
+const data = await communication.createEmailTemplate(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create email template
 
@@ -8232,14 +5887,16 @@ Get system email templates
 
 ```javascript
 // Promise
-const promise = communication.getSystemEmailTemplates();
+const promise = communication.getSystemEmailTemplates(companyId,applicationId);
 
 // Async/Await
-const data = await communication.getSystemEmailTemplates();
+const data = await communication.getSystemEmailTemplates(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get system email templates
 
@@ -8279,14 +5936,16 @@ Get email template by id
 
 ```javascript
 // Promise
-const promise = communication.getEmailTemplateById(id);
+const promise = communication.getEmailTemplateById(companyId,applicationId,id);
 
 // Async/Await
-const data = await communication.getEmailTemplateById(id);
+const data = await communication.getEmailTemplateById(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Email template id | 
 
 Get email template by id
@@ -8327,14 +5986,16 @@ Update email template by id
 
 ```javascript
 // Promise
-const promise = communication.updateEmailTemplateById(id,body);
+const promise = communication.updateEmailTemplateById(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await communication.updateEmailTemplateById(id,body);
+const data = await communication.updateEmailTemplateById(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Email template id | 
 
 Update email template by id
@@ -8375,14 +6036,16 @@ Delete email template by id
 
 ```javascript
 // Promise
-const promise = communication.deleteEmailTemplateById(id);
+const promise = communication.deleteEmailTemplateById(companyId,applicationId,id);
 
 // Async/Await
-const data = await communication.deleteEmailTemplateById(id);
+const data = await communication.deleteEmailTemplateById(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Email template id | 
 
 Delete email template by id
@@ -8544,14 +6207,16 @@ Trigger campaign job
 
 ```javascript
 // Promise
-const promise = communication.triggerCampaignJob(body);
+const promise = communication.triggerCampaignJob(companyId,applicationId,body);
 
 // Async/Await
-const data = await communication.triggerCampaignJob(body);
+const data = await communication.triggerCampaignJob(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Trigger campaign job
 
@@ -8684,19 +6349,96 @@ default
 ---
 
 
+#### upsertPushtoken
+Upsert push token of a user
+
+```javascript
+// Promise
+const promise = communication.upsertPushtoken(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.upsertPushtoken(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Upsert push token of a user
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PushtokenRes`
+
+
+*Examples:*
+
+
+create
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseCreate"
+}
+```
+
+update
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseUpdate"
+}
+```
+
+reset
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseReset"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getSmsProviders
 Get sms providers
 
 ```javascript
 // Promise
-const promise = communication.getSmsProviders();
+const promise = communication.getSmsProviders(companyId,applicationId);
 
 // Async/Await
-const data = await communication.getSmsProviders();
+const data = await communication.getSmsProviders(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get sms providers
 
@@ -8736,14 +6478,16 @@ Create sms provider
 
 ```javascript
 // Promise
-const promise = communication.createSmsProvider(body);
+const promise = communication.createSmsProvider(companyId,applicationId,body);
 
 // Async/Await
-const data = await communication.createSmsProvider(body);
+const data = await communication.createSmsProvider(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create sms provider
 
@@ -8783,14 +6527,16 @@ Get sms provider by id
 
 ```javascript
 // Promise
-const promise = communication.getSmsProviderById(id);
+const promise = communication.getSmsProviderById(companyId,applicationId,id);
 
 // Async/Await
-const data = await communication.getSmsProviderById(id);
+const data = await communication.getSmsProviderById(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Sms provider id | 
 
 Get sms provider by id
@@ -8831,14 +6577,16 @@ Update sms provider by id
 
 ```javascript
 // Promise
-const promise = communication.updateSmsProviderById(id,body);
+const promise = communication.updateSmsProviderById(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await communication.updateSmsProviderById(id,body);
+const data = await communication.updateSmsProviderById(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Sms provider id | 
 
 Update sms provider by id
@@ -8879,14 +6627,16 @@ Get sms templates
 
 ```javascript
 // Promise
-const promise = communication.getSmsTemplates();
+const promise = communication.getSmsTemplates(companyId,applicationId);
 
 // Async/Await
-const data = await communication.getSmsTemplates();
+const data = await communication.getSmsTemplates(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get sms templates
 
@@ -8926,14 +6676,16 @@ Create sms template
 
 ```javascript
 // Promise
-const promise = communication.createSmsTemplate(body);
+const promise = communication.createSmsTemplate(companyId,applicationId,body);
 
 // Async/Await
-const data = await communication.createSmsTemplate(body);
+const data = await communication.createSmsTemplate(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Create sms template
 
@@ -8973,14 +6725,16 @@ Get sms template by id
 
 ```javascript
 // Promise
-const promise = communication.getSmsTemplateById(id);
+const promise = communication.getSmsTemplateById(companyId,applicationId,id);
 
 // Async/Await
-const data = await communication.getSmsTemplateById(id);
+const data = await communication.getSmsTemplateById(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Sms template id | 
 
 Get sms template by id
@@ -9033,14 +6787,16 @@ Update sms template by id
 
 ```javascript
 // Promise
-const promise = communication.updateSmsTemplateById(id,body);
+const promise = communication.updateSmsTemplateById(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await communication.updateSmsTemplateById(id,body);
+const data = await communication.updateSmsTemplateById(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Sms template id | 
 
 Update sms template by id
@@ -9093,14 +6849,16 @@ Delete sms template by id
 
 ```javascript
 // Promise
-const promise = communication.deleteSmsTemplateById(id);
+const promise = communication.deleteSmsTemplateById(companyId,applicationId,id);
 
 // Async/Await
-const data = await communication.deleteSmsTemplateById(id);
+const data = await communication.deleteSmsTemplateById(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 | id | string | Sms template id | 
 
 Delete sms template by id
@@ -9176,14 +6934,16 @@ Get system sms templates
 
 ```javascript
 // Promise
-const promise = communication.getSystemSystemTemplates();
+const promise = communication.getSystemSystemTemplates(companyId,applicationId);
 
 // Async/Await
-const data = await communication.getSystemSystemTemplates();
+const data = await communication.getSystemSystemTemplates(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
 
 Get system sms templates
 
@@ -9206,6 +6966,806 @@ default
   "$ref": "#/components/examples/SystemSmsTemplates"
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Payment
+
+
+#### getBrandPaymentGatewayConfig
+Get All Brand Payment Gateway Config Secret
+
+```javascript
+// Promise
+const promise = payment.getBrandPaymentGatewayConfig(companyId,applicationId);
+
+// Async/Await
+const data = await payment.getBrandPaymentGatewayConfig(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application id | 
+
+Get All Brand Payment Gateway Config Secret
+
+*Success Response:*
+
+
+
+Refund Transfer Mode
+
+
+Schema: `PaymentGatewayConfigResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ErrorCodeDescription`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ErrorCodeDescription`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### saveBrandPaymentGatewayConfig
+Save Config Secret For Brand Payment Gateway
+
+```javascript
+// Promise
+const promise = payment.saveBrandPaymentGatewayConfig(companyId,applicationId,body);
+
+// Async/Await
+const data = await payment.saveBrandPaymentGatewayConfig(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application id | 
+
+Save Config Secret For Brand Payment Gateway
+
+*Success Response:*
+
+
+
+Save Config Secret For Brand Payment Gateway Success Response.
+
+
+Schema: `PaymentGatewayToBeReviewed`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateBrandPaymentGatewayConfig
+Save Config Secret For Brand Payment Gateway
+
+```javascript
+// Promise
+const promise = payment.updateBrandPaymentGatewayConfig(companyId,applicationId,body);
+
+// Async/Await
+const data = await payment.updateBrandPaymentGatewayConfig(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application id | 
+
+Save Config Secret For Brand Payment Gateway
+
+*Success Response:*
+
+
+
+Save Config Secret For Brand Payment Gateway Success Response.
+
+
+Schema: `PaymentGatewayToBeReviewed`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPaymentModeRoutes
+Get All Valid Payment Options
+
+```javascript
+// Promise
+const promise = payment.getPaymentModeRoutes(companyId,applicationId,refresh,requestType);
+
+// Async/Await
+const data = await payment.getPaymentModeRoutes(companyId,applicationId,refresh,requestType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application id | 
+| refresh | boolean |  | 
+| requestType | string |  | 
+
+Use this API to get Get All Valid Payment Options for making payment
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PaymentOptionsResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAllPayouts
+Get All Payouts
+
+```javascript
+// Promise
+const promise = payment.getAllPayouts(companyId,uniqueExternalId);
+
+// Async/Await
+const data = await payment.getAllPayouts(companyId,uniqueExternalId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| uniqueExternalId | string | Fetch payouts using unique external id | 
+
+Get All Payouts
+
+*Success Response:*
+
+
+
+payouts response object
+
+
+Schema: `PayoutsResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### savePayout
+Save Payout
+
+```javascript
+// Promise
+const promise = payment.savePayout(companyId,body);
+
+// Async/Await
+const data = await payment.savePayout(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+Save Payout
+
+*Success Response:*
+
+
+
+save payout response object
+
+
+Schema: `PayoutResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePayout
+Update Payout
+
+```javascript
+// Promise
+const promise = payment.updatePayout(companyId,uniqueTransferNo,body);
+
+// Async/Await
+const data = await payment.updatePayout(companyId,uniqueTransferNo,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| uniqueTransferNo | string | Unique transfer id | 
+
+Update Payout
+
+*Success Response:*
+
+
+
+save payout response object
+
+
+Schema: `UpdatePayoutResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### activateAndDectivatePayout
+Partial Update Payout
+
+```javascript
+// Promise
+const promise = payment.activateAndDectivatePayout(companyId,uniqueTransferNo,body);
+
+// Async/Await
+const data = await payment.activateAndDectivatePayout(companyId,uniqueTransferNo,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| uniqueTransferNo | string | Unique transfer id | 
+
+Partial Update Payout
+
+*Success Response:*
+
+
+
+save payout response object
+
+
+Schema: `UpdatePayoutResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deletePayout
+Delete Payout
+
+```javascript
+// Promise
+const promise = payment.deletePayout(companyId,uniqueTransferNo);
+
+// Async/Await
+const data = await payment.deletePayout(companyId,uniqueTransferNo);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| uniqueTransferNo | string | Unique transfer id | 
+
+Delete Payout
+
+*Success Response:*
+
+
+
+delete payout response object
+
+
+Schema: `DeletePayoutResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSubscriptionPaymentMethod
+List Subscription Payment Method
+
+```javascript
+// Promise
+const promise = payment.getSubscriptionPaymentMethod(companyId);
+
+// Async/Await
+const data = await payment.getSubscriptionPaymentMethod(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+Get all  Subscription  Payment Method
+
+*Success Response:*
+
+
+
+List Subscription Payment Method Response
+
+
+Schema: `SubscriptionPaymentMethodResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSubscriptionPaymentMethod
+Delete Subscription Payment Method
+
+```javascript
+// Promise
+const promise = payment.deleteSubscriptionPaymentMethod(companyId,uniqueExternalId,paymentMethodId);
+
+// Async/Await
+const data = await payment.deleteSubscriptionPaymentMethod(companyId,uniqueExternalId,paymentMethodId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| uniqueExternalId | string |  | 
+| paymentMethodId | string |  | 
+
+Uses this api to Delete Subscription Payment Method
+
+*Success Response:*
+
+
+
+Delete Subscription Payment Method Response.
+
+
+Schema: `DeleteSubscriptionPaymentMethodResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSubscriptionConfig
+List Subscription Config
+
+```javascript
+// Promise
+const promise = payment.getSubscriptionConfig(companyId);
+
+// Async/Await
+const data = await payment.getSubscriptionConfig(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+Get all  Subscription Config details
+
+*Success Response:*
+
+
+
+List Subscription Config Response
+
+
+Schema: `SubscriptionConfigResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### saveSubscriptionSetupIntent
+Save Subscription Setup Intent
+
+```javascript
+// Promise
+const promise = payment.saveSubscriptionSetupIntent(companyId,body);
+
+// Async/Await
+const data = await payment.saveSubscriptionSetupIntent(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+Uses this api to Save Subscription Setup Intent
+
+*Success Response:*
+
+
+
+Save Subscription Setup Intent Response.
+
+
+Schema: `SaveSubscriptionSetupIntentResponse`
+
+
+
+
+
+
+
+
+Bad Request Error
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -9372,55 +7932,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getBrand
 Get a single brand.
 
@@ -9446,6 +7957,55 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 
 
 Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editBrand
+Edit a brand.
+
+```javascript
+// Promise
+const promise = companyprofile.editBrand(brandId,body);
+
+// Async/Await
+const data = await companyprofile.editBrand(brandId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| brandId | string | Id of the brand to be viewed. | 
+
+This API allows to edit meta of a brand.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -9719,56 +8279,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editLocation
-Edit a location asscoiated to a company.
-
-```javascript
-// Promise
-const promise = companyprofile.editLocation(companyId,locationId,body);
-
-// Async/Await
-const data = await companyprofile.editLocation(companyId,locationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSingleLocation
 Get a single location.
 
@@ -9795,6 +8305,56 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.editLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.editLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 

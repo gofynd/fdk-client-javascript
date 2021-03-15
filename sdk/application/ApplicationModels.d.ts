@@ -558,7 +558,7 @@ export class Cart {
      * @summary: Add Address to the account
      * @description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
      * @param {Object} arg - arg object.
-     * @param {UpdateAddressRequest} arg.body
+     * @param {Address} arg.body
      **/
     addAddress({ body }?: {
         body: any;
@@ -587,10 +587,10 @@ export class Cart {
     /**
      *
      * @summary: Update Address alreay added to account
-     * @description: Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+     * @description: Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
      * @param {Object} arg - arg object.
      * @param {number} arg.id - Address id
-     * @param {UpdateAddressRequest} arg.body
+     * @param {Address} arg.body
      **/
     updateAddress({ id, body }?: {
         id: number;
@@ -664,14 +664,14 @@ export class Cart {
       * @param {boolean} [arg.p] - Get payment options or not
       * @param {number} [arg.uid] - Cart id
       * @param {number} [arg.addressId] - Address id
-      * @param {number} [arg.areaCode] - Destination pincode.
+      * @param {string} [arg.areaCode] - Destination pincode.
       
       **/
     getShipments({ p, uid, addressId, areaCode }?: {
         p?: boolean;
         uid?: number;
         addressId?: number;
-        areaCode?: number;
+        areaCode?: string;
     }): any;
     /**
      *
@@ -1209,6 +1209,17 @@ export class Content {
     getAnnouncements({}?: any): any;
     /**
       *
+      * @summary: Get Blog by slug
+      * @description: Use this API to fetch a blog using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
+      
+      **/
+    getBlog({ slug }?: {
+        slug: string;
+    }): any;
+    /**
+      *
       * @summary: Get frequently asked questions
       * @description: Get frequently asked questions list. These will be helpful for users to using website.
       * @param {Object} arg - arg object.
@@ -1258,6 +1269,14 @@ export class Content {
     }): any;
     /**
       *
+      * @summary: Get landing page
+      * @description: Use this API to fetch a landing page
+      * @param {Object} arg - arg object.
+      
+      **/
+    getLandingPage({}?: any): any;
+    /**
+      *
       * @summary: Get legal information
       * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
       * @param {Object} arg - arg object.
@@ -1266,12 +1285,42 @@ export class Content {
     getLegalInformation({}?: any): any;
     /**
       *
+      * @summary: Get navigation
+      * @description: Use this API to fetch a navigation
+      * @param {Object} arg - arg object.
+      
+      **/
+    getNavigations({}?: any): any;
+    /**
+      *
+      * @summary: Get Page by slug
+      * @description: Use this API to fetch a custom page using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
+      
+      **/
+    getPage({ slug }?: {
+        slug: string;
+    }): any;
+    /**
+      *
       * @summary: Get seo of application
       * @description: Get seo of application
       * @param {Object} arg - arg object.
       
       **/
     getSeoConfiguration({}?: any): any;
+    /**
+      *
+      * @summary: Get slideshow by slug
+      * @description: Use this API to fetch a slideshow using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
+      
+      **/
+    getSlideshow({ slug }?: {
+        slug: string;
+    }): any;
     /**
       *
       * @summary: Get support information
@@ -1464,6 +1513,133 @@ export class FileStorage {
         namespace: string;
         companyId: number;
         body: any;
+    }): any;
+}
+export class Configuration {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+      *
+      * @summary: Get current application details
+      * @description: Get current application details.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getApplication({}?: any): any;
+    /**
+      *
+      * @summary: Get application, owner and seller information
+      * @description: Get application information with owner and seller basic details
+      * @param {Object} arg - arg object.
+      
+      **/
+    getOwnerInfo({}?: any): any;
+    /**
+      *
+      * @summary: Get basic application details
+      * @description: Get basic application details like name
+      * @param {Object} arg - arg object.
+      
+      **/
+    getBasicDetails({}?: any): any;
+    /**
+      *
+      * @summary: Get integration tokens
+      * @description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getIntegrationTokens({}?: any): any;
+    /**
+     *
+     * @summary: Check if a new app version is available
+     * @description: Before launching the app (android/iOS), check if a new version is available. Response gives 3 update modes viz. FORCE, AVAILABLE, UP_TO_DATE. `FORCE`- Application should be updated necessarily. `AVAILABLE`- A new version available. But its not necessary to update. `UP_TO_DATE`- Application is at the latest version. These 3 modes are computed at the backend based on the lastest version of app available and the oldest version of app supported by the system.
+     * @param {Object} arg - arg object.
+     * @param {AppVersionRequest} arg.body
+     **/
+    getAppVersion({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get deployment meta stores
+      * @description: Get deployment meta stores.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - Current page no
+      * @param {number} [arg.pageSize] - Current request items count
+      * @param {string} [arg.q] - Search ordering store by name or store code
+      
+      **/
+    getOrderingStores({ pageNo, pageSize, q }?: {
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+    }): any;
+    /**
+      *
+      * @summary: Get features of application
+      * @description: Get features of application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getFeatures({}?: any): any;
+    /**
+      *
+      * @summary: Get application information
+      * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getContactInfo({}?: any): any;
+    /**
+      *
+      * @summary: Get application enabled currencies
+      * @description: Get currency list for allowed currencies under current application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getCurrencies({}?: any): any;
+    /**
+      *
+      * @summary: Get currency by id
+      * @description: Get currency object with symbol and name information by id.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Currency object id
+      
+      **/
+    getCurrencyById({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get list of languages
+      * @description: Get list of supported languages under application.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getLanguages({}?: any): any;
+    /**
+      *
+      * @summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
+      * @description: Unset ordering store cookie.
+      * @param {Object} arg - arg object.
+      
+      **/
+    removeOrderingStoreCookie({}?: any): any;
+    /**
+      *
+      * @summary: Get Staff List.
+      * @description: Get a staff list based on the user's session token passed in the header.
+      * @param {Object} arg - arg object.
+      * @param {boolean} [arg.orderIncent] - This is to check which staff members are applicable for order incentives.
+      * @param {number} [arg.orderingStore] - This is to filter staff members from only selected ordering store.
+      * @param {string} [arg.user] - Get single staff member details using staff user mongo id
+      
+      **/
+    getAppStaffs({ orderIncent, orderingStore, user }?: {
+        orderIncent?: boolean;
+        orderingStore?: number;
+        user?: string;
     }): any;
 }
 export class Payment {
@@ -2332,7 +2508,7 @@ export class PosCart {
      * @summary: Add Address to the account
      * @description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
      * @param {Object} arg - arg object.
-     * @param {UpdateAddressRequest} arg.body
+     * @param {Address} arg.body
      **/
     addAddress({ body }?: {
         body: any;
@@ -2361,10 +2537,10 @@ export class PosCart {
     /**
      *
      * @summary: Update Address alreay added to account
-     * @description: Request object containing attributes mentioned in  <font color="blue">UpdateAddressRequest </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+     * @description: Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
      * @param {Object} arg - arg object.
      * @param {number} arg.id - Address id
-     * @param {UpdateAddressRequest} arg.body
+     * @param {Address} arg.body
      **/
     updateAddress({ id, body }?: {
         id: number;
@@ -2440,16 +2616,18 @@ export class PosCart {
       * @param {boolean} [arg.p] - Get payment options or not
       * @param {number} [arg.uid] - Cart id
       * @param {number} [arg.addressId] - Address id
-      * @param {number} [arg.areaCode] - Destination pincode.
+      * @param {string} [arg.areaCode] - Destination pincode.
+      * @param {string} [arg.orderType] - Order type of shipment
       
       **/
-    getShipments({ pickAtStoreUid, orderingStoreId, p, uid, addressId, areaCode, }?: {
+    getShipments({ pickAtStoreUid, orderingStoreId, p, uid, addressId, areaCode, orderType, }?: {
         pickAtStoreUid?: number;
         orderingStoreId?: number;
         p?: boolean;
         uid?: number;
         addressId?: number;
-        areaCode?: number;
+        areaCode?: string;
+        orderType?: string;
     }): any;
     /**
      *
@@ -2500,12 +2678,12 @@ export class PosCart {
       * @summary: Get available delivery modes for cart
       * @description: Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
       * @param {Object} arg - arg object.
-      * @param {number} arg.areaCode -
+      * @param {string} arg.areaCode -
       * @param {number} [arg.uid] -
       
       **/
     getAvailableDeliveryModes({ areaCode, uid }?: {
-        areaCode: number;
+        areaCode: string;
         uid?: number;
     }): any;
     /**
@@ -2513,11 +2691,11 @@ export class PosCart {
       * @summary: Get list of stores for give uids
       * @description: Get list of stores by providing pick up available store uids.
       * @param {Object} arg - arg object.
-      * @param {number} arg.areaCode -
+      * @param {number} arg.storeUid -
       
       **/
-    getStoreAddressByUid({ areaCode }?: {
-        areaCode: number;
+    getStoreAddressByUid({ storeUid }?: {
+        storeUid: number;
     }): any;
     /**
      *

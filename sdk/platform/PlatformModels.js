@@ -12,20 +12,56 @@ class Lead {
     * @param {Object} arg - arg object.
     * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
     * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
+    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
     
     **/
-  getTickets({ items, filters } = {}) {
-    const query = {};
-    query["items"] = items;
-    query["filters"] = filters;
+  getTickets({ items, filters, pageNo, pageSize } = {}) {
+    const queryObj = {};
+    queryObj["items"] = items;
+    queryObj["filters"] = filters;
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return APIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
-      query,
-      {}
+      queryObj,
+      undefined
     );
+  }
+
+  /**
+    *
+    * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
+    * @description: Gets the list of company level tickets and/or ticket filters
+    * @param {Object} arg - arg object.
+      * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
+     * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
+    
+    **/
+  getTicketsPaginator({ items, filters, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getTickets({
+        items: items,
+        filters: filters,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
   }
 
   /**
@@ -36,13 +72,13 @@ class Lead {
    * @param {AddTicketPayload} arg.body
    **/
   createTicket({ body } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
-      query,
+      queryObj,
       body
     );
   }
@@ -56,14 +92,14 @@ class Lead {
     
     **/
   getTicket({ ticketId } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}`,
-      query,
-      {}
+      queryObj,
+      undefined
     );
   }
 
@@ -76,13 +112,13 @@ class Lead {
    * @param {EditTicketPayload} arg.body
    **/
   editTicket({ ticketId, body } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "put",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}`,
-      query,
+      queryObj,
       body
     );
   }
@@ -96,13 +132,13 @@ class Lead {
    * @param {TicketHistoryPayload} arg.body
    **/
   createHistory({ ticketId, body } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}/history`,
-      query,
+      queryObj,
       body
     );
   }
@@ -116,729 +152,200 @@ class Lead {
     
     **/
   getTicketHistory({ ticketId } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}/history`,
-      query,
-      {}
+      queryObj,
+      undefined
     );
   }
 }
 
-class Communication {
+class Payment {
   constructor(config) {
     this.config = config;
   }
 
   /**
     *
-    * @summary: Get campaigns
-    * @description: Get campaigns
+    * @summary: Get All Payouts
+    * @description: Get All Payouts
     * @param {Object} arg - arg object.
+    * @param {string} [arg.uniqueExternalId] - Fetch payouts using unique external id
     
     **/
-  getCampaigns({} = {}) {
-    const query = {};
+  getAllPayouts({ uniqueExternalId } = {}) {
+    const queryObj = {};
+    queryObj["unique_external_id"] = uniqueExternalId;
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
-      query,
-      {}
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts`,
+      queryObj,
+      undefined
     );
   }
 
   /**
    *
-   * @summary: Create campaign
-   * @description: Create campaign
+   * @summary: Save Payout
+   * @description: Save Payout
    * @param {Object} arg - arg object.
-   * @param {CampaignReq} arg.body
+   * @param {PayoutRequest} arg.body
    **/
-  createCampaign({ body } = {}) {
-    const query = {};
+  savePayout({ body } = {}) {
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
-      query,
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts`,
+      queryObj,
       body
     );
   }
 
   /**
-    *
-    * @summary: Get campaign by id
-    * @description: Get campaign by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Campaign id
-    
-    **/
-  getCampaignById({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
-      query,
-      {}
-    );
-  }
-
-  /**
    *
-   * @summary: Update campaign by id
-   * @description: Update campaign by id
+   * @summary: Update Payout
+   * @description: Update Payout
    * @param {Object} arg - arg object.
-   * @param {string} arg.id - Campaign id
-   * @param {CampaignReq} arg.body
+   * @param {string} arg.uniqueTransferNo - Unique transfer id
+   * @param {PayoutRequest} arg.body
    **/
-  updateCampaignById({ id, body } = {}) {
-    const query = {};
+  updatePayout({ uniqueTransferNo, body } = {}) {
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get stats of campaign by id
-    * @description: Get stats of campaign by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Campaign id
-    
-    **/
-  getStatsOfCampaignById({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary: Get audiences
-    * @description: Get audiences
-    * @param {Object} arg - arg object.
-    
-    **/
-  getAudiences({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Create audience
-   * @description: Create audience
-   * @param {Object} arg - arg object.
-   * @param {AudienceReq} arg.body
-   **/
-  createAudience({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
-      query,
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
+      queryObj,
       body
     );
   }
 
   /**
    *
-   * @summary: Get bigquery headers
-   * @description: Get bigquery headers
+   * @summary: Partial Update Payout
+   * @description: Partial Update Payout
    * @param {Object} arg - arg object.
-   * @param {BigqueryHeadersReq} arg.body
+   * @param {string} arg.uniqueTransferNo - Unique transfer id
+   * @param {UpdatePayoutRequest} arg.body
    **/
-  getBigqueryHeaders({ body } = {}) {
-    const query = {};
+  activateAndDectivatePayout({ uniqueTransferNo, body } = {}) {
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
-      query,
+      "patch",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
+      queryObj,
       body
     );
   }
 
   /**
     *
-    * @summary: Get audience by id
-    * @description: Get audience by id
+    * @summary: Delete Payout
+    * @description: Delete Payout
     * @param {Object} arg - arg object.
-    * @param {string} arg.id - Audience id
+    * @param {string} arg.uniqueTransferNo - Unique transfer id
     
     **/
-  getAudienceById({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Update audience by id
-   * @description: Update audience by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Audience id
-   * @param {AudienceReq} arg.body
-   **/
-  updateAudienceById({ id, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Get n sample records from csv
-   * @description: Get n sample records from csv
-   * @param {Object} arg - arg object.
-   * @param {GetNRecordsCsvReq} arg.body
-   **/
-  getNSampleRecordsFromCsv({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get email providers
-    * @description: Get email providers
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    
-    **/
-  getEmailProviders({ applicationId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Create email provider
-   * @description: Create email provider
-   * @param {Object} arg - arg object.
-   * @param {EmailProviderReq} arg.body
-   **/
-  createEmailProvider({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get email provider by id
-    * @description: Get email provider by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Email provider id
-    
-    **/
-  getEmailProviderById({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Update email provider by id
-   * @description: Update email provider by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Email provider id
-   * @param {EmailProviderReq} arg.body
-   **/
-  updateEmailProviderById({ id, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get email templates
-    * @description: Get email templates
-    * @param {Object} arg - arg object.
-    
-    **/
-  getEmailTemplates({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Create email template
-   * @description: Create email template
-   * @param {Object} arg - arg object.
-   * @param {EmailTemplateReq} arg.body
-   **/
-  createEmailTemplate({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get system email templates
-    * @description: Get system email templates
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSystemEmailTemplates({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary: Get email template by id
-    * @description: Get email template by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Email template id
-    
-    **/
-  getEmailTemplateById({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Update email template by id
-   * @description: Update email template by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Email template id
-   * @param {EmailTemplateReq} arg.body
-   **/
-  updateEmailTemplateById({ id, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete email template by id
-    * @description: Delete email template by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Email template id
-    
-    **/
-  deleteEmailTemplateById({ id } = {}) {
-    const query = {};
+  deletePayout({ uniqueTransferNo } = {}) {
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "delete",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      query,
-      {}
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
+      queryObj,
+      undefined
     );
   }
 
   /**
     *
-    * @summary: Get event subscriptions
-    * @description: Get event subscriptions
+    * @summary: List Subscription Payment Method
+    * @description: Get all  Subscription  Payment Method
     * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
     
     **/
-  getEventSubscriptions({ applicationId } = {}) {
-    const query = {};
+  getSubscriptionPaymentMethod({} = {}) {
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
-      query,
-      {}
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/methods`,
+      queryObj,
+      undefined
     );
   }
 
   /**
     *
-    * @summary: Get jobs
-    * @description: Get jobs
+    * @summary: Delete Subscription Payment Method
+    * @description: Uses this api to Delete Subscription Payment Method
     * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
+    * @param {string} arg.uniqueExternalId - 
+    * @param {string} arg.paymentMethodId - 
     
     **/
-  getJobs({ applicationId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Trigger campaign job
-   * @description: Trigger campaign job
-   * @param {Object} arg - arg object.
-   * @param {TriggerJobRequest} arg.body
-   **/
-  triggerCampaignJob({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get job logs
-    * @description: Get job logs
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    
-    **/
-  getJobLogs({ applicationId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary: Get communication logs
-    * @description: Get communication logs
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    
-    **/
-  getCommunicationLogs({ applicationId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/log`,
-      query,
-      {}
-    );
-  }
-
-  /**
-    *
-    * @summary: Get sms providers
-    * @description: Get sms providers
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSmsProviders({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Create sms provider
-   * @description: Create sms provider
-   * @param {Object} arg - arg object.
-   * @param {SmsProviderReq} arg.body
-   **/
-  createSmsProvider({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get sms provider by id
-    * @description: Get sms provider by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Sms provider id
-    
-    **/
-  getSmsProviderById({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Update sms provider by id
-   * @description: Update sms provider by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Sms provider id
-   * @param {SmsProviderReq} arg.body
-   **/
-  updateSmsProviderById({ id, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get sms templates
-    * @description: Get sms templates
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSmsTemplates({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Create sms template
-   * @description: Create sms template
-   * @param {Object} arg - arg object.
-   * @param {SmsTemplateReq} arg.body
-   **/
-  createSmsTemplate({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get sms template by id
-    * @description: Get sms template by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Sms template id
-    
-    **/
-  getSmsTemplateById({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Update sms template by id
-   * @description: Update sms template by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Sms template id
-   * @param {SmsTemplateReq} arg.body
-   **/
-  updateSmsTemplateById({ id, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete sms template by id
-    * @description: Delete sms template by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Sms template id
-    
-    **/
-  deleteSmsTemplateById({ id } = {}) {
-    const query = {};
+  deleteSubscriptionPaymentMethod({ uniqueExternalId, paymentMethodId } = {}) {
+    const queryObj = {};
+    queryObj["unique_external_id"] = uniqueExternalId;
+    queryObj["payment_method_id"] = paymentMethodId;
 
     return APIClient.execute(
       this.config,
       "delete",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      query,
-      {}
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/methods`,
+      queryObj,
+      undefined
     );
   }
 
   /**
     *
-    * @summary: Get system sms templates
-    * @description: Get system sms templates
+    * @summary: List Subscription Config
+    * @description: Get all  Subscription Config details
     * @param {Object} arg - arg object.
     
     **/
-  getSystemSystemTemplates({} = {}) {
-    const query = {};
+  getSubscriptionConfig({} = {}) {
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/system-templates`,
-      query,
-      {}
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/configs`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Save Subscription Setup Intent
+   * @description: Uses this api to Save Subscription Setup Intent
+   * @param {Object} arg - arg object.
+   * @param {SaveSubscriptionSetupIntentRequest} arg.body
+   **/
+  saveSubscriptionSetupIntent({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/setup/intent`,
+      queryObj,
+      body
     );
   }
 }
@@ -856,13 +363,13 @@ class CompanyProfile {
    * @param {CompanyStoreSerializerRequest} arg.body
    **/
   cbsOnboardEdit({ body } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "patch",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
-      query,
+      queryObj,
       body
     );
   }
@@ -875,14 +382,14 @@ class CompanyProfile {
     
     **/
   cbsOnboardGet({} = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
-      query,
-      {}
+      queryObj,
+      undefined
     );
   }
 
@@ -894,34 +401,14 @@ class CompanyProfile {
     
     **/
   getCompanyMetrics({} = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/metrics`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Edit a brand.
-   * @description: This API allows to edit meta of a brand.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.brandId - Id of the brand to be viewed.
-   * @param {CreateUpdateBrandRequestSerializer} arg.body
-   **/
-  editBrand({ brandId, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
-      query,
-      body
+      queryObj,
+      undefined
     );
   }
 
@@ -934,14 +421,34 @@ class CompanyProfile {
     
     **/
   getBrand({ brandId } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
-      query,
-      {}
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Edit a brand.
+   * @description: This API allows to edit meta of a brand.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.brandId - Id of the brand to be viewed.
+   * @param {CreateUpdateBrandRequestSerializer} arg.body
+   **/
+  editBrand({ brandId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+      queryObj,
+      body
     );
   }
 
@@ -953,13 +460,13 @@ class CompanyProfile {
    * @param {CreateUpdateBrandRequestSerializer} arg.body
    **/
   createBrand({ body } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand`,
-      query,
+      queryObj,
       body
     );
   }
@@ -972,13 +479,13 @@ class CompanyProfile {
    * @param {CompanyBrandPostRequestSerializer} arg.body
    **/
   createCompanyBrand({ body } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
-      query,
+      queryObj,
       body
     );
   }
@@ -991,14 +498,14 @@ class CompanyProfile {
     
     **/
   getCompanyBrands({} = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
-      query,
-      {}
+      queryObj,
+      undefined
     );
   }
 
@@ -1010,13 +517,13 @@ class CompanyProfile {
    * @param {LocationSerializer} arg.body
    **/
   createLocation({ body } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
-      query,
+      queryObj,
       body
     );
   }
@@ -1034,39 +541,19 @@ class CompanyProfile {
     
     **/
   locationList({ storeType, q, stage, pageNo, pageSize } = {}) {
-    const query = {};
-    query["store_type"] = storeType;
-    query["q"] = q;
-    query["stage"] = stage;
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
+    const queryObj = {};
+    queryObj["store_type"] = storeType;
+    queryObj["q"] = q;
+    queryObj["stage"] = stage;
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return APIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
-      query,
-      {}
-    );
-  }
-
-  /**
-   *
-   * @summary: Edit a location asscoiated to a company.
-   * @description: This API allows to edit a location associated to a company.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.locationId - Id of the location which you want to edit.
-   * @param {LocationSerializer} arg.body
-   **/
-  editLocation({ locationId, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
-      query,
-      body
+      queryObj,
+      undefined
     );
   }
 
@@ -1079,14 +566,34 @@ class CompanyProfile {
     
     **/
   getSingleLocation({ locationId } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
-      query,
-      {}
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Edit a location asscoiated to a company.
+   * @description: This API allows to edit a location associated to a company.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.locationId - Id of the location which you want to edit.
+   * @param {LocationSerializer} arg.body
+   **/
+  editLocation({ locationId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      queryObj,
+      body
     );
   }
 }
@@ -1106,16 +613,16 @@ class Inventory {
     
     **/
   getJobsByCompany({ pageNo, pageSize } = {}) {
-    const query = {};
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
+    const queryObj = {};
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return APIClient.execute(
       this.config,
       "get",
       `/v1.0/company/${this.config.companyId}/jobs`,
-      query,
-      {}
+      queryObj,
+      undefined
     );
   }
 
@@ -1128,13 +635,13 @@ class Inventory {
    * @param {JobConfigDTO} arg.body
    **/
   updateJob({ body, xUserData } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "put",
       `/v1.0/company/${this.config.companyId}/jobs`,
-      query,
+      queryObj,
       body
     );
   }
@@ -1148,13 +655,13 @@ class Inventory {
    * @param {JobConfigDTO} arg.body
    **/
   createJob({ body, xUserData } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
       `/v1.0/company/${this.config.companyId}/jobs`,
-      query,
+      queryObj,
       body
     );
   }
@@ -1170,16 +677,16 @@ class Inventory {
     
     **/
   getJobByCompanyAndIntegration({ integrationId, pageNo, pageSize } = {}) {
-    const query = {};
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
+    const queryObj = {};
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return APIClient.execute(
       this.config,
       "get",
       `/v1.0/company/${this.config.companyId}/jobs/integration/${integrationId}`,
-      query,
-      {}
+      queryObj,
+      undefined
     );
   }
 
@@ -1191,14 +698,14 @@ class Inventory {
     
     **/
   getJobConfigDefaults({} = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
       `/v1.0/company/${this.config.companyId}/jobs/defaults`,
-      query,
-      {}
+      queryObj,
+      undefined
     );
   }
 
@@ -1211,14 +718,14 @@ class Inventory {
     
     **/
   getJobByCode({ code } = {}) {
-    const query = {};
+    const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
       `/v1.0/company/${this.config.companyId}/jobs/code/${code}`,
-      query,
-      {}
+      queryObj,
+      undefined
     );
   }
 
@@ -1233,23 +740,23 @@ class Inventory {
     
     **/
   getJobCodesByCompanyAndIntegration({ integrationId, pageNo, pageSize } = {}) {
-    const query = {};
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
+    const queryObj = {};
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return APIClient.execute(
       this.config,
       "get",
       `/v1.0/company/${this.config.companyId}/jobs/code/integration/${integrationId}`,
-      query,
-      {}
+      queryObj,
+      undefined
     );
   }
 }
 
 module.exports = {
   Lead,
-  Communication,
+  Payment,
   CompanyProfile,
   Inventory,
 };

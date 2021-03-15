@@ -80,23 +80,6 @@ class RequestSigner {
       }
     } else {
       if (!request.doNotModifyHeaders) {
-        if (
-          request.body &&
-          !headers["Content-Type"] &&
-          !headers["content-type"]
-        ) {
-          headers["Content-Type"] =
-            "application/x-www-form-urlencoded; charset=utf-8";
-        }
-
-        if (
-          request.body &&
-          !headers["Content-Length"] &&
-          !headers["content-length"]
-        ) {
-          headers["Content-Length"] = Buffer.byteLength(request.body);
-        }
-
         if (headers["x-fp-date"]) {
           this.datetime = headers["x-fp-date"] || headers["x-fp-date"];
         } else {

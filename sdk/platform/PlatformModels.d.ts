@@ -8,11 +8,30 @@ export class Lead {
       * @param {Object} arg - arg object.
       * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
       * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
+      * @param {number} [arg.pageNo] - The page number to navigate through the given set of results.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
       
       **/
-    getTickets({ items, filters }?: {
+    getTickets({ items, filters, pageNo, pageSize }?: {
         items?: boolean;
         filters?: boolean;
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
+      * @description: Gets the list of company level tickets and/or ticket filters
+      * @param {Object} arg - arg object.
+        * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
+       * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
+       * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
+      
+      **/
+    getTicketsPaginator({ items, filters, pageSize }?: {
+        items?: boolean;
+        filters?: boolean;
+        pageSize?: number;
     }): any;
     /**
      *
@@ -71,391 +90,104 @@ export class Lead {
         ticketId: string;
     }): any;
 }
-export class Communication {
+export class Payment {
     constructor(config: any);
     config: any;
     /**
       *
-      * @summary: Get campaigns
-      * @description: Get campaigns
+      * @summary: Get All Payouts
+      * @description: Get All Payouts
       * @param {Object} arg - arg object.
+      * @param {string} [arg.uniqueExternalId] - Fetch payouts using unique external id
       
       **/
-    getCampaigns({}?: any): any;
-    /**
-     *
-     * @summary: Create campaign
-     * @description: Create campaign
-     * @param {Object} arg - arg object.
-     * @param {CampaignReq} arg.body
-     **/
-    createCampaign({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get campaign by id
-      * @description: Get campaign by id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - Campaign id
-      
-      **/
-    getCampaignById({ id }?: {
-        id: string;
+    getAllPayouts({ uniqueExternalId }?: {
+        uniqueExternalId?: string;
     }): any;
     /**
      *
-     * @summary: Update campaign by id
-     * @description: Update campaign by id
+     * @summary: Save Payout
+     * @description: Save Payout
      * @param {Object} arg - arg object.
-     * @param {string} arg.id - Campaign id
-     * @param {CampaignReq} arg.body
+     * @param {PayoutRequest} arg.body
      **/
-    updateCampaignById({ id, body }?: {
-        id: string;
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get stats of campaign by id
-      * @description: Get stats of campaign by id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - Campaign id
-      
-      **/
-    getStatsOfCampaignById({ id }?: {
-        id: string;
-    }): any;
-    /**
-      *
-      * @summary: Get audiences
-      * @description: Get audiences
-      * @param {Object} arg - arg object.
-      
-      **/
-    getAudiences({}?: any): any;
-    /**
-     *
-     * @summary: Create audience
-     * @description: Create audience
-     * @param {Object} arg - arg object.
-     * @param {AudienceReq} arg.body
-     **/
-    createAudience({ body }?: {
+    savePayout({ body }?: {
         body: any;
     }): any;
     /**
      *
-     * @summary: Get bigquery headers
-     * @description: Get bigquery headers
+     * @summary: Update Payout
+     * @description: Update Payout
      * @param {Object} arg - arg object.
-     * @param {BigqueryHeadersReq} arg.body
+     * @param {string} arg.uniqueTransferNo - Unique transfer id
+     * @param {PayoutRequest} arg.body
      **/
-    getBigqueryHeaders({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get audience by id
-      * @description: Get audience by id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - Audience id
-      
-      **/
-    getAudienceById({ id }?: {
-        id: string;
-    }): any;
-    /**
-     *
-     * @summary: Update audience by id
-     * @description: Update audience by id
-     * @param {Object} arg - arg object.
-     * @param {string} arg.id - Audience id
-     * @param {AudienceReq} arg.body
-     **/
-    updateAudienceById({ id, body }?: {
-        id: string;
+    updatePayout({ uniqueTransferNo, body }?: {
+        uniqueTransferNo: string;
         body: any;
     }): any;
     /**
      *
-     * @summary: Get n sample records from csv
-     * @description: Get n sample records from csv
+     * @summary: Partial Update Payout
+     * @description: Partial Update Payout
      * @param {Object} arg - arg object.
-     * @param {GetNRecordsCsvReq} arg.body
+     * @param {string} arg.uniqueTransferNo - Unique transfer id
+     * @param {UpdatePayoutRequest} arg.body
      **/
-    getNSampleRecordsFromCsv({ body }?: {
+    activateAndDectivatePayout({ uniqueTransferNo, body }?: {
+        uniqueTransferNo: string;
         body: any;
     }): any;
     /**
       *
-      * @summary: Get email providers
-      * @description: Get email providers
+      * @summary: Delete Payout
+      * @description: Delete Payout
       * @param {Object} arg - arg object.
-      * @param {string} arg.companyId - Company id
-      * @param {string} arg.applicationId - Application id
+      * @param {string} arg.uniqueTransferNo - Unique transfer id
       
       **/
-    getEmailProviders({ applicationId }?: {
-        companyId: string;
-        applicationId: string;
+    deletePayout({ uniqueTransferNo }?: {
+        uniqueTransferNo: string;
     }): any;
+    /**
+      *
+      * @summary: List Subscription Payment Method
+      * @description: Get all  Subscription  Payment Method
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSubscriptionPaymentMethod({}?: any): any;
+    /**
+      *
+      * @summary: Delete Subscription Payment Method
+      * @description: Uses this api to Delete Subscription Payment Method
+      * @param {Object} arg - arg object.
+      * @param {string} arg.uniqueExternalId -
+      * @param {string} arg.paymentMethodId -
+      
+      **/
+    deleteSubscriptionPaymentMethod({ uniqueExternalId, paymentMethodId }?: {
+        uniqueExternalId: string;
+        paymentMethodId: string;
+    }): any;
+    /**
+      *
+      * @summary: List Subscription Config
+      * @description: Get all  Subscription Config details
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSubscriptionConfig({}?: any): any;
     /**
      *
-     * @summary: Create email provider
-     * @description: Create email provider
+     * @summary: Save Subscription Setup Intent
+     * @description: Uses this api to Save Subscription Setup Intent
      * @param {Object} arg - arg object.
-     * @param {EmailProviderReq} arg.body
+     * @param {SaveSubscriptionSetupIntentRequest} arg.body
      **/
-    createEmailProvider({ body }?: {
+    saveSubscriptionSetupIntent({ body }?: {
         body: any;
     }): any;
-    /**
-      *
-      * @summary: Get email provider by id
-      * @description: Get email provider by id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - Email provider id
-      
-      **/
-    getEmailProviderById({ id }?: {
-        id: string;
-    }): any;
-    /**
-     *
-     * @summary: Update email provider by id
-     * @description: Update email provider by id
-     * @param {Object} arg - arg object.
-     * @param {string} arg.id - Email provider id
-     * @param {EmailProviderReq} arg.body
-     **/
-    updateEmailProviderById({ id, body }?: {
-        id: string;
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get email templates
-      * @description: Get email templates
-      * @param {Object} arg - arg object.
-      
-      **/
-    getEmailTemplates({}?: any): any;
-    /**
-     *
-     * @summary: Create email template
-     * @description: Create email template
-     * @param {Object} arg - arg object.
-     * @param {EmailTemplateReq} arg.body
-     **/
-    createEmailTemplate({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get system email templates
-      * @description: Get system email templates
-      * @param {Object} arg - arg object.
-      
-      **/
-    getSystemEmailTemplates({}?: any): any;
-    /**
-      *
-      * @summary: Get email template by id
-      * @description: Get email template by id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - Email template id
-      
-      **/
-    getEmailTemplateById({ id }?: {
-        id: string;
-    }): any;
-    /**
-     *
-     * @summary: Update email template by id
-     * @description: Update email template by id
-     * @param {Object} arg - arg object.
-     * @param {string} arg.id - Email template id
-     * @param {EmailTemplateReq} arg.body
-     **/
-    updateEmailTemplateById({ id, body }?: {
-        id: string;
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Delete email template by id
-      * @description: Delete email template by id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - Email template id
-      
-      **/
-    deleteEmailTemplateById({ id }?: {
-        id: string;
-    }): any;
-    /**
-      *
-      * @summary: Get event subscriptions
-      * @description: Get event subscriptions
-      * @param {Object} arg - arg object.
-      * @param {string} arg.companyId - Company id
-      * @param {string} arg.applicationId - Application id
-      
-      **/
-    getEventSubscriptions({ applicationId }?: {
-        companyId: string;
-        applicationId: string;
-    }): any;
-    /**
-      *
-      * @summary: Get jobs
-      * @description: Get jobs
-      * @param {Object} arg - arg object.
-      * @param {string} arg.companyId - Company id
-      * @param {string} arg.applicationId - Application id
-      
-      **/
-    getJobs({ applicationId }?: {
-        companyId: string;
-        applicationId: string;
-    }): any;
-    /**
-     *
-     * @summary: Trigger campaign job
-     * @description: Trigger campaign job
-     * @param {Object} arg - arg object.
-     * @param {TriggerJobRequest} arg.body
-     **/
-    triggerCampaignJob({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get job logs
-      * @description: Get job logs
-      * @param {Object} arg - arg object.
-      * @param {string} arg.companyId - Company id
-      * @param {string} arg.applicationId - Application id
-      
-      **/
-    getJobLogs({ applicationId }?: {
-        companyId: string;
-        applicationId: string;
-    }): any;
-    /**
-      *
-      * @summary: Get communication logs
-      * @description: Get communication logs
-      * @param {Object} arg - arg object.
-      * @param {string} arg.companyId - Company id
-      * @param {string} arg.applicationId - Application id
-      
-      **/
-    getCommunicationLogs({ applicationId }?: {
-        companyId: string;
-        applicationId: string;
-    }): any;
-    /**
-      *
-      * @summary: Get sms providers
-      * @description: Get sms providers
-      * @param {Object} arg - arg object.
-      
-      **/
-    getSmsProviders({}?: any): any;
-    /**
-     *
-     * @summary: Create sms provider
-     * @description: Create sms provider
-     * @param {Object} arg - arg object.
-     * @param {SmsProviderReq} arg.body
-     **/
-    createSmsProvider({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get sms provider by id
-      * @description: Get sms provider by id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - Sms provider id
-      
-      **/
-    getSmsProviderById({ id }?: {
-        id: string;
-    }): any;
-    /**
-     *
-     * @summary: Update sms provider by id
-     * @description: Update sms provider by id
-     * @param {Object} arg - arg object.
-     * @param {string} arg.id - Sms provider id
-     * @param {SmsProviderReq} arg.body
-     **/
-    updateSmsProviderById({ id, body }?: {
-        id: string;
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get sms templates
-      * @description: Get sms templates
-      * @param {Object} arg - arg object.
-      
-      **/
-    getSmsTemplates({}?: any): any;
-    /**
-     *
-     * @summary: Create sms template
-     * @description: Create sms template
-     * @param {Object} arg - arg object.
-     * @param {SmsTemplateReq} arg.body
-     **/
-    createSmsTemplate({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get sms template by id
-      * @description: Get sms template by id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - Sms template id
-      
-      **/
-    getSmsTemplateById({ id }?: {
-        id: string;
-    }): any;
-    /**
-     *
-     * @summary: Update sms template by id
-     * @description: Update sms template by id
-     * @param {Object} arg - arg object.
-     * @param {string} arg.id - Sms template id
-     * @param {SmsTemplateReq} arg.body
-     **/
-    updateSmsTemplateById({ id, body }?: {
-        id: string;
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Delete sms template by id
-      * @description: Delete sms template by id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - Sms template id
-      
-      **/
-    deleteSmsTemplateById({ id }?: {
-        id: string;
-    }): any;
-    /**
-      *
-      * @summary: Get system sms templates
-      * @description: Get system sms templates
-      * @param {Object} arg - arg object.
-      
-      **/
-    getSystemSystemTemplates({}?: any): any;
 }
 export class CompanyProfile {
     constructor(config: any);
@@ -487,6 +219,17 @@ export class CompanyProfile {
       **/
     getCompanyMetrics({}?: any): any;
     /**
+      *
+      * @summary: Get a single brand.
+      * @description: This API helps to get data associated to a particular brand.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.brandId - Id of the brand to be viewed.
+      
+      **/
+    getBrand({ brandId }?: {
+        brandId: string;
+    }): any;
+    /**
      *
      * @summary: Edit a brand.
      * @description: This API allows to edit meta of a brand.
@@ -497,17 +240,6 @@ export class CompanyProfile {
     editBrand({ brandId, body }?: {
         brandId: string;
         body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get a single brand.
-      * @description: This API helps to get data associated to a particular brand.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.brandId - Id of the brand to be viewed.
-      
-      **/
-    getBrand({ brandId }?: {
-        brandId: string;
     }): any;
     /**
      *
@@ -567,6 +299,17 @@ export class CompanyProfile {
         pageSize?: number;
     }): any;
     /**
+      *
+      * @summary: Get a single location.
+      * @description: This API helps to get data associated to a particular location.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.locationId - Id of the location which you want to view.
+      
+      **/
+    getSingleLocation({ locationId }?: {
+        locationId: string;
+    }): any;
+    /**
      *
      * @summary: Edit a location asscoiated to a company.
      * @description: This API allows to edit a location associated to a company.
@@ -577,17 +320,6 @@ export class CompanyProfile {
     editLocation({ locationId, body }?: {
         locationId: string;
         body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get a single location.
-      * @description: This API helps to get data associated to a particular location.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.locationId - Id of the location which you want to view.
-      
-      **/
-    getSingleLocation({ locationId }?: {
-        locationId: string;
     }): any;
 }
 export class Inventory {
