@@ -4,12 +4,19 @@ const SessionStorage = require("../session/session_storage");
 
 function sessionMiddleware(strict) {
     return async (req, res, next) => {
-        let sessionId = req.signedCookies[SESSION_COOKIE_NAME];
-        req.fdkSession = SessionStorage.getSession(sessionId);
-
-        if(strict && !req.session) {
-            res.status(401).json({ "message": "unauthorized" });
+        try {
+            let sessionId = req.signedCookies[SESSION_COOKIE_NAME];
+            req.fdkSession = await SessionStorage.getSession(sessionId);
+    
+            if(strict && !req.session) {
+                res.status(401).json({ "message": "unauthorized" });
+            } else {
+                next();
+            }
+        } catch (error) {
+            next(error);
         }
+       
     };
 }
 
