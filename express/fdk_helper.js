@@ -40,6 +40,8 @@ class FdkHelper {
         if(!clusterMeta) {
             throw new FdkClusterMetaMissingEror('cluster meta missing');
         }
+
+        clusterMeta = JSON.parse(clusterMeta);
         this.clusterMeta = clusterMeta;
         this.domain = new URL(this.clusterMeta.cluster).host;
         return this.clusterMeta;
