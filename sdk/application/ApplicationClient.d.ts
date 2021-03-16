@@ -6,6 +6,7 @@ declare class ApplicationClient {
     lead: Lead;
     theme: Theme;
     user: User;
+    content: Content;
     communication: Communication;
     share: Share;
     fileStorage: FileStorage;
@@ -22,6 +23,7 @@ import { Cart } from "./ApplicationModels";
 import { Lead } from "./ApplicationModels";
 import { Theme } from "./ApplicationModels";
 import { User } from "./ApplicationModels";
+import { Content } from "./ApplicationModels";
 import { Communication } from "./ApplicationModels";
 import { Share } from "./ApplicationModels";
 import { FileStorage } from "./ApplicationModels";

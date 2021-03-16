@@ -7,6 +7,7 @@ declare class Application {
     lead: Lead;
     theme: Theme;
     user: User;
+    content: Content;
     payment: Payment;
     order: Order;
     cart: Cart;
@@ -14,6 +15,7 @@ declare class Application {
 import { Lead } from "./PlatformApplicationModels";
 import { Theme } from "./PlatformApplicationModels";
 import { User } from "./PlatformApplicationModels";
+import { Content } from "./PlatformApplicationModels";
 import { Payment } from "./PlatformApplicationModels";
 import { Order } from "./PlatformApplicationModels";
 import { Cart } from "./PlatformApplicationModels";

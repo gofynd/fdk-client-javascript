@@ -336,19 +336,6 @@ export class Catalog {
     }): any;
     /**
       *
-      * @summary: UnFollow a Product
-      * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-      * @param {Object} arg - arg object.
-      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-      * @param {number} arg.collectionId - the `id` of the collection type you want to unfollow
-      
-      **/
-    unfollowById({ collectionType, collectionId }?: {
-        collectionType: string;
-        collectionId: number;
-    }): any;
-    /**
-      *
       * @summary: Follow a particular Product
       * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
       * @param {Object} arg - arg object.
@@ -357,6 +344,19 @@ export class Catalog {
       
       **/
     followById({ collectionType, collectionId }?: {
+        collectionType: string;
+        collectionId: number;
+    }): any;
+    /**
+      *
+      * @summary: UnFollow a Product
+      * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+      * @param {Object} arg - arg object.
+      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+      * @param {number} arg.collectionId - the `id` of the collection type you want to unfollow
+      
+      **/
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: number;
     }): any;
@@ -1201,6 +1201,148 @@ export class User {
         platform?: string;
         body: any;
     }): any;
+}
+export class Content {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+      *
+      * @summary: Get live announcements
+      * @description: Get live announcements for each or all pages with page slug of page and end date schedule.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAnnouncements({}?: any): any;
+    /**
+      *
+      * @summary: Get Blog by slug
+      * @description: Use this API to fetch a blog using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
+      
+      **/
+    getBlog({ slug }?: {
+        slug: string;
+    }): any;
+    /**
+      *
+      * @summary: Get frequently asked questions
+      * @description: Get frequently asked questions list. These will be helpful for users to using website.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getFaqs({}?: any): any;
+    /**
+      *
+      * @summary: Get FAQ categories list
+      * @description: Get list of FAQ categories
+      * @param {Object} arg - arg object.
+      
+      **/
+    getFaqCategories({}?: any): any;
+    /**
+      *
+      * @summary: Get frequently asked question
+      * @description: Get frequently asked questions list. These will be helpful for users to using website.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Slug or Id of FAQ
+      
+      **/
+    getFaqByIdOrSlug({ idOrSlug }?: {
+        idOrSlug: string;
+    }): any;
+    /**
+      *
+      * @summary: Get FAQ category by slug or id
+      * @description: Get FAQ category by slug or id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
+      
+      **/
+    getFaqCategoryBySlugOrId({ idOrSlug }?: {
+        idOrSlug: string;
+    }): any;
+    /**
+      *
+      * @summary: Get FAQs of a Faq Category id or slug
+      * @description: Get FAQs of a Faq Category `id` or `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Faq category ID or slug
+      
+      **/
+    getFaqsByCategoryIdOrSlug({ idOrSlug }?: {
+        idOrSlug: string;
+    }): any;
+    /**
+      *
+      * @summary: Get landing page
+      * @description: Use this API to fetch a landing page
+      * @param {Object} arg - arg object.
+      
+      **/
+    getLandingPage({}?: any): any;
+    /**
+      *
+      * @summary: Get legal information
+      * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getLegalInformation({}?: any): any;
+    /**
+      *
+      * @summary: Get navigation
+      * @description: Use this API to fetch a navigation
+      * @param {Object} arg - arg object.
+      
+      **/
+    getNavigations({}?: any): any;
+    /**
+      *
+      * @summary: Get Page by slug
+      * @description: Use this API to fetch a custom page using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
+      
+      **/
+    getPage({ slug }?: {
+        slug: string;
+    }): any;
+    /**
+      *
+      * @summary: Get seo of application
+      * @description: Get seo of application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSeoConfiguration({}?: any): any;
+    /**
+      *
+      * @summary: Get slideshow by slug
+      * @description: Use this API to fetch a slideshow using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
+      
+      **/
+    getSlideshow({ slug }?: {
+        slug: string;
+    }): any;
+    /**
+      *
+      * @summary: Get support information
+      * @description: Get contact details for customer support. Including emails and phone numbers
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSupportInformation({}?: any): any;
+    /**
+      *
+      * @summary: Get Tags for application
+      * @description:
+      * @param {Object} arg - arg object.
+      
+      **/
+    getTags({}?: any): any;
 }
 export class Communication {
     constructor(_conf: any);

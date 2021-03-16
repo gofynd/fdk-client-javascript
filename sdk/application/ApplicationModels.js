@@ -591,27 +591,6 @@ class Catalog {
 
   /**
     *
-    * @summary: UnFollow a Product
-    * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-    * @param {number} arg.collectionId - the `id` of the collection type you want to unfollow
-    
-    **/
-  unfollowById({ collectionType, collectionId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
     * @summary: Follow a particular Product
     * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     * @param {Object} arg - arg object.
@@ -625,6 +604,27 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "post",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: UnFollow a Product
+    * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+    * @param {number} arg.collectionId - the `id` of the collection type you want to unfollow
+    
+    **/
+  unfollowById({ collectionType, collectionId } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -2115,6 +2115,303 @@ class User {
       `/service/application/user/profile/v1.0/email/link/send`,
       query,
       body
+    );
+  }
+}
+
+class Content {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary: Get live announcements
+    * @description: Get live announcements for each or all pages with page slug of page and end date schedule.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAnnouncements({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/announcements`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Blog by slug
+    * @description: Use this API to fetch a blog using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
+    
+    **/
+  getBlog({ slug } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/blogs/${slug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get frequently asked questions
+    * @description: Get frequently asked questions list. These will be helpful for users to using website.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getFaqs({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/faq`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get FAQ categories list
+    * @description: Get list of FAQ categories
+    * @param {Object} arg - arg object.
+    
+    **/
+  getFaqCategories({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/faq/categories`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get frequently asked question
+    * @description: Get frequently asked questions list. These will be helpful for users to using website.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.idOrSlug - Slug or Id of FAQ
+    
+    **/
+  getFaqByIdOrSlug({ idOrSlug } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/faq/${idOrSlug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get FAQ category by slug or id
+    * @description: Get FAQ category by slug or id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
+    
+    **/
+  getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/faq/category/${idOrSlug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get FAQs of a Faq Category id or slug
+    * @description: Get FAQs of a Faq Category `id` or `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.idOrSlug - Faq category ID or slug
+    
+    **/
+  getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/faq/category/${idOrSlug}/faqs`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get landing page
+    * @description: Use this API to fetch a landing page
+    * @param {Object} arg - arg object.
+    
+    **/
+  getLandingPage({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/landing-page`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get legal information
+    * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getLegalInformation({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/legal`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get navigation
+    * @description: Use this API to fetch a navigation
+    * @param {Object} arg - arg object.
+    
+    **/
+  getNavigations({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/navigations/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Page by slug
+    * @description: Use this API to fetch a custom page using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
+    
+    **/
+  getPage({ slug } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/pages/${slug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get seo of application
+    * @description: Get seo of application
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSeoConfiguration({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/seo`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get slideshow by slug
+    * @description: Use this API to fetch a slideshow using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
+    
+    **/
+  getSlideshow({ slug } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/slideshow/${slug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get support information
+    * @description: Get contact details for customer support. Including emails and phone numbers
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSupportInformation({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/support`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Tags for application
+    * @description: 
+    * @param {Object} arg - arg object.
+    
+    **/
+  getTags({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/tags`,
+      query,
+      undefined
     );
   }
 }
@@ -4644,6 +4941,7 @@ module.exports = {
   Lead,
   Theme,
   User,
+  Content,
   Communication,
   Share,
   FileStorage,

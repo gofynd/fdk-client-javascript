@@ -705,6 +705,1153 @@ class User {
   }
 }
 
+class Content {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
+  }
+
+  /**
+    *
+    * @summary: Get annoucements list
+    * @description: Get list of announcements
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAnnouncementsList({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create an annoucement
+   * @description: Create an announcement
+   * @param {Object} arg - arg object.
+   * @param {AdminAnnouncementSchema} arg.body
+   **/
+  createAnnouncement({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get annoucement by id
+    * @description: Get announcement by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.announcementId - Announcement ID
+    
+    **/
+  getAnnouncementById({ announcementId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update an annoucement
+   * @description: Update an announcement
+   * @param {Object} arg - arg object.
+   * @param {string} arg.announcementId - Announcement ID
+   * @param {AdminAnnouncementSchema} arg.body
+   **/
+  updateAnnouncement({ announcementId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update schedule or published status of an annoucement
+   * @description: Update schedule or published status of an announcement
+   * @param {Object} arg - arg object.
+   * @param {string} arg.announcementId - Announcement ID
+   * @param {ScheduleSchema} arg.body
+   **/
+  updateAnnouncementSchedule({ announcementId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete annoucement by id
+    * @description: Delete announcement by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.announcementId - Announcement ID
+    
+    **/
+  deleteAnnouncement({ announcementId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create blog
+   * @description: Use this to create a blog.
+   * @param {Object} arg - arg object.
+   * @param {BlogRequest} arg.body
+   **/
+  createBlog({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get blogs
+    * @description: Use this to get blogs.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getBlogs({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update blog
+   * @description: Use this to update blog.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Blog Id
+   * @param {BlogRequest} arg.body
+   **/
+  updateBlog({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete blogs
+    * @description: Use this to delete blogs.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Blog Id
+    
+    **/
+  deleteBlog({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get components by component Id
+    * @description: The endpoint fetches the component by component Id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - slug of page to be fetched
+    
+    **/
+  getComponentById({ slug } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get FAQ categories list
+    * @description: Get list of FAQ categories
+    * @param {Object} arg - arg object.
+    
+    **/
+  getFaqCategories({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/categories`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get FAQ category by slug or id
+    * @description: Get FAQ category by slug or id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
+    
+    **/
+  getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Creates a FAQ category
+   * @description: Add Faq Category
+   * @param {Object} arg - arg object.
+   * @param {CreateFaqCategoryRequestSchema} arg.body
+   **/
+  createFaqCategory({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Updates a FAQ category
+   * @description: Update Faq Category
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Faq category ID
+   * @param {UpdateFaqCategoryRequestSchema} arg.body
+   **/
+  updateFaqCategory({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Deletes a FAQ category
+    * @description: Delete Faq Category
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Faq category ID
+    
+    **/
+  deleteFaqCategory({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get FAQs of a Faq Category id or slug
+    * @description: Get FAQs of a Faq Category `id` or `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.idOrSlug - Faq category ID or slug
+    
+    **/
+  getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}/faqs`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Creates FAQs for category whose `id` is specified
+   * @description: Creates FAQs for category whose `id` is specified
+   * @param {Object} arg - arg object.
+   * @param {string} arg.categoryId - Faq category ID
+   * @param {CreateFaqSchema} arg.body
+   **/
+  addFaq({ categoryId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faqs`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Updates FAQ
+   * @description: Updates FAQ
+   * @param {Object} arg - arg object.
+   * @param {string} arg.categoryId - Faq category ID
+   * @param {string} arg.faqId - Faq ID
+   * @param {CreateFaqSchema} arg.body
+   **/
+  updateFaq({ categoryId, faqId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete FAQ
+    * @description: Delete FAQ
+    * @param {Object} arg - arg object.
+    * @param {string} arg.categoryId - Faq category ID
+    * @param {string} arg.faqId - Faq ID
+    
+    **/
+  deleteFaq({ categoryId, faqId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get frequently asked question
+    * @description: Get frequently asked questions list. These will be helpful for users to using website.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.idOrSlug - Slug or Id of FAQ
+    
+    **/
+  getFaqByIdOrSlug({ idOrSlug } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/${idOrSlug}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get landing-pages
+    * @description: Use this to get landing-pages.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getLandingPages({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create landing-page
+   * @description: Use this to create landing-page.
+   * @param {Object} arg - arg object.
+   * @param {LandingPageRequest} arg.body
+   **/
+  createLandingPage({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update landing-page
+   * @description: Use this to update landing-page.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Landing page ID
+   * @param {LandingPageRequest} arg.body
+   **/
+  updateLandingPage({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete landing-page
+    * @description: Use this to delete landing-page.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Landing page ID
+    
+    **/
+  deleteLandingPage({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get legal information
+    * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getLegalInformation({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Save legal information
+   * @description: Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+   * @param {Object} arg - arg object.
+   * @param {ApplicationLegal} arg.body
+   **/
+  updateLegalInformation({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get navigations
+    * @description: Use this to get navigations.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.devicePlatform - Device platform
+    
+    **/
+  getNavigations({ devicePlatform } = {}) {
+    const queryObj = {};
+    queryObj["device_platform"] = devicePlatform;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create navigation
+   * @description: Use this to create navigation.
+   * @param {Object} arg - arg object.
+   * @param {NavigationRequest} arg.body
+   **/
+  createNavigation({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get default navigations
+    * @description: Use this to get default navigations.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getDefaultNavigations({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/default`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get navigation by slug
+    * @description: Use this to get navigation by slug.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - Slug
+    * @param {string} arg.devicePlatform - Device platform
+    
+    **/
+  getNavigationBySlug({ slug, devicePlatform } = {}) {
+    const queryObj = {};
+    queryObj["device_platform"] = devicePlatform;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${slug}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update navigation
+   * @description: Use this to update navigation.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Navigation ID
+   * @param {NavigationRequest} arg.body
+   **/
+  updateNavigation({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete navigation
+    * @description: Use this to delete navigation.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Navigation ID
+    
+    **/
+  deleteNavigation({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get page meta
+    * @description: Use this to get Page Meta.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getPageMeta({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/meta`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get page spec
+    * @description: Use this to get page spec.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getPageSpec({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/spec`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create page
+   * @description: Use this to create a page.
+   * @param {Object} arg - arg object.
+   * @param {PageRequest} arg.body
+   **/
+  createPage({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get pages
+    * @description: Use this to get pages.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getPages({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create page preview
+   * @description: Use this to create a page preview.
+   * @param {Object} arg - arg object.
+   * @param {PageRequest} arg.body
+   **/
+  createPagePreview({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update page
+   * @description: Use this to update page.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.slug - Page publish slug
+   * @param {PagePublishRequest} arg.body
+   **/
+  updatePagePreview({ slug, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/publish/${slug}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update page
+   * @description: Use this to update page.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Page Id
+   * @param {PageRequest} arg.body
+   **/
+  updatePage({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete page
+    * @description: Use this to delete page.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Page Id
+    
+    **/
+  deletePage({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get pages by component Id
+    * @description: The endpoint fetches the component by component Id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - Slug of page to be fetched
+    
+    **/
+  getPageBySlug({ slug } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${slug}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get seo of application
+    * @description: Get seo of application
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSeoConfiguration({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update seo of application
+   * @description: Update seo of application
+   * @param {Object} arg - arg object.
+   * @param {Seo} arg.body
+   **/
+  updateSeoConfiguration({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get slideshows
+    * @description: Use this to get slideshows.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.devicePlatform - Device platform
+    
+    **/
+  getSlideshows({ devicePlatform } = {}) {
+    const queryObj = {};
+    queryObj["device_platform"] = devicePlatform;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create slideshow
+   * @description: Use this to create slideshow.
+   * @param {Object} arg - arg object.
+   * @param {SlideshowRequest} arg.body
+   **/
+  createSlideshow({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get slideshow by slug
+    * @description: Use this to get slideshow by slug.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - Slug
+    * @param {string} arg.devicePlatform - Device platform
+    
+    **/
+  getSlideshowBySlug({ slug, devicePlatform } = {}) {
+    const queryObj = {};
+    queryObj["device_platform"] = devicePlatform;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${slug}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update slideshow
+   * @description: Use this to update slideshow.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Slideshow ID
+   * @param {SlideshowRequest} arg.body
+   **/
+  updateSlideshow({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete slideshow
+    * @description: Use this to delete slideshow.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Slideshow ID
+    
+    **/
+  deleteSlideshow({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get support information
+    * @description: Get contact details for customer support. Including emails and phone numbers
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSupportInformation({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update support data of application
+   * @description: Update support data of application
+   * @param {Object} arg - arg object.
+   * @param {Support} arg.body
+   **/
+  updateSupportInformation({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Creates Tag
+   * @description: Create tags
+   * @param {Object} arg - arg object.
+   * @param {CreateTagRequestSchema} arg.body
+   **/
+  createInjectableTag({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Updates a Tag
+   * @description: Update tag
+   * @param {Object} arg - arg object.
+   * @param {CreateTagRequestSchema} arg.body
+   **/
+  updateInjectableTag({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete tags for application
+    * @description: Delete tags for application
+    * @param {Object} arg - arg object.
+    
+    **/
+  deleteAllInjectableTags({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get tags for application
+    * @description: Get tags for application
+    * @param {Object} arg - arg object.
+    
+    **/
+  getInjectableTags({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Adds a Tag
+   * @description: Add tag
+   * @param {Object} arg - arg object.
+   * @param {CreateTagRequestSchema} arg.body
+   **/
+  addInjectableTag({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/add`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Removes a Tag
+   * @description: Remove a particular tag
+   * @param {Object} arg - arg object.
+   * @param {RemoveHandpickedSchema} arg.body
+   **/
+  removeInjectableTag({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Edits a Tag by Id
+   * @description: Edits a particular tag
+   * @param {Object} arg - arg object.
+   * @param {string} arg.tagId - Tag ID
+   * @param {UpdateHandpickedSchema} arg.body
+   **/
+  editInjectableTag({ tagId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked/${tagId}`,
+      queryObj,
+      body
+    );
+  }
+}
+
 class Payment {
   constructor(config, applicationId) {
     this.config = config;
@@ -1012,6 +2159,7 @@ module.exports = {
   Lead,
   Theme,
   User,
+  Content,
   Payment,
   Order,
   Cart,
