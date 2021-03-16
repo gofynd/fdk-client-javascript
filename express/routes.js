@@ -86,7 +86,7 @@ function setupRoutes(ext) {
                 httpOnly: true,
                 expires: session.expires,
                 signed: true,
-                sameSite: true
+                sameSite: "none"
             });
             
             let redirectUrl;

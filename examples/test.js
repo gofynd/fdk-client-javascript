@@ -40,4 +40,30 @@ app.use('/_healthz', (req, res, next) => {
         "ok": "ok"
     });
 });
+
+app.use(function onError(err, req, res, next) {
+    err = err || {};
+
+    let statusCode = 500;
+    if (err.name === 'ValidationError') {
+        statusCode = 400;
+    }
+    if (err.name === 'CastError') {
+        statusCode = 400;
+    }
+    if (err.statusCode) {
+        statusCode = err.statusCode;
+    }
+
+    let resData = {
+        message: err.errors || err.message || err,
+        code: err.code,
+        sentry: res.sentry
+    };
+
+    resData.stack = err.stack;
+    console.log(resData);
+    res.status(statusCode).json(resData);
+});
+
 app.listen(5070);

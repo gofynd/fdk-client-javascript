@@ -9,7 +9,7 @@ class MemoryStorage extends BaseStorage {
     }
 
     async get(key) {
-        this.__data[key];
+        return this.__data[key];
     }
 
     async set(key, value) {

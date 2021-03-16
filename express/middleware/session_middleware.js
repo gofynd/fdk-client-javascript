@@ -9,14 +9,12 @@ function sessionMiddleware(strict) {
             req.fdkSession = await SessionStorage.getSession(sessionId);
     
             if(strict && !req.session) {
-                res.status(401).json({ "message": "unauthorized" });
-            } else {
-                next();
+                return res.status(401).json({ "message": "unauthorized" });
             }
+            next();
         } catch (error) {
             next(error);
         }
-       
     };
 }
 
