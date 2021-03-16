@@ -5,11 +5,11 @@
 * [Cart](#Cart) - Cart APIs 
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
-* [Content](#Content) - Content 
+* [User](#User) - Authentication Service 
+* [Content](#Content) - Content System 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and QR Code 
 * [FileStorage](#FileStorage) - File Storage 
-* [Configuration](#Configuration) - Application configuration apis 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [Rewards](#Rewards) - Earn and redeem Reward Points 
@@ -99,6 +99,42 @@
     * [getThemeForPreview](#getthemeforpreview)
     
 
+* [User](#User)
+  * Methods
+    * [loginWithFacebook](#loginwithfacebook)
+    * [loginWithGoogle](#loginwithgoogle)
+    * [loginWithGoogleAndroid](#loginwithgoogleandroid)
+    * [loginWithGoogleIOS](#loginwithgoogleios)
+    * [loginWithOTP](#loginwithotp)
+    * [loginWithEmailAndPassword](#loginwithemailandpassword)
+    * [sendResetPasswordEmail](#sendresetpasswordemail)
+    * [forgotPassword](#forgotpassword)
+    * [sendResetToken](#sendresettoken)
+    * [loginWithToken](#loginwithtoken)
+    * [registerWithForm](#registerwithform)
+    * [verifyEmail](#verifyemail)
+    * [verifyMobile](#verifymobile)
+    * [hasPassword](#haspassword)
+    * [updatePassword](#updatepassword)
+    * [logout](#logout)
+    * [sendOTPOnMobile](#sendotponmobile)
+    * [verifyMobileOTP](#verifymobileotp)
+    * [sendOTPOnEmail](#sendotponemail)
+    * [verifyEmailOTP](#verifyemailotp)
+    * [getLoggedInUser](#getloggedinuser)
+    * [getListOfActiveSessions](#getlistofactivesessions)
+    * [getPlatformConfig](#getplatformconfig)
+    * [updateProfile](#updateprofile)
+    * [addMobileNumber](#addmobilenumber)
+    * [deleteMobileNumber](#deletemobilenumber)
+    * [setMobileNumberAsPrimary](#setmobilenumberasprimary)
+    * [sendVerificationLinkToMobile](#sendverificationlinktomobile)
+    * [addEmail](#addemail)
+    * [deleteEmail](#deleteemail)
+    * [setEmailAsPrimary](#setemailasprimary)
+    * [sendVerificationLinkToEmail](#sendverificationlinktoemail)
+    
+
 * [Content](#Content)
   * Methods
     * [getAnnouncements](#getannouncements)
@@ -140,23 +176,6 @@
   * Methods
     * [completeUpload](#completeupload)
     * [startUpload](#startupload)
-    
-
-* [Configuration](#Configuration)
-  * Methods
-    * [getApplication](#getapplication)
-    * [getOwnerInfo](#getownerinfo)
-    * [getBasicDetails](#getbasicdetails)
-    * [getIntegrationTokens](#getintegrationtokens)
-    * [getAppVersion](#getappversion)
-    * [getOrderingStores](#getorderingstores)
-    * [getFeatures](#getfeatures)
-    * [getContactInfo](#getcontactinfo)
-    * [getCurrencies](#getcurrencies)
-    * [getCurrencyById](#getcurrencybyid)
-    * [getLanguages](#getlanguages)
-    * [removeOrderingStoreCookie](#removeorderingstorecookie)
-    * [getAppStaffs](#getappstaffs)
     
 
 * [Payment](#Payment)
@@ -2916,10 +2935,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = cart.applyCoupon(body,i,b,p);
+const promise = cart.applyCoupon(body,i,b,p,uid);
 
 // Async/Await
-const data = await cart.applyCoupon(body,i,b,p);
+const data = await cart.applyCoupon(body,i,b,p,uid);
 ```
 
 | Argument  |  Type  | Description |
@@ -2927,6 +2946,7 @@ const data = await cart.applyCoupon(body,i,b,p);
 | i | boolean |  | 
 | b | boolean |  | 
 | p | boolean |  | 
+| uid | integer |  | 
 
 <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
 </ul>
@@ -3384,10 +3404,10 @@ Get Cart Payment for valid coupon
 
 ```javascript
 // Promise
-const promise = cart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+const promise = cart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode,action,type);
 
 // Async/Await
-const data = await cart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+const data = await cart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode,action,type);
 ```
 
 | Argument  |  Type  | Description |
@@ -3398,6 +3418,8 @@ const data = await cart.getPaymentModes(uid,addressId,paymentMode,paymentIdentif
 | paymentIdentifier | string |  | 
 | aggregatorName | string |  | 
 | merchantCode | string |  | 
+| action | string |  | 
+| type | string |  | 
 
 Validate coupon for selected payment mode
 
@@ -3408,7 +3430,7 @@ Validate coupon for selected payment mode
 Cart response with payment options
 
 
-Schema: `PaymentOptions`
+Schema: `ValidateCouponPaymentMode`
 
 
 
@@ -3445,7 +3467,7 @@ Update Cart Payment for Your Account
 Cart response with payment options
 
 
-Schema: `PaymentOptions`
+Schema: `CartResponse`
 
 
 
@@ -6188,6 +6210,2178 @@ Schema: `BlitzkriegApiError`
 ---
 
 
+## User
+
+
+#### loginWithFacebook
+Login/Register with Facebook
+
+```javascript
+// Promise
+const promise = user.loginWithFacebook(body);
+
+// Async/Await
+const data = await user.loginWithFacebook(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Facebook
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogle
+Login/Register with Google
+
+```javascript
+// Promise
+const promise = user.loginWithGoogle(body);
+
+// Async/Await
+const data = await user.loginWithGoogle(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogleAndroid
+Login/Register with Google for android
+
+```javascript
+// Promise
+const promise = user.loginWithGoogleAndroid(body);
+
+// Async/Await
+const data = await user.loginWithGoogleAndroid(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with Google for android
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithGoogleIOS
+Login/Register with Google for ios
+
+```javascript
+// Promise
+const promise = user.loginWithGoogleIOS(body);
+
+// Async/Await
+const data = await user.loginWithGoogleIOS(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with google for ios
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `AuthSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/AuthSuccess"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithOTP
+Login/Register with OTP
+
+```javascript
+// Promise
+const promise = user.loginWithOTP(body,platform);
+
+// Async/Await
+const data = await user.loginWithOTP(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to login or register with OTP
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `SendOtpResponse`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/SendOtpResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithEmailAndPassword
+Login/Register with password
+
+```javascript
+// Promise
+const promise = user.loginWithEmailAndPassword(body);
+
+// Async/Await
+const data = await user.loginWithEmailAndPassword(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to login or register with email & password
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendResetPasswordEmail
+Reset Password
+
+```javascript
+// Promise
+const promise = user.sendResetPasswordEmail(body,platform);
+
+// Async/Await
+const data = await user.sendResetPasswordEmail(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to reset account password
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `ResetPasswordSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### forgotPassword
+
+
+```javascript
+// Promise
+const promise = user.forgotPassword(body);
+
+// Async/Await
+const data = await user.forgotPassword(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendResetToken
+
+
+```javascript
+// Promise
+const promise = user.sendResetToken(body);
+
+// Async/Await
+const data = await user.sendResetToken(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Send code incase of reset password
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `ResetPasswordSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### loginWithToken
+Login/Register with token
+
+```javascript
+// Promise
+const promise = user.loginWithToken(body);
+
+// Async/Await
+const data = await user.loginWithToken(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Login/Register with token
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `object`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### registerWithForm
+Registration Form
+
+```javascript
+// Promise
+const promise = user.registerWithForm(body,platform);
+
+// Async/Await
+const data = await user.registerWithForm(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Register using form
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `RegisterFormSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyEmail
+Verify email
+
+```javascript
+// Promise
+const promise = user.verifyEmail(body);
+
+// Async/Await
+const data = await user.verifyEmail(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to verify email
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `VerifyEmailSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyMobile
+Verify mobile
+
+```javascript
+// Promise
+const promise = user.verifyMobile(body);
+
+// Async/Await
+const data = await user.verifyMobile(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Verify mobile
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `VerifyEmailSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### hasPassword
+Check if user has password
+
+```javascript
+// Promise
+const promise = user.hasPassword();
+
+// Async/Await
+const data = await user.hasPassword();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Checks if user is using password or not
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `HasPasswordSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePassword
+Update user password
+
+```javascript
+// Promise
+const promise = user.updatePassword(body);
+
+// Async/Await
+const data = await user.updatePassword(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to update user password
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `VerifyEmailSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### logout
+Logout user
+
+```javascript
+// Promise
+const promise = user.logout();
+
+// Async/Await
+const data = await user.logout();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to log out user
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `LogoutSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendOTPOnMobile
+Send OTP on mobile
+
+```javascript
+// Promise
+const promise = user.sendOTPOnMobile(body,platform);
+
+// Async/Await
+const data = await user.sendOTPOnMobile(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to mobile
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `OtpSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyMobileOTP
+Verify OTP on mobile
+
+```javascript
+// Promise
+const promise = user.verifyMobileOTP(body,platform);
+
+// Async/Await
+const data = await user.verifyMobileOTP(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to mobile
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `VerifyOtpSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendOTPOnEmail
+Send OTP on email
+
+```javascript
+// Promise
+const promise = user.sendOTPOnEmail(body,platform);
+
+// Async/Await
+const data = await user.sendOTPOnEmail(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send otp to email
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `EmailOtpSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### verifyEmailOTP
+Verify OTP on email
+
+```javascript
+// Promise
+const promise = user.verifyEmailOTP(body,platform);
+
+// Async/Await
+const data = await user.verifyEmailOTP(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to verify otp sent to email
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `VerifyOtpSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLoggedInUser
+Get logged in user
+
+```javascript
+// Promise
+const promise = user.getLoggedInUser();
+
+// Async/Await
+const data = await user.getLoggedInUser();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to get logged in user details
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `UserSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExample"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getListOfActiveSessions
+Get list of sessions
+
+```javascript
+// Promise
+const promise = user.getListOfActiveSessions();
+
+// Async/Await
+const data = await user.getListOfActiveSessions();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Lists all active sessions
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `SessionListSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPlatformConfig
+Get platform config
+
+```javascript
+// Promise
+const promise = user.getPlatformConfig(name);
+
+// Async/Await
+const data = await user.getPlatformConfig(name);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| name | string | Name | 
+
+Used to get platform config
+
+*Success Response:*
+
+
+
+Platform Config
+
+
+Schema: `PlatformSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateProfile
+Edit Profile Details
+
+```javascript
+// Promise
+const promise = user.updateProfile(body,platform);
+
+// Async/Await
+const data = await user.updateProfile(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to update profile
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addMobileNumber
+Add mobile number to profile
+
+```javascript
+// Promise
+const promise = user.addMobileNumber(body,platform);
+
+// Async/Await
+const data = await user.addMobileNumber(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new mobile number to profile
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `VerifyMobileOTPSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteMobileNumber
+Delete mobile number from profile
+
+```javascript
+// Promise
+const promise = user.deleteMobileNumber(active,primary,verified,countryCode,phone,platform);
+
+// Async/Await
+const data = await user.deleteMobileNumber(active,primary,verified,countryCode,phone,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Active mobile number | 
+| primary | boolean | Primary number | 
+| verified | boolean | Verified Number | 
+| countryCode | string | Country code of phone number | 
+| phone | string | Phone number | 
+
+Used to delete mobile number from profile
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### setMobileNumberAsPrimary
+Set mobile as primary
+
+```javascript
+// Promise
+const promise = user.setMobileNumberAsPrimary(body);
+
+// Async/Await
+const data = await user.setMobileNumberAsPrimary(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set a mobile number as primary
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendVerificationLinkToMobile
+Send verification link to mobile
+
+```javascript
+// Promise
+const promise = user.sendVerificationLinkToMobile(body,platform);
+
+// Async/Await
+const data = await user.sendVerificationLinkToMobile(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to send verification link to a mobile number
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `SendMobileVerifyLinkSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/VerifyMobileOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addEmail
+Add email to profile
+
+```javascript
+// Promise
+const promise = user.addEmail(body,platform);
+
+// Async/Await
+const data = await user.addEmail(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to add new email to profile
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `VerifyEmailOTPSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/VerifyEmailOTP"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteEmail
+Delete email from profile
+
+```javascript
+// Promise
+const promise = user.deleteEmail(active,primary,verified,email,platform);
+
+// Async/Await
+const data = await user.deleteEmail(active,primary,verified,email,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+| active | boolean | Whether email id is active | 
+| primary | boolean | Whether email id is primary email | 
+| verified | boolean | Whether email id is verified | 
+| email | string | Email ID to be deleted | 
+
+Used to delete email from profile
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### setEmailAsPrimary
+Set email as primary
+
+```javascript
+// Promise
+const promise = user.setEmailAsPrimary(body);
+
+// Async/Await
+const data = await user.setEmailAsPrimary(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Used to set an email as primart
+
+*Success Response:*
+
+
+
+A JSON object with user details
+
+
+Schema: `LoginSuccess`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/UserExampleObject"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### sendVerificationLinkToEmail
+Send verification link to email
+
+```javascript
+// Promise
+const promise = user.sendVerificationLinkToEmail(body,platform);
+
+// Async/Await
+const data = await user.sendVerificationLinkToEmail(body,platform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| platform | string | Platform | 
+
+Used to sent verification to an email
+
+*Success Response:*
+
+
+
+
+
+
+Schema: `SendEmailVerifyLinkSuccess`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Content
 
 
@@ -7815,548 +10009,6 @@ Schema: `FailedResponse`
 ---
 
 
-## Configuration
-
-
-#### getApplication
-Get current application details
-
-```javascript
-// Promise
-const promise = configuration.getApplication();
-
-// Async/Await
-const data = await configuration.getApplication();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get current application details.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Application`
-
-
-
-
-
-
-
-
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getOwnerInfo
-Get application, owner and seller information
-
-```javascript
-// Promise
-const promise = configuration.getOwnerInfo();
-
-// Async/Await
-const data = await configuration.getOwnerInfo();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get application information with owner and seller basic details
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationAboutResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getBasicDetails
-Get basic application details
-
-```javascript
-// Promise
-const promise = configuration.getBasicDetails();
-
-// Async/Await
-const data = await configuration.getBasicDetails();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get basic application details like name
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationDetail`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getIntegrationTokens
-Get integration tokens
-
-```javascript
-// Promise
-const promise = configuration.getIntegrationTokens();
-
-// Async/Await
-const data = await configuration.getIntegrationTokens();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `TokensResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAppVersion
-Check if a new app version is available
-
-```javascript
-// Promise
-const promise = configuration.getAppVersion(body);
-
-// Async/Await
-const data = await configuration.getAppVersion(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Before launching the app (android/iOS), check if a new version is available. Response gives 3 update modes viz. FORCE, AVAILABLE, UP_TO_DATE. `FORCE`- Application should be updated necessarily. `AVAILABLE`- A new version available. But its not necessary to update. `UP_TO_DATE`- Application is at the latest version. These 3 modes are computed at the backend based on the lastest version of app available and the oldest version of app supported by the system.
-
-*Success Response:*
-
-
-
-Android/IOS app version success response.
-
-
-Schema: `AppVersionResponse`
-
-
-
-
-
-
-
-
-Invalid app version api request data.
-
-
-Schema: `InvalidAppVersionRequest`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getOrderingStores
-Get deployment meta stores
-
-```javascript
-// Promise
-const promise = configuration.getOrderingStores(pageNo,pageSize,q);
-
-// Async/Await
-const data = await configuration.getOrderingStores(pageNo,pageSize,q);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| q | string | Search ordering store by name or store code | 
-
-Get deployment meta stores.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `OrderingStores`
-
-
-
-
-
-
-
-
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getFeatures
-Get features of application
-
-```javascript
-// Promise
-const promise = configuration.getFeatures();
-
-// Async/Await
-const data = await configuration.getFeatures();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get features of application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `AppFeatureResponse`
-
-
-
-
-
-
-
-
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getContactInfo
-Get application information
-
-```javascript
-// Promise
-const promise = configuration.getContactInfo();
-
-// Async/Await
-const data = await configuration.getContactInfo();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationInformation`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCurrencies
-Get application enabled currencies
-
-```javascript
-// Promise
-const promise = configuration.getCurrencies();
-
-// Async/Await
-const data = await configuration.getCurrencies();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get currency list for allowed currencies under current application
-
-*Success Response:*
-
-
-
-Currencies Success response
-
-
-Schema: `CurrenciesResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCurrencyById
-Get currency by id
-
-```javascript
-// Promise
-const promise = configuration.getCurrencyById(id);
-
-// Async/Await
-const data = await configuration.getCurrencyById(id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | string | Currency object id | 
-
-Get currency object with symbol and name information by id.
-
-*Success Response:*
-
-
-
-Success response
-
-
-Schema: `Currency`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getLanguages
-Get list of languages
-
-```javascript
-// Promise
-const promise = configuration.getLanguages();
-
-// Async/Await
-const data = await configuration.getLanguages();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Get list of supported languages under application.
-
-*Success Response:*
-
-
-
-Success response
-
-
-Schema: `LanguageResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### removeOrderingStoreCookie
-Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
-
-```javascript
-// Promise
-const promise = configuration.removeOrderingStoreCookie();
-
-// Async/Await
-const data = await configuration.removeOrderingStoreCookie();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Unset ordering store cookie.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAppStaffs
-Get Staff List.
-
-```javascript
-// Promise
-const promise = configuration.getAppStaffs(orderIncent,orderingStore,user);
-
-// Async/Await
-const data = await configuration.getAppStaffs(orderIncent,orderingStore,user);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| orderIncent | boolean | This is to check which staff members are applicable for order incentives. | 
-| orderingStore | integer | This is to filter staff members from only selected ordering store. | 
-| user | string | Get single staff member details using staff user mongo id | 
-
-Get a staff list based on the user's session token passed in the header.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `AppStaffResponse`
-
-
-
-
-
-
-
-
-Request failed with internal server error.
-
-
-Schema: `UnhandledError`
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
 ## Payment
 
 
@@ -8909,10 +10561,10 @@ Get All Valid Payment Options
 
 ```javascript
 // Promise
-const promise = payment.getPaymentModeRoutes(amount,cartId,pincode,checkoutMode,refresh,assignCardId,deliveryAddress);
+const promise = payment.getPaymentModeRoutes(amount,cartId,pincode,checkoutMode,refresh,assignCardId,userDetails);
 
 // Async/Await
-const data = await payment.getPaymentModeRoutes(amount,cartId,pincode,checkoutMode,refresh,assignCardId,deliveryAddress);
+const data = await payment.getPaymentModeRoutes(amount,cartId,pincode,checkoutMode,refresh,assignCardId,userDetails);
 ```
 
 | Argument  |  Type  | Description |
@@ -8923,7 +10575,7 @@ const data = await payment.getPaymentModeRoutes(amount,cartId,pincode,checkoutMo
 | checkoutMode | string | Checkout mode | 
 | refresh | boolean |  | 
 | assignCardId | string | selected card id | 
-| deliveryAddress | string | URIencoded json delivery address of cart for annonymous user | 
+| userDetails | string | URIencoded json annonymous user | 
 
 Use this API to get Get All Valid Payment Options for making payment
 
@@ -8976,10 +10628,10 @@ Get All Valid Payment Options for POS
 
 ```javascript
 // Promise
-const promise = payment.getPosPaymentModeRoutes(amount,cartId,pincode,checkoutMode,orderType,refresh,assignCardId,deliveryAddress);
+const promise = payment.getPosPaymentModeRoutes(amount,cartId,pincode,checkoutMode,orderType,refresh,assignCardId,userDetails);
 
 // Async/Await
-const data = await payment.getPosPaymentModeRoutes(amount,cartId,pincode,checkoutMode,orderType,refresh,assignCardId,deliveryAddress);
+const data = await payment.getPosPaymentModeRoutes(amount,cartId,pincode,checkoutMode,orderType,refresh,assignCardId,userDetails);
 ```
 
 | Argument  |  Type  | Description |
@@ -8991,7 +10643,7 @@ const data = await payment.getPosPaymentModeRoutes(amount,cartId,pincode,checkou
 | refresh | boolean |  | 
 | assignCardId | string | selected card id | 
 | orderType | string | Order type | 
-| deliveryAddress | string | URIencoded json delivery address of cart for annonymous user | 
+| userDetails | string | URIencoded json annonymous user | 
 
 Use this API to get Get All Valid Payment Options for making payment
 
@@ -12673,10 +14325,10 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = poscart.applyCoupon(body,i,b,p);
+const promise = poscart.applyCoupon(body,i,b,p,uid);
 
 // Async/Await
-const data = await poscart.applyCoupon(body,i,b,p);
+const data = await poscart.applyCoupon(body,i,b,p,uid);
 ```
 
 | Argument  |  Type  | Description |
@@ -12684,6 +14336,7 @@ const data = await poscart.applyCoupon(body,i,b,p);
 | i | boolean |  | 
 | b | boolean |  | 
 | p | boolean |  | 
+| uid | integer |  | 
 
 <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
 </ul>
@@ -13141,10 +14794,10 @@ Get Cart Payment for valid coupon
 
 ```javascript
 // Promise
-const promise = poscart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+const promise = poscart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode,action,type);
 
 // Async/Await
-const data = await poscart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+const data = await poscart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode,action,type);
 ```
 
 | Argument  |  Type  | Description |
@@ -13155,6 +14808,8 @@ const data = await poscart.getPaymentModes(uid,addressId,paymentMode,paymentIden
 | paymentIdentifier | string |  | 
 | aggregatorName | string |  | 
 | merchantCode | string |  | 
+| action | string |  | 
+| type | string |  | 
 
 Validate coupon for selected payment mode
 
@@ -13165,7 +14820,7 @@ Validate coupon for selected payment mode
 Cart response with payment options
 
 
-Schema: `PaymentOptions`
+Schema: `ValidateCouponPaymentMode`
 
 
 
@@ -13202,7 +14857,7 @@ Update Cart Payment for Your Account
 Cart response with payment options
 
 
-Schema: `PaymentOptions`
+Schema: `CartResponse`
 
 
 

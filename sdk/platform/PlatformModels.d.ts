@@ -23,9 +23,9 @@ export class Lead {
       * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
       * @description: Gets the list of company level tickets and/or ticket filters
       * @param {Object} arg - arg object.
-        * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
-       * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
-       * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
+      * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
+      * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
       
       **/
     getTicketsPaginator({ items, filters, pageSize }?: {
@@ -219,17 +219,6 @@ export class CompanyProfile {
       **/
     getCompanyMetrics({}?: any): any;
     /**
-      *
-      * @summary: Get a single brand.
-      * @description: This API helps to get data associated to a particular brand.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.brandId - Id of the brand to be viewed.
-      
-      **/
-    getBrand({ brandId }?: {
-        brandId: string;
-    }): any;
-    /**
      *
      * @summary: Edit a brand.
      * @description: This API allows to edit meta of a brand.
@@ -242,21 +231,22 @@ export class CompanyProfile {
         body: any;
     }): any;
     /**
+      *
+      * @summary: Get a single brand.
+      * @description: This API helps to get data associated to a particular brand.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.brandId - Id of the brand to be viewed.
+      
+      **/
+    getBrand({ brandId }?: {
+        brandId: string;
+    }): any;
+    /**
      *
      * @summary: Create a Brand.
      * @description: This API allows to create a brand associated to a company.
      * @param {Object} arg - arg object.
      * @param {CreateUpdateBrandRequestSerializer} arg.body
-     **/
-    createBrand({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Create a company brand mapping.
-     * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
-     * @param {Object} arg - arg object.
-     * @param {CompanyBrandPostRequestSerializer} arg.body
      **/
     createBrand({ body }?: {
         body: any;
@@ -269,6 +259,16 @@ export class CompanyProfile {
       
       **/
     getBrands({}?: any): any;
+    /**
+     *
+     * @summary: Create a location asscoiated to a company.
+     * @description: This API allows to create a location associated to a company.
+     * @param {Object} arg - arg object.
+     * @param {LocationSerializer} arg.body
+     **/
+    createLocation({ body }?: {
+        body: any;
+    }): any;
     /**
       *
       * @summary: Get list of locations
@@ -290,12 +290,14 @@ export class CompanyProfile {
     }): any;
     /**
      *
-     * @summary: Create a location asscoiated to a company.
-     * @description: This API allows to create a location associated to a company.
+     * @summary: Edit a location asscoiated to a company.
+     * @description: This API allows to edit a location associated to a company.
      * @param {Object} arg - arg object.
+     * @param {string} arg.locationId - Id of the location which you want to edit.
      * @param {LocationSerializer} arg.body
      **/
-    createLocation({ body }?: {
+    updateLocation({ locationId, body }?: {
+        locationId: string;
         body: any;
     }): any;
     /**
@@ -308,18 +310,6 @@ export class CompanyProfile {
       **/
     getLocationDetail({ locationId }?: {
         locationId: string;
-    }): any;
-    /**
-     *
-     * @summary: Edit a location asscoiated to a company.
-     * @description: This API allows to edit a location associated to a company.
-     * @param {Object} arg - arg object.
-     * @param {string} arg.locationId - Id of the location which you want to edit.
-     * @param {LocationSerializer} arg.body
-     **/
-    updateLocation({ locationId, body }?: {
-        locationId: string;
-        body: any;
     }): any;
 }
 export class Inventory {

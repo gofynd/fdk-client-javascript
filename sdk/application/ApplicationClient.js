@@ -3,11 +3,11 @@ const {
   Cart,
   Lead,
   Theme,
+  User,
   Content,
   Communication,
   Share,
   FileStorage,
-  Configuration,
   Payment,
   Order,
   Rewards,
@@ -22,11 +22,11 @@ class ApplicationClient {
     this.cart = new Cart(config);
     this.lead = new Lead(config);
     this.theme = new Theme(config);
+    this.user = new User(config);
     this.content = new Content(config);
     this.communication = new Communication(config);
     this.share = new Share(config);
     this.fileStorage = new FileStorage(config);
-    this.configuration = new Configuration(config);
     this.payment = new Payment(config);
     this.order = new Order(config);
     this.rewards = new Rewards(config);

@@ -4,8 +4,11 @@ declare class OAuthClient {
     config: any;
     token: any;
     refreshToken: any;
+    retryOAuthTokenTimer: NodeJS.Timeout;
+    getAccessToken(): any;
     setToken(token: any): void;
+    retryOAuthToken(expires_in: any): void;
     startAuthorization(options: any): string;
     verifyCallback(query: any): Promise<void>;
-    getAccessToken(): Promise<any>;
+    renewAccessToken(): Promise<void>;
 }

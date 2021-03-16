@@ -9,7 +9,7 @@ class APIClient {
    * @param  {object} body
    */
   static execute(conf, method, url, query, body) {
-    const token = conf.oauthClient.token;
+    const token = conf.oauthClient.getAccessToken();
 
     const rawRequest = {
       method: method,

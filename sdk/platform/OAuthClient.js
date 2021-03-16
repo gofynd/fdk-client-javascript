@@ -17,13 +17,30 @@ class OAuthClient {
     this.config = config;
     this.token = null;
     this.refreshToken = null;
+    this.retryOAuthTokenTimer = null;
+  }
+
+  getAccessToken() {
+    return this.token;
   }
 
   setToken(token) {
-    this.token = token;
-    this.refreshToken = this.token.refresh_token
-      ? this.token.refresh_token
-      : null;
+    this.token = token.access_token;
+    this.refreshToken = token.refresh_token ? token.refresh_token : null;
+    if (this.refreshToken) {
+      this.retryOAuthToken(token.expires_in);
+    }
+  }
+
+  retryOAuthToken(expires_in) {
+    if (this.retryOAuthTokenTimer) {
+      clearTimeout(this.retryOAuthTokenTimer);
+    }
+    if (expires_in > 60) {
+      this.retryOAuthTokenTimer = setTimeout(() => {
+        renewAccessToken();
+      }, (expires_in - 60) * 1000);
+    }
   }
 
   startAuthorization(options) {
@@ -78,8 +95,7 @@ class OAuthClient {
         },
       };
       let res = await fdkAxios.request(rawRequest);
-      this.token = res;
-      this.refreshToken = this.token.refresh_token;
+      this.setToken(res);
     } catch (error) {
       if (error.isAxiosError) {
         throw new FdkTokenIssueError(error.message);
@@ -87,14 +103,7 @@ class OAuthClient {
       throw error;
     }
   }
-  async getAccessToken() {
-    if (this.token) {
-      // Add check verify expiry
-      return this.token;
-    }
-    if (!this.refreshToken) {
-      return null;
-    }
+  async renewAccessToken() {
     try {
       let data = querystring.stringify({
         grant_type: "refresh_token",
@@ -114,9 +123,8 @@ class OAuthClient {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       };
-      let result = await fdkAxios.request(rawRequest);
-      this.token = result;
-      this.refreshToken = this.token.refresh_token;
+      let res = await fdkAxios.request(rawRequest);
+      this.setToken(res);
     } catch (error) {
       if (error.isAxiosError) {
         throw new FdkTokenIssueError(error.message);
