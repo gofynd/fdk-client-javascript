@@ -1,4 +1,9 @@
-const { Lead, Payment } = require("./PlatformModels");
+const {
+  Lead,
+  Payment,
+  CompanyProfile,
+  Inventory,
+} = require("./PlatformModels");
 const Application = require("./PlatformApplicationClient");
 
 class PlatformClient {
@@ -6,6 +11,8 @@ class PlatformClient {
     this.config = config;
     this.lead = new Lead(config);
     this.payment = new Payment(config);
+    this.companyProfile = new CompanyProfile(config);
+    this.inventory = new Inventory(config);
   }
   application(applicationId) {
     return new Application(applicationId, this.config);

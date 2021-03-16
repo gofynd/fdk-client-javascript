@@ -4,6 +4,8 @@
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
 * [Theme](#Theme) - Responsible for themes 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
+* [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
+* [Inventory](#Inventory) -  
 
 ----
 ----
@@ -70,6 +72,33 @@
     * [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
     * [getSubscriptionConfig](#getsubscriptionconfig)
     * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
+    
+
+* [CompanyProfile](#CompanyProfile)
+  * Methods
+    * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
+    * [getCompanyMetrics](#getcompanymetrics)
+    * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
+    * [createBrand](#createbrand)
+    * [getBrands](#getbrands)
+    * [createBrand](#createbrand)
+    * [getLocations](#getlocations)
+    * [createLocation](#createlocation)
+    * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
+    
+
+* [Inventory](#Inventory)
+  * Methods
+    * [getJobsByCompany](#getjobsbycompany)
+    * [updateJob](#updatejob)
+    * [createJob](#createjob)
+    * [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
+    * [getJobConfigDefaults](#getjobconfigdefaults)
+    * [getJobByCode](#getjobbycode)
+    * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
     
 
 
@@ -5389,6 +5418,1091 @@ Internal Server Error
 
 
 Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## CompanyProfile
+
+
+#### updateCompany
+Edit company profile
+
+```javascript
+// Promise
+const promise = companyprofile.updateCompany(companyId,body);
+
+// Async/Await
+const data = await companyprofile.updateCompany(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to edit the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Returns a success message
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cbsOnboardGet
+Get company profile
+
+```javascript
+// Promise
+const promise = companyprofile.cbsOnboardGet(companyId);
+
+// Async/Await
+const data = await companyprofile.cbsOnboardGet(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to view the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+
+
+Schema: `GetCompanyProfileSerializerResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCompanyMetrics
+Get company metrics
+
+```javascript
+// Promise
+const promise = companyprofile.getCompanyMetrics(companyId);
+
+// Async/Await
+const data = await companyprofile.getCompanyMetrics(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
+
+*Success Response:*
+
+
+
+Metrics response object. See example below or refer `MetricsSerializer` for details
+
+
+Schema: `MetricsSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBrand
+Get a single brand.
+
+```javascript
+// Promise
+const promise = companyprofile.getBrand(companyId,brandId);
+
+// Async/Await
+const data = await companyprofile.getBrand(companyId,brandId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editBrand
+Edit a brand.
+
+```javascript
+// Promise
+const promise = companyprofile.editBrand(companyId,brandId,body);
+
+// Async/Await
+const data = await companyprofile.editBrand(companyId,brandId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API allows to edit meta of a brand.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createBrand
+Create a Brand.
+
+```javascript
+// Promise
+const promise = companyprofile.createBrand(companyId,body);
+
+// Async/Await
+const data = await companyprofile.createBrand(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company. | 
+
+This API allows to create a brand associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBrands
+Get brands associated to a company
+
+```javascript
+// Promise
+const promise = companyprofile.getBrands(companyId);
+
+// Async/Await
+const data = await companyprofile.getBrands(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company. | 
+
+This API helps to get view brands associated to a particular company.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `CompanyBrandListSerializer` for details
+
+
+Schema: `CompanyBrandListSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createBrand
+Create a company brand mapping.
+
+```javascript
+// Promise
+const promise = companyprofile.createBrand(companyId,body);
+
+// Async/Await
+const data = await companyprofile.createBrand(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the brand is to be mapped. | 
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLocations
+Get list of locations
+
+```javascript
+// Promise
+const promise = companyprofile.getLocations(companyId,storeType,q,stage,pageNo,pageSize);
+
+// Async/Await
+const data = await companyprofile.getLocations(companyId,storeType,q,stage,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company whose locations are to fetched | 
+| storeType | string | Helps to sort the location list on the basis of location type. | 
+| q | string | Query that is to be searched. | 
+| stage | string | to filter companies on basis of verified or unverified companies. | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+
+This API allows to view all the locations asscoiated to a company.
+
+*Success Response:*
+
+
+
+Company profile object. See example below or refer `LocationListSerializer` for details
+
+
+Schema: `LocationListSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createLocation
+Create a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.createLocation(companyId,body);
+
+// Async/Await
+const data = await companyprofile.createLocation(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+
+This API allows to create a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLocationDetail
+Get details of a specific location.
+
+```javascript
+// Promise
+const promise = companyprofile.getLocationDetail(companyId,locationId);
+
+// Async/Await
+const data = await companyprofile.getLocationDetail(companyId,locationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location lies. | 
+| locationId | string | Id of the location which you want to view. | 
+
+This API helps to get data associated to a specific location.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.updateLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Inventory
+
+
+#### getJobsByCompany
+Get Job Configs For A Company
+
+```javascript
+// Promise
+const promise = inventory.getJobsByCompany(companyId,pageNo,pageSize);
+
+// Async/Await
+const data = await inventory.getJobsByCompany(companyId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| pageNo | integer | Page Number | 
+| pageSize | integer | Page Size | 
+
+REST Endpoint that returns all job configs for a company
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateJob
+Updates An Existing Job Config
+
+```javascript
+// Promise
+const promise = inventory.updateJob(companyId,body,xUserData);
+
+// Async/Await
+const data = await inventory.updateJob(companyId,body,xUserData);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| xUserData | string |  | 
+
+REST Endpoint that updates a job config
+
+*Success Response:*
+
+
+
+Job Config Updated Successfully
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Unauthorized
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createJob
+Creates A New Job Config
+
+```javascript
+// Promise
+const promise = inventory.createJob(companyId,body,xUserData);
+
+// Async/Await
+const data = await inventory.createJob(companyId,body,xUserData);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| xUserData | string |  | 
+
+REST Endpoint that creates a new job config
+
+*Success Response:*
+
+
+
+Job Config Created Successfully
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Unauthorized
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Job Config Already Exists
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobByCompanyAndIntegration
+Get Job Configs By Company And Integration
+
+```javascript
+// Promise
+const promise = inventory.getJobByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+
+// Async/Await
+const data = await inventory.getJobByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| integrationId | string | Integration Id | 
+| pageNo | integer | Page Number | 
+| pageSize | integer | Page Size | 
+
+REST Endpoint that returns all job configs by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobConfigDefaults
+Get Job Configs Defaults
+
+```javascript
+// Promise
+const promise = inventory.getJobConfigDefaults(companyId);
+
+// Async/Await
+const data = await inventory.getJobConfigDefaults(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+REST Endpoint that returns default fields job configs by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobByCode
+Get Job Config By Code
+
+```javascript
+// Promise
+const promise = inventory.getJobByCode(companyId,code);
+
+// Async/Await
+const data = await inventory.getJobByCode(companyId,code);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| code | string | Job Code | 
+
+REST Endpoint that returns job config by code
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobCodesByCompanyAndIntegration
+Get Job Codes By Company And Integration
+
+```javascript
+// Promise
+const promise = inventory.getJobCodesByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+
+// Async/Await
+const data = await inventory.getJobCodesByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| integrationId | string | Integration Id | 
+| pageNo | integer | Page Number | 
+| pageSize | integer | Page Size | 
+
+REST Endpoint that returns all job codes by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
 
 
 
