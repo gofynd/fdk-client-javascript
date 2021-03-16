@@ -71,7 +71,7 @@ class OAuthClient {
       const rawRequest = {
         method: "post",
         url: url,
-        data: reqData,
+        data: querystring.stringify(reqData),
         headers: {
           Authorization: `Basic ${token}`,
           "Content-Type": "application/x-www-form-urlencoded",

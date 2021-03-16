@@ -3,7 +3,6 @@ const {
   Cart,
   Lead,
   Theme,
-  User,
   Content,
   Communication,
   Share,
@@ -23,7 +22,6 @@ class ApplicationClient {
     this.cart = new Cart(config);
     this.lead = new Lead(config);
     this.theme = new Theme(config);
-    this.user = new User(config);
     this.content = new Content(config);
     this.communication = new Communication(config);
     this.share = new Share(config);

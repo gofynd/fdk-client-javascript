@@ -336,19 +336,6 @@ export class Catalog {
     }): any;
     /**
       *
-      * @summary: Follow a particular Product
-      * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-      * @param {Object} arg - arg object.
-      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-      * @param {number} arg.collectionId - the `id` of the collection type you want to follow
-      
-      **/
-    followById({ collectionType, collectionId }?: {
-        collectionType: string;
-        collectionId: number;
-    }): any;
-    /**
-      *
       * @summary: UnFollow a Product
       * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
       * @param {Object} arg - arg object.
@@ -357,6 +344,19 @@ export class Catalog {
       
       **/
     unfollowById({ collectionType, collectionId }?: {
+        collectionType: string;
+        collectionId: number;
+    }): any;
+    /**
+      *
+      * @summary: Follow a particular Product
+      * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+      * @param {Object} arg - arg object.
+      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+      * @param {number} arg.collectionId - the `id` of the collection type you want to follow
+      
+      **/
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: number;
     }): any;
@@ -833,367 +833,6 @@ export class Theme {
       **/
     getThemeForPreview({ themeId }?: {
         themeId: string;
-    }): any;
-}
-export class User {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-     *
-     * @summary: Login/Register with Facebook
-     * @description: Used to login or register with Facebook
-     * @param {Object} arg - arg object.
-     * @param {OAuthRequestSchema} arg.body
-     **/
-    loginWithFacebook({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with Google
-     * @description: Used to login or register with Google
-     * @param {Object} arg - arg object.
-     * @param {OAuthRequestSchema} arg.body
-     **/
-    loginWithGoogle({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with Google for android
-     * @description: Used to login or register with Google for android
-     * @param {Object} arg - arg object.
-     * @param {OAuthRequestSchema} arg.body
-     **/
-    loginWithGoogleAndroid({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with Google for ios
-     * @description: Used to login or register with google for ios
-     * @param {Object} arg - arg object.
-     * @param {OAuthRequestSchema} arg.body
-     **/
-    loginWithGoogleIOS({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with OTP
-     * @description: Used to login or register with OTP
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {SendOtpRequestSchema} arg.body
-     **/
-    loginWithOTP({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with password
-     * @description: Used to login or register with email & password
-     * @param {Object} arg - arg object.
-     * @param {PasswordLoginRequestSchema} arg.body
-     **/
-    loginWithEmailAndPassword({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Reset Password
-     * @description: Used to reset account password
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {SendResetPasswordEmailRequestSchema} arg.body
-     **/
-    sendResetPasswordEmail({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary:
-     * @description:
-     * @param {Object} arg - arg object.
-     * @param {ForgotPasswordRequestSchema} arg.body
-     **/
-    forgotPassword({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary:
-     * @description: Send code incase of reset password
-     * @param {Object} arg - arg object.
-     * @param {CodeRequestBodySchema} arg.body
-     **/
-    sendResetToken({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with token
-     * @description: Login/Register with token
-     * @param {Object} arg - arg object.
-     * @param {TokenRequestBodySchema} arg.body
-     **/
-    loginWithToken({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Registration Form
-     * @description: Register using form
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {FormRegisterRequestSchema} arg.body
-     **/
-    registerWithForm({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Verify email
-     * @description: Used to verify email
-     * @param {Object} arg - arg object.
-     * @param {CodeRequestBodySchema} arg.body
-     **/
-    verifyEmail({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Verify mobile
-     * @description: Verify mobile
-     * @param {Object} arg - arg object.
-     * @param {CodeRequestBodySchema} arg.body
-     **/
-    verifyMobile({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Check if user has password
-      * @description: Checks if user is using password or not
-      * @param {Object} arg - arg object.
-      
-      **/
-    hasPassword({}?: any): any;
-    /**
-     *
-     * @summary: Update user password
-     * @description: Used to update user password
-     * @param {Object} arg - arg object.
-     * @param {UpdatePasswordRequestSchema} arg.body
-     **/
-    updatePassword({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Logout user
-      * @description: Used to log out user
-      * @param {Object} arg - arg object.
-      
-      **/
-    logout({}?: any): any;
-    /**
-     *
-     * @summary: Send OTP on mobile
-     * @description: Used to send otp to mobile
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {SendMobileOtpRequestSchema} arg.body
-     **/
-    sendOTPOnMobile({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Verify OTP on mobile
-     * @description: Used to verify otp sent to mobile
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {VerifyOtpRequestSchema} arg.body
-     **/
-    verifyMobileOTP({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Send OTP on email
-     * @description: Used to send otp to email
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {SendEmailOtpRequestSchema} arg.body
-     **/
-    sendOTPOnEmail({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Verify OTP on email
-     * @description: Used to verify otp sent to email
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {VerifyOtpRequestSchema} arg.body
-     **/
-    verifyEmailOTP({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get logged in user
-      * @description: Used to get logged in user details
-      * @param {Object} arg - arg object.
-      
-      **/
-    getLoggedInUser({}?: any): any;
-    /**
-      *
-      * @summary: Get list of sessions
-      * @description: Lists all active sessions
-      * @param {Object} arg - arg object.
-      
-      **/
-    getListOfActiveSessions({}?: any): any;
-    /**
-      *
-      * @summary: Get platform config
-      * @description: Used to get platform config
-      * @param {Object} arg - arg object.
-      * @param {string} [arg.name] - Name
-      
-      **/
-    getPlatformConfig({ name }?: {
-        name?: string;
-    }): any;
-    /**
-     *
-     * @summary: Edit Profile Details
-     * @description: Used to update profile
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {EditProfileRequestSchema} arg.body
-     **/
-    updateProfile({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Add mobile number to profile
-     * @description: Used to add new mobile number to profile
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {EditMobileRequestSchema} arg.body
-     **/
-    addMobileNumber({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Delete mobile number from profile
-      * @description: Used to delete mobile number from profile
-      * @param {Object} arg - arg object.
-      * @param {string} [arg.platform] - Platform
-      * @param {boolean} arg.active - Active mobile number
-      * @param {boolean} arg.primary - Primary number
-      * @param {boolean} arg.verified - Verified Number
-      * @param {string} arg.countryCode - Country code of phone number
-      * @param {string} arg.phone - Phone number
-      
-      **/
-    deleteMobileNumber({ active, primary, verified, countryCode, phone, platform, }?: {
-        platform?: string;
-        active: boolean;
-        primary: boolean;
-        verified: boolean;
-        countryCode: string;
-        phone: string;
-    }): any;
-    /**
-     *
-     * @summary: Set mobile as primary
-     * @description: Used to set a mobile number as primary
-     * @param {Object} arg - arg object.
-     * @param {SendVerificationLinkMobileRequestSchema} arg.body
-     **/
-    setMobileNumberAsPrimary({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Send verification link to mobile
-     * @description: Used to send verification link to a mobile number
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {SendVerificationLinkMobileRequestSchema} arg.body
-     **/
-    sendVerificationLinkToMobile({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Add email to profile
-     * @description: Used to add new email to profile
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {EditEmailRequestSchema} arg.body
-     **/
-    addEmail({ body, platform }?: {
-        platform?: string;
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Delete email from profile
-      * @description: Used to delete email from profile
-      * @param {Object} arg - arg object.
-      * @param {string} [arg.platform] - Platform
-      * @param {boolean} arg.active - Whether email id is active
-      * @param {boolean} arg.primary - Whether email id is primary email
-      * @param {boolean} arg.verified - Whether email id is verified
-      * @param {string} arg.email - Email ID to be deleted
-      
-      **/
-    deleteEmail({ active, primary, verified, email, platform }?: {
-        platform?: string;
-        active: boolean;
-        primary: boolean;
-        verified: boolean;
-        email: string;
-    }): any;
-    /**
-     *
-     * @summary: Set email as primary
-     * @description: Used to set an email as primart
-     * @param {Object} arg - arg object.
-     * @param {EditEmailRequestSchema} arg.body
-     **/
-    setEmailAsPrimary({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Send verification link to email
-     * @description: Used to sent verification to an email
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {EditEmailRequestSchema} arg.body
-     **/
-    sendVerificationLinkToEmail({ body, platform }?: {
-        platform?: string;
-        body: any;
     }): any;
 }
 export class Content {
@@ -1747,7 +1386,7 @@ export class Payment {
       * @param {Object} arg - arg object.
       * @param {number} arg.amount - Payment amount
       * @param {string} arg.cartId - Cart id
-      * @param {number} arg.pincode - Pincode
+      * @param {string} arg.pincode - Pincode
       * @param {string} arg.checkoutMode - Checkout mode
       * @param {boolean} [arg.refresh] -
       * @param {string} [arg.assignCardId] - selected card id
@@ -1757,7 +1396,7 @@ export class Payment {
     getPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, refresh, assignCardId, deliveryAddress, }?: {
         amount: number;
         cartId: string;
-        pincode: number;
+        pincode: string;
         checkoutMode: string;
         refresh?: boolean;
         assignCardId?: string;
@@ -1770,7 +1409,7 @@ export class Payment {
       * @param {Object} arg - arg object.
       * @param {number} arg.amount - Payment amount
       * @param {string} arg.cartId - Cart id
-      * @param {number} arg.pincode - Pincode
+      * @param {string} arg.pincode - Pincode
       * @param {string} arg.checkoutMode - Checkout mode
       * @param {boolean} [arg.refresh] -
       * @param {string} [arg.assignCardId] - selected card id
@@ -1781,7 +1420,7 @@ export class Payment {
     getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, assignCardId, deliveryAddress, }?: {
         amount: number;
         cartId: string;
-        pincode: number;
+        pincode: string;
         checkoutMode: string;
         refresh?: boolean;
         assignCardId?: string;
@@ -2654,11 +2293,11 @@ export class PosCart {
      * @summary: Checkout Cart
      * @description: Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
      * @param {Object} arg - arg object.
-     * @param {boolean} [arg.uid] -
+     * @param {number} [arg.uid] -
      * @param {CartCheckoutRequest} arg.body
      **/
     checkoutCart({ body, uid }?: {
-        uid?: boolean;
+        uid?: number;
         body: any;
     }): any;
     /**
@@ -2750,11 +2389,11 @@ export class Logistic {
       * @summary: Get City from Pincode
       * @description: Get City from Pincode
       * @param {Object} arg - arg object.
-      * @param {number} arg.pincode - Pincode
+      * @param {string} arg.pincode - Pincode
       
       **/
     getPincodeCity({ pincode }?: {
-        pincode: number;
+        pincode: string;
     }): any;
 }
 import Paginator = require("../common/Paginator");

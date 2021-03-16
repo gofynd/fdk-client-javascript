@@ -591,27 +591,6 @@ class Catalog {
 
   /**
     *
-    * @summary: Follow a particular Product
-    * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-    * @param {number} arg.collectionId - the `id` of the collection type you want to follow
-    
-    **/
-  followById({ collectionType, collectionId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
     * @summary: UnFollow a Product
     * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
     * @param {Object} arg - arg object.
@@ -625,6 +604,27 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "delete",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Follow a particular Product
+    * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+    * @param {number} arg.collectionId - the `id` of the collection type you want to follow
+    
+    **/
+  followById({ collectionType, collectionId } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -1438,675 +1438,6 @@ class Theme {
       `/service/application/theme/v1.0/${themeId}/preview`,
       query,
       undefined
-    );
-  }
-}
-
-class User {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Facebook
-   * @description: Used to login or register with Facebook
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithFacebook({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/facebook-token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Google
-   * @description: Used to login or register with Google
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithGoogle({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Google for android
-   * @description: Used to login or register with Google for android
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithGoogleAndroid({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-android`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Google for ios
-   * @description: Used to login or register with google for ios
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithGoogleIOS({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-ios`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with OTP
-   * @description: Used to login or register with OTP
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendOtpRequestSchema} arg.body
-   **/
-  loginWithOTP({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/otp`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with password
-   * @description: Used to login or register with email & password
-   * @param {Object} arg - arg object.
-   * @param {PasswordLoginRequestSchema} arg.body
-   **/
-  loginWithEmailAndPassword({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Reset Password
-   * @description: Used to reset account password
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendResetPasswordEmailRequestSchema} arg.body
-   **/
-  sendResetPasswordEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password/reset`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary:
-   * @description:
-   * @param {Object} arg - arg object.
-   * @param {ForgotPasswordRequestSchema} arg.body
-   **/
-  forgotPassword({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/userauthentication/v1.0/login/password/reset/forgot`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary:
-   * @description: Send code incase of reset password
-   * @param {Object} arg - arg object.
-   * @param {CodeRequestBodySchema} arg.body
-   **/
-  sendResetToken({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password/reset/token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with token
-   * @description: Login/Register with token
-   * @param {Object} arg - arg object.
-   * @param {TokenRequestBodySchema} arg.body
-   **/
-  loginWithToken({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Registration Form
-   * @description: Register using form
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {FormRegisterRequestSchema} arg.body
-   **/
-  registerWithForm({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/register/form`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify email
-   * @description: Used to verify email
-   * @param {Object} arg - arg object.
-   * @param {CodeRequestBodySchema} arg.body
-   **/
-  verifyEmail({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/verify/email`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify mobile
-   * @description: Verify mobile
-   * @param {Object} arg - arg object.
-   * @param {CodeRequestBodySchema} arg.body
-   **/
-  verifyMobile({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/verify/mobile`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Check if user has password
-    * @description: Checks if user is using password or not
-    * @param {Object} arg - arg object.
-    
-    **/
-  hasPassword({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/has-password`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update user password
-   * @description: Used to update user password
-   * @param {Object} arg - arg object.
-   * @param {UpdatePasswordRequestSchema} arg.body
-   **/
-  updatePassword({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/password`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Logout user
-    * @description: Used to log out user
-    * @param {Object} arg - arg object.
-    
-    **/
-  logout({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/logout`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Send OTP on mobile
-   * @description: Used to send otp to mobile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendMobileOtpRequestSchema} arg.body
-   **/
-  sendOTPOnMobile({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/mobile/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify OTP on mobile
-   * @description: Used to verify otp sent to mobile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {VerifyOtpRequestSchema} arg.body
-   **/
-  verifyMobileOTP({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/mobile/verify`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Send OTP on email
-   * @description: Used to send otp to email
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendEmailOtpRequestSchema} arg.body
-   **/
-  sendOTPOnEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/email/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify OTP on email
-   * @description: Used to verify otp sent to email
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {VerifyOtpRequestSchema} arg.body
-   **/
-  verifyEmailOTP({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/email/verify`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get logged in user
-    * @description: Used to get logged in user details
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLoggedInUser({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/session`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of sessions
-    * @description: Lists all active sessions
-    * @param {Object} arg - arg object.
-    
-    **/
-  getListOfActiveSessions({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/sessions`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get platform config
-    * @description: Used to get platform config
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.name] - Name
-    
-    **/
-  getPlatformConfig({ name } = {}) {
-    const query = {};
-    query["name"] = name;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/platform/v1.0/config`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Edit Profile Details
-   * @description: Used to update profile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditProfileRequestSchema} arg.body
-   **/
-  updateProfile({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/detail`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Add mobile number to profile
-   * @description: Used to add new mobile number to profile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditMobileRequestSchema} arg.body
-   **/
-  addMobileNumber({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/user/profile/v1.0/mobile`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete mobile number from profile
-    * @description: Used to delete mobile number from profile
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.platform] - Platform
-    * @param {boolean} arg.active - Active mobile number
-    * @param {boolean} arg.primary - Primary number
-    * @param {boolean} arg.verified - Verified Number
-    * @param {string} arg.countryCode - Country code of phone number
-    * @param {string} arg.phone - Phone number
-    
-    **/
-  deleteMobileNumber({
-    active,
-    primary,
-    verified,
-    countryCode,
-    phone,
-    platform,
-  } = {}) {
-    const query = {};
-    query["platform"] = platform;
-    query["active"] = active;
-    query["primary"] = primary;
-    query["verified"] = verified;
-    query["country_code"] = countryCode;
-    query["phone"] = phone;
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/user/profile/v1.0/mobile`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Set mobile as primary
-   * @description: Used to set a mobile number as primary
-   * @param {Object} arg - arg object.
-   * @param {SendVerificationLinkMobileRequestSchema} arg.body
-   **/
-  setMobileNumberAsPrimary({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/mobile/primary`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Send verification link to mobile
-   * @description: Used to send verification link to a mobile number
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendVerificationLinkMobileRequestSchema} arg.body
-   **/
-  sendVerificationLinkToMobile({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/mobile/link/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Add email to profile
-   * @description: Used to add new email to profile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditEmailRequestSchema} arg.body
-   **/
-  addEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/user/profile/v1.0/email`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete email from profile
-    * @description: Used to delete email from profile
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.platform] - Platform
-    * @param {boolean} arg.active - Whether email id is active
-    * @param {boolean} arg.primary - Whether email id is primary email
-    * @param {boolean} arg.verified - Whether email id is verified
-    * @param {string} arg.email - Email ID to be deleted
-    
-    **/
-  deleteEmail({ active, primary, verified, email, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-    query["active"] = active;
-    query["primary"] = primary;
-    query["verified"] = verified;
-    query["email"] = email;
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/user/profile/v1.0/email`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Set email as primary
-   * @description: Used to set an email as primart
-   * @param {Object} arg - arg object.
-   * @param {EditEmailRequestSchema} arg.body
-   **/
-  setEmailAsPrimary({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/email/primary`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Send verification link to email
-   * @description: Used to sent verification to an email
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditEmailRequestSchema} arg.body
-   **/
-  sendVerificationLinkToEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/email/link/send`,
-      query,
-      body
     );
   }
 }
@@ -3156,7 +2487,7 @@ class Payment {
     * @param {Object} arg - arg object.
     * @param {number} arg.amount - Payment amount
     * @param {string} arg.cartId - Cart id
-    * @param {number} arg.pincode - Pincode
+    * @param {string} arg.pincode - Pincode
     * @param {string} arg.checkoutMode - Checkout mode
     * @param {boolean} [arg.refresh] - 
     * @param {string} [arg.assignCardId] - selected card id
@@ -3197,7 +2528,7 @@ class Payment {
     * @param {Object} arg - arg object.
     * @param {number} arg.amount - Payment amount
     * @param {string} arg.cartId - Cart id
-    * @param {number} arg.pincode - Pincode
+    * @param {string} arg.pincode - Pincode
     * @param {string} arg.checkoutMode - Checkout mode
     * @param {boolean} [arg.refresh] - 
     * @param {string} [arg.assignCardId] - selected card id
@@ -4732,7 +4063,7 @@ class PosCart {
    * @summary: Checkout Cart
    * @description: Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
    * @param {Object} arg - arg object.
-   * @param {boolean} [arg.uid] -
+   * @param {number} [arg.uid] -
    * @param {CartCheckoutRequest} arg.body
    **/
   checkoutCart({ body, uid } = {}) {
@@ -4892,7 +4223,7 @@ class Logistic {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/v1.0/logistics/`,
+      `/service/application/logistics/v1.0`,
       query,
       body
     );
@@ -4903,7 +4234,7 @@ class Logistic {
     * @summary: Get City from Pincode
     * @description: Get City from Pincode
     * @param {Object} arg - arg object.
-    * @param {number} arg.pincode - Pincode
+    * @param {string} arg.pincode - Pincode
     
     **/
   getPincodeCity({ pincode } = {}) {
@@ -4912,7 +4243,7 @@ class Logistic {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/v1.0/logistics/pincode/${pincode}`,
+      `/service/application/logistics/v1.0/pincode/${pincode}`,
       query,
       undefined
     );
@@ -4924,7 +4255,6 @@ module.exports = {
   Cart,
   Lead,
   Theme,
-  User,
   Content,
   Communication,
   Share,
