@@ -47,7 +47,7 @@ class FdkHelper {
         return this.clusterMeta;
     }
 
-    async getPlatformClientInstance(companyId) {
+    async getPlatformConfigInstance(companyId) {
         await this.loadClusterMeta();
         let platformConfig = new PlatformConfig({
             companyId: parseInt(companyId),

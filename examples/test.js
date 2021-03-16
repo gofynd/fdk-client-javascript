@@ -41,6 +41,16 @@ app.use('/_healthz', (req, res, next) => {
     });
 });
 
+FDKExtension.apiRoutes.get("/test/routes", async (req, res, next) => {
+    let data = await req.platformClient.lead.getTickets();
+    res.json(data);
+});
+
+app.use(FDKExtension.apiRoutes);
+app.use("*", async (req, res, next) => {
+    res.json({"success": true});
+});
+
 app.use(function onError(err, req, res, next) {
     err = err || {};
 

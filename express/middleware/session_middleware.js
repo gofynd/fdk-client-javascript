@@ -8,7 +8,7 @@ function sessionMiddleware(strict) {
             let sessionId = req.signedCookies[SESSION_COOKIE_NAME];
             req.fdkSession = await SessionStorage.getSession(sessionId);
     
-            if(strict && !req.session) {
+            if(strict && !req.fdkSession) {
                 return res.status(401).json({ "message": "unauthorized" });
             }
             next();
