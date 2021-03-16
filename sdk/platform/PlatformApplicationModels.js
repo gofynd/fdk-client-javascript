@@ -792,6 +792,92 @@ class Payment {
   }
 }
 
+class Order {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
+  }
+
+  /**
+    *
+    * @summary: Track Shipment by shipment id, for application based on application Id
+    * @description: Shipment Track
+    * @param {Object} arg - arg object.
+    * @param {string} arg.shipmentId - Shipment Id
+    
+    **/
+  trackShipmentPlatform({ shipmentId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/shipments/${shipmentId}/track`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Track Order by order id, for application based on application Id
+    * @description: Order Track
+    * @param {Object} arg - arg object.
+    * @param {string} arg.orderId - Order Id
+    
+    **/
+  trackOrder({ orderId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/${orderId}/track`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get all failed orders application wise
+    * @description: Failed Orders
+    * @param {Object} arg - arg object.
+    
+    **/
+  failedOrders({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/failed`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Reprocess order by order id
+    * @description: Order Reprocess
+    * @param {Object} arg - arg object.
+    * @param {string} arg.orderId - Order Id
+    
+    **/
+  reprocessOrder({ orderId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/${orderId}/reprocess`,
+      queryObj,
+      undefined
+    );
+  }
+}
+
 class Cart {
   constructor(config, applicationId) {
     this.config = config;
@@ -927,5 +1013,6 @@ module.exports = {
   Theme,
   User,
   Payment,
+  Order,
   Cart,
 };

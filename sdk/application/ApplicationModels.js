@@ -3111,7 +3111,7 @@ class Order {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/v1.0/orders`,
+      `/service/application/order/v1.0/orders`,
       query,
       undefined
     );
@@ -3131,7 +3131,7 @@ class Order {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/v1.0/orders/${orderId}`,
+      `/service/application/order/v1.0/orders/${orderId}`,
       query,
       undefined
     );
@@ -3151,7 +3151,7 @@ class Order {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/v1.0/orders/shipments/${shipmentId}`,
+      `/service/application/order/v1.0/orders/shipments/${shipmentId}`,
       query,
       undefined
     );
@@ -3171,7 +3171,7 @@ class Order {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/v1.0/orders/shipments/${shipmentId}/reasons`,
+      `/service/application/order/v1.0/orders/shipments/${shipmentId}/reasons`,
       query,
       undefined
     );
@@ -3191,7 +3191,7 @@ class Order {
     return APIClient.execute(
       this._conf,
       "put",
-      `/service/application/v1.0/orders/shipments/${shipmentId}/status`,
+      `/service/application/order/v1.0/orders/shipments/${shipmentId}/status`,
       query,
       body
     );
@@ -3211,7 +3211,7 @@ class Order {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/v1.0/orders/shipments/${shipmentId}/track`,
+      `/service/application/order/v1.0/orders/shipments/${shipmentId}/track`,
       query,
       undefined
     );

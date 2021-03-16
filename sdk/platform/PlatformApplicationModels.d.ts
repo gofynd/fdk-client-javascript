@@ -426,6 +426,52 @@ export class Payment {
         requestType: string;
     }): any;
 }
+export class Order {
+    constructor(config: any, applicationId: any);
+    config: any;
+    applicationId: any;
+    /**
+      *
+      * @summary: Track Shipment by shipment id, for application based on application Id
+      * @description: Shipment Track
+      * @param {Object} arg - arg object.
+      * @param {string} arg.shipmentId - Shipment Id
+      
+      **/
+    trackShipmentPlatform({ shipmentId }?: {
+        shipmentId: string;
+    }): any;
+    /**
+      *
+      * @summary: Track Order by order id, for application based on application Id
+      * @description: Order Track
+      * @param {Object} arg - arg object.
+      * @param {string} arg.orderId - Order Id
+      
+      **/
+    trackOrder({ orderId }?: {
+        orderId: string;
+    }): any;
+    /**
+      *
+      * @summary: Get all failed orders application wise
+      * @description: Failed Orders
+      * @param {Object} arg - arg object.
+      
+      **/
+    failedOrders({}?: any): any;
+    /**
+      *
+      * @summary: Reprocess order by order id
+      * @description: Order Reprocess
+      * @param {Object} arg - arg object.
+      * @param {string} arg.orderId - Order Id
+      
+      **/
+    reprocessOrder({ orderId }?: {
+        orderId: string;
+    }): any;
+}
 export class Cart {
     constructor(config: any, applicationId: any);
     config: any;

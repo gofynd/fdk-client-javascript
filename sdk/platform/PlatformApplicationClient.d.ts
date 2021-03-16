@@ -8,10 +8,12 @@ declare class Application {
     theme: Theme;
     user: User;
     payment: Payment;
+    order: Order;
     cart: Cart;
 }
 import { Lead } from "./PlatformApplicationModels";
 import { Theme } from "./PlatformApplicationModels";
 import { User } from "./PlatformApplicationModels";
 import { Payment } from "./PlatformApplicationModels";
+import { Order } from "./PlatformApplicationModels";
 import { Cart } from "./PlatformApplicationModels";

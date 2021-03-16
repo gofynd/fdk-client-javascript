@@ -350,6 +350,188 @@ class Payment {
   }
 }
 
+class Order {
+  constructor(config) {
+    this.config = config;
+  }
+
+  /**
+   *
+   * @summary: Update status of Shipment
+   * @description: Update Shipment Status
+   * @param {Object} arg - arg object.
+   * @param {UpdateShipmentStatusBody} arg.body
+   **/
+  shipmentStatusUpdate({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/actions/status`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Activity Status
+    * @description: Get Activity Status
+    * @param {Object} arg - arg object.
+    * @param {string} arg.bagId - Bag Id
+    
+    **/
+  activityStatus({ bagId } = {}) {
+    const queryObj = {};
+    queryObj["bag_id"] = bagId;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/actions/activity/status`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update Store Process-Shipment
+   * @description: Update Store Process-Shipment
+   * @param {Object} arg - arg object.
+   * @param {UpdateProcessShipmenstRequestBody} arg.body
+   **/
+  storeProcessShipmentUpdate({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/actions/store/process-shipments`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Orders for company based on Company Id
+    * @description: Get Orders
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.pageNo] - Current page number
+    * @param {string} [arg.pageSize] - Page limit
+    * @param {string} [arg.fromDate] - From Date
+    * @param {string} [arg.toDate] - To Date
+    * @param {string} [arg.q] - Keyword for Search
+    * @param {string} [arg.stage] - Specefic Order Stage
+    * @param {string} [arg.salesChannels] - Selected Sales Channel
+    * @param {string} [arg.orderId] - Order Id
+    * @param {string} [arg.stores] - Selected Stores
+    * @param {string} [arg.status] - Status of order
+    * @param {boolean} [arg.shortenUrls] - Shorten URL option
+    * @param {string} [arg.filterType] - Filters
+    
+    **/
+  getOrdersByCompanyId({
+    pageNo,
+    pageSize,
+    fromDate,
+    toDate,
+    q,
+    stage,
+    salesChannels,
+    orderId,
+    stores,
+    status,
+    shortenUrls,
+    filterType,
+  } = {}) {
+    const queryObj = {};
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
+    queryObj["from_date"] = fromDate;
+    queryObj["to_date"] = toDate;
+    queryObj["q"] = q;
+    queryObj["stage"] = stage;
+    queryObj["sales_channels"] = salesChannels;
+    queryObj["order_id"] = orderId;
+    queryObj["stores"] = stores;
+    queryObj["status"] = status;
+    queryObj["shorten_urls"] = shortenUrls;
+    queryObj["filter_type"] = filterType;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/orders`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Ping
+    * @description: Get Ping
+    * @param {Object} arg - arg object.
+    
+    **/
+  getPing({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/ping`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Voice Callback
+    * @description: Voice Callback
+    * @param {Object} arg - arg object.
+    
+    **/
+  voiceCallback({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/voice/callback`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Voice Click to Call
+    * @description: Voice Click to Call
+    * @param {Object} arg - arg object.
+    * @param {string} arg.caller - Caller contact number
+    * @param {string} arg.receiver - Receiver contact number
+    
+    **/
+  voiceClickToCall({ caller, receiver } = {}) {
+    const queryObj = {};
+    queryObj["caller"] = caller;
+    queryObj["receiver"] = receiver;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/voice/click-to-call`,
+      queryObj,
+      undefined
+    );
+  }
+}
+
 class CompanyProfile {
   constructor(config) {
     this.config = config;
@@ -757,6 +939,7 @@ class Inventory {
 module.exports = {
   Lead,
   Payment,
+  Order,
   CompanyProfile,
   Inventory,
 };

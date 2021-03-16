@@ -189,6 +189,103 @@ export class Payment {
         body: any;
     }): any;
 }
+export class Order {
+    constructor(config: any);
+    config: any;
+    /**
+     *
+     * @summary: Update status of Shipment
+     * @description: Update Shipment Status
+     * @param {Object} arg - arg object.
+     * @param {UpdateShipmentStatusBody} arg.body
+     **/
+    shipmentStatusUpdate({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get Activity Status
+      * @description: Get Activity Status
+      * @param {Object} arg - arg object.
+      * @param {string} arg.bagId - Bag Id
+      
+      **/
+    activityStatus({ bagId }?: {
+        bagId: string;
+    }): any;
+    /**
+     *
+     * @summary: Update Store Process-Shipment
+     * @description: Update Store Process-Shipment
+     * @param {Object} arg - arg object.
+     * @param {UpdateProcessShipmenstRequestBody} arg.body
+     **/
+    storeProcessShipmentUpdate({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get Orders for company based on Company Id
+      * @description: Get Orders
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.pageNo] - Current page number
+      * @param {string} [arg.pageSize] - Page limit
+      * @param {string} [arg.fromDate] - From Date
+      * @param {string} [arg.toDate] - To Date
+      * @param {string} [arg.q] - Keyword for Search
+      * @param {string} [arg.stage] - Specefic Order Stage
+      * @param {string} [arg.salesChannels] - Selected Sales Channel
+      * @param {string} [arg.orderId] - Order Id
+      * @param {string} [arg.stores] - Selected Stores
+      * @param {string} [arg.status] - Status of order
+      * @param {boolean} [arg.shortenUrls] - Shorten URL option
+      * @param {string} [arg.filterType] - Filters
+      
+      **/
+    getOrdersByCompanyId({ pageNo, pageSize, fromDate, toDate, q, stage, salesChannels, orderId, stores, status, shortenUrls, filterType, }?: {
+        pageNo?: string;
+        pageSize?: string;
+        fromDate?: string;
+        toDate?: string;
+        q?: string;
+        stage?: string;
+        salesChannels?: string;
+        orderId?: string;
+        stores?: string;
+        status?: string;
+        shortenUrls?: boolean;
+        filterType?: string;
+    }): any;
+    /**
+      *
+      * @summary: Get Ping
+      * @description: Get Ping
+      * @param {Object} arg - arg object.
+      
+      **/
+    getPing({}?: any): any;
+    /**
+      *
+      * @summary: Get Voice Callback
+      * @description: Voice Callback
+      * @param {Object} arg - arg object.
+      
+      **/
+    voiceCallback({}?: any): any;
+    /**
+      *
+      * @summary: Get Voice Click to Call
+      * @description: Voice Click to Call
+      * @param {Object} arg - arg object.
+      * @param {string} arg.caller - Caller contact number
+      * @param {string} arg.receiver - Receiver contact number
+      
+      **/
+    voiceClickToCall({ caller, receiver }?: {
+        caller: string;
+        receiver: string;
+    }): any;
+}
 export class CompanyProfile {
     constructor(config: any);
     config: any;
