@@ -1202,148 +1202,6 @@ export class User {
         body: any;
     }): any;
 }
-export class Content {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-      *
-      * @summary: Get live announcements
-      * @description: Get live announcements for each or all pages with page slug of page and end date schedule.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getAnnouncements({}?: any): any;
-    /**
-      *
-      * @summary: Get Blog by slug
-      * @description: Use this API to fetch a blog using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
-      
-      **/
-    getBlog({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get frequently asked questions
-      * @description: Get frequently asked questions list. These will be helpful for users to using website.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getFaqs({}?: any): any;
-    /**
-      *
-      * @summary: Get FAQ categories list
-      * @description: Get list of FAQ categories
-      * @param {Object} arg - arg object.
-      
-      **/
-    getFaqCategories({}?: any): any;
-    /**
-      *
-      * @summary: Get frequently asked question
-      * @description: Get frequently asked questions list. These will be helpful for users to using website.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.idOrSlug - Slug or Id of FAQ
-      
-      **/
-    getFaqByIdOrSlug({ idOrSlug }?: {
-        idOrSlug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get FAQ category by slug or id
-      * @description: Get FAQ category by slug or id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
-      
-      **/
-    getFaqCategoryBySlugOrId({ idOrSlug }?: {
-        idOrSlug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get FAQs of a Faq Category id or slug
-      * @description: Get FAQs of a Faq Category `id` or `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.idOrSlug - Faq category ID or slug
-      
-      **/
-    getFaqsByCategoryIdOrSlug({ idOrSlug }?: {
-        idOrSlug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get landing page
-      * @description: Use this API to fetch a landing page
-      * @param {Object} arg - arg object.
-      
-      **/
-    getLandingPage({}?: any): any;
-    /**
-      *
-      * @summary: Get legal information
-      * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getLegalInformation({}?: any): any;
-    /**
-      *
-      * @summary: Get navigation
-      * @description: Use this API to fetch a navigation
-      * @param {Object} arg - arg object.
-      
-      **/
-    getNavigations({}?: any): any;
-    /**
-      *
-      * @summary: Get Page by slug
-      * @description: Use this API to fetch a custom page using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
-      
-      **/
-    getPage({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get seo of application
-      * @description: Get seo of application
-      * @param {Object} arg - arg object.
-      
-      **/
-    getSeoConfiguration({}?: any): any;
-    /**
-      *
-      * @summary: Get slideshow by slug
-      * @description: Use this API to fetch a slideshow using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
-      
-      **/
-    getSlideshow({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get support information
-      * @description: Get contact details for customer support. Including emails and phone numbers
-      * @param {Object} arg - arg object.
-      
-      **/
-    getSupportInformation({}?: any): any;
-    /**
-      *
-      * @summary: Get Tags for application
-      * @description:
-      * @param {Object} arg - arg object.
-      
-      **/
-    getTags({}?: any): any;
-}
 export class Communication {
     constructor(_conf: any);
     _conf: any;
@@ -1519,6 +1377,133 @@ export class FileStorage {
         namespace: string;
         companyId: number;
         body: any;
+    }): any;
+}
+export class Configuration {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+      *
+      * @summary: Get current application details
+      * @description: Get current application details.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getApplication({}?: any): any;
+    /**
+      *
+      * @summary: Get application, owner and seller information
+      * @description: Get application information with owner and seller basic details
+      * @param {Object} arg - arg object.
+      
+      **/
+    getOwnerInfo({}?: any): any;
+    /**
+      *
+      * @summary: Get basic application details
+      * @description: Get basic application details like name
+      * @param {Object} arg - arg object.
+      
+      **/
+    getBasicDetails({}?: any): any;
+    /**
+      *
+      * @summary: Get integration tokens
+      * @description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getIntegrationTokens({}?: any): any;
+    /**
+      *
+      * @summary: Get deployment meta stores
+      * @description: Get deployment meta stores.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - Current page no
+      * @param {number} [arg.pageSize] - Current request items count
+      * @param {string} [arg.q] - Search ordering store by name or store code
+      
+      **/
+    getOrderingStores({ pageNo, pageSize, q }?: {
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+    }): any;
+    /**
+      *
+      * @summary: Get features of application
+      * @description: Get features of application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getFeatures({}?: any): any;
+    /**
+      *
+      * @summary: Get application information
+      * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getContactInfo({}?: any): any;
+    /**
+      *
+      * @summary: Get application enabled currencies
+      * @description: Get currency list for allowed currencies under current application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getCurrencies({}?: any): any;
+    /**
+      *
+      * @summary: Get currency by id
+      * @description: Get currency object with symbol and name information by id.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Currency object id
+      
+      **/
+    getCurrencyById({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get list of languages
+      * @description: Get list of supported languages under application.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getLanguages({}?: any): any;
+    /**
+     *
+     * @summary: Get ordering store signed cookie on selection of ordering store. This will be used by cart service to verify coupon against selected ordering store in cart.
+     * @description: Get ordering store signed cookie on selection of ordering store.
+     * @param {Object} arg - arg object.
+     * @param {OrderingStoreSelectRequest} arg.body
+     **/
+    getOrderingStoreCookie({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
+      * @description: Unset ordering store cookie.
+      * @param {Object} arg - arg object.
+      
+      **/
+    removeOrderingStoreCookie({}?: any): any;
+    /**
+      *
+      * @summary: Get Staff List.
+      * @description: Get a staff list based on the user's session token passed in the header.
+      * @param {Object} arg - arg object.
+      * @param {boolean} [arg.orderIncent] - This is to check which staff members are applicable for order incentives.
+      * @param {number} [arg.orderingStore] - This is to filter staff members from only selected ordering store.
+      * @param {string} [arg.user] - Get single staff member details using staff user mongo id
+      
+      **/
+    getAppStaffs({ orderIncent, orderingStore, user }?: {
+        orderIncent?: boolean;
+        orderingStore?: number;
+        user?: string;
     }): any;
 }
 export class Payment {

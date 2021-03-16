@@ -2119,303 +2119,6 @@ class User {
   }
 }
 
-class Content {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * @summary: Get live announcements
-    * @description: Get live announcements for each or all pages with page slug of page and end date schedule.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getAnnouncements({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/announcements`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Blog by slug
-    * @description: Use this API to fetch a blog using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
-    
-    **/
-  getBlog({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/blogs/${slug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get frequently asked questions
-    * @description: Get frequently asked questions list. These will be helpful for users to using website.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getFaqs({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/faq`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQ categories list
-    * @description: Get list of FAQ categories
-    * @param {Object} arg - arg object.
-    
-    **/
-  getFaqCategories({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/faq/categories`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get frequently asked question
-    * @description: Get frequently asked questions list. These will be helpful for users to using website.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Slug or Id of FAQ
-    
-    **/
-  getFaqByIdOrSlug({ idOrSlug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/faq/${idOrSlug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQ category by slug or id
-    * @description: Get FAQ category by slug or id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
-    
-    **/
-  getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/faq/category/${idOrSlug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQs of a Faq Category id or slug
-    * @description: Get FAQs of a Faq Category `id` or `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Faq category ID or slug
-    
-    **/
-  getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/faq/category/${idOrSlug}/faqs`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get landing page
-    * @description: Use this API to fetch a landing page
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLandingPage({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/landing-page`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get legal information
-    * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLegalInformation({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/legal`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get navigation
-    * @description: Use this API to fetch a navigation
-    * @param {Object} arg - arg object.
-    
-    **/
-  getNavigations({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/navigations/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Page by slug
-    * @description: Use this API to fetch a custom page using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
-    
-    **/
-  getPage({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/pages/${slug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get seo of application
-    * @description: Get seo of application
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSeoConfiguration({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/seo`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get slideshow by slug
-    * @description: Use this API to fetch a slideshow using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
-    
-    **/
-  getSlideshow({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/slideshow/${slug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get support information
-    * @description: Get contact details for customer support. Including emails and phone numbers
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSupportInformation({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/support`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Tags for application
-    * @description: 
-    * @param {Object} arg - arg object.
-    
-    **/
-  getTags({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/tags`,
-      query,
-      undefined
-    );
-  }
-}
-
 class Communication {
   constructor(_conf) {
     this._conf = _conf;
@@ -2704,6 +2407,272 @@ This operation will return the url for the uploaded file.
       `/service/application/assets/v1.0/company/${companyId}/namespaces/${namespace}/upload/start/`,
       query,
       body
+    );
+  }
+}
+
+class Configuration {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary: Get current application details
+    * @description: Get current application details.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getApplication({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/application`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get application, owner and seller information
+    * @description: Get application information with owner and seller basic details
+    * @param {Object} arg - arg object.
+    
+    **/
+  getOwnerInfo({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/about`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get basic application details
+    * @description: Get basic application details like name
+    * @param {Object} arg - arg object.
+    
+    **/
+  getBasicDetails({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/detail`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get integration tokens
+    * @description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getIntegrationTokens({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/token`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get deployment meta stores
+    * @description: Get deployment meta stores.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Current page no
+    * @param {number} [arg.pageSize] - Current request items count
+    * @param {string} [arg.q] - Search ordering store by name or store code
+    
+    **/
+  getOrderingStores({ pageNo, pageSize, q } = {}) {
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+    query["q"] = q;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/ordering-store/stores`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get features of application
+    * @description: Get features of application
+    * @param {Object} arg - arg object.
+    
+    **/
+  getFeatures({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/feature`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get application information
+    * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getContactInfo({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/information`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get application enabled currencies
+    * @description: Get currency list for allowed currencies under current application
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCurrencies({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/currencies`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get currency by id
+    * @description: Get currency object with symbol and name information by id.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Currency object id
+    
+    **/
+  getCurrencyById({ id } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/currency/${id}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of languages
+    * @description: Get list of supported languages under application.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getLanguages({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/languages`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Get ordering store signed cookie on selection of ordering store. This will be used by cart service to verify coupon against selected ordering store in cart.
+   * @description: Get ordering store signed cookie on selection of ordering store.
+   * @param {Object} arg - arg object.
+   * @param {OrderingStoreSelectRequest} arg.body
+   **/
+  getOrderingStoreCookie({ body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/application/current/ordering-store/select`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
+    * @description: Unset ordering store cookie.
+    * @param {Object} arg - arg object.
+    
+    **/
+  removeOrderingStoreCookie({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      `/application/current/ordering-store/select`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Staff List.
+    * @description: Get a staff list based on the user's session token passed in the header.
+    * @param {Object} arg - arg object.
+    * @param {boolean} [arg.orderIncent] - This is to check which staff members are applicable for order incentives.
+    * @param {number} [arg.orderingStore] - This is to filter staff members from only selected ordering store.
+    * @param {string} [arg.user] - Get single staff member details using staff user mongo id
+    
+    **/
+  getAppStaffs({ orderIncent, orderingStore, user } = {}) {
+    const query = {};
+    query["order_incent"] = orderIncent;
+    query["ordering_store"] = orderingStore;
+    query["user"] = user;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/staff`,
+      query,
+      undefined
     );
   }
 }
@@ -4675,10 +4644,10 @@ module.exports = {
   Lead,
   Theme,
   User,
-  Content,
   Communication,
   Share,
   FileStorage,
+  Configuration,
   Payment,
   Order,
   Rewards,

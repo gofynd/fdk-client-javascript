@@ -2,7 +2,6 @@ const {
   Lead,
   Theme,
   User,
-  Content,
   Payment,
   Cart,
 } = require("./PlatformApplicationModels");
@@ -16,7 +15,6 @@ class Application {
     this.lead = new Lead(config, applicationId);
     this.theme = new Theme(config, applicationId);
     this.user = new User(config, applicationId);
-    this.content = new Content(config, applicationId);
     this.payment = new Payment(config, applicationId);
     this.cart = new Cart(config, applicationId);
   }

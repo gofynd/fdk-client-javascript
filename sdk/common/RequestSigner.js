@@ -1,7 +1,7 @@
 "use strict";
 
 const url = require("url");
-const querystring = require("querystring");
+const querystring = require("query-string");
 const sha256 = require("crypto-js/sha256");
 const hmacSHA256 = require("crypto-js/hmac-sha256");
 

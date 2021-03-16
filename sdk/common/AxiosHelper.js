@@ -1,7 +1,7 @@
 const combineURLs = require("axios/lib/helpers/combineURLs");
 const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
 const axios = require("axios");
-const { transformRequestOptions } = require("./TransformRequestOptions.js");
+const querystring = require("query-string");
 const { sign } = require("./RequestSigner");
 const FDKError = require("./FDKError");
 const DEFAULT_DOMAIN = "https://api.fyndx0.de";
@@ -41,9 +41,9 @@ function requestInterceptorFn(options) {
       let queryParam = "";
       if (params && Object.keys(params).length) {
         if (search && search.trim() !== "") {
-          queryParam = `&${transformRequestOptions(params)}`;
+          queryParam = `&${querystring.stringify(params)}`;
         } else {
-          queryParam = `?${transformRequestOptions(params)}`;
+          queryParam = `?${querystring.stringify(params)}`;
         }
       }
       let transformedData;

@@ -1,4 +1,4 @@
-const querystring = require("querystring");
+const querystring = require("query-string");
 const { fdkAxios } = require("../common/AxiosHelper");
 const { sign } = require("../common/RequestSigner");
 
