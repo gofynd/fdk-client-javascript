@@ -11,6 +11,7 @@
     "cookie-parser": "^1.4.5",
     "crypto-js": "^4.0.0",
     "express": "^4.17.1",
+    "ioredis": "^4.24.2",
     "ngrok": "^3.4.0",
     "querystring": "^0.2.1"
   }

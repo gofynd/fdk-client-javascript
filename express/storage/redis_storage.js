@@ -17,7 +17,7 @@ class RedisStorage extends BaseStorage {
     }
 
     async setex(key, value, ttl) {
-        return await this.client.setex(key, value, ttl);
+        return await this.client.setex(key, ttl, value);
     }
 
     async del(key) {

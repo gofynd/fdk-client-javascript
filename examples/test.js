@@ -4,8 +4,9 @@ const cookieParser = require('cookie-parser');
 const {
     setupFdk
 } = require("../express");
-const { MemoryStorage } = require("./../express/storage");
+const { MemoryStorage, RedisStorage } = require("./../express/storage");
 const extensionHandler = require("./extension.handler");
+const Redis = require("ioredis");
 
 const fs = require('fs');
 const path = require('path');
@@ -20,6 +21,8 @@ let data = fs.readFileSync(path.join(__dirname + "/.ngrock"));
 let baseUrl = data.toString() || "http://localhost:7070";
 console.log(baseUrl);
 
+const redis = new Redis();
+
 let FDKExtension = setupFdk({
     name: "Transformer",
     base_url: baseUrl,
@@ -31,7 +34,7 @@ let FDKExtension = setupFdk({
     callbacks: extensionHandler,
     contact_email: "xyz@gmail.com",
     developed_by_name: "Fynd",
-    storage: new MemoryStorage()
+    storage: new RedisStorage(redis)
 });
 
 app.use(FDKExtension.fdkHandler);
