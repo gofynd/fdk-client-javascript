@@ -34,7 +34,8 @@ let FDKExtension = setupFdk({
     callbacks: extensionHandler,
     contact_email: "xyz@gmail.com",
     developed_by_name: "Fynd",
-    storage: new RedisStorage(redis)
+    storage: new RedisStorage(redis),
+    access_mode: "online"
 });
 
 app.use(FDKExtension.fdkHandler);

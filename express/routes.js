@@ -77,6 +77,7 @@ function setupRoutes(ext) {
                 session.company_id = companyId;
                 session.scope = ext.scopes;
                 session.expires = new Date(Date.now() + 900000);
+                session.access_mode = extension.access_mode;
             }
 
             req.fdkSession = session;
