@@ -46,8 +46,14 @@ app.use('/_healthz', (req, res, next) => {
 });
 
 FDKExtension.apiRoutes.get("/test/routes", async (req, res, next) => {
-    let data = await req.platformClient.lead.getTickets();
-    res.json(data);
+    try {
+        let data = await req.platformClient.lead.getTickets();
+        res.json(data);
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+   
 });
 
 app.use(FDKExtension.apiRoutes);
