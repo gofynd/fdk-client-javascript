@@ -17,7 +17,6 @@ class Extension {
         this.developed_by_name = null;
         this.contact_email = null;
         this.access_mode = null;
-        this.storage_key_prefix = "";
     }
 
     initialize(data) {
