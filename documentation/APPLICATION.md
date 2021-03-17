@@ -159,7 +159,7 @@
   * Methods
     * [getCommunicationConsent](#getcommunicationconsent)
     * [upsertCommunicationConsent](#upsertcommunicationconsent)
-    * [upsertPushtoken](#upsertpushtoken)
+    * [upsertAppPushtoken](#upsertapppushtoken)
     
 
 * [Share](#Share)
@@ -9543,15 +9543,15 @@ Schema: `BadRequest`
 ---
 
 
-#### upsertPushtoken
+#### upsertAppPushtoken
 Upsert push token of a user
 
 ```javascript
 // Promise
-const promise = communication.upsertPushtoken(body);
+const promise = communication.upsertAppPushtoken(body);
 
 // Async/Await
-const data = await communication.upsertPushtoken(body);
+const data = await communication.upsertAppPushtoken(body);
 ```
 
 | Argument  |  Type  | Description |
@@ -10453,7 +10453,7 @@ Get ordering store signed cookie on selection of ordering store.
 Success
 
 
-Schema: `SuccessResponse`
+Schema: `SuccessMessageResponse`
 
 
 
@@ -10501,7 +10501,7 @@ Unset ordering store cookie.
 Success
 
 
-Schema: `SuccessResponse`
+Schema: `SuccessMessageResponse`
 
 
 

@@ -1372,7 +1372,7 @@ export class Communication {
      * @param {Object} arg - arg object.
      * @param {PushtokenReq} arg.body
      **/
-    upsertPushtoken({ body }?: {
+    upsertAppPushtoken({ body }?: {
         body: any;
     }): any;
 }

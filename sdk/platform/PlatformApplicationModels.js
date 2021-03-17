@@ -650,12 +650,12 @@ class User {
     * @summary: Search users
     * @description: Search users
     * @param {Object} arg - arg object.
-    * @param {string} [arg.query] - The search query. This can be a partial or complete name of a either a product, brand or category
+    * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
     
     **/
-  searchUsers({ query } = {}) {
+  searchUsers({ q } = {}) {
     const queryObj = {};
-    queryObj["query"] = query;
+    queryObj["q"] = q;
 
     return APIClient.execute(
       this.config,
@@ -1852,6 +1852,712 @@ class Content {
   }
 }
 
+class Communication {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
+  }
+
+  /**
+    *
+    * @summary: Get campaigns
+    * @description: Get campaigns
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCampaigns({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create campaign
+   * @description: Create campaign
+   * @param {Object} arg - arg object.
+   * @param {CampaignReq} arg.body
+   **/
+  createCampaign({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get campaign by id
+    * @description: Get campaign by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Campaign id
+    
+    **/
+  getCampaignById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update campaign by id
+   * @description: Update campaign by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Campaign id
+   * @param {CampaignReq} arg.body
+   **/
+  updateCampaignById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get stats of campaign by id
+    * @description: Get stats of campaign by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Campaign id
+    
+    **/
+  getStatsOfCampaignById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get audiences
+    * @description: Get audiences
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAudiences({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create audience
+   * @description: Create audience
+   * @param {Object} arg - arg object.
+   * @param {AudienceReq} arg.body
+   **/
+  createAudience({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Get bigquery headers
+   * @description: Get bigquery headers
+   * @param {Object} arg - arg object.
+   * @param {BigqueryHeadersReq} arg.body
+   **/
+  getBigqueryHeaders({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get audience by id
+    * @description: Get audience by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Audience id
+    
+    **/
+  getAudienceById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update audience by id
+   * @description: Update audience by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Audience id
+   * @param {AudienceReq} arg.body
+   **/
+  updateAudienceById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Get n sample records from csv
+   * @description: Get n sample records from csv
+   * @param {Object} arg - arg object.
+   * @param {GetNRecordsCsvReq} arg.body
+   **/
+  getNSampleRecordsFromCsv({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get email providers
+    * @description: Get email providers
+    * @param {Object} arg - arg object.
+    
+    **/
+  getEmailProviders({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create email provider
+   * @description: Create email provider
+   * @param {Object} arg - arg object.
+   * @param {EmailProviderReq} arg.body
+   **/
+  createEmailProvider({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get email provider by id
+    * @description: Get email provider by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Email provider id
+    
+    **/
+  getEmailProviderById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update email provider by id
+   * @description: Update email provider by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Email provider id
+   * @param {EmailProviderReq} arg.body
+   **/
+  updateEmailProviderById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get email templates
+    * @description: Get email templates
+    * @param {Object} arg - arg object.
+    
+    **/
+  getEmailTemplates({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create email template
+   * @description: Create email template
+   * @param {Object} arg - arg object.
+   * @param {EmailTemplateReq} arg.body
+   **/
+  createEmailTemplate({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get system email templates
+    * @description: Get system email templates
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSystemEmailTemplates({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get email template by id
+    * @description: Get email template by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Email template id
+    
+    **/
+  getEmailTemplateById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update email template by id
+   * @description: Update email template by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Email template id
+   * @param {EmailTemplateReq} arg.body
+   **/
+  updateEmailTemplateById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete email template by id
+    * @description: Delete email template by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Email template id
+    
+    **/
+  deleteEmailTemplateById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get event subscriptions
+    * @description: Get event subscriptions
+    * @param {Object} arg - arg object.
+    
+    **/
+  getEventSubscriptions({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get jobs
+    * @description: Get jobs
+    * @param {Object} arg - arg object.
+    
+    **/
+  getJobs({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Trigger campaign job
+   * @description: Trigger campaign job
+   * @param {Object} arg - arg object.
+   * @param {TriggerJobRequest} arg.body
+   **/
+  triggerCampaignJob({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get job logs
+    * @description: Get job logs
+    * @param {Object} arg - arg object.
+    
+    **/
+  getJobLogs({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get communication logs
+    * @description: Get communication logs
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCommunicationLogs({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/log`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get sms providers
+    * @description: Get sms providers
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSmsProviders({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create sms provider
+   * @description: Create sms provider
+   * @param {Object} arg - arg object.
+   * @param {SmsProviderReq} arg.body
+   **/
+  createSmsProvider({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get sms provider by id
+    * @description: Get sms provider by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Sms provider id
+    
+    **/
+  getSmsProviderById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update sms provider by id
+   * @description: Update sms provider by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Sms provider id
+   * @param {SmsProviderReq} arg.body
+   **/
+  updateSmsProviderById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get sms templates
+    * @description: Get sms templates
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSmsTemplates({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create sms template
+   * @description: Create sms template
+   * @param {Object} arg - arg object.
+   * @param {SmsTemplateReq} arg.body
+   **/
+  createSmsTemplate({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get sms template by id
+    * @description: Get sms template by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Sms template id
+    
+    **/
+  getSmsTemplateById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update sms template by id
+   * @description: Update sms template by id
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - Sms template id
+   * @param {SmsTemplateReq} arg.body
+   **/
+  updateSmsTemplateById({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete sms template by id
+    * @description: Delete sms template by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Sms template id
+    
+    **/
+  deleteSmsTemplateById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get system sms templates
+    * @description: Get system sms templates
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSystemSystemTemplates({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/system-templates`,
+      queryObj,
+      undefined
+    );
+  }
+}
+
 class Payment {
   constructor(config, applicationId) {
     this.config = config;
@@ -2255,6 +2961,7 @@ module.exports = {
   Theme,
   User,
   Content,
+  Communication,
   Payment,
   Order,
   Share,

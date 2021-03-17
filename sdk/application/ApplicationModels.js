@@ -2466,7 +2466,7 @@ class Communication {
    * @param {Object} arg - arg object.
    * @param {PushtokenReq} arg.body
    **/
-  upsertPushtoken({ body } = {}) {
+  upsertAppPushtoken({ body } = {}) {
     const query = {};
 
     return APIClient.execute(

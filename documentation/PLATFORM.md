@@ -5,6 +5,7 @@
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
+* [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
@@ -130,6 +131,46 @@
     * [addInjectableTag](#addinjectabletag)
     * [removeInjectableTag](#removeinjectabletag)
     * [editInjectableTag](#editinjectabletag)
+    
+
+* [Communication](#Communication)
+  * Methods
+    * [getCampaigns](#getcampaigns)
+    * [createCampaign](#createcampaign)
+    * [getCampaignById](#getcampaignbyid)
+    * [updateCampaignById](#updatecampaignbyid)
+    * [getStatsOfCampaignById](#getstatsofcampaignbyid)
+    * [getAudiences](#getaudiences)
+    * [createAudience](#createaudience)
+    * [getBigqueryHeaders](#getbigqueryheaders)
+    * [getAudienceById](#getaudiencebyid)
+    * [updateAudienceById](#updateaudiencebyid)
+    * [getNSampleRecordsFromCsv](#getnsamplerecordsfromcsv)
+    * [getEmailProviders](#getemailproviders)
+    * [createEmailProvider](#createemailprovider)
+    * [getEmailProviderById](#getemailproviderbyid)
+    * [updateEmailProviderById](#updateemailproviderbyid)
+    * [getEmailTemplates](#getemailtemplates)
+    * [createEmailTemplate](#createemailtemplate)
+    * [getSystemEmailTemplates](#getsystememailtemplates)
+    * [getEmailTemplateById](#getemailtemplatebyid)
+    * [updateEmailTemplateById](#updateemailtemplatebyid)
+    * [deleteEmailTemplateById](#deleteemailtemplatebyid)
+    * [getEventSubscriptions](#geteventsubscriptions)
+    * [getJobs](#getjobs)
+    * [triggerCampaignJob](#triggercampaignjob)
+    * [getJobLogs](#getjoblogs)
+    * [getCommunicationLogs](#getcommunicationlogs)
+    * [getSmsProviders](#getsmsproviders)
+    * [createSmsProvider](#createsmsprovider)
+    * [getSmsProviderById](#getsmsproviderbyid)
+    * [updateSmsProviderById](#updatesmsproviderbyid)
+    * [getSmsTemplates](#getsmstemplates)
+    * [createSmsTemplate](#createsmstemplate)
+    * [getSmsTemplateById](#getsmstemplatebyid)
+    * [updateSmsTemplateById](#updatesmstemplatebyid)
+    * [deleteSmsTemplateById](#deletesmstemplatebyid)
+    * [getSystemSystemTemplates](#getsystemsystemtemplates)
     
 
 * [Payment](#Payment)
@@ -4825,17 +4866,17 @@ Search users
 
 ```javascript
 // Promise
-const promise = user.searchUsers(companyId,applicationId,query);
+const promise = user.searchUsers(companyId,applicationId,q);
 
 // Async/Await
-const data = await user.searchUsers(companyId,applicationId,query);
+const data = await user.searchUsers(companyId,applicationId,q);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Company ID | 
 | applicationId | string | Application ID | 
-| query | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
+| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
 
 Search users
 
@@ -10487,6 +10528,1958 @@ Schema: `ConvexApiError`
 
 
 Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Communication
+
+
+#### getCampaigns
+Get campaigns
+
+```javascript
+// Promise
+const promise = communication.getCampaigns(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getCampaigns(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get campaigns
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaigns`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaigns"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createCampaign
+Create campaign
+
+```javascript
+// Promise
+const promise = communication.createCampaign(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createCampaign(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create campaign
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaign`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaign"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCampaignById
+Get campaign by id
+
+```javascript
+// Promise
+const promise = communication.getCampaignById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getCampaignById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Campaign id | 
+
+Get campaign by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaign`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaign"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCampaignById
+Update campaign by id
+
+```javascript
+// Promise
+const promise = communication.updateCampaignById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateCampaignById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Campaign id | 
+
+Update campaign by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaign`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaign"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getStatsOfCampaignById
+Get stats of campaign by id
+
+```javascript
+// Promise
+const promise = communication.getStatsOfCampaignById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getStatsOfCampaignById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Campaign id | 
+
+Get stats of campaign by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetStats`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/GetStats"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAudiences
+Get audiences
+
+```javascript
+// Promise
+const promise = communication.getAudiences(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getAudiences(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get audiences
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audiences`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audiences"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createAudience
+Create audience
+
+```javascript
+// Promise
+const promise = communication.createAudience(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createAudience(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create audience
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audience`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audience"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBigqueryHeaders
+Get bigquery headers
+
+```javascript
+// Promise
+const promise = communication.getBigqueryHeaders(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.getBigqueryHeaders(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get bigquery headers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BigqueryHeadersRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BigqueryHeadersRes"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAudienceById
+Get audience by id
+
+```javascript
+// Promise
+const promise = communication.getAudienceById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getAudienceById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Audience id | 
+
+Get audience by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audience`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audience"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAudienceById
+Update audience by id
+
+```javascript
+// Promise
+const promise = communication.updateAudienceById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateAudienceById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Audience id | 
+
+Update audience by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audience`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audience"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getNSampleRecordsFromCsv
+Get n sample records from csv
+
+```javascript
+// Promise
+const promise = communication.getNSampleRecordsFromCsv(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.getNSampleRecordsFromCsv(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get n sample records from csv
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetNRecordsCsvRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/GetNRecordsCsvRes"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailProviders
+Get email providers
+
+```javascript
+// Promise
+const promise = communication.getEmailProviders(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getEmailProviders(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get email providers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProviders`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProviders"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createEmailProvider
+Create email provider
+
+```javascript
+// Promise
+const promise = communication.createEmailProvider(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createEmailProvider(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create email provider
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailProviderById
+Get email provider by id
+
+```javascript
+// Promise
+const promise = communication.getEmailProviderById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getEmailProviderById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Email provider id | 
+
+Get email provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateEmailProviderById
+Update email provider by id
+
+```javascript
+// Promise
+const promise = communication.updateEmailProviderById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateEmailProviderById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Email provider id | 
+
+Update email provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailTemplates
+Get email templates
+
+```javascript
+// Promise
+const promise = communication.getEmailTemplates(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getEmailTemplates(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get email templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplates"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createEmailTemplate
+Create email template
+
+```javascript
+// Promise
+const promise = communication.createEmailTemplate(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createEmailTemplate(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create email template
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSystemEmailTemplates
+Get system email templates
+
+```javascript
+// Promise
+const promise = communication.getSystemEmailTemplates(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getSystemEmailTemplates(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get system email templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SystemEmailTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SystemEmailTemplates"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailTemplateById
+Get email template by id
+
+```javascript
+// Promise
+const promise = communication.getEmailTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getEmailTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Email template id | 
+
+Get email template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplate`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplate"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateEmailTemplateById
+Update email template by id
+
+```javascript
+// Promise
+const promise = communication.updateEmailTemplateById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateEmailTemplateById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Email template id | 
+
+Update email template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteEmailTemplateById
+Delete email template by id
+
+```javascript
+// Promise
+const promise = communication.deleteEmailTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.deleteEmailTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Email template id | 
+
+Delete email template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplateDeleteSuccessRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateDeleteSuccessRes"
+}
+```
+
+
+
+
+
+
+
+
+Failure
+
+
+Schema: `EmailTemplateDeleteFailureRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateDeleteFailureRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEventSubscriptions
+Get event subscriptions
+
+```javascript
+// Promise
+const promise = communication.getEventSubscriptions(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getEventSubscriptions(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get event subscriptions
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EventSubscriptions`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EventSubscriptions"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobs
+Get jobs
+
+```javascript
+// Promise
+const promise = communication.getJobs(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getJobs(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get jobs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Jobs`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Jobs"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### triggerCampaignJob
+Trigger campaign job
+
+```javascript
+// Promise
+const promise = communication.triggerCampaignJob(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.triggerCampaignJob(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Trigger campaign job
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TriggerJobResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/TriggerJobResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobLogs
+Get job logs
+
+```javascript
+// Promise
+const promise = communication.getJobLogs(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getJobLogs(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get job logs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `JobLogs`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/JobLogs"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCommunicationLogs
+Get communication logs
+
+```javascript
+// Promise
+const promise = communication.getCommunicationLogs(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getCommunicationLogs(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get communication logs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Logs`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Logs"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsProviders
+Get sms providers
+
+```javascript
+// Promise
+const promise = communication.getSmsProviders(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getSmsProviders(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get sms providers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProviders`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProviders"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createSmsProvider
+Create sms provider
+
+```javascript
+// Promise
+const promise = communication.createSmsProvider(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createSmsProvider(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create sms provider
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsProviderById
+Get sms provider by id
+
+```javascript
+// Promise
+const promise = communication.getSmsProviderById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getSmsProviderById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Sms provider id | 
+
+Get sms provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSmsProviderById
+Update sms provider by id
+
+```javascript
+// Promise
+const promise = communication.updateSmsProviderById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateSmsProviderById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Sms provider id | 
+
+Update sms provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsTemplates
+Get sms templates
+
+```javascript
+// Promise
+const promise = communication.getSmsTemplates(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getSmsTemplates(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get sms templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplates"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createSmsTemplate
+Create sms template
+
+```javascript
+// Promise
+const promise = communication.createSmsTemplate(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createSmsTemplate(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create sms template
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsTemplateById
+Get sms template by id
+
+```javascript
+// Promise
+const promise = communication.getSmsTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getSmsTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Sms template id | 
+
+Get sms template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplate`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplate"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSmsTemplateById
+Update sms template by id
+
+```javascript
+// Promise
+const promise = communication.updateSmsTemplateById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateSmsTemplateById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Sms template id | 
+
+Update sms template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSmsTemplateById
+Delete sms template by id
+
+```javascript
+// Promise
+const promise = communication.deleteSmsTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.deleteSmsTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Sms template id | 
+
+Delete sms template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplateDeleteSuccessRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateDeleteSuccessRes"
+}
+```
+
+
+
+
+
+
+
+
+Failure
+
+
+Schema: `SmsTemplateDeleteFailureRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateDeleteFailureRes"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSystemSystemTemplates
+Get system sms templates
+
+```javascript
+// Promise
+const promise = communication.getSystemSystemTemplates(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getSystemSystemTemplates(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get system sms templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SystemSmsTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SystemSmsTemplates"
+}
+```
 
 
 

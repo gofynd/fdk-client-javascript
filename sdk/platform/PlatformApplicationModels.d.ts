@@ -355,11 +355,11 @@ export class User {
       * @summary: Search users
       * @description: Search users
       * @param {Object} arg - arg object.
-      * @param {string} [arg.query] - The search query. This can be a partial or complete name of a either a product, brand or category
+      * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
       
       **/
-    searchUsers({ query }?: {
-        query?: string;
+    searchUsers({ q }?: {
+        q?: string;
     }): any;
     /**
       *
@@ -988,6 +988,368 @@ export class Content {
         tagId: string;
         body: any;
     }): any;
+}
+export class Communication {
+    constructor(config: any, applicationId: any);
+    config: any;
+    applicationId: any;
+    /**
+      *
+      * @summary: Get campaigns
+      * @description: Get campaigns
+      * @param {Object} arg - arg object.
+      
+      **/
+    getCampaigns({}?: any): any;
+    /**
+     *
+     * @summary: Create campaign
+     * @description: Create campaign
+     * @param {Object} arg - arg object.
+     * @param {CampaignReq} arg.body
+     **/
+    createCampaign({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get campaign by id
+      * @description: Get campaign by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Campaign id
+      
+      **/
+    getCampaignById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Update campaign by id
+     * @description: Update campaign by id
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Campaign id
+     * @param {CampaignReq} arg.body
+     **/
+    updateCampaignById({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get stats of campaign by id
+      * @description: Get stats of campaign by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Campaign id
+      
+      **/
+    getStatsOfCampaignById({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get audiences
+      * @description: Get audiences
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAudiences({}?: any): any;
+    /**
+     *
+     * @summary: Create audience
+     * @description: Create audience
+     * @param {Object} arg - arg object.
+     * @param {AudienceReq} arg.body
+     **/
+    createAudience({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Get bigquery headers
+     * @description: Get bigquery headers
+     * @param {Object} arg - arg object.
+     * @param {BigqueryHeadersReq} arg.body
+     **/
+    getBigqueryHeaders({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get audience by id
+      * @description: Get audience by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Audience id
+      
+      **/
+    getAudienceById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Update audience by id
+     * @description: Update audience by id
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Audience id
+     * @param {AudienceReq} arg.body
+     **/
+    updateAudienceById({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Get n sample records from csv
+     * @description: Get n sample records from csv
+     * @param {Object} arg - arg object.
+     * @param {GetNRecordsCsvReq} arg.body
+     **/
+    getNSampleRecordsFromCsv({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get email providers
+      * @description: Get email providers
+      * @param {Object} arg - arg object.
+      
+      **/
+    getEmailProviders({}?: any): any;
+    /**
+     *
+     * @summary: Create email provider
+     * @description: Create email provider
+     * @param {Object} arg - arg object.
+     * @param {EmailProviderReq} arg.body
+     **/
+    createEmailProvider({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get email provider by id
+      * @description: Get email provider by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Email provider id
+      
+      **/
+    getEmailProviderById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Update email provider by id
+     * @description: Update email provider by id
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Email provider id
+     * @param {EmailProviderReq} arg.body
+     **/
+    updateEmailProviderById({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get email templates
+      * @description: Get email templates
+      * @param {Object} arg - arg object.
+      
+      **/
+    getEmailTemplates({}?: any): any;
+    /**
+     *
+     * @summary: Create email template
+     * @description: Create email template
+     * @param {Object} arg - arg object.
+     * @param {EmailTemplateReq} arg.body
+     **/
+    createEmailTemplate({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get system email templates
+      * @description: Get system email templates
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSystemEmailTemplates({}?: any): any;
+    /**
+      *
+      * @summary: Get email template by id
+      * @description: Get email template by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Email template id
+      
+      **/
+    getEmailTemplateById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Update email template by id
+     * @description: Update email template by id
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Email template id
+     * @param {EmailTemplateReq} arg.body
+     **/
+    updateEmailTemplateById({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Delete email template by id
+      * @description: Delete email template by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Email template id
+      
+      **/
+    deleteEmailTemplateById({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get event subscriptions
+      * @description: Get event subscriptions
+      * @param {Object} arg - arg object.
+      
+      **/
+    getEventSubscriptions({}?: any): any;
+    /**
+      *
+      * @summary: Get jobs
+      * @description: Get jobs
+      * @param {Object} arg - arg object.
+      
+      **/
+    getJobs({}?: any): any;
+    /**
+     *
+     * @summary: Trigger campaign job
+     * @description: Trigger campaign job
+     * @param {Object} arg - arg object.
+     * @param {TriggerJobRequest} arg.body
+     **/
+    triggerCampaignJob({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get job logs
+      * @description: Get job logs
+      * @param {Object} arg - arg object.
+      
+      **/
+    getJobLogs({}?: any): any;
+    /**
+      *
+      * @summary: Get communication logs
+      * @description: Get communication logs
+      * @param {Object} arg - arg object.
+      
+      **/
+    getCommunicationLogs({}?: any): any;
+    /**
+      *
+      * @summary: Get sms providers
+      * @description: Get sms providers
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSmsProviders({}?: any): any;
+    /**
+     *
+     * @summary: Create sms provider
+     * @description: Create sms provider
+     * @param {Object} arg - arg object.
+     * @param {SmsProviderReq} arg.body
+     **/
+    createSmsProvider({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get sms provider by id
+      * @description: Get sms provider by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Sms provider id
+      
+      **/
+    getSmsProviderById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Update sms provider by id
+     * @description: Update sms provider by id
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Sms provider id
+     * @param {SmsProviderReq} arg.body
+     **/
+    updateSmsProviderById({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get sms templates
+      * @description: Get sms templates
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSmsTemplates({}?: any): any;
+    /**
+     *
+     * @summary: Create sms template
+     * @description: Create sms template
+     * @param {Object} arg - arg object.
+     * @param {SmsTemplateReq} arg.body
+     **/
+    createSmsTemplate({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get sms template by id
+      * @description: Get sms template by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Sms template id
+      
+      **/
+    getSmsTemplateById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Update sms template by id
+     * @description: Update sms template by id
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Sms template id
+     * @param {SmsTemplateReq} arg.body
+     **/
+    updateSmsTemplateById({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Delete sms template by id
+      * @description: Delete sms template by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Sms template id
+      
+      **/
+    deleteSmsTemplateById({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get system sms templates
+      * @description: Get system sms templates
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSystemSystemTemplates({}?: any): any;
 }
 export class Payment {
     constructor(config: any, applicationId: any);

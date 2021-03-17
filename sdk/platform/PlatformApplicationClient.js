@@ -3,6 +3,7 @@ const {
   Theme,
   User,
   Content,
+  Communication,
   Payment,
   Order,
   Share,
@@ -19,6 +20,7 @@ class Application {
     this.theme = new Theme(config, applicationId);
     this.user = new User(config, applicationId);
     this.content = new Content(config, applicationId);
+    this.communication = new Communication(config, applicationId);
     this.payment = new Payment(config, applicationId);
     this.order = new Order(config, applicationId);
     this.share = new Share(config, applicationId);
