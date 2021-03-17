@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git",
     "url-join": "^4.0.1",
     "uuid": "^8.3.2",
     "validator": "^13.5.2"
@@ -14,5 +13,8 @@
     "ioredis": "^4.24.2",
     "ngrok": "^3.4.0",
     "querystring": "^0.2.1"
+  },
+  "peerDependencies": {
+    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git"
   }
 }
