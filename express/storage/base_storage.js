@@ -1,8 +1,12 @@
 'use strict';
 
 class BaseStorage {
-    constructor() {
-
+    constructor(prefixKey) {
+        if(prefixKey) {
+            this.prefixKey = prefixKey + ":";
+        } else {
+            this.prefixKey = "";
+        }
     }
 
     async get(key) {

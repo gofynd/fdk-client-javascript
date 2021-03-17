@@ -3,30 +3,30 @@
 const BaseStorage = require("./base_storage");
 
 class MemoryStorage extends BaseStorage {
-    constructor() {
-        super();
+    constructor(prefixKey) {
+        super(prefixKey);
         this.__data = {};
     }
 
     async get(key) {
-        return this.__data[key];
+        return this.__data[this.prefixKey + key];
     }
 
     async set(key, value) {
-        this.__data[key] = value;
+        this.__data[this.prefixKey + key] = value;
     }
 
     async setex(key, value, ttl) {
         //TODO: add support for ttl
-        this.__data[key] = value;
+        this.__data[this.prefixKey + key] = value;
     }
 
     async del(key) {
-        delete this.__data[key];
+        delete this.__data[this.prefixKey + key];
     }
 
     async hget(key, hashKey) {
-        let hashMap = this.__data[key];
+        let hashMap = this.__data[this.prefixKey + key];
         if(hashMap) {
             return hashMap[hashKey];
         }
@@ -34,13 +34,13 @@ class MemoryStorage extends BaseStorage {
     }
 
     async hset(key, hashKey, value) {
-        let hashMap = this.__data[key] || {};
+        let hashMap = this.__data[this.prefixKey + key] || {};
         hashMap[hashKey] = value;
-        this.__data[key] = hashMap;
+        this.__data[this.prefixKey + key] = hashMap;
     }
 
     async hgetall(key) {
-        return this.__data[key];
+        return this.__data[this.prefixKey + key];
     }
 }
 
