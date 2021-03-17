@@ -8,6 +8,7 @@
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
+* [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
 * [Cart](#Cart) - Cart APIs 
 
@@ -177,6 +178,14 @@
     * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    
+
+* [Share](#Share)
+  * Methods
+    * [createShortLink](#createshortlink)
+    * [getShortLinks](#getshortlinks)
+    * [getShortLinkByHash](#getshortlinkbyhash)
+    * [updateShortLinkById](#updateshortlinkbyid)
     
 
 * [Inventory](#Inventory)
@@ -12582,6 +12591,172 @@ Bad request. See the error object in the response body for specific reason
 
 
 Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Share
+
+
+#### createShortLink
+Create short link
+
+```javascript
+// Promise
+const promise = share.createShortLink(companyId,applicationId,body);
+
+// Async/Await
+const data = await share.createShortLink(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Create short link
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShortLinks
+Get short links
+
+```javascript
+// Promise
+const promise = share.getShortLinks(companyId,applicationId,pageNo,pageSize,createdBy,active,q);
+
+// Async/Await
+const data = await share.getShortLinks(companyId,applicationId,pageNo,pageSize,createdBy,active,q);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| pageNo | string | Current page number | 
+| pageSize | string | Current page size | 
+| createdBy | string | Short link creator | 
+| active | string | Short link active status | 
+| q | string | Search text for original and short url | 
+
+Get short links
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkList`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShortLinkByHash
+Get short link by hash
+
+```javascript
+// Promise
+const promise = share.getShortLinkByHash(companyId,applicationId,hash);
+
+// Async/Await
+const data = await share.getShortLinkByHash(companyId,applicationId,hash);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| hash | string | Hash of short url | 
+
+Get short link by hash
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateShortLinkById
+Update short link by id
+
+```javascript
+// Promise
+const promise = share.updateShortLinkById(companyId,applicationId,id);
+
+// Async/Await
+const data = await share.updateShortLinkById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| id | string | Short link document identifier | 
+
+Update short link by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkRes`
 
 
 

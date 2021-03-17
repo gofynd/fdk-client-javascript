@@ -2025,6 +2025,101 @@ class Order {
   }
 }
 
+class Share {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
+  }
+
+  /**
+   *
+   * @summary: Create short link
+   * @description: Create short link
+   * @param {Object} arg - arg object.
+   * @param {ShortLinkReq} arg.body
+   **/
+  createShortLink({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get short links
+    * @description: Get short links
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.pageNo] - Current page number
+    * @param {string} [arg.pageSize] - Current page size
+    * @param {string} [arg.createdBy] - Short link creator
+    * @param {string} [arg.active] - Short link active status
+    * @param {string} [arg.q] - Search text for original and short url
+    
+    **/
+  getShortLinks({ pageNo, pageSize, createdBy, active, q } = {}) {
+    const queryObj = {};
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
+    queryObj["created_by"] = createdBy;
+    queryObj["active"] = active;
+    queryObj["q"] = q;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get short link by hash
+    * @description: Get short link by hash
+    * @param {Object} arg - arg object.
+    * @param {string} arg.hash - Hash of short url
+    
+    **/
+  getShortLinkByHash({ hash } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${hash}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Update short link by id
+    * @description: Update short link by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Short link document identifier
+    
+    **/
+  updateShortLinkById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "patch",
+      `/services/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+}
+
 class Cart {
   constructor(config, applicationId) {
     this.config = config;
@@ -2162,5 +2257,6 @@ module.exports = {
   Content,
   Payment,
   Order,
+  Share,
   Cart,
 };

@@ -5,6 +5,7 @@ const {
   Content,
   Payment,
   Order,
+  Share,
   Cart,
 } = require("./PlatformApplicationModels");
 
@@ -20,6 +21,7 @@ class Application {
     this.content = new Content(config, applicationId);
     this.payment = new Payment(config, applicationId);
     this.order = new Order(config, applicationId);
+    this.share = new Share(config, applicationId);
     this.cart = new Cart(config, applicationId);
   }
 }

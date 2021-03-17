@@ -1081,6 +1081,62 @@ export class Order {
         orderId: string;
     }): any;
 }
+export class Share {
+    constructor(config: any, applicationId: any);
+    config: any;
+    applicationId: any;
+    /**
+     *
+     * @summary: Create short link
+     * @description: Create short link
+     * @param {Object} arg - arg object.
+     * @param {ShortLinkReq} arg.body
+     **/
+    createShortLink({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get short links
+      * @description: Get short links
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.pageNo] - Current page number
+      * @param {string} [arg.pageSize] - Current page size
+      * @param {string} [arg.createdBy] - Short link creator
+      * @param {string} [arg.active] - Short link active status
+      * @param {string} [arg.q] - Search text for original and short url
+      
+      **/
+    getShortLinks({ pageNo, pageSize, createdBy, active, q }?: {
+        pageNo?: string;
+        pageSize?: string;
+        createdBy?: string;
+        active?: string;
+        q?: string;
+    }): any;
+    /**
+      *
+      * @summary: Get short link by hash
+      * @description: Get short link by hash
+      * @param {Object} arg - arg object.
+      * @param {string} arg.hash - Hash of short url
+      
+      **/
+    getShortLinkByHash({ hash }?: {
+        hash: string;
+    }): any;
+    /**
+      *
+      * @summary: Update short link by id
+      * @description: Update short link by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Short link document identifier
+      
+      **/
+    updateShortLinkById({ id }?: {
+        id: string;
+    }): any;
+}
 export class Cart {
     constructor(config: any, applicationId: any);
     config: any;

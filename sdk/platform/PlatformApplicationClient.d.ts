@@ -10,6 +10,7 @@ declare class Application {
     content: Content;
     payment: Payment;
     order: Order;
+    share: Share;
     cart: Cart;
 }
 import { Lead } from "./PlatformApplicationModels";
@@ -18,4 +19,5 @@ import { User } from "./PlatformApplicationModels";
 import { Content } from "./PlatformApplicationModels";
 import { Payment } from "./PlatformApplicationModels";
 import { Order } from "./PlatformApplicationModels";
+import { Share } from "./PlatformApplicationModels";
 import { Cart } from "./PlatformApplicationModels";
