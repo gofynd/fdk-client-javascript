@@ -542,7 +542,7 @@ export class Cart {
       * @description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
       * @param {Object} arg - arg object.
       * @param {number} [arg.uid] -
-      * @param {number} [arg.mobileNo] -
+      * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
       * @param {number} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
@@ -550,7 +550,7 @@ export class Cart {
       **/
     getAddresses({ uid, mobileNo, checkoutMode, tags, isDefault }?: {
         uid?: number;
-        mobileNo?: number;
+        mobileNo?: string;
         checkoutMode?: string;
         tags?: number;
         isDefault?: boolean;
@@ -572,7 +572,7 @@ export class Cart {
       * @param {Object} arg - arg object.
       * @param {number} arg.id -
       * @param {number} [arg.uid] -
-      * @param {number} [arg.mobileNo] -
+      * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
       * @param {number} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
@@ -581,7 +581,7 @@ export class Cart {
     getAddressById({ id, uid, mobileNo, checkoutMode, tags, isDefault }?: {
         id: number;
         uid?: number;
-        mobileNo?: number;
+        mobileNo?: string;
         checkoutMode?: string;
         tags?: number;
         isDefault?: boolean;
@@ -2498,7 +2498,7 @@ export class PosCart {
       * @description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
       * @param {Object} arg - arg object.
       * @param {number} [arg.uid] -
-      * @param {number} [arg.mobileNo] -
+      * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
       * @param {number} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
@@ -2506,7 +2506,7 @@ export class PosCart {
       **/
     getAddresses({ uid, mobileNo, checkoutMode, tags, isDefault }?: {
         uid?: number;
-        mobileNo?: number;
+        mobileNo?: string;
         checkoutMode?: string;
         tags?: number;
         isDefault?: boolean;
@@ -2528,7 +2528,7 @@ export class PosCart {
       * @param {Object} arg - arg object.
       * @param {number} arg.id -
       * @param {number} [arg.uid] -
-      * @param {number} [arg.mobileNo] -
+      * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
       * @param {number} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
@@ -2537,7 +2537,7 @@ export class PosCart {
     getAddressById({ id, uid, mobileNo, checkoutMode, tags, isDefault }?: {
         id: number;
         uid?: number;
-        mobileNo?: number;
+        mobileNo?: string;
         checkoutMode?: string;
         tags?: number;
         isDefault?: boolean;
@@ -2667,7 +2667,7 @@ export class PosCart {
      * @description: Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
      * @param {Object} arg - arg object.
      * @param {number} [arg.uid] -
-     * @param {CartCheckoutRequest} arg.body
+     * @param {CartPosCheckoutRequest} arg.body
      **/
     checkoutCart({ body, uid }?: {
         uid?: number;

@@ -2731,6 +2731,54 @@ class Order {
   }
 }
 
+class Assets {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
+  }
+
+  /**
+   *
+   * @summary: Copy Files
+   * @description: Copy Files
+   * @param {Object} arg - arg object.
+   * @param {boolean} [arg.sync] - sync
+   * @param {BulkRequest} arg.body
+   **/
+  appCopyFiles({ body, sync } = {}) {
+    const queryObj = {};
+    queryObj["sync"] = sync;
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/application/assets/v1.0/uploads/company/${this.config.companyId}/application/${this.applicationId}/copy/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Browse Files
+    * @description: Browse Files
+    * @param {Object} arg - arg object.
+    * @param {string} arg.namespace - bucket name
+    
+    **/
+  appBrowse({ namespace } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/application/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse/`,
+      queryObj,
+      undefined
+    );
+  }
+}
+
 class Share {
   constructor(config, applicationId) {
     this.config = config;
@@ -2964,6 +3012,7 @@ module.exports = {
   Communication,
   Payment,
   Order,
+  Assets,
   Share,
   Cart,
 };

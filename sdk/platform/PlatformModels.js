@@ -780,6 +780,120 @@ class CompanyProfile {
   }
 }
 
+class Assets {
+  constructor(config) {
+    this.config = config;
+  }
+
+  /**
+   *
+   * @summary: Copy Files
+   * @description: Copy Files
+   * @param {Object} arg - arg object.
+   * @param {boolean} [arg.sync] - sync
+   * @param {BulkRequest} arg.body
+   **/
+  companyCopyFiles({ body, sync } = {}) {
+    const queryObj = {};
+    queryObj["sync"] = sync;
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/application/assets/v1.0/uploads/company/${this.config.companyId}/copy/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Explain here
+   * @description: Describe here
+   * @param {Object} arg - arg object.
+   * @param {SignUrlRequest} arg.body
+   **/
+  getSignUrls({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/application/assets/v1.0/company/${this.config.companyId}/sign-urls/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Browse Files
+    * @description: Browse Files
+    * @param {Object} arg - arg object.
+    * @param {string} arg.namespace - bucket name
+    
+    **/
+  companyBrowse({ namespace } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/application/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/browse/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Browse Files
+    * @description: Browse Files
+    * @param {Object} arg - arg object.
+    * @param {string} arg.namespace - bucket name
+    
+    **/
+  companyBrowsePaginator({ namespace } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.companyBrowse({
+        namespace: namespace,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Proxy
+    * @description: Proxy
+    * @param {Object} arg - arg object.
+    * @param {string} arg.url - url
+    
+    **/
+  proxy({ url } = {}) {
+    const queryObj = {};
+    queryObj["url"] = url;
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/application/assets/v1.0/company/${this.config.companyId}/proxy/`,
+      queryObj,
+      undefined
+    );
+  }
+}
+
 class Inventory {
   constructor(config) {
     this.config = config;
@@ -941,5 +1055,6 @@ module.exports = {
   Payment,
   Order,
   CompanyProfile,
+  Assets,
   Inventory,
 };

@@ -9,6 +9,7 @@
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
+* [Assets](#Assets) - File Storage 
 * [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
 * [Cart](#Cart) - Cart APIs 
@@ -219,6 +220,16 @@
     * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    
+
+* [Assets](#Assets)
+  * Methods
+    * [companyCopyFiles](#companycopyfiles)
+    * [appCopyFiles](#appcopyfiles)
+    * [getSignUrls](#getsignurls)
+    * [companyBrowse](#companybrowse)
+    * [appBrowse](#appbrowse)
+    * [proxy](#proxy)
     
 
 * [Share](#Share)
@@ -14600,6 +14611,302 @@ Schema: `ErrorResponse`
 ---
 
 
+## Assets
+
+
+#### companyCopyFiles
+Copy Files
+
+```javascript
+// Promise
+const promise = assets.companyCopyFiles(companyId,body,sync);
+
+// Async/Await
+const data = await assets.companyCopyFiles(companyId,body,sync);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| sync | boolean | sync | 
+| companyId | integer | company_id | 
+
+Copy Files
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BulkResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### appCopyFiles
+Copy Files
+
+```javascript
+// Promise
+const promise = assets.appCopyFiles(companyId,applicationId,body,sync);
+
+// Async/Await
+const data = await assets.appCopyFiles(companyId,applicationId,body,sync);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| sync | boolean | sync | 
+| companyId | integer | company_id | 
+| applicationId | integer | application_id | 
+
+Copy Files
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BulkResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSignUrls
+Explain here
+
+```javascript
+// Promise
+const promise = assets.getSignUrls(companyId,body);
+
+// Async/Await
+const data = await assets.getSignUrls(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+
+Describe here
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SignUrlResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### companyBrowse
+Browse Files
+
+```javascript
+// Promise
+const promise = assets.companyBrowse(namespace,companyId);
+
+// Async/Await
+const data = await assets.companyBrowse(namespace,companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| namespace | string | bucket name | 
+| companyId | integer | company_id | 
+
+Browse Files
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BrowseResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### appBrowse
+Browse Files
+
+```javascript
+// Promise
+const promise = assets.appBrowse(namespace,companyId,applicationId);
+
+// Async/Await
+const data = await assets.appBrowse(namespace,companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| namespace | string | bucket name | 
+| companyId | integer | company_id | 
+| applicationId | integer | application_id | 
+
+Browse Files
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BrowseResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### proxy
+Proxy
+
+```javascript
+// Promise
+const promise = assets.proxy(companyId,url);
+
+// Async/Await
+const data = await assets.proxy(companyId,url);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| url | string | url | 
+
+Proxy
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `string`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Share
 
 
@@ -15376,7 +15683,7 @@ Create new coupon
 Coupon Created successfully
 
 
-Schema: `SuccessResponse`
+Schema: `SuccessMessageResponse`
 
 
 
@@ -15492,7 +15799,7 @@ Update coupon with id sent in `id`
 Coupon updated successfully
 
 
-Schema: `SuccessResponse`
+Schema: `SuccessMessageResponse`
 
 
 
@@ -15543,7 +15850,7 @@ Update archive/unarchive and change schedule for coupon
 Coupon updated successfully
 
 
-Schema: `SuccessResponse`
+Schema: `SuccessMessageResponse`
 
 
 *Examples:*

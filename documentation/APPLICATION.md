@@ -3163,7 +3163,7 @@ const data = await cart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
-| mobileNo | integer |  | 
+| mobileNo | string |  | 
 | checkoutMode | string |  | 
 | tags | integer |  | 
 | isDefault | boolean |  | 
@@ -3241,7 +3241,7 @@ const data = await cart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefau
 | --------- | ----  | --- |
 | id | integer |  | 
 | uid | integer |  | 
-| mobileNo | integer |  | 
+| mobileNo | string |  | 
 | checkoutMode | string |  | 
 | tags | integer |  | 
 | isDefault | boolean |  | 
@@ -15095,7 +15095,7 @@ const data = await poscart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | uid | integer |  | 
-| mobileNo | integer |  | 
+| mobileNo | string |  | 
 | checkoutMode | string |  | 
 | tags | integer |  | 
 | isDefault | boolean |  | 
@@ -15173,7 +15173,7 @@ const data = await poscart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDe
 | --------- | ----  | --- |
 | id | integer |  | 
 | uid | integer |  | 
-| mobileNo | integer |  | 
+| mobileNo | string |  | 
 | checkoutMode | string |  | 
 | tags | integer |  | 
 | isDefault | boolean |  | 

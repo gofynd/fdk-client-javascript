@@ -1443,6 +1443,34 @@ export class Order {
         orderId: string;
     }): any;
 }
+export class Assets {
+    constructor(config: any, applicationId: any);
+    config: any;
+    applicationId: any;
+    /**
+     *
+     * @summary: Copy Files
+     * @description: Copy Files
+     * @param {Object} arg - arg object.
+     * @param {boolean} [arg.sync] - sync
+     * @param {BulkRequest} arg.body
+     **/
+    appCopyFiles({ body, sync }?: {
+        sync?: boolean;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Browse Files
+      * @description: Browse Files
+      * @param {Object} arg - arg object.
+      * @param {string} arg.namespace - bucket name
+      
+      **/
+    appBrowse({ namespace }?: {
+        namespace: string;
+    }): any;
+}
 export class Share {
     constructor(config: any, applicationId: any);
     config: any;

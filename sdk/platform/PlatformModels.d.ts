@@ -409,6 +409,65 @@ export class CompanyProfile {
         locationId: string;
     }): any;
 }
+export class Assets {
+    constructor(config: any);
+    config: any;
+    /**
+     *
+     * @summary: Copy Files
+     * @description: Copy Files
+     * @param {Object} arg - arg object.
+     * @param {boolean} [arg.sync] - sync
+     * @param {BulkRequest} arg.body
+     **/
+    companyCopyFiles({ body, sync }?: {
+        sync?: boolean;
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Explain here
+     * @description: Describe here
+     * @param {Object} arg - arg object.
+     * @param {SignUrlRequest} arg.body
+     **/
+    getSignUrls({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Browse Files
+      * @description: Browse Files
+      * @param {Object} arg - arg object.
+      * @param {string} arg.namespace - bucket name
+      
+      **/
+    companyBrowse({ namespace }?: {
+        namespace: string;
+    }): any;
+    /**
+      *
+      * @summary: Browse Files
+      * @description: Browse Files
+      * @param {Object} arg - arg object.
+      * @param {string} arg.namespace - bucket name
+      
+      **/
+    companyBrowsePaginator({ namespace }?: {
+        namespace: string;
+    }): any;
+    /**
+      *
+      * @summary: Proxy
+      * @description: Proxy
+      * @param {Object} arg - arg object.
+      * @param {string} arg.url - url
+      
+      **/
+    proxy({ url }?: {
+        url: string;
+    }): any;
+}
 export class Inventory {
     constructor(config: any);
     config: any;

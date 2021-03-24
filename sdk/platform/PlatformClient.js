@@ -3,6 +3,7 @@ const {
   Payment,
   Order,
   CompanyProfile,
+  Assets,
   Inventory,
 } = require("./PlatformModels");
 const Application = require("./PlatformApplicationClient");
@@ -14,6 +15,7 @@ class PlatformClient {
     this.payment = new Payment(config);
     this.order = new Order(config);
     this.companyProfile = new CompanyProfile(config);
+    this.assets = new Assets(config);
     this.inventory = new Inventory(config);
   }
   application(applicationId) {

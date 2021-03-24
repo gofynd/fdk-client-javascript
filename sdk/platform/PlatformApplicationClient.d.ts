@@ -11,6 +11,7 @@ declare class Application {
     communication: Communication;
     payment: Payment;
     order: Order;
+    assets: Assets;
     share: Share;
     cart: Cart;
 }
@@ -21,5 +22,6 @@ import { Content } from "./PlatformApplicationModels";
 import { Communication } from "./PlatformApplicationModels";
 import { Payment } from "./PlatformApplicationModels";
 import { Order } from "./PlatformApplicationModels";
+import { Assets } from "./PlatformApplicationModels";
 import { Share } from "./PlatformApplicationModels";
 import { Cart } from "./PlatformApplicationModels";
