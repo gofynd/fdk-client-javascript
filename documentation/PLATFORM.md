@@ -5,6 +5,7 @@
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
+* [Billing](#Billing) - Handle platform subscription 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
@@ -133,6 +134,18 @@
     * [editInjectableTag](#editinjectabletag)
     
 
+* [Billing](#Billing)
+  * Methods
+    * [getInvoices](#getinvoices)
+    * [getInvoiceById](#getinvoicebyid)
+    * [getCustomerDetail](#getcustomerdetail)
+    * [upsertCustomerDetail](#upsertcustomerdetail)
+    * [getSubscription](#getsubscription)
+    * [getFeatureLimitConfig](#getfeaturelimitconfig)
+    * [activateSubscriptionPlan](#activatesubscriptionplan)
+    * [cancelSubscriptionPlan](#cancelsubscriptionplan)
+    
+
 * [Communication](#Communication)
   * Methods
     * [getCampaigns](#getcampaigns)
@@ -210,15 +223,15 @@
     * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
     * [createBrand](#createbrand)
     * [getLocations](#getlocations)
     * [createLocation](#createlocation)
-    * [getLocationDetail](#getlocationdetail)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     
 
 * [Assets](#Assets)
@@ -10553,6 +10566,514 @@ Schema: `ConvexApiError`
 ---
 
 
+## Billing
+
+
+#### getInvoices
+Get invoices
+
+```javascript
+// Promise
+const promise = billing.getInvoices(companyId);
+
+// Async/Await
+const data = await billing.getInvoices(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+Get invoices.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Invoices`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Invoices"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInvoiceById
+Get invoice by id
+
+```javascript
+// Promise
+const promise = billing.getInvoiceById(companyId,invoiceId);
+
+// Async/Await
+const data = await billing.getInvoiceById(companyId,invoiceId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+| invoiceId | string | Invoice id | 
+
+Get invoice by id.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Invoice`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Invoice"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCustomerDetail
+Get subscription customer detail
+
+```javascript
+// Promise
+const promise = billing.getCustomerDetail(companyId);
+
+// Async/Await
+const data = await billing.getCustomerDetail(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+Get subscription customer detail.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SubscriptionCustomer`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SubscriptionCustomerRes"
+}
+```
+
+
+
+
+
+
+
+
+Resource not found
+
+
+Schema: `ResourceNotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upsertCustomerDetail
+Upsert subscription customer detail
+
+```javascript
+// Promise
+const promise = billing.upsertCustomerDetail(companyId,body);
+
+// Async/Await
+const data = await billing.upsertCustomerDetail(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+Upsert subscription customer detail.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SubscriptionCustomer`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SubscriptionCustomerRes"
+}
+```
+
+
+
+
+
+
+
+
+Resource not found
+
+
+Schema: `ResourceNotFound`
+
+
+
+
+
+
+
+
+Internal server error
+
+
+Schema: `InternalServerError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSubscription
+Get current subscription detail
+
+```javascript
+// Promise
+const promise = billing.getSubscription(companyId);
+
+// Async/Await
+const data = await billing.getSubscription(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
+
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SubscriptionStatus`
+
+
+*Examples:*
+
+
+Active subscription
+```json
+{
+  "$ref": "#/components/examples/SubscriptionActiveRes"
+}
+```
+
+Inactive subscription
+```json
+{
+  "$ref": "#/components/examples/SubscriptionInavtiveRes"
+}
+```
+
+
+
+
+
+
+
+
+Internal server error
+
+
+Schema: `InternalServerError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFeatureLimitConfig
+Get subscription subscription limits
+
+```javascript
+// Promise
+const promise = billing.getFeatureLimitConfig(companyId);
+
+// Async/Await
+const data = await billing.getFeatureLimitConfig(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+Get subscription subscription limits.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SubscriptionLimit`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CurrentLimitRes"
+}
+```
+
+
+
+
+
+
+
+
+Internal server error
+
+
+Schema: `InternalServerError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### activateSubscriptionPlan
+Activate subscription
+
+```javascript
+// Promise
+const promise = billing.activateSubscriptionPlan(companyId,body);
+
+// Async/Await
+const data = await billing.activateSubscriptionPlan(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+It will activate subscription plan for customer
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SubscriptionActivateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SubscriptionActivateRes"
+}
+```
+
+
+
+
+
+
+
+
+Resource not found
+
+
+Schema: `ResourceNotFound`
+
+
+
+
+
+
+
+
+Internal server error
+
+
+Schema: `InternalServerError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cancelSubscriptionPlan
+Cancel subscription
+
+```javascript
+// Promise
+const promise = billing.cancelSubscriptionPlan(companyId,body);
+
+// Async/Await
+const data = await billing.cancelSubscriptionPlan(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+It will cancel current active subscription.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CancelSubscriptionRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CancelSubscriptionRes"
+}
+```
+
+
+
+
+
+
+
+
+Resource not found
+
+
+Schema: `ResourceNotFound`
+
+
+
+
+
+
+
+
+Internal server error
+
+
+Schema: `InternalServerError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Communication
 
 
@@ -14155,56 +14676,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getBrand
-Get a single brand.
-
-```javascript
-// Promise
-const promise = companyprofile.getBrand(companyId,brandId);
-
-// Async/Await
-const data = await companyprofile.getBrand(companyId,brandId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### editBrand
 Edit a brand.
 
@@ -14231,6 +14702,56 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBrand
+Get a single brand.
+
+```javascript
+// Promise
+const promise = companyprofile.getBrand(companyId,brandId);
+
+// Async/Await
+const data = await companyprofile.getBrand(companyId,brandId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
 
 
 
@@ -14505,56 +15026,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getLocationDetail
-Get details of a specific location.
-
-```javascript
-// Promise
-const promise = companyprofile.getLocationDetail(companyId,locationId);
-
-// Async/Await
-const data = await companyprofile.getLocationDetail(companyId,locationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location lies. | 
-| locationId | string | Id of the location which you want to view. | 
-
-This API helps to get data associated to a specific location.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetLocationSerializer` for details
-
-
-Schema: `GetLocationSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateLocation
 Edit a location asscoiated to a company.
 
@@ -14581,6 +15052,56 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLocationDetail
+Get details of a specific location.
+
+```javascript
+// Promise
+const promise = companyprofile.getLocationDetail(companyId,locationId);
+
+// Async/Await
+const data = await companyprofile.getLocationDetail(companyId,locationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location lies. | 
+| locationId | string | Id of the location which you want to view. | 
+
+This API helps to get data associated to a specific location.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+Schema: `GetLocationSerializer`
 
 
 

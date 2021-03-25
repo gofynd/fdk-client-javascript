@@ -18,6 +18,8 @@ class OAuthClient {
     this.token = null;
     this.refreshToken = null;
     this.retryOAuthTokenTimer = null;
+    this.raw_token = null;
+    this.token_expires_in = null;
   }
 
   getAccessToken() {
@@ -25,6 +27,8 @@ class OAuthClient {
   }
 
   setToken(token) {
+    this.raw_token = token;
+    this.token_expires_in = token.expires_in;
     this.token = token.access_token;
     this.refreshToken = token.refresh_token ? token.refresh_token : null;
     if (this.refreshToken) {

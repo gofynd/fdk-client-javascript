@@ -106,6 +106,84 @@ export class Lead {
         ticketId: string;
     }): any;
 }
+export class Billing {
+    constructor(config: any);
+    config: any;
+    /**
+      *
+      * @summary: Get invoices
+      * @description: Get invoices.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getInvoices({}?: any): any;
+    /**
+      *
+      * @summary: Get invoice by id
+      * @description: Get invoice by id.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.invoiceId - Invoice id
+      
+      **/
+    getInvoiceById({ invoiceId }?: {
+        invoiceId: string;
+    }): any;
+    /**
+      *
+      * @summary: Get subscription customer detail
+      * @description: Get subscription customer detail.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getCustomerDetail({}?: any): any;
+    /**
+     *
+     * @summary: Upsert subscription customer detail
+     * @description: Upsert subscription customer detail.
+     * @param {Object} arg - arg object.
+     * @param {SubscriptionCustomerCreate} arg.body
+     **/
+    upsertCustomerDetail({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get current subscription detail
+      * @description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
+  
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSubscription({}?: any): any;
+    /**
+      *
+      * @summary: Get subscription subscription limits
+      * @description: Get subscription subscription limits.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getFeatureLimitConfig({}?: any): any;
+    /**
+     *
+     * @summary: Activate subscription
+     * @description: It will activate subscription plan for customer
+     * @param {Object} arg - arg object.
+     * @param {SubscriptionActivateReq} arg.body
+     **/
+    activateSubscriptionPlan({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Cancel subscription
+     * @description: It will cancel current active subscription.
+     * @param {Object} arg - arg object.
+     * @param {CancelSubscriptionReq} arg.body
+     **/
+    cancelSubscriptionPlan({ body }?: {
+        body: any;
+    }): any;
+}
 export class Payment {
     constructor(config: any);
     config: any;
@@ -332,17 +410,6 @@ export class CompanyProfile {
       **/
     getCompanyMetrics({}?: any): any;
     /**
-      *
-      * @summary: Get a single brand.
-      * @description: This API helps to get data associated to a particular brand.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.brandId - Id of the brand to be viewed.
-      
-      **/
-    getBrand({ brandId }?: {
-        brandId: string;
-    }): any;
-    /**
      *
      * @summary: Edit a brand.
      * @description: This API allows to edit meta of a brand.
@@ -353,6 +420,17 @@ export class CompanyProfile {
     editBrand({ brandId, body }?: {
         brandId: string;
         body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get a single brand.
+      * @description: This API helps to get data associated to a particular brand.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.brandId - Id of the brand to be viewed.
+      
+      **/
+    getBrand({ brandId }?: {
+        brandId: string;
     }): any;
     /**
      *
@@ -412,17 +490,6 @@ export class CompanyProfile {
         body: any;
     }): any;
     /**
-      *
-      * @summary: Get details of a specific location.
-      * @description: This API helps to get data associated to a specific location.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.locationId - Id of the location which you want to view.
-      
-      **/
-    getLocationDetail({ locationId }?: {
-        locationId: string;
-    }): any;
-    /**
      *
      * @summary: Edit a location asscoiated to a company.
      * @description: This API allows to edit a location associated to a company.
@@ -433,6 +500,17 @@ export class CompanyProfile {
     updateLocation({ locationId, body }?: {
         locationId: string;
         body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get details of a specific location.
+      * @description: This API helps to get data associated to a specific location.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.locationId - Id of the location which you want to view.
+      
+      **/
+    getLocationDetail({ locationId }?: {
+        locationId: string;
     }): any;
 }
 export class Assets {

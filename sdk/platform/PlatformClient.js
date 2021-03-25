@@ -1,5 +1,6 @@
 const {
   Lead,
+  Billing,
   Payment,
   Order,
   CompanyProfile,
@@ -12,6 +13,7 @@ class PlatformClient {
   constructor(config) {
     this.config = config;
     this.lead = new Lead(config);
+    this.billing = new Billing(config);
     this.payment = new Payment(config);
     this.order = new Order(config);
     this.companyProfile = new CompanyProfile(config);

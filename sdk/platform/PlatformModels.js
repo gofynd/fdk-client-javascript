@@ -197,6 +197,166 @@ class Lead {
   }
 }
 
+class Billing {
+  constructor(config) {
+    this.config = config;
+  }
+
+  /**
+    *
+    * @summary: Get invoices
+    * @description: Get invoices.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getInvoices({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/invoice/list`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get invoice by id
+    * @description: Get invoice by id.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.invoiceId - Invoice id
+    
+    **/
+  getInvoiceById({ invoiceId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/invoice/${invoiceId}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get subscription customer detail
+    * @description: Get subscription customer detail.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCustomerDetail({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/customer-detail`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Upsert subscription customer detail
+   * @description: Upsert subscription customer detail.
+   * @param {Object} arg - arg object.
+   * @param {SubscriptionCustomerCreate} arg.body
+   **/
+  upsertCustomerDetail({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/customer-detail`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get current subscription detail
+    * @description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
+
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSubscription({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/current`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get subscription subscription limits
+    * @description: Get subscription subscription limits.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getFeatureLimitConfig({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/current-limit`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Activate subscription
+   * @description: It will activate subscription plan for customer
+   * @param {Object} arg - arg object.
+   * @param {SubscriptionActivateReq} arg.body
+   **/
+  activateSubscriptionPlan({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/activate`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Cancel subscription
+   * @description: It will cancel current active subscription.
+   * @param {Object} arg - arg object.
+   * @param {CancelSubscriptionReq} arg.body
+   **/
+  cancelSubscriptionPlan({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/cancel`,
+      queryObj,
+      body
+    );
+  }
+}
+
 class Payment {
   constructor(config) {
     this.config = config;
@@ -628,26 +788,6 @@ class CompanyProfile {
   }
 
   /**
-    *
-    * @summary: Get a single brand.
-    * @description: This API helps to get data associated to a particular brand.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.brandId - Id of the brand to be viewed.
-    
-    **/
-  getBrand({ brandId } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
    *
    * @summary: Edit a brand.
    * @description: This API allows to edit meta of a brand.
@@ -664,6 +804,26 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       queryObj,
       body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a single brand.
+    * @description: This API helps to get data associated to a particular brand.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.brandId - Id of the brand to be viewed.
+    
+    **/
+  getBrand({ brandId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+      queryObj,
+      undefined
     );
   }
 
@@ -773,26 +933,6 @@ class CompanyProfile {
   }
 
   /**
-    *
-    * @summary: Get details of a specific location.
-    * @description: This API helps to get data associated to a specific location.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.locationId - Id of the location which you want to view.
-    
-    **/
-  getLocationDetail({ locationId } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
    *
    * @summary: Edit a location asscoiated to a company.
    * @description: This API allows to edit a location associated to a company.
@@ -809,6 +949,26 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       queryObj,
       body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get details of a specific location.
+    * @description: This API helps to get data associated to a specific location.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.locationId - Id of the location which you want to view.
+    
+    **/
+  getLocationDetail({ locationId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      queryObj,
+      undefined
     );
   }
 }
@@ -1085,6 +1245,7 @@ class Inventory {
 
 module.exports = {
   Lead,
+  Billing,
   Payment,
   Order,
   CompanyProfile,
