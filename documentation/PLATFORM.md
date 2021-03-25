@@ -12,7 +12,6 @@
 * [Assets](#Assets) - File Storage 
 * [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
-* [Cart](#Cart) - Cart APIs 
 
 ----
 ----
@@ -211,15 +210,15 @@
     * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
-    * [createBrand](#createbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
-    * [createLocation](#createlocation)
+    * [createBrand](#createbrand)
     * [getLocations](#getlocations)
-    * [updateLocation](#updatelocation)
+    * [createLocation](#createlocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     
 
 * [Assets](#Assets)
@@ -251,15 +250,6 @@
     * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
     
 
-* [Cart](#Cart)
-  * Methods
-    * [getCoupons](#getcoupons)
-    * [createCoupon](#createcoupon)
-    * [getCouponById](#getcouponbyid)
-    * [updateCoupon](#updatecoupon)
-    * [updateCouponPartially](#updatecouponpartially)
-    
-
 
 ---
 ---
@@ -274,10 +264,10 @@ Gets the list of company level tickets and/or ticket filters depending on query 
 
 ```javascript
 // Promise
-const promise = lead.getTickets(companyId,items,filters,pageNo,pageSize);
+const promise = lead.getTickets(companyId,items,filters,q,status,priority,category,pageNo,pageSize);
 
 // Async/Await
-const data = await lead.getTickets(companyId,items,filters,pageNo,pageSize);
+const data = await lead.getTickets(companyId,items,filters,q,status,priority,category,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -285,6 +275,10 @@ const data = await lead.getTickets(companyId,items,filters,pageNo,pageSize);
 | companyId | string | Company ID for which the data will be returned | 
 | items | boolean | Decides that the reponse will contain the list of tickets | 
 | filters | boolean | Decides that the reponse will contain the ticket filters | 
+| q | string | Search through ticket titles and description | 
+| status | string | Filter tickets on status | 
+| priority | string | Filter tickets on priority | 
+| category | string | Filter tickets on category | 
 | pageNo | integer | The page number to navigate through the given set of results. | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
@@ -927,10 +921,10 @@ Gets the list of Application level Tickets and/or ticket filters depending on qu
 
 ```javascript
 // Promise
-const promise = lead.getTickets(companyId,applicationId,items,filters);
+const promise = lead.getTickets(companyId,applicationId,items,filters,q,status,priority,category);
 
 // Async/Await
-const data = await lead.getTickets(companyId,applicationId,items,filters);
+const data = await lead.getTickets(companyId,applicationId,items,filters,q,status,priority,category);
 ```
 
 | Argument  |  Type  | Description |
@@ -939,6 +933,10 @@ const data = await lead.getTickets(companyId,applicationId,items,filters);
 | applicationId | string | Application ID for which the data will be returned | 
 | items | boolean | Decides that the reponse will contain the list of tickets | 
 | filters | boolean | Decides that the reponse will contain the ticket filters | 
+| q | string | Search through ticket titles and description | 
+| status | string | Filter tickets on status | 
+| priority | string | Filter tickets on priority | 
+| category | string | Filter tickets on category | 
 
 Gets the list of Application level Tickets and/or ticket filters
 
@@ -14157,56 +14155,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(companyId,brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(companyId,brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getBrand
 Get a single brand.
 
@@ -14257,22 +14205,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createBrand
-Create a Brand.
+#### editBrand
+Edit a brand.
 
 ```javascript
 // Promise
-const promise = companyprofile.createBrand(companyId,body);
+const promise = companyprofile.editBrand(companyId,brandId,body);
 
 // Async/Await
-const data = await companyprofile.createBrand(companyId,body);
+const data = await companyprofile.editBrand(companyId,brandId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company. | 
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
 
-This API allows to create a brand associated to a company.
+This API allows to edit meta of a brand.
 
 *Success Response:*
 
@@ -14307,7 +14256,7 @@ Schema: `ErrorResponse`
 
 
 #### createBrand
-Create a company brand mapping.
+Create a Brand.
 
 ```javascript
 // Promise
@@ -14319,9 +14268,9 @@ const data = await companyprofile.createBrand(companyId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
+| companyId | string | Id of the company. | 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a brand associated to a company.
 
 *Success Response:*
 
@@ -14404,22 +14353,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### createBrand
+Create a company brand mapping.
 
 ```javascript
 // Promise
-const promise = companyprofile.createLocation(companyId,body);
+const promise = companyprofile.createBrand(companyId,body);
 
 // Async/Await
-const data = await companyprofile.createLocation(companyId,body);
+const data = await companyprofile.createBrand(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
+| companyId | string | Id of the company inside which the brand is to be mapped. | 
 
-This API allows to create a location associated to a company.
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -14507,23 +14456,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```javascript
 // Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
+const promise = companyprofile.createLocation(companyId,body);
 
 // Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
+const data = await companyprofile.createLocation(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
 
-This API allows to edit a location associated to a company.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -14583,6 +14531,56 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.updateLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -15538,355 +15536,6 @@ Internal Server Error
 
 
 Schema: `ResponseEnvelopeListJobConfigListDTO`
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
-## Cart
-
-
-#### getCoupons
-Get with single coupon details or coupon list
-
-```javascript
-// Promise
-const promise = cart.getCoupons(companyId,applicationId,pageNo,pageSize,isArchived,title,isPublic,isDisplay,typeSlug,code);
-
-// Async/Await
-const data = await cart.getCoupons(companyId,applicationId,pageNo,pageSize,isArchived,title,isPublic,isDisplay,typeSlug,code);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-| pageNo | integer |  | 
-| pageSize | integer |  | 
-| isArchived | boolean |  | 
-| title | string |  | 
-| isPublic | boolean |  | 
-| isDisplay | boolean |  | 
-| typeSlug | string |  | 
-| code | string |  | 
-
-Get coupon list with pagination
-
-*Success Response:*
-
-
-
-Coupon List for sent page_size and page_no
-
-
-Schema: `CouponsResponse`
-
-
-*Examples:*
-
-
-Coupon list for sent filter and page size
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "5e1d9bec6d6b7e000146c840",
-        "display_meta": {
-          "title": "percent50 title"
-        },
-        "_schedule": {
-          "next_schedule": [
-            {
-              "start": "2020-01-14T10:45:03.600000+00:00",
-              "end": "2020-01-16T10:45:03+00:00"
-            }
-          ],
-          "duration": null,
-          "start": "2020-01-14T10:45:03.600000+00:00",
-          "end": "2020-01-16T10:45:03+00:00",
-          "cron": ""
-        },
-        "state": {
-          "is_public": true,
-          "is_display": true,
-          "is_archived": false
-        },
-        "ownership": {
-          "payable_category": "seller",
-          "payable_by": ""
-        },
-        "code": "percent50",
-        "rule_definition": {
-          "type": "percentage",
-          "scope": [
-            "category_id"
-          ],
-          "applicable_on": "quantity"
-        }
-      }
-    ],
-    "page": {
-      "has_next": true,
-      "size": 10,
-      "current": 1,
-      "item_total": 30
-    }
-  }
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### createCoupon
-Create new coupon
-
-```javascript
-// Promise
-const promise = cart.createCoupon(companyId,applicationId,body);
-
-// Async/Await
-const data = await cart.createCoupon(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-
-Create new coupon
-
-*Success Response:*
-
-
-
-Coupon Created successfully
-
-
-Schema: `SuccessMessageResponse`
-
-
-
-
-
-
-
-
-Invalid coupon data or existing coupon code
-
-
-Schema: `OperationErrorResponse`
-
-
-*Examples:*
-
-
-Coupon code exists
-```json
-{
-  "value": {
-    "success": false,
-    "message": "Coupon already code exist"
-  }
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCouponById
-Get with single coupon details or coupon list
-
-```javascript
-// Promise
-const promise = cart.getCouponById(companyId,applicationId,id);
-
-// Async/Await
-const data = await cart.getCouponById(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-| id | string |  | 
-
-Get single coupon details with `id` in path param
-
-*Success Response:*
-
-
-
-Coupon object for sent `id`
-
-
-Schema: `CouponUpdate`
-
-
-
-
-
-
-
-
-Coupon not found for passed `id`
-
-
-Schema: `OperationErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateCoupon
-Update existing coupon configuration
-
-```javascript
-// Promise
-const promise = cart.updateCoupon(companyId,applicationId,id,body);
-
-// Async/Await
-const data = await cart.updateCoupon(companyId,applicationId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-| id | string |  | 
-
-Update coupon with id sent in `id`
-
-*Success Response:*
-
-
-
-Coupon updated successfully
-
-
-Schema: `SuccessMessageResponse`
-
-
-
-
-
-
-
-
-Coupon not found for `id` from path params
-
-
-Schema: `OperationErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateCouponPartially
-Update coupon archive state and schedule
-
-```javascript
-// Promise
-const promise = cart.updateCouponPartially(companyId,applicationId,id,body);
-
-// Async/Await
-const data = await cart.updateCouponPartially(companyId,applicationId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-| id | string |  | 
-
-Update archive/unarchive and change schedule for coupon
-
-*Success Response:*
-
-
-
-Coupon updated successfully
-
-
-Schema: `SuccessMessageResponse`
-
-
-*Examples:*
-
-
-Archive or Unarchive coupon
-```json
-{
-  "value": {
-    "success": true,
-    "message": "Coupon Updated"
-  }
-}
-```
-
-Coupon schedule updated successfully
-```json
-{
-  "value": {
-    "success": true,
-    "message": "Coupon schedule updated"
-  }
-}
-```
-
-
-
-
-
-
-
-
-Coupon not found for `id` from path params
-
-
-Schema: `OperationErrorResponse`
 
 
 

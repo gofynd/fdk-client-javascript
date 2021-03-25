@@ -13,7 +13,6 @@ declare class Application {
     order: Order;
     assets: Assets;
     share: Share;
-    cart: Cart;
 }
 import { Lead } from "./PlatformApplicationModels";
 import { Theme } from "./PlatformApplicationModels";
@@ -24,4 +23,3 @@ import { Payment } from "./PlatformApplicationModels";
 import { Order } from "./PlatformApplicationModels";
 import { Assets } from "./PlatformApplicationModels";
 import { Share } from "./PlatformApplicationModels";
-import { Cart } from "./PlatformApplicationModels";

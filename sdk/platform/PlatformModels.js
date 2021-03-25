@@ -12,14 +12,31 @@ class Lead {
     * @param {Object} arg - arg object.
     * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
     * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
+    * @param {string} [arg.q] - Search through ticket titles and description
+    * @param {string} [arg.status] - Filter tickets on status
+    * @param {string} [arg.priority] - Filter tickets on priority
+    * @param {string} [arg.category] - Filter tickets on category
     * @param {number} [arg.pageNo] - The page number to navigate through the given set of results.
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
     
     **/
-  getTickets({ items, filters, pageNo, pageSize } = {}) {
+  getTickets({
+    items,
+    filters,
+    q,
+    status,
+    priority,
+    category,
+    pageNo,
+    pageSize,
+  } = {}) {
     const queryObj = {};
     queryObj["items"] = items;
     queryObj["filters"] = filters;
+    queryObj["q"] = q;
+    queryObj["status"] = status;
+    queryObj["priority"] = priority;
+    queryObj["category"] = category;
     queryObj["page_no"] = pageNo;
     queryObj["page_size"] = pageSize;
 
@@ -39,10 +56,22 @@ class Lead {
     * @param {Object} arg - arg object.
     * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
     * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
+    * @param {string} [arg.q] - Search through ticket titles and description
+    * @param {string} [arg.status] - Filter tickets on status
+    * @param {string} [arg.priority] - Filter tickets on priority
+    * @param {string} [arg.category] - Filter tickets on category
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
     
     **/
-  getTicketsPaginator({ items, filters, pageSize } = {}) {
+  getTicketsPaginator({
+    items,
+    filters,
+    q,
+    status,
+    priority,
+    category,
+    pageSize,
+  } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -51,6 +80,10 @@ class Lead {
       const data = await this.getTickets({
         items: items,
         filters: filters,
+        q: q,
+        status: status,
+        priority: priority,
+        category: category,
         pageNo: pageNo,
         pageSize: pageSize,
       });
@@ -595,26 +628,6 @@ class CompanyProfile {
   }
 
   /**
-   *
-   * @summary: Edit a brand.
-   * @description: This API allows to edit meta of a brand.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.brandId - Id of the brand to be viewed.
-   * @param {CreateUpdateBrandRequestSerializer} arg.body
-   **/
-  editBrand({ brandId, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
     *
     * @summary: Get a single brand.
     * @description: This API helps to get data associated to a particular brand.
@@ -636,6 +649,26 @@ class CompanyProfile {
 
   /**
    *
+   * @summary: Edit a brand.
+   * @description: This API allows to edit meta of a brand.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.brandId - Id of the brand to be viewed.
+   * @param {CreateUpdateBrandRequestSerializer} arg.body
+   **/
+  editBrand({ brandId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
    * @summary: Create a Brand.
    * @description: This API allows to create a brand associated to a company.
    * @param {Object} arg - arg object.
@@ -648,25 +681,6 @@ class CompanyProfile {
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Create a company brand mapping.
-   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
-   * @param {Object} arg - arg object.
-   * @param {CompanyBrandPostRequestSerializer} arg.body
-   **/
-  createBrand({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       queryObj,
       body
     );
@@ -693,18 +707,18 @@ class CompanyProfile {
 
   /**
    *
-   * @summary: Create a location asscoiated to a company.
-   * @description: This API allows to create a location associated to a company.
+   * @summary: Create a company brand mapping.
+   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
    * @param {Object} arg - arg object.
-   * @param {LocationSerializer} arg.body
+   * @param {CompanyBrandPostRequestSerializer} arg.body
    **/
-  createLocation({ body } = {}) {
+  createBrand({ body } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       queryObj,
       body
     );
@@ -741,19 +755,18 @@ class CompanyProfile {
 
   /**
    *
-   * @summary: Edit a location asscoiated to a company.
-   * @description: This API allows to edit a location associated to a company.
+   * @summary: Create a location asscoiated to a company.
+   * @description: This API allows to create a location associated to a company.
    * @param {Object} arg - arg object.
-   * @param {string} arg.locationId - Id of the location which you want to edit.
    * @param {LocationSerializer} arg.body
    **/
-  updateLocation({ locationId, body } = {}) {
+  createLocation({ body } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
-      "put",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       queryObj,
       body
     );
@@ -776,6 +789,26 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       queryObj,
       undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Edit a location asscoiated to a company.
+   * @description: This API allows to edit a location associated to a company.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.locationId - Id of the location which you want to edit.
+   * @param {LocationSerializer} arg.body
+   **/
+  updateLocation({ locationId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      queryObj,
+      body
     );
   }
 }

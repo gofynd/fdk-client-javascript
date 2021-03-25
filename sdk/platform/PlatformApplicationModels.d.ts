@@ -9,11 +9,19 @@ export class Lead {
       * @param {Object} arg - arg object.
       * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
       * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
+      * @param {string} [arg.q] - Search through ticket titles and description
+      * @param {string} [arg.status] - Filter tickets on status
+      * @param {string} [arg.priority] - Filter tickets on priority
+      * @param {string} [arg.category] - Filter tickets on category
       
       **/
-    getTickets({ items, filters }?: {
+    getTickets({ items, filters, q, status, priority, category }?: {
         items?: boolean;
         filters?: boolean;
+        q?: string;
+        status?: string;
+        priority?: string;
+        category?: string;
     }): any;
     /**
       *
@@ -1525,80 +1533,5 @@ export class Share {
       **/
     updateShortLinkById({ id }?: {
         id: string;
-    }): any;
-}
-export class Cart {
-    constructor(config: any, applicationId: any);
-    config: any;
-    applicationId: any;
-    /**
-      *
-      * @summary: Get with single coupon details or coupon list
-      * @description: Get coupon list with pagination
-      * @param {Object} arg - arg object.
-      * @param {number} [arg.pageNo] -
-      * @param {number} [arg.pageSize] -
-      * @param {boolean} [arg.isArchived] -
-      * @param {string} [arg.title] -
-      * @param {boolean} [arg.isPublic] -
-      * @param {boolean} [arg.isDisplay] -
-      * @param {string} [arg.typeSlug] -
-      * @param {string} [arg.code] -
-      
-      **/
-    getCoupons({ pageNo, pageSize, isArchived, title, isPublic, isDisplay, typeSlug, code, }?: {
-        pageNo?: number;
-        pageSize?: number;
-        isArchived?: boolean;
-        title?: string;
-        isPublic?: boolean;
-        isDisplay?: boolean;
-        typeSlug?: string;
-        code?: string;
-    }): any;
-    /**
-     *
-     * @summary: Create new coupon
-     * @description: Create new coupon
-     * @param {Object} arg - arg object.
-     * @param {CouponAdd} arg.body
-     **/
-    createCoupon({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Get with single coupon details or coupon list
-      * @description: Get single coupon details with `id` in path param
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id -
-      
-      **/
-    getCouponById({ id }?: {
-        id: string;
-    }): any;
-    /**
-     *
-     * @summary: Update existing coupon configuration
-     * @description: Update coupon with id sent in `id`
-     * @param {Object} arg - arg object.
-     * @param {string} arg.id -
-     * @param {CouponUpdate} arg.body
-     **/
-    updateCoupon({ id, body }?: {
-        id: string;
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Update coupon archive state and schedule
-     * @description: Update archive/unarchive and change schedule for coupon
-     * @param {Object} arg - arg object.
-     * @param {string} arg.id -
-     * @param {CouponPartialUpdate} arg.body
-     **/
-    updateCouponPartially({ id, body }?: {
-        id: string;
-        body: any;
     }): any;
 }

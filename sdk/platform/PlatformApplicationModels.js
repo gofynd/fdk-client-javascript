@@ -13,12 +13,20 @@ class Lead {
     * @param {Object} arg - arg object.
     * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
     * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
+    * @param {string} [arg.q] - Search through ticket titles and description
+    * @param {string} [arg.status] - Filter tickets on status
+    * @param {string} [arg.priority] - Filter tickets on priority
+    * @param {string} [arg.category] - Filter tickets on category
     
     **/
-  getTickets({ items, filters } = {}) {
+  getTickets({ items, filters, q, status, priority, category } = {}) {
     const queryObj = {};
     queryObj["items"] = items;
     queryObj["filters"] = filters;
+    queryObj["q"] = q;
+    queryObj["status"] = status;
+    queryObj["priority"] = priority;
+    queryObj["category"] = category;
 
     return APIClient.execute(
       this.config,
@@ -2874,136 +2882,6 @@ class Share {
   }
 }
 
-class Cart {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-    *
-    * @summary: Get with single coupon details or coupon list
-    * @description: Get coupon list with pagination
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - 
-    * @param {number} [arg.pageSize] - 
-    * @param {boolean} [arg.isArchived] - 
-    * @param {string} [arg.title] - 
-    * @param {boolean} [arg.isPublic] - 
-    * @param {boolean} [arg.isDisplay] - 
-    * @param {string} [arg.typeSlug] - 
-    * @param {string} [arg.code] - 
-    
-    **/
-  getCoupons({
-    pageNo,
-    pageSize,
-    isArchived,
-    title,
-    isPublic,
-    isDisplay,
-    typeSlug,
-    code,
-  } = {}) {
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["is_archived"] = isArchived;
-    queryObj["title"] = title;
-    queryObj["is_public"] = isPublic;
-    queryObj["is_display"] = isDisplay;
-    queryObj["type_slug"] = typeSlug;
-    queryObj["code"] = code;
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create new coupon
-   * @description: Create new coupon
-   * @param {Object} arg - arg object.
-   * @param {CouponAdd} arg.body
-   **/
-  createCoupon({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get with single coupon details or coupon list
-    * @description: Get single coupon details with `id` in path param
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - 
-    
-    **/
-  getCouponById({ id } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update existing coupon configuration
-   * @description: Update coupon with id sent in `id`
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id -
-   * @param {CouponUpdate} arg.body
-   **/
-  updateCoupon({ id, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update coupon archive state and schedule
-   * @description: Update archive/unarchive and change schedule for coupon
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id -
-   * @param {CouponPartialUpdate} arg.body
-   **/
-  updateCouponPartially({ id, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
-      queryObj,
-      body
-    );
-  }
-}
-
 module.exports = {
   Lead,
   Theme,
@@ -3014,5 +2892,4 @@ module.exports = {
   Order,
   Assets,
   Share,
-  Cart,
 };
