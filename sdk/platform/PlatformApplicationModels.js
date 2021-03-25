@@ -2882,6 +2882,511 @@ class Share {
   }
 }
 
+class Configuration {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
+  }
+
+  /**
+    *
+    * @summary: Get latest build config
+    * @description: Get latest build config
+    * @param {Object} arg - arg object.
+    * @param {string} arg.platformType - Current platform name
+    
+    **/
+  getBuildConfig({ platformType } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update build config for next build
+   * @description: Update build config for next build
+   * @param {Object} arg - arg object.
+   * @param {string} arg.platformType - Current platform name
+   * @param {MobileAppConfigRequest} arg.body
+   **/
+  updateBuildConfig({ platformType, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get previous versions
+    * @description: Get previous versions
+    * @param {Object} arg - arg object.
+    * @param {string} arg.platformType - Current platform name
+    
+    **/
+  getPreviousVersions({ platformType } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/versions`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get features of application
+    * @description: Get features of application
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAppFeatures({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/application/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update features of application
+   * @description: Update features of application
+   * @param {Object} arg - arg object.
+   * @param {AppFeatureRequest} arg.body
+   **/
+  updateAppFeatures({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get basic application details
+    * @description: Get basic application details like name
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAppBasicDetails({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/application/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Add or update application's basic details
+   * @description: Add or update application's basic details
+   * @param {Object} arg - arg object.
+   * @param {ApplicationDetail} arg.body
+   **/
+  updateAppBasicDetails({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get application information
+    * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAppContactInfo({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/application/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Get application information
+   * @description: Save Application Current Information. This includes information about social links, address and contact information of an application.
+   * @param {Object} arg - arg object.
+   * @param {ApplicationInformation} arg.body
+   **/
+  updateAppContactInfo({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get social tokens
+    * @description: Get social tokens.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAppApiTokens({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Add social tokens
+   * @description: Add social tokens.
+   * @param {Object} arg - arg object.
+   * @param {TokenResponse} arg.body
+   **/
+  updateAppApiTokens({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Application inventory enabled companies
+    * @description: Application inventory enabled companies.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAppCompanies({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/companies`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Application inventory enabled stores
+    * @description: Application inventory enabled stores.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAppStores({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stores`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get application configuration
+    * @description: Get application configuration for various features and data
+    * @param {Object} arg - arg object.
+    
+    **/
+  getInventoryConfig({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update application configuration
+   * @description: Update application configuration for various features and data
+   * @param {Object} arg - arg object.
+   * @param {ApplicationInventory} arg.body
+   **/
+  updateInventoryConfig({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Partially update application configuration
+   * @description: Partially update application configuration for various features and data
+   * @param {Object} arg - arg object.
+   * @param {AppInventoryPartialUpdate} arg.body
+   **/
+  partiallyUpdateInventoryConfig({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get application enabled currency list
+    * @description: Get application enabled currency list
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAppCurrencyConfig({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Add initial application supported currency
+   * @description: Add initial application supported currency for various features and data. Default INR will be enabled.
+   * @param {Object} arg - arg object.
+   * @param {AppSupportedCurrency} arg.body
+   **/
+  updateAppCurrencyConfig({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Get ordering store by filter
+   * @description: Get ordering store by filter
+   * @param {Object} arg - arg object.
+   * @param {FilterOrderingStoreRequest} arg.body
+   **/
+  getOrderingStoresByFilter({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores/filter`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Add/Update ordering store config
+   * @description: Add/Update ordering store config.
+   * @param {Object} arg - arg object.
+   * @param {OrderingStoreConfig} arg.body
+   **/
+  updateOrderingStoreConfig({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get attached domain list
+    * @description: Get attached domain list.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getDomains({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Add new domain to application
+   * @description: Add new domain to application.
+   * @param {Object} arg - arg object.
+   * @param {DomainAddRequest} arg.body
+   **/
+  addDomain({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Remove attached domain
+    * @description: Remove attached domain.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Domain _id
+    
+    **/
+  removeDomainById({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/${id}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Change domain type
+   * @description: Change a domain to Primary or Shortlink domain
+   * @param {Object} arg - arg object.
+   * @param {UpdateDomainTypeRequest} arg.body
+   **/
+  changeDomainType({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/set-domain`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Get domain connected status.
+   * @description: Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
+   * @param {Object} arg - arg object.
+   * @param {DomainStatusRequest} arg.body
+   **/
+  getDomainStatus({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/domain-status`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get application data from id
+    * @description: Get application data from id
+    * @param {Object} arg - arg object.
+    
+    **/
+  getApplicationById({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
+      queryObj,
+      undefined
+    );
+  }
+}
+
 module.exports = {
   Lead,
   Theme,
@@ -2892,4 +3397,5 @@ module.exports = {
   Order,
   Assets,
   Share,
+  Configuration,
 };

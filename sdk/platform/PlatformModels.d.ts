@@ -662,3 +662,201 @@ export class Inventory {
         pageSize?: number;
     }): any;
 }
+export class Configuration {
+    constructor(config: any);
+    config: any;
+    /**
+     *
+     * @summary: Create application
+     * @description: Create new application
+     * @param {Object} arg - arg object.
+     * @param {CreateApplicationRequest} arg.body
+     **/
+    createApplication({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get list of application under company
+      * @description: Get list of application under company
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] -
+      * @param {number} [arg.pageSize] -
+      * @param {object} [arg.query] - Url encoded object used as mongodb query
+      
+      **/
+    getApplications({ pageNo, pageSize, query }?: {
+        pageNo?: number;
+        pageSize?: number;
+        query?: object;
+    }): any;
+    /**
+      *
+      * @summary: Get all currencies
+      * @description: Get all currencies
+      * @param {Object} arg - arg object.
+      
+      **/
+    getCurrencies({}?: any): any;
+    /**
+     *
+     * @summary: Check domain availibility before linking to application
+     * @description: Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
+     * @param {Object} arg - arg object.
+     * @param {DomainSuggestionsRequest} arg.body
+     **/
+    getDomainAvailibility({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get integration data
+      * @description: Get integration data
+      * @param {Object} arg - arg object.
+      * @param {number} arg.id - Integration id
+      
+      **/
+    getIntegrationById({ id }?: {
+        id: number;
+    }): any;
+    /**
+      *
+      * @summary: Get all available integration opt-ins
+      * @description: Get all available integration opt-ins
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - Current page no
+      * @param {number} [arg.pageSize] - Current request items count
+      
+      **/
+    getAvailableOptIns({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get company/store level integration opt-ins
+      * @description: Get company/store level integration opt-ins
+      * @param {Object} arg - arg object.
+      * @param {string} arg.level - Integration level
+      * @param {number} arg.uid - Integration level uid
+      * @param {number} [arg.pageNo] - Current page no
+      * @param {number} [arg.pageSize] - Current request items count
+      
+      **/
+    getSelectedOptIns({ level, uid, pageNo, pageSize }?: {
+        level: string;
+        uid: number;
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get integration level config
+      * @description: Get integration level config
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Integration id
+      * @param {string} arg.level - Integration level
+      
+      **/
+    getIntegrationLevelConfig({ id, level }?: {
+        id: string;
+        level: string;
+    }): any;
+    /**
+      *
+      * @summary: Get level data for integration
+      * @description: Get level data for integration
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Integration id
+      * @param {string} arg.level - Integration level
+      * @param {number} arg.uid - Integration level uid
+      
+      **/
+    getIntegrationByLevelId({ id, level, uid }?: {
+        id: string;
+        level: string;
+        uid: number;
+    }): any;
+    /**
+      *
+      * @summary: Check store has active integration
+      * @description: API checks if a store is already opted in any other integrations
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Integration id
+      * @param {string} arg.level - Integration level
+      * @param {number} arg.uid - Integration level uid
+      
+      **/
+    getLevelActiveIntegrations({ id, level, uid }?: {
+        id: string;
+        level: string;
+        uid: number;
+    }): any;
+    /**
+      *
+      * @summary: Get brands by company
+      * @description: Get brands by company
+      * @param {Object} arg - arg object.
+      
+      **/
+    getBrandsByCompany({}?: any): any;
+    /**
+     *
+     * @summary: Get company by brand uids
+     * @description: Get company by brand uids
+     * @param {Object} arg - arg object.
+     * @param {number} [arg.pageNo] - Current page no
+     * @param {number} [arg.pageSize] - Current request items count
+     * @param {CompanyByBrandsRequest} arg.body
+     **/
+    getCompanyByBrands({ body, pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Get stores by brand uids
+     * @description: Get stores by brand uids
+     * @param {Object} arg - arg object.
+     * @param {number} [arg.pageNo] - Current page no
+     * @param {number} [arg.pageSize] - Current request items count
+     * @param {StoreByBrandsRequest} arg.body
+     **/
+    getStoreByBrands({ body, pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get other seller applications
+      * @description: Get other seller applications who has opted current company as inventory
+      * @param {Object} arg - arg object.
+      
+      **/
+    getOtherSellerApplications({}?: any): any;
+    /**
+      *
+      * @summary: Get other seller applications
+      * @description: Get other seller application
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Application Id
+      
+      **/
+    getOtherSellerApplicationById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Opt out company or store from other seller application
+     * @description: Opt out company or store from other seller application
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Application Id
+     * @param {OptOutInventory} arg.body
+     **/
+    optOutFromApplication({ id, body }?: {
+        id: string;
+        body: any;
+    }): any;
+}

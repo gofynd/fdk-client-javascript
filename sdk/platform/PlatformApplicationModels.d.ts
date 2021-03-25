@@ -1535,3 +1535,253 @@ export class Share {
         id: string;
     }): any;
 }
+export class Configuration {
+    constructor(config: any, applicationId: any);
+    config: any;
+    applicationId: any;
+    /**
+      *
+      * @summary: Get latest build config
+      * @description: Get latest build config
+      * @param {Object} arg - arg object.
+      * @param {string} arg.platformType - Current platform name
+      
+      **/
+    getBuildConfig({ platformType }?: {
+        platformType: string;
+    }): any;
+    /**
+     *
+     * @summary: Update build config for next build
+     * @description: Update build config for next build
+     * @param {Object} arg - arg object.
+     * @param {string} arg.platformType - Current platform name
+     * @param {MobileAppConfigRequest} arg.body
+     **/
+    updateBuildConfig({ platformType, body }?: {
+        platformType: string;
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get previous versions
+      * @description: Get previous versions
+      * @param {Object} arg - arg object.
+      * @param {string} arg.platformType - Current platform name
+      
+      **/
+    getPreviousVersions({ platformType }?: {
+        platformType: string;
+    }): any;
+    /**
+      *
+      * @summary: Get features of application
+      * @description: Get features of application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAppFeatures({}?: any): any;
+    /**
+     *
+     * @summary: Update features of application
+     * @description: Update features of application
+     * @param {Object} arg - arg object.
+     * @param {AppFeatureRequest} arg.body
+     **/
+    updateAppFeatures({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get basic application details
+      * @description: Get basic application details like name
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAppBasicDetails({}?: any): any;
+    /**
+     *
+     * @summary: Add or update application's basic details
+     * @description: Add or update application's basic details
+     * @param {Object} arg - arg object.
+     * @param {ApplicationDetail} arg.body
+     **/
+    updateAppBasicDetails({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get application information
+      * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAppContactInfo({}?: any): any;
+    /**
+     *
+     * @summary: Get application information
+     * @description: Save Application Current Information. This includes information about social links, address and contact information of an application.
+     * @param {Object} arg - arg object.
+     * @param {ApplicationInformation} arg.body
+     **/
+    updateAppContactInfo({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get social tokens
+      * @description: Get social tokens.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAppApiTokens({}?: any): any;
+    /**
+     *
+     * @summary: Add social tokens
+     * @description: Add social tokens.
+     * @param {Object} arg - arg object.
+     * @param {TokenResponse} arg.body
+     **/
+    updateAppApiTokens({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Application inventory enabled companies
+      * @description: Application inventory enabled companies.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAppCompanies({}?: any): any;
+    /**
+      *
+      * @summary: Application inventory enabled stores
+      * @description: Application inventory enabled stores.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAppStores({}?: any): any;
+    /**
+      *
+      * @summary: Get application configuration
+      * @description: Get application configuration for various features and data
+      * @param {Object} arg - arg object.
+      
+      **/
+    getInventoryConfig({}?: any): any;
+    /**
+     *
+     * @summary: Update application configuration
+     * @description: Update application configuration for various features and data
+     * @param {Object} arg - arg object.
+     * @param {ApplicationInventory} arg.body
+     **/
+    updateInventoryConfig({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Partially update application configuration
+     * @description: Partially update application configuration for various features and data
+     * @param {Object} arg - arg object.
+     * @param {AppInventoryPartialUpdate} arg.body
+     **/
+    partiallyUpdateInventoryConfig({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get application enabled currency list
+      * @description: Get application enabled currency list
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAppCurrencyConfig({}?: any): any;
+    /**
+     *
+     * @summary: Add initial application supported currency
+     * @description: Add initial application supported currency for various features and data. Default INR will be enabled.
+     * @param {Object} arg - arg object.
+     * @param {AppSupportedCurrency} arg.body
+     **/
+    updateAppCurrencyConfig({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Get ordering store by filter
+     * @description: Get ordering store by filter
+     * @param {Object} arg - arg object.
+     * @param {FilterOrderingStoreRequest} arg.body
+     **/
+    getOrderingStoresByFilter({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Add/Update ordering store config
+     * @description: Add/Update ordering store config.
+     * @param {Object} arg - arg object.
+     * @param {OrderingStoreConfig} arg.body
+     **/
+    updateOrderingStoreConfig({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get attached domain list
+      * @description: Get attached domain list.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getDomains({}?: any): any;
+    /**
+     *
+     * @summary: Add new domain to application
+     * @description: Add new domain to application.
+     * @param {Object} arg - arg object.
+     * @param {DomainAddRequest} arg.body
+     **/
+    addDomain({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Remove attached domain
+      * @description: Remove attached domain.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Domain _id
+      
+      **/
+    removeDomainById({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Change domain type
+     * @description: Change a domain to Primary or Shortlink domain
+     * @param {Object} arg - arg object.
+     * @param {UpdateDomainTypeRequest} arg.body
+     **/
+    changeDomainType({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Get domain connected status.
+     * @description: Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
+     * @param {Object} arg - arg object.
+     * @param {DomainStatusRequest} arg.body
+     **/
+    getDomainStatus({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get application data from id
+      * @description: Get application data from id
+      * @param {Object} arg - arg object.
+      
+      **/
+    getApplicationById({}?: any): any;
+}

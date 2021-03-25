@@ -8,6 +8,7 @@ const {
   Order,
   Assets,
   Share,
+  Configuration,
 } = require("./PlatformApplicationModels");
 
 class Application {
@@ -25,6 +26,7 @@ class Application {
     this.order = new Order(config, applicationId);
     this.assets = new Assets(config, applicationId);
     this.share = new Share(config, applicationId);
+    this.configuration = new Configuration(config, applicationId);
   }
 }
 
