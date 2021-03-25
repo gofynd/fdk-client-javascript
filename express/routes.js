@@ -125,7 +125,7 @@ function setupRoutes(ext) {
             let fdkHelper = FdkHelper.getInstance(req.fdkSession.cluster, ext);
             let platformConfig = await fdkHelper.getPlatformConfigInstance(req.fdkSession.company_id);
             await platformConfig.oauthClient.verifyCallback(req.query);
-            let token = platformConfig.oauthClient.token;
+            let token = platformConfig.oauthClient.raw_token;
 
             req.fdkSession.expires = new Date(Date.now() + token.expires_in * 1000);
             req.fdkSession.access_token = token.access_token;
