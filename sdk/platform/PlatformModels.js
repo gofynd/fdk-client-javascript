@@ -847,6 +847,25 @@ class CompanyProfile {
   }
 
   /**
+   *
+   * @summary: Create a company brand mapping.
+   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
+   * @param {Object} arg - arg object.
+   * @param {CompanyBrandPostRequestSerializer} arg.body
+   **/
+  createBrand({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
     *
     * @summary: Get brands associated to a company
     * @description: This API helps to get view brands associated to a particular company.
@@ -867,18 +886,18 @@ class CompanyProfile {
 
   /**
    *
-   * @summary: Create a company brand mapping.
-   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
+   * @summary: Create a location asscoiated to a company.
+   * @description: This API allows to create a location associated to a company.
    * @param {Object} arg - arg object.
-   * @param {CompanyBrandPostRequestSerializer} arg.body
+   * @param {LocationSerializer} arg.body
    **/
-  createBrand({ body } = {}) {
+  createLocation({ body } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       queryObj,
       body
     );
@@ -910,25 +929,6 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       queryObj,
       undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create a location asscoiated to a company.
-   * @description: This API allows to create a location associated to a company.
-   * @param {Object} arg - arg object.
-   * @param {LocationSerializer} arg.body
-   **/
-  createLocation({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
-      queryObj,
-      body
     );
   }
 
@@ -1274,15 +1274,14 @@ class Configuration {
     * @param {Object} arg - arg object.
     * @param {number} [arg.pageNo] - 
     * @param {number} [arg.pageSize] - 
-    * @param {object} [arg.query] - Url encoded object used as mongodb query
+    * @param {object} [arg.q] - Url encoded object used as mongodb query
     
     **/
-  getApplications({ pageNo, pageSize, query } = {}) {
+  getApplications({ pageNo, pageSize, q } = {}) {
     const queryObj = {};
-    queryObj["company_id"] = companyId;
     queryObj["page_no"] = pageNo;
     queryObj["page_size"] = pageSize;
-    queryObj["query"] = query;
+    queryObj["q"] = q;
 
     return APIClient.execute(
       this.config,

@@ -443,16 +443,6 @@ export class CompanyProfile {
         body: any;
     }): any;
     /**
-     *
-     * @summary: Create a company brand mapping.
-     * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
-     * @param {Object} arg - arg object.
-     * @param {CompanyBrandPostRequestSerializer} arg.body
-     **/
-    createBrand({ body }?: {
-        body: any;
-    }): any;
-    /**
       *
       * @summary: Get brands associated to a company
       * @description: This API helps to get view brands associated to a particular company.
@@ -460,6 +450,16 @@ export class CompanyProfile {
       
       **/
     getBrands({}?: any): any;
+    /**
+     *
+     * @summary: Create a location asscoiated to a company.
+     * @description: This API allows to create a location associated to a company.
+     * @param {Object} arg - arg object.
+     * @param {LocationSerializer} arg.body
+     **/
+    createLocation({ body }?: {
+        body: any;
+    }): any;
     /**
       *
       * @summary: Get list of locations
@@ -478,16 +478,6 @@ export class CompanyProfile {
         stage?: string;
         pageNo?: number;
         pageSize?: number;
-    }): any;
-    /**
-     *
-     * @summary: Create a location asscoiated to a company.
-     * @description: This API allows to create a location associated to a company.
-     * @param {Object} arg - arg object.
-     * @param {LocationSerializer} arg.body
-     **/
-    createLocation({ body }?: {
-        body: any;
     }): any;
     /**
      *
@@ -682,13 +672,13 @@ export class Configuration {
       * @param {Object} arg - arg object.
       * @param {number} [arg.pageNo] -
       * @param {number} [arg.pageSize] -
-      * @param {object} [arg.query] - Url encoded object used as mongodb query
+      * @param {object} [arg.q] - Url encoded object used as mongodb query
       
       **/
-    getApplications({ pageNo, pageSize, query }?: {
+    getApplications({ pageNo, pageSize, q }?: {
         pageNo?: number;
         pageSize?: number;
-        query?: object;
+        q?: object;
     }): any;
     /**
       *
