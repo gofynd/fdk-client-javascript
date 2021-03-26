@@ -7,11 +7,15 @@ FDK Extension Helper Library
     const express = require('express');
     const cookieParser = require('cookie-parser');
     const urlJoin = require('url-join');
+    const { setupFdk } = require("fdk-extension-javascript/express");
+    const { RedisStorage } = require("fdk-extension-javascript/express/storage");
+    const Redis = require("ioredis");
 
     const app = express();
     app.use(cookieParser());
     app.use(bodyParser.json({ limit: '2mb' }));
-
+    
+    const redis = new Redis();
 
     let extensionHandler = {
         setup: async function(data) {
@@ -46,7 +50,8 @@ FDK Extension Helper Library
         callbacks: extensionHandler,
         contact_email: "xyz@gmail.com",
         developed_by_name: "Fynd",
-        webhooks: []
+        webhooks: [],
+        storage: new RedisStorage(redis)
     });
     app.use(FDKClient.fdkHandler);
 
