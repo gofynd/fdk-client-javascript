@@ -14,6 +14,7 @@
 * [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
 * [Configuration](#Configuration) - Application configuration apis 
+* [Analytics](#Analytics) - Perceptor analytics 
 
 ----
 ----
@@ -221,18 +222,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
+    * [updateCompany](#updatecompany)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
-    * [createBrand](#createbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
-    * [createLocation](#createlocation)
+    * [createBrand](#createbrand)
     * [getLocations](#getlocations)
-    * [updateLocation](#updatelocation)
+    * [createLocation](#createlocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     
 
 * [Assets](#Assets)
@@ -308,6 +309,22 @@
     * [getOtherSellerApplications](#getothersellerapplications)
     * [getOtherSellerApplicationById](#getothersellerapplicationbyid)
     * [optOutFromApplication](#optoutfromapplication)
+    
+
+* [Analytics](#Analytics)
+  * Methods
+    * [getStatiscticsGroups](#getstatiscticsgroups)
+    * [getStatiscticsGroupComponents](#getstatiscticsgroupcomponents)
+    * [getComponentStatsCSV](#getcomponentstatscsv)
+    * [getComponentStatsPDF](#getcomponentstatspdf)
+    * [getComponentStats](#getcomponentstats)
+    * [getAbandonCartList](#getabandoncartlist)
+    * [getAbandonCartsCSV](#getabandoncartscsv)
+    * [getAbandonCartDetail](#getabandoncartdetail)
+    * [createExportJob](#createexportjob)
+    * [getExportJobStatus](#getexportjobstatus)
+    * [getLogsList](#getlogslist)
+    * [searchLogs](#searchlogs)
     
 
 
@@ -14576,55 +14593,6 @@ Schema: `ApefaceApiError`
 ## CompanyProfile
 
 
-#### updateCompany
-Edit company profile
-
-```javascript
-// Promise
-const promise = companyprofile.updateCompany(companyId,body);
-
-// Async/Await
-const data = await companyprofile.updateCompany(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to edit the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Returns a success message
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### cbsOnboardGet
 Get company profile
 
@@ -14674,6 +14642,55 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateCompany
+Edit company profile
+
+```javascript
+// Promise
+const promise = companyprofile.updateCompany(companyId,body);
+
+// Async/Await
+const data = await companyprofile.updateCompany(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to edit the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Returns a success message
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCompanyMetrics
 Get company metrics
 
@@ -14699,56 +14716,6 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 
 
 Schema: `MetricsSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(companyId,brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(companyId,brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -14823,22 +14790,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createBrand
-Create a Brand.
+#### editBrand
+Edit a brand.
 
 ```javascript
 // Promise
-const promise = companyprofile.createBrand(companyId,body);
+const promise = companyprofile.editBrand(companyId,brandId,body);
 
 // Async/Await
-const data = await companyprofile.createBrand(companyId,body);
+const data = await companyprofile.editBrand(companyId,brandId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company. | 
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
 
-This API allows to create a brand associated to a company.
+This API allows to edit meta of a brand.
 
 *Success Response:*
 
@@ -14873,7 +14841,7 @@ Schema: `ErrorResponse`
 
 
 #### createBrand
-Create a company brand mapping.
+Create a Brand.
 
 ```javascript
 // Promise
@@ -14885,9 +14853,9 @@ const data = await companyprofile.createBrand(companyId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
+| companyId | string | Id of the company. | 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a brand associated to a company.
 
 *Success Response:*
 
@@ -14970,22 +14938,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### createBrand
+Create a company brand mapping.
 
 ```javascript
 // Promise
-const promise = companyprofile.createLocation(companyId,body);
+const promise = companyprofile.createBrand(companyId,body);
 
 // Async/Await
-const data = await companyprofile.createLocation(companyId,body);
+const data = await companyprofile.createBrand(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
+| companyId | string | Id of the company inside which the brand is to be mapped. | 
 
-This API allows to create a location associated to a company.
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -15073,23 +15041,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```javascript
 // Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
+const promise = companyprofile.createLocation(companyId,body);
 
 // Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
+const data = await companyprofile.createLocation(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
 
-This API allows to edit a location associated to a company.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -15149,6 +15116,56 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.updateLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -17956,6 +17973,485 @@ Not found
 
 
 Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Analytics
+
+
+#### getStatiscticsGroups
+Get statistics groups
+
+```javascript
+// Promise
+const promise = analytics.getStatiscticsGroups(companyId,applicationId);
+
+// Async/Await
+const data = await analytics.getStatiscticsGroups(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Get statistics groups
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StatsGroups`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getStatiscticsGroupComponents
+Get statistics group components
+
+```javascript
+// Promise
+const promise = analytics.getStatiscticsGroupComponents(companyId,applicationId,groupName);
+
+// Async/Await
+const data = await analytics.getStatiscticsGroupComponents(companyId,applicationId,groupName);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| groupName | string | Group name | 
+
+Get statistics group components
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StatsGroupComponents`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponentStatsCSV
+Get component statistics csv
+
+```javascript
+// Promise
+const promise = analytics.getComponentStatsCSV(companyId,applicationId,componentName);
+
+// Async/Await
+const data = await analytics.getComponentStatsCSV(companyId,applicationId,componentName);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| componentName | string | Component name | 
+
+Get component statistics csv
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `string`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponentStatsPDF
+Get component statistics pdf
+
+```javascript
+// Promise
+const promise = analytics.getComponentStatsPDF(companyId,applicationId,componentName);
+
+// Async/Await
+const data = await analytics.getComponentStatsPDF(companyId,applicationId,componentName);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| componentName | string | Component name | 
+
+Get component statistics pdf
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `string`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponentStats
+Get component statistics
+
+```javascript
+// Promise
+const promise = analytics.getComponentStats(companyId,applicationId,componentName);
+
+// Async/Await
+const data = await analytics.getComponentStats(companyId,applicationId,componentName);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| componentName | string | Component name | 
+
+Get component statistics
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StatsRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAbandonCartList
+Get abandon carts list
+
+```javascript
+// Promise
+const promise = analytics.getAbandonCartList(companyId,applicationId,from,to,pageNo,pageSize);
+
+// Async/Await
+const data = await analytics.getAbandonCartList(companyId,applicationId,from,to,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| from | string | From date | 
+| to | string | To date | 
+| pageNo | string | Current page number | 
+| pageSize | string | Current page size | 
+
+Get abandon carts list
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AbandonCartsList`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAbandonCartsCSV
+Get abandon carts csv
+
+```javascript
+// Promise
+const promise = analytics.getAbandonCartsCSV(companyId,applicationId,from,to);
+
+// Async/Await
+const data = await analytics.getAbandonCartsCSV(companyId,applicationId,from,to);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| from | string | From date | 
+| to | string | To date | 
+
+Get abandon carts csv
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `string`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAbandonCartDetail
+Get abandon carts details
+
+```javascript
+// Promise
+const promise = analytics.getAbandonCartDetail(companyId,applicationId,cartId);
+
+// Async/Await
+const data = await analytics.getAbandonCartDetail(companyId,applicationId,cartId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| cartId | string | Cart Id | 
+
+Get abandon cart details
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AbandonCartDetail`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createExportJob
+Create data export job in required format
+
+```javascript
+// Promise
+const promise = analytics.createExportJob(companyId,exportType,body);
+
+// Async/Await
+const data = await analytics.createExportJob(companyId,exportType,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| exportType | string | Export type / format | 
+
+Create data export job in required format
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ExportJobRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getExportJobStatus
+Get data export job status
+
+```javascript
+// Promise
+const promise = analytics.getExportJobStatus(companyId,exportType,jobId);
+
+// Async/Await
+const data = await analytics.getExportJobStatus(companyId,exportType,jobId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| exportType | string | Export type / format | 
+| jobId | string | Export job id | 
+
+Get data export job status
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ExportJobStatusRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLogsList
+Get logs list
+
+```javascript
+// Promise
+const promise = analytics.getLogsList(companyId,logType,body,pageNo,pageSize);
+
+// Async/Await
+const data = await analytics.getLogsList(companyId,logType,body,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| logType | string | Log type | 
+| pageNo | string | Current page number | 
+| pageSize | string | Current page size | 
+
+Get logs list
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetLogsListRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### searchLogs
+Search logs
+
+```javascript
+// Promise
+const promise = analytics.searchLogs(companyId,logType,body,pageNo,pageSize);
+
+// Async/Await
+const data = await analytics.searchLogs(companyId,logType,body,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| pageNo | string | Current page number | 
+| pageSize | string | Current page size | 
+| logType | string | Log type | 
+
+Search logs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SearchLogRes`
 
 
 

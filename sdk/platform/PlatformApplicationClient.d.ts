@@ -14,6 +14,7 @@ declare class Application {
     assets: Assets;
     share: Share;
     configuration: Configuration;
+    analytics: Analytics;
 }
 import { Lead } from "./PlatformApplicationModels";
 import { Theme } from "./PlatformApplicationModels";
@@ -25,3 +26,4 @@ import { Order } from "./PlatformApplicationModels";
 import { Assets } from "./PlatformApplicationModels";
 import { Share } from "./PlatformApplicationModels";
 import { Configuration } from "./PlatformApplicationModels";
+import { Analytics } from "./PlatformApplicationModels";

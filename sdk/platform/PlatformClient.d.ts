@@ -10,6 +10,7 @@ declare class PlatformClient {
     assets: Assets;
     inventory: Inventory;
     configuration: Configuration;
+    analytics: Analytics;
     application(applicationId: any): Application;
 }
 import { Lead } from "./PlatformModels";
@@ -20,4 +21,5 @@ import { CompanyProfile } from "./PlatformModels";
 import { Assets } from "./PlatformModels";
 import { Inventory } from "./PlatformModels";
 import { Configuration } from "./PlatformModels";
+import { Analytics } from "./PlatformModels";
 import Application = require("./PlatformApplicationClient");

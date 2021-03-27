@@ -73,8 +73,8 @@
     * [updateAddress](#updateaddress)
     * [removeAddress](#removeaddress)
     * [selectAddress](#selectaddress)
-    * [getPaymentModes](#getpaymentmodes)
     * [selectPaymentMode](#selectpaymentmode)
+    * [validateCouponForPayment](#validatecouponforpayment)
     * [getShipments](#getshipments)
     * [checkoutCart](#checkoutcart)
     * [updateCartMeta](#updatecartmeta)
@@ -285,8 +285,8 @@
     * [updateAddress](#updateaddress)
     * [removeAddress](#removeaddress)
     * [selectAddress](#selectaddress)
-    * [getPaymentModes](#getpaymentmodes)
     * [selectPaymentMode](#selectpaymentmode)
+    * [validateCouponForPayment](#validatecouponforpayment)
     * [getShipments](#getshipments)
     * [updateShipments](#updateshipments)
     * [checkoutCart](#checkoutcart)
@@ -3136,7 +3136,7 @@ Offers not found
 Unhandled api error
 
 
-Schema: `object`
+Schema: `Object`
 
 
 
@@ -3380,7 +3380,7 @@ Schema: `CartResponse`
 Address or Pincode Error
 
 
-Schema: `object`
+Schema: `Object`
 
 
 *Examples:*
@@ -3405,50 +3405,6 @@ Pincode Not Serviciable
   }
 }
 ```
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPaymentModes
-Get Cart Payment for valid coupon
-
-```javascript
-// Promise
-const promise = cart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode,action,type);
-
-// Async/Await
-const data = await cart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode,action,type);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | string |  | 
-| addressId | string |  | 
-| paymentMode | string |  | 
-| paymentIdentifier | string |  | 
-| aggregatorName | string |  | 
-| merchantCode | string |  | 
-| action | string |  | 
-| type | string |  | 
-
-Validate coupon for selected payment mode
-
-*Success Response:*
-
-
-
-Cart response with payment options
-
-
-Schema: `ValidateCouponPaymentMode`
 
 
 
@@ -3486,6 +3442,48 @@ Cart response with payment options
 
 
 Schema: `CartResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### validateCouponForPayment
+Get Cart Payment for valid coupon
+
+```javascript
+// Promise
+const promise = cart.validateCouponForPayment(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+
+// Async/Await
+const data = await cart.validateCouponForPayment(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| uid | string |  | 
+| addressId | string |  | 
+| paymentMode | string |  | 
+| paymentIdentifier | string |  | 
+| aggregatorName | string |  | 
+| merchantCode | string |  | 
+
+Validate coupon for selected payment mode
+
+*Success Response:*
+
+
+
+Cart Affiliates.
+
+
+Schema: `PaymentUpdate`
 
 
 
@@ -4177,7 +4175,7 @@ Shipment Generation Failed
 Unhandled api error
 
 
-Schema: `object`
+Schema: `Object`
 
 
 
@@ -6896,7 +6894,7 @@ Success
 
 
 
-Schema: `object`
+Schema: `Object`
 
 
 
@@ -15068,7 +15066,7 @@ Offers not found
 Unhandled api error
 
 
-Schema: `object`
+Schema: `Object`
 
 
 
@@ -15312,7 +15310,7 @@ Schema: `CartResponse`
 Address or Pincode Error
 
 
-Schema: `object`
+Schema: `Object`
 
 
 *Examples:*
@@ -15337,50 +15335,6 @@ Pincode Not Serviciable
   }
 }
 ```
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPaymentModes
-Get Cart Payment for valid coupon
-
-```javascript
-// Promise
-const promise = poscart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode,action,type);
-
-// Async/Await
-const data = await poscart.getPaymentModes(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode,action,type);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| uid | string |  | 
-| addressId | string |  | 
-| paymentMode | string |  | 
-| paymentIdentifier | string |  | 
-| aggregatorName | string |  | 
-| merchantCode | string |  | 
-| action | string |  | 
-| type | string |  | 
-
-Validate coupon for selected payment mode
-
-*Success Response:*
-
-
-
-Cart response with payment options
-
-
-Schema: `ValidateCouponPaymentMode`
 
 
 
@@ -15418,6 +15372,48 @@ Cart response with payment options
 
 
 Schema: `CartResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### validateCouponForPayment
+Get Cart Payment for valid coupon
+
+```javascript
+// Promise
+const promise = poscart.validateCouponForPayment(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+
+// Async/Await
+const data = await poscart.validateCouponForPayment(uid,addressId,paymentMode,paymentIdentifier,aggregatorName,merchantCode);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| uid | string |  | 
+| addressId | string |  | 
+| paymentMode | string |  | 
+| paymentIdentifier | string |  | 
+| aggregatorName | string |  | 
+| merchantCode | string |  | 
+
+Validate coupon for selected payment mode
+
+*Success Response:*
+
+
+
+Cart Affiliates.
+
+
+Schema: `PaymentUpdate`
 
 
 
@@ -16112,7 +16108,7 @@ Shipment Generation Failed
 Unhandled api error
 
 
-Schema: `object`
+Schema: `Object`
 
 
 
@@ -16806,7 +16802,7 @@ Shipment Generation Failed
 Unhandled api error
 
 
-Schema: `object`
+Schema: `Object`
 
 
 
