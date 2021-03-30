@@ -69,7 +69,7 @@ class OAuthClient {
     };
     signingOptions = sign(signingOptions);
 
-    return `https://${this.config.domain}${signingOptions.path}`;
+    return `${this.config.domain}${signingOptions.path}`;
   }
 
   async verifyCallback(query) {
@@ -88,7 +88,7 @@ class OAuthClient {
         `${this.config.apiKey}:${this.config.apiSecret}`,
         "utf8"
       ).toString("base64");
-      let url = `https://${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
+      let url = `${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
       const rawRequest = {
         method: "post",
         url: url,
@@ -117,7 +117,7 @@ class OAuthClient {
         `${this.config.apiKey}:${this.config.apiSecret}`,
         "utf8"
       ).toString("base64");
-      let url = `https://${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
+      let url = `${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
       const rawRequest = {
         method: "post",
         url: url,
