@@ -16,5 +16,29 @@
   },
   "peerDependencies": {
     "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git"
-  }
+  },
+  "name": "fdk-extension-javascript",
+  "description": "FDK Extension Helper Library",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gofynd/fdk-extension-javascript.git"
+  },
+  "keywords": [
+    "fdk",
+    "fdk-extension-javascript"
+  ],
+  "author": "dev@fynd.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gofynd/fdk-extension-javascript/issues"
+  },
+  "homepage": "https://github.com/gofynd/fdk-extension-javascript#readme"
 }
