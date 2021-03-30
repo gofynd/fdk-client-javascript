@@ -10047,7 +10047,7 @@ class Content {
     return APIClient.execute(
       this.config,
       "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked/${tagId}`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/edit/handpicked/${tagId}`,
       queryObj,
       body
     );
