@@ -1,53 +1,53 @@
-export type ProductListingActionPage = {
+export type Media = {
     type?: string;
+    url?: string;
+};
+export type ProductListingActionPage = {
     query?: any;
+    type?: string;
 };
 export type ProductListingAction = {
     type?: string;
     page?: ProductListingActionPage;
 };
-export type Media = {
-    url?: string;
-    type?: string;
-};
 export type ProductBrand = {
-    uid?: number;
-    action?: ProductListingAction;
     logo?: Media;
+    action?: ProductListingAction;
     name?: string;
+    uid?: number;
 };
 export type ProductDetailAttribute = {
+    type?: string;
     key?: string;
     value?: string;
-    type?: string;
 };
 export type ProductDetailGroupedAttribute = {
     details?: Array<ProductDetailAttribute>;
     title?: string;
 };
 export type ProductDetail = {
-    slug: string;
-    imageNature?: string;
+    description?: string;
+    type?: string;
     name?: string;
+    ratingCount?: number;
+    itemType?: string;
     color?: string;
     similars?: Array<string>;
-    uid?: number;
+    imageNature?: string;
     attributes?: any;
-    productOnlineDate?: string;
-    teaserTag?: string;
-    categories?: Array<ProductBrand>;
-    hasVariant?: boolean;
+    uid?: number;
     rating?: number;
-    highlights?: Array<string>;
-    medias?: Array<Media>;
-    ratingCount?: number;
-    shortDescription?: string;
-    tryouts?: Array<string>;
+    slug: string;
+    hasVariant?: boolean;
     brand?: ProductBrand;
-    type?: string;
+    medias?: Array<Media>;
+    tryouts?: Array<string>;
+    categories?: Array<ProductBrand>;
+    teaserTag?: string;
     groupedAttributes?: Array<ProductDetailGroupedAttribute>;
-    description?: string;
-    itemType?: string;
+    shortDescription?: string;
+    productOnlineDate?: string;
+    highlights?: Array<string>;
 };
 export type ErrorResponse = {
     error?: string;
@@ -55,33 +55,38 @@ export type ErrorResponse = {
 export type ProductSizeStores = {
     count?: number;
 };
-export type ProductSize = {
-    quantity?: number;
-    value?: string;
-    isAvailable?: boolean;
-    display?: string;
-};
 export type Price = {
     currencyCode?: string;
-    currencySymbol?: string;
     max?: number;
     min?: number;
+    currencySymbol?: string;
 };
 export type ProductListingPrice = {
     marked?: Price;
     effective?: Price;
 };
+export type ProductSize = {
+    display?: string;
+    quantity?: number;
+    isAvailable?: boolean;
+    value?: string;
+};
 export type ProductSizes = {
     stores?: ProductSizeStores;
-    sizes?: Array<ProductSize>;
-    sellable?: boolean;
-    discount?: string;
     price?: ProductListingPrice;
     sizeChart?: any;
+    sellable?: boolean;
+    discount?: string;
+    sizes?: Array<ProductSize>;
 };
 export type ArticleAssignment = {
     level?: string;
     strategy?: string;
+};
+export type Store = {
+    count?: number;
+    name?: string;
+    uid?: number;
 };
 export type ProductStockPrice = {
     currency?: string;
@@ -89,87 +94,82 @@ export type ProductStockPrice = {
     effective?: number;
 };
 export type Seller = {
-    uid?: number;
     count?: number;
     name?: string;
-};
-export type Store = {
     uid?: number;
-    count?: number;
-    name?: string;
 };
 export type ProductSizePriceResponse = {
+    longLat?: Array<number>;
     specialBadge?: string;
     articleAssignment?: ArticleAssignment;
+    store?: Store;
     pricePerPrice?: ProductStockPrice;
+    pincode?: number;
     articleId?: string;
     strategyWiseListing?: Array<any>;
-    longLat?: Array<number>;
-    sellerCount?: number;
-    discount?: string;
-    seller?: Seller;
     price?: ProductStockPrice;
-    quantity?: number;
-    store?: Store;
     set?: any;
-    pincode?: number;
     itemType?: string;
+    quantity?: number;
+    seller?: Seller;
+    discount?: string;
+    sellerCount?: number;
 };
 export type ProductSizeSellerFilter = {
-    value?: string;
     isSelected?: boolean;
     name?: string;
+    value?: string;
 };
 export type Page = {
-    hasPrevious?: boolean;
-    type?: string;
-    itemTotal?: number;
     size?: number;
+    itemTotal?: number;
+    current?: number;
     hasNext?: boolean;
     nextId?: string;
-    current?: number;
+    type?: string;
+    hasPrevious?: boolean;
 };
 export type ProductSizeSellersResponse = {
     sortOn?: Array<ProductSizeSellerFilter>;
-    items?: Array<ProductSizePriceResponse>;
     page: Page;
+    items?: Array<ProductSizePriceResponse>;
 };
 export type AttributeDetail = {
-    key?: string;
-    description?: string;
     display?: string;
+    description?: string;
+    key?: string;
 };
 export type ProductsComparisonResponse = {
-    items?: Array<ProductDetail>;
     attributesMetadata?: Array<AttributeDetail>;
+    items?: Array<ProductDetail>;
 };
 export type ProductCompareResponse = {
-    subtitle?: string;
     attributesMetadata?: Array<AttributeDetail>;
-    title?: string;
+    subtitle?: string;
     items?: Array<ProductDetail>;
+    title?: string;
 };
 export type ProductFrequentlyComparedSimilarResponse = {
     similars?: Array<ProductCompareResponse>;
 };
 export type ProductSimilarItem = {
     subtitle?: string;
-    title?: string;
     items?: Array<ProductDetail>;
+    title?: string;
 };
 export type SimilarProductByTypeResponse = {
     similars?: Array<ProductSimilarItem>;
 };
 export type ProductVariantItemResponse = {
     slug?: string;
+    action?: ProductListingAction;
+    value?: string;
+    isAvailable?: boolean;
     medias?: Array<Media>;
     name?: string;
     uid?: number;
-    isAvailable?: boolean;
-    color?: string;
-    value?: string;
-    action?: ProductListingAction;
     colorName?: string;
+    color?: string;
 };
 export type ProductVariantResponse = {
     header?: string;
@@ -179,26 +179,26 @@ export type ProductVariantResponse = {
 export type ProductVariantsResponse = {
     variants?: Array<ProductVariantResponse>;
 };
-export type StoreDetail = {
-    id?: number;
-    city?: string;
-    code?: string;
-    name?: string;
-};
 export type CompanyDetail = {
     id?: number;
     name?: string;
 };
+export type StoreDetail = {
+    id?: number;
+    city?: string;
+    name?: string;
+    code?: string;
+};
 export type ProductStockStatusItem = {
-    identifier?: any;
-    uid?: string;
-    itemId?: number;
     size?: string;
-    store?: StoreDetail;
-    seller?: Seller;
-    price?: ProductStockPrice;
-    quantity?: number;
+    itemId?: number;
+    uid?: string;
     company?: CompanyDetail;
+    identifier?: any;
+    price?: ProductStockPrice;
+    store?: StoreDetail;
+    quantity?: number;
+    seller?: Seller;
 };
 export type ProductStockStatusResponse = {
     items?: Array<ProductStockStatusItem>;
@@ -207,117 +207,117 @@ export type ProductStockPolling = {
     page: Page;
     items?: Array<ProductStockStatusItem>;
 };
-export type ProductFiltersKey = {
-    name: string;
-    kind?: string;
-    logo?: string;
-    display: string;
-};
 export type ProductFiltersValue = {
-    max?: number;
-    queryFormat?: string;
-    currencyCode?: string;
-    count?: number;
-    displayFormat?: string;
-    isSelected: boolean;
-    min?: number;
-    display: string;
     selectedMin?: number;
-    selectedMax?: number;
+    max?: number;
     currencySymbol?: string;
     value: string;
+    selectedMax?: number;
+    isSelected: boolean;
+    displayFormat?: string;
+    queryFormat?: string;
+    count?: number;
+    display: string;
+    currencyCode?: string;
+    min?: number;
+};
+export type ProductFiltersKey = {
+    kind?: string;
+    display: string;
+    logo?: string;
+    name: string;
 };
 export type ProductFilters = {
-    key: ProductFiltersKey;
     values: Array<ProductFiltersValue>;
-};
-export type ProductSortOn = {
-    value?: string;
-    isSelected?: boolean;
-    name?: string;
+    key: ProductFiltersKey;
 };
 export type ProductListingDetail = {
-    slug: string;
-    imageNature?: string;
+    description?: string;
+    type?: string;
     name?: string;
+    ratingCount?: number;
+    itemType?: string;
     color?: string;
     similars?: Array<string>;
-    uid?: number;
+    imageNature?: string;
     attributes?: any;
-    productOnlineDate?: string;
+    uid?: number;
     sellable?: boolean;
-    teaserTag?: string;
-    categories?: Array<ProductBrand>;
-    hasVariant?: boolean;
     rating?: number;
-    highlights?: Array<string>;
-    medias?: Array<Media>;
-    ratingCount?: number;
-    shortDescription?: string;
-    discount?: string;
-    tryouts?: Array<string>;
+    slug: string;
+    hasVariant?: boolean;
     brand?: ProductBrand;
-    type?: string;
+    medias?: Array<Media>;
+    tryouts?: Array<string>;
+    categories?: Array<ProductBrand>;
+    teaserTag?: string;
     groupedAttributes?: Array<ProductDetailGroupedAttribute>;
+    shortDescription?: string;
+    productOnlineDate?: string;
     price?: ProductListingPrice;
-    description?: string;
-    itemType?: string;
+    highlights?: Array<string>;
+    discount?: string;
+};
+export type ProductSortOn = {
+    isSelected?: boolean;
+    name?: string;
+    value?: string;
 };
 export type ProductListingResponse = {
     filters?: Array<ProductFilters>;
-    sortOn?: Array<ProductSortOn>;
-    items?: Array<ProductListingDetail>;
     page: Page;
+    items?: Array<ProductListingDetail>;
+    sortOn?: Array<ProductSortOn>;
 };
 export type ImageUrls = {
-    portrait?: Media;
     landscape?: Media;
+    portrait?: Media;
 };
 export type BrandItem = {
-    departments?: Array<string>;
     slug?: string;
+    action?: ProductListingAction;
+    departments?: Array<string>;
     logo?: Media;
     name?: string;
     uid?: number;
-    discount?: string;
     banners?: ImageUrls;
-    action?: ProductListingAction;
+    discount?: string;
 };
 export type BrandListingResponse = {
     page: Page;
     items?: Array<BrandItem>;
 };
 export type BrandDetailResponse = {
-    name?: string;
-    uid?: number;
     logo?: Media;
     banners?: ImageUrls;
+    name?: string;
+    uid?: number;
 };
 export type CategoryItems = {
-    childs?: Array<any>;
     slug?: string;
+    action?: ProductListingAction;
+    childs?: Array<any>;
     name?: string;
     uid?: number;
     banners?: ImageUrls;
-    action?: ProductListingAction;
 };
 export type DepartmentCategoryTree = {
-    department?: string;
     items?: Array<CategoryItems>;
+    department?: string;
 };
 export type DepartmentIdentifier = {
-    uid?: number;
     slug?: string;
+    uid?: number;
 };
 export type CategoryListingResponse = {
     data?: Array<DepartmentCategoryTree>;
     departments?: Array<DepartmentIdentifier>;
 };
 export type CategoryMetaResponse = {
-    name?: string;
-    uid?: number;
     logo?: Media;
     banners?: ImageUrls;
+    name?: string;
+    uid?: number;
 };
 export type HomeListingResponse = {
     message?: string;
@@ -326,57 +326,57 @@ export type HomeListingResponse = {
 };
 export type Department = {
     slug?: string;
+    priorityOrder?: number;
     logo?: Media;
     name?: string;
     uid?: number;
-    priorityOrder?: number;
 };
 export type DepartmentResponse = {
     items?: Array<Department>;
 };
 export type AutocompleteItem = {
-    action?: any;
-    type?: string;
-    logo?: Media;
     display?: string;
+    logo?: Media;
+    type?: string;
+    action?: any;
 };
 export type AutoCompleteResponse = {
     items?: Array<AutocompleteItem>;
-};
-export type CollectionListingFilterTag = {
-    display?: string;
-    isSelected?: boolean;
-    name?: string;
 };
 export type CollectionListingFilterType = {
     display?: string;
     isSelected?: boolean;
     name?: string;
 };
+export type CollectionListingFilterTag = {
+    display?: string;
+    isSelected?: boolean;
+    name?: string;
+};
 export type CollectionListingFilter = {
-    tags?: Array<CollectionListingFilterTag>;
     type?: Array<CollectionListingFilterType>;
+    tags?: Array<CollectionListingFilterTag>;
 };
 export type GetCollectionDetailNest = {
-    slug?: string;
-    name?: string;
-    schedule?: any;
-    allowFacets?: boolean;
-    meta?: any;
-    tag?: Array<string>;
-    uid?: string;
-    badge?: any;
-    cron?: any;
-    banners?: ImageUrls;
-    appId?: string;
-    logo?: Media;
-    visibleFacetsKeys?: Array<string>;
-    action?: ProductListingAction;
-    query?: any;
-    type?: string;
-    allowSort?: boolean;
-    isActive?: boolean;
     description?: string;
+    cron?: any;
+    meta?: any;
+    type?: string;
+    name?: string;
+    query?: any;
+    action?: ProductListingAction;
+    visibleFacetsKeys?: Array<string>;
+    uid?: string;
+    slug?: string;
+    badge?: any;
+    isActive?: boolean;
+    logo?: Media;
+    schedule?: any;
+    allowSort?: boolean;
+    allowFacets?: boolean;
+    appId?: string;
+    tag?: Array<string>;
+    banners?: ImageUrls;
 };
 export type GetCollectionListingResponse = {
     filters?: CollectionListingFilter;
@@ -384,39 +384,39 @@ export type GetCollectionListingResponse = {
     items?: Array<GetCollectionDetailNest>;
 };
 export type CollectionDetailResponse = {
-    appId?: string;
-    query?: any;
-    logo?: Media;
-    name?: string;
     slug?: string;
-    type?: string;
-    visibleFacetsKeys?: Array<string>;
-    allowSort?: boolean;
-    schedule?: any;
-    badge?: any;
-    isActive?: boolean;
-    cron?: any;
-    banners?: ImageUrls;
+    query?: any;
     description?: string;
-    allowFacets?: boolean;
+    badge?: any;
+    schedule?: any;
+    visibleFacetsKeys?: Array<string>;
+    cron?: any;
+    isActive?: boolean;
+    allowSort?: boolean;
     meta?: any;
+    logo?: Media;
+    type?: string;
+    allowFacets?: boolean;
+    appId?: string;
+    name?: string;
     tag?: Array<string>;
+    banners?: ImageUrls;
 };
 export type GetFollowListingResponse = {
-    items: Array<any>;
     page: Page;
+    items: Array<any>;
 };
 export type FollowPostResponse = {
-    id: string;
     message: string;
+    id: string;
 };
 export type FollowerCountResponse = {
     count?: number;
 };
 export type FollowIdsData = {
+    products?: Array<number>;
     brands?: Array<number>;
     collections?: Array<number>;
-    products?: Array<number>;
 };
 export type FollowIdsResponse = {
     data?: FollowIdsData;
@@ -426,16 +426,16 @@ export type LatLong = {
     coordinates?: Array<number>;
 };
 export type Store1 = {
-    state?: string;
     city?: string;
+    state?: string;
+    latLong?: LatLong;
+    storeEmail?: string;
+    pincode?: number;
     name?: string;
     uid?: number;
-    storeEmail?: string;
-    latLong?: LatLong;
-    country?: string;
     storeCode?: string;
+    country?: string;
     address?: string;
-    pincode?: number;
 };
 export type StoreListingResponse = {
     page: Page;
@@ -2124,27 +2124,27 @@ export type OrderingStores = {
     v?: number;
 };
 export type AggregatorConfigDetail = {
-    secret: string;
-    api?: string;
     pin?: string;
-    verifyApi?: string;
-    userId?: string;
     configType: string;
+    userId?: string;
+    merchantId?: string;
     merchantKey?: string;
     sdk?: boolean;
+    api?: string;
     key: string;
-    merchantId?: string;
+    verifyApi?: string;
+    secret: string;
 };
 export type AggregatorsConfigDetailResponse = {
-    success: boolean;
-    env: string;
-    ccavenue?: AggregatorConfigDetail;
-    stripe?: AggregatorConfigDetail;
     payumoney?: AggregatorConfigDetail;
-    mswipe?: AggregatorConfigDetail;
+    stripe?: AggregatorConfigDetail;
+    success: boolean;
+    ccavenue?: AggregatorConfigDetail;
     rupifi?: AggregatorConfigDetail;
-    juspay?: AggregatorConfigDetail;
+    env: string;
     razorpay?: AggregatorConfigDetail;
+    mswipe?: AggregatorConfigDetail;
+    juspay?: AggregatorConfigDetail;
     simpl?: AggregatorConfigDetail;
 };
 export type ErrorCodeAndDescription = {
@@ -2152,50 +2152,50 @@ export type ErrorCodeAndDescription = {
     code: string;
 };
 export type HttpErrorCodeAndResponse = {
-    success: boolean;
     error: ErrorCodeAndDescription;
+    success: boolean;
 };
 export type AttachCardRequest = {
-    refresh?: boolean;
     cardId: string;
+    refresh?: boolean;
 };
 export type AttachCardsResponse = {
-    data: any;
     success: boolean;
     message?: string;
+    data: any;
 };
 export type CardPaymentGateway = {
-    aggregator: string;
     api?: string;
+    aggregator: string;
     customerId?: string;
 };
 export type ActiveCardPaymentGatewayResponse = {
     success: boolean;
-    cards: CardPaymentGateway;
     message: string;
+    cards: CardPaymentGateway;
 };
 export type Card = {
-    cardBrand?: string;
-    expMonth?: number;
-    cardToken?: string;
-    cardIsin?: string;
     cardIssuer?: string;
     cardId?: string;
+    cardIsin?: string;
     expired?: boolean;
-    expYear?: number;
     cardReference?: string;
+    aggregatorName: string;
+    cardBrand?: string;
+    cardToken?: string;
+    cardFingerprint?: string;
+    expMonth?: number;
+    expYear?: number;
+    cardBrandImage?: string;
     cardType?: string;
     cardName?: string;
-    cardBrandImage?: string;
-    cardFingerprint?: string;
     cardNumber?: string;
-    aggregatorName: string;
     nickname?: string;
 };
 export type ListCardsResponse = {
-    data?: Array<Card>;
     success: boolean;
     message: string;
+    data?: Array<Card>;
 };
 export type DeletehCardRequest = {
     cardId: string;
@@ -2205,234 +2205,234 @@ export type DeleteCardsResponse = {
     message?: string;
 };
 export type ValidateCustomerRequest = {
-    transactionAmountInPaise: number;
     aggregator: string;
-    phoneNumber: string;
+    transactionAmountInPaise: number;
     merchantParams: any;
+    phoneNumber: string;
     payload: string;
 };
 export type ValidateCustomerResponse = {
-    data: any;
     success: boolean;
     message: string;
+    data: any;
 };
 export type ChargeCustomerRequest = {
-    verified?: boolean;
-    amount: number;
-    aggregator: string;
     orderId: string;
     transactionToken?: string;
+    amount: number;
+    aggregator: string;
+    verified?: boolean;
 };
 export type ChargeCustomerResponse = {
-    success: boolean;
-    message: string;
+    status: string;
     cartId?: string;
     deliveryAddressId?: string;
-    aggregator: string;
-    status: string;
     orderId: string;
+    success: boolean;
+    aggregator: string;
+    message: string;
 };
 export type PaymentInitializationRequest = {
-    merchantOrderId: string;
-    method: string;
-    aggregator: string;
-    virtualId?: string;
-    pollingUrl: string;
-    timeout: number;
     razorpayPaymentId: string;
-    aggregatorOrderId: string;
+    method: string;
+    merchantOrderId: string;
     customerId: string;
+    aggregator: string;
+    pollingUrl: string;
+    virtualId?: string;
+    timeout: number;
+    aggregatorOrderId: string;
 };
 export type PaymentInitializationResponse = {
-    success: boolean;
-    merchantOrderId: string;
-    currency?: string;
-    amount?: number;
-    vpa?: string;
-    method: string;
-    bqrImage?: string;
-    aggregator: string;
-    virtualId?: string;
     status?: string;
-    pollingUrl: string;
-    timeout?: number;
     razorpayPaymentId?: string;
-    aggregatorOrderId?: string;
+    merchantOrderId: string;
+    method: string;
+    success: boolean;
     customerId?: string;
+    bqrImage?: string;
+    amount?: number;
+    aggregator: string;
+    pollingUrl: string;
+    currency?: string;
+    virtualId?: string;
+    timeout?: number;
+    aggregatorOrderId?: string;
+    vpa?: string;
 };
 export type PaymentStatusUpdateRequest = {
-    merchantOrderId: string;
-    currency: string;
-    amount: number;
-    vpa: string;
-    method: string;
-    aggregator: string;
     status: string;
-    contact: string;
-    email: string;
     orderId: string;
+    method: string;
+    merchantOrderId: string;
     customerId: string;
+    amount: number;
+    aggregator: string;
+    contact: string;
+    currency: string;
+    email: string;
+    vpa: string;
 };
 export type PaymentStatusUpdateResponse = {
     status: string;
-    aggregatorName: string;
     retry: boolean;
+    aggregatorName: string;
+};
+export type AggregatorRoute = {
+    apiLink?: string;
+    paymentFlow?: string;
+    data?: any;
+};
+export type PaymentFlow = {
+    rupifi?: AggregatorRoute;
+    fynd?: AggregatorRoute;
+    upiRazorpay?: AggregatorRoute;
+    bqrRazorpay?: AggregatorRoute;
+    stripe?: AggregatorRoute;
+    juspay?: AggregatorRoute;
+    payubiz?: AggregatorRoute;
+    razorpay?: AggregatorRoute;
+    simpl?: AggregatorRoute;
+    ccavenue?: AggregatorRoute;
 };
 export type PaymentModeLogo = {
     small: string;
     large: string;
 };
 export type PaymentModeList = {
-    cardIssuer?: string;
-    cardReference?: string;
-    intentFlow?: string;
-    merchantCode?: string;
-    cardFingerprint?: string;
-    cardNumber?: string;
-    aggregatorName: string;
+    cardId?: string;
+    fyndVpa?: string;
     code?: string;
     retryCount?: number;
-    expYear?: number;
-    displayPriority?: number;
-    cardBrandImage?: string;
-    intentAppErrorList?: Array<string>;
-    cardToken?: string;
-    nickname?: string;
+    merchantCode?: string;
+    cardNumber?: string;
+    expired?: boolean;
     logoUrl?: PaymentModeLogo;
-    cardBrand?: string;
+    displayName?: string;
+    cardFingerprint?: string;
     expMonth?: number;
     timeout?: number;
-    cardName?: string;
-    expired?: boolean;
     cardIsin?: string;
-    fyndVpa?: string;
-    cardId?: string;
-    cardType?: string;
-    displayName?: string;
+    aggregatorName: string;
+    cardBrand?: string;
+    cardToken?: string;
     name?: string;
+    cardType?: string;
+    cardIssuer?: string;
+    nickname?: string;
+    displayPriority?: number;
+    cardReference?: string;
+    expYear?: number;
+    cardBrandImage?: string;
+    intentFlow?: string;
+    cardName?: string;
+    intentAppErrorList?: Array<string>;
 };
 export type RootPaymentMode = {
-    list?: Array<PaymentModeList>;
-    addCardEnabled?: boolean;
     displayPriority: number;
-    aggregatorName?: string;
-    anonymousEnable?: boolean;
     displayName: string;
+    aggregatorName?: string;
     name: string;
-};
-export type AggregatorRoute = {
-    data?: any;
-    paymentFlow?: string;
-    apiLink?: string;
-};
-export type PaymentFlow = {
-    rupifi?: AggregatorRoute;
-    razorpay?: AggregatorRoute;
-    stripe?: AggregatorRoute;
-    ccavenue?: AggregatorRoute;
-    juspay?: AggregatorRoute;
-    simpl?: AggregatorRoute;
-    bqrRazorpay?: AggregatorRoute;
-    fynd?: AggregatorRoute;
-    payubiz?: AggregatorRoute;
-    upiRazorpay?: AggregatorRoute;
+    addCardEnabled?: boolean;
+    list?: Array<PaymentModeList>;
+    anonymousEnable?: boolean;
 };
 export type PaymentOptionAndFlow = {
-    paymentOption: Array<RootPaymentMode>;
     paymentFlows: PaymentFlow;
+    paymentOption: Array<RootPaymentMode>;
 };
 export type PaymentModeRouteResponse = {
-    success: boolean;
     paymentOptions: PaymentOptionAndFlow;
+    success: boolean;
 };
 export type OrderBeneficiaryDetails = {
+    address: string;
+    accountNo: string;
+    email: string;
+    isActive: boolean;
+    id: number;
+    displayName: string;
+    subtitle: string;
+    modifiedOn: string;
+    comment?: boolean;
+    accountHolder: string;
     beneficiaryId: string;
+    branchName?: boolean;
     title: string;
     ifscCode: string;
-    transferMode: string;
-    accountNo: string;
-    branchName?: boolean;
-    delightsUserName: string;
-    isActive: boolean;
-    address: string;
-    subtitle: string;
-    email: string;
-    id: number;
-    accountHolder: string;
-    modifiedOn: string;
-    createdOn: string;
     mobile?: boolean;
-    comment?: boolean;
     bankName: string;
-    displayName: string;
+    transferMode: string;
+    delightsUserName: string;
+    createdOn: string;
 };
 export type OrderBeneficiaryResponse = {
     beneficiaries: Array<OrderBeneficiaryDetails>;
 };
 export type NotFoundResourceError = {
-    description: string;
     success: boolean;
+    description: string;
     code: string;
 };
 export type IfscCodeResponse = {
+    bankName: string;
     branchName: string;
     success?: boolean;
-    bankName: string;
 };
 export type ErrorCodeDescription = {
-    description: string;
     success: boolean;
+    description: string;
     code: string;
 };
 export type AddBeneficiaryViaOtpVerificationRequest = {
     hashKey: string;
-    requestId: string;
     otp: string;
+    requestId: string;
 };
 export type AddBeneficiaryViaOtpVerificationResponse = {
     hashKey: string;
-    requestId: string;
     otp: string;
+    requestId: string;
 };
 export type WrongOtpError = {
-    description: string;
     success: string;
+    description: string;
 };
 export type BankDetails = {
+    bankName: string;
+    address: string;
     accountNo: string;
     branchName: string;
-    address: string;
-    comment?: string;
-    mobile: string;
-    email: string;
-    bankName: string;
     ifscCode: string;
+    mobile: string;
+    comment?: string;
+    email: string;
     accountHolder: string;
 };
 export type AddBeneficiaryDetailsRequest = {
-    details: BankDetails;
-    delights: boolean;
-    orderId: string;
-    transferMode: string;
     shipmentId: string;
+    transferMode: string;
+    orderId: string;
+    delights: boolean;
+    details: BankDetails;
 };
 export type RefundAccountResponse = {
-    data?: any;
     success: boolean;
     message: string;
+    data?: any;
 };
 export type WalletOtpRequest = {
     countryCode: string;
     mobile: boolean;
 };
 export type WalletOtpResponse = {
+    isVerifiedFlag: string;
     success?: boolean;
     requestId: string;
-    isVerifiedFlag: string;
 };
 export type SetDefaultBeneficiaryRequest = {
-    orderId: string;
     beneficiaryId: string;
+    orderId: string;
 };
 export type SetDefaultBeneficiaryResponse = {
     success?: boolean;
@@ -2866,12 +2866,22 @@ export type GetTatProductResponse = {
     journey: string;
 };
 /**
-        @typedef ProductListingActionPage
+        @typedef Media
         
         
         @property { string } [type]
         
+        @property { string } [url]
+        
+         
+    */
+/**
+        @typedef ProductListingActionPage
+        
+        
         @property { Object } [query]
+        
+        @property { string } [type]
         
          
     */
@@ -2886,26 +2896,16 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef Media
-        
-        
-        @property { string } [url]
-        
-        @property { string } [type]
-        
-         
-    */
-/**
         @typedef ProductBrand
         
         
-        @property { number } [uid]
+        @property { Media } [logo]
         
         @property { ProductListingAction } [action]
         
-        @property { Media } [logo]
-        
         @property { string } [name]
+        
+        @property { number } [uid]
         
          
     */
@@ -2913,11 +2913,11 @@ export type GetTatProductResponse = {
         @typedef ProductDetailAttribute
         
         
+        @property { string } [type]
+        
         @property { string } [key]
         
         @property { string } [value]
-        
-        @property { string } [type]
         
          
     */
@@ -2935,49 +2935,49 @@ export type GetTatProductResponse = {
         @typedef ProductDetail
         
         
-        @property { string } slug
+        @property { string } [description]
         
-        @property { string } [imageNature]
+        @property { string } [type]
         
         @property { string } [name]
+        
+        @property { number } [ratingCount]
+        
+        @property { string } [itemType]
         
         @property { string } [color]
         
         @property { Array<string> } [similars]
         
-        @property { number } [uid]
+        @property { string } [imageNature]
         
         @property { Object } [attributes]
         
-        @property { string } [productOnlineDate]
-        
-        @property { string } [teaserTag]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { boolean } [hasVariant]
+        @property { number } [uid]
         
         @property { number } [rating]
         
-        @property { Array<string> } [highlights]
+        @property { string } slug
         
-        @property { Array<Media> } [medias]
-        
-        @property { number } [ratingCount]
-        
-        @property { string } [shortDescription]
-        
-        @property { Array<string> } [tryouts]
+        @property { boolean } [hasVariant]
         
         @property { ProductBrand } [brand]
         
-        @property { string } [type]
+        @property { Array<Media> } [medias]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { string } [teaserTag]
         
         @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
         
-        @property { string } [description]
+        @property { string } [shortDescription]
         
-        @property { string } [itemType]
+        @property { string } [productOnlineDate]
+        
+        @property { Array<string> } [highlights]
         
          
     */
@@ -2998,30 +2998,16 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef ProductSize
-        
-        
-        @property { number } [quantity]
-        
-        @property { string } [value]
-        
-        @property { boolean } [isAvailable]
-        
-        @property { string } [display]
-        
-         
-    */
-/**
         @typedef Price
         
         
         @property { string } [currencyCode]
         
-        @property { string } [currencySymbol]
-        
         @property { number } [max]
         
         @property { number } [min]
+        
+        @property { string } [currencySymbol]
         
          
     */
@@ -3036,20 +3022,34 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef ProductSize
+        
+        
+        @property { string } [display]
+        
+        @property { number } [quantity]
+        
+        @property { boolean } [isAvailable]
+        
+        @property { string } [value]
+        
+         
+    */
+/**
         @typedef ProductSizes
         
         
         @property { ProductSizeStores } [stores]
         
-        @property { Array<ProductSize> } [sizes]
+        @property { ProductListingPrice } [price]
+        
+        @property { Object } [sizeChart]
         
         @property { boolean } [sellable]
         
         @property { string } [discount]
         
-        @property { ProductListingPrice } [price]
-        
-        @property { Object } [sizeChart]
+        @property { Array<ProductSize> } [sizes]
         
          
     */
@@ -3060,6 +3060,18 @@ export type GetTatProductResponse = {
         @property { string } [level]
         
         @property { string } [strategy]
+        
+         
+    */
+/**
+        @typedef Store
+        
+        
+        @property { number } [count]
+        
+        @property { string } [name]
+        
+        @property { number } [uid]
         
          
     */
@@ -3079,23 +3091,11 @@ export type GetTatProductResponse = {
         @typedef Seller
         
         
-        @property { number } [uid]
-        
         @property { number } [count]
         
         @property { string } [name]
         
-         
-    */
-/**
-        @typedef Store
-        
-        
         @property { number } [uid]
-        
-        @property { number } [count]
-        
-        @property { string } [name]
         
          
     */
@@ -3103,35 +3103,35 @@ export type GetTatProductResponse = {
         @typedef ProductSizePriceResponse
         
         
+        @property { Array<number> } [longLat]
+        
         @property { string } [specialBadge]
         
         @property { ArticleAssignment } [articleAssignment]
         
+        @property { Store } [store]
+        
         @property { ProductStockPrice } [pricePerPrice]
+        
+        @property { number } [pincode]
         
         @property { string } [articleId]
         
         @property { Array<Object> } [strategyWiseListing]
         
-        @property { Array<number> } [longLat]
-        
-        @property { number } [sellerCount]
-        
-        @property { string } [discount]
-        
-        @property { Seller } [seller]
-        
         @property { ProductStockPrice } [price]
-        
-        @property { number } [quantity]
-        
-        @property { Store } [store]
         
         @property { Object } [set]
         
-        @property { number } [pincode]
-        
         @property { string } [itemType]
+        
+        @property { number } [quantity]
+        
+        @property { Seller } [seller]
+        
+        @property { string } [discount]
+        
+        @property { number } [sellerCount]
         
          
     */
@@ -3139,11 +3139,11 @@ export type GetTatProductResponse = {
         @typedef ProductSizeSellerFilter
         
         
-        @property { string } [value]
-        
         @property { boolean } [isSelected]
         
         @property { string } [name]
+        
+        @property { string } [value]
         
          
     */
@@ -3151,19 +3151,19 @@ export type GetTatProductResponse = {
         @typedef Page
         
         
-        @property { boolean } [hasPrevious]
-        
-        @property { string } [type]
+        @property { number } [size]
         
         @property { number } [itemTotal]
         
-        @property { number } [size]
+        @property { number } [current]
         
         @property { boolean } [hasNext]
         
         @property { string } [nextId]
         
-        @property { number } [current]
+        @property { string } [type]
+        
+        @property { boolean } [hasPrevious]
         
          
     */
@@ -3173,9 +3173,9 @@ export type GetTatProductResponse = {
         
         @property { Array<ProductSizeSellerFilter> } [sortOn]
         
-        @property { Array<ProductSizePriceResponse> } [items]
-        
         @property { Page } page
+        
+        @property { Array<ProductSizePriceResponse> } [items]
         
          
     */
@@ -3183,11 +3183,11 @@ export type GetTatProductResponse = {
         @typedef AttributeDetail
         
         
-        @property { string } [key]
+        @property { string } [display]
         
         @property { string } [description]
         
-        @property { string } [display]
+        @property { string } [key]
         
          
     */
@@ -3195,9 +3195,9 @@ export type GetTatProductResponse = {
         @typedef ProductsComparisonResponse
         
         
-        @property { Array<ProductDetail> } [items]
-        
         @property { Array<AttributeDetail> } [attributesMetadata]
+        
+        @property { Array<ProductDetail> } [items]
         
          
     */
@@ -3205,13 +3205,13 @@ export type GetTatProductResponse = {
         @typedef ProductCompareResponse
         
         
-        @property { string } [subtitle]
-        
         @property { Array<AttributeDetail> } [attributesMetadata]
         
-        @property { string } [title]
+        @property { string } [subtitle]
         
         @property { Array<ProductDetail> } [items]
+        
+        @property { string } [title]
         
          
     */
@@ -3229,9 +3229,9 @@ export type GetTatProductResponse = {
         
         @property { string } [subtitle]
         
-        @property { string } [title]
-        
         @property { Array<ProductDetail> } [items]
+        
+        @property { string } [title]
         
          
     */
@@ -3249,21 +3249,21 @@ export type GetTatProductResponse = {
         
         @property { string } [slug]
         
+        @property { ProductListingAction } [action]
+        
+        @property { string } [value]
+        
+        @property { boolean } [isAvailable]
+        
         @property { Array<Media> } [medias]
         
         @property { string } [name]
         
         @property { number } [uid]
         
-        @property { boolean } [isAvailable]
+        @property { string } [colorName]
         
         @property { string } [color]
-        
-        @property { string } [value]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { string } [colorName]
         
          
     */
@@ -3288,20 +3288,6 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef StoreDetail
-        
-        
-        @property { number } [id]
-        
-        @property { string } [city]
-        
-        @property { string } [code]
-        
-        @property { string } [name]
-        
-         
-    */
-/**
         @typedef CompanyDetail
         
         
@@ -3312,26 +3298,40 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef StoreDetail
+        
+        
+        @property { number } [id]
+        
+        @property { string } [city]
+        
+        @property { string } [name]
+        
+        @property { string } [code]
+        
+         
+    */
+/**
         @typedef ProductStockStatusItem
         
         
-        @property { Object } [identifier]
-        
-        @property { string } [uid]
+        @property { string } [size]
         
         @property { number } [itemId]
         
-        @property { string } [size]
+        @property { string } [uid]
         
-        @property { StoreDetail } [store]
+        @property { CompanyDetail } [company]
         
-        @property { Seller } [seller]
+        @property { Object } [identifier]
         
         @property { ProductStockPrice } [price]
         
+        @property { StoreDetail } [store]
+        
         @property { number } [quantity]
         
-        @property { CompanyDetail } [company]
+        @property { Seller } [seller]
         
          
     */
@@ -3354,46 +3354,46 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef ProductFiltersKey
-        
-        
-        @property { string } name
-        
-        @property { string } [kind]
-        
-        @property { string } [logo]
-        
-        @property { string } display
-        
-         
-    */
-/**
         @typedef ProductFiltersValue
         
         
-        @property { number } [max]
-        
-        @property { string } [queryFormat]
-        
-        @property { string } [currencyCode]
-        
-        @property { number } [count]
-        
-        @property { string } [displayFormat]
-        
-        @property { boolean } isSelected
-        
-        @property { number } [min]
-        
-        @property { string } display
-        
         @property { number } [selectedMin]
         
-        @property { number } [selectedMax]
+        @property { number } [max]
         
         @property { string } [currencySymbol]
         
         @property { string } value
+        
+        @property { number } [selectedMax]
+        
+        @property { boolean } isSelected
+        
+        @property { string } [displayFormat]
+        
+        @property { string } [queryFormat]
+        
+        @property { number } [count]
+        
+        @property { string } display
+        
+        @property { string } [currencyCode]
+        
+        @property { number } [min]
+        
+         
+    */
+/**
+        @typedef ProductFiltersKey
+        
+        
+        @property { string } [kind]
+        
+        @property { string } display
+        
+        @property { string } [logo]
+        
+        @property { string } name
         
          
     */
@@ -3401,21 +3401,9 @@ export type GetTatProductResponse = {
         @typedef ProductFilters
         
         
-        @property { ProductFiltersKey } key
-        
         @property { Array<ProductFiltersValue> } values
         
-         
-    */
-/**
-        @typedef ProductSortOn
-        
-        
-        @property { string } [value]
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [name]
+        @property { ProductFiltersKey } key
         
          
     */
@@ -3423,55 +3411,67 @@ export type GetTatProductResponse = {
         @typedef ProductListingDetail
         
         
-        @property { string } slug
+        @property { string } [description]
         
-        @property { string } [imageNature]
+        @property { string } [type]
         
         @property { string } [name]
+        
+        @property { number } [ratingCount]
+        
+        @property { string } [itemType]
         
         @property { string } [color]
         
         @property { Array<string> } [similars]
         
-        @property { number } [uid]
+        @property { string } [imageNature]
         
         @property { Object } [attributes]
         
-        @property { string } [productOnlineDate]
+        @property { number } [uid]
         
         @property { boolean } [sellable]
         
-        @property { string } [teaserTag]
+        @property { number } [rating]
         
-        @property { Array<ProductBrand> } [categories]
+        @property { string } slug
         
         @property { boolean } [hasVariant]
         
-        @property { number } [rating]
-        
-        @property { Array<string> } [highlights]
+        @property { ProductBrand } [brand]
         
         @property { Array<Media> } [medias]
         
-        @property { number } [ratingCount]
-        
-        @property { string } [shortDescription]
-        
-        @property { string } [discount]
-        
         @property { Array<string> } [tryouts]
         
-        @property { ProductBrand } [brand]
+        @property { Array<ProductBrand> } [categories]
         
-        @property { string } [type]
+        @property { string } [teaserTag]
         
         @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
         
+        @property { string } [shortDescription]
+        
+        @property { string } [productOnlineDate]
+        
         @property { ProductListingPrice } [price]
         
-        @property { string } [description]
+        @property { Array<string> } [highlights]
         
-        @property { string } [itemType]
+        @property { string } [discount]
+        
+         
+    */
+/**
+        @typedef ProductSortOn
+        
+        
+        @property { boolean } [isSelected]
+        
+        @property { string } [name]
+        
+        @property { string } [value]
         
          
     */
@@ -3481,11 +3481,11 @@ export type GetTatProductResponse = {
         
         @property { Array<ProductFilters> } [filters]
         
-        @property { Array<ProductSortOn> } [sortOn]
+        @property { Page } page
         
         @property { Array<ProductListingDetail> } [items]
         
-        @property { Page } page
+        @property { Array<ProductSortOn> } [sortOn]
         
          
     */
@@ -3493,9 +3493,9 @@ export type GetTatProductResponse = {
         @typedef ImageUrls
         
         
-        @property { Media } [portrait]
-        
         @property { Media } [landscape]
+        
+        @property { Media } [portrait]
         
          
     */
@@ -3503,9 +3503,11 @@ export type GetTatProductResponse = {
         @typedef BrandItem
         
         
-        @property { Array<string> } [departments]
-        
         @property { string } [slug]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { Array<string> } [departments]
         
         @property { Media } [logo]
         
@@ -3513,11 +3515,9 @@ export type GetTatProductResponse = {
         
         @property { number } [uid]
         
-        @property { string } [discount]
-        
         @property { ImageUrls } [banners]
         
-        @property { ProductListingAction } [action]
+        @property { string } [discount]
         
          
     */
@@ -3535,13 +3535,13 @@ export type GetTatProductResponse = {
         @typedef BrandDetailResponse
         
         
-        @property { string } [name]
-        
-        @property { number } [uid]
-        
         @property { Media } [logo]
         
         @property { ImageUrls } [banners]
+        
+        @property { string } [name]
+        
+        @property { number } [uid]
         
          
     */
@@ -3549,9 +3549,11 @@ export type GetTatProductResponse = {
         @typedef CategoryItems
         
         
-        @property { Array<Object> } [childs]
-        
         @property { string } [slug]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { Array<Object> } [childs]
         
         @property { string } [name]
         
@@ -3559,17 +3561,15 @@ export type GetTatProductResponse = {
         
         @property { ImageUrls } [banners]
         
-        @property { ProductListingAction } [action]
-        
          
     */
 /**
         @typedef DepartmentCategoryTree
         
         
-        @property { string } [department]
-        
         @property { Array<CategoryItems> } [items]
+        
+        @property { string } [department]
         
          
     */
@@ -3577,9 +3577,9 @@ export type GetTatProductResponse = {
         @typedef DepartmentIdentifier
         
         
-        @property { number } [uid]
-        
         @property { string } [slug]
+        
+        @property { number } [uid]
         
          
     */
@@ -3597,13 +3597,13 @@ export type GetTatProductResponse = {
         @typedef CategoryMetaResponse
         
         
-        @property { string } [name]
-        
-        @property { number } [uid]
-        
         @property { Media } [logo]
         
         @property { ImageUrls } [banners]
+        
+        @property { string } [name]
+        
+        @property { number } [uid]
         
          
     */
@@ -3625,13 +3625,13 @@ export type GetTatProductResponse = {
         
         @property { string } [slug]
         
+        @property { number } [priorityOrder]
+        
         @property { Media } [logo]
         
         @property { string } [name]
         
         @property { number } [uid]
-        
-        @property { number } [priorityOrder]
         
          
     */
@@ -3647,13 +3647,13 @@ export type GetTatProductResponse = {
         @typedef AutocompleteItem
         
         
-        @property { Object } [action]
-        
-        @property { string } [type]
+        @property { string } [display]
         
         @property { Media } [logo]
         
-        @property { string } [display]
+        @property { string } [type]
+        
+        @property { Object } [action]
         
          
     */
@@ -3662,18 +3662,6 @@ export type GetTatProductResponse = {
         
         
         @property { Array<AutocompleteItem> } [items]
-        
-         
-    */
-/**
-        @typedef CollectionListingFilterTag
-        
-        
-        @property { string } [display]
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [name]
         
          
     */
@@ -3690,12 +3678,24 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef CollectionListingFilterTag
+        
+        
+        @property { string } [display]
+        
+        @property { boolean } [isSelected]
+        
+        @property { string } [name]
+        
+         
+    */
+/**
         @typedef CollectionListingFilter
         
         
-        @property { Array<CollectionListingFilterTag> } [tags]
-        
         @property { Array<CollectionListingFilterType> } [type]
+        
+        @property { Array<CollectionListingFilterTag> } [tags]
         
          
     */
@@ -3703,43 +3703,43 @@ export type GetTatProductResponse = {
         @typedef GetCollectionDetailNest
         
         
-        @property { string } [slug]
-        
-        @property { string } [name]
-        
-        @property { Object } [schedule]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { Object } [meta]
-        
-        @property { Array<string> } [tag]
-        
-        @property { string } [uid]
-        
-        @property { Object } [badge]
+        @property { string } [description]
         
         @property { Object } [cron]
         
-        @property { ImageUrls } [banners]
-        
-        @property { string } [appId]
-        
-        @property { Media } [logo]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { Object } [query]
+        @property { Object } [meta]
         
         @property { string } [type]
         
-        @property { boolean } [allowSort]
+        @property { string } [name]
+        
+        @property { Object } [query]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { string } [uid]
+        
+        @property { string } [slug]
+        
+        @property { Object } [badge]
         
         @property { boolean } [isActive]
         
-        @property { string } [description]
+        @property { Media } [logo]
+        
+        @property { Object } [schedule]
+        
+        @property { boolean } [allowSort]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { string } [appId]
+        
+        @property { Array<string> } [tag]
+        
+        @property { ImageUrls } [banners]
         
          
     */
@@ -3759,39 +3759,39 @@ export type GetTatProductResponse = {
         @typedef CollectionDetailResponse
         
         
-        @property { string } [appId]
+        @property { string } [slug]
         
         @property { Object } [query]
         
-        @property { Media } [logo]
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { string } [type]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { boolean } [allowSort]
-        
-        @property { Object } [schedule]
+        @property { string } [description]
         
         @property { Object } [badge]
         
-        @property { boolean } [isActive]
+        @property { Object } [schedule]
+        
+        @property { Array<string> } [visibleFacetsKeys]
         
         @property { Object } [cron]
         
-        @property { ImageUrls } [banners]
+        @property { boolean } [isActive]
         
-        @property { string } [description]
-        
-        @property { boolean } [allowFacets]
+        @property { boolean } [allowSort]
         
         @property { Object } [meta]
         
+        @property { Media } [logo]
+        
+        @property { string } [type]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { string } [appId]
+        
+        @property { string } [name]
+        
         @property { Array<string> } [tag]
+        
+        @property { ImageUrls } [banners]
         
          
     */
@@ -3799,9 +3799,9 @@ export type GetTatProductResponse = {
         @typedef GetFollowListingResponse
         
         
-        @property { Array<Object> } items
-        
         @property { Page } page
+        
+        @property { Array<Object> } items
         
          
     */
@@ -3809,9 +3809,9 @@ export type GetTatProductResponse = {
         @typedef FollowPostResponse
         
         
-        @property { string } id
-        
         @property { string } message
+        
+        @property { string } id
         
          
     */
@@ -3827,11 +3827,11 @@ export type GetTatProductResponse = {
         @typedef FollowIdsData
         
         
+        @property { Array<number> } [products]
+        
         @property { Array<number> } [brands]
         
         @property { Array<number> } [collections]
-        
-        @property { Array<number> } [products]
         
          
     */
@@ -3857,25 +3857,25 @@ export type GetTatProductResponse = {
         @typedef Store1
         
         
+        @property { string } [city]
+        
         @property { string } [state]
         
-        @property { string } [city]
+        @property { LatLong } [latLong]
+        
+        @property { string } [storeEmail]
+        
+        @property { number } [pincode]
         
         @property { string } [name]
         
         @property { number } [uid]
         
-        @property { string } [storeEmail]
-        
-        @property { LatLong } [latLong]
+        @property { string } [storeCode]
         
         @property { string } [country]
         
-        @property { string } [storeCode]
-        
         @property { string } [address]
-        
-        @property { number } [pincode]
         
          
     */
@@ -7783,25 +7783,25 @@ export type GetTatProductResponse = {
         @typedef AggregatorConfigDetail
         
         
-        @property { string } secret
-        
-        @property { string } [api]
-        
         @property { string } [pin]
         
-        @property { string } [verifyApi]
+        @property { string } configType
         
         @property { string } [userId]
         
-        @property { string } configType
+        @property { string } [merchantId]
         
         @property { string } [merchantKey]
         
         @property { boolean } [sdk]
         
+        @property { string } [api]
+        
         @property { string } key
         
-        @property { string } [merchantId]
+        @property { string } [verifyApi]
+        
+        @property { string } secret
         
          
     */
@@ -7809,23 +7809,23 @@ export type GetTatProductResponse = {
         @typedef AggregatorsConfigDetailResponse
         
         
-        @property { boolean } success
-        
-        @property { string } env
-        
-        @property { AggregatorConfigDetail } [ccavenue]
+        @property { AggregatorConfigDetail } [payumoney]
         
         @property { AggregatorConfigDetail } [stripe]
         
-        @property { AggregatorConfigDetail } [payumoney]
+        @property { boolean } success
         
-        @property { AggregatorConfigDetail } [mswipe]
+        @property { AggregatorConfigDetail } [ccavenue]
         
         @property { AggregatorConfigDetail } [rupifi]
         
-        @property { AggregatorConfigDetail } [juspay]
+        @property { string } env
         
         @property { AggregatorConfigDetail } [razorpay]
+        
+        @property { AggregatorConfigDetail } [mswipe]
+        
+        @property { AggregatorConfigDetail } [juspay]
         
         @property { AggregatorConfigDetail } [simpl]
         
@@ -7845,9 +7845,9 @@ export type GetTatProductResponse = {
         @typedef HttpErrorCodeAndResponse
         
         
-        @property { boolean } success
-        
         @property { ErrorCodeAndDescription } error
+        
+        @property { boolean } success
         
          
     */
@@ -7855,9 +7855,9 @@ export type GetTatProductResponse = {
         @typedef AttachCardRequest
         
         
-        @property { boolean } [refresh]
-        
         @property { string } cardId
+        
+        @property { boolean } [refresh]
         
          
     */
@@ -7865,11 +7865,11 @@ export type GetTatProductResponse = {
         @typedef AttachCardsResponse
         
         
-        @property { Object } data
-        
         @property { boolean } success
         
         @property { string } [message]
+        
+        @property { Object } data
         
          
     */
@@ -7877,9 +7877,9 @@ export type GetTatProductResponse = {
         @typedef CardPaymentGateway
         
         
-        @property { string } aggregator
-        
         @property { string } [api]
+        
+        @property { string } aggregator
         
         @property { string } [customerId]
         
@@ -7891,9 +7891,9 @@ export type GetTatProductResponse = {
         
         @property { boolean } success
         
-        @property { CardPaymentGateway } cards
-        
         @property { string } message
+        
+        @property { CardPaymentGateway } cards
         
          
     */
@@ -7901,35 +7901,35 @@ export type GetTatProductResponse = {
         @typedef Card
         
         
-        @property { string } [cardBrand]
-        
-        @property { number } [expMonth]
-        
-        @property { string } [cardToken]
-        
-        @property { string } [cardIsin]
-        
         @property { string } [cardIssuer]
         
         @property { string } [cardId]
         
+        @property { string } [cardIsin]
+        
         @property { boolean } [expired]
+        
+        @property { string } [cardReference]
+        
+        @property { string } aggregatorName
+        
+        @property { string } [cardBrand]
+        
+        @property { string } [cardToken]
+        
+        @property { string } [cardFingerprint]
+        
+        @property { number } [expMonth]
         
         @property { number } [expYear]
         
-        @property { string } [cardReference]
+        @property { string } [cardBrandImage]
         
         @property { string } [cardType]
         
         @property { string } [cardName]
         
-        @property { string } [cardBrandImage]
-        
-        @property { string } [cardFingerprint]
-        
         @property { string } [cardNumber]
-        
-        @property { string } aggregatorName
         
         @property { string } [nickname]
         
@@ -7939,11 +7939,11 @@ export type GetTatProductResponse = {
         @typedef ListCardsResponse
         
         
-        @property { Array<Card> } [data]
-        
         @property { boolean } success
         
         @property { string } message
+        
+        @property { Array<Card> } [data]
         
          
     */
@@ -7969,13 +7969,13 @@ export type GetTatProductResponse = {
         @typedef ValidateCustomerRequest
         
         
-        @property { number } transactionAmountInPaise
-        
         @property { string } aggregator
         
-        @property { string } phoneNumber
+        @property { number } transactionAmountInPaise
         
         @property { Object } merchantParams
+        
+        @property { string } phoneNumber
         
         @property { string } payload
         
@@ -7985,11 +7985,11 @@ export type GetTatProductResponse = {
         @typedef ValidateCustomerResponse
         
         
-        @property { Object } data
-        
         @property { boolean } success
         
         @property { string } message
+        
+        @property { Object } data
         
          
     */
@@ -7997,15 +7997,15 @@ export type GetTatProductResponse = {
         @typedef ChargeCustomerRequest
         
         
-        @property { boolean } [verified]
+        @property { string } orderId
+        
+        @property { string } [transactionToken]
         
         @property { number } amount
         
         @property { string } aggregator
         
-        @property { string } orderId
-        
-        @property { string } [transactionToken]
+        @property { boolean } [verified]
         
          
     */
@@ -8013,19 +8013,19 @@ export type GetTatProductResponse = {
         @typedef ChargeCustomerResponse
         
         
-        @property { boolean } success
-        
-        @property { string } message
+        @property { string } status
         
         @property { string } [cartId]
         
         @property { string } [deliveryAddressId]
         
+        @property { string } orderId
+        
+        @property { boolean } success
+        
         @property { string } aggregator
         
-        @property { string } status
-        
-        @property { string } orderId
+        @property { string } message
         
          
     */
@@ -8033,23 +8033,23 @@ export type GetTatProductResponse = {
         @typedef PaymentInitializationRequest
         
         
-        @property { string } merchantOrderId
+        @property { string } razorpayPaymentId
         
         @property { string } method
         
-        @property { string } aggregator
+        @property { string } merchantOrderId
         
-        @property { string } [virtualId]
+        @property { string } customerId
+        
+        @property { string } aggregator
         
         @property { string } pollingUrl
         
+        @property { string } [virtualId]
+        
         @property { number } timeout
         
-        @property { string } razorpayPaymentId
-        
         @property { string } aggregatorOrderId
-        
-        @property { string } customerId
         
          
     */
@@ -8057,35 +8057,35 @@ export type GetTatProductResponse = {
         @typedef PaymentInitializationResponse
         
         
-        @property { boolean } success
-        
-        @property { string } merchantOrderId
-        
-        @property { string } [currency]
-        
-        @property { number } [amount]
-        
-        @property { string } [vpa]
-        
-        @property { string } method
-        
-        @property { string } [bqrImage]
-        
-        @property { string } aggregator
-        
-        @property { string } [virtualId]
-        
         @property { string } [status]
-        
-        @property { string } pollingUrl
-        
-        @property { number } [timeout]
         
         @property { string } [razorpayPaymentId]
         
-        @property { string } [aggregatorOrderId]
+        @property { string } merchantOrderId
+        
+        @property { string } method
+        
+        @property { boolean } success
         
         @property { string } [customerId]
+        
+        @property { string } [bqrImage]
+        
+        @property { number } [amount]
+        
+        @property { string } aggregator
+        
+        @property { string } pollingUrl
+        
+        @property { string } [currency]
+        
+        @property { string } [virtualId]
+        
+        @property { number } [timeout]
+        
+        @property { string } [aggregatorOrderId]
+        
+        @property { string } [vpa]
         
          
     */
@@ -8093,27 +8093,27 @@ export type GetTatProductResponse = {
         @typedef PaymentStatusUpdateRequest
         
         
-        @property { string } merchantOrderId
-        
-        @property { string } currency
-        
-        @property { number } amount
-        
-        @property { string } vpa
-        
-        @property { string } method
-        
-        @property { string } aggregator
-        
         @property { string } status
-        
-        @property { string } contact
-        
-        @property { string } email
         
         @property { string } orderId
         
+        @property { string } method
+        
+        @property { string } merchantOrderId
+        
         @property { string } customerId
+        
+        @property { number } amount
+        
+        @property { string } aggregator
+        
+        @property { string } contact
+        
+        @property { string } currency
+        
+        @property { string } email
+        
+        @property { string } vpa
         
          
     */
@@ -8123,9 +8123,47 @@ export type GetTatProductResponse = {
         
         @property { string } status
         
+        @property { boolean } retry
+        
         @property { string } aggregatorName
         
-        @property { boolean } retry
+         
+    */
+/**
+        @typedef AggregatorRoute
+        
+        
+        @property { string } [apiLink]
+        
+        @property { string } [paymentFlow]
+        
+        @property { Object } [data]
+        
+         
+    */
+/**
+        @typedef PaymentFlow
+        
+        
+        @property { AggregatorRoute } [rupifi]
+        
+        @property { AggregatorRoute } [fynd]
+        
+        @property { AggregatorRoute } [upiRazorpay]
+        
+        @property { AggregatorRoute } [bqrRazorpay]
+        
+        @property { AggregatorRoute } [stripe]
+        
+        @property { AggregatorRoute } [juspay]
+        
+        @property { AggregatorRoute } [payubiz]
+        
+        @property { AggregatorRoute } [razorpay]
+        
+        @property { AggregatorRoute } [simpl]
+        
+        @property { AggregatorRoute } [ccavenue]
         
          
     */
@@ -8143,59 +8181,59 @@ export type GetTatProductResponse = {
         @typedef PaymentModeList
         
         
-        @property { string } [cardIssuer]
+        @property { string } [cardId]
         
-        @property { string } [cardReference]
-        
-        @property { string } [intentFlow]
-        
-        @property { string } [merchantCode]
-        
-        @property { string } [cardFingerprint]
-        
-        @property { string } [cardNumber]
-        
-        @property { string } aggregatorName
+        @property { string } [fyndVpa]
         
         @property { string } [code]
         
         @property { number } [retryCount]
         
-        @property { number } [expYear]
+        @property { string } [merchantCode]
         
-        @property { number } [displayPriority]
+        @property { string } [cardNumber]
         
-        @property { string } [cardBrandImage]
-        
-        @property { Array<string> } [intentAppErrorList]
-        
-        @property { string } [cardToken]
-        
-        @property { string } [nickname]
+        @property { boolean } [expired]
         
         @property { PaymentModeLogo } [logoUrl]
         
-        @property { string } [cardBrand]
+        @property { string } [displayName]
+        
+        @property { string } [cardFingerprint]
         
         @property { number } [expMonth]
         
         @property { number } [timeout]
         
-        @property { string } [cardName]
-        
-        @property { boolean } [expired]
-        
         @property { string } [cardIsin]
         
-        @property { string } [fyndVpa]
+        @property { string } aggregatorName
         
-        @property { string } [cardId]
+        @property { string } [cardBrand]
+        
+        @property { string } [cardToken]
+        
+        @property { string } [name]
         
         @property { string } [cardType]
         
-        @property { string } [displayName]
+        @property { string } [cardIssuer]
         
-        @property { string } [name]
+        @property { string } [nickname]
+        
+        @property { number } [displayPriority]
+        
+        @property { string } [cardReference]
+        
+        @property { number } [expYear]
+        
+        @property { string } [cardBrandImage]
+        
+        @property { string } [intentFlow]
+        
+        @property { string } [cardName]
+        
+        @property { Array<string> } [intentAppErrorList]
         
          
     */
@@ -8203,57 +8241,19 @@ export type GetTatProductResponse = {
         @typedef RootPaymentMode
         
         
-        @property { Array<PaymentModeList> } [list]
-        
-        @property { boolean } [addCardEnabled]
-        
         @property { number } displayPriority
-        
-        @property { string } [aggregatorName]
-        
-        @property { boolean } [anonymousEnable]
         
         @property { string } displayName
         
+        @property { string } [aggregatorName]
+        
         @property { string } name
         
-         
-    */
-/**
-        @typedef AggregatorRoute
+        @property { boolean } [addCardEnabled]
         
+        @property { Array<PaymentModeList> } [list]
         
-        @property { Object } [data]
-        
-        @property { string } [paymentFlow]
-        
-        @property { string } [apiLink]
-        
-         
-    */
-/**
-        @typedef PaymentFlow
-        
-        
-        @property { AggregatorRoute } [rupifi]
-        
-        @property { AggregatorRoute } [razorpay]
-        
-        @property { AggregatorRoute } [stripe]
-        
-        @property { AggregatorRoute } [ccavenue]
-        
-        @property { AggregatorRoute } [juspay]
-        
-        @property { AggregatorRoute } [simpl]
-        
-        @property { AggregatorRoute } [bqrRazorpay]
-        
-        @property { AggregatorRoute } [fynd]
-        
-        @property { AggregatorRoute } [payubiz]
-        
-        @property { AggregatorRoute } [upiRazorpay]
+        @property { boolean } [anonymousEnable]
         
          
     */
@@ -8261,9 +8261,9 @@ export type GetTatProductResponse = {
         @typedef PaymentOptionAndFlow
         
         
-        @property { Array<RootPaymentMode> } paymentOption
-        
         @property { PaymentFlow } paymentFlows
+        
+        @property { Array<RootPaymentMode> } paymentOption
         
          
     */
@@ -8271,9 +8271,9 @@ export type GetTatProductResponse = {
         @typedef PaymentModeRouteResponse
         
         
-        @property { boolean } success
-        
         @property { PaymentOptionAndFlow } paymentOptions
+        
+        @property { boolean } success
         
          
     */
@@ -8281,43 +8281,43 @@ export type GetTatProductResponse = {
         @typedef OrderBeneficiaryDetails
         
         
+        @property { string } address
+        
+        @property { string } accountNo
+        
+        @property { string } email
+        
+        @property { boolean } isActive
+        
+        @property { number } id
+        
+        @property { string } displayName
+        
+        @property { string } subtitle
+        
+        @property { string } modifiedOn
+        
+        @property { boolean } [comment]
+        
+        @property { string } accountHolder
+        
         @property { string } beneficiaryId
+        
+        @property { boolean } [branchName]
         
         @property { string } title
         
         @property { string } ifscCode
         
-        @property { string } transferMode
-        
-        @property { string } accountNo
-        
-        @property { boolean } [branchName]
-        
-        @property { string } delightsUserName
-        
-        @property { boolean } isActive
-        
-        @property { string } address
-        
-        @property { string } subtitle
-        
-        @property { string } email
-        
-        @property { number } id
-        
-        @property { string } accountHolder
-        
-        @property { string } modifiedOn
-        
-        @property { string } createdOn
-        
         @property { boolean } [mobile]
-        
-        @property { boolean } [comment]
         
         @property { string } bankName
         
-        @property { string } displayName
+        @property { string } transferMode
+        
+        @property { string } delightsUserName
+        
+        @property { string } createdOn
         
          
     */
@@ -8333,9 +8333,9 @@ export type GetTatProductResponse = {
         @typedef NotFoundResourceError
         
         
-        @property { string } description
-        
         @property { boolean } success
+        
+        @property { string } description
         
         @property { string } code
         
@@ -8345,11 +8345,11 @@ export type GetTatProductResponse = {
         @typedef IfscCodeResponse
         
         
+        @property { string } bankName
+        
         @property { string } branchName
         
         @property { boolean } [success]
-        
-        @property { string } bankName
         
          
     */
@@ -8357,9 +8357,9 @@ export type GetTatProductResponse = {
         @typedef ErrorCodeDescription
         
         
-        @property { string } description
-        
         @property { boolean } success
+        
+        @property { string } description
         
         @property { string } code
         
@@ -8371,9 +8371,9 @@ export type GetTatProductResponse = {
         
         @property { string } hashKey
         
-        @property { string } requestId
-        
         @property { string } otp
+        
+        @property { string } requestId
         
          
     */
@@ -8383,9 +8383,9 @@ export type GetTatProductResponse = {
         
         @property { string } hashKey
         
-        @property { string } requestId
-        
         @property { string } otp
+        
+        @property { string } requestId
         
          
     */
@@ -8393,9 +8393,9 @@ export type GetTatProductResponse = {
         @typedef WrongOtpError
         
         
-        @property { string } description
-        
         @property { string } success
+        
+        @property { string } description
         
          
     */
@@ -8403,21 +8403,21 @@ export type GetTatProductResponse = {
         @typedef BankDetails
         
         
+        @property { string } bankName
+        
+        @property { string } address
+        
         @property { string } accountNo
         
         @property { string } branchName
         
-        @property { string } address
-        
-        @property { string } [comment]
+        @property { string } ifscCode
         
         @property { string } mobile
         
+        @property { string } [comment]
+        
         @property { string } email
-        
-        @property { string } bankName
-        
-        @property { string } ifscCode
         
         @property { string } accountHolder
         
@@ -8427,15 +8427,15 @@ export type GetTatProductResponse = {
         @typedef AddBeneficiaryDetailsRequest
         
         
-        @property { BankDetails } details
-        
-        @property { boolean } delights
-        
-        @property { string } orderId
+        @property { string } shipmentId
         
         @property { string } transferMode
         
-        @property { string } shipmentId
+        @property { string } orderId
+        
+        @property { boolean } delights
+        
+        @property { BankDetails } details
         
          
     */
@@ -8443,11 +8443,11 @@ export type GetTatProductResponse = {
         @typedef RefundAccountResponse
         
         
-        @property { Object } [data]
-        
         @property { boolean } success
         
         @property { string } message
+        
+        @property { Object } [data]
         
          
     */
@@ -8465,11 +8465,11 @@ export type GetTatProductResponse = {
         @typedef WalletOtpResponse
         
         
+        @property { string } isVerifiedFlag
+        
         @property { boolean } [success]
         
         @property { string } requestId
-        
-        @property { string } isVerifiedFlag
         
          
     */
@@ -8477,9 +8477,9 @@ export type GetTatProductResponse = {
         @typedef SetDefaultBeneficiaryRequest
         
         
-        @property { string } orderId
-        
         @property { string } beneficiaryId
+        
+        @property { string } orderId
         
          
     */

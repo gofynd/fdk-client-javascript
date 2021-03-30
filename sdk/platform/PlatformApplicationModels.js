@@ -2473,17 +2473,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef Campaigns
         
         
-        @property { Array<Campaign> } [docs]
+        @property { Array<Campaign> } [items]
         
-        @property { number } [total]
-        
-        @property { number } [limit]
-        
-        @property { number } [offset]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
+        @property { Object } [page]
         
          
     */
@@ -2594,17 +2586,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef Audiences
         
         
-        @property { Array<Audience> } [docs]
+        @property { Array<Audience> } [items]
         
-        @property { number } [total]
-        
-        @property { number } [limit]
-        
-        @property { number } [offset]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
+        @property { Object } [page]
         
          
     */
@@ -2663,17 +2647,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef EmailProviders
         
         
-        @property { Array<EmailProvider> } [docs]
+        @property { Array<EmailProvider> } [items]
         
-        @property { number } [total]
-        
-        @property { number } [limit]
-        
-        @property { number } [offset]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
+        @property { Object } [page]
         
          
     */
@@ -2894,17 +2870,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef EmailTemplates
         
         
-        @property { Array<EmailTemplate> } [docs]
+        @property { Array<EmailTemplate> } [items]
         
-        @property { number } [total]
-        
-        @property { number } [limit]
-        
-        @property { number } [offset]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
+        @property { Object } [page]
         
          
     */
@@ -2913,17 +2881,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef SystemEmailTemplates
         
         
-        @property { Array<SystemEmailTemplate> } [docs]
+        @property { Array<SystemEmailTemplate> } [items]
         
-        @property { number } [total]
-        
-        @property { number } [limit]
-        
-        @property { number } [offset]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
+        @property { Object } [page]
         
          
     */
@@ -3121,17 +3081,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef SmsProviders
         
         
-        @property { Array<SmsProvider> } [docs]
+        @property { Array<SmsProvider> } [items]
         
-        @property { number } [total]
-        
-        @property { number } [limit]
-        
-        @property { number } [offset]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
+        @property { Object } [page]
         
          
     */
@@ -3286,17 +3238,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef SmsTemplates
         
         
-        @property { Array<SmsTemplate> } [docs]
+        @property { Array<SmsTemplate> } [items]
         
-        @property { number } [total]
-        
-        @property { number } [limit]
-        
-        @property { number } [offset]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
+        @property { Object } [page]
         
          
     */
@@ -3305,17 +3249,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef SystemSmsTemplates
         
         
-        @property { Array<SystemSmsTemplate> } [docs]
+        @property { Array<SystemSmsTemplate> } [items]
         
-        @property { number } [total]
-        
-        @property { number } [limit]
-        
-        @property { number } [offset]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
+        @property { Object } [page]
         
          
     */
@@ -3324,17 +3260,17 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PaymentGatewayConfigResponse
         
         
-        @property { string } appId
-        
         @property { Array<Object> } [aggregators]
-        
-        @property { boolean } success
-        
-        @property { Array<string> } excludedFields
         
         @property { Array<string> } displayFields
         
         @property { boolean } created
+        
+        @property { string } appId
+        
+        @property { Array<string> } excludedFields
+        
+        @property { boolean } success
         
          
     */
@@ -3356,15 +3292,15 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PaymentGatewayConfig
         
         
-        @property { boolean } [isActive]
-        
-        @property { string } configType
-        
-        @property { string } key
-        
         @property { string } merchantSalt
         
         @property { string } secret
+        
+        @property { string } key
+        
+        @property { boolean } [isActive]
+        
+        @property { string } configType
         
          
     */
@@ -3373,11 +3309,11 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PaymentGatewayConfigRequest
         
         
+        @property { boolean } [isActive]
+        
         @property { string } appId
         
         @property { PaymentGatewayConfig } [aggregatorName]
-        
-        @property { boolean } [isActive]
         
          
     */
@@ -3430,59 +3366,59 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PaymentModeList
         
         
-        @property { string } [cardIsin]
-        
-        @property { string } [code]
-        
-        @property { string } [cardName]
-        
-        @property { string } [fyndVpa]
-        
-        @property { number } [displayPriority]
-        
-        @property { string } [cardIssuer]
-        
-        @property { number } [expMonth]
-        
-        @property { number } [retryCount]
-        
-        @property { number } [expYear]
-        
         @property { string } [cardNumber]
         
-        @property { PaymentModeLogo } [logoUrl]
-        
-        @property { string } [displayName]
+        @property { string } [cardToken]
         
         @property { string } aggregatorName
         
-        @property { boolean } [expired]
+        @property { string } [nickname]
         
-        @property { string } [name]
+        @property { string } [cardName]
         
-        @property { string } [merchantCode]
+        @property { number } [displayPriority]
         
-        @property { string } [cardBrand]
+        @property { string } [code]
         
-        @property { string } [cardId]
+        @property { string } [fyndVpa]
         
-        @property { string } [cardBrandImage]
-        
-        @property { string } [cardFingerprint]
-        
-        @property { string } [intentFlow]
-        
-        @property { string } [cardType]
-        
-        @property { number } [timeout]
+        @property { string } [displayName]
         
         @property { string } [cardReference]
         
-        @property { string } [nickname]
+        @property { string } [intentFlow]
+        
+        @property { string } [cardBrand]
+        
+        @property { boolean } [expired]
+        
+        @property { string } [merchantCode]
+        
+        @property { string } [cardType]
+        
+        @property { string } [name]
+        
+        @property { string } [cardIsin]
+        
+        @property { PaymentModeLogo } [logoUrl]
+        
+        @property { string } [cardFingerprint]
+        
+        @property { number } [expYear]
+        
+        @property { string } [cardId]
+        
+        @property { number } [retryCount]
+        
+        @property { number } [expMonth]
+        
+        @property { number } [timeout]
         
         @property { Array<string> } [intentAppErrorList]
         
-        @property { string } [cardToken]
+        @property { string } [cardIssuer]
+        
+        @property { string } [cardBrandImage]
         
          
     */
@@ -3491,17 +3427,17 @@ const APIClient = require("./PlatformAPIClient");
         @typedef RootPaymentMode
         
         
-        @property { boolean } [anonymousEnable]
-        
-        @property { boolean } [addCardEnabled]
-        
-        @property { string } displayName
-        
-        @property { Array<PaymentModeList> } [list]
-        
         @property { string } [aggregatorName]
         
         @property { number } displayPriority
+        
+        @property { boolean } [addCardEnabled]
+        
+        @property { Array<PaymentModeList> } [list]
+        
+        @property { string } displayName
+        
+        @property { boolean } [anonymousEnable]
         
         @property { string } name
         
@@ -3532,19 +3468,19 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PayoutsResponse
         
         
-        @property { Object } uniqueTransferNo
-        
-        @property { string } transferType
-        
-        @property { boolean } isActive
-        
-        @property { Array<Object> } payoutsAggregators
+        @property { boolean } isDefault
         
         @property { Object } customers
         
+        @property { string } transferType
+        
+        @property { Array<Object> } payoutsAggregators
+        
         @property { Object } moreAttributes
         
-        @property { boolean } isDefault
+        @property { Object } uniqueTransferNo
+        
+        @property { boolean } isActive
         
          
     */
@@ -3553,17 +3489,17 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PayoutRequest
         
         
-        @property { string } transferType
-        
-        @property { boolean } isActive
-        
-        @property { string } uniqueExternalId
-        
-        @property { string } aggregator
-        
         @property { Object } bankDetails
         
         @property { Object } users
+        
+        @property { string } transferType
+        
+        @property { string } aggregator
+        
+        @property { string } uniqueExternalId
+        
+        @property { boolean } isActive
         
          
     */
@@ -3572,25 +3508,25 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PayoutResponse
         
         
-        @property { string } uniqueTransferNo
-        
-        @property { string } transferType
-        
-        @property { boolean } isActive
-        
-        @property { string } aggregator
-        
         @property { Object } bankDetails
         
-        @property { boolean } success
+        @property { Object } users
+        
+        @property { string } transferType
         
         @property { string } paymentStatus
         
         @property { Object } payouts
         
-        @property { Object } users
-        
         @property { boolean } created
+        
+        @property { string } aggregator
+        
+        @property { string } uniqueTransferNo
+        
+        @property { boolean } isActive
+        
+        @property { boolean } success
         
          
     */
@@ -3599,11 +3535,11 @@ const APIClient = require("./PlatformAPIClient");
         @typedef UpdatePayoutResponse
         
         
+        @property { boolean } isActive
+        
         @property { boolean } success
         
         @property { boolean } isDefault
-        
-        @property { boolean } isActive
         
          
     */
@@ -3612,11 +3548,11 @@ const APIClient = require("./PlatformAPIClient");
         @typedef UpdatePayoutRequest
         
         
-        @property { string } uniqueExternalId
+        @property { boolean } isActive
         
         @property { boolean } isDefault
         
-        @property { boolean } isActive
+        @property { string } uniqueExternalId
         
          
     */
@@ -3634,9 +3570,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef SubscriptionPaymentMethodResponse
         
         
-        @property { boolean } success
-        
         @property { Array<Object> } data
+        
+        @property { boolean } success
         
          
     */
@@ -3656,9 +3592,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { boolean } success
         
-        @property { string } aggregator
-        
         @property { Object } config
+        
+        @property { string } aggregator
         
          
     */
@@ -3676,9 +3612,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef SaveSubscriptionSetupIntentResponse
         
         
-        @property { boolean } success
-        
         @property { Object } data
+        
+        @property { boolean } success
         
          
     */
@@ -3843,27 +3779,27 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetAddressSerializer
         
         
-        @property { string } [city]
+        @property { number } [longitude]
         
         @property { string } [landmark]
         
+        @property { number } [pincode]
+        
         @property { string } [country]
         
-        @property { string } [state]
-        
-        @property { string } [address2]
-        
-        @property { string } [countryCode]
+        @property { string } [city]
         
         @property { string } [address1]
         
-        @property { string } [addressType]
+        @property { string } [address2]
+        
+        @property { string } [state]
         
         @property { number } [latitude]
         
-        @property { number } [longitude]
+        @property { string } [countryCode]
         
-        @property { number } [pincode]
+        @property { string } [addressType]
         
          
     */
@@ -3887,31 +3823,18 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef UserSerializer
-        
-        
-        @property { string } [userId]
-        
-        @property { string } [username]
-        
-        @property { string } [contact]
-        
-         
-    */
-
-/**
         @typedef Document
         
         
-        @property { string } value
-        
         @property { string } type
         
-        @property { string } [url]
+        @property { boolean } [verified]
+        
+        @property { string } value
         
         @property { string } legalName
         
-        @property { boolean } [verified]
+        @property { string } [url]
         
          
     */
@@ -3939,12 +3862,25 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
+        @typedef UserSerializer
+        
+        
+        @property { string } [username]
+        
+        @property { string } [contact]
+        
+        @property { string } [userId]
+        
+         
+    */
+
+/**
         @typedef BusinessCountryInfo
         
         
-        @property { string } [countryCode]
-        
         @property { string } [country]
+        
+        @property { string } [countryCode]
         
          
     */
@@ -3953,45 +3889,45 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetCompanyProfileSerializerResponse
         
         
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [name]
-        
-        @property { number } uid
-        
-        @property { BusinessDetails } [businessDetails]
-        
-        @property { string } [stage]
-        
-        @property { string } companyType
+        @property { string } [businessInfo]
         
         @property { string } [verifiedOn]
         
-        @property { UserSerializer } [modifiedBy]
+        @property { Array<GetAddressSerializer> } [addresses]
+        
+        @property { string } businessType
+        
+        @property { string } [name]
+        
+        @property { BusinessDetails } [businessDetails]
+        
+        @property { string } companyType
+        
+        @property { string } [modifiedOn]
+        
+        @property { boolean } [franchiseEnabled]
         
         @property { Array<Document> } [documents]
         
         @property { ContactDetails } [contactDetails]
         
-        @property { UserSerializer } [createdBy]
+        @property { Array<string> } [notificationEmails]
         
-        @property { BusinessCountryInfo } [businessCountryInfo]
-        
-        @property { boolean } [franchiseEnabled]
-        
-        @property { UserSerializer } [verifiedBy]
+        @property { string } [createdOn]
         
         @property { Object } [warnings]
         
-        @property { string } businessType
+        @property { UserSerializer } [modifiedBy]
         
-        @property { Array<string> } [notificationEmails]
+        @property { UserSerializer } [createdBy]
         
-        @property { string } [modifiedOn]
+        @property { UserSerializer } [verifiedBy]
         
-        @property { string } [businessInfo]
+        @property { string } [stage]
+        
+        @property { BusinessCountryInfo } [businessCountryInfo]
+        
+        @property { number } uid
         
          
     */
@@ -4002,13 +3938,13 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { Object } [meta]
         
-        @property { number } [status]
-        
         @property { string } [code]
         
         @property { string } [message]
         
         @property { Object } [errors]
+        
+        @property { number } [status]
         
          
     */
@@ -4026,9 +3962,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef BusinessCountryInfo1
         
         
-        @property { string } [countryCode]
-        
         @property { string } [country]
+        
+        @property { string } [countryCode]
         
          
     */
@@ -4037,25 +3973,25 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CompanyAddress
         
         
-        @property { string } city
+        @property { number } longitude
         
         @property { string } [landmark]
         
+        @property { number } pincode
+        
         @property { string } country
         
-        @property { string } state
-        
-        @property { string } [address2]
-        
-        @property { string } [countryCode]
+        @property { string } city
         
         @property { string } address1
         
+        @property { string } [address2]
+        
+        @property { string } state
+        
         @property { number } latitude
         
-        @property { number } longitude
-        
-        @property { number } pincode
+        @property { string } [countryCode]
         
          
     */
@@ -4066,27 +4002,27 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { ReferralInfo } [referralInfo]
         
-        @property { BusinessCountryInfo1 } businessCountryInfo
-        
-        @property { Array<number> } brands
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { boolean } [franchiseEnabled]
-        
-        @property { CompanyAddress } address
-        
-        @property { string } name
-        
-        @property { Object } [warnings]
-        
         @property { string } [businessInfo]
-        
-        @property { Document } document
         
         @property { string } businessType
         
+        @property { string } name
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { BusinessCountryInfo1 } businessCountryInfo
+        
+        @property { Object } [warnings]
+        
         @property { number } [uid]
+        
+        @property { CompanyAddress } address
+        
+        @property { Document } document
+        
+        @property { Array<number> } brands
+        
+        @property { boolean } [franchiseEnabled]
         
          
     */
@@ -4095,9 +4031,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef SuccessResponse
         
         
-        @property { boolean } [success]
-        
         @property { number } [uid]
+        
+        @property { boolean } [success]
         
          
     */
@@ -4117,19 +4053,19 @@ const APIClient = require("./PlatformAPIClient");
         @typedef MetricsSerializer
         
         
+        @property { DocumentsObj } [brand]
+        
+        @property { DocumentsObj } [storeDocuments]
+        
         @property { DocumentsObj } [store]
         
-        @property { string } [stage]
+        @property { number } [uid]
         
         @property { DocumentsObj } [companyDocuments]
         
         @property { DocumentsObj } [product]
         
-        @property { DocumentsObj } [brand]
-        
-        @property { DocumentsObj } [storeDocuments]
-        
-        @property { number } [uid]
+        @property { string } [stage]
         
          
     */
@@ -4138,11 +4074,11 @@ const APIClient = require("./PlatformAPIClient");
         @typedef UserSerializer1
         
         
-        @property { string } [userId]
-        
         @property { string } [username]
         
         @property { string } [contact]
+        
+        @property { string } [userId]
         
          
     */
@@ -4162,41 +4098,41 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetBrandResponseSerializer
         
         
-        @property { string } [rejectReason]
-        
-        @property { Object } [customJson]
+        @property { Object } [localeLanguage]
         
         @property { string } [slugKey]
         
-        @property { string } [logo]
-        
-        @property { string } [stage]
+        @property { string } [verifiedOn]
         
         @property { UserSerializer1 } [createdBy]
         
-        @property { BrandBannerSerializer } [banner]
-        
-        @property { UserSerializer1 } [verifiedBy]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [modifiedOn]
-        
-        @property { UserSerializer1 } [modifiedBy]
+        @property { string } [rejectReason]
         
         @property { string } name
         
         @property { Array<string> } [synonyms]
         
-        @property { string } [description]
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { string } [createdOn]
+        
+        @property { number } [uid]
+        
+        @property { string } [modifiedOn]
+        
+        @property { string } [logo]
         
         @property { Object } [warnings]
         
-        @property { Object } [localeLanguage]
+        @property { Object } [customJson]
         
-        @property { number } [uid]
+        @property { UserSerializer1 } [modifiedBy]
+        
+        @property { UserSerializer1 } [verifiedBy]
+        
+        @property { string } [description]
+        
+        @property { string } [stage]
         
          
     */
@@ -4205,25 +4141,38 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CreateUpdateBrandRequestSerializer
         
         
-        @property { Object } [customJson]
+        @property { number } [companyId]
         
-        @property { string } logo
+        @property { Object } [localeLanguage]
         
-        @property { BrandBannerSerializer } [banner]
+        @property { string } name
         
         @property { Array<string> } [synonyms]
         
-        @property { string } name
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { number } [uid]
+        
+        @property { string } logo
+        
+        @property { Object } [customJson]
         
         @property { string } [brandTier]
         
         @property { string } [description]
         
-        @property { Object } [localeLanguage]
+         
+    */
+
+/**
+        @typedef CompanyBrandPostRequestSerializer
         
-        @property { number } [companyId]
         
         @property { number } [uid]
+        
+        @property { number } company
+        
+        @property { Array<number> } brands
         
          
     */
@@ -4240,25 +4189,54 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef CompanyBrandPostRequestSerializer
+        @typedef GetAddressSerializer1
         
         
-        @property { number } company
+        @property { number } [longitude]
         
-        @property { Array<number> } brands
+        @property { string } [landmark]
         
-        @property { number } [uid]
+        @property { number } [pincode]
+        
+        @property { string } [country]
+        
+        @property { string } [city]
+        
+        @property { string } [address1]
+        
+        @property { string } [address2]
+        
+        @property { string } [state]
+        
+        @property { number } [latitude]
+        
+        @property { string } [countryCode]
+        
+        @property { string } [addressType]
         
          
     */
 
 /**
-        @typedef LocationListSerializer
+        @typedef InvoiceCredSerializer
         
         
-        @property { Object } [page]
+        @property { string } [password]
         
-        @property { Array<Object> } [items]
+        @property { string } [username]
+        
+        @property { boolean } [enabled]
+        
+         
+    */
+
+/**
+        @typedef InvoiceDetailsSerializer
+        
+        
+        @property { InvoiceCredSerializer } [eInvoice]
+        
+        @property { InvoiceCredSerializer } [eWaybill]
         
          
     */
@@ -4267,9 +4245,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef LocationTimingSerializer
         
         
-        @property { number } [minute]
-        
         @property { number } [hour]
+        
+        @property { number } [minute]
         
          
     */
@@ -4278,11 +4256,11 @@ const APIClient = require("./PlatformAPIClient");
         @typedef LocationDayWiseSerializer
         
         
-        @property { string } weekday
-        
         @property { LocationTimingSerializer } [closing]
         
         @property { boolean } open
+        
+        @property { string } weekday
         
         @property { LocationTimingSerializer } [opening]
         
@@ -4293,11 +4271,11 @@ const APIClient = require("./PlatformAPIClient");
         @typedef LocationManagerSerializer
         
         
-        @property { PhoneNumber } mobileNo
+        @property { string } [email]
         
         @property { string } [name]
         
-        @property { string } [email]
+        @property { PhoneNumber } mobileNo
         
          
     */
@@ -4314,128 +4292,53 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef InvoiceCredSerializer
-        
-        
-        @property { boolean } [enabled]
-        
-        @property { string } [password]
-        
-        @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsSerializer
-        
-        
-        @property { InvoiceCredSerializer } [eWaybill]
-        
-        @property { InvoiceCredSerializer } [eInvoice]
-        
-         
-    */
-
-/**
-        @typedef GetAddressSerializer1
-        
-        
-        @property { string } [city]
-        
-        @property { string } [landmark]
-        
-        @property { string } [country]
-        
-        @property { string } [state]
-        
-        @property { string } [address2]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [address1]
-        
-        @property { string } [addressType]
-        
-        @property { number } [latitude]
-        
-        @property { number } [longitude]
-        
-        @property { number } [pincode]
-        
-         
-    */
-
-/**
         @typedef LocationSerializer
         
         
-        @property { number } company
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { string } [storeType]
-        
-        @property { string } displayName
-        
-        @property { Array<PhoneNumber> } [contactNumbers]
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { Object } [customJson]
-        
-        @property { ProductReturnConfigSerializer } [productReturnConfig]
-        
-        @property { string } [stage]
-        
-        @property { InvoiceDetailsSerializer } [gstCredentials]
-        
         @property { string } code
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { GetAddressSerializer1 } address
         
         @property { string } name
         
-        @property { Object } [warnings]
+        @property { Array<string> } [notificationEmails]
+        
+        @property { number } company
         
         @property { Array<Document> } [documents]
         
         @property { number } [uid]
         
+        @property { string } [storeType]
+        
+        @property { Object } [warnings]
+        
+        @property { GetAddressSerializer1 } address
+        
+        @property { Array<PhoneNumber> } [contactNumbers]
+        
+        @property { InvoiceDetailsSerializer } [gstCredentials]
+        
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
+        @property { Object } [customJson]
+        
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { ProductReturnConfigSerializer } [productReturnConfig]
+        
+        @property { string } [stage]
+        
+        @property { string } displayName
+        
          
     */
 
 /**
-        @typedef GetCompanySerializer
+        @typedef LocationListSerializer
         
         
-        @property { string } [rejectReason]
+        @property { Object } [page]
         
-        @property { string } [businessType]
-        
-        @property { string } [stage]
-        
-        @property { UserSerializer } [createdBy]
-        
-        @property { string } [companyType]
-        
-        @property { UserSerializer } [verifiedBy]
-        
-        @property { string } [verifiedOn]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [modifiedOn]
-        
-        @property { UserSerializer } [modifiedBy]
-        
-        @property { string } [name]
-        
-        @property { number } [uid]
+        @property { Array<Object> } [items]
         
          
     */
@@ -4452,58 +4355,91 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef GetLocationSerializer
+        @typedef GetCompanySerializer
         
         
-        @property { GetCompanySerializer } [company]
-        
-        @property { Object } [customJson]
-        
-        @property { string } displayName
-        
-        @property { LocationIntegrationType } [integrationType]
-        
-        @property { string } [createdOn]
-        
-        @property { string } name
-        
-        @property { number } [uid]
-        
-        @property { string } [storeType]
-        
-        @property { string } [stage]
-        
-        @property { InvoiceDetailsSerializer } [gstCredentials]
+        @property { string } [rejectReason]
         
         @property { string } [verifiedOn]
         
-        @property { string } phoneNumber
+        @property { UserSerializer } [createdBy]
         
-        @property { UserSerializer1 } [modifiedBy]
+        @property { Array<GetAddressSerializer> } [addresses]
         
-        @property { GetAddressSerializer } address
+        @property { string } [businessType]
+        
+        @property { string } [name]
+        
+        @property { string } [createdOn]
+        
+        @property { number } [uid]
+        
+        @property { string } [modifiedOn]
+        
+        @property { string } [companyType]
+        
+        @property { UserSerializer } [modifiedBy]
+        
+        @property { UserSerializer } [verifiedBy]
+        
+        @property { string } [stage]
+        
+         
+    */
+
+/**
+        @typedef GetLocationSerializer
+        
+        
+        @property { LocationIntegrationType } [integrationType]
+        
+        @property { string } [verifiedOn]
+        
+        @property { string } name
+        
+        @property { string } [modifiedOn]
+        
+        @property { InvoiceDetailsSerializer } [gstCredentials]
+        
+        @property { Array<PhoneNumber> } [contactNumbers]
+        
+        @property { GetCompanySerializer } [company]
         
         @property { Array<Document> } [documents]
         
-        @property { UserSerializer1 } [createdBy]
-        
-        @property { UserSerializer1 } [verifiedBy]
-        
-        @property { Object } [warnings]
+        @property { string } [storeType]
         
         @property { Array<LocationDayWiseSerializer> } [timing]
         
-        @property { ProductReturnConfigSerializer } [productReturnConfig]
+        @property { Object } [customJson]
         
         @property { LocationManagerSerializer } [manager]
         
-        @property { Array<PhoneNumber> } [contactNumbers]
+        @property { string } displayName
         
         @property { string } code
         
         @property { Array<string> } [notificationEmails]
         
-        @property { string } [modifiedOn]
+        @property { string } [createdOn]
+        
+        @property { Object } [warnings]
+        
+        @property { GetAddressSerializer } address
+        
+        @property { UserSerializer1 } [modifiedBy]
+        
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { UserSerializer1 } [verifiedBy]
+        
+        @property { ProductReturnConfigSerializer } [productReturnConfig]
+        
+        @property { string } [stage]
+        
+        @property { number } [uid]
+        
+        @property { string } phoneNumber
         
          
     */
