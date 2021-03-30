@@ -12,7 +12,7 @@ FDK Extension Helper Library
     const Redis = require("ioredis");
 
     const app = express();
-    app.use(cookieParser());
+    app.use(cookieParser("ext.session"));
     app.use(bodyParser.json({ limit: '2mb' }));
     
     const redis = new Redis();
