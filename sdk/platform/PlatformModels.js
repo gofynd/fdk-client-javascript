@@ -192,9 +192,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef TicketHistoryPayload
         
         
-        @property { Object } [value]
+        @property { Object } value
         
-        @property { string } [type]
+        @property { string } type
         
          
     */
@@ -230,22 +230,48 @@ const APIClient = require("./PlatformAPIClient");
         @typedef Participant
         
         
-        @property { string } [firstName]
+        @property { UserSchema } [user]
         
-        @property { string } [lastName]
+        @property { string } [identity]
         
-        @property { Phone } [phone]
+        @property { string } [status]
         
          
     */
 
 /**
-        @typedef Phone
+        @typedef UserSchema
         
         
-        @property { string } phoneNumber
+        @property { string } [firstName]
         
-        @property { string } countryCode
+        @property { string } [lastName]
+        
+        @property { Array<Object> } [phoneNumbers]
+        
+        @property { Array<Object> } [emails]
+        
+        @property { string } [gender]
+        
+        @property { boolean } [active]
+        
+        @property { string } [profilePicUrl]
+        
+        @property { string } [username]
+        
+        @property { string } [accountType]
+        
+        @property { string } [uid]
+        
+        @property { Object } [debug]
+        
+        @property { boolean } [hasOldPasswordHash]
+        
+        @property { string } [id]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
         
          
     */
@@ -1124,43 +1150,6 @@ const APIClient = require("./PlatformAPIClient");
         @property { string } [createdAt]
         
         @property { boolean } [register]
-        
-         
-    */
-
-/**
-        @typedef UserSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { Array<Object> } [phoneNumbers]
-        
-        @property { Array<Object> } [emails]
-        
-        @property { string } [gender]
-        
-        @property { boolean } [active]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [username]
-        
-        @property { string } [accountType]
-        
-        @property { string } [uid]
-        
-        @property { Object } [debug]
-        
-        @property { boolean } [hasOldPasswordHash]
-        
-        @property { string } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
         
          
     */
@@ -2204,6 +2193,17 @@ const APIClient = require("./PlatformAPIClient");
         @property { number } [page]
         
         @property { number } [total]
+        
+         
+    */
+
+/**
+        @typedef Phone
+        
+        
+        @property { string } [phoneNumber]
+        
+        @property { string } [phoneCountryCode]
         
          
     */
@@ -3262,15 +3262,15 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { Array<Object> } [aggregators]
         
-        @property { Array<string> } displayFields
-        
-        @property { boolean } created
+        @property { Array<string> } excludedFields
         
         @property { string } appId
         
-        @property { Array<string> } excludedFields
+        @property { Array<string> } displayFields
         
         @property { boolean } success
+        
+        @property { boolean } created
         
          
     */
@@ -3281,9 +3281,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { boolean } success
         
-        @property { string } description
-        
         @property { string } code
+        
+        @property { string } description
         
          
     */
@@ -3292,15 +3292,15 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PaymentGatewayConfig
         
         
-        @property { string } merchantSalt
+        @property { string } configType
         
         @property { string } secret
         
-        @property { string } key
+        @property { string } merchantSalt
         
         @property { boolean } [isActive]
         
-        @property { string } configType
+        @property { string } key
         
          
     */
@@ -3309,9 +3309,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PaymentGatewayConfigRequest
         
         
-        @property { boolean } [isActive]
-        
         @property { string } appId
+        
+        @property { boolean } [isActive]
         
         @property { PaymentGatewayConfig } [aggregatorName]
         
@@ -3333,9 +3333,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ErrorCodeAndDescription
         
         
-        @property { string } description
-        
         @property { string } code
+        
+        @property { string } description
         
          
     */
@@ -3366,59 +3366,59 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PaymentModeList
         
         
-        @property { string } [cardNumber]
-        
-        @property { string } [cardToken]
-        
-        @property { string } aggregatorName
-        
-        @property { string } [nickname]
-        
-        @property { string } [cardName]
-        
-        @property { number } [displayPriority]
-        
-        @property { string } [code]
-        
-        @property { string } [fyndVpa]
-        
-        @property { string } [displayName]
-        
-        @property { string } [cardReference]
-        
-        @property { string } [intentFlow]
-        
-        @property { string } [cardBrand]
-        
-        @property { boolean } [expired]
-        
-        @property { string } [merchantCode]
-        
         @property { string } [cardType]
-        
-        @property { string } [name]
-        
-        @property { string } [cardIsin]
         
         @property { PaymentModeLogo } [logoUrl]
         
         @property { string } [cardFingerprint]
         
-        @property { number } [expYear]
+        @property { string } [cardNumber]
+        
+        @property { string } [displayName]
         
         @property { string } [cardId]
         
-        @property { number } [retryCount]
+        @property { Array<string> } [intentAppErrorList]
         
-        @property { number } [expMonth]
+        @property { string } [merchantCode]
         
         @property { number } [timeout]
         
-        @property { Array<string> } [intentAppErrorList]
+        @property { string } [intentFlow]
+        
+        @property { string } [cardToken]
+        
+        @property { boolean } [expired]
+        
+        @property { string } [nickname]
         
         @property { string } [cardIssuer]
         
+        @property { number } [expMonth]
+        
+        @property { string } [cardReference]
+        
+        @property { number } [retryCount]
+        
+        @property { string } [cardIsin]
+        
+        @property { string } aggregatorName
+        
+        @property { string } [cardName]
+        
+        @property { string } [name]
+        
+        @property { string } [fyndVpa]
+        
+        @property { number } [expYear]
+        
+        @property { string } [code]
+        
+        @property { string } [cardBrand]
+        
         @property { string } [cardBrandImage]
+        
+        @property { number } [displayPriority]
         
          
     */
@@ -3427,17 +3427,17 @@ const APIClient = require("./PlatformAPIClient");
         @typedef RootPaymentMode
         
         
-        @property { string } [aggregatorName]
-        
-        @property { number } displayPriority
-        
         @property { boolean } [addCardEnabled]
         
-        @property { Array<PaymentModeList> } [list]
+        @property { boolean } [anonymousEnable]
+        
+        @property { string } [aggregatorName]
         
         @property { string } displayName
         
-        @property { boolean } [anonymousEnable]
+        @property { Array<PaymentModeList> } [list]
+        
+        @property { number } displayPriority
         
         @property { string } name
         
@@ -3468,19 +3468,19 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PayoutsResponse
         
         
+        @property { boolean } isActive
+        
+        @property { Array<Object> } payoutsAggregators
+        
+        @property { Object } uniqueTransferNo
+        
         @property { boolean } isDefault
+        
+        @property { Object } moreAttributes
         
         @property { Object } customers
         
         @property { string } transferType
-        
-        @property { Array<Object> } payoutsAggregators
-        
-        @property { Object } moreAttributes
-        
-        @property { Object } uniqueTransferNo
-        
-        @property { boolean } isActive
         
          
     */
@@ -3489,17 +3489,17 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PayoutRequest
         
         
+        @property { boolean } isActive
+        
+        @property { string } uniqueExternalId
+        
         @property { Object } bankDetails
         
         @property { Object } users
         
-        @property { string } transferType
-        
         @property { string } aggregator
         
-        @property { string } uniqueExternalId
-        
-        @property { boolean } isActive
+        @property { string } transferType
         
          
     */
@@ -3508,25 +3508,25 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PayoutResponse
         
         
+        @property { boolean } isActive
+        
+        @property { Object } payouts
+        
+        @property { string } uniqueTransferNo
+        
+        @property { boolean } created
+        
         @property { Object } bankDetails
         
         @property { Object } users
         
-        @property { string } transferType
-        
         @property { string } paymentStatus
         
-        @property { Object } payouts
-        
-        @property { boolean } created
+        @property { boolean } success
         
         @property { string } aggregator
         
-        @property { string } uniqueTransferNo
-        
-        @property { boolean } isActive
-        
-        @property { boolean } success
+        @property { string } transferType
         
          
     */
@@ -3535,9 +3535,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef UpdatePayoutResponse
         
         
-        @property { boolean } isActive
-        
         @property { boolean } success
+        
+        @property { boolean } isActive
         
         @property { boolean } isDefault
         
@@ -3550,9 +3550,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { boolean } isActive
         
-        @property { boolean } isDefault
-        
         @property { string } uniqueExternalId
+        
+        @property { boolean } isDefault
         
          
     */
@@ -3592,9 +3592,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { boolean } success
         
-        @property { Object } config
-        
         @property { string } aggregator
+        
+        @property { Object } config
         
          
     */
@@ -3776,30 +3776,170 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef GetAddressSerializer
+        @typedef ReferralInfo
         
         
-        @property { number } [longitude]
+        @property { string } [referralCode]
         
-        @property { string } [landmark]
+         
+    */
+
+/**
+        @typedef CompanyAddress
         
-        @property { number } [pincode]
         
-        @property { string } [country]
+        @property { string } address1
         
-        @property { string } [city]
-        
-        @property { string } [address1]
+        @property { string } country
         
         @property { string } [address2]
         
-        @property { string } [state]
+        @property { string } city
         
-        @property { number } [latitude]
+        @property { number } pincode
+        
+        @property { number } longitude
+        
+        @property { string } state
         
         @property { string } [countryCode]
         
-        @property { string } [addressType]
+        @property { number } latitude
+        
+        @property { string } [landmark]
+        
+         
+    */
+
+/**
+        @typedef BusinessCountryInfo
+        
+        
+        @property { string } [countryCode]
+        
+        @property { string } [country]
+        
+         
+    */
+
+/**
+        @typedef Document
+        
+        
+        @property { string } legalName
+        
+        @property { string } value
+        
+        @property { boolean } [verified]
+        
+        @property { string } [url]
+        
+        @property { string } type
+        
+         
+    */
+
+/**
+        @typedef CompanyStoreSerializerRequest
+        
+        
+        @property { string } name
+        
+        @property { number } [uid]
+        
+        @property { string } [businessInfo]
+        
+        @property { ReferralInfo } [referralInfo]
+        
+        @property { CompanyAddress } address
+        
+        @property { BusinessCountryInfo } businessCountryInfo
+        
+        @property { Object } [warnings]
+        
+        @property { Document } document
+        
+        @property { Array<number> } brands
+        
+        @property { string } businessType
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { boolean } [franchiseEnabled]
+        
+         
+    */
+
+/**
+        @typedef SuccessResponse
+        
+        
+        @property { number } [uid]
+        
+        @property { boolean } [success]
+        
+         
+    */
+
+/**
+        @typedef ErrorResponse
+        
+        
+        @property { Object } [meta]
+        
+        @property { number } [status]
+        
+        @property { string } [code]
+        
+        @property { string } [message]
+        
+        @property { Object } [errors]
+        
+         
+    */
+
+/**
+        @typedef BusinessCountryInfo1
+        
+        
+        @property { string } [countryCode]
+        
+        @property { string } [country]
+        
+         
+    */
+
+/**
+        @typedef PhoneNumber
+        
+        
+        @property { number } countryCode
+        
+        @property { string } number
+        
+         
+    */
+
+/**
+        @typedef ContactDetails
+        
+        
+        @property { Array<PhoneNumber> } [phone]
+        
+        @property { Array<string> } [emails]
+        
+         
+    */
+
+/**
+        @typedef UserSerializer
+        
+        
+        @property { string } [username]
+        
+        @property { string } [contact]
+        
+        @property { string } [userId]
         
          
     */
@@ -3823,64 +3963,30 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef Document
+        @typedef GetAddressSerializer
         
         
-        @property { string } type
-        
-        @property { boolean } [verified]
-        
-        @property { string } value
-        
-        @property { string } legalName
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef PhoneNumber
-        
-        
-        @property { number } countryCode
-        
-        @property { string } number
-        
-         
-    */
-
-/**
-        @typedef ContactDetails
-        
-        
-        @property { Array<string> } [emails]
-        
-        @property { Array<PhoneNumber> } [phone]
-        
-         
-    */
-
-/**
-        @typedef UserSerializer
-        
-        
-        @property { string } [username]
-        
-        @property { string } [contact]
-        
-        @property { string } [userId]
-        
-         
-    */
-
-/**
-        @typedef BusinessCountryInfo
-        
+        @property { string } [address1]
         
         @property { string } [country]
         
+        @property { string } [address2]
+        
+        @property { string } [city]
+        
+        @property { number } [pincode]
+        
+        @property { number } [longitude]
+        
+        @property { string } [addressType]
+        
+        @property { string } [state]
+        
         @property { string } [countryCode]
+        
+        @property { number } [latitude]
+        
+        @property { string } [landmark]
         
          
     */
@@ -3889,151 +3995,45 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetCompanyProfileSerializerResponse
         
         
-        @property { string } [businessInfo]
-        
-        @property { string } [verifiedOn]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { string } businessType
-        
-        @property { string } [name]
-        
-        @property { BusinessDetails } [businessDetails]
-        
-        @property { string } companyType
-        
-        @property { string } [modifiedOn]
-        
-        @property { boolean } [franchiseEnabled]
-        
         @property { Array<Document> } [documents]
         
+        @property { BusinessCountryInfo1 } [businessCountryInfo]
+        
         @property { ContactDetails } [contactDetails]
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { string } [createdOn]
         
         @property { Object } [warnings]
         
         @property { UserSerializer } [modifiedBy]
         
-        @property { UserSerializer } [createdBy]
-        
-        @property { UserSerializer } [verifiedBy]
-        
-        @property { string } [stage]
-        
-        @property { BusinessCountryInfo } [businessCountryInfo]
+        @property { string } [name]
         
         @property { number } uid
         
-         
-    */
-
-/**
-        @typedef ErrorResponse
+        @property { BusinessDetails } [businessDetails]
         
+        @property { UserSerializer } [verifiedBy]
         
-        @property { Object } [meta]
+        @property { string } [modifiedOn]
         
-        @property { string } [code]
+        @property { string } [stage]
         
-        @property { string } [message]
+        @property { UserSerializer } [createdBy]
         
-        @property { Object } [errors]
+        @property { string } companyType
         
-        @property { number } [status]
-        
-         
-    */
-
-/**
-        @typedef ReferralInfo
-        
-        
-        @property { string } [referralCode]
-        
-         
-    */
-
-/**
-        @typedef BusinessCountryInfo1
-        
-        
-        @property { string } [country]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef CompanyAddress
-        
-        
-        @property { number } longitude
-        
-        @property { string } [landmark]
-        
-        @property { number } pincode
-        
-        @property { string } country
-        
-        @property { string } city
-        
-        @property { string } address1
-        
-        @property { string } [address2]
-        
-        @property { string } state
-        
-        @property { number } latitude
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef CompanyStoreSerializerRequest
-        
-        
-        @property { ReferralInfo } [referralInfo]
-        
-        @property { string } [businessInfo]
-        
-        @property { string } businessType
-        
-        @property { string } name
+        @property { string } [verifiedOn]
         
         @property { Array<string> } [notificationEmails]
         
-        @property { BusinessCountryInfo1 } businessCountryInfo
+        @property { Array<GetAddressSerializer> } [addresses]
         
-        @property { Object } [warnings]
+        @property { string } [businessInfo]
         
-        @property { number } [uid]
+        @property { string } [createdOn]
         
-        @property { CompanyAddress } address
-        
-        @property { Document } document
-        
-        @property { Array<number> } brands
+        @property { string } businessType
         
         @property { boolean } [franchiseEnabled]
-        
-         
-    */
-
-/**
-        @typedef SuccessResponse
-        
-        
-        @property { number } [uid]
-        
-        @property { boolean } [success]
         
          
     */
@@ -4053,19 +4053,57 @@ const APIClient = require("./PlatformAPIClient");
         @typedef MetricsSerializer
         
         
-        @property { DocumentsObj } [brand]
-        
-        @property { DocumentsObj } [storeDocuments]
-        
         @property { DocumentsObj } [store]
         
         @property { number } [uid]
         
+        @property { DocumentsObj } [storeDocuments]
+        
         @property { DocumentsObj } [companyDocuments]
+        
+        @property { DocumentsObj } [brand]
+        
+        @property { string } [stage]
         
         @property { DocumentsObj } [product]
         
-        @property { string } [stage]
+         
+    */
+
+/**
+        @typedef BrandBannerSerializer
+        
+        
+        @property { string } [landscape]
+        
+        @property { string } [portrait]
+        
+         
+    */
+
+/**
+        @typedef CreateUpdateBrandRequestSerializer
+        
+        
+        @property { string } name
+        
+        @property { number } [uid]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [description]
+        
+        @property { string } logo
+        
+        @property { number } [companyId]
+        
+        @property { string } [brandTier]
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { Object } [localeLanguage]
         
          
     */
@@ -4084,82 +4122,44 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef BrandBannerSerializer
-        
-        
-        @property { string } [portrait]
-        
-        @property { string } [landscape]
-        
-         
-    */
-
-/**
         @typedef GetBrandResponseSerializer
         
         
-        @property { Object } [localeLanguage]
-        
-        @property { string } [slugKey]
-        
-        @property { string } [verifiedOn]
-        
-        @property { UserSerializer1 } [createdBy]
-        
-        @property { string } [rejectReason]
+        @property { UserSerializer1 } [modifiedBy]
         
         @property { string } name
         
-        @property { Array<string> } [synonyms]
-        
-        @property { BrandBannerSerializer } [banner]
-        
-        @property { string } [createdOn]
-        
         @property { number } [uid]
         
-        @property { string } [modifiedOn]
+        @property { string } [description]
+        
+        @property { BrandBannerSerializer } [banner]
         
         @property { string } [logo]
         
-        @property { Object } [warnings]
+        @property { string } [rejectReason]
         
         @property { Object } [customJson]
-        
-        @property { UserSerializer1 } [modifiedBy]
-        
-        @property { UserSerializer1 } [verifiedBy]
-        
-        @property { string } [description]
-        
-        @property { string } [stage]
-        
-         
-    */
-
-/**
-        @typedef CreateUpdateBrandRequestSerializer
-        
-        
-        @property { number } [companyId]
-        
-        @property { Object } [localeLanguage]
-        
-        @property { string } name
         
         @property { Array<string> } [synonyms]
         
-        @property { BrandBannerSerializer } [banner]
+        @property { Object } [warnings]
         
-        @property { number } [uid]
+        @property { string } [stage]
         
-        @property { string } logo
+        @property { UserSerializer1 } [verifiedBy]
         
-        @property { Object } [customJson]
+        @property { string } [modifiedOn]
         
-        @property { string } [brandTier]
+        @property { string } [createdOn]
         
-        @property { string } [description]
+        @property { string } [verifiedOn]
+        
+        @property { Object } [localeLanguage]
+        
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { string } [slugKey]
         
          
     */
@@ -4181,9 +4181,48 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CompanyBrandListSerializer
         
         
+        @property { Array<Object> } [items]
+        
         @property { Object } [page]
         
-        @property { Array<Object> } [items]
+         
+    */
+
+/**
+        @typedef LocationManagerSerializer
+        
+        
+        @property { string } [name]
+        
+        @property { PhoneNumber } mobileNo
+        
+        @property { string } [email]
+        
+         
+    */
+
+/**
+        @typedef LocationTimingSerializer
+        
+        
+        @property { number } [hour]
+        
+        @property { number } [minute]
+        
+         
+    */
+
+/**
+        @typedef LocationDayWiseSerializer
+        
+        
+        @property { boolean } open
+        
+        @property { string } weekday
+        
+        @property { LocationTimingSerializer } [opening]
+        
+        @property { LocationTimingSerializer } [closing]
         
          
     */
@@ -4192,27 +4231,27 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetAddressSerializer1
         
         
-        @property { number } [longitude]
-        
-        @property { string } [landmark]
-        
-        @property { number } [pincode]
+        @property { string } [address1]
         
         @property { string } [country]
         
+        @property { string } [address2]
+        
         @property { string } [city]
         
-        @property { string } [address1]
+        @property { number } [pincode]
         
-        @property { string } [address2]
+        @property { number } [longitude]
+        
+        @property { string } [addressType]
         
         @property { string } [state]
         
-        @property { number } [latitude]
-        
         @property { string } [countryCode]
         
-        @property { string } [addressType]
+        @property { number } [latitude]
+        
+        @property { string } [landmark]
         
          
     */
@@ -4234,48 +4273,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef InvoiceDetailsSerializer
         
         
-        @property { InvoiceCredSerializer } [eInvoice]
-        
         @property { InvoiceCredSerializer } [eWaybill]
         
-         
-    */
-
-/**
-        @typedef LocationTimingSerializer
-        
-        
-        @property { number } [hour]
-        
-        @property { number } [minute]
-        
-         
-    */
-
-/**
-        @typedef LocationDayWiseSerializer
-        
-        
-        @property { LocationTimingSerializer } [closing]
-        
-        @property { boolean } open
-        
-        @property { string } weekday
-        
-        @property { LocationTimingSerializer } [opening]
-        
-         
-    */
-
-/**
-        @typedef LocationManagerSerializer
-        
-        
-        @property { string } [email]
-        
-        @property { string } [name]
-        
-        @property { PhoneNumber } mobileNo
+        @property { InvoiceCredSerializer } [eInvoice]
         
          
     */
@@ -4284,9 +4284,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ProductReturnConfigSerializer
         
         
-        @property { boolean } [onSameStore]
-        
         @property { number } [storeUid]
+        
+        @property { boolean } [onSameStore]
         
          
     */
@@ -4295,39 +4295,39 @@ const APIClient = require("./PlatformAPIClient");
         @typedef LocationSerializer
         
         
-        @property { string } code
-        
         @property { string } name
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { number } company
-        
-        @property { Array<Document> } [documents]
         
         @property { number } [uid]
         
-        @property { string } [storeType]
+        @property { Array<Document> } [documents]
         
-        @property { Object } [warnings]
-        
-        @property { GetAddressSerializer1 } address
+        @property { LocationManagerSerializer } [manager]
         
         @property { Array<PhoneNumber> } [contactNumbers]
-        
-        @property { InvoiceDetailsSerializer } [gstCredentials]
         
         @property { Array<LocationDayWiseSerializer> } [timing]
         
         @property { Object } [customJson]
         
-        @property { LocationManagerSerializer } [manager]
+        @property { string } displayName
         
-        @property { ProductReturnConfigSerializer } [productReturnConfig]
+        @property { string } code
+        
+        @property { string } [storeType]
+        
+        @property { GetAddressSerializer1 } address
+        
+        @property { Object } [warnings]
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { number } company
         
         @property { string } [stage]
         
-        @property { string } displayName
+        @property { InvoiceDetailsSerializer } [gstCredentials]
+        
+        @property { ProductReturnConfigSerializer } [productReturnConfig]
         
          
     */
@@ -4336,9 +4336,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef LocationListSerializer
         
         
-        @property { Object } [page]
-        
         @property { Array<Object> } [items]
+        
+        @property { Object } [page]
         
          
     */
@@ -4347,9 +4347,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef LocationIntegrationType
         
         
-        @property { string } [order]
-        
         @property { string } [inventory]
+        
+        @property { string } [order]
         
          
     */
@@ -4358,31 +4358,31 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetCompanySerializer
         
         
-        @property { string } [rejectReason]
-        
-        @property { string } [verifiedOn]
-        
-        @property { UserSerializer } [createdBy]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { string } [businessType]
+        @property { UserSerializer } [modifiedBy]
         
         @property { string } [name]
         
-        @property { string } [createdOn]
-        
         @property { number } [uid]
         
-        @property { string } [modifiedOn]
+        @property { Array<GetAddressSerializer> } [addresses]
+        
+        @property { string } [rejectReason]
         
         @property { string } [companyType]
         
-        @property { UserSerializer } [modifiedBy]
+        @property { string } [stage]
         
         @property { UserSerializer } [verifiedBy]
         
-        @property { string } [stage]
+        @property { string } [modifiedOn]
+        
+        @property { string } [createdOn]
+        
+        @property { string } [verifiedOn]
+        
+        @property { string } [businessType]
+        
+        @property { UserSerializer } [createdBy]
         
          
     */
@@ -4391,55 +4391,55 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetLocationSerializer
         
         
-        @property { LocationIntegrationType } [integrationType]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } name
-        
-        @property { string } [modifiedOn]
-        
-        @property { InvoiceDetailsSerializer } [gstCredentials]
-        
-        @property { Array<PhoneNumber> } [contactNumbers]
-        
-        @property { GetCompanySerializer } [company]
+        @property { Object } [customJson]
         
         @property { Array<Document> } [documents]
         
         @property { string } [storeType]
         
-        @property { Array<LocationDayWiseSerializer> } [timing]
+        @property { string } phoneNumber
         
-        @property { Object } [customJson]
+        @property { Object } [warnings]
+        
+        @property { LocationIntegrationType } [integrationType]
+        
+        @property { GetCompanySerializer } [company]
+        
+        @property { UserSerializer1 } [modifiedBy]
+        
+        @property { string } name
+        
+        @property { number } [uid]
         
         @property { LocationManagerSerializer } [manager]
         
+        @property { string } code
+        
+        @property { UserSerializer1 } [verifiedBy]
+        
+        @property { string } [modifiedOn]
+        
+        @property { string } [stage]
+        
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
+        @property { Array<PhoneNumber> } [contactNumbers]
+        
         @property { string } displayName
         
-        @property { string } code
+        @property { GetAddressSerializer } address
+        
+        @property { string } [verifiedOn]
         
         @property { Array<string> } [notificationEmails]
         
         @property { string } [createdOn]
         
-        @property { Object } [warnings]
-        
-        @property { GetAddressSerializer } address
-        
-        @property { UserSerializer1 } [modifiedBy]
-        
-        @property { UserSerializer1 } [createdBy]
-        
-        @property { UserSerializer1 } [verifiedBy]
+        @property { InvoiceDetailsSerializer } [gstCredentials]
         
         @property { ProductReturnConfigSerializer } [productReturnConfig]
-        
-        @property { string } [stage]
-        
-        @property { number } [uid]
-        
-        @property { string } phoneNumber
         
          
     */
@@ -7783,6 +7783,15 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
+        @typedef InvalidPayloadRequest
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
         @typedef SuccessMessageResponse
         
         
@@ -7866,6 +7875,27 @@ const APIClient = require("./PlatformAPIClient");
         @property { Array<number> } [enforcedStores]
         
         @property { ArticleAssignmentRule } [rules]
+        
+         
+    */
+
+/**
+        @typedef CompanyAboutAddress
+        
+        
+        @property { number } [pincode]
+        
+        @property { string } [address1]
+        
+        @property { string } [address2]
+        
+        @property { string } [city]
+        
+        @property { string } [state]
+        
+        @property { string } [country]
+        
+        @property { string } [addressType]
         
          
     */
@@ -8028,6 +8058,171 @@ const APIClient = require("./PlatformAPIClient");
         @property { string } [app]
         
         @property { number } [v]
+        
+         
+    */
+
+/**
+        @typedef StoreMapping
+        
+        
+        @property { Array<Object> } [items]
+        
+         
+    */
+
+/**
+        @typedef AllChannels
+        
+        
+        @property { boolean } [mkpName]
+        
+         
+    */
+
+/**
+        @typedef RegisteredChannels
+        
+        
+        @property { Object } [mkpName]
+        
+         
+    */
+
+/**
+        @typedef MyntraPayload
+        
+        
+        @property { string } [merchantId]
+        
+        @property { string } [secretKey]
+        
+         
+    */
+
+/**
+        @typedef AmazonPayload
+        
+        
+        @property { string } [sellerId]
+        
+        @property { string } [mwsAuthToken]
+        
+         
+    */
+
+/**
+        @typedef FlipkartPayload
+        
+        
+        @property { string } [code]
+        
+         
+    */
+
+/**
+        @typedef TatacliqPayload
+        
+        
+        @property { string } [userName]
+        
+        @property { string } [password]
+        
+        @property { string } [merchantId]
+        
+         
+    */
+
+/**
+        @typedef AjioPayload
+        
+        
+        @property { string } [username]
+        
+        @property { string } [password]
+        
+        @property { string } [clientIp]
+        
+         
+    */
+
+/**
+        @typedef InventoryConfig
+        
+        
+        @property { boolean } [inventory]
+        
+        @property { boolean } [price]
+        
+         
+    */
+
+/**
+        @typedef StoreMappingPayload
+        
+        
+        @property { boolean } [storeMappingEnabled]
+        
+        @property { Array<Object> } [storeMapping]
+        
+         
+    */
+
+/**
+        @typedef StatusPayload
+        
+        
+        @property { boolean } [isActive]
+        
+         
+    */
+
+/**
+        @typedef StatusResp
+        
+        
+        @property { boolean } [isActive]
+        
+         
+    */
+
+/**
+        @typedef SyncPayload
+        
+        
+        @property { string } [modifiedSince]
+        
+         
+    */
+
+/**
+        @typedef SyncResp
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef MkpResp
+        
+        
+        @property { string } [marketplace]
+        
+        @property { number } [worker]
+        
+        @property { string } [workerAssigned]
+        
+        @property { boolean } [isActive]
+        
+        @property { string } [storeMappingEnabled]
+        
+        @property { number } [companyId]
+        
+        @property { Object } [configuration]
+        
+        @property { Array<Object> } [storeMapping]
         
          
     */
@@ -8925,25 +9120,6 @@ class CompanyProfile {
   }
 
   /**
-    *
-    * @summary: Get company profile
-    * @description: This API allows to view the company profile of the seller account.
-    * @param {Object} arg - arg object.
-    
-    **/
-  cbsOnboardGet({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
    *
    * @summary: Edit company profile
    * @description: This API allows to edit the company profile of the seller account.
@@ -8959,6 +9135,25 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       queryObj,
       body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get company profile
+    * @description: This API allows to view the company profile of the seller account.
+    * @param {Object} arg - arg object.
+    
+    **/
+  cbsOnboardGet({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
+      queryObj,
+      undefined
     );
   }
 
@@ -8982,26 +9177,6 @@ class CompanyProfile {
   }
 
   /**
-    *
-    * @summary: Get a single brand.
-    * @description: This API helps to get data associated to a particular brand.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.brandId - Id of the brand to be viewed.
-    
-    **/
-  getBrand({ brandId } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
    *
    * @summary: Edit a brand.
    * @description: This API allows to edit meta of a brand.
@@ -9018,6 +9193,26 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       queryObj,
       body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a single brand.
+    * @description: This API helps to get data associated to a particular brand.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.brandId - Id of the brand to be viewed.
+    
+    **/
+  getBrand({ brandId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+      queryObj,
+      undefined
     );
   }
 
@@ -9127,26 +9322,6 @@ class CompanyProfile {
   }
 
   /**
-    *
-    * @summary: Get details of a specific location.
-    * @description: This API helps to get data associated to a specific location.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.locationId - Id of the location which you want to view.
-    
-    **/
-  getLocationDetail({ locationId } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
    *
    * @summary: Edit a location asscoiated to a company.
    * @description: This API allows to edit a location associated to a company.
@@ -9163,6 +9338,26 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       queryObj,
       body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get details of a specific location.
+    * @description: This API helps to get data associated to a specific location.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.locationId - Id of the location which you want to view.
+    
+    **/
+  getLocationDetail({ locationId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      queryObj,
+      undefined
     );
   }
 }
@@ -9783,6 +9978,387 @@ class Configuration {
   }
 }
 
+class Marketplaces {
+  constructor(config) {
+    this.config = config;
+  }
+
+  /**
+    *
+    * @summary: Get available marketplace channels
+    * @description: Get available marketplace channels
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAvailableChannels({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/all-channels`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get all registered marketplace channels for a seller
+    * @description: Get all registered marketplace channels for a seller
+    * @param {Object} arg - arg object.
+    
+    **/
+  getChannels({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get registered marketplace channel for a seller
+    * @description: Get registered marketplace channel for a seller
+    * @param {Object} arg - arg object.
+    * @param {string} arg.channel - Name of marketplace channel
+    
+    **/
+  getChannel({ channel } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create Myntra marketplace channel for a seller
+   * @description: Create Myntra marketplace channel for a seller
+   * @param {Object} arg - arg object.
+   * @param {MyntraPayload} arg.body
+   **/
+  registerMyntraChannel({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/myntra_in`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update Myntra marketplace channel credentials for a seller
+   * @description: Update Myntra marketplace channel credentials for a seller
+   * @param {Object} arg - arg object.
+   * @param {MyntraPayload} arg.body
+   **/
+  updateMyntraChannelCredentials({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/myntra_in`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Create Amazon marketplace channel for a seller
+   * @description: Create Amazon marketplace channel for a seller
+   * @param {Object} arg - arg object.
+   * @param {AmazonPayload} arg.body
+   **/
+  registerAmazonChannel({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/amazon_in`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update Amazon marketplace channel credentials for a seller
+   * @description: Update Amazon marketplace channel credentials for a seller
+   * @param {Object} arg - arg object.
+   * @param {AmazonPayload} arg.body
+   **/
+  updateAmazonChannelCredentials({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/amazon_in`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Create Flipkart / Flipkart Assured marketplace channel for a seller
+   * @description: Create Flipkart / Flipkart Assured marketplace channel for a seller
+   * @param {Object} arg - arg object.
+   * @param {string} arg.flipkartChannel - Name of marketplace channel
+   * @param {FlipkartPayload} arg.body
+   **/
+  registerFlipkartChannel({ flipkartChannel, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${flipkartChannel}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update Flipkart / Flipkart Assured marketplace channel credentials for a seller
+   * @description: Update Flipkart / Flipkart Assured marketplace channel credentials for a seller
+   * @param {Object} arg - arg object.
+   * @param {string} arg.flipkartChannel - Name of marketplace channel
+   * @param {FlipkartPayload} arg.body
+   **/
+  updateFlipkartChannelCredentials({ flipkartChannel, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${flipkartChannel}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Create Tatacliq / Tatacliq Luxury marketplace channel for a seller
+   * @description: Create Tatacliq / Tatacliq Luxury marketplace channel for a seller
+   * @param {Object} arg - arg object.
+   * @param {string} arg.tatacliqChannel - Name of marketplace channel
+   * @param {TatacliqPayload} arg.body
+   **/
+  registerTatacliqChannel({ tatacliqChannel, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${tatacliqChannel}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update Tatacliq / Tatacliq Luxury Assured marketplace channel credentials for a seller
+   * @description: Update Tatacliq / Tatacliq Luxury marketplace channel credentials for a seller
+   * @param {Object} arg - arg object.
+   * @param {string} arg.tatacliqChannel - Name of marketplace channel
+   * @param {TatacliqPayload} arg.body
+   **/
+  updateTatacliqChannelCredentials({ tatacliqChannel, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${tatacliqChannel}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Create Ajio marketplace channel for a seller
+   * @description: Create Ajio marketplace channel for a seller
+   * @param {Object} arg - arg object.
+   * @param {AjioPayload} arg.body
+   **/
+  registerAjioChannel({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/ajio_in`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update Ajio marketplace channel credentials for a seller
+   * @description: Update Ajio marketplace channel credentials for a seller
+   * @param {Object} arg - arg object.
+   * @param {AjioPayload} arg.body
+   **/
+  updateAjioChannelCredentials({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/ajio_in`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update inventory sync configuration of marketplace channel for a seller
+   * @description: Update inventory sync configuration of marketplace channel for a seller
+   * @param {Object} arg - arg object.
+   * @param {string} arg.channel - Name of marketplace channel
+   * @param {string} [arg.validateCred] - Validate marketplace cred while saving inventory config
+   * @param {InventoryConfig} arg.body
+   **/
+  updateChannelInventoryConfig({ channel, body, validateCred } = {}) {
+    const queryObj = {};
+    queryObj["validate_cred"] = validateCred;
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/marketplaces/company/${this.config.companyId}/v1.0/channels/${channel}/inventory/config`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get marketplace channel location config for a seller
+    * @description: Get marketplace channel location config for a seller
+    * @param {Object} arg - arg object.
+    * @param {string} arg.channel - Name of marketplace channel
+    
+    **/
+  getChannelLocationConfig({ channel } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}/location/config`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: update marketplace channel location config for a seller
+   * @description: update marketplace channel location config for a seller
+   * @param {Object} arg - arg object.
+   * @param {string} arg.channel - Name of marketplace channel
+   * @param {StoreMappingPayload} arg.body
+   **/
+  updateChannelLocationConfig({ channel, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}/location/config`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get marketplace channel active status for a seller
+    * @description: Get marketplace channel active status for a seller
+    * @param {Object} arg - arg object.
+    * @param {string} arg.channel - Name of marketplace channel
+    
+    **/
+  getChannelStatus({ channel } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}/status`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update marketplace channel active status for a seller
+   * @description: Update marketplace channel active status for a seller
+   * @param {Object} arg - arg object.
+   * @param {string} arg.channel - Name of marketplace channel
+   * @param {StatusPayload} arg.body
+   **/
+  updateChannelStatus({ channel, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}/status`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Trigger marketplace channel inventory updates for a seller
+   * @description: Trigger marketplace channel inventory updates for a seller
+   * @param {Object} arg - arg object.
+   * @param {string} arg.channel - Name of marketplace channel
+   * @param {string} arg.updateType - Inventory update type
+   * @param {SyncPayload} arg.body
+   **/
+  triggerChannelInventoryUpdates({ channel, updateType, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}/inventory/${updateType}/sync`,
+      queryObj,
+      body
+    );
+  }
+}
+
 class Analytics {
   constructor(config) {
     this.config = config;
@@ -9888,5 +10464,6 @@ module.exports = {
   Assets,
   Inventory,
   Configuration,
+  Marketplaces,
   Analytics,
 };

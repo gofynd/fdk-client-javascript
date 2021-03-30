@@ -7,6 +7,7 @@ const {
   Assets,
   Inventory,
   Configuration,
+  Marketplaces,
   Analytics,
 } = require("./PlatformModels");
 const Application = require("./PlatformApplicationClient");
@@ -22,6 +23,7 @@ class PlatformClient {
     this.assets = new Assets(config);
     this.inventory = new Inventory(config);
     this.configuration = new Configuration(config);
+    this.marketplaces = new Marketplaces(config);
     this.analytics = new Analytics(config);
   }
   application(applicationId) {

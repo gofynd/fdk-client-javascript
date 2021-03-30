@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -86,7 +86,7 @@
 * [Lead](#Lead)
   * Methods
     * [getTicket](#getticket)
-    * [createHistoryForTicket](#createhistoryforticket)
+    * [createHistory](#createhistory)
     * [createTicket](#createticket)
     * [getCustomForm](#getcustomform)
     * [submitCustomForm](#submitcustomform)
@@ -1471,23 +1471,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collectionType,collectionId);
+const promise = catalog.unfollowById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.followById(collectionType,collectionId);
+const data = await catalog.unfollowById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to follow | 
+| collectionId | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1521,23 +1521,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collectionType,collectionId);
+const promise = catalog.followById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.unfollowById(collectionType,collectionId);
+const data = await catalog.followById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to unfollow | 
+| collectionId | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -5319,15 +5319,15 @@ Default
 ---
 
 
-#### createHistoryForTicket
+#### createHistory
 Create history for specific Ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistoryForTicket(ticketId,body);
+const promise = lead.createHistory(ticketId,body);
 
 // Async/Await
-const data = await lead.createHistoryForTicket(ticketId,body);
+const data = await lead.createHistory(ticketId,body);
 ```
 
 | Argument  |  Type  | Description |
