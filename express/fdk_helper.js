@@ -26,7 +26,7 @@ class FdkHelper {
 
     async setClusterMeta(data) {
         this.clusterMeta = data;
-        this.domain = new URL(this.clusterMeta.cluster).host;
+        this.domain = new URL(this.clusterMeta.cluster).origin;
         await this.storage.set(this.cluster, JSON.stringify(data));
     }
 
@@ -43,7 +43,7 @@ class FdkHelper {
 
         clusterMeta = JSON.parse(clusterMeta);
         this.clusterMeta = clusterMeta;
-        this.domain = new URL(this.clusterMeta.cluster).host;
+        this.domain = new URL(this.clusterMeta.cluster).origin;
         return this.clusterMeta;
     }
 
