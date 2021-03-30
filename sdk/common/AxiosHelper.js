@@ -4,7 +4,6 @@ const axios = require("axios");
 const querystring = require("query-string");
 const { sign } = require("./RequestSigner");
 const FDKError = require("./FDKError");
-const DEFAULT_DOMAIN = "https://api.fyndx0.de";
 axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
@@ -80,7 +79,7 @@ function requestInterceptorFn(options) {
     return config;
   };
 }
-const fdkAxios = axios.create({ baseURL: DEFAULT_DOMAIN });
+const fdkAxios = axios.create();
 
 fdkAxios.interceptors.request.use(requestInterceptorFn({}));
 fdkAxios.interceptors.response.use(

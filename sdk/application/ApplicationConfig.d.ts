@@ -8,5 +8,6 @@ declare class ApplicationConfig {
     applicationID: any;
     applicationToken: any;
     opts: any;
+    domain: any;
     validate(): void;
 }

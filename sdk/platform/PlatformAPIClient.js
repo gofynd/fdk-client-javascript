@@ -12,6 +12,7 @@ class APIClient {
     const token = conf.oauthClient.getAccessToken();
 
     const rawRequest = {
+      baseURL: conf.domain,
       method: method,
       url: url,
       params: query,
