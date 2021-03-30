@@ -1095,37 +1095,41 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef RawBreakup
+        @typedef CouponBreakup
         
         
-        @property { number } [fyndCash]
+        @property { number } [value]
         
-        @property { number } [youSaved]
+        @property { string } [message]
         
-        @property { number } [subtotal]
+        @property { string } [code]
         
-        @property { number } [coupon]
+        @property { boolean } [isApplied]
         
-        @property { number } [codCharge]
+        @property { number } [uid]
         
-        @property { number } [total]
-        
-        @property { number } [deliveryCharge]
+        @property { string } [type]
         
          
     */
 
 /**
-        @typedef LoyaltyPoints
+        @typedef RawBreakup
         
         
-        @property { string } [description]
+        @property { number } [fyndCash]
+        
+        @property { number } [subtotal]
+        
+        @property { number } [youSaved]
+        
+        @property { number } [coupon]
+        
+        @property { number } [deliveryCharge]
         
         @property { number } [total]
         
-        @property { boolean } [isApplied]
-        
-        @property { number } [applicable]
+        @property { number } [codCharge]
         
          
     */
@@ -1136,34 +1140,30 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [display]
         
-        @property { string } [currencySymbol]
-        
-        @property { Array<string> } [message]
+        @property { number } [value]
         
         @property { string } [key]
         
-        @property { string } [currencyCode]
+        @property { Array<string> } [message]
         
-        @property { number } [value]
+        @property { string } [currencySymbol]
+        
+        @property { string } [currencyCode]
         
          
     */
 
 /**
-        @typedef CouponBreakup
+        @typedef LoyaltyPoints
         
+        
+        @property { number } [total]
+        
+        @property { string } [description]
         
         @property { boolean } [isApplied]
         
-        @property { string } [type]
-        
-        @property { number } [uid]
-        
-        @property { string } [message]
-        
-        @property { string } [code]
-        
-        @property { number } [value]
+        @property { number } [applicable]
         
          
     */
@@ -1172,24 +1172,13 @@ const Paginator = require("../common/Paginator");
         @typedef CartBreakup
         
         
-        @property { RawBreakup } [raw]
+        @property { CouponBreakup } [coupon]
         
-        @property { LoyaltyPoints } [loyaltyPoints]
+        @property { RawBreakup } [raw]
         
         @property { Array<DisplayBreakup> } [display]
         
-        @property { CouponBreakup } [coupon]
-        
-         
-    */
-
-/**
-        @typedef PromiseFormatted
-        
-        
-        @property { string } [max]
-        
-        @property { string } [min]
+        @property { LoyaltyPoints } [loyaltyPoints]
         
          
     */
@@ -1198,9 +1187,20 @@ const Paginator = require("../common/Paginator");
         @typedef PromiseTimestamp
         
         
+        @property { number } [min]
+        
         @property { number } [max]
         
-        @property { number } [min]
+         
+    */
+
+/**
+        @typedef PromiseFormatted
+        
+        
+        @property { string } [min]
+        
+        @property { string } [max]
         
          
     */
@@ -1209,22 +1209,67 @@ const Paginator = require("../common/Paginator");
         @typedef ShipmentPromise
         
         
-        @property { PromiseFormatted } [formatted]
-        
         @property { PromiseTimestamp } [timestamp]
+        
+        @property { PromiseFormatted } [formatted]
         
          
     */
 
 /**
-        @typedef Image
+        @typedef CartCurrency
         
         
-        @property { string } [url]
+        @property { string } [symbol]
         
-        @property { string } [secureUrl]
+        @property { string } [code]
         
-        @property { string } [aspectRatio]
+         
+    */
+
+/**
+        @typedef ProductPrice
+        
+        
+        @property { number } [effective]
+        
+        @property { number } [addOn]
+        
+        @property { number } [selling]
+        
+        @property { string } [currencySymbol]
+        
+        @property { string } [currencyCode]
+        
+        @property { number } [marked]
+        
+         
+    */
+
+/**
+        @typedef ProductPriceInfo
+        
+        
+        @property { ProductPrice } [converted]
+        
+        @property { ProductPrice } [base]
+        
+         
+    */
+
+/**
+        @typedef ProductAvailability
+        
+        
+        @property { Array<string> } [sizes]
+        
+        @property { boolean } [outOfStock]
+        
+        @property { boolean } [deliverable]
+        
+        @property { boolean } [isValid]
+        
+        @property { number } [otherStoreQuantity]
         
          
     */
@@ -1241,12 +1286,57 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef CategoryInfo
+        @typedef BasePrice
         
         
-        @property { string } [name]
+        @property { number } [effective]
         
-        @property { number } [uid]
+        @property { string } [currencyCode]
+        
+        @property { number } [marked]
+        
+        @property { string } [currencySymbol]
+        
+         
+    */
+
+/**
+        @typedef ArticlePriceInfo
+        
+        
+        @property { BasePrice } [converted]
+        
+        @property { BasePrice } [base]
+        
+         
+    */
+
+/**
+        @typedef ProductArticle
+        
+        
+        @property { BaseInfo } [store]
+        
+        @property { BaseInfo } [seller]
+        
+        @property { ArticlePriceInfo } [price]
+        
+        @property { number } [quantity]
+        
+        @property { string } [uid]
+        
+        @property { string } [size]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef CartProductIdentifer
+        
+        
+        @property { string } [identifier]
         
          
     */
@@ -1264,11 +1354,35 @@ const Paginator = require("../common/Paginator");
         @typedef ProductAction
         
         
-        @property { string } [url]
-        
         @property { string } [type]
         
         @property { ActionQuery } [query]
+        
+        @property { string } [url]
+        
+         
+    */
+
+/**
+        @typedef CategoryInfo
+        
+        
+        @property { string } [name]
+        
+        @property { number } [uid]
+        
+         
+    */
+
+/**
+        @typedef Image
+        
+        
+        @property { string } [secureUrl]
+        
+        @property { string } [url]
+        
+        @property { string } [aspectRatio]
         
          
     */
@@ -1277,124 +1391,21 @@ const Paginator = require("../common/Paginator");
         @typedef Product
         
         
-        @property { Array<Image> } [images]
-        
-        @property { BaseInfo } [brand]
-        
-        @property { Array<CategoryInfo> } [categories]
-        
         @property { ProductAction } [action]
         
         @property { string } [type]
         
-        @property { string } [slug]
+        @property { string } [name]
+        
+        @property { Array<CategoryInfo> } [categories]
+        
+        @property { BaseInfo } [brand]
         
         @property { number } [uid]
         
-        @property { string } [name]
+        @property { Array<Image> } [images]
         
-         
-    */
-
-/**
-        @typedef CartProductIdentifer
-        
-        
-        @property { string } [identifier]
-        
-         
-    */
-
-/**
-        @typedef BasePrice
-        
-        
-        @property { number } [effective]
-        
-        @property { number } [marked]
-        
-        @property { string } [currencyCode]
-        
-        @property { string } [currencySymbol]
-        
-         
-    */
-
-/**
-        @typedef ArticlePriceInfo
-        
-        
-        @property { BasePrice } [base]
-        
-        @property { BasePrice } [converted]
-        
-         
-    */
-
-/**
-        @typedef ProductArticle
-        
-        
-        @property { BaseInfo } [store]
-        
-        @property { string } [type]
-        
-        @property { string } [size]
-        
-        @property { ArticlePriceInfo } [price]
-        
-        @property { string } [uid]
-        
-        @property { number } [quantity]
-        
-        @property { BaseInfo } [seller]
-        
-         
-    */
-
-/**
-        @typedef ProductPrice
-        
-        
-        @property { number } [addOn]
-        
-        @property { number } [effective]
-        
-        @property { number } [marked]
-        
-        @property { string } [currencySymbol]
-        
-        @property { number } [selling]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef ProductPriceInfo
-        
-        
-        @property { ProductPrice } [base]
-        
-        @property { ProductPrice } [converted]
-        
-         
-    */
-
-/**
-        @typedef ProductAvailability
-        
-        
-        @property { boolean } [deliverable]
-        
-        @property { boolean } [outOfStock]
-        
-        @property { Array<string> } [sizes]
-        
-        @property { boolean } [isValid]
-        
-        @property { number } [otherStoreQuantity]
+        @property { string } [slug]
         
          
     */
@@ -1403,40 +1414,29 @@ const Paginator = require("../common/Paginator");
         @typedef CartProductInfo
         
         
+        @property { string } [couponMessage]
+        
         @property { string } [discount]
-        
-        @property { Product } [product]
-        
-        @property { CartProductIdentifer } identifiers
-        
-        @property { ProductArticle } [article]
         
         @property { Object } [bulkOffer]
         
-        @property { ProductPriceInfo } [price]
-        
-        @property { string } [couponMessage]
-        
-        @property { string } [message]
-        
         @property { boolean } [isSet]
-        
-        @property { ProductAvailability } [availability]
-        
-        @property { number } [quantity]
         
         @property { string } [key]
         
-         
-    */
-
-/**
-        @typedef CartCurrency
+        @property { number } [quantity]
         
+        @property { ProductPriceInfo } [price]
         
-        @property { string } [symbol]
+        @property { string } [message]
         
-        @property { string } [code]
+        @property { ProductAvailability } [availability]
+        
+        @property { ProductArticle } [article]
+        
+        @property { CartProductIdentifer } identifiers
+        
+        @property { Product } [product]
         
          
     */
@@ -1447,33 +1447,33 @@ const Paginator = require("../common/Paginator");
         
         @property { CartBreakup } [breakupValues]
         
-        @property { string } [comment]
-        
         @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { string } [deliveryChargeInfo]
         
         @property { string } [gstin]
         
-        @property { string } [checkoutMode]
+        @property { string } [lastModified]
         
-        @property { boolean } [restrictCheckout]
-        
-        @property { Array<CartProductInfo> } [items]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [uid]
+        @property { string } [comment]
         
         @property { boolean } [isValid]
         
-        @property { string } [lastModified]
-        
         @property { string } [couponText]
+        
+        @property { string } [message]
+        
+        @property { string } [deliveryChargeInfo]
+        
+        @property { string } [uid]
+        
+        @property { boolean } [restrictCheckout]
+        
+        @property { CartCurrency } [currency]
+        
+        @property { Array<CartProductInfo> } [items]
         
         @property { number } [cartId]
         
-        @property { string } [message]
+        @property { string } [checkoutMode]
         
          
     */
@@ -1482,23 +1482,23 @@ const Paginator = require("../common/Paginator");
         @typedef AddProductCart
         
         
-        @property { number } [itemId]
-        
-        @property { number } [storeId]
-        
-        @property { Object } [articleAssignment]
+        @property { string } [itemSize]
         
         @property { string } [display]
         
-        @property { string } [articleId]
-        
-        @property { boolean } [pos]
+        @property { Object } [articleAssignment]
         
         @property { number } [sellerId]
         
+        @property { string } [articleId]
+        
+        @property { number } [itemId]
+        
+        @property { boolean } [pos]
+        
         @property { number } [quantity]
         
-        @property { string } [itemSize]
+        @property { number } [storeId]
         
          
     */
@@ -1518,11 +1518,11 @@ const Paginator = require("../common/Paginator");
         
         @property { boolean } [partial]
         
+        @property { string } [message]
+        
         @property { CartResponse } [cart]
         
         @property { boolean } [success]
-        
-        @property { string } [message]
         
          
     */
@@ -1531,17 +1531,17 @@ const Paginator = require("../common/Paginator");
         @typedef UpdateProductCart
         
         
-        @property { CartProductIdentifer } identifiers
-        
-        @property { number } [itemId]
+        @property { string } [itemSize]
         
         @property { number } [itemIndex]
         
         @property { string } [articleId]
         
+        @property { number } [itemId]
+        
         @property { number } [quantity]
         
-        @property { string } [itemSize]
+        @property { CartProductIdentifer } identifiers
         
          
     */
@@ -1550,9 +1550,9 @@ const Paginator = require("../common/Paginator");
         @typedef UpdateCartRequest
         
         
-        @property { Array<UpdateProductCart> } [items]
-        
         @property { string } operation
+        
+        @property { Array<UpdateProductCart> } [items]
         
          
     */
@@ -1561,11 +1561,11 @@ const Paginator = require("../common/Paginator");
         @typedef UpdateCartResponse
         
         
+        @property { string } [message]
+        
         @property { CartResponse } [cart]
         
         @property { boolean } [success]
-        
-        @property { string } [message]
         
          
     */
@@ -1583,25 +1583,25 @@ const Paginator = require("../common/Paginator");
         @typedef Coupon
         
         
-        @property { string } [subTitle]
+        @property { number } [couponValue]
+        
+        @property { string } [couponCode]
+        
+        @property { boolean } [isApplicable]
+        
+        @property { number } [minimumCartValue]
+        
+        @property { string } [expiresOn]
+        
+        @property { string } [message]
         
         @property { string } [title]
         
         @property { boolean } [isApplied]
         
-        @property { number } [minimumCartValue]
-        
-        @property { boolean } [isApplicable]
-        
-        @property { string } [expiresOn]
-        
-        @property { string } [couponCode]
-        
-        @property { number } [couponValue]
+        @property { string } [subTitle]
         
         @property { number } [maxDiscountValue]
-        
-        @property { string } [message]
         
          
     */
@@ -1610,15 +1610,15 @@ const Paginator = require("../common/Paginator");
         @typedef PageCoupon
         
         
-        @property { boolean } [hasPrevious]
-        
-        @property { number } [current]
+        @property { boolean } [hasNext]
         
         @property { number } [totalItemCount]
         
-        @property { boolean } [hasNext]
-        
         @property { number } [total]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { number } [current]
         
          
     */
@@ -1649,13 +1649,13 @@ const Paginator = require("../common/Paginator");
         
         @property { number } [effective]
         
-        @property { string } [currencyCode]
-        
-        @property { number } [marked]
+        @property { number } [bulkEffective]
         
         @property { string } [currencySymbol]
         
-        @property { number } [bulkEffective]
+        @property { string } [currencyCode]
+        
+        @property { number } [marked]
         
          
     */
@@ -1664,19 +1664,19 @@ const Paginator = require("../common/Paginator");
         @typedef OfferItem
         
         
-        @property { string } [type]
-        
-        @property { boolean } [best]
-        
-        @property { OfferPrice } [price]
+        @property { number } [margin]
         
         @property { number } [total]
         
-        @property { number } [margin]
+        @property { OfferPrice } [price]
+        
+        @property { number } [quantity]
+        
+        @property { string } [type]
         
         @property { boolean } [autoApplied]
         
-        @property { number } [quantity]
+        @property { boolean } [best]
         
          
     */
@@ -1727,49 +1727,49 @@ const Paginator = require("../common/Paginator");
         @typedef Address
         
         
-        @property { string } [checkoutMode]
-        
-        @property { boolean } [isDefaultAddress]
+        @property { string } [areaCodeSlug]
         
         @property { string } [city]
         
-        @property { string } [countryCode]
+        @property { Object } [meta]
         
-        @property { number } [addressId]
+        @property { string } [phone]
         
-        @property { string } [email]
-        
-        @property { string } [landmark]
-        
-        @property { string } [areaCode]
-        
-        @property { string } [name]
+        @property { number } [uid]
         
         @property { string } [addressType]
         
-        @property { string } [address]
+        @property { string } [country]
         
-        @property { Object } [meta]
-        
-        @property { string } [userId]
-        
-        @property { string } [area]
+        @property { string } [checkoutMode]
         
         @property { string } [state]
         
         @property { boolean } [isActive]
         
-        @property { string } [country]
+        @property { string } [landmark]
+        
+        @property { Array<Object> } [tags]
         
         @property { GeoLocation } [geoLocation]
         
-        @property { number } [uid]
+        @property { string } [area]
         
-        @property { string } [areaCodeSlug]
+        @property { number } [addressId]
         
-        @property { string } [phone]
+        @property { boolean } [isDefaultAddress]
         
-        @property { Array<Object> } [tags]
+        @property { string } [userId]
+        
+        @property { string } [address]
+        
+        @property { string } [countryCode]
+        
+        @property { string } [areaCode]
+        
+        @property { string } [name]
+        
+        @property { string } [email]
         
          
     */
@@ -1787,11 +1787,11 @@ const Paginator = require("../common/Paginator");
         @typedef SaveAddressResponse
         
         
-        @property { boolean } [isDefaultAddress]
+        @property { number } [addressId]
         
         @property { string } [success]
         
-        @property { number } [addressId]
+        @property { boolean } [isDefaultAddress]
         
          
     */
@@ -1800,13 +1800,13 @@ const Paginator = require("../common/Paginator");
         @typedef UpdateAddressResponse
         
         
-        @property { boolean } [success]
-        
-        @property { boolean } [isDefaultAddress]
+        @property { number } [addressId]
         
         @property { boolean } [isUpdated]
         
-        @property { number } [addressId]
+        @property { boolean } [success]
+        
+        @property { boolean } [isDefaultAddress]
         
          
     */
@@ -1826,11 +1826,11 @@ const Paginator = require("../common/Paginator");
         @typedef SelectCartAddressRequest
         
         
+        @property { string } [addressId]
+        
         @property { number } [billingAddressId]
         
         @property { string } [uid]
-        
-        @property { string } [addressId]
         
          
     */
@@ -1841,13 +1841,13 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [merchantCode]
         
-        @property { string } [aggregatorName]
-        
-        @property { number } [uid]
-        
         @property { string } [paymentIdentifier]
         
+        @property { string } [aggregatorName]
+        
         @property { number } [addressId]
+        
+        @property { number } [uid]
         
         @property { string } [paymentMode]
         
@@ -1858,11 +1858,11 @@ const Paginator = require("../common/Paginator");
         @typedef CouponValidity
         
         
-        @property { number } [discount]
-        
         @property { boolean } [valid]
         
         @property { string } [displayMessageEn]
+        
+        @property { number } [discount]
         
         @property { string } [code]
         
@@ -1875,9 +1875,9 @@ const Paginator = require("../common/Paginator");
         
         @property { CouponValidity } [couponValidity]
         
-        @property { boolean } success
-        
         @property { string } [message]
+        
+        @property { boolean } success
         
          
     */
@@ -1886,25 +1886,25 @@ const Paginator = require("../common/Paginator");
         @typedef ShipmentResponse
         
         
-        @property { string } [boxType]
+        @property { Object } [dpOptions]
+        
+        @property { string } [orderType]
         
         @property { number } [dpId]
         
         @property { string } [shipmentType]
         
-        @property { number } [fulfillmentId]
+        @property { string } [fulfillmentType]
         
         @property { ShipmentPromise } [promise]
         
-        @property { Object } [dpOptions]
-        
-        @property { Array<CartProductInfo> } [items]
+        @property { number } [fulfillmentId]
         
         @property { number } [shipments]
         
-        @property { string } [orderType]
+        @property { Array<CartProductInfo> } [items]
         
-        @property { string } [fulfillmentType]
+        @property { string } [boxType]
         
          
     */
@@ -1915,33 +1915,33 @@ const Paginator = require("../common/Paginator");
         
         @property { CartBreakup } [breakupValues]
         
-        @property { string } [comment]
-        
         @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { string } [deliveryChargeInfo]
         
         @property { string } [gstin]
         
-        @property { string } [checkoutMode]
+        @property { string } [lastModified]
+        
+        @property { string } [comment]
+        
+        @property { boolean } [isValid]
+        
+        @property { string } [couponText]
+        
+        @property { string } [message]
+        
+        @property { Array<ShipmentResponse> } [shipments]
+        
+        @property { string } [deliveryChargeInfo]
+        
+        @property { string } [uid]
         
         @property { boolean } [restrictCheckout]
         
         @property { CartCurrency } [currency]
         
-        @property { string } [uid]
-        
-        @property { boolean } [isValid]
-        
-        @property { string } [lastModified]
-        
-        @property { string } [couponText]
-        
-        @property { Array<ShipmentResponse> } [shipments]
-        
         @property { number } [cartId]
         
-        @property { string } [message]
+        @property { string } [checkoutMode]
         
          
     */
@@ -1950,37 +1950,37 @@ const Paginator = require("../common/Paginator");
         @typedef CartCheckoutRequest
         
         
-        @property { number } [orderingStore]
-        
-        @property { Object } [staff]
-        
         @property { string } [merchantCode]
-        
-        @property { string } [callbackUrl]
-        
-        @property { boolean } [paymentAutoConfirm]
-        
-        @property { Object } [deliveryAddress]
-        
-        @property { string } [aggregator]
-        
-        @property { string } [fyndstoreEmpId]
-        
-        @property { Object } [billingAddress]
-        
-        @property { Object } [paymentParams]
-        
-        @property { Object } [extraMeta]
         
         @property { string } [paymentIdentifier]
         
-        @property { number } [addressId]
+        @property { Object } [staff]
+        
+        @property { boolean } [paymentAutoConfirm]
+        
+        @property { Object } [billingAddress]
+        
+        @property { number } [billingAddressId]
+        
+        @property { string } [fyndstoreEmpId]
+        
+        @property { Object } [paymentParams]
         
         @property { Object } [meta]
         
-        @property { string } paymentMode
+        @property { Object } [extraMeta]
         
-        @property { number } [billingAddressId]
+        @property { number } [orderingStore]
+        
+        @property { string } [aggregator]
+        
+        @property { string } [callbackUrl]
+        
+        @property { number } [addressId]
+        
+        @property { Object } [deliveryAddress]
+        
+        @property { string } paymentMode
         
          
     */
@@ -1989,55 +1989,55 @@ const Paginator = require("../common/Paginator");
         @typedef CheckCart
         
         
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { string } [userType]
-        
-        @property { string } [checkoutMode]
-        
-        @property { boolean } [isValid]
+        @property { string } [couponText]
         
         @property { Array<Object> } [storeEmps]
         
         @property { string } [message]
         
-        @property { CartBreakup } [breakupValues]
-        
-        @property { string } [comment]
-        
-        @property { string } [gstin]
-        
-        @property { Array<CartProductInfo> } [items]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [storeCode]
-        
-        @property { string } [errorMessage]
-        
-        @property { string } [codMessage]
-        
         @property { string } [deliveryChargeInfo]
-        
-        @property { boolean } [success]
-        
-        @property { string } [couponText]
-        
-        @property { number } [cartId]
-        
-        @property { number } [deliveryCharges]
-        
-        @property { number } [deliveryChargeOrderValue]
-        
-        @property { string } [orderId]
         
         @property { number } [codCharges]
         
+        @property { CartBreakup } [breakupValues]
+        
+        @property { string } [orderId]
+        
+        @property { string } [gstin]
+        
+        @property { string } [comment]
+        
+        @property { number } [deliveryChargeOrderValue]
+        
         @property { string } [uid]
+        
+        @property { CartCurrency } [currency]
+        
+        @property { number } [cartId]
+        
+        @property { string } [checkoutMode]
+        
+        @property { number } [deliveryCharges]
+        
+        @property { string } [storeCode]
+        
+        @property { string } [userType]
+        
+        @property { string } [codMessage]
+        
+        @property { boolean } [isValid]
+        
+        @property { boolean } [restrictCheckout]
+        
+        @property { boolean } [success]
+        
+        @property { ShipmentPromise } [deliveryPromise]
         
         @property { string } [lastModified]
         
-        @property { boolean } [restrictCheckout]
+        @property { string } [errorMessage]
+        
+        @property { Array<CartProductInfo> } [items]
         
         @property { boolean } [codAvailable]
         
@@ -2048,19 +2048,19 @@ const Paginator = require("../common/Paginator");
         @typedef CartCheckoutResponse
         
         
+        @property { string } [orderId]
+        
         @property { Object } [data]
         
         @property { string } [appInterceptUrl]
         
+        @property { string } [message]
+        
         @property { CheckCart } [cart]
-        
-        @property { string } [orderId]
-        
-        @property { boolean } [success]
         
         @property { string } [callbackUrl]
         
-        @property { string } [message]
+        @property { boolean } [success]
         
          
     */
@@ -2069,13 +2069,13 @@ const Paginator = require("../common/Paginator");
         @typedef CartMetaRequest
         
         
+        @property { string } [comment]
+        
         @property { Object } [pickUpCustomerDetails]
         
         @property { string } [checkoutMode]
         
         @property { string } [gstin]
-        
-        @property { string } [comment]
         
          
     */
@@ -2102,9 +2102,9 @@ const Paginator = require("../common/Paginator");
         @typedef GetShareCartLinkRequest
         
         
-        @property { number } uid
-        
         @property { Object } [meta]
+        
+        @property { number } uid
         
          
     */
@@ -2113,9 +2113,9 @@ const Paginator = require("../common/Paginator");
         @typedef GetShareCartLinkResponse
         
         
-        @property { string } [shareUrl]
-        
         @property { string } [token]
+        
+        @property { string } [shareUrl]
         
          
     */
@@ -2124,8 +2124,6 @@ const Paginator = require("../common/Paginator");
         @typedef SharedCartDetails
         
         
-        @property { Object } [source]
-        
         @property { Object } [meta]
         
         @property { Object } [user]
@@ -2133,6 +2131,8 @@ const Paginator = require("../common/Paginator");
         @property { string } [token]
         
         @property { string } [createdOn]
+        
+        @property { Object } [source]
         
          
     */
@@ -2143,35 +2143,35 @@ const Paginator = require("../common/Paginator");
         
         @property { CartBreakup } [breakupValues]
         
-        @property { string } [comment]
-        
         @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { SharedCartDetails } [sharedCartDetails]
-        
-        @property { string } [deliveryChargeInfo]
         
         @property { string } [gstin]
         
-        @property { string } [checkoutMode]
+        @property { string } [lastModified]
         
-        @property { boolean } [restrictCheckout]
+        @property { string } [comment]
         
-        @property { Array<CartProductInfo> } [items]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [uid]
+        @property { SharedCartDetails } [sharedCartDetails]
         
         @property { boolean } [isValid]
         
-        @property { string } [lastModified]
-        
         @property { string } [couponText]
+        
+        @property { string } [message]
+        
+        @property { string } [deliveryChargeInfo]
+        
+        @property { string } [uid]
+        
+        @property { boolean } [restrictCheckout]
+        
+        @property { CartCurrency } [currency]
+        
+        @property { Array<CartProductInfo> } [items]
         
         @property { number } [cartId]
         
-        @property { string } [message]
+        @property { string } [checkoutMode]
         
          
     */
@@ -6865,9 +6865,9 @@ const Paginator = require("../common/Paginator");
         @typedef UpdateCartShipmentItem
         
         
-        @property { number } [quantity]
-        
         @property { string } articleUid
+        
+        @property { number } [quantity]
         
         @property { string } shipmentType
         
@@ -6898,45 +6898,45 @@ const Paginator = require("../common/Paginator");
         @typedef CartPosCheckoutRequest
         
         
-        @property { Object } [meta]
-        
-        @property { Object } [billingAddress]
-        
-        @property { number } [addressId]
-        
-        @property { string } [merchantCode]
+        @property { Object } [extraMeta]
         
         @property { number } [billingAddressId]
         
-        @property { string } paymentMode
+        @property { number } [pickAtStoreUid]
         
-        @property { Files } [files]
+        @property { string } [callbackUrl]
+        
+        @property { string } [merchantCode]
+        
+        @property { boolean } [pos]
         
         @property { boolean } [paymentAutoConfirm]
         
-        @property { Object } [deliveryAddress]
+        @property { number } [orderingStore]
         
         @property { Object } [paymentParams]
         
-        @property { Object } [staff]
-        
-        @property { number } [orderingStore]
-        
-        @property { string } [fyndstoreEmpId]
-        
         @property { string } orderType
         
-        @property { Object } [extraMeta]
+        @property { string } paymentMode
         
-        @property { number } [pickAtStoreUid]
+        @property { number } [addressId]
+        
+        @property { Object } [staff]
         
         @property { string } [aggregator]
         
         @property { string } [paymentIdentifier]
         
-        @property { string } [callbackUrl]
+        @property { Object } [deliveryAddress]
         
-        @property { boolean } [pos]
+        @property { Object } [billingAddress]
+        
+        @property { string } [fyndstoreEmpId]
+        
+        @property { Object } [meta]
+        
+        @property { Files } [files]
         
          
     */
@@ -6945,9 +6945,9 @@ const Paginator = require("../common/Paginator");
         @typedef CartDeliveryModesResponse
         
         
-        @property { Array<string> } [availableModes]
-        
         @property { Array<number> } [pickupStores]
+        
+        @property { Array<string> } [availableModes]
         
          
     */
@@ -6956,29 +6956,29 @@ const Paginator = require("../common/Paginator");
         @typedef PickupStoreDetail
         
         
-        @property { string } [area]
+        @property { string } [state]
         
-        @property { string } [country]
+        @property { string } [areaCodeSlug]
         
-        @property { string } [storeCode]
-        
-        @property { string } [phone]
-        
-        @property { number } [uid]
+        @property { string } [addressType]
         
         @property { string } [city]
         
         @property { string } [name]
         
-        @property { string } [state]
-        
         @property { string } [address]
+        
+        @property { string } [country]
+        
+        @property { string } [storeCode]
+        
+        @property { number } [uid]
         
         @property { string } [email]
         
-        @property { string } [addressType]
+        @property { string } [phone]
         
-        @property { string } [areaCodeSlug]
+        @property { string } [area]
         
          
     */
@@ -9679,45 +9679,6 @@ class FileStorage {
 
   /**
     *
-    * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
-    * @description: Uploads an arbitrarily sized buffer or blob.
-
-It has three Major Steps:
-* Start
-* Upload
-* Complete
-
-### Start
-Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
-It returns the storage link in response.
-
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
-
-### Complete
-After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
-This operation will return the url for the uploaded file.
-
-    * @param {Object} arg - arg object.
-    * @param {string} arg.namespace - bucket name
-    * @param {number} arg.companyId - company_id
-    * @param {StartResponse} arg.body
-    **/
-  completeUpload({ namespace, companyId, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/assets/v1.0/company/${companyId}/namespaces/${namespace}/upload/complete/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
     * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
     * @description: Uploads an arbitrarily sized buffer or blob.
 
@@ -9740,16 +9701,53 @@ This operation will return the url for the uploaded file.
 
     * @param {Object} arg - arg object.
     * @param {string} arg.namespace - bucket name
-    * @param {number} arg.companyId - company_id
     * @param {StartRequest} arg.body
     **/
-  startUpload({ namespace, companyId, body } = {}) {
+  startUpload({ namespace, body } = {}) {
     const query = {};
 
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/assets/v1.0/company/${companyId}/namespaces/${namespace}/upload/start/`,
+      `/service/application/assets/v1.0/namespaces/${namespace}/upload/start/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
+    * @description: Uploads an arbitrarily sized buffer or blob.
+
+It has three Major Steps:
+* Start
+* Upload
+* Complete
+
+### Start
+Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+It returns the storage link in response.
+
+### Upload
+Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+
+### Complete
+After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+This operation will return the url for the uploaded file.
+
+    * @param {Object} arg - arg object.
+    * @param {string} arg.namespace - bucket name
+    * @param {StartResponse} arg.body
+    **/
+  completeUpload({ namespace, body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/assets/v1.0/namespaces/${namespace}/upload/complete/`,
       query,
       body
     );

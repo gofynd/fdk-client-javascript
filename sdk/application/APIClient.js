@@ -15,6 +15,7 @@ class APIClient {
     ).toString("base64");
 
     const rawRequest = {
+      baseURL: conf.domain,
       method: method,
       url: url,
       params: query,
