@@ -6,7 +6,6 @@ FDK Extension Helper Library
     const bodyParser = require('body-parser');
     const express = require('express');
     const cookieParser = require('cookie-parser');
-    const urlJoin = require('url-join');
     const { setupFdk } = require("fdk-extension-javascript/express");
     const { RedisStorage } = require("fdk-extension-javascript/express/storage");
     const Redis = require("ioredis");
@@ -42,8 +41,8 @@ FDK Extension Helper Library
         name: "Transformer",
         base_url: baseUrl,
         logo : {
-            small: urlJoin(baseUrl, "icon.png"),
-            large: urlJoin(baseUrl, "icon.png")
+            small: `${baseUrl}\icon.png`,
+            large: `${baseUrl}\icon.png`,
         },
         scopes: ["company/products"],
         prefix_path: "/callback",

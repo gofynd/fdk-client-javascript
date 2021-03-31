@@ -151,6 +151,22 @@ function setupRoutes(ext) {
 
     FdkRoutes.post(`${ext.prefix_path}/uninstall`, async (req, res, next) => {
         try {
+
+            let {client_id, company_id, cluster} = req.body;
+
+            let fdkHelper = FdkHelper.getInstance(cluster, ext);
+            let platformConfig = await fdkHelper.getPlatformConfigInstance(company_id);
+            if(!ext.isOnlineAccessMode()) {
+                let sid = Session.generateSessionId(false, {
+                    cluster: cluster,
+                    companyId: companyId
+                });
+                session = await SessionStorage.getSession(sid);
+                platformConfig.oauthClient.setToken(session);
+                const client = new PlatformClient(platformConfig);
+                req.platformClient = client;
+            }
+            req.extension = ext;
             await ext.callbacks.uninstall(req);
             res.json({success: true});
         } catch (error) {
