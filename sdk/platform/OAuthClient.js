@@ -61,7 +61,7 @@ class OAuthClient {
     let reqPath = `/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/authorize?${queryString}`;
     let signingOptions = {
       method: "GET",
-      host: this.config.domain,
+      host: new URL(this.config.domain).host,
       path: reqPath,
       body: null,
       headers: {},
