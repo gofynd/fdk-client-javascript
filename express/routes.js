@@ -9,6 +9,7 @@ const { SESSION_COOKIE_NAME } = require('./constants');
 const { sessionMiddleware } = require('./middleware/session_middleware');
 const { extension } = require('./extension');
 const FdkRoutes = express.Router();
+const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
 
 // FdkRoutes.use(async (req, res, next) => {
 //     req.query.cluster = "https://api.fyndx0.de";
@@ -161,7 +162,7 @@ function setupRoutes(ext) {
                     cluster: cluster,
                     companyId: companyId
                 });
-                session = await SessionStorage.getSession(sid);
+                let session = await SessionStorage.getSession(sid);
                 platformConfig.oauthClient.setToken(session);
                 const client = new PlatformClient(platformConfig);
                 req.platformClient = client;
