@@ -5,9 +5,9 @@ const Paginator = require("../common/Paginator");
         @typedef Media
         
         
-        @property { string } [type]
-        
         @property { string } [url]
+        
+        @property { string } [type]
         
          
     */
@@ -27,9 +27,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductListingAction
         
         
-        @property { string } [type]
-        
         @property { ProductListingActionPage } [page]
+        
+        @property { string } [type]
         
          
     */
@@ -38,13 +38,13 @@ const Paginator = require("../common/Paginator");
         @typedef ProductBrand
         
         
-        @property { Media } [logo]
-        
-        @property { string } [name]
+        @property { ProductListingAction } [action]
         
         @property { number } [uid]
         
-        @property { ProductListingAction } [action]
+        @property { Media } [logo]
+        
+        @property { string } [name]
         
          
     */
@@ -77,49 +77,49 @@ const Paginator = require("../common/Paginator");
         @typedef ProductDetail
         
         
+        @property { boolean } [hasVariant]
+        
         @property { string } [name]
         
-        @property { Array<Media> } [medias]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [itemType]
-        
-        @property { string } [description]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { number } [uid]
-        
-        @property { string } [type]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        @property { string } [shortDescription]
         
         @property { string } [imageNature]
         
-        @property { Array<string> } [tryouts]
+        @property { string } [itemType]
         
-        @property { Array<string> } [similars]
+        @property { string } [productOnlineDate]
         
-        @property { boolean } [hasVariant]
+        @property { Object } [attributes]
         
         @property { string } [teaserTag]
         
         @property { string } [color]
         
-        @property { string } slug
+        @property { string } [type]
         
-        @property { Array<string> } [highlights]
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { number } [ratingCount]
         
         @property { number } [rating]
         
-        @property { string } [productOnlineDate]
+        @property { string } [description]
         
-        @property { string } [shortDescription]
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { string } slug
+        
+        @property { number } [uid]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { Array<string> } [similars]
         
          
     */
@@ -134,12 +134,21 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
+        @typedef ProductSizeStores
+        
+        
+        @property { number } [count]
+        
+         
+    */
+
+/**
         @typedef Price
         
         
-        @property { string } [currencyCode]
-        
         @property { number } [max]
+        
+        @property { string } [currencyCode]
         
         @property { string } [currencySymbol]
         
@@ -152,18 +161,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductListingPrice
         
         
-        @property { Price } [marked]
-        
         @property { Price } [effective]
         
-         
-    */
-
-/**
-        @typedef ProductSizeStores
-        
-        
-        @property { number } [count]
+        @property { Price } [marked]
         
          
     */
@@ -172,13 +172,13 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSize
         
         
-        @property { number } [quantity]
-        
-        @property { boolean } [isAvailable]
-        
         @property { string } [value]
         
         @property { string } [display]
+        
+        @property { number } [quantity]
+        
+        @property { boolean } [isAvailable]
         
          
     */
@@ -187,17 +187,30 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizes
         
         
-        @property { string } [discount]
-        
-        @property { Object } [sizeChart]
-        
-        @property { boolean } [sellable]
+        @property { ProductSizeStores } [stores]
         
         @property { ProductListingPrice } [price]
         
-        @property { ProductSizeStores } [stores]
+        @property { boolean } [sellable]
+        
+        @property { Object } [sizeChart]
         
         @property { Array<ProductSize> } [sizes]
+        
+        @property { string } [discount]
+        
+         
+    */
+
+/**
+        @typedef ProductStockPrice
+        
+        
+        @property { number } [effective]
+        
+        @property { string } [currency]
+        
+        @property { number } [marked]
         
          
     */
@@ -208,35 +221,9 @@ const Paginator = require("../common/Paginator");
         
         @property { number } [count]
         
-        @property { string } [name]
-        
         @property { number } [uid]
         
-         
-    */
-
-/**
-        @typedef Seller
-        
-        
-        @property { number } [count]
-        
         @property { string } [name]
-        
-        @property { number } [uid]
-        
-         
-    */
-
-/**
-        @typedef ProductStockPrice
-        
-        
-        @property { string } [currency]
-        
-        @property { number } [marked]
-        
-        @property { number } [effective]
         
          
     */
@@ -253,38 +240,72 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
+        @typedef Seller
+        
+        
+        @property { number } [count]
+        
+        @property { number } [uid]
+        
+        @property { string } [name]
+        
+         
+    */
+
+/**
         @typedef ProductSizePriceResponse
         
         
-        @property { string } [discount]
-        
-        @property { Store } [store]
-        
-        @property { number } [sellerCount]
-        
-        @property { string } [articleId]
+        @property { ProductStockPrice } [pricePerPrice]
         
         @property { Object } [set]
         
-        @property { Seller } [seller]
+        @property { number } [quantity]
         
-        @property { string } [specialBadge]
+        @property { Store } [store]
         
         @property { ProductStockPrice } [price]
         
-        @property { ProductStockPrice } [pricePerPrice]
-        
-        @property { number } [pincode]
+        @property { Array<number> } [longLat]
         
         @property { ArticleAssignment } [articleAssignment]
         
-        @property { number } [quantity]
-        
-        @property { Array<number> } [longLat]
-        
         @property { string } [itemType]
         
+        @property { Seller } [seller]
+        
+        @property { string } [articleId]
+        
+        @property { string } [specialBadge]
+        
+        @property { string } [discount]
+        
+        @property { number } [sellerCount]
+        
         @property { Array<Object> } [strategyWiseListing]
+        
+        @property { number } [pincode]
+        
+         
+    */
+
+/**
+        @typedef Page
+        
+        
+        @property { string } [type]
+        
+        @property { number } [current]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { number } [size]
+        
+        @property { boolean } [hasNext]
+        
+        @property { number } [itemTotal]
+        
+        @property { string } [nextId]
         
          
     */
@@ -295,30 +316,9 @@ const Paginator = require("../common/Paginator");
         
         @property { boolean } [isSelected]
         
-        @property { string } [name]
-        
         @property { string } [value]
         
-         
-    */
-
-/**
-        @typedef Page
-        
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { number } [itemTotal]
-        
-        @property { number } [size]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
-        
-        @property { boolean } [hasNext]
+        @property { string } [name]
         
          
     */
@@ -327,11 +327,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizeSellersResponse
         
         
+        @property { Page } page
+        
         @property { Array<ProductSizeSellerFilter> } [sortOn]
         
         @property { Array<ProductSizePriceResponse> } [items]
-        
-        @property { Page } page
         
          
     */
@@ -353,9 +353,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductsComparisonResponse
         
         
-        @property { Array<AttributeDetail> } [attributesMetadata]
-        
         @property { Array<ProductDetail> } [items]
+        
+        @property { Array<AttributeDetail> } [attributesMetadata]
         
          
     */
@@ -364,11 +364,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductCompareResponse
         
         
-        @property { Array<AttributeDetail> } [attributesMetadata]
+        @property { Array<ProductDetail> } [items]
         
         @property { string } [title]
         
-        @property { Array<ProductDetail> } [items]
+        @property { Array<AttributeDetail> } [attributesMetadata]
         
         @property { string } [subtitle]
         
@@ -388,9 +388,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSimilarItem
         
         
-        @property { string } [title]
-        
         @property { Array<ProductDetail> } [items]
+        
+        @property { string } [title]
         
         @property { string } [subtitle]
         
@@ -410,11 +410,7 @@ const Paginator = require("../common/Paginator");
         @typedef ProductVariantItemResponse
         
         
-        @property { string } [slug]
-        
-        @property { boolean } [isAvailable]
-        
-        @property { number } [uid]
+        @property { ProductListingAction } [action]
         
         @property { string } [name]
         
@@ -422,11 +418,15 @@ const Paginator = require("../common/Paginator");
         
         @property { Array<Media> } [medias]
         
+        @property { boolean } [isAvailable]
+        
+        @property { string } [slug]
+        
+        @property { number } [uid]
+        
         @property { string } [colorName]
         
         @property { string } [color]
-        
-        @property { ProductListingAction } [action]
         
          
     */
@@ -435,11 +435,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductVariantResponse
         
         
-        @property { Array<ProductVariantItemResponse> } [items]
-        
         @property { string } [header]
         
         @property { string } [displayType]
+        
+        @property { Array<ProductVariantItemResponse> } [items]
         
          
     */
@@ -457,13 +457,13 @@ const Paginator = require("../common/Paginator");
         @typedef StoreDetail
         
         
-        @property { string } [name]
-        
-        @property { number } [id]
+        @property { string } [city]
         
         @property { string } [code]
         
-        @property { string } [city]
+        @property { number } [id]
+        
+        @property { string } [name]
         
          
     */
@@ -472,9 +472,9 @@ const Paginator = require("../common/Paginator");
         @typedef CompanyDetail
         
         
-        @property { string } [name]
-        
         @property { number } [id]
+        
+        @property { string } [name]
         
          
     */
@@ -483,23 +483,23 @@ const Paginator = require("../common/Paginator");
         @typedef ProductStockStatusItem
         
         
+        @property { number } [quantity]
+        
         @property { StoreDetail } [store]
-        
-        @property { string } [uid]
-        
-        @property { Seller } [seller]
-        
-        @property { CompanyDetail } [company]
         
         @property { ProductStockPrice } [price]
         
+        @property { Object } [identifier]
+        
         @property { string } [size]
         
-        @property { Object } [identifier]
+        @property { Seller } [seller]
         
         @property { number } [itemId]
         
-        @property { number } [quantity]
+        @property { string } [uid]
+        
+        @property { CompanyDetail } [company]
         
          
     */
@@ -517,9 +517,79 @@ const Paginator = require("../common/Paginator");
         @typedef ProductStockPolling
         
         
+        @property { Page } page
+        
         @property { Array<ProductStockStatusItem> } [items]
         
-        @property { Page } page
+         
+    */
+
+/**
+        @typedef ProductSortOn
+        
+        
+        @property { string } [value]
+        
+        @property { boolean } [isSelected]
+        
+        @property { string } [name]
+        
+         
+    */
+
+/**
+        @typedef ProductListingDetail
+        
+        
+        @property { boolean } [hasVariant]
+        
+        @property { string } [name]
+        
+        @property { string } [shortDescription]
+        
+        @property { string } [imageNature]
+        
+        @property { string } [itemType]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [teaserTag]
+        
+        @property { string } [color]
+        
+        @property { string } [type]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { boolean } [sellable]
+        
+        @property { number } [ratingCount]
+        
+        @property { number } [rating]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { string } [description]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { string } slug
+        
+        @property { number } [uid]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { Array<string> } [similars]
+        
+        @property { string } [discount]
         
          
     */
@@ -528,13 +598,13 @@ const Paginator = require("../common/Paginator");
         @typedef ProductFiltersKey
         
         
-        @property { string } [logo]
-        
-        @property { string } name
+        @property { string } display
         
         @property { string } [kind]
         
-        @property { string } display
+        @property { string } [logo]
+        
+        @property { string } name
         
          
     */
@@ -543,29 +613,29 @@ const Paginator = require("../common/Paginator");
         @typedef ProductFiltersValue
         
         
-        @property { number } [selectedMax]
-        
-        @property { string } display
-        
-        @property { string } [currencyCode]
-        
-        @property { string } [currencySymbol]
+        @property { string } [queryFormat]
         
         @property { number } [selectedMin]
         
-        @property { number } [max]
-        
         @property { string } value
         
-        @property { boolean } isSelected
+        @property { number } [min]
         
         @property { string } [displayFormat]
         
         @property { number } [count]
         
-        @property { string } [queryFormat]
+        @property { number } [max]
         
-        @property { number } [min]
+        @property { number } [selectedMax]
+        
+        @property { string } [currencySymbol]
+        
+        @property { boolean } isSelected
+        
+        @property { string } display
+        
+        @property { string } [currencyCode]
         
          
     */
@@ -582,86 +652,16 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef ProductSortOn
-        
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [name]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef ProductListingDetail
-        
-        
-        @property { string } [discount]
-        
-        @property { string } [name]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [itemType]
-        
-        @property { string } [description]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { number } [uid]
-        
-        @property { string } [type]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { string } [imageNature]
-        
-        @property { boolean } [sellable]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { Array<string> } [similars]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { string } [teaserTag]
-        
-        @property { string } [color]
-        
-        @property { string } slug
-        
-        @property { Array<string> } [highlights]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { number } [rating]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { string } [shortDescription]
-        
-         
-    */
-
-/**
         @typedef ProductListingResponse
         
         
-        @property { Array<ProductFilters> } [filters]
+        @property { Page } page
         
         @property { Array<ProductSortOn> } [sortOn]
         
         @property { Array<ProductListingDetail> } [items]
         
-        @property { Page } page
+        @property { Array<ProductFilters> } [filters]
         
          
     */
@@ -681,21 +681,21 @@ const Paginator = require("../common/Paginator");
         @typedef BrandItem
         
         
+        @property { ProductListingAction } [action]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { Array<string> } [departments]
+        
+        @property { string } [name]
+        
         @property { string } [discount]
         
         @property { string } [slug]
         
         @property { number } [uid]
         
-        @property { ImageUrls } [banners]
-        
-        @property { string } [name]
-        
         @property { Media } [logo]
-        
-        @property { Array<string> } [departments]
-        
-        @property { ProductListingAction } [action]
         
          
     */
@@ -704,9 +704,9 @@ const Paginator = require("../common/Paginator");
         @typedef BrandListingResponse
         
         
-        @property { Array<BrandItem> } [items]
-        
         @property { Page } page
+        
+        @property { Array<BrandItem> } [items]
         
          
     */
@@ -717,11 +717,11 @@ const Paginator = require("../common/Paginator");
         
         @property { ImageUrls } [banners]
         
-        @property { string } [name]
-        
         @property { number } [uid]
         
         @property { Media } [logo]
+        
+        @property { string } [name]
         
          
     */
@@ -730,9 +730,9 @@ const Paginator = require("../common/Paginator");
         @typedef DepartmentIdentifier
         
         
-        @property { string } [slug]
-        
         @property { number } [uid]
+        
+        @property { string } [slug]
         
          
     */
@@ -741,17 +741,17 @@ const Paginator = require("../common/Paginator");
         @typedef CategoryItems
         
         
+        @property { ImageUrls } [banners]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { string } [name]
+        
         @property { string } [slug]
         
         @property { Array<Object> } [childs]
         
         @property { number } [uid]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
         
          
     */
@@ -760,9 +760,9 @@ const Paginator = require("../common/Paginator");
         @typedef DepartmentCategoryTree
         
         
-        @property { string } [department]
-        
         @property { Array<CategoryItems> } [items]
+        
+        @property { string } [department]
         
          
     */
@@ -784,11 +784,11 @@ const Paginator = require("../common/Paginator");
         
         @property { ImageUrls } [banners]
         
-        @property { string } [name]
-        
         @property { number } [uid]
         
         @property { Media } [logo]
+        
+        @property { string } [name]
         
          
     */
@@ -797,11 +797,11 @@ const Paginator = require("../common/Paginator");
         @typedef HomeListingResponse
         
         
+        @property { Page } page
+        
         @property { string } [message]
         
         @property { Array<ProductListingDetail> } [items]
-        
-        @property { Page } page
         
          
     */
@@ -810,13 +810,13 @@ const Paginator = require("../common/Paginator");
         @typedef Department
         
         
-        @property { string } [slug]
-        
-        @property { number } [uid]
-        
         @property { string } [name]
         
         @property { number } [priorityOrder]
+        
+        @property { string } [slug]
+        
+        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -847,7 +847,7 @@ const Paginator = require("../common/Paginator");
         @typedef AutocompletePage
         
         
-        @property { Query } [query]
+        @property { Query } [pageQuery]
         
         @property { string } [type]
         
@@ -858,9 +858,9 @@ const Paginator = require("../common/Paginator");
         @typedef Action
         
         
-        @property { string } [type]
-        
         @property { AutocompletePage } [page]
+        
+        @property { string } [type]
         
          
     */
@@ -869,13 +869,13 @@ const Paginator = require("../common/Paginator");
         @typedef AutocompleteItem
         
         
-        @property { string } [display]
-        
-        @property { Media } [logo]
+        @property { Action } [action]
         
         @property { string } [type]
         
-        @property { Action } [action]
+        @property { Media } [logo]
+        
+        @property { string } [display]
         
          
     */
@@ -890,14 +890,59 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
+        @typedef GetCollectionDetailNest
+        
+        
+        @property { boolean } [allowSort]
+        
+        @property { string } [name]
+        
+        @property { Object } [badge]
+        
+        @property { Object } [query]
+        
+        @property { Media } [logo]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { string } [type]
+        
+        @property { string } [appId]
+        
+        @property { Array<string> } [tag]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { boolean } [isActive]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { string } [description]
+        
+        @property { string } [slug]
+        
+        @property { string } [uid]
+        
+        @property { Object } [cron]
+        
+        @property { Object } [schedule]
+        
+        @property { Object } [meta]
+        
+         
+    */
+
+/**
         @typedef CollectionListingFilterType
         
         
         @property { boolean } [isSelected]
         
-        @property { string } [name]
-        
         @property { string } [display]
+        
+        @property { string } [name]
         
          
     */
@@ -908,9 +953,9 @@ const Paginator = require("../common/Paginator");
         
         @property { boolean } [isSelected]
         
-        @property { string } [name]
-        
         @property { string } [display]
+        
+        @property { string } [name]
         
          
     */
@@ -927,59 +972,14 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef GetCollectionDetailNest
-        
-        
-        @property { Array<string> } [tag]
-        
-        @property { string } [appId]
-        
-        @property { string } [name]
-        
-        @property { Object } [schedule]
-        
-        @property { Object } [cron]
-        
-        @property { string } [description]
-        
-        @property { string } [uid]
-        
-        @property { Object } [query]
-        
-        @property { string } [type]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { Object } [meta]
-        
-        @property { boolean } [isActive]
-        
-        @property { Object } [badge]
-        
-        @property { boolean } [allowSort]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { string } [slug]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { Media } [logo]
-        
-         
-    */
-
-/**
         @typedef GetCollectionListingResponse
         
         
-        @property { CollectionListingFilter } [filters]
+        @property { Page } page
         
         @property { Array<GetCollectionDetailNest> } [items]
         
-        @property { Page } page
+        @property { CollectionListingFilter } [filters]
         
          
     */
@@ -988,23 +988,11 @@ const Paginator = require("../common/Paginator");
         @typedef CollectionDetailResponse
         
         
-        @property { string } [slug]
-        
-        @property { Object } [badge]
-        
-        @property { Array<string> } [tag]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { Media } [logo]
-        
-        @property { Object } [query]
-        
         @property { ImageUrls } [banners]
         
-        @property { string } [type]
+        @property { boolean } [isActive]
         
-        @property { string } [appId]
+        @property { string } [type]
         
         @property { Array<string> } [visibleFacetsKeys]
         
@@ -1012,15 +1000,27 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [name]
         
-        @property { Object } [meta]
-        
-        @property { Object } [schedule]
-        
         @property { Object } [cron]
+        
+        @property { boolean } [allowFacets]
         
         @property { string } [description]
         
-        @property { boolean } [isActive]
+        @property { string } [appId]
+        
+        @property { Object } [badge]
+        
+        @property { Array<string> } [tag]
+        
+        @property { string } [slug]
+        
+        @property { Object } [query]
+        
+        @property { Media } [logo]
+        
+        @property { Object } [schedule]
+        
+        @property { Object } [meta]
         
          
     */
@@ -1029,9 +1029,9 @@ const Paginator = require("../common/Paginator");
         @typedef GetFollowListingResponse
         
         
-        @property { Array<Object> } items
-        
         @property { Page } page
+        
+        @property { Array<Object> } items
         
          
     */
@@ -1060,9 +1060,9 @@ const Paginator = require("../common/Paginator");
         @typedef FollowIdsData
         
         
-        @property { Array<number> } [collections]
-        
         @property { Array<number> } [brands]
+        
+        @property { Array<number> } [collections]
         
         @property { Array<number> } [products]
         
@@ -1093,25 +1093,25 @@ const Paginator = require("../common/Paginator");
         @typedef Store1
         
         
-        @property { string } [storeCode]
-        
-        @property { number } [uid]
-        
-        @property { string } [city]
-        
-        @property { LatLong } [latLong]
-        
-        @property { string } [storeEmail]
-        
         @property { string } [address]
-        
-        @property { number } [pincode]
         
         @property { string } [name]
         
-        @property { string } [country]
+        @property { string } [storeCode]
+        
+        @property { string } [storeEmail]
+        
+        @property { LatLong } [latLong]
         
         @property { string } [state]
+        
+        @property { string } [city]
+        
+        @property { number } [uid]
+        
+        @property { number } [pincode]
+        
+        @property { string } [country]
         
          
     */
@@ -1120,9 +1120,9 @@ const Paginator = require("../common/Paginator");
         @typedef StoreListingResponse
         
         
-        @property { Array<Store1> } items
-        
         @property { Page } page
+        
+        @property { Array<Store1> } items
         
          
     */
@@ -2221,2221 +2221,6 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef TicketList
-        
-        
-        @property { Array<Ticket> } [items]
-        
-        @property { Filter } [filters]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef TicketHistoryList
-        
-        
-        @property { Array<TicketHistory> } [docs]
-        
-        @property { number } [limit]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
-        
-        @property { number } [total]
-        
-         
-    */
-
-/**
-        @typedef CustomFormList
-        
-        
-        @property { Array<CustomForm> } [docs]
-        
-        @property { number } [limit]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
-        
-        @property { number } [total]
-        
-         
-    */
-
-/**
-        @typedef CreateCustomFormPayload
-        
-        
-        @property { string } slug
-        
-        @property { string } title
-        
-        @property { Array<Object> } inputs
-        
-        @property { string } [description]
-        
-        @property { string } [headerImage]
-        
-        @property { boolean } [shouldNotify]
-        
-        @property { string } [successMessage]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-         
-    */
-
-/**
-        @typedef EditCustomFormPayload
-        
-        
-        @property { string } title
-        
-        @property { Array<Object> } inputs
-        
-        @property { string } [description]
-        
-        @property { string } [headerImage]
-        
-        @property { boolean } [shouldNotify]
-        
-        @property { boolean } [loginRequired]
-        
-        @property { string } [successMessage]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-         
-    */
-
-/**
-        @typedef EditTicketPayload
-        
-        
-        @property { TicketContent } [content]
-        
-        @property { string } [category]
-        
-        @property { string } [source]
-        
-        @property { string } [status]
-        
-        @property { string } [priority]
-        
-        @property { AgentChangePayload } [assignedTo]
-        
-        @property { Array<string> } [tags]
-        
-         
-    */
-
-/**
-        @typedef AgentChangePayload
-        
-        
-        @property { string } agentId
-        
-         
-    */
-
-/**
-        @typedef CreateVideoRoomResponse
-        
-        
-        @property { string } uniqueName
-        
-         
-    */
-
-/**
-        @typedef CloseVideoRoomResponse
-        
-        
-        @property { boolean } success
-        
-         
-    */
-
-/**
-        @typedef CreateVideoRoomPayload
-        
-        
-        @property { string } uniqueName
-        
-        @property { Array<Object> } [notify]
-        
-         
-    */
-
-/**
-        @typedef Filter
-        
-        
-        @property { Priority } priorities
-        
-        @property { Category } [categories]
-        
-        @property { Status } statuses
-        
-        @property { Array<Object> } assignees
-        
-         
-    */
-
-/**
-        @typedef TicketHistoryPayload
-        
-        
-        @property { Object } value
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef CustomFormSubmissionPayload
-        
-        
-        @property { Array<KeyValue> } response
-        
-         
-    */
-
-/**
-        @typedef KeyValue
-        
-        
-        @property { string } key
-        
-        @property { string } value
-        
-         
-    */
-
-/**
-        @typedef GetTokenForVideoRoomResponse
-        
-        
-        @property { string } accessToken
-        
-         
-    */
-
-/**
-        @typedef GetParticipantsInsideVideoRoomResponse
-        
-        
-        @property { Array<Participant> } participants
-        
-         
-    */
-
-/**
-        @typedef Participant
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { string } [identity]
-        
-        @property { string } [status]
-        
-         
-    */
-
-/**
-        @typedef UserSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { Array<Object> } [phoneNumbers]
-        
-        @property { Array<Object> } [emails]
-        
-        @property { string } [gender]
-        
-        @property { boolean } [active]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [username]
-        
-        @property { string } [accountType]
-        
-        @property { string } [uid]
-        
-        @property { Object } [debug]
-        
-        @property { boolean } [hasOldPasswordHash]
-        
-        @property { string } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-         
-    */
-
-/**
-        @typedef SubmitCustomFormResponse
-        
-        
-        @property { Ticket } ticket
-        
-         
-    */
-
-/**
-        @typedef TicketContext
-        
-        
-        @property { string } [applicationId]
-        
-        @property { string } companyId
-        
-         
-    */
-
-/**
-        @typedef CreatedOn
-        
-        
-        @property { string } userAgent
-        
-         
-    */
-
-/**
-        @typedef TicketAsset
-        
-        
-        @property { string } [display]
-        
-        @property { string } value
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef TicketContent
-        
-        
-        @property { string } title
-        
-        @property { string } [description]
-        
-        @property { Array<TicketAsset> } [attachments]
-        
-         
-    */
-
-/**
-        @typedef AddTicketPayload
-        
-        
-        @property { string } status
-        
-        @property { string } priority
-        
-        @property { string } category
-        
-        @property { TicketContent } content
-        
-         
-    */
-
-/**
-        @typedef Priority
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { string } color
-        
-         
-    */
-
-/**
-        @typedef Status
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { string } color
-        
-         
-    */
-
-/**
-        @typedef Category
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { CustomForm } [form]
-        
-         
-    */
-
-/**
-        @typedef SubmitButton
-        
-        
-        @property { string } title
-        
-        @property { string } titleColor
-        
-        @property { string } backgroundColor
-        
-         
-    */
-
-/**
-        @typedef PollForAssignment
-        
-        
-        @property { number } duration
-        
-        @property { string } message
-        
-        @property { string } successMessage
-        
-        @property { string } failureMessage
-        
-         
-    */
-
-/**
-        @typedef CustomForm
-        
-        
-        @property { string } applicationId
-        
-        @property { string } slug
-        
-        @property { string } [headerImage]
-        
-        @property { string } title
-        
-        @property { string } [description]
-        
-        @property { boolean } loginRequired
-        
-        @property { boolean } shouldNotify
-        
-        @property { string } [successMessage]
-        
-        @property { SubmitButton } [submitButton]
-        
-        @property { Array<Object> } inputs
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { Object } [createdBy]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-        @property { string } id
-        
-         
-    */
-
-/**
-        @typedef TicketHistory
-        
-        
-        @property { string } type
-        
-        @property { Object } value
-        
-        @property { string } ticketId
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { Object } [createdBy]
-        
-        @property { string } id
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
-        
-         
-    */
-
-/**
-        @typedef Ticket
-        
-        
-        @property { TicketContext } [context]
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { string } [responseId]
-        
-        @property { TicketContent } [content]
-        
-        @property { string } ticketId
-        
-        @property { Category } category
-        
-        @property { string } source
-        
-        @property { Status } status
-        
-        @property { Priority } priority
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [assignedTo]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Object } [customJson]
-        
-        @property { string } [id]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
-        
-         
-    */
-
-/**
-        @typedef PaginationSchema
-        
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
-        
-         
-    */
-
-/**
-        @typedef ThemesListingResponseSchema
-        
-        
-        @property { Array<ThemesSchema> } [items]
-        
-        @property { PaginationSchema } [page]
-        
-         
-    */
-
-/**
-        @typedef AddThemeRequestSchema
-        
-        
-        @property { string } [themeId]
-        
-         
-    */
-
-/**
-        @typedef UpgradableThemeSchema
-        
-        
-        @property { string } [parentTheme]
-        
-        @property { string } [appliedTheme]
-        
-        @property { boolean } [upgrade]
-        
-         
-    */
-
-/**
-        @typedef FontsSchema
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { string } [kind]
-        
-         
-    */
-
-/**
-        @typedef ThemesSchema
-        
-        
-        @property { string } [application]
-        
-        @property { boolean } [applied]
-        
-        @property { boolean } [customized]
-        
-        @property { boolean } [published]
-        
-        @property { boolean } [archived]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [version]
-        
-        @property { string } [parentThemeVersion]
-        
-        @property { string } [parentTheme]
-        
-        @property { Object } [information]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Object } [src]
-        
-        @property { Object } [assets]
-        
-        @property { Array<Object> } [availablePages]
-        
-        @property { Object } [pages]
-        
-        @property { Array<availableSectionSchema> } [availableSections]
-        
-        @property { Array<sectionSchema> } [sections]
-        
-        @property { Object } [constants]
-        
-        @property { Object } [styles]
-        
-        @property { Object } [config]
-        
-        @property { Object } [settings]
-        
-        @property { Object } [font]
-        
-        @property { string } [id]
-        
-        @property { number } [v]
-        
-        @property { Object } [colors]
-        
-         
-    */
-
-/**
-        @typedef pagesSchema
-        
-        
-        @property { string } [text]
-        
-        @property { string } [path]
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-        @property { Array<Object> } [sections]
-        
-         
-    */
-
-/**
-        @typedef availableSectionSchema
-        
-        
-        @property { Array<Object> } [blocks]
-        
-        @property { string } [name]
-        
-        @property { string } [label]
-        
-        @property { Array<Object> } [props]
-        
-         
-    */
-
-/**
-        @typedef sectionSchema
-        
-        
-        @property { string } [pageKey]
-        
-        @property { Array<Object> } [pageSections]
-        
-         
-    */
-
-/**
-        @typedef EditEmailRequestSchema
-        
-        
-        @property { string } [email]
-        
-         
-    */
-
-/**
-        @typedef SendVerificationLinkMobileRequestSchema
-        
-        
-        @property { boolean } [verified]
-        
-        @property { boolean } [active]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [phone]
-        
-        @property { boolean } [primary]
-        
-         
-    */
-
-/**
-        @typedef EditMobileRequestSchema
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [phone]
-        
-         
-    */
-
-/**
-        @typedef EditProfileRequestSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { string } [mobile]
-        
-        @property { string } [email]
-        
-        @property { string } [gender]
-        
-        @property { string } [dob]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [androidHash]
-        
-        @property { string } [sender]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-
-/**
-        @typedef SendEmailOtpRequestSchema
-        
-        
-        @property { string } [email]
-        
-        @property { string } [action]
-        
-        @property { string } [token]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-
-/**
-        @typedef VerifyOtpRequestSchema
-        
-        
-        @property { string } [requestId]
-        
-        @property { string } [registerToken]
-        
-        @property { string } [otp]
-        
-         
-    */
-
-/**
-        @typedef SendMobileOtpRequestSchema
-        
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [action]
-        
-        @property { string } [token]
-        
-        @property { string } [androidHash]
-        
-        @property { string } [force]
-        
-         
-    */
-
-/**
-        @typedef UpdatePasswordRequestSchema
-        
-        
-        @property { string } [oldPassword]
-        
-        @property { string } [newPassword]
-        
-         
-    */
-
-/**
-        @typedef FormRegisterRequestSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { string } [gender]
-        
-        @property { string } [email]
-        
-        @property { string } [password]
-        
-        @property { Object } [phone]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-
-/**
-        @typedef TokenRequestBodySchema
-        
-        
-        @property { string } [token]
-        
-         
-    */
-
-/**
-        @typedef ForgotPasswordRequestSchema
-        
-        
-        @property { string } [code]
-        
-        @property { string } [password]
-        
-         
-    */
-
-/**
-        @typedef CodeRequestBodySchema
-        
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef SendResetPasswordEmailRequestSchema
-        
-        
-        @property { string } [email]
-        
-        @property { string } [gRecaptchaResponse]
-        
-         
-    */
-
-/**
-        @typedef PasswordLoginRequestSchema
-        
-        
-        @property { string } [gRecaptchaResponse]
-        
-        @property { string } [password]
-        
-        @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef SendOtpRequestSchema
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [gRecaptchaResponse]
-        
-        @property { string } [mobile]
-        
-         
-    */
-
-/**
-        @typedef OAuthRequestSchema
-        
-        
-        @property { boolean } [isSignedIn]
-        
-        @property { Object } [oauth2]
-        
-        @property { Object } [profile]
-        
-         
-    */
-
-/**
-        @typedef AuthSuccess
-        
-        
-        @property { string } [registerToken]
-        
-        @property { boolean } [userExists]
-        
-        @property { Object } [user]
-        
-         
-    */
-
-/**
-        @typedef SendOtpResponse
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef LoginSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-         
-    */
-
-/**
-        @typedef VerifyOtpSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [userExists]
-        
-         
-    */
-
-/**
-        @typedef ResetPasswordSuccess
-        
-        
-        @property { string } [status]
-        
-         
-    */
-
-/**
-        @typedef RegisterFormSuccess
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef VerifyEmailSuccess
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef HasPasswordSuccess
-        
-        
-        @property { boolean } [result]
-        
-         
-    */
-
-/**
-        @typedef LogoutSuccess
-        
-        
-        @property { boolean } [logout]
-        
-         
-    */
-
-/**
-        @typedef OtpSuccess
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef EmailOtpSuccess
-        
-        
-        @property { string } [resendToken]
-        
-         
-    */
-
-/**
-        @typedef SessionListSuccess
-        
-        
-        @property { Array<string> } [sessions]
-        
-         
-    */
-
-/**
-        @typedef VerifyMobileOTPSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [verifyMobileLink]
-        
-         
-    */
-
-/**
-        @typedef VerifyEmailOTPSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [verifyEmailLink]
-        
-         
-    */
-
-/**
-        @typedef SendMobileVerifyLinkSuccess
-        
-        
-        @property { boolean } [verifyMobileLink]
-        
-         
-    */
-
-/**
-        @typedef SendEmailVerifyLinkSuccess
-        
-        
-        @property { boolean } [verifyEmailLink]
-        
-         
-    */
-
-/**
-        @typedef UserSearchResponseSchema
-        
-        
-        @property { Array<UserSchema> } [users]
-        
-         
-    */
-
-/**
-        @typedef CustomerListResponseSchema
-        
-        
-        @property { Array<UserSchema> } [items]
-        
-        @property { PaginationSchema } [page]
-        
-         
-    */
-
-/**
-        @typedef PlatformSchema
-        
-        
-        @property { string } [display]
-        
-        @property { Object } [lookAndFeel]
-        
-        @property { string } [updatedAt]
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [forgotPassword]
-        
-        @property { Object } [login]
-        
-        @property { boolean } [skipCaptcha]
-        
-        @property { string } [name]
-        
-        @property { Object } [meta]
-        
-        @property { string } [id]
-        
-        @property { Object } [social]
-        
-        @property { Object } [requiredFields]
-        
-        @property { Object } [registerRequiredFields]
-        
-        @property { boolean } [skipLogin]
-        
-        @property { Object } [flashCard]
-        
-        @property { string } [subtext]
-        
-        @property { Object } [socialTokens]
-        
-        @property { string } [createdAt]
-        
-        @property { boolean } [register]
-        
-         
-    */
-
-/**
-        @typedef ApplicationLegal
-        
-        
-        @property { string } [application]
-        
-        @property { string } [tnc]
-        
-        @property { string } [policy]
-        
-        @property { Array<Object> } [faq]
-        
-        @property { string } [id]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
-        
-        @property { number } [v]
-        
-         
-    */
-
-/**
-        @typedef Seo
-        
-        
-        @property { string } app
-        
-        @property { string } [robotsTxt]
-        
-        @property { boolean } [sitemapEnabled]
-        
-        @property { Array<any> } [customMetaTags]
-        
-        @property { Object } [details]
-        
-         
-    */
-
-/**
-        @typedef StorefrontAnnouncement
-        
-        
-        @property { Object } [announcements]
-        
-        @property { number } [refreshRate]
-        
-        @property { Array<string> } [refreshPages]
-        
-         
-    */
-
-/**
-        @typedef AdminAnnouncementSchema
-        
-        
-        @property { string } [id]
-        
-        @property { Array<string> } [platform]
-        
-        @property { string } [title]
-        
-        @property { string } [announcement]
-        
-        @property { Array<Object> } [pages]
-        
-        @property { Object } [editorMeta]
-        
-        @property { Object } [author]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [app]
-        
-        @property { string } [modifiedAt]
-        
-        @property { Object } [schedule]
-        
-         
-    */
-
-/**
-        @typedef ScheduleSchema
-        
-        
-        @property { Object } [schedule]
-        
-        @property { boolean } [published]
-        
-         
-    */
-
-/**
-        @typedef BlogGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
-        
-         
-    */
-
-/**
-        @typedef ResourceContent
-        
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef Asset
-        
-        
-        @property { string } [secureUrl]
-        
-         
-    */
-
-/**
-        @typedef Author
-        
-        
-        @property { string } [designation]
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef BlogSchema
-        
-        
-        @property { Array<any> } [id]
-        
-        @property { string } [schedule]
-        
-        @property { string } [application]
-        
-        @property { boolean } [archived]
-        
-        @property { Object } [author]
-        
-        @property { Array<ResourceContent> } [content]
-        
-        @property { Object } [featureImage]
-        
-        @property { boolean } [published]
-        
-        @property { string } [readingTime]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [title]
-        
-        @property { Object } [dateMeta]
-        
-         
-    */
-
-/**
-        @typedef BlogRequest
-        
-        
-        @property { string } [schedule]
-        
-        @property { string } [application]
-        
-        @property { Object } [author]
-        
-        @property { Array<ResourceContent> } [content]
-        
-        @property { Object } [featureImage]
-        
-        @property { boolean } [published]
-        
-        @property { string } [readingTime]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef GetAnnouncementListSchema
-        
-        
-        @property { Array<AdminAnnouncementSchema> } [items]
-        
-         
-    */
-
-/**
-        @typedef CreateAnnouncementSchema
-        
-        
-        @property { string } [message]
-        
-        @property { AdminAnnouncementSchema } [data]
-        
-         
-    */
-
-/**
-        @typedef FaqSchema
-        
-        
-        @property { string } [slug]
-        
-        @property { string } [application]
-        
-        @property { number } [v]
-        
-        @property { string } [id]
-        
-        @property { string } [question]
-        
-        @property { string } [answer]
-        
-         
-    */
-
-/**
-        @typedef CreateFaqResponseSchema
-        
-        
-        @property { Object } [faq]
-        
-         
-    */
-
-/**
-        @typedef CreateFaqSchema
-        
-        
-        @property { Object } [faq]
-        
-         
-    */
-
-/**
-        @typedef GetFaqSchema
-        
-        
-        @property { Array<Object> } [faqs]
-        
-         
-    */
-
-/**
-        @typedef UpdateFaqCategoryRequestSchema
-        
-        
-        @property { Object } [category]
-        
-         
-    */
-
-/**
-        @typedef CreateFaqCategoryRequestSchema
-        
-        
-        @property { Object } [category]
-        
-         
-    */
-
-/**
-        @typedef CreateFaqCategorySchema
-        
-        
-        @property { Object } [category]
-        
-         
-    */
-
-/**
-        @typedef GetFaqCategoriesSchema
-        
-        
-        @property { Array<Object> } [categories]
-        
-         
-    */
-
-/**
-        @typedef GetFaqCategoryByIdOrSlugSchema
-        
-        
-        @property { Object } [category]
-        
-         
-    */
-
-/**
-        @typedef Navigation
-        
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { string } [orientation]
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [id]
-        
-        @property { string } [position]
-        
-        @property { string } [application]
-        
-        @property { string } [platform]
-        
-        @property { NavigationRef } [navigation]
-        
-         
-    */
-
-/**
-        @typedef NavigationRef
-        
-        
-        @property { Array<any> } [acl]
-        
-        @property { Object } [localeLanguage]
-        
-        @property { string } [image]
-        
-        @property { string } [type]
-        
-        @property { Object } [action]
-        
-        @property { boolean } [active]
-        
-        @property { string } [display]
-        
-        @property { number } [sortOrder]
-        
-        @property { Object } [subNavigation]
-        
-         
-    */
-
-/**
-        @typedef LandingPage
-        
-        
-        @property { string } [slug]
-        
-        @property { Object } [action]
-        
-        @property { Array<any> } [platform]
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [id]
-        
-        @property { string } [application]
-        
-         
-    */
-
-/**
-        @typedef Slideshow
-        
-        
-        @property { string } [id]
-        
-        @property { string } [slug]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [application]
-        
-        @property { string } [name]
-        
-        @property { string } [platform]
-        
-        @property { Object } [configuration]
-        
-        @property { Array<Object> } [media]
-        
-        @property { boolean } [active]
-        
-         
-    */
-
-/**
-        @typedef AnnouncementsResponseSchema
-        
-        
-        @property { Array<Object> } [announcements]
-        
-         
-    */
-
-/**
-        @typedef FaqResponseSchema
-        
-        
-        @property { Array<Faq> } [faqs]
-        
-         
-    */
-
-/**
-        @typedef UpdateHandpickedSchema
-        
-        
-        @property { Object } [tag]
-        
-         
-    */
-
-/**
-        @typedef RemoveHandpickedSchema
-        
-        
-        @property { Array<string> } [tags]
-        
-         
-    */
-
-/**
-        @typedef TagsSchema
-        
-        
-        @property { string } [id]
-        
-        @property { Array<Object> } [tags]
-        
-        @property { string } [application]
-        
-        @property { number } [v]
-        
-         
-    */
-
-/**
-        @typedef CreateTagRequestSchema
-        
-        
-        @property { Array<Object> } [tags]
-        
-         
-    */
-
-/**
-        @typedef APIError
-        
-        
-        @property { string } [message]
-        
-        @property { number } [status]
-        
-        @property { string } [code]
-        
-        @property { string } [exception]
-        
-        @property { string } [info]
-        
-        @property { string } [requestId]
-        
-        @property { string } [stackTrace]
-        
-        @property { Object } [meta]
-        
-         
-    */
-
-/**
-        @typedef Faq
-        
-        
-        @property { string } [id]
-        
-        @property { string } [question]
-        
-        @property { string } [answer]
-        
-        @property { string } [slug]
-        
-        @property { string } [application]
-        
-        @property { number } [v]
-        
-         
-    */
-
-/**
-        @typedef LandingPageGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
-        
-         
-    */
-
-/**
-        @typedef LandingPageSchema
-        
-        
-        @property { string } [slug]
-        
-        @property { Object } [action]
-        
-        @property { Array<string> } [platform]
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [id]
-        
-        @property { string } [application]
-        
-        @property { boolean } [archived]
-        
-         
-    */
-
-/**
-        @typedef LandingPageRequest
-        
-        
-        @property { string } [slug]
-        
-        @property { Object } [action]
-        
-        @property { Array<string> } [platform]
-        
-         
-    */
-
-/**
-        @typedef DefaultNavigationResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-         
-    */
-
-/**
-        @typedef NavigationGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
-        
-         
-    */
-
-/**
-        @typedef NavigationSchema
-        
-        
-        @property { string } [id]
-        
-        @property { string } [application]
-        
-        @property { boolean } [archived]
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [platform]
-        
-        @property { Object } [orientation]
-        
-        @property { Object } [navigation]
-        
-         
-    */
-
-/**
-        @typedef NavigationRequest
-        
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [platform]
-        
-        @property { Object } [orientation]
-        
-        @property { Object } [navigation]
-        
-         
-    */
-
-/**
-        @typedef CustomPage
-        
-        
-        @property { Object } [data]
-        
-         
-    */
-
-/**
-        @typedef CustomBlog
-        
-        
-        @property { Object } [data]
-        
-         
-    */
-
-/**
-        @typedef PageGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
-        
-         
-    */
-
-/**
-        @typedef PageSpec
-        
-        
-        @property { Array<Object> } [specifications]
-        
-         
-    */
-
-/**
-        @typedef PageSpecItem
-        
-        
-        @property { string } [pageType]
-        
-        @property { string } [displayName]
-        
-        @property { Array<string> } [params]
-        
-        @property { Array<string> } [query]
-        
-         
-    */
-
-/**
-        @typedef PageSchema
-        
-        
-        @property { Array<any> } [id]
-        
-        @property { string } [schedule]
-        
-        @property { Array<any> } [application]
-        
-        @property { Array<string> } [componentIds]
-        
-        @property { Array<PageContent> } [content]
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [description]
-        
-        @property { Object } [featureImage]
-        
-        @property { Array<PageMeta> } [pageMeta]
-        
-        @property { string } [platform]
-        
-        @property { boolean } [published]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [title]
-        
-        @property { string } [type]
-        
-        @property { Object } [visibility]
-        
-         
-    */
-
-/**
-        @typedef CreatedBy
-        
-        
-        @property { string } [id]
-        
-         
-    */
-
-/**
-        @typedef DateMeta
-        
-        
-        @property { string } [createdOn]
-        
-        @property { string } [modifiedOn]
-        
-         
-    */
-
-/**
-        @typedef PageContent
-        
-        
-        @property { string } [type]
-        
-        @property { Object } [value]
-        
-         
-    */
-
-/**
-        @typedef PageMeta
-        
-        
-        @property { string } [key]
-        
-        @property { Object } [value]
-        
-         
-    */
-
-/**
-        @typedef PageRequest
-        
-        
-        @property { string } [schedule]
-        
-        @property { string } [application]
-        
-        @property { Object } [author]
-        
-        @property { Array<ResourceContent> } [content]
-        
-        @property { Object } [featureImage]
-        
-        @property { boolean } [published]
-        
-        @property { string } [readingTime]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef PagePublishRequest
-        
-        
-        @property { boolean } [publish]
-        
-         
-    */
-
-/**
-        @typedef PageMetaSchema
-        
-        
-        @property { Array<Object> } [systemPages]
-        
-        @property { Array<Object> } [customPages]
-        
-        @property { string } [applicationId]
-        
-         
-    */
-
-/**
-        @typedef SlideshowGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
-        
-         
-    */
-
-/**
-        @typedef SlideshowSchema
-        
-        
-        @property { string } [id]
-        
-        @property { string } [slug]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [application]
-        
-        @property { string } [platform]
-        
-        @property { Object } [configuration]
-        
-        @property { Array<Object> } [media]
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [archived]
-        
-         
-    */
-
-/**
-        @typedef SlideshowRequest
-        
-        
-        @property { string } [slug]
-        
-        @property { string } [platform]
-        
-        @property { Object } [configuration]
-        
-        @property { Array<Object> } [media]
-        
-        @property { boolean } [active]
-        
-         
-    */
-
-/**
-        @typedef Support
-        
-        
-        @property { boolean } [created]
-        
-        @property { string } [id]
-        
-        @property { string } [configType]
-        
-        @property { string } [application]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { Object } [contact]
-        
-         
-    */
-
-/**
-        @typedef CommunicationConsentReq
-        
-        
-        @property { string } [response]
-        
-        @property { string } [action]
-        
-        @property { string } [channel]
-        
-         
-    */
-
-/**
-        @typedef CommunicationConsentRes
-        
-        
-        @property { string } [appId]
-        
-        @property { string } [userId]
-        
-        @property { Object } [channels]
-        
-         
-    */
-
-/**
-        @typedef CommunicationConsent
-        
-        
-        @property { string } [appId]
-        
-        @property { string } [userId]
-        
-        @property { Object } [channels]
-        
-         
-    */
-
-/**
-        @typedef PushtokenReq
-        
-        
-        @property { string } [action]
-        
-        @property { string } [bundleIdentifier]
-        
-        @property { string } [pushToken]
-        
-        @property { string } [uniqueDeviceId]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef PushtokenRes
-        
-        
-        @property { string } [id]
-        
-        @property { string } [bundleIdentifier]
-        
-        @property { string } [pushToken]
-        
-        @property { string } [uniqueDeviceId]
-        
-        @property { string } [type]
-        
-        @property { string } [platform]
-        
-        @property { string } [applicationId]
-        
-        @property { string } [userId]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [expiredAt]
-        
-         
-    */
-
-/**
-        @typedef QRCodeResp
-        
-        
-        @property { string } [link]
-        
-        @property { string } [svg]
-        
-         
-    */
-
-/**
-        @typedef RedirectDevice
-        
-        
-        @property { string } link
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef Redirects
-        
-        
-        @property { RedirectDevice } [ios]
-        
-        @property { RedirectDevice } [android]
-        
-        @property { Object } [web]
-        
-        @property { boolean } [forceWeb]
-        
-         
-    */
-
-/**
-        @typedef ShortLinkReq
-        
-        
-        @property { string } title
-        
-        @property { string } url
-        
-        @property { string } [hash]
-        
-        @property { string } [active]
-        
-        @property { string } [type]
-        
-        @property { string } [expireAt]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { Redirects } [redirects]
-        
-         
-    */
-
-/**
-        @typedef ShortLinkRes
-        
-        
-        @property { string } [title]
-        
-        @property { Object } [url]
-        
-        @property { string } [createdBy]
-        
-        @property { string } [personalized]
-        
-        @property { string } [appRedirect]
-        
-        @property { string } [fallback]
-        
-        @property { boolean } [active]
-        
-        @property { string } [id]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { boolean } [expireAt]
-        
-        @property { string } [application]
-        
-        @property { boolean } [userId]
-        
-        @property { boolean } [createdAt]
-        
-        @property { boolean } [updatedAt]
-        
-        @property { Redirects } [redirects]
-        
-         
-    */
-
-/**
-        @typedef ShortLinkList
-        
-        
-        @property { Array<ShortLinkRes> } [items]
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { number } [current]
-        
-        @property { string } [hasNext]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
         @typedef FailedResponse
         
         
@@ -4535,2350 +2320,6 @@ const Paginator = require("../common/Paginator");
         @property { string } createdOn
         
         @property { string } modifiedOn
-        
-         
-    */
-
-/**
-        @typedef ApplicationAboutResponse
-        
-        
-        @property { Object } [applicationInfo]
-        
-         
-    */
-
-/**
-        @typedef AppVersionRequest
-        
-        
-        @property { ApplicationVersionRequest } application
-        
-        @property { Device } device
-        
-        @property { string } [locale]
-        
-        @property { string } [timezone]
-        
-         
-    */
-
-/**
-        @typedef ApplicationVersionRequest
-        
-        
-        @property { string } [id]
-        
-        @property { string } name
-        
-        @property { string } [namespace]
-        
-        @property { string } [token]
-        
-        @property { string } version
-        
-         
-    */
-
-/**
-        @typedef Device
-        
-        
-        @property { number } [build]
-        
-        @property { string } [model]
-        
-        @property { OS } os
-        
-         
-    */
-
-/**
-        @typedef OS
-        
-        
-        @property { string } name
-        
-        @property { string } [version]
-        
-         
-    */
-
-/**
-        @typedef Language
-        
-        
-        @property { string } [name]
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef LanguageResponse
-        
-        
-        @property { Array<Language> } [items]
-        
-         
-    */
-
-/**
-        @typedef TokensResponse
-        
-        
-        @property { Object } [tokens]
-        
-        @property { string } [id]
-        
-        @property { string } [application]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [v]
-        
-         
-    */
-
-/**
-        @typedef AppStaffResponse
-        
-        
-        @property { Array<AppStaff> } [staffUsers]
-        
-         
-    */
-
-/**
-        @typedef UpdateDialog
-        
-        
-        @property { string } [type]
-        
-        @property { number } [interval]
-        
-         
-    */
-
-/**
-        @typedef OrderingStoreSelectRequest
-        
-        
-        @property { OrderingStoreSelect } orderingStore
-        
-         
-    */
-
-/**
-        @typedef OrderingStoreSelect
-        
-        
-        @property { string } id
-        
-        @property { number } uid
-        
-        @property { string } storeCode
-        
-         
-    */
-
-/**
-        @typedef AppStaff
-        
-        
-        @property { string } [id]
-        
-        @property { boolean } [orderIncent]
-        
-        @property { Array<number> } [stores]
-        
-        @property { string } [application]
-        
-        @property { string } [title]
-        
-        @property { string } [user]
-        
-        @property { string } [employeeCode]
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { string } [profilePicUrl]
-        
-         
-    */
-
-/**
-        @typedef ProductDetailFeature
-        
-        
-        @property { Array<string> } [similar]
-        
-        @property { boolean } [sellerSelection]
-        
-        @property { boolean } [updateProductMeta]
-        
-        @property { boolean } [requestProduct]
-        
-         
-    */
-
-/**
-        @typedef LaunchPage
-        
-        
-        @property { string } [pageType]
-        
-        @property { string } [params]
-        
-        @property { string } [query]
-        
-         
-    */
-
-/**
-        @typedef LandingPageFeature
-        
-        
-        @property { LaunchPage } [launchPage]
-        
-        @property { boolean } [continueAsGuest]
-        
-        @property { string } [loginBtnText]
-        
-        @property { boolean } [showDomainTextbox]
-        
-        @property { boolean } [showRegisterBtn]
-        
-         
-    */
-
-/**
-        @typedef RegistrationPageFeature
-        
-        
-        @property { boolean } [askStoreAddress]
-        
-         
-    */
-
-/**
-        @typedef AppFeature
-        
-        
-        @property { ProductDetailFeature } [productDetail]
-        
-        @property { LandingPageFeature } [landingPage]
-        
-        @property { RegistrationPageFeature } [registrationPage]
-        
-        @property { Object } [homePage]
-        
-        @property { Object } [common]
-        
-        @property { Object } [cart]
-        
-        @property { Object } [qr]
-        
-        @property { Object } [pcr]
-        
-        @property { Object } [order]
-        
-        @property { string } [id]
-        
-        @property { string } [app]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [v]
-        
-         
-    */
-
-/**
-        @typedef AppFeatureRequest
-        
-        
-        @property { AppFeature } [feature]
-        
-         
-    */
-
-/**
-        @typedef AppFeatureResponse
-        
-        
-        @property { AppFeature } [feature]
-        
-         
-    */
-
-/**
-        @typedef Currency
-        
-        
-        @property { string } [id]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [name]
-        
-        @property { string } [code]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [decimalDigits]
-        
-        @property { string } [symbol]
-        
-         
-    */
-
-/**
-        @typedef Domain
-        
-        
-        @property { boolean } [verified]
-        
-        @property { boolean } [isPrimary]
-        
-        @property { boolean } [isDefault]
-        
-        @property { boolean } [isShortlink]
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef ApplicationWebsite
-        
-        
-        @property { boolean } [enabled]
-        
-        @property { string } [basepath]
-        
-         
-    */
-
-/**
-        @typedef ApplicationCors
-        
-        
-        @property { Array<string> } [domains]
-        
-         
-    */
-
-/**
-        @typedef ApplicationAuth
-        
-        
-        @property { boolean } [enabled]
-        
-         
-    */
-
-/**
-        @typedef ApplicationRedirections
-        
-        
-        @property { string } [from]
-        
-        @property { string } [redirectTo]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ApplicationMeta
-        
-        
-        @property { string } [name]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef SecureUrl
-        
-        
-        @property { string } [secureUrl]
-        
-         
-    */
-
-/**
-        @typedef Application
-        
-        
-        @property { ApplicationWebsite } [website]
-        
-        @property { ApplicationCors } [cors]
-        
-        @property { ApplicationAuth } [auth]
-        
-        @property { string } [description]
-        
-        @property { string } [channelType]
-        
-        @property { number } [cacheTtl]
-        
-        @property { boolean } [isInternal]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-        @property { string } [owner]
-        
-        @property { number } [companyId]
-        
-        @property { string } [token]
-        
-        @property { Array<ApplicationRedirections> } [redirections]
-        
-        @property { Array<ApplicationMeta> } [meta]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [v]
-        
-        @property { SecureUrl } [banner]
-        
-        @property { SecureUrl } [logo]
-        
-        @property { SecureUrl } [favicon]
-        
-        @property { Array<Domain> } [domains]
-        
-        @property { string } [appType]
-        
-        @property { SecureUrl } [mobileLogo]
-        
-        @property { Domain } [domain]
-        
-         
-    */
-
-/**
-        @typedef NotFound
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef UnhandledError
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef InvalidPayloadRequest
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef SuccessMessageResponse
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef InventoryBrandRule
-        
-        
-        @property { string } [criteria]
-        
-        @property { Array<number> } [brands]
-        
-         
-    */
-
-/**
-        @typedef StoreCriteriaRule
-        
-        
-        @property { Array<number> } [companies]
-        
-        @property { Array<number> } [brands]
-        
-         
-    */
-
-/**
-        @typedef InventoryStoreRule
-        
-        
-        @property { string } [criteria]
-        
-        @property { Array<StoreCriteriaRule> } [rules]
-        
-        @property { Array<number> } [stores]
-        
-         
-    */
-
-/**
-        @typedef InventoryPaymentConfig
-        
-        
-        @property { string } [modeOfPayment]
-        
-        @property { string } [source]
-        
-         
-    */
-
-/**
-        @typedef StorePriorityRule
-        
-        
-        @property { boolean } [enabled]
-        
-        @property { Array<string> } [storetypeOrder]
-        
-         
-    */
-
-/**
-        @typedef ArticleAssignmentRule
-        
-        
-        @property { StorePriorityRule } [storePriority]
-        
-         
-    */
-
-/**
-        @typedef InventoryArticleAssignment
-        
-        
-        @property { boolean } [postOrderReassignment]
-        
-        @property { Array<number> } [enforcedStores]
-        
-        @property { ArticleAssignmentRule } [rules]
-        
-         
-    */
-
-/**
-        @typedef CompanyAboutAddress
-        
-        
-        @property { number } [pincode]
-        
-        @property { string } [address1]
-        
-        @property { string } [address2]
-        
-        @property { string } [city]
-        
-        @property { string } [state]
-        
-        @property { string } [country]
-        
-        @property { string } [addressType]
-        
-         
-    */
-
-/**
-        @typedef UserEmail
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [email]
-        
-         
-    */
-
-/**
-        @typedef UserPhoneNumber
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { number } [countryCode]
-        
-        @property { string } [phone]
-        
-         
-    */
-
-/**
-        @typedef Pagination
-        
-        
-        @property { string } [type]
-        
-        @property { number } [size]
-        
-        @property { number } [current]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [itemTotal]
-        
-         
-    */
-
-/**
-        @typedef ApplicationInformation
-        
-        
-        @property { Object } [address]
-        
-        @property { Object } [support]
-        
-        @property { Object } [socialLinks]
-        
-        @property { Array<Object> } [links]
-        
-        @property { string } [copyrightText]
-        
-        @property { string } [id]
-        
-        @property { Array<Object> } [businessHighlights]
-        
-        @property { string } [application]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [v]
-        
-         
-    */
-
-/**
-        @typedef ApplicationDetail
-        
-        
-        @property { string } name
-        
-        @property { string } description
-        
-        @property { SecureUrl } logo
-        
-        @property { SecureUrl } mobileLogo
-        
-        @property { SecureUrl } favicon
-        
-        @property { SecureUrl } banner
-        
-        @property { Domain } [domain]
-        
-        @property { Array<Domain> } [domains]
-        
-        @property { string } [id]
-        
-         
-    */
-
-/**
-        @typedef CurrenciesResponse
-        
-        
-        @property { Array<Currency> } [items]
-        
-         
-    */
-
-/**
-        @typedef OrderingStore
-        
-        
-        @property { Object } [address]
-        
-        @property { string } [id]
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-        @property { string } [displayName]
-        
-        @property { string } [storeType]
-        
-        @property { string } [storeCode]
-        
-        @property { number } [pincode]
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef OrderingStores
-        
-        
-        @property { Pagination } [page]
-        
-        @property { Array<OrderingStore> } [items]
-        
-        @property { Array<number> } [deployedStores]
-        
-        @property { boolean } [allStores]
-        
-        @property { boolean } [enabled]
-        
-        @property { string } [type]
-        
-        @property { string } [id]
-        
-        @property { string } [app]
-        
-        @property { number } [v]
-        
-         
-    */
-
-/**
-        @typedef AggregatorConfigDetail
-        
-        
-        @property { boolean } [sdk]
-        
-        @property { string } key
-        
-        @property { string } [verifyApi]
-        
-        @property { string } secret
-        
-        @property { string } [userId]
-        
-        @property { string } [api]
-        
-        @property { string } configType
-        
-        @property { string } [pin]
-        
-        @property { string } [merchantId]
-        
-        @property { string } [merchantKey]
-        
-         
-    */
-
-/**
-        @typedef AggregatorsConfigDetailResponse
-        
-        
-        @property { AggregatorConfigDetail } [mswipe]
-        
-        @property { AggregatorConfigDetail } [razorpay]
-        
-        @property { AggregatorConfigDetail } [simpl]
-        
-        @property { boolean } success
-        
-        @property { AggregatorConfigDetail } [stripe]
-        
-        @property { AggregatorConfigDetail } [payumoney]
-        
-        @property { AggregatorConfigDetail } [ccavenue]
-        
-        @property { AggregatorConfigDetail } [rupifi]
-        
-        @property { AggregatorConfigDetail } [juspay]
-        
-        @property { string } env
-        
-         
-    */
-
-/**
-        @typedef ErrorCodeAndDescription
-        
-        
-        @property { string } description
-        
-        @property { string } code
-        
-         
-    */
-
-/**
-        @typedef HttpErrorCodeAndResponse
-        
-        
-        @property { boolean } success
-        
-        @property { ErrorCodeAndDescription } error
-        
-         
-    */
-
-/**
-        @typedef AttachCardRequest
-        
-        
-        @property { boolean } [refresh]
-        
-        @property { string } cardId
-        
-         
-    */
-
-/**
-        @typedef AttachCardsResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } [message]
-        
-        @property { Object } data
-        
-         
-    */
-
-/**
-        @typedef CardPaymentGateway
-        
-        
-        @property { string } [api]
-        
-        @property { string } [customerId]
-        
-        @property { string } aggregator
-        
-         
-    */
-
-/**
-        @typedef ActiveCardPaymentGatewayResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-        @property { CardPaymentGateway } cards
-        
-         
-    */
-
-/**
-        @typedef Card
-        
-        
-        @property { string } aggregatorName
-        
-        @property { string } [cardName]
-        
-        @property { number } [expMonth]
-        
-        @property { string } [cardIsin]
-        
-        @property { string } [cardFingerprint]
-        
-        @property { string } [cardBrand]
-        
-        @property { string } [cardNumber]
-        
-        @property { string } [cardBrandImage]
-        
-        @property { string } [cardToken]
-        
-        @property { string } [cardIssuer]
-        
-        @property { boolean } [expired]
-        
-        @property { number } [expYear]
-        
-        @property { string } [cardReference]
-        
-        @property { string } [nickname]
-        
-        @property { string } [cardId]
-        
-        @property { string } [cardType]
-        
-         
-    */
-
-/**
-        @typedef ListCardsResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-        @property { Array<Card> } [data]
-        
-         
-    */
-
-/**
-        @typedef DeletehCardRequest
-        
-        
-        @property { string } cardId
-        
-         
-    */
-
-/**
-        @typedef DeleteCardsResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef ValidateCustomerRequest
-        
-        
-        @property { string } phoneNumber
-        
-        @property { number } transactionAmountInPaise
-        
-        @property { string } aggregator
-        
-        @property { string } payload
-        
-        @property { Object } merchantParams
-        
-         
-    */
-
-/**
-        @typedef ValidateCustomerResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-        @property { Object } data
-        
-         
-    */
-
-/**
-        @typedef ChargeCustomerRequest
-        
-        
-        @property { number } amount
-        
-        @property { string } aggregator
-        
-        @property { boolean } [verified]
-        
-        @property { string } orderId
-        
-        @property { string } [transactionToken]
-        
-         
-    */
-
-/**
-        @typedef ChargeCustomerResponse
-        
-        
-        @property { string } [deliveryAddressId]
-        
-        @property { string } aggregator
-        
-        @property { string } status
-        
-        @property { string } [cartId]
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-        @property { string } orderId
-        
-         
-    */
-
-/**
-        @typedef PaymentInitializationRequest
-        
-        
-        @property { string } customerId
-        
-        @property { string } merchantOrderId
-        
-        @property { string } [virtualId]
-        
-        @property { string } method
-        
-        @property { string } aggregatorOrderId
-        
-        @property { string } aggregator
-        
-        @property { string } pollingUrl
-        
-        @property { string } razorpayPaymentId
-        
-        @property { number } timeout
-        
-         
-    */
-
-/**
-        @typedef PaymentInitializationResponse
-        
-        
-        @property { string } [customerId]
-        
-        @property { string } [virtualId]
-        
-        @property { number } [timeout]
-        
-        @property { string } method
-        
-        @property { string } [aggregatorOrderId]
-        
-        @property { number } [amount]
-        
-        @property { string } aggregator
-        
-        @property { string } [status]
-        
-        @property { boolean } success
-        
-        @property { string } pollingUrl
-        
-        @property { string } [currency]
-        
-        @property { string } [razorpayPaymentId]
-        
-        @property { string } [vpa]
-        
-        @property { string } merchantOrderId
-        
-        @property { string } [bqrImage]
-        
-         
-    */
-
-/**
-        @typedef PaymentStatusUpdateRequest
-        
-        
-        @property { string } contact
-        
-        @property { string } customerId
-        
-        @property { string } method
-        
-        @property { number } amount
-        
-        @property { string } aggregator
-        
-        @property { string } status
-        
-        @property { string } email
-        
-        @property { string } orderId
-        
-        @property { string } currency
-        
-        @property { string } vpa
-        
-        @property { string } merchantOrderId
-        
-         
-    */
-
-/**
-        @typedef PaymentStatusUpdateResponse
-        
-        
-        @property { boolean } retry
-        
-        @property { string } status
-        
-        @property { string } aggregatorName
-        
-         
-    */
-
-/**
-        @typedef AggregatorRoute
-        
-        
-        @property { string } [apiLink]
-        
-        @property { string } [paymentFlow]
-        
-        @property { Object } [data]
-        
-         
-    */
-
-/**
-        @typedef PaymentFlow
-        
-        
-        @property { AggregatorRoute } [bqrRazorpay]
-        
-        @property { AggregatorRoute } [upiRazorpay]
-        
-        @property { AggregatorRoute } [fynd]
-        
-        @property { AggregatorRoute } [rupifi]
-        
-        @property { AggregatorRoute } [stripe]
-        
-        @property { AggregatorRoute } [razorpay]
-        
-        @property { AggregatorRoute } [payubiz]
-        
-        @property { AggregatorRoute } [juspay]
-        
-        @property { AggregatorRoute } [ccavenue]
-        
-        @property { AggregatorRoute } [simpl]
-        
-         
-    */
-
-/**
-        @typedef PaymentModeLogo
-        
-        
-        @property { string } small
-        
-        @property { string } large
-        
-         
-    */
-
-/**
-        @typedef PaymentModeList
-        
-        
-        @property { Array<string> } [intentAppErrorList]
-        
-        @property { string } [cardBrand]
-        
-        @property { string } [cardNumber]
-        
-        @property { boolean } [expired]
-        
-        @property { string } aggregatorName
-        
-        @property { string } [fyndVpa]
-        
-        @property { string } [cardIssuer]
-        
-        @property { PaymentModeLogo } [logoUrl]
-        
-        @property { string } [cardIsin]
-        
-        @property { string } [cardId]
-        
-        @property { string } [cardType]
-        
-        @property { string } [cardName]
-        
-        @property { string } [cardFingerprint]
-        
-        @property { number } [retryCount]
-        
-        @property { string } [name]
-        
-        @property { string } [cardBrandImage]
-        
-        @property { string } [displayName]
-        
-        @property { string } [code]
-        
-        @property { number } [expMonth]
-        
-        @property { number } [expYear]
-        
-        @property { number } [displayPriority]
-        
-        @property { string } [cardToken]
-        
-        @property { string } [intentFlow]
-        
-        @property { string } [merchantCode]
-        
-        @property { number } [timeout]
-        
-        @property { string } [cardReference]
-        
-        @property { string } [nickname]
-        
-         
-    */
-
-/**
-        @typedef RootPaymentMode
-        
-        
-        @property { Array<PaymentModeList> } [list]
-        
-        @property { string } [aggregatorName]
-        
-        @property { number } displayPriority
-        
-        @property { string } name
-        
-        @property { boolean } [anonymousEnable]
-        
-        @property { string } displayName
-        
-        @property { boolean } [addCardEnabled]
-        
-         
-    */
-
-/**
-        @typedef PaymentOptionAndFlow
-        
-        
-        @property { PaymentFlow } paymentFlows
-        
-        @property { Array<RootPaymentMode> } paymentOption
-        
-         
-    */
-
-/**
-        @typedef PaymentModeRouteResponse
-        
-        
-        @property { boolean } success
-        
-        @property { PaymentOptionAndFlow } paymentOptions
-        
-         
-    */
-
-/**
-        @typedef OrderBeneficiaryDetails
-        
-        
-        @property { boolean } isActive
-        
-        @property { boolean } [mobile]
-        
-        @property { string } beneficiaryId
-        
-        @property { string } subtitle
-        
-        @property { string } accountNo
-        
-        @property { string } transferMode
-        
-        @property { string } accountHolder
-        
-        @property { string } address
-        
-        @property { boolean } [branchName]
-        
-        @property { string } bankName
-        
-        @property { string } displayName
-        
-        @property { string } email
-        
-        @property { string } delightsUserName
-        
-        @property { string } createdOn
-        
-        @property { string } ifscCode
-        
-        @property { boolean } [comment]
-        
-        @property { string } title
-        
-        @property { number } id
-        
-        @property { string } modifiedOn
-        
-         
-    */
-
-/**
-        @typedef OrderBeneficiaryResponse
-        
-        
-        @property { Array<OrderBeneficiaryDetails> } beneficiaries
-        
-         
-    */
-
-/**
-        @typedef NotFoundResourceError
-        
-        
-        @property { boolean } success
-        
-        @property { string } description
-        
-        @property { string } code
-        
-         
-    */
-
-/**
-        @typedef IfscCodeResponse
-        
-        
-        @property { boolean } [success]
-        
-        @property { string } branchName
-        
-        @property { string } bankName
-        
-         
-    */
-
-/**
-        @typedef ErrorCodeDescription
-        
-        
-        @property { boolean } success
-        
-        @property { string } description
-        
-        @property { string } code
-        
-         
-    */
-
-/**
-        @typedef AddBeneficiaryViaOtpVerificationRequest
-        
-        
-        @property { string } requestId
-        
-        @property { string } hashKey
-        
-        @property { string } otp
-        
-         
-    */
-
-/**
-        @typedef AddBeneficiaryViaOtpVerificationResponse
-        
-        
-        @property { string } requestId
-        
-        @property { string } hashKey
-        
-        @property { string } otp
-        
-         
-    */
-
-/**
-        @typedef WrongOtpError
-        
-        
-        @property { string } success
-        
-        @property { string } description
-        
-         
-    */
-
-/**
-        @typedef BankDetails
-        
-        
-        @property { string } accountHolder
-        
-        @property { string } address
-        
-        @property { string } branchName
-        
-        @property { string } ifscCode
-        
-        @property { string } bankName
-        
-        @property { string } accountNo
-        
-        @property { string } [comment]
-        
-        @property { string } mobile
-        
-        @property { string } email
-        
-         
-    */
-
-/**
-        @typedef AddBeneficiaryDetailsRequest
-        
-        
-        @property { boolean } delights
-        
-        @property { string } orderId
-        
-        @property { string } shipmentId
-        
-        @property { string } transferMode
-        
-        @property { BankDetails } details
-        
-         
-    */
-
-/**
-        @typedef RefundAccountResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-        @property { Object } [data]
-        
-         
-    */
-
-/**
-        @typedef WalletOtpRequest
-        
-        
-        @property { string } countryCode
-        
-        @property { boolean } mobile
-        
-         
-    */
-
-/**
-        @typedef WalletOtpResponse
-        
-        
-        @property { boolean } [success]
-        
-        @property { string } requestId
-        
-        @property { string } isVerifiedFlag
-        
-         
-    */
-
-/**
-        @typedef SetDefaultBeneficiaryRequest
-        
-        
-        @property { string } orderId
-        
-        @property { string } beneficiaryId
-        
-         
-    */
-
-/**
-        @typedef SetDefaultBeneficiaryResponse
-        
-        
-        @property { boolean } [success]
-        
-        @property { boolean } isBeneficiarySet
-        
-         
-    */
-
-/**
-        @typedef OrderById
-        
-        
-        @property { OrderSchema } order
-        
-         
-    */
-
-/**
-        @typedef OrderList
-        
-        
-        @property { Array<OrderSchema> } orders
-        
-        @property { Object } page
-        
-         
-    */
-
-/**
-        @typedef ShipmentById
-        
-        
-        @property { Shipments } shipment
-        
-         
-    */
-
-/**
-        @typedef ShipmentReasons
-        
-        
-        @property { Array<Reasons> } reasons
-        
-         
-    */
-
-/**
-        @typedef ShipmentStatusUpdateBody
-        
-        
-        @property { Object } shipments
-        
-        @property { boolean } forceTransition
-        
-        @property { boolean } task
-        
-         
-    */
-
-/**
-        @typedef ShipmentStatusUpdate
-        
-        
-        @property { Object } shipments
-        
-         
-    */
-
-/**
-        @typedef ShipmentTrack
-        
-        
-        @property { Array<Track> } results
-        
-         
-    */
-
-/**
-        @typedef OrderSchema
-        
-        
-        @property { string } [orderId]
-        
-        @property { Array<BreakupValues> } [breakupValues]
-        
-        @property { string } [orderCreatedTime]
-        
-        @property { Array<Shipments> } [shipments]
-        
-        @property { number } [totalShipmentsInOrder]
-        
-        @property { UserInfo } [userInfo]
-        
-         
-    */
-
-/**
-        @typedef PosOrderById
-        
-        
-        @property { OrderSchema } order
-        
-         
-    */
-
-/**
-        @typedef Bags
-        
-        
-        @property { Object } [item]
-        
-        @property { Object } [prices]
-        
-        @property { number } [promotionEffectiveDiscount]
-        
-        @property { Object } [currentStatus]
-        
-        @property { Array<Object> } [bagStatus]
-        
-        @property { Object } [dates]
-        
-        @property { number } [id]
-        
-        @property { Object } [status]
-        
-        @property { string } [type]
-        
-        @property { Array<Object> } [financialBreakup]
-        
-        @property { Array<Object> } [reasons]
-        
-        @property { Object } [article]
-        
-        @property { string } [journeyType]
-        
-        @property { Object } [currentOperationalStatus]
-        
-        @property { string } [displayName]
-        
-        @property { string } [entityType]
-        
-        @property { Object } [brand]
-        
-        @property { Object } [affiliateBagDetails]
-        
-        @property { Object } [gstDetails]
-        
-        @property { number } [bagId]
-        
-        @property { number } [bagUpdateTime]
-        
-         
-    */
-
-/**
-        @typedef BreakupValues
-        
-        
-        @property { string } [display]
-        
-        @property { number } [value]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef DeliveryAddress
-        
-        
-        @property { string } [pincode]
-        
-        @property { string } [landmark]
-        
-        @property { string } [contactPerson]
-        
-        @property { string } [phone]
-        
-        @property { string } [state]
-        
-        @property { string } [version]
-        
-        @property { string } [address1]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [addressType]
-        
-        @property { string } [addressCategory]
-        
-        @property { string } [area]
-        
-        @property { string } [city]
-        
-        @property { number } [latitude]
-        
-        @property { number } [longitude]
-        
-        @property { string } [email]
-        
-        @property { string } [country]
-        
-        @property { string } [address2]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [name]
-        
-        @property { string } [address]
-        
-         
-    */
-
-/**
-        @typedef FulfillingStore
-        
-        
-        @property { string } [address1]
-        
-        @property { string } [storeEmail]
-        
-        @property { string } [code]
-        
-        @property { Object } [storeAddressJson]
-        
-        @property { string } [country]
-        
-        @property { string } [state]
-        
-        @property { string } [pincode]
-        
-        @property { string } [contactPerson]
-        
-        @property { Array<any> } [brandStoreTags]
-        
-        @property { string } [locationType]
-        
-        @property { string } [address2]
-        
-        @property { boolean } [isArchived]
-        
-        @property { number } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { boolean } [isEnabledForRecon]
-        
-        @property { string } [city]
-        
-        @property { Object } [meta]
-        
-        @property { string } [fulfillmentChannel]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [loginUsername]
-        
-        @property { string } [phone]
-        
-        @property { number } [packagingMaterialCount]
-        
-        @property { string } [name]
-        
-        @property { number } [companyId]
-        
-         
-    */
-
-/**
-        @typedef Invoice
-        
-        
-        @property { string } [updatedDate]
-        
-        @property { string } [invoiceUrl]
-        
-        @property { string } [labelUrl]
-        
-         
-    */
-
-/**
-        @typedef ProductItems
-        
-        
-        @property { string } [code]
-        
-        @property { string } [lastUpdatedAt]
-        
-        @property { string } [brand]
-        
-        @property { Array<any> } [image]
-        
-        @property { number } [l3Category]
-        
-        @property { number } [brandId]
-        
-        @property { string } [name]
-        
-        @property { boolean } [canCancel]
-        
-        @property { string } [size]
-        
-        @property { string } [slugKey]
-        
-        @property { string } [l3CategoryName]
-        
-        @property { Array<any> } [l2Category]
-        
-        @property { number } [id]
-        
-        @property { boolean } [canReturn]
-        
-        @property { Array<any> } [l1Category]
-        
-        @property { Object } [attributes]
-        
-         
-    */
-
-/**
-        @typedef ShipmentMeta
-        
-        
-        @property { Object } [timestamp]
-        
-        @property { Object } [bagWeight]
-        
-        @property { Object } [dpOptions]
-        
-        @property { string } [orderType]
-        
-        @property { boolean } [sameStoreAvailable]
-        
-        @property { boolean } [assignDpFromSb]
-        
-        @property { string } [dpId]
-        
-        @property { number } [weight]
-        
-        @property { Object } [formatted]
-        
-        @property { Object } [debugInfo]
-        
-        @property { string } [dpSortKey]
-        
-        @property { string } [packagingName]
-        
-         
-    */
-
-/**
-        @typedef Prices
-        
-        
-        @property { number } [amountPaid]
-        
-        @property { number } [priceMarked]
-        
-        @property { number } [codCharges]
-        
-        @property { number } [discount]
-        
-        @property { number } [deliveryCharge]
-        
-        @property { number } [fyndCredits]
-        
-        @property { number } [cashback]
-        
-        @property { number } [priceEffective]
-        
-        @property { number } [valueOfGood]
-        
-        @property { number } [refundAmount]
-        
-        @property { number } [couponValue]
-        
-        @property { number } [cashbackApplied]
-        
-        @property { number } [refundCredit]
-        
-         
-    */
-
-/**
-        @typedef Promise
-        
-        
-        @property { Object } [timestamp]
-        
-         
-    */
-
-/**
-        @typedef Reasons
-        
-        
-        @property { string } [reasonText]
-        
-        @property { boolean } [showTextArea]
-        
-        @property { string } [feedbackType]
-        
-        @property { string } [flow]
-        
-        @property { number } [reasonId]
-        
-        @property { number } [priority]
-        
-         
-    */
-
-/**
-        @typedef ShipmentStatus
-        
-        
-        @property { string } [title]
-        
-        @property { number } [hexCode]
-        
-         
-    */
-
-/**
-        @typedef ShipmentUserInfo
-        
-        
-        @property { string } [gender]
-        
-        @property { string } [mobile]
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-         
-    */
-
-/**
-        @typedef Shipments
-        
-        
-        @property { string } [orderId]
-        
-        @property { Array<BreakupValues> } [breakupValues]
-        
-        @property { boolean } [enableCanReturn]
-        
-        @property { string } [paymentModeSource]
-        
-        @property { Array<string> } [shipmentImages]
-        
-        @property { string } [trackUrl]
-        
-        @property { string } [trakingNo]
-        
-        @property { Array<TrackingDetails> } [trackingDetails]
-        
-        @property { boolean } [beneficiaryDetails]
-        
-        @property { boolean } [canReturn]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { Prices } [prices]
-        
-        @property { string } [needHelpUrl]
-        
-        @property { string } [shipmentId]
-        
-        @property { number } [totalBags]
-        
-        @property { Array<ProductItems> } [items]
-        
-        @property { DeliveryAddress } [deliveryAddress]
-        
-        @property { string } [paymentStatus]
-        
-        @property { Invoice } [invoice]
-        
-        @property { string } [comment]
-        
-        @property { string } [orderType]
-        
-        @property { Promise } [promise]
-        
-        @property { FulfillingStore } [fulfillingStore]
-        
-        @property { number } [totalItems]
-        
-        @property { Array<Bags> } [bags]
-        
-        @property { boolean } [canCancel]
-        
-        @property { string } [paymentLogo]
-        
-        @property { string } [shipmentCreatedAt]
-        
-        @property { ShipmentStatus } [shipmentStatus]
-        
-        @property { ShipmentUserInfo } [userInfo]
-        
-        @property { ShipmentMeta } [meta]
-        
-         
-    */
-
-/**
-        @typedef Track
-        
-        
-        @property { string } [awb]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [lastLocationRecievedAt]
-        
-        @property { string } [reason]
-        
-        @property { string } [shipmentType]
-        
-        @property { string } [status]
-        
-        @property { string } [updatedTime]
-        
-        @property { string } [accountName]
-        
-         
-    */
-
-/**
-        @typedef TrackingDetails
-        
-        
-        @property { boolean } [isCurrent]
-        
-        @property { string } [status]
-        
-        @property { string } [time]
-        
-        @property { string } [isPassed]
-        
-         
-    */
-
-/**
-        @typedef UserInfo
-        
-        
-        @property { string } [gender]
-        
-        @property { string } [mobile]
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-         
-    */
-
-/**
-        @typedef ApefaceApiError
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef Article
-        
-        
-        @property { string } [id]
-        
-        @property { number } [points]
-        
-        @property { number } [price]
-        
-         
-    */
-
-/**
-        @typedef CatalogueOrderRequest
-        
-        
-        @property { Array<Article> } [articles]
-        
-         
-    */
-
-/**
-        @typedef CatalogueOrderResponse
-        
-        
-        @property { Array<Article> } [articles]
-        
-         
-    */
-
-/**
-        @typedef CursorPage
-        
-        
-        @property { boolean } [hasNext]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { number } [itemTotal]
-        
-        @property { string } [nextId]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Discount
-        
-        
-        @property { number } [absolute]
-        
-        @property { string } [currency]
-        
-        @property { string } [displayAbsolute]
-        
-        @property { string } [displayPercent]
-        
-        @property { number } [percent]
-        
-         
-    */
-
-/**
-        @typedef Error
-        
-        
-        @property { number } [code]
-        
-        @property { string } [exception]
-        
-        @property { string } [info]
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef Offer
-        
-        
-        @property { string } [schedule]
-        
-        @property { boolean } [active]
-        
-        @property { string } [applicationId]
-        
-        @property { Asset } [bannerImage]
-        
-        @property { string } [createdAt]
-        
-        @property { Action } [infoAction]
-        
-        @property { string } [name]
-        
-        @property { Object } [rule]
-        
-        @property { ShareMessages } [share]
-        
-        @property { string } [subText]
-        
-        @property { string } [text]
-        
-        @property { string } [type]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [updatedBy]
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef OrderDiscountRequest
-        
-        
-        @property { string } [currency]
-        
-        @property { number } orderAmount
-        
-         
-    */
-
-/**
-        @typedef OrderDiscountResponse
-        
-        
-        @property { OrderDiscountRuleBucket } [appliedRuleBucket]
-        
-        @property { Discount } [baseDiscount]
-        
-        @property { Discount } [discount]
-        
-        @property { number } [orderAmount]
-        
-        @property { number } [points]
-        
-         
-    */
-
-/**
-        @typedef OrderDiscountRuleBucket
-        
-        
-        @property { number } [high]
-        
-        @property { number } [low]
-        
-        @property { number } [max]
-        
-        @property { number } [value]
-        
-        @property { string } [valueType]
-        
-         
-    */
-
-/**
-        @typedef PointsHistory
-        
-        
-        @property { string } [id]
-        
-        @property { string } [applicationId]
-        
-        @property { boolean } [claimed]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [expiresOn]
-        
-        @property { string } [meta]
-        
-        @property { number } [points]
-        
-        @property { number } [remainingPoints]
-        
-        @property { string } [text1]
-        
-        @property { string } [text2]
-        
-        @property { string } [text3]
-        
-        @property { string } [txnName]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [userId]
-        
-         
-    */
-
-/**
-        @typedef PointsHistoryResponse
-        
-        
-        @property { Array<PointsHistory> } [history]
-        
-        @property { CursorPage } [page]
-        
-         
-    */
-
-/**
-        @typedef PointsResponse
-        
-        
-        @property { number } [points]
-        
-         
-    */
-
-/**
-        @typedef RedeemReferralCodeRequest
-        
-        
-        @property { string } deviceId
-        
-        @property { string } referralCode
-        
-         
-    */
-
-/**
-        @typedef RedeemReferralCodeResponse
-        
-        
-        @property { string } [message]
-        
-        @property { number } [points]
-        
-        @property { boolean } [redeemed]
-        
-        @property { string } [referrerId]
-        
-        @property { string } [referrerInfo]
-        
-         
-    */
-
-/**
-        @typedef ReferralDetailsResponse
-        
-        
-        @property { Offer } [referral]
-        
-        @property { string } [referrerInfo]
-        
-        @property { ShareMessages } [share]
-        
-        @property { Object } [user]
-        
-         
-    */
-
-/**
-        @typedef ShareMessages
-        
-        
-        @property { string } [email]
-        
-        @property { string } [facebook]
-        
-        @property { string } [fallback]
-        
-        @property { string } [message]
-        
-        @property { string } [messenger]
-        
-        @property { string } [sms]
-        
-        @property { string } [text]
-        
-        @property { string } [twitter]
-        
-        @property { string } [whatsapp]
         
          
     */
@@ -7500,69 +2941,6 @@ const Paginator = require("../common/Paginator");
         
         
         @property { Array<PickupStoreDetail> } [items]
-        
-         
-    */
-
-/**
-        @typedef GetPincodeCityResponse
-        
-        
-        @property { string } requestUuid
-        
-        @property { string } stormbreakerUuid
-        
-        @property { boolean } success
-        
-        @property { Array<Object> } data
-        
-         
-    */
-
-/**
-        @typedef GetTatProductReqBody
-        
-        
-        @property { Array<Object> } locationDetails
-        
-        @property { string } source
-        
-        @property { string } toPincode
-        
-        @property { string } action
-        
-        @property { string } identifier
-        
-        @property { string } journey
-        
-         
-    */
-
-/**
-        @typedef GetTatProductResponse
-        
-        
-        @property { Array<Object> } locationDetails
-        
-        @property { string } requestUuid
-        
-        @property { Object } error
-        
-        @property { string } toCity
-        
-        @property { string } source
-        
-        @property { string } toPincode
-        
-        @property { string } action
-        
-        @property { string } stormbreakerUuid
-        
-        @property { boolean } success
-        
-        @property { string } identifier
-        
-        @property { string } journey
         
          
     */
@@ -8820,1370 +4198,6 @@ class Cart {
   }
 }
 
-class Lead {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * @summary: Get Ticket with the specific id
-    * @description: Get Ticket with the specific id, this is used to view the ticket details
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - ID of ticket to be retrieved
-    
-    **/
-  getTicket({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/lead/v1.0/ticket/${id}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create history for specific Ticket
-   * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.ticketId - Ticket ID for which history is created
-   * @param {TicketHistoryPayload} arg.body
-   **/
-  createHistory({ ticketId, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/lead/v1.0/ticket/${ticketId}/history`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Create Ticket
-   * @description: This is used to Create Ticket.
-   * @param {Object} arg - arg object.
-   * @param {AddTicketPayload} arg.body
-   **/
-  createTicket({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/lead/v1.0/ticket/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get specific Custom Form using it's slug
-    * @description: Get specific Custom Form using it's slug, this is used to view the form.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - Slug of form whose response is getting submitted
-    
-    **/
-  getCustomForm({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/lead/v1.0/form/${slug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Submit Response for a specific Custom Form using it's slug
-   * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.slug - Slug of form whose response is getting submitted
-   * @param {CustomFormSubmissionPayload} arg.body
-   **/
-  submitCustomForm({ slug, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/lead/v1.0/form/${slug}/submit`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get participants of a specific Video Room using it's unique name
-    * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.uniqueName - Unique name of Video Room
-    
-    **/
-  getParticipantsInsideVideoRoom({ uniqueName } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/lead/v1.0/video/room/${uniqueName}/participants`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Token to join a specific Video Room using it's unqiue name
-    * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.uniqueName - Unique name of Video Room
-    
-    **/
-  getTokenForVideoRoom({ uniqueName } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/lead/v1.0/video/room/${uniqueName}/token`,
-      query,
-      undefined
-    );
-  }
-}
-
-class Theme {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * @summary: Get applied theme for an application
-    * @description: 
-    * @param {Object} arg - arg object.
-    
-    **/
-  getAppliedTheme({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/theme/v1.0/applied-theme`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get theme for preview
-    * @description: 
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - ID of the theme to be retrieved
-    
-    **/
-  getThemeForPreview({ themeId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/theme/v1.0/${themeId}/preview`,
-      query,
-      undefined
-    );
-  }
-}
-
-class User {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Facebook
-   * @description: Used to login or register with Facebook
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithFacebook({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/facebook-token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Google
-   * @description: Used to login or register with Google
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithGoogle({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Google for android
-   * @description: Used to login or register with Google for android
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithGoogleAndroid({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-android`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Google for ios
-   * @description: Used to login or register with google for ios
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithGoogleIOS({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-ios`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with OTP
-   * @description: Used to login or register with OTP
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendOtpRequestSchema} arg.body
-   **/
-  loginWithOTP({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/otp`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with password
-   * @description: Used to login or register with email & password
-   * @param {Object} arg - arg object.
-   * @param {PasswordLoginRequestSchema} arg.body
-   **/
-  loginWithEmailAndPassword({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Reset Password
-   * @description: Used to reset account password
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendResetPasswordEmailRequestSchema} arg.body
-   **/
-  sendResetPasswordEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password/reset`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary:
-   * @description:
-   * @param {Object} arg - arg object.
-   * @param {ForgotPasswordRequestSchema} arg.body
-   **/
-  forgotPassword({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/userauthentication/v1.0/login/password/reset/forgot`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary:
-   * @description: Send code incase of reset password
-   * @param {Object} arg - arg object.
-   * @param {CodeRequestBodySchema} arg.body
-   **/
-  sendResetToken({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password/reset/token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with token
-   * @description: Login/Register with token
-   * @param {Object} arg - arg object.
-   * @param {TokenRequestBodySchema} arg.body
-   **/
-  loginWithToken({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Registration Form
-   * @description: Register using form
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {FormRegisterRequestSchema} arg.body
-   **/
-  registerWithForm({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/register/form`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify email
-   * @description: Used to verify email
-   * @param {Object} arg - arg object.
-   * @param {CodeRequestBodySchema} arg.body
-   **/
-  verifyEmail({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/verify/email`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify mobile
-   * @description: Verify mobile
-   * @param {Object} arg - arg object.
-   * @param {CodeRequestBodySchema} arg.body
-   **/
-  verifyMobile({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/verify/mobile`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Check if user has password
-    * @description: Checks if user is using password or not
-    * @param {Object} arg - arg object.
-    
-    **/
-  hasPassword({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/has-password`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update user password
-   * @description: Used to update user password
-   * @param {Object} arg - arg object.
-   * @param {UpdatePasswordRequestSchema} arg.body
-   **/
-  updatePassword({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/password`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Logout user
-    * @description: Used to log out user
-    * @param {Object} arg - arg object.
-    
-    **/
-  logout({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/logout`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Send OTP on mobile
-   * @description: Used to send otp to mobile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendMobileOtpRequestSchema} arg.body
-   **/
-  sendOTPOnMobile({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/mobile/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify OTP on mobile
-   * @description: Used to verify otp sent to mobile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {VerifyOtpRequestSchema} arg.body
-   **/
-  verifyMobileOTP({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/mobile/verify`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Send OTP on email
-   * @description: Used to send otp to email
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendEmailOtpRequestSchema} arg.body
-   **/
-  sendOTPOnEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/email/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify OTP on email
-   * @description: Used to verify otp sent to email
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {VerifyOtpRequestSchema} arg.body
-   **/
-  verifyEmailOTP({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/email/verify`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get logged in user
-    * @description: Used to get logged in user details
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLoggedInUser({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/session`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of sessions
-    * @description: Lists all active sessions
-    * @param {Object} arg - arg object.
-    
-    **/
-  getListOfActiveSessions({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/sessions`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get platform config
-    * @description: Used to get platform config
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.name] - Name
-    
-    **/
-  getPlatformConfig({ name } = {}) {
-    const query = {};
-    query["name"] = name;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/platform/v1.0/config`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Edit Profile Details
-   * @description: Used to update profile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditProfileRequestSchema} arg.body
-   **/
-  updateProfile({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/detail`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Add mobile number to profile
-   * @description: Used to add new mobile number to profile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditMobileRequestSchema} arg.body
-   **/
-  addMobileNumber({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/user/profile/v1.0/mobile`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete mobile number from profile
-    * @description: Used to delete mobile number from profile
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.platform] - Platform
-    * @param {boolean} arg.active - Active mobile number
-    * @param {boolean} arg.primary - Primary number
-    * @param {boolean} arg.verified - Verified Number
-    * @param {string} arg.countryCode - Country code of phone number
-    * @param {string} arg.phone - Phone number
-    
-    **/
-  deleteMobileNumber({
-    active,
-    primary,
-    verified,
-    countryCode,
-    phone,
-    platform,
-  } = {}) {
-    const query = {};
-    query["platform"] = platform;
-    query["active"] = active;
-    query["primary"] = primary;
-    query["verified"] = verified;
-    query["country_code"] = countryCode;
-    query["phone"] = phone;
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/user/profile/v1.0/mobile`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Set mobile as primary
-   * @description: Used to set a mobile number as primary
-   * @param {Object} arg - arg object.
-   * @param {SendVerificationLinkMobileRequestSchema} arg.body
-   **/
-  setMobileNumberAsPrimary({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/mobile/primary`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Send verification link to mobile
-   * @description: Used to send verification link to a mobile number
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendVerificationLinkMobileRequestSchema} arg.body
-   **/
-  sendVerificationLinkToMobile({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/mobile/link/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Add email to profile
-   * @description: Used to add new email to profile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditEmailRequestSchema} arg.body
-   **/
-  addEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/user/profile/v1.0/email`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete email from profile
-    * @description: Used to delete email from profile
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.platform] - Platform
-    * @param {boolean} arg.active - Whether email id is active
-    * @param {boolean} arg.primary - Whether email id is primary email
-    * @param {boolean} arg.verified - Whether email id is verified
-    * @param {string} arg.email - Email ID to be deleted
-    
-    **/
-  deleteEmail({ active, primary, verified, email, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-    query["active"] = active;
-    query["primary"] = primary;
-    query["verified"] = verified;
-    query["email"] = email;
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/user/profile/v1.0/email`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Set email as primary
-   * @description: Used to set an email as primart
-   * @param {Object} arg - arg object.
-   * @param {EditEmailRequestSchema} arg.body
-   **/
-  setEmailAsPrimary({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/email/primary`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Send verification link to email
-   * @description: Used to sent verification to an email
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditEmailRequestSchema} arg.body
-   **/
-  sendVerificationLinkToEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/email/link/send`,
-      query,
-      body
-    );
-  }
-}
-
-class Content {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * @summary: Get live announcements
-    * @description: Get live announcements for each or all pages with page slug of page and end date schedule.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getAnnouncements({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/announcements`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Blog by slug
-    * @description: Use this API to fetch a blog using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
-    
-    **/
-  getBlog({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/blogs/${slug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get frequently asked questions
-    * @description: Get frequently asked questions list. These will be helpful for users to using website.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getFaqs({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/faq`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQ categories list
-    * @description: Get list of FAQ categories
-    * @param {Object} arg - arg object.
-    
-    **/
-  getFaqCategories({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/faq/categories`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get frequently asked question
-    * @description: Get frequently asked questions list. These will be helpful for users to using website.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Slug or Id of FAQ
-    
-    **/
-  getFaqByIdOrSlug({ idOrSlug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/faq/${idOrSlug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQ category by slug or id
-    * @description: Get FAQ category by slug or id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
-    
-    **/
-  getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/faq/category/${idOrSlug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQs of a Faq Category id or slug
-    * @description: Get FAQs of a Faq Category `id` or `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Faq category ID or slug
-    
-    **/
-  getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/faq/category/${idOrSlug}/faqs`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get landing page
-    * @description: Use this API to fetch a landing page
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLandingPage({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/landing-page`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get legal information
-    * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLegalInformation({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/legal`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get navigation
-    * @description: Use this API to fetch a navigation
-    * @param {Object} arg - arg object.
-    
-    **/
-  getNavigations({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/navigations/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Page by slug
-    * @description: Use this API to fetch a custom page using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
-    
-    **/
-  getPage({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/pages/${slug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get seo of application
-    * @description: Get seo of application
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSeoConfiguration({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/seo`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get slideshow by slug
-    * @description: Use this API to fetch a slideshow using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
-    
-    **/
-  getSlideshow({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/slideshow/${slug}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get support information
-    * @description: Get contact details for customer support. Including emails and phone numbers
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSupportInformation({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/support`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Tags for application
-    * @description: 
-    * @param {Object} arg - arg object.
-    
-    **/
-  getTags({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/tags`,
-      query,
-      undefined
-    );
-  }
-}
-
-class Communication {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * @summary: Get communication consent
-    * @description: Get communication consent
-    * @param {Object} arg - arg object.
-    
-    **/
-  getCommunicationConsent({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/communication/v1.0/consent`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Upsert communication consent
-   * @description: Upsert communication consent
-   * @param {Object} arg - arg object.
-   * @param {CommunicationConsentReq} arg.body
-   **/
-  upsertCommunicationConsent({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/communication/v1.0/consent`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Upsert push token of a user
-   * @description: Upsert push token of a user
-   * @param {Object} arg - arg object.
-   * @param {PushtokenReq} arg.body
-   **/
-  upsertAppPushtoken({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/communication/v1.0/pn-token`,
-      query,
-      body
-    );
-  }
-}
-
-class Share {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * @summary: Create application QR Code
-    * @description: Create application QR Code
-    * @param {Object} arg - arg object.
-    
-    **/
-  getApplicationQRCode({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/share/v1.0/qr/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Create product QR Code
-    * @description: Create product QR Code
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a product
-    
-    **/
-  getProductQRCodeBySlug({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/share/v1.0/qr/products/${slug}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Create collection QR Code
-    * @description: Create collection QR Code
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a collection
-    
-    **/
-  getCollectionQRCodeBySlug({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/share/v1.0/qr/collection/${slug}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Create url QR Code
-    * @description: Create url QR Code
-    * @param {Object} arg - arg object.
-    * @param {string} arg.url - Url
-    
-    **/
-  getUrlQRCode({ url } = {}) {
-    const query = {};
-    query["url"] = url;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/share/v1.0/qr/url/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create short link
-   * @description: Create short link
-   * @param {Object} arg - arg object.
-   * @param {ShortLinkReq} arg.body
-   **/
-  createShortLink({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/share/v1.0/links/short-link/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get short link by hash
-    * @description: Get short link by hash
-    * @param {Object} arg - arg object.
-    * @param {string} arg.hash - Hash of short link
-    
-    **/
-  getShortLinkByHash({ hash } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/share/v1.0/links/short-link/${hash}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get original link by hash
-    * @description: Get original link by hash
-    * @param {Object} arg - arg object.
-    * @param {string} arg.hash - Hash of short link
-    
-    **/
-  getOriginalShortLinkByHash({ hash } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/share/v1.0/links/short-link/${hash}/original/`,
-      query,
-      undefined
-    );
-  }
-}
-
 class FileStorage {
   constructor(_conf) {
     this._conf = _conf;
@@ -10260,958 +4274,6 @@ This operation will return the url for the uploaded file.
       this._conf,
       "post",
       `/service/application/assets/v1.0/namespaces/${namespace}/upload/complete/`,
-      query,
-      body
-    );
-  }
-}
-
-class Configuration {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * @summary: Get current application details
-    * @description: Get current application details.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getApplication({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/application`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get application, owner and seller information
-    * @description: Get application information with owner and seller basic details
-    * @param {Object} arg - arg object.
-    
-    **/
-  getOwnerInfo({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/about`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get basic application details
-    * @description: Get basic application details like name
-    * @param {Object} arg - arg object.
-    
-    **/
-  getBasicDetails({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/detail`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get integration tokens
-    * @description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getIntegrationTokens({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/token`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get deployment meta stores
-    * @description: Get deployment meta stores.
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {string} [arg.q] - Search ordering store by name or store code
-    
-    **/
-  getOrderingStores({ pageNo, pageSize, q } = {}) {
-    const query = {};
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
-    query["q"] = q;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/ordering-store/stores`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get features of application
-    * @description: Get features of application
-    * @param {Object} arg - arg object.
-    
-    **/
-  getFeatures({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/feature`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get application information
-    * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getContactInfo({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/information`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get application enabled currencies
-    * @description: Get currency list for allowed currencies under current application
-    * @param {Object} arg - arg object.
-    
-    **/
-  getCurrencies({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/currencies`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get currency by id
-    * @description: Get currency object with symbol and name information by id.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Currency object id
-    
-    **/
-  getCurrencyById({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/currency/${id}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of languages
-    * @description: Get list of supported languages under application.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLanguages({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/languages`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Get ordering store signed cookie on selection of ordering store. This will be used by cart service to verify coupon against selected ordering store in cart.
-   * @description: Get ordering store signed cookie on selection of ordering store.
-   * @param {Object} arg - arg object.
-   * @param {OrderingStoreSelectRequest} arg.body
-   **/
-  getOrderingStoreCookie({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/configuration/v1.0/ordering-store/select`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
-    * @description: Unset ordering store cookie.
-    * @param {Object} arg - arg object.
-    
-    **/
-  removeOrderingStoreCookie({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/configuration/v1.0/ordering-store/select`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Staff List.
-    * @description: Get a staff list based on the user's session token passed in the header.
-    * @param {Object} arg - arg object.
-    * @param {boolean} [arg.orderIncent] - This is to check which staff members are applicable for order incentives.
-    * @param {number} [arg.orderingStore] - This is to filter staff members from only selected ordering store.
-    * @param {string} [arg.user] - Get single staff member details using staff user mongo id
-    
-    **/
-  getAppStaffs({ orderIncent, orderingStore, user } = {}) {
-    const query = {};
-    query["order_incent"] = orderIncent;
-    query["ordering_store"] = orderingStore;
-    query["user"] = user;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/configuration/v1.0/staff`,
-      query,
-      undefined
-    );
-  }
-}
-
-class Payment {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * @summary: Get payment gateway keys
-    * @description: Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.xApiToken - api token
-    * @param {boolean} [arg.refresh] - refresh cache
-    
-    **/
-  getAggregatorsConfig({ xApiToken, refresh } = {}) {
-    const query = {};
-    query["refresh"] = refresh;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/payment/v1.0/config/aggregators/key`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Attach a saved card to customer.
-   * @description: Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
-   * @param {Object} arg - arg object.
-   * @param {AttachCardRequest} arg.body
-   **/
-  attachCardToCustomer({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/payment/v1.0/card/attach`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Fetch active payment gateway for card
-    * @description: Fetch active payment gateway along with customer id for cards payments.
-    * @param {Object} arg - arg object.
-    * @param {boolean} [arg.refresh] - 
-    
-    **/
-  getActiveCardAggregator({ refresh } = {}) {
-    const query = {};
-    query["refresh"] = refresh;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/payment/v1.0/card/aggregator`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Fetch the list of saved cards of user.
-    * @description: Fetch the list of saved cards of user from active payment gateway.
-    * @param {Object} arg - arg object.
-    * @param {boolean} [arg.forceRefresh] - 
-    
-    **/
-  getActiveUserCards({ forceRefresh } = {}) {
-    const query = {};
-    query["force_refresh"] = forceRefresh;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/payment/v1.0/cards`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Delete an user card.
-   * @description: Delete an added user card on payment gateway and remove from cache.
-   * @param {Object} arg - arg object.
-   * @param {DeletehCardRequest} arg.body
-   **/
-  deleteUserCard({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/payment/v1.0/card/remove`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Validate customer for payment.
-   * @description: Validate customer for payment i.e Simpl paylater, Rupifi loan.
-   * @param {Object} arg - arg object.
-   * @param {ValidateCustomerRequest} arg.body
-   **/
-  verifyCustomerForPayment({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/payment/v1.0/payment/customer/validation`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify and charge payment
-   * @description: Verify and charge payment server to server for Simpl & Mswipe.
-   * @param {Object} arg - arg object.
-   * @param {ChargeCustomerRequest} arg.body
-   **/
-  verifyAndChargePayment({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/payment/v1.0/payment/confirm/charge`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Payment Initialisation server to server for UPI and BharatQR.
-   * @description: Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
-   * @param {Object} arg - arg object.
-   * @param {PaymentInitializationRequest} arg.body
-   **/
-  initialisePayment({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/payment/v1.0/payment/request`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Continous polling to check status of payment on server.
-   * @description: Continous polling on interval to check status of payment untill timeout.
-   * @param {Object} arg - arg object.
-   * @param {PaymentStatusUpdateRequest} arg.body
-   **/
-  checkAndUpdatePaymentStatus({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/payment/v1.0/payment/confirm/polling`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get All Valid Payment Options
-    * @description: Use this API to get Get All Valid Payment Options for making payment
-    * @param {Object} arg - arg object.
-    * @param {number} arg.amount - Payment amount
-    * @param {string} arg.cartId - Cart id
-    * @param {string} arg.pincode - Pincode
-    * @param {string} arg.checkoutMode - Checkout mode
-    * @param {boolean} [arg.refresh] - 
-    * @param {string} [arg.assignCardId] - selected card id
-    * @param {string} [arg.userDetails] - URIencoded json annonymous user
-    
-    **/
-  getPaymentModeRoutes({
-    amount,
-    cartId,
-    pincode,
-    checkoutMode,
-    refresh,
-    assignCardId,
-    userDetails,
-  } = {}) {
-    const query = {};
-    query["amount"] = amount;
-    query["cart_id"] = cartId;
-    query["pincode"] = pincode;
-    query["checkout_mode"] = checkoutMode;
-    query["refresh"] = refresh;
-    query["assign_card_id"] = assignCardId;
-    query["user_details"] = userDetails;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/payment/v1.0/payment/options`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get All Valid Payment Options for POS
-    * @description: Use this API to get Get All Valid Payment Options for making payment
-    * @param {Object} arg - arg object.
-    * @param {number} arg.amount - Payment amount
-    * @param {string} arg.cartId - Cart id
-    * @param {string} arg.pincode - Pincode
-    * @param {string} arg.checkoutMode - Checkout mode
-    * @param {boolean} [arg.refresh] - 
-    * @param {string} [arg.assignCardId] - selected card id
-    * @param {string} arg.orderType - Order type
-    * @param {string} [arg.userDetails] - URIencoded json annonymous user
-    
-    **/
-  getPosPaymentModeRoutes({
-    amount,
-    cartId,
-    pincode,
-    checkoutMode,
-    orderType,
-    refresh,
-    assignCardId,
-    userDetails,
-  } = {}) {
-    const query = {};
-    query["amount"] = amount;
-    query["cart_id"] = cartId;
-    query["pincode"] = pincode;
-    query["checkout_mode"] = checkoutMode;
-    query["refresh"] = refresh;
-    query["assign_card_id"] = assignCardId;
-    query["order_type"] = orderType;
-    query["user_details"] = userDetails;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/payment/v1.0/payment/options/pos`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List User Beneficiary
-    * @description: Get all active  beneficiary details added by the user for refund
-    * @param {Object} arg - arg object.
-    * @param {string} arg.orderId - 
-    
-    **/
-  getUserBeneficiariesDetail({ orderId } = {}) {
-    const query = {};
-    query["order_id"] = orderId;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/payment/v1.0/refund/user/beneficiary`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Ifsc Code Verification
-    * @description: Get True/False for correct IFSC Code for adding bank details for refund
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.ifscCode] - 
-    
-    **/
-  verifyIfscCode({ ifscCode } = {}) {
-    const query = {};
-    query["ifsc_code"] = ifscCode;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/payment/v1.0/ifsc-code/verify`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List Order Beneficiary
-    * @description: Get all active  beneficiary details added by the user for refund
-    * @param {Object} arg - arg object.
-    * @param {string} arg.orderId - 
-    
-    **/
-  getOrderBeneficiariesDetail({ orderId } = {}) {
-    const query = {};
-    query["order_id"] = orderId;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/payment/v1.0/refund/order/beneficiaries`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Save Beneficiary details on otp validation.
-   * @description: Save Beneficiary details on otp validation.
-   * @param {Object} arg - arg object.
-   * @param {AddBeneficiaryViaOtpVerificationRequest} arg.body
-   **/
-  verifyOtpAndAddBeneficiaryForBank({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/payment/v1.0/refund/verification/bank`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Save bank details for cancelled/returned order
-   * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
-   * @param {Object} arg - arg object.
-   * @param {AddBeneficiaryDetailsRequest} arg.body
-   **/
-  addBeneficiaryDetails({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/payment/v1.0/refund/account`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Send Otp on Adding wallet beneficiary
-   * @description: Send Otp on Adding wallet beneficiary for user mobile verification
-   * @param {Object} arg - arg object.
-   * @param {WalletOtpRequest} arg.body
-   **/
-  verifyOtpAndAddBeneficiaryForWallet({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/payment/v1.0/refund/verification/wallet`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Mark Default Beneficiary For Refund
-   * @description: Mark Default Beneficiary ot of all Beneficiary Details for Refund
-   * @param {Object} arg - arg object.
-   * @param {SetDefaultBeneficiaryRequest} arg.body
-   **/
-  updateDefaultBeneficiary({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/payment/v1.0/refund/beneficiary/default`,
-      query,
-      body
-    );
-  }
-}
-
-class Order {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * @summary: Get Orders for application based on application Id
-    * @description: Get Orders
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.pageNo] - Current page number
-    * @param {string} [arg.pageSize] - Page limit
-    * @param {string} [arg.fromDate] - From Date
-    * @param {string} [arg.toDate] - To Date
-    
-    **/
-  getOrders({ pageNo, pageSize, fromDate, toDate } = {}) {
-    const query = {};
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
-    query["from_date"] = fromDate;
-    query["to_date"] = toDate;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Order by order id for application based on application Id
-    * @description: Get Order By Fynd Order Id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.orderId - Order Id
-    
-    **/
-  getOrderById({ orderId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders/${orderId}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Shipment by shipment id and order id for application based on application Id
-    * @description: Get Shipment
-    * @param {Object} arg - arg object.
-    * @param {string} arg.shipmentId - Shipment Id
-    
-    **/
-  getShipmentById({ shipmentId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders/shipments/${shipmentId}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Shipment reasons by shipment id and order id for application based on application Id
-    * @description: Get Shipment Reasons
-    * @param {Object} arg - arg object.
-    * @param {string} arg.shipmentId - Shipment Id
-    
-    **/
-  getShipmentReasons({ shipmentId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders/shipments/${shipmentId}/reasons`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Shipment status by shipment id and order id for application based on application Id
-   * @description: Update Shipment Status
-   * @param {Object} arg - arg object.
-   * @param {string} arg.shipmentId - Shipment Id
-   * @param {ShipmentStatusUpdateBody} arg.body
-   **/
-  updateShipmentStatus({ shipmentId, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/order/v1.0/orders/shipments/${shipmentId}/status`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Track Shipment by shipment id and order id for application based on application Id
-    * @description: Shipment Track
-    * @param {Object} arg - arg object.
-    * @param {string} arg.shipmentId - Shipment Id
-    
-    **/
-  trackShipment({ shipmentId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders/shipments/${shipmentId}/track`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get POS Order by order id for application based on application Id
-    * @description: Get Order By Fynd Order Id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.orderId - Order Id
-    
-    **/
-  getPosOrderById({ orderId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/pos-order/${orderId}`,
-      query,
-      undefined
-    );
-  }
-}
-
-class Rewards {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-   *
-   * @summary: Get reward points that could be earned on any catalogue product.
-   * @description: Evaluate the amount of reward points that could be earned on any catalogue product.
-   * @param {Object} arg - arg object.
-   * @param {CatalogueOrderRequest} arg.body
-   **/
-  getPointsOnProduct({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/rewards/v1.0/catalogue/offer/order/`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
-   * @description: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
-   * @param {Object} arg - arg object.
-   * @param {OrderDiscountRequest} arg.body
-   **/
-  getOrderDiscount({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/rewards/v1.0/user/offers/order-discount/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Total available points of a user for current application
-    * @description: Total available points of a user for current application
-    * @param {Object} arg - arg object.
-    
-    **/
-  getUserPoints({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/rewards/v1.0/user/points`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of points transactions.
-    * @description: Get list of points transactions.
-The list of points history is paginated.
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.pageId] - PageID is the ID of the requested page. For first request it should be kept empty.
-    * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
-    
-    **/
-  getUserPointsHistory({ pageId, pageSize } = {}) {
-    const query = {};
-    query["page_id"] = pageId;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/rewards/v1.0/user/points/history/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: User's referral details.
-    * @description: User's referral details.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getUserReferralDetails({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/rewards/v1.0/user/referral/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Redeems referral code and credits points to users points account.
-   * @description: Redeems referral code and credits points to users points account.
-   * @param {Object} arg - arg object.
-   * @param {RedeemReferralCodeRequest} arg.body
-   **/
-  redeemReferralCode({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/rewards/v1.0/user/referral/redeem/`,
       query,
       body
     );
@@ -12462,66 +5524,10 @@ class PosCart {
   }
 }
 
-class Logistic {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-   *
-   * @summary: Get Tat Product
-   * @description: Get Tat Product
-   * @param {Object} arg - arg object.
-   * @param {GetTatProductReqBody} arg.body
-   **/
-  getTatProduct({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/logistics/v1.0`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get City from Pincode
-    * @description: Get City from Pincode
-    * @param {Object} arg - arg object.
-    * @param {string} arg.pincode - Pincode
-    
-    **/
-  getPincodeCity({ pincode } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/logistics/v1.0/pincode/${pincode}`,
-      query,
-      undefined
-    );
-  }
-}
-
 module.exports = {
   Catalog,
   Cart,
-  Lead,
-  Theme,
-  User,
-  Content,
-  Communication,
-  Share,
   FileStorage,
-  Configuration,
-  Payment,
-  Order,
-  Rewards,
   Feedback,
   PosCart,
-  Logistic,
 };

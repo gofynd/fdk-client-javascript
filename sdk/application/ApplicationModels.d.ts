@@ -1,20 +1,20 @@
 export type Media = {
-    type?: string;
     url?: string;
+    type?: string;
 };
 export type ProductListingActionPage = {
     query?: any;
     type?: string;
 };
 export type ProductListingAction = {
-    type?: string;
     page?: ProductListingActionPage;
+    type?: string;
 };
 export type ProductBrand = {
+    action?: ProductListingAction;
+    uid?: number;
     logo?: Media;
     name?: string;
-    uid?: number;
-    action?: ProductListingAction;
 };
 export type ProductDetailAttribute = {
     key?: string;
@@ -26,113 +26,113 @@ export type ProductDetailGroupedAttribute = {
     title?: string;
 };
 export type ProductDetail = {
-    name?: string;
-    medias?: Array<Media>;
-    categories?: Array<ProductBrand>;
-    attributes?: any;
-    itemType?: string;
-    description?: string;
-    brand?: ProductBrand;
-    uid?: number;
-    type?: string;
-    ratingCount?: number;
-    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
-    imageNature?: string;
-    tryouts?: Array<string>;
-    similars?: Array<string>;
     hasVariant?: boolean;
+    name?: string;
+    shortDescription?: string;
+    imageNature?: string;
+    itemType?: string;
+    productOnlineDate?: string;
+    attributes?: any;
     teaserTag?: string;
     color?: string;
-    slug: string;
-    highlights?: Array<string>;
+    type?: string;
+    tryouts?: Array<string>;
+    medias?: Array<Media>;
+    categories?: Array<ProductBrand>;
+    ratingCount?: number;
     rating?: number;
-    productOnlineDate?: string;
-    shortDescription?: string;
+    description?: string;
+    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
+    slug: string;
+    uid?: number;
+    brand?: ProductBrand;
+    highlights?: Array<string>;
+    similars?: Array<string>;
 };
 export type ErrorResponse = {
     error?: string;
 };
+export type ProductSizeStores = {
+    count?: number;
+};
 export type Price = {
-    currencyCode?: string;
     max?: number;
+    currencyCode?: string;
     currencySymbol?: string;
     min?: number;
 };
 export type ProductListingPrice = {
-    marked?: Price;
     effective?: Price;
-};
-export type ProductSizeStores = {
-    count?: number;
+    marked?: Price;
 };
 export type ProductSize = {
-    quantity?: number;
-    isAvailable?: boolean;
     value?: string;
     display?: string;
+    quantity?: number;
+    isAvailable?: boolean;
 };
 export type ProductSizes = {
-    discount?: string;
-    sizeChart?: any;
-    sellable?: boolean;
-    price?: ProductListingPrice;
     stores?: ProductSizeStores;
+    price?: ProductListingPrice;
+    sellable?: boolean;
+    sizeChart?: any;
     sizes?: Array<ProductSize>;
+    discount?: string;
+};
+export type ProductStockPrice = {
+    effective?: number;
+    currency?: string;
+    marked?: number;
 };
 export type Store = {
     count?: number;
-    name?: string;
     uid?: number;
-};
-export type Seller = {
-    count?: number;
     name?: string;
-    uid?: number;
-};
-export type ProductStockPrice = {
-    currency?: string;
-    marked?: number;
-    effective?: number;
 };
 export type ArticleAssignment = {
     level?: string;
     strategy?: string;
 };
+export type Seller = {
+    count?: number;
+    uid?: number;
+    name?: string;
+};
 export type ProductSizePriceResponse = {
-    discount?: string;
-    store?: Store;
-    sellerCount?: number;
-    articleId?: string;
-    set?: any;
-    seller?: Seller;
-    specialBadge?: string;
-    price?: ProductStockPrice;
     pricePerPrice?: ProductStockPrice;
-    pincode?: number;
-    articleAssignment?: ArticleAssignment;
+    set?: any;
     quantity?: number;
+    store?: Store;
+    price?: ProductStockPrice;
     longLat?: Array<number>;
+    articleAssignment?: ArticleAssignment;
     itemType?: string;
+    seller?: Seller;
+    articleId?: string;
+    specialBadge?: string;
+    discount?: string;
+    sellerCount?: number;
     strategyWiseListing?: Array<any>;
+    pincode?: number;
+};
+export type Page = {
+    type?: string;
+    current?: number;
+    hasPrevious?: boolean;
+    size?: number;
+    hasNext?: boolean;
+    itemTotal?: number;
+    nextId?: string;
 };
 export type ProductSizeSellerFilter = {
     isSelected?: boolean;
-    name?: string;
     value?: string;
-};
-export type Page = {
-    nextId?: string;
-    hasPrevious?: boolean;
-    itemTotal?: number;
-    size?: number;
-    type?: string;
-    current?: number;
-    hasNext?: boolean;
+    name?: string;
 };
 export type ProductSizeSellersResponse = {
+    page: Page;
     sortOn?: Array<ProductSizeSellerFilter>;
     items?: Array<ProductSizePriceResponse>;
-    page: Page;
 };
 export type AttributeDetail = {
     key?: string;
@@ -140,174 +140,174 @@ export type AttributeDetail = {
     display?: string;
 };
 export type ProductsComparisonResponse = {
-    attributesMetadata?: Array<AttributeDetail>;
     items?: Array<ProductDetail>;
+    attributesMetadata?: Array<AttributeDetail>;
 };
 export type ProductCompareResponse = {
-    attributesMetadata?: Array<AttributeDetail>;
-    title?: string;
     items?: Array<ProductDetail>;
+    title?: string;
+    attributesMetadata?: Array<AttributeDetail>;
     subtitle?: string;
 };
 export type ProductFrequentlyComparedSimilarResponse = {
     similars?: Array<ProductCompareResponse>;
 };
 export type ProductSimilarItem = {
-    title?: string;
     items?: Array<ProductDetail>;
+    title?: string;
     subtitle?: string;
 };
 export type SimilarProductByTypeResponse = {
     similars?: Array<ProductSimilarItem>;
 };
 export type ProductVariantItemResponse = {
-    slug?: string;
-    isAvailable?: boolean;
-    uid?: number;
+    action?: ProductListingAction;
     name?: string;
     value?: string;
     medias?: Array<Media>;
+    isAvailable?: boolean;
+    slug?: string;
+    uid?: number;
     colorName?: string;
     color?: string;
-    action?: ProductListingAction;
 };
 export type ProductVariantResponse = {
-    items?: Array<ProductVariantItemResponse>;
     header?: string;
     displayType?: string;
+    items?: Array<ProductVariantItemResponse>;
 };
 export type ProductVariantsResponse = {
     variants?: Array<ProductVariantResponse>;
 };
 export type StoreDetail = {
-    name?: string;
-    id?: number;
-    code?: string;
     city?: string;
+    code?: string;
+    id?: number;
+    name?: string;
 };
 export type CompanyDetail = {
-    name?: string;
     id?: number;
+    name?: string;
 };
 export type ProductStockStatusItem = {
-    store?: StoreDetail;
-    uid?: string;
-    seller?: Seller;
-    company?: CompanyDetail;
-    price?: ProductStockPrice;
-    size?: string;
-    identifier?: any;
-    itemId?: number;
     quantity?: number;
+    store?: StoreDetail;
+    price?: ProductStockPrice;
+    identifier?: any;
+    size?: string;
+    seller?: Seller;
+    itemId?: number;
+    uid?: string;
+    company?: CompanyDetail;
 };
 export type ProductStockStatusResponse = {
     items?: Array<ProductStockStatusItem>;
 };
 export type ProductStockPolling = {
-    items?: Array<ProductStockStatusItem>;
     page: Page;
+    items?: Array<ProductStockStatusItem>;
+};
+export type ProductSortOn = {
+    value?: string;
+    isSelected?: boolean;
+    name?: string;
+};
+export type ProductListingDetail = {
+    hasVariant?: boolean;
+    name?: string;
+    shortDescription?: string;
+    imageNature?: string;
+    itemType?: string;
+    productOnlineDate?: string;
+    attributes?: any;
+    teaserTag?: string;
+    color?: string;
+    type?: string;
+    tryouts?: Array<string>;
+    medias?: Array<Media>;
+    categories?: Array<ProductBrand>;
+    sellable?: boolean;
+    ratingCount?: number;
+    rating?: number;
+    price?: ProductListingPrice;
+    description?: string;
+    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
+    slug: string;
+    uid?: number;
+    brand?: ProductBrand;
+    highlights?: Array<string>;
+    similars?: Array<string>;
+    discount?: string;
 };
 export type ProductFiltersKey = {
+    display: string;
+    kind?: string;
     logo?: string;
     name: string;
-    kind?: string;
-    display: string;
 };
 export type ProductFiltersValue = {
-    selectedMax?: number;
-    display: string;
-    currencyCode?: string;
-    currencySymbol?: string;
+    queryFormat?: string;
     selectedMin?: number;
-    max?: number;
     value: string;
-    isSelected: boolean;
+    min?: number;
     displayFormat?: string;
     count?: number;
-    queryFormat?: string;
-    min?: number;
+    max?: number;
+    selectedMax?: number;
+    currencySymbol?: string;
+    isSelected: boolean;
+    display: string;
+    currencyCode?: string;
 };
 export type ProductFilters = {
     key: ProductFiltersKey;
     values: Array<ProductFiltersValue>;
 };
-export type ProductSortOn = {
-    isSelected?: boolean;
-    name?: string;
-    value?: string;
-};
-export type ProductListingDetail = {
-    discount?: string;
-    name?: string;
-    medias?: Array<Media>;
-    categories?: Array<ProductBrand>;
-    attributes?: any;
-    itemType?: string;
-    description?: string;
-    brand?: ProductBrand;
-    uid?: number;
-    type?: string;
-    ratingCount?: number;
-    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
-    imageNature?: string;
-    sellable?: boolean;
-    tryouts?: Array<string>;
-    similars?: Array<string>;
-    hasVariant?: boolean;
-    teaserTag?: string;
-    color?: string;
-    slug: string;
-    highlights?: Array<string>;
-    price?: ProductListingPrice;
-    rating?: number;
-    productOnlineDate?: string;
-    shortDescription?: string;
-};
 export type ProductListingResponse = {
-    filters?: Array<ProductFilters>;
+    page: Page;
     sortOn?: Array<ProductSortOn>;
     items?: Array<ProductListingDetail>;
-    page: Page;
+    filters?: Array<ProductFilters>;
 };
 export type ImageUrls = {
     landscape?: Media;
     portrait?: Media;
 };
 export type BrandItem = {
+    action?: ProductListingAction;
+    banners?: ImageUrls;
+    departments?: Array<string>;
+    name?: string;
     discount?: string;
     slug?: string;
     uid?: number;
-    banners?: ImageUrls;
-    name?: string;
     logo?: Media;
-    departments?: Array<string>;
-    action?: ProductListingAction;
 };
 export type BrandListingResponse = {
-    items?: Array<BrandItem>;
     page: Page;
+    items?: Array<BrandItem>;
 };
 export type BrandDetailResponse = {
     banners?: ImageUrls;
-    name?: string;
     uid?: number;
     logo?: Media;
+    name?: string;
 };
 export type DepartmentIdentifier = {
-    slug?: string;
     uid?: number;
+    slug?: string;
 };
 export type CategoryItems = {
+    banners?: ImageUrls;
+    action?: ProductListingAction;
+    name?: string;
     slug?: string;
     childs?: Array<any>;
     uid?: number;
-    banners?: ImageUrls;
-    name?: string;
-    action?: ProductListingAction;
 };
 export type DepartmentCategoryTree = {
-    department?: string;
     items?: Array<CategoryItems>;
+    department?: string;
 };
 export type CategoryListingResponse = {
     departments?: Array<DepartmentIdentifier>;
@@ -315,20 +315,20 @@ export type CategoryListingResponse = {
 };
 export type CategoryMetaResponse = {
     banners?: ImageUrls;
-    name?: string;
     uid?: number;
     logo?: Media;
+    name?: string;
 };
 export type HomeListingResponse = {
+    page: Page;
     message?: string;
     items?: Array<ProductListingDetail>;
-    page: Page;
 };
 export type Department = {
-    slug?: string;
-    uid?: number;
     name?: string;
     priorityOrder?: number;
+    slug?: string;
+    uid?: number;
     logo?: Media;
 };
 export type DepartmentResponse = {
@@ -339,84 +339,84 @@ export type Query = {
     brand?: Array<string>;
 };
 export type AutocompletePage = {
-    query?: Query;
+    pageQuery?: Query;
     type?: string;
 };
 export type Action = {
-    type?: string;
     page?: AutocompletePage;
+    type?: string;
 };
 export type AutocompleteItem = {
-    display?: string;
-    logo?: Media;
-    type?: string;
     action?: Action;
+    type?: string;
+    logo?: Media;
+    display?: string;
 };
 export type AutoCompleteResponse = {
     items?: Array<AutocompleteItem>;
 };
+export type GetCollectionDetailNest = {
+    allowSort?: boolean;
+    name?: string;
+    badge?: any;
+    query?: any;
+    logo?: Media;
+    action?: ProductListingAction;
+    type?: string;
+    appId?: string;
+    tag?: Array<string>;
+    banners?: ImageUrls;
+    isActive?: boolean;
+    visibleFacetsKeys?: Array<string>;
+    allowFacets?: boolean;
+    description?: string;
+    slug?: string;
+    uid?: string;
+    cron?: any;
+    schedule?: any;
+    meta?: any;
+};
 export type CollectionListingFilterType = {
     isSelected?: boolean;
-    name?: string;
     display?: string;
+    name?: string;
 };
 export type CollectionListingFilterTag = {
     isSelected?: boolean;
-    name?: string;
     display?: string;
+    name?: string;
 };
 export type CollectionListingFilter = {
     type?: Array<CollectionListingFilterType>;
     tags?: Array<CollectionListingFilterTag>;
 };
-export type GetCollectionDetailNest = {
-    tag?: Array<string>;
-    appId?: string;
-    name?: string;
-    schedule?: any;
-    cron?: any;
-    description?: string;
-    uid?: string;
-    query?: any;
-    type?: string;
-    visibleFacetsKeys?: Array<string>;
-    meta?: any;
-    isActive?: boolean;
-    badge?: any;
-    allowSort?: boolean;
-    action?: ProductListingAction;
-    slug?: string;
-    allowFacets?: boolean;
-    banners?: ImageUrls;
-    logo?: Media;
-};
 export type GetCollectionListingResponse = {
-    filters?: CollectionListingFilter;
-    items?: Array<GetCollectionDetailNest>;
     page: Page;
+    items?: Array<GetCollectionDetailNest>;
+    filters?: CollectionListingFilter;
 };
 export type CollectionDetailResponse = {
-    slug?: string;
-    badge?: any;
-    tag?: Array<string>;
-    allowFacets?: boolean;
-    logo?: Media;
-    query?: any;
     banners?: ImageUrls;
+    isActive?: boolean;
     type?: string;
-    appId?: string;
     visibleFacetsKeys?: Array<string>;
     allowSort?: boolean;
     name?: string;
-    meta?: any;
-    schedule?: any;
     cron?: any;
+    allowFacets?: boolean;
     description?: string;
-    isActive?: boolean;
+    appId?: string;
+    badge?: any;
+    tag?: Array<string>;
+    slug?: string;
+    query?: any;
+    logo?: Media;
+    schedule?: any;
+    meta?: any;
 };
 export type GetFollowListingResponse = {
-    items: Array<any>;
     page: Page;
+    items: Array<any>;
 };
 export type FollowPostResponse = {
     message: string;
@@ -426,8 +426,8 @@ export type FollowerCountResponse = {
     count?: number;
 };
 export type FollowIdsData = {
-    collections?: Array<number>;
     brands?: Array<number>;
+    collections?: Array<number>;
     products?: Array<number>;
 };
 export type FollowIdsResponse = {
@@ -438,20 +438,20 @@ export type LatLong = {
     coordinates?: Array<number>;
 };
 export type Store1 = {
-    storeCode?: string;
-    uid?: number;
-    city?: string;
-    latLong?: LatLong;
-    storeEmail?: string;
     address?: string;
-    pincode?: number;
     name?: string;
-    country?: string;
+    storeCode?: string;
+    storeEmail?: string;
+    latLong?: LatLong;
     state?: string;
+    city?: string;
+    uid?: number;
+    pincode?: number;
+    country?: string;
 };
 export type StoreListingResponse = {
-    items: Array<Store1>;
     page: Page;
+    items: Array<Store1>;
 };
 export type CartProductIdentifer = {
     identifier?: string;
@@ -905,896 +905,6 @@ export type SharedCartResponse = {
     cart?: SharedCart;
     error?: string;
 };
-export type TicketList = {
-    items?: Array<Ticket>;
-    filters?: Filter;
-    page?: Page;
-};
-export type TicketHistoryList = {
-    docs?: Array<TicketHistory>;
-    limit?: number;
-    page?: number;
-    pages?: number;
-    total?: number;
-};
-export type CustomFormList = {
-    docs?: Array<CustomForm>;
-    limit?: number;
-    page?: number;
-    pages?: number;
-    total?: number;
-};
-export type CreateCustomFormPayload = {
-    slug: string;
-    title: string;
-    inputs: Array<any>;
-    description?: string;
-    headerImage?: string;
-    shouldNotify?: boolean;
-    successMessage?: string;
-    pollForAssignment?: PollForAssignment;
-};
-export type EditCustomFormPayload = {
-    title: string;
-    inputs: Array<any>;
-    description?: string;
-    headerImage?: string;
-    shouldNotify?: boolean;
-    loginRequired?: boolean;
-    successMessage?: string;
-    pollForAssignment?: PollForAssignment;
-};
-export type EditTicketPayload = {
-    content?: TicketContent;
-    category?: string;
-    source?: string;
-    status?: string;
-    priority?: string;
-    assignedTo?: AgentChangePayload;
-    tags?: Array<string>;
-};
-export type AgentChangePayload = {
-    agentId: string;
-};
-export type CreateVideoRoomResponse = {
-    uniqueName: string;
-};
-export type CloseVideoRoomResponse = {
-    success: boolean;
-};
-export type CreateVideoRoomPayload = {
-    uniqueName: string;
-    notify?: Array<any>;
-};
-export type Filter = {
-    priorities: Priority;
-    categories?: Category;
-    statuses: Status;
-    assignees: Array<any>;
-};
-export type TicketHistoryPayload = {
-    value: any;
-    type: string;
-};
-export type CustomFormSubmissionPayload = {
-    response: Array<KeyValue>;
-};
-export type KeyValue = {
-    key: string;
-    value: string;
-};
-export type GetTokenForVideoRoomResponse = {
-    accessToken: string;
-};
-export type GetParticipantsInsideVideoRoomResponse = {
-    participants: Array<Participant>;
-};
-export type Participant = {
-    user?: UserSchema;
-    identity?: string;
-    status?: string;
-};
-export type UserSchema = {
-    firstName?: string;
-    lastName?: string;
-    phoneNumbers?: Array<any>;
-    emails?: Array<any>;
-    gender?: string;
-    active?: boolean;
-    profilePicUrl?: string;
-    username?: string;
-    accountType?: string;
-    uid?: string;
-    debug?: any;
-    hasOldPasswordHash?: boolean;
-    id?: string;
-    createdAt?: string;
-    updatedAt?: string;
-};
-export type SubmitCustomFormResponse = {
-    ticket: Ticket;
-};
-export type TicketContext = {
-    applicationId?: string;
-    companyId: string;
-};
-export type CreatedOn = {
-    userAgent: string;
-};
-export type TicketAsset = {
-    display?: string;
-    value: string;
-    type: string;
-};
-export type TicketContent = {
-    title: string;
-    description?: string;
-    attachments?: Array<TicketAsset>;
-};
-export type AddTicketPayload = {
-    status: string;
-    priority: string;
-    category: string;
-    content: TicketContent;
-};
-export type Priority = {
-    key: string;
-    display: string;
-    color: string;
-};
-export type Status = {
-    key: string;
-    display: string;
-    color: string;
-};
-export type Category = {
-    key: string;
-    display: string;
-    form?: CustomForm;
-};
-export type SubmitButton = {
-    title: string;
-    titleColor: string;
-    backgroundColor: string;
-};
-export type PollForAssignment = {
-    duration: number;
-    message: string;
-    successMessage: string;
-    failureMessage: string;
-};
-export type CustomForm = {
-    applicationId: string;
-    slug: string;
-    headerImage?: string;
-    title: string;
-    description?: string;
-    loginRequired: boolean;
-    shouldNotify: boolean;
-    successMessage?: string;
-    submitButton?: SubmitButton;
-    inputs: Array<any>;
-    createdOn?: CreatedOn;
-    createdBy?: any;
-    pollForAssignment?: PollForAssignment;
-    id: string;
-};
-export type TicketHistory = {
-    type: string;
-    value: any;
-    ticketId: string;
-    createdOn?: CreatedOn;
-    createdBy?: any;
-    id: string;
-    updatedAt?: string;
-    createdAt?: string;
-};
-export type Ticket = {
-    context?: TicketContext;
-    createdOn?: CreatedOn;
-    responseId?: string;
-    content?: TicketContent;
-    ticketId: string;
-    category: Category;
-    source: string;
-    status: Status;
-    priority: Priority;
-    createdBy?: any;
-    assignedTo?: any;
-    tags?: Array<string>;
-    customJson?: any;
-    id?: string;
-    updatedAt?: string;
-    createdAt?: string;
-};
-export type PaginationSchema = {
-    size?: number;
-    itemTotal?: number;
-    hasNext?: boolean;
-    type?: string;
-    current?: number;
-};
-export type ThemesListingResponseSchema = {
-    items?: Array<ThemesSchema>;
-    page?: PaginationSchema;
-};
-export type AddThemeRequestSchema = {
-    themeId?: string;
-};
-export type UpgradableThemeSchema = {
-    parentTheme?: string;
-    appliedTheme?: string;
-    upgrade?: boolean;
-};
-export type FontsSchema = {
-    items?: Array<any>;
-    kind?: string;
-};
-export type ThemesSchema = {
-    application?: string;
-    applied?: boolean;
-    customized?: boolean;
-    published?: boolean;
-    archived?: boolean;
-    createdAt?: string;
-    updatedAt?: string;
-    version?: string;
-    parentThemeVersion?: string;
-    parentTheme?: string;
-    information?: any;
-    tags?: Array<string>;
-    src?: any;
-    assets?: any;
-    availablePages?: Array<any>;
-    pages?: any;
-    availableSections?: Array<availableSectionSchema>;
-    sections?: Array<sectionSchema>;
-    constants?: any;
-    styles?: any;
-    config?: any;
-    settings?: any;
-    font?: any;
-    id?: string;
-    v?: number;
-    colors?: any;
-};
-export type pagesSchema = {
-    text?: string;
-    path?: string;
-    type?: string;
-    value?: string;
-    sections?: Array<any>;
-};
-export type availableSectionSchema = {
-    blocks?: Array<any>;
-    name?: string;
-    label?: string;
-    props?: Array<any>;
-};
-export type sectionSchema = {
-    pageKey?: string;
-    pageSections?: Array<any>;
-};
-export type EditEmailRequestSchema = {
-    email?: string;
-};
-export type SendVerificationLinkMobileRequestSchema = {
-    verified?: boolean;
-    active?: boolean;
-    countryCode?: string;
-    phone?: string;
-    primary?: boolean;
-};
-export type EditMobileRequestSchema = {
-    countryCode?: string;
-    phone?: string;
-};
-export type EditProfileRequestSchema = {
-    firstName?: string;
-    lastName?: string;
-    mobile?: string;
-    email?: string;
-    gender?: string;
-    dob?: string;
-    profilePicUrl?: string;
-    androidHash?: string;
-    sender?: string;
-    registerToken?: string;
-};
-export type SendEmailOtpRequestSchema = {
-    email?: string;
-    action?: string;
-    token?: string;
-    registerToken?: string;
-};
-export type VerifyOtpRequestSchema = {
-    requestId?: string;
-    registerToken?: string;
-    otp?: string;
-};
-export type SendMobileOtpRequestSchema = {
-    mobile?: string;
-    countryCode?: string;
-    action?: string;
-    token?: string;
-    androidHash?: string;
-    force?: string;
-};
-export type UpdatePasswordRequestSchema = {
-    oldPassword?: string;
-    newPassword?: string;
-};
-export type FormRegisterRequestSchema = {
-    firstName?: string;
-    lastName?: string;
-    gender?: string;
-    email?: string;
-    password?: string;
-    phone?: any;
-    registerToken?: string;
-};
-export type TokenRequestBodySchema = {
-    token?: string;
-};
-export type ForgotPasswordRequestSchema = {
-    code?: string;
-    password?: string;
-};
-export type CodeRequestBodySchema = {
-    code?: string;
-};
-export type SendResetPasswordEmailRequestSchema = {
-    email?: string;
-    gRecaptchaResponse?: string;
-};
-export type PasswordLoginRequestSchema = {
-    gRecaptchaResponse?: string;
-    password?: string;
-    username?: string;
-};
-export type SendOtpRequestSchema = {
-    countryCode?: string;
-    gRecaptchaResponse?: string;
-    mobile?: string;
-};
-export type OAuthRequestSchema = {
-    isSignedIn?: boolean;
-    oauth2?: any;
-    profile?: any;
-};
-export type AuthSuccess = {
-    registerToken?: string;
-    userExists?: boolean;
-    user?: any;
-};
-export type SendOtpResponse = {
-    resendTimer?: number;
-    resendToken?: string;
-    success?: boolean;
-    requestId?: string;
-    message?: string;
-    mobile?: string;
-    countryCode?: string;
-};
-export type LoginSuccess = {
-    user?: UserSchema;
-};
-export type VerifyOtpSuccess = {
-    user?: UserSchema;
-    userExists?: boolean;
-};
-export type ResetPasswordSuccess = {
-    status?: string;
-};
-export type RegisterFormSuccess = {
-    resendTimer?: number;
-    resendToken?: string;
-    success?: boolean;
-    requestId?: string;
-    message?: string;
-    mobile?: string;
-    countryCode?: string;
-};
-export type VerifyEmailSuccess = {
-    message?: string;
-};
-export type HasPasswordSuccess = {
-    result?: boolean;
-};
-export type LogoutSuccess = {
-    logout?: boolean;
-};
-export type OtpSuccess = {
-    resendTimer?: number;
-    resendToken?: string;
-    success?: boolean;
-    requestId?: string;
-    message?: string;
-    mobile?: string;
-    countryCode?: string;
-};
-export type EmailOtpSuccess = {
-    resendToken?: string;
-};
-export type SessionListSuccess = {
-    sessions?: Array<string>;
-};
-export type VerifyMobileOTPSuccess = {
-    user?: UserSchema;
-    verifyMobileLink?: boolean;
-};
-export type VerifyEmailOTPSuccess = {
-    user?: UserSchema;
-    verifyEmailLink?: boolean;
-};
-export type SendMobileVerifyLinkSuccess = {
-    verifyMobileLink?: boolean;
-};
-export type SendEmailVerifyLinkSuccess = {
-    verifyEmailLink?: boolean;
-};
-export type UserSearchResponseSchema = {
-    users?: Array<UserSchema>;
-};
-export type CustomerListResponseSchema = {
-    items?: Array<UserSchema>;
-    page?: PaginationSchema;
-};
-export type PlatformSchema = {
-    display?: string;
-    lookAndFeel?: any;
-    updatedAt?: string;
-    active?: boolean;
-    forgotPassword?: boolean;
-    login?: any;
-    skipCaptcha?: boolean;
-    name?: string;
-    meta?: any;
-    id?: string;
-    social?: any;
-    requiredFields?: any;
-    registerRequiredFields?: any;
-    skipLogin?: boolean;
-    flashCard?: any;
-    subtext?: string;
-    socialTokens?: any;
-    createdAt?: string;
-    register?: boolean;
-};
-export type ApplicationLegal = {
-    application?: string;
-    tnc?: string;
-    policy?: string;
-    faq?: Array<any>;
-    id?: string;
-    updatedAt?: string;
-    createdAt?: string;
-    v?: number;
-};
-export type Seo = {
-    app: string;
-    robotsTxt?: string;
-    sitemapEnabled?: boolean;
-    customMetaTags?: Array<any>;
-    details?: any;
-};
-export type StorefrontAnnouncement = {
-    announcements?: any;
-    refreshRate?: number;
-    refreshPages?: Array<string>;
-};
-export type AdminAnnouncementSchema = {
-    id?: string;
-    platform?: Array<string>;
-    title?: string;
-    announcement?: string;
-    pages?: Array<any>;
-    editorMeta?: any;
-    author?: any;
-    createdAt?: string;
-    app?: string;
-    modifiedAt?: string;
-    schedule?: any;
-};
-export type ScheduleSchema = {
-    schedule?: any;
-    published?: boolean;
-};
-export type BlogGetResponse = {
-    items?: Array<any>;
-    page?: any;
-};
-export type ResourceContent = {
-    type?: string;
-    value?: string;
-};
-export type Asset = {
-    secureUrl?: string;
-};
-export type Author = {
-    designation?: string;
-    id?: string;
-    name?: string;
-};
-export type BlogSchema = {
-    id?: Array<any>;
-    schedule?: string;
-    application?: string;
-    archived?: boolean;
-    author?: any;
-    content?: Array<ResourceContent>;
-    featureImage?: any;
-    published?: boolean;
-    readingTime?: string;
-    slug?: string;
-    tags?: Array<string>;
-    title?: string;
-    dateMeta?: any;
-};
-export type BlogRequest = {
-    schedule?: string;
-    application?: string;
-    author?: any;
-    content?: Array<ResourceContent>;
-    featureImage?: any;
-    published?: boolean;
-    readingTime?: string;
-    slug?: string;
-    tags?: Array<string>;
-    title?: string;
-};
-export type GetAnnouncementListSchema = {
-    items?: Array<AdminAnnouncementSchema>;
-};
-export type CreateAnnouncementSchema = {
-    message?: string;
-    data?: AdminAnnouncementSchema;
-};
-export type FaqSchema = {
-    slug?: string;
-    application?: string;
-    v?: number;
-    id?: string;
-    question?: string;
-    answer?: string;
-};
-export type CreateFaqResponseSchema = {
-    faq?: any;
-};
-export type CreateFaqSchema = {
-    faq?: any;
-};
-export type GetFaqSchema = {
-    faqs?: Array<any>;
-};
-export type UpdateFaqCategoryRequestSchema = {
-    category?: any;
-};
-export type CreateFaqCategoryRequestSchema = {
-    category?: any;
-};
-export type CreateFaqCategorySchema = {
-    category?: any;
-};
-export type GetFaqCategoriesSchema = {
-    categories?: Array<any>;
-};
-export type GetFaqCategoryByIdOrSlugSchema = {
-    category?: any;
-};
-export type Navigation = {
-    name?: string;
-    slug?: string;
-    orientation?: string;
-    createdBy?: any;
-    dateMeta?: any;
-    id?: string;
-    position?: string;
-    application?: string;
-    platform?: string;
-    navigation?: NavigationRef;
-};
-export type NavigationRef = {
-    acl?: Array<any>;
-    localeLanguage?: any;
-    image?: string;
-    type?: string;
-    action?: any;
-    active?: boolean;
-    display?: string;
-    sortOrder?: number;
-    subNavigation?: any;
-};
-export type LandingPage = {
-    slug?: string;
-    action?: any;
-    platform?: Array<any>;
-    createdBy?: any;
-    dateMeta?: any;
-    id?: string;
-    application?: string;
-};
-export type Slideshow = {
-    id?: string;
-    slug?: string;
-    dateMeta?: any;
-    application?: string;
-    name?: string;
-    platform?: string;
-    configuration?: any;
-    media?: Array<any>;
-    active?: boolean;
-};
-export type AnnouncementsResponseSchema = {
-    announcements?: Array<any>;
-};
-export type FaqResponseSchema = {
-    faqs?: Array<Faq>;
-};
-export type UpdateHandpickedSchema = {
-    tag?: any;
-};
-export type RemoveHandpickedSchema = {
-    tags?: Array<string>;
-};
-export type TagsSchema = {
-    id?: string;
-    tags?: Array<any>;
-    application?: string;
-    v?: number;
-};
-export type CreateTagRequestSchema = {
-    tags?: Array<any>;
-};
-export type APIError = {
-    message?: string;
-    status?: number;
-    code?: string;
-    exception?: string;
-    info?: string;
-    requestId?: string;
-    stackTrace?: string;
-    meta?: any;
-};
-export type Faq = {
-    id?: string;
-    question?: string;
-    answer?: string;
-    slug?: string;
-    application?: string;
-    v?: number;
-};
-export type LandingPageGetResponse = {
-    items?: Array<any>;
-    page?: any;
-};
-export type LandingPageSchema = {
-    slug?: string;
-    action?: any;
-    platform?: Array<string>;
-    createdBy?: any;
-    dateMeta?: any;
-    id?: string;
-    application?: string;
-    archived?: boolean;
-};
-export type LandingPageRequest = {
-    slug?: string;
-    action?: any;
-    platform?: Array<string>;
-};
-export type DefaultNavigationResponse = {
-    items?: Array<any>;
-};
-export type NavigationGetResponse = {
-    items?: Array<any>;
-    page?: any;
-};
-export type NavigationSchema = {
-    id?: string;
-    application?: string;
-    archived?: boolean;
-    name?: string;
-    slug?: string;
-    platform?: Array<string>;
-    orientation?: any;
-    navigation?: any;
-};
-export type NavigationRequest = {
-    name?: string;
-    slug?: string;
-    platform?: Array<string>;
-    orientation?: any;
-    navigation?: any;
-};
-export type CustomPage = {
-    data?: any;
-};
-export type CustomBlog = {
-    data?: any;
-};
-export type PageGetResponse = {
-    items?: Array<any>;
-    page?: any;
-};
-export type PageSpec = {
-    specifications?: Array<any>;
-};
-export type PageSpecItem = {
-    pageType?: string;
-    displayName?: string;
-    params?: Array<string>;
-    query?: Array<string>;
-};
-export type PageSchema = {
-    id?: Array<any>;
-    schedule?: string;
-    application?: Array<any>;
-    componentIds?: Array<string>;
-    content?: Array<PageContent>;
-    createdBy?: any;
-    dateMeta?: any;
-    description?: string;
-    featureImage?: any;
-    pageMeta?: Array<PageMeta>;
-    platform?: string;
-    published?: boolean;
-    slug?: string;
-    tags?: Array<string>;
-    title?: string;
-    type?: string;
-    visibility?: any;
-};
-export type CreatedBy = {
-    id?: string;
-};
-export type DateMeta = {
-    createdOn?: string;
-    modifiedOn?: string;
-};
-export type PageContent = {
-    type?: string;
-    value?: any;
-};
-export type PageMeta = {
-    key?: string;
-    value?: any;
-};
-export type PageRequest = {
-    schedule?: string;
-    application?: string;
-    author?: any;
-    content?: Array<ResourceContent>;
-    featureImage?: any;
-    published?: boolean;
-    readingTime?: string;
-    slug?: string;
-    tags?: Array<string>;
-    title?: string;
-};
-export type PagePublishRequest = {
-    publish?: boolean;
-};
-export type PageMetaSchema = {
-    systemPages?: Array<any>;
-    customPages?: Array<any>;
-    applicationId?: string;
-};
-export type SlideshowGetResponse = {
-    items?: Array<any>;
-    page?: any;
-};
-export type SlideshowSchema = {
-    id?: string;
-    slug?: string;
-    dateMeta?: any;
-    application?: string;
-    platform?: string;
-    configuration?: any;
-    media?: Array<any>;
-    active?: boolean;
-    archived?: boolean;
-};
-export type SlideshowRequest = {
-    slug?: string;
-    platform?: string;
-    configuration?: any;
-    media?: Array<any>;
-    active?: boolean;
-};
-export type Support = {
-    created?: boolean;
-    id?: string;
-    configType?: string;
-    application?: string;
-    createdAt?: string;
-    updatedAt?: string;
-    contact?: any;
-};
-export type CommunicationConsentReq = {
-    response?: string;
-    action?: string;
-    channel?: string;
-};
-export type CommunicationConsentRes = {
-    appId?: string;
-    userId?: string;
-    channels?: any;
-};
-export type CommunicationConsent = {
-    appId?: string;
-    userId?: string;
-    channels?: any;
-};
-export type PushtokenReq = {
-    action?: string;
-    bundleIdentifier?: string;
-    pushToken?: string;
-    uniqueDeviceId?: string;
-    type?: string;
-};
-export type PushtokenRes = {
-    id?: string;
-    bundleIdentifier?: string;
-    pushToken?: string;
-    uniqueDeviceId?: string;
-    type?: string;
-    platform?: string;
-    applicationId?: string;
-    userId?: string;
-    createdAt?: string;
-    updatedAt?: string;
-    expiredAt?: string;
-};
-export type QRCodeResp = {
-    link?: string;
-    svg?: string;
-};
-export type RedirectDevice = {
-    link: string;
-    type: string;
-};
-export type Redirects = {
-    ios?: RedirectDevice;
-    android?: RedirectDevice;
-    web?: any;
-    forceWeb?: boolean;
-};
-export type ShortLinkReq = {
-    title: string;
-    url: string;
-    hash?: string;
-    active?: string;
-    type?: string;
-    expireAt?: string;
-    enableTracking?: boolean;
-    redirects?: Redirects;
-};
-export type ShortLinkRes = {
-    title?: string;
-    url?: any;
-    createdBy?: string;
-    personalized?: string;
-    appRedirect?: string;
-    fallback?: string;
-    active?: boolean;
-    id?: string;
-    enableTracking?: boolean;
-    expireAt?: boolean;
-    application?: string;
-    userId?: boolean;
-    createdAt?: boolean;
-    updatedAt?: boolean;
-    redirects?: Redirects;
-};
-export type ShortLinkList = {
-    items?: Array<ShortLinkRes>;
-    size?: number;
-    itemTotal?: number;
-    current?: number;
-    hasNext?: string;
-    type?: string;
-};
 export type FailedResponse = {
     message: string;
 };
@@ -1837,977 +947,6 @@ export type CompleteResponse = {
     tags?: Array<string>;
     createdOn: string;
     modifiedOn: string;
-};
-export type ApplicationAboutResponse = {
-    applicationInfo?: any;
-};
-export type AppVersionRequest = {
-    application: ApplicationVersionRequest;
-    device: Device;
-    locale?: string;
-    timezone?: string;
-};
-export type ApplicationVersionRequest = {
-    id?: string;
-    name: string;
-    namespace?: string;
-    token?: string;
-    version: string;
-};
-export type Device = {
-    build?: number;
-    model?: string;
-    os: OS;
-};
-export type OS = {
-    name: string;
-    version?: string;
-};
-export type Language = {
-    name?: string;
-    code?: string;
-};
-export type LanguageResponse = {
-    items?: Array<Language>;
-};
-export type TokensResponse = {
-    tokens?: any;
-    id?: string;
-    application?: string;
-    createdAt?: string;
-    updatedAt?: string;
-    v?: number;
-};
-export type AppStaffResponse = {
-    staffUsers?: Array<AppStaff>;
-};
-export type UpdateDialog = {
-    type?: string;
-    interval?: number;
-};
-export type OrderingStoreSelectRequest = {
-    orderingStore: OrderingStoreSelect;
-};
-export type OrderingStoreSelect = {
-    id: string;
-    uid: number;
-    storeCode: string;
-};
-export type AppStaff = {
-    id?: string;
-    orderIncent?: boolean;
-    stores?: Array<number>;
-    application?: string;
-    title?: string;
-    user?: string;
-    employeeCode?: string;
-    firstName?: string;
-    lastName?: string;
-    profilePicUrl?: string;
-};
-export type ProductDetailFeature = {
-    similar?: Array<string>;
-    sellerSelection?: boolean;
-    updateProductMeta?: boolean;
-    requestProduct?: boolean;
-};
-export type LaunchPage = {
-    pageType?: string;
-    params?: string;
-    query?: string;
-};
-export type LandingPageFeature = {
-    launchPage?: LaunchPage;
-    continueAsGuest?: boolean;
-    loginBtnText?: string;
-    showDomainTextbox?: boolean;
-    showRegisterBtn?: boolean;
-};
-export type RegistrationPageFeature = {
-    askStoreAddress?: boolean;
-};
-export type AppFeature = {
-    productDetail?: ProductDetailFeature;
-    landingPage?: LandingPageFeature;
-    registrationPage?: RegistrationPageFeature;
-    homePage?: any;
-    common?: any;
-    cart?: any;
-    qr?: any;
-    pcr?: any;
-    order?: any;
-    id?: string;
-    app?: string;
-    createdAt?: string;
-    updatedAt?: string;
-    v?: number;
-};
-export type AppFeatureRequest = {
-    feature?: AppFeature;
-};
-export type AppFeatureResponse = {
-    feature?: AppFeature;
-};
-export type Currency = {
-    id?: string;
-    isActive?: boolean;
-    name?: string;
-    code?: string;
-    createdAt?: string;
-    updatedAt?: string;
-    decimalDigits?: number;
-    symbol?: string;
-};
-export type Domain = {
-    verified?: boolean;
-    isPrimary?: boolean;
-    isDefault?: boolean;
-    isShortlink?: boolean;
-    id?: string;
-    name?: string;
-};
-export type ApplicationWebsite = {
-    enabled?: boolean;
-    basepath?: string;
-};
-export type ApplicationCors = {
-    domains?: Array<string>;
-};
-export type ApplicationAuth = {
-    enabled?: boolean;
-};
-export type ApplicationRedirections = {
-    from?: string;
-    redirectTo?: string;
-    type?: string;
-};
-export type ApplicationMeta = {
-    name?: string;
-    value?: string;
-};
-export type SecureUrl = {
-    secureUrl?: string;
-};
-export type Application = {
-    website?: ApplicationWebsite;
-    cors?: ApplicationCors;
-    auth?: ApplicationAuth;
-    description?: string;
-    channelType?: string;
-    cacheTtl?: number;
-    isInternal?: boolean;
-    isActive?: boolean;
-    id?: string;
-    name?: string;
-    owner?: string;
-    companyId?: number;
-    token?: string;
-    redirections?: Array<ApplicationRedirections>;
-    meta?: Array<ApplicationMeta>;
-    createdAt?: string;
-    updatedAt?: string;
-    v?: number;
-    banner?: SecureUrl;
-    logo?: SecureUrl;
-    favicon?: SecureUrl;
-    domains?: Array<Domain>;
-    appType?: string;
-    mobileLogo?: SecureUrl;
-    domain?: Domain;
-};
-export type NotFound = {
-    message?: string;
-};
-export type UnhandledError = {
-    message?: string;
-};
-export type InvalidPayloadRequest = {
-    message?: string;
-};
-export type SuccessMessageResponse = {
-    message?: string;
-};
-export type InventoryBrandRule = {
-    criteria?: string;
-    brands?: Array<number>;
-};
-export type StoreCriteriaRule = {
-    companies?: Array<number>;
-    brands?: Array<number>;
-};
-export type InventoryStoreRule = {
-    criteria?: string;
-    rules?: Array<StoreCriteriaRule>;
-    stores?: Array<number>;
-};
-export type InventoryPaymentConfig = {
-    modeOfPayment?: string;
-    source?: string;
-};
-export type StorePriorityRule = {
-    enabled?: boolean;
-    storetypeOrder?: Array<string>;
-};
-export type ArticleAssignmentRule = {
-    storePriority?: StorePriorityRule;
-};
-export type InventoryArticleAssignment = {
-    postOrderReassignment?: boolean;
-    enforcedStores?: Array<number>;
-    rules?: ArticleAssignmentRule;
-};
-export type CompanyAboutAddress = {
-    pincode?: number;
-    address1?: string;
-    address2?: string;
-    city?: string;
-    state?: string;
-    country?: string;
-    addressType?: string;
-};
-export type UserEmail = {
-    active?: boolean;
-    primary?: boolean;
-    verified?: boolean;
-    email?: string;
-};
-export type UserPhoneNumber = {
-    active?: boolean;
-    primary?: boolean;
-    verified?: boolean;
-    countryCode?: number;
-    phone?: string;
-};
-export type Pagination = {
-    type?: string;
-    size?: number;
-    current?: number;
-    hasNext?: boolean;
-    itemTotal?: number;
-};
-export type ApplicationInformation = {
-    address?: any;
-    support?: any;
-    socialLinks?: any;
-    links?: Array<any>;
-    copyrightText?: string;
-    id?: string;
-    businessHighlights?: Array<any>;
-    application?: string;
-    createdAt?: string;
-    updatedAt?: string;
-    v?: number;
-};
-export type ApplicationDetail = {
-    name: string;
-    description: string;
-    logo: SecureUrl;
-    mobileLogo: SecureUrl;
-    favicon: SecureUrl;
-    banner: SecureUrl;
-    domain?: Domain;
-    domains?: Array<Domain>;
-    id?: string;
-};
-export type CurrenciesResponse = {
-    items?: Array<Currency>;
-};
-export type OrderingStore = {
-    address?: any;
-    id?: string;
-    uid?: number;
-    name?: string;
-    displayName?: string;
-    storeType?: string;
-    storeCode?: string;
-    pincode?: number;
-    code?: string;
-};
-export type OrderingStores = {
-    page?: Pagination;
-    items?: Array<OrderingStore>;
-    deployedStores?: Array<number>;
-    allStores?: boolean;
-    enabled?: boolean;
-    type?: string;
-    id?: string;
-    app?: string;
-    v?: number;
-};
-export type AggregatorConfigDetail = {
-    sdk?: boolean;
-    key: string;
-    verifyApi?: string;
-    secret: string;
-    userId?: string;
-    api?: string;
-    configType: string;
-    pin?: string;
-    merchantId?: string;
-    merchantKey?: string;
-};
-export type AggregatorsConfigDetailResponse = {
-    mswipe?: AggregatorConfigDetail;
-    razorpay?: AggregatorConfigDetail;
-    simpl?: AggregatorConfigDetail;
-    success: boolean;
-    stripe?: AggregatorConfigDetail;
-    payumoney?: AggregatorConfigDetail;
-    ccavenue?: AggregatorConfigDetail;
-    rupifi?: AggregatorConfigDetail;
-    juspay?: AggregatorConfigDetail;
-    env: string;
-};
-export type ErrorCodeAndDescription = {
-    description: string;
-    code: string;
-};
-export type HttpErrorCodeAndResponse = {
-    success: boolean;
-    error: ErrorCodeAndDescription;
-};
-export type AttachCardRequest = {
-    refresh?: boolean;
-    cardId: string;
-};
-export type AttachCardsResponse = {
-    success: boolean;
-    message?: string;
-    data: any;
-};
-export type CardPaymentGateway = {
-    api?: string;
-    customerId?: string;
-    aggregator: string;
-};
-export type ActiveCardPaymentGatewayResponse = {
-    success: boolean;
-    message: string;
-    cards: CardPaymentGateway;
-};
-export type Card = {
-    aggregatorName: string;
-    cardName?: string;
-    expMonth?: number;
-    cardIsin?: string;
-    cardFingerprint?: string;
-    cardBrand?: string;
-    cardNumber?: string;
-    cardBrandImage?: string;
-    cardToken?: string;
-    cardIssuer?: string;
-    expired?: boolean;
-    expYear?: number;
-    cardReference?: string;
-    nickname?: string;
-    cardId?: string;
-    cardType?: string;
-};
-export type ListCardsResponse = {
-    success: boolean;
-    message: string;
-    data?: Array<Card>;
-};
-export type DeletehCardRequest = {
-    cardId: string;
-};
-export type DeleteCardsResponse = {
-    success: boolean;
-    message?: string;
-};
-export type ValidateCustomerRequest = {
-    phoneNumber: string;
-    transactionAmountInPaise: number;
-    aggregator: string;
-    payload: string;
-    merchantParams: any;
-};
-export type ValidateCustomerResponse = {
-    success: boolean;
-    message: string;
-    data: any;
-};
-export type ChargeCustomerRequest = {
-    amount: number;
-    aggregator: string;
-    verified?: boolean;
-    orderId: string;
-    transactionToken?: string;
-};
-export type ChargeCustomerResponse = {
-    deliveryAddressId?: string;
-    aggregator: string;
-    status: string;
-    cartId?: string;
-    success: boolean;
-    message: string;
-    orderId: string;
-};
-export type PaymentInitializationRequest = {
-    customerId: string;
-    merchantOrderId: string;
-    virtualId?: string;
-    method: string;
-    aggregatorOrderId: string;
-    aggregator: string;
-    pollingUrl: string;
-    razorpayPaymentId: string;
-    timeout: number;
-};
-export type PaymentInitializationResponse = {
-    customerId?: string;
-    virtualId?: string;
-    timeout?: number;
-    method: string;
-    aggregatorOrderId?: string;
-    amount?: number;
-    aggregator: string;
-    status?: string;
-    success: boolean;
-    pollingUrl: string;
-    currency?: string;
-    razorpayPaymentId?: string;
-    vpa?: string;
-    merchantOrderId: string;
-    bqrImage?: string;
-};
-export type PaymentStatusUpdateRequest = {
-    contact: string;
-    customerId: string;
-    method: string;
-    amount: number;
-    aggregator: string;
-    status: string;
-    email: string;
-    orderId: string;
-    currency: string;
-    vpa: string;
-    merchantOrderId: string;
-};
-export type PaymentStatusUpdateResponse = {
-    retry: boolean;
-    status: string;
-    aggregatorName: string;
-};
-export type AggregatorRoute = {
-    apiLink?: string;
-    paymentFlow?: string;
-    data?: any;
-};
-export type PaymentFlow = {
-    bqrRazorpay?: AggregatorRoute;
-    upiRazorpay?: AggregatorRoute;
-    fynd?: AggregatorRoute;
-    rupifi?: AggregatorRoute;
-    stripe?: AggregatorRoute;
-    razorpay?: AggregatorRoute;
-    payubiz?: AggregatorRoute;
-    juspay?: AggregatorRoute;
-    ccavenue?: AggregatorRoute;
-    simpl?: AggregatorRoute;
-};
-export type PaymentModeLogo = {
-    small: string;
-    large: string;
-};
-export type PaymentModeList = {
-    intentAppErrorList?: Array<string>;
-    cardBrand?: string;
-    cardNumber?: string;
-    expired?: boolean;
-    aggregatorName: string;
-    fyndVpa?: string;
-    cardIssuer?: string;
-    logoUrl?: PaymentModeLogo;
-    cardIsin?: string;
-    cardId?: string;
-    cardType?: string;
-    cardName?: string;
-    cardFingerprint?: string;
-    retryCount?: number;
-    name?: string;
-    cardBrandImage?: string;
-    displayName?: string;
-    code?: string;
-    expMonth?: number;
-    expYear?: number;
-    displayPriority?: number;
-    cardToken?: string;
-    intentFlow?: string;
-    merchantCode?: string;
-    timeout?: number;
-    cardReference?: string;
-    nickname?: string;
-};
-export type RootPaymentMode = {
-    list?: Array<PaymentModeList>;
-    aggregatorName?: string;
-    displayPriority: number;
-    name: string;
-    anonymousEnable?: boolean;
-    displayName: string;
-    addCardEnabled?: boolean;
-};
-export type PaymentOptionAndFlow = {
-    paymentFlows: PaymentFlow;
-    paymentOption: Array<RootPaymentMode>;
-};
-export type PaymentModeRouteResponse = {
-    success: boolean;
-    paymentOptions: PaymentOptionAndFlow;
-};
-export type OrderBeneficiaryDetails = {
-    isActive: boolean;
-    mobile?: boolean;
-    beneficiaryId: string;
-    subtitle: string;
-    accountNo: string;
-    transferMode: string;
-    accountHolder: string;
-    address: string;
-    branchName?: boolean;
-    bankName: string;
-    displayName: string;
-    email: string;
-    delightsUserName: string;
-    createdOn: string;
-    ifscCode: string;
-    comment?: boolean;
-    title: string;
-    id: number;
-    modifiedOn: string;
-};
-export type OrderBeneficiaryResponse = {
-    beneficiaries: Array<OrderBeneficiaryDetails>;
-};
-export type NotFoundResourceError = {
-    success: boolean;
-    description: string;
-    code: string;
-};
-export type IfscCodeResponse = {
-    success?: boolean;
-    branchName: string;
-    bankName: string;
-};
-export type ErrorCodeDescription = {
-    success: boolean;
-    description: string;
-    code: string;
-};
-export type AddBeneficiaryViaOtpVerificationRequest = {
-    requestId: string;
-    hashKey: string;
-    otp: string;
-};
-export type AddBeneficiaryViaOtpVerificationResponse = {
-    requestId: string;
-    hashKey: string;
-    otp: string;
-};
-export type WrongOtpError = {
-    success: string;
-    description: string;
-};
-export type BankDetails = {
-    accountHolder: string;
-    address: string;
-    branchName: string;
-    ifscCode: string;
-    bankName: string;
-    accountNo: string;
-    comment?: string;
-    mobile: string;
-    email: string;
-};
-export type AddBeneficiaryDetailsRequest = {
-    delights: boolean;
-    orderId: string;
-    shipmentId: string;
-    transferMode: string;
-    details: BankDetails;
-};
-export type RefundAccountResponse = {
-    success: boolean;
-    message: string;
-    data?: any;
-};
-export type WalletOtpRequest = {
-    countryCode: string;
-    mobile: boolean;
-};
-export type WalletOtpResponse = {
-    success?: boolean;
-    requestId: string;
-    isVerifiedFlag: string;
-};
-export type SetDefaultBeneficiaryRequest = {
-    orderId: string;
-    beneficiaryId: string;
-};
-export type SetDefaultBeneficiaryResponse = {
-    success?: boolean;
-    isBeneficiarySet: boolean;
-};
-export type OrderById = {
-    order: OrderSchema;
-};
-export type OrderList = {
-    orders: Array<OrderSchema>;
-    page: any;
-};
-export type ShipmentById = {
-    shipment: Shipments;
-};
-export type ShipmentReasons = {
-    reasons: Array<Reasons>;
-};
-export type ShipmentStatusUpdateBody = {
-    shipments: any;
-    forceTransition: boolean;
-    task: boolean;
-};
-export type ShipmentStatusUpdate = {
-    shipments: any;
-};
-export type ShipmentTrack = {
-    results: Array<Track>;
-};
-export type OrderSchema = {
-    orderId?: string;
-    breakupValues?: Array<BreakupValues>;
-    orderCreatedTime?: string;
-    shipments?: Array<Shipments>;
-    totalShipmentsInOrder?: number;
-    userInfo?: UserInfo;
-};
-export type PosOrderById = {
-    order: OrderSchema;
-};
-export type Bags = {
-    item?: any;
-    prices?: any;
-    promotionEffectiveDiscount?: number;
-    currentStatus?: any;
-    bagStatus?: Array<any>;
-    dates?: any;
-    id?: number;
-    status?: any;
-    type?: string;
-    financialBreakup?: Array<any>;
-    reasons?: Array<any>;
-    article?: any;
-    journeyType?: string;
-    currentOperationalStatus?: any;
-    displayName?: string;
-    entityType?: string;
-    brand?: any;
-    affiliateBagDetails?: any;
-    gstDetails?: any;
-    bagId?: number;
-    bagUpdateTime?: number;
-};
-export type BreakupValues = {
-    display?: string;
-    value?: number;
-    name?: string;
-};
-export type DeliveryAddress = {
-    pincode?: string;
-    landmark?: string;
-    contactPerson?: string;
-    phone?: string;
-    state?: string;
-    version?: string;
-    address1?: string;
-    createdAt?: string;
-    addressType?: string;
-    addressCategory?: string;
-    area?: string;
-    city?: string;
-    latitude?: number;
-    longitude?: number;
-    email?: string;
-    country?: string;
-    address2?: string;
-    updatedAt?: string;
-    name?: string;
-    address?: string;
-};
-export type FulfillingStore = {
-    address1?: string;
-    storeEmail?: string;
-    code?: string;
-    storeAddressJson?: any;
-    country?: string;
-    state?: string;
-    pincode?: string;
-    contactPerson?: string;
-    brandStoreTags?: Array<any>;
-    locationType?: string;
-    address2?: string;
-    isArchived?: boolean;
-    id?: number;
-    createdAt?: string;
-    isEnabledForRecon?: boolean;
-    city?: string;
-    meta?: any;
-    fulfillmentChannel?: string;
-    isActive?: boolean;
-    updatedAt?: string;
-    loginUsername?: string;
-    phone?: string;
-    packagingMaterialCount?: number;
-    name?: string;
-    companyId?: number;
-};
-export type Invoice = {
-    updatedDate?: string;
-    invoiceUrl?: string;
-    labelUrl?: string;
-};
-export type ProductItems = {
-    code?: string;
-    lastUpdatedAt?: string;
-    brand?: string;
-    image?: Array<any>;
-    l3Category?: number;
-    brandId?: number;
-    name?: string;
-    canCancel?: boolean;
-    size?: string;
-    slugKey?: string;
-    l3CategoryName?: string;
-    l2Category?: Array<any>;
-    id?: number;
-    canReturn?: boolean;
-    l1Category?: Array<any>;
-    attributes?: any;
-};
-export type ShipmentMeta = {
-    timestamp?: any;
-    bagWeight?: any;
-    dpOptions?: any;
-    orderType?: string;
-    sameStoreAvailable?: boolean;
-    assignDpFromSb?: boolean;
-    dpId?: string;
-    weight?: number;
-    formatted?: any;
-    debugInfo?: any;
-    dpSortKey?: string;
-    packagingName?: string;
-};
-export type Prices = {
-    amountPaid?: number;
-    priceMarked?: number;
-    codCharges?: number;
-    discount?: number;
-    deliveryCharge?: number;
-    fyndCredits?: number;
-    cashback?: number;
-    priceEffective?: number;
-    valueOfGood?: number;
-    refundAmount?: number;
-    couponValue?: number;
-    cashbackApplied?: number;
-    refundCredit?: number;
-};
-export type Promise = {
-    timestamp?: any;
-};
-export type Reasons = {
-    reasonText?: string;
-    showTextArea?: boolean;
-    feedbackType?: string;
-    flow?: string;
-    reasonId?: number;
-    priority?: number;
-};
-export type ShipmentStatus = {
-    title?: string;
-    hexCode?: number;
-};
-export type ShipmentUserInfo = {
-    gender?: string;
-    mobile?: string;
-    firstName?: string;
-    lastName?: string;
-};
-export type Shipments = {
-    orderId?: string;
-    breakupValues?: Array<BreakupValues>;
-    enableCanReturn?: boolean;
-    paymentModeSource?: string;
-    shipmentImages?: Array<string>;
-    trackUrl?: string;
-    trakingNo?: string;
-    trackingDetails?: Array<TrackingDetails>;
-    beneficiaryDetails?: boolean;
-    canReturn?: boolean;
-    enableTracking?: boolean;
-    prices?: Prices;
-    needHelpUrl?: string;
-    shipmentId?: string;
-    totalBags?: number;
-    items?: Array<ProductItems>;
-    deliveryAddress?: DeliveryAddress;
-    paymentStatus?: string;
-    invoice?: Invoice;
-    comment?: string;
-    orderType?: string;
-    promise?: Promise;
-    fulfillingStore?: FulfillingStore;
-    totalItems?: number;
-    bags?: Array<Bags>;
-    canCancel?: boolean;
-    paymentLogo?: string;
-    shipmentCreatedAt?: string;
-    shipmentStatus?: ShipmentStatus;
-    userInfo?: ShipmentUserInfo;
-    meta?: ShipmentMeta;
-};
-export type Track = {
-    awb?: string;
-    updatedAt?: string;
-    lastLocationRecievedAt?: string;
-    reason?: string;
-    shipmentType?: string;
-    status?: string;
-    updatedTime?: string;
-    accountName?: string;
-};
-export type TrackingDetails = {
-    isCurrent?: boolean;
-    status?: string;
-    time?: string;
-    isPassed?: string;
-};
-export type UserInfo = {
-    gender?: string;
-    mobile?: string;
-    name?: string;
-    email?: string;
-};
-export type ApefaceApiError = {
-    message?: string;
-};
-export type Article = {
-    id?: string;
-    points?: number;
-    price?: number;
-};
-export type CatalogueOrderRequest = {
-    articles?: Array<Article>;
-};
-export type CatalogueOrderResponse = {
-    articles?: Array<Article>;
-};
-export type CursorPage = {
-    hasNext?: boolean;
-    hasPrevious?: boolean;
-    itemTotal?: number;
-    nextId?: string;
-    type?: string;
-};
-export type Discount = {
-    absolute?: number;
-    currency?: string;
-    displayAbsolute?: string;
-    displayPercent?: string;
-    percent?: number;
-};
-export type Error = {
-    code?: number;
-    exception?: string;
-    info?: string;
-    message?: string;
-};
-export type Offer = {
-    schedule?: string;
-    active?: boolean;
-    applicationId?: string;
-    bannerImage?: Asset;
-    createdAt?: string;
-    infoAction?: Action;
-    name?: string;
-    rule?: any;
-    share?: ShareMessages;
-    subText?: string;
-    text?: string;
-    type?: string;
-    updatedAt?: string;
-    updatedBy?: string;
-    url?: string;
-};
-export type OrderDiscountRequest = {
-    currency?: string;
-    orderAmount: number;
-};
-export type OrderDiscountResponse = {
-    appliedRuleBucket?: OrderDiscountRuleBucket;
-    baseDiscount?: Discount;
-    discount?: Discount;
-    orderAmount?: number;
-    points?: number;
-};
-export type OrderDiscountRuleBucket = {
-    high?: number;
-    low?: number;
-    max?: number;
-    value?: number;
-    valueType?: string;
-};
-export type PointsHistory = {
-    id?: string;
-    applicationId?: string;
-    claimed?: boolean;
-    createdAt?: string;
-    expiresOn?: string;
-    meta?: string;
-    points?: number;
-    remainingPoints?: number;
-    text1?: string;
-    text2?: string;
-    text3?: string;
-    txnName?: string;
-    updatedAt?: string;
-    userId?: string;
-};
-export type PointsHistoryResponse = {
-    history?: Array<PointsHistory>;
-    page?: CursorPage;
-};
-export type PointsResponse = {
-    points?: number;
-};
-export type RedeemReferralCodeRequest = {
-    deviceId: string;
-    referralCode: string;
-};
-export type RedeemReferralCodeResponse = {
-    message?: string;
-    points?: number;
-    redeemed?: boolean;
-    referrerId?: string;
-    referrerInfo?: string;
-};
-export type ReferralDetailsResponse = {
-    referral?: Offer;
-    referrerInfo?: string;
-    share?: ShareMessages;
-    user?: any;
-};
-export type ShareMessages = {
-    email?: string;
-    facebook?: string;
-    fallback?: string;
-    message?: string;
-    messenger?: string;
-    sms?: string;
-    text?: string;
-    twitter?: string;
-    whatsapp?: string;
 };
 export type Access = {
     answer?: boolean;
@@ -3064,40 +1203,13 @@ export type PickupStoreDetail = {
 export type StoreDetailsResponse = {
     items?: Array<PickupStoreDetail>;
 };
-export type GetPincodeCityResponse = {
-    requestUuid: string;
-    stormbreakerUuid: string;
-    success: boolean;
-    data: Array<any>;
-};
-export type GetTatProductReqBody = {
-    locationDetails: Array<any>;
-    source: string;
-    toPincode: string;
-    action: string;
-    identifier: string;
-    journey: string;
-};
-export type GetTatProductResponse = {
-    locationDetails: Array<any>;
-    requestUuid: string;
-    error: any;
-    toCity: string;
-    source: string;
-    toPincode: string;
-    action: string;
-    stormbreakerUuid: string;
-    success: boolean;
-    identifier: string;
-    journey: string;
-};
 /**
         @typedef Media
         
         
-        @property { string } [type]
-        
         @property { string } [url]
+        
+        @property { string } [type]
         
          
     */
@@ -3115,9 +1227,9 @@ export type GetTatProductResponse = {
         @typedef ProductListingAction
         
         
-        @property { string } [type]
-        
         @property { ProductListingActionPage } [page]
+        
+        @property { string } [type]
         
          
     */
@@ -3125,13 +1237,13 @@ export type GetTatProductResponse = {
         @typedef ProductBrand
         
         
-        @property { Media } [logo]
-        
-        @property { string } [name]
+        @property { ProductListingAction } [action]
         
         @property { number } [uid]
         
-        @property { ProductListingAction } [action]
+        @property { Media } [logo]
+        
+        @property { string } [name]
         
          
     */
@@ -3161,49 +1273,49 @@ export type GetTatProductResponse = {
         @typedef ProductDetail
         
         
+        @property { boolean } [hasVariant]
+        
         @property { string } [name]
         
-        @property { Array<Media> } [medias]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [itemType]
-        
-        @property { string } [description]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { number } [uid]
-        
-        @property { string } [type]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        @property { string } [shortDescription]
         
         @property { string } [imageNature]
         
-        @property { Array<string> } [tryouts]
+        @property { string } [itemType]
         
-        @property { Array<string> } [similars]
+        @property { string } [productOnlineDate]
         
-        @property { boolean } [hasVariant]
+        @property { Object } [attributes]
         
         @property { string } [teaserTag]
         
         @property { string } [color]
         
-        @property { string } slug
+        @property { string } [type]
         
-        @property { Array<string> } [highlights]
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { number } [ratingCount]
         
         @property { number } [rating]
         
-        @property { string } [productOnlineDate]
+        @property { string } [description]
         
-        @property { string } [shortDescription]
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { string } slug
+        
+        @property { number } [uid]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { Array<string> } [similars]
         
          
     */
@@ -3216,12 +1328,20 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef ProductSizeStores
+        
+        
+        @property { number } [count]
+        
+         
+    */
+/**
         @typedef Price
         
         
-        @property { string } [currencyCode]
-        
         @property { number } [max]
+        
+        @property { string } [currencyCode]
         
         @property { string } [currencySymbol]
         
@@ -3233,17 +1353,9 @@ export type GetTatProductResponse = {
         @typedef ProductListingPrice
         
         
-        @property { Price } [marked]
-        
         @property { Price } [effective]
         
-         
-    */
-/**
-        @typedef ProductSizeStores
-        
-        
-        @property { number } [count]
+        @property { Price } [marked]
         
          
     */
@@ -3251,13 +1363,13 @@ export type GetTatProductResponse = {
         @typedef ProductSize
         
         
-        @property { number } [quantity]
-        
-        @property { boolean } [isAvailable]
-        
         @property { string } [value]
         
         @property { string } [display]
+        
+        @property { number } [quantity]
+        
+        @property { boolean } [isAvailable]
         
          
     */
@@ -3265,17 +1377,29 @@ export type GetTatProductResponse = {
         @typedef ProductSizes
         
         
-        @property { string } [discount]
-        
-        @property { Object } [sizeChart]
-        
-        @property { boolean } [sellable]
+        @property { ProductSizeStores } [stores]
         
         @property { ProductListingPrice } [price]
         
-        @property { ProductSizeStores } [stores]
+        @property { boolean } [sellable]
+        
+        @property { Object } [sizeChart]
         
         @property { Array<ProductSize> } [sizes]
+        
+        @property { string } [discount]
+        
+         
+    */
+/**
+        @typedef ProductStockPrice
+        
+        
+        @property { number } [effective]
+        
+        @property { string } [currency]
+        
+        @property { number } [marked]
         
          
     */
@@ -3285,33 +1409,9 @@ export type GetTatProductResponse = {
         
         @property { number } [count]
         
-        @property { string } [name]
-        
         @property { number } [uid]
         
-         
-    */
-/**
-        @typedef Seller
-        
-        
-        @property { number } [count]
-        
         @property { string } [name]
-        
-        @property { number } [uid]
-        
-         
-    */
-/**
-        @typedef ProductStockPrice
-        
-        
-        @property { string } [currency]
-        
-        @property { number } [marked]
-        
-        @property { number } [effective]
         
          
     */
@@ -3326,38 +1426,70 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef Seller
+        
+        
+        @property { number } [count]
+        
+        @property { number } [uid]
+        
+        @property { string } [name]
+        
+         
+    */
+/**
         @typedef ProductSizePriceResponse
         
         
-        @property { string } [discount]
-        
-        @property { Store } [store]
-        
-        @property { number } [sellerCount]
-        
-        @property { string } [articleId]
+        @property { ProductStockPrice } [pricePerPrice]
         
         @property { Object } [set]
         
-        @property { Seller } [seller]
+        @property { number } [quantity]
         
-        @property { string } [specialBadge]
+        @property { Store } [store]
         
         @property { ProductStockPrice } [price]
         
-        @property { ProductStockPrice } [pricePerPrice]
-        
-        @property { number } [pincode]
+        @property { Array<number> } [longLat]
         
         @property { ArticleAssignment } [articleAssignment]
         
-        @property { number } [quantity]
-        
-        @property { Array<number> } [longLat]
-        
         @property { string } [itemType]
         
+        @property { Seller } [seller]
+        
+        @property { string } [articleId]
+        
+        @property { string } [specialBadge]
+        
+        @property { string } [discount]
+        
+        @property { number } [sellerCount]
+        
         @property { Array<Object> } [strategyWiseListing]
+        
+        @property { number } [pincode]
+        
+         
+    */
+/**
+        @typedef Page
+        
+        
+        @property { string } [type]
+        
+        @property { number } [current]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { number } [size]
+        
+        @property { boolean } [hasNext]
+        
+        @property { number } [itemTotal]
+        
+        @property { string } [nextId]
         
          
     */
@@ -3367,29 +1499,9 @@ export type GetTatProductResponse = {
         
         @property { boolean } [isSelected]
         
-        @property { string } [name]
-        
         @property { string } [value]
         
-         
-    */
-/**
-        @typedef Page
-        
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { number } [itemTotal]
-        
-        @property { number } [size]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
-        
-        @property { boolean } [hasNext]
+        @property { string } [name]
         
          
     */
@@ -3397,11 +1509,11 @@ export type GetTatProductResponse = {
         @typedef ProductSizeSellersResponse
         
         
+        @property { Page } page
+        
         @property { Array<ProductSizeSellerFilter> } [sortOn]
         
         @property { Array<ProductSizePriceResponse> } [items]
-        
-        @property { Page } page
         
          
     */
@@ -3421,9 +1533,9 @@ export type GetTatProductResponse = {
         @typedef ProductsComparisonResponse
         
         
-        @property { Array<AttributeDetail> } [attributesMetadata]
-        
         @property { Array<ProductDetail> } [items]
+        
+        @property { Array<AttributeDetail> } [attributesMetadata]
         
          
     */
@@ -3431,11 +1543,11 @@ export type GetTatProductResponse = {
         @typedef ProductCompareResponse
         
         
-        @property { Array<AttributeDetail> } [attributesMetadata]
+        @property { Array<ProductDetail> } [items]
         
         @property { string } [title]
         
-        @property { Array<ProductDetail> } [items]
+        @property { Array<AttributeDetail> } [attributesMetadata]
         
         @property { string } [subtitle]
         
@@ -3453,9 +1565,9 @@ export type GetTatProductResponse = {
         @typedef ProductSimilarItem
         
         
-        @property { string } [title]
-        
         @property { Array<ProductDetail> } [items]
+        
+        @property { string } [title]
         
         @property { string } [subtitle]
         
@@ -3473,11 +1585,7 @@ export type GetTatProductResponse = {
         @typedef ProductVariantItemResponse
         
         
-        @property { string } [slug]
-        
-        @property { boolean } [isAvailable]
-        
-        @property { number } [uid]
+        @property { ProductListingAction } [action]
         
         @property { string } [name]
         
@@ -3485,11 +1593,15 @@ export type GetTatProductResponse = {
         
         @property { Array<Media> } [medias]
         
+        @property { boolean } [isAvailable]
+        
+        @property { string } [slug]
+        
+        @property { number } [uid]
+        
         @property { string } [colorName]
         
         @property { string } [color]
-        
-        @property { ProductListingAction } [action]
         
          
     */
@@ -3497,11 +1609,11 @@ export type GetTatProductResponse = {
         @typedef ProductVariantResponse
         
         
-        @property { Array<ProductVariantItemResponse> } [items]
-        
         @property { string } [header]
         
         @property { string } [displayType]
+        
+        @property { Array<ProductVariantItemResponse> } [items]
         
          
     */
@@ -3517,13 +1629,13 @@ export type GetTatProductResponse = {
         @typedef StoreDetail
         
         
-        @property { string } [name]
-        
-        @property { number } [id]
+        @property { string } [city]
         
         @property { string } [code]
         
-        @property { string } [city]
+        @property { number } [id]
+        
+        @property { string } [name]
         
          
     */
@@ -3531,9 +1643,9 @@ export type GetTatProductResponse = {
         @typedef CompanyDetail
         
         
-        @property { string } [name]
-        
         @property { number } [id]
+        
+        @property { string } [name]
         
          
     */
@@ -3541,23 +1653,23 @@ export type GetTatProductResponse = {
         @typedef ProductStockStatusItem
         
         
+        @property { number } [quantity]
+        
         @property { StoreDetail } [store]
-        
-        @property { string } [uid]
-        
-        @property { Seller } [seller]
-        
-        @property { CompanyDetail } [company]
         
         @property { ProductStockPrice } [price]
         
+        @property { Object } [identifier]
+        
         @property { string } [size]
         
-        @property { Object } [identifier]
+        @property { Seller } [seller]
         
         @property { number } [itemId]
         
-        @property { number } [quantity]
+        @property { string } [uid]
+        
+        @property { CompanyDetail } [company]
         
          
     */
@@ -3573,9 +1685,77 @@ export type GetTatProductResponse = {
         @typedef ProductStockPolling
         
         
+        @property { Page } page
+        
         @property { Array<ProductStockStatusItem> } [items]
         
-        @property { Page } page
+         
+    */
+/**
+        @typedef ProductSortOn
+        
+        
+        @property { string } [value]
+        
+        @property { boolean } [isSelected]
+        
+        @property { string } [name]
+        
+         
+    */
+/**
+        @typedef ProductListingDetail
+        
+        
+        @property { boolean } [hasVariant]
+        
+        @property { string } [name]
+        
+        @property { string } [shortDescription]
+        
+        @property { string } [imageNature]
+        
+        @property { string } [itemType]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [teaserTag]
+        
+        @property { string } [color]
+        
+        @property { string } [type]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { boolean } [sellable]
+        
+        @property { number } [ratingCount]
+        
+        @property { number } [rating]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { string } [description]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { string } slug
+        
+        @property { number } [uid]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { Array<string> } [similars]
+        
+        @property { string } [discount]
         
          
     */
@@ -3583,13 +1763,13 @@ export type GetTatProductResponse = {
         @typedef ProductFiltersKey
         
         
-        @property { string } [logo]
-        
-        @property { string } name
+        @property { string } display
         
         @property { string } [kind]
         
-        @property { string } display
+        @property { string } [logo]
+        
+        @property { string } name
         
          
     */
@@ -3597,29 +1777,29 @@ export type GetTatProductResponse = {
         @typedef ProductFiltersValue
         
         
-        @property { number } [selectedMax]
-        
-        @property { string } display
-        
-        @property { string } [currencyCode]
-        
-        @property { string } [currencySymbol]
+        @property { string } [queryFormat]
         
         @property { number } [selectedMin]
         
-        @property { number } [max]
-        
         @property { string } value
         
-        @property { boolean } isSelected
+        @property { number } [min]
         
         @property { string } [displayFormat]
         
         @property { number } [count]
         
-        @property { string } [queryFormat]
+        @property { number } [max]
         
-        @property { number } [min]
+        @property { number } [selectedMax]
+        
+        @property { string } [currencySymbol]
+        
+        @property { boolean } isSelected
+        
+        @property { string } display
+        
+        @property { string } [currencyCode]
         
          
     */
@@ -3634,84 +1814,16 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef ProductSortOn
-        
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [name]
-        
-        @property { string } [value]
-        
-         
-    */
-/**
-        @typedef ProductListingDetail
-        
-        
-        @property { string } [discount]
-        
-        @property { string } [name]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [itemType]
-        
-        @property { string } [description]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { number } [uid]
-        
-        @property { string } [type]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { string } [imageNature]
-        
-        @property { boolean } [sellable]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { Array<string> } [similars]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { string } [teaserTag]
-        
-        @property { string } [color]
-        
-        @property { string } slug
-        
-        @property { Array<string> } [highlights]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { number } [rating]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { string } [shortDescription]
-        
-         
-    */
-/**
         @typedef ProductListingResponse
         
         
-        @property { Array<ProductFilters> } [filters]
+        @property { Page } page
         
         @property { Array<ProductSortOn> } [sortOn]
         
         @property { Array<ProductListingDetail> } [items]
         
-        @property { Page } page
+        @property { Array<ProductFilters> } [filters]
         
          
     */
@@ -3729,21 +1841,21 @@ export type GetTatProductResponse = {
         @typedef BrandItem
         
         
+        @property { ProductListingAction } [action]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { Array<string> } [departments]
+        
+        @property { string } [name]
+        
         @property { string } [discount]
         
         @property { string } [slug]
         
         @property { number } [uid]
         
-        @property { ImageUrls } [banners]
-        
-        @property { string } [name]
-        
         @property { Media } [logo]
-        
-        @property { Array<string> } [departments]
-        
-        @property { ProductListingAction } [action]
         
          
     */
@@ -3751,9 +1863,9 @@ export type GetTatProductResponse = {
         @typedef BrandListingResponse
         
         
-        @property { Array<BrandItem> } [items]
-        
         @property { Page } page
+        
+        @property { Array<BrandItem> } [items]
         
          
     */
@@ -3763,11 +1875,11 @@ export type GetTatProductResponse = {
         
         @property { ImageUrls } [banners]
         
-        @property { string } [name]
-        
         @property { number } [uid]
         
         @property { Media } [logo]
+        
+        @property { string } [name]
         
          
     */
@@ -3775,9 +1887,9 @@ export type GetTatProductResponse = {
         @typedef DepartmentIdentifier
         
         
-        @property { string } [slug]
-        
         @property { number } [uid]
+        
+        @property { string } [slug]
         
          
     */
@@ -3785,17 +1897,17 @@ export type GetTatProductResponse = {
         @typedef CategoryItems
         
         
+        @property { ImageUrls } [banners]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { string } [name]
+        
         @property { string } [slug]
         
         @property { Array<Object> } [childs]
         
         @property { number } [uid]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
         
          
     */
@@ -3803,9 +1915,9 @@ export type GetTatProductResponse = {
         @typedef DepartmentCategoryTree
         
         
-        @property { string } [department]
-        
         @property { Array<CategoryItems> } [items]
+        
+        @property { string } [department]
         
          
     */
@@ -3825,11 +1937,11 @@ export type GetTatProductResponse = {
         
         @property { ImageUrls } [banners]
         
-        @property { string } [name]
-        
         @property { number } [uid]
         
         @property { Media } [logo]
+        
+        @property { string } [name]
         
          
     */
@@ -3837,11 +1949,11 @@ export type GetTatProductResponse = {
         @typedef HomeListingResponse
         
         
+        @property { Page } page
+        
         @property { string } [message]
         
         @property { Array<ProductListingDetail> } [items]
-        
-        @property { Page } page
         
          
     */
@@ -3849,13 +1961,13 @@ export type GetTatProductResponse = {
         @typedef Department
         
         
-        @property { string } [slug]
-        
-        @property { number } [uid]
-        
         @property { string } [name]
         
         @property { number } [priorityOrder]
+        
+        @property { string } [slug]
+        
+        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -3883,7 +1995,7 @@ export type GetTatProductResponse = {
         @typedef AutocompletePage
         
         
-        @property { Query } [query]
+        @property { Query } [pageQuery]
         
         @property { string } [type]
         
@@ -3893,9 +2005,9 @@ export type GetTatProductResponse = {
         @typedef Action
         
         
-        @property { string } [type]
-        
         @property { AutocompletePage } [page]
+        
+        @property { string } [type]
         
          
     */
@@ -3903,13 +2015,13 @@ export type GetTatProductResponse = {
         @typedef AutocompleteItem
         
         
-        @property { string } [display]
-        
-        @property { Media } [logo]
+        @property { Action } [action]
         
         @property { string } [type]
         
-        @property { Action } [action]
+        @property { Media } [logo]
+        
+        @property { string } [display]
         
          
     */
@@ -3922,14 +2034,58 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef GetCollectionDetailNest
+        
+        
+        @property { boolean } [allowSort]
+        
+        @property { string } [name]
+        
+        @property { Object } [badge]
+        
+        @property { Object } [query]
+        
+        @property { Media } [logo]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { string } [type]
+        
+        @property { string } [appId]
+        
+        @property { Array<string> } [tag]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { boolean } [isActive]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { string } [description]
+        
+        @property { string } [slug]
+        
+        @property { string } [uid]
+        
+        @property { Object } [cron]
+        
+        @property { Object } [schedule]
+        
+        @property { Object } [meta]
+        
+         
+    */
+/**
         @typedef CollectionListingFilterType
         
         
         @property { boolean } [isSelected]
         
-        @property { string } [name]
-        
         @property { string } [display]
+        
+        @property { string } [name]
         
          
     */
@@ -3939,9 +2095,9 @@ export type GetTatProductResponse = {
         
         @property { boolean } [isSelected]
         
-        @property { string } [name]
-        
         @property { string } [display]
+        
+        @property { string } [name]
         
          
     */
@@ -3956,58 +2112,14 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef GetCollectionDetailNest
-        
-        
-        @property { Array<string> } [tag]
-        
-        @property { string } [appId]
-        
-        @property { string } [name]
-        
-        @property { Object } [schedule]
-        
-        @property { Object } [cron]
-        
-        @property { string } [description]
-        
-        @property { string } [uid]
-        
-        @property { Object } [query]
-        
-        @property { string } [type]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { Object } [meta]
-        
-        @property { boolean } [isActive]
-        
-        @property { Object } [badge]
-        
-        @property { boolean } [allowSort]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { string } [slug]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { Media } [logo]
-        
-         
-    */
-/**
         @typedef GetCollectionListingResponse
         
         
-        @property { CollectionListingFilter } [filters]
+        @property { Page } page
         
         @property { Array<GetCollectionDetailNest> } [items]
         
-        @property { Page } page
+        @property { CollectionListingFilter } [filters]
         
          
     */
@@ -4015,23 +2127,11 @@ export type GetTatProductResponse = {
         @typedef CollectionDetailResponse
         
         
-        @property { string } [slug]
-        
-        @property { Object } [badge]
-        
-        @property { Array<string> } [tag]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { Media } [logo]
-        
-        @property { Object } [query]
-        
         @property { ImageUrls } [banners]
         
-        @property { string } [type]
+        @property { boolean } [isActive]
         
-        @property { string } [appId]
+        @property { string } [type]
         
         @property { Array<string> } [visibleFacetsKeys]
         
@@ -4039,15 +2139,27 @@ export type GetTatProductResponse = {
         
         @property { string } [name]
         
-        @property { Object } [meta]
-        
-        @property { Object } [schedule]
-        
         @property { Object } [cron]
+        
+        @property { boolean } [allowFacets]
         
         @property { string } [description]
         
-        @property { boolean } [isActive]
+        @property { string } [appId]
+        
+        @property { Object } [badge]
+        
+        @property { Array<string> } [tag]
+        
+        @property { string } [slug]
+        
+        @property { Object } [query]
+        
+        @property { Media } [logo]
+        
+        @property { Object } [schedule]
+        
+        @property { Object } [meta]
         
          
     */
@@ -4055,9 +2167,9 @@ export type GetTatProductResponse = {
         @typedef GetFollowListingResponse
         
         
-        @property { Array<Object> } items
-        
         @property { Page } page
+        
+        @property { Array<Object> } items
         
          
     */
@@ -4083,9 +2195,9 @@ export type GetTatProductResponse = {
         @typedef FollowIdsData
         
         
-        @property { Array<number> } [collections]
-        
         @property { Array<number> } [brands]
+        
+        @property { Array<number> } [collections]
         
         @property { Array<number> } [products]
         
@@ -4113,25 +2225,25 @@ export type GetTatProductResponse = {
         @typedef Store1
         
         
-        @property { string } [storeCode]
-        
-        @property { number } [uid]
-        
-        @property { string } [city]
-        
-        @property { LatLong } [latLong]
-        
-        @property { string } [storeEmail]
-        
         @property { string } [address]
-        
-        @property { number } [pincode]
         
         @property { string } [name]
         
-        @property { string } [country]
+        @property { string } [storeCode]
+        
+        @property { string } [storeEmail]
+        
+        @property { LatLong } [latLong]
         
         @property { string } [state]
+        
+        @property { string } [city]
+        
+        @property { number } [uid]
+        
+        @property { number } [pincode]
+        
+        @property { string } [country]
         
          
     */
@@ -4139,9 +2251,9 @@ export type GetTatProductResponse = {
         @typedef StoreListingResponse
         
         
-        @property { Array<Store1> } items
-        
         @property { Page } page
+        
+        @property { Array<Store1> } items
         
          
     */
@@ -5176,2076 +3288,6 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef TicketList
-        
-        
-        @property { Array<Ticket> } [items]
-        
-        @property { Filter } [filters]
-        
-        @property { Page } [page]
-        
-         
-    */
-/**
-        @typedef TicketHistoryList
-        
-        
-        @property { Array<TicketHistory> } [docs]
-        
-        @property { number } [limit]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
-        
-        @property { number } [total]
-        
-         
-    */
-/**
-        @typedef CustomFormList
-        
-        
-        @property { Array<CustomForm> } [docs]
-        
-        @property { number } [limit]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
-        
-        @property { number } [total]
-        
-         
-    */
-/**
-        @typedef CreateCustomFormPayload
-        
-        
-        @property { string } slug
-        
-        @property { string } title
-        
-        @property { Array<Object> } inputs
-        
-        @property { string } [description]
-        
-        @property { string } [headerImage]
-        
-        @property { boolean } [shouldNotify]
-        
-        @property { string } [successMessage]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-         
-    */
-/**
-        @typedef EditCustomFormPayload
-        
-        
-        @property { string } title
-        
-        @property { Array<Object> } inputs
-        
-        @property { string } [description]
-        
-        @property { string } [headerImage]
-        
-        @property { boolean } [shouldNotify]
-        
-        @property { boolean } [loginRequired]
-        
-        @property { string } [successMessage]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-         
-    */
-/**
-        @typedef EditTicketPayload
-        
-        
-        @property { TicketContent } [content]
-        
-        @property { string } [category]
-        
-        @property { string } [source]
-        
-        @property { string } [status]
-        
-        @property { string } [priority]
-        
-        @property { AgentChangePayload } [assignedTo]
-        
-        @property { Array<string> } [tags]
-        
-         
-    */
-/**
-        @typedef AgentChangePayload
-        
-        
-        @property { string } agentId
-        
-         
-    */
-/**
-        @typedef CreateVideoRoomResponse
-        
-        
-        @property { string } uniqueName
-        
-         
-    */
-/**
-        @typedef CloseVideoRoomResponse
-        
-        
-        @property { boolean } success
-        
-         
-    */
-/**
-        @typedef CreateVideoRoomPayload
-        
-        
-        @property { string } uniqueName
-        
-        @property { Array<Object> } [notify]
-        
-         
-    */
-/**
-        @typedef Filter
-        
-        
-        @property { Priority } priorities
-        
-        @property { Category } [categories]
-        
-        @property { Status } statuses
-        
-        @property { Array<Object> } assignees
-        
-         
-    */
-/**
-        @typedef TicketHistoryPayload
-        
-        
-        @property { Object } value
-        
-        @property { string } type
-        
-         
-    */
-/**
-        @typedef CustomFormSubmissionPayload
-        
-        
-        @property { Array<KeyValue> } response
-        
-         
-    */
-/**
-        @typedef KeyValue
-        
-        
-        @property { string } key
-        
-        @property { string } value
-        
-         
-    */
-/**
-        @typedef GetTokenForVideoRoomResponse
-        
-        
-        @property { string } accessToken
-        
-         
-    */
-/**
-        @typedef GetParticipantsInsideVideoRoomResponse
-        
-        
-        @property { Array<Participant> } participants
-        
-         
-    */
-/**
-        @typedef Participant
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { string } [identity]
-        
-        @property { string } [status]
-        
-         
-    */
-/**
-        @typedef UserSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { Array<Object> } [phoneNumbers]
-        
-        @property { Array<Object> } [emails]
-        
-        @property { string } [gender]
-        
-        @property { boolean } [active]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [username]
-        
-        @property { string } [accountType]
-        
-        @property { string } [uid]
-        
-        @property { Object } [debug]
-        
-        @property { boolean } [hasOldPasswordHash]
-        
-        @property { string } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-         
-    */
-/**
-        @typedef SubmitCustomFormResponse
-        
-        
-        @property { Ticket } ticket
-        
-         
-    */
-/**
-        @typedef TicketContext
-        
-        
-        @property { string } [applicationId]
-        
-        @property { string } companyId
-        
-         
-    */
-/**
-        @typedef CreatedOn
-        
-        
-        @property { string } userAgent
-        
-         
-    */
-/**
-        @typedef TicketAsset
-        
-        
-        @property { string } [display]
-        
-        @property { string } value
-        
-        @property { string } type
-        
-         
-    */
-/**
-        @typedef TicketContent
-        
-        
-        @property { string } title
-        
-        @property { string } [description]
-        
-        @property { Array<TicketAsset> } [attachments]
-        
-         
-    */
-/**
-        @typedef AddTicketPayload
-        
-        
-        @property { string } status
-        
-        @property { string } priority
-        
-        @property { string } category
-        
-        @property { TicketContent } content
-        
-         
-    */
-/**
-        @typedef Priority
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { string } color
-        
-         
-    */
-/**
-        @typedef Status
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { string } color
-        
-         
-    */
-/**
-        @typedef Category
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { CustomForm } [form]
-        
-         
-    */
-/**
-        @typedef SubmitButton
-        
-        
-        @property { string } title
-        
-        @property { string } titleColor
-        
-        @property { string } backgroundColor
-        
-         
-    */
-/**
-        @typedef PollForAssignment
-        
-        
-        @property { number } duration
-        
-        @property { string } message
-        
-        @property { string } successMessage
-        
-        @property { string } failureMessage
-        
-         
-    */
-/**
-        @typedef CustomForm
-        
-        
-        @property { string } applicationId
-        
-        @property { string } slug
-        
-        @property { string } [headerImage]
-        
-        @property { string } title
-        
-        @property { string } [description]
-        
-        @property { boolean } loginRequired
-        
-        @property { boolean } shouldNotify
-        
-        @property { string } [successMessage]
-        
-        @property { SubmitButton } [submitButton]
-        
-        @property { Array<Object> } inputs
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { Object } [createdBy]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-        @property { string } id
-        
-         
-    */
-/**
-        @typedef TicketHistory
-        
-        
-        @property { string } type
-        
-        @property { Object } value
-        
-        @property { string } ticketId
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { Object } [createdBy]
-        
-        @property { string } id
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
-        
-         
-    */
-/**
-        @typedef Ticket
-        
-        
-        @property { TicketContext } [context]
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { string } [responseId]
-        
-        @property { TicketContent } [content]
-        
-        @property { string } ticketId
-        
-        @property { Category } category
-        
-        @property { string } source
-        
-        @property { Status } status
-        
-        @property { Priority } priority
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [assignedTo]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Object } [customJson]
-        
-        @property { string } [id]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
-        
-         
-    */
-/**
-        @typedef PaginationSchema
-        
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
-        
-         
-    */
-/**
-        @typedef ThemesListingResponseSchema
-        
-        
-        @property { Array<ThemesSchema> } [items]
-        
-        @property { PaginationSchema } [page]
-        
-         
-    */
-/**
-        @typedef AddThemeRequestSchema
-        
-        
-        @property { string } [themeId]
-        
-         
-    */
-/**
-        @typedef UpgradableThemeSchema
-        
-        
-        @property { string } [parentTheme]
-        
-        @property { string } [appliedTheme]
-        
-        @property { boolean } [upgrade]
-        
-         
-    */
-/**
-        @typedef FontsSchema
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { string } [kind]
-        
-         
-    */
-/**
-        @typedef ThemesSchema
-        
-        
-        @property { string } [application]
-        
-        @property { boolean } [applied]
-        
-        @property { boolean } [customized]
-        
-        @property { boolean } [published]
-        
-        @property { boolean } [archived]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [version]
-        
-        @property { string } [parentThemeVersion]
-        
-        @property { string } [parentTheme]
-        
-        @property { Object } [information]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Object } [src]
-        
-        @property { Object } [assets]
-        
-        @property { Array<Object> } [availablePages]
-        
-        @property { Object } [pages]
-        
-        @property { Array<availableSectionSchema> } [availableSections]
-        
-        @property { Array<sectionSchema> } [sections]
-        
-        @property { Object } [constants]
-        
-        @property { Object } [styles]
-        
-        @property { Object } [config]
-        
-        @property { Object } [settings]
-        
-        @property { Object } [font]
-        
-        @property { string } [id]
-        
-        @property { number } [v]
-        
-        @property { Object } [colors]
-        
-         
-    */
-/**
-        @typedef pagesSchema
-        
-        
-        @property { string } [text]
-        
-        @property { string } [path]
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-        @property { Array<Object> } [sections]
-        
-         
-    */
-/**
-        @typedef availableSectionSchema
-        
-        
-        @property { Array<Object> } [blocks]
-        
-        @property { string } [name]
-        
-        @property { string } [label]
-        
-        @property { Array<Object> } [props]
-        
-         
-    */
-/**
-        @typedef sectionSchema
-        
-        
-        @property { string } [pageKey]
-        
-        @property { Array<Object> } [pageSections]
-        
-         
-    */
-/**
-        @typedef EditEmailRequestSchema
-        
-        
-        @property { string } [email]
-        
-         
-    */
-/**
-        @typedef SendVerificationLinkMobileRequestSchema
-        
-        
-        @property { boolean } [verified]
-        
-        @property { boolean } [active]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [phone]
-        
-        @property { boolean } [primary]
-        
-         
-    */
-/**
-        @typedef EditMobileRequestSchema
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [phone]
-        
-         
-    */
-/**
-        @typedef EditProfileRequestSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { string } [mobile]
-        
-        @property { string } [email]
-        
-        @property { string } [gender]
-        
-        @property { string } [dob]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [androidHash]
-        
-        @property { string } [sender]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-/**
-        @typedef SendEmailOtpRequestSchema
-        
-        
-        @property { string } [email]
-        
-        @property { string } [action]
-        
-        @property { string } [token]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-/**
-        @typedef VerifyOtpRequestSchema
-        
-        
-        @property { string } [requestId]
-        
-        @property { string } [registerToken]
-        
-        @property { string } [otp]
-        
-         
-    */
-/**
-        @typedef SendMobileOtpRequestSchema
-        
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [action]
-        
-        @property { string } [token]
-        
-        @property { string } [androidHash]
-        
-        @property { string } [force]
-        
-         
-    */
-/**
-        @typedef UpdatePasswordRequestSchema
-        
-        
-        @property { string } [oldPassword]
-        
-        @property { string } [newPassword]
-        
-         
-    */
-/**
-        @typedef FormRegisterRequestSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { string } [gender]
-        
-        @property { string } [email]
-        
-        @property { string } [password]
-        
-        @property { Object } [phone]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-/**
-        @typedef TokenRequestBodySchema
-        
-        
-        @property { string } [token]
-        
-         
-    */
-/**
-        @typedef ForgotPasswordRequestSchema
-        
-        
-        @property { string } [code]
-        
-        @property { string } [password]
-        
-         
-    */
-/**
-        @typedef CodeRequestBodySchema
-        
-        
-        @property { string } [code]
-        
-         
-    */
-/**
-        @typedef SendResetPasswordEmailRequestSchema
-        
-        
-        @property { string } [email]
-        
-        @property { string } [gRecaptchaResponse]
-        
-         
-    */
-/**
-        @typedef PasswordLoginRequestSchema
-        
-        
-        @property { string } [gRecaptchaResponse]
-        
-        @property { string } [password]
-        
-        @property { string } [username]
-        
-         
-    */
-/**
-        @typedef SendOtpRequestSchema
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [gRecaptchaResponse]
-        
-        @property { string } [mobile]
-        
-         
-    */
-/**
-        @typedef OAuthRequestSchema
-        
-        
-        @property { boolean } [isSignedIn]
-        
-        @property { Object } [oauth2]
-        
-        @property { Object } [profile]
-        
-         
-    */
-/**
-        @typedef AuthSuccess
-        
-        
-        @property { string } [registerToken]
-        
-        @property { boolean } [userExists]
-        
-        @property { Object } [user]
-        
-         
-    */
-/**
-        @typedef SendOtpResponse
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-/**
-        @typedef LoginSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-         
-    */
-/**
-        @typedef VerifyOtpSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [userExists]
-        
-         
-    */
-/**
-        @typedef ResetPasswordSuccess
-        
-        
-        @property { string } [status]
-        
-         
-    */
-/**
-        @typedef RegisterFormSuccess
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-/**
-        @typedef VerifyEmailSuccess
-        
-        
-        @property { string } [message]
-        
-         
-    */
-/**
-        @typedef HasPasswordSuccess
-        
-        
-        @property { boolean } [result]
-        
-         
-    */
-/**
-        @typedef LogoutSuccess
-        
-        
-        @property { boolean } [logout]
-        
-         
-    */
-/**
-        @typedef OtpSuccess
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-/**
-        @typedef EmailOtpSuccess
-        
-        
-        @property { string } [resendToken]
-        
-         
-    */
-/**
-        @typedef SessionListSuccess
-        
-        
-        @property { Array<string> } [sessions]
-        
-         
-    */
-/**
-        @typedef VerifyMobileOTPSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [verifyMobileLink]
-        
-         
-    */
-/**
-        @typedef VerifyEmailOTPSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [verifyEmailLink]
-        
-         
-    */
-/**
-        @typedef SendMobileVerifyLinkSuccess
-        
-        
-        @property { boolean } [verifyMobileLink]
-        
-         
-    */
-/**
-        @typedef SendEmailVerifyLinkSuccess
-        
-        
-        @property { boolean } [verifyEmailLink]
-        
-         
-    */
-/**
-        @typedef UserSearchResponseSchema
-        
-        
-        @property { Array<UserSchema> } [users]
-        
-         
-    */
-/**
-        @typedef CustomerListResponseSchema
-        
-        
-        @property { Array<UserSchema> } [items]
-        
-        @property { PaginationSchema } [page]
-        
-         
-    */
-/**
-        @typedef PlatformSchema
-        
-        
-        @property { string } [display]
-        
-        @property { Object } [lookAndFeel]
-        
-        @property { string } [updatedAt]
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [forgotPassword]
-        
-        @property { Object } [login]
-        
-        @property { boolean } [skipCaptcha]
-        
-        @property { string } [name]
-        
-        @property { Object } [meta]
-        
-        @property { string } [id]
-        
-        @property { Object } [social]
-        
-        @property { Object } [requiredFields]
-        
-        @property { Object } [registerRequiredFields]
-        
-        @property { boolean } [skipLogin]
-        
-        @property { Object } [flashCard]
-        
-        @property { string } [subtext]
-        
-        @property { Object } [socialTokens]
-        
-        @property { string } [createdAt]
-        
-        @property { boolean } [register]
-        
-         
-    */
-/**
-        @typedef ApplicationLegal
-        
-        
-        @property { string } [application]
-        
-        @property { string } [tnc]
-        
-        @property { string } [policy]
-        
-        @property { Array<Object> } [faq]
-        
-        @property { string } [id]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
-        
-        @property { number } [v]
-        
-         
-    */
-/**
-        @typedef Seo
-        
-        
-        @property { string } app
-        
-        @property { string } [robotsTxt]
-        
-        @property { boolean } [sitemapEnabled]
-        
-        @property { Array<any> } [customMetaTags]
-        
-        @property { Object } [details]
-        
-         
-    */
-/**
-        @typedef StorefrontAnnouncement
-        
-        
-        @property { Object } [announcements]
-        
-        @property { number } [refreshRate]
-        
-        @property { Array<string> } [refreshPages]
-        
-         
-    */
-/**
-        @typedef AdminAnnouncementSchema
-        
-        
-        @property { string } [id]
-        
-        @property { Array<string> } [platform]
-        
-        @property { string } [title]
-        
-        @property { string } [announcement]
-        
-        @property { Array<Object> } [pages]
-        
-        @property { Object } [editorMeta]
-        
-        @property { Object } [author]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [app]
-        
-        @property { string } [modifiedAt]
-        
-        @property { Object } [schedule]
-        
-         
-    */
-/**
-        @typedef ScheduleSchema
-        
-        
-        @property { Object } [schedule]
-        
-        @property { boolean } [published]
-        
-         
-    */
-/**
-        @typedef BlogGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
-        
-         
-    */
-/**
-        @typedef ResourceContent
-        
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-         
-    */
-/**
-        @typedef Asset
-        
-        
-        @property { string } [secureUrl]
-        
-         
-    */
-/**
-        @typedef Author
-        
-        
-        @property { string } [designation]
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-         
-    */
-/**
-        @typedef BlogSchema
-        
-        
-        @property { Array<any> } [id]
-        
-        @property { string } [schedule]
-        
-        @property { string } [application]
-        
-        @property { boolean } [archived]
-        
-        @property { Object } [author]
-        
-        @property { Array<ResourceContent> } [content]
-        
-        @property { Object } [featureImage]
-        
-        @property { boolean } [published]
-        
-        @property { string } [readingTime]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [title]
-        
-        @property { Object } [dateMeta]
-        
-         
-    */
-/**
-        @typedef BlogRequest
-        
-        
-        @property { string } [schedule]
-        
-        @property { string } [application]
-        
-        @property { Object } [author]
-        
-        @property { Array<ResourceContent> } [content]
-        
-        @property { Object } [featureImage]
-        
-        @property { boolean } [published]
-        
-        @property { string } [readingTime]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [title]
-        
-         
-    */
-/**
-        @typedef GetAnnouncementListSchema
-        
-        
-        @property { Array<AdminAnnouncementSchema> } [items]
-        
-         
-    */
-/**
-        @typedef CreateAnnouncementSchema
-        
-        
-        @property { string } [message]
-        
-        @property { AdminAnnouncementSchema } [data]
-        
-         
-    */
-/**
-        @typedef FaqSchema
-        
-        
-        @property { string } [slug]
-        
-        @property { string } [application]
-        
-        @property { number } [v]
-        
-        @property { string } [id]
-        
-        @property { string } [question]
-        
-        @property { string } [answer]
-        
-         
-    */
-/**
-        @typedef CreateFaqResponseSchema
-        
-        
-        @property { Object } [faq]
-        
-         
-    */
-/**
-        @typedef CreateFaqSchema
-        
-        
-        @property { Object } [faq]
-        
-         
-    */
-/**
-        @typedef GetFaqSchema
-        
-        
-        @property { Array<Object> } [faqs]
-        
-         
-    */
-/**
-        @typedef UpdateFaqCategoryRequestSchema
-        
-        
-        @property { Object } [category]
-        
-         
-    */
-/**
-        @typedef CreateFaqCategoryRequestSchema
-        
-        
-        @property { Object } [category]
-        
-         
-    */
-/**
-        @typedef CreateFaqCategorySchema
-        
-        
-        @property { Object } [category]
-        
-         
-    */
-/**
-        @typedef GetFaqCategoriesSchema
-        
-        
-        @property { Array<Object> } [categories]
-        
-         
-    */
-/**
-        @typedef GetFaqCategoryByIdOrSlugSchema
-        
-        
-        @property { Object } [category]
-        
-         
-    */
-/**
-        @typedef Navigation
-        
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { string } [orientation]
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [id]
-        
-        @property { string } [position]
-        
-        @property { string } [application]
-        
-        @property { string } [platform]
-        
-        @property { NavigationRef } [navigation]
-        
-         
-    */
-/**
-        @typedef NavigationRef
-        
-        
-        @property { Array<any> } [acl]
-        
-        @property { Object } [localeLanguage]
-        
-        @property { string } [image]
-        
-        @property { string } [type]
-        
-        @property { Object } [action]
-        
-        @property { boolean } [active]
-        
-        @property { string } [display]
-        
-        @property { number } [sortOrder]
-        
-        @property { Object } [subNavigation]
-        
-         
-    */
-/**
-        @typedef LandingPage
-        
-        
-        @property { string } [slug]
-        
-        @property { Object } [action]
-        
-        @property { Array<any> } [platform]
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [id]
-        
-        @property { string } [application]
-        
-         
-    */
-/**
-        @typedef Slideshow
-        
-        
-        @property { string } [id]
-        
-        @property { string } [slug]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [application]
-        
-        @property { string } [name]
-        
-        @property { string } [platform]
-        
-        @property { Object } [configuration]
-        
-        @property { Array<Object> } [media]
-        
-        @property { boolean } [active]
-        
-         
-    */
-/**
-        @typedef AnnouncementsResponseSchema
-        
-        
-        @property { Array<Object> } [announcements]
-        
-         
-    */
-/**
-        @typedef FaqResponseSchema
-        
-        
-        @property { Array<Faq> } [faqs]
-        
-         
-    */
-/**
-        @typedef UpdateHandpickedSchema
-        
-        
-        @property { Object } [tag]
-        
-         
-    */
-/**
-        @typedef RemoveHandpickedSchema
-        
-        
-        @property { Array<string> } [tags]
-        
-         
-    */
-/**
-        @typedef TagsSchema
-        
-        
-        @property { string } [id]
-        
-        @property { Array<Object> } [tags]
-        
-        @property { string } [application]
-        
-        @property { number } [v]
-        
-         
-    */
-/**
-        @typedef CreateTagRequestSchema
-        
-        
-        @property { Array<Object> } [tags]
-        
-         
-    */
-/**
-        @typedef APIError
-        
-        
-        @property { string } [message]
-        
-        @property { number } [status]
-        
-        @property { string } [code]
-        
-        @property { string } [exception]
-        
-        @property { string } [info]
-        
-        @property { string } [requestId]
-        
-        @property { string } [stackTrace]
-        
-        @property { Object } [meta]
-        
-         
-    */
-/**
-        @typedef Faq
-        
-        
-        @property { string } [id]
-        
-        @property { string } [question]
-        
-        @property { string } [answer]
-        
-        @property { string } [slug]
-        
-        @property { string } [application]
-        
-        @property { number } [v]
-        
-         
-    */
-/**
-        @typedef LandingPageGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
-        
-         
-    */
-/**
-        @typedef LandingPageSchema
-        
-        
-        @property { string } [slug]
-        
-        @property { Object } [action]
-        
-        @property { Array<string> } [platform]
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [id]
-        
-        @property { string } [application]
-        
-        @property { boolean } [archived]
-        
-         
-    */
-/**
-        @typedef LandingPageRequest
-        
-        
-        @property { string } [slug]
-        
-        @property { Object } [action]
-        
-        @property { Array<string> } [platform]
-        
-         
-    */
-/**
-        @typedef DefaultNavigationResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-         
-    */
-/**
-        @typedef NavigationGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
-        
-         
-    */
-/**
-        @typedef NavigationSchema
-        
-        
-        @property { string } [id]
-        
-        @property { string } [application]
-        
-        @property { boolean } [archived]
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [platform]
-        
-        @property { Object } [orientation]
-        
-        @property { Object } [navigation]
-        
-         
-    */
-/**
-        @typedef NavigationRequest
-        
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [platform]
-        
-        @property { Object } [orientation]
-        
-        @property { Object } [navigation]
-        
-         
-    */
-/**
-        @typedef CustomPage
-        
-        
-        @property { Object } [data]
-        
-         
-    */
-/**
-        @typedef CustomBlog
-        
-        
-        @property { Object } [data]
-        
-         
-    */
-/**
-        @typedef PageGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
-        
-         
-    */
-/**
-        @typedef PageSpec
-        
-        
-        @property { Array<Object> } [specifications]
-        
-         
-    */
-/**
-        @typedef PageSpecItem
-        
-        
-        @property { string } [pageType]
-        
-        @property { string } [displayName]
-        
-        @property { Array<string> } [params]
-        
-        @property { Array<string> } [query]
-        
-         
-    */
-/**
-        @typedef PageSchema
-        
-        
-        @property { Array<any> } [id]
-        
-        @property { string } [schedule]
-        
-        @property { Array<any> } [application]
-        
-        @property { Array<string> } [componentIds]
-        
-        @property { Array<PageContent> } [content]
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [description]
-        
-        @property { Object } [featureImage]
-        
-        @property { Array<PageMeta> } [pageMeta]
-        
-        @property { string } [platform]
-        
-        @property { boolean } [published]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [title]
-        
-        @property { string } [type]
-        
-        @property { Object } [visibility]
-        
-         
-    */
-/**
-        @typedef CreatedBy
-        
-        
-        @property { string } [id]
-        
-         
-    */
-/**
-        @typedef DateMeta
-        
-        
-        @property { string } [createdOn]
-        
-        @property { string } [modifiedOn]
-        
-         
-    */
-/**
-        @typedef PageContent
-        
-        
-        @property { string } [type]
-        
-        @property { Object } [value]
-        
-         
-    */
-/**
-        @typedef PageMeta
-        
-        
-        @property { string } [key]
-        
-        @property { Object } [value]
-        
-         
-    */
-/**
-        @typedef PageRequest
-        
-        
-        @property { string } [schedule]
-        
-        @property { string } [application]
-        
-        @property { Object } [author]
-        
-        @property { Array<ResourceContent> } [content]
-        
-        @property { Object } [featureImage]
-        
-        @property { boolean } [published]
-        
-        @property { string } [readingTime]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [title]
-        
-         
-    */
-/**
-        @typedef PagePublishRequest
-        
-        
-        @property { boolean } [publish]
-        
-         
-    */
-/**
-        @typedef PageMetaSchema
-        
-        
-        @property { Array<Object> } [systemPages]
-        
-        @property { Array<Object> } [customPages]
-        
-        @property { string } [applicationId]
-        
-         
-    */
-/**
-        @typedef SlideshowGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
-        
-         
-    */
-/**
-        @typedef SlideshowSchema
-        
-        
-        @property { string } [id]
-        
-        @property { string } [slug]
-        
-        @property { Object } [dateMeta]
-        
-        @property { string } [application]
-        
-        @property { string } [platform]
-        
-        @property { Object } [configuration]
-        
-        @property { Array<Object> } [media]
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [archived]
-        
-         
-    */
-/**
-        @typedef SlideshowRequest
-        
-        
-        @property { string } [slug]
-        
-        @property { string } [platform]
-        
-        @property { Object } [configuration]
-        
-        @property { Array<Object> } [media]
-        
-        @property { boolean } [active]
-        
-         
-    */
-/**
-        @typedef Support
-        
-        
-        @property { boolean } [created]
-        
-        @property { string } [id]
-        
-        @property { string } [configType]
-        
-        @property { string } [application]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { Object } [contact]
-        
-         
-    */
-/**
-        @typedef CommunicationConsentReq
-        
-        
-        @property { string } [response]
-        
-        @property { string } [action]
-        
-        @property { string } [channel]
-        
-         
-    */
-/**
-        @typedef CommunicationConsentRes
-        
-        
-        @property { string } [appId]
-        
-        @property { string } [userId]
-        
-        @property { Object } [channels]
-        
-         
-    */
-/**
-        @typedef CommunicationConsent
-        
-        
-        @property { string } [appId]
-        
-        @property { string } [userId]
-        
-        @property { Object } [channels]
-        
-         
-    */
-/**
-        @typedef PushtokenReq
-        
-        
-        @property { string } [action]
-        
-        @property { string } [bundleIdentifier]
-        
-        @property { string } [pushToken]
-        
-        @property { string } [uniqueDeviceId]
-        
-        @property { string } [type]
-        
-         
-    */
-/**
-        @typedef PushtokenRes
-        
-        
-        @property { string } [id]
-        
-        @property { string } [bundleIdentifier]
-        
-        @property { string } [pushToken]
-        
-        @property { string } [uniqueDeviceId]
-        
-        @property { string } [type]
-        
-        @property { string } [platform]
-        
-        @property { string } [applicationId]
-        
-        @property { string } [userId]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [expiredAt]
-        
-         
-    */
-/**
-        @typedef QRCodeResp
-        
-        
-        @property { string } [link]
-        
-        @property { string } [svg]
-        
-         
-    */
-/**
-        @typedef RedirectDevice
-        
-        
-        @property { string } link
-        
-        @property { string } type
-        
-         
-    */
-/**
-        @typedef Redirects
-        
-        
-        @property { RedirectDevice } [ios]
-        
-        @property { RedirectDevice } [android]
-        
-        @property { Object } [web]
-        
-        @property { boolean } [forceWeb]
-        
-         
-    */
-/**
-        @typedef ShortLinkReq
-        
-        
-        @property { string } title
-        
-        @property { string } url
-        
-        @property { string } [hash]
-        
-        @property { string } [active]
-        
-        @property { string } [type]
-        
-        @property { string } [expireAt]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { Redirects } [redirects]
-        
-         
-    */
-/**
-        @typedef ShortLinkRes
-        
-        
-        @property { string } [title]
-        
-        @property { Object } [url]
-        
-        @property { string } [createdBy]
-        
-        @property { string } [personalized]
-        
-        @property { string } [appRedirect]
-        
-        @property { string } [fallback]
-        
-        @property { boolean } [active]
-        
-        @property { string } [id]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { boolean } [expireAt]
-        
-        @property { string } [application]
-        
-        @property { boolean } [userId]
-        
-        @property { boolean } [createdAt]
-        
-        @property { boolean } [updatedAt]
-        
-        @property { Redirects } [redirects]
-        
-         
-    */
-/**
-        @typedef ShortLinkList
-        
-        
-        @property { Array<ShortLinkRes> } [items]
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { number } [current]
-        
-        @property { string } [hasNext]
-        
-        @property { string } [type]
-        
-         
-    */
-/**
         @typedef FailedResponse
         
         
@@ -7340,2216 +3382,6 @@ export type GetTatProductResponse = {
         @property { string } createdOn
         
         @property { string } modifiedOn
-        
-         
-    */
-/**
-        @typedef ApplicationAboutResponse
-        
-        
-        @property { Object } [applicationInfo]
-        
-         
-    */
-/**
-        @typedef AppVersionRequest
-        
-        
-        @property { ApplicationVersionRequest } application
-        
-        @property { Device } device
-        
-        @property { string } [locale]
-        
-        @property { string } [timezone]
-        
-         
-    */
-/**
-        @typedef ApplicationVersionRequest
-        
-        
-        @property { string } [id]
-        
-        @property { string } name
-        
-        @property { string } [namespace]
-        
-        @property { string } [token]
-        
-        @property { string } version
-        
-         
-    */
-/**
-        @typedef Device
-        
-        
-        @property { number } [build]
-        
-        @property { string } [model]
-        
-        @property { OS } os
-        
-         
-    */
-/**
-        @typedef OS
-        
-        
-        @property { string } name
-        
-        @property { string } [version]
-        
-         
-    */
-/**
-        @typedef Language
-        
-        
-        @property { string } [name]
-        
-        @property { string } [code]
-        
-         
-    */
-/**
-        @typedef LanguageResponse
-        
-        
-        @property { Array<Language> } [items]
-        
-         
-    */
-/**
-        @typedef TokensResponse
-        
-        
-        @property { Object } [tokens]
-        
-        @property { string } [id]
-        
-        @property { string } [application]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [v]
-        
-         
-    */
-/**
-        @typedef AppStaffResponse
-        
-        
-        @property { Array<AppStaff> } [staffUsers]
-        
-         
-    */
-/**
-        @typedef UpdateDialog
-        
-        
-        @property { string } [type]
-        
-        @property { number } [interval]
-        
-         
-    */
-/**
-        @typedef OrderingStoreSelectRequest
-        
-        
-        @property { OrderingStoreSelect } orderingStore
-        
-         
-    */
-/**
-        @typedef OrderingStoreSelect
-        
-        
-        @property { string } id
-        
-        @property { number } uid
-        
-        @property { string } storeCode
-        
-         
-    */
-/**
-        @typedef AppStaff
-        
-        
-        @property { string } [id]
-        
-        @property { boolean } [orderIncent]
-        
-        @property { Array<number> } [stores]
-        
-        @property { string } [application]
-        
-        @property { string } [title]
-        
-        @property { string } [user]
-        
-        @property { string } [employeeCode]
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { string } [profilePicUrl]
-        
-         
-    */
-/**
-        @typedef ProductDetailFeature
-        
-        
-        @property { Array<string> } [similar]
-        
-        @property { boolean } [sellerSelection]
-        
-        @property { boolean } [updateProductMeta]
-        
-        @property { boolean } [requestProduct]
-        
-         
-    */
-/**
-        @typedef LaunchPage
-        
-        
-        @property { string } [pageType]
-        
-        @property { string } [params]
-        
-        @property { string } [query]
-        
-         
-    */
-/**
-        @typedef LandingPageFeature
-        
-        
-        @property { LaunchPage } [launchPage]
-        
-        @property { boolean } [continueAsGuest]
-        
-        @property { string } [loginBtnText]
-        
-        @property { boolean } [showDomainTextbox]
-        
-        @property { boolean } [showRegisterBtn]
-        
-         
-    */
-/**
-        @typedef RegistrationPageFeature
-        
-        
-        @property { boolean } [askStoreAddress]
-        
-         
-    */
-/**
-        @typedef AppFeature
-        
-        
-        @property { ProductDetailFeature } [productDetail]
-        
-        @property { LandingPageFeature } [landingPage]
-        
-        @property { RegistrationPageFeature } [registrationPage]
-        
-        @property { Object } [homePage]
-        
-        @property { Object } [common]
-        
-        @property { Object } [cart]
-        
-        @property { Object } [qr]
-        
-        @property { Object } [pcr]
-        
-        @property { Object } [order]
-        
-        @property { string } [id]
-        
-        @property { string } [app]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [v]
-        
-         
-    */
-/**
-        @typedef AppFeatureRequest
-        
-        
-        @property { AppFeature } [feature]
-        
-         
-    */
-/**
-        @typedef AppFeatureResponse
-        
-        
-        @property { AppFeature } [feature]
-        
-         
-    */
-/**
-        @typedef Currency
-        
-        
-        @property { string } [id]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [name]
-        
-        @property { string } [code]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [decimalDigits]
-        
-        @property { string } [symbol]
-        
-         
-    */
-/**
-        @typedef Domain
-        
-        
-        @property { boolean } [verified]
-        
-        @property { boolean } [isPrimary]
-        
-        @property { boolean } [isDefault]
-        
-        @property { boolean } [isShortlink]
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-         
-    */
-/**
-        @typedef ApplicationWebsite
-        
-        
-        @property { boolean } [enabled]
-        
-        @property { string } [basepath]
-        
-         
-    */
-/**
-        @typedef ApplicationCors
-        
-        
-        @property { Array<string> } [domains]
-        
-         
-    */
-/**
-        @typedef ApplicationAuth
-        
-        
-        @property { boolean } [enabled]
-        
-         
-    */
-/**
-        @typedef ApplicationRedirections
-        
-        
-        @property { string } [from]
-        
-        @property { string } [redirectTo]
-        
-        @property { string } [type]
-        
-         
-    */
-/**
-        @typedef ApplicationMeta
-        
-        
-        @property { string } [name]
-        
-        @property { string } [value]
-        
-         
-    */
-/**
-        @typedef SecureUrl
-        
-        
-        @property { string } [secureUrl]
-        
-         
-    */
-/**
-        @typedef Application
-        
-        
-        @property { ApplicationWebsite } [website]
-        
-        @property { ApplicationCors } [cors]
-        
-        @property { ApplicationAuth } [auth]
-        
-        @property { string } [description]
-        
-        @property { string } [channelType]
-        
-        @property { number } [cacheTtl]
-        
-        @property { boolean } [isInternal]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-        @property { string } [owner]
-        
-        @property { number } [companyId]
-        
-        @property { string } [token]
-        
-        @property { Array<ApplicationRedirections> } [redirections]
-        
-        @property { Array<ApplicationMeta> } [meta]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [v]
-        
-        @property { SecureUrl } [banner]
-        
-        @property { SecureUrl } [logo]
-        
-        @property { SecureUrl } [favicon]
-        
-        @property { Array<Domain> } [domains]
-        
-        @property { string } [appType]
-        
-        @property { SecureUrl } [mobileLogo]
-        
-        @property { Domain } [domain]
-        
-         
-    */
-/**
-        @typedef NotFound
-        
-        
-        @property { string } [message]
-        
-         
-    */
-/**
-        @typedef UnhandledError
-        
-        
-        @property { string } [message]
-        
-         
-    */
-/**
-        @typedef InvalidPayloadRequest
-        
-        
-        @property { string } [message]
-        
-         
-    */
-/**
-        @typedef SuccessMessageResponse
-        
-        
-        @property { string } [message]
-        
-         
-    */
-/**
-        @typedef InventoryBrandRule
-        
-        
-        @property { string } [criteria]
-        
-        @property { Array<number> } [brands]
-        
-         
-    */
-/**
-        @typedef StoreCriteriaRule
-        
-        
-        @property { Array<number> } [companies]
-        
-        @property { Array<number> } [brands]
-        
-         
-    */
-/**
-        @typedef InventoryStoreRule
-        
-        
-        @property { string } [criteria]
-        
-        @property { Array<StoreCriteriaRule> } [rules]
-        
-        @property { Array<number> } [stores]
-        
-         
-    */
-/**
-        @typedef InventoryPaymentConfig
-        
-        
-        @property { string } [modeOfPayment]
-        
-        @property { string } [source]
-        
-         
-    */
-/**
-        @typedef StorePriorityRule
-        
-        
-        @property { boolean } [enabled]
-        
-        @property { Array<string> } [storetypeOrder]
-        
-         
-    */
-/**
-        @typedef ArticleAssignmentRule
-        
-        
-        @property { StorePriorityRule } [storePriority]
-        
-         
-    */
-/**
-        @typedef InventoryArticleAssignment
-        
-        
-        @property { boolean } [postOrderReassignment]
-        
-        @property { Array<number> } [enforcedStores]
-        
-        @property { ArticleAssignmentRule } [rules]
-        
-         
-    */
-/**
-        @typedef CompanyAboutAddress
-        
-        
-        @property { number } [pincode]
-        
-        @property { string } [address1]
-        
-        @property { string } [address2]
-        
-        @property { string } [city]
-        
-        @property { string } [state]
-        
-        @property { string } [country]
-        
-        @property { string } [addressType]
-        
-         
-    */
-/**
-        @typedef UserEmail
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [email]
-        
-         
-    */
-/**
-        @typedef UserPhoneNumber
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { number } [countryCode]
-        
-        @property { string } [phone]
-        
-         
-    */
-/**
-        @typedef Pagination
-        
-        
-        @property { string } [type]
-        
-        @property { number } [size]
-        
-        @property { number } [current]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [itemTotal]
-        
-         
-    */
-/**
-        @typedef ApplicationInformation
-        
-        
-        @property { Object } [address]
-        
-        @property { Object } [support]
-        
-        @property { Object } [socialLinks]
-        
-        @property { Array<Object> } [links]
-        
-        @property { string } [copyrightText]
-        
-        @property { string } [id]
-        
-        @property { Array<Object> } [businessHighlights]
-        
-        @property { string } [application]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [v]
-        
-         
-    */
-/**
-        @typedef ApplicationDetail
-        
-        
-        @property { string } name
-        
-        @property { string } description
-        
-        @property { SecureUrl } logo
-        
-        @property { SecureUrl } mobileLogo
-        
-        @property { SecureUrl } favicon
-        
-        @property { SecureUrl } banner
-        
-        @property { Domain } [domain]
-        
-        @property { Array<Domain> } [domains]
-        
-        @property { string } [id]
-        
-         
-    */
-/**
-        @typedef CurrenciesResponse
-        
-        
-        @property { Array<Currency> } [items]
-        
-         
-    */
-/**
-        @typedef OrderingStore
-        
-        
-        @property { Object } [address]
-        
-        @property { string } [id]
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-        @property { string } [displayName]
-        
-        @property { string } [storeType]
-        
-        @property { string } [storeCode]
-        
-        @property { number } [pincode]
-        
-        @property { string } [code]
-        
-         
-    */
-/**
-        @typedef OrderingStores
-        
-        
-        @property { Pagination } [page]
-        
-        @property { Array<OrderingStore> } [items]
-        
-        @property { Array<number> } [deployedStores]
-        
-        @property { boolean } [allStores]
-        
-        @property { boolean } [enabled]
-        
-        @property { string } [type]
-        
-        @property { string } [id]
-        
-        @property { string } [app]
-        
-        @property { number } [v]
-        
-         
-    */
-/**
-        @typedef AggregatorConfigDetail
-        
-        
-        @property { boolean } [sdk]
-        
-        @property { string } key
-        
-        @property { string } [verifyApi]
-        
-        @property { string } secret
-        
-        @property { string } [userId]
-        
-        @property { string } [api]
-        
-        @property { string } configType
-        
-        @property { string } [pin]
-        
-        @property { string } [merchantId]
-        
-        @property { string } [merchantKey]
-        
-         
-    */
-/**
-        @typedef AggregatorsConfigDetailResponse
-        
-        
-        @property { AggregatorConfigDetail } [mswipe]
-        
-        @property { AggregatorConfigDetail } [razorpay]
-        
-        @property { AggregatorConfigDetail } [simpl]
-        
-        @property { boolean } success
-        
-        @property { AggregatorConfigDetail } [stripe]
-        
-        @property { AggregatorConfigDetail } [payumoney]
-        
-        @property { AggregatorConfigDetail } [ccavenue]
-        
-        @property { AggregatorConfigDetail } [rupifi]
-        
-        @property { AggregatorConfigDetail } [juspay]
-        
-        @property { string } env
-        
-         
-    */
-/**
-        @typedef ErrorCodeAndDescription
-        
-        
-        @property { string } description
-        
-        @property { string } code
-        
-         
-    */
-/**
-        @typedef HttpErrorCodeAndResponse
-        
-        
-        @property { boolean } success
-        
-        @property { ErrorCodeAndDescription } error
-        
-         
-    */
-/**
-        @typedef AttachCardRequest
-        
-        
-        @property { boolean } [refresh]
-        
-        @property { string } cardId
-        
-         
-    */
-/**
-        @typedef AttachCardsResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } [message]
-        
-        @property { Object } data
-        
-         
-    */
-/**
-        @typedef CardPaymentGateway
-        
-        
-        @property { string } [api]
-        
-        @property { string } [customerId]
-        
-        @property { string } aggregator
-        
-         
-    */
-/**
-        @typedef ActiveCardPaymentGatewayResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-        @property { CardPaymentGateway } cards
-        
-         
-    */
-/**
-        @typedef Card
-        
-        
-        @property { string } aggregatorName
-        
-        @property { string } [cardName]
-        
-        @property { number } [expMonth]
-        
-        @property { string } [cardIsin]
-        
-        @property { string } [cardFingerprint]
-        
-        @property { string } [cardBrand]
-        
-        @property { string } [cardNumber]
-        
-        @property { string } [cardBrandImage]
-        
-        @property { string } [cardToken]
-        
-        @property { string } [cardIssuer]
-        
-        @property { boolean } [expired]
-        
-        @property { number } [expYear]
-        
-        @property { string } [cardReference]
-        
-        @property { string } [nickname]
-        
-        @property { string } [cardId]
-        
-        @property { string } [cardType]
-        
-         
-    */
-/**
-        @typedef ListCardsResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-        @property { Array<Card> } [data]
-        
-         
-    */
-/**
-        @typedef DeletehCardRequest
-        
-        
-        @property { string } cardId
-        
-         
-    */
-/**
-        @typedef DeleteCardsResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } [message]
-        
-         
-    */
-/**
-        @typedef ValidateCustomerRequest
-        
-        
-        @property { string } phoneNumber
-        
-        @property { number } transactionAmountInPaise
-        
-        @property { string } aggregator
-        
-        @property { string } payload
-        
-        @property { Object } merchantParams
-        
-         
-    */
-/**
-        @typedef ValidateCustomerResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-        @property { Object } data
-        
-         
-    */
-/**
-        @typedef ChargeCustomerRequest
-        
-        
-        @property { number } amount
-        
-        @property { string } aggregator
-        
-        @property { boolean } [verified]
-        
-        @property { string } orderId
-        
-        @property { string } [transactionToken]
-        
-         
-    */
-/**
-        @typedef ChargeCustomerResponse
-        
-        
-        @property { string } [deliveryAddressId]
-        
-        @property { string } aggregator
-        
-        @property { string } status
-        
-        @property { string } [cartId]
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-        @property { string } orderId
-        
-         
-    */
-/**
-        @typedef PaymentInitializationRequest
-        
-        
-        @property { string } customerId
-        
-        @property { string } merchantOrderId
-        
-        @property { string } [virtualId]
-        
-        @property { string } method
-        
-        @property { string } aggregatorOrderId
-        
-        @property { string } aggregator
-        
-        @property { string } pollingUrl
-        
-        @property { string } razorpayPaymentId
-        
-        @property { number } timeout
-        
-         
-    */
-/**
-        @typedef PaymentInitializationResponse
-        
-        
-        @property { string } [customerId]
-        
-        @property { string } [virtualId]
-        
-        @property { number } [timeout]
-        
-        @property { string } method
-        
-        @property { string } [aggregatorOrderId]
-        
-        @property { number } [amount]
-        
-        @property { string } aggregator
-        
-        @property { string } [status]
-        
-        @property { boolean } success
-        
-        @property { string } pollingUrl
-        
-        @property { string } [currency]
-        
-        @property { string } [razorpayPaymentId]
-        
-        @property { string } [vpa]
-        
-        @property { string } merchantOrderId
-        
-        @property { string } [bqrImage]
-        
-         
-    */
-/**
-        @typedef PaymentStatusUpdateRequest
-        
-        
-        @property { string } contact
-        
-        @property { string } customerId
-        
-        @property { string } method
-        
-        @property { number } amount
-        
-        @property { string } aggregator
-        
-        @property { string } status
-        
-        @property { string } email
-        
-        @property { string } orderId
-        
-        @property { string } currency
-        
-        @property { string } vpa
-        
-        @property { string } merchantOrderId
-        
-         
-    */
-/**
-        @typedef PaymentStatusUpdateResponse
-        
-        
-        @property { boolean } retry
-        
-        @property { string } status
-        
-        @property { string } aggregatorName
-        
-         
-    */
-/**
-        @typedef AggregatorRoute
-        
-        
-        @property { string } [apiLink]
-        
-        @property { string } [paymentFlow]
-        
-        @property { Object } [data]
-        
-         
-    */
-/**
-        @typedef PaymentFlow
-        
-        
-        @property { AggregatorRoute } [bqrRazorpay]
-        
-        @property { AggregatorRoute } [upiRazorpay]
-        
-        @property { AggregatorRoute } [fynd]
-        
-        @property { AggregatorRoute } [rupifi]
-        
-        @property { AggregatorRoute } [stripe]
-        
-        @property { AggregatorRoute } [razorpay]
-        
-        @property { AggregatorRoute } [payubiz]
-        
-        @property { AggregatorRoute } [juspay]
-        
-        @property { AggregatorRoute } [ccavenue]
-        
-        @property { AggregatorRoute } [simpl]
-        
-         
-    */
-/**
-        @typedef PaymentModeLogo
-        
-        
-        @property { string } small
-        
-        @property { string } large
-        
-         
-    */
-/**
-        @typedef PaymentModeList
-        
-        
-        @property { Array<string> } [intentAppErrorList]
-        
-        @property { string } [cardBrand]
-        
-        @property { string } [cardNumber]
-        
-        @property { boolean } [expired]
-        
-        @property { string } aggregatorName
-        
-        @property { string } [fyndVpa]
-        
-        @property { string } [cardIssuer]
-        
-        @property { PaymentModeLogo } [logoUrl]
-        
-        @property { string } [cardIsin]
-        
-        @property { string } [cardId]
-        
-        @property { string } [cardType]
-        
-        @property { string } [cardName]
-        
-        @property { string } [cardFingerprint]
-        
-        @property { number } [retryCount]
-        
-        @property { string } [name]
-        
-        @property { string } [cardBrandImage]
-        
-        @property { string } [displayName]
-        
-        @property { string } [code]
-        
-        @property { number } [expMonth]
-        
-        @property { number } [expYear]
-        
-        @property { number } [displayPriority]
-        
-        @property { string } [cardToken]
-        
-        @property { string } [intentFlow]
-        
-        @property { string } [merchantCode]
-        
-        @property { number } [timeout]
-        
-        @property { string } [cardReference]
-        
-        @property { string } [nickname]
-        
-         
-    */
-/**
-        @typedef RootPaymentMode
-        
-        
-        @property { Array<PaymentModeList> } [list]
-        
-        @property { string } [aggregatorName]
-        
-        @property { number } displayPriority
-        
-        @property { string } name
-        
-        @property { boolean } [anonymousEnable]
-        
-        @property { string } displayName
-        
-        @property { boolean } [addCardEnabled]
-        
-         
-    */
-/**
-        @typedef PaymentOptionAndFlow
-        
-        
-        @property { PaymentFlow } paymentFlows
-        
-        @property { Array<RootPaymentMode> } paymentOption
-        
-         
-    */
-/**
-        @typedef PaymentModeRouteResponse
-        
-        
-        @property { boolean } success
-        
-        @property { PaymentOptionAndFlow } paymentOptions
-        
-         
-    */
-/**
-        @typedef OrderBeneficiaryDetails
-        
-        
-        @property { boolean } isActive
-        
-        @property { boolean } [mobile]
-        
-        @property { string } beneficiaryId
-        
-        @property { string } subtitle
-        
-        @property { string } accountNo
-        
-        @property { string } transferMode
-        
-        @property { string } accountHolder
-        
-        @property { string } address
-        
-        @property { boolean } [branchName]
-        
-        @property { string } bankName
-        
-        @property { string } displayName
-        
-        @property { string } email
-        
-        @property { string } delightsUserName
-        
-        @property { string } createdOn
-        
-        @property { string } ifscCode
-        
-        @property { boolean } [comment]
-        
-        @property { string } title
-        
-        @property { number } id
-        
-        @property { string } modifiedOn
-        
-         
-    */
-/**
-        @typedef OrderBeneficiaryResponse
-        
-        
-        @property { Array<OrderBeneficiaryDetails> } beneficiaries
-        
-         
-    */
-/**
-        @typedef NotFoundResourceError
-        
-        
-        @property { boolean } success
-        
-        @property { string } description
-        
-        @property { string } code
-        
-         
-    */
-/**
-        @typedef IfscCodeResponse
-        
-        
-        @property { boolean } [success]
-        
-        @property { string } branchName
-        
-        @property { string } bankName
-        
-         
-    */
-/**
-        @typedef ErrorCodeDescription
-        
-        
-        @property { boolean } success
-        
-        @property { string } description
-        
-        @property { string } code
-        
-         
-    */
-/**
-        @typedef AddBeneficiaryViaOtpVerificationRequest
-        
-        
-        @property { string } requestId
-        
-        @property { string } hashKey
-        
-        @property { string } otp
-        
-         
-    */
-/**
-        @typedef AddBeneficiaryViaOtpVerificationResponse
-        
-        
-        @property { string } requestId
-        
-        @property { string } hashKey
-        
-        @property { string } otp
-        
-         
-    */
-/**
-        @typedef WrongOtpError
-        
-        
-        @property { string } success
-        
-        @property { string } description
-        
-         
-    */
-/**
-        @typedef BankDetails
-        
-        
-        @property { string } accountHolder
-        
-        @property { string } address
-        
-        @property { string } branchName
-        
-        @property { string } ifscCode
-        
-        @property { string } bankName
-        
-        @property { string } accountNo
-        
-        @property { string } [comment]
-        
-        @property { string } mobile
-        
-        @property { string } email
-        
-         
-    */
-/**
-        @typedef AddBeneficiaryDetailsRequest
-        
-        
-        @property { boolean } delights
-        
-        @property { string } orderId
-        
-        @property { string } shipmentId
-        
-        @property { string } transferMode
-        
-        @property { BankDetails } details
-        
-         
-    */
-/**
-        @typedef RefundAccountResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-        @property { Object } [data]
-        
-         
-    */
-/**
-        @typedef WalletOtpRequest
-        
-        
-        @property { string } countryCode
-        
-        @property { boolean } mobile
-        
-         
-    */
-/**
-        @typedef WalletOtpResponse
-        
-        
-        @property { boolean } [success]
-        
-        @property { string } requestId
-        
-        @property { string } isVerifiedFlag
-        
-         
-    */
-/**
-        @typedef SetDefaultBeneficiaryRequest
-        
-        
-        @property { string } orderId
-        
-        @property { string } beneficiaryId
-        
-         
-    */
-/**
-        @typedef SetDefaultBeneficiaryResponse
-        
-        
-        @property { boolean } [success]
-        
-        @property { boolean } isBeneficiarySet
-        
-         
-    */
-/**
-        @typedef OrderById
-        
-        
-        @property { OrderSchema } order
-        
-         
-    */
-/**
-        @typedef OrderList
-        
-        
-        @property { Array<OrderSchema> } orders
-        
-        @property { Object } page
-        
-         
-    */
-/**
-        @typedef ShipmentById
-        
-        
-        @property { Shipments } shipment
-        
-         
-    */
-/**
-        @typedef ShipmentReasons
-        
-        
-        @property { Array<Reasons> } reasons
-        
-         
-    */
-/**
-        @typedef ShipmentStatusUpdateBody
-        
-        
-        @property { Object } shipments
-        
-        @property { boolean } forceTransition
-        
-        @property { boolean } task
-        
-         
-    */
-/**
-        @typedef ShipmentStatusUpdate
-        
-        
-        @property { Object } shipments
-        
-         
-    */
-/**
-        @typedef ShipmentTrack
-        
-        
-        @property { Array<Track> } results
-        
-         
-    */
-/**
-        @typedef OrderSchema
-        
-        
-        @property { string } [orderId]
-        
-        @property { Array<BreakupValues> } [breakupValues]
-        
-        @property { string } [orderCreatedTime]
-        
-        @property { Array<Shipments> } [shipments]
-        
-        @property { number } [totalShipmentsInOrder]
-        
-        @property { UserInfo } [userInfo]
-        
-         
-    */
-/**
-        @typedef PosOrderById
-        
-        
-        @property { OrderSchema } order
-        
-         
-    */
-/**
-        @typedef Bags
-        
-        
-        @property { Object } [item]
-        
-        @property { Object } [prices]
-        
-        @property { number } [promotionEffectiveDiscount]
-        
-        @property { Object } [currentStatus]
-        
-        @property { Array<Object> } [bagStatus]
-        
-        @property { Object } [dates]
-        
-        @property { number } [id]
-        
-        @property { Object } [status]
-        
-        @property { string } [type]
-        
-        @property { Array<Object> } [financialBreakup]
-        
-        @property { Array<Object> } [reasons]
-        
-        @property { Object } [article]
-        
-        @property { string } [journeyType]
-        
-        @property { Object } [currentOperationalStatus]
-        
-        @property { string } [displayName]
-        
-        @property { string } [entityType]
-        
-        @property { Object } [brand]
-        
-        @property { Object } [affiliateBagDetails]
-        
-        @property { Object } [gstDetails]
-        
-        @property { number } [bagId]
-        
-        @property { number } [bagUpdateTime]
-        
-         
-    */
-/**
-        @typedef BreakupValues
-        
-        
-        @property { string } [display]
-        
-        @property { number } [value]
-        
-        @property { string } [name]
-        
-         
-    */
-/**
-        @typedef DeliveryAddress
-        
-        
-        @property { string } [pincode]
-        
-        @property { string } [landmark]
-        
-        @property { string } [contactPerson]
-        
-        @property { string } [phone]
-        
-        @property { string } [state]
-        
-        @property { string } [version]
-        
-        @property { string } [address1]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [addressType]
-        
-        @property { string } [addressCategory]
-        
-        @property { string } [area]
-        
-        @property { string } [city]
-        
-        @property { number } [latitude]
-        
-        @property { number } [longitude]
-        
-        @property { string } [email]
-        
-        @property { string } [country]
-        
-        @property { string } [address2]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [name]
-        
-        @property { string } [address]
-        
-         
-    */
-/**
-        @typedef FulfillingStore
-        
-        
-        @property { string } [address1]
-        
-        @property { string } [storeEmail]
-        
-        @property { string } [code]
-        
-        @property { Object } [storeAddressJson]
-        
-        @property { string } [country]
-        
-        @property { string } [state]
-        
-        @property { string } [pincode]
-        
-        @property { string } [contactPerson]
-        
-        @property { Array<any> } [brandStoreTags]
-        
-        @property { string } [locationType]
-        
-        @property { string } [address2]
-        
-        @property { boolean } [isArchived]
-        
-        @property { number } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { boolean } [isEnabledForRecon]
-        
-        @property { string } [city]
-        
-        @property { Object } [meta]
-        
-        @property { string } [fulfillmentChannel]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [loginUsername]
-        
-        @property { string } [phone]
-        
-        @property { number } [packagingMaterialCount]
-        
-        @property { string } [name]
-        
-        @property { number } [companyId]
-        
-         
-    */
-/**
-        @typedef Invoice
-        
-        
-        @property { string } [updatedDate]
-        
-        @property { string } [invoiceUrl]
-        
-        @property { string } [labelUrl]
-        
-         
-    */
-/**
-        @typedef ProductItems
-        
-        
-        @property { string } [code]
-        
-        @property { string } [lastUpdatedAt]
-        
-        @property { string } [brand]
-        
-        @property { Array<any> } [image]
-        
-        @property { number } [l3Category]
-        
-        @property { number } [brandId]
-        
-        @property { string } [name]
-        
-        @property { boolean } [canCancel]
-        
-        @property { string } [size]
-        
-        @property { string } [slugKey]
-        
-        @property { string } [l3CategoryName]
-        
-        @property { Array<any> } [l2Category]
-        
-        @property { number } [id]
-        
-        @property { boolean } [canReturn]
-        
-        @property { Array<any> } [l1Category]
-        
-        @property { Object } [attributes]
-        
-         
-    */
-/**
-        @typedef ShipmentMeta
-        
-        
-        @property { Object } [timestamp]
-        
-        @property { Object } [bagWeight]
-        
-        @property { Object } [dpOptions]
-        
-        @property { string } [orderType]
-        
-        @property { boolean } [sameStoreAvailable]
-        
-        @property { boolean } [assignDpFromSb]
-        
-        @property { string } [dpId]
-        
-        @property { number } [weight]
-        
-        @property { Object } [formatted]
-        
-        @property { Object } [debugInfo]
-        
-        @property { string } [dpSortKey]
-        
-        @property { string } [packagingName]
-        
-         
-    */
-/**
-        @typedef Prices
-        
-        
-        @property { number } [amountPaid]
-        
-        @property { number } [priceMarked]
-        
-        @property { number } [codCharges]
-        
-        @property { number } [discount]
-        
-        @property { number } [deliveryCharge]
-        
-        @property { number } [fyndCredits]
-        
-        @property { number } [cashback]
-        
-        @property { number } [priceEffective]
-        
-        @property { number } [valueOfGood]
-        
-        @property { number } [refundAmount]
-        
-        @property { number } [couponValue]
-        
-        @property { number } [cashbackApplied]
-        
-        @property { number } [refundCredit]
-        
-         
-    */
-/**
-        @typedef Promise
-        
-        
-        @property { Object } [timestamp]
-        
-         
-    */
-/**
-        @typedef Reasons
-        
-        
-        @property { string } [reasonText]
-        
-        @property { boolean } [showTextArea]
-        
-        @property { string } [feedbackType]
-        
-        @property { string } [flow]
-        
-        @property { number } [reasonId]
-        
-        @property { number } [priority]
-        
-         
-    */
-/**
-        @typedef ShipmentStatus
-        
-        
-        @property { string } [title]
-        
-        @property { number } [hexCode]
-        
-         
-    */
-/**
-        @typedef ShipmentUserInfo
-        
-        
-        @property { string } [gender]
-        
-        @property { string } [mobile]
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-         
-    */
-/**
-        @typedef Shipments
-        
-        
-        @property { string } [orderId]
-        
-        @property { Array<BreakupValues> } [breakupValues]
-        
-        @property { boolean } [enableCanReturn]
-        
-        @property { string } [paymentModeSource]
-        
-        @property { Array<string> } [shipmentImages]
-        
-        @property { string } [trackUrl]
-        
-        @property { string } [trakingNo]
-        
-        @property { Array<TrackingDetails> } [trackingDetails]
-        
-        @property { boolean } [beneficiaryDetails]
-        
-        @property { boolean } [canReturn]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { Prices } [prices]
-        
-        @property { string } [needHelpUrl]
-        
-        @property { string } [shipmentId]
-        
-        @property { number } [totalBags]
-        
-        @property { Array<ProductItems> } [items]
-        
-        @property { DeliveryAddress } [deliveryAddress]
-        
-        @property { string } [paymentStatus]
-        
-        @property { Invoice } [invoice]
-        
-        @property { string } [comment]
-        
-        @property { string } [orderType]
-        
-        @property { Promise } [promise]
-        
-        @property { FulfillingStore } [fulfillingStore]
-        
-        @property { number } [totalItems]
-        
-        @property { Array<Bags> } [bags]
-        
-        @property { boolean } [canCancel]
-        
-        @property { string } [paymentLogo]
-        
-        @property { string } [shipmentCreatedAt]
-        
-        @property { ShipmentStatus } [shipmentStatus]
-        
-        @property { ShipmentUserInfo } [userInfo]
-        
-        @property { ShipmentMeta } [meta]
-        
-         
-    */
-/**
-        @typedef Track
-        
-        
-        @property { string } [awb]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [lastLocationRecievedAt]
-        
-        @property { string } [reason]
-        
-        @property { string } [shipmentType]
-        
-        @property { string } [status]
-        
-        @property { string } [updatedTime]
-        
-        @property { string } [accountName]
-        
-         
-    */
-/**
-        @typedef TrackingDetails
-        
-        
-        @property { boolean } [isCurrent]
-        
-        @property { string } [status]
-        
-        @property { string } [time]
-        
-        @property { string } [isPassed]
-        
-         
-    */
-/**
-        @typedef UserInfo
-        
-        
-        @property { string } [gender]
-        
-        @property { string } [mobile]
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-         
-    */
-/**
-        @typedef ApefaceApiError
-        
-        
-        @property { string } [message]
-        
-         
-    */
-/**
-        @typedef Article
-        
-        
-        @property { string } [id]
-        
-        @property { number } [points]
-        
-        @property { number } [price]
-        
-         
-    */
-/**
-        @typedef CatalogueOrderRequest
-        
-        
-        @property { Array<Article> } [articles]
-        
-         
-    */
-/**
-        @typedef CatalogueOrderResponse
-        
-        
-        @property { Array<Article> } [articles]
-        
-         
-    */
-/**
-        @typedef CursorPage
-        
-        
-        @property { boolean } [hasNext]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { number } [itemTotal]
-        
-        @property { string } [nextId]
-        
-        @property { string } [type]
-        
-         
-    */
-/**
-        @typedef Discount
-        
-        
-        @property { number } [absolute]
-        
-        @property { string } [currency]
-        
-        @property { string } [displayAbsolute]
-        
-        @property { string } [displayPercent]
-        
-        @property { number } [percent]
-        
-         
-    */
-/**
-        @typedef Error
-        
-        
-        @property { number } [code]
-        
-        @property { string } [exception]
-        
-        @property { string } [info]
-        
-        @property { string } [message]
-        
-         
-    */
-/**
-        @typedef Offer
-        
-        
-        @property { string } [schedule]
-        
-        @property { boolean } [active]
-        
-        @property { string } [applicationId]
-        
-        @property { Asset } [bannerImage]
-        
-        @property { string } [createdAt]
-        
-        @property { Action } [infoAction]
-        
-        @property { string } [name]
-        
-        @property { Object } [rule]
-        
-        @property { ShareMessages } [share]
-        
-        @property { string } [subText]
-        
-        @property { string } [text]
-        
-        @property { string } [type]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [updatedBy]
-        
-        @property { string } [url]
-        
-         
-    */
-/**
-        @typedef OrderDiscountRequest
-        
-        
-        @property { string } [currency]
-        
-        @property { number } orderAmount
-        
-         
-    */
-/**
-        @typedef OrderDiscountResponse
-        
-        
-        @property { OrderDiscountRuleBucket } [appliedRuleBucket]
-        
-        @property { Discount } [baseDiscount]
-        
-        @property { Discount } [discount]
-        
-        @property { number } [orderAmount]
-        
-        @property { number } [points]
-        
-         
-    */
-/**
-        @typedef OrderDiscountRuleBucket
-        
-        
-        @property { number } [high]
-        
-        @property { number } [low]
-        
-        @property { number } [max]
-        
-        @property { number } [value]
-        
-        @property { string } [valueType]
-        
-         
-    */
-/**
-        @typedef PointsHistory
-        
-        
-        @property { string } [id]
-        
-        @property { string } [applicationId]
-        
-        @property { boolean } [claimed]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [expiresOn]
-        
-        @property { string } [meta]
-        
-        @property { number } [points]
-        
-        @property { number } [remainingPoints]
-        
-        @property { string } [text1]
-        
-        @property { string } [text2]
-        
-        @property { string } [text3]
-        
-        @property { string } [txnName]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [userId]
-        
-         
-    */
-/**
-        @typedef PointsHistoryResponse
-        
-        
-        @property { Array<PointsHistory> } [history]
-        
-        @property { CursorPage } [page]
-        
-         
-    */
-/**
-        @typedef PointsResponse
-        
-        
-        @property { number } [points]
-        
-         
-    */
-/**
-        @typedef RedeemReferralCodeRequest
-        
-        
-        @property { string } deviceId
-        
-        @property { string } referralCode
-        
-         
-    */
-/**
-        @typedef RedeemReferralCodeResponse
-        
-        
-        @property { string } [message]
-        
-        @property { number } [points]
-        
-        @property { boolean } [redeemed]
-        
-        @property { string } [referrerId]
-        
-        @property { string } [referrerInfo]
-        
-         
-    */
-/**
-        @typedef ReferralDetailsResponse
-        
-        
-        @property { Offer } [referral]
-        
-        @property { string } [referrerInfo]
-        
-        @property { ShareMessages } [share]
-        
-        @property { Object } [user]
-        
-         
-    */
-/**
-        @typedef ShareMessages
-        
-        
-        @property { string } [email]
-        
-        @property { string } [facebook]
-        
-        @property { string } [fallback]
-        
-        @property { string } [message]
-        
-        @property { string } [messenger]
-        
-        @property { string } [sms]
-        
-        @property { string } [text]
-        
-        @property { string } [twitter]
-        
-        @property { string } [whatsapp]
         
          
     */
@@ -10134,66 +3966,6 @@ export type GetTatProductResponse = {
         
         
         @property { Array<PickupStoreDetail> } [items]
-        
-         
-    */
-/**
-        @typedef GetPincodeCityResponse
-        
-        
-        @property { string } requestUuid
-        
-        @property { string } stormbreakerUuid
-        
-        @property { boolean } success
-        
-        @property { Array<Object> } data
-        
-         
-    */
-/**
-        @typedef GetTatProductReqBody
-        
-        
-        @property { Array<Object> } locationDetails
-        
-        @property { string } source
-        
-        @property { string } toPincode
-        
-        @property { string } action
-        
-        @property { string } identifier
-        
-        @property { string } journey
-        
-         
-    */
-/**
-        @typedef GetTatProductResponse
-        
-        
-        @property { Array<Object> } locationDetails
-        
-        @property { string } requestUuid
-        
-        @property { Object } error
-        
-        @property { string } toCity
-        
-        @property { string } source
-        
-        @property { string } toPincode
-        
-        @property { string } action
-        
-        @property { string } stormbreakerUuid
-        
-        @property { boolean } success
-        
-        @property { string } identifier
-        
-        @property { string } journey
         
          
     */
@@ -10931,723 +4703,6 @@ export class Cart {
         action: string;
     }): any;
 }
-export class Lead {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-      *
-      * @summary: Get Ticket with the specific id
-      * @description: Get Ticket with the specific id, this is used to view the ticket details
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - ID of ticket to be retrieved
-      
-      **/
-    getTicket({ id }?: {
-        id: string;
-    }): any;
-    /**
-     *
-     * @summary: Create history for specific Ticket
-     * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-     * @param {Object} arg - arg object.
-     * @param {string} arg.ticketId - Ticket ID for which history is created
-     * @param {TicketHistoryPayload} arg.body
-     **/
-    createHistory({ ticketId, body }?: {
-        ticketId: string;
-        body: TicketHistoryPayload;
-    }): any;
-    /**
-     *
-     * @summary: Create Ticket
-     * @description: This is used to Create Ticket.
-     * @param {Object} arg - arg object.
-     * @param {AddTicketPayload} arg.body
-     **/
-    createTicket({ body }?: {
-        body: AddTicketPayload;
-    }): any;
-    /**
-      *
-      * @summary: Get specific Custom Form using it's slug
-      * @description: Get specific Custom Form using it's slug, this is used to view the form.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - Slug of form whose response is getting submitted
-      
-      **/
-    getCustomForm({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-     *
-     * @summary: Submit Response for a specific Custom Form using it's slug
-     * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
-     * @param {Object} arg - arg object.
-     * @param {string} arg.slug - Slug of form whose response is getting submitted
-     * @param {CustomFormSubmissionPayload} arg.body
-     **/
-    submitCustomForm({ slug, body }?: {
-        slug: string;
-        body: CustomFormSubmissionPayload;
-    }): any;
-    /**
-      *
-      * @summary: Get participants of a specific Video Room using it's unique name
-      * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.uniqueName - Unique name of Video Room
-      
-      **/
-    getParticipantsInsideVideoRoom({ uniqueName }?: {
-        uniqueName: string;
-    }): any;
-    /**
-      *
-      * @summary: Get Token to join a specific Video Room using it's unqiue name
-      * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.uniqueName - Unique name of Video Room
-      
-      **/
-    getTokenForVideoRoom({ uniqueName }?: {
-        uniqueName: string;
-    }): any;
-}
-export class Theme {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-      *
-      * @summary: Get applied theme for an application
-      * @description:
-      * @param {Object} arg - arg object.
-      
-      **/
-    getAppliedTheme({}?: any): any;
-    /**
-      *
-      * @summary: Get theme for preview
-      * @description:
-      * @param {Object} arg - arg object.
-      * @param {string} arg.themeId - ID of the theme to be retrieved
-      
-      **/
-    getThemeForPreview({ themeId }?: {
-        themeId: string;
-    }): any;
-}
-export class User {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-     *
-     * @summary: Login/Register with Facebook
-     * @description: Used to login or register with Facebook
-     * @param {Object} arg - arg object.
-     * @param {OAuthRequestSchema} arg.body
-     **/
-    loginWithFacebook({ body }?: {
-        body: OAuthRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with Google
-     * @description: Used to login or register with Google
-     * @param {Object} arg - arg object.
-     * @param {OAuthRequestSchema} arg.body
-     **/
-    loginWithGoogle({ body }?: {
-        body: OAuthRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with Google for android
-     * @description: Used to login or register with Google for android
-     * @param {Object} arg - arg object.
-     * @param {OAuthRequestSchema} arg.body
-     **/
-    loginWithGoogleAndroid({ body }?: {
-        body: OAuthRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with Google for ios
-     * @description: Used to login or register with google for ios
-     * @param {Object} arg - arg object.
-     * @param {OAuthRequestSchema} arg.body
-     **/
-    loginWithGoogleIOS({ body }?: {
-        body: OAuthRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with OTP
-     * @description: Used to login or register with OTP
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {SendOtpRequestSchema} arg.body
-     **/
-    loginWithOTP({ body, platform }?: {
-        platform?: string;
-        body: SendOtpRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with password
-     * @description: Used to login or register with email & password
-     * @param {Object} arg - arg object.
-     * @param {PasswordLoginRequestSchema} arg.body
-     **/
-    loginWithEmailAndPassword({ body }?: {
-        body: PasswordLoginRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Reset Password
-     * @description: Used to reset account password
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {SendResetPasswordEmailRequestSchema} arg.body
-     **/
-    sendResetPasswordEmail({ body, platform }?: {
-        platform?: string;
-        body: SendResetPasswordEmailRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary:
-     * @description:
-     * @param {Object} arg - arg object.
-     * @param {ForgotPasswordRequestSchema} arg.body
-     **/
-    forgotPassword({ body }?: {
-        body: ForgotPasswordRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary:
-     * @description: Send code incase of reset password
-     * @param {Object} arg - arg object.
-     * @param {CodeRequestBodySchema} arg.body
-     **/
-    sendResetToken({ body }?: {
-        body: CodeRequestBodySchema;
-    }): any;
-    /**
-     *
-     * @summary: Login/Register with token
-     * @description: Login/Register with token
-     * @param {Object} arg - arg object.
-     * @param {TokenRequestBodySchema} arg.body
-     **/
-    loginWithToken({ body }?: {
-        body: TokenRequestBodySchema;
-    }): any;
-    /**
-     *
-     * @summary: Registration Form
-     * @description: Register using form
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {FormRegisterRequestSchema} arg.body
-     **/
-    registerWithForm({ body, platform }?: {
-        platform?: string;
-        body: FormRegisterRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Verify email
-     * @description: Used to verify email
-     * @param {Object} arg - arg object.
-     * @param {CodeRequestBodySchema} arg.body
-     **/
-    verifyEmail({ body }?: {
-        body: CodeRequestBodySchema;
-    }): any;
-    /**
-     *
-     * @summary: Verify mobile
-     * @description: Verify mobile
-     * @param {Object} arg - arg object.
-     * @param {CodeRequestBodySchema} arg.body
-     **/
-    verifyMobile({ body }?: {
-        body: CodeRequestBodySchema;
-    }): any;
-    /**
-      *
-      * @summary: Check if user has password
-      * @description: Checks if user is using password or not
-      * @param {Object} arg - arg object.
-      
-      **/
-    hasPassword({}?: any): any;
-    /**
-     *
-     * @summary: Update user password
-     * @description: Used to update user password
-     * @param {Object} arg - arg object.
-     * @param {UpdatePasswordRequestSchema} arg.body
-     **/
-    updatePassword({ body }?: {
-        body: UpdatePasswordRequestSchema;
-    }): any;
-    /**
-      *
-      * @summary: Logout user
-      * @description: Used to log out user
-      * @param {Object} arg - arg object.
-      
-      **/
-    logout({}?: any): any;
-    /**
-     *
-     * @summary: Send OTP on mobile
-     * @description: Used to send otp to mobile
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {SendMobileOtpRequestSchema} arg.body
-     **/
-    sendOTPOnMobile({ body, platform }?: {
-        platform?: string;
-        body: SendMobileOtpRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Verify OTP on mobile
-     * @description: Used to verify otp sent to mobile
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {VerifyOtpRequestSchema} arg.body
-     **/
-    verifyMobileOTP({ body, platform }?: {
-        platform?: string;
-        body: VerifyOtpRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Send OTP on email
-     * @description: Used to send otp to email
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {SendEmailOtpRequestSchema} arg.body
-     **/
-    sendOTPOnEmail({ body, platform }?: {
-        platform?: string;
-        body: SendEmailOtpRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Verify OTP on email
-     * @description: Used to verify otp sent to email
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {VerifyOtpRequestSchema} arg.body
-     **/
-    verifyEmailOTP({ body, platform }?: {
-        platform?: string;
-        body: VerifyOtpRequestSchema;
-    }): any;
-    /**
-      *
-      * @summary: Get logged in user
-      * @description: Used to get logged in user details
-      * @param {Object} arg - arg object.
-      
-      **/
-    getLoggedInUser({}?: any): any;
-    /**
-      *
-      * @summary: Get list of sessions
-      * @description: Lists all active sessions
-      * @param {Object} arg - arg object.
-      
-      **/
-    getListOfActiveSessions({}?: any): any;
-    /**
-      *
-      * @summary: Get platform config
-      * @description: Used to get platform config
-      * @param {Object} arg - arg object.
-      * @param {string} [arg.name] - Name
-      
-      **/
-    getPlatformConfig({ name }?: {
-        name?: string;
-    }): any;
-    /**
-     *
-     * @summary: Edit Profile Details
-     * @description: Used to update profile
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {EditProfileRequestSchema} arg.body
-     **/
-    updateProfile({ body, platform }?: {
-        platform?: string;
-        body: EditProfileRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Add mobile number to profile
-     * @description: Used to add new mobile number to profile
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {EditMobileRequestSchema} arg.body
-     **/
-    addMobileNumber({ body, platform }?: {
-        platform?: string;
-        body: EditMobileRequestSchema;
-    }): any;
-    /**
-      *
-      * @summary: Delete mobile number from profile
-      * @description: Used to delete mobile number from profile
-      * @param {Object} arg - arg object.
-      * @param {string} [arg.platform] - Platform
-      * @param {boolean} arg.active - Active mobile number
-      * @param {boolean} arg.primary - Primary number
-      * @param {boolean} arg.verified - Verified Number
-      * @param {string} arg.countryCode - Country code of phone number
-      * @param {string} arg.phone - Phone number
-      
-      **/
-    deleteMobileNumber({ active, primary, verified, countryCode, phone, platform, }?: {
-        platform?: string;
-        active: boolean;
-        primary: boolean;
-        verified: boolean;
-        countryCode: string;
-        phone: string;
-    }): any;
-    /**
-     *
-     * @summary: Set mobile as primary
-     * @description: Used to set a mobile number as primary
-     * @param {Object} arg - arg object.
-     * @param {SendVerificationLinkMobileRequestSchema} arg.body
-     **/
-    setMobileNumberAsPrimary({ body }?: {
-        body: SendVerificationLinkMobileRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Send verification link to mobile
-     * @description: Used to send verification link to a mobile number
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {SendVerificationLinkMobileRequestSchema} arg.body
-     **/
-    sendVerificationLinkToMobile({ body, platform }?: {
-        platform?: string;
-        body: SendVerificationLinkMobileRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Add email to profile
-     * @description: Used to add new email to profile
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {EditEmailRequestSchema} arg.body
-     **/
-    addEmail({ body, platform }?: {
-        platform?: string;
-        body: EditEmailRequestSchema;
-    }): any;
-    /**
-      *
-      * @summary: Delete email from profile
-      * @description: Used to delete email from profile
-      * @param {Object} arg - arg object.
-      * @param {string} [arg.platform] - Platform
-      * @param {boolean} arg.active - Whether email id is active
-      * @param {boolean} arg.primary - Whether email id is primary email
-      * @param {boolean} arg.verified - Whether email id is verified
-      * @param {string} arg.email - Email ID to be deleted
-      
-      **/
-    deleteEmail({ active, primary, verified, email, platform }?: {
-        platform?: string;
-        active: boolean;
-        primary: boolean;
-        verified: boolean;
-        email: string;
-    }): any;
-    /**
-     *
-     * @summary: Set email as primary
-     * @description: Used to set an email as primart
-     * @param {Object} arg - arg object.
-     * @param {EditEmailRequestSchema} arg.body
-     **/
-    setEmailAsPrimary({ body }?: {
-        body: EditEmailRequestSchema;
-    }): any;
-    /**
-     *
-     * @summary: Send verification link to email
-     * @description: Used to sent verification to an email
-     * @param {Object} arg - arg object.
-     * @param {string} [arg.platform] - Platform
-     * @param {EditEmailRequestSchema} arg.body
-     **/
-    sendVerificationLinkToEmail({ body, platform }?: {
-        platform?: string;
-        body: EditEmailRequestSchema;
-    }): any;
-}
-export class Content {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-      *
-      * @summary: Get live announcements
-      * @description: Get live announcements for each or all pages with page slug of page and end date schedule.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getAnnouncements({}?: any): any;
-    /**
-      *
-      * @summary: Get Blog by slug
-      * @description: Use this API to fetch a blog using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
-      
-      **/
-    getBlog({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get frequently asked questions
-      * @description: Get frequently asked questions list. These will be helpful for users to using website.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getFaqs({}?: any): any;
-    /**
-      *
-      * @summary: Get FAQ categories list
-      * @description: Get list of FAQ categories
-      * @param {Object} arg - arg object.
-      
-      **/
-    getFaqCategories({}?: any): any;
-    /**
-      *
-      * @summary: Get frequently asked question
-      * @description: Get frequently asked questions list. These will be helpful for users to using website.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.idOrSlug - Slug or Id of FAQ
-      
-      **/
-    getFaqByIdOrSlug({ idOrSlug }?: {
-        idOrSlug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get FAQ category by slug or id
-      * @description: Get FAQ category by slug or id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
-      
-      **/
-    getFaqCategoryBySlugOrId({ idOrSlug }?: {
-        idOrSlug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get FAQs of a Faq Category id or slug
-      * @description: Get FAQs of a Faq Category `id` or `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.idOrSlug - Faq category ID or slug
-      
-      **/
-    getFaqsByCategoryIdOrSlug({ idOrSlug }?: {
-        idOrSlug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get landing page
-      * @description: Use this API to fetch a landing page
-      * @param {Object} arg - arg object.
-      
-      **/
-    getLandingPage({}?: any): any;
-    /**
-      *
-      * @summary: Get legal information
-      * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getLegalInformation({}?: any): any;
-    /**
-      *
-      * @summary: Get navigation
-      * @description: Use this API to fetch a navigation
-      * @param {Object} arg - arg object.
-      
-      **/
-    getNavigations({}?: any): any;
-    /**
-      *
-      * @summary: Get Page by slug
-      * @description: Use this API to fetch a custom page using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
-      
-      **/
-    getPage({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get seo of application
-      * @description: Get seo of application
-      * @param {Object} arg - arg object.
-      
-      **/
-    getSeoConfiguration({}?: any): any;
-    /**
-      *
-      * @summary: Get slideshow by slug
-      * @description: Use this API to fetch a slideshow using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
-      
-      **/
-    getSlideshow({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
-      * @summary: Get support information
-      * @description: Get contact details for customer support. Including emails and phone numbers
-      * @param {Object} arg - arg object.
-      
-      **/
-    getSupportInformation({}?: any): any;
-    /**
-      *
-      * @summary: Get Tags for application
-      * @description:
-      * @param {Object} arg - arg object.
-      
-      **/
-    getTags({}?: any): any;
-}
-export class Communication {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-      *
-      * @summary: Get communication consent
-      * @description: Get communication consent
-      * @param {Object} arg - arg object.
-      
-      **/
-    getCommunicationConsent({}?: any): any;
-    /**
-     *
-     * @summary: Upsert communication consent
-     * @description: Upsert communication consent
-     * @param {Object} arg - arg object.
-     * @param {CommunicationConsentReq} arg.body
-     **/
-    upsertCommunicationConsent({ body }?: {
-        body: CommunicationConsentReq;
-    }): any;
-    /**
-     *
-     * @summary: Upsert push token of a user
-     * @description: Upsert push token of a user
-     * @param {Object} arg - arg object.
-     * @param {PushtokenReq} arg.body
-     **/
-    upsertAppPushtoken({ body }?: {
-        body: PushtokenReq;
-    }): any;
-}
-export class Share {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-      *
-      * @summary: Create application QR Code
-      * @description: Create application QR Code
-      * @param {Object} arg - arg object.
-      
-      **/
-    getApplicationQRCode({}?: any): any;
-    /**
-      *
-      * @summary: Create product QR Code
-      * @description: Create product QR Code
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The unique identifier of a product
-      
-      **/
-    getProductQRCodeBySlug({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
-      * @summary: Create collection QR Code
-      * @description: Create collection QR Code
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The unique identifier of a collection
-      
-      **/
-    getCollectionQRCodeBySlug({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
-      * @summary: Create url QR Code
-      * @description: Create url QR Code
-      * @param {Object} arg - arg object.
-      * @param {string} arg.url - Url
-      
-      **/
-    getUrlQRCode({ url }?: {
-        url: string;
-    }): any;
-    /**
-     *
-     * @summary: Create short link
-     * @description: Create short link
-     * @param {Object} arg - arg object.
-     * @param {ShortLinkReq} arg.body
-     **/
-    createShortLink({ body }?: {
-        body: ShortLinkReq;
-    }): any;
-    /**
-      *
-      * @summary: Get short link by hash
-      * @description: Get short link by hash
-      * @param {Object} arg - arg object.
-      * @param {string} arg.hash - Hash of short link
-      
-      **/
-    getShortLinkByHash({ hash }?: {
-        hash: string;
-    }): any;
-    /**
-      *
-      * @summary: Get original link by hash
-      * @description: Get original link by hash
-      * @param {Object} arg - arg object.
-      * @param {string} arg.hash - Hash of short link
-      
-      **/
-    getOriginalShortLinkByHash({ hash }?: {
-        hash: string;
-    }): any;
-}
 export class FileStorage {
     constructor(_conf: any);
     _conf: any;
@@ -11710,505 +4765,6 @@ export class FileStorage {
     completeUpload({ namespace, body }?: {
         namespace: string;
         body: StartResponse;
-    }): any;
-}
-export class Configuration {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-      *
-      * @summary: Get current application details
-      * @description: Get current application details.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getApplication({}?: any): any;
-    /**
-      *
-      * @summary: Get application, owner and seller information
-      * @description: Get application information with owner and seller basic details
-      * @param {Object} arg - arg object.
-      
-      **/
-    getOwnerInfo({}?: any): any;
-    /**
-      *
-      * @summary: Get basic application details
-      * @description: Get basic application details like name
-      * @param {Object} arg - arg object.
-      
-      **/
-    getBasicDetails({}?: any): any;
-    /**
-      *
-      * @summary: Get integration tokens
-      * @description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getIntegrationTokens({}?: any): any;
-    /**
-      *
-      * @summary: Get deployment meta stores
-      * @description: Get deployment meta stores.
-      * @param {Object} arg - arg object.
-      * @param {number} [arg.pageNo] - Current page no
-      * @param {number} [arg.pageSize] - Current request items count
-      * @param {string} [arg.q] - Search ordering store by name or store code
-      
-      **/
-    getOrderingStores({ pageNo, pageSize, q }?: {
-        pageNo?: number;
-        pageSize?: number;
-        q?: string;
-    }): any;
-    /**
-      *
-      * @summary: Get features of application
-      * @description: Get features of application
-      * @param {Object} arg - arg object.
-      
-      **/
-    getFeatures({}?: any): any;
-    /**
-      *
-      * @summary: Get application information
-      * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getContactInfo({}?: any): any;
-    /**
-      *
-      * @summary: Get application enabled currencies
-      * @description: Get currency list for allowed currencies under current application
-      * @param {Object} arg - arg object.
-      
-      **/
-    getCurrencies({}?: any): any;
-    /**
-      *
-      * @summary: Get currency by id
-      * @description: Get currency object with symbol and name information by id.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.id - Currency object id
-      
-      **/
-    getCurrencyById({ id }?: {
-        id: string;
-    }): any;
-    /**
-      *
-      * @summary: Get list of languages
-      * @description: Get list of supported languages under application.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getLanguages({}?: any): any;
-    /**
-     *
-     * @summary: Get ordering store signed cookie on selection of ordering store. This will be used by cart service to verify coupon against selected ordering store in cart.
-     * @description: Get ordering store signed cookie on selection of ordering store.
-     * @param {Object} arg - arg object.
-     * @param {OrderingStoreSelectRequest} arg.body
-     **/
-    getOrderingStoreCookie({ body }?: {
-        body: OrderingStoreSelectRequest;
-    }): any;
-    /**
-      *
-      * @summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
-      * @description: Unset ordering store cookie.
-      * @param {Object} arg - arg object.
-      
-      **/
-    removeOrderingStoreCookie({}?: any): any;
-    /**
-      *
-      * @summary: Get Staff List.
-      * @description: Get a staff list based on the user's session token passed in the header.
-      * @param {Object} arg - arg object.
-      * @param {boolean} [arg.orderIncent] - This is to check which staff members are applicable for order incentives.
-      * @param {number} [arg.orderingStore] - This is to filter staff members from only selected ordering store.
-      * @param {string} [arg.user] - Get single staff member details using staff user mongo id
-      
-      **/
-    getAppStaffs({ orderIncent, orderingStore, user }?: {
-        orderIncent?: boolean;
-        orderingStore?: number;
-        user?: string;
-    }): any;
-}
-export class Payment {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-      *
-      * @summary: Get payment gateway keys
-      * @description: Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
-      * @param {Object} arg - arg object.
-      * @param {string} arg.xApiToken - api token
-      * @param {boolean} [arg.refresh] - refresh cache
-      
-      **/
-    getAggregatorsConfig({ xApiToken, refresh }?: {
-        xApiToken: string;
-        refresh?: boolean;
-    }): any;
-    /**
-     *
-     * @summary: Attach a saved card to customer.
-     * @description: Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
-     * @param {Object} arg - arg object.
-     * @param {AttachCardRequest} arg.body
-     **/
-    attachCardToCustomer({ body }?: {
-        body: AttachCardRequest;
-    }): any;
-    /**
-      *
-      * @summary: Fetch active payment gateway for card
-      * @description: Fetch active payment gateway along with customer id for cards payments.
-      * @param {Object} arg - arg object.
-      * @param {boolean} [arg.refresh] -
-      
-      **/
-    getActiveCardAggregator({ refresh }?: {
-        refresh?: boolean;
-    }): any;
-    /**
-      *
-      * @summary: Fetch the list of saved cards of user.
-      * @description: Fetch the list of saved cards of user from active payment gateway.
-      * @param {Object} arg - arg object.
-      * @param {boolean} [arg.forceRefresh] -
-      
-      **/
-    getActiveUserCards({ forceRefresh }?: {
-        forceRefresh?: boolean;
-    }): any;
-    /**
-     *
-     * @summary: Delete an user card.
-     * @description: Delete an added user card on payment gateway and remove from cache.
-     * @param {Object} arg - arg object.
-     * @param {DeletehCardRequest} arg.body
-     **/
-    deleteUserCard({ body }?: {
-        body: DeletehCardRequest;
-    }): any;
-    /**
-     *
-     * @summary: Validate customer for payment.
-     * @description: Validate customer for payment i.e Simpl paylater, Rupifi loan.
-     * @param {Object} arg - arg object.
-     * @param {ValidateCustomerRequest} arg.body
-     **/
-    verifyCustomerForPayment({ body }?: {
-        body: ValidateCustomerRequest;
-    }): any;
-    /**
-     *
-     * @summary: Verify and charge payment
-     * @description: Verify and charge payment server to server for Simpl & Mswipe.
-     * @param {Object} arg - arg object.
-     * @param {ChargeCustomerRequest} arg.body
-     **/
-    verifyAndChargePayment({ body }?: {
-        body: ChargeCustomerRequest;
-    }): any;
-    /**
-     *
-     * @summary: Payment Initialisation server to server for UPI and BharatQR.
-     * @description: Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
-     * @param {Object} arg - arg object.
-     * @param {PaymentInitializationRequest} arg.body
-     **/
-    initialisePayment({ body }?: {
-        body: PaymentInitializationRequest;
-    }): any;
-    /**
-     *
-     * @summary: Continous polling to check status of payment on server.
-     * @description: Continous polling on interval to check status of payment untill timeout.
-     * @param {Object} arg - arg object.
-     * @param {PaymentStatusUpdateRequest} arg.body
-     **/
-    checkAndUpdatePaymentStatus({ body }?: {
-        body: PaymentStatusUpdateRequest;
-    }): any;
-    /**
-      *
-      * @summary: Get All Valid Payment Options
-      * @description: Use this API to get Get All Valid Payment Options for making payment
-      * @param {Object} arg - arg object.
-      * @param {number} arg.amount - Payment amount
-      * @param {string} arg.cartId - Cart id
-      * @param {string} arg.pincode - Pincode
-      * @param {string} arg.checkoutMode - Checkout mode
-      * @param {boolean} [arg.refresh] -
-      * @param {string} [arg.assignCardId] - selected card id
-      * @param {string} [arg.userDetails] - URIencoded json annonymous user
-      
-      **/
-    getPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, refresh, assignCardId, userDetails, }?: {
-        amount: number;
-        cartId: string;
-        pincode: string;
-        checkoutMode: string;
-        refresh?: boolean;
-        assignCardId?: string;
-        userDetails?: string;
-    }): any;
-    /**
-      *
-      * @summary: Get All Valid Payment Options for POS
-      * @description: Use this API to get Get All Valid Payment Options for making payment
-      * @param {Object} arg - arg object.
-      * @param {number} arg.amount - Payment amount
-      * @param {string} arg.cartId - Cart id
-      * @param {string} arg.pincode - Pincode
-      * @param {string} arg.checkoutMode - Checkout mode
-      * @param {boolean} [arg.refresh] -
-      * @param {string} [arg.assignCardId] - selected card id
-      * @param {string} arg.orderType - Order type
-      * @param {string} [arg.userDetails] - URIencoded json annonymous user
-      
-      **/
-    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, assignCardId, userDetails, }?: {
-        amount: number;
-        cartId: string;
-        pincode: string;
-        checkoutMode: string;
-        refresh?: boolean;
-        assignCardId?: string;
-        orderType: string;
-        userDetails?: string;
-    }): any;
-    /**
-      *
-      * @summary: List User Beneficiary
-      * @description: Get all active  beneficiary details added by the user for refund
-      * @param {Object} arg - arg object.
-      * @param {string} arg.orderId -
-      
-      **/
-    getUserBeneficiariesDetail({ orderId }?: {
-        orderId: string;
-    }): any;
-    /**
-      *
-      * @summary: Ifsc Code Verification
-      * @description: Get True/False for correct IFSC Code for adding bank details for refund
-      * @param {Object} arg - arg object.
-      * @param {string} [arg.ifscCode] -
-      
-      **/
-    verifyIfscCode({ ifscCode }?: {
-        ifscCode?: string;
-    }): any;
-    /**
-      *
-      * @summary: List Order Beneficiary
-      * @description: Get all active  beneficiary details added by the user for refund
-      * @param {Object} arg - arg object.
-      * @param {string} arg.orderId -
-      
-      **/
-    getOrderBeneficiariesDetail({ orderId }?: {
-        orderId: string;
-    }): any;
-    /**
-     *
-     * @summary: Save Beneficiary details on otp validation.
-     * @description: Save Beneficiary details on otp validation.
-     * @param {Object} arg - arg object.
-     * @param {AddBeneficiaryViaOtpVerificationRequest} arg.body
-     **/
-    verifyOtpAndAddBeneficiaryForBank({ body }?: {
-        body: AddBeneficiaryViaOtpVerificationRequest;
-    }): any;
-    /**
-     *
-     * @summary: Save bank details for cancelled/returned order
-     * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
-     * @param {Object} arg - arg object.
-     * @param {AddBeneficiaryDetailsRequest} arg.body
-     **/
-    addBeneficiaryDetails({ body }?: {
-        body: AddBeneficiaryDetailsRequest;
-    }): any;
-    /**
-     *
-     * @summary: Send Otp on Adding wallet beneficiary
-     * @description: Send Otp on Adding wallet beneficiary for user mobile verification
-     * @param {Object} arg - arg object.
-     * @param {WalletOtpRequest} arg.body
-     **/
-    verifyOtpAndAddBeneficiaryForWallet({ body }?: {
-        body: WalletOtpRequest;
-    }): any;
-    /**
-     *
-     * @summary: Mark Default Beneficiary For Refund
-     * @description: Mark Default Beneficiary ot of all Beneficiary Details for Refund
-     * @param {Object} arg - arg object.
-     * @param {SetDefaultBeneficiaryRequest} arg.body
-     **/
-    updateDefaultBeneficiary({ body }?: {
-        body: SetDefaultBeneficiaryRequest;
-    }): any;
-}
-export class Order {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-      *
-      * @summary: Get Orders for application based on application Id
-      * @description: Get Orders
-      * @param {Object} arg - arg object.
-      * @param {string} [arg.pageNo] - Current page number
-      * @param {string} [arg.pageSize] - Page limit
-      * @param {string} [arg.fromDate] - From Date
-      * @param {string} [arg.toDate] - To Date
-      
-      **/
-    getOrders({ pageNo, pageSize, fromDate, toDate }?: {
-        pageNo?: string;
-        pageSize?: string;
-        fromDate?: string;
-        toDate?: string;
-    }): any;
-    /**
-      *
-      * @summary: Get Order by order id for application based on application Id
-      * @description: Get Order By Fynd Order Id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.orderId - Order Id
-      
-      **/
-    getOrderById({ orderId }?: {
-        orderId: string;
-    }): any;
-    /**
-      *
-      * @summary: Get Shipment by shipment id and order id for application based on application Id
-      * @description: Get Shipment
-      * @param {Object} arg - arg object.
-      * @param {string} arg.shipmentId - Shipment Id
-      
-      **/
-    getShipmentById({ shipmentId }?: {
-        shipmentId: string;
-    }): any;
-    /**
-      *
-      * @summary: Get Shipment reasons by shipment id and order id for application based on application Id
-      * @description: Get Shipment Reasons
-      * @param {Object} arg - arg object.
-      * @param {string} arg.shipmentId - Shipment Id
-      
-      **/
-    getShipmentReasons({ shipmentId }?: {
-        shipmentId: string;
-    }): any;
-    /**
-     *
-     * @summary: Update Shipment status by shipment id and order id for application based on application Id
-     * @description: Update Shipment Status
-     * @param {Object} arg - arg object.
-     * @param {string} arg.shipmentId - Shipment Id
-     * @param {ShipmentStatusUpdateBody} arg.body
-     **/
-    updateShipmentStatus({ shipmentId, body }?: {
-        shipmentId: string;
-        body: ShipmentStatusUpdateBody;
-    }): any;
-    /**
-      *
-      * @summary: Track Shipment by shipment id and order id for application based on application Id
-      * @description: Shipment Track
-      * @param {Object} arg - arg object.
-      * @param {string} arg.shipmentId - Shipment Id
-      
-      **/
-    trackShipment({ shipmentId }?: {
-        shipmentId: string;
-    }): any;
-    /**
-      *
-      * @summary: Get POS Order by order id for application based on application Id
-      * @description: Get Order By Fynd Order Id
-      * @param {Object} arg - arg object.
-      * @param {string} arg.orderId - Order Id
-      
-      **/
-    getPosOrderById({ orderId }?: {
-        orderId: string;
-    }): any;
-}
-export class Rewards {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-     *
-     * @summary: Get reward points that could be earned on any catalogue product.
-     * @description: Evaluate the amount of reward points that could be earned on any catalogue product.
-     * @param {Object} arg - arg object.
-     * @param {CatalogueOrderRequest} arg.body
-     **/
-    getPointsOnProduct({ body }?: {
-        body: CatalogueOrderRequest;
-    }): any;
-    /**
-     *
-     * @summary: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
-     * @description: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
-     * @param {Object} arg - arg object.
-     * @param {OrderDiscountRequest} arg.body
-     **/
-    getOrderDiscount({ body }?: {
-        body: OrderDiscountRequest;
-    }): any;
-    /**
-      *
-      * @summary: Total available points of a user for current application
-      * @description: Total available points of a user for current application
-      * @param {Object} arg - arg object.
-      
-      **/
-    getUserPoints({}?: any): any;
-    /**
-      *
-      * @summary: Get list of points transactions.
-      * @description: Get list of points transactions.
-  The list of points history is paginated.
-      * @param {Object} arg - arg object.
-      * @param {string} [arg.pageId] - PageID is the ID of the requested page. For first request it should be kept empty.
-      * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
-      
-      **/
-    getUserPointsHistory({ pageId, pageSize }?: {
-        pageId?: string;
-        pageSize?: number;
-    }): any;
-    /**
-      *
-      * @summary: User's referral details.
-      * @description: User's referral details.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getUserReferralDetails({}?: any): any;
-    /**
-     *
-     * @summary: Redeems referral code and credits points to users points account.
-     * @description: Redeems referral code and credits points to users points account.
-     * @param {Object} arg - arg object.
-     * @param {RedeemReferralCodeRequest} arg.body
-     **/
-    redeemReferralCode({ body }?: {
-        body: RedeemReferralCodeRequest;
     }): any;
 }
 export class Feedback {
@@ -12940,31 +5496,6 @@ export class PosCart {
     updateCartWithSharedItems({ token, action }?: {
         token: string;
         action: string;
-    }): any;
-}
-export class Logistic {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-     *
-     * @summary: Get Tat Product
-     * @description: Get Tat Product
-     * @param {Object} arg - arg object.
-     * @param {GetTatProductReqBody} arg.body
-     **/
-    getTatProduct({ body }?: {
-        body: GetTatProductReqBody;
-    }): any;
-    /**
-      *
-      * @summary: Get City from Pincode
-      * @description: Get City from Pincode
-      * @param {Object} arg - arg object.
-      * @param {string} arg.pincode - Pincode
-      
-      **/
-    getPincodeCity({ pincode }?: {
-        pincode: string;
     }): any;
 }
 import Paginator = require("../common/Paginator");
