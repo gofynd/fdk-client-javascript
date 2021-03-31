@@ -26,6 +26,9 @@ function setupFdk(data) {
                 companyId: companyId
             });
             let session = await SessionStorage.getSession(sid);
+            if(!session) {
+                session = new Session(sid);
+            }
             platformConfig.oauthClient.setToken(session);
             client = new PlatformClient(platformConfig);
         }
