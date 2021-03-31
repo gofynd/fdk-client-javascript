@@ -79,7 +79,11 @@ function requestInterceptorFn(options) {
     return config;
   };
 }
-const fdkAxios = axios.create();
+const fdkAxios = axios.create({
+  paramsSerializer: (params) => {
+    return querystring.stringify(params);
+  },
+});
 
 fdkAxios.interceptors.request.use(requestInterceptorFn({}));
 fdkAxios.interceptors.response.use(

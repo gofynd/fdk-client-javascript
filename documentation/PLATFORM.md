@@ -33,15 +33,15 @@
     * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
-    * [createBrand](#createbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
-    * [createLocation](#createlocation)
+    * [createBrand](#createbrand)
     * [getLocations](#getlocations)
-    * [updateLocation](#updatelocation)
+    * [createLocation](#createlocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     
 
 * [Assets](#Assets)
@@ -1010,56 +1010,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(companyId,brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(companyId,brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getBrand
 Get a single brand.
 
@@ -1110,22 +1060,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createBrand
-Create a Brand.
+#### editBrand
+Edit a brand.
 
 ```javascript
 // Promise
-const promise = companyprofile.createBrand(companyId,body);
+const promise = companyprofile.editBrand(companyId,brandId,body);
 
 // Async/Await
-const data = await companyprofile.createBrand(companyId,body);
+const data = await companyprofile.editBrand(companyId,brandId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company. | 
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
 
-This API allows to create a brand associated to a company.
+This API allows to edit meta of a brand.
 
 *Success Response:*
 
@@ -1160,7 +1111,7 @@ Schema: `ErrorResponse`
 
 
 #### createBrand
-Create a company brand mapping.
+Create a Brand.
 
 ```javascript
 // Promise
@@ -1172,9 +1123,9 @@ const data = await companyprofile.createBrand(companyId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
+| companyId | string | Id of the company. | 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a brand associated to a company.
 
 *Success Response:*
 
@@ -1257,22 +1208,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### createBrand
+Create a company brand mapping.
 
 ```javascript
 // Promise
-const promise = companyprofile.createLocation(companyId,body);
+const promise = companyprofile.createBrand(companyId,body);
 
 // Async/Await
-const data = await companyprofile.createLocation(companyId,body);
+const data = await companyprofile.createBrand(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
+| companyId | string | Id of the company inside which the brand is to be mapped. | 
 
-This API allows to create a location associated to a company.
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -1360,23 +1311,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```javascript
 // Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
+const promise = companyprofile.createLocation(companyId,body);
 
 // Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
+const data = await companyprofile.createLocation(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
 
-This API allows to edit a location associated to a company.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -1436,6 +1386,56 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.updateLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 

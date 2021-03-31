@@ -4,8 +4,10 @@
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Cart](#Cart) - Cart APIs 
 * [FileStorage](#FileStorage) - File Storage 
+* [Order](#Order) - Handles Platform websites OMS 
 * [Feedback](#Feedback) - User Reviews and Rating System 
 * [PosCart](#PosCart) - Cart APIs 
+* [Logistic](#Logistic) - Handles Platform websites OMS 
 
 ----
 ----
@@ -78,6 +80,17 @@
     * [completeUpload](#completeupload)
     
 
+* [Order](#Order)
+  * Methods
+    * [getOrders](#getorders)
+    * [getOrderById](#getorderbyid)
+    * [getShipmentById](#getshipmentbyid)
+    * [getShipmentReasons](#getshipmentreasons)
+    * [updateShipmentStatus](#updateshipmentstatus)
+    * [trackShipment](#trackshipment)
+    * [getPosOrderById](#getposorderbyid)
+    
+
 * [Feedback](#Feedback)
   * Methods
     * [createAbuseReport](#createabusereport)
@@ -136,6 +149,12 @@
     * [getCartShareLink](#getcartsharelink)
     * [getCartSharedItems](#getcartshareditems)
     * [updateCartWithSharedItems](#updatecartwithshareditems)
+    
+
+* [Logistic](#Logistic)
+  * Methods
+    * [getTatProduct](#gettatproduct)
+    * [getPincodeCity](#getpincodecity)
     
 
 
@@ -1108,15 +1127,15 @@ List all the collections
 
 ```javascript
 // Promise
-const promise = catalog.getCollections(pageId,pageSize);
+const promise = catalog.getCollections(pageNo,pageSize);
 
 // Async/Await
-const data = await catalog.getCollections(pageId,pageSize);
+const data = await catalog.getCollections(pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
+| pageNo | string | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
 | pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
@@ -5036,6 +5055,443 @@ Failed
 
 
 Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Order
+
+
+#### getOrders
+Get Orders for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getOrders(pageNo,pageSize,fromDate,toDate);
+
+// Async/Await
+const data = await order.getOrders(pageNo,pageSize,fromDate,toDate);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pageNo | string | Current page number | 
+| pageSize | string | Page limit | 
+| fromDate | string | From Date | 
+| toDate | string | To Date | 
+
+Get Orders
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderList`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderById
+Get Order by order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getOrderById(orderId);
+
+// Async/Await
+const data = await order.getOrderById(orderId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| orderId | string | Order Id | 
+
+Get Order By Fynd Order Id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderById`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShipmentById
+Get Shipment by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getShipmentById(shipmentId);
+
+// Async/Await
+const data = await order.getShipmentById(shipmentId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipmentId | string | Shipment Id | 
+
+Get Shipment
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShipmentById`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShipmentReasons
+Get Shipment reasons by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getShipmentReasons(shipmentId);
+
+// Async/Await
+const data = await order.getShipmentReasons(shipmentId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipmentId | string | Shipment Id | 
+
+Get Shipment Reasons
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShipmentReasons`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateShipmentStatus
+Update Shipment status by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.updateShipmentStatus(shipmentId,body);
+
+// Async/Await
+const data = await order.updateShipmentStatus(shipmentId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipmentId | string | Shipment Id | 
+
+Update Shipment Status
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShipmentStatusUpdate`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### trackShipment
+Track Shipment by shipment id and order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.trackShipment(shipmentId);
+
+// Async/Await
+const data = await order.trackShipment(shipmentId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| shipmentId | string | Shipment Id | 
+
+Shipment Track
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShipmentTrack`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPosOrderById
+Get POS Order by order id for application based on application Id
+
+```javascript
+// Promise
+const promise = order.getPosOrderById(orderId);
+
+// Async/Await
+const data = await order.getPosOrderById(orderId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| orderId | string | Order Id | 
+
+Get Order By Fynd Order Id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderById`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
 
 
 
@@ -10466,6 +10922,134 @@ Cart Merged/Replaced
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Logistic
+
+
+#### getTatProduct
+Get Tat Product
+
+```javascript
+// Promise
+const promise = logistic.getTatProduct(body);
+
+// Async/Await
+const data = await logistic.getTatProduct(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get Tat Product
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetTatProductResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPincodeCity
+Get City from Pincode
+
+```javascript
+// Promise
+const promise = logistic.getPincodeCity(pincode);
+
+// Async/Await
+const data = await logistic.getPincodeCity(pincode);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pincode | string | Pincode | 
+
+Get City from Pincode
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetPincodeCityResponse`
+
+
+
+
+
+
+
+
+API Error
+
+
+Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ApefaceApiError`
 
 
 
