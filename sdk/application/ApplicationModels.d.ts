@@ -1,143 +1,143 @@
 export type Media = {
-    url?: string;
     type?: string;
+    url?: string;
 };
 export type ProductListingActionPage = {
-    query?: any;
     type?: string;
+    query?: any;
 };
 export type ProductListingAction = {
-    page?: ProductListingActionPage;
     type?: string;
+    page?: ProductListingActionPage;
 };
 export type ProductBrand = {
-    action?: ProductListingAction;
+    name?: string;
     uid?: number;
     logo?: Media;
-    name?: string;
+    action?: ProductListingAction;
 };
 export type ProductDetailAttribute = {
-    key?: string;
-    type?: string;
     value?: string;
+    type?: string;
+    key?: string;
 };
 export type ProductDetailGroupedAttribute = {
     details?: Array<ProductDetailAttribute>;
     title?: string;
 };
 export type ProductDetail = {
-    hasVariant?: boolean;
-    name?: string;
+    rating?: number;
+    itemType?: string;
     shortDescription?: string;
     imageNature?: string;
-    itemType?: string;
-    productOnlineDate?: string;
-    attributes?: any;
-    teaserTag?: string;
-    color?: string;
     type?: string;
-    tryouts?: Array<string>;
-    medias?: Array<Media>;
-    categories?: Array<ProductBrand>;
-    ratingCount?: number;
-    rating?: number;
-    description?: string;
-    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
-    slug: string;
-    uid?: number;
+    name?: string;
     brand?: ProductBrand;
+    attributes?: any;
+    description?: string;
+    ratingCount?: number;
     highlights?: Array<string>;
+    uid?: number;
+    teaserTag?: string;
+    medias?: Array<Media>;
     similars?: Array<string>;
+    slug: string;
+    categories?: Array<ProductBrand>;
+    color?: string;
+    tryouts?: Array<string>;
+    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
+    hasVariant?: boolean;
+    productOnlineDate?: string;
 };
 export type ErrorResponse = {
     error?: string;
 };
-export type ProductSizeStores = {
-    count?: number;
+export type ProductSize = {
+    display?: string;
+    value?: string;
+    quantity?: number;
+    isAvailable?: boolean;
 };
 export type Price = {
-    max?: number;
-    currencyCode?: string;
     currencySymbol?: string;
+    currencyCode?: string;
     min?: number;
+    max?: number;
 };
 export type ProductListingPrice = {
     effective?: Price;
     marked?: Price;
 };
-export type ProductSize = {
-    value?: string;
-    display?: string;
-    quantity?: number;
-    isAvailable?: boolean;
+export type ProductSizeStores = {
+    count?: number;
 };
 export type ProductSizes = {
-    stores?: ProductSizeStores;
-    price?: ProductListingPrice;
-    sellable?: boolean;
-    sizeChart?: any;
-    sizes?: Array<ProductSize>;
     discount?: string;
-};
-export type ProductStockPrice = {
-    effective?: number;
-    currency?: string;
-    marked?: number;
+    sizes?: Array<ProductSize>;
+    sizeChart?: any;
+    price?: ProductListingPrice;
+    stores?: ProductSizeStores;
+    sellable?: boolean;
 };
 export type Store = {
     count?: number;
-    uid?: number;
     name?: string;
+    uid?: number;
 };
-export type ArticleAssignment = {
-    level?: string;
-    strategy?: string;
+export type ProductStockPrice = {
+    currency?: string;
+    effective?: number;
+    marked?: number;
 };
 export type Seller = {
     count?: number;
-    uid?: number;
     name?: string;
+    uid?: number;
+};
+export type ArticleAssignment = {
+    strategy?: string;
+    level?: string;
 };
 export type ProductSizePriceResponse = {
-    pricePerPrice?: ProductStockPrice;
-    set?: any;
-    quantity?: number;
-    store?: Store;
-    price?: ProductStockPrice;
-    longLat?: Array<number>;
-    articleAssignment?: ArticleAssignment;
-    itemType?: string;
-    seller?: Seller;
-    articleId?: string;
-    specialBadge?: string;
     discount?: string;
     sellerCount?: number;
-    strategyWiseListing?: Array<any>;
+    itemType?: string;
+    quantity?: number;
+    set?: any;
+    articleId?: string;
     pincode?: number;
-};
-export type Page = {
-    type?: string;
-    current?: number;
-    hasPrevious?: boolean;
-    size?: number;
-    hasNext?: boolean;
-    itemTotal?: number;
-    nextId?: string;
+    longLat?: Array<number>;
+    store?: Store;
+    specialBadge?: string;
+    strategyWiseListing?: Array<any>;
+    price?: ProductStockPrice;
+    seller?: Seller;
+    articleAssignment?: ArticleAssignment;
+    pricePerPrice?: ProductStockPrice;
 };
 export type ProductSizeSellerFilter = {
-    isSelected?: boolean;
     value?: string;
     name?: string;
+    isSelected?: boolean;
+};
+export type Page = {
+    current?: number;
+    type?: string;
+    nextId?: string;
+    hasPrevious?: boolean;
+    size?: number;
+    itemTotal?: number;
+    hasNext?: boolean;
 };
 export type ProductSizeSellersResponse = {
-    page: Page;
     sortOn?: Array<ProductSizeSellerFilter>;
+    page: Page;
     items?: Array<ProductSizePriceResponse>;
 };
 export type AttributeDetail = {
+    display?: string;
     key?: string;
     description?: string;
-    display?: string;
 };
 export type ProductsComparisonResponse = {
     items?: Array<ProductDetail>;
@@ -145,60 +145,60 @@ export type ProductsComparisonResponse = {
 };
 export type ProductCompareResponse = {
     items?: Array<ProductDetail>;
-    title?: string;
-    attributesMetadata?: Array<AttributeDetail>;
     subtitle?: string;
+    attributesMetadata?: Array<AttributeDetail>;
+    title?: string;
 };
 export type ProductFrequentlyComparedSimilarResponse = {
     similars?: Array<ProductCompareResponse>;
 };
 export type ProductSimilarItem = {
     items?: Array<ProductDetail>;
-    title?: string;
     subtitle?: string;
+    title?: string;
 };
 export type SimilarProductByTypeResponse = {
     similars?: Array<ProductSimilarItem>;
 };
 export type ProductVariantItemResponse = {
-    action?: ProductListingAction;
-    name?: string;
-    value?: string;
     medias?: Array<Media>;
-    isAvailable?: boolean;
     slug?: string;
-    uid?: number;
+    isAvailable?: boolean;
+    value?: string;
+    name?: string;
+    action?: ProductListingAction;
     colorName?: string;
+    uid?: number;
     color?: string;
 };
 export type ProductVariantResponse = {
     header?: string;
-    displayType?: string;
     items?: Array<ProductVariantItemResponse>;
+    displayType?: string;
 };
 export type ProductVariantsResponse = {
     variants?: Array<ProductVariantResponse>;
-};
-export type StoreDetail = {
-    city?: string;
-    code?: string;
-    id?: number;
-    name?: string;
 };
 export type CompanyDetail = {
     id?: number;
     name?: string;
 };
+export type StoreDetail = {
+    id?: number;
+    name?: string;
+    code?: string;
+    city?: string;
+};
 export type ProductStockStatusItem = {
     quantity?: number;
-    store?: StoreDetail;
-    price?: ProductStockPrice;
     identifier?: any;
-    size?: string;
-    seller?: Seller;
-    itemId?: number;
-    uid?: string;
     company?: CompanyDetail;
+    store?: StoreDetail;
+    itemId?: number;
+    size?: string;
+    price?: ProductStockPrice;
+    seller?: Seller;
+    uid?: string;
 };
 export type ProductStockStatusResponse = {
     items?: Array<ProductStockStatusItem>;
@@ -207,81 +207,81 @@ export type ProductStockPolling = {
     page: Page;
     items?: Array<ProductStockStatusItem>;
 };
-export type ProductSortOn = {
-    value?: string;
-    isSelected?: boolean;
-    name?: string;
-};
-export type ProductListingDetail = {
-    hasVariant?: boolean;
-    name?: string;
-    shortDescription?: string;
-    imageNature?: string;
-    itemType?: string;
-    productOnlineDate?: string;
-    attributes?: any;
-    teaserTag?: string;
-    color?: string;
-    type?: string;
-    tryouts?: Array<string>;
-    medias?: Array<Media>;
-    categories?: Array<ProductBrand>;
-    sellable?: boolean;
-    ratingCount?: number;
-    rating?: number;
-    price?: ProductListingPrice;
-    description?: string;
-    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
-    slug: string;
-    uid?: number;
-    brand?: ProductBrand;
-    highlights?: Array<string>;
-    similars?: Array<string>;
-    discount?: string;
-};
 export type ProductFiltersKey = {
     display: string;
     kind?: string;
-    logo?: string;
     name: string;
+    logo?: string;
 };
 export type ProductFiltersValue = {
-    queryFormat?: string;
+    displayFormat?: string;
     selectedMin?: number;
+    currencyCode?: string;
     value: string;
     min?: number;
-    displayFormat?: string;
-    count?: number;
-    max?: number;
     selectedMax?: number;
     currencySymbol?: string;
+    queryFormat?: string;
     isSelected: boolean;
     display: string;
-    currencyCode?: string;
+    count?: number;
+    max?: number;
 };
 export type ProductFilters = {
     key: ProductFiltersKey;
     values: Array<ProductFiltersValue>;
 };
+export type ProductSortOn = {
+    value?: string;
+    name?: string;
+    isSelected?: boolean;
+};
+export type ProductListingDetail = {
+    rating?: number;
+    itemType?: string;
+    shortDescription?: string;
+    imageNature?: string;
+    type?: string;
+    name?: string;
+    brand?: ProductBrand;
+    attributes?: any;
+    description?: string;
+    ratingCount?: number;
+    discount?: string;
+    highlights?: Array<string>;
+    uid?: number;
+    teaserTag?: string;
+    medias?: Array<Media>;
+    similars?: Array<string>;
+    slug: string;
+    categories?: Array<ProductBrand>;
+    price?: ProductListingPrice;
+    sellable?: boolean;
+    color?: string;
+    tryouts?: Array<string>;
+    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
+    hasVariant?: boolean;
+    productOnlineDate?: string;
+};
 export type ProductListingResponse = {
-    page: Page;
-    sortOn?: Array<ProductSortOn>;
-    items?: Array<ProductListingDetail>;
     filters?: Array<ProductFilters>;
+    sortOn?: Array<ProductSortOn>;
+    page: Page;
+    items?: Array<ProductListingDetail>;
 };
 export type ImageUrls = {
-    landscape?: Media;
     portrait?: Media;
+    landscape?: Media;
 };
 export type BrandItem = {
-    action?: ProductListingAction;
-    banners?: ImageUrls;
-    departments?: Array<string>;
-    name?: string;
     discount?: string;
     slug?: string;
-    uid?: number;
+    name?: string;
     logo?: Media;
+    action?: ProductListingAction;
+    departments?: Array<string>;
+    banners?: ImageUrls;
+    uid?: number;
 };
 export type BrandListingResponse = {
     page: Page;
@@ -289,165 +289,165 @@ export type BrandListingResponse = {
 };
 export type BrandDetailResponse = {
     banners?: ImageUrls;
+    name?: string;
     uid?: number;
     logo?: Media;
+};
+export type CategoryItems = {
+    slug?: string;
     name?: string;
+    action?: ProductListingAction;
+    childs?: Array<any>;
+    banners?: ImageUrls;
+    uid?: number;
+};
+export type DepartmentCategoryTree = {
+    department?: string;
+    items?: Array<CategoryItems>;
 };
 export type DepartmentIdentifier = {
     uid?: number;
     slug?: string;
 };
-export type CategoryItems = {
-    banners?: ImageUrls;
-    action?: ProductListingAction;
-    name?: string;
-    slug?: string;
-    childs?: Array<any>;
-    uid?: number;
-};
-export type DepartmentCategoryTree = {
-    items?: Array<CategoryItems>;
-    department?: string;
-};
 export type CategoryListingResponse = {
-    departments?: Array<DepartmentIdentifier>;
     data?: Array<DepartmentCategoryTree>;
+    departments?: Array<DepartmentIdentifier>;
 };
 export type CategoryMetaResponse = {
     banners?: ImageUrls;
+    name?: string;
     uid?: number;
     logo?: Media;
-    name?: string;
 };
 export type HomeListingResponse = {
-    page: Page;
     message?: string;
+    page: Page;
     items?: Array<ProductListingDetail>;
 };
 export type Department = {
-    name?: string;
     priorityOrder?: number;
     slug?: string;
-    uid?: number;
+    name?: string;
     logo?: Media;
+    uid?: number;
 };
 export type DepartmentResponse = {
     items?: Array<Department>;
 };
-export type Query = {
-    category?: Array<string>;
+export type PageQuery = {
     brand?: Array<string>;
+    category?: Array<string>;
 };
 export type AutocompletePage = {
-    pageQuery?: Query;
     type?: string;
+    pageQuery?: PageQuery;
 };
 export type Action = {
-    page?: AutocompletePage;
     type?: string;
+    page?: AutocompletePage;
 };
 export type AutocompleteItem = {
-    action?: Action;
-    type?: string;
-    logo?: Media;
     display?: string;
+    type?: string;
+    action?: Action;
+    logo?: Media;
 };
 export type AutoCompleteResponse = {
     items?: Array<AutocompleteItem>;
 };
-export type GetCollectionDetailNest = {
-    allowSort?: boolean;
+export type CollectionListingFilterTag = {
+    display?: string;
     name?: string;
-    badge?: any;
-    query?: any;
-    logo?: Media;
-    action?: ProductListingAction;
-    type?: string;
-    appId?: string;
-    tag?: Array<string>;
-    banners?: ImageUrls;
-    isActive?: boolean;
-    visibleFacetsKeys?: Array<string>;
-    allowFacets?: boolean;
-    description?: string;
-    slug?: string;
-    uid?: string;
-    cron?: any;
-    schedule?: any;
-    meta?: any;
+    isSelected?: boolean;
 };
 export type CollectionListingFilterType = {
-    isSelected?: boolean;
     display?: string;
     name?: string;
-};
-export type CollectionListingFilterTag = {
     isSelected?: boolean;
-    display?: string;
-    name?: string;
 };
 export type CollectionListingFilter = {
-    type?: Array<CollectionListingFilterType>;
     tags?: Array<CollectionListingFilterTag>;
+    type?: Array<CollectionListingFilterType>;
+};
+export type GetCollectionDetailNest = {
+    allowFacets?: boolean;
+    schedule?: any;
+    type?: string;
+    name?: string;
+    logo?: Media;
+    query?: any;
+    description?: string;
+    cron?: any;
+    badge?: any;
+    appId?: string;
+    action?: ProductListingAction;
+    tag?: Array<string>;
+    uid?: string;
+    isActive?: boolean;
+    slug?: string;
+    meta?: any;
+    visibleFacetsKeys?: Array<string>;
+    banners?: ImageUrls;
+    allowSort?: boolean;
 };
 export type GetCollectionListingResponse = {
+    filters?: CollectionListingFilter;
     page: Page;
     items?: Array<GetCollectionDetailNest>;
-    filters?: CollectionListingFilter;
 };
 export type CollectionDetailResponse = {
-    banners?: ImageUrls;
-    isActive?: boolean;
-    type?: string;
     visibleFacetsKeys?: Array<string>;
-    allowSort?: boolean;
-    name?: string;
-    cron?: any;
+    isActive?: boolean;
     allowFacets?: boolean;
-    description?: string;
     appId?: string;
-    badge?: any;
-    tag?: Array<string>;
     slug?: string;
-    query?: any;
-    logo?: Media;
+    tag?: Array<string>;
     schedule?: any;
+    type?: string;
+    name?: string;
+    logo?: Media;
+    banners?: ImageUrls;
+    query?: any;
     meta?: any;
+    description?: string;
+    cron?: any;
+    badge?: any;
+    allowSort?: boolean;
 };
 export type GetFollowListingResponse = {
     page: Page;
     items: Array<any>;
 };
 export type FollowPostResponse = {
-    message: string;
     id: string;
+    message: string;
 };
 export type FollowerCountResponse = {
     count?: number;
 };
 export type FollowIdsData = {
+    products?: Array<number>;
     brands?: Array<number>;
     collections?: Array<number>;
-    products?: Array<number>;
 };
 export type FollowIdsResponse = {
     data?: FollowIdsData;
 };
 export type LatLong = {
-    type?: string;
     coordinates?: Array<number>;
+    type?: string;
 };
 export type Store1 = {
     address?: string;
-    name?: string;
-    storeCode?: string;
-    storeEmail?: string;
-    latLong?: LatLong;
-    state?: string;
-    city?: string;
-    uid?: number;
     pincode?: number;
     country?: string;
+    state?: string;
+    storeEmail?: string;
+    city?: string;
+    latLong?: LatLong;
+    name?: string;
+    storeCode?: string;
+    uid?: number;
 };
 export type StoreListingResponse = {
     page: Page;
@@ -1207,9 +1207,9 @@ export type StoreDetailsResponse = {
         @typedef Media
         
         
-        @property { string } [url]
-        
         @property { string } [type]
+        
+        @property { string } [url]
         
          
     */
@@ -1217,9 +1217,9 @@ export type StoreDetailsResponse = {
         @typedef ProductListingActionPage
         
         
-        @property { Object } [query]
-        
         @property { string } [type]
+        
+        @property { Object } [query]
         
          
     */
@@ -1227,9 +1227,9 @@ export type StoreDetailsResponse = {
         @typedef ProductListingAction
         
         
-        @property { ProductListingActionPage } [page]
-        
         @property { string } [type]
+        
+        @property { ProductListingActionPage } [page]
         
          
     */
@@ -1237,13 +1237,13 @@ export type StoreDetailsResponse = {
         @typedef ProductBrand
         
         
-        @property { ProductListingAction } [action]
+        @property { string } [name]
         
         @property { number } [uid]
         
         @property { Media } [logo]
         
-        @property { string } [name]
+        @property { ProductListingAction } [action]
         
          
     */
@@ -1251,11 +1251,11 @@ export type StoreDetailsResponse = {
         @typedef ProductDetailAttribute
         
         
-        @property { string } [key]
+        @property { string } [value]
         
         @property { string } [type]
         
-        @property { string } [value]
+        @property { string } [key]
         
          
     */
@@ -1273,49 +1273,49 @@ export type StoreDetailsResponse = {
         @typedef ProductDetail
         
         
-        @property { boolean } [hasVariant]
+        @property { number } [rating]
         
-        @property { string } [name]
+        @property { string } [itemType]
         
         @property { string } [shortDescription]
         
         @property { string } [imageNature]
         
-        @property { string } [itemType]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [teaserTag]
-        
-        @property { string } [color]
-        
         @property { string } [type]
         
-        @property { Array<string> } [tryouts]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { number } [ratingCount]
-        
-        @property { number } [rating]
-        
-        @property { string } [description]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { string } slug
-        
-        @property { number } [uid]
+        @property { string } [name]
         
         @property { ProductBrand } [brand]
         
+        @property { Object } [attributes]
+        
+        @property { string } [description]
+        
+        @property { number } [ratingCount]
+        
         @property { Array<string> } [highlights]
         
+        @property { number } [uid]
+        
+        @property { string } [teaserTag]
+        
+        @property { Array<Media> } [medias]
+        
         @property { Array<string> } [similars]
+        
+        @property { string } slug
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { string } [color]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { boolean } [hasVariant]
+        
+        @property { string } [productOnlineDate]
         
          
     */
@@ -1328,10 +1328,16 @@ export type StoreDetailsResponse = {
          
     */
 /**
-        @typedef ProductSizeStores
+        @typedef ProductSize
         
         
-        @property { number } [count]
+        @property { string } [display]
+        
+        @property { string } [value]
+        
+        @property { number } [quantity]
+        
+        @property { boolean } [isAvailable]
         
          
     */
@@ -1339,13 +1345,13 @@ export type StoreDetailsResponse = {
         @typedef Price
         
         
-        @property { number } [max]
+        @property { string } [currencySymbol]
         
         @property { string } [currencyCode]
         
-        @property { string } [currencySymbol]
-        
         @property { number } [min]
+        
+        @property { number } [max]
         
          
     */
@@ -1360,16 +1366,10 @@ export type StoreDetailsResponse = {
          
     */
 /**
-        @typedef ProductSize
+        @typedef ProductSizeStores
         
         
-        @property { string } [value]
-        
-        @property { string } [display]
-        
-        @property { number } [quantity]
-        
-        @property { boolean } [isAvailable]
+        @property { number } [count]
         
          
     */
@@ -1377,29 +1377,17 @@ export type StoreDetailsResponse = {
         @typedef ProductSizes
         
         
-        @property { ProductSizeStores } [stores]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { boolean } [sellable]
-        
-        @property { Object } [sizeChart]
+        @property { string } [discount]
         
         @property { Array<ProductSize> } [sizes]
         
-        @property { string } [discount]
+        @property { Object } [sizeChart]
         
-         
-    */
-/**
-        @typedef ProductStockPrice
+        @property { ProductListingPrice } [price]
         
+        @property { ProductSizeStores } [stores]
         
-        @property { number } [effective]
-        
-        @property { string } [currency]
-        
-        @property { number } [marked]
+        @property { boolean } [sellable]
         
          
     */
@@ -1409,19 +1397,21 @@ export type StoreDetailsResponse = {
         
         @property { number } [count]
         
-        @property { number } [uid]
-        
         @property { string } [name]
+        
+        @property { number } [uid]
         
          
     */
 /**
-        @typedef ArticleAssignment
+        @typedef ProductStockPrice
         
         
-        @property { string } [level]
+        @property { string } [currency]
         
-        @property { string } [strategy]
+        @property { number } [effective]
+        
+        @property { number } [marked]
         
          
     */
@@ -1431,9 +1421,19 @@ export type StoreDetailsResponse = {
         
         @property { number } [count]
         
+        @property { string } [name]
+        
         @property { number } [uid]
         
-        @property { string } [name]
+         
+    */
+/**
+        @typedef ArticleAssignment
+        
+        
+        @property { string } [strategy]
+        
+        @property { string } [level]
         
          
     */
@@ -1441,55 +1441,35 @@ export type StoreDetailsResponse = {
         @typedef ProductSizePriceResponse
         
         
-        @property { ProductStockPrice } [pricePerPrice]
-        
-        @property { Object } [set]
-        
-        @property { number } [quantity]
-        
-        @property { Store } [store]
-        
-        @property { ProductStockPrice } [price]
-        
-        @property { Array<number> } [longLat]
-        
-        @property { ArticleAssignment } [articleAssignment]
-        
-        @property { string } [itemType]
-        
-        @property { Seller } [seller]
-        
-        @property { string } [articleId]
-        
-        @property { string } [specialBadge]
-        
         @property { string } [discount]
         
         @property { number } [sellerCount]
         
-        @property { Array<Object> } [strategyWiseListing]
+        @property { string } [itemType]
+        
+        @property { number } [quantity]
+        
+        @property { Object } [set]
+        
+        @property { string } [articleId]
         
         @property { number } [pincode]
         
-         
-    */
-/**
-        @typedef Page
+        @property { Array<number> } [longLat]
         
+        @property { Store } [store]
         
-        @property { string } [type]
+        @property { string } [specialBadge]
         
-        @property { number } [current]
+        @property { Array<Object> } [strategyWiseListing]
         
-        @property { boolean } [hasPrevious]
+        @property { ProductStockPrice } [price]
         
-        @property { number } [size]
+        @property { Seller } [seller]
         
-        @property { boolean } [hasNext]
+        @property { ArticleAssignment } [articleAssignment]
         
-        @property { number } [itemTotal]
-        
-        @property { string } [nextId]
+        @property { ProductStockPrice } [pricePerPrice]
         
          
     */
@@ -1497,11 +1477,31 @@ export type StoreDetailsResponse = {
         @typedef ProductSizeSellerFilter
         
         
-        @property { boolean } [isSelected]
-        
         @property { string } [value]
         
         @property { string } [name]
+        
+        @property { boolean } [isSelected]
+        
+         
+    */
+/**
+        @typedef Page
+        
+        
+        @property { number } [current]
+        
+        @property { string } [type]
+        
+        @property { string } [nextId]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { number } [size]
+        
+        @property { number } [itemTotal]
+        
+        @property { boolean } [hasNext]
         
          
     */
@@ -1509,9 +1509,9 @@ export type StoreDetailsResponse = {
         @typedef ProductSizeSellersResponse
         
         
-        @property { Page } page
-        
         @property { Array<ProductSizeSellerFilter> } [sortOn]
+        
+        @property { Page } page
         
         @property { Array<ProductSizePriceResponse> } [items]
         
@@ -1521,11 +1521,11 @@ export type StoreDetailsResponse = {
         @typedef AttributeDetail
         
         
+        @property { string } [display]
+        
         @property { string } [key]
         
         @property { string } [description]
-        
-        @property { string } [display]
         
          
     */
@@ -1545,11 +1545,11 @@ export type StoreDetailsResponse = {
         
         @property { Array<ProductDetail> } [items]
         
-        @property { string } [title]
+        @property { string } [subtitle]
         
         @property { Array<AttributeDetail> } [attributesMetadata]
         
-        @property { string } [subtitle]
+        @property { string } [title]
         
          
     */
@@ -1567,9 +1567,9 @@ export type StoreDetailsResponse = {
         
         @property { Array<ProductDetail> } [items]
         
-        @property { string } [title]
-        
         @property { string } [subtitle]
+        
+        @property { string } [title]
         
          
     */
@@ -1585,21 +1585,21 @@ export type StoreDetailsResponse = {
         @typedef ProductVariantItemResponse
         
         
-        @property { ProductListingAction } [action]
-        
-        @property { string } [name]
-        
-        @property { string } [value]
-        
         @property { Array<Media> } [medias]
-        
-        @property { boolean } [isAvailable]
         
         @property { string } [slug]
         
-        @property { number } [uid]
+        @property { boolean } [isAvailable]
+        
+        @property { string } [value]
+        
+        @property { string } [name]
+        
+        @property { ProductListingAction } [action]
         
         @property { string } [colorName]
+        
+        @property { number } [uid]
         
         @property { string } [color]
         
@@ -1611,9 +1611,9 @@ export type StoreDetailsResponse = {
         
         @property { string } [header]
         
-        @property { string } [displayType]
-        
         @property { Array<ProductVariantItemResponse> } [items]
+        
+        @property { string } [displayType]
         
          
     */
@@ -1622,20 +1622,6 @@ export type StoreDetailsResponse = {
         
         
         @property { Array<ProductVariantResponse> } [variants]
-        
-         
-    */
-/**
-        @typedef StoreDetail
-        
-        
-        @property { string } [city]
-        
-        @property { string } [code]
-        
-        @property { number } [id]
-        
-        @property { string } [name]
         
          
     */
@@ -1650,26 +1636,40 @@ export type StoreDetailsResponse = {
          
     */
 /**
+        @typedef StoreDetail
+        
+        
+        @property { number } [id]
+        
+        @property { string } [name]
+        
+        @property { string } [code]
+        
+        @property { string } [city]
+        
+         
+    */
+/**
         @typedef ProductStockStatusItem
         
         
         @property { number } [quantity]
         
-        @property { StoreDetail } [store]
-        
-        @property { ProductStockPrice } [price]
-        
         @property { Object } [identifier]
         
-        @property { string } [size]
+        @property { CompanyDetail } [company]
         
-        @property { Seller } [seller]
+        @property { StoreDetail } [store]
         
         @property { number } [itemId]
         
-        @property { string } [uid]
+        @property { string } [size]
         
-        @property { CompanyDetail } [company]
+        @property { ProductStockPrice } [price]
+        
+        @property { Seller } [seller]
+        
+        @property { string } [uid]
         
          
     */
@@ -1692,74 +1692,6 @@ export type StoreDetailsResponse = {
          
     */
 /**
-        @typedef ProductSortOn
-        
-        
-        @property { string } [value]
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [name]
-        
-         
-    */
-/**
-        @typedef ProductListingDetail
-        
-        
-        @property { boolean } [hasVariant]
-        
-        @property { string } [name]
-        
-        @property { string } [shortDescription]
-        
-        @property { string } [imageNature]
-        
-        @property { string } [itemType]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [teaserTag]
-        
-        @property { string } [color]
-        
-        @property { string } [type]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { boolean } [sellable]
-        
-        @property { number } [ratingCount]
-        
-        @property { number } [rating]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { string } [description]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { string } slug
-        
-        @property { number } [uid]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [discount]
-        
-         
-    */
-/**
         @typedef ProductFiltersKey
         
         
@@ -1767,9 +1699,9 @@ export type StoreDetailsResponse = {
         
         @property { string } [kind]
         
-        @property { string } [logo]
-        
         @property { string } name
+        
+        @property { string } [logo]
         
          
     */
@@ -1777,29 +1709,29 @@ export type StoreDetailsResponse = {
         @typedef ProductFiltersValue
         
         
-        @property { string } [queryFormat]
+        @property { string } [displayFormat]
         
         @property { number } [selectedMin]
+        
+        @property { string } [currencyCode]
         
         @property { string } value
         
         @property { number } [min]
         
-        @property { string } [displayFormat]
-        
-        @property { number } [count]
-        
-        @property { number } [max]
-        
         @property { number } [selectedMax]
         
         @property { string } [currencySymbol]
+        
+        @property { string } [queryFormat]
         
         @property { boolean } isSelected
         
         @property { string } display
         
-        @property { string } [currencyCode]
+        @property { number } [count]
+        
+        @property { number } [max]
         
          
     */
@@ -1814,16 +1746,84 @@ export type StoreDetailsResponse = {
          
     */
 /**
+        @typedef ProductSortOn
+        
+        
+        @property { string } [value]
+        
+        @property { string } [name]
+        
+        @property { boolean } [isSelected]
+        
+         
+    */
+/**
+        @typedef ProductListingDetail
+        
+        
+        @property { number } [rating]
+        
+        @property { string } [itemType]
+        
+        @property { string } [shortDescription]
+        
+        @property { string } [imageNature]
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [description]
+        
+        @property { number } [ratingCount]
+        
+        @property { string } [discount]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { number } [uid]
+        
+        @property { string } [teaserTag]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<string> } [similars]
+        
+        @property { string } slug
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { boolean } [sellable]
+        
+        @property { string } [color]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { boolean } [hasVariant]
+        
+        @property { string } [productOnlineDate]
+        
+         
+    */
+/**
         @typedef ProductListingResponse
         
         
-        @property { Page } page
+        @property { Array<ProductFilters> } [filters]
         
         @property { Array<ProductSortOn> } [sortOn]
         
-        @property { Array<ProductListingDetail> } [items]
+        @property { Page } page
         
-        @property { Array<ProductFilters> } [filters]
+        @property { Array<ProductListingDetail> } [items]
         
          
     */
@@ -1831,9 +1831,9 @@ export type StoreDetailsResponse = {
         @typedef ImageUrls
         
         
-        @property { Media } [landscape]
-        
         @property { Media } [portrait]
+        
+        @property { Media } [landscape]
         
          
     */
@@ -1841,21 +1841,21 @@ export type StoreDetailsResponse = {
         @typedef BrandItem
         
         
-        @property { ProductListingAction } [action]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { Array<string> } [departments]
-        
-        @property { string } [name]
-        
         @property { string } [discount]
         
         @property { string } [slug]
         
-        @property { number } [uid]
+        @property { string } [name]
         
         @property { Media } [logo]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { Array<string> } [departments]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { number } [uid]
         
          
     */
@@ -1875,11 +1875,39 @@ export type StoreDetailsResponse = {
         
         @property { ImageUrls } [banners]
         
+        @property { string } [name]
+        
         @property { number } [uid]
         
         @property { Media } [logo]
         
+         
+    */
+/**
+        @typedef CategoryItems
+        
+        
+        @property { string } [slug]
+        
         @property { string } [name]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { Array<Object> } [childs]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { number } [uid]
+        
+         
+    */
+/**
+        @typedef DepartmentCategoryTree
+        
+        
+        @property { string } [department]
+        
+        @property { Array<CategoryItems> } [items]
         
          
     */
@@ -1894,40 +1922,12 @@ export type StoreDetailsResponse = {
          
     */
 /**
-        @typedef CategoryItems
-        
-        
-        @property { ImageUrls } [banners]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { Array<Object> } [childs]
-        
-        @property { number } [uid]
-        
-         
-    */
-/**
-        @typedef DepartmentCategoryTree
-        
-        
-        @property { Array<CategoryItems> } [items]
-        
-        @property { string } [department]
-        
-         
-    */
-/**
         @typedef CategoryListingResponse
         
         
-        @property { Array<DepartmentIdentifier> } [departments]
-        
         @property { Array<DepartmentCategoryTree> } [data]
+        
+        @property { Array<DepartmentIdentifier> } [departments]
         
          
     */
@@ -1937,11 +1937,11 @@ export type StoreDetailsResponse = {
         
         @property { ImageUrls } [banners]
         
+        @property { string } [name]
+        
         @property { number } [uid]
         
         @property { Media } [logo]
-        
-        @property { string } [name]
         
          
     */
@@ -1949,9 +1949,9 @@ export type StoreDetailsResponse = {
         @typedef HomeListingResponse
         
         
-        @property { Page } page
-        
         @property { string } [message]
+        
+        @property { Page } page
         
         @property { Array<ProductListingDetail> } [items]
         
@@ -1961,15 +1961,15 @@ export type StoreDetailsResponse = {
         @typedef Department
         
         
-        @property { string } [name]
-        
         @property { number } [priorityOrder]
         
         @property { string } [slug]
         
-        @property { number } [uid]
+        @property { string } [name]
         
         @property { Media } [logo]
+        
+        @property { number } [uid]
         
          
     */
@@ -1982,12 +1982,12 @@ export type StoreDetailsResponse = {
          
     */
 /**
-        @typedef Query
+        @typedef PageQuery
         
-        
-        @property { Array<string> } [category]
         
         @property { Array<string> } [brand]
+        
+        @property { Array<string> } [category]
         
          
     */
@@ -1995,9 +1995,9 @@ export type StoreDetailsResponse = {
         @typedef AutocompletePage
         
         
-        @property { Query } [pageQuery]
-        
         @property { string } [type]
+        
+        @property { PageQuery } [pageQuery]
         
          
     */
@@ -2005,9 +2005,9 @@ export type StoreDetailsResponse = {
         @typedef Action
         
         
-        @property { AutocompletePage } [page]
-        
         @property { string } [type]
+        
+        @property { AutocompletePage } [page]
         
          
     */
@@ -2015,13 +2015,13 @@ export type StoreDetailsResponse = {
         @typedef AutocompleteItem
         
         
-        @property { Action } [action]
+        @property { string } [display]
         
         @property { string } [type]
         
-        @property { Media } [logo]
+        @property { Action } [action]
         
-        @property { string } [display]
+        @property { Media } [logo]
         
          
     */
@@ -2034,46 +2034,14 @@ export type StoreDetailsResponse = {
          
     */
 /**
-        @typedef GetCollectionDetailNest
+        @typedef CollectionListingFilterTag
         
         
-        @property { boolean } [allowSort]
+        @property { string } [display]
         
         @property { string } [name]
         
-        @property { Object } [badge]
-        
-        @property { Object } [query]
-        
-        @property { Media } [logo]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { string } [type]
-        
-        @property { string } [appId]
-        
-        @property { Array<string> } [tag]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { boolean } [isActive]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { string } [description]
-        
-        @property { string } [slug]
-        
-        @property { string } [uid]
-        
-        @property { Object } [cron]
-        
-        @property { Object } [schedule]
-        
-        @property { Object } [meta]
+        @property { boolean } [isSelected]
         
          
     */
@@ -2081,23 +2049,11 @@ export type StoreDetailsResponse = {
         @typedef CollectionListingFilterType
         
         
-        @property { boolean } [isSelected]
-        
         @property { string } [display]
         
         @property { string } [name]
         
-         
-    */
-/**
-        @typedef CollectionListingFilterTag
-        
-        
         @property { boolean } [isSelected]
-        
-        @property { string } [display]
-        
-        @property { string } [name]
         
          
     */
@@ -2105,9 +2061,53 @@ export type StoreDetailsResponse = {
         @typedef CollectionListingFilter
         
         
+        @property { Array<CollectionListingFilterTag> } [tags]
+        
         @property { Array<CollectionListingFilterType> } [type]
         
-        @property { Array<CollectionListingFilterTag> } [tags]
+         
+    */
+/**
+        @typedef GetCollectionDetailNest
+        
+        
+        @property { boolean } [allowFacets]
+        
+        @property { Object } [schedule]
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { Media } [logo]
+        
+        @property { Object } [query]
+        
+        @property { string } [description]
+        
+        @property { Object } [cron]
+        
+        @property { Object } [badge]
+        
+        @property { string } [appId]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { Array<string> } [tag]
+        
+        @property { string } [uid]
+        
+        @property { boolean } [isActive]
+        
+        @property { string } [slug]
+        
+        @property { Object } [meta]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { boolean } [allowSort]
         
          
     */
@@ -2115,11 +2115,11 @@ export type StoreDetailsResponse = {
         @typedef GetCollectionListingResponse
         
         
+        @property { CollectionListingFilter } [filters]
+        
         @property { Page } page
         
         @property { Array<GetCollectionDetailNest> } [items]
-        
-        @property { CollectionListingFilter } [filters]
         
          
     */
@@ -2127,39 +2127,39 @@ export type StoreDetailsResponse = {
         @typedef CollectionDetailResponse
         
         
-        @property { ImageUrls } [banners]
+        @property { Array<string> } [visibleFacetsKeys]
         
         @property { boolean } [isActive]
         
-        @property { string } [type]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { boolean } [allowSort]
-        
-        @property { string } [name]
-        
-        @property { Object } [cron]
-        
         @property { boolean } [allowFacets]
-        
-        @property { string } [description]
         
         @property { string } [appId]
         
-        @property { Object } [badge]
+        @property { string } [slug]
         
         @property { Array<string> } [tag]
         
-        @property { string } [slug]
+        @property { Object } [schedule]
         
-        @property { Object } [query]
+        @property { string } [type]
+        
+        @property { string } [name]
         
         @property { Media } [logo]
         
-        @property { Object } [schedule]
+        @property { ImageUrls } [banners]
+        
+        @property { Object } [query]
         
         @property { Object } [meta]
+        
+        @property { string } [description]
+        
+        @property { Object } [cron]
+        
+        @property { Object } [badge]
+        
+        @property { boolean } [allowSort]
         
          
     */
@@ -2177,9 +2177,9 @@ export type StoreDetailsResponse = {
         @typedef FollowPostResponse
         
         
-        @property { string } message
-        
         @property { string } id
+        
+        @property { string } message
         
          
     */
@@ -2195,11 +2195,11 @@ export type StoreDetailsResponse = {
         @typedef FollowIdsData
         
         
+        @property { Array<number> } [products]
+        
         @property { Array<number> } [brands]
         
         @property { Array<number> } [collections]
-        
-        @property { Array<number> } [products]
         
          
     */
@@ -2215,9 +2215,9 @@ export type StoreDetailsResponse = {
         @typedef LatLong
         
         
-        @property { string } [type]
-        
         @property { Array<number> } [coordinates]
+        
+        @property { string } [type]
         
          
     */
@@ -2227,23 +2227,23 @@ export type StoreDetailsResponse = {
         
         @property { string } [address]
         
+        @property { number } [pincode]
+        
+        @property { string } [country]
+        
+        @property { string } [state]
+        
+        @property { string } [storeEmail]
+        
+        @property { string } [city]
+        
+        @property { LatLong } [latLong]
+        
         @property { string } [name]
         
         @property { string } [storeCode]
         
-        @property { string } [storeEmail]
-        
-        @property { LatLong } [latLong]
-        
-        @property { string } [state]
-        
-        @property { string } [city]
-        
         @property { number } [uid]
-        
-        @property { number } [pincode]
-        
-        @property { string } [country]
         
          
     */
@@ -4003,14 +4003,14 @@ export class Catalog {
       * @param {Object} arg - arg object.
       * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
       * @param {string} arg.size - The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0/products/{slug}/sizes/**
-      * @param {number} [arg.pincode] - The pincode of the product for which the price needs to be retrieved.
+      * @param {string} arg.pincode - The pincode of the product for which the price needs to be retrieved.
       * @param {string} [arg.storeId] - The store of the product whose size level price need to be retrieved
       
       **/
     getProductPriceBySlug({ slug, size, pincode, storeId }?: {
         slug: string;
         size: string;
-        pincode?: number;
+        pincode: string;
         storeId?: string;
     }): any;
     /**
@@ -4020,7 +4020,7 @@ export class Catalog {
       * @param {Object} arg - arg object.
       * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
       * @param {string} arg.size - The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0.0/products/sizes**
-      * @param {number} [arg.pincode] - The pincode of the product for which the price needs to be retrieved.
+      * @param {string} arg.pincode - The pincode of the product for which the price needs to be retrieved.
       * @param {number} [arg.pageNo] - The page number to navigate through the given set of results.
       * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
       
@@ -4028,7 +4028,7 @@ export class Catalog {
     getProductSellersBySlug({ slug, size, pincode, pageNo, pageSize }?: {
         slug: string;
         size: string;
-        pincode?: number;
+        pincode: string;
         pageNo?: number;
         pageSize?: number;
     }): any;
@@ -4307,19 +4307,6 @@ export class Catalog {
     }): any;
     /**
       *
-      * @summary: Follow a particular Product
-      * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-      * @param {Object} arg - arg object.
-      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-      * @param {number} arg.collectionId - the `id` of the collection type you want to follow
-      
-      **/
-    followById({ collectionType, collectionId }?: {
-        collectionType: string;
-        collectionId: number;
-    }): any;
-    /**
-      *
       * @summary: UnFollow a Product
       * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
       * @param {Object} arg - arg object.
@@ -4328,6 +4315,19 @@ export class Catalog {
       
       **/
     unfollowById({ collectionType, collectionId }?: {
+        collectionType: string;
+        collectionId: number;
+    }): any;
+    /**
+      *
+      * @summary: Follow a particular Product
+      * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+      * @param {Object} arg - arg object.
+      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+      * @param {number} arg.collectionId - the `id` of the collection type you want to follow
+      
+      **/
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: number;
     }): any;
