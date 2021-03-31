@@ -1,6 +1,6 @@
 export type Media = {
-    url?: string;
     type?: string;
+    url?: string;
 };
 export type ProductListingActionPage = {
     query?: any;
@@ -11,14 +11,14 @@ export type ProductListingAction = {
     page?: ProductListingActionPage;
 };
 export type ProductBrand = {
-    uid?: number;
-    action?: ProductListingAction;
     logo?: Media;
     name?: string;
+    uid?: number;
+    action?: ProductListingAction;
 };
 export type ProductDetailAttribute = {
-    type?: string;
     key?: string;
+    type?: string;
     value?: string;
 };
 export type ProductDetailGroupedAttribute = {
@@ -26,179 +26,179 @@ export type ProductDetailGroupedAttribute = {
     title?: string;
 };
 export type ProductDetail = {
-    attributes?: any;
-    slug: string;
-    description?: string;
-    rating?: number;
-    highlights?: Array<string>;
-    itemType?: string;
-    tryouts?: Array<string>;
-    color?: string;
-    imageNature?: string;
-    productOnlineDate?: string;
-    ratingCount?: number;
+    name?: string;
     medias?: Array<Media>;
+    categories?: Array<ProductBrand>;
+    attributes?: any;
+    itemType?: string;
+    description?: string;
+    brand?: ProductBrand;
+    uid?: number;
+    type?: string;
+    ratingCount?: number;
+    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
+    imageNature?: string;
+    tryouts?: Array<string>;
+    similars?: Array<string>;
     hasVariant?: boolean;
     teaserTag?: string;
-    name?: string;
-    similars?: Array<string>;
-    brand?: ProductBrand;
+    color?: string;
+    slug: string;
+    highlights?: Array<string>;
+    rating?: number;
+    productOnlineDate?: string;
     shortDescription?: string;
-    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
-    categories?: Array<ProductBrand>;
-    type?: string;
-    uid?: number;
 };
 export type ErrorResponse = {
     error?: string;
 };
 export type Price = {
-    max?: number;
     currencyCode?: string;
-    min?: number;
+    max?: number;
     currencySymbol?: string;
+    min?: number;
 };
 export type ProductListingPrice = {
-    effective?: Price;
     marked?: Price;
+    effective?: Price;
 };
 export type ProductSizeStores = {
     count?: number;
 };
 export type ProductSize = {
     quantity?: number;
-    display?: string;
-    value?: string;
     isAvailable?: boolean;
+    value?: string;
+    display?: string;
 };
 export type ProductSizes = {
+    discount?: string;
+    sizeChart?: any;
     sellable?: boolean;
     price?: ProductListingPrice;
     stores?: ProductSizeStores;
     sizes?: Array<ProductSize>;
-    discount?: string;
-    sizeChart?: any;
 };
 export type Store = {
-    uid?: number;
     count?: number;
     name?: string;
-};
-export type ProductStockPrice = {
-    effective?: number;
-    currency?: string;
-    marked?: number;
+    uid?: number;
 };
 export type Seller = {
-    uid?: number;
     count?: number;
     name?: string;
+    uid?: number;
+};
+export type ProductStockPrice = {
+    currency?: string;
+    marked?: number;
+    effective?: number;
 };
 export type ArticleAssignment = {
     level?: string;
     strategy?: string;
 };
 export type ProductSizePriceResponse = {
-    quantity?: number;
+    discount?: string;
     store?: Store;
+    sellerCount?: number;
     articleId?: string;
-    price?: ProductStockPrice;
     set?: any;
     seller?: Seller;
-    strategyWiseListing?: Array<any>;
-    longLat?: Array<number>;
     specialBadge?: string;
-    sellerCount?: number;
-    articleAssignment?: ArticleAssignment;
-    discount?: string;
-    itemType?: string;
-    pincode?: number;
+    price?: ProductStockPrice;
     pricePerPrice?: ProductStockPrice;
+    pincode?: number;
+    articleAssignment?: ArticleAssignment;
+    quantity?: number;
+    longLat?: Array<number>;
+    itemType?: string;
+    strategyWiseListing?: Array<any>;
 };
 export type ProductSizeSellerFilter = {
-    value?: string;
-    name?: string;
     isSelected?: boolean;
+    name?: string;
+    value?: string;
 };
 export type Page = {
-    size?: number;
     nextId?: string;
+    hasPrevious?: boolean;
+    itemTotal?: number;
+    size?: number;
+    type?: string;
     current?: number;
     hasNext?: boolean;
-    type?: string;
-    itemTotal?: number;
-    hasPrevious?: boolean;
 };
 export type ProductSizeSellersResponse = {
-    items?: Array<ProductSizePriceResponse>;
     sortOn?: Array<ProductSizeSellerFilter>;
+    items?: Array<ProductSizePriceResponse>;
     page: Page;
 };
 export type AttributeDetail = {
+    key?: string;
     description?: string;
     display?: string;
-    key?: string;
 };
 export type ProductsComparisonResponse = {
-    items?: Array<ProductDetail>;
     attributesMetadata?: Array<AttributeDetail>;
+    items?: Array<ProductDetail>;
 };
 export type ProductCompareResponse = {
-    items?: Array<ProductDetail>;
-    subtitle?: string;
     attributesMetadata?: Array<AttributeDetail>;
     title?: string;
+    items?: Array<ProductDetail>;
+    subtitle?: string;
 };
 export type ProductFrequentlyComparedSimilarResponse = {
     similars?: Array<ProductCompareResponse>;
 };
 export type ProductSimilarItem = {
+    title?: string;
     items?: Array<ProductDetail>;
     subtitle?: string;
-    title?: string;
 };
 export type SimilarProductByTypeResponse = {
     similars?: Array<ProductSimilarItem>;
 };
 export type ProductVariantItemResponse = {
-    medias?: Array<Media>;
     slug?: string;
-    colorName?: string;
-    color?: string;
-    name?: string;
-    action?: ProductListingAction;
     isAvailable?: boolean;
     uid?: number;
+    name?: string;
     value?: string;
+    medias?: Array<Media>;
+    colorName?: string;
+    color?: string;
+    action?: ProductListingAction;
 };
 export type ProductVariantResponse = {
     items?: Array<ProductVariantItemResponse>;
-    displayType?: string;
     header?: string;
+    displayType?: string;
 };
 export type ProductVariantsResponse = {
     variants?: Array<ProductVariantResponse>;
 };
 export type StoreDetail = {
-    code?: string;
-    id?: number;
-    city?: string;
     name?: string;
+    id?: number;
+    code?: string;
+    city?: string;
 };
 export type CompanyDetail = {
-    id?: number;
     name?: string;
+    id?: number;
 };
 export type ProductStockStatusItem = {
-    quantity?: number;
     store?: StoreDetail;
-    size?: string;
-    itemId?: number;
-    price?: ProductStockPrice;
+    uid?: string;
     seller?: Seller;
     company?: CompanyDetail;
-    uid?: string;
+    price?: ProductStockPrice;
+    size?: string;
     identifier?: any;
+    itemId?: number;
+    quantity?: number;
 };
 export type ProductStockStatusResponse = {
     items?: Array<ProductStockStatusItem>;
@@ -207,66 +207,66 @@ export type ProductStockPolling = {
     items?: Array<ProductStockStatusItem>;
     page: Page;
 };
-export type ProductListingDetail = {
-    attributes?: any;
-    price?: ProductListingPrice;
-    slug: string;
-    description?: string;
-    rating?: number;
-    highlights?: Array<string>;
-    itemType?: string;
-    tryouts?: Array<string>;
-    color?: string;
-    discount?: string;
-    imageNature?: string;
-    productOnlineDate?: string;
-    ratingCount?: number;
-    medias?: Array<Media>;
-    hasVariant?: boolean;
-    teaserTag?: string;
-    name?: string;
-    similars?: Array<string>;
-    brand?: ProductBrand;
-    shortDescription?: string;
-    sellable?: boolean;
-    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
-    categories?: Array<ProductBrand>;
-    type?: string;
-    uid?: number;
-};
-export type ProductSortOn = {
-    value?: string;
-    name?: string;
-    isSelected?: boolean;
-};
 export type ProductFiltersKey = {
-    kind?: string;
-    display: string;
     logo?: string;
     name: string;
+    kind?: string;
+    display: string;
 };
 export type ProductFiltersValue = {
-    display: string;
-    displayFormat?: string;
-    currencyCode?: string;
-    value: string;
-    queryFormat?: string;
-    count?: number;
     selectedMax?: number;
+    display: string;
+    currencyCode?: string;
     currencySymbol?: string;
-    max?: number;
     selectedMin?: number;
-    min?: number;
+    max?: number;
+    value: string;
     isSelected: boolean;
+    displayFormat?: string;
+    count?: number;
+    queryFormat?: string;
+    min?: number;
 };
 export type ProductFilters = {
     key: ProductFiltersKey;
     values: Array<ProductFiltersValue>;
 };
+export type ProductSortOn = {
+    isSelected?: boolean;
+    name?: string;
+    value?: string;
+};
+export type ProductListingDetail = {
+    discount?: string;
+    name?: string;
+    medias?: Array<Media>;
+    categories?: Array<ProductBrand>;
+    attributes?: any;
+    itemType?: string;
+    description?: string;
+    brand?: ProductBrand;
+    uid?: number;
+    type?: string;
+    ratingCount?: number;
+    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
+    imageNature?: string;
+    sellable?: boolean;
+    tryouts?: Array<string>;
+    similars?: Array<string>;
+    hasVariant?: boolean;
+    teaserTag?: string;
+    color?: string;
+    slug: string;
+    highlights?: Array<string>;
+    price?: ProductListingPrice;
+    rating?: number;
+    productOnlineDate?: string;
+    shortDescription?: string;
+};
 export type ProductListingResponse = {
-    items?: Array<ProductListingDetail>;
-    sortOn?: Array<ProductSortOn>;
     filters?: Array<ProductFilters>;
+    sortOn?: Array<ProductSortOn>;
+    items?: Array<ProductListingDetail>;
     page: Page;
 };
 export type ImageUrls = {
@@ -274,69 +274,69 @@ export type ImageUrls = {
     portrait?: Media;
 };
 export type BrandItem = {
-    logo?: Media;
-    banners?: ImageUrls;
+    discount?: string;
     slug?: string;
+    uid?: number;
+    banners?: ImageUrls;
+    name?: string;
+    logo?: Media;
     departments?: Array<string>;
     action?: ProductListingAction;
-    name?: string;
-    discount?: string;
-    uid?: number;
 };
 export type BrandListingResponse = {
     items?: Array<BrandItem>;
     page: Page;
 };
 export type BrandDetailResponse = {
-    uid?: number;
     banners?: ImageUrls;
     name?: string;
+    uid?: number;
     logo?: Media;
 };
 export type DepartmentIdentifier = {
-    uid?: number;
     slug?: string;
+    uid?: number;
 };
 export type CategoryItems = {
-    banners?: ImageUrls;
-    childs?: Array<any>;
     slug?: string;
-    action?: ProductListingAction;
-    name?: string;
+    childs?: Array<any>;
     uid?: number;
+    banners?: ImageUrls;
+    name?: string;
+    action?: ProductListingAction;
 };
 export type DepartmentCategoryTree = {
-    items?: Array<CategoryItems>;
     department?: string;
+    items?: Array<CategoryItems>;
 };
 export type CategoryListingResponse = {
     departments?: Array<DepartmentIdentifier>;
     data?: Array<DepartmentCategoryTree>;
 };
 export type CategoryMetaResponse = {
-    uid?: number;
     banners?: ImageUrls;
     name?: string;
+    uid?: number;
     logo?: Media;
 };
 export type HomeListingResponse = {
-    items?: Array<ProductListingDetail>;
     message?: string;
+    items?: Array<ProductListingDetail>;
     page: Page;
 };
 export type Department = {
+    slug?: string;
+    uid?: number;
+    name?: string;
     priorityOrder?: number;
     logo?: Media;
-    slug?: string;
-    name?: string;
-    uid?: number;
 };
 export type DepartmentResponse = {
     items?: Array<Department>;
 };
 export type Query = {
-    brand?: Array<string>;
     category?: Array<string>;
+    brand?: Array<string>;
 };
 export type AutocompletePage = {
     query?: Query;
@@ -347,72 +347,72 @@ export type Action = {
     page?: AutocompletePage;
 };
 export type AutocompleteItem = {
-    type?: string;
     display?: string;
     logo?: Media;
+    type?: string;
     action?: Action;
 };
 export type AutoCompleteResponse = {
     items?: Array<AutocompleteItem>;
 };
-export type GetCollectionDetailNest = {
-    cron?: any;
-    query?: any;
-    description?: string;
-    slug?: string;
-    tag?: Array<string>;
-    visibleFacetsKeys?: Array<string>;
-    action?: ProductListingAction;
-    allowSort?: boolean;
-    schedule?: any;
-    allowFacets?: boolean;
-    badge?: any;
-    logo?: Media;
-    banners?: ImageUrls;
-    name?: string;
-    appId?: string;
-    isActive?: boolean;
-    type?: string;
-    meta?: any;
-    uid?: string;
-};
 export type CollectionListingFilterType = {
-    display?: string;
-    name?: string;
     isSelected?: boolean;
+    name?: string;
+    display?: string;
 };
 export type CollectionListingFilterTag = {
-    display?: string;
-    name?: string;
     isSelected?: boolean;
+    name?: string;
+    display?: string;
 };
 export type CollectionListingFilter = {
     type?: Array<CollectionListingFilterType>;
     tags?: Array<CollectionListingFilterTag>;
 };
+export type GetCollectionDetailNest = {
+    tag?: Array<string>;
+    appId?: string;
+    name?: string;
+    schedule?: any;
+    cron?: any;
+    description?: string;
+    uid?: string;
+    query?: any;
+    type?: string;
+    visibleFacetsKeys?: Array<string>;
+    meta?: any;
+    isActive?: boolean;
+    badge?: any;
+    allowSort?: boolean;
+    action?: ProductListingAction;
+    slug?: string;
+    allowFacets?: boolean;
+    banners?: ImageUrls;
+    logo?: Media;
+};
 export type GetCollectionListingResponse = {
-    items?: Array<GetCollectionDetailNest>;
     filters?: CollectionListingFilter;
+    items?: Array<GetCollectionDetailNest>;
     page: Page;
 };
 export type CollectionDetailResponse = {
-    banners?: ImageUrls;
-    logo?: Media;
-    cron?: any;
-    query?: any;
-    description?: string;
     slug?: string;
-    tag?: Array<string>;
-    visibleFacetsKeys?: Array<string>;
-    isActive?: boolean;
-    name?: string;
-    allowSort?: boolean;
-    schedule?: any;
-    appId?: string;
-    type?: string;
-    meta?: any;
-    allowFacets?: boolean;
     badge?: any;
+    tag?: Array<string>;
+    allowFacets?: boolean;
+    logo?: Media;
+    query?: any;
+    banners?: ImageUrls;
+    type?: string;
+    appId?: string;
+    visibleFacetsKeys?: Array<string>;
+    allowSort?: boolean;
+    name?: string;
+    meta?: any;
+    schedule?: any;
+    cron?: any;
+    description?: string;
+    isActive?: boolean;
 };
 export type GetFollowListingResponse = {
     items: Array<any>;
@@ -426,9 +426,9 @@ export type FollowerCountResponse = {
     count?: number;
 };
 export type FollowIdsData = {
-    products?: Array<number>;
     collections?: Array<number>;
     brands?: Array<number>;
+    products?: Array<number>;
 };
 export type FollowIdsResponse = {
     data?: FollowIdsData;
@@ -438,16 +438,16 @@ export type LatLong = {
     coordinates?: Array<number>;
 };
 export type Store1 = {
-    state?: string;
-    pincode?: number;
     storeCode?: string;
-    latLong?: LatLong;
-    country?: string;
-    storeEmail?: string;
-    name?: string;
-    address?: string;
     uid?: number;
     city?: string;
+    latLong?: LatLong;
+    storeEmail?: string;
+    address?: string;
+    pincode?: number;
+    name?: string;
+    country?: string;
+    state?: string;
 };
 export type StoreListingResponse = {
     items: Array<Store1>;
@@ -2453,14 +2453,14 @@ export type OrderById = {
     order: OrderSchema;
 };
 export type OrderList = {
-    orders: Array<any>;
+    orders: Array<OrderSchema>;
     page: any;
 };
 export type ShipmentById = {
-    shipment: any;
+    shipment: Shipments;
 };
 export type ShipmentReasons = {
-    reasons: Array<any>;
+    reasons: Array<Reasons>;
 };
 export type ShipmentStatusUpdateBody = {
     shipments: any;
@@ -2471,7 +2471,18 @@ export type ShipmentStatusUpdate = {
     shipments: any;
 };
 export type ShipmentTrack = {
-    results: Array<any>;
+    results: Array<Track>;
+};
+export type OrderSchema = {
+    orderId?: string;
+    breakupValues?: Array<BreakupValues>;
+    orderCreatedTime?: string;
+    shipments?: Array<Shipments>;
+    totalShipmentsInOrder?: number;
+    userInfo?: UserInfo;
+};
+export type PosOrderById = {
+    order: OrderSchema;
 };
 export type Bags = {
     item?: any;
@@ -2587,17 +2598,6 @@ export type ShipmentMeta = {
     dpSortKey?: string;
     packagingName?: string;
 };
-export type OrderSchema = {
-    orderId?: string;
-    breakupValues?: Array<BreakupValues>;
-    orderCreatedTime?: string;
-    shipments?: Array<Shipments>;
-    totalShipmentsInOrder?: number;
-    userInfo?: UserInfo;
-};
-export type PosOrderById = {
-    order: OrderSchema;
-};
 export type Prices = {
     amountPaid?: number;
     priceMarked?: number;
@@ -2615,6 +2615,14 @@ export type Prices = {
 };
 export type Promise = {
     timestamp?: any;
+};
+export type Reasons = {
+    reasonText?: string;
+    showTextArea?: boolean;
+    feedbackType?: string;
+    flow?: string;
+    reasonId?: number;
+    priority?: number;
 };
 export type ShipmentStatus = {
     title?: string;
@@ -2658,6 +2666,16 @@ export type Shipments = {
     shipmentStatus?: ShipmentStatus;
     userInfo?: ShipmentUserInfo;
     meta?: ShipmentMeta;
+};
+export type Track = {
+    awb?: string;
+    updatedAt?: string;
+    lastLocationRecievedAt?: string;
+    reason?: string;
+    shipmentType?: string;
+    status?: string;
+    updatedTime?: string;
+    accountName?: string;
 };
 export type TrackingDetails = {
     isCurrent?: boolean;
@@ -3077,9 +3095,9 @@ export type GetTatProductResponse = {
         @typedef Media
         
         
-        @property { string } [url]
-        
         @property { string } [type]
+        
+        @property { string } [url]
         
          
     */
@@ -3107,13 +3125,13 @@ export type GetTatProductResponse = {
         @typedef ProductBrand
         
         
-        @property { number } [uid]
-        
-        @property { ProductListingAction } [action]
-        
         @property { Media } [logo]
         
         @property { string } [name]
+        
+        @property { number } [uid]
+        
+        @property { ProductListingAction } [action]
         
          
     */
@@ -3121,9 +3139,9 @@ export type GetTatProductResponse = {
         @typedef ProductDetailAttribute
         
         
-        @property { string } [type]
-        
         @property { string } [key]
+        
+        @property { string } [type]
         
         @property { string } [value]
         
@@ -3143,49 +3161,49 @@ export type GetTatProductResponse = {
         @typedef ProductDetail
         
         
+        @property { string } [name]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<ProductBrand> } [categories]
+        
         @property { Object } [attributes]
-        
-        @property { string } slug
-        
-        @property { string } [description]
-        
-        @property { number } [rating]
-        
-        @property { Array<string> } [highlights]
         
         @property { string } [itemType]
         
-        @property { Array<string> } [tryouts]
+        @property { string } [description]
         
-        @property { string } [color]
+        @property { ProductBrand } [brand]
         
-        @property { string } [imageNature]
+        @property { number } [uid]
         
-        @property { string } [productOnlineDate]
+        @property { string } [type]
         
         @property { number } [ratingCount]
         
-        @property { Array<Media> } [medias]
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { string } [imageNature]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<string> } [similars]
         
         @property { boolean } [hasVariant]
         
         @property { string } [teaserTag]
         
-        @property { string } [name]
+        @property { string } [color]
         
-        @property { Array<string> } [similars]
+        @property { string } slug
         
-        @property { ProductBrand } [brand]
+        @property { Array<string> } [highlights]
+        
+        @property { number } [rating]
+        
+        @property { string } [productOnlineDate]
         
         @property { string } [shortDescription]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { string } [type]
-        
-        @property { number } [uid]
         
          
     */
@@ -3201,13 +3219,13 @@ export type GetTatProductResponse = {
         @typedef Price
         
         
-        @property { number } [max]
-        
         @property { string } [currencyCode]
         
-        @property { number } [min]
+        @property { number } [max]
         
         @property { string } [currencySymbol]
+        
+        @property { number } [min]
         
          
     */
@@ -3215,9 +3233,9 @@ export type GetTatProductResponse = {
         @typedef ProductListingPrice
         
         
-        @property { Price } [effective]
-        
         @property { Price } [marked]
+        
+        @property { Price } [effective]
         
          
     */
@@ -3235,17 +3253,21 @@ export type GetTatProductResponse = {
         
         @property { number } [quantity]
         
-        @property { string } [display]
+        @property { boolean } [isAvailable]
         
         @property { string } [value]
         
-        @property { boolean } [isAvailable]
+        @property { string } [display]
         
          
     */
 /**
         @typedef ProductSizes
         
+        
+        @property { string } [discount]
+        
+        @property { Object } [sizeChart]
         
         @property { boolean } [sellable]
         
@@ -3255,33 +3277,17 @@ export type GetTatProductResponse = {
         
         @property { Array<ProductSize> } [sizes]
         
-        @property { string } [discount]
-        
-        @property { Object } [sizeChart]
-        
          
     */
 /**
         @typedef Store
         
         
-        @property { number } [uid]
-        
         @property { number } [count]
         
         @property { string } [name]
         
-         
-    */
-/**
-        @typedef ProductStockPrice
-        
-        
-        @property { number } [effective]
-        
-        @property { string } [currency]
-        
-        @property { number } [marked]
+        @property { number } [uid]
         
          
     */
@@ -3289,11 +3295,23 @@ export type GetTatProductResponse = {
         @typedef Seller
         
         
-        @property { number } [uid]
-        
         @property { number } [count]
         
         @property { string } [name]
+        
+        @property { number } [uid]
+        
+         
+    */
+/**
+        @typedef ProductStockPrice
+        
+        
+        @property { string } [currency]
+        
+        @property { number } [marked]
+        
+        @property { number } [effective]
         
          
     */
@@ -3311,35 +3329,35 @@ export type GetTatProductResponse = {
         @typedef ProductSizePriceResponse
         
         
-        @property { number } [quantity]
+        @property { string } [discount]
         
         @property { Store } [store]
         
-        @property { string } [articleId]
+        @property { number } [sellerCount]
         
-        @property { ProductStockPrice } [price]
+        @property { string } [articleId]
         
         @property { Object } [set]
         
         @property { Seller } [seller]
         
-        @property { Array<Object> } [strategyWiseListing]
-        
-        @property { Array<number> } [longLat]
-        
         @property { string } [specialBadge]
         
-        @property { number } [sellerCount]
+        @property { ProductStockPrice } [price]
         
-        @property { ArticleAssignment } [articleAssignment]
-        
-        @property { string } [discount]
-        
-        @property { string } [itemType]
+        @property { ProductStockPrice } [pricePerPrice]
         
         @property { number } [pincode]
         
-        @property { ProductStockPrice } [pricePerPrice]
+        @property { ArticleAssignment } [articleAssignment]
+        
+        @property { number } [quantity]
+        
+        @property { Array<number> } [longLat]
+        
+        @property { string } [itemType]
+        
+        @property { Array<Object> } [strategyWiseListing]
         
          
     */
@@ -3347,11 +3365,11 @@ export type GetTatProductResponse = {
         @typedef ProductSizeSellerFilter
         
         
-        @property { string } [value]
+        @property { boolean } [isSelected]
         
         @property { string } [name]
         
-        @property { boolean } [isSelected]
+        @property { string } [value]
         
          
     */
@@ -3359,19 +3377,19 @@ export type GetTatProductResponse = {
         @typedef Page
         
         
+        @property { string } [nextId]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { number } [itemTotal]
+        
         @property { number } [size]
         
-        @property { string } [nextId]
+        @property { string } [type]
         
         @property { number } [current]
         
         @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasPrevious]
         
          
     */
@@ -3379,9 +3397,9 @@ export type GetTatProductResponse = {
         @typedef ProductSizeSellersResponse
         
         
-        @property { Array<ProductSizePriceResponse> } [items]
-        
         @property { Array<ProductSizeSellerFilter> } [sortOn]
+        
+        @property { Array<ProductSizePriceResponse> } [items]
         
         @property { Page } page
         
@@ -3391,11 +3409,11 @@ export type GetTatProductResponse = {
         @typedef AttributeDetail
         
         
+        @property { string } [key]
+        
         @property { string } [description]
         
         @property { string } [display]
-        
-        @property { string } [key]
         
          
     */
@@ -3403,9 +3421,9 @@ export type GetTatProductResponse = {
         @typedef ProductsComparisonResponse
         
         
-        @property { Array<ProductDetail> } [items]
-        
         @property { Array<AttributeDetail> } [attributesMetadata]
+        
+        @property { Array<ProductDetail> } [items]
         
          
     */
@@ -3413,13 +3431,13 @@ export type GetTatProductResponse = {
         @typedef ProductCompareResponse
         
         
-        @property { Array<ProductDetail> } [items]
-        
-        @property { string } [subtitle]
-        
         @property { Array<AttributeDetail> } [attributesMetadata]
         
         @property { string } [title]
+        
+        @property { Array<ProductDetail> } [items]
+        
+        @property { string } [subtitle]
         
          
     */
@@ -3435,11 +3453,11 @@ export type GetTatProductResponse = {
         @typedef ProductSimilarItem
         
         
+        @property { string } [title]
+        
         @property { Array<ProductDetail> } [items]
         
         @property { string } [subtitle]
-        
-        @property { string } [title]
         
          
     */
@@ -3455,23 +3473,23 @@ export type GetTatProductResponse = {
         @typedef ProductVariantItemResponse
         
         
-        @property { Array<Media> } [medias]
-        
         @property { string } [slug]
-        
-        @property { string } [colorName]
-        
-        @property { string } [color]
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
         
         @property { boolean } [isAvailable]
         
         @property { number } [uid]
         
+        @property { string } [name]
+        
         @property { string } [value]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { string } [colorName]
+        
+        @property { string } [color]
+        
+        @property { ProductListingAction } [action]
         
          
     */
@@ -3481,9 +3499,9 @@ export type GetTatProductResponse = {
         
         @property { Array<ProductVariantItemResponse> } [items]
         
-        @property { string } [displayType]
-        
         @property { string } [header]
+        
+        @property { string } [displayType]
         
          
     */
@@ -3499,13 +3517,13 @@ export type GetTatProductResponse = {
         @typedef StoreDetail
         
         
-        @property { string } [code]
+        @property { string } [name]
         
         @property { number } [id]
         
-        @property { string } [city]
+        @property { string } [code]
         
-        @property { string } [name]
+        @property { string } [city]
         
          
     */
@@ -3513,9 +3531,9 @@ export type GetTatProductResponse = {
         @typedef CompanyDetail
         
         
-        @property { number } [id]
-        
         @property { string } [name]
+        
+        @property { number } [id]
         
          
     */
@@ -3523,23 +3541,23 @@ export type GetTatProductResponse = {
         @typedef ProductStockStatusItem
         
         
-        @property { number } [quantity]
-        
         @property { StoreDetail } [store]
         
-        @property { string } [size]
-        
-        @property { number } [itemId]
-        
-        @property { ProductStockPrice } [price]
+        @property { string } [uid]
         
         @property { Seller } [seller]
         
         @property { CompanyDetail } [company]
         
-        @property { string } [uid]
+        @property { ProductStockPrice } [price]
+        
+        @property { string } [size]
         
         @property { Object } [identifier]
+        
+        @property { number } [itemId]
+        
+        @property { number } [quantity]
         
          
     */
@@ -3562,84 +3580,16 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef ProductListingDetail
-        
-        
-        @property { Object } [attributes]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { string } slug
-        
-        @property { string } [description]
-        
-        @property { number } [rating]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { string } [itemType]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { string } [color]
-        
-        @property { string } [discount]
-        
-        @property { string } [imageNature]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { string } [teaserTag]
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [similars]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { string } [shortDescription]
-        
-        @property { boolean } [sellable]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { string } [type]
-        
-        @property { number } [uid]
-        
-         
-    */
-/**
-        @typedef ProductSortOn
-        
-        
-        @property { string } [value]
-        
-        @property { string } [name]
-        
-        @property { boolean } [isSelected]
-        
-         
-    */
-/**
         @typedef ProductFiltersKey
         
-        
-        @property { string } [kind]
-        
-        @property { string } display
         
         @property { string } [logo]
         
         @property { string } name
+        
+        @property { string } [kind]
+        
+        @property { string } display
         
          
     */
@@ -3647,29 +3597,29 @@ export type GetTatProductResponse = {
         @typedef ProductFiltersValue
         
         
-        @property { string } display
+        @property { number } [selectedMax]
         
-        @property { string } [displayFormat]
+        @property { string } display
         
         @property { string } [currencyCode]
         
-        @property { string } value
-        
-        @property { string } [queryFormat]
-        
-        @property { number } [count]
-        
-        @property { number } [selectedMax]
-        
         @property { string } [currencySymbol]
-        
-        @property { number } [max]
         
         @property { number } [selectedMin]
         
-        @property { number } [min]
+        @property { number } [max]
+        
+        @property { string } value
         
         @property { boolean } isSelected
+        
+        @property { string } [displayFormat]
+        
+        @property { number } [count]
+        
+        @property { string } [queryFormat]
+        
+        @property { number } [min]
         
          
     */
@@ -3684,14 +3634,82 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef ProductSortOn
+        
+        
+        @property { boolean } [isSelected]
+        
+        @property { string } [name]
+        
+        @property { string } [value]
+        
+         
+    */
+/**
+        @typedef ProductListingDetail
+        
+        
+        @property { string } [discount]
+        
+        @property { string } [name]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [itemType]
+        
+        @property { string } [description]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { number } [uid]
+        
+        @property { string } [type]
+        
+        @property { number } [ratingCount]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { string } [imageNature]
+        
+        @property { boolean } [sellable]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<string> } [similars]
+        
+        @property { boolean } [hasVariant]
+        
+        @property { string } [teaserTag]
+        
+        @property { string } [color]
+        
+        @property { string } slug
+        
+        @property { Array<string> } [highlights]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { number } [rating]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { string } [shortDescription]
+        
+         
+    */
+/**
         @typedef ProductListingResponse
         
         
-        @property { Array<ProductListingDetail> } [items]
+        @property { Array<ProductFilters> } [filters]
         
         @property { Array<ProductSortOn> } [sortOn]
         
-        @property { Array<ProductFilters> } [filters]
+        @property { Array<ProductListingDetail> } [items]
         
         @property { Page } page
         
@@ -3711,21 +3729,21 @@ export type GetTatProductResponse = {
         @typedef BrandItem
         
         
-        @property { Media } [logo]
+        @property { string } [discount]
+        
+        @property { string } [slug]
+        
+        @property { number } [uid]
         
         @property { ImageUrls } [banners]
         
-        @property { string } [slug]
+        @property { string } [name]
+        
+        @property { Media } [logo]
         
         @property { Array<string> } [departments]
         
         @property { ProductListingAction } [action]
-        
-        @property { string } [name]
-        
-        @property { string } [discount]
-        
-        @property { number } [uid]
         
          
     */
@@ -3743,11 +3761,11 @@ export type GetTatProductResponse = {
         @typedef BrandDetailResponse
         
         
-        @property { number } [uid]
-        
         @property { ImageUrls } [banners]
         
         @property { string } [name]
+        
+        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -3757,9 +3775,9 @@ export type GetTatProductResponse = {
         @typedef DepartmentIdentifier
         
         
-        @property { number } [uid]
-        
         @property { string } [slug]
+        
+        @property { number } [uid]
         
          
     */
@@ -3767,17 +3785,17 @@ export type GetTatProductResponse = {
         @typedef CategoryItems
         
         
-        @property { ImageUrls } [banners]
+        @property { string } [slug]
         
         @property { Array<Object> } [childs]
         
-        @property { string } [slug]
+        @property { number } [uid]
         
-        @property { ProductListingAction } [action]
+        @property { ImageUrls } [banners]
         
         @property { string } [name]
         
-        @property { number } [uid]
+        @property { ProductListingAction } [action]
         
          
     */
@@ -3785,9 +3803,9 @@ export type GetTatProductResponse = {
         @typedef DepartmentCategoryTree
         
         
-        @property { Array<CategoryItems> } [items]
-        
         @property { string } [department]
+        
+        @property { Array<CategoryItems> } [items]
         
          
     */
@@ -3805,11 +3823,11 @@ export type GetTatProductResponse = {
         @typedef CategoryMetaResponse
         
         
-        @property { number } [uid]
-        
         @property { ImageUrls } [banners]
         
         @property { string } [name]
+        
+        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -3819,9 +3837,9 @@ export type GetTatProductResponse = {
         @typedef HomeListingResponse
         
         
-        @property { Array<ProductListingDetail> } [items]
-        
         @property { string } [message]
+        
+        @property { Array<ProductListingDetail> } [items]
         
         @property { Page } page
         
@@ -3831,15 +3849,15 @@ export type GetTatProductResponse = {
         @typedef Department
         
         
-        @property { number } [priorityOrder]
-        
-        @property { Media } [logo]
-        
         @property { string } [slug]
+        
+        @property { number } [uid]
         
         @property { string } [name]
         
-        @property { number } [uid]
+        @property { number } [priorityOrder]
+        
+        @property { Media } [logo]
         
          
     */
@@ -3855,9 +3873,9 @@ export type GetTatProductResponse = {
         @typedef Query
         
         
-        @property { Array<string> } [brand]
-        
         @property { Array<string> } [category]
+        
+        @property { Array<string> } [brand]
         
          
     */
@@ -3885,11 +3903,11 @@ export type GetTatProductResponse = {
         @typedef AutocompleteItem
         
         
-        @property { string } [type]
-        
         @property { string } [display]
         
         @property { Media } [logo]
+        
+        @property { string } [type]
         
         @property { Action } [action]
         
@@ -3904,58 +3922,14 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef GetCollectionDetailNest
-        
-        
-        @property { Object } [cron]
-        
-        @property { Object } [query]
-        
-        @property { string } [description]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tag]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { boolean } [allowSort]
-        
-        @property { Object } [schedule]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { Object } [badge]
-        
-        @property { Media } [logo]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [name]
-        
-        @property { string } [appId]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [type]
-        
-        @property { Object } [meta]
-        
-        @property { string } [uid]
-        
-         
-    */
-/**
         @typedef CollectionListingFilterType
         
         
-        @property { string } [display]
+        @property { boolean } [isSelected]
         
         @property { string } [name]
         
-        @property { boolean } [isSelected]
+        @property { string } [display]
         
          
     */
@@ -3963,11 +3937,11 @@ export type GetTatProductResponse = {
         @typedef CollectionListingFilterTag
         
         
-        @property { string } [display]
+        @property { boolean } [isSelected]
         
         @property { string } [name]
         
-        @property { boolean } [isSelected]
+        @property { string } [display]
         
          
     */
@@ -3982,12 +3956,56 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef GetCollectionDetailNest
+        
+        
+        @property { Array<string> } [tag]
+        
+        @property { string } [appId]
+        
+        @property { string } [name]
+        
+        @property { Object } [schedule]
+        
+        @property { Object } [cron]
+        
+        @property { string } [description]
+        
+        @property { string } [uid]
+        
+        @property { Object } [query]
+        
+        @property { string } [type]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { Object } [meta]
+        
+        @property { boolean } [isActive]
+        
+        @property { Object } [badge]
+        
+        @property { boolean } [allowSort]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { string } [slug]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { Media } [logo]
+        
+         
+    */
+/**
         @typedef GetCollectionListingResponse
         
         
-        @property { Array<GetCollectionDetailNest> } [items]
-        
         @property { CollectionListingFilter } [filters]
+        
+        @property { Array<GetCollectionDetailNest> } [items]
         
         @property { Page } page
         
@@ -3997,39 +4015,39 @@ export type GetTatProductResponse = {
         @typedef CollectionDetailResponse
         
         
-        @property { ImageUrls } [banners]
-        
-        @property { Media } [logo]
-        
-        @property { Object } [cron]
-        
-        @property { Object } [query]
-        
-        @property { string } [description]
-        
         @property { string } [slug]
+        
+        @property { Object } [badge]
         
         @property { Array<string> } [tag]
         
-        @property { Array<string> } [visibleFacetsKeys]
+        @property { boolean } [allowFacets]
         
-        @property { boolean } [isActive]
+        @property { Media } [logo]
         
-        @property { string } [name]
+        @property { Object } [query]
         
-        @property { boolean } [allowSort]
-        
-        @property { Object } [schedule]
-        
-        @property { string } [appId]
+        @property { ImageUrls } [banners]
         
         @property { string } [type]
         
+        @property { string } [appId]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { boolean } [allowSort]
+        
+        @property { string } [name]
+        
         @property { Object } [meta]
         
-        @property { boolean } [allowFacets]
+        @property { Object } [schedule]
         
-        @property { Object } [badge]
+        @property { Object } [cron]
+        
+        @property { string } [description]
+        
+        @property { boolean } [isActive]
         
          
     */
@@ -4065,11 +4083,11 @@ export type GetTatProductResponse = {
         @typedef FollowIdsData
         
         
-        @property { Array<number> } [products]
-        
         @property { Array<number> } [collections]
         
         @property { Array<number> } [brands]
+        
+        @property { Array<number> } [products]
         
          
     */
@@ -4095,25 +4113,25 @@ export type GetTatProductResponse = {
         @typedef Store1
         
         
-        @property { string } [state]
-        
-        @property { number } [pincode]
-        
         @property { string } [storeCode]
-        
-        @property { LatLong } [latLong]
-        
-        @property { string } [country]
-        
-        @property { string } [storeEmail]
-        
-        @property { string } [name]
-        
-        @property { string } [address]
         
         @property { number } [uid]
         
         @property { string } [city]
+        
+        @property { LatLong } [latLong]
+        
+        @property { string } [storeEmail]
+        
+        @property { string } [address]
+        
+        @property { number } [pincode]
+        
+        @property { string } [name]
+        
+        @property { string } [country]
+        
+        @property { string } [state]
         
          
     */
@@ -8741,7 +8759,7 @@ export type GetTatProductResponse = {
         @typedef OrderList
         
         
-        @property { Array<Object> } orders
+        @property { Array<OrderSchema> } orders
         
         @property { Object } page
         
@@ -8751,7 +8769,7 @@ export type GetTatProductResponse = {
         @typedef ShipmentById
         
         
-        @property { Object } shipment
+        @property { Shipments } shipment
         
          
     */
@@ -8759,7 +8777,7 @@ export type GetTatProductResponse = {
         @typedef ShipmentReasons
         
         
-        @property { Array<Object> } reasons
+        @property { Array<Reasons> } reasons
         
          
     */
@@ -8787,7 +8805,33 @@ export type GetTatProductResponse = {
         @typedef ShipmentTrack
         
         
-        @property { Array<Object> } results
+        @property { Array<Track> } results
+        
+         
+    */
+/**
+        @typedef OrderSchema
+        
+        
+        @property { string } [orderId]
+        
+        @property { Array<BreakupValues> } [breakupValues]
+        
+        @property { string } [orderCreatedTime]
+        
+        @property { Array<Shipments> } [shipments]
+        
+        @property { number } [totalShipmentsInOrder]
+        
+        @property { UserInfo } [userInfo]
+        
+         
+    */
+/**
+        @typedef PosOrderById
+        
+        
+        @property { OrderSchema } order
         
          
     */
@@ -9034,32 +9078,6 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef OrderSchema
-        
-        
-        @property { string } [orderId]
-        
-        @property { Array<BreakupValues> } [breakupValues]
-        
-        @property { string } [orderCreatedTime]
-        
-        @property { Array<Shipments> } [shipments]
-        
-        @property { number } [totalShipmentsInOrder]
-        
-        @property { UserInfo } [userInfo]
-        
-         
-    */
-/**
-        @typedef PosOrderById
-        
-        
-        @property { OrderSchema } order
-        
-         
-    */
-/**
         @typedef Prices
         
         
@@ -9096,6 +9114,24 @@ export type GetTatProductResponse = {
         
         
         @property { Object } [timestamp]
+        
+         
+    */
+/**
+        @typedef Reasons
+        
+        
+        @property { string } [reasonText]
+        
+        @property { boolean } [showTextArea]
+        
+        @property { string } [feedbackType]
+        
+        @property { string } [flow]
+        
+        @property { number } [reasonId]
+        
+        @property { number } [priority]
         
          
     */
@@ -9188,6 +9224,28 @@ export type GetTatProductResponse = {
         @property { ShipmentUserInfo } [userInfo]
         
         @property { ShipmentMeta } [meta]
+        
+         
+    */
+/**
+        @typedef Track
+        
+        
+        @property { string } [awb]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [lastLocationRecievedAt]
+        
+        @property { string } [reason]
+        
+        @property { string } [shipmentType]
+        
+        @property { string } [status]
+        
+        @property { string } [updatedTime]
+        
+        @property { string } [accountName]
         
          
     */
@@ -10477,19 +10535,6 @@ export class Catalog {
     }): any;
     /**
       *
-      * @summary: UnFollow a Product
-      * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-      * @param {Object} arg - arg object.
-      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-      * @param {number} arg.collectionId - the `id` of the collection type you want to unfollow
-      
-      **/
-    unfollowById({ collectionType, collectionId }?: {
-        collectionType: string;
-        collectionId: number;
-    }): any;
-    /**
-      *
       * @summary: Follow a particular Product
       * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
       * @param {Object} arg - arg object.
@@ -10498,6 +10543,19 @@ export class Catalog {
       
       **/
     followById({ collectionType, collectionId }?: {
+        collectionType: string;
+        collectionId: number;
+    }): any;
+    /**
+      *
+      * @summary: UnFollow a Product
+      * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+      * @param {Object} arg - arg object.
+      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+      * @param {number} arg.collectionId - the `id` of the collection type you want to unfollow
+      
+      **/
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: number;
     }): any;

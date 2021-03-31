@@ -5,9 +5,9 @@ const Paginator = require("../common/Paginator");
         @typedef Media
         
         
-        @property { string } [url]
-        
         @property { string } [type]
+        
+        @property { string } [url]
         
          
     */
@@ -38,13 +38,13 @@ const Paginator = require("../common/Paginator");
         @typedef ProductBrand
         
         
-        @property { number } [uid]
-        
-        @property { ProductListingAction } [action]
-        
         @property { Media } [logo]
         
         @property { string } [name]
+        
+        @property { number } [uid]
+        
+        @property { ProductListingAction } [action]
         
          
     */
@@ -53,9 +53,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductDetailAttribute
         
         
-        @property { string } [type]
-        
         @property { string } [key]
+        
+        @property { string } [type]
         
         @property { string } [value]
         
@@ -77,49 +77,49 @@ const Paginator = require("../common/Paginator");
         @typedef ProductDetail
         
         
+        @property { string } [name]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<ProductBrand> } [categories]
+        
         @property { Object } [attributes]
-        
-        @property { string } slug
-        
-        @property { string } [description]
-        
-        @property { number } [rating]
-        
-        @property { Array<string> } [highlights]
         
         @property { string } [itemType]
         
-        @property { Array<string> } [tryouts]
+        @property { string } [description]
         
-        @property { string } [color]
+        @property { ProductBrand } [brand]
         
-        @property { string } [imageNature]
+        @property { number } [uid]
         
-        @property { string } [productOnlineDate]
+        @property { string } [type]
         
         @property { number } [ratingCount]
         
-        @property { Array<Media> } [medias]
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { string } [imageNature]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<string> } [similars]
         
         @property { boolean } [hasVariant]
         
         @property { string } [teaserTag]
         
-        @property { string } [name]
+        @property { string } [color]
         
-        @property { Array<string> } [similars]
+        @property { string } slug
         
-        @property { ProductBrand } [brand]
+        @property { Array<string> } [highlights]
+        
+        @property { number } [rating]
+        
+        @property { string } [productOnlineDate]
         
         @property { string } [shortDescription]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { string } [type]
-        
-        @property { number } [uid]
         
          
     */
@@ -137,13 +137,13 @@ const Paginator = require("../common/Paginator");
         @typedef Price
         
         
-        @property { number } [max]
-        
         @property { string } [currencyCode]
         
-        @property { number } [min]
+        @property { number } [max]
         
         @property { string } [currencySymbol]
+        
+        @property { number } [min]
         
          
     */
@@ -152,9 +152,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductListingPrice
         
         
-        @property { Price } [effective]
-        
         @property { Price } [marked]
+        
+        @property { Price } [effective]
         
          
     */
@@ -174,11 +174,11 @@ const Paginator = require("../common/Paginator");
         
         @property { number } [quantity]
         
-        @property { string } [display]
+        @property { boolean } [isAvailable]
         
         @property { string } [value]
         
-        @property { boolean } [isAvailable]
+        @property { string } [display]
         
          
     */
@@ -186,6 +186,10 @@ const Paginator = require("../common/Paginator");
 /**
         @typedef ProductSizes
         
+        
+        @property { string } [discount]
+        
+        @property { Object } [sizeChart]
         
         @property { boolean } [sellable]
         
@@ -195,10 +199,6 @@ const Paginator = require("../common/Paginator");
         
         @property { Array<ProductSize> } [sizes]
         
-        @property { string } [discount]
-        
-        @property { Object } [sizeChart]
-        
          
     */
 
@@ -206,24 +206,11 @@ const Paginator = require("../common/Paginator");
         @typedef Store
         
         
-        @property { number } [uid]
-        
         @property { number } [count]
         
         @property { string } [name]
         
-         
-    */
-
-/**
-        @typedef ProductStockPrice
-        
-        
-        @property { number } [effective]
-        
-        @property { string } [currency]
-        
-        @property { number } [marked]
+        @property { number } [uid]
         
          
     */
@@ -232,11 +219,24 @@ const Paginator = require("../common/Paginator");
         @typedef Seller
         
         
-        @property { number } [uid]
-        
         @property { number } [count]
         
         @property { string } [name]
+        
+        @property { number } [uid]
+        
+         
+    */
+
+/**
+        @typedef ProductStockPrice
+        
+        
+        @property { string } [currency]
+        
+        @property { number } [marked]
+        
+        @property { number } [effective]
         
          
     */
@@ -256,35 +256,35 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizePriceResponse
         
         
-        @property { number } [quantity]
+        @property { string } [discount]
         
         @property { Store } [store]
         
-        @property { string } [articleId]
+        @property { number } [sellerCount]
         
-        @property { ProductStockPrice } [price]
+        @property { string } [articleId]
         
         @property { Object } [set]
         
         @property { Seller } [seller]
         
-        @property { Array<Object> } [strategyWiseListing]
-        
-        @property { Array<number> } [longLat]
-        
         @property { string } [specialBadge]
         
-        @property { number } [sellerCount]
+        @property { ProductStockPrice } [price]
         
-        @property { ArticleAssignment } [articleAssignment]
-        
-        @property { string } [discount]
-        
-        @property { string } [itemType]
+        @property { ProductStockPrice } [pricePerPrice]
         
         @property { number } [pincode]
         
-        @property { ProductStockPrice } [pricePerPrice]
+        @property { ArticleAssignment } [articleAssignment]
+        
+        @property { number } [quantity]
+        
+        @property { Array<number> } [longLat]
+        
+        @property { string } [itemType]
+        
+        @property { Array<Object> } [strategyWiseListing]
         
          
     */
@@ -293,11 +293,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizeSellerFilter
         
         
-        @property { string } [value]
+        @property { boolean } [isSelected]
         
         @property { string } [name]
         
-        @property { boolean } [isSelected]
+        @property { string } [value]
         
          
     */
@@ -306,19 +306,19 @@ const Paginator = require("../common/Paginator");
         @typedef Page
         
         
+        @property { string } [nextId]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { number } [itemTotal]
+        
         @property { number } [size]
         
-        @property { string } [nextId]
+        @property { string } [type]
         
         @property { number } [current]
         
         @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasPrevious]
         
          
     */
@@ -327,9 +327,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizeSellersResponse
         
         
-        @property { Array<ProductSizePriceResponse> } [items]
-        
         @property { Array<ProductSizeSellerFilter> } [sortOn]
+        
+        @property { Array<ProductSizePriceResponse> } [items]
         
         @property { Page } page
         
@@ -340,11 +340,11 @@ const Paginator = require("../common/Paginator");
         @typedef AttributeDetail
         
         
+        @property { string } [key]
+        
         @property { string } [description]
         
         @property { string } [display]
-        
-        @property { string } [key]
         
          
     */
@@ -353,9 +353,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductsComparisonResponse
         
         
-        @property { Array<ProductDetail> } [items]
-        
         @property { Array<AttributeDetail> } [attributesMetadata]
+        
+        @property { Array<ProductDetail> } [items]
         
          
     */
@@ -364,13 +364,13 @@ const Paginator = require("../common/Paginator");
         @typedef ProductCompareResponse
         
         
-        @property { Array<ProductDetail> } [items]
-        
-        @property { string } [subtitle]
-        
         @property { Array<AttributeDetail> } [attributesMetadata]
         
         @property { string } [title]
+        
+        @property { Array<ProductDetail> } [items]
+        
+        @property { string } [subtitle]
         
          
     */
@@ -388,11 +388,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSimilarItem
         
         
+        @property { string } [title]
+        
         @property { Array<ProductDetail> } [items]
         
         @property { string } [subtitle]
-        
-        @property { string } [title]
         
          
     */
@@ -410,23 +410,23 @@ const Paginator = require("../common/Paginator");
         @typedef ProductVariantItemResponse
         
         
-        @property { Array<Media> } [medias]
-        
         @property { string } [slug]
-        
-        @property { string } [colorName]
-        
-        @property { string } [color]
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
         
         @property { boolean } [isAvailable]
         
         @property { number } [uid]
         
+        @property { string } [name]
+        
         @property { string } [value]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { string } [colorName]
+        
+        @property { string } [color]
+        
+        @property { ProductListingAction } [action]
         
          
     */
@@ -437,9 +437,9 @@ const Paginator = require("../common/Paginator");
         
         @property { Array<ProductVariantItemResponse> } [items]
         
-        @property { string } [displayType]
-        
         @property { string } [header]
+        
+        @property { string } [displayType]
         
          
     */
@@ -457,13 +457,13 @@ const Paginator = require("../common/Paginator");
         @typedef StoreDetail
         
         
-        @property { string } [code]
+        @property { string } [name]
         
         @property { number } [id]
         
-        @property { string } [city]
+        @property { string } [code]
         
-        @property { string } [name]
+        @property { string } [city]
         
          
     */
@@ -472,9 +472,9 @@ const Paginator = require("../common/Paginator");
         @typedef CompanyDetail
         
         
-        @property { number } [id]
-        
         @property { string } [name]
+        
+        @property { number } [id]
         
          
     */
@@ -483,23 +483,23 @@ const Paginator = require("../common/Paginator");
         @typedef ProductStockStatusItem
         
         
-        @property { number } [quantity]
-        
         @property { StoreDetail } [store]
         
-        @property { string } [size]
-        
-        @property { number } [itemId]
-        
-        @property { ProductStockPrice } [price]
+        @property { string } [uid]
         
         @property { Seller } [seller]
         
         @property { CompanyDetail } [company]
         
-        @property { string } [uid]
+        @property { ProductStockPrice } [price]
+        
+        @property { string } [size]
         
         @property { Object } [identifier]
+        
+        @property { number } [itemId]
+        
+        @property { number } [quantity]
         
          
     */
@@ -525,86 +525,16 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef ProductListingDetail
-        
-        
-        @property { Object } [attributes]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { string } slug
-        
-        @property { string } [description]
-        
-        @property { number } [rating]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { string } [itemType]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { string } [color]
-        
-        @property { string } [discount]
-        
-        @property { string } [imageNature]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { string } [teaserTag]
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [similars]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { string } [shortDescription]
-        
-        @property { boolean } [sellable]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { string } [type]
-        
-        @property { number } [uid]
-        
-         
-    */
-
-/**
-        @typedef ProductSortOn
-        
-        
-        @property { string } [value]
-        
-        @property { string } [name]
-        
-        @property { boolean } [isSelected]
-        
-         
-    */
-
-/**
         @typedef ProductFiltersKey
         
-        
-        @property { string } [kind]
-        
-        @property { string } display
         
         @property { string } [logo]
         
         @property { string } name
+        
+        @property { string } [kind]
+        
+        @property { string } display
         
          
     */
@@ -613,29 +543,29 @@ const Paginator = require("../common/Paginator");
         @typedef ProductFiltersValue
         
         
-        @property { string } display
+        @property { number } [selectedMax]
         
-        @property { string } [displayFormat]
+        @property { string } display
         
         @property { string } [currencyCode]
         
-        @property { string } value
-        
-        @property { string } [queryFormat]
-        
-        @property { number } [count]
-        
-        @property { number } [selectedMax]
-        
         @property { string } [currencySymbol]
-        
-        @property { number } [max]
         
         @property { number } [selectedMin]
         
-        @property { number } [min]
+        @property { number } [max]
+        
+        @property { string } value
         
         @property { boolean } isSelected
+        
+        @property { string } [displayFormat]
+        
+        @property { number } [count]
+        
+        @property { string } [queryFormat]
+        
+        @property { number } [min]
         
          
     */
@@ -652,14 +582,84 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
+        @typedef ProductSortOn
+        
+        
+        @property { boolean } [isSelected]
+        
+        @property { string } [name]
+        
+        @property { string } [value]
+        
+         
+    */
+
+/**
+        @typedef ProductListingDetail
+        
+        
+        @property { string } [discount]
+        
+        @property { string } [name]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [itemType]
+        
+        @property { string } [description]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { number } [uid]
+        
+        @property { string } [type]
+        
+        @property { number } [ratingCount]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { string } [imageNature]
+        
+        @property { boolean } [sellable]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { Array<string> } [similars]
+        
+        @property { boolean } [hasVariant]
+        
+        @property { string } [teaserTag]
+        
+        @property { string } [color]
+        
+        @property { string } slug
+        
+        @property { Array<string> } [highlights]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { number } [rating]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { string } [shortDescription]
+        
+         
+    */
+
+/**
         @typedef ProductListingResponse
         
         
-        @property { Array<ProductListingDetail> } [items]
+        @property { Array<ProductFilters> } [filters]
         
         @property { Array<ProductSortOn> } [sortOn]
         
-        @property { Array<ProductFilters> } [filters]
+        @property { Array<ProductListingDetail> } [items]
         
         @property { Page } page
         
@@ -681,21 +681,21 @@ const Paginator = require("../common/Paginator");
         @typedef BrandItem
         
         
-        @property { Media } [logo]
+        @property { string } [discount]
+        
+        @property { string } [slug]
+        
+        @property { number } [uid]
         
         @property { ImageUrls } [banners]
         
-        @property { string } [slug]
+        @property { string } [name]
+        
+        @property { Media } [logo]
         
         @property { Array<string> } [departments]
         
         @property { ProductListingAction } [action]
-        
-        @property { string } [name]
-        
-        @property { string } [discount]
-        
-        @property { number } [uid]
         
          
     */
@@ -715,11 +715,11 @@ const Paginator = require("../common/Paginator");
         @typedef BrandDetailResponse
         
         
-        @property { number } [uid]
-        
         @property { ImageUrls } [banners]
         
         @property { string } [name]
+        
+        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -730,9 +730,9 @@ const Paginator = require("../common/Paginator");
         @typedef DepartmentIdentifier
         
         
-        @property { number } [uid]
-        
         @property { string } [slug]
+        
+        @property { number } [uid]
         
          
     */
@@ -741,17 +741,17 @@ const Paginator = require("../common/Paginator");
         @typedef CategoryItems
         
         
-        @property { ImageUrls } [banners]
+        @property { string } [slug]
         
         @property { Array<Object> } [childs]
         
-        @property { string } [slug]
+        @property { number } [uid]
         
-        @property { ProductListingAction } [action]
+        @property { ImageUrls } [banners]
         
         @property { string } [name]
         
-        @property { number } [uid]
+        @property { ProductListingAction } [action]
         
          
     */
@@ -760,9 +760,9 @@ const Paginator = require("../common/Paginator");
         @typedef DepartmentCategoryTree
         
         
-        @property { Array<CategoryItems> } [items]
-        
         @property { string } [department]
+        
+        @property { Array<CategoryItems> } [items]
         
          
     */
@@ -782,11 +782,11 @@ const Paginator = require("../common/Paginator");
         @typedef CategoryMetaResponse
         
         
-        @property { number } [uid]
-        
         @property { ImageUrls } [banners]
         
         @property { string } [name]
+        
+        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -797,9 +797,9 @@ const Paginator = require("../common/Paginator");
         @typedef HomeListingResponse
         
         
-        @property { Array<ProductListingDetail> } [items]
-        
         @property { string } [message]
+        
+        @property { Array<ProductListingDetail> } [items]
         
         @property { Page } page
         
@@ -810,15 +810,15 @@ const Paginator = require("../common/Paginator");
         @typedef Department
         
         
-        @property { number } [priorityOrder]
-        
-        @property { Media } [logo]
-        
         @property { string } [slug]
+        
+        @property { number } [uid]
         
         @property { string } [name]
         
-        @property { number } [uid]
+        @property { number } [priorityOrder]
+        
+        @property { Media } [logo]
         
          
     */
@@ -836,9 +836,9 @@ const Paginator = require("../common/Paginator");
         @typedef Query
         
         
-        @property { Array<string> } [brand]
-        
         @property { Array<string> } [category]
+        
+        @property { Array<string> } [brand]
         
          
     */
@@ -869,11 +869,11 @@ const Paginator = require("../common/Paginator");
         @typedef AutocompleteItem
         
         
-        @property { string } [type]
-        
         @property { string } [display]
         
         @property { Media } [logo]
+        
+        @property { string } [type]
         
         @property { Action } [action]
         
@@ -890,59 +890,14 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef GetCollectionDetailNest
-        
-        
-        @property { Object } [cron]
-        
-        @property { Object } [query]
-        
-        @property { string } [description]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tag]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { boolean } [allowSort]
-        
-        @property { Object } [schedule]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { Object } [badge]
-        
-        @property { Media } [logo]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [name]
-        
-        @property { string } [appId]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [type]
-        
-        @property { Object } [meta]
-        
-        @property { string } [uid]
-        
-         
-    */
-
-/**
         @typedef CollectionListingFilterType
         
         
-        @property { string } [display]
+        @property { boolean } [isSelected]
         
         @property { string } [name]
         
-        @property { boolean } [isSelected]
+        @property { string } [display]
         
          
     */
@@ -951,11 +906,11 @@ const Paginator = require("../common/Paginator");
         @typedef CollectionListingFilterTag
         
         
-        @property { string } [display]
+        @property { boolean } [isSelected]
         
         @property { string } [name]
         
-        @property { boolean } [isSelected]
+        @property { string } [display]
         
          
     */
@@ -972,12 +927,57 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
+        @typedef GetCollectionDetailNest
+        
+        
+        @property { Array<string> } [tag]
+        
+        @property { string } [appId]
+        
+        @property { string } [name]
+        
+        @property { Object } [schedule]
+        
+        @property { Object } [cron]
+        
+        @property { string } [description]
+        
+        @property { string } [uid]
+        
+        @property { Object } [query]
+        
+        @property { string } [type]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { Object } [meta]
+        
+        @property { boolean } [isActive]
+        
+        @property { Object } [badge]
+        
+        @property { boolean } [allowSort]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { string } [slug]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { Media } [logo]
+        
+         
+    */
+
+/**
         @typedef GetCollectionListingResponse
         
         
-        @property { Array<GetCollectionDetailNest> } [items]
-        
         @property { CollectionListingFilter } [filters]
+        
+        @property { Array<GetCollectionDetailNest> } [items]
         
         @property { Page } page
         
@@ -988,39 +988,39 @@ const Paginator = require("../common/Paginator");
         @typedef CollectionDetailResponse
         
         
-        @property { ImageUrls } [banners]
-        
-        @property { Media } [logo]
-        
-        @property { Object } [cron]
-        
-        @property { Object } [query]
-        
-        @property { string } [description]
-        
         @property { string } [slug]
+        
+        @property { Object } [badge]
         
         @property { Array<string> } [tag]
         
-        @property { Array<string> } [visibleFacetsKeys]
+        @property { boolean } [allowFacets]
         
-        @property { boolean } [isActive]
+        @property { Media } [logo]
         
-        @property { string } [name]
+        @property { Object } [query]
         
-        @property { boolean } [allowSort]
-        
-        @property { Object } [schedule]
-        
-        @property { string } [appId]
+        @property { ImageUrls } [banners]
         
         @property { string } [type]
         
+        @property { string } [appId]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { boolean } [allowSort]
+        
+        @property { string } [name]
+        
         @property { Object } [meta]
         
-        @property { boolean } [allowFacets]
+        @property { Object } [schedule]
         
-        @property { Object } [badge]
+        @property { Object } [cron]
+        
+        @property { string } [description]
+        
+        @property { boolean } [isActive]
         
          
     */
@@ -1060,11 +1060,11 @@ const Paginator = require("../common/Paginator");
         @typedef FollowIdsData
         
         
-        @property { Array<number> } [products]
-        
         @property { Array<number> } [collections]
         
         @property { Array<number> } [brands]
+        
+        @property { Array<number> } [products]
         
          
     */
@@ -1093,25 +1093,25 @@ const Paginator = require("../common/Paginator");
         @typedef Store1
         
         
-        @property { string } [state]
-        
-        @property { number } [pincode]
-        
         @property { string } [storeCode]
-        
-        @property { LatLong } [latLong]
-        
-        @property { string } [country]
-        
-        @property { string } [storeEmail]
-        
-        @property { string } [name]
-        
-        @property { string } [address]
         
         @property { number } [uid]
         
         @property { string } [city]
+        
+        @property { LatLong } [latLong]
+        
+        @property { string } [storeEmail]
+        
+        @property { string } [address]
+        
+        @property { number } [pincode]
+        
+        @property { string } [name]
+        
+        @property { string } [country]
+        
+        @property { string } [state]
         
          
     */
@@ -6047,7 +6047,7 @@ const Paginator = require("../common/Paginator");
         @typedef OrderList
         
         
-        @property { Array<Object> } orders
+        @property { Array<OrderSchema> } orders
         
         @property { Object } page
         
@@ -6058,7 +6058,7 @@ const Paginator = require("../common/Paginator");
         @typedef ShipmentById
         
         
-        @property { Object } shipment
+        @property { Shipments } shipment
         
          
     */
@@ -6067,7 +6067,7 @@ const Paginator = require("../common/Paginator");
         @typedef ShipmentReasons
         
         
-        @property { Array<Object> } reasons
+        @property { Array<Reasons> } reasons
         
          
     */
@@ -6098,7 +6098,35 @@ const Paginator = require("../common/Paginator");
         @typedef ShipmentTrack
         
         
-        @property { Array<Object> } results
+        @property { Array<Track> } results
+        
+         
+    */
+
+/**
+        @typedef OrderSchema
+        
+        
+        @property { string } [orderId]
+        
+        @property { Array<BreakupValues> } [breakupValues]
+        
+        @property { string } [orderCreatedTime]
+        
+        @property { Array<Shipments> } [shipments]
+        
+        @property { number } [totalShipmentsInOrder]
+        
+        @property { UserInfo } [userInfo]
+        
+         
+    */
+
+/**
+        @typedef PosOrderById
+        
+        
+        @property { OrderSchema } order
         
          
     */
@@ -6353,34 +6381,6 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef OrderSchema
-        
-        
-        @property { string } [orderId]
-        
-        @property { Array<BreakupValues> } [breakupValues]
-        
-        @property { string } [orderCreatedTime]
-        
-        @property { Array<Shipments> } [shipments]
-        
-        @property { number } [totalShipmentsInOrder]
-        
-        @property { UserInfo } [userInfo]
-        
-         
-    */
-
-/**
-        @typedef PosOrderById
-        
-        
-        @property { OrderSchema } order
-        
-         
-    */
-
-/**
         @typedef Prices
         
         
@@ -6418,6 +6418,25 @@ const Paginator = require("../common/Paginator");
         
         
         @property { Object } [timestamp]
+        
+         
+    */
+
+/**
+        @typedef Reasons
+        
+        
+        @property { string } [reasonText]
+        
+        @property { boolean } [showTextArea]
+        
+        @property { string } [feedbackType]
+        
+        @property { string } [flow]
+        
+        @property { number } [reasonId]
+        
+        @property { number } [priority]
         
          
     */
@@ -6513,6 +6532,29 @@ const Paginator = require("../common/Paginator");
         @property { ShipmentUserInfo } [userInfo]
         
         @property { ShipmentMeta } [meta]
+        
+         
+    */
+
+/**
+        @typedef Track
+        
+        
+        @property { string } [awb]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [lastLocationRecievedAt]
+        
+        @property { string } [reason]
+        
+        @property { string } [shipmentType]
+        
+        @property { string } [status]
+        
+        @property { string } [updatedTime]
+        
+        @property { string } [accountName]
         
          
     */
@@ -8115,27 +8157,6 @@ class Catalog {
 
   /**
     *
-    * @summary: UnFollow a Product
-    * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-    * @param {number} arg.collectionId - the `id` of the collection type you want to unfollow
-    
-    **/
-  unfollowById({ collectionType, collectionId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
     * @summary: Follow a particular Product
     * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     * @param {Object} arg - arg object.
@@ -8149,6 +8170,27 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "post",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: UnFollow a Product
+    * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+    * @param {number} arg.collectionId - the `id` of the collection type you want to unfollow
+    
+    **/
+  unfollowById({ collectionType, collectionId } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
