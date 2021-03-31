@@ -2613,6 +2613,9 @@ export type Prices = {
     cashbackApplied?: number;
     refundCredit?: number;
 };
+export type Promise = {
+    timestamp?: any;
+};
 export type ShipmentStatus = {
     title?: string;
     hexCode?: number;
@@ -2645,6 +2648,7 @@ export type Shipments = {
     invoice?: Invoice;
     comment?: string;
     orderType?: string;
+    promise?: Promise;
     fulfillingStore?: FulfillingStore;
     totalItems?: number;
     bags?: Array<Bags>;
@@ -9088,6 +9092,14 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef Promise
+        
+        
+        @property { Object } [timestamp]
+        
+         
+    */
+/**
         @typedef ShipmentStatus
         
         
@@ -9156,6 +9168,8 @@ export type GetTatProductResponse = {
         @property { string } [comment]
         
         @property { string } [orderType]
+        
+        @property { Promise } [promise]
         
         @property { FulfillingStore } [fulfillingStore]
         

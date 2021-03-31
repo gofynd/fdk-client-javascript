@@ -6414,6 +6414,15 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
+        @typedef Promise
+        
+        
+        @property { Object } [timestamp]
+        
+         
+    */
+
+/**
         @typedef ShipmentStatus
         
         
@@ -6484,6 +6493,8 @@ const Paginator = require("../common/Paginator");
         @property { string } [comment]
         
         @property { string } [orderType]
+        
+        @property { Promise } [promise]
         
         @property { FulfillingStore } [fulfillingStore]
         
