@@ -79,7 +79,11 @@ export type TicketHistoryPayload = {
     type: string;
 };
 export type CustomFormSubmissionPayload = {
-    response: Array<any>;
+    response: Array<KeyValue>;
+};
+export type KeyValue = {
+    key: string;
+    value: string;
 };
 export type GetTokenForVideoRoomResponse = {
     accessToken: string;
@@ -176,8 +180,6 @@ export type CustomForm = {
     createdBy?: any;
     pollForAssignment?: PollForAssignment;
     id: string;
-    updatedAt?: string;
-    createdAt?: string;
 };
 export type TicketHistory = {
     type: string;
@@ -1210,7 +1212,8 @@ export type Log = {
     createdAt?: string;
 };
 export type Logs = {
-    docs?: Array<Log>;
+    items?: Array<any>;
+    page?: any;
 };
 export type PushtokenReq = {
     action?: string;
@@ -1333,24 +1336,24 @@ export type SystemSmsTemplates = {
     page?: any;
 };
 export type PaymentGatewayConfigResponse = {
-    aggregators?: Array<any>;
-    excludedFields: Array<string>;
-    appId: string;
-    displayFields: Array<string>;
-    success: boolean;
     created: boolean;
+    aggregators?: Array<any>;
+    appId: string;
+    success: boolean;
+    displayFields: Array<string>;
+    excludedFields: Array<string>;
 };
 export type ErrorCodeDescription = {
-    success: boolean;
     code: string;
     description: string;
+    success: boolean;
 };
 export type PaymentGatewayConfig = {
-    configType: string;
-    secret: string;
     merchantSalt: string;
-    isActive?: boolean;
     key: string;
+    isActive?: boolean;
+    secret: string;
+    configType: string;
 };
 export type PaymentGatewayConfigRequest = {
     appId: string;
@@ -1362,100 +1365,100 @@ export type PaymentGatewayToBeReviewed = {
     aggregator: Array<string>;
 };
 export type ErrorCodeAndDescription = {
-    code: string;
     description: string;
+    code: string;
 };
 export type HttpErrorCodeAndResponse = {
-    success: boolean;
     error: ErrorCodeAndDescription;
+    success: boolean;
 };
 export type PaymentModeLogo = {
-    small: string;
     large: string;
+    small: string;
 };
 export type PaymentModeList = {
-    cardType?: string;
-    logoUrl?: PaymentModeLogo;
-    cardFingerprint?: string;
-    cardNumber?: string;
-    displayName?: string;
-    cardId?: string;
-    intentAppErrorList?: Array<string>;
-    merchantCode?: string;
-    timeout?: number;
-    intentFlow?: string;
-    cardToken?: string;
-    expired?: boolean;
-    nickname?: string;
-    cardIssuer?: string;
-    expMonth?: number;
-    cardReference?: string;
-    retryCount?: number;
     cardIsin?: string;
-    aggregatorName: string;
-    cardName?: string;
-    name?: string;
     fyndVpa?: string;
-    expYear?: number;
-    code?: string;
+    intentAppErrorList?: Array<string>;
+    cardIssuer?: string;
     cardBrand?: string;
-    cardBrandImage?: string;
+    cardNumber?: string;
+    code?: string;
+    intentFlow?: string;
+    expired?: boolean;
+    merchantCode?: string;
+    nickname?: string;
+    cardName?: string;
+    aggregatorName: string;
+    name?: string;
     displayPriority?: number;
+    timeout?: number;
+    cardToken?: string;
+    cardFingerprint?: string;
+    cardReference?: string;
+    expMonth?: number;
+    retryCount?: number;
+    cardBrandImage?: string;
+    cardId?: string;
+    cardType?: string;
+    expYear?: number;
+    logoUrl?: PaymentModeLogo;
+    displayName?: string;
 };
 export type RootPaymentMode = {
     addCardEnabled?: boolean;
-    anonymousEnable?: boolean;
     aggregatorName?: string;
-    displayName: string;
-    list?: Array<PaymentModeList>;
-    displayPriority: number;
     name: string;
+    displayPriority: number;
+    list?: Array<PaymentModeList>;
+    displayName: string;
+    anonymousEnable?: boolean;
 };
 export type PaymentOptions = {
     paymentOption: Array<RootPaymentMode>;
 };
 export type PaymentOptionsResponse = {
-    success: boolean;
     paymentOptions: PaymentOptions;
+    success: boolean;
 };
 export type PayoutsResponse = {
-    isActive: boolean;
-    payoutsAggregators: Array<any>;
     uniqueTransferNo: any;
+    payoutsAggregators: Array<any>;
+    customers: any;
+    isActive: boolean;
     isDefault: boolean;
     moreAttributes: any;
-    customers: any;
     transferType: string;
 };
 export type PayoutRequest = {
-    isActive: boolean;
-    uniqueExternalId: string;
     bankDetails: any;
-    users: any;
+    uniqueExternalId: string;
+    isActive: boolean;
     aggregator: string;
+    users: any;
     transferType: string;
 };
 export type PayoutResponse = {
-    isActive: boolean;
-    payouts: any;
     uniqueTransferNo: string;
-    created: boolean;
     bankDetails: any;
+    created: boolean;
+    isActive: boolean;
+    aggregator: string;
+    payouts: any;
     users: any;
     paymentStatus: string;
     success: boolean;
-    aggregator: string;
     transferType: string;
 };
 export type UpdatePayoutResponse = {
-    success: boolean;
-    isActive: boolean;
     isDefault: boolean;
+    isActive: boolean;
+    success: boolean;
 };
 export type UpdatePayoutRequest = {
-    isActive: boolean;
-    uniqueExternalId: string;
     isDefault: boolean;
+    uniqueExternalId: string;
+    isActive: boolean;
 };
 export type DeletePayoutResponse = {
     success: boolean;
@@ -1468,9 +1471,9 @@ export type DeleteSubscriptionPaymentMethodResponse = {
     success: boolean;
 };
 export type SubscriptionConfigResponse = {
+    config: any;
     success: boolean;
     aggregator: string;
-    config: any;
 };
 export type SaveSubscriptionSetupIntentRequest = {
     uniqueExternalId: string;
@@ -1536,73 +1539,34 @@ export type GetClickToCallResponse = {
 export type ApefaceApiError = {
     message?: string;
 };
-export type ReferralInfo = {
-    referralCode?: string;
-};
-export type CompanyAddress = {
-    address1: string;
-    country: string;
-    address2?: string;
-    city: string;
-    pincode: number;
-    longitude: number;
-    state: string;
-    countryCode?: string;
-    latitude: number;
-    landmark?: string;
-};
 export type BusinessCountryInfo = {
     countryCode?: string;
     country?: string;
 };
+export type UserSerializer = {
+    contact?: string;
+    username?: string;
+    userId?: string;
+};
+export type GetAddressSerializer = {
+    latitude?: number;
+    addressType?: string;
+    pincode?: number;
+    countryCode?: string;
+    landmark?: string;
+    longitude?: number;
+    address1?: string;
+    city?: string;
+    country?: string;
+    address2?: string;
+    state?: string;
+};
 export type Document = {
     legalName: string;
-    value: string;
-    verified?: boolean;
-    url?: string;
     type: string;
-};
-export type CompanyStoreSerializerRequest = {
-    name: string;
-    uid?: number;
-    businessInfo?: string;
-    referralInfo?: ReferralInfo;
-    address: CompanyAddress;
-    businessCountryInfo: BusinessCountryInfo;
-    warnings?: any;
-    document: Document;
-    brands: Array<number>;
-    businessType: string;
-    notificationEmails?: Array<string>;
-    franchiseEnabled?: boolean;
-};
-export type SuccessResponse = {
-    uid?: number;
-    success?: boolean;
-};
-export type ErrorResponse = {
-    meta?: any;
-    status?: number;
-    code?: string;
-    message?: string;
-    errors?: any;
-};
-export type BusinessCountryInfo1 = {
-    countryCode?: string;
-    country?: string;
-};
-export type PhoneNumber = {
-    countryCode: number;
-    number: string;
-};
-export type ContactDetails = {
-    phone?: Array<PhoneNumber>;
-    emails?: Array<string>;
-};
-export type UserSerializer = {
-    username?: string;
-    contact?: string;
-    userId?: string;
+    verified?: boolean;
+    value: string;
+    url?: string;
 };
 export type Website = {
     url?: string;
@@ -1610,135 +1574,164 @@ export type Website = {
 export type BusinessDetails = {
     website?: Website;
 };
-export type GetAddressSerializer = {
-    address1?: string;
-    country?: string;
-    address2?: string;
-    city?: string;
-    pincode?: number;
-    longitude?: number;
-    addressType?: string;
-    state?: string;
-    countryCode?: string;
-    latitude?: number;
-    landmark?: string;
+export type PhoneNumber = {
+    number: string;
+    countryCode: number;
+};
+export type ContactDetails = {
+    phone?: Array<PhoneNumber>;
+    emails?: Array<string>;
 };
 export type GetCompanyProfileSerializerResponse = {
-    documents?: Array<Document>;
-    businessCountryInfo?: BusinessCountryInfo1;
-    contactDetails?: ContactDetails;
-    warnings?: any;
-    modifiedBy?: UserSerializer;
-    name?: string;
-    uid: number;
-    businessDetails?: BusinessDetails;
-    verifiedBy?: UserSerializer;
-    modifiedOn?: string;
-    stage?: string;
-    createdBy?: UserSerializer;
     companyType: string;
-    verifiedOn?: string;
-    notificationEmails?: Array<string>;
-    addresses?: Array<GetAddressSerializer>;
-    businessInfo?: string;
-    createdOn?: string;
+    warnings?: any;
+    businessCountryInfo?: BusinessCountryInfo;
     businessType: string;
+    modifiedBy?: UserSerializer;
+    verifiedBy?: UserSerializer;
+    createdOn?: string;
+    addresses?: Array<GetAddressSerializer>;
     franchiseEnabled?: boolean;
+    businessInfo?: string;
+    modifiedOn?: string;
+    verifiedOn?: string;
+    documents?: Array<Document>;
+    uid: number;
+    createdBy?: UserSerializer;
+    notificationEmails?: Array<string>;
+    name?: string;
+    businessDetails?: BusinessDetails;
+    contactDetails?: ContactDetails;
+    stage?: string;
+};
+export type ErrorResponse = {
+    status?: number;
+    message?: string;
+    meta?: any;
+    code?: string;
+    errors?: any;
+};
+export type BusinessCountryInfo1 = {
+    countryCode?: string;
+    country?: string;
+};
+export type ReferralInfo = {
+    referralCode?: string;
+};
+export type CompanyAddress = {
+    latitude: number;
+    pincode: number;
+    countryCode?: string;
+    landmark?: string;
+    longitude: number;
+    address1: string;
+    city: string;
+    country: string;
+    address2?: string;
+    state: string;
+};
+export type CompanyStoreSerializerRequest = {
+    franchiseEnabled?: boolean;
+    notificationEmails?: Array<string>;
+    document: Document;
+    warnings?: any;
+    businessInfo?: string;
+    name: string;
+    businessCountryInfo: BusinessCountryInfo1;
+    brands: Array<number>;
+    referralInfo?: ReferralInfo;
+    businessType: string;
+    address: CompanyAddress;
+    uid?: number;
+};
+export type SuccessResponse = {
+    uid?: number;
+    success?: boolean;
 };
 export type DocumentsObj = {
-    pending?: number;
     verified?: number;
+    pending?: number;
 };
 export type MetricsSerializer = {
     store?: DocumentsObj;
-    uid?: number;
-    storeDocuments?: DocumentsObj;
     companyDocuments?: DocumentsObj;
     brand?: DocumentsObj;
-    stage?: string;
     product?: DocumentsObj;
+    uid?: number;
+    storeDocuments?: DocumentsObj;
+    stage?: string;
 };
 export type BrandBannerSerializer = {
-    landscape?: string;
     portrait?: string;
+    landscape?: string;
 };
 export type CreateUpdateBrandRequestSerializer = {
-    name: string;
-    uid?: number;
     customJson?: any;
-    description?: string;
-    logo: string;
     companyId?: number;
     brandTier?: string;
-    synonyms?: Array<string>;
-    banner?: BrandBannerSerializer;
+    name: string;
+    logo: string;
     localeLanguage?: any;
+    synonyms?: Array<string>;
+    uid?: number;
+    banner?: BrandBannerSerializer;
+    description?: string;
 };
 export type UserSerializer1 = {
-    username?: string;
     contact?: string;
+    username?: string;
     userId?: string;
 };
 export type GetBrandResponseSerializer = {
-    modifiedBy?: UserSerializer1;
+    createdBy?: UserSerializer1;
+    customJson?: any;
+    warnings?: any;
+    verifiedBy?: UserSerializer1;
+    createdOn?: string;
+    slugKey?: string;
     name: string;
-    uid?: number;
-    description?: string;
-    banner?: BrandBannerSerializer;
     logo?: string;
     rejectReason?: string;
-    customJson?: any;
-    synonyms?: Array<string>;
-    warnings?: any;
-    stage?: string;
-    verifiedBy?: UserSerializer1;
     modifiedOn?: string;
-    createdOn?: string;
-    verifiedOn?: string;
+    synonyms?: Array<string>;
     localeLanguage?: any;
-    createdBy?: UserSerializer1;
-    slugKey?: string;
+    verifiedOn?: string;
+    modifiedBy?: UserSerializer1;
+    uid?: number;
+    banner?: BrandBannerSerializer;
+    description?: string;
+    stage?: string;
 };
 export type CompanyBrandPostRequestSerializer = {
-    uid?: number;
     company: number;
     brands: Array<number>;
+    uid?: number;
 };
 export type CompanyBrandListSerializer = {
     items?: Array<any>;
     page?: any;
 };
-export type LocationManagerSerializer = {
-    name?: string;
-    mobileNo: PhoneNumber;
-    email?: string;
-};
-export type LocationTimingSerializer = {
-    hour?: number;
-    minute?: number;
-};
-export type LocationDayWiseSerializer = {
-    open: boolean;
-    weekday: string;
-    opening?: LocationTimingSerializer;
-    closing?: LocationTimingSerializer;
-};
 export type GetAddressSerializer1 = {
+    latitude?: number;
+    addressType?: string;
+    pincode?: number;
+    countryCode?: string;
+    landmark?: string;
+    longitude?: number;
     address1?: string;
+    city?: string;
     country?: string;
     address2?: string;
-    city?: string;
-    pincode?: number;
-    longitude?: number;
-    addressType?: string;
     state?: string;
-    countryCode?: string;
-    latitude?: number;
-    landmark?: string;
+};
+export type LocationManagerSerializer = {
+    email?: string;
+    name?: string;
+    mobileNo: PhoneNumber;
 };
 export type InvoiceCredSerializer = {
-    password?: string;
     username?: string;
+    password?: string;
     enabled?: boolean;
 };
 export type InvoiceDetailsSerializer = {
@@ -1746,77 +1739,87 @@ export type InvoiceDetailsSerializer = {
     eInvoice?: InvoiceCredSerializer;
 };
 export type ProductReturnConfigSerializer = {
-    storeUid?: number;
     onSameStore?: boolean;
+    storeUid?: number;
+};
+export type LocationTimingSerializer = {
+    minute?: number;
+    hour?: number;
+};
+export type LocationDayWiseSerializer = {
+    closing?: LocationTimingSerializer;
+    weekday: string;
+    open: boolean;
+    opening?: LocationTimingSerializer;
 };
 export type LocationSerializer = {
-    name: string;
-    uid?: number;
-    documents?: Array<Document>;
-    manager?: LocationManagerSerializer;
-    contactNumbers?: Array<PhoneNumber>;
-    timing?: Array<LocationDayWiseSerializer>;
-    customJson?: any;
-    displayName: string;
-    code: string;
-    storeType?: string;
-    address: GetAddressSerializer1;
-    warnings?: any;
     notificationEmails?: Array<string>;
+    customJson?: any;
+    warnings?: any;
     company: number;
-    stage?: string;
+    name: string;
+    storeType?: string;
+    contactNumbers?: Array<PhoneNumber>;
+    address: GetAddressSerializer1;
+    manager?: LocationManagerSerializer;
+    displayName: string;
+    documents?: Array<Document>;
+    uid?: number;
     gstCredentials?: InvoiceDetailsSerializer;
     productReturnConfig?: ProductReturnConfigSerializer;
+    code: string;
+    timing?: Array<LocationDayWiseSerializer>;
+    stage?: string;
 };
 export type LocationListSerializer = {
     items?: Array<any>;
     page?: any;
 };
-export type LocationIntegrationType = {
-    inventory?: string;
-    order?: string;
-};
 export type GetCompanySerializer = {
-    modifiedBy?: UserSerializer;
-    name?: string;
-    uid?: number;
-    addresses?: Array<GetAddressSerializer>;
-    rejectReason?: string;
+    createdBy?: UserSerializer;
     companyType?: string;
-    stage?: string;
     verifiedBy?: UserSerializer;
-    modifiedOn?: string;
     createdOn?: string;
+    name?: string;
+    rejectReason?: string;
+    modifiedOn?: string;
     verifiedOn?: string;
     businessType?: string;
-    createdBy?: UserSerializer;
+    addresses?: Array<GetAddressSerializer>;
+    modifiedBy?: UserSerializer;
+    uid?: number;
+    stage?: string;
+};
+export type LocationIntegrationType = {
+    order?: string;
+    inventory?: string;
 };
 export type GetLocationSerializer = {
-    customJson?: any;
-    documents?: Array<Document>;
-    storeType?: string;
-    phoneNumber: string;
     warnings?: any;
-    integrationType?: LocationIntegrationType;
-    company?: GetCompanySerializer;
     modifiedBy?: UserSerializer1;
-    name: string;
-    uid?: number;
-    manager?: LocationManagerSerializer;
-    code: string;
+    phoneNumber: string;
     verifiedBy?: UserSerializer1;
-    modifiedOn?: string;
-    stage?: string;
-    createdBy?: UserSerializer1;
-    timing?: Array<LocationDayWiseSerializer>;
+    createdOn?: string;
+    company?: GetCompanySerializer;
     contactNumbers?: Array<PhoneNumber>;
     displayName: string;
-    address: GetAddressSerializer;
-    verifiedOn?: string;
-    notificationEmails?: Array<string>;
-    createdOn?: string;
     gstCredentials?: InvoiceDetailsSerializer;
     productReturnConfig?: ProductReturnConfigSerializer;
+    timing?: Array<LocationDayWiseSerializer>;
+    customJson?: any;
+    modifiedOn?: string;
+    verifiedOn?: string;
+    address: GetAddressSerializer;
+    documents?: Array<Document>;
+    uid?: number;
+    code: string;
+    createdBy?: UserSerializer1;
+    notificationEmails?: Array<string>;
+    name: string;
+    storeType?: string;
+    manager?: LocationManagerSerializer;
+    integrationType?: LocationIntegrationType;
+    stage?: string;
 };
 export type FailedResponse = {
     message: string;
@@ -3613,7 +3616,17 @@ export type SearchLogRes = {
         @typedef CustomFormSubmissionPayload
         
         
-        @property { Array<Object> } response
+        @property { Array<KeyValue> } response
+        
+         
+    */
+/**
+        @typedef KeyValue
+        
+        
+        @property { string } key
+        
+        @property { string } value
         
          
     */
@@ -3838,10 +3851,6 @@ export type SearchLogRes = {
         @property { PollForAssignment } [pollForAssignment]
         
         @property { string } id
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
         
          
     */
@@ -6213,7 +6222,9 @@ export type SearchLogRes = {
         @typedef Logs
         
         
-        @property { Array<Log> } [docs]
+        @property { Array<Object> } [items]
+        
+        @property { Object } [page]
         
          
     */
@@ -6487,17 +6498,17 @@ export type SearchLogRes = {
         @typedef PaymentGatewayConfigResponse
         
         
-        @property { Array<Object> } [aggregators]
+        @property { boolean } created
         
-        @property { Array<string> } excludedFields
+        @property { Array<Object> } [aggregators]
         
         @property { string } appId
         
-        @property { Array<string> } displayFields
-        
         @property { boolean } success
         
-        @property { boolean } created
+        @property { Array<string> } displayFields
+        
+        @property { Array<string> } excludedFields
         
          
     */
@@ -6505,11 +6516,11 @@ export type SearchLogRes = {
         @typedef ErrorCodeDescription
         
         
-        @property { boolean } success
-        
         @property { string } code
         
         @property { string } description
+        
+        @property { boolean } success
         
          
     */
@@ -6517,15 +6528,15 @@ export type SearchLogRes = {
         @typedef PaymentGatewayConfig
         
         
-        @property { string } configType
-        
-        @property { string } secret
-        
         @property { string } merchantSalt
+        
+        @property { string } key
         
         @property { boolean } [isActive]
         
-        @property { string } key
+        @property { string } secret
+        
+        @property { string } configType
         
          
     */
@@ -6555,9 +6566,9 @@ export type SearchLogRes = {
         @typedef ErrorCodeAndDescription
         
         
-        @property { string } code
-        
         @property { string } description
+        
+        @property { string } code
         
          
     */
@@ -6565,9 +6576,9 @@ export type SearchLogRes = {
         @typedef HttpErrorCodeAndResponse
         
         
-        @property { boolean } success
-        
         @property { ErrorCodeAndDescription } error
+        
+        @property { boolean } success
         
          
     */
@@ -6575,9 +6586,9 @@ export type SearchLogRes = {
         @typedef PaymentModeLogo
         
         
-        @property { string } small
-        
         @property { string } large
+        
+        @property { string } small
         
          
     */
@@ -6585,59 +6596,59 @@ export type SearchLogRes = {
         @typedef PaymentModeList
         
         
-        @property { string } [cardType]
-        
-        @property { PaymentModeLogo } [logoUrl]
-        
-        @property { string } [cardFingerprint]
-        
-        @property { string } [cardNumber]
-        
-        @property { string } [displayName]
-        
-        @property { string } [cardId]
-        
-        @property { Array<string> } [intentAppErrorList]
-        
-        @property { string } [merchantCode]
-        
-        @property { number } [timeout]
-        
-        @property { string } [intentFlow]
-        
-        @property { string } [cardToken]
-        
-        @property { boolean } [expired]
-        
-        @property { string } [nickname]
-        
-        @property { string } [cardIssuer]
-        
-        @property { number } [expMonth]
-        
-        @property { string } [cardReference]
-        
-        @property { number } [retryCount]
-        
         @property { string } [cardIsin]
-        
-        @property { string } aggregatorName
-        
-        @property { string } [cardName]
-        
-        @property { string } [name]
         
         @property { string } [fyndVpa]
         
-        @property { number } [expYear]
+        @property { Array<string> } [intentAppErrorList]
         
-        @property { string } [code]
+        @property { string } [cardIssuer]
         
         @property { string } [cardBrand]
         
-        @property { string } [cardBrandImage]
+        @property { string } [cardNumber]
+        
+        @property { string } [code]
+        
+        @property { string } [intentFlow]
+        
+        @property { boolean } [expired]
+        
+        @property { string } [merchantCode]
+        
+        @property { string } [nickname]
+        
+        @property { string } [cardName]
+        
+        @property { string } aggregatorName
+        
+        @property { string } [name]
         
         @property { number } [displayPriority]
+        
+        @property { number } [timeout]
+        
+        @property { string } [cardToken]
+        
+        @property { string } [cardFingerprint]
+        
+        @property { string } [cardReference]
+        
+        @property { number } [expMonth]
+        
+        @property { number } [retryCount]
+        
+        @property { string } [cardBrandImage]
+        
+        @property { string } [cardId]
+        
+        @property { string } [cardType]
+        
+        @property { number } [expYear]
+        
+        @property { PaymentModeLogo } [logoUrl]
+        
+        @property { string } [displayName]
         
          
     */
@@ -6647,17 +6658,17 @@ export type SearchLogRes = {
         
         @property { boolean } [addCardEnabled]
         
-        @property { boolean } [anonymousEnable]
-        
         @property { string } [aggregatorName]
         
-        @property { string } displayName
-        
-        @property { Array<PaymentModeList> } [list]
+        @property { string } name
         
         @property { number } displayPriority
         
-        @property { string } name
+        @property { Array<PaymentModeList> } [list]
+        
+        @property { string } displayName
+        
+        @property { boolean } [anonymousEnable]
         
          
     */
@@ -6673,9 +6684,9 @@ export type SearchLogRes = {
         @typedef PaymentOptionsResponse
         
         
-        @property { boolean } success
-        
         @property { PaymentOptions } paymentOptions
+        
+        @property { boolean } success
         
          
     */
@@ -6683,17 +6694,17 @@ export type SearchLogRes = {
         @typedef PayoutsResponse
         
         
-        @property { boolean } isActive
+        @property { Object } uniqueTransferNo
         
         @property { Array<Object> } payoutsAggregators
         
-        @property { Object } uniqueTransferNo
+        @property { Object } customers
+        
+        @property { boolean } isActive
         
         @property { boolean } isDefault
         
         @property { Object } moreAttributes
-        
-        @property { Object } customers
         
         @property { string } transferType
         
@@ -6703,15 +6714,15 @@ export type SearchLogRes = {
         @typedef PayoutRequest
         
         
-        @property { boolean } isActive
+        @property { Object } bankDetails
         
         @property { string } uniqueExternalId
         
-        @property { Object } bankDetails
-        
-        @property { Object } users
+        @property { boolean } isActive
         
         @property { string } aggregator
+        
+        @property { Object } users
         
         @property { string } transferType
         
@@ -6721,23 +6732,23 @@ export type SearchLogRes = {
         @typedef PayoutResponse
         
         
-        @property { boolean } isActive
-        
-        @property { Object } payouts
-        
         @property { string } uniqueTransferNo
+        
+        @property { Object } bankDetails
         
         @property { boolean } created
         
-        @property { Object } bankDetails
+        @property { boolean } isActive
+        
+        @property { string } aggregator
+        
+        @property { Object } payouts
         
         @property { Object } users
         
         @property { string } paymentStatus
         
         @property { boolean } success
-        
-        @property { string } aggregator
         
         @property { string } transferType
         
@@ -6747,11 +6758,11 @@ export type SearchLogRes = {
         @typedef UpdatePayoutResponse
         
         
-        @property { boolean } success
+        @property { boolean } isDefault
         
         @property { boolean } isActive
         
-        @property { boolean } isDefault
+        @property { boolean } success
         
          
     */
@@ -6759,11 +6770,11 @@ export type SearchLogRes = {
         @typedef UpdatePayoutRequest
         
         
-        @property { boolean } isActive
+        @property { boolean } isDefault
         
         @property { string } uniqueExternalId
         
-        @property { boolean } isDefault
+        @property { boolean } isActive
         
          
     */
@@ -6797,11 +6808,11 @@ export type SearchLogRes = {
         @typedef SubscriptionConfigResponse
         
         
+        @property { Object } config
+        
         @property { boolean } success
         
         @property { string } aggregator
-        
-        @property { Object } config
         
          
     */
@@ -6966,40 +6977,6 @@ export type SearchLogRes = {
          
     */
 /**
-        @typedef ReferralInfo
-        
-        
-        @property { string } [referralCode]
-        
-         
-    */
-/**
-        @typedef CompanyAddress
-        
-        
-        @property { string } address1
-        
-        @property { string } country
-        
-        @property { string } [address2]
-        
-        @property { string } city
-        
-        @property { number } pincode
-        
-        @property { number } longitude
-        
-        @property { string } state
-        
-        @property { string } [countryCode]
-        
-        @property { number } latitude
-        
-        @property { string } [landmark]
-        
-         
-    */
-/**
         @typedef BusinessCountryInfo
         
         
@@ -7010,116 +6987,58 @@ export type SearchLogRes = {
          
     */
 /**
+        @typedef UserSerializer
+        
+        
+        @property { string } [contact]
+        
+        @property { string } [username]
+        
+        @property { string } [userId]
+        
+         
+    */
+/**
+        @typedef GetAddressSerializer
+        
+        
+        @property { number } [latitude]
+        
+        @property { string } [addressType]
+        
+        @property { number } [pincode]
+        
+        @property { string } [countryCode]
+        
+        @property { string } [landmark]
+        
+        @property { number } [longitude]
+        
+        @property { string } [address1]
+        
+        @property { string } [city]
+        
+        @property { string } [country]
+        
+        @property { string } [address2]
+        
+        @property { string } [state]
+        
+         
+    */
+/**
         @typedef Document
         
         
         @property { string } legalName
         
-        @property { string } value
+        @property { string } type
         
         @property { boolean } [verified]
         
+        @property { string } value
+        
         @property { string } [url]
-        
-        @property { string } type
-        
-         
-    */
-/**
-        @typedef CompanyStoreSerializerRequest
-        
-        
-        @property { string } name
-        
-        @property { number } [uid]
-        
-        @property { string } [businessInfo]
-        
-        @property { ReferralInfo } [referralInfo]
-        
-        @property { CompanyAddress } address
-        
-        @property { BusinessCountryInfo } businessCountryInfo
-        
-        @property { Object } [warnings]
-        
-        @property { Document } document
-        
-        @property { Array<number> } brands
-        
-        @property { string } businessType
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { boolean } [franchiseEnabled]
-        
-         
-    */
-/**
-        @typedef SuccessResponse
-        
-        
-        @property { number } [uid]
-        
-        @property { boolean } [success]
-        
-         
-    */
-/**
-        @typedef ErrorResponse
-        
-        
-        @property { Object } [meta]
-        
-        @property { number } [status]
-        
-        @property { string } [code]
-        
-        @property { string } [message]
-        
-        @property { Object } [errors]
-        
-         
-    */
-/**
-        @typedef BusinessCountryInfo1
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [country]
-        
-         
-    */
-/**
-        @typedef PhoneNumber
-        
-        
-        @property { number } countryCode
-        
-        @property { string } number
-        
-         
-    */
-/**
-        @typedef ContactDetails
-        
-        
-        @property { Array<PhoneNumber> } [phone]
-        
-        @property { Array<string> } [emails]
-        
-         
-    */
-/**
-        @typedef UserSerializer
-        
-        
-        @property { string } [username]
-        
-        @property { string } [contact]
-        
-        @property { string } [userId]
         
          
     */
@@ -7140,30 +7059,22 @@ export type SearchLogRes = {
          
     */
 /**
-        @typedef GetAddressSerializer
+        @typedef PhoneNumber
         
         
-        @property { string } [address1]
+        @property { string } number
         
-        @property { string } [country]
+        @property { number } countryCode
         
-        @property { string } [address2]
+         
+    */
+/**
+        @typedef ContactDetails
         
-        @property { string } [city]
         
-        @property { number } [pincode]
+        @property { Array<PhoneNumber> } [phone]
         
-        @property { number } [longitude]
-        
-        @property { string } [addressType]
-        
-        @property { string } [state]
-        
-        @property { string } [countryCode]
-        
-        @property { number } [latitude]
-        
-        @property { string } [landmark]
+        @property { Array<string> } [emails]
         
          
     */
@@ -7171,45 +7082,145 @@ export type SearchLogRes = {
         @typedef GetCompanyProfileSerializerResponse
         
         
-        @property { Array<Document> } [documents]
-        
-        @property { BusinessCountryInfo1 } [businessCountryInfo]
-        
-        @property { ContactDetails } [contactDetails]
+        @property { string } companyType
         
         @property { Object } [warnings]
         
-        @property { UserSerializer } [modifiedBy]
-        
-        @property { string } [name]
-        
-        @property { number } uid
-        
-        @property { BusinessDetails } [businessDetails]
-        
-        @property { UserSerializer } [verifiedBy]
-        
-        @property { string } [modifiedOn]
-        
-        @property { string } [stage]
-        
-        @property { UserSerializer } [createdBy]
-        
-        @property { string } companyType
-        
-        @property { string } [verifiedOn]
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { string } [businessInfo]
-        
-        @property { string } [createdOn]
+        @property { BusinessCountryInfo } [businessCountryInfo]
         
         @property { string } businessType
         
+        @property { UserSerializer } [modifiedBy]
+        
+        @property { UserSerializer } [verifiedBy]
+        
+        @property { string } [createdOn]
+        
+        @property { Array<GetAddressSerializer> } [addresses]
+        
         @property { boolean } [franchiseEnabled]
+        
+        @property { string } [businessInfo]
+        
+        @property { string } [modifiedOn]
+        
+        @property { string } [verifiedOn]
+        
+        @property { Array<Document> } [documents]
+        
+        @property { number } uid
+        
+        @property { UserSerializer } [createdBy]
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { string } [name]
+        
+        @property { BusinessDetails } [businessDetails]
+        
+        @property { ContactDetails } [contactDetails]
+        
+        @property { string } [stage]
+        
+         
+    */
+/**
+        @typedef ErrorResponse
+        
+        
+        @property { number } [status]
+        
+        @property { string } [message]
+        
+        @property { Object } [meta]
+        
+        @property { string } [code]
+        
+        @property { Object } [errors]
+        
+         
+    */
+/**
+        @typedef BusinessCountryInfo1
+        
+        
+        @property { string } [countryCode]
+        
+        @property { string } [country]
+        
+         
+    */
+/**
+        @typedef ReferralInfo
+        
+        
+        @property { string } [referralCode]
+        
+         
+    */
+/**
+        @typedef CompanyAddress
+        
+        
+        @property { number } latitude
+        
+        @property { number } pincode
+        
+        @property { string } [countryCode]
+        
+        @property { string } [landmark]
+        
+        @property { number } longitude
+        
+        @property { string } address1
+        
+        @property { string } city
+        
+        @property { string } country
+        
+        @property { string } [address2]
+        
+        @property { string } state
+        
+         
+    */
+/**
+        @typedef CompanyStoreSerializerRequest
+        
+        
+        @property { boolean } [franchiseEnabled]
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { Document } document
+        
+        @property { Object } [warnings]
+        
+        @property { string } [businessInfo]
+        
+        @property { string } name
+        
+        @property { BusinessCountryInfo1 } businessCountryInfo
+        
+        @property { Array<number> } brands
+        
+        @property { ReferralInfo } [referralInfo]
+        
+        @property { string } businessType
+        
+        @property { CompanyAddress } address
+        
+        @property { number } [uid]
+        
+         
+    */
+/**
+        @typedef SuccessResponse
+        
+        
+        @property { number } [uid]
+        
+        @property { boolean } [success]
         
          
     */
@@ -7217,9 +7228,9 @@ export type SearchLogRes = {
         @typedef DocumentsObj
         
         
-        @property { number } [pending]
-        
         @property { number } [verified]
+        
+        @property { number } [pending]
         
          
     */
@@ -7229,17 +7240,17 @@ export type SearchLogRes = {
         
         @property { DocumentsObj } [store]
         
-        @property { number } [uid]
-        
-        @property { DocumentsObj } [storeDocuments]
-        
         @property { DocumentsObj } [companyDocuments]
         
         @property { DocumentsObj } [brand]
         
-        @property { string } [stage]
-        
         @property { DocumentsObj } [product]
+        
+        @property { number } [uid]
+        
+        @property { DocumentsObj } [storeDocuments]
+        
+        @property { string } [stage]
         
          
     */
@@ -7247,9 +7258,9 @@ export type SearchLogRes = {
         @typedef BrandBannerSerializer
         
         
-        @property { string } [landscape]
-        
         @property { string } [portrait]
+        
+        @property { string } [landscape]
         
          
     */
@@ -7257,25 +7268,25 @@ export type SearchLogRes = {
         @typedef CreateUpdateBrandRequestSerializer
         
         
-        @property { string } name
-        
-        @property { number } [uid]
-        
         @property { Object } [customJson]
-        
-        @property { string } [description]
-        
-        @property { string } logo
         
         @property { number } [companyId]
         
         @property { string } [brandTier]
         
+        @property { string } name
+        
+        @property { string } logo
+        
+        @property { Object } [localeLanguage]
+        
         @property { Array<string> } [synonyms]
+        
+        @property { number } [uid]
         
         @property { BrandBannerSerializer } [banner]
         
-        @property { Object } [localeLanguage]
+        @property { string } [description]
         
          
     */
@@ -7283,9 +7294,9 @@ export type SearchLogRes = {
         @typedef UserSerializer1
         
         
-        @property { string } [username]
-        
         @property { string } [contact]
+        
+        @property { string } [username]
         
         @property { string } [userId]
         
@@ -7295,41 +7306,41 @@ export type SearchLogRes = {
         @typedef GetBrandResponseSerializer
         
         
-        @property { UserSerializer1 } [modifiedBy]
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { Object } [customJson]
+        
+        @property { Object } [warnings]
+        
+        @property { UserSerializer1 } [verifiedBy]
+        
+        @property { string } [createdOn]
+        
+        @property { string } [slugKey]
         
         @property { string } name
-        
-        @property { number } [uid]
-        
-        @property { string } [description]
-        
-        @property { BrandBannerSerializer } [banner]
         
         @property { string } [logo]
         
         @property { string } [rejectReason]
         
-        @property { Object } [customJson]
+        @property { string } [modifiedOn]
         
         @property { Array<string> } [synonyms]
         
-        @property { Object } [warnings]
-        
-        @property { string } [stage]
-        
-        @property { UserSerializer1 } [verifiedBy]
-        
-        @property { string } [modifiedOn]
-        
-        @property { string } [createdOn]
+        @property { Object } [localeLanguage]
         
         @property { string } [verifiedOn]
         
-        @property { Object } [localeLanguage]
+        @property { UserSerializer1 } [modifiedBy]
         
-        @property { UserSerializer1 } [createdBy]
+        @property { number } [uid]
         
-        @property { string } [slugKey]
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { string } [description]
+        
+        @property { string } [stage]
         
          
     */
@@ -7337,11 +7348,11 @@ export type SearchLogRes = {
         @typedef CompanyBrandPostRequestSerializer
         
         
-        @property { number } [uid]
-        
         @property { number } company
         
         @property { Array<number> } brands
+        
+        @property { number } [uid]
         
          
     */
@@ -7356,66 +7367,42 @@ export type SearchLogRes = {
          
     */
 /**
-        @typedef LocationManagerSerializer
-        
-        
-        @property { string } [name]
-        
-        @property { PhoneNumber } mobileNo
-        
-        @property { string } [email]
-        
-         
-    */
-/**
-        @typedef LocationTimingSerializer
-        
-        
-        @property { number } [hour]
-        
-        @property { number } [minute]
-        
-         
-    */
-/**
-        @typedef LocationDayWiseSerializer
-        
-        
-        @property { boolean } open
-        
-        @property { string } weekday
-        
-        @property { LocationTimingSerializer } [opening]
-        
-        @property { LocationTimingSerializer } [closing]
-        
-         
-    */
-/**
         @typedef GetAddressSerializer1
         
         
+        @property { number } [latitude]
+        
+        @property { string } [addressType]
+        
+        @property { number } [pincode]
+        
+        @property { string } [countryCode]
+        
+        @property { string } [landmark]
+        
+        @property { number } [longitude]
+        
         @property { string } [address1]
+        
+        @property { string } [city]
         
         @property { string } [country]
         
         @property { string } [address2]
         
-        @property { string } [city]
-        
-        @property { number } [pincode]
-        
-        @property { number } [longitude]
-        
-        @property { string } [addressType]
-        
         @property { string } [state]
         
-        @property { string } [countryCode]
+         
+    */
+/**
+        @typedef LocationManagerSerializer
         
-        @property { number } [latitude]
         
-        @property { string } [landmark]
+        @property { string } [email]
+        
+        @property { string } [name]
+        
+        @property { PhoneNumber } mobileNo
         
          
     */
@@ -7423,9 +7410,9 @@ export type SearchLogRes = {
         @typedef InvoiceCredSerializer
         
         
-        @property { string } [password]
-        
         @property { string } [username]
+        
+        @property { string } [password]
         
         @property { boolean } [enabled]
         
@@ -7445,9 +7432,33 @@ export type SearchLogRes = {
         @typedef ProductReturnConfigSerializer
         
         
+        @property { boolean } [onSameStore]
+        
         @property { number } [storeUid]
         
-        @property { boolean } [onSameStore]
+         
+    */
+/**
+        @typedef LocationTimingSerializer
+        
+        
+        @property { number } [minute]
+        
+        @property { number } [hour]
+        
+         
+    */
+/**
+        @typedef LocationDayWiseSerializer
+        
+        
+        @property { LocationTimingSerializer } [closing]
+        
+        @property { string } weekday
+        
+        @property { boolean } open
+        
+        @property { LocationTimingSerializer } [opening]
         
          
     */
@@ -7455,39 +7466,39 @@ export type SearchLogRes = {
         @typedef LocationSerializer
         
         
-        @property { string } name
-        
-        @property { number } [uid]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { Array<PhoneNumber> } [contactNumbers]
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
+        @property { Array<string> } [notificationEmails]
         
         @property { Object } [customJson]
         
-        @property { string } displayName
-        
-        @property { string } code
-        
-        @property { string } [storeType]
-        
-        @property { GetAddressSerializer1 } address
-        
         @property { Object } [warnings]
-        
-        @property { Array<string> } [notificationEmails]
         
         @property { number } company
         
-        @property { string } [stage]
+        @property { string } name
+        
+        @property { string } [storeType]
+        
+        @property { Array<PhoneNumber> } [contactNumbers]
+        
+        @property { GetAddressSerializer1 } address
+        
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { string } displayName
+        
+        @property { Array<Document> } [documents]
+        
+        @property { number } [uid]
         
         @property { InvoiceDetailsSerializer } [gstCredentials]
         
         @property { ProductReturnConfigSerializer } [productReturnConfig]
+        
+        @property { string } code
+        
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
+        @property { string } [stage]
         
          
     */
@@ -7502,44 +7513,44 @@ export type SearchLogRes = {
          
     */
 /**
-        @typedef LocationIntegrationType
-        
-        
-        @property { string } [inventory]
-        
-        @property { string } [order]
-        
-         
-    */
-/**
         @typedef GetCompanySerializer
         
         
-        @property { UserSerializer } [modifiedBy]
-        
-        @property { string } [name]
-        
-        @property { number } [uid]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { string } [rejectReason]
+        @property { UserSerializer } [createdBy]
         
         @property { string } [companyType]
         
-        @property { string } [stage]
-        
         @property { UserSerializer } [verifiedBy]
         
-        @property { string } [modifiedOn]
-        
         @property { string } [createdOn]
+        
+        @property { string } [name]
+        
+        @property { string } [rejectReason]
+        
+        @property { string } [modifiedOn]
         
         @property { string } [verifiedOn]
         
         @property { string } [businessType]
         
-        @property { UserSerializer } [createdBy]
+        @property { Array<GetAddressSerializer> } [addresses]
+        
+        @property { UserSerializer } [modifiedBy]
+        
+        @property { number } [uid]
+        
+        @property { string } [stage]
+        
+         
+    */
+/**
+        @typedef LocationIntegrationType
+        
+        
+        @property { string } [order]
+        
+        @property { string } [inventory]
         
          
     */
@@ -7547,55 +7558,55 @@ export type SearchLogRes = {
         @typedef GetLocationSerializer
         
         
-        @property { Object } [customJson]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { string } [storeType]
-        
-        @property { string } phoneNumber
-        
         @property { Object } [warnings]
-        
-        @property { LocationIntegrationType } [integrationType]
-        
-        @property { GetCompanySerializer } [company]
         
         @property { UserSerializer1 } [modifiedBy]
         
-        @property { string } name
-        
-        @property { number } [uid]
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { string } code
+        @property { string } phoneNumber
         
         @property { UserSerializer1 } [verifiedBy]
         
-        @property { string } [modifiedOn]
+        @property { string } [createdOn]
         
-        @property { string } [stage]
-        
-        @property { UserSerializer1 } [createdBy]
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
+        @property { GetCompanySerializer } [company]
         
         @property { Array<PhoneNumber> } [contactNumbers]
         
         @property { string } displayName
         
-        @property { GetAddressSerializer } address
-        
-        @property { string } [verifiedOn]
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { string } [createdOn]
-        
         @property { InvoiceDetailsSerializer } [gstCredentials]
         
         @property { ProductReturnConfigSerializer } [productReturnConfig]
+        
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [modifiedOn]
+        
+        @property { string } [verifiedOn]
+        
+        @property { GetAddressSerializer } address
+        
+        @property { Array<Document> } [documents]
+        
+        @property { number } [uid]
+        
+        @property { string } code
+        
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { string } name
+        
+        @property { string } [storeType]
+        
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { LocationIntegrationType } [integrationType]
+        
+        @property { string } [stage]
         
          
     */
