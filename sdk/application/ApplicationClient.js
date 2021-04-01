@@ -2,6 +2,7 @@ const {
   Catalog,
   Cart,
   Lead,
+  Theme,
   User,
   FileStorage,
   Order,
@@ -15,6 +16,7 @@ class ApplicationClient {
     this.catalog = new Catalog(config);
     this.cart = new Cart(config);
     this.lead = new Lead(config);
+    this.theme = new Theme(config);
     this.user = new User(config);
     this.fileStorage = new FileStorage(config);
     this.order = new Order(config);

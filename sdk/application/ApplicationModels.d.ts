@@ -1,305 +1,305 @@
-export type ProductDetailAttribute = {
-    value?: string;
-    type?: string;
-    key?: string;
-};
-export type ProductDetailGroupedAttribute = {
-    details?: Array<ProductDetailAttribute>;
-    title?: string;
-};
-export type Media = {
-    type?: string;
-    url?: string;
-};
 export type ProductListingActionPage = {
     query?: any;
     type?: string;
 };
 export type ProductListingAction = {
+    type?: string;
     page?: ProductListingActionPage;
+};
+export type Media = {
+    url?: string;
     type?: string;
 };
 export type ProductBrand = {
-    name?: string;
     uid?: number;
-    logo?: Media;
     action?: ProductListingAction;
+    name?: string;
+    logo?: Media;
+};
+export type ProductDetailAttribute = {
+    value?: string;
+    key?: string;
+    type?: string;
+};
+export type ProductDetailGroupedAttribute = {
+    details?: Array<ProductDetailAttribute>;
+    title?: string;
 };
 export type ProductDetail = {
-    uid?: number;
-    similars?: Array<string>;
-    highlights?: Array<string>;
-    hasVariant?: boolean;
+    categories?: Array<ProductBrand>;
     groupedAttributes?: Array<ProductDetailGroupedAttribute>;
+    shortDescription?: string;
+    type?: string;
     itemType?: string;
-    ratingCount?: number;
-    attributes?: any;
-    brand?: ProductBrand;
     imageNature?: string;
-    teaserTag?: string;
+    name?: string;
+    color?: string;
+    brand?: ProductBrand;
     description?: string;
     rating?: number;
-    shortDescription?: string;
     productOnlineDate?: string;
-    type?: string;
-    color?: string;
-    medias?: Array<Media>;
-    categories?: Array<ProductBrand>;
-    name?: string;
-    tryouts?: Array<string>;
     slug: string;
+    ratingCount?: number;
+    attributes?: any;
+    teaserTag?: string;
+    medias?: Array<Media>;
+    highlights?: Array<string>;
+    tryouts?: Array<string>;
+    uid?: number;
+    similars?: Array<string>;
+    hasVariant?: boolean;
 };
 export type ErrorResponse = {
     error?: string;
 };
-export type ProductSizeStores = {
-    count?: number;
-};
 export type ProductSize = {
-    value?: string;
-    display?: string;
     quantity?: number;
+    display?: string;
+    value?: string;
     isAvailable?: boolean;
 };
 export type Price = {
-    min?: number;
     currencySymbol?: string;
+    min?: number;
     currencyCode?: string;
     max?: number;
 };
 export type ProductListingPrice = {
-    marked?: Price;
     effective?: Price;
+    marked?: Price;
+};
+export type ProductSizeStores = {
+    count?: number;
 };
 export type ProductSizes = {
-    stores?: ProductSizeStores;
     sizes?: Array<ProductSize>;
-    sellable?: boolean;
     discount?: string;
-    sizeChart?: any;
     price?: ProductListingPrice;
+    stores?: ProductSizeStores;
+    sellable?: boolean;
+    sizeChart?: any;
+};
+export type ProductStockPrice = {
+    currency?: string;
+    effective?: number;
+    marked?: number;
 };
 export type ArticleAssignment = {
     strategy?: string;
     level?: string;
 };
-export type Store = {
-    name?: string;
+export type Seller = {
     uid?: number;
+    name?: string;
     count?: number;
 };
-export type ProductStockPrice = {
-    currency?: string;
-    marked?: number;
-    effective?: number;
-};
-export type Seller = {
-    name?: string;
+export type Store = {
     uid?: number;
+    name?: string;
     count?: number;
 };
 export type ProductSizePriceResponse = {
-    articleId?: string;
-    pincode?: number;
-    articleAssignment?: ArticleAssignment;
-    specialBadge?: string;
-    discount?: string;
-    itemType?: string;
-    longLat?: Array<number>;
-    store?: Store;
-    strategyWiseListing?: Array<any>;
-    quantity?: number;
-    pricePerPrice?: ProductStockPrice;
     sellerCount?: number;
-    set?: any;
+    longLat?: Array<number>;
+    articleId?: string;
+    specialBadge?: string;
     price?: ProductStockPrice;
+    discount?: string;
+    quantity?: number;
+    articleAssignment?: ArticleAssignment;
+    pricePerPrice?: ProductStockPrice;
     seller?: Seller;
-};
-export type Page = {
-    hasNext?: boolean;
-    current?: number;
-    itemTotal?: number;
-    size?: number;
-    nextId?: string;
-    type?: string;
-    hasPrevious?: boolean;
+    store?: Store;
+    set?: any;
+    strategyWiseListing?: Array<any>;
+    pincode?: number;
+    itemType?: string;
 };
 export type ProductSizeSellerFilter = {
+    value?: string;
     name?: string;
     isSelected?: boolean;
-    value?: string;
+};
+export type Page = {
+    current?: number;
+    size?: number;
+    hasNext?: boolean;
+    itemTotal?: number;
+    nextId?: string;
+    hasPrevious?: boolean;
+    type?: string;
 };
 export type ProductSizeSellersResponse = {
-    page: Page;
     sortOn?: Array<ProductSizeSellerFilter>;
     items?: Array<ProductSizePriceResponse>;
+    page: Page;
 };
 export type AttributeDetail = {
     display?: string;
-    description?: string;
     key?: string;
+    description?: string;
 };
 export type ProductsComparisonResponse = {
-    attributesMetadata?: Array<AttributeDetail>;
     items?: Array<ProductDetail>;
+    attributesMetadata?: Array<AttributeDetail>;
 };
 export type ProductCompareResponse = {
-    attributesMetadata?: Array<AttributeDetail>;
-    title?: string;
-    subtitle?: string;
     items?: Array<ProductDetail>;
+    attributesMetadata?: Array<AttributeDetail>;
+    subtitle?: string;
+    title?: string;
 };
 export type ProductFrequentlyComparedSimilarResponse = {
     similars?: Array<ProductCompareResponse>;
 };
 export type ProductSimilarItem = {
-    title?: string;
-    subtitle?: string;
     items?: Array<ProductDetail>;
+    subtitle?: string;
+    title?: string;
 };
 export type SimilarProductByTypeResponse = {
     similars?: Array<ProductSimilarItem>;
 };
 export type ProductVariantItemResponse = {
+    action?: ProductListingAction;
     name?: string;
-    color?: string;
-    value?: string;
-    uid?: number;
     colorName?: string;
     slug?: string;
+    value?: string;
+    uid?: number;
+    color?: string;
     medias?: Array<Media>;
     isAvailable?: boolean;
-    action?: ProductListingAction;
 };
 export type ProductVariantResponse = {
-    displayType?: string;
     header?: string;
     items?: Array<ProductVariantItemResponse>;
+    displayType?: string;
 };
 export type ProductVariantsResponse = {
     variants?: Array<ProductVariantResponse>;
+};
+export type StoreDetail = {
+    code?: string;
+    name?: string;
+    id?: number;
+    city?: string;
 };
 export type CompanyDetail = {
     name?: string;
     id?: number;
 };
-export type StoreDetail = {
-    name?: string;
-    code?: string;
-    city?: string;
-    id?: number;
-};
 export type ProductStockStatusItem = {
+    identifier?: any;
+    size?: string;
+    itemId?: number;
+    price?: ProductStockPrice;
+    quantity?: number;
+    seller?: Seller;
+    store?: StoreDetail;
     uid?: string;
     company?: CompanyDetail;
-    store?: StoreDetail;
-    itemId?: number;
-    quantity?: number;
-    size?: string;
-    identifier?: any;
-    price?: ProductStockPrice;
-    seller?: Seller;
 };
 export type ProductStockStatusResponse = {
     items?: Array<ProductStockStatusItem>;
 };
 export type ProductStockPolling = {
-    page: Page;
     items?: Array<ProductStockStatusItem>;
-};
-export type ProductSortOn = {
-    name?: string;
-    isSelected?: boolean;
-    value?: string;
-};
-export type ProductListingDetail = {
-    uid?: number;
-    similars?: Array<string>;
-    highlights?: Array<string>;
-    hasVariant?: boolean;
-    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
-    itemType?: string;
-    ratingCount?: number;
-    attributes?: any;
-    brand?: ProductBrand;
-    imageNature?: string;
-    teaserTag?: string;
-    description?: string;
-    rating?: number;
-    shortDescription?: string;
-    productOnlineDate?: string;
-    type?: string;
-    price?: ProductListingPrice;
-    color?: string;
-    discount?: string;
-    medias?: Array<Media>;
-    categories?: Array<ProductBrand>;
-    name?: string;
-    tryouts?: Array<string>;
-    sellable?: boolean;
-    slug: string;
+    page: Page;
 };
 export type ProductFiltersKey = {
-    name: string;
-    display: string;
     kind?: string;
+    display: string;
+    name: string;
     logo?: string;
 };
 export type ProductFiltersValue = {
-    value?: string;
     display: string;
-    max?: number;
-    displayFormat?: string;
-    currencySymbol?: string;
-    currencyCode?: string;
     queryFormat?: string;
-    isSelected: boolean;
-    min?: number;
-    count?: number;
-    selectedMin?: number;
+    currencyCode?: string;
+    max?: number;
+    currencySymbol?: string;
     selectedMax?: number;
+    isSelected: boolean;
+    selectedMin?: number;
+    displayFormat?: string;
+    value?: string;
+    count?: number;
+    min?: number;
 };
 export type ProductFilters = {
     key: ProductFiltersKey;
     values: Array<ProductFiltersValue>;
 };
+export type ProductSortOn = {
+    value?: string;
+    name?: string;
+    isSelected?: boolean;
+};
+export type ProductListingDetail = {
+    categories?: Array<ProductBrand>;
+    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
+    sellable?: boolean;
+    shortDescription?: string;
+    type?: string;
+    itemType?: string;
+    imageNature?: string;
+    name?: string;
+    color?: string;
+    price?: ProductListingPrice;
+    brand?: ProductBrand;
+    description?: string;
+    rating?: number;
+    productOnlineDate?: string;
+    discount?: string;
+    slug: string;
+    ratingCount?: number;
+    attributes?: any;
+    teaserTag?: string;
+    medias?: Array<Media>;
+    highlights?: Array<string>;
+    tryouts?: Array<string>;
+    uid?: number;
+    similars?: Array<string>;
+    hasVariant?: boolean;
+};
 export type ProductListingResponse = {
-    page: Page;
+    filters?: Array<ProductFilters>;
     sortOn?: Array<ProductSortOn>;
     items?: Array<ProductListingDetail>;
-    filters?: Array<ProductFilters>;
+    page: Page;
 };
 export type ImageUrls = {
-    landscape?: Media;
     portrait?: Media;
+    landscape?: Media;
 };
 export type BrandItem = {
-    name?: string;
-    uid?: number;
-    departments?: Array<string>;
     banners?: ImageUrls;
-    slug?: string;
+    name?: string;
+    departments?: Array<string>;
     discount?: string;
-    logo?: Media;
+    slug?: string;
+    uid?: number;
     action?: ProductListingAction;
+    logo?: Media;
 };
 export type BrandListingResponse = {
-    page: Page;
     items?: Array<BrandItem>;
+    page: Page;
 };
 export type BrandDetailResponse = {
+    uid?: number;
     banners?: ImageUrls;
     name?: string;
-    uid?: number;
     logo?: Media;
 };
 export type CategoryItems = {
-    name?: string;
-    uid?: number;
-    childs?: Array<any>;
-    banners?: ImageUrls;
-    slug?: string;
     action?: ProductListingAction;
+    name?: string;
+    childs?: Array<any>;
+    slug?: string;
+    uid?: number;
+    banners?: ImageUrls;
 };
 export type DepartmentCategoryTree = {
     items?: Array<CategoryItems>;
@@ -314,21 +314,21 @@ export type CategoryListingResponse = {
     departments?: Array<DepartmentIdentifier>;
 };
 export type CategoryMetaResponse = {
+    uid?: number;
     banners?: ImageUrls;
     name?: string;
-    uid?: number;
     logo?: Media;
 };
 export type HomeListingResponse = {
+    items?: Array<ProductListingDetail>;
     page: Page;
     message?: string;
-    items?: Array<ProductListingDetail>;
 };
 export type Department = {
     name?: string;
-    uid?: number;
     slug?: string;
     priorityOrder?: number;
+    uid?: number;
     logo?: Media;
 };
 export type DepartmentResponse = {
@@ -343,26 +343,26 @@ export type AutocompletePage = {
     type?: string;
 };
 export type Action = {
-    page?: AutocompletePage;
     type?: string;
+    page?: AutocompletePage;
 };
 export type AutocompleteItem = {
     display?: string;
+    action?: Action;
     type?: string;
     logo?: Media;
-    action?: Action;
 };
 export type AutoCompleteResponse = {
     items?: Array<AutocompleteItem>;
 };
 export type CollectionListingFilterTag = {
-    name?: string;
     display?: string;
+    name?: string;
     isSelected?: boolean;
 };
 export type CollectionListingFilterType = {
-    name?: string;
     display?: string;
+    name?: string;
     isSelected?: boolean;
 };
 export type CollectionListingFilter = {
@@ -370,88 +370,88 @@ export type CollectionListingFilter = {
     type?: Array<CollectionListingFilterType>;
 };
 export type GetCollectionDetailNest = {
-    uid?: string;
-    banners?: ImageUrls;
+    schedule?: any;
     visibleFacetsKeys?: Array<string>;
-    tag?: Array<string>;
-    allowSort?: boolean;
+    meta?: any;
+    type?: string;
+    badge?: any;
+    name?: string;
     isActive?: boolean;
     description?: string;
-    logo?: Media;
-    type?: string;
-    appId?: string;
-    schedule?: any;
-    name?: string;
-    query?: any;
-    cron?: any;
-    slug?: string;
-    meta?: any;
-    badge?: any;
+    banners?: ImageUrls;
     allowFacets?: boolean;
+    allowSort?: boolean;
+    slug?: string;
+    query?: any;
+    appId?: string;
+    logo?: Media;
+    cron?: any;
+    tag?: Array<string>;
+    uid?: string;
     action?: ProductListingAction;
 };
 export type GetCollectionListingResponse = {
     filters?: CollectionListingFilter;
-    page: Page;
     items?: Array<GetCollectionDetailNest>;
+    page: Page;
 };
 export type CollectionDetailResponse = {
-    name?: string;
-    query?: any;
-    appId?: string;
-    cron?: any;
-    banners?: ImageUrls;
-    slug?: string;
     schedule?: any;
-    meta?: any;
-    badge?: any;
+    allowFacets?: boolean;
     visibleFacetsKeys?: Array<string>;
+    badge?: any;
+    name?: string;
+    allowSort?: boolean;
+    cron?: any;
     isActive?: boolean;
     description?: string;
+    slug?: string;
+    query?: any;
     tag?: Array<string>;
-    allowFacets?: boolean;
-    logo?: Media;
-    allowSort?: boolean;
+    meta?: any;
+    banners?: ImageUrls;
+    appId?: string;
     type?: string;
+    logo?: Media;
 };
 export type GetFollowListingResponse = {
-    page: Page;
     items: Array<any>;
+    page: Page;
 };
 export type FollowPostResponse = {
-    message: string;
     id: string;
+    message: string;
 };
 export type FollowerCountResponse = {
     count?: number;
 };
 export type FollowIdsData = {
-    products?: Array<number>;
-    brands?: Array<number>;
     collections?: Array<number>;
+    brands?: Array<number>;
+    products?: Array<number>;
 };
 export type FollowIdsResponse = {
     data?: FollowIdsData;
 };
 export type LatLong = {
-    type?: string;
     coordinates?: Array<number>;
+    type?: string;
 };
 export type Store1 = {
-    name?: string;
-    storeCode?: string;
-    pincode?: number;
-    uid?: number;
-    city?: string;
-    latLong?: LatLong;
-    address?: string;
     state?: string;
+    name?: string;
     country?: string;
+    storeCode?: string;
+    latLong?: LatLong;
+    uid?: number;
+    pincode?: number;
+    city?: string;
     storeEmail?: string;
+    address?: string;
 };
 export type StoreListingResponse = {
-    page: Page;
     items: Array<Store1>;
+    page: Page;
 };
 export type CartCurrency = {
     code?: string;
@@ -1124,6 +1124,271 @@ export type Ticket = {
     updatedAt?: string;
     createdAt?: string;
 };
+export type PaginationSchema = {
+    size?: number;
+    itemTotal?: number;
+    hasNext?: boolean;
+    type?: string;
+    current?: number;
+};
+export type ThemesListingResponseSchema = {
+    items?: Array<ThemesSchema>;
+    page?: PaginationSchema;
+};
+export type AddThemeRequestSchema = {
+    themeId?: string;
+};
+export type UpgradableThemeSchema = {
+    parentTheme?: string;
+    appliedTheme?: string;
+    upgrade?: boolean;
+};
+export type FontsSchema = {
+    items?: FontsSchemaItems;
+    kind?: string;
+};
+export type BlitzkriegApiErrorSchema = {
+    message?: string;
+};
+export type BlitzkriegNotFoundSchema = {
+    message?: string;
+};
+export type BlitzkriegInternalServerErrorSchema = {
+    message?: string;
+};
+export type FontsSchemaItems = {
+    family?: string;
+    variants?: Array<string>;
+    subsets?: Array<string>;
+    version?: string;
+    lastModified?: string;
+    files?: FontsSchemaItemsFiles;
+    category?: string;
+    kind?: string;
+};
+export type FontsSchemaItemsFiles = {
+    regular?: string;
+    italic?: string;
+    bold?: string;
+};
+export type ThemesSchema = {
+    application?: string;
+    applied?: boolean;
+    customized?: boolean;
+    published?: boolean;
+    archived?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+    version?: string;
+    parentThemeVersion?: string;
+    parentTheme?: string;
+    information?: Information;
+    tags?: Array<string>;
+    src?: Src;
+    assets?: AssetsSchema;
+    availablePages?: AvailablePages;
+    pages?: Pages;
+    availableSections?: Array<availableSectionSchema>;
+    sections?: Array<sectionSchema>;
+    constants?: any;
+    styles?: any;
+    config?: Config;
+    settings?: any;
+    font?: Font;
+    id?: string;
+    v?: number;
+    colors?: Colors;
+};
+export type pagesSchema = {
+    text?: string;
+    path?: string;
+    type?: string;
+    value?: string;
+    sections?: Sections;
+};
+export type availableSectionSchema = {
+    blocks?: Blocks;
+    name?: string;
+    label?: string;
+    props?: any;
+};
+export type sectionSchema = {
+    pageKey?: string;
+    pageSections?: PageSections;
+};
+export type Information = {
+    images?: Images;
+    features?: Array<string>;
+    name?: string;
+    description?: string;
+};
+export type Images = {
+    desktop?: Array<string>;
+    android?: Array<string>;
+    ios?: Array<string>;
+    thumbnail?: Array<string>;
+};
+export type Src = {
+    link?: string;
+};
+export type AssetsSchema = {
+    umdJs?: UmdJs;
+    commonJs?: CommonJs;
+    css?: Css;
+};
+export type UmdJs = {
+    link?: string;
+};
+export type CommonJs = {
+    link?: string;
+};
+export type Css = {
+    link?: string;
+};
+export type AvailablePages = {
+    path?: string;
+    type?: string;
+    text?: string;
+    value?: string;
+    seo?: Seo;
+    props?: any;
+    sections?: Sections;
+};
+export type Seo = {
+    title?: string;
+    description?: string;
+};
+export type Props = any;
+export type Sections = {
+    attributes?: string;
+};
+export type Attributes = {
+    page?: string;
+};
+export type Pages = {
+    collectionListing?: pagesSchema;
+    brands?: pagesSchema;
+    cartLanding?: pagesSchema;
+    collections?: pagesSchema;
+    productDescription?: pagesSchema;
+    productListing?: pagesSchema;
+    home?: pagesSchema;
+    categories?: pagesSchema;
+    compareProducts?: pagesSchema;
+    wishlist?: pagesSchema;
+};
+export type Constants = any;
+export type Styles = any;
+export type Config = {
+    preset?: Preset;
+    globalSchema?: GlobalSchema;
+    current?: string;
+    list?: List;
+};
+export type Preset = {
+    sections?: sectionSchema;
+};
+export type GlobalSchema = {
+    props?: any;
+};
+export type GlobalSchemaProps = any;
+export type List = {
+    global?: any;
+    page?: Page;
+    name?: string;
+};
+export type Global = any;
+export type Colors = {
+    bgColor?: string;
+    primaryColor?: string;
+    secondaryColor?: string;
+    accentColor?: string;
+    linkColor?: string;
+    buttonSecondaryColor?: string;
+};
+export type Custom = {
+    props?: any;
+};
+export type CustomProps = any;
+export type Settings = any;
+export type SettingsProps = any;
+export type Font = {
+    family?: string;
+    variants?: Variants;
+};
+export type Variants = {
+    medium?: Medium;
+    semiBold?: SemiBold;
+    bold?: Bold;
+    light?: Light;
+    regular?: Regular;
+};
+export type Medium = {
+    name?: string;
+    file?: string;
+};
+export type SemiBold = {
+    name?: string;
+    file?: string;
+};
+export type Bold = {
+    name?: string;
+    file?: string;
+};
+export type Light = {
+    name?: string;
+    file?: string;
+};
+export type Regular = {
+    name?: string;
+    file?: string;
+};
+export type Blocks = {
+    type?: string;
+    name?: string;
+    props?: BlocksProps;
+};
+export type BlocksProps = {
+    id?: string;
+    label?: string;
+    type?: string;
+};
+export type PageSections = {
+    blocks?: PageSectionsBlocks;
+    name?: string;
+    label?: string;
+    props?: any;
+    preset?: any;
+    predicate?: Predicate;
+};
+export type PageSectionsBlocks = {
+    type?: string;
+    name?: string;
+    props?: PageSectionsBlocksProps;
+};
+export type PageSectionsBlocksProps = {
+    id?: string;
+    label?: string;
+    type?: string;
+};
+export type PageSectionsProps = any;
+export type PageSectionsPreset = any;
+export type Predicate = {
+    screen?: Screen;
+    user?: UserSchema;
+    route?: Route;
+};
+export type Screen = {
+    mobile?: boolean;
+    desktop?: boolean;
+    tablet?: boolean;
+};
+export type Route = {
+    selected?: string;
+    exactUrl?: string;
+    query?: any;
+};
+export type Query = any;
 export type EditEmailRequestSchema = {
     email?: string;
 };
@@ -1288,13 +1553,6 @@ export type UserSearchResponseSchema = {
 export type CustomerListResponseSchema = {
     items?: Array<UserSchema>;
     page?: PaginationSchema;
-};
-export type PaginationSchema = {
-    size?: number;
-    itemTotal?: number;
-    hasNext?: boolean;
-    type?: string;
-    current?: number;
 };
 export type UnauthorizedSchema = {
     message?: string;
@@ -1593,11 +1851,6 @@ export type Item = {
     code?: string;
     l3CategoryName?: string;
     image?: Array<string>;
-};
-export type Attributes = {
-    itemCode?: string;
-    brandName?: string;
-    countryOfOrigin?: string;
 };
 export type Prices = {
     amountPaidRoundoff?: number;
@@ -2337,14 +2590,58 @@ export type GetTatProductResponse = {
     journey: string;
 };
 /**
+        @typedef ProductListingActionPage
+        
+        
+        @property { Object } [query]
+        
+        @property { string } [type]
+        
+         
+    */
+/**
+        @typedef ProductListingAction
+        
+        
+        @property { string } [type]
+        
+        @property { ProductListingActionPage } [page]
+        
+         
+    */
+/**
+        @typedef Media
+        
+        
+        @property { string } [url]
+        
+        @property { string } [type]
+        
+         
+    */
+/**
+        @typedef ProductBrand
+        
+        
+        @property { number } [uid]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { string } [name]
+        
+        @property { Media } [logo]
+        
+         
+    */
+/**
         @typedef ProductDetailAttribute
         
         
         @property { string } [value]
         
-        @property { string } [type]
-        
         @property { string } [key]
+        
+        @property { string } [type]
         
          
     */
@@ -2359,96 +2656,52 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef Media
-        
-        
-        @property { string } [type]
-        
-        @property { string } [url]
-        
-         
-    */
-/**
-        @typedef ProductListingActionPage
-        
-        
-        @property { Object } [query]
-        
-        @property { string } [type]
-        
-         
-    */
-/**
-        @typedef ProductListingAction
-        
-        
-        @property { ProductListingActionPage } [page]
-        
-        @property { string } [type]
-        
-         
-    */
-/**
-        @typedef ProductBrand
-        
-        
-        @property { string } [name]
-        
-        @property { number } [uid]
-        
-        @property { Media } [logo]
-        
-        @property { ProductListingAction } [action]
-        
-         
-    */
-/**
         @typedef ProductDetail
         
         
-        @property { number } [uid]
-        
-        @property { Array<string> } [similars]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { boolean } [hasVariant]
+        @property { Array<ProductBrand> } [categories]
         
         @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
         
+        @property { string } [shortDescription]
+        
+        @property { string } [type]
+        
         @property { string } [itemType]
-        
-        @property { number } [ratingCount]
-        
-        @property { Object } [attributes]
-        
-        @property { ProductBrand } [brand]
         
         @property { string } [imageNature]
         
-        @property { string } [teaserTag]
+        @property { string } [name]
+        
+        @property { string } [color]
+        
+        @property { ProductBrand } [brand]
         
         @property { string } [description]
         
         @property { number } [rating]
         
-        @property { string } [shortDescription]
-        
         @property { string } [productOnlineDate]
         
-        @property { string } [type]
+        @property { string } slug
         
-        @property { string } [color]
+        @property { number } [ratingCount]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [teaserTag]
         
         @property { Array<Media> } [medias]
         
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { string } [name]
+        @property { Array<string> } [highlights]
         
         @property { Array<string> } [tryouts]
         
-        @property { string } slug
+        @property { number } [uid]
+        
+        @property { Array<string> } [similars]
+        
+        @property { boolean } [hasVariant]
         
          
     */
@@ -2461,22 +2714,14 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef ProductSizeStores
-        
-        
-        @property { number } [count]
-        
-         
-    */
-/**
         @typedef ProductSize
         
         
-        @property { string } [value]
+        @property { number } [quantity]
         
         @property { string } [display]
         
-        @property { number } [quantity]
+        @property { string } [value]
         
         @property { boolean } [isAvailable]
         
@@ -2486,9 +2731,9 @@ export type GetTatProductResponse = {
         @typedef Price
         
         
-        @property { number } [min]
-        
         @property { string } [currencySymbol]
+        
+        @property { number } [min]
         
         @property { string } [currencyCode]
         
@@ -2500,9 +2745,17 @@ export type GetTatProductResponse = {
         @typedef ProductListingPrice
         
         
+        @property { Price } [effective]
+        
         @property { Price } [marked]
         
-        @property { Price } [effective]
+         
+    */
+/**
+        @typedef ProductSizeStores
+        
+        
+        @property { number } [count]
         
          
     */
@@ -2510,17 +2763,29 @@ export type GetTatProductResponse = {
         @typedef ProductSizes
         
         
-        @property { ProductSizeStores } [stores]
-        
         @property { Array<ProductSize> } [sizes]
-        
-        @property { boolean } [sellable]
         
         @property { string } [discount]
         
+        @property { ProductListingPrice } [price]
+        
+        @property { ProductSizeStores } [stores]
+        
+        @property { boolean } [sellable]
+        
         @property { Object } [sizeChart]
         
-        @property { ProductListingPrice } [price]
+         
+    */
+/**
+        @typedef ProductStockPrice
+        
+        
+        @property { string } [currency]
+        
+        @property { number } [effective]
+        
+        @property { number } [marked]
         
          
     */
@@ -2535,36 +2800,24 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef Store
+        @typedef Seller
         
-        
-        @property { string } [name]
         
         @property { number } [uid]
+        
+        @property { string } [name]
         
         @property { number } [count]
         
          
     */
 /**
-        @typedef ProductStockPrice
+        @typedef Store
         
-        
-        @property { string } [currency]
-        
-        @property { number } [marked]
-        
-        @property { number } [effective]
-        
-         
-    */
-/**
-        @typedef Seller
-        
-        
-        @property { string } [name]
         
         @property { number } [uid]
+        
+        @property { string } [name]
         
         @property { number } [count]
         
@@ -2574,55 +2827,35 @@ export type GetTatProductResponse = {
         @typedef ProductSizePriceResponse
         
         
-        @property { string } [articleId]
-        
-        @property { number } [pincode]
-        
-        @property { ArticleAssignment } [articleAssignment]
-        
-        @property { string } [specialBadge]
-        
-        @property { string } [discount]
-        
-        @property { string } [itemType]
+        @property { number } [sellerCount]
         
         @property { Array<number> } [longLat]
         
-        @property { Store } [store]
+        @property { string } [articleId]
         
-        @property { Array<Object> } [strategyWiseListing]
-        
-        @property { number } [quantity]
-        
-        @property { ProductStockPrice } [pricePerPrice]
-        
-        @property { number } [sellerCount]
-        
-        @property { Object } [set]
+        @property { string } [specialBadge]
         
         @property { ProductStockPrice } [price]
         
+        @property { string } [discount]
+        
+        @property { number } [quantity]
+        
+        @property { ArticleAssignment } [articleAssignment]
+        
+        @property { ProductStockPrice } [pricePerPrice]
+        
         @property { Seller } [seller]
         
-         
-    */
-/**
-        @typedef Page
+        @property { Store } [store]
         
+        @property { Object } [set]
         
-        @property { boolean } [hasNext]
+        @property { Array<Object> } [strategyWiseListing]
         
-        @property { number } [current]
+        @property { number } [pincode]
         
-        @property { number } [itemTotal]
-        
-        @property { number } [size]
-        
-        @property { string } [nextId]
-        
-        @property { string } [type]
-        
-        @property { boolean } [hasPrevious]
+        @property { string } [itemType]
         
          
     */
@@ -2630,11 +2863,31 @@ export type GetTatProductResponse = {
         @typedef ProductSizeSellerFilter
         
         
+        @property { string } [value]
+        
         @property { string } [name]
         
         @property { boolean } [isSelected]
         
-        @property { string } [value]
+         
+    */
+/**
+        @typedef Page
+        
+        
+        @property { number } [current]
+        
+        @property { number } [size]
+        
+        @property { boolean } [hasNext]
+        
+        @property { number } [itemTotal]
+        
+        @property { string } [nextId]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { string } [type]
         
          
     */
@@ -2642,11 +2895,11 @@ export type GetTatProductResponse = {
         @typedef ProductSizeSellersResponse
         
         
-        @property { Page } page
-        
         @property { Array<ProductSizeSellerFilter> } [sortOn]
         
         @property { Array<ProductSizePriceResponse> } [items]
+        
+        @property { Page } page
         
          
     */
@@ -2656,9 +2909,9 @@ export type GetTatProductResponse = {
         
         @property { string } [display]
         
-        @property { string } [description]
-        
         @property { string } [key]
+        
+        @property { string } [description]
         
          
     */
@@ -2666,9 +2919,9 @@ export type GetTatProductResponse = {
         @typedef ProductsComparisonResponse
         
         
-        @property { Array<AttributeDetail> } [attributesMetadata]
-        
         @property { Array<ProductDetail> } [items]
+        
+        @property { Array<AttributeDetail> } [attributesMetadata]
         
          
     */
@@ -2676,13 +2929,13 @@ export type GetTatProductResponse = {
         @typedef ProductCompareResponse
         
         
-        @property { Array<AttributeDetail> } [attributesMetadata]
+        @property { Array<ProductDetail> } [items]
         
-        @property { string } [title]
+        @property { Array<AttributeDetail> } [attributesMetadata]
         
         @property { string } [subtitle]
         
-        @property { Array<ProductDetail> } [items]
+        @property { string } [title]
         
          
     */
@@ -2698,11 +2951,11 @@ export type GetTatProductResponse = {
         @typedef ProductSimilarItem
         
         
-        @property { string } [title]
+        @property { Array<ProductDetail> } [items]
         
         @property { string } [subtitle]
         
-        @property { Array<ProductDetail> } [items]
+        @property { string } [title]
         
          
     */
@@ -2718,23 +2971,23 @@ export type GetTatProductResponse = {
         @typedef ProductVariantItemResponse
         
         
+        @property { ProductListingAction } [action]
+        
         @property { string } [name]
-        
-        @property { string } [color]
-        
-        @property { string } [value]
-        
-        @property { number } [uid]
         
         @property { string } [colorName]
         
         @property { string } [slug]
         
+        @property { string } [value]
+        
+        @property { number } [uid]
+        
+        @property { string } [color]
+        
         @property { Array<Media> } [medias]
         
         @property { boolean } [isAvailable]
-        
-        @property { ProductListingAction } [action]
         
          
     */
@@ -2742,11 +2995,11 @@ export type GetTatProductResponse = {
         @typedef ProductVariantResponse
         
         
-        @property { string } [displayType]
-        
         @property { string } [header]
         
         @property { Array<ProductVariantItemResponse> } [items]
+        
+        @property { string } [displayType]
         
          
     */
@@ -2755,6 +3008,20 @@ export type GetTatProductResponse = {
         
         
         @property { Array<ProductVariantResponse> } [variants]
+        
+         
+    */
+/**
+        @typedef StoreDetail
+        
+        
+        @property { string } [code]
+        
+        @property { string } [name]
+        
+        @property { number } [id]
+        
+        @property { string } [city]
         
          
     */
@@ -2769,40 +3036,26 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef StoreDetail
-        
-        
-        @property { string } [name]
-        
-        @property { string } [code]
-        
-        @property { string } [city]
-        
-        @property { number } [id]
-        
-         
-    */
-/**
         @typedef ProductStockStatusItem
         
+        
+        @property { Object } [identifier]
+        
+        @property { string } [size]
+        
+        @property { number } [itemId]
+        
+        @property { ProductStockPrice } [price]
+        
+        @property { number } [quantity]
+        
+        @property { Seller } [seller]
+        
+        @property { StoreDetail } [store]
         
         @property { string } [uid]
         
         @property { CompanyDetail } [company]
-        
-        @property { StoreDetail } [store]
-        
-        @property { number } [itemId]
-        
-        @property { number } [quantity]
-        
-        @property { string } [size]
-        
-        @property { Object } [identifier]
-        
-        @property { ProductStockPrice } [price]
-        
-        @property { Seller } [seller]
         
          
     */
@@ -2818,77 +3071,9 @@ export type GetTatProductResponse = {
         @typedef ProductStockPolling
         
         
-        @property { Page } page
-        
         @property { Array<ProductStockStatusItem> } [items]
         
-         
-    */
-/**
-        @typedef ProductSortOn
-        
-        
-        @property { string } [name]
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [value]
-        
-         
-    */
-/**
-        @typedef ProductListingDetail
-        
-        
-        @property { number } [uid]
-        
-        @property { Array<string> } [similars]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { string } [itemType]
-        
-        @property { number } [ratingCount]
-        
-        @property { Object } [attributes]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { string } [imageNature]
-        
-        @property { string } [teaserTag]
-        
-        @property { string } [description]
-        
-        @property { number } [rating]
-        
-        @property { string } [shortDescription]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { string } [type]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { string } [color]
-        
-        @property { string } [discount]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { boolean } [sellable]
-        
-        @property { string } slug
+        @property { Page } page
         
          
     */
@@ -2896,11 +3081,11 @@ export type GetTatProductResponse = {
         @typedef ProductFiltersKey
         
         
-        @property { string } name
+        @property { string } [kind]
         
         @property { string } display
         
-        @property { string } [kind]
+        @property { string } name
         
         @property { string } [logo]
         
@@ -2910,29 +3095,29 @@ export type GetTatProductResponse = {
         @typedef ProductFiltersValue
         
         
-        @property { string } [value]
-        
         @property { string } display
-        
-        @property { number } [max]
-        
-        @property { string } [displayFormat]
-        
-        @property { string } [currencySymbol]
-        
-        @property { string } [currencyCode]
         
         @property { string } [queryFormat]
         
+        @property { string } [currencyCode]
+        
+        @property { number } [max]
+        
+        @property { string } [currencySymbol]
+        
+        @property { number } [selectedMax]
+        
         @property { boolean } isSelected
-        
-        @property { number } [min]
-        
-        @property { number } [count]
         
         @property { number } [selectedMin]
         
-        @property { number } [selectedMax]
+        @property { string } [displayFormat]
+        
+        @property { string } [value]
+        
+        @property { number } [count]
+        
+        @property { number } [min]
         
          
     */
@@ -2947,16 +3132,84 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef ProductSortOn
+        
+        
+        @property { string } [value]
+        
+        @property { string } [name]
+        
+        @property { boolean } [isSelected]
+        
+         
+    */
+/**
+        @typedef ProductListingDetail
+        
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { boolean } [sellable]
+        
+        @property { string } [shortDescription]
+        
+        @property { string } [type]
+        
+        @property { string } [itemType]
+        
+        @property { string } [imageNature]
+        
+        @property { string } [name]
+        
+        @property { string } [color]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { string } [description]
+        
+        @property { number } [rating]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { string } [discount]
+        
+        @property { string } slug
+        
+        @property { number } [ratingCount]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [teaserTag]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { number } [uid]
+        
+        @property { Array<string> } [similars]
+        
+        @property { boolean } [hasVariant]
+        
+         
+    */
+/**
         @typedef ProductListingResponse
         
         
-        @property { Page } page
+        @property { Array<ProductFilters> } [filters]
         
         @property { Array<ProductSortOn> } [sortOn]
         
         @property { Array<ProductListingDetail> } [items]
         
-        @property { Array<ProductFilters> } [filters]
+        @property { Page } page
         
          
     */
@@ -2964,9 +3217,9 @@ export type GetTatProductResponse = {
         @typedef ImageUrls
         
         
-        @property { Media } [landscape]
-        
         @property { Media } [portrait]
+        
+        @property { Media } [landscape]
         
          
     */
@@ -2974,21 +3227,21 @@ export type GetTatProductResponse = {
         @typedef BrandItem
         
         
-        @property { string } [name]
+        @property { ImageUrls } [banners]
         
-        @property { number } [uid]
+        @property { string } [name]
         
         @property { Array<string> } [departments]
         
-        @property { ImageUrls } [banners]
+        @property { string } [discount]
         
         @property { string } [slug]
         
-        @property { string } [discount]
-        
-        @property { Media } [logo]
+        @property { number } [uid]
         
         @property { ProductListingAction } [action]
+        
+        @property { Media } [logo]
         
          
     */
@@ -2996,9 +3249,9 @@ export type GetTatProductResponse = {
         @typedef BrandListingResponse
         
         
-        @property { Page } page
-        
         @property { Array<BrandItem> } [items]
+        
+        @property { Page } page
         
          
     */
@@ -3006,11 +3259,11 @@ export type GetTatProductResponse = {
         @typedef BrandDetailResponse
         
         
+        @property { number } [uid]
+        
         @property { ImageUrls } [banners]
         
         @property { string } [name]
-        
-        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -3020,17 +3273,17 @@ export type GetTatProductResponse = {
         @typedef CategoryItems
         
         
-        @property { string } [name]
+        @property { ProductListingAction } [action]
         
-        @property { number } [uid]
+        @property { string } [name]
         
         @property { Array<Object> } [childs]
         
-        @property { ImageUrls } [banners]
-        
         @property { string } [slug]
         
-        @property { ProductListingAction } [action]
+        @property { number } [uid]
+        
+        @property { ImageUrls } [banners]
         
          
     */
@@ -3068,11 +3321,11 @@ export type GetTatProductResponse = {
         @typedef CategoryMetaResponse
         
         
+        @property { number } [uid]
+        
         @property { ImageUrls } [banners]
         
         @property { string } [name]
-        
-        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -3082,11 +3335,11 @@ export type GetTatProductResponse = {
         @typedef HomeListingResponse
         
         
+        @property { Array<ProductListingDetail> } [items]
+        
         @property { Page } page
         
         @property { string } [message]
-        
-        @property { Array<ProductListingDetail> } [items]
         
          
     */
@@ -3096,11 +3349,11 @@ export type GetTatProductResponse = {
         
         @property { string } [name]
         
-        @property { number } [uid]
-        
         @property { string } [slug]
         
         @property { number } [priorityOrder]
+        
+        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -3138,9 +3391,9 @@ export type GetTatProductResponse = {
         @typedef Action
         
         
-        @property { AutocompletePage } [page]
-        
         @property { string } [type]
+        
+        @property { AutocompletePage } [page]
         
          
     */
@@ -3150,11 +3403,11 @@ export type GetTatProductResponse = {
         
         @property { string } [display]
         
+        @property { Action } [action]
+        
         @property { string } [type]
         
         @property { Media } [logo]
-        
-        @property { Action } [action]
         
          
     */
@@ -3170,9 +3423,9 @@ export type GetTatProductResponse = {
         @typedef CollectionListingFilterTag
         
         
-        @property { string } [name]
-        
         @property { string } [display]
+        
+        @property { string } [name]
         
         @property { boolean } [isSelected]
         
@@ -3182,9 +3435,9 @@ export type GetTatProductResponse = {
         @typedef CollectionListingFilterType
         
         
-        @property { string } [name]
-        
         @property { string } [display]
+        
+        @property { string } [name]
         
         @property { boolean } [isSelected]
         
@@ -3204,41 +3457,41 @@ export type GetTatProductResponse = {
         @typedef GetCollectionDetailNest
         
         
-        @property { string } [uid]
-        
-        @property { ImageUrls } [banners]
+        @property { Object } [schedule]
         
         @property { Array<string> } [visibleFacetsKeys]
         
-        @property { Array<string> } [tag]
+        @property { Object } [meta]
         
-        @property { boolean } [allowSort]
+        @property { string } [type]
+        
+        @property { Object } [badge]
+        
+        @property { string } [name]
         
         @property { boolean } [isActive]
         
         @property { string } [description]
         
-        @property { Media } [logo]
+        @property { ImageUrls } [banners]
         
-        @property { string } [type]
+        @property { boolean } [allowFacets]
         
-        @property { string } [appId]
-        
-        @property { Object } [schedule]
-        
-        @property { string } [name]
-        
-        @property { Object } [query]
-        
-        @property { Object } [cron]
+        @property { boolean } [allowSort]
         
         @property { string } [slug]
         
-        @property { Object } [meta]
+        @property { Object } [query]
         
-        @property { Object } [badge]
+        @property { string } [appId]
         
-        @property { boolean } [allowFacets]
+        @property { Media } [logo]
+        
+        @property { Object } [cron]
+        
+        @property { Array<string> } [tag]
+        
+        @property { string } [uid]
         
         @property { ProductListingAction } [action]
         
@@ -3250,9 +3503,9 @@ export type GetTatProductResponse = {
         
         @property { CollectionListingFilter } [filters]
         
-        @property { Page } page
-        
         @property { Array<GetCollectionDetailNest> } [items]
+        
+        @property { Page } page
         
          
     */
@@ -3260,39 +3513,39 @@ export type GetTatProductResponse = {
         @typedef CollectionDetailResponse
         
         
-        @property { string } [name]
-        
-        @property { Object } [query]
-        
-        @property { string } [appId]
-        
-        @property { Object } [cron]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [slug]
-        
         @property { Object } [schedule]
         
-        @property { Object } [meta]
+        @property { boolean } [allowFacets]
+        
+        @property { Array<string> } [visibleFacetsKeys]
         
         @property { Object } [badge]
         
-        @property { Array<string> } [visibleFacetsKeys]
+        @property { string } [name]
+        
+        @property { boolean } [allowSort]
+        
+        @property { Object } [cron]
         
         @property { boolean } [isActive]
         
         @property { string } [description]
         
+        @property { string } [slug]
+        
+        @property { Object } [query]
+        
         @property { Array<string> } [tag]
         
-        @property { boolean } [allowFacets]
+        @property { Object } [meta]
         
-        @property { Media } [logo]
+        @property { ImageUrls } [banners]
         
-        @property { boolean } [allowSort]
+        @property { string } [appId]
         
         @property { string } [type]
+        
+        @property { Media } [logo]
         
          
     */
@@ -3300,9 +3553,9 @@ export type GetTatProductResponse = {
         @typedef GetFollowListingResponse
         
         
-        @property { Page } page
-        
         @property { Array<Object> } items
+        
+        @property { Page } page
         
          
     */
@@ -3310,9 +3563,9 @@ export type GetTatProductResponse = {
         @typedef FollowPostResponse
         
         
-        @property { string } message
-        
         @property { string } id
+        
+        @property { string } message
         
          
     */
@@ -3328,11 +3581,11 @@ export type GetTatProductResponse = {
         @typedef FollowIdsData
         
         
-        @property { Array<number> } [products]
+        @property { Array<number> } [collections]
         
         @property { Array<number> } [brands]
         
-        @property { Array<number> } [collections]
+        @property { Array<number> } [products]
         
          
     */
@@ -3348,9 +3601,9 @@ export type GetTatProductResponse = {
         @typedef LatLong
         
         
-        @property { string } [type]
-        
         @property { Array<number> } [coordinates]
+        
+        @property { string } [type]
         
          
     */
@@ -3358,25 +3611,25 @@ export type GetTatProductResponse = {
         @typedef Store1
         
         
-        @property { string } [name]
-        
-        @property { string } [storeCode]
-        
-        @property { number } [pincode]
-        
-        @property { number } [uid]
-        
-        @property { string } [city]
-        
-        @property { LatLong } [latLong]
-        
-        @property { string } [address]
-        
         @property { string } [state]
+        
+        @property { string } [name]
         
         @property { string } [country]
         
+        @property { string } [storeCode]
+        
+        @property { LatLong } [latLong]
+        
+        @property { number } [uid]
+        
+        @property { number } [pincode]
+        
+        @property { string } [city]
+        
         @property { string } [storeEmail]
+        
+        @property { string } [address]
         
          
     */
@@ -3384,9 +3637,9 @@ export type GetTatProductResponse = {
         @typedef StoreListingResponse
         
         
-        @property { Page } page
-        
         @property { Array<Store1> } items
+        
+        @property { Page } page
         
          
     */
@@ -4929,6 +5182,652 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef PaginationSchema
+        
+        
+        @property { number } [size]
+        
+        @property { number } [itemTotal]
+        
+        @property { boolean } [hasNext]
+        
+        @property { string } [type]
+        
+        @property { number } [current]
+        
+         
+    */
+/**
+        @typedef ThemesListingResponseSchema
+        
+        
+        @property { Array<ThemesSchema> } [items]
+        
+        @property { PaginationSchema } [page]
+        
+         
+    */
+/**
+        @typedef AddThemeRequestSchema
+        
+        
+        @property { string } [themeId]
+        
+         
+    */
+/**
+        @typedef UpgradableThemeSchema
+        
+        
+        @property { string } [parentTheme]
+        
+        @property { string } [appliedTheme]
+        
+        @property { boolean } [upgrade]
+        
+         
+    */
+/**
+        @typedef FontsSchema
+        
+        
+        @property { FontsSchemaItems } [items]
+        
+        @property { string } [kind]
+        
+         
+    */
+/**
+        @typedef BlitzkriegApiErrorSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+/**
+        @typedef BlitzkriegNotFoundSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+/**
+        @typedef BlitzkriegInternalServerErrorSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+/**
+        @typedef FontsSchemaItems
+        
+        
+        @property { string } [family]
+        
+        @property { Array<string> } [variants]
+        
+        @property { Array<string> } [subsets]
+        
+        @property { string } [version]
+        
+        @property { string } [lastModified]
+        
+        @property { FontsSchemaItemsFiles } [files]
+        
+        @property { string } [category]
+        
+        @property { string } [kind]
+        
+         
+    */
+/**
+        @typedef FontsSchemaItemsFiles
+        
+        
+        @property { string } [regular]
+        
+        @property { string } [italic]
+        
+        @property { string } [bold]
+        
+         
+    */
+/**
+        @typedef ThemesSchema
+        
+        
+        @property { string } [application]
+        
+        @property { boolean } [applied]
+        
+        @property { boolean } [customized]
+        
+        @property { boolean } [published]
+        
+        @property { boolean } [archived]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [version]
+        
+        @property { string } [parentThemeVersion]
+        
+        @property { string } [parentTheme]
+        
+        @property { Information } [information]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Src } [src]
+        
+        @property { AssetsSchema } [assets]
+        
+        @property { AvailablePages } [availablePages]
+        
+        @property { Pages } [pages]
+        
+        @property { Array<availableSectionSchema> } [availableSections]
+        
+        @property { Array<sectionSchema> } [sections]
+        
+        @property { Constants } [constants]
+        
+        @property { Styles } [styles]
+        
+        @property { Config } [config]
+        
+        @property { Settings } [settings]
+        
+        @property { Font } [font]
+        
+        @property { string } [id]
+        
+        @property { number } [v]
+        
+        @property { Colors } [colors]
+        
+         
+    */
+/**
+        @typedef pagesSchema
+        
+        
+        @property { string } [text]
+        
+        @property { string } [path]
+        
+        @property { string } [type]
+        
+        @property { string } [value]
+        
+        @property { Sections } [sections]
+        
+         
+    */
+/**
+        @typedef availableSectionSchema
+        
+        
+        @property { Blocks } [blocks]
+        
+        @property { string } [name]
+        
+        @property { string } [label]
+        
+        @property { Props } [props]
+        
+         
+    */
+/**
+        @typedef sectionSchema
+        
+        
+        @property { string } [pageKey]
+        
+        @property { PageSections } [pageSections]
+        
+         
+    */
+/**
+        @typedef Information
+        
+        
+        @property { Images } [images]
+        
+        @property { Array<string> } [features]
+        
+        @property { string } [name]
+        
+        @property { string } [description]
+        
+         
+    */
+/**
+        @typedef Images
+        
+        
+        @property { Array<string> } [desktop]
+        
+        @property { Array<string> } [android]
+        
+        @property { Array<string> } [ios]
+        
+        @property { Array<string> } [thumbnail]
+        
+         
+    */
+/**
+        @typedef Src
+        
+        
+        @property { string } [link]
+        
+         
+    */
+/**
+        @typedef AssetsSchema
+        
+        
+        @property { UmdJs } [umdJs]
+        
+        @property { CommonJs } [commonJs]
+        
+        @property { Css } [css]
+        
+         
+    */
+/**
+        @typedef UmdJs
+        
+        
+        @property { string } [link]
+        
+         
+    */
+/**
+        @typedef CommonJs
+        
+        
+        @property { string } [link]
+        
+         
+    */
+/**
+        @typedef Css
+        
+        
+        @property { string } [link]
+        
+         
+    */
+/**
+        @typedef AvailablePages
+        
+        
+        @property { string } [path]
+        
+        @property { string } [type]
+        
+        @property { string } [text]
+        
+        @property { string } [value]
+        
+        @property { Seo } [seo]
+        
+        @property { Props } [props]
+        
+        @property { Sections } [sections]
+        
+         
+    */
+/**
+        @typedef Seo
+        
+        
+        @property { string } [title]
+        
+        @property { string } [description]
+        
+         
+    */
+/**
+        @typedef Props
+         
+    */
+/**
+        @typedef Sections
+        
+        
+        @property { string } [attributes]
+        
+         
+    */
+/**
+        @typedef Attributes
+        
+        
+        @property { string } [page]
+        
+         
+    */
+/**
+        @typedef Pages
+        
+        
+        @property { pagesSchema } [collectionListing]
+        
+        @property { pagesSchema } [brands]
+        
+        @property { pagesSchema } [cartLanding]
+        
+        @property { pagesSchema } [collections]
+        
+        @property { pagesSchema } [productDescription]
+        
+        @property { pagesSchema } [productListing]
+        
+        @property { pagesSchema } [home]
+        
+        @property { pagesSchema } [categories]
+        
+        @property { pagesSchema } [compareProducts]
+        
+        @property { pagesSchema } [wishlist]
+        
+         
+    */
+/**
+        @typedef Constants
+         
+    */
+/**
+        @typedef Styles
+         
+    */
+/**
+        @typedef Config
+        
+        
+        @property { Preset } [preset]
+        
+        @property { GlobalSchema } [globalSchema]
+        
+        @property { string } [current]
+        
+        @property { List } [list]
+        
+         
+    */
+/**
+        @typedef Preset
+        
+        
+        @property { sectionSchema } [sections]
+        
+         
+    */
+/**
+        @typedef GlobalSchema
+        
+        
+        @property { GlobalSchemaProps } [props]
+        
+         
+    */
+/**
+        @typedef GlobalSchemaProps
+         
+    */
+/**
+        @typedef List
+        
+        
+        @property { Global } [global]
+        
+        @property { Page } [page]
+        
+        @property { string } [name]
+        
+         
+    */
+/**
+        @typedef Global
+         
+    */
+/**
+        @typedef Colors
+        
+        
+        @property { string } [bgColor]
+        
+        @property { string } [primaryColor]
+        
+        @property { string } [secondaryColor]
+        
+        @property { string } [accentColor]
+        
+        @property { string } [linkColor]
+        
+        @property { string } [buttonSecondaryColor]
+        
+         
+    */
+/**
+        @typedef Custom
+        
+        
+        @property { CustomProps } [props]
+        
+         
+    */
+/**
+        @typedef CustomProps
+         
+    */
+/**
+        @typedef Settings
+         
+    */
+/**
+        @typedef SettingsProps
+         
+    */
+/**
+        @typedef Font
+        
+        
+        @property { string } [family]
+        
+        @property { Variants } [variants]
+        
+         
+    */
+/**
+        @typedef Variants
+        
+        
+        @property { Medium } [medium]
+        
+        @property { SemiBold } [semiBold]
+        
+        @property { Bold } [bold]
+        
+        @property { Light } [light]
+        
+        @property { Regular } [regular]
+        
+         
+    */
+/**
+        @typedef Medium
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+/**
+        @typedef SemiBold
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+/**
+        @typedef Bold
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+/**
+        @typedef Light
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+/**
+        @typedef Regular
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+/**
+        @typedef Blocks
+        
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { BlocksProps } [props]
+        
+         
+    */
+/**
+        @typedef BlocksProps
+        
+        
+        @property { string } [id]
+        
+        @property { string } [label]
+        
+        @property { string } [type]
+        
+         
+    */
+/**
+        @typedef PageSections
+        
+        
+        @property { PageSectionsBlocks } [blocks]
+        
+        @property { string } [name]
+        
+        @property { string } [label]
+        
+        @property { PageSectionsProps } [props]
+        
+        @property { PageSectionsPreset } [preset]
+        
+        @property { Predicate } [predicate]
+        
+         
+    */
+/**
+        @typedef PageSectionsBlocks
+        
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { PageSectionsBlocksProps } [props]
+        
+         
+    */
+/**
+        @typedef PageSectionsBlocksProps
+        
+        
+        @property { string } [id]
+        
+        @property { string } [label]
+        
+        @property { string } [type]
+        
+         
+    */
+/**
+        @typedef PageSectionsProps
+         
+    */
+/**
+        @typedef PageSectionsPreset
+         
+    */
+/**
+        @typedef Predicate
+        
+        
+        @property { Screen } [screen]
+        
+        @property { UserSchema } [user]
+        
+        @property { Route } [route]
+        
+         
+    */
+/**
+        @typedef Screen
+        
+        
+        @property { boolean } [mobile]
+        
+        @property { boolean } [desktop]
+        
+        @property { boolean } [tablet]
+        
+         
+    */
+/**
+        @typedef Route
+        
+        
+        @property { string } [selected]
+        
+        @property { string } [exactUrl]
+        
+        @property { Query } [query]
+        
+         
+    */
+/**
+        @typedef Query
+         
+    */
+/**
         @typedef EditEmailRequestSchema
         
         
@@ -5323,22 +6222,6 @@ export type GetTatProductResponse = {
         @property { Array<UserSchema> } [items]
         
         @property { PaginationSchema } [page]
-        
-         
-    */
-/**
-        @typedef PaginationSchema
-        
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
         
          
     */
@@ -6029,18 +6912,6 @@ export type GetTatProductResponse = {
         @property { string } [l3CategoryName]
         
         @property { Array<string> } [image]
-        
-         
-    */
-/**
-        @typedef Attributes
-        
-        
-        @property { string } [itemCode]
-        
-        @property { string } [brandName]
-        
-        @property { string } [countryOfOrigin]
         
          
     */
@@ -8044,19 +8915,6 @@ export class Catalog {
     }): any;
     /**
       *
-      * @summary: Follow a particular Product
-      * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-      * @param {Object} arg - arg object.
-      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-      * @param {number} arg.collectionId - the `id` of the collection type you want to follow
-      
-      **/
-    followById({ collectionType, collectionId }?: {
-        collectionType: string;
-        collectionId: number;
-    }): any;
-    /**
-      *
       * @summary: UnFollow a Product
       * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
       * @param {Object} arg - arg object.
@@ -8065,6 +8923,19 @@ export class Catalog {
       
       **/
     unfollowById({ collectionType, collectionId }?: {
+        collectionType: string;
+        collectionId: number;
+    }): any;
+    /**
+      *
+      * @summary: Follow a particular Product
+      * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+      * @param {Object} arg - arg object.
+      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+      * @param {number} arg.collectionId - the `id` of the collection type you want to follow
+      
+      **/
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: number;
     }): any;
@@ -8520,6 +9391,29 @@ export class Lead {
       **/
     getTokenForVideoRoom({ uniqueName }?: {
         uniqueName: string;
+    }): any;
+}
+export class Theme {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+      *
+      * @summary: Get applied theme for an application
+      * @description:
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAppliedTheme({}?: any): any;
+    /**
+      *
+      * @summary: Get theme for preview
+      * @description:
+      * @param {Object} arg - arg object.
+      * @param {string} arg.themeId - ID of the theme to be retrieved
+      
+      **/
+    getThemeForPreview({ themeId }?: {
+        themeId: string;
     }): any;
 }
 export class User {

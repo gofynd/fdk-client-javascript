@@ -4,6 +4,7 @@ declare class ApplicationClient {
     catalog: Catalog;
     cart: Cart;
     lead: Lead;
+    theme: Theme;
     user: User;
     fileStorage: FileStorage;
     order: Order;
@@ -14,6 +15,7 @@ declare class ApplicationClient {
 import { Catalog } from "./ApplicationModels";
 import { Cart } from "./ApplicationModels";
 import { Lead } from "./ApplicationModels";
+import { Theme } from "./ApplicationModels";
 import { User } from "./ApplicationModels";
 import { FileStorage } from "./ApplicationModels";
 import { Order } from "./ApplicationModels";

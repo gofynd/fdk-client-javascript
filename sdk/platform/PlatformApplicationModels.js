@@ -565,6 +565,710 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
+        @typedef PaginationSchema
+        
+        
+        @property { number } [size]
+        
+        @property { number } [itemTotal]
+        
+        @property { boolean } [hasNext]
+        
+        @property { string } [type]
+        
+        @property { number } [current]
+        
+         
+    */
+
+/**
+        @typedef ThemesListingResponseSchema
+        
+        
+        @property { Array<ThemesSchema> } [items]
+        
+        @property { PaginationSchema } [page]
+        
+         
+    */
+
+/**
+        @typedef AddThemeRequestSchema
+        
+        
+        @property { string } [themeId]
+        
+         
+    */
+
+/**
+        @typedef UpgradableThemeSchema
+        
+        
+        @property { string } [parentTheme]
+        
+        @property { string } [appliedTheme]
+        
+        @property { boolean } [upgrade]
+        
+         
+    */
+
+/**
+        @typedef FontsSchema
+        
+        
+        @property { FontsSchemaItems } [items]
+        
+        @property { string } [kind]
+        
+         
+    */
+
+/**
+        @typedef BlitzkriegApiErrorSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef BlitzkriegNotFoundSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef BlitzkriegInternalServerErrorSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef FontsSchemaItems
+        
+        
+        @property { string } [family]
+        
+        @property { Array<string> } [variants]
+        
+        @property { Array<string> } [subsets]
+        
+        @property { string } [version]
+        
+        @property { string } [lastModified]
+        
+        @property { FontsSchemaItemsFiles } [files]
+        
+        @property { string } [category]
+        
+        @property { string } [kind]
+        
+         
+    */
+
+/**
+        @typedef FontsSchemaItemsFiles
+        
+        
+        @property { string } [regular]
+        
+        @property { string } [italic]
+        
+        @property { string } [bold]
+        
+         
+    */
+
+/**
+        @typedef ThemesSchema
+        
+        
+        @property { string } [application]
+        
+        @property { boolean } [applied]
+        
+        @property { boolean } [customized]
+        
+        @property { boolean } [published]
+        
+        @property { boolean } [archived]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [version]
+        
+        @property { string } [parentThemeVersion]
+        
+        @property { string } [parentTheme]
+        
+        @property { Information } [information]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Src } [src]
+        
+        @property { AssetsSchema } [assets]
+        
+        @property { AvailablePages } [availablePages]
+        
+        @property { Pages } [pages]
+        
+        @property { Array<availableSectionSchema> } [availableSections]
+        
+        @property { Array<sectionSchema> } [sections]
+        
+        @property { Constants } [constants]
+        
+        @property { Styles } [styles]
+        
+        @property { Config } [config]
+        
+        @property { Settings } [settings]
+        
+        @property { Font } [font]
+        
+        @property { string } [id]
+        
+        @property { number } [v]
+        
+        @property { Colors } [colors]
+        
+         
+    */
+
+/**
+        @typedef pagesSchema
+        
+        
+        @property { string } [text]
+        
+        @property { string } [path]
+        
+        @property { string } [type]
+        
+        @property { string } [value]
+        
+        @property { Sections } [sections]
+        
+         
+    */
+
+/**
+        @typedef availableSectionSchema
+        
+        
+        @property { Blocks } [blocks]
+        
+        @property { string } [name]
+        
+        @property { string } [label]
+        
+        @property { Props } [props]
+        
+         
+    */
+
+/**
+        @typedef sectionSchema
+        
+        
+        @property { string } [pageKey]
+        
+        @property { PageSections } [pageSections]
+        
+         
+    */
+
+/**
+        @typedef Information
+        
+        
+        @property { Images } [images]
+        
+        @property { Array<string> } [features]
+        
+        @property { string } [name]
+        
+        @property { string } [description]
+        
+         
+    */
+
+/**
+        @typedef Images
+        
+        
+        @property { Array<string> } [desktop]
+        
+        @property { Array<string> } [android]
+        
+        @property { Array<string> } [ios]
+        
+        @property { Array<string> } [thumbnail]
+        
+         
+    */
+
+/**
+        @typedef Src
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef AssetsSchema
+        
+        
+        @property { UmdJs } [umdJs]
+        
+        @property { CommonJs } [commonJs]
+        
+        @property { Css } [css]
+        
+         
+    */
+
+/**
+        @typedef UmdJs
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef CommonJs
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef Css
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef AvailablePages
+        
+        
+        @property { string } [path]
+        
+        @property { string } [type]
+        
+        @property { string } [text]
+        
+        @property { string } [value]
+        
+        @property { Seo } [seo]
+        
+        @property { Props } [props]
+        
+        @property { Sections } [sections]
+        
+         
+    */
+
+/**
+        @typedef Seo
+        
+        
+        @property { string } [title]
+        
+        @property { string } [description]
+        
+         
+    */
+
+/**
+        @typedef Props
+         
+    */
+
+/**
+        @typedef Sections
+        
+        
+        @property { string } [attributes]
+        
+         
+    */
+
+/**
+        @typedef Attributes
+        
+        
+        @property { string } [page]
+        
+         
+    */
+
+/**
+        @typedef Pages
+        
+        
+        @property { pagesSchema } [collectionListing]
+        
+        @property { pagesSchema } [brands]
+        
+        @property { pagesSchema } [cartLanding]
+        
+        @property { pagesSchema } [collections]
+        
+        @property { pagesSchema } [productDescription]
+        
+        @property { pagesSchema } [productListing]
+        
+        @property { pagesSchema } [home]
+        
+        @property { pagesSchema } [categories]
+        
+        @property { pagesSchema } [compareProducts]
+        
+        @property { pagesSchema } [wishlist]
+        
+         
+    */
+
+/**
+        @typedef Constants
+         
+    */
+
+/**
+        @typedef Styles
+         
+    */
+
+/**
+        @typedef Config
+        
+        
+        @property { Preset } [preset]
+        
+        @property { GlobalSchema } [globalSchema]
+        
+        @property { string } [current]
+        
+        @property { List } [list]
+        
+         
+    */
+
+/**
+        @typedef Preset
+        
+        
+        @property { sectionSchema } [sections]
+        
+         
+    */
+
+/**
+        @typedef GlobalSchema
+        
+        
+        @property { GlobalSchemaProps } [props]
+        
+         
+    */
+
+/**
+        @typedef GlobalSchemaProps
+         
+    */
+
+/**
+        @typedef List
+        
+        
+        @property { Global } [global]
+        
+        @property { Page } [page]
+        
+        @property { string } [name]
+        
+         
+    */
+
+/**
+        @typedef Global
+         
+    */
+
+/**
+        @typedef Colors
+        
+        
+        @property { string } [bgColor]
+        
+        @property { string } [primaryColor]
+        
+        @property { string } [secondaryColor]
+        
+        @property { string } [accentColor]
+        
+        @property { string } [linkColor]
+        
+        @property { string } [buttonSecondaryColor]
+        
+         
+    */
+
+/**
+        @typedef Custom
+        
+        
+        @property { CustomProps } [props]
+        
+         
+    */
+
+/**
+        @typedef CustomProps
+         
+    */
+
+/**
+        @typedef Settings
+         
+    */
+
+/**
+        @typedef SettingsProps
+         
+    */
+
+/**
+        @typedef Font
+        
+        
+        @property { string } [family]
+        
+        @property { Variants } [variants]
+        
+         
+    */
+
+/**
+        @typedef Variants
+        
+        
+        @property { Medium } [medium]
+        
+        @property { SemiBold } [semiBold]
+        
+        @property { Bold } [bold]
+        
+        @property { Light } [light]
+        
+        @property { Regular } [regular]
+        
+         
+    */
+
+/**
+        @typedef Medium
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef SemiBold
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Bold
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Light
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Regular
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Blocks
+        
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { BlocksProps } [props]
+        
+         
+    */
+
+/**
+        @typedef BlocksProps
+        
+        
+        @property { string } [id]
+        
+        @property { string } [label]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef PageSections
+        
+        
+        @property { PageSectionsBlocks } [blocks]
+        
+        @property { string } [name]
+        
+        @property { string } [label]
+        
+        @property { PageSectionsProps } [props]
+        
+        @property { PageSectionsPreset } [preset]
+        
+        @property { Predicate } [predicate]
+        
+         
+    */
+
+/**
+        @typedef PageSectionsBlocks
+        
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { PageSectionsBlocksProps } [props]
+        
+         
+    */
+
+/**
+        @typedef PageSectionsBlocksProps
+        
+        
+        @property { string } [id]
+        
+        @property { string } [label]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef PageSectionsProps
+         
+    */
+
+/**
+        @typedef PageSectionsPreset
+         
+    */
+
+/**
+        @typedef Predicate
+        
+        
+        @property { Screen } [screen]
+        
+        @property { UserSchema } [user]
+        
+        @property { Route } [route]
+        
+         
+    */
+
+/**
+        @typedef Screen
+        
+        
+        @property { boolean } [mobile]
+        
+        @property { boolean } [desktop]
+        
+        @property { boolean } [tablet]
+        
+         
+    */
+
+/**
+        @typedef Route
+        
+        
+        @property { string } [selected]
+        
+        @property { string } [exactUrl]
+        
+        @property { Query } [query]
+        
+         
+    */
+
+/**
+        @typedef Query
+         
+    */
+
+/**
         @typedef EditEmailRequestSchema
         
         
@@ -992,23 +1696,6 @@ const APIClient = require("./PlatformAPIClient");
         @property { Array<UserSchema> } [items]
         
         @property { PaginationSchema } [page]
-        
-         
-    */
-
-/**
-        @typedef PaginationSchema
-        
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
         
          
     */
@@ -3801,55 +4488,6 @@ const APIClient = require("./PlatformAPIClient");
         @property { string } [userId]
         
         @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef Attributes
-        
-        
-        @property { string } [primaryMaterial]
-        
-        @property { string } [modifiedOn]
-        
-        @property { boolean } [isImageLessProduct]
-        
-        @property { string } [neckType]
-        
-        @property { string } [stage]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [imageNature]
-        
-        @property { string } [productFit]
-        
-        @property { string } [sleeveLength]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } [essential]
-        
-        @property { string } [primaryColor]
-        
-        @property { string } [material]
-        
-        @property { string } [color]
-        
-        @property { string } [pattern]
-        
-        @property { string } [metaNature]
-        
-        @property { UserCommon } [createdBy]
-        
-        @property { UserCommon } [modifiedBy]
-        
-        @property { VerifiedBy } [verifiedBy]
-        
-        @property { Array<string> } [l3Mapping]
-        
-        @property { Array<string> } [gender]
         
          
     */
@@ -6734,6 +7372,354 @@ class Lead {
   }
 }
 
+class Theme {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
+  }
+
+  /**
+    *
+    * @summary: Gets list of themes in theme library
+    * @description: Gets list of themes in theme library
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 10.
+    * @param {number} [arg.pageNo] - Page number. Default is 1.
+    
+    **/
+  getThemeLibrary({ pageSize, pageNo } = {}) {
+    const queryObj = {};
+    queryObj["page_size"] = pageSize;
+    queryObj["page_no"] = pageNo;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Add theme to theme library
+   * @description: Add theme to theme library
+   * @param {Object} arg - arg object.
+   * @param {AddThemeRequestSchema} arg.body
+   **/
+  addToThemeLibrary({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Apply theme
+   * @description: Apply theme
+   * @param {Object} arg - arg object.
+   * @param {AddThemeRequestSchema} arg.body
+   **/
+  applyTheme({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/apply`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Checks if theme is upgradable
+    * @description: Checks if theme is upgradable
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - Theme ID
+    
+    **/
+  isUpgradable({ themeId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgradable`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Upgrades theme
+    * @description: Upgrades theme
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - Theme ID
+    
+    **/
+  upgradeTheme({ themeId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgrade`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Gets public themes
+    * @description: Gets public themes
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 10.
+    * @param {number} [arg.pageNo] - Page number. Default is 1.
+    
+    **/
+  getPublicThemes({ pageSize, pageNo } = {}) {
+    const queryObj = {};
+    queryObj["page_size"] = pageSize;
+    queryObj["page_no"] = pageNo;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/public/library`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create new theme
+   * @description: Create new theme
+   * @param {Object} arg - arg object.
+   * @param {ThemesSchema} arg.body
+   **/
+  createTheme({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get applied theme
+    * @description: Get applied theme
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAppliedTheme({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Gets fonts
+    * @description: Gets fonts
+    * @param {Object} arg - arg object.
+    
+    **/
+  getFonts({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/fonts`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Gets theme by id
+    * @description: Gets theme by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - Theme ID
+    
+    **/
+  getThemeById({ themeId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update theme
+   * @description: Update theme
+   * @param {Object} arg - arg object.
+   * @param {string} arg.themeId - Theme ID
+   * @param {ThemesSchema} arg.body
+   **/
+  updateTheme({ themeId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete theme
+    * @description: Delete theme
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - Theme ID
+    
+    **/
+  deleteTheme({ themeId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Gets theme for preview
+    * @description: Gets theme for preview
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - Theme ID
+    
+    **/
+  getThemeForPreview({ themeId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/preview`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Publish theme
+    * @description: Publish theme
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - Theme ID
+    
+    **/
+  publishTheme({ themeId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/publish`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Unpublish theme
+    * @description: Unpublish theme
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - Theme ID
+    
+    **/
+  unpublishTheme({ themeId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unpublish`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Archive theme
+    * @description: Archive theme
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - Theme ID
+    
+    **/
+  archiveTheme({ themeId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/archive`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Unarchive theme
+    * @description: Unarchive theme
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - Theme ID
+    
+    **/
+  unarchiveTheme({ themeId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unarchive`,
+      queryObj,
+      undefined
+    );
+  }
+}
+
 class User {
   constructor(config, applicationId) {
     this.config = config;
@@ -7446,6 +8432,7 @@ class Assets {
 
 module.exports = {
   Lead,
+  Theme,
   User,
   Payment,
   Catalog,

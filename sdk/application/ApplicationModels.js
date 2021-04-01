@@ -2,14 +2,62 @@ const APIClient = require("./APIClient");
 const Paginator = require("../common/Paginator");
 
 /**
+        @typedef ProductListingActionPage
+        
+        
+        @property { Object } [query]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef ProductListingAction
+        
+        
+        @property { string } [type]
+        
+        @property { ProductListingActionPage } [page]
+        
+         
+    */
+
+/**
+        @typedef Media
+        
+        
+        @property { string } [url]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef ProductBrand
+        
+        
+        @property { number } [uid]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { string } [name]
+        
+        @property { Media } [logo]
+        
+         
+    */
+
+/**
         @typedef ProductDetailAttribute
         
         
         @property { string } [value]
         
-        @property { string } [type]
-        
         @property { string } [key]
+        
+        @property { string } [type]
         
          
     */
@@ -26,100 +74,52 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef Media
-        
-        
-        @property { string } [type]
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef ProductListingActionPage
-        
-        
-        @property { Object } [query]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ProductListingAction
-        
-        
-        @property { ProductListingActionPage } [page]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ProductBrand
-        
-        
-        @property { string } [name]
-        
-        @property { number } [uid]
-        
-        @property { Media } [logo]
-        
-        @property { ProductListingAction } [action]
-        
-         
-    */
-
-/**
         @typedef ProductDetail
         
         
-        @property { number } [uid]
-        
-        @property { Array<string> } [similars]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { boolean } [hasVariant]
+        @property { Array<ProductBrand> } [categories]
         
         @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
         
+        @property { string } [shortDescription]
+        
+        @property { string } [type]
+        
         @property { string } [itemType]
-        
-        @property { number } [ratingCount]
-        
-        @property { Object } [attributes]
-        
-        @property { ProductBrand } [brand]
         
         @property { string } [imageNature]
         
-        @property { string } [teaserTag]
+        @property { string } [name]
+        
+        @property { string } [color]
+        
+        @property { ProductBrand } [brand]
         
         @property { string } [description]
         
         @property { number } [rating]
         
-        @property { string } [shortDescription]
-        
         @property { string } [productOnlineDate]
         
-        @property { string } [type]
+        @property { string } slug
         
-        @property { string } [color]
+        @property { number } [ratingCount]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [teaserTag]
         
         @property { Array<Media> } [medias]
         
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { string } [name]
+        @property { Array<string> } [highlights]
         
         @property { Array<string> } [tryouts]
         
-        @property { string } slug
+        @property { number } [uid]
+        
+        @property { Array<string> } [similars]
+        
+        @property { boolean } [hasVariant]
         
          
     */
@@ -134,23 +134,14 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef ProductSizeStores
-        
-        
-        @property { number } [count]
-        
-         
-    */
-
-/**
         @typedef ProductSize
         
         
-        @property { string } [value]
+        @property { number } [quantity]
         
         @property { string } [display]
         
-        @property { number } [quantity]
+        @property { string } [value]
         
         @property { boolean } [isAvailable]
         
@@ -161,9 +152,9 @@ const Paginator = require("../common/Paginator");
         @typedef Price
         
         
-        @property { number } [min]
-        
         @property { string } [currencySymbol]
+        
+        @property { number } [min]
         
         @property { string } [currencyCode]
         
@@ -176,9 +167,18 @@ const Paginator = require("../common/Paginator");
         @typedef ProductListingPrice
         
         
+        @property { Price } [effective]
+        
         @property { Price } [marked]
         
-        @property { Price } [effective]
+         
+    */
+
+/**
+        @typedef ProductSizeStores
+        
+        
+        @property { number } [count]
         
          
     */
@@ -187,17 +187,30 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizes
         
         
-        @property { ProductSizeStores } [stores]
-        
         @property { Array<ProductSize> } [sizes]
-        
-        @property { boolean } [sellable]
         
         @property { string } [discount]
         
+        @property { ProductListingPrice } [price]
+        
+        @property { ProductSizeStores } [stores]
+        
+        @property { boolean } [sellable]
+        
         @property { Object } [sizeChart]
         
-        @property { ProductListingPrice } [price]
+         
+    */
+
+/**
+        @typedef ProductStockPrice
+        
+        
+        @property { string } [currency]
+        
+        @property { number } [effective]
+        
+        @property { number } [marked]
         
          
     */
@@ -214,12 +227,12 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef Store
+        @typedef Seller
         
-        
-        @property { string } [name]
         
         @property { number } [uid]
+        
+        @property { string } [name]
         
         @property { number } [count]
         
@@ -227,25 +240,12 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef ProductStockPrice
+        @typedef Store
         
-        
-        @property { string } [currency]
-        
-        @property { number } [marked]
-        
-        @property { number } [effective]
-        
-         
-    */
-
-/**
-        @typedef Seller
-        
-        
-        @property { string } [name]
         
         @property { number } [uid]
+        
+        @property { string } [name]
         
         @property { number } [count]
         
@@ -256,56 +256,35 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizePriceResponse
         
         
-        @property { string } [articleId]
-        
-        @property { number } [pincode]
-        
-        @property { ArticleAssignment } [articleAssignment]
-        
-        @property { string } [specialBadge]
-        
-        @property { string } [discount]
-        
-        @property { string } [itemType]
+        @property { number } [sellerCount]
         
         @property { Array<number> } [longLat]
         
-        @property { Store } [store]
+        @property { string } [articleId]
         
-        @property { Array<Object> } [strategyWiseListing]
-        
-        @property { number } [quantity]
-        
-        @property { ProductStockPrice } [pricePerPrice]
-        
-        @property { number } [sellerCount]
-        
-        @property { Object } [set]
+        @property { string } [specialBadge]
         
         @property { ProductStockPrice } [price]
         
+        @property { string } [discount]
+        
+        @property { number } [quantity]
+        
+        @property { ArticleAssignment } [articleAssignment]
+        
+        @property { ProductStockPrice } [pricePerPrice]
+        
         @property { Seller } [seller]
         
-         
-    */
-
-/**
-        @typedef Page
+        @property { Store } [store]
         
+        @property { Object } [set]
         
-        @property { boolean } [hasNext]
+        @property { Array<Object> } [strategyWiseListing]
         
-        @property { number } [current]
+        @property { number } [pincode]
         
-        @property { number } [itemTotal]
-        
-        @property { number } [size]
-        
-        @property { string } [nextId]
-        
-        @property { string } [type]
-        
-        @property { boolean } [hasPrevious]
+        @property { string } [itemType]
         
          
     */
@@ -314,11 +293,32 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizeSellerFilter
         
         
+        @property { string } [value]
+        
         @property { string } [name]
         
         @property { boolean } [isSelected]
         
-        @property { string } [value]
+         
+    */
+
+/**
+        @typedef Page
+        
+        
+        @property { number } [current]
+        
+        @property { number } [size]
+        
+        @property { boolean } [hasNext]
+        
+        @property { number } [itemTotal]
+        
+        @property { string } [nextId]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { string } [type]
         
          
     */
@@ -327,11 +327,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizeSellersResponse
         
         
-        @property { Page } page
-        
         @property { Array<ProductSizeSellerFilter> } [sortOn]
         
         @property { Array<ProductSizePriceResponse> } [items]
+        
+        @property { Page } page
         
          
     */
@@ -342,9 +342,9 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [display]
         
-        @property { string } [description]
-        
         @property { string } [key]
+        
+        @property { string } [description]
         
          
     */
@@ -353,9 +353,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductsComparisonResponse
         
         
-        @property { Array<AttributeDetail> } [attributesMetadata]
-        
         @property { Array<ProductDetail> } [items]
+        
+        @property { Array<AttributeDetail> } [attributesMetadata]
         
          
     */
@@ -364,13 +364,13 @@ const Paginator = require("../common/Paginator");
         @typedef ProductCompareResponse
         
         
-        @property { Array<AttributeDetail> } [attributesMetadata]
+        @property { Array<ProductDetail> } [items]
         
-        @property { string } [title]
+        @property { Array<AttributeDetail> } [attributesMetadata]
         
         @property { string } [subtitle]
         
-        @property { Array<ProductDetail> } [items]
+        @property { string } [title]
         
          
     */
@@ -388,11 +388,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSimilarItem
         
         
-        @property { string } [title]
+        @property { Array<ProductDetail> } [items]
         
         @property { string } [subtitle]
         
-        @property { Array<ProductDetail> } [items]
+        @property { string } [title]
         
          
     */
@@ -410,23 +410,23 @@ const Paginator = require("../common/Paginator");
         @typedef ProductVariantItemResponse
         
         
+        @property { ProductListingAction } [action]
+        
         @property { string } [name]
-        
-        @property { string } [color]
-        
-        @property { string } [value]
-        
-        @property { number } [uid]
         
         @property { string } [colorName]
         
         @property { string } [slug]
         
+        @property { string } [value]
+        
+        @property { number } [uid]
+        
+        @property { string } [color]
+        
         @property { Array<Media> } [medias]
         
         @property { boolean } [isAvailable]
-        
-        @property { ProductListingAction } [action]
         
          
     */
@@ -435,11 +435,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductVariantResponse
         
         
-        @property { string } [displayType]
-        
         @property { string } [header]
         
         @property { Array<ProductVariantItemResponse> } [items]
+        
+        @property { string } [displayType]
         
          
     */
@@ -449,6 +449,21 @@ const Paginator = require("../common/Paginator");
         
         
         @property { Array<ProductVariantResponse> } [variants]
+        
+         
+    */
+
+/**
+        @typedef StoreDetail
+        
+        
+        @property { string } [code]
+        
+        @property { string } [name]
+        
+        @property { number } [id]
+        
+        @property { string } [city]
         
          
     */
@@ -465,41 +480,26 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef StoreDetail
-        
-        
-        @property { string } [name]
-        
-        @property { string } [code]
-        
-        @property { string } [city]
-        
-        @property { number } [id]
-        
-         
-    */
-
-/**
         @typedef ProductStockStatusItem
         
+        
+        @property { Object } [identifier]
+        
+        @property { string } [size]
+        
+        @property { number } [itemId]
+        
+        @property { ProductStockPrice } [price]
+        
+        @property { number } [quantity]
+        
+        @property { Seller } [seller]
+        
+        @property { StoreDetail } [store]
         
         @property { string } [uid]
         
         @property { CompanyDetail } [company]
-        
-        @property { StoreDetail } [store]
-        
-        @property { number } [itemId]
-        
-        @property { number } [quantity]
-        
-        @property { string } [size]
-        
-        @property { Object } [identifier]
-        
-        @property { ProductStockPrice } [price]
-        
-        @property { Seller } [seller]
         
          
     */
@@ -517,79 +517,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductStockPolling
         
         
-        @property { Page } page
-        
         @property { Array<ProductStockStatusItem> } [items]
         
-         
-    */
-
-/**
-        @typedef ProductSortOn
-        
-        
-        @property { string } [name]
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef ProductListingDetail
-        
-        
-        @property { number } [uid]
-        
-        @property { Array<string> } [similars]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { string } [itemType]
-        
-        @property { number } [ratingCount]
-        
-        @property { Object } [attributes]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { string } [imageNature]
-        
-        @property { string } [teaserTag]
-        
-        @property { string } [description]
-        
-        @property { number } [rating]
-        
-        @property { string } [shortDescription]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { string } [type]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { string } [color]
-        
-        @property { string } [discount]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { boolean } [sellable]
-        
-        @property { string } slug
+        @property { Page } page
         
          
     */
@@ -598,11 +528,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductFiltersKey
         
         
-        @property { string } name
+        @property { string } [kind]
         
         @property { string } display
         
-        @property { string } [kind]
+        @property { string } name
         
         @property { string } [logo]
         
@@ -613,29 +543,29 @@ const Paginator = require("../common/Paginator");
         @typedef ProductFiltersValue
         
         
-        @property { string } [value]
-        
         @property { string } display
-        
-        @property { number } [max]
-        
-        @property { string } [displayFormat]
-        
-        @property { string } [currencySymbol]
-        
-        @property { string } [currencyCode]
         
         @property { string } [queryFormat]
         
+        @property { string } [currencyCode]
+        
+        @property { number } [max]
+        
+        @property { string } [currencySymbol]
+        
+        @property { number } [selectedMax]
+        
         @property { boolean } isSelected
-        
-        @property { number } [min]
-        
-        @property { number } [count]
         
         @property { number } [selectedMin]
         
-        @property { number } [selectedMax]
+        @property { string } [displayFormat]
+        
+        @property { string } [value]
+        
+        @property { number } [count]
+        
+        @property { number } [min]
         
          
     */
@@ -652,16 +582,86 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
+        @typedef ProductSortOn
+        
+        
+        @property { string } [value]
+        
+        @property { string } [name]
+        
+        @property { boolean } [isSelected]
+        
+         
+    */
+
+/**
+        @typedef ProductListingDetail
+        
+        
+        @property { Array<ProductBrand> } [categories]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { boolean } [sellable]
+        
+        @property { string } [shortDescription]
+        
+        @property { string } [type]
+        
+        @property { string } [itemType]
+        
+        @property { string } [imageNature]
+        
+        @property { string } [name]
+        
+        @property { string } [color]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { string } [description]
+        
+        @property { number } [rating]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { string } [discount]
+        
+        @property { string } slug
+        
+        @property { number } [ratingCount]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [teaserTag]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { number } [uid]
+        
+        @property { Array<string> } [similars]
+        
+        @property { boolean } [hasVariant]
+        
+         
+    */
+
+/**
         @typedef ProductListingResponse
         
         
-        @property { Page } page
+        @property { Array<ProductFilters> } [filters]
         
         @property { Array<ProductSortOn> } [sortOn]
         
         @property { Array<ProductListingDetail> } [items]
         
-        @property { Array<ProductFilters> } [filters]
+        @property { Page } page
         
          
     */
@@ -670,9 +670,9 @@ const Paginator = require("../common/Paginator");
         @typedef ImageUrls
         
         
-        @property { Media } [landscape]
-        
         @property { Media } [portrait]
+        
+        @property { Media } [landscape]
         
          
     */
@@ -681,21 +681,21 @@ const Paginator = require("../common/Paginator");
         @typedef BrandItem
         
         
-        @property { string } [name]
+        @property { ImageUrls } [banners]
         
-        @property { number } [uid]
+        @property { string } [name]
         
         @property { Array<string> } [departments]
         
-        @property { ImageUrls } [banners]
+        @property { string } [discount]
         
         @property { string } [slug]
         
-        @property { string } [discount]
-        
-        @property { Media } [logo]
+        @property { number } [uid]
         
         @property { ProductListingAction } [action]
+        
+        @property { Media } [logo]
         
          
     */
@@ -704,9 +704,9 @@ const Paginator = require("../common/Paginator");
         @typedef BrandListingResponse
         
         
-        @property { Page } page
-        
         @property { Array<BrandItem> } [items]
+        
+        @property { Page } page
         
          
     */
@@ -715,11 +715,11 @@ const Paginator = require("../common/Paginator");
         @typedef BrandDetailResponse
         
         
+        @property { number } [uid]
+        
         @property { ImageUrls } [banners]
         
         @property { string } [name]
-        
-        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -730,17 +730,17 @@ const Paginator = require("../common/Paginator");
         @typedef CategoryItems
         
         
-        @property { string } [name]
+        @property { ProductListingAction } [action]
         
-        @property { number } [uid]
+        @property { string } [name]
         
         @property { Array<Object> } [childs]
         
-        @property { ImageUrls } [banners]
-        
         @property { string } [slug]
         
-        @property { ProductListingAction } [action]
+        @property { number } [uid]
+        
+        @property { ImageUrls } [banners]
         
          
     */
@@ -782,11 +782,11 @@ const Paginator = require("../common/Paginator");
         @typedef CategoryMetaResponse
         
         
+        @property { number } [uid]
+        
         @property { ImageUrls } [banners]
         
         @property { string } [name]
-        
-        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -797,11 +797,11 @@ const Paginator = require("../common/Paginator");
         @typedef HomeListingResponse
         
         
+        @property { Array<ProductListingDetail> } [items]
+        
         @property { Page } page
         
         @property { string } [message]
-        
-        @property { Array<ProductListingDetail> } [items]
         
          
     */
@@ -812,11 +812,11 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [name]
         
-        @property { number } [uid]
-        
         @property { string } [slug]
         
         @property { number } [priorityOrder]
+        
+        @property { number } [uid]
         
         @property { Media } [logo]
         
@@ -858,9 +858,9 @@ const Paginator = require("../common/Paginator");
         @typedef Action
         
         
-        @property { AutocompletePage } [page]
-        
         @property { string } [type]
+        
+        @property { AutocompletePage } [page]
         
          
     */
@@ -871,11 +871,11 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [display]
         
+        @property { Action } [action]
+        
         @property { string } [type]
         
         @property { Media } [logo]
-        
-        @property { Action } [action]
         
          
     */
@@ -893,9 +893,9 @@ const Paginator = require("../common/Paginator");
         @typedef CollectionListingFilterTag
         
         
-        @property { string } [name]
-        
         @property { string } [display]
+        
+        @property { string } [name]
         
         @property { boolean } [isSelected]
         
@@ -906,9 +906,9 @@ const Paginator = require("../common/Paginator");
         @typedef CollectionListingFilterType
         
         
-        @property { string } [name]
-        
         @property { string } [display]
+        
+        @property { string } [name]
         
         @property { boolean } [isSelected]
         
@@ -930,41 +930,41 @@ const Paginator = require("../common/Paginator");
         @typedef GetCollectionDetailNest
         
         
-        @property { string } [uid]
-        
-        @property { ImageUrls } [banners]
+        @property { Object } [schedule]
         
         @property { Array<string> } [visibleFacetsKeys]
         
-        @property { Array<string> } [tag]
+        @property { Object } [meta]
         
-        @property { boolean } [allowSort]
+        @property { string } [type]
+        
+        @property { Object } [badge]
+        
+        @property { string } [name]
         
         @property { boolean } [isActive]
         
         @property { string } [description]
         
-        @property { Media } [logo]
+        @property { ImageUrls } [banners]
         
-        @property { string } [type]
+        @property { boolean } [allowFacets]
         
-        @property { string } [appId]
-        
-        @property { Object } [schedule]
-        
-        @property { string } [name]
-        
-        @property { Object } [query]
-        
-        @property { Object } [cron]
+        @property { boolean } [allowSort]
         
         @property { string } [slug]
         
-        @property { Object } [meta]
+        @property { Object } [query]
         
-        @property { Object } [badge]
+        @property { string } [appId]
         
-        @property { boolean } [allowFacets]
+        @property { Media } [logo]
+        
+        @property { Object } [cron]
+        
+        @property { Array<string> } [tag]
+        
+        @property { string } [uid]
         
         @property { ProductListingAction } [action]
         
@@ -977,9 +977,9 @@ const Paginator = require("../common/Paginator");
         
         @property { CollectionListingFilter } [filters]
         
-        @property { Page } page
-        
         @property { Array<GetCollectionDetailNest> } [items]
+        
+        @property { Page } page
         
          
     */
@@ -988,39 +988,39 @@ const Paginator = require("../common/Paginator");
         @typedef CollectionDetailResponse
         
         
-        @property { string } [name]
-        
-        @property { Object } [query]
-        
-        @property { string } [appId]
-        
-        @property { Object } [cron]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [slug]
-        
         @property { Object } [schedule]
         
-        @property { Object } [meta]
+        @property { boolean } [allowFacets]
+        
+        @property { Array<string> } [visibleFacetsKeys]
         
         @property { Object } [badge]
         
-        @property { Array<string> } [visibleFacetsKeys]
+        @property { string } [name]
+        
+        @property { boolean } [allowSort]
+        
+        @property { Object } [cron]
         
         @property { boolean } [isActive]
         
         @property { string } [description]
         
+        @property { string } [slug]
+        
+        @property { Object } [query]
+        
         @property { Array<string> } [tag]
         
-        @property { boolean } [allowFacets]
+        @property { Object } [meta]
         
-        @property { Media } [logo]
+        @property { ImageUrls } [banners]
         
-        @property { boolean } [allowSort]
+        @property { string } [appId]
         
         @property { string } [type]
+        
+        @property { Media } [logo]
         
          
     */
@@ -1029,9 +1029,9 @@ const Paginator = require("../common/Paginator");
         @typedef GetFollowListingResponse
         
         
-        @property { Page } page
-        
         @property { Array<Object> } items
+        
+        @property { Page } page
         
          
     */
@@ -1040,9 +1040,9 @@ const Paginator = require("../common/Paginator");
         @typedef FollowPostResponse
         
         
-        @property { string } message
-        
         @property { string } id
+        
+        @property { string } message
         
          
     */
@@ -1060,11 +1060,11 @@ const Paginator = require("../common/Paginator");
         @typedef FollowIdsData
         
         
-        @property { Array<number> } [products]
+        @property { Array<number> } [collections]
         
         @property { Array<number> } [brands]
         
-        @property { Array<number> } [collections]
+        @property { Array<number> } [products]
         
          
     */
@@ -1082,9 +1082,9 @@ const Paginator = require("../common/Paginator");
         @typedef LatLong
         
         
-        @property { string } [type]
-        
         @property { Array<number> } [coordinates]
+        
+        @property { string } [type]
         
          
     */
@@ -1093,25 +1093,25 @@ const Paginator = require("../common/Paginator");
         @typedef Store1
         
         
-        @property { string } [name]
-        
-        @property { string } [storeCode]
-        
-        @property { number } [pincode]
-        
-        @property { number } [uid]
-        
-        @property { string } [city]
-        
-        @property { LatLong } [latLong]
-        
-        @property { string } [address]
-        
         @property { string } [state]
+        
+        @property { string } [name]
         
         @property { string } [country]
         
+        @property { string } [storeCode]
+        
+        @property { LatLong } [latLong]
+        
+        @property { number } [uid]
+        
+        @property { number } [pincode]
+        
+        @property { string } [city]
+        
         @property { string } [storeEmail]
+        
+        @property { string } [address]
         
          
     */
@@ -1120,9 +1120,9 @@ const Paginator = require("../common/Paginator");
         @typedef StoreListingResponse
         
         
-        @property { Page } page
-        
         @property { Array<Store1> } items
+        
+        @property { Page } page
         
          
     */
@@ -2764,6 +2764,710 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
+        @typedef PaginationSchema
+        
+        
+        @property { number } [size]
+        
+        @property { number } [itemTotal]
+        
+        @property { boolean } [hasNext]
+        
+        @property { string } [type]
+        
+        @property { number } [current]
+        
+         
+    */
+
+/**
+        @typedef ThemesListingResponseSchema
+        
+        
+        @property { Array<ThemesSchema> } [items]
+        
+        @property { PaginationSchema } [page]
+        
+         
+    */
+
+/**
+        @typedef AddThemeRequestSchema
+        
+        
+        @property { string } [themeId]
+        
+         
+    */
+
+/**
+        @typedef UpgradableThemeSchema
+        
+        
+        @property { string } [parentTheme]
+        
+        @property { string } [appliedTheme]
+        
+        @property { boolean } [upgrade]
+        
+         
+    */
+
+/**
+        @typedef FontsSchema
+        
+        
+        @property { FontsSchemaItems } [items]
+        
+        @property { string } [kind]
+        
+         
+    */
+
+/**
+        @typedef BlitzkriegApiErrorSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef BlitzkriegNotFoundSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef BlitzkriegInternalServerErrorSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef FontsSchemaItems
+        
+        
+        @property { string } [family]
+        
+        @property { Array<string> } [variants]
+        
+        @property { Array<string> } [subsets]
+        
+        @property { string } [version]
+        
+        @property { string } [lastModified]
+        
+        @property { FontsSchemaItemsFiles } [files]
+        
+        @property { string } [category]
+        
+        @property { string } [kind]
+        
+         
+    */
+
+/**
+        @typedef FontsSchemaItemsFiles
+        
+        
+        @property { string } [regular]
+        
+        @property { string } [italic]
+        
+        @property { string } [bold]
+        
+         
+    */
+
+/**
+        @typedef ThemesSchema
+        
+        
+        @property { string } [application]
+        
+        @property { boolean } [applied]
+        
+        @property { boolean } [customized]
+        
+        @property { boolean } [published]
+        
+        @property { boolean } [archived]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [version]
+        
+        @property { string } [parentThemeVersion]
+        
+        @property { string } [parentTheme]
+        
+        @property { Information } [information]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Src } [src]
+        
+        @property { AssetsSchema } [assets]
+        
+        @property { AvailablePages } [availablePages]
+        
+        @property { Pages } [pages]
+        
+        @property { Array<availableSectionSchema> } [availableSections]
+        
+        @property { Array<sectionSchema> } [sections]
+        
+        @property { Constants } [constants]
+        
+        @property { Styles } [styles]
+        
+        @property { Config } [config]
+        
+        @property { Settings } [settings]
+        
+        @property { Font } [font]
+        
+        @property { string } [id]
+        
+        @property { number } [v]
+        
+        @property { Colors } [colors]
+        
+         
+    */
+
+/**
+        @typedef pagesSchema
+        
+        
+        @property { string } [text]
+        
+        @property { string } [path]
+        
+        @property { string } [type]
+        
+        @property { string } [value]
+        
+        @property { Sections } [sections]
+        
+         
+    */
+
+/**
+        @typedef availableSectionSchema
+        
+        
+        @property { Blocks } [blocks]
+        
+        @property { string } [name]
+        
+        @property { string } [label]
+        
+        @property { Props } [props]
+        
+         
+    */
+
+/**
+        @typedef sectionSchema
+        
+        
+        @property { string } [pageKey]
+        
+        @property { PageSections } [pageSections]
+        
+         
+    */
+
+/**
+        @typedef Information
+        
+        
+        @property { Images } [images]
+        
+        @property { Array<string> } [features]
+        
+        @property { string } [name]
+        
+        @property { string } [description]
+        
+         
+    */
+
+/**
+        @typedef Images
+        
+        
+        @property { Array<string> } [desktop]
+        
+        @property { Array<string> } [android]
+        
+        @property { Array<string> } [ios]
+        
+        @property { Array<string> } [thumbnail]
+        
+         
+    */
+
+/**
+        @typedef Src
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef AssetsSchema
+        
+        
+        @property { UmdJs } [umdJs]
+        
+        @property { CommonJs } [commonJs]
+        
+        @property { Css } [css]
+        
+         
+    */
+
+/**
+        @typedef UmdJs
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef CommonJs
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef Css
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef AvailablePages
+        
+        
+        @property { string } [path]
+        
+        @property { string } [type]
+        
+        @property { string } [text]
+        
+        @property { string } [value]
+        
+        @property { Seo } [seo]
+        
+        @property { Props } [props]
+        
+        @property { Sections } [sections]
+        
+         
+    */
+
+/**
+        @typedef Seo
+        
+        
+        @property { string } [title]
+        
+        @property { string } [description]
+        
+         
+    */
+
+/**
+        @typedef Props
+         
+    */
+
+/**
+        @typedef Sections
+        
+        
+        @property { string } [attributes]
+        
+         
+    */
+
+/**
+        @typedef Attributes
+        
+        
+        @property { string } [page]
+        
+         
+    */
+
+/**
+        @typedef Pages
+        
+        
+        @property { pagesSchema } [collectionListing]
+        
+        @property { pagesSchema } [brands]
+        
+        @property { pagesSchema } [cartLanding]
+        
+        @property { pagesSchema } [collections]
+        
+        @property { pagesSchema } [productDescription]
+        
+        @property { pagesSchema } [productListing]
+        
+        @property { pagesSchema } [home]
+        
+        @property { pagesSchema } [categories]
+        
+        @property { pagesSchema } [compareProducts]
+        
+        @property { pagesSchema } [wishlist]
+        
+         
+    */
+
+/**
+        @typedef Constants
+         
+    */
+
+/**
+        @typedef Styles
+         
+    */
+
+/**
+        @typedef Config
+        
+        
+        @property { Preset } [preset]
+        
+        @property { GlobalSchema } [globalSchema]
+        
+        @property { string } [current]
+        
+        @property { List } [list]
+        
+         
+    */
+
+/**
+        @typedef Preset
+        
+        
+        @property { sectionSchema } [sections]
+        
+         
+    */
+
+/**
+        @typedef GlobalSchema
+        
+        
+        @property { GlobalSchemaProps } [props]
+        
+         
+    */
+
+/**
+        @typedef GlobalSchemaProps
+         
+    */
+
+/**
+        @typedef List
+        
+        
+        @property { Global } [global]
+        
+        @property { Page } [page]
+        
+        @property { string } [name]
+        
+         
+    */
+
+/**
+        @typedef Global
+         
+    */
+
+/**
+        @typedef Colors
+        
+        
+        @property { string } [bgColor]
+        
+        @property { string } [primaryColor]
+        
+        @property { string } [secondaryColor]
+        
+        @property { string } [accentColor]
+        
+        @property { string } [linkColor]
+        
+        @property { string } [buttonSecondaryColor]
+        
+         
+    */
+
+/**
+        @typedef Custom
+        
+        
+        @property { CustomProps } [props]
+        
+         
+    */
+
+/**
+        @typedef CustomProps
+         
+    */
+
+/**
+        @typedef Settings
+         
+    */
+
+/**
+        @typedef SettingsProps
+         
+    */
+
+/**
+        @typedef Font
+        
+        
+        @property { string } [family]
+        
+        @property { Variants } [variants]
+        
+         
+    */
+
+/**
+        @typedef Variants
+        
+        
+        @property { Medium } [medium]
+        
+        @property { SemiBold } [semiBold]
+        
+        @property { Bold } [bold]
+        
+        @property { Light } [light]
+        
+        @property { Regular } [regular]
+        
+         
+    */
+
+/**
+        @typedef Medium
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef SemiBold
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Bold
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Light
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Regular
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Blocks
+        
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { BlocksProps } [props]
+        
+         
+    */
+
+/**
+        @typedef BlocksProps
+        
+        
+        @property { string } [id]
+        
+        @property { string } [label]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef PageSections
+        
+        
+        @property { PageSectionsBlocks } [blocks]
+        
+        @property { string } [name]
+        
+        @property { string } [label]
+        
+        @property { PageSectionsProps } [props]
+        
+        @property { PageSectionsPreset } [preset]
+        
+        @property { Predicate } [predicate]
+        
+         
+    */
+
+/**
+        @typedef PageSectionsBlocks
+        
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { PageSectionsBlocksProps } [props]
+        
+         
+    */
+
+/**
+        @typedef PageSectionsBlocksProps
+        
+        
+        @property { string } [id]
+        
+        @property { string } [label]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef PageSectionsProps
+         
+    */
+
+/**
+        @typedef PageSectionsPreset
+         
+    */
+
+/**
+        @typedef Predicate
+        
+        
+        @property { Screen } [screen]
+        
+        @property { UserSchema } [user]
+        
+        @property { Route } [route]
+        
+         
+    */
+
+/**
+        @typedef Screen
+        
+        
+        @property { boolean } [mobile]
+        
+        @property { boolean } [desktop]
+        
+        @property { boolean } [tablet]
+        
+         
+    */
+
+/**
+        @typedef Route
+        
+        
+        @property { string } [selected]
+        
+        @property { string } [exactUrl]
+        
+        @property { Query } [query]
+        
+         
+    */
+
+/**
+        @typedef Query
+         
+    */
+
+/**
         @typedef EditEmailRequestSchema
         
         
@@ -3191,23 +3895,6 @@ const Paginator = require("../common/Paginator");
         @property { Array<UserSchema> } [items]
         
         @property { PaginationSchema } [page]
-        
-         
-    */
-
-/**
-        @typedef PaginationSchema
-        
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
         
          
     */
@@ -3945,19 +4632,6 @@ const Paginator = require("../common/Paginator");
         @property { string } [l3CategoryName]
         
         @property { Array<string> } [image]
-        
-         
-    */
-
-/**
-        @typedef Attributes
-        
-        
-        @property { string } [itemCode]
-        
-        @property { string } [brandName]
-        
-        @property { string } [countryOfOrigin]
         
          
     */
@@ -6306,27 +6980,6 @@ class Catalog {
 
   /**
     *
-    * @summary: Follow a particular Product
-    * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-    * @param {number} arg.collectionId - the `id` of the collection type you want to follow
-    
-    **/
-  followById({ collectionType, collectionId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
     * @summary: UnFollow a Product
     * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
     * @param {Object} arg - arg object.
@@ -6340,6 +6993,27 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "delete",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Follow a particular Product
+    * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+    * @param {number} arg.collectionId - the `id` of the collection type you want to follow
+    
+    **/
+  followById({ collectionType, collectionId } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -7108,6 +7782,51 @@ class Lead {
       this._conf,
       "get",
       `/service/application/lead/v1.0/video/room/${uniqueName}/token`,
+      query,
+      undefined
+    );
+  }
+}
+
+class Theme {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary: Get applied theme for an application
+    * @description: 
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAppliedTheme({} = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/theme/v1.0/applied-theme`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get theme for preview
+    * @description: 
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - ID of the theme to be retrieved
+    
+    **/
+  getThemeForPreview({ themeId } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/theme/v1.0/${themeId}/preview`,
       query,
       undefined
     );
@@ -9311,6 +10030,7 @@ module.exports = {
   Catalog,
   Cart,
   Lead,
+  Theme,
   User,
   FileStorage,
   Order,

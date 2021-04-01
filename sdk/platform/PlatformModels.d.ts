@@ -226,6 +226,271 @@ export type Ticket = {
     updatedAt?: string;
     createdAt?: string;
 };
+export type PaginationSchema = {
+    size?: number;
+    itemTotal?: number;
+    hasNext?: boolean;
+    type?: string;
+    current?: number;
+};
+export type ThemesListingResponseSchema = {
+    items?: Array<ThemesSchema>;
+    page?: PaginationSchema;
+};
+export type AddThemeRequestSchema = {
+    themeId?: string;
+};
+export type UpgradableThemeSchema = {
+    parentTheme?: string;
+    appliedTheme?: string;
+    upgrade?: boolean;
+};
+export type FontsSchema = {
+    items?: FontsSchemaItems;
+    kind?: string;
+};
+export type BlitzkriegApiErrorSchema = {
+    message?: string;
+};
+export type BlitzkriegNotFoundSchema = {
+    message?: string;
+};
+export type BlitzkriegInternalServerErrorSchema = {
+    message?: string;
+};
+export type FontsSchemaItems = {
+    family?: string;
+    variants?: Array<string>;
+    subsets?: Array<string>;
+    version?: string;
+    lastModified?: string;
+    files?: FontsSchemaItemsFiles;
+    category?: string;
+    kind?: string;
+};
+export type FontsSchemaItemsFiles = {
+    regular?: string;
+    italic?: string;
+    bold?: string;
+};
+export type ThemesSchema = {
+    application?: string;
+    applied?: boolean;
+    customized?: boolean;
+    published?: boolean;
+    archived?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+    version?: string;
+    parentThemeVersion?: string;
+    parentTheme?: string;
+    information?: Information;
+    tags?: Array<string>;
+    src?: Src;
+    assets?: AssetsSchema;
+    availablePages?: AvailablePages;
+    pages?: Pages;
+    availableSections?: Array<availableSectionSchema>;
+    sections?: Array<sectionSchema>;
+    constants?: any;
+    styles?: any;
+    config?: Config;
+    settings?: any;
+    font?: Font;
+    id?: string;
+    v?: number;
+    colors?: Colors;
+};
+export type pagesSchema = {
+    text?: string;
+    path?: string;
+    type?: string;
+    value?: string;
+    sections?: Sections;
+};
+export type availableSectionSchema = {
+    blocks?: Blocks;
+    name?: string;
+    label?: string;
+    props?: any;
+};
+export type sectionSchema = {
+    pageKey?: string;
+    pageSections?: PageSections;
+};
+export type Information = {
+    images?: Images;
+    features?: Array<string>;
+    name?: string;
+    description?: string;
+};
+export type Images = {
+    desktop?: Array<string>;
+    android?: Array<string>;
+    ios?: Array<string>;
+    thumbnail?: Array<string>;
+};
+export type Src = {
+    link?: string;
+};
+export type AssetsSchema = {
+    umdJs?: UmdJs;
+    commonJs?: CommonJs;
+    css?: Css;
+};
+export type UmdJs = {
+    link?: string;
+};
+export type CommonJs = {
+    link?: string;
+};
+export type Css = {
+    link?: string;
+};
+export type AvailablePages = {
+    path?: string;
+    type?: string;
+    text?: string;
+    value?: string;
+    seo?: Seo;
+    props?: any;
+    sections?: Sections;
+};
+export type Seo = {
+    title?: string;
+    description?: string;
+};
+export type Props = any;
+export type Sections = {
+    attributes?: string;
+};
+export type Attributes = {
+    page?: string;
+};
+export type Pages = {
+    collectionListing?: pagesSchema;
+    brands?: pagesSchema;
+    cartLanding?: pagesSchema;
+    collections?: pagesSchema;
+    productDescription?: pagesSchema;
+    productListing?: pagesSchema;
+    home?: pagesSchema;
+    categories?: pagesSchema;
+    compareProducts?: pagesSchema;
+    wishlist?: pagesSchema;
+};
+export type Constants = any;
+export type Styles = any;
+export type Config = {
+    preset?: Preset;
+    globalSchema?: GlobalSchema;
+    current?: string;
+    list?: List;
+};
+export type Preset = {
+    sections?: sectionSchema;
+};
+export type GlobalSchema = {
+    props?: any;
+};
+export type GlobalSchemaProps = any;
+export type List = {
+    global?: any;
+    page?: Page;
+    name?: string;
+};
+export type Global = any;
+export type Colors = {
+    bgColor?: string;
+    primaryColor?: string;
+    secondaryColor?: string;
+    accentColor?: string;
+    linkColor?: string;
+    buttonSecondaryColor?: string;
+};
+export type Custom = {
+    props?: any;
+};
+export type CustomProps = any;
+export type Settings = any;
+export type SettingsProps = any;
+export type Font = {
+    family?: string;
+    variants?: Variants;
+};
+export type Variants = {
+    medium?: Medium;
+    semiBold?: SemiBold;
+    bold?: Bold;
+    light?: Light;
+    regular?: Regular;
+};
+export type Medium = {
+    name?: string;
+    file?: string;
+};
+export type SemiBold = {
+    name?: string;
+    file?: string;
+};
+export type Bold = {
+    name?: string;
+    file?: string;
+};
+export type Light = {
+    name?: string;
+    file?: string;
+};
+export type Regular = {
+    name?: string;
+    file?: string;
+};
+export type Blocks = {
+    type?: string;
+    name?: string;
+    props?: BlocksProps;
+};
+export type BlocksProps = {
+    id?: string;
+    label?: string;
+    type?: string;
+};
+export type PageSections = {
+    blocks?: PageSectionsBlocks;
+    name?: string;
+    label?: string;
+    props?: any;
+    preset?: any;
+    predicate?: Predicate;
+};
+export type PageSectionsBlocks = {
+    type?: string;
+    name?: string;
+    props?: PageSectionsBlocksProps;
+};
+export type PageSectionsBlocksProps = {
+    id?: string;
+    label?: string;
+    type?: string;
+};
+export type PageSectionsProps = any;
+export type PageSectionsPreset = any;
+export type Predicate = {
+    screen?: Screen;
+    user?: UserSchema;
+    route?: Route;
+};
+export type Screen = {
+    mobile?: boolean;
+    desktop?: boolean;
+    tablet?: boolean;
+};
+export type Route = {
+    selected?: string;
+    exactUrl?: string;
+    query?: any;
+};
+export type Query = any;
 export type EditEmailRequestSchema = {
     email?: string;
 };
@@ -390,13 +655,6 @@ export type UserSearchResponseSchema = {
 export type CustomerListResponseSchema = {
     items?: Array<UserSchema>;
     page?: PaginationSchema;
-};
-export type PaginationSchema = {
-    size?: number;
-    itemTotal?: number;
-    hasNext?: boolean;
-    type?: string;
-    current?: number;
 };
 export type UnauthorizedSchema = {
     message?: string;
@@ -1526,29 +1784,6 @@ export type UserCommon = {
 export type VerifiedBy = {
     userId?: string;
     username?: string;
-};
-export type Attributes = {
-    primaryMaterial?: string;
-    modifiedOn?: string;
-    isImageLessProduct?: boolean;
-    neckType?: string;
-    stage?: string;
-    createdOn?: string;
-    imageNature?: string;
-    productFit?: string;
-    sleeveLength?: string;
-    verifiedOn?: string;
-    essential?: string;
-    primaryColor?: string;
-    material?: string;
-    color?: string;
-    pattern?: string;
-    metaNature?: string;
-    createdBy?: UserCommon;
-    modifiedBy?: UserCommon;
-    verifiedBy?: VerifiedBy;
-    l3Mapping?: Array<string>;
-    gender?: Array<string>;
 };
 export type ProductPublished = {
     productOnlineDate?: number;
@@ -3191,6 +3426,652 @@ export type ResponseEnvelopeListJobConfigListDTO = {
          
     */
 /**
+        @typedef PaginationSchema
+        
+        
+        @property { number } [size]
+        
+        @property { number } [itemTotal]
+        
+        @property { boolean } [hasNext]
+        
+        @property { string } [type]
+        
+        @property { number } [current]
+        
+         
+    */
+/**
+        @typedef ThemesListingResponseSchema
+        
+        
+        @property { Array<ThemesSchema> } [items]
+        
+        @property { PaginationSchema } [page]
+        
+         
+    */
+/**
+        @typedef AddThemeRequestSchema
+        
+        
+        @property { string } [themeId]
+        
+         
+    */
+/**
+        @typedef UpgradableThemeSchema
+        
+        
+        @property { string } [parentTheme]
+        
+        @property { string } [appliedTheme]
+        
+        @property { boolean } [upgrade]
+        
+         
+    */
+/**
+        @typedef FontsSchema
+        
+        
+        @property { FontsSchemaItems } [items]
+        
+        @property { string } [kind]
+        
+         
+    */
+/**
+        @typedef BlitzkriegApiErrorSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+/**
+        @typedef BlitzkriegNotFoundSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+/**
+        @typedef BlitzkriegInternalServerErrorSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+/**
+        @typedef FontsSchemaItems
+        
+        
+        @property { string } [family]
+        
+        @property { Array<string> } [variants]
+        
+        @property { Array<string> } [subsets]
+        
+        @property { string } [version]
+        
+        @property { string } [lastModified]
+        
+        @property { FontsSchemaItemsFiles } [files]
+        
+        @property { string } [category]
+        
+        @property { string } [kind]
+        
+         
+    */
+/**
+        @typedef FontsSchemaItemsFiles
+        
+        
+        @property { string } [regular]
+        
+        @property { string } [italic]
+        
+        @property { string } [bold]
+        
+         
+    */
+/**
+        @typedef ThemesSchema
+        
+        
+        @property { string } [application]
+        
+        @property { boolean } [applied]
+        
+        @property { boolean } [customized]
+        
+        @property { boolean } [published]
+        
+        @property { boolean } [archived]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [version]
+        
+        @property { string } [parentThemeVersion]
+        
+        @property { string } [parentTheme]
+        
+        @property { Information } [information]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Src } [src]
+        
+        @property { AssetsSchema } [assets]
+        
+        @property { AvailablePages } [availablePages]
+        
+        @property { Pages } [pages]
+        
+        @property { Array<availableSectionSchema> } [availableSections]
+        
+        @property { Array<sectionSchema> } [sections]
+        
+        @property { Constants } [constants]
+        
+        @property { Styles } [styles]
+        
+        @property { Config } [config]
+        
+        @property { Settings } [settings]
+        
+        @property { Font } [font]
+        
+        @property { string } [id]
+        
+        @property { number } [v]
+        
+        @property { Colors } [colors]
+        
+         
+    */
+/**
+        @typedef pagesSchema
+        
+        
+        @property { string } [text]
+        
+        @property { string } [path]
+        
+        @property { string } [type]
+        
+        @property { string } [value]
+        
+        @property { Sections } [sections]
+        
+         
+    */
+/**
+        @typedef availableSectionSchema
+        
+        
+        @property { Blocks } [blocks]
+        
+        @property { string } [name]
+        
+        @property { string } [label]
+        
+        @property { Props } [props]
+        
+         
+    */
+/**
+        @typedef sectionSchema
+        
+        
+        @property { string } [pageKey]
+        
+        @property { PageSections } [pageSections]
+        
+         
+    */
+/**
+        @typedef Information
+        
+        
+        @property { Images } [images]
+        
+        @property { Array<string> } [features]
+        
+        @property { string } [name]
+        
+        @property { string } [description]
+        
+         
+    */
+/**
+        @typedef Images
+        
+        
+        @property { Array<string> } [desktop]
+        
+        @property { Array<string> } [android]
+        
+        @property { Array<string> } [ios]
+        
+        @property { Array<string> } [thumbnail]
+        
+         
+    */
+/**
+        @typedef Src
+        
+        
+        @property { string } [link]
+        
+         
+    */
+/**
+        @typedef AssetsSchema
+        
+        
+        @property { UmdJs } [umdJs]
+        
+        @property { CommonJs } [commonJs]
+        
+        @property { Css } [css]
+        
+         
+    */
+/**
+        @typedef UmdJs
+        
+        
+        @property { string } [link]
+        
+         
+    */
+/**
+        @typedef CommonJs
+        
+        
+        @property { string } [link]
+        
+         
+    */
+/**
+        @typedef Css
+        
+        
+        @property { string } [link]
+        
+         
+    */
+/**
+        @typedef AvailablePages
+        
+        
+        @property { string } [path]
+        
+        @property { string } [type]
+        
+        @property { string } [text]
+        
+        @property { string } [value]
+        
+        @property { Seo } [seo]
+        
+        @property { Props } [props]
+        
+        @property { Sections } [sections]
+        
+         
+    */
+/**
+        @typedef Seo
+        
+        
+        @property { string } [title]
+        
+        @property { string } [description]
+        
+         
+    */
+/**
+        @typedef Props
+         
+    */
+/**
+        @typedef Sections
+        
+        
+        @property { string } [attributes]
+        
+         
+    */
+/**
+        @typedef Attributes
+        
+        
+        @property { string } [page]
+        
+         
+    */
+/**
+        @typedef Pages
+        
+        
+        @property { pagesSchema } [collectionListing]
+        
+        @property { pagesSchema } [brands]
+        
+        @property { pagesSchema } [cartLanding]
+        
+        @property { pagesSchema } [collections]
+        
+        @property { pagesSchema } [productDescription]
+        
+        @property { pagesSchema } [productListing]
+        
+        @property { pagesSchema } [home]
+        
+        @property { pagesSchema } [categories]
+        
+        @property { pagesSchema } [compareProducts]
+        
+        @property { pagesSchema } [wishlist]
+        
+         
+    */
+/**
+        @typedef Constants
+         
+    */
+/**
+        @typedef Styles
+         
+    */
+/**
+        @typedef Config
+        
+        
+        @property { Preset } [preset]
+        
+        @property { GlobalSchema } [globalSchema]
+        
+        @property { string } [current]
+        
+        @property { List } [list]
+        
+         
+    */
+/**
+        @typedef Preset
+        
+        
+        @property { sectionSchema } [sections]
+        
+         
+    */
+/**
+        @typedef GlobalSchema
+        
+        
+        @property { GlobalSchemaProps } [props]
+        
+         
+    */
+/**
+        @typedef GlobalSchemaProps
+         
+    */
+/**
+        @typedef List
+        
+        
+        @property { Global } [global]
+        
+        @property { Page } [page]
+        
+        @property { string } [name]
+        
+         
+    */
+/**
+        @typedef Global
+         
+    */
+/**
+        @typedef Colors
+        
+        
+        @property { string } [bgColor]
+        
+        @property { string } [primaryColor]
+        
+        @property { string } [secondaryColor]
+        
+        @property { string } [accentColor]
+        
+        @property { string } [linkColor]
+        
+        @property { string } [buttonSecondaryColor]
+        
+         
+    */
+/**
+        @typedef Custom
+        
+        
+        @property { CustomProps } [props]
+        
+         
+    */
+/**
+        @typedef CustomProps
+         
+    */
+/**
+        @typedef Settings
+         
+    */
+/**
+        @typedef SettingsProps
+         
+    */
+/**
+        @typedef Font
+        
+        
+        @property { string } [family]
+        
+        @property { Variants } [variants]
+        
+         
+    */
+/**
+        @typedef Variants
+        
+        
+        @property { Medium } [medium]
+        
+        @property { SemiBold } [semiBold]
+        
+        @property { Bold } [bold]
+        
+        @property { Light } [light]
+        
+        @property { Regular } [regular]
+        
+         
+    */
+/**
+        @typedef Medium
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+/**
+        @typedef SemiBold
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+/**
+        @typedef Bold
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+/**
+        @typedef Light
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+/**
+        @typedef Regular
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+/**
+        @typedef Blocks
+        
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { BlocksProps } [props]
+        
+         
+    */
+/**
+        @typedef BlocksProps
+        
+        
+        @property { string } [id]
+        
+        @property { string } [label]
+        
+        @property { string } [type]
+        
+         
+    */
+/**
+        @typedef PageSections
+        
+        
+        @property { PageSectionsBlocks } [blocks]
+        
+        @property { string } [name]
+        
+        @property { string } [label]
+        
+        @property { PageSectionsProps } [props]
+        
+        @property { PageSectionsPreset } [preset]
+        
+        @property { Predicate } [predicate]
+        
+         
+    */
+/**
+        @typedef PageSectionsBlocks
+        
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { PageSectionsBlocksProps } [props]
+        
+         
+    */
+/**
+        @typedef PageSectionsBlocksProps
+        
+        
+        @property { string } [id]
+        
+        @property { string } [label]
+        
+        @property { string } [type]
+        
+         
+    */
+/**
+        @typedef PageSectionsProps
+         
+    */
+/**
+        @typedef PageSectionsPreset
+         
+    */
+/**
+        @typedef Predicate
+        
+        
+        @property { Screen } [screen]
+        
+        @property { UserSchema } [user]
+        
+        @property { Route } [route]
+        
+         
+    */
+/**
+        @typedef Screen
+        
+        
+        @property { boolean } [mobile]
+        
+        @property { boolean } [desktop]
+        
+        @property { boolean } [tablet]
+        
+         
+    */
+/**
+        @typedef Route
+        
+        
+        @property { string } [selected]
+        
+        @property { string } [exactUrl]
+        
+        @property { Query } [query]
+        
+         
+    */
+/**
+        @typedef Query
+         
+    */
+/**
         @typedef EditEmailRequestSchema
         
         
@@ -3585,22 +4466,6 @@ export type ResponseEnvelopeListJobConfigListDTO = {
         @property { Array<UserSchema> } [items]
         
         @property { PaginationSchema } [page]
-        
-         
-    */
-/**
-        @typedef PaginationSchema
-        
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
         
          
     */
@@ -6215,54 +7080,6 @@ export type ResponseEnvelopeListJobConfigListDTO = {
         @property { string } [userId]
         
         @property { string } [username]
-        
-         
-    */
-/**
-        @typedef Attributes
-        
-        
-        @property { string } [primaryMaterial]
-        
-        @property { string } [modifiedOn]
-        
-        @property { boolean } [isImageLessProduct]
-        
-        @property { string } [neckType]
-        
-        @property { string } [stage]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [imageNature]
-        
-        @property { string } [productFit]
-        
-        @property { string } [sleeveLength]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } [essential]
-        
-        @property { string } [primaryColor]
-        
-        @property { string } [material]
-        
-        @property { string } [color]
-        
-        @property { string } [pattern]
-        
-        @property { string } [metaNature]
-        
-        @property { UserCommon } [createdBy]
-        
-        @property { UserCommon } [modifiedBy]
-        
-        @property { VerifiedBy } [verifiedBy]
-        
-        @property { Array<string> } [l3Mapping]
-        
-        @property { Array<string> } [gender]
         
          
     */

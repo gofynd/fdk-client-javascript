@@ -565,6 +565,710 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
+        @typedef PaginationSchema
+        
+        
+        @property { number } [size]
+        
+        @property { number } [itemTotal]
+        
+        @property { boolean } [hasNext]
+        
+        @property { string } [type]
+        
+        @property { number } [current]
+        
+         
+    */
+
+/**
+        @typedef ThemesListingResponseSchema
+        
+        
+        @property { Array<ThemesSchema> } [items]
+        
+        @property { PaginationSchema } [page]
+        
+         
+    */
+
+/**
+        @typedef AddThemeRequestSchema
+        
+        
+        @property { string } [themeId]
+        
+         
+    */
+
+/**
+        @typedef UpgradableThemeSchema
+        
+        
+        @property { string } [parentTheme]
+        
+        @property { string } [appliedTheme]
+        
+        @property { boolean } [upgrade]
+        
+         
+    */
+
+/**
+        @typedef FontsSchema
+        
+        
+        @property { FontsSchemaItems } [items]
+        
+        @property { string } [kind]
+        
+         
+    */
+
+/**
+        @typedef BlitzkriegApiErrorSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef BlitzkriegNotFoundSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef BlitzkriegInternalServerErrorSchema
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef FontsSchemaItems
+        
+        
+        @property { string } [family]
+        
+        @property { Array<string> } [variants]
+        
+        @property { Array<string> } [subsets]
+        
+        @property { string } [version]
+        
+        @property { string } [lastModified]
+        
+        @property { FontsSchemaItemsFiles } [files]
+        
+        @property { string } [category]
+        
+        @property { string } [kind]
+        
+         
+    */
+
+/**
+        @typedef FontsSchemaItemsFiles
+        
+        
+        @property { string } [regular]
+        
+        @property { string } [italic]
+        
+        @property { string } [bold]
+        
+         
+    */
+
+/**
+        @typedef ThemesSchema
+        
+        
+        @property { string } [application]
+        
+        @property { boolean } [applied]
+        
+        @property { boolean } [customized]
+        
+        @property { boolean } [published]
+        
+        @property { boolean } [archived]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [version]
+        
+        @property { string } [parentThemeVersion]
+        
+        @property { string } [parentTheme]
+        
+        @property { Information } [information]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Src } [src]
+        
+        @property { AssetsSchema } [assets]
+        
+        @property { AvailablePages } [availablePages]
+        
+        @property { Pages } [pages]
+        
+        @property { Array<availableSectionSchema> } [availableSections]
+        
+        @property { Array<sectionSchema> } [sections]
+        
+        @property { Constants } [constants]
+        
+        @property { Styles } [styles]
+        
+        @property { Config } [config]
+        
+        @property { Settings } [settings]
+        
+        @property { Font } [font]
+        
+        @property { string } [id]
+        
+        @property { number } [v]
+        
+        @property { Colors } [colors]
+        
+         
+    */
+
+/**
+        @typedef pagesSchema
+        
+        
+        @property { string } [text]
+        
+        @property { string } [path]
+        
+        @property { string } [type]
+        
+        @property { string } [value]
+        
+        @property { Sections } [sections]
+        
+         
+    */
+
+/**
+        @typedef availableSectionSchema
+        
+        
+        @property { Blocks } [blocks]
+        
+        @property { string } [name]
+        
+        @property { string } [label]
+        
+        @property { Props } [props]
+        
+         
+    */
+
+/**
+        @typedef sectionSchema
+        
+        
+        @property { string } [pageKey]
+        
+        @property { PageSections } [pageSections]
+        
+         
+    */
+
+/**
+        @typedef Information
+        
+        
+        @property { Images } [images]
+        
+        @property { Array<string> } [features]
+        
+        @property { string } [name]
+        
+        @property { string } [description]
+        
+         
+    */
+
+/**
+        @typedef Images
+        
+        
+        @property { Array<string> } [desktop]
+        
+        @property { Array<string> } [android]
+        
+        @property { Array<string> } [ios]
+        
+        @property { Array<string> } [thumbnail]
+        
+         
+    */
+
+/**
+        @typedef Src
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef AssetsSchema
+        
+        
+        @property { UmdJs } [umdJs]
+        
+        @property { CommonJs } [commonJs]
+        
+        @property { Css } [css]
+        
+         
+    */
+
+/**
+        @typedef UmdJs
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef CommonJs
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef Css
+        
+        
+        @property { string } [link]
+        
+         
+    */
+
+/**
+        @typedef AvailablePages
+        
+        
+        @property { string } [path]
+        
+        @property { string } [type]
+        
+        @property { string } [text]
+        
+        @property { string } [value]
+        
+        @property { Seo } [seo]
+        
+        @property { Props } [props]
+        
+        @property { Sections } [sections]
+        
+         
+    */
+
+/**
+        @typedef Seo
+        
+        
+        @property { string } [title]
+        
+        @property { string } [description]
+        
+         
+    */
+
+/**
+        @typedef Props
+         
+    */
+
+/**
+        @typedef Sections
+        
+        
+        @property { string } [attributes]
+        
+         
+    */
+
+/**
+        @typedef Attributes
+        
+        
+        @property { string } [page]
+        
+         
+    */
+
+/**
+        @typedef Pages
+        
+        
+        @property { pagesSchema } [collectionListing]
+        
+        @property { pagesSchema } [brands]
+        
+        @property { pagesSchema } [cartLanding]
+        
+        @property { pagesSchema } [collections]
+        
+        @property { pagesSchema } [productDescription]
+        
+        @property { pagesSchema } [productListing]
+        
+        @property { pagesSchema } [home]
+        
+        @property { pagesSchema } [categories]
+        
+        @property { pagesSchema } [compareProducts]
+        
+        @property { pagesSchema } [wishlist]
+        
+         
+    */
+
+/**
+        @typedef Constants
+         
+    */
+
+/**
+        @typedef Styles
+         
+    */
+
+/**
+        @typedef Config
+        
+        
+        @property { Preset } [preset]
+        
+        @property { GlobalSchema } [globalSchema]
+        
+        @property { string } [current]
+        
+        @property { List } [list]
+        
+         
+    */
+
+/**
+        @typedef Preset
+        
+        
+        @property { sectionSchema } [sections]
+        
+         
+    */
+
+/**
+        @typedef GlobalSchema
+        
+        
+        @property { GlobalSchemaProps } [props]
+        
+         
+    */
+
+/**
+        @typedef GlobalSchemaProps
+         
+    */
+
+/**
+        @typedef List
+        
+        
+        @property { Global } [global]
+        
+        @property { Page } [page]
+        
+        @property { string } [name]
+        
+         
+    */
+
+/**
+        @typedef Global
+         
+    */
+
+/**
+        @typedef Colors
+        
+        
+        @property { string } [bgColor]
+        
+        @property { string } [primaryColor]
+        
+        @property { string } [secondaryColor]
+        
+        @property { string } [accentColor]
+        
+        @property { string } [linkColor]
+        
+        @property { string } [buttonSecondaryColor]
+        
+         
+    */
+
+/**
+        @typedef Custom
+        
+        
+        @property { CustomProps } [props]
+        
+         
+    */
+
+/**
+        @typedef CustomProps
+         
+    */
+
+/**
+        @typedef Settings
+         
+    */
+
+/**
+        @typedef SettingsProps
+         
+    */
+
+/**
+        @typedef Font
+        
+        
+        @property { string } [family]
+        
+        @property { Variants } [variants]
+        
+         
+    */
+
+/**
+        @typedef Variants
+        
+        
+        @property { Medium } [medium]
+        
+        @property { SemiBold } [semiBold]
+        
+        @property { Bold } [bold]
+        
+        @property { Light } [light]
+        
+        @property { Regular } [regular]
+        
+         
+    */
+
+/**
+        @typedef Medium
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef SemiBold
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Bold
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Light
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Regular
+        
+        
+        @property { string } [name]
+        
+        @property { string } [file]
+        
+         
+    */
+
+/**
+        @typedef Blocks
+        
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { BlocksProps } [props]
+        
+         
+    */
+
+/**
+        @typedef BlocksProps
+        
+        
+        @property { string } [id]
+        
+        @property { string } [label]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef PageSections
+        
+        
+        @property { PageSectionsBlocks } [blocks]
+        
+        @property { string } [name]
+        
+        @property { string } [label]
+        
+        @property { PageSectionsProps } [props]
+        
+        @property { PageSectionsPreset } [preset]
+        
+        @property { Predicate } [predicate]
+        
+         
+    */
+
+/**
+        @typedef PageSectionsBlocks
+        
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { PageSectionsBlocksProps } [props]
+        
+         
+    */
+
+/**
+        @typedef PageSectionsBlocksProps
+        
+        
+        @property { string } [id]
+        
+        @property { string } [label]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef PageSectionsProps
+         
+    */
+
+/**
+        @typedef PageSectionsPreset
+         
+    */
+
+/**
+        @typedef Predicate
+        
+        
+        @property { Screen } [screen]
+        
+        @property { UserSchema } [user]
+        
+        @property { Route } [route]
+        
+         
+    */
+
+/**
+        @typedef Screen
+        
+        
+        @property { boolean } [mobile]
+        
+        @property { boolean } [desktop]
+        
+        @property { boolean } [tablet]
+        
+         
+    */
+
+/**
+        @typedef Route
+        
+        
+        @property { string } [selected]
+        
+        @property { string } [exactUrl]
+        
+        @property { Query } [query]
+        
+         
+    */
+
+/**
+        @typedef Query
+         
+    */
+
+/**
         @typedef EditEmailRequestSchema
         
         
@@ -992,23 +1696,6 @@ const APIClient = require("./PlatformAPIClient");
         @property { Array<UserSchema> } [items]
         
         @property { PaginationSchema } [page]
-        
-         
-    */
-
-/**
-        @typedef PaginationSchema
-        
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
         
          
     */
@@ -3801,55 +4488,6 @@ const APIClient = require("./PlatformAPIClient");
         @property { string } [userId]
         
         @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef Attributes
-        
-        
-        @property { string } [primaryMaterial]
-        
-        @property { string } [modifiedOn]
-        
-        @property { boolean } [isImageLessProduct]
-        
-        @property { string } [neckType]
-        
-        @property { string } [stage]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [imageNature]
-        
-        @property { string } [productFit]
-        
-        @property { string } [sleeveLength]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } [essential]
-        
-        @property { string } [primaryColor]
-        
-        @property { string } [material]
-        
-        @property { string } [color]
-        
-        @property { string } [pattern]
-        
-        @property { string } [metaNature]
-        
-        @property { UserCommon } [createdBy]
-        
-        @property { UserCommon } [modifiedBy]
-        
-        @property { VerifiedBy } [verifiedBy]
-        
-        @property { Array<string> } [l3Mapping]
-        
-        @property { Array<string> } [gender]
         
          
     */

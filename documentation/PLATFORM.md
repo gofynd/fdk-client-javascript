@@ -2,6 +2,7 @@
 
 
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
@@ -36,6 +37,27 @@
     * [getVideoParticipants](#getvideoparticipants)
     * [openVideoRoom](#openvideoroom)
     * [closeVideoRoom](#closevideoroom)
+    
+
+* [Theme](#Theme)
+  * Methods
+    * [getThemeLibrary](#getthemelibrary)
+    * [addToThemeLibrary](#addtothemelibrary)
+    * [applyTheme](#applytheme)
+    * [isUpgradable](#isupgradable)
+    * [upgradeTheme](#upgradetheme)
+    * [getPublicThemes](#getpublicthemes)
+    * [createTheme](#createtheme)
+    * [getAppliedTheme](#getappliedtheme)
+    * [getFonts](#getfonts)
+    * [getThemeById](#getthemebyid)
+    * [updateTheme](#updatetheme)
+    * [deleteTheme](#deletetheme)
+    * [getThemeForPreview](#getthemeforpreview)
+    * [publishTheme](#publishtheme)
+    * [unpublishTheme](#unpublishtheme)
+    * [archiveTheme](#archivetheme)
+    * [unarchiveTheme](#unarchivetheme)
     
 
 * [User](#User)
@@ -3447,6 +3469,1268 @@ Default
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Theme
+
+
+#### getThemeLibrary
+Gets list of themes in theme library
+
+```javascript
+// Promise
+const promise = theme.getThemeLibrary(companyId,applicationId,pageSize,pageNo);
+
+// Async/Await
+const data = await theme.getThemeLibrary(companyId,applicationId,pageSize,pageNo);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+| pageNo | integer | Page number. Default is 1. | 
+
+Gets list of themes in theme library
+
+*Success Response:*
+
+
+
+Themes list
+
+
+Schema: `ThemesListingResponseSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/ThemesListingResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addToThemeLibrary
+Add theme to theme library
+
+```javascript
+// Promise
+const promise = theme.addToThemeLibrary(companyId,applicationId,body);
+
+// Async/Await
+const data = await theme.addToThemeLibrary(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Add theme to theme library
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### applyTheme
+Apply theme
+
+```javascript
+// Promise
+const promise = theme.applyTheme(companyId,applicationId,body);
+
+// Async/Await
+const data = await theme.applyTheme(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Apply theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### isUpgradable
+Checks if theme is upgradable
+
+```javascript
+// Promise
+const promise = theme.isUpgradable(companyId,applicationId,themeId);
+
+// Async/Await
+const data = await theme.isUpgradable(companyId,applicationId,themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Checks if theme is upgradable
+
+*Success Response:*
+
+
+
+Upgradable Theme
+
+
+Schema: `UpgradableThemeSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/UpgradableTheme"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upgradeTheme
+Upgrades theme
+
+```javascript
+// Promise
+const promise = theme.upgradeTheme(companyId,applicationId,themeId);
+
+// Async/Await
+const data = await theme.upgradeTheme(companyId,applicationId,themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Upgrades theme
+
+*Success Response:*
+
+
+
+Upgrades Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPublicThemes
+Gets public themes
+
+```javascript
+// Promise
+const promise = theme.getPublicThemes(companyId,applicationId,pageSize,pageNo);
+
+// Async/Await
+const data = await theme.getPublicThemes(companyId,applicationId,pageSize,pageNo);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+| pageNo | integer | Page number. Default is 1. | 
+
+Gets public themes
+
+*Success Response:*
+
+
+
+Themes list
+
+
+Schema: `ThemesListingResponseSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/ThemesListingResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createTheme
+Create new theme
+
+```javascript
+// Promise
+const promise = theme.createTheme(companyId,applicationId,body);
+
+// Async/Await
+const data = await theme.createTheme(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create new theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppliedTheme
+Get applied theme
+
+```javascript
+// Promise
+const promise = theme.getAppliedTheme(companyId,applicationId);
+
+// Async/Await
+const data = await theme.getAppliedTheme(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get applied theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFonts
+Gets fonts
+
+```javascript
+// Promise
+const promise = theme.getFonts(companyId,applicationId);
+
+// Async/Await
+const data = await theme.getFonts(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Gets fonts
+
+*Success Response:*
+
+
+
+Fonts list
+
+
+Schema: `FontsSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/FontsResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getThemeById
+Gets theme by id
+
+```javascript
+// Promise
+const promise = theme.getThemeById(companyId,applicationId,themeId);
+
+// Async/Await
+const data = await theme.getThemeById(companyId,applicationId,themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Gets theme by id
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTheme
+Update theme
+
+```javascript
+// Promise
+const promise = theme.updateTheme(companyId,applicationId,themeId,body);
+
+// Async/Await
+const data = await theme.updateTheme(companyId,applicationId,themeId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Update theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteTheme
+Delete theme
+
+```javascript
+// Promise
+const promise = theme.deleteTheme(companyId,applicationId,themeId);
+
+// Async/Await
+const data = await theme.deleteTheme(companyId,applicationId,themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Delete theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getThemeForPreview
+Gets theme for preview
+
+```javascript
+// Promise
+const promise = theme.getThemeForPreview(companyId,applicationId,themeId);
+
+// Async/Await
+const data = await theme.getThemeForPreview(companyId,applicationId,themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Gets theme for preview
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### publishTheme
+Publish theme
+
+```javascript
+// Promise
+const promise = theme.publishTheme(companyId,applicationId,themeId);
+
+// Async/Await
+const data = await theme.publishTheme(companyId,applicationId,themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Publish theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### unpublishTheme
+Unpublish theme
+
+```javascript
+// Promise
+const promise = theme.unpublishTheme(companyId,applicationId,themeId);
+
+// Async/Await
+const data = await theme.unpublishTheme(companyId,applicationId,themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Unpublish theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### archiveTheme
+Archive theme
+
+```javascript
+// Promise
+const promise = theme.archiveTheme(companyId,applicationId,themeId);
+
+// Async/Await
+const data = await theme.archiveTheme(companyId,applicationId,themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Archive theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### unarchiveTheme
+Unarchive theme
+
+```javascript
+// Promise
+const promise = theme.unarchiveTheme(companyId,applicationId,themeId);
+
+// Async/Await
+const data = await theme.unarchiveTheme(companyId,applicationId,themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| themeId | string | Theme ID | 
+
+Unarchive theme
+
+*Success Response:*
+
+
+
+Theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 

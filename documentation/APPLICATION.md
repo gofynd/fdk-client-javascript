@@ -4,6 +4,7 @@
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Cart](#Cart) - Cart APIs 
 * [Lead](#Lead) - Handles communication between Staff and Users 
+* [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [FileStorage](#FileStorage) - File Storage 
 * [Order](#Order) - Handles Platform websites OMS 
@@ -42,8 +43,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -85,6 +86,12 @@
     * [submitCustomForm](#submitcustomform)
     * [getParticipantsInsideVideoRoom](#getparticipantsinsidevideoroom)
     * [getTokenForVideoRoom](#gettokenforvideoroom)
+    
+
+* [Theme](#Theme)
+  * Methods
+    * [getAppliedTheme](#getappliedtheme)
+    * [getThemeForPreview](#getthemeforpreview)
     
 
 * [User](#User)
@@ -1373,23 +1380,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collectionType,collectionId);
+const promise = catalog.unfollowById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.followById(collectionType,collectionId);
+const data = await catalog.unfollowById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to follow | 
+| collectionId | integer | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1423,23 +1430,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collectionType,collectionId);
+const promise = catalog.followById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.unfollowById(collectionType,collectionId);
+const data = await catalog.followById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to unfollow | 
+| collectionId | integer | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -5962,6 +5969,156 @@ Default
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Theme
+
+
+#### getAppliedTheme
+Get applied theme for an application
+
+```javascript
+// Promise
+const promise = theme.getAppliedTheme();
+
+// Async/Await
+const data = await theme.getAppliedTheme();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+*Success Response:*
+
+
+
+A JSON object of theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Applied Theme
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getThemeForPreview
+Get theme for preview
+
+```javascript
+// Promise
+const promise = theme.getThemeForPreview(themeId);
+
+// Async/Await
+const data = await theme.getThemeForPreview(themeId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| themeId | string | ID of the theme to be retrieved | 
+
+
+
+*Success Response:*
+
+
+
+A JSON object of theme
+
+
+Schema: `ThemesSchema`
+
+
+*Examples:*
+
+
+Preview Theme
+```json
+{
+  "$ref": "#/components/examples/Themes"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `BlitzkriegApiError`
 
 
 
