@@ -3,6 +3,7 @@ declare class ApplicationClient {
     constructor(config: any);
     catalog: Catalog;
     cart: Cart;
+    user: User;
     fileStorage: FileStorage;
     order: Order;
     feedback: Feedback;
@@ -11,6 +12,7 @@ declare class ApplicationClient {
 }
 import { Catalog } from "./ApplicationModels";
 import { Cart } from "./ApplicationModels";
+import { User } from "./ApplicationModels";
 import { FileStorage } from "./ApplicationModels";
 import { Order } from "./ApplicationModels";
 import { Feedback } from "./ApplicationModels";
