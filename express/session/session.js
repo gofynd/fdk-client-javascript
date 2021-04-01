@@ -10,6 +10,7 @@ class Session {
         this.state = null;
         this.scope = null;
         this.expires = null;
+        this.expires_in = null;
         this.access_mode = 'online';
         this.access_token = null;
         this.current_user = null;
@@ -33,7 +34,8 @@ class Session {
             access_token: this.access_token,
             current_user: this.current_user,
             refresh_token: this.refresh_token,
-            cluster: this.cluster
+            cluster: this.cluster,
+            expires_in: this.expires_in
         };
     }
 

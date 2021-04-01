@@ -143,6 +143,7 @@ function setupRoutes(ext) {
             }
 
             req.fdkSession.access_token = token.access_token;
+            req.fdkSession.expires_in = token.expires_in;
             req.fdkSession.current_user = token.current_user;
             req.fdkSession.refresh_token = token.refresh_token;
             await SessionStorage.saveSession(req.fdkSession);
