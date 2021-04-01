@@ -128,7 +128,14 @@ function setupRoutes(ext) {
             await platformConfig.oauthClient.verifyCallback(req.query);
             let token = platformConfig.oauthClient.raw_token;
 
-            req.fdkSession.expires = new Date(Date.now() + token.expires_in * 1000);
+            let sessionExpires = new Date(Date.now() + token.expires_in * 1000);
+            
+            if(extension.isOnlineAccessMode()) {
+                req.fdkSession.expires = sessionExpires;
+            } else {
+                req.fdkSession.expires = null;
+            }
+
             req.fdkSession.access_token = token.access_token;
             req.fdkSession.current_user = token.current_user;
             req.fdkSession.refresh_token = token.refresh_token;
@@ -137,7 +144,7 @@ function setupRoutes(ext) {
             res.cookie(SESSION_COOKIE_NAME, req.fdkSession.id, { 
                 secure: true,
                 httpOnly: true,
-                expires: req.fdkSession.expires,
+                expires: sessionExpires,
                 signed: true,
                 sameSite: "None"
             });

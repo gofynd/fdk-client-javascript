@@ -93,8 +93,7 @@ webhookRouter.get("/webhook", async (req, res, next) => {
     // fetch company id from query params
     let companyId = req.query.companyId;
     let cluster = "https://api.fyndx0.de"; // either take it from some  env variables like "https://api.fyndx0.de"
-    
-    
+    let  client = await FDKExtension.getPlatformClient(cluster, companyId);
     res.json({"success": true});
 });
 
