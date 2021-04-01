@@ -85,7 +85,7 @@ class Extension {
     }
 
     isOnlineAccessMode() {
-        return this.access_mode;
+        return this.access_mode === 'online';
     }
 
     async register() {
