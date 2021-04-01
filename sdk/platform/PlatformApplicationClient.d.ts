@@ -4,11 +4,13 @@ declare class Application {
     config: any;
     companyId: any;
     applicationId: any;
+    lead: Lead;
     user: User;
     payment: Payment;
     catalog: Catalog;
     assets: Assets;
 }
+import { Lead } from "./PlatformApplicationModels";
 import { User } from "./PlatformApplicationModels";
 import { Payment } from "./PlatformApplicationModels";
 import { Catalog } from "./PlatformApplicationModels";

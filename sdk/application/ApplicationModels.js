@@ -7,9 +7,9 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [value]
         
-        @property { string } [key]
-        
         @property { string } [type]
+        
+        @property { string } [key]
         
          
     */
@@ -29,9 +29,9 @@ const Paginator = require("../common/Paginator");
         @typedef Media
         
         
-        @property { string } [url]
-        
         @property { string } [type]
+        
+        @property { string } [url]
         
          
     */
@@ -40,9 +40,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductListingActionPage
         
         
-        @property { string } [type]
-        
         @property { Object } [query]
+        
+        @property { string } [type]
         
          
     */
@@ -51,9 +51,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductListingAction
         
         
-        @property { string } [type]
-        
         @property { ProductListingActionPage } [page]
+        
+        @property { string } [type]
         
          
     */
@@ -62,11 +62,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductBrand
         
         
-        @property { Media } [logo]
+        @property { string } [name]
         
         @property { number } [uid]
         
-        @property { string } [name]
+        @property { Media } [logo]
         
         @property { ProductListingAction } [action]
         
@@ -77,49 +77,49 @@ const Paginator = require("../common/Paginator");
         @typedef ProductDetail
         
         
-        @property { string } [shortDescription]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { string } slug
-        
-        @property { string } [color]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { number } [rating]
-        
-        @property { string } [type]
-        
-        @property { string } [teaserTag]
-        
         @property { number } [uid]
         
-        @property { Object } [attributes]
+        @property { Array<string> } [similars]
         
-        @property { string } [name]
+        @property { Array<string> } [highlights]
         
         @property { boolean } [hasVariant]
         
         @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
         
+        @property { string } [itemType]
+        
+        @property { number } [ratingCount]
+        
+        @property { Object } [attributes]
+        
         @property { ProductBrand } [brand]
+        
+        @property { string } [imageNature]
+        
+        @property { string } [teaserTag]
         
         @property { string } [description]
         
+        @property { number } [rating]
+        
+        @property { string } [shortDescription]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { string } [type]
+        
+        @property { string } [color]
+        
         @property { Array<Media> } [medias]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [itemType]
         
         @property { Array<ProductBrand> } [categories]
         
+        @property { string } [name]
+        
         @property { Array<string> } [tryouts]
         
-        @property { string } [imageNature]
+        @property { string } slug
         
          
     */
@@ -143,14 +143,29 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
+        @typedef ProductSize
+        
+        
+        @property { string } [value]
+        
+        @property { string } [display]
+        
+        @property { number } [quantity]
+        
+        @property { boolean } [isAvailable]
+        
+         
+    */
+
+/**
         @typedef Price
         
         
         @property { number } [min]
         
-        @property { string } [currencyCode]
-        
         @property { string } [currencySymbol]
+        
+        @property { string } [currencyCode]
         
         @property { number } [max]
         
@@ -169,48 +184,20 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef ProductSize
-        
-        
-        @property { number } [quantity]
-        
-        @property { string } [display]
-        
-        @property { boolean } [isAvailable]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
         @typedef ProductSizes
         
         
-        @property { string } [discount]
-        
         @property { ProductSizeStores } [stores]
+        
+        @property { Array<ProductSize> } [sizes]
+        
+        @property { boolean } [sellable]
+        
+        @property { string } [discount]
         
         @property { Object } [sizeChart]
         
         @property { ProductListingPrice } [price]
-        
-        @property { boolean } [sellable]
-        
-        @property { Array<ProductSize> } [sizes]
-        
-         
-    */
-
-/**
-        @typedef ProductStockPrice
-        
-        
-        @property { number } [marked]
-        
-        @property { number } [effective]
-        
-        @property { string } [currency]
         
          
     */
@@ -219,9 +206,9 @@ const Paginator = require("../common/Paginator");
         @typedef ArticleAssignment
         
         
-        @property { string } [level]
-        
         @property { string } [strategy]
+        
+        @property { string } [level]
         
          
     */
@@ -230,11 +217,24 @@ const Paginator = require("../common/Paginator");
         @typedef Store
         
         
+        @property { string } [name]
+        
         @property { number } [uid]
         
         @property { number } [count]
         
-        @property { string } [name]
+         
+    */
+
+/**
+        @typedef ProductStockPrice
+        
+        
+        @property { string } [currency]
+        
+        @property { number } [marked]
+        
+        @property { number } [effective]
         
          
     */
@@ -243,11 +243,11 @@ const Paginator = require("../common/Paginator");
         @typedef Seller
         
         
+        @property { string } [name]
+        
         @property { number } [uid]
         
         @property { number } [count]
-        
-        @property { string } [name]
         
          
     */
@@ -256,48 +256,35 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizePriceResponse
         
         
-        @property { string } [discount]
+        @property { string } [articleId]
         
-        @property { ProductStockPrice } [price]
-        
-        @property { string } [itemType]
+        @property { number } [pincode]
         
         @property { ArticleAssignment } [articleAssignment]
         
-        @property { number } [quantity]
+        @property { string } [specialBadge]
+        
+        @property { string } [discount]
+        
+        @property { string } [itemType]
         
         @property { Array<number> } [longLat]
         
         @property { Store } [store]
         
-        @property { Seller } [seller]
+        @property { Array<Object> } [strategyWiseListing]
+        
+        @property { number } [quantity]
         
         @property { ProductStockPrice } [pricePerPrice]
         
         @property { number } [sellerCount]
         
-        @property { number } [pincode]
-        
-        @property { string } [articleId]
-        
-        @property { string } [specialBadge]
-        
         @property { Object } [set]
         
-        @property { Array<Object> } [strategyWiseListing]
+        @property { ProductStockPrice } [price]
         
-         
-    */
-
-/**
-        @typedef ProductSizeSellerFilter
-        
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [value]
-        
-        @property { string } [name]
+        @property { Seller } [seller]
         
          
     */
@@ -306,19 +293,32 @@ const Paginator = require("../common/Paginator");
         @typedef Page
         
         
-        @property { number } [size]
-        
-        @property { boolean } [hasPrevious]
-        
         @property { boolean } [hasNext]
-        
-        @property { string } [nextId]
-        
-        @property { number } [itemTotal]
         
         @property { number } [current]
         
+        @property { number } [itemTotal]
+        
+        @property { number } [size]
+        
+        @property { string } [nextId]
+        
         @property { string } [type]
+        
+        @property { boolean } [hasPrevious]
+        
+         
+    */
+
+/**
+        @typedef ProductSizeSellerFilter
+        
+        
+        @property { string } [name]
+        
+        @property { boolean } [isSelected]
+        
+        @property { string } [value]
         
          
     */
@@ -327,9 +327,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSizeSellersResponse
         
         
-        @property { Array<ProductSizeSellerFilter> } [sortOn]
-        
         @property { Page } page
+        
+        @property { Array<ProductSizeSellerFilter> } [sortOn]
         
         @property { Array<ProductSizePriceResponse> } [items]
         
@@ -340,9 +340,9 @@ const Paginator = require("../common/Paginator");
         @typedef AttributeDetail
         
         
-        @property { string } [description]
-        
         @property { string } [display]
+        
+        @property { string } [description]
         
         @property { string } [key]
         
@@ -364,11 +364,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductCompareResponse
         
         
-        @property { string } [subtitle]
-        
         @property { Array<AttributeDetail> } [attributesMetadata]
         
         @property { string } [title]
+        
+        @property { string } [subtitle]
         
         @property { Array<ProductDetail> } [items]
         
@@ -388,9 +388,9 @@ const Paginator = require("../common/Paginator");
         @typedef ProductSimilarItem
         
         
-        @property { string } [subtitle]
-        
         @property { string } [title]
+        
+        @property { string } [subtitle]
         
         @property { Array<ProductDetail> } [items]
         
@@ -410,23 +410,23 @@ const Paginator = require("../common/Paginator");
         @typedef ProductVariantItemResponse
         
         
-        @property { string } [value]
-        
-        @property { string } [colorName]
-        
-        @property { number } [uid]
-        
-        @property { boolean } [isAvailable]
-        
-        @property { string } [slug]
+        @property { string } [name]
         
         @property { string } [color]
         
-        @property { ProductListingAction } [action]
+        @property { string } [value]
+        
+        @property { number } [uid]
+        
+        @property { string } [colorName]
+        
+        @property { string } [slug]
         
         @property { Array<Media> } [medias]
         
-        @property { string } [name]
+        @property { boolean } [isAvailable]
+        
+        @property { ProductListingAction } [action]
         
          
     */
@@ -435,11 +435,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductVariantResponse
         
         
-        @property { Array<ProductVariantItemResponse> } [items]
-        
         @property { string } [displayType]
         
         @property { string } [header]
+        
+        @property { Array<ProductVariantItemResponse> } [items]
         
          
     */
@@ -454,27 +454,27 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef StoreDetail
+        @typedef CompanyDetail
         
-        
-        @property { string } [city]
-        
-        @property { number } [id]
-        
-        @property { string } [code]
         
         @property { string } [name]
+        
+        @property { number } [id]
         
          
     */
 
 /**
-        @typedef CompanyDetail
+        @typedef StoreDetail
         
-        
-        @property { number } [id]
         
         @property { string } [name]
+        
+        @property { string } [code]
+        
+        @property { string } [city]
+        
+        @property { number } [id]
         
          
     */
@@ -483,23 +483,23 @@ const Paginator = require("../common/Paginator");
         @typedef ProductStockStatusItem
         
         
-        @property { ProductStockPrice } [price]
-        
-        @property { Object } [identifier]
-        
-        @property { string } [size]
-        
-        @property { number } [quantity]
-        
         @property { string } [uid]
+        
+        @property { CompanyDetail } [company]
         
         @property { StoreDetail } [store]
         
-        @property { Seller } [seller]
-        
         @property { number } [itemId]
         
-        @property { CompanyDetail } [company]
+        @property { number } [quantity]
+        
+        @property { string } [size]
+        
+        @property { Object } [identifier]
+        
+        @property { ProductStockPrice } [price]
+        
+        @property { Seller } [seller]
         
          
     */
@@ -525,71 +525,71 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef ProductListingDetail
-        
-        
-        @property { string } [discount]
-        
-        @property { string } [shortDescription]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { string } slug
-        
-        @property { string } [color]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { number } [rating]
-        
-        @property { string } [type]
-        
-        @property { string } [teaserTag]
-        
-        @property { number } [uid]
-        
-        @property { boolean } [sellable]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [name]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { string } [description]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [itemType]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { string } [imageNature]
-        
-         
-    */
-
-/**
         @typedef ProductSortOn
         
+        
+        @property { string } [name]
         
         @property { boolean } [isSelected]
         
         @property { string } [value]
         
+         
+    */
+
+/**
+        @typedef ProductListingDetail
+        
+        
+        @property { number } [uid]
+        
+        @property { Array<string> } [similars]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { boolean } [hasVariant]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { string } [itemType]
+        
+        @property { number } [ratingCount]
+        
+        @property { Object } [attributes]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { string } [imageNature]
+        
+        @property { string } [teaserTag]
+        
+        @property { string } [description]
+        
+        @property { number } [rating]
+        
+        @property { string } [shortDescription]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { string } [type]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { string } [color]
+        
+        @property { string } [discount]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<ProductBrand> } [categories]
+        
         @property { string } [name]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { boolean } [sellable]
+        
+        @property { string } slug
         
          
     */
@@ -598,13 +598,13 @@ const Paginator = require("../common/Paginator");
         @typedef ProductFiltersKey
         
         
-        @property { string } [logo]
+        @property { string } name
         
         @property { string } display
         
         @property { string } [kind]
         
-        @property { string } name
+        @property { string } [logo]
         
          
     */
@@ -615,27 +615,27 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [value]
         
-        @property { string } [currencySymbol]
+        @property { string } display
         
         @property { number } [max]
         
-        @property { string } [queryFormat]
-        
-        @property { string } display
-        
-        @property { number } [min]
-        
         @property { string } [displayFormat]
         
-        @property { number } [selectedMax]
+        @property { string } [currencySymbol]
         
         @property { string } [currencyCode]
         
-        @property { number } [count]
+        @property { string } [queryFormat]
         
         @property { boolean } isSelected
         
+        @property { number } [min]
+        
+        @property { number } [count]
+        
         @property { number } [selectedMin]
+        
+        @property { number } [selectedMax]
         
          
     */
@@ -655,11 +655,11 @@ const Paginator = require("../common/Paginator");
         @typedef ProductListingResponse
         
         
-        @property { Array<ProductListingDetail> } [items]
+        @property { Page } page
         
         @property { Array<ProductSortOn> } [sortOn]
         
-        @property { Page } page
+        @property { Array<ProductListingDetail> } [items]
         
         @property { Array<ProductFilters> } [filters]
         
@@ -681,21 +681,21 @@ const Paginator = require("../common/Paginator");
         @typedef BrandItem
         
         
-        @property { string } [discount]
+        @property { string } [name]
+        
+        @property { number } [uid]
         
         @property { Array<string> } [departments]
         
         @property { ImageUrls } [banners]
         
-        @property { number } [uid]
-        
         @property { string } [slug]
         
-        @property { ProductListingAction } [action]
+        @property { string } [discount]
         
         @property { Media } [logo]
         
-        @property { string } [name]
+        @property { ProductListingAction } [action]
         
          
     */
@@ -715,24 +715,13 @@ const Paginator = require("../common/Paginator");
         @typedef BrandDetailResponse
         
         
-        @property { Media } [logo]
-        
         @property { ImageUrls } [banners]
-        
-        @property { number } [uid]
         
         @property { string } [name]
         
-         
-    */
-
-/**
-        @typedef DepartmentIdentifier
-        
-        
         @property { number } [uid]
         
-        @property { string } [slug]
+        @property { Media } [logo]
         
          
     */
@@ -741,17 +730,17 @@ const Paginator = require("../common/Paginator");
         @typedef CategoryItems
         
         
-        @property { ImageUrls } [banners]
+        @property { string } [name]
         
         @property { number } [uid]
         
-        @property { string } [slug]
-        
         @property { Array<Object> } [childs]
         
-        @property { ProductListingAction } [action]
+        @property { ImageUrls } [banners]
         
-        @property { string } [name]
+        @property { string } [slug]
+        
+        @property { ProductListingAction } [action]
         
          
     */
@@ -760,9 +749,20 @@ const Paginator = require("../common/Paginator");
         @typedef DepartmentCategoryTree
         
         
+        @property { Array<CategoryItems> } [items]
+        
         @property { string } [department]
         
-        @property { Array<CategoryItems> } [items]
+         
+    */
+
+/**
+        @typedef DepartmentIdentifier
+        
+        
+        @property { string } [slug]
+        
+        @property { number } [uid]
         
          
     */
@@ -771,9 +771,9 @@ const Paginator = require("../common/Paginator");
         @typedef CategoryListingResponse
         
         
-        @property { Array<DepartmentIdentifier> } [departments]
-        
         @property { Array<DepartmentCategoryTree> } [data]
+        
+        @property { Array<DepartmentIdentifier> } [departments]
         
          
     */
@@ -782,13 +782,13 @@ const Paginator = require("../common/Paginator");
         @typedef CategoryMetaResponse
         
         
-        @property { Media } [logo]
-        
         @property { ImageUrls } [banners]
+        
+        @property { string } [name]
         
         @property { number } [uid]
         
-        @property { string } [name]
+        @property { Media } [logo]
         
          
     */
@@ -797,9 +797,9 @@ const Paginator = require("../common/Paginator");
         @typedef HomeListingResponse
         
         
-        @property { string } [message]
-        
         @property { Page } page
+        
+        @property { string } [message]
         
         @property { Array<ProductListingDetail> } [items]
         
@@ -810,15 +810,15 @@ const Paginator = require("../common/Paginator");
         @typedef Department
         
         
+        @property { string } [name]
+        
         @property { number } [uid]
         
         @property { string } [slug]
         
-        @property { Media } [logo]
-        
-        @property { string } [name]
-        
         @property { number } [priorityOrder]
+        
+        @property { Media } [logo]
         
          
     */
@@ -836,9 +836,9 @@ const Paginator = require("../common/Paginator");
         @typedef PageQuery
         
         
-        @property { Array<string> } [category]
-        
         @property { Array<string> } [brand]
+        
+        @property { Array<string> } [category]
         
          
     */
@@ -847,9 +847,9 @@ const Paginator = require("../common/Paginator");
         @typedef AutocompletePage
         
         
-        @property { string } [type]
-        
         @property { PageQuery } [query]
+        
+        @property { string } [type]
         
          
     */
@@ -858,9 +858,9 @@ const Paginator = require("../common/Paginator");
         @typedef Action
         
         
-        @property { string } [type]
-        
         @property { AutocompletePage } [page]
+        
+        @property { string } [type]
         
          
     */
@@ -869,11 +869,11 @@ const Paginator = require("../common/Paginator");
         @typedef AutocompleteItem
         
         
-        @property { Media } [logo]
-        
         @property { string } [display]
         
         @property { string } [type]
+        
+        @property { Media } [logo]
         
         @property { Action } [action]
         
@@ -890,27 +890,27 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef CollectionListingFilterType
+        @typedef CollectionListingFilterTag
         
         
-        @property { boolean } [isSelected]
+        @property { string } [name]
         
         @property { string } [display]
         
-        @property { string } [name]
+        @property { boolean } [isSelected]
         
          
     */
 
 /**
-        @typedef CollectionListingFilterTag
+        @typedef CollectionListingFilterType
         
         
-        @property { boolean } [isSelected]
+        @property { string } [name]
         
         @property { string } [display]
         
-        @property { string } [name]
+        @property { boolean } [isSelected]
         
          
     */
@@ -919,9 +919,9 @@ const Paginator = require("../common/Paginator");
         @typedef CollectionListingFilter
         
         
-        @property { Array<CollectionListingFilterType> } [type]
-        
         @property { Array<CollectionListingFilterTag> } [tags]
+        
+        @property { Array<CollectionListingFilterType> } [type]
         
          
     */
@@ -930,43 +930,43 @@ const Paginator = require("../common/Paginator");
         @typedef GetCollectionDetailNest
         
         
-        @property { Array<string> } [tag]
-        
-        @property { string } [slug]
-        
-        @property { Object } [schedule]
-        
-        @property { string } [type]
-        
-        @property { Object } [query]
+        @property { string } [uid]
         
         @property { ImageUrls } [banners]
         
-        @property { string } [uid]
+        @property { Array<string> } [visibleFacetsKeys]
         
-        @property { string } [name]
-        
-        @property { Object } [badge]
-        
-        @property { boolean } [isActive]
-        
-        @property { Object } [meta]
-        
-        @property { string } [description]
+        @property { Array<string> } [tag]
         
         @property { boolean } [allowSort]
         
-        @property { boolean } [allowFacets]
+        @property { boolean } [isActive]
+        
+        @property { string } [description]
         
         @property { Media } [logo]
         
-        @property { Object } [cron]
-        
-        @property { ProductListingAction } [action]
+        @property { string } [type]
         
         @property { string } [appId]
         
-        @property { Array<string> } [visibleFacetsKeys]
+        @property { Object } [schedule]
+        
+        @property { string } [name]
+        
+        @property { Object } [query]
+        
+        @property { Object } [cron]
+        
+        @property { string } [slug]
+        
+        @property { Object } [meta]
+        
+        @property { Object } [badge]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { ProductListingAction } [action]
         
          
     */
@@ -988,39 +988,39 @@ const Paginator = require("../common/Paginator");
         @typedef CollectionDetailResponse
         
         
-        @property { Array<string> } [tag]
+        @property { string } [name]
         
         @property { Object } [query]
         
-        @property { string } [description]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { boolean } [allowSort]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { string } [slug]
-        
-        @property { Media } [logo]
-        
-        @property { Object } [schedule]
-        
-        @property { string } [name]
-        
-        @property { Object } [badge]
+        @property { string } [appId]
         
         @property { Object } [cron]
         
+        @property { ImageUrls } [banners]
+        
+        @property { string } [slug]
+        
+        @property { Object } [schedule]
+        
+        @property { Object } [meta]
+        
+        @property { Object } [badge]
+        
         @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { string } [type]
-        
-        @property { string } [appId]
         
         @property { boolean } [isActive]
         
-        @property { Object } [meta]
+        @property { string } [description]
+        
+        @property { Array<string> } [tag]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { Media } [logo]
+        
+        @property { boolean } [allowSort]
+        
+        @property { string } [type]
         
          
     */
@@ -1040,9 +1040,9 @@ const Paginator = require("../common/Paginator");
         @typedef FollowPostResponse
         
         
-        @property { string } id
-        
         @property { string } message
+        
+        @property { string } id
         
          
     */
@@ -1062,9 +1062,9 @@ const Paginator = require("../common/Paginator");
         
         @property { Array<number> } [products]
         
-        @property { Array<number> } [collections]
-        
         @property { Array<number> } [brands]
+        
+        @property { Array<number> } [collections]
         
          
     */
@@ -1082,9 +1082,9 @@ const Paginator = require("../common/Paginator");
         @typedef LatLong
         
         
-        @property { Array<number> } [coordinates]
-        
         @property { string } [type]
+        
+        @property { Array<number> } [coordinates]
         
          
     */
@@ -1093,23 +1093,23 @@ const Paginator = require("../common/Paginator");
         @typedef Store1
         
         
+        @property { string } [name]
+        
+        @property { string } [storeCode]
+        
+        @property { number } [pincode]
+        
+        @property { number } [uid]
+        
         @property { string } [city]
         
         @property { LatLong } [latLong]
         
         @property { string } [address]
         
-        @property { number } [uid]
-        
-        @property { number } [pincode]
-        
-        @property { string } [country]
-        
-        @property { string } [name]
-        
         @property { string } [state]
         
-        @property { string } [storeCode]
+        @property { string } [country]
         
         @property { string } [storeEmail]
         
@@ -1128,14 +1128,134 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef Image
+        @typedef CartCurrency
         
         
-        @property { string } [url]
+        @property { string } [code]
         
-        @property { string } [secureUrl]
+        @property { string } [symbol]
         
-        @property { string } [aspectRatio]
+         
+    */
+
+/**
+        @typedef PromiseFormatted
+        
+        
+        @property { string } [max]
+        
+        @property { string } [min]
+        
+         
+    */
+
+/**
+        @typedef PromiseTimestamp
+        
+        
+        @property { number } [max]
+        
+        @property { number } [min]
+        
+         
+    */
+
+/**
+        @typedef ShipmentPromise
+        
+        
+        @property { PromiseFormatted } [formatted]
+        
+        @property { PromiseTimestamp } [timestamp]
+        
+         
+    */
+
+/**
+        @typedef DisplayBreakup
+        
+        
+        @property { string } [display]
+        
+        @property { number } [value]
+        
+        @property { string } [currencySymbol]
+        
+        @property { string } [currencyCode]
+        
+        @property { string } [key]
+        
+        @property { Array<string> } [message]
+        
+         
+    */
+
+/**
+        @typedef CouponBreakup
+        
+        
+        @property { string } [type]
+        
+        @property { string } [code]
+        
+        @property { number } [value]
+        
+        @property { boolean } [isApplied]
+        
+        @property { number } [uid]
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef RawBreakup
+        
+        
+        @property { number } [codCharge]
+        
+        @property { number } [youSaved]
+        
+        @property { number } [subtotal]
+        
+        @property { number } [coupon]
+        
+        @property { number } [fyndCash]
+        
+        @property { number } [deliveryCharge]
+        
+        @property { number } [total]
+        
+         
+    */
+
+/**
+        @typedef LoyaltyPoints
+        
+        
+        @property { number } [applicable]
+        
+        @property { boolean } [isApplied]
+        
+        @property { string } [description]
+        
+        @property { number } [total]
+        
+         
+    */
+
+/**
+        @typedef CartBreakup
+        
+        
+        @property { Array<DisplayBreakup> } [display]
+        
+        @property { CouponBreakup } [coupon]
+        
+        @property { RawBreakup } [raw]
+        
+        @property { LoyaltyPoints } [loyaltyPoints]
         
          
     */
@@ -1152,126 +1272,14 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef CategoryInfo
-        
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef ActionQuery
-        
-        
-        @property { Array<string> } [productSlug]
-        
-         
-    */
-
-/**
-        @typedef ProductAction
-        
-        
-        @property { ActionQuery } [query]
-        
-        @property { string } [url]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Product
-        
-        
-        @property { Array<Image> } [images]
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-        @property { string } [type]
-        
-        @property { BaseInfo } [brand]
-        
-        @property { Array<CategoryInfo> } [categories]
-        
-        @property { ProductAction } [action]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef ProductPrice
-        
-        
-        @property { number } [selling]
-        
-        @property { number } [marked]
-        
-        @property { string } [currencySymbol]
-        
-        @property { string } [currencyCode]
-        
-        @property { number } [addOn]
-        
-        @property { number } [effective]
-        
-         
-    */
-
-/**
-        @typedef ProductPriceInfo
-        
-        
-        @property { ProductPrice } [base]
-        
-        @property { ProductPrice } [converted]
-        
-         
-    */
-
-/**
-        @typedef ProductAvailability
-        
-        
-        @property { Array<string> } [sizes]
-        
-        @property { boolean } [deliverable]
-        
-        @property { number } [otherStoreQuantity]
-        
-        @property { boolean } [outOfStock]
-        
-        @property { boolean } [isValid]
-        
-         
-    */
-
-/**
-        @typedef CartProductIdentifer
-        
-        
-        @property { string } [identifier]
-        
-         
-    */
-
-/**
         @typedef BasePrice
         
         
-        @property { string } [currencySymbol]
+        @property { string } [currencyCode]
         
         @property { number } [marked]
         
-        @property { string } [currencyCode]
+        @property { string } [currencySymbol]
         
         @property { number } [effective]
         
@@ -1293,19 +1301,144 @@ const Paginator = require("../common/Paginator");
         @typedef ProductArticle
         
         
-        @property { string } [uid]
+        @property { BaseInfo } [seller]
         
         @property { BaseInfo } [store]
         
-        @property { ArticlePriceInfo } [price]
-        
-        @property { BaseInfo } [seller]
-        
         @property { string } [type]
+        
+        @property { string } [size]
         
         @property { number } [quantity]
         
-        @property { string } [size]
+        @property { ArticlePriceInfo } [price]
+        
+        @property { string } [uid]
+        
+         
+    */
+
+/**
+        @typedef ActionQuery
+        
+        
+        @property { Array<string> } [productSlug]
+        
+         
+    */
+
+/**
+        @typedef ProductAction
+        
+        
+        @property { string } [url]
+        
+        @property { ActionQuery } [query]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef Image
+        
+        
+        @property { string } [aspectRatio]
+        
+        @property { string } [url]
+        
+        @property { string } [secureUrl]
+        
+         
+    */
+
+/**
+        @typedef CategoryInfo
+        
+        
+        @property { number } [uid]
+        
+        @property { string } [name]
+        
+         
+    */
+
+/**
+        @typedef Product
+        
+        
+        @property { BaseInfo } [brand]
+        
+        @property { ProductAction } [action]
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { Array<Image> } [images]
+        
+        @property { Array<CategoryInfo> } [categories]
+        
+        @property { number } [uid]
+        
+         
+    */
+
+/**
+        @typedef ProductAvailability
+        
+        
+        @property { boolean } [deliverable]
+        
+        @property { boolean } [isValid]
+        
+        @property { number } [otherStoreQuantity]
+        
+        @property { boolean } [outOfStock]
+        
+        @property { Array<string> } [sizes]
+        
+         
+    */
+
+/**
+        @typedef ProductPrice
+        
+        
+        @property { number } [marked]
+        
+        @property { number } [selling]
+        
+        @property { number } [addOn]
+        
+        @property { string } [currencySymbol]
+        
+        @property { string } [currencyCode]
+        
+        @property { number } [effective]
+        
+         
+    */
+
+/**
+        @typedef ProductPriceInfo
+        
+        
+        @property { ProductPrice } [base]
+        
+        @property { ProductPrice } [converted]
+        
+         
+    */
+
+/**
+        @typedef CartProductIdentifer
+        
+        
+        @property { string } [identifier]
         
          
     */
@@ -1314,162 +1447,29 @@ const Paginator = require("../common/Paginator");
         @typedef CartProductInfo
         
         
+        @property { string } [discount]
+        
+        @property { Object } [bulkOffer]
+        
+        @property { boolean } [isSet]
+        
+        @property { ProductArticle } [article]
+        
         @property { Product } [product]
         
         @property { string } [couponMessage]
         
-        @property { ProductPriceInfo } [price]
+        @property { number } [quantity]
         
-        @property { boolean } [isSet]
+        @property { string } [key]
         
         @property { ProductAvailability } [availability]
+        
+        @property { ProductPriceInfo } [price]
         
         @property { string } [message]
         
         @property { CartProductIdentifer } identifiers
-        
-        @property { Object } [bulkOffer]
-        
-        @property { number } [quantity]
-        
-        @property { ProductArticle } [article]
-        
-        @property { string } [key]
-        
-        @property { string } [discount]
-        
-         
-    */
-
-/**
-        @typedef LoyaltyPoints
-        
-        
-        @property { boolean } [isApplied]
-        
-        @property { number } [total]
-        
-        @property { number } [applicable]
-        
-        @property { string } [description]
-        
-         
-    */
-
-/**
-        @typedef DisplayBreakup
-        
-        
-        @property { string } [display]
-        
-        @property { string } [currencySymbol]
-        
-        @property { Array<string> } [message]
-        
-        @property { string } [currencyCode]
-        
-        @property { string } [key]
-        
-        @property { number } [value]
-        
-         
-    */
-
-/**
-        @typedef CouponBreakup
-        
-        
-        @property { number } [uid]
-        
-        @property { string } [code]
-        
-        @property { string } [type]
-        
-        @property { string } [message]
-        
-        @property { boolean } [isApplied]
-        
-        @property { number } [value]
-        
-         
-    */
-
-/**
-        @typedef RawBreakup
-        
-        
-        @property { number } [subtotal]
-        
-        @property { number } [fyndCash]
-        
-        @property { number } [youSaved]
-        
-        @property { number } [deliveryCharge]
-        
-        @property { number } [coupon]
-        
-        @property { number } [total]
-        
-        @property { number } [codCharge]
-        
-         
-    */
-
-/**
-        @typedef CartBreakup
-        
-        
-        @property { LoyaltyPoints } [loyaltyPoints]
-        
-        @property { Array<DisplayBreakup> } [display]
-        
-        @property { CouponBreakup } [coupon]
-        
-        @property { RawBreakup } [raw]
-        
-         
-    */
-
-/**
-        @typedef CartCurrency
-        
-        
-        @property { string } [symbol]
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef PromiseFormatted
-        
-        
-        @property { string } [min]
-        
-        @property { string } [max]
-        
-         
-    */
-
-/**
-        @typedef PromiseTimestamp
-        
-        
-        @property { number } [min]
-        
-        @property { number } [max]
-        
-         
-    */
-
-/**
-        @typedef ShipmentPromise
-        
-        
-        @property { PromiseFormatted } [formatted]
-        
-        @property { PromiseTimestamp } [timestamp]
         
          
     */
@@ -1480,33 +1480,33 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [deliveryChargeInfo]
         
-        @property { string } [uid]
-        
         @property { string } [gstin]
         
-        @property { string } [couponText]
+        @property { string } [lastModified]
         
-        @property { string } [checkoutMode]
+        @property { CartCurrency } [currency]
         
-        @property { Array<CartProductInfo> } [items]
+        @property { number } [cartId]
+        
+        @property { boolean } [isValid]
+        
+        @property { ShipmentPromise } [deliveryPromise]
         
         @property { CartBreakup } [breakupValues]
+        
+        @property { string } [checkoutMode]
         
         @property { boolean } [restrictCheckout]
         
         @property { string } [comment]
         
+        @property { Array<CartProductInfo> } [items]
+        
+        @property { string } [uid]
+        
+        @property { string } [couponText]
+        
         @property { string } [message]
-        
-        @property { number } [cartId]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [lastModified]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { boolean } [isValid]
         
          
     */
@@ -1519,17 +1519,17 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [articleId]
         
-        @property { number } [sellerId]
-        
-        @property { number } [storeId]
-        
         @property { number } [itemId]
         
-        @property { boolean } [pos]
+        @property { number } [sellerId]
         
         @property { Object } [articleAssignment]
         
+        @property { number } [storeId]
+        
         @property { number } [quantity]
+        
+        @property { boolean } [pos]
         
         @property { string } [itemSize]
         
@@ -1549,13 +1549,13 @@ const Paginator = require("../common/Paginator");
         @typedef AddCartResponse
         
         
-        @property { boolean } [partial]
-        
-        @property { boolean } [success]
-        
         @property { CartResponse } [cart]
         
         @property { string } [message]
+        
+        @property { boolean } [success]
+        
+        @property { boolean } [partial]
         
          
     */
@@ -1564,17 +1564,17 @@ const Paginator = require("../common/Paginator");
         @typedef UpdateProductCart
         
         
+        @property { number } [itemIndex]
+        
         @property { string } [articleId]
         
         @property { number } [itemId]
         
-        @property { CartProductIdentifer } identifiers
-        
-        @property { number } [itemIndex]
-        
         @property { number } [quantity]
         
         @property { string } [itemSize]
+        
+        @property { CartProductIdentifer } identifiers
         
          
     */
@@ -1583,9 +1583,9 @@ const Paginator = require("../common/Paginator");
         @typedef UpdateCartRequest
         
         
-        @property { Array<UpdateProductCart> } [items]
-        
         @property { string } operation
+        
+        @property { Array<UpdateProductCart> } [items]
         
          
     */
@@ -1594,11 +1594,11 @@ const Paginator = require("../common/Paginator");
         @typedef UpdateCartResponse
         
         
-        @property { boolean } [success]
-        
         @property { CartResponse } [cart]
         
         @property { string } [message]
+        
+        @property { boolean } [success]
         
          
     */
@@ -1616,25 +1616,25 @@ const Paginator = require("../common/Paginator");
         @typedef Coupon
         
         
-        @property { string } [expiresOn]
-        
         @property { string } [couponCode]
-        
-        @property { string } [subTitle]
-        
-        @property { number } [maxDiscountValue]
-        
-        @property { boolean } [isApplicable]
-        
-        @property { number } [couponValue]
-        
-        @property { string } [message]
         
         @property { string } [title]
         
         @property { boolean } [isApplied]
         
         @property { number } [minimumCartValue]
+        
+        @property { string } [expiresOn]
+        
+        @property { number } [maxDiscountValue]
+        
+        @property { string } [subTitle]
+        
+        @property { boolean } [isApplicable]
+        
+        @property { number } [couponValue]
+        
+        @property { string } [message]
         
          
     */
@@ -1693,9 +1693,9 @@ const Paginator = require("../common/Paginator");
         
         @property { number } [marked]
         
-        @property { string } [currencySymbol]
-        
         @property { number } [bulkEffective]
+        
+        @property { string } [currencySymbol]
         
         @property { string } [currencyCode]
         
@@ -1708,17 +1708,17 @@ const Paginator = require("../common/Paginator");
         @typedef OfferItem
         
         
-        @property { number } [margin]
-        
-        @property { OfferPrice } [price]
-        
         @property { string } [type]
         
-        @property { boolean } [best]
+        @property { number } [margin]
         
         @property { boolean } [autoApplied]
         
         @property { number } [quantity]
+        
+        @property { boolean } [best]
+        
+        @property { OfferPrice } [price]
         
         @property { number } [total]
         
@@ -1749,9 +1749,9 @@ const Paginator = require("../common/Paginator");
         @typedef GeoLocation
         
         
-        @property { number } [longitude]
-        
         @property { number } [latitude]
+        
+        @property { number } [longitude]
         
          
     */
@@ -1760,47 +1760,47 @@ const Paginator = require("../common/Paginator");
         @typedef Address
         
         
-        @property { string } [area]
-        
-        @property { Object } [meta]
-        
-        @property { string } [addressType]
-        
-        @property { string } [checkoutMode]
-        
-        @property { string } [areaCode]
-        
-        @property { boolean } [isActive]
-        
-        @property { boolean } [isDefaultAddress]
-        
-        @property { string } [landmark]
+        @property { string } [address]
         
         @property { number } [addressId]
         
-        @property { Array<Object> } [tags]
+        @property { boolean } [isActive]
         
-        @property { string } [email]
+        @property { string } [areaCode]
         
-        @property { string } [areaCodeSlug]
-        
-        @property { string } [name]
-        
-        @property { string } [address]
-        
-        @property { string } [userId]
-        
-        @property { string } [country]
-        
-        @property { string } [city]
-        
-        @property { string } [countryCode]
+        @property { boolean } [isDefaultAddress]
         
         @property { number } [uid]
         
-        @property { string } [phone]
+        @property { string } [landmark]
+        
+        @property { string } [email]
         
         @property { string } [state]
+        
+        @property { string } [userId]
+        
+        @property { string } [checkoutMode]
+        
+        @property { string } [country]
+        
+        @property { string } [areaCodeSlug]
+        
+        @property { string } [addressType]
+        
+        @property { string } [countryCode]
+        
+        @property { Array<Object> } [tags]
+        
+        @property { string } [name]
+        
+        @property { string } [phone]
+        
+        @property { string } [area]
+        
+        @property { string } [city]
+        
+        @property { Object } [meta]
         
         @property { GeoLocation } [geoLocation]
         
@@ -1820,11 +1820,11 @@ const Paginator = require("../common/Paginator");
         @typedef SaveAddressResponse
         
         
-        @property { boolean } [isDefaultAddress]
-        
         @property { string } [success]
         
         @property { number } [addressId]
+        
+        @property { boolean } [isDefaultAddress]
         
          
     */
@@ -1833,13 +1833,13 @@ const Paginator = require("../common/Paginator");
         @typedef UpdateAddressResponse
         
         
-        @property { boolean } [isDefaultAddress]
+        @property { boolean } [isUpdated]
         
         @property { boolean } [success]
         
-        @property { boolean } [isUpdated]
-        
         @property { number } [addressId]
+        
+        @property { boolean } [isDefaultAddress]
         
          
     */
@@ -1848,9 +1848,9 @@ const Paginator = require("../common/Paginator");
         @typedef DeleteAddressResponse
         
         
-        @property { boolean } [isDeleted]
-        
         @property { number } [addressId]
+        
+        @property { boolean } [isDeleted]
         
          
     */
@@ -1859,9 +1859,9 @@ const Paginator = require("../common/Paginator");
         @typedef SelectCartAddressRequest
         
         
-        @property { string } [uid]
-        
         @property { number } [billingAddressId]
+        
+        @property { string } [uid]
         
         @property { string } [addressId]
         
@@ -1872,17 +1872,17 @@ const Paginator = require("../common/Paginator");
         @typedef UpdateCartPaymentRequest
         
         
-        @property { number } [uid]
-        
-        @property { string } [merchantCode]
+        @property { string } [paymentIdentifier]
         
         @property { string } [aggregatorName]
         
         @property { number } [addressId]
         
-        @property { string } [paymentIdentifier]
+        @property { string } [merchantCode]
         
         @property { string } [paymentMode]
+        
+        @property { number } [uid]
         
          
     */
@@ -1891,13 +1891,13 @@ const Paginator = require("../common/Paginator");
         @typedef CouponValidity
         
         
-        @property { string } [displayMessageEn]
-        
         @property { string } [code]
         
-        @property { boolean } [valid]
-        
         @property { number } [discount]
+        
+        @property { string } [displayMessageEn]
+        
+        @property { boolean } [valid]
         
          
     */
@@ -1908,9 +1908,9 @@ const Paginator = require("../common/Paginator");
         
         @property { boolean } success
         
-        @property { CouponValidity } [couponValidity]
-        
         @property { string } [message]
+        
+        @property { CouponValidity } [couponValidity]
         
          
     */
@@ -1919,25 +1919,25 @@ const Paginator = require("../common/Paginator");
         @typedef ShipmentResponse
         
         
-        @property { ShipmentPromise } [promise]
+        @property { number } [fulfillmentId]
         
-        @property { string } [orderType]
+        @property { number } [dpId]
         
         @property { Object } [dpOptions]
+        
+        @property { ShipmentPromise } [promise]
+        
+        @property { string } [fulfillmentType]
+        
+        @property { number } [shipments]
+        
+        @property { string } [shipmentType]
+        
+        @property { string } [orderType]
         
         @property { string } [boxType]
         
         @property { Array<CartProductInfo> } [items]
-        
-        @property { number } [shipments]
-        
-        @property { number } [fulfillmentId]
-        
-        @property { string } [fulfillmentType]
-        
-        @property { number } [dpId]
-        
-        @property { string } [shipmentType]
         
          
     */
@@ -1948,33 +1948,33 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [deliveryChargeInfo]
         
-        @property { string } [uid]
-        
         @property { string } [gstin]
         
-        @property { string } [couponText]
+        @property { string } [lastModified]
+        
+        @property { CartCurrency } [currency]
+        
+        @property { number } [cartId]
+        
+        @property { boolean } [isValid]
+        
+        @property { ShipmentPromise } [deliveryPromise]
+        
+        @property { CartBreakup } [breakupValues]
         
         @property { string } [checkoutMode]
         
-        @property { CartBreakup } [breakupValues]
+        @property { Array<ShipmentResponse> } [shipments]
         
         @property { boolean } [restrictCheckout]
         
         @property { string } [comment]
         
-        @property { Array<ShipmentResponse> } [shipments]
+        @property { string } [uid]
+        
+        @property { string } [couponText]
         
         @property { string } [message]
-        
-        @property { number } [cartId]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [lastModified]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { boolean } [isValid]
         
          
     */
@@ -1983,37 +1983,37 @@ const Paginator = require("../common/Paginator");
         @typedef CartCheckoutRequest
         
         
+        @property { number } [billingAddressId]
+        
+        @property { Object } [extraMeta]
+        
+        @property { string } [aggregator]
+        
+        @property { string } [paymentIdentifier]
+        
         @property { number } [addressId]
         
         @property { number } [orderingStore]
         
-        @property { Object } [paymentParams]
+        @property { string } [merchantCode]
         
-        @property { number } [billingAddressId]
+        @property { string } [fyndstoreEmpId]
         
         @property { Object } [staff]
         
-        @property { string } [callbackUrl]
-        
-        @property { boolean } [paymentAutoConfirm]
-        
-        @property { string } [aggregator]
-        
-        @property { Object } [extraMeta]
-        
-        @property { string } [merchantCode]
-        
-        @property { Object } [meta]
+        @property { Object } [billingAddress]
         
         @property { Object } [deliveryAddress]
         
-        @property { string } [paymentIdentifier]
+        @property { Object } [paymentParams]
+        
+        @property { string } [callbackUrl]
         
         @property { string } paymentMode
         
-        @property { Object } [billingAddress]
+        @property { boolean } [paymentAutoConfirm]
         
-        @property { string } [fyndstoreEmpId]
+        @property { Object } [meta]
         
          
     */
@@ -2022,57 +2022,57 @@ const Paginator = require("../common/Paginator");
         @typedef CheckCart
         
         
-        @property { string } [couponText]
-        
-        @property { CartBreakup } [breakupValues]
-        
-        @property { string } [codMessage]
-        
-        @property { boolean } [codAvailable]
-        
-        @property { string } [comment]
-        
-        @property { string } [message]
-        
-        @property { boolean } [success]
+        @property { string } [lastModified]
         
         @property { CartCurrency } [currency]
         
-        @property { string } [lastModified]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { string } [checkoutMode]
-        
-        @property { number } [deliveryChargeOrderValue]
-        
-        @property { string } [userType]
+        @property { number } [codCharges]
         
         @property { string } [orderId]
         
         @property { boolean } [isValid]
         
-        @property { string } [errorMessage]
-        
-        @property { boolean } [restrictCheckout]
-        
-        @property { string } [storeCode]
-        
-        @property { number } [cartId]
-        
-        @property { number } [codCharges]
-        
-        @property { string } [deliveryChargeInfo]
-        
-        @property { string } [uid]
-        
-        @property { string } [gstin]
+        @property { CartBreakup } [breakupValues]
         
         @property { number } [deliveryCharges]
         
         @property { Array<CartProductInfo> } [items]
         
+        @property { string } [uid]
+        
+        @property { string } [couponText]
+        
+        @property { string } [gstin]
+        
+        @property { string } [storeCode]
+        
         @property { Array<Object> } [storeEmps]
+        
+        @property { ShipmentPromise } [deliveryPromise]
+        
+        @property { string } [checkoutMode]
+        
+        @property { string } [comment]
+        
+        @property { string } [message]
+        
+        @property { number } [deliveryChargeOrderValue]
+        
+        @property { number } [cartId]
+        
+        @property { boolean } [restrictCheckout]
+        
+        @property { string } [userType]
+        
+        @property { string } [deliveryChargeInfo]
+        
+        @property { string } [errorMessage]
+        
+        @property { string } [codMessage]
+        
+        @property { boolean } [success]
+        
+        @property { boolean } [codAvailable]
         
          
     */
@@ -2081,19 +2081,19 @@ const Paginator = require("../common/Paginator");
         @typedef CartCheckoutResponse
         
         
+        @property { Object } [data]
+        
+        @property { CheckCart } [cart]
+        
+        @property { string } [orderId]
+        
         @property { string } [appInterceptUrl]
         
         @property { string } [callbackUrl]
         
-        @property { CheckCart } [cart]
-        
-        @property { Object } [data]
+        @property { boolean } [success]
         
         @property { string } [message]
-        
-        @property { string } [orderId]
-        
-        @property { boolean } [success]
         
          
     */
@@ -2102,11 +2102,11 @@ const Paginator = require("../common/Paginator");
         @typedef CartMetaRequest
         
         
+        @property { string } [checkoutMode]
+        
         @property { Object } [pickUpCustomerDetails]
         
         @property { string } [gstin]
-        
-        @property { string } [checkoutMode]
         
         @property { string } [comment]
         
@@ -2146,9 +2146,9 @@ const Paginator = require("../common/Paginator");
         @typedef GetShareCartLinkResponse
         
         
-        @property { string } [shareUrl]
-        
         @property { string } [token]
+        
+        @property { string } [shareUrl]
         
          
     */
@@ -2157,15 +2157,15 @@ const Paginator = require("../common/Paginator");
         @typedef SharedCartDetails
         
         
-        @property { Object } [source]
-        
         @property { string } [createdOn]
+        
+        @property { string } [token]
+        
+        @property { Object } [source]
         
         @property { Object } [meta]
         
         @property { Object } [user]
-        
-        @property { string } [token]
         
          
     */
@@ -2174,37 +2174,37 @@ const Paginator = require("../common/Paginator");
         @typedef SharedCart
         
         
-        @property { string } [deliveryChargeInfo]
+        @property { SharedCartDetails } [sharedCartDetails]
         
-        @property { string } [uid]
+        @property { string } [deliveryChargeInfo]
         
         @property { string } [gstin]
         
-        @property { string } [couponText]
+        @property { string } [lastModified]
         
-        @property { string } [checkoutMode]
+        @property { CartCurrency } [currency]
         
-        @property { Array<CartProductInfo> } [items]
+        @property { number } [cartId]
+        
+        @property { boolean } [isValid]
+        
+        @property { ShipmentPromise } [deliveryPromise]
         
         @property { CartBreakup } [breakupValues]
+        
+        @property { string } [checkoutMode]
         
         @property { boolean } [restrictCheckout]
         
         @property { string } [comment]
         
-        @property { SharedCartDetails } [sharedCartDetails]
+        @property { Array<CartProductInfo> } [items]
+        
+        @property { string } [uid]
+        
+        @property { string } [couponText]
         
         @property { string } [message]
-        
-        @property { number } [cartId]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [lastModified]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { boolean } [isValid]
         
          
     */
@@ -2213,9 +2213,552 @@ const Paginator = require("../common/Paginator");
         @typedef SharedCartResponse
         
         
+        @property { SharedCart } [cart]
+        
         @property { string } [error]
         
-        @property { SharedCart } [cart]
+         
+    */
+
+/**
+        @typedef TicketList
+        
+        
+        @property { Array<Ticket> } [items]
+        
+        @property { Filter } [filters]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef TicketHistoryList
+        
+        
+        @property { Array<TicketHistory> } [docs]
+        
+        @property { number } [limit]
+        
+        @property { number } [page]
+        
+        @property { number } [pages]
+        
+        @property { number } [total]
+        
+         
+    */
+
+/**
+        @typedef CustomFormList
+        
+        
+        @property { Array<CustomForm> } [docs]
+        
+        @property { number } [limit]
+        
+        @property { number } [page]
+        
+        @property { number } [pages]
+        
+        @property { number } [total]
+        
+         
+    */
+
+/**
+        @typedef CreateCustomFormPayload
+        
+        
+        @property { string } slug
+        
+        @property { string } title
+        
+        @property { Array<Object> } inputs
+        
+        @property { string } [description]
+        
+        @property { string } [headerImage]
+        
+        @property { boolean } [shouldNotify]
+        
+        @property { string } [successMessage]
+        
+        @property { PollForAssignment } [pollForAssignment]
+        
+         
+    */
+
+/**
+        @typedef EditCustomFormPayload
+        
+        
+        @property { string } title
+        
+        @property { Array<Object> } inputs
+        
+        @property { string } [description]
+        
+        @property { string } [headerImage]
+        
+        @property { boolean } [shouldNotify]
+        
+        @property { boolean } [loginRequired]
+        
+        @property { string } [successMessage]
+        
+        @property { PollForAssignment } [pollForAssignment]
+        
+         
+    */
+
+/**
+        @typedef EditTicketPayload
+        
+        
+        @property { TicketContent } [content]
+        
+        @property { string } [category]
+        
+        @property { string } [source]
+        
+        @property { string } [status]
+        
+        @property { string } [priority]
+        
+        @property { AgentChangePayload } [assignedTo]
+        
+        @property { Array<string> } [tags]
+        
+         
+    */
+
+/**
+        @typedef AgentChangePayload
+        
+        
+        @property { string } agentId
+        
+         
+    */
+
+/**
+        @typedef CreateVideoRoomResponse
+        
+        
+        @property { string } uniqueName
+        
+         
+    */
+
+/**
+        @typedef CloseVideoRoomResponse
+        
+        
+        @property { boolean } success
+        
+         
+    */
+
+/**
+        @typedef CreateVideoRoomPayload
+        
+        
+        @property { string } uniqueName
+        
+        @property { Array<Object> } [notify]
+        
+         
+    */
+
+/**
+        @typedef Filter
+        
+        
+        @property { Priority } priorities
+        
+        @property { Category } [categories]
+        
+        @property { Status } statuses
+        
+        @property { Array<Object> } assignees
+        
+         
+    */
+
+/**
+        @typedef TicketHistoryPayload
+        
+        
+        @property { Object } value
+        
+        @property { string } type
+        
+         
+    */
+
+/**
+        @typedef CustomFormSubmissionPayload
+        
+        
+        @property { Array<KeyValue> } response
+        
+         
+    */
+
+/**
+        @typedef KeyValue
+        
+        
+        @property { string } key
+        
+        @property { string } value
+        
+         
+    */
+
+/**
+        @typedef GetTokenForVideoRoomResponse
+        
+        
+        @property { string } accessToken
+        
+         
+    */
+
+/**
+        @typedef GetParticipantsInsideVideoRoomResponse
+        
+        
+        @property { Array<Participant> } participants
+        
+         
+    */
+
+/**
+        @typedef Participant
+        
+        
+        @property { UserSchema } [user]
+        
+        @property { string } [identity]
+        
+        @property { string } [status]
+        
+         
+    */
+
+/**
+        @typedef UserSchema
+        
+        
+        @property { string } [firstName]
+        
+        @property { string } [lastName]
+        
+        @property { Array<PhoneNumber> } [phoneNumbers]
+        
+        @property { Array<Email> } [emails]
+        
+        @property { string } [gender]
+        
+        @property { boolean } [active]
+        
+        @property { string } [profilePicUrl]
+        
+        @property { string } [username]
+        
+        @property { string } [accountType]
+        
+        @property { string } [uid]
+        
+        @property { Debug } [debug]
+        
+        @property { boolean } [hasOldPasswordHash]
+        
+        @property { string } [id]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+         
+    */
+
+/**
+        @typedef PhoneNumber
+        
+        
+        @property { boolean } [active]
+        
+        @property { boolean } [primary]
+        
+        @property { boolean } [verified]
+        
+        @property { string } [phone]
+        
+        @property { number } [countryCode]
+        
+         
+    */
+
+/**
+        @typedef Email
+        
+        
+        @property { boolean } [primary]
+        
+        @property { boolean } [verified]
+        
+        @property { string } [email]
+        
+        @property { boolean } [active]
+        
+         
+    */
+
+/**
+        @typedef Debug
+        
+        
+        @property { string } [source]
+        
+        @property { string } [platform]
+        
+         
+    */
+
+/**
+        @typedef SubmitCustomFormResponse
+        
+        
+        @property { Ticket } ticket
+        
+         
+    */
+
+/**
+        @typedef TicketContext
+        
+        
+        @property { string } [applicationId]
+        
+        @property { string } companyId
+        
+         
+    */
+
+/**
+        @typedef CreatedOn
+        
+        
+        @property { string } userAgent
+        
+         
+    */
+
+/**
+        @typedef TicketAsset
+        
+        
+        @property { string } [display]
+        
+        @property { string } value
+        
+        @property { string } type
+        
+         
+    */
+
+/**
+        @typedef TicketContent
+        
+        
+        @property { string } title
+        
+        @property { string } [description]
+        
+        @property { Array<TicketAsset> } [attachments]
+        
+         
+    */
+
+/**
+        @typedef AddTicketPayload
+        
+        
+        @property { string } status
+        
+        @property { string } priority
+        
+        @property { string } category
+        
+        @property { TicketContent } content
+        
+         
+    */
+
+/**
+        @typedef Priority
+        
+        
+        @property { string } key
+        
+        @property { string } display
+        
+        @property { string } color
+        
+         
+    */
+
+/**
+        @typedef Status
+        
+        
+        @property { string } key
+        
+        @property { string } display
+        
+        @property { string } color
+        
+         
+    */
+
+/**
+        @typedef Category
+        
+        
+        @property { string } key
+        
+        @property { string } display
+        
+        @property { CustomForm } [form]
+        
+         
+    */
+
+/**
+        @typedef SubmitButton
+        
+        
+        @property { string } title
+        
+        @property { string } titleColor
+        
+        @property { string } backgroundColor
+        
+         
+    */
+
+/**
+        @typedef PollForAssignment
+        
+        
+        @property { number } duration
+        
+        @property { string } message
+        
+        @property { string } successMessage
+        
+        @property { string } failureMessage
+        
+         
+    */
+
+/**
+        @typedef CustomForm
+        
+        
+        @property { string } applicationId
+        
+        @property { string } slug
+        
+        @property { string } [headerImage]
+        
+        @property { string } title
+        
+        @property { string } [description]
+        
+        @property { boolean } loginRequired
+        
+        @property { boolean } shouldNotify
+        
+        @property { string } [successMessage]
+        
+        @property { SubmitButton } [submitButton]
+        
+        @property { Array<Object> } inputs
+        
+        @property { CreatedOn } [createdOn]
+        
+        @property { Object } [createdBy]
+        
+        @property { PollForAssignment } [pollForAssignment]
+        
+        @property { string } id
+        
+         
+    */
+
+/**
+        @typedef TicketHistory
+        
+        
+        @property { string } type
+        
+        @property { Object } value
+        
+        @property { string } ticketId
+        
+        @property { CreatedOn } [createdOn]
+        
+        @property { Object } [createdBy]
+        
+        @property { string } id
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [createdAt]
+        
+         
+    */
+
+/**
+        @typedef Ticket
+        
+        
+        @property { TicketContext } [context]
+        
+        @property { CreatedOn } [createdOn]
+        
+        @property { string } [responseId]
+        
+        @property { TicketContent } [content]
+        
+        @property { string } ticketId
+        
+        @property { Category } category
+        
+        @property { string } source
+        
+        @property { Status } status
+        
+        @property { Priority } priority
+        
+        @property { Object } [createdBy]
+        
+        @property { Object } [assignedTo]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [id]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [createdAt]
         
          
     */
@@ -2911,17 +3454,6 @@ const Paginator = require("../common/Paginator");
     */
 
 /**
-        @typedef Email
-        
-        
-        @property { boolean } [isRequired]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
         @typedef Mobile
         
         
@@ -3014,86 +3546,6 @@ const Paginator = require("../common/Paginator");
         
         
         @property { string } [appId]
-        
-         
-    */
-
-/**
-        @typedef UserSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { PhoneNumbers } [phoneNumbers]
-        
-        @property { Emails } [emails]
-        
-        @property { string } [gender]
-        
-        @property { boolean } [active]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [username]
-        
-        @property { string } [accountType]
-        
-        @property { string } [uid]
-        
-        @property { Debug } [debug]
-        
-        @property { boolean } [hasOldPasswordHash]
-        
-        @property { string } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-         
-    */
-
-/**
-        @typedef PhoneNumbers
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [phone]
-        
-        @property { number } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef Emails
-        
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [email]
-        
-        @property { boolean } [active]
-        
-         
-    */
-
-/**
-        @typedef Debug
-        
-        
-        @property { string } [source]
-        
-        @property { string } [platform]
         
          
     */
@@ -3431,7 +3883,7 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [type]
         
-        @property { FinancialBreakup } [financialBreakup]
+        @property { Array<FinancialBreakup> } [financialBreakup]
         
         @property { Reasons } [reasons]
         
@@ -3670,23 +4122,6 @@ const Paginator = require("../common/Paginator");
         
         
         @property { string } [orderCreated]
-        
-         
-    */
-
-/**
-        @typedef Status
-        
-        
-        @property { boolean } [isReturnable]
-        
-        @property { boolean } [canBeCancelled]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { boolean } [isCustomerReturnAllowed]
-        
-        @property { boolean } [isActive]
         
          
     */
@@ -4093,7 +4528,7 @@ const Paginator = require("../common/Paginator");
         
         @property { string } [city]
         
-        @property { Meta } [meta]
+        @property { FulfillingStoreMeta } [meta]
         
         @property { string } [fulfillmentChannel]
         
@@ -4153,6 +4588,27 @@ const Paginator = require("../common/Paginator");
         @property { string } [createdAt]
         
         @property { string } [contactPerson]
+        
+         
+    */
+
+/**
+        @typedef FulfillingStoreMeta
+        
+        
+        @property { AdditionalContactDetails } [additionalContactDetails]
+        
+        @property { Timing } [timing]
+        
+        @property { Documents } [documents]
+        
+        @property { string } [displayName]
+        
+        @property { string } [stage]
+        
+        @property { string } [gstNumber]
+        
+        @property { boolean } [allowDpAssignmentFromFynd]
         
          
     */
@@ -4960,9 +5416,9 @@ const Paginator = require("../common/Paginator");
         
         @property { string } shipmentType
         
-        @property { number } [quantity]
-        
         @property { string } articleUid
+        
+        @property { number } [quantity]
         
          
     */
@@ -4980,9 +5436,9 @@ const Paginator = require("../common/Paginator");
         @typedef Files
         
         
-        @property { string } key
-        
         @property { Array<string> } values
+        
+        @property { string } key
         
          
     */
@@ -4991,45 +5447,45 @@ const Paginator = require("../common/Paginator");
         @typedef CartPosCheckoutRequest
         
         
-        @property { string } [merchantCode]
-        
-        @property { boolean } [pos]
-        
-        @property { string } orderType
-        
         @property { number } [orderingStore]
-        
-        @property { string } [aggregator]
-        
-        @property { string } [fyndstoreEmpId]
-        
-        @property { boolean } [paymentAutoConfirm]
-        
-        @property { number } [addressId]
         
         @property { Object } [deliveryAddress]
         
-        @property { Object } [billingAddress]
-        
-        @property { Object } [meta]
-        
-        @property { Files } [files]
-        
-        @property { string } [callbackUrl]
-        
-        @property { number } [billingAddressId]
-        
-        @property { Object } [staff]
-        
-        @property { number } [pickAtStoreUid]
-        
-        @property { string } [paymentIdentifier]
+        @property { string } [fyndstoreEmpId]
         
         @property { string } paymentMode
         
+        @property { string } [callbackUrl]
+        
+        @property { boolean } [pos]
+        
+        @property { number } [pickAtStoreUid]
+        
+        @property { Object } [staff]
+        
+        @property { Files } [files]
+        
+        @property { string } [paymentIdentifier]
+        
         @property { Object } [extraMeta]
         
+        @property { boolean } [paymentAutoConfirm]
+        
+        @property { string } [merchantCode]
+        
+        @property { string } orderType
+        
+        @property { Object } [billingAddress]
+        
+        @property { number } [addressId]
+        
+        @property { number } [billingAddressId]
+        
+        @property { Object } [meta]
+        
         @property { Object } [paymentParams]
+        
+        @property { string } [aggregator]
         
          
     */
@@ -5049,35 +5505,35 @@ const Paginator = require("../common/Paginator");
         @typedef PickupStoreDetail
         
         
-        @property { string } [email]
-        
-        @property { string } [state]
+        @property { string } [landmark]
         
         @property { string } [phone]
         
-        @property { number } [uid]
-        
         @property { string } [storeCode]
         
-        @property { string } [area]
+        @property { number } [uid]
         
-        @property { string } [city]
-        
-        @property { string } [areaCodeSlug]
-        
-        @property { string } [areaCode]
-        
-        @property { string } [landmark]
-        
-        @property { string } [address]
+        @property { number } [pincode]
         
         @property { string } [addressType]
         
+        @property { string } [city]
+        
+        @property { string } [address]
+        
+        @property { string } [state]
+        
+        @property { string } [area]
+        
+        @property { string } [email]
+        
         @property { string } [country]
+        
+        @property { string } [areaCode]
         
         @property { string } [name]
         
-        @property { number } [pincode]
+        @property { string } [areaCodeSlug]
         
          
     */
@@ -5207,17 +5663,6 @@ const Paginator = require("../common/Paginator");
         @property { Category } [category]
         
         @property { LogisticPromise } [promise]
-        
-         
-    */
-
-/**
-        @typedef Category
-        
-        
-        @property { number } [id]
-        
-        @property { string } [level]
         
          
     */
@@ -6524,6 +6969,151 @@ class Cart {
   }
 }
 
+class Lead {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary: Get Ticket with the specific id
+    * @description: Get Ticket with the specific id, this is used to view the ticket details
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - ID of ticket to be retrieved
+    
+    **/
+  getTicket({ id } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/lead/v1.0/ticket/${id}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create history for specific Ticket
+   * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.ticketId - Ticket ID for which history is created
+   * @param {TicketHistoryPayload} arg.body
+   **/
+  createHistory({ ticketId, body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/lead/v1.0/ticket/${ticketId}/history`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Create Ticket
+   * @description: This is used to Create Ticket.
+   * @param {Object} arg - arg object.
+   * @param {AddTicketPayload} arg.body
+   **/
+  createTicket({ body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/lead/v1.0/ticket/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get specific Custom Form using it's slug
+    * @description: Get specific Custom Form using it's slug, this is used to view the form.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - Slug of form whose response is getting submitted
+    
+    **/
+  getCustomForm({ slug } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/lead/v1.0/form/${slug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Submit Response for a specific Custom Form using it's slug
+   * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.slug - Slug of form whose response is getting submitted
+   * @param {CustomFormSubmissionPayload} arg.body
+   **/
+  submitCustomForm({ slug, body } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/lead/v1.0/form/${slug}/submit`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get participants of a specific Video Room using it's unique name
+    * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.uniqueName - Unique name of Video Room
+    
+    **/
+  getParticipantsInsideVideoRoom({ uniqueName } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/lead/v1.0/video/room/${uniqueName}/participants`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Token to join a specific Video Room using it's unqiue name
+    * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.uniqueName - Unique name of Video Room
+    
+    **/
+  getTokenForVideoRoom({ uniqueName } = {}) {
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/lead/v1.0/video/room/${uniqueName}/token`,
+      query,
+      undefined
+    );
+  }
+}
+
 class User {
   constructor(_conf) {
     this._conf = _conf;
@@ -7421,7 +8011,7 @@ class Order {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/order/v1.0/pos-order/${orderId}`,
+      `/service/application/order/v1.0/orders/pos-order/${orderId}`,
       query,
       undefined
     );
@@ -8720,6 +9310,7 @@ class Logistic {
 module.exports = {
   Catalog,
   Cart,
+  Lead,
   User,
   FileStorage,
   Order,

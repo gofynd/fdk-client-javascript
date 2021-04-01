@@ -1,53 +1,53 @@
 export type ProductDetailAttribute = {
     value?: string;
-    key?: string;
     type?: string;
+    key?: string;
 };
 export type ProductDetailGroupedAttribute = {
     details?: Array<ProductDetailAttribute>;
     title?: string;
 };
 export type Media = {
-    url?: string;
     type?: string;
+    url?: string;
 };
 export type ProductListingActionPage = {
-    type?: string;
     query?: any;
+    type?: string;
 };
 export type ProductListingAction = {
-    type?: string;
     page?: ProductListingActionPage;
+    type?: string;
 };
 export type ProductBrand = {
-    logo?: Media;
-    uid?: number;
     name?: string;
+    uid?: number;
+    logo?: Media;
     action?: ProductListingAction;
 };
 export type ProductDetail = {
-    shortDescription?: string;
-    productOnlineDate?: string;
-    slug: string;
-    color?: string;
-    ratingCount?: number;
-    highlights?: Array<string>;
-    rating?: number;
-    type?: string;
-    teaserTag?: string;
     uid?: number;
-    attributes?: any;
-    name?: string;
+    similars?: Array<string>;
+    highlights?: Array<string>;
     hasVariant?: boolean;
     groupedAttributes?: Array<ProductDetailGroupedAttribute>;
-    brand?: ProductBrand;
-    description?: string;
-    medias?: Array<Media>;
-    similars?: Array<string>;
     itemType?: string;
-    categories?: Array<ProductBrand>;
-    tryouts?: Array<string>;
+    ratingCount?: number;
+    attributes?: any;
+    brand?: ProductBrand;
     imageNature?: string;
+    teaserTag?: string;
+    description?: string;
+    rating?: number;
+    shortDescription?: string;
+    productOnlineDate?: string;
+    type?: string;
+    color?: string;
+    medias?: Array<Media>;
+    categories?: Array<ProductBrand>;
+    name?: string;
+    tryouts?: Array<string>;
+    slug: string;
 };
 export type ErrorResponse = {
     error?: string;
@@ -55,88 +55,88 @@ export type ErrorResponse = {
 export type ProductSizeStores = {
     count?: number;
 };
+export type ProductSize = {
+    value?: string;
+    display?: string;
+    quantity?: number;
+    isAvailable?: boolean;
+};
 export type Price = {
     min?: number;
-    currencyCode?: string;
     currencySymbol?: string;
+    currencyCode?: string;
     max?: number;
 };
 export type ProductListingPrice = {
     marked?: Price;
     effective?: Price;
 };
-export type ProductSize = {
-    quantity?: number;
-    display?: string;
-    isAvailable?: boolean;
-    value?: string;
-};
 export type ProductSizes = {
-    discount?: string;
     stores?: ProductSizeStores;
+    sizes?: Array<ProductSize>;
+    sellable?: boolean;
+    discount?: string;
     sizeChart?: any;
     price?: ProductListingPrice;
-    sellable?: boolean;
-    sizes?: Array<ProductSize>;
-};
-export type ProductStockPrice = {
-    marked?: number;
-    effective?: number;
-    currency?: string;
 };
 export type ArticleAssignment = {
-    level?: string;
     strategy?: string;
+    level?: string;
 };
 export type Store = {
+    name?: string;
     uid?: number;
     count?: number;
-    name?: string;
+};
+export type ProductStockPrice = {
+    currency?: string;
+    marked?: number;
+    effective?: number;
 };
 export type Seller = {
+    name?: string;
     uid?: number;
     count?: number;
-    name?: string;
 };
 export type ProductSizePriceResponse = {
-    discount?: string;
-    price?: ProductStockPrice;
-    itemType?: string;
+    articleId?: string;
+    pincode?: number;
     articleAssignment?: ArticleAssignment;
-    quantity?: number;
+    specialBadge?: string;
+    discount?: string;
+    itemType?: string;
     longLat?: Array<number>;
     store?: Store;
-    seller?: Seller;
+    strategyWiseListing?: Array<any>;
+    quantity?: number;
     pricePerPrice?: ProductStockPrice;
     sellerCount?: number;
-    pincode?: number;
-    articleId?: string;
-    specialBadge?: string;
     set?: any;
-    strategyWiseListing?: Array<any>;
-};
-export type ProductSizeSellerFilter = {
-    isSelected?: boolean;
-    value?: string;
-    name?: string;
+    price?: ProductStockPrice;
+    seller?: Seller;
 };
 export type Page = {
-    size?: number;
-    hasPrevious?: boolean;
     hasNext?: boolean;
-    nextId?: string;
-    itemTotal?: number;
     current?: number;
+    itemTotal?: number;
+    size?: number;
+    nextId?: string;
     type?: string;
+    hasPrevious?: boolean;
+};
+export type ProductSizeSellerFilter = {
+    name?: string;
+    isSelected?: boolean;
+    value?: string;
 };
 export type ProductSizeSellersResponse = {
-    sortOn?: Array<ProductSizeSellerFilter>;
     page: Page;
+    sortOn?: Array<ProductSizeSellerFilter>;
     items?: Array<ProductSizePriceResponse>;
 };
 export type AttributeDetail = {
-    description?: string;
     display?: string;
+    description?: string;
     key?: string;
 };
 export type ProductsComparisonResponse = {
@@ -144,61 +144,61 @@ export type ProductsComparisonResponse = {
     items?: Array<ProductDetail>;
 };
 export type ProductCompareResponse = {
-    subtitle?: string;
     attributesMetadata?: Array<AttributeDetail>;
     title?: string;
+    subtitle?: string;
     items?: Array<ProductDetail>;
 };
 export type ProductFrequentlyComparedSimilarResponse = {
     similars?: Array<ProductCompareResponse>;
 };
 export type ProductSimilarItem = {
-    subtitle?: string;
     title?: string;
+    subtitle?: string;
     items?: Array<ProductDetail>;
 };
 export type SimilarProductByTypeResponse = {
     similars?: Array<ProductSimilarItem>;
 };
 export type ProductVariantItemResponse = {
-    value?: string;
-    colorName?: string;
-    uid?: number;
-    isAvailable?: boolean;
-    slug?: string;
-    color?: string;
-    action?: ProductListingAction;
-    medias?: Array<Media>;
     name?: string;
+    color?: string;
+    value?: string;
+    uid?: number;
+    colorName?: string;
+    slug?: string;
+    medias?: Array<Media>;
+    isAvailable?: boolean;
+    action?: ProductListingAction;
 };
 export type ProductVariantResponse = {
-    items?: Array<ProductVariantItemResponse>;
     displayType?: string;
     header?: string;
+    items?: Array<ProductVariantItemResponse>;
 };
 export type ProductVariantsResponse = {
     variants?: Array<ProductVariantResponse>;
 };
+export type CompanyDetail = {
+    name?: string;
+    id?: number;
+};
 export type StoreDetail = {
+    name?: string;
+    code?: string;
     city?: string;
     id?: number;
-    code?: string;
-    name?: string;
-};
-export type CompanyDetail = {
-    id?: number;
-    name?: string;
 };
 export type ProductStockStatusItem = {
-    price?: ProductStockPrice;
-    identifier?: any;
-    size?: string;
-    quantity?: number;
     uid?: string;
-    store?: StoreDetail;
-    seller?: Seller;
-    itemId?: number;
     company?: CompanyDetail;
+    store?: StoreDetail;
+    itemId?: number;
+    quantity?: number;
+    size?: string;
+    identifier?: any;
+    price?: ProductStockPrice;
+    seller?: Seller;
 };
 export type ProductStockStatusResponse = {
     items?: Array<ProductStockStatusItem>;
@@ -207,66 +207,66 @@ export type ProductStockPolling = {
     page: Page;
     items?: Array<ProductStockStatusItem>;
 };
-export type ProductListingDetail = {
-    discount?: string;
-    shortDescription?: string;
-    productOnlineDate?: string;
-    slug: string;
-    color?: string;
-    ratingCount?: number;
-    highlights?: Array<string>;
-    rating?: number;
-    type?: string;
-    teaserTag?: string;
-    uid?: number;
-    sellable?: boolean;
-    attributes?: any;
-    name?: string;
-    hasVariant?: boolean;
-    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
-    brand?: ProductBrand;
-    description?: string;
-    medias?: Array<Media>;
-    similars?: Array<string>;
-    itemType?: string;
-    price?: ProductListingPrice;
-    categories?: Array<ProductBrand>;
-    tryouts?: Array<string>;
-    imageNature?: string;
-};
 export type ProductSortOn = {
+    name?: string;
     isSelected?: boolean;
     value?: string;
+};
+export type ProductListingDetail = {
+    uid?: number;
+    similars?: Array<string>;
+    highlights?: Array<string>;
+    hasVariant?: boolean;
+    groupedAttributes?: Array<ProductDetailGroupedAttribute>;
+    itemType?: string;
+    ratingCount?: number;
+    attributes?: any;
+    brand?: ProductBrand;
+    imageNature?: string;
+    teaserTag?: string;
+    description?: string;
+    rating?: number;
+    shortDescription?: string;
+    productOnlineDate?: string;
+    type?: string;
+    price?: ProductListingPrice;
+    color?: string;
+    discount?: string;
+    medias?: Array<Media>;
+    categories?: Array<ProductBrand>;
     name?: string;
+    tryouts?: Array<string>;
+    sellable?: boolean;
+    slug: string;
 };
 export type ProductFiltersKey = {
-    logo?: string;
+    name: string;
     display: string;
     kind?: string;
-    name: string;
+    logo?: string;
 };
 export type ProductFiltersValue = {
     value?: string;
-    currencySymbol?: string;
-    max?: number;
-    queryFormat?: string;
     display: string;
-    min?: number;
+    max?: number;
     displayFormat?: string;
-    selectedMax?: number;
+    currencySymbol?: string;
     currencyCode?: string;
-    count?: number;
+    queryFormat?: string;
     isSelected: boolean;
+    min?: number;
+    count?: number;
     selectedMin?: number;
+    selectedMax?: number;
 };
 export type ProductFilters = {
     key: ProductFiltersKey;
     values: Array<ProductFiltersValue>;
 };
 export type ProductListingResponse = {
-    items?: Array<ProductListingDetail>;
-    sortOn?: Array<ProductSortOn>;
     page: Page;
+    sortOn?: Array<ProductSortOn>;
+    items?: Array<ProductListingDetail>;
     filters?: Array<ProductFilters>;
 };
 export type ImageUrls = {
@@ -274,121 +274,121 @@ export type ImageUrls = {
     portrait?: Media;
 };
 export type BrandItem = {
-    discount?: string;
+    name?: string;
+    uid?: number;
     departments?: Array<string>;
     banners?: ImageUrls;
-    uid?: number;
     slug?: string;
-    action?: ProductListingAction;
+    discount?: string;
     logo?: Media;
-    name?: string;
+    action?: ProductListingAction;
 };
 export type BrandListingResponse = {
     page: Page;
     items?: Array<BrandItem>;
 };
 export type BrandDetailResponse = {
-    logo?: Media;
     banners?: ImageUrls;
-    uid?: number;
     name?: string;
-};
-export type DepartmentIdentifier = {
     uid?: number;
-    slug?: string;
+    logo?: Media;
 };
 export type CategoryItems = {
-    banners?: ImageUrls;
-    uid?: number;
-    slug?: string;
-    childs?: Array<any>;
-    action?: ProductListingAction;
     name?: string;
+    uid?: number;
+    childs?: Array<any>;
+    banners?: ImageUrls;
+    slug?: string;
+    action?: ProductListingAction;
 };
 export type DepartmentCategoryTree = {
-    department?: string;
     items?: Array<CategoryItems>;
+    department?: string;
+};
+export type DepartmentIdentifier = {
+    slug?: string;
+    uid?: number;
 };
 export type CategoryListingResponse = {
-    departments?: Array<DepartmentIdentifier>;
     data?: Array<DepartmentCategoryTree>;
+    departments?: Array<DepartmentIdentifier>;
 };
 export type CategoryMetaResponse = {
-    logo?: Media;
     banners?: ImageUrls;
-    uid?: number;
     name?: string;
+    uid?: number;
+    logo?: Media;
 };
 export type HomeListingResponse = {
-    message?: string;
     page: Page;
+    message?: string;
     items?: Array<ProductListingDetail>;
 };
 export type Department = {
+    name?: string;
     uid?: number;
     slug?: string;
-    logo?: Media;
-    name?: string;
     priorityOrder?: number;
+    logo?: Media;
 };
 export type DepartmentResponse = {
     items?: Array<Department>;
 };
 export type PageQuery = {
-    category?: Array<string>;
     brand?: Array<string>;
+    category?: Array<string>;
 };
 export type AutocompletePage = {
-    type?: string;
     query?: PageQuery;
+    type?: string;
 };
 export type Action = {
-    type?: string;
     page?: AutocompletePage;
+    type?: string;
 };
 export type AutocompleteItem = {
-    logo?: Media;
     display?: string;
     type?: string;
+    logo?: Media;
     action?: Action;
 };
 export type AutoCompleteResponse = {
     items?: Array<AutocompleteItem>;
 };
-export type CollectionListingFilterType = {
-    isSelected?: boolean;
-    display?: string;
-    name?: string;
-};
 export type CollectionListingFilterTag = {
-    isSelected?: boolean;
-    display?: string;
     name?: string;
+    display?: string;
+    isSelected?: boolean;
+};
+export type CollectionListingFilterType = {
+    name?: string;
+    display?: string;
+    isSelected?: boolean;
 };
 export type CollectionListingFilter = {
-    type?: Array<CollectionListingFilterType>;
     tags?: Array<CollectionListingFilterTag>;
+    type?: Array<CollectionListingFilterType>;
 };
 export type GetCollectionDetailNest = {
-    tag?: Array<string>;
-    slug?: string;
-    schedule?: any;
-    type?: string;
-    query?: any;
-    banners?: ImageUrls;
     uid?: string;
-    name?: string;
-    badge?: any;
-    isActive?: boolean;
-    meta?: any;
-    description?: string;
-    allowSort?: boolean;
-    allowFacets?: boolean;
-    logo?: Media;
-    cron?: any;
-    action?: ProductListingAction;
-    appId?: string;
+    banners?: ImageUrls;
     visibleFacetsKeys?: Array<string>;
+    tag?: Array<string>;
+    allowSort?: boolean;
+    isActive?: boolean;
+    description?: string;
+    logo?: Media;
+    type?: string;
+    appId?: string;
+    schedule?: any;
+    name?: string;
+    query?: any;
+    cron?: any;
+    slug?: string;
+    meta?: any;
+    badge?: any;
+    allowFacets?: boolean;
+    action?: ProductListingAction;
 };
 export type GetCollectionListingResponse = {
     filters?: CollectionListingFilter;
@@ -396,120 +396,124 @@ export type GetCollectionListingResponse = {
     items?: Array<GetCollectionDetailNest>;
 };
 export type CollectionDetailResponse = {
-    tag?: Array<string>;
-    query?: any;
-    description?: string;
-    banners?: ImageUrls;
-    allowSort?: boolean;
-    allowFacets?: boolean;
-    slug?: string;
-    logo?: Media;
-    schedule?: any;
     name?: string;
-    badge?: any;
-    cron?: any;
-    visibleFacetsKeys?: Array<string>;
-    type?: string;
+    query?: any;
     appId?: string;
-    isActive?: boolean;
+    cron?: any;
+    banners?: ImageUrls;
+    slug?: string;
+    schedule?: any;
     meta?: any;
+    badge?: any;
+    visibleFacetsKeys?: Array<string>;
+    isActive?: boolean;
+    description?: string;
+    tag?: Array<string>;
+    allowFacets?: boolean;
+    logo?: Media;
+    allowSort?: boolean;
+    type?: string;
 };
 export type GetFollowListingResponse = {
     page: Page;
     items: Array<any>;
 };
 export type FollowPostResponse = {
-    id: string;
     message: string;
+    id: string;
 };
 export type FollowerCountResponse = {
     count?: number;
 };
 export type FollowIdsData = {
     products?: Array<number>;
-    collections?: Array<number>;
     brands?: Array<number>;
+    collections?: Array<number>;
 };
 export type FollowIdsResponse = {
     data?: FollowIdsData;
 };
 export type LatLong = {
-    coordinates?: Array<number>;
     type?: string;
+    coordinates?: Array<number>;
 };
 export type Store1 = {
+    name?: string;
+    storeCode?: string;
+    pincode?: number;
+    uid?: number;
     city?: string;
     latLong?: LatLong;
     address?: string;
-    uid?: number;
-    pincode?: number;
-    country?: string;
-    name?: string;
     state?: string;
-    storeCode?: string;
+    country?: string;
     storeEmail?: string;
 };
 export type StoreListingResponse = {
     page: Page;
     items: Array<Store1>;
 };
-export type Image = {
-    url?: string;
-    secureUrl?: string;
-    aspectRatio?: string;
+export type CartCurrency = {
+    code?: string;
+    symbol?: string;
+};
+export type PromiseFormatted = {
+    max?: string;
+    min?: string;
+};
+export type PromiseTimestamp = {
+    max?: number;
+    min?: number;
+};
+export type ShipmentPromise = {
+    formatted?: PromiseFormatted;
+    timestamp?: PromiseTimestamp;
+};
+export type DisplayBreakup = {
+    display?: string;
+    value?: number;
+    currencySymbol?: string;
+    currencyCode?: string;
+    key?: string;
+    message?: Array<string>;
+};
+export type CouponBreakup = {
+    type?: string;
+    code?: string;
+    value?: number;
+    isApplied?: boolean;
+    uid?: number;
+    message?: string;
+};
+export type RawBreakup = {
+    codCharge?: number;
+    youSaved?: number;
+    subtotal?: number;
+    coupon?: number;
+    fyndCash?: number;
+    deliveryCharge?: number;
+    total?: number;
+};
+export type LoyaltyPoints = {
+    applicable?: number;
+    isApplied?: boolean;
+    description?: string;
+    total?: number;
+};
+export type CartBreakup = {
+    display?: Array<DisplayBreakup>;
+    coupon?: CouponBreakup;
+    raw?: RawBreakup;
+    loyaltyPoints?: LoyaltyPoints;
 };
 export type BaseInfo = {
     uid?: number;
     name?: string;
 };
-export type CategoryInfo = {
-    uid?: number;
-    name?: string;
-};
-export type ActionQuery = {
-    productSlug?: Array<string>;
-};
-export type ProductAction = {
-    query?: ActionQuery;
-    url?: string;
-    type?: string;
-};
-export type Product = {
-    images?: Array<Image>;
-    uid?: number;
-    name?: string;
-    type?: string;
-    brand?: BaseInfo;
-    categories?: Array<CategoryInfo>;
-    action?: ProductAction;
-    slug?: string;
-};
-export type ProductPrice = {
-    selling?: number;
-    marked?: number;
-    currencySymbol?: string;
-    currencyCode?: string;
-    addOn?: number;
-    effective?: number;
-};
-export type ProductPriceInfo = {
-    base?: ProductPrice;
-    converted?: ProductPrice;
-};
-export type ProductAvailability = {
-    sizes?: Array<string>;
-    deliverable?: boolean;
-    otherStoreQuantity?: number;
-    outOfStock?: boolean;
-    isValid?: boolean;
-};
-export type CartProductIdentifer = {
-    identifier?: string;
-};
 export type BasePrice = {
-    currencySymbol?: string;
-    marked?: number;
     currencyCode?: string;
+    marked?: number;
+    currencySymbol?: string;
     effective?: number;
 };
 export type ArticlePriceInfo = {
@@ -517,149 +521,145 @@ export type ArticlePriceInfo = {
     converted?: BasePrice;
 };
 export type ProductArticle = {
-    uid?: string;
-    store?: BaseInfo;
-    price?: ArticlePriceInfo;
     seller?: BaseInfo;
+    store?: BaseInfo;
     type?: string;
-    quantity?: number;
     size?: string;
+    quantity?: number;
+    price?: ArticlePriceInfo;
+    uid?: string;
+};
+export type ActionQuery = {
+    productSlug?: Array<string>;
+};
+export type ProductAction = {
+    url?: string;
+    query?: ActionQuery;
+    type?: string;
+};
+export type Image = {
+    aspectRatio?: string;
+    url?: string;
+    secureUrl?: string;
+};
+export type CategoryInfo = {
+    uid?: number;
+    name?: string;
+};
+export type Product = {
+    brand?: BaseInfo;
+    action?: ProductAction;
+    type?: string;
+    name?: string;
+    slug?: string;
+    images?: Array<Image>;
+    categories?: Array<CategoryInfo>;
+    uid?: number;
+};
+export type ProductAvailability = {
+    deliverable?: boolean;
+    isValid?: boolean;
+    otherStoreQuantity?: number;
+    outOfStock?: boolean;
+    sizes?: Array<string>;
+};
+export type ProductPrice = {
+    marked?: number;
+    selling?: number;
+    addOn?: number;
+    currencySymbol?: string;
+    currencyCode?: string;
+    effective?: number;
+};
+export type ProductPriceInfo = {
+    base?: ProductPrice;
+    converted?: ProductPrice;
+};
+export type CartProductIdentifer = {
+    identifier?: string;
 };
 export type CartProductInfo = {
+    discount?: string;
+    bulkOffer?: any;
+    isSet?: boolean;
+    article?: ProductArticle;
     product?: Product;
     couponMessage?: string;
-    price?: ProductPriceInfo;
-    isSet?: boolean;
+    quantity?: number;
+    key?: string;
     availability?: ProductAvailability;
+    price?: ProductPriceInfo;
     message?: string;
     identifiers: CartProductIdentifer;
-    bulkOffer?: any;
-    quantity?: number;
-    article?: ProductArticle;
-    key?: string;
-    discount?: string;
-};
-export type LoyaltyPoints = {
-    isApplied?: boolean;
-    total?: number;
-    applicable?: number;
-    description?: string;
-};
-export type DisplayBreakup = {
-    display?: string;
-    currencySymbol?: string;
-    message?: Array<string>;
-    currencyCode?: string;
-    key?: string;
-    value?: number;
-};
-export type CouponBreakup = {
-    uid?: number;
-    code?: string;
-    type?: string;
-    message?: string;
-    isApplied?: boolean;
-    value?: number;
-};
-export type RawBreakup = {
-    subtotal?: number;
-    fyndCash?: number;
-    youSaved?: number;
-    deliveryCharge?: number;
-    coupon?: number;
-    total?: number;
-    codCharge?: number;
-};
-export type CartBreakup = {
-    loyaltyPoints?: LoyaltyPoints;
-    display?: Array<DisplayBreakup>;
-    coupon?: CouponBreakup;
-    raw?: RawBreakup;
-};
-export type CartCurrency = {
-    symbol?: string;
-    code?: string;
-};
-export type PromiseFormatted = {
-    min?: string;
-    max?: string;
-};
-export type PromiseTimestamp = {
-    min?: number;
-    max?: number;
-};
-export type ShipmentPromise = {
-    formatted?: PromiseFormatted;
-    timestamp?: PromiseTimestamp;
 };
 export type CartResponse = {
     deliveryChargeInfo?: string;
-    uid?: string;
     gstin?: string;
-    couponText?: string;
-    checkoutMode?: string;
-    items?: Array<CartProductInfo>;
+    lastModified?: string;
+    currency?: CartCurrency;
+    cartId?: number;
+    isValid?: boolean;
+    deliveryPromise?: ShipmentPromise;
     breakupValues?: CartBreakup;
+    checkoutMode?: string;
     restrictCheckout?: boolean;
     comment?: string;
+    items?: Array<CartProductInfo>;
+    uid?: string;
+    couponText?: string;
     message?: string;
-    cartId?: number;
-    currency?: CartCurrency;
-    lastModified?: string;
-    deliveryPromise?: ShipmentPromise;
-    isValid?: boolean;
 };
 export type AddProductCart = {
     display?: string;
     articleId?: string;
-    sellerId?: number;
-    storeId?: number;
     itemId?: number;
-    pos?: boolean;
+    sellerId?: number;
     articleAssignment?: any;
+    storeId?: number;
     quantity?: number;
+    pos?: boolean;
     itemSize?: string;
 };
 export type AddCartRequest = {
     items?: Array<AddProductCart>;
 };
 export type AddCartResponse = {
-    partial?: boolean;
-    success?: boolean;
     cart?: CartResponse;
     message?: string;
+    success?: boolean;
+    partial?: boolean;
 };
 export type UpdateProductCart = {
+    itemIndex?: number;
     articleId?: string;
     itemId?: number;
-    identifiers: CartProductIdentifer;
-    itemIndex?: number;
     quantity?: number;
     itemSize?: string;
+    identifiers: CartProductIdentifer;
 };
 export type UpdateCartRequest = {
-    items?: Array<UpdateProductCart>;
     operation: string;
+    items?: Array<UpdateProductCart>;
 };
 export type UpdateCartResponse = {
-    success?: boolean;
     cart?: CartResponse;
     message?: string;
+    success?: boolean;
 };
 export type CartItemCountResponse = {
     userCartItemsCount?: number;
 };
 export type Coupon = {
-    expiresOn?: string;
     couponCode?: string;
-    subTitle?: string;
-    maxDiscountValue?: number;
-    isApplicable?: boolean;
-    couponValue?: number;
-    message?: string;
     title?: string;
     isApplied?: boolean;
     minimumCartValue?: number;
+    expiresOn?: string;
+    maxDiscountValue?: number;
+    subTitle?: string;
+    isApplicable?: boolean;
+    couponValue?: number;
+    message?: string;
 };
 export type PageCoupon = {
     hasNext?: boolean;
@@ -681,18 +681,18 @@ export type OfferSeller = {
 };
 export type OfferPrice = {
     marked?: number;
-    currencySymbol?: string;
     bulkEffective?: number;
+    currencySymbol?: string;
     currencyCode?: string;
     effective?: number;
 };
 export type OfferItem = {
-    margin?: number;
-    price?: OfferPrice;
     type?: string;
-    best?: boolean;
+    margin?: number;
     autoApplied?: boolean;
     quantity?: number;
+    best?: boolean;
+    price?: OfferPrice;
     total?: number;
 };
 export type BulkPriceOffer = {
@@ -703,163 +703,163 @@ export type BulkPriceResponse = {
     data?: Array<BulkPriceOffer>;
 };
 export type GeoLocation = {
-    longitude?: number;
     latitude?: number;
+    longitude?: number;
 };
 export type Address = {
-    area?: string;
-    meta?: any;
-    addressType?: string;
-    checkoutMode?: string;
-    areaCode?: string;
-    isActive?: boolean;
-    isDefaultAddress?: boolean;
-    landmark?: string;
-    addressId?: number;
-    tags?: Array<any>;
-    email?: string;
-    areaCodeSlug?: string;
-    name?: string;
     address?: string;
-    userId?: string;
-    country?: string;
-    city?: string;
-    countryCode?: string;
+    addressId?: number;
+    isActive?: boolean;
+    areaCode?: string;
+    isDefaultAddress?: boolean;
     uid?: number;
-    phone?: string;
+    landmark?: string;
+    email?: string;
     state?: string;
+    userId?: string;
+    checkoutMode?: string;
+    country?: string;
+    areaCodeSlug?: string;
+    addressType?: string;
+    countryCode?: string;
+    tags?: Array<any>;
+    name?: string;
+    phone?: string;
+    area?: string;
+    city?: string;
+    meta?: any;
     geoLocation?: GeoLocation;
 };
 export type GetAddressesResponse = {
     address?: Array<Address>;
 };
 export type SaveAddressResponse = {
-    isDefaultAddress?: boolean;
     success?: string;
     addressId?: number;
+    isDefaultAddress?: boolean;
 };
 export type UpdateAddressResponse = {
-    isDefaultAddress?: boolean;
-    success?: boolean;
     isUpdated?: boolean;
+    success?: boolean;
     addressId?: number;
+    isDefaultAddress?: boolean;
 };
 export type DeleteAddressResponse = {
-    isDeleted?: boolean;
     addressId?: number;
+    isDeleted?: boolean;
 };
 export type SelectCartAddressRequest = {
-    uid?: string;
     billingAddressId?: number;
+    uid?: string;
     addressId?: string;
 };
 export type UpdateCartPaymentRequest = {
-    uid?: number;
-    merchantCode?: string;
+    paymentIdentifier?: string;
     aggregatorName?: string;
     addressId?: number;
-    paymentIdentifier?: string;
+    merchantCode?: string;
     paymentMode?: string;
+    uid?: number;
 };
 export type CouponValidity = {
-    displayMessageEn?: string;
     code?: string;
-    valid?: boolean;
     discount?: number;
+    displayMessageEn?: string;
+    valid?: boolean;
 };
 export type PaymentUpdate = {
     success: boolean;
-    couponValidity?: CouponValidity;
     message?: string;
+    couponValidity?: CouponValidity;
 };
 export type ShipmentResponse = {
-    promise?: ShipmentPromise;
-    orderType?: string;
+    fulfillmentId?: number;
+    dpId?: number;
     dpOptions?: any;
+    promise?: ShipmentPromise;
+    fulfillmentType?: string;
+    shipments?: number;
+    shipmentType?: string;
+    orderType?: string;
     boxType?: string;
     items?: Array<CartProductInfo>;
-    shipments?: number;
-    fulfillmentId?: number;
-    fulfillmentType?: string;
-    dpId?: number;
-    shipmentType?: string;
 };
 export type CartShipmentsResponse = {
     deliveryChargeInfo?: string;
-    uid?: string;
     gstin?: string;
-    couponText?: string;
-    checkoutMode?: string;
+    lastModified?: string;
+    currency?: CartCurrency;
+    cartId?: number;
+    isValid?: boolean;
+    deliveryPromise?: ShipmentPromise;
     breakupValues?: CartBreakup;
+    checkoutMode?: string;
+    shipments?: Array<ShipmentResponse>;
     restrictCheckout?: boolean;
     comment?: string;
-    shipments?: Array<ShipmentResponse>;
+    uid?: string;
+    couponText?: string;
     message?: string;
-    cartId?: number;
-    currency?: CartCurrency;
-    lastModified?: string;
-    deliveryPromise?: ShipmentPromise;
-    isValid?: boolean;
 };
 export type CartCheckoutRequest = {
+    billingAddressId?: number;
+    extraMeta?: any;
+    aggregator?: string;
+    paymentIdentifier?: string;
     addressId?: number;
     orderingStore?: number;
-    paymentParams?: any;
-    billingAddressId?: number;
-    staff?: any;
-    callbackUrl?: string;
-    paymentAutoConfirm?: boolean;
-    aggregator?: string;
-    extraMeta?: any;
     merchantCode?: string;
-    meta?: any;
-    deliveryAddress?: any;
-    paymentIdentifier?: string;
-    paymentMode: string;
-    billingAddress?: any;
     fyndstoreEmpId?: string;
+    staff?: any;
+    billingAddress?: any;
+    deliveryAddress?: any;
+    paymentParams?: any;
+    callbackUrl?: string;
+    paymentMode: string;
+    paymentAutoConfirm?: boolean;
+    meta?: any;
 };
 export type CheckCart = {
-    couponText?: string;
-    breakupValues?: CartBreakup;
-    codMessage?: string;
-    codAvailable?: boolean;
-    comment?: string;
-    message?: string;
-    success?: boolean;
-    currency?: CartCurrency;
     lastModified?: string;
-    deliveryPromise?: ShipmentPromise;
-    checkoutMode?: string;
-    deliveryChargeOrderValue?: number;
-    userType?: string;
+    currency?: CartCurrency;
+    codCharges?: number;
     orderId?: string;
     isValid?: boolean;
-    errorMessage?: string;
-    restrictCheckout?: boolean;
-    storeCode?: string;
-    cartId?: number;
-    codCharges?: number;
-    deliveryChargeInfo?: string;
-    uid?: string;
-    gstin?: string;
+    breakupValues?: CartBreakup;
     deliveryCharges?: number;
     items?: Array<CartProductInfo>;
+    uid?: string;
+    couponText?: string;
+    gstin?: string;
+    storeCode?: string;
     storeEmps?: Array<any>;
+    deliveryPromise?: ShipmentPromise;
+    checkoutMode?: string;
+    comment?: string;
+    message?: string;
+    deliveryChargeOrderValue?: number;
+    cartId?: number;
+    restrictCheckout?: boolean;
+    userType?: string;
+    deliveryChargeInfo?: string;
+    errorMessage?: string;
+    codMessage?: string;
+    success?: boolean;
+    codAvailable?: boolean;
 };
 export type CartCheckoutResponse = {
+    data?: any;
+    cart?: CheckCart;
+    orderId?: string;
     appInterceptUrl?: string;
     callbackUrl?: string;
-    cart?: CheckCart;
-    data?: any;
-    message?: string;
-    orderId?: string;
     success?: boolean;
+    message?: string;
 };
 export type CartMetaRequest = {
+    checkoutMode?: string;
     pickUpCustomerDetails?: any;
     gstin?: string;
-    checkoutMode?: string;
     comment?: string;
 };
 export type CartMetaResponse = {
@@ -873,37 +873,256 @@ export type GetShareCartLinkRequest = {
     meta?: any;
 };
 export type GetShareCartLinkResponse = {
-    shareUrl?: string;
     token?: string;
+    shareUrl?: string;
 };
 export type SharedCartDetails = {
-    source?: any;
     createdOn?: string;
+    token?: string;
+    source?: any;
     meta?: any;
     user?: any;
-    token?: string;
 };
 export type SharedCart = {
+    sharedCartDetails?: SharedCartDetails;
     deliveryChargeInfo?: string;
-    uid?: string;
     gstin?: string;
-    couponText?: string;
-    checkoutMode?: string;
-    items?: Array<CartProductInfo>;
+    lastModified?: string;
+    currency?: CartCurrency;
+    cartId?: number;
+    isValid?: boolean;
+    deliveryPromise?: ShipmentPromise;
     breakupValues?: CartBreakup;
+    checkoutMode?: string;
     restrictCheckout?: boolean;
     comment?: string;
-    sharedCartDetails?: SharedCartDetails;
+    items?: Array<CartProductInfo>;
+    uid?: string;
+    couponText?: string;
     message?: string;
-    cartId?: number;
-    currency?: CartCurrency;
-    lastModified?: string;
-    deliveryPromise?: ShipmentPromise;
-    isValid?: boolean;
 };
 export type SharedCartResponse = {
-    error?: string;
     cart?: SharedCart;
+    error?: string;
+};
+export type TicketList = {
+    items?: Array<Ticket>;
+    filters?: Filter;
+    page?: Page;
+};
+export type TicketHistoryList = {
+    docs?: Array<TicketHistory>;
+    limit?: number;
+    page?: number;
+    pages?: number;
+    total?: number;
+};
+export type CustomFormList = {
+    docs?: Array<CustomForm>;
+    limit?: number;
+    page?: number;
+    pages?: number;
+    total?: number;
+};
+export type CreateCustomFormPayload = {
+    slug: string;
+    title: string;
+    inputs: Array<any>;
+    description?: string;
+    headerImage?: string;
+    shouldNotify?: boolean;
+    successMessage?: string;
+    pollForAssignment?: PollForAssignment;
+};
+export type EditCustomFormPayload = {
+    title: string;
+    inputs: Array<any>;
+    description?: string;
+    headerImage?: string;
+    shouldNotify?: boolean;
+    loginRequired?: boolean;
+    successMessage?: string;
+    pollForAssignment?: PollForAssignment;
+};
+export type EditTicketPayload = {
+    content?: TicketContent;
+    category?: string;
+    source?: string;
+    status?: string;
+    priority?: string;
+    assignedTo?: AgentChangePayload;
+    tags?: Array<string>;
+};
+export type AgentChangePayload = {
+    agentId: string;
+};
+export type CreateVideoRoomResponse = {
+    uniqueName: string;
+};
+export type CloseVideoRoomResponse = {
+    success: boolean;
+};
+export type CreateVideoRoomPayload = {
+    uniqueName: string;
+    notify?: Array<any>;
+};
+export type Filter = {
+    priorities: Priority;
+    categories?: Category;
+    statuses: Status;
+    assignees: Array<any>;
+};
+export type TicketHistoryPayload = {
+    value: any;
+    type: string;
+};
+export type CustomFormSubmissionPayload = {
+    response: Array<KeyValue>;
+};
+export type KeyValue = {
+    key: string;
+    value: string;
+};
+export type GetTokenForVideoRoomResponse = {
+    accessToken: string;
+};
+export type GetParticipantsInsideVideoRoomResponse = {
+    participants: Array<Participant>;
+};
+export type Participant = {
+    user?: UserSchema;
+    identity?: string;
+    status?: string;
+};
+export type UserSchema = {
+    firstName?: string;
+    lastName?: string;
+    phoneNumbers?: Array<PhoneNumber>;
+    emails?: Array<Email>;
+    gender?: string;
+    active?: boolean;
+    profilePicUrl?: string;
+    username?: string;
+    accountType?: string;
+    uid?: string;
+    debug?: Debug;
+    hasOldPasswordHash?: boolean;
+    id?: string;
+    createdAt?: string;
+    updatedAt?: string;
+};
+export type PhoneNumber = {
+    active?: boolean;
+    primary?: boolean;
+    verified?: boolean;
+    phone?: string;
+    countryCode?: number;
+};
+export type Email = {
+    primary?: boolean;
+    verified?: boolean;
+    email?: string;
+    active?: boolean;
+};
+export type Debug = {
+    source?: string;
+    platform?: string;
+};
+export type SubmitCustomFormResponse = {
+    ticket: Ticket;
+};
+export type TicketContext = {
+    applicationId?: string;
+    companyId: string;
+};
+export type CreatedOn = {
+    userAgent: string;
+};
+export type TicketAsset = {
+    display?: string;
+    value: string;
+    type: string;
+};
+export type TicketContent = {
+    title: string;
+    description?: string;
+    attachments?: Array<TicketAsset>;
+};
+export type AddTicketPayload = {
+    status: string;
+    priority: string;
+    category: string;
+    content: TicketContent;
+};
+export type Priority = {
+    key: string;
+    display: string;
+    color: string;
+};
+export type Status = {
+    key: string;
+    display: string;
+    color: string;
+};
+export type Category = {
+    key: string;
+    display: string;
+    form?: CustomForm;
+};
+export type SubmitButton = {
+    title: string;
+    titleColor: string;
+    backgroundColor: string;
+};
+export type PollForAssignment = {
+    duration: number;
+    message: string;
+    successMessage: string;
+    failureMessage: string;
+};
+export type CustomForm = {
+    applicationId: string;
+    slug: string;
+    headerImage?: string;
+    title: string;
+    description?: string;
+    loginRequired: boolean;
+    shouldNotify: boolean;
+    successMessage?: string;
+    submitButton?: SubmitButton;
+    inputs: Array<any>;
+    createdOn?: CreatedOn;
+    createdBy?: any;
+    pollForAssignment?: PollForAssignment;
+    id: string;
+};
+export type TicketHistory = {
+    type: string;
+    value: any;
+    ticketId: string;
+    createdOn?: CreatedOn;
+    createdBy?: any;
+    id: string;
+    updatedAt?: string;
+    createdAt?: string;
+};
+export type Ticket = {
+    context?: TicketContext;
+    createdOn?: CreatedOn;
+    responseId?: string;
+    content?: TicketContent;
+    ticketId: string;
+    category: Category;
+    source: string;
+    status: Status;
+    priority: Priority;
+    createdBy?: any;
+    assignedTo?: any;
+    tags?: Array<string>;
+    customJson?: any;
+    id?: string;
+    updatedAt?: string;
+    createdAt?: string;
 };
 export type EditEmailRequestSchema = {
     email?: string;
@@ -1172,10 +1391,6 @@ export type RequiredFields = {
     email?: Email;
     mobile?: Mobile;
 };
-export type Email = {
-    isRequired?: boolean;
-    level?: string;
-};
 export type Mobile = {
     isRequired?: boolean;
     level?: string;
@@ -1210,40 +1425,6 @@ export type Accountkit = {
 };
 export type Google = {
     appId?: string;
-};
-export type UserSchema = {
-    firstName?: string;
-    lastName?: string;
-    phoneNumbers?: PhoneNumbers;
-    emails?: Emails;
-    gender?: string;
-    active?: boolean;
-    profilePicUrl?: string;
-    username?: string;
-    accountType?: string;
-    uid?: string;
-    debug?: Debug;
-    hasOldPasswordHash?: boolean;
-    id?: string;
-    createdAt?: string;
-    updatedAt?: string;
-};
-export type PhoneNumbers = {
-    active?: boolean;
-    primary?: boolean;
-    verified?: boolean;
-    phone?: string;
-    countryCode?: number;
-};
-export type Emails = {
-    primary?: boolean;
-    verified?: boolean;
-    email?: string;
-    active?: boolean;
-};
-export type Debug = {
-    source?: string;
-    platform?: string;
 };
 export type FailedResponse = {
     message: string;
@@ -1382,7 +1563,7 @@ export type Bags = {
     id?: number;
     status?: Status;
     type?: string;
-    financialBreakup?: FinancialBreakup;
+    financialBreakup?: Array<FinancialBreakup>;
     reasons?: Reasons;
     article?: Article;
     journeyType?: string;
@@ -1490,13 +1671,6 @@ export type BagStatusBagStateMapper = {
 };
 export type Dates = {
     orderCreated?: string;
-};
-export type Status = {
-    isReturnable?: boolean;
-    canBeCancelled?: boolean;
-    enableTracking?: boolean;
-    isCustomerReturnAllowed?: boolean;
-    isActive?: boolean;
 };
 export type FinancialBreakup = {
     brandCalculatedAmount?: number;
@@ -1674,7 +1848,7 @@ export type FulfillingStore = {
     createdAt?: string;
     isEnabledForRecon?: boolean;
     city?: string;
-    meta?: Meta;
+    meta?: FulfillingStoreMeta;
     fulfillmentChannel?: string;
     isActive?: boolean;
     updatedAt?: string;
@@ -1703,6 +1877,15 @@ export type StoreAddressJson = {
     country?: string;
     createdAt?: string;
     contactPerson?: string;
+};
+export type FulfillingStoreMeta = {
+    additionalContactDetails?: AdditionalContactDetails;
+    timing?: Timing;
+    documents?: Documents;
+    displayName?: string;
+    stage?: string;
+    gstNumber?: string;
+    allowDpAssignmentFromFynd?: boolean;
 };
 export type AdditionalContactDetails = {
     number?: Array<any>;
@@ -2028,58 +2211,58 @@ export type XUpdateResponse = {
 };
 export type UpdateCartShipmentItem = {
     shipmentType: string;
-    quantity?: number;
     articleUid: string;
+    quantity?: number;
 };
 export type UpdateCartShipmentRequest = {
     shipments: Array<UpdateCartShipmentItem>;
 };
 export type Files = {
-    key: string;
     values: Array<string>;
+    key: string;
 };
 export type CartPosCheckoutRequest = {
-    merchantCode?: string;
-    pos?: boolean;
-    orderType: string;
     orderingStore?: number;
-    aggregator?: string;
-    fyndstoreEmpId?: string;
-    paymentAutoConfirm?: boolean;
-    addressId?: number;
     deliveryAddress?: any;
-    billingAddress?: any;
-    meta?: any;
-    files?: Files;
-    callbackUrl?: string;
-    billingAddressId?: number;
-    staff?: any;
-    pickAtStoreUid?: number;
-    paymentIdentifier?: string;
+    fyndstoreEmpId?: string;
     paymentMode: string;
+    callbackUrl?: string;
+    pos?: boolean;
+    pickAtStoreUid?: number;
+    staff?: any;
+    files?: Files;
+    paymentIdentifier?: string;
     extraMeta?: any;
+    paymentAutoConfirm?: boolean;
+    merchantCode?: string;
+    orderType: string;
+    billingAddress?: any;
+    addressId?: number;
+    billingAddressId?: number;
+    meta?: any;
     paymentParams?: any;
+    aggregator?: string;
 };
 export type CartDeliveryModesResponse = {
     pickupStores?: Array<number>;
     availableModes?: Array<string>;
 };
 export type PickupStoreDetail = {
-    email?: string;
-    state?: string;
-    phone?: string;
-    uid?: number;
-    storeCode?: string;
-    area?: string;
-    city?: string;
-    areaCodeSlug?: string;
-    areaCode?: string;
     landmark?: string;
-    address?: string;
-    addressType?: string;
-    country?: string;
-    name?: string;
+    phone?: string;
+    storeCode?: string;
+    uid?: number;
     pincode?: number;
+    addressType?: string;
+    city?: string;
+    address?: string;
+    state?: string;
+    area?: string;
+    email?: string;
+    country?: string;
+    areaCode?: string;
+    name?: string;
+    areaCodeSlug?: string;
 };
 export type StoreDetailsResponse = {
     items?: Array<PickupStoreDetail>;
@@ -2132,10 +2315,6 @@ export type Articles = {
     category?: Category;
     promise?: LogisticPromise;
 };
-export type Category = {
-    id?: number;
-    level?: string;
-};
 export type LogisticPromise = {
     timestamp?: LogisticTimestamp;
     formatted?: Formatted;
@@ -2163,9 +2342,9 @@ export type GetTatProductResponse = {
         
         @property { string } [value]
         
-        @property { string } [key]
-        
         @property { string } [type]
+        
+        @property { string } [key]
         
          
     */
@@ -2183,9 +2362,9 @@ export type GetTatProductResponse = {
         @typedef Media
         
         
-        @property { string } [url]
-        
         @property { string } [type]
+        
+        @property { string } [url]
         
          
     */
@@ -2193,9 +2372,9 @@ export type GetTatProductResponse = {
         @typedef ProductListingActionPage
         
         
-        @property { string } [type]
-        
         @property { Object } [query]
+        
+        @property { string } [type]
         
          
     */
@@ -2203,9 +2382,9 @@ export type GetTatProductResponse = {
         @typedef ProductListingAction
         
         
-        @property { string } [type]
-        
         @property { ProductListingActionPage } [page]
+        
+        @property { string } [type]
         
          
     */
@@ -2213,11 +2392,11 @@ export type GetTatProductResponse = {
         @typedef ProductBrand
         
         
-        @property { Media } [logo]
+        @property { string } [name]
         
         @property { number } [uid]
         
-        @property { string } [name]
+        @property { Media } [logo]
         
         @property { ProductListingAction } [action]
         
@@ -2227,49 +2406,49 @@ export type GetTatProductResponse = {
         @typedef ProductDetail
         
         
-        @property { string } [shortDescription]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { string } slug
-        
-        @property { string } [color]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { number } [rating]
-        
-        @property { string } [type]
-        
-        @property { string } [teaserTag]
-        
         @property { number } [uid]
         
-        @property { Object } [attributes]
+        @property { Array<string> } [similars]
         
-        @property { string } [name]
+        @property { Array<string> } [highlights]
         
         @property { boolean } [hasVariant]
         
         @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
         
+        @property { string } [itemType]
+        
+        @property { number } [ratingCount]
+        
+        @property { Object } [attributes]
+        
         @property { ProductBrand } [brand]
+        
+        @property { string } [imageNature]
+        
+        @property { string } [teaserTag]
         
         @property { string } [description]
         
+        @property { number } [rating]
+        
+        @property { string } [shortDescription]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { string } [type]
+        
+        @property { string } [color]
+        
         @property { Array<Media> } [medias]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [itemType]
         
         @property { Array<ProductBrand> } [categories]
         
+        @property { string } [name]
+        
         @property { Array<string> } [tryouts]
         
-        @property { string } [imageNature]
+        @property { string } slug
         
          
     */
@@ -2290,14 +2469,28 @@ export type GetTatProductResponse = {
          
     */
 /**
+        @typedef ProductSize
+        
+        
+        @property { string } [value]
+        
+        @property { string } [display]
+        
+        @property { number } [quantity]
+        
+        @property { boolean } [isAvailable]
+        
+         
+    */
+/**
         @typedef Price
         
         
         @property { number } [min]
         
-        @property { string } [currencyCode]
-        
         @property { string } [currencySymbol]
+        
+        @property { string } [currencyCode]
         
         @property { number } [max]
         
@@ -2314,46 +2507,20 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef ProductSize
-        
-        
-        @property { number } [quantity]
-        
-        @property { string } [display]
-        
-        @property { boolean } [isAvailable]
-        
-        @property { string } [value]
-        
-         
-    */
-/**
         @typedef ProductSizes
         
         
-        @property { string } [discount]
-        
         @property { ProductSizeStores } [stores]
+        
+        @property { Array<ProductSize> } [sizes]
+        
+        @property { boolean } [sellable]
+        
+        @property { string } [discount]
         
         @property { Object } [sizeChart]
         
         @property { ProductListingPrice } [price]
-        
-        @property { boolean } [sellable]
-        
-        @property { Array<ProductSize> } [sizes]
-        
-         
-    */
-/**
-        @typedef ProductStockPrice
-        
-        
-        @property { number } [marked]
-        
-        @property { number } [effective]
-        
-        @property { string } [currency]
         
          
     */
@@ -2361,9 +2528,9 @@ export type GetTatProductResponse = {
         @typedef ArticleAssignment
         
         
-        @property { string } [level]
-        
         @property { string } [strategy]
+        
+        @property { string } [level]
         
          
     */
@@ -2371,11 +2538,23 @@ export type GetTatProductResponse = {
         @typedef Store
         
         
+        @property { string } [name]
+        
         @property { number } [uid]
         
         @property { number } [count]
         
-        @property { string } [name]
+         
+    */
+/**
+        @typedef ProductStockPrice
+        
+        
+        @property { string } [currency]
+        
+        @property { number } [marked]
+        
+        @property { number } [effective]
         
          
     */
@@ -2383,11 +2562,11 @@ export type GetTatProductResponse = {
         @typedef Seller
         
         
+        @property { string } [name]
+        
         @property { number } [uid]
         
         @property { number } [count]
-        
-        @property { string } [name]
         
          
     */
@@ -2395,47 +2574,35 @@ export type GetTatProductResponse = {
         @typedef ProductSizePriceResponse
         
         
-        @property { string } [discount]
+        @property { string } [articleId]
         
-        @property { ProductStockPrice } [price]
-        
-        @property { string } [itemType]
+        @property { number } [pincode]
         
         @property { ArticleAssignment } [articleAssignment]
         
-        @property { number } [quantity]
+        @property { string } [specialBadge]
+        
+        @property { string } [discount]
+        
+        @property { string } [itemType]
         
         @property { Array<number> } [longLat]
         
         @property { Store } [store]
         
-        @property { Seller } [seller]
+        @property { Array<Object> } [strategyWiseListing]
+        
+        @property { number } [quantity]
         
         @property { ProductStockPrice } [pricePerPrice]
         
         @property { number } [sellerCount]
         
-        @property { number } [pincode]
-        
-        @property { string } [articleId]
-        
-        @property { string } [specialBadge]
-        
         @property { Object } [set]
         
-        @property { Array<Object> } [strategyWiseListing]
+        @property { ProductStockPrice } [price]
         
-         
-    */
-/**
-        @typedef ProductSizeSellerFilter
-        
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [value]
-        
-        @property { string } [name]
+        @property { Seller } [seller]
         
          
     */
@@ -2443,19 +2610,31 @@ export type GetTatProductResponse = {
         @typedef Page
         
         
-        @property { number } [size]
-        
-        @property { boolean } [hasPrevious]
-        
         @property { boolean } [hasNext]
-        
-        @property { string } [nextId]
-        
-        @property { number } [itemTotal]
         
         @property { number } [current]
         
+        @property { number } [itemTotal]
+        
+        @property { number } [size]
+        
+        @property { string } [nextId]
+        
         @property { string } [type]
+        
+        @property { boolean } [hasPrevious]
+        
+         
+    */
+/**
+        @typedef ProductSizeSellerFilter
+        
+        
+        @property { string } [name]
+        
+        @property { boolean } [isSelected]
+        
+        @property { string } [value]
         
          
     */
@@ -2463,9 +2642,9 @@ export type GetTatProductResponse = {
         @typedef ProductSizeSellersResponse
         
         
-        @property { Array<ProductSizeSellerFilter> } [sortOn]
-        
         @property { Page } page
+        
+        @property { Array<ProductSizeSellerFilter> } [sortOn]
         
         @property { Array<ProductSizePriceResponse> } [items]
         
@@ -2475,9 +2654,9 @@ export type GetTatProductResponse = {
         @typedef AttributeDetail
         
         
-        @property { string } [description]
-        
         @property { string } [display]
+        
+        @property { string } [description]
         
         @property { string } [key]
         
@@ -2497,11 +2676,11 @@ export type GetTatProductResponse = {
         @typedef ProductCompareResponse
         
         
-        @property { string } [subtitle]
-        
         @property { Array<AttributeDetail> } [attributesMetadata]
         
         @property { string } [title]
+        
+        @property { string } [subtitle]
         
         @property { Array<ProductDetail> } [items]
         
@@ -2519,9 +2698,9 @@ export type GetTatProductResponse = {
         @typedef ProductSimilarItem
         
         
-        @property { string } [subtitle]
-        
         @property { string } [title]
+        
+        @property { string } [subtitle]
         
         @property { Array<ProductDetail> } [items]
         
@@ -2539,23 +2718,23 @@ export type GetTatProductResponse = {
         @typedef ProductVariantItemResponse
         
         
-        @property { string } [value]
-        
-        @property { string } [colorName]
-        
-        @property { number } [uid]
-        
-        @property { boolean } [isAvailable]
-        
-        @property { string } [slug]
+        @property { string } [name]
         
         @property { string } [color]
         
-        @property { ProductListingAction } [action]
+        @property { string } [value]
+        
+        @property { number } [uid]
+        
+        @property { string } [colorName]
+        
+        @property { string } [slug]
         
         @property { Array<Media> } [medias]
         
-        @property { string } [name]
+        @property { boolean } [isAvailable]
+        
+        @property { ProductListingAction } [action]
         
          
     */
@@ -2563,11 +2742,11 @@ export type GetTatProductResponse = {
         @typedef ProductVariantResponse
         
         
-        @property { Array<ProductVariantItemResponse> } [items]
-        
         @property { string } [displayType]
         
         @property { string } [header]
+        
+        @property { Array<ProductVariantItemResponse> } [items]
         
          
     */
@@ -2580,26 +2759,26 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef StoreDetail
+        @typedef CompanyDetail
         
-        
-        @property { string } [city]
-        
-        @property { number } [id]
-        
-        @property { string } [code]
         
         @property { string } [name]
+        
+        @property { number } [id]
         
          
     */
 /**
-        @typedef CompanyDetail
+        @typedef StoreDetail
         
-        
-        @property { number } [id]
         
         @property { string } [name]
+        
+        @property { string } [code]
+        
+        @property { string } [city]
+        
+        @property { number } [id]
         
          
     */
@@ -2607,23 +2786,23 @@ export type GetTatProductResponse = {
         @typedef ProductStockStatusItem
         
         
-        @property { ProductStockPrice } [price]
-        
-        @property { Object } [identifier]
-        
-        @property { string } [size]
-        
-        @property { number } [quantity]
-        
         @property { string } [uid]
+        
+        @property { CompanyDetail } [company]
         
         @property { StoreDetail } [store]
         
-        @property { Seller } [seller]
-        
         @property { number } [itemId]
         
-        @property { CompanyDetail } [company]
+        @property { number } [quantity]
+        
+        @property { string } [size]
+        
+        @property { Object } [identifier]
+        
+        @property { ProductStockPrice } [price]
+        
+        @property { Seller } [seller]
         
          
     */
@@ -2646,70 +2825,70 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef ProductListingDetail
-        
-        
-        @property { string } [discount]
-        
-        @property { string } [shortDescription]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { string } slug
-        
-        @property { string } [color]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { number } [rating]
-        
-        @property { string } [type]
-        
-        @property { string } [teaserTag]
-        
-        @property { number } [uid]
-        
-        @property { boolean } [sellable]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [name]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { string } [description]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [itemType]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { string } [imageNature]
-        
-         
-    */
-/**
         @typedef ProductSortOn
         
+        
+        @property { string } [name]
         
         @property { boolean } [isSelected]
         
         @property { string } [value]
         
+         
+    */
+/**
+        @typedef ProductListingDetail
+        
+        
+        @property { number } [uid]
+        
+        @property { Array<string> } [similars]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { boolean } [hasVariant]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
+        
+        @property { string } [itemType]
+        
+        @property { number } [ratingCount]
+        
+        @property { Object } [attributes]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { string } [imageNature]
+        
+        @property { string } [teaserTag]
+        
+        @property { string } [description]
+        
+        @property { number } [rating]
+        
+        @property { string } [shortDescription]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { string } [type]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { string } [color]
+        
+        @property { string } [discount]
+        
+        @property { Array<Media> } [medias]
+        
+        @property { Array<ProductBrand> } [categories]
+        
         @property { string } [name]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { boolean } [sellable]
+        
+        @property { string } slug
         
          
     */
@@ -2717,13 +2896,13 @@ export type GetTatProductResponse = {
         @typedef ProductFiltersKey
         
         
-        @property { string } [logo]
+        @property { string } name
         
         @property { string } display
         
         @property { string } [kind]
         
-        @property { string } name
+        @property { string } [logo]
         
          
     */
@@ -2733,27 +2912,27 @@ export type GetTatProductResponse = {
         
         @property { string } [value]
         
-        @property { string } [currencySymbol]
+        @property { string } display
         
         @property { number } [max]
         
-        @property { string } [queryFormat]
-        
-        @property { string } display
-        
-        @property { number } [min]
-        
         @property { string } [displayFormat]
         
-        @property { number } [selectedMax]
+        @property { string } [currencySymbol]
         
         @property { string } [currencyCode]
         
-        @property { number } [count]
+        @property { string } [queryFormat]
         
         @property { boolean } isSelected
         
+        @property { number } [min]
+        
+        @property { number } [count]
+        
         @property { number } [selectedMin]
+        
+        @property { number } [selectedMax]
         
          
     */
@@ -2771,11 +2950,11 @@ export type GetTatProductResponse = {
         @typedef ProductListingResponse
         
         
-        @property { Array<ProductListingDetail> } [items]
+        @property { Page } page
         
         @property { Array<ProductSortOn> } [sortOn]
         
-        @property { Page } page
+        @property { Array<ProductListingDetail> } [items]
         
         @property { Array<ProductFilters> } [filters]
         
@@ -2795,21 +2974,21 @@ export type GetTatProductResponse = {
         @typedef BrandItem
         
         
-        @property { string } [discount]
+        @property { string } [name]
+        
+        @property { number } [uid]
         
         @property { Array<string> } [departments]
         
         @property { ImageUrls } [banners]
         
-        @property { number } [uid]
-        
         @property { string } [slug]
         
-        @property { ProductListingAction } [action]
+        @property { string } [discount]
         
         @property { Media } [logo]
         
-        @property { string } [name]
+        @property { ProductListingAction } [action]
         
          
     */
@@ -2827,23 +3006,13 @@ export type GetTatProductResponse = {
         @typedef BrandDetailResponse
         
         
-        @property { Media } [logo]
-        
         @property { ImageUrls } [banners]
-        
-        @property { number } [uid]
         
         @property { string } [name]
         
-         
-    */
-/**
-        @typedef DepartmentIdentifier
-        
-        
         @property { number } [uid]
         
-        @property { string } [slug]
+        @property { Media } [logo]
         
          
     */
@@ -2851,17 +3020,17 @@ export type GetTatProductResponse = {
         @typedef CategoryItems
         
         
-        @property { ImageUrls } [banners]
+        @property { string } [name]
         
         @property { number } [uid]
         
-        @property { string } [slug]
-        
         @property { Array<Object> } [childs]
         
-        @property { ProductListingAction } [action]
+        @property { ImageUrls } [banners]
         
-        @property { string } [name]
+        @property { string } [slug]
+        
+        @property { ProductListingAction } [action]
         
          
     */
@@ -2869,9 +3038,19 @@ export type GetTatProductResponse = {
         @typedef DepartmentCategoryTree
         
         
+        @property { Array<CategoryItems> } [items]
+        
         @property { string } [department]
         
-        @property { Array<CategoryItems> } [items]
+         
+    */
+/**
+        @typedef DepartmentIdentifier
+        
+        
+        @property { string } [slug]
+        
+        @property { number } [uid]
         
          
     */
@@ -2879,9 +3058,9 @@ export type GetTatProductResponse = {
         @typedef CategoryListingResponse
         
         
-        @property { Array<DepartmentIdentifier> } [departments]
-        
         @property { Array<DepartmentCategoryTree> } [data]
+        
+        @property { Array<DepartmentIdentifier> } [departments]
         
          
     */
@@ -2889,13 +3068,13 @@ export type GetTatProductResponse = {
         @typedef CategoryMetaResponse
         
         
-        @property { Media } [logo]
-        
         @property { ImageUrls } [banners]
+        
+        @property { string } [name]
         
         @property { number } [uid]
         
-        @property { string } [name]
+        @property { Media } [logo]
         
          
     */
@@ -2903,9 +3082,9 @@ export type GetTatProductResponse = {
         @typedef HomeListingResponse
         
         
-        @property { string } [message]
-        
         @property { Page } page
+        
+        @property { string } [message]
         
         @property { Array<ProductListingDetail> } [items]
         
@@ -2915,15 +3094,15 @@ export type GetTatProductResponse = {
         @typedef Department
         
         
+        @property { string } [name]
+        
         @property { number } [uid]
         
         @property { string } [slug]
         
-        @property { Media } [logo]
-        
-        @property { string } [name]
-        
         @property { number } [priorityOrder]
+        
+        @property { Media } [logo]
         
          
     */
@@ -2939,9 +3118,9 @@ export type GetTatProductResponse = {
         @typedef PageQuery
         
         
-        @property { Array<string> } [category]
-        
         @property { Array<string> } [brand]
+        
+        @property { Array<string> } [category]
         
          
     */
@@ -2949,9 +3128,9 @@ export type GetTatProductResponse = {
         @typedef AutocompletePage
         
         
-        @property { string } [type]
-        
         @property { PageQuery } [query]
+        
+        @property { string } [type]
         
          
     */
@@ -2959,9 +3138,9 @@ export type GetTatProductResponse = {
         @typedef Action
         
         
-        @property { string } [type]
-        
         @property { AutocompletePage } [page]
+        
+        @property { string } [type]
         
          
     */
@@ -2969,11 +3148,11 @@ export type GetTatProductResponse = {
         @typedef AutocompleteItem
         
         
-        @property { Media } [logo]
-        
         @property { string } [display]
         
         @property { string } [type]
+        
+        @property { Media } [logo]
         
         @property { Action } [action]
         
@@ -2988,26 +3167,26 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef CollectionListingFilterType
+        @typedef CollectionListingFilterTag
         
         
-        @property { boolean } [isSelected]
+        @property { string } [name]
         
         @property { string } [display]
         
-        @property { string } [name]
+        @property { boolean } [isSelected]
         
          
     */
 /**
-        @typedef CollectionListingFilterTag
+        @typedef CollectionListingFilterType
         
         
-        @property { boolean } [isSelected]
+        @property { string } [name]
         
         @property { string } [display]
         
-        @property { string } [name]
+        @property { boolean } [isSelected]
         
          
     */
@@ -3015,9 +3194,9 @@ export type GetTatProductResponse = {
         @typedef CollectionListingFilter
         
         
-        @property { Array<CollectionListingFilterType> } [type]
-        
         @property { Array<CollectionListingFilterTag> } [tags]
+        
+        @property { Array<CollectionListingFilterType> } [type]
         
          
     */
@@ -3025,43 +3204,43 @@ export type GetTatProductResponse = {
         @typedef GetCollectionDetailNest
         
         
-        @property { Array<string> } [tag]
-        
-        @property { string } [slug]
-        
-        @property { Object } [schedule]
-        
-        @property { string } [type]
-        
-        @property { Object } [query]
+        @property { string } [uid]
         
         @property { ImageUrls } [banners]
         
-        @property { string } [uid]
+        @property { Array<string> } [visibleFacetsKeys]
         
-        @property { string } [name]
-        
-        @property { Object } [badge]
-        
-        @property { boolean } [isActive]
-        
-        @property { Object } [meta]
-        
-        @property { string } [description]
+        @property { Array<string> } [tag]
         
         @property { boolean } [allowSort]
         
-        @property { boolean } [allowFacets]
+        @property { boolean } [isActive]
+        
+        @property { string } [description]
         
         @property { Media } [logo]
         
-        @property { Object } [cron]
-        
-        @property { ProductListingAction } [action]
+        @property { string } [type]
         
         @property { string } [appId]
         
-        @property { Array<string> } [visibleFacetsKeys]
+        @property { Object } [schedule]
+        
+        @property { string } [name]
+        
+        @property { Object } [query]
+        
+        @property { Object } [cron]
+        
+        @property { string } [slug]
+        
+        @property { Object } [meta]
+        
+        @property { Object } [badge]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { ProductListingAction } [action]
         
          
     */
@@ -3081,39 +3260,39 @@ export type GetTatProductResponse = {
         @typedef CollectionDetailResponse
         
         
-        @property { Array<string> } [tag]
+        @property { string } [name]
         
         @property { Object } [query]
         
-        @property { string } [description]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { boolean } [allowSort]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { string } [slug]
-        
-        @property { Media } [logo]
-        
-        @property { Object } [schedule]
-        
-        @property { string } [name]
-        
-        @property { Object } [badge]
+        @property { string } [appId]
         
         @property { Object } [cron]
         
+        @property { ImageUrls } [banners]
+        
+        @property { string } [slug]
+        
+        @property { Object } [schedule]
+        
+        @property { Object } [meta]
+        
+        @property { Object } [badge]
+        
         @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { string } [type]
-        
-        @property { string } [appId]
         
         @property { boolean } [isActive]
         
-        @property { Object } [meta]
+        @property { string } [description]
+        
+        @property { Array<string> } [tag]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { Media } [logo]
+        
+        @property { boolean } [allowSort]
+        
+        @property { string } [type]
         
          
     */
@@ -3131,9 +3310,9 @@ export type GetTatProductResponse = {
         @typedef FollowPostResponse
         
         
-        @property { string } id
-        
         @property { string } message
+        
+        @property { string } id
         
          
     */
@@ -3151,9 +3330,9 @@ export type GetTatProductResponse = {
         
         @property { Array<number> } [products]
         
-        @property { Array<number> } [collections]
-        
         @property { Array<number> } [brands]
+        
+        @property { Array<number> } [collections]
         
          
     */
@@ -3169,9 +3348,9 @@ export type GetTatProductResponse = {
         @typedef LatLong
         
         
-        @property { Array<number> } [coordinates]
-        
         @property { string } [type]
+        
+        @property { Array<number> } [coordinates]
         
          
     */
@@ -3179,23 +3358,23 @@ export type GetTatProductResponse = {
         @typedef Store1
         
         
+        @property { string } [name]
+        
+        @property { string } [storeCode]
+        
+        @property { number } [pincode]
+        
+        @property { number } [uid]
+        
         @property { string } [city]
         
         @property { LatLong } [latLong]
         
         @property { string } [address]
         
-        @property { number } [uid]
-        
-        @property { number } [pincode]
-        
-        @property { string } [country]
-        
-        @property { string } [name]
-        
         @property { string } [state]
         
-        @property { string } [storeCode]
+        @property { string } [country]
         
         @property { string } [storeEmail]
         
@@ -3212,14 +3391,126 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef Image
+        @typedef CartCurrency
         
         
-        @property { string } [url]
+        @property { string } [code]
         
-        @property { string } [secureUrl]
+        @property { string } [symbol]
         
-        @property { string } [aspectRatio]
+         
+    */
+/**
+        @typedef PromiseFormatted
+        
+        
+        @property { string } [max]
+        
+        @property { string } [min]
+        
+         
+    */
+/**
+        @typedef PromiseTimestamp
+        
+        
+        @property { number } [max]
+        
+        @property { number } [min]
+        
+         
+    */
+/**
+        @typedef ShipmentPromise
+        
+        
+        @property { PromiseFormatted } [formatted]
+        
+        @property { PromiseTimestamp } [timestamp]
+        
+         
+    */
+/**
+        @typedef DisplayBreakup
+        
+        
+        @property { string } [display]
+        
+        @property { number } [value]
+        
+        @property { string } [currencySymbol]
+        
+        @property { string } [currencyCode]
+        
+        @property { string } [key]
+        
+        @property { Array<string> } [message]
+        
+         
+    */
+/**
+        @typedef CouponBreakup
+        
+        
+        @property { string } [type]
+        
+        @property { string } [code]
+        
+        @property { number } [value]
+        
+        @property { boolean } [isApplied]
+        
+        @property { number } [uid]
+        
+        @property { string } [message]
+        
+         
+    */
+/**
+        @typedef RawBreakup
+        
+        
+        @property { number } [codCharge]
+        
+        @property { number } [youSaved]
+        
+        @property { number } [subtotal]
+        
+        @property { number } [coupon]
+        
+        @property { number } [fyndCash]
+        
+        @property { number } [deliveryCharge]
+        
+        @property { number } [total]
+        
+         
+    */
+/**
+        @typedef LoyaltyPoints
+        
+        
+        @property { number } [applicable]
+        
+        @property { boolean } [isApplied]
+        
+        @property { string } [description]
+        
+        @property { number } [total]
+        
+         
+    */
+/**
+        @typedef CartBreakup
+        
+        
+        @property { Array<DisplayBreakup> } [display]
+        
+        @property { CouponBreakup } [coupon]
+        
+        @property { RawBreakup } [raw]
+        
+        @property { LoyaltyPoints } [loyaltyPoints]
         
          
     */
@@ -3234,118 +3525,14 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef CategoryInfo
-        
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-         
-    */
-/**
-        @typedef ActionQuery
-        
-        
-        @property { Array<string> } [productSlug]
-        
-         
-    */
-/**
-        @typedef ProductAction
-        
-        
-        @property { ActionQuery } [query]
-        
-        @property { string } [url]
-        
-        @property { string } [type]
-        
-         
-    */
-/**
-        @typedef Product
-        
-        
-        @property { Array<Image> } [images]
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-        @property { string } [type]
-        
-        @property { BaseInfo } [brand]
-        
-        @property { Array<CategoryInfo> } [categories]
-        
-        @property { ProductAction } [action]
-        
-        @property { string } [slug]
-        
-         
-    */
-/**
-        @typedef ProductPrice
-        
-        
-        @property { number } [selling]
-        
-        @property { number } [marked]
-        
-        @property { string } [currencySymbol]
-        
-        @property { string } [currencyCode]
-        
-        @property { number } [addOn]
-        
-        @property { number } [effective]
-        
-         
-    */
-/**
-        @typedef ProductPriceInfo
-        
-        
-        @property { ProductPrice } [base]
-        
-        @property { ProductPrice } [converted]
-        
-         
-    */
-/**
-        @typedef ProductAvailability
-        
-        
-        @property { Array<string> } [sizes]
-        
-        @property { boolean } [deliverable]
-        
-        @property { number } [otherStoreQuantity]
-        
-        @property { boolean } [outOfStock]
-        
-        @property { boolean } [isValid]
-        
-         
-    */
-/**
-        @typedef CartProductIdentifer
-        
-        
-        @property { string } [identifier]
-        
-         
-    */
-/**
         @typedef BasePrice
         
         
-        @property { string } [currencySymbol]
+        @property { string } [currencyCode]
         
         @property { number } [marked]
         
-        @property { string } [currencyCode]
+        @property { string } [currencySymbol]
         
         @property { number } [effective]
         
@@ -3365,19 +3552,135 @@ export type GetTatProductResponse = {
         @typedef ProductArticle
         
         
-        @property { string } [uid]
+        @property { BaseInfo } [seller]
         
         @property { BaseInfo } [store]
         
-        @property { ArticlePriceInfo } [price]
-        
-        @property { BaseInfo } [seller]
-        
         @property { string } [type]
+        
+        @property { string } [size]
         
         @property { number } [quantity]
         
-        @property { string } [size]
+        @property { ArticlePriceInfo } [price]
+        
+        @property { string } [uid]
+        
+         
+    */
+/**
+        @typedef ActionQuery
+        
+        
+        @property { Array<string> } [productSlug]
+        
+         
+    */
+/**
+        @typedef ProductAction
+        
+        
+        @property { string } [url]
+        
+        @property { ActionQuery } [query]
+        
+        @property { string } [type]
+        
+         
+    */
+/**
+        @typedef Image
+        
+        
+        @property { string } [aspectRatio]
+        
+        @property { string } [url]
+        
+        @property { string } [secureUrl]
+        
+         
+    */
+/**
+        @typedef CategoryInfo
+        
+        
+        @property { number } [uid]
+        
+        @property { string } [name]
+        
+         
+    */
+/**
+        @typedef Product
+        
+        
+        @property { BaseInfo } [brand]
+        
+        @property { ProductAction } [action]
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { Array<Image> } [images]
+        
+        @property { Array<CategoryInfo> } [categories]
+        
+        @property { number } [uid]
+        
+         
+    */
+/**
+        @typedef ProductAvailability
+        
+        
+        @property { boolean } [deliverable]
+        
+        @property { boolean } [isValid]
+        
+        @property { number } [otherStoreQuantity]
+        
+        @property { boolean } [outOfStock]
+        
+        @property { Array<string> } [sizes]
+        
+         
+    */
+/**
+        @typedef ProductPrice
+        
+        
+        @property { number } [marked]
+        
+        @property { number } [selling]
+        
+        @property { number } [addOn]
+        
+        @property { string } [currencySymbol]
+        
+        @property { string } [currencyCode]
+        
+        @property { number } [effective]
+        
+         
+    */
+/**
+        @typedef ProductPriceInfo
+        
+        
+        @property { ProductPrice } [base]
+        
+        @property { ProductPrice } [converted]
+        
+         
+    */
+/**
+        @typedef CartProductIdentifer
+        
+        
+        @property { string } [identifier]
         
          
     */
@@ -3385,153 +3688,29 @@ export type GetTatProductResponse = {
         @typedef CartProductInfo
         
         
+        @property { string } [discount]
+        
+        @property { Object } [bulkOffer]
+        
+        @property { boolean } [isSet]
+        
+        @property { ProductArticle } [article]
+        
         @property { Product } [product]
         
         @property { string } [couponMessage]
         
-        @property { ProductPriceInfo } [price]
+        @property { number } [quantity]
         
-        @property { boolean } [isSet]
+        @property { string } [key]
         
         @property { ProductAvailability } [availability]
+        
+        @property { ProductPriceInfo } [price]
         
         @property { string } [message]
         
         @property { CartProductIdentifer } identifiers
-        
-        @property { Object } [bulkOffer]
-        
-        @property { number } [quantity]
-        
-        @property { ProductArticle } [article]
-        
-        @property { string } [key]
-        
-        @property { string } [discount]
-        
-         
-    */
-/**
-        @typedef LoyaltyPoints
-        
-        
-        @property { boolean } [isApplied]
-        
-        @property { number } [total]
-        
-        @property { number } [applicable]
-        
-        @property { string } [description]
-        
-         
-    */
-/**
-        @typedef DisplayBreakup
-        
-        
-        @property { string } [display]
-        
-        @property { string } [currencySymbol]
-        
-        @property { Array<string> } [message]
-        
-        @property { string } [currencyCode]
-        
-        @property { string } [key]
-        
-        @property { number } [value]
-        
-         
-    */
-/**
-        @typedef CouponBreakup
-        
-        
-        @property { number } [uid]
-        
-        @property { string } [code]
-        
-        @property { string } [type]
-        
-        @property { string } [message]
-        
-        @property { boolean } [isApplied]
-        
-        @property { number } [value]
-        
-         
-    */
-/**
-        @typedef RawBreakup
-        
-        
-        @property { number } [subtotal]
-        
-        @property { number } [fyndCash]
-        
-        @property { number } [youSaved]
-        
-        @property { number } [deliveryCharge]
-        
-        @property { number } [coupon]
-        
-        @property { number } [total]
-        
-        @property { number } [codCharge]
-        
-         
-    */
-/**
-        @typedef CartBreakup
-        
-        
-        @property { LoyaltyPoints } [loyaltyPoints]
-        
-        @property { Array<DisplayBreakup> } [display]
-        
-        @property { CouponBreakup } [coupon]
-        
-        @property { RawBreakup } [raw]
-        
-         
-    */
-/**
-        @typedef CartCurrency
-        
-        
-        @property { string } [symbol]
-        
-        @property { string } [code]
-        
-         
-    */
-/**
-        @typedef PromiseFormatted
-        
-        
-        @property { string } [min]
-        
-        @property { string } [max]
-        
-         
-    */
-/**
-        @typedef PromiseTimestamp
-        
-        
-        @property { number } [min]
-        
-        @property { number } [max]
-        
-         
-    */
-/**
-        @typedef ShipmentPromise
-        
-        
-        @property { PromiseFormatted } [formatted]
-        
-        @property { PromiseTimestamp } [timestamp]
         
          
     */
@@ -3541,33 +3720,33 @@ export type GetTatProductResponse = {
         
         @property { string } [deliveryChargeInfo]
         
-        @property { string } [uid]
-        
         @property { string } [gstin]
         
-        @property { string } [couponText]
+        @property { string } [lastModified]
         
-        @property { string } [checkoutMode]
+        @property { CartCurrency } [currency]
         
-        @property { Array<CartProductInfo> } [items]
+        @property { number } [cartId]
+        
+        @property { boolean } [isValid]
+        
+        @property { ShipmentPromise } [deliveryPromise]
         
         @property { CartBreakup } [breakupValues]
+        
+        @property { string } [checkoutMode]
         
         @property { boolean } [restrictCheckout]
         
         @property { string } [comment]
         
+        @property { Array<CartProductInfo> } [items]
+        
+        @property { string } [uid]
+        
+        @property { string } [couponText]
+        
         @property { string } [message]
-        
-        @property { number } [cartId]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [lastModified]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { boolean } [isValid]
         
          
     */
@@ -3579,17 +3758,17 @@ export type GetTatProductResponse = {
         
         @property { string } [articleId]
         
-        @property { number } [sellerId]
-        
-        @property { number } [storeId]
-        
         @property { number } [itemId]
         
-        @property { boolean } [pos]
+        @property { number } [sellerId]
         
         @property { Object } [articleAssignment]
         
+        @property { number } [storeId]
+        
         @property { number } [quantity]
+        
+        @property { boolean } [pos]
         
         @property { string } [itemSize]
         
@@ -3607,13 +3786,13 @@ export type GetTatProductResponse = {
         @typedef AddCartResponse
         
         
-        @property { boolean } [partial]
-        
-        @property { boolean } [success]
-        
         @property { CartResponse } [cart]
         
         @property { string } [message]
+        
+        @property { boolean } [success]
+        
+        @property { boolean } [partial]
         
          
     */
@@ -3621,17 +3800,17 @@ export type GetTatProductResponse = {
         @typedef UpdateProductCart
         
         
+        @property { number } [itemIndex]
+        
         @property { string } [articleId]
         
         @property { number } [itemId]
         
-        @property { CartProductIdentifer } identifiers
-        
-        @property { number } [itemIndex]
-        
         @property { number } [quantity]
         
         @property { string } [itemSize]
+        
+        @property { CartProductIdentifer } identifiers
         
          
     */
@@ -3639,9 +3818,9 @@ export type GetTatProductResponse = {
         @typedef UpdateCartRequest
         
         
-        @property { Array<UpdateProductCart> } [items]
-        
         @property { string } operation
+        
+        @property { Array<UpdateProductCart> } [items]
         
          
     */
@@ -3649,11 +3828,11 @@ export type GetTatProductResponse = {
         @typedef UpdateCartResponse
         
         
-        @property { boolean } [success]
-        
         @property { CartResponse } [cart]
         
         @property { string } [message]
+        
+        @property { boolean } [success]
         
          
     */
@@ -3669,25 +3848,25 @@ export type GetTatProductResponse = {
         @typedef Coupon
         
         
-        @property { string } [expiresOn]
-        
         @property { string } [couponCode]
-        
-        @property { string } [subTitle]
-        
-        @property { number } [maxDiscountValue]
-        
-        @property { boolean } [isApplicable]
-        
-        @property { number } [couponValue]
-        
-        @property { string } [message]
         
         @property { string } [title]
         
         @property { boolean } [isApplied]
         
         @property { number } [minimumCartValue]
+        
+        @property { string } [expiresOn]
+        
+        @property { number } [maxDiscountValue]
+        
+        @property { string } [subTitle]
+        
+        @property { boolean } [isApplicable]
+        
+        @property { number } [couponValue]
+        
+        @property { string } [message]
         
          
     */
@@ -3741,9 +3920,9 @@ export type GetTatProductResponse = {
         
         @property { number } [marked]
         
-        @property { string } [currencySymbol]
-        
         @property { number } [bulkEffective]
+        
+        @property { string } [currencySymbol]
         
         @property { string } [currencyCode]
         
@@ -3755,17 +3934,17 @@ export type GetTatProductResponse = {
         @typedef OfferItem
         
         
-        @property { number } [margin]
-        
-        @property { OfferPrice } [price]
-        
         @property { string } [type]
         
-        @property { boolean } [best]
+        @property { number } [margin]
         
         @property { boolean } [autoApplied]
         
         @property { number } [quantity]
+        
+        @property { boolean } [best]
+        
+        @property { OfferPrice } [price]
         
         @property { number } [total]
         
@@ -3793,9 +3972,9 @@ export type GetTatProductResponse = {
         @typedef GeoLocation
         
         
-        @property { number } [longitude]
-        
         @property { number } [latitude]
+        
+        @property { number } [longitude]
         
          
     */
@@ -3803,47 +3982,47 @@ export type GetTatProductResponse = {
         @typedef Address
         
         
-        @property { string } [area]
-        
-        @property { Object } [meta]
-        
-        @property { string } [addressType]
-        
-        @property { string } [checkoutMode]
-        
-        @property { string } [areaCode]
-        
-        @property { boolean } [isActive]
-        
-        @property { boolean } [isDefaultAddress]
-        
-        @property { string } [landmark]
+        @property { string } [address]
         
         @property { number } [addressId]
         
-        @property { Array<Object> } [tags]
+        @property { boolean } [isActive]
         
-        @property { string } [email]
+        @property { string } [areaCode]
         
-        @property { string } [areaCodeSlug]
-        
-        @property { string } [name]
-        
-        @property { string } [address]
-        
-        @property { string } [userId]
-        
-        @property { string } [country]
-        
-        @property { string } [city]
-        
-        @property { string } [countryCode]
+        @property { boolean } [isDefaultAddress]
         
         @property { number } [uid]
         
-        @property { string } [phone]
+        @property { string } [landmark]
+        
+        @property { string } [email]
         
         @property { string } [state]
+        
+        @property { string } [userId]
+        
+        @property { string } [checkoutMode]
+        
+        @property { string } [country]
+        
+        @property { string } [areaCodeSlug]
+        
+        @property { string } [addressType]
+        
+        @property { string } [countryCode]
+        
+        @property { Array<Object> } [tags]
+        
+        @property { string } [name]
+        
+        @property { string } [phone]
+        
+        @property { string } [area]
+        
+        @property { string } [city]
+        
+        @property { Object } [meta]
         
         @property { GeoLocation } [geoLocation]
         
@@ -3861,11 +4040,11 @@ export type GetTatProductResponse = {
         @typedef SaveAddressResponse
         
         
-        @property { boolean } [isDefaultAddress]
-        
         @property { string } [success]
         
         @property { number } [addressId]
+        
+        @property { boolean } [isDefaultAddress]
         
          
     */
@@ -3873,13 +4052,13 @@ export type GetTatProductResponse = {
         @typedef UpdateAddressResponse
         
         
-        @property { boolean } [isDefaultAddress]
+        @property { boolean } [isUpdated]
         
         @property { boolean } [success]
         
-        @property { boolean } [isUpdated]
-        
         @property { number } [addressId]
+        
+        @property { boolean } [isDefaultAddress]
         
          
     */
@@ -3887,9 +4066,9 @@ export type GetTatProductResponse = {
         @typedef DeleteAddressResponse
         
         
-        @property { boolean } [isDeleted]
-        
         @property { number } [addressId]
+        
+        @property { boolean } [isDeleted]
         
          
     */
@@ -3897,9 +4076,9 @@ export type GetTatProductResponse = {
         @typedef SelectCartAddressRequest
         
         
-        @property { string } [uid]
-        
         @property { number } [billingAddressId]
+        
+        @property { string } [uid]
         
         @property { string } [addressId]
         
@@ -3909,17 +4088,17 @@ export type GetTatProductResponse = {
         @typedef UpdateCartPaymentRequest
         
         
-        @property { number } [uid]
-        
-        @property { string } [merchantCode]
+        @property { string } [paymentIdentifier]
         
         @property { string } [aggregatorName]
         
         @property { number } [addressId]
         
-        @property { string } [paymentIdentifier]
+        @property { string } [merchantCode]
         
         @property { string } [paymentMode]
+        
+        @property { number } [uid]
         
          
     */
@@ -3927,13 +4106,13 @@ export type GetTatProductResponse = {
         @typedef CouponValidity
         
         
-        @property { string } [displayMessageEn]
-        
         @property { string } [code]
         
-        @property { boolean } [valid]
-        
         @property { number } [discount]
+        
+        @property { string } [displayMessageEn]
+        
+        @property { boolean } [valid]
         
          
     */
@@ -3943,9 +4122,9 @@ export type GetTatProductResponse = {
         
         @property { boolean } success
         
-        @property { CouponValidity } [couponValidity]
-        
         @property { string } [message]
+        
+        @property { CouponValidity } [couponValidity]
         
          
     */
@@ -3953,25 +4132,25 @@ export type GetTatProductResponse = {
         @typedef ShipmentResponse
         
         
-        @property { ShipmentPromise } [promise]
+        @property { number } [fulfillmentId]
         
-        @property { string } [orderType]
+        @property { number } [dpId]
         
         @property { Object } [dpOptions]
+        
+        @property { ShipmentPromise } [promise]
+        
+        @property { string } [fulfillmentType]
+        
+        @property { number } [shipments]
+        
+        @property { string } [shipmentType]
+        
+        @property { string } [orderType]
         
         @property { string } [boxType]
         
         @property { Array<CartProductInfo> } [items]
-        
-        @property { number } [shipments]
-        
-        @property { number } [fulfillmentId]
-        
-        @property { string } [fulfillmentType]
-        
-        @property { number } [dpId]
-        
-        @property { string } [shipmentType]
         
          
     */
@@ -3981,33 +4160,33 @@ export type GetTatProductResponse = {
         
         @property { string } [deliveryChargeInfo]
         
-        @property { string } [uid]
-        
         @property { string } [gstin]
         
-        @property { string } [couponText]
+        @property { string } [lastModified]
+        
+        @property { CartCurrency } [currency]
+        
+        @property { number } [cartId]
+        
+        @property { boolean } [isValid]
+        
+        @property { ShipmentPromise } [deliveryPromise]
+        
+        @property { CartBreakup } [breakupValues]
         
         @property { string } [checkoutMode]
         
-        @property { CartBreakup } [breakupValues]
+        @property { Array<ShipmentResponse> } [shipments]
         
         @property { boolean } [restrictCheckout]
         
         @property { string } [comment]
         
-        @property { Array<ShipmentResponse> } [shipments]
+        @property { string } [uid]
+        
+        @property { string } [couponText]
         
         @property { string } [message]
-        
-        @property { number } [cartId]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [lastModified]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { boolean } [isValid]
         
          
     */
@@ -4015,37 +4194,37 @@ export type GetTatProductResponse = {
         @typedef CartCheckoutRequest
         
         
+        @property { number } [billingAddressId]
+        
+        @property { Object } [extraMeta]
+        
+        @property { string } [aggregator]
+        
+        @property { string } [paymentIdentifier]
+        
         @property { number } [addressId]
         
         @property { number } [orderingStore]
         
-        @property { Object } [paymentParams]
+        @property { string } [merchantCode]
         
-        @property { number } [billingAddressId]
+        @property { string } [fyndstoreEmpId]
         
         @property { Object } [staff]
         
-        @property { string } [callbackUrl]
-        
-        @property { boolean } [paymentAutoConfirm]
-        
-        @property { string } [aggregator]
-        
-        @property { Object } [extraMeta]
-        
-        @property { string } [merchantCode]
-        
-        @property { Object } [meta]
+        @property { Object } [billingAddress]
         
         @property { Object } [deliveryAddress]
         
-        @property { string } [paymentIdentifier]
+        @property { Object } [paymentParams]
+        
+        @property { string } [callbackUrl]
         
         @property { string } paymentMode
         
-        @property { Object } [billingAddress]
+        @property { boolean } [paymentAutoConfirm]
         
-        @property { string } [fyndstoreEmpId]
+        @property { Object } [meta]
         
          
     */
@@ -4053,57 +4232,57 @@ export type GetTatProductResponse = {
         @typedef CheckCart
         
         
-        @property { string } [couponText]
-        
-        @property { CartBreakup } [breakupValues]
-        
-        @property { string } [codMessage]
-        
-        @property { boolean } [codAvailable]
-        
-        @property { string } [comment]
-        
-        @property { string } [message]
-        
-        @property { boolean } [success]
+        @property { string } [lastModified]
         
         @property { CartCurrency } [currency]
         
-        @property { string } [lastModified]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { string } [checkoutMode]
-        
-        @property { number } [deliveryChargeOrderValue]
-        
-        @property { string } [userType]
+        @property { number } [codCharges]
         
         @property { string } [orderId]
         
         @property { boolean } [isValid]
         
-        @property { string } [errorMessage]
-        
-        @property { boolean } [restrictCheckout]
-        
-        @property { string } [storeCode]
-        
-        @property { number } [cartId]
-        
-        @property { number } [codCharges]
-        
-        @property { string } [deliveryChargeInfo]
-        
-        @property { string } [uid]
-        
-        @property { string } [gstin]
+        @property { CartBreakup } [breakupValues]
         
         @property { number } [deliveryCharges]
         
         @property { Array<CartProductInfo> } [items]
         
+        @property { string } [uid]
+        
+        @property { string } [couponText]
+        
+        @property { string } [gstin]
+        
+        @property { string } [storeCode]
+        
         @property { Array<Object> } [storeEmps]
+        
+        @property { ShipmentPromise } [deliveryPromise]
+        
+        @property { string } [checkoutMode]
+        
+        @property { string } [comment]
+        
+        @property { string } [message]
+        
+        @property { number } [deliveryChargeOrderValue]
+        
+        @property { number } [cartId]
+        
+        @property { boolean } [restrictCheckout]
+        
+        @property { string } [userType]
+        
+        @property { string } [deliveryChargeInfo]
+        
+        @property { string } [errorMessage]
+        
+        @property { string } [codMessage]
+        
+        @property { boolean } [success]
+        
+        @property { boolean } [codAvailable]
         
          
     */
@@ -4111,19 +4290,19 @@ export type GetTatProductResponse = {
         @typedef CartCheckoutResponse
         
         
+        @property { Object } [data]
+        
+        @property { CheckCart } [cart]
+        
+        @property { string } [orderId]
+        
         @property { string } [appInterceptUrl]
         
         @property { string } [callbackUrl]
         
-        @property { CheckCart } [cart]
-        
-        @property { Object } [data]
+        @property { boolean } [success]
         
         @property { string } [message]
-        
-        @property { string } [orderId]
-        
-        @property { boolean } [success]
         
          
     */
@@ -4131,11 +4310,11 @@ export type GetTatProductResponse = {
         @typedef CartMetaRequest
         
         
+        @property { string } [checkoutMode]
+        
         @property { Object } [pickUpCustomerDetails]
         
         @property { string } [gstin]
-        
-        @property { string } [checkoutMode]
         
         @property { string } [comment]
         
@@ -4171,9 +4350,9 @@ export type GetTatProductResponse = {
         @typedef GetShareCartLinkResponse
         
         
-        @property { string } [shareUrl]
-        
         @property { string } [token]
+        
+        @property { string } [shareUrl]
         
          
     */
@@ -4181,15 +4360,15 @@ export type GetTatProductResponse = {
         @typedef SharedCartDetails
         
         
-        @property { Object } [source]
-        
         @property { string } [createdOn]
+        
+        @property { string } [token]
+        
+        @property { Object } [source]
         
         @property { Object } [meta]
         
         @property { Object } [user]
-        
-        @property { string } [token]
         
          
     */
@@ -4197,37 +4376,37 @@ export type GetTatProductResponse = {
         @typedef SharedCart
         
         
-        @property { string } [deliveryChargeInfo]
+        @property { SharedCartDetails } [sharedCartDetails]
         
-        @property { string } [uid]
+        @property { string } [deliveryChargeInfo]
         
         @property { string } [gstin]
         
-        @property { string } [couponText]
+        @property { string } [lastModified]
         
-        @property { string } [checkoutMode]
+        @property { CartCurrency } [currency]
         
-        @property { Array<CartProductInfo> } [items]
+        @property { number } [cartId]
+        
+        @property { boolean } [isValid]
+        
+        @property { ShipmentPromise } [deliveryPromise]
         
         @property { CartBreakup } [breakupValues]
+        
+        @property { string } [checkoutMode]
         
         @property { boolean } [restrictCheckout]
         
         @property { string } [comment]
         
-        @property { SharedCartDetails } [sharedCartDetails]
+        @property { Array<CartProductInfo> } [items]
+        
+        @property { string } [uid]
+        
+        @property { string } [couponText]
         
         @property { string } [message]
-        
-        @property { number } [cartId]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [lastModified]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { boolean } [isValid]
         
          
     */
@@ -4235,9 +4414,517 @@ export type GetTatProductResponse = {
         @typedef SharedCartResponse
         
         
+        @property { SharedCart } [cart]
+        
         @property { string } [error]
         
-        @property { SharedCart } [cart]
+         
+    */
+/**
+        @typedef TicketList
+        
+        
+        @property { Array<Ticket> } [items]
+        
+        @property { Filter } [filters]
+        
+        @property { Page } [page]
+        
+         
+    */
+/**
+        @typedef TicketHistoryList
+        
+        
+        @property { Array<TicketHistory> } [docs]
+        
+        @property { number } [limit]
+        
+        @property { number } [page]
+        
+        @property { number } [pages]
+        
+        @property { number } [total]
+        
+         
+    */
+/**
+        @typedef CustomFormList
+        
+        
+        @property { Array<CustomForm> } [docs]
+        
+        @property { number } [limit]
+        
+        @property { number } [page]
+        
+        @property { number } [pages]
+        
+        @property { number } [total]
+        
+         
+    */
+/**
+        @typedef CreateCustomFormPayload
+        
+        
+        @property { string } slug
+        
+        @property { string } title
+        
+        @property { Array<Object> } inputs
+        
+        @property { string } [description]
+        
+        @property { string } [headerImage]
+        
+        @property { boolean } [shouldNotify]
+        
+        @property { string } [successMessage]
+        
+        @property { PollForAssignment } [pollForAssignment]
+        
+         
+    */
+/**
+        @typedef EditCustomFormPayload
+        
+        
+        @property { string } title
+        
+        @property { Array<Object> } inputs
+        
+        @property { string } [description]
+        
+        @property { string } [headerImage]
+        
+        @property { boolean } [shouldNotify]
+        
+        @property { boolean } [loginRequired]
+        
+        @property { string } [successMessage]
+        
+        @property { PollForAssignment } [pollForAssignment]
+        
+         
+    */
+/**
+        @typedef EditTicketPayload
+        
+        
+        @property { TicketContent } [content]
+        
+        @property { string } [category]
+        
+        @property { string } [source]
+        
+        @property { string } [status]
+        
+        @property { string } [priority]
+        
+        @property { AgentChangePayload } [assignedTo]
+        
+        @property { Array<string> } [tags]
+        
+         
+    */
+/**
+        @typedef AgentChangePayload
+        
+        
+        @property { string } agentId
+        
+         
+    */
+/**
+        @typedef CreateVideoRoomResponse
+        
+        
+        @property { string } uniqueName
+        
+         
+    */
+/**
+        @typedef CloseVideoRoomResponse
+        
+        
+        @property { boolean } success
+        
+         
+    */
+/**
+        @typedef CreateVideoRoomPayload
+        
+        
+        @property { string } uniqueName
+        
+        @property { Array<Object> } [notify]
+        
+         
+    */
+/**
+        @typedef Filter
+        
+        
+        @property { Priority } priorities
+        
+        @property { Category } [categories]
+        
+        @property { Status } statuses
+        
+        @property { Array<Object> } assignees
+        
+         
+    */
+/**
+        @typedef TicketHistoryPayload
+        
+        
+        @property { Object } value
+        
+        @property { string } type
+        
+         
+    */
+/**
+        @typedef CustomFormSubmissionPayload
+        
+        
+        @property { Array<KeyValue> } response
+        
+         
+    */
+/**
+        @typedef KeyValue
+        
+        
+        @property { string } key
+        
+        @property { string } value
+        
+         
+    */
+/**
+        @typedef GetTokenForVideoRoomResponse
+        
+        
+        @property { string } accessToken
+        
+         
+    */
+/**
+        @typedef GetParticipantsInsideVideoRoomResponse
+        
+        
+        @property { Array<Participant> } participants
+        
+         
+    */
+/**
+        @typedef Participant
+        
+        
+        @property { UserSchema } [user]
+        
+        @property { string } [identity]
+        
+        @property { string } [status]
+        
+         
+    */
+/**
+        @typedef UserSchema
+        
+        
+        @property { string } [firstName]
+        
+        @property { string } [lastName]
+        
+        @property { Array<PhoneNumber> } [phoneNumbers]
+        
+        @property { Array<Email> } [emails]
+        
+        @property { string } [gender]
+        
+        @property { boolean } [active]
+        
+        @property { string } [profilePicUrl]
+        
+        @property { string } [username]
+        
+        @property { string } [accountType]
+        
+        @property { string } [uid]
+        
+        @property { Debug } [debug]
+        
+        @property { boolean } [hasOldPasswordHash]
+        
+        @property { string } [id]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+         
+    */
+/**
+        @typedef PhoneNumber
+        
+        
+        @property { boolean } [active]
+        
+        @property { boolean } [primary]
+        
+        @property { boolean } [verified]
+        
+        @property { string } [phone]
+        
+        @property { number } [countryCode]
+        
+         
+    */
+/**
+        @typedef Email
+        
+        
+        @property { boolean } [primary]
+        
+        @property { boolean } [verified]
+        
+        @property { string } [email]
+        
+        @property { boolean } [active]
+        
+         
+    */
+/**
+        @typedef Debug
+        
+        
+        @property { string } [source]
+        
+        @property { string } [platform]
+        
+         
+    */
+/**
+        @typedef SubmitCustomFormResponse
+        
+        
+        @property { Ticket } ticket
+        
+         
+    */
+/**
+        @typedef TicketContext
+        
+        
+        @property { string } [applicationId]
+        
+        @property { string } companyId
+        
+         
+    */
+/**
+        @typedef CreatedOn
+        
+        
+        @property { string } userAgent
+        
+         
+    */
+/**
+        @typedef TicketAsset
+        
+        
+        @property { string } [display]
+        
+        @property { string } value
+        
+        @property { string } type
+        
+         
+    */
+/**
+        @typedef TicketContent
+        
+        
+        @property { string } title
+        
+        @property { string } [description]
+        
+        @property { Array<TicketAsset> } [attachments]
+        
+         
+    */
+/**
+        @typedef AddTicketPayload
+        
+        
+        @property { string } status
+        
+        @property { string } priority
+        
+        @property { string } category
+        
+        @property { TicketContent } content
+        
+         
+    */
+/**
+        @typedef Priority
+        
+        
+        @property { string } key
+        
+        @property { string } display
+        
+        @property { string } color
+        
+         
+    */
+/**
+        @typedef Status
+        
+        
+        @property { string } key
+        
+        @property { string } display
+        
+        @property { string } color
+        
+         
+    */
+/**
+        @typedef Category
+        
+        
+        @property { string } key
+        
+        @property { string } display
+        
+        @property { CustomForm } [form]
+        
+         
+    */
+/**
+        @typedef SubmitButton
+        
+        
+        @property { string } title
+        
+        @property { string } titleColor
+        
+        @property { string } backgroundColor
+        
+         
+    */
+/**
+        @typedef PollForAssignment
+        
+        
+        @property { number } duration
+        
+        @property { string } message
+        
+        @property { string } successMessage
+        
+        @property { string } failureMessage
+        
+         
+    */
+/**
+        @typedef CustomForm
+        
+        
+        @property { string } applicationId
+        
+        @property { string } slug
+        
+        @property { string } [headerImage]
+        
+        @property { string } title
+        
+        @property { string } [description]
+        
+        @property { boolean } loginRequired
+        
+        @property { boolean } shouldNotify
+        
+        @property { string } [successMessage]
+        
+        @property { SubmitButton } [submitButton]
+        
+        @property { Array<Object> } inputs
+        
+        @property { CreatedOn } [createdOn]
+        
+        @property { Object } [createdBy]
+        
+        @property { PollForAssignment } [pollForAssignment]
+        
+        @property { string } id
+        
+         
+    */
+/**
+        @typedef TicketHistory
+        
+        
+        @property { string } type
+        
+        @property { Object } value
+        
+        @property { string } ticketId
+        
+        @property { CreatedOn } [createdOn]
+        
+        @property { Object } [createdBy]
+        
+        @property { string } id
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [createdAt]
+        
+         
+    */
+/**
+        @typedef Ticket
+        
+        
+        @property { TicketContext } [context]
+        
+        @property { CreatedOn } [createdOn]
+        
+        @property { string } [responseId]
+        
+        @property { TicketContent } [content]
+        
+        @property { string } ticketId
+        
+        @property { Category } category
+        
+        @property { string } source
+        
+        @property { Status } status
+        
+        @property { Priority } priority
+        
+        @property { Object } [createdBy]
+        
+        @property { Object } [assignedTo]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [id]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [createdAt]
         
          
     */
@@ -4880,16 +5567,6 @@ export type GetTatProductResponse = {
          
     */
 /**
-        @typedef Email
-        
-        
-        @property { boolean } [isRequired]
-        
-        @property { string } [level]
-        
-         
-    */
-/**
         @typedef Mobile
         
         
@@ -4974,82 +5651,6 @@ export type GetTatProductResponse = {
         
         
         @property { string } [appId]
-        
-         
-    */
-/**
-        @typedef UserSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { PhoneNumbers } [phoneNumbers]
-        
-        @property { Emails } [emails]
-        
-        @property { string } [gender]
-        
-        @property { boolean } [active]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [username]
-        
-        @property { string } [accountType]
-        
-        @property { string } [uid]
-        
-        @property { Debug } [debug]
-        
-        @property { boolean } [hasOldPasswordHash]
-        
-        @property { string } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-         
-    */
-/**
-        @typedef PhoneNumbers
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [phone]
-        
-        @property { number } [countryCode]
-        
-         
-    */
-/**
-        @typedef Emails
-        
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [email]
-        
-        @property { boolean } [active]
-        
-         
-    */
-/**
-        @typedef Debug
-        
-        
-        @property { string } [source]
-        
-        @property { string } [platform]
         
          
     */
@@ -5367,7 +5968,7 @@ export type GetTatProductResponse = {
         
         @property { string } [type]
         
-        @property { FinancialBreakup } [financialBreakup]
+        @property { Array<FinancialBreakup> } [financialBreakup]
         
         @property { Reasons } [reasons]
         
@@ -5598,22 +6199,6 @@ export type GetTatProductResponse = {
         
         
         @property { string } [orderCreated]
-        
-         
-    */
-/**
-        @typedef Status
-        
-        
-        @property { boolean } [isReturnable]
-        
-        @property { boolean } [canBeCancelled]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { boolean } [isCustomerReturnAllowed]
-        
-        @property { boolean } [isActive]
         
          
     */
@@ -6003,7 +6588,7 @@ export type GetTatProductResponse = {
         
         @property { string } [city]
         
-        @property { Meta } [meta]
+        @property { FulfillingStoreMeta } [meta]
         
         @property { string } [fulfillmentChannel]
         
@@ -6062,6 +6647,26 @@ export type GetTatProductResponse = {
         @property { string } [createdAt]
         
         @property { string } [contactPerson]
+        
+         
+    */
+/**
+        @typedef FulfillingStoreMeta
+        
+        
+        @property { AdditionalContactDetails } [additionalContactDetails]
+        
+        @property { Timing } [timing]
+        
+        @property { Documents } [documents]
+        
+        @property { string } [displayName]
+        
+        @property { string } [stage]
+        
+        @property { string } [gstNumber]
+        
+        @property { boolean } [allowDpAssignmentFromFynd]
         
          
     */
@@ -6817,9 +7422,9 @@ export type GetTatProductResponse = {
         
         @property { string } shipmentType
         
-        @property { number } [quantity]
-        
         @property { string } articleUid
+        
+        @property { number } [quantity]
         
          
     */
@@ -6835,9 +7440,9 @@ export type GetTatProductResponse = {
         @typedef Files
         
         
-        @property { string } key
-        
         @property { Array<string> } values
+        
+        @property { string } key
         
          
     */
@@ -6845,45 +7450,45 @@ export type GetTatProductResponse = {
         @typedef CartPosCheckoutRequest
         
         
-        @property { string } [merchantCode]
-        
-        @property { boolean } [pos]
-        
-        @property { string } orderType
-        
         @property { number } [orderingStore]
-        
-        @property { string } [aggregator]
-        
-        @property { string } [fyndstoreEmpId]
-        
-        @property { boolean } [paymentAutoConfirm]
-        
-        @property { number } [addressId]
         
         @property { Object } [deliveryAddress]
         
-        @property { Object } [billingAddress]
-        
-        @property { Object } [meta]
-        
-        @property { Files } [files]
-        
-        @property { string } [callbackUrl]
-        
-        @property { number } [billingAddressId]
-        
-        @property { Object } [staff]
-        
-        @property { number } [pickAtStoreUid]
-        
-        @property { string } [paymentIdentifier]
+        @property { string } [fyndstoreEmpId]
         
         @property { string } paymentMode
         
+        @property { string } [callbackUrl]
+        
+        @property { boolean } [pos]
+        
+        @property { number } [pickAtStoreUid]
+        
+        @property { Object } [staff]
+        
+        @property { Files } [files]
+        
+        @property { string } [paymentIdentifier]
+        
         @property { Object } [extraMeta]
         
+        @property { boolean } [paymentAutoConfirm]
+        
+        @property { string } [merchantCode]
+        
+        @property { string } orderType
+        
+        @property { Object } [billingAddress]
+        
+        @property { number } [addressId]
+        
+        @property { number } [billingAddressId]
+        
+        @property { Object } [meta]
+        
         @property { Object } [paymentParams]
+        
+        @property { string } [aggregator]
         
          
     */
@@ -6901,35 +7506,35 @@ export type GetTatProductResponse = {
         @typedef PickupStoreDetail
         
         
-        @property { string } [email]
-        
-        @property { string } [state]
+        @property { string } [landmark]
         
         @property { string } [phone]
         
-        @property { number } [uid]
-        
         @property { string } [storeCode]
         
-        @property { string } [area]
+        @property { number } [uid]
         
-        @property { string } [city]
-        
-        @property { string } [areaCodeSlug]
-        
-        @property { string } [areaCode]
-        
-        @property { string } [landmark]
-        
-        @property { string } [address]
+        @property { number } [pincode]
         
         @property { string } [addressType]
         
+        @property { string } [city]
+        
+        @property { string } [address]
+        
+        @property { string } [state]
+        
+        @property { string } [area]
+        
+        @property { string } [email]
+        
         @property { string } [country]
+        
+        @property { string } [areaCode]
         
         @property { string } [name]
         
-        @property { number } [pincode]
+        @property { string } [areaCodeSlug]
         
          
     */
@@ -7050,16 +7655,6 @@ export type GetTatProductResponse = {
         @property { Category } [category]
         
         @property { LogisticPromise } [promise]
-        
-         
-    */
-/**
-        @typedef Category
-        
-        
-        @property { number } [id]
-        
-        @property { string } [level]
         
          
     */
@@ -7843,6 +8438,88 @@ export class Cart {
     updateCartWithSharedItems({ token, action }?: {
         token: string;
         action: string;
+    }): any;
+}
+export class Lead {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+      *
+      * @summary: Get Ticket with the specific id
+      * @description: Get Ticket with the specific id, this is used to view the ticket details
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - ID of ticket to be retrieved
+      
+      **/
+    getTicket({ id }?: {
+        id: string;
+    }): any;
+    /**
+     *
+     * @summary: Create history for specific Ticket
+     * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.ticketId - Ticket ID for which history is created
+     * @param {TicketHistoryPayload} arg.body
+     **/
+    createHistory({ ticketId, body }?: {
+        ticketId: string;
+        body: TicketHistoryPayload;
+    }): any;
+    /**
+     *
+     * @summary: Create Ticket
+     * @description: This is used to Create Ticket.
+     * @param {Object} arg - arg object.
+     * @param {AddTicketPayload} arg.body
+     **/
+    createTicket({ body }?: {
+        body: AddTicketPayload;
+    }): any;
+    /**
+      *
+      * @summary: Get specific Custom Form using it's slug
+      * @description: Get specific Custom Form using it's slug, this is used to view the form.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - Slug of form whose response is getting submitted
+      
+      **/
+    getCustomForm({ slug }?: {
+        slug: string;
+    }): any;
+    /**
+     *
+     * @summary: Submit Response for a specific Custom Form using it's slug
+     * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.slug - Slug of form whose response is getting submitted
+     * @param {CustomFormSubmissionPayload} arg.body
+     **/
+    submitCustomForm({ slug, body }?: {
+        slug: string;
+        body: CustomFormSubmissionPayload;
+    }): any;
+    /**
+      *
+      * @summary: Get participants of a specific Video Room using it's unique name
+      * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.uniqueName - Unique name of Video Room
+      
+      **/
+    getParticipantsInsideVideoRoom({ uniqueName }?: {
+        uniqueName: string;
+    }): any;
+    /**
+      *
+      * @summary: Get Token to join a specific Video Room using it's unqiue name
+      * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.uniqueName - Unique name of Video Room
+      
+      **/
+    getTokenForVideoRoom({ uniqueName }?: {
+        uniqueName: string;
     }): any;
 }
 export class User {

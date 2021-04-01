@@ -1,6 +1,570 @@
 const APIClient = require("./PlatformAPIClient");
 
 /**
+        @typedef TicketList
+        
+        
+        @property { Array<Ticket> } [items]
+        
+        @property { Filter } [filters]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef Page
+        
+        
+        @property { number } itemTotal
+        
+        @property { string } [nextId]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { boolean } [hasNext]
+        
+        @property { number } [current]
+        
+        @property { string } type
+        
+        @property { number } size
+        
+         
+    */
+
+/**
+        @typedef TicketHistoryList
+        
+        
+        @property { Array<TicketHistory> } [docs]
+        
+        @property { number } [limit]
+        
+        @property { number } [page]
+        
+        @property { number } [pages]
+        
+        @property { number } [total]
+        
+         
+    */
+
+/**
+        @typedef CustomFormList
+        
+        
+        @property { Array<CustomForm> } [docs]
+        
+        @property { number } [limit]
+        
+        @property { number } [page]
+        
+        @property { number } [pages]
+        
+        @property { number } [total]
+        
+         
+    */
+
+/**
+        @typedef CreateCustomFormPayload
+        
+        
+        @property { string } slug
+        
+        @property { string } title
+        
+        @property { Array<Object> } inputs
+        
+        @property { string } [description]
+        
+        @property { string } [headerImage]
+        
+        @property { boolean } [shouldNotify]
+        
+        @property { string } [successMessage]
+        
+        @property { PollForAssignment } [pollForAssignment]
+        
+         
+    */
+
+/**
+        @typedef EditCustomFormPayload
+        
+        
+        @property { string } title
+        
+        @property { Array<Object> } inputs
+        
+        @property { string } [description]
+        
+        @property { string } [headerImage]
+        
+        @property { boolean } [shouldNotify]
+        
+        @property { boolean } [loginRequired]
+        
+        @property { string } [successMessage]
+        
+        @property { PollForAssignment } [pollForAssignment]
+        
+         
+    */
+
+/**
+        @typedef EditTicketPayload
+        
+        
+        @property { TicketContent } [content]
+        
+        @property { string } [category]
+        
+        @property { string } [source]
+        
+        @property { string } [status]
+        
+        @property { string } [priority]
+        
+        @property { AgentChangePayload } [assignedTo]
+        
+        @property { Array<string> } [tags]
+        
+         
+    */
+
+/**
+        @typedef AgentChangePayload
+        
+        
+        @property { string } agentId
+        
+         
+    */
+
+/**
+        @typedef CreateVideoRoomResponse
+        
+        
+        @property { string } uniqueName
+        
+         
+    */
+
+/**
+        @typedef CloseVideoRoomResponse
+        
+        
+        @property { boolean } success
+        
+         
+    */
+
+/**
+        @typedef CreateVideoRoomPayload
+        
+        
+        @property { string } uniqueName
+        
+        @property { Array<Object> } [notify]
+        
+         
+    */
+
+/**
+        @typedef Filter
+        
+        
+        @property { Priority } priorities
+        
+        @property { Category } [categories]
+        
+        @property { Status } statuses
+        
+        @property { Array<Object> } assignees
+        
+         
+    */
+
+/**
+        @typedef TicketHistoryPayload
+        
+        
+        @property { Object } value
+        
+        @property { string } type
+        
+         
+    */
+
+/**
+        @typedef CustomFormSubmissionPayload
+        
+        
+        @property { Array<KeyValue> } response
+        
+         
+    */
+
+/**
+        @typedef KeyValue
+        
+        
+        @property { string } key
+        
+        @property { string } value
+        
+         
+    */
+
+/**
+        @typedef GetTokenForVideoRoomResponse
+        
+        
+        @property { string } accessToken
+        
+         
+    */
+
+/**
+        @typedef GetParticipantsInsideVideoRoomResponse
+        
+        
+        @property { Array<Participant> } participants
+        
+         
+    */
+
+/**
+        @typedef Participant
+        
+        
+        @property { UserSchema } [user]
+        
+        @property { string } [identity]
+        
+        @property { string } [status]
+        
+         
+    */
+
+/**
+        @typedef UserSchema
+        
+        
+        @property { string } [firstName]
+        
+        @property { string } [lastName]
+        
+        @property { Array<PhoneNumber> } [phoneNumbers]
+        
+        @property { Array<Email> } [emails]
+        
+        @property { string } [gender]
+        
+        @property { boolean } [active]
+        
+        @property { string } [profilePicUrl]
+        
+        @property { string } [username]
+        
+        @property { string } [accountType]
+        
+        @property { string } [uid]
+        
+        @property { Debug } [debug]
+        
+        @property { boolean } [hasOldPasswordHash]
+        
+        @property { string } [id]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+         
+    */
+
+/**
+        @typedef PhoneNumber
+        
+        
+        @property { boolean } [active]
+        
+        @property { boolean } [primary]
+        
+        @property { boolean } [verified]
+        
+        @property { string } [phone]
+        
+        @property { number } [countryCode]
+        
+         
+    */
+
+/**
+        @typedef Email
+        
+        
+        @property { boolean } [primary]
+        
+        @property { boolean } [verified]
+        
+        @property { string } [email]
+        
+        @property { boolean } [active]
+        
+         
+    */
+
+/**
+        @typedef Debug
+        
+        
+        @property { string } [source]
+        
+        @property { string } [platform]
+        
+         
+    */
+
+/**
+        @typedef SubmitCustomFormResponse
+        
+        
+        @property { Ticket } ticket
+        
+         
+    */
+
+/**
+        @typedef TicketContext
+        
+        
+        @property { string } [applicationId]
+        
+        @property { string } companyId
+        
+         
+    */
+
+/**
+        @typedef CreatedOn
+        
+        
+        @property { string } userAgent
+        
+         
+    */
+
+/**
+        @typedef TicketAsset
+        
+        
+        @property { string } [display]
+        
+        @property { string } value
+        
+        @property { string } type
+        
+         
+    */
+
+/**
+        @typedef TicketContent
+        
+        
+        @property { string } title
+        
+        @property { string } [description]
+        
+        @property { Array<TicketAsset> } [attachments]
+        
+         
+    */
+
+/**
+        @typedef AddTicketPayload
+        
+        
+        @property { string } status
+        
+        @property { string } priority
+        
+        @property { string } category
+        
+        @property { TicketContent } content
+        
+         
+    */
+
+/**
+        @typedef Priority
+        
+        
+        @property { string } key
+        
+        @property { string } display
+        
+        @property { string } color
+        
+         
+    */
+
+/**
+        @typedef Status
+        
+        
+        @property { string } key
+        
+        @property { string } display
+        
+        @property { string } color
+        
+         
+    */
+
+/**
+        @typedef Category
+        
+        
+        @property { string } key
+        
+        @property { string } display
+        
+        @property { CustomForm } [form]
+        
+         
+    */
+
+/**
+        @typedef SubmitButton
+        
+        
+        @property { string } title
+        
+        @property { string } titleColor
+        
+        @property { string } backgroundColor
+        
+         
+    */
+
+/**
+        @typedef PollForAssignment
+        
+        
+        @property { number } duration
+        
+        @property { string } message
+        
+        @property { string } successMessage
+        
+        @property { string } failureMessage
+        
+         
+    */
+
+/**
+        @typedef CustomForm
+        
+        
+        @property { string } applicationId
+        
+        @property { string } slug
+        
+        @property { string } [headerImage]
+        
+        @property { string } title
+        
+        @property { string } [description]
+        
+        @property { boolean } loginRequired
+        
+        @property { boolean } shouldNotify
+        
+        @property { string } [successMessage]
+        
+        @property { SubmitButton } [submitButton]
+        
+        @property { Array<Object> } inputs
+        
+        @property { CreatedOn } [createdOn]
+        
+        @property { Object } [createdBy]
+        
+        @property { PollForAssignment } [pollForAssignment]
+        
+        @property { string } id
+        
+         
+    */
+
+/**
+        @typedef TicketHistory
+        
+        
+        @property { string } type
+        
+        @property { Object } value
+        
+        @property { string } ticketId
+        
+        @property { CreatedOn } [createdOn]
+        
+        @property { Object } [createdBy]
+        
+        @property { string } id
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [createdAt]
+        
+         
+    */
+
+/**
+        @typedef Ticket
+        
+        
+        @property { TicketContext } [context]
+        
+        @property { CreatedOn } [createdOn]
+        
+        @property { string } [responseId]
+        
+        @property { TicketContent } [content]
+        
+        @property { string } ticketId
+        
+        @property { Category } category
+        
+        @property { string } source
+        
+        @property { Status } status
+        
+        @property { Priority } priority
+        
+        @property { Object } [createdBy]
+        
+        @property { Object } [assignedTo]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [id]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [createdAt]
+        
+         
+    */
+
+/**
         @typedef EditEmailRequestSchema
         
         
@@ -691,17 +1255,6 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef Email
-        
-        
-        @property { boolean } [isRequired]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
         @typedef Mobile
         
         
@@ -794,86 +1347,6 @@ const APIClient = require("./PlatformAPIClient");
         
         
         @property { string } [appId]
-        
-         
-    */
-
-/**
-        @typedef UserSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { PhoneNumbers } [phoneNumbers]
-        
-        @property { Emails } [emails]
-        
-        @property { string } [gender]
-        
-        @property { boolean } [active]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [username]
-        
-        @property { string } [accountType]
-        
-        @property { string } [uid]
-        
-        @property { Debug } [debug]
-        
-        @property { boolean } [hasOldPasswordHash]
-        
-        @property { string } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-         
-    */
-
-/**
-        @typedef PhoneNumbers
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [phone]
-        
-        @property { number } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef Emails
-        
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [email]
-        
-        @property { boolean } [active]
-        
-         
-    */
-
-/**
-        @typedef Debug
-        
-        
-        @property { string } [source]
-        
-        @property { string } [platform]
         
          
     */
@@ -1242,10 +1715,29 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef DeleteResponse
+        @typedef GetSearchWordsData
         
         
-        @property { string } [message]
+        @property { string } [appId]
+        
+        @property { Object } [customJson]
+        
+        @property { Object } [result]
+        
+        @property { Array<string> } [words]
+        
+        @property { string } [uid]
+        
+         
+    */
+
+/**
+        @typedef GetSearchWordsDetailResponse
+        
+        
+        @property { Page } [page]
+        
+        @property { GetSearchWordsData } [items]
         
          
     */
@@ -1254,15 +1746,15 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ErrorResponse
         
         
-        @property { string } [message]
+        @property { Object } [errors]
         
         @property { string } [code]
         
-        @property { number } [status]
-        
         @property { Object } [meta]
         
-        @property { Object } [errors]
+        @property { number } [status]
+        
+        @property { string } [message]
         
          
     */
@@ -1282,60 +1774,24 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CreateSearchKeyword
         
         
+        @property { boolean } [isActive]
+        
         @property { string } [appId]
+        
+        @property { Object } [customJson]
         
         @property { SearchKeywordResult } result
         
         @property { Array<string> } [words]
         
-        @property { Object } [customJson]
-        
-        @property { boolean } [isActive]
-        
          
     */
 
 /**
-        @typedef GetSearchWordsData
+        @typedef DeleteResponse
         
         
-        @property { string } [appId]
-        
-        @property { Object } [result]
-        
-        @property { Array<string> } [words]
-        
-        @property { Object } [customJson]
-        
-        @property { string } [uid]
-        
-         
-    */
-
-/**
-        @typedef Page
-        
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { number } [current]
-        
-        @property { string } [nextPageId]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-         
-    */
-
-/**
-        @typedef GetSearchWordsDetailResponse
-        
-        
-        @property { Page } [page]
-        
-        @property { GetSearchWordsData } [items]
+        @property { string } [message]
         
          
     */
@@ -1352,12 +1808,40 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
+        @typedef GetAutocompleteWordsData
+        
+        
+        @property { string } [appId]
+        
+        @property { Object } [customJson]
+        
+        @property { Array<Object> } [results]
+        
+        @property { Array<string> } [words]
+        
+        @property { string } [uid]
+        
+         
+    */
+
+/**
+        @typedef GetAutocompleteWordsResponse
+        
+        
+        @property { Page } [page]
+        
+        @property { Array<GetAutocompleteWordsData> } [items]
+        
+         
+    */
+
+/**
         @typedef Media
         
         
-        @property { string } [url]
-        
         @property { string } [type]
+        
+        @property { string } [url]
         
          
     */
@@ -1366,13 +1850,13 @@ const APIClient = require("./PlatformAPIClient");
         @typedef AutocompletePageAction
         
         
-        @property { string } [url]
+        @property { Object } [params]
         
         @property { string } type
         
-        @property { Object } query
+        @property { string } [url]
         
-        @property { Object } [params]
+        @property { Object } query
         
          
     */
@@ -1394,11 +1878,11 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { Media } [logo]
         
+        @property { Object } [customJson]
+        
         @property { string } [display]
         
         @property { AutocompleteAction } [action]
-        
-        @property { Object } [customJson]
         
          
     */
@@ -1407,43 +1891,15 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CreateAutocompleteKeyword
         
         
+        @property { boolean } [isActive]
+        
         @property { string } [appId]
+        
+        @property { Object } [customJson]
         
         @property { Array<AutocompleteResult> } [results]
         
         @property { Array<string> } [words]
-        
-        @property { Object } [customJson]
-        
-        @property { boolean } [isActive]
-        
-         
-    */
-
-/**
-        @typedef GetAutocompleteWordsData
-        
-        
-        @property { string } [appId]
-        
-        @property { Array<Object> } [results]
-        
-        @property { Array<string> } [words]
-        
-        @property { Object } [customJson]
-        
-        @property { string } [uid]
-        
-         
-    */
-
-/**
-        @typedef GetAutocompleteWordsResponse
-        
-        
-        @property { Page } [page]
-        
-        @property { Array<GetAutocompleteWordsData> } [items]
         
          
     */
@@ -1454,11 +1910,11 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { string } [appId]
         
-        @property { Array<Object> } [results]
+        @property { Object } [customJson]
         
         @property { Array<string> } [words]
         
-        @property { Object } [customJson]
+        @property { Array<Object> } [results]
         
          
     */
@@ -1467,50 +1923,17 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ProductBundleItem
         
         
-        @property { number } maxQuantity
-        
-        @property { boolean } [autoSelect]
-        
         @property { number } minQuantity
         
         @property { boolean } [allowRemove]
         
-        @property { number } productUid
+        @property { boolean } [autoSelect]
         
         @property { boolean } [autoAddToCart]
         
-         
-    */
-
-/**
-        @typedef ProductBundleRequest
+        @property { number } productUid
         
-        
-        @property { Array<ProductBundleItem> } products
-        
-        @property { string } [modifiedOn]
-        
-        @property { Object } [meta]
-        
-        @property { string } [logo]
-        
-        @property { Object } [modifiedBy]
-        
-        @property { string } name
-        
-        @property { Object } [createdBy]
-        
-        @property { Array<string> } [pageVisibility]
-        
-        @property { boolean } [sameStoreAssignment]
-        
-        @property { string } slug
-        
-        @property { string } [createdOn]
-        
-        @property { string } choice
-        
-        @property { boolean } isActive
+        @property { number } maxQuantity
         
          
     */
@@ -1519,35 +1942,35 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetProductBundleCreateResponse
         
         
-        @property { Array<ProductBundleItem> } products
-        
-        @property { string } [modifiedOn]
-        
-        @property { Object } [meta]
-        
-        @property { string } [logo]
-        
-        @property { Object } [modifiedBy]
-        
-        @property { number } [companyId]
-        
-        @property { string } name
+        @property { boolean } isActive
         
         @property { Object } [createdBy]
         
-        @property { Array<string> } [pageVisibility]
+        @property { string } [createdOn]
+        
+        @property { Array<ProductBundleItem> } products
+        
+        @property { Object } [meta]
+        
+        @property { string } [modifiedOn]
         
         @property { boolean } [sameStoreAssignment]
         
+        @property { Object } [modifiedBy]
+        
         @property { string } [id]
         
-        @property { string } slug
+        @property { Array<string> } [pageVisibility]
         
-        @property { string } [createdOn]
+        @property { string } name
         
         @property { string } choice
         
-        @property { boolean } isActive
+        @property { number } [companyId]
+        
+        @property { string } [logo]
+        
+        @property { string } slug
         
          
     */
@@ -1564,45 +1987,34 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef ProductBundleUpdateRequest
+        @typedef ProductBundleRequest
         
-        
-        @property { Array<ProductBundleItem> } products
-        
-        @property { string } [modifiedOn]
-        
-        @property { Object } [meta]
-        
-        @property { string } [logo]
-        
-        @property { Object } [modifiedBy]
-        
-        @property { string } name
-        
-        @property { Array<string> } [pageVisibility]
-        
-        @property { boolean } [sameStoreAssignment]
-        
-        @property { string } slug
-        
-        @property { string } choice
         
         @property { boolean } isActive
         
-         
-    */
-
-/**
-        @typedef Size
+        @property { Object } [createdBy]
         
+        @property { string } [createdOn]
         
-        @property { string } [display]
+        @property { Array<ProductBundleItem> } products
         
-        @property { string } [value]
+        @property { Object } [meta]
         
-        @property { number } [quantity]
+        @property { string } [modifiedOn]
         
-        @property { boolean } [isAvailable]
+        @property { boolean } [sameStoreAssignment]
+        
+        @property { Object } [modifiedBy]
+        
+        @property { Array<string> } [pageVisibility]
+        
+        @property { string } name
+        
+        @property { string } choice
+        
+        @property { string } [logo]
+        
+        @property { string } slug
         
          
     */
@@ -1611,15 +2023,30 @@ const APIClient = require("./PlatformAPIClient");
         @typedef Price
         
         
-        @property { number } [minMarked]
+        @property { number } [maxMarked]
         
-        @property { number } [maxEffective]
+        @property { number } [minMarked]
         
         @property { string } [currency]
         
+        @property { number } [maxEffective]
+        
         @property { number } [minEffective]
         
-        @property { number } [maxMarked]
+         
+    */
+
+/**
+        @typedef Size
+        
+        
+        @property { boolean } [isAvailable]
+        
+        @property { string } [display]
+        
+        @property { number } [quantity]
+        
+        @property { string } [value]
         
          
     */
@@ -1628,29 +2055,29 @@ const APIClient = require("./PlatformAPIClient");
         @typedef LimitedProductData
         
         
-        @property { Array<string> } [sizes]
-        
-        @property { Object } [price]
+        @property { Array<string> } [images]
         
         @property { Object } [attributes]
         
         @property { string } [countryOfOrigin]
         
-        @property { string } [shortDescription]
+        @property { Object } [price]
         
         @property { string } [itemCode]
         
-        @property { Array<string> } [images]
-        
         @property { string } [name]
         
-        @property { string } [slug]
+        @property { string } [shortDescription]
         
         @property { number } [quantity]
         
+        @property { number } [uid]
+        
+        @property { Array<string> } [sizes]
+        
         @property { Object } [identifier]
         
-        @property { number } [uid]
+        @property { string } [slug]
         
          
     */
@@ -1659,23 +2086,23 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetProducts
         
         
-        @property { Array<Size> } [sizes]
+        @property { number } [minQuantity]
+        
+        @property { boolean } [allowRemove]
         
         @property { Price } [price]
+        
+        @property { boolean } [autoSelect]
+        
+        @property { boolean } [autoAddToCart]
+        
+        @property { Array<Size> } [sizes]
+        
+        @property { number } [productUid]
         
         @property { LimitedProductData } [productDetails]
         
         @property { number } [maxQuantity]
-        
-        @property { boolean } [allowRemove]
-        
-        @property { number } [minQuantity]
-        
-        @property { boolean } [autoSelect]
-        
-        @property { number } [productUid]
-        
-        @property { boolean } [autoAddToCart]
         
          
     */
@@ -1684,25 +2111,65 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetProductBundleResponse
         
         
-        @property { Object } [meta]
-        
-        @property { string } [logo]
-        
-        @property { number } [companyId]
-        
-        @property { string } [slug]
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [pageVisibility]
-        
-        @property { boolean } [sameStoreAssignment]
+        @property { boolean } [isActive]
         
         @property { Array<GetProducts> } [products]
         
+        @property { Object } [meta]
+        
+        @property { boolean } [sameStoreAssignment]
+        
+        @property { Array<string> } [pageVisibility]
+        
+        @property { string } [name]
+        
+        @property { number } [companyId]
+        
         @property { string } [choice]
         
-        @property { boolean } [isActive]
+        @property { string } [logo]
+        
+        @property { string } [slug]
+        
+         
+    */
+
+/**
+        @typedef ProductBundleUpdateRequest
+        
+        
+        @property { boolean } isActive
+        
+        @property { Array<ProductBundleItem> } products
+        
+        @property { Object } [meta]
+        
+        @property { string } [modifiedOn]
+        
+        @property { boolean } [sameStoreAssignment]
+        
+        @property { Object } [modifiedBy]
+        
+        @property { Array<string> } [pageVisibility]
+        
+        @property { string } name
+        
+        @property { string } choice
+        
+        @property { string } [logo]
+        
+        @property { string } slug
+        
+         
+    */
+
+/**
+        @typedef ListSizeGuide
+        
+        
+        @property { Object } [page]
+        
+        @property { Array<Object> } [items]
         
          
     */
@@ -1720,35 +2187,35 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ValidateSizeGuide
         
         
+        @property { Object } [createdBy]
+        
         @property { string } [tag]
         
-        @property { Guide } [guide]
-        
-        @property { number } [brandId]
-        
-        @property { string } [modifiedOn]
-        
-        @property { string } [image]
-        
-        @property { boolean } [active]
-        
-        @property { string } title
+        @property { string } [createdOn]
         
         @property { string } [description]
         
-        @property { number } [companyId]
+        @property { string } [modifiedOn]
         
         @property { Object } [modifiedBy]
         
+        @property { string } [id]
+        
         @property { string } name
         
-        @property { Object } [createdBy]
+        @property { string } title
+        
+        @property { number } [brandId]
+        
+        @property { number } [companyId]
+        
+        @property { Guide } [guide]
         
         @property { string } [subtitle]
         
-        @property { string } [id]
+        @property { boolean } [active]
         
-        @property { string } [createdOn]
+        @property { string } [image]
         
          
     */
@@ -1765,45 +2232,58 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef ListSizeGuide
+        @typedef SizeGuideResponse
         
         
-        @property { Object } [page]
+        @property { Object } [createdBy]
         
-        @property { Array<Object> } [items]
+        @property { string } [createdOn]
+        
+        @property { string } [tag]
+        
+        @property { string } [modifiedOn]
+        
+        @property { Object } [modifiedBy]
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+        @property { number } [brandId]
+        
+        @property { number } [companyId]
+        
+        @property { string } [title]
+        
+        @property { Object } [guide]
+        
+        @property { string } [subtitle]
+        
+        @property { boolean } [active]
         
          
     */
 
 /**
-        @typedef SizeGuideResponse
+        @typedef MetaDataListingFilterMetaResponse
         
         
-        @property { string } [tag]
+        @property { Array<Object> } [units]
         
-        @property { Object } [guide]
+        @property { Array<string> } [filterTypes]
         
-        @property { number } [brandId]
+        @property { string } [display]
         
-        @property { string } [modifiedOn]
+        @property { string } [key]
         
-        @property { boolean } [active]
+         
+    */
+
+/**
+        @typedef MetaDataListingFilterResponse
         
-        @property { string } [title]
         
-        @property { Object } [modifiedBy]
-        
-        @property { number } [companyId]
-        
-        @property { Object } [createdBy]
-        
-        @property { string } [name]
-        
-        @property { string } [subtitle]
-        
-        @property { string } [id]
-        
-        @property { string } [createdOn]
+        @property { Array<MetaDataListingFilterMetaResponse> } [data]
         
          
     */
@@ -1829,36 +2309,12 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef MetaDataListingFilterMetaResponse
-        
-        
-        @property { string } [display]
-        
-        @property { Array<Object> } [units]
-        
-        @property { string } [key]
-        
-        @property { Array<string> } [filterTypes]
-        
-         
-    */
-
-/**
-        @typedef MetaDataListingFilterResponse
-        
-        
-        @property { Array<MetaDataListingFilterMetaResponse> } [data]
-        
-         
-    */
-
-/**
         @typedef MetaDataListingResponse
         
         
-        @property { MetaDataListingSortResponse } sort
-        
         @property { MetaDataListingFilterResponse } filter
+        
+        @property { MetaDataListingSortResponse } sort
         
          
     */
@@ -1867,13 +2323,13 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetCatalogConfigurationDetailsProduct
         
         
-        @property { Object } [compare]
-        
-        @property { Object } [variant]
+        @property { Object } [similar]
         
         @property { Object } [detail]
         
-        @property { Object } [similar]
+        @property { Object } [variant]
+        
+        @property { Object } [compare]
         
          
     */
@@ -1890,29 +2346,83 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef ConfigurationListingSortConfig
+        @typedef ProductSize
         
         
-        @property { number } priority
+        @property { number } min
         
-        @property { string } key
-        
-        @property { string } [logo]
-        
-        @property { string } [name]
-        
-        @property { boolean } isActive
+        @property { number } max
         
          
     */
 
 /**
-        @typedef ConfigurationListingSort
+        @typedef ConfigurationProductConfig
         
         
-        @property { string } defaultKey
+        @property { boolean } isActive
         
-        @property { Array<ConfigurationListingSortConfig> } [config]
+        @property { string } key
+        
+        @property { ProductSize } [size]
+        
+        @property { number } priority
+        
+        @property { string } [title]
+        
+        @property { string } [subtitle]
+        
+        @property { string } [logo]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationProductSimilar
+        
+        
+        @property { Array<ConfigurationProductConfig> } [config]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationProductVariantConfig
+        
+        
+        @property { boolean } isActive
+        
+        @property { string } key
+        
+        @property { ProductSize } size
+        
+        @property { string } name
+        
+        @property { number } priority
+        
+        @property { string } [logo]
+        
+        @property { string } displayType
+        
+         
+    */
+
+/**
+        @typedef ConfigurationProductVariant
+        
+        
+        @property { Array<ConfigurationProductVariantConfig> } [config]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationProduct
+        
+        
+        @property { ConfigurationProductSimilar } similar
+        
+        @property { ConfigurationProductVariant } variant
         
          
     */
@@ -1932,15 +2442,15 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ConfigurationListingFilterValue
         
         
-        @property { Array<ConfigurationBucketPoints> } [bucketPoints]
+        @property { Object } [map]
         
         @property { string } [sort]
         
-        @property { Object } [map]
-        
-        @property { string } [value]
+        @property { Array<ConfigurationBucketPoints> } [bucketPoints]
         
         @property { string } [condition]
+        
+        @property { string } [value]
         
          
     */
@@ -1949,19 +2459,19 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ConfigurationListingFilterConfig
         
         
-        @property { ConfigurationListingFilterValue } [valueConfig]
-        
-        @property { number } priority
-        
-        @property { string } type
+        @property { boolean } isActive
         
         @property { string } key
         
-        @property { string } [logo]
+        @property { ConfigurationListingFilterValue } [valueConfig]
+        
+        @property { string } type
         
         @property { string } [name]
         
-        @property { boolean } isActive
+        @property { number } priority
+        
+        @property { string } [logo]
         
          
     */
@@ -1970,9 +2480,37 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ConfigurationListingFilter
         
         
+        @property { boolean } allowSingle
+        
         @property { Array<ConfigurationListingFilterConfig> } [attributeConfig]
         
-        @property { boolean } allowSingle
+         
+    */
+
+/**
+        @typedef ConfigurationListingSortConfig
+        
+        
+        @property { boolean } isActive
+        
+        @property { string } key
+        
+        @property { string } [name]
+        
+        @property { number } priority
+        
+        @property { string } [logo]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationListingSort
+        
+        
+        @property { Array<ConfigurationListingSortConfig> } [config]
+        
+        @property { string } defaultKey
         
          
     */
@@ -1981,108 +2519,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ConfigurationListing
         
         
-        @property { ConfigurationListingSort } sort
-        
         @property { ConfigurationListingFilter } filter
         
-         
-    */
-
-/**
-        @typedef ProductSize
-        
-        
-        @property { number } max
-        
-        @property { number } min
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProductVariantConfig
-        
-        
-        @property { number } priority
-        
-        @property { string } key
-        
-        @property { string } [logo]
-        
-        @property { string } name
-        
-        @property { ProductSize } size
-        
-        @property { string } displayType
-        
-        @property { boolean } isActive
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProductVariant
-        
-        
-        @property { Array<ConfigurationProductVariantConfig> } [config]
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProductConfig
-        
-        
-        @property { number } priority
-        
-        @property { string } key
-        
-        @property { string } [title]
-        
-        @property { string } [logo]
-        
-        @property { ProductSize } [size]
-        
-        @property { string } [subtitle]
-        
-        @property { boolean } isActive
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProductSimilar
-        
-        
-        @property { Array<ConfigurationProductConfig> } [config]
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProduct
-        
-        
-        @property { ConfigurationProductVariant } variant
-        
-        @property { ConfigurationProductSimilar } similar
-        
-         
-    */
-
-/**
-        @typedef AppConfiguration
-        
-        
-        @property { string } appId
-        
-        @property { string } configType
-        
-        @property { ConfigurationListing } [listing]
-        
-        @property { ConfigurationProduct } [product]
-        
-        @property { string } [configId]
+        @property { ConfigurationListingSort } sort
         
          
     */
@@ -2093,15 +2532,15 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { string } appId
         
-        @property { string } [id]
+        @property { string } [configId]
         
         @property { string } configType
         
-        @property { ConfigurationListing } [listing]
+        @property { string } [id]
         
         @property { ConfigurationProduct } [product]
         
-        @property { string } [configId]
+        @property { ConfigurationListing } [listing]
         
          
     */
@@ -2110,9 +2549,26 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetAppCatalogConfiguration
         
         
+        @property { boolean } [isDefault]
+        
         @property { AppCatalogConfiguration } [data]
         
-        @property { boolean } [isDefault]
+         
+    */
+
+/**
+        @typedef AppConfiguration
+        
+        
+        @property { string } appId
+        
+        @property { string } [configId]
+        
+        @property { string } configType
+        
+        @property { ConfigurationProduct } [product]
+        
+        @property { ConfigurationListing } [listing]
         
          
     */
@@ -2121,9 +2577,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetCatalogConfigurationDetailsSchemaListing
         
         
-        @property { Object } [sort]
-        
         @property { Object } [filter]
+        
+        @property { Object } [sort]
         
          
     */
@@ -2134,15 +2590,15 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { string } appId
         
-        @property { string } [id]
+        @property { string } [configId]
         
         @property { string } configType
         
-        @property { GetCatalogConfigurationDetailsSchemaListing } [listing]
+        @property { string } [id]
         
         @property { GetCatalogConfigurationDetailsProduct } [product]
         
-        @property { string } [configId]
+        @property { GetCatalogConfigurationDetailsSchemaListing } [listing]
         
          
     */
@@ -2151,24 +2607,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetAppCatalogEntityConfiguration
         
         
-        @property { EntityConfiguration } [data]
-        
         @property { boolean } [isDefault]
         
-         
-    */
-
-/**
-        @typedef ProductFiltersKey
-        
-        
-        @property { string } display
-        
-        @property { string } [logo]
-        
-        @property { string } name
-        
-        @property { string } [kind]
+        @property { EntityConfiguration } [data]
         
          
     */
@@ -2177,29 +2618,44 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ProductFiltersValue
         
         
-        @property { number } [selectedMin]
+        @property { number } [min]
         
         @property { string } [queryFormat]
         
-        @property { number } [selectedMax]
-        
-        @property { number } [max]
+        @property { string } [currencyCode]
         
         @property { string } display
         
-        @property { string } [currencyCode]
-        
-        @property { number } [count]
-        
-        @property { boolean } isSelected
-        
-        @property { number } [min]
+        @property { number } [max]
         
         @property { string } [displayFormat]
         
-        @property { string } value
+        @property { boolean } isSelected
+        
+        @property { number } [count]
+        
+        @property { number } [selectedMin]
+        
+        @property { number } [selectedMax]
         
         @property { string } [currencySymbol]
+        
+        @property { string } value
+        
+         
+    */
+
+/**
+        @typedef ProductFiltersKey
+        
+        
+        @property { string } [logo]
+        
+        @property { string } name
+        
+        @property { string } display
+        
+        @property { string } [kind]
         
          
     */
@@ -2208,9 +2664,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ProductFilters
         
         
-        @property { ProductFiltersKey } key
-        
         @property { Array<ProductFiltersValue> } values
+        
+        @property { ProductFiltersKey } key
         
          
     */
@@ -2219,11 +2675,11 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ProductSortOn
         
         
-        @property { string } [value]
-        
         @property { string } [name]
         
         @property { boolean } [isSelected]
+        
+        @property { string } [value]
         
          
     */
@@ -2240,202 +2696,12 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef Schedule
-        
-        
-        @property { string } [end]
-        
-        @property { string } [cron]
-        
-        @property { number } [duration]
-        
-        @property { string } [start]
-        
-         
-    */
-
-/**
-        @typedef CollectionImage
-        
-        
-        @property { string } aspectRatio
-        
-        @property { string } url
-        
-         
-    */
-
-/**
-        @typedef CollectionBanner
-        
-        
-        @property { CollectionImage } portrait
-        
-        @property { CollectionImage } landscape
-        
-         
-    */
-
-/**
-        @typedef SeoDetail
-        
-        
-        @property { string } [description]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef CollectionBadge
-        
-        
-        @property { string } [text]
-        
-        @property { string } [color]
-        
-         
-    */
-
-/**
-        @typedef UserInfo
-        
-        
-        @property { string } [email]
-        
-        @property { string } [username]
-        
-        @property { string } [userId]
-        
-        @property { string } [uid]
-        
-         
-    */
-
-/**
-        @typedef CreateCollection
-        
-        
-        @property { string } type
-        
-        @property { Schedule } [schedule]
-        
-        @property { CollectionBanner } banners
-        
-        @property { Object } [localeLanguage]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } appId
-        
-        @property { SeoDetail } [seo]
-        
-        @property { Array<string> } [tags]
-        
-        @property { CollectionBadge } [badge]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { Object } [query]
-        
-        @property { string } [description]
-        
-        @property { UserInfo } [modifiedBy]
-        
-        @property { UserInfo } [createdBy]
-        
-        @property { boolean } [allowSort]
-        
-        @property { boolean } [published]
-        
-        @property { string } name
-        
-        @property { string } [sortOn]
-        
-        @property { Object } [meta]
-        
-        @property { CollectionImage } logo
-        
-        @property { boolean } [allowFacets]
-        
-        @property { string } slug
-        
-        @property { Object } [customJson]
-        
-         
-    */
-
-/**
-        @typedef BannerImage
-        
-        
-        @property { string } [aspectRatio]
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef ImageUrls
-        
-        
-        @property { BannerImage } [portrait]
-        
-        @property { BannerImage } [landscape]
-        
-         
-    */
-
-/**
-        @typedef CollectionCreateResponse
-        
-        
-        @property { string } [appId]
-        
-        @property { Array<string> } [tag]
-        
-        @property { string } [type]
-        
-        @property { Object } [schedule]
-        
-        @property { Object } [badge]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { string } [description]
-        
-        @property { Object } [query]
-        
-        @property { BannerImage } [logo]
-        
-        @property { Object } [meta]
-        
-        @property { string } [name]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { boolean } [allowSort]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [slug]
-        
-        @property { Object } [cron]
-        
-        @property { boolean } [isActive]
-        
-         
-    */
-
-/**
         @typedef CollectionListingFilterType
         
         
-        @property { string } [display]
-        
         @property { string } [name]
+        
+        @property { string } [display]
         
         @property { boolean } [isSelected]
         
@@ -2446,9 +2712,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CollectionListingFilterTag
         
         
-        @property { string } [display]
-        
         @property { string } [name]
+        
+        @property { string } [display]
         
         @property { boolean } [isSelected]
         
@@ -2492,11 +2758,33 @@ const APIClient = require("./PlatformAPIClient");
         @typedef Media1
         
         
-        @property { string } url
-        
         @property { string } [type]
         
+        @property { string } url
+        
         @property { Object } [meta]
+        
+         
+    */
+
+/**
+        @typedef BannerImage
+        
+        
+        @property { string } [url]
+        
+        @property { string } [aspectRatio]
+        
+         
+    */
+
+/**
+        @typedef ImageUrls
+        
+        
+        @property { BannerImage } [landscape]
+        
+        @property { BannerImage } [portrait]
         
          
     */
@@ -2505,43 +2793,43 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetCollectionDetailNest
         
         
-        @property { Array<string> } [tag]
+        @property { boolean } [isActive]
         
         @property { string } [type]
         
-        @property { Object } [schedule]
+        @property { string } [name]
+        
+        @property { Array<string> } [tag]
+        
+        @property { Object } [cron]
         
         @property { ProductListingAction } [action]
         
-        @property { ImageUrls } [banners]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [appId]
-        
-        @property { Object } [badge]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { string } [description]
-        
-        @property { Object } [query]
-        
-        @property { boolean } [allowSort]
-        
         @property { string } [uid]
         
-        @property { string } [name]
-        
-        @property { Object } [meta]
-        
-        @property { Media1 } [logo]
-        
-        @property { boolean } [allowFacets]
+        @property { Object } [schedule]
         
         @property { string } [slug]
         
-        @property { Object } [cron]
+        @property { Object } [meta]
+        
+        @property { string } [description]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { Object } [badge]
+        
+        @property { Media1 } [logo]
+        
+        @property { string } [appId]
+        
+        @property { boolean } [allowSort]
+        
+        @property { Object } [query]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { ImageUrls } [banners]
         
          
     */
@@ -2560,42 +2848,304 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef CollectionDetailResponse
+        @typedef Schedule
         
+        
+        @property { string } [cron]
+        
+        @property { string } [end]
+        
+        @property { number } [duration]
+        
+        @property { string } [start]
+        
+         
+    */
+
+/**
+        @typedef SeoDetail
+        
+        
+        @property { string } [title]
+        
+        @property { string } [description]
+        
+         
+    */
+
+/**
+        @typedef CollectionBadge
+        
+        
+        @property { string } [color]
+        
+        @property { string } [text]
+        
+         
+    */
+
+/**
+        @typedef CollectionImage
+        
+        
+        @property { string } url
+        
+        @property { string } aspectRatio
+        
+         
+    */
+
+/**
+        @typedef UserInfo
+        
+        
+        @property { string } [email]
+        
+        @property { string } [userId]
+        
+        @property { string } [username]
+        
+        @property { string } [uid]
+        
+         
+    */
+
+/**
+        @typedef CollectionBanner
+        
+        
+        @property { CollectionImage } portrait
+        
+        @property { CollectionImage } landscape
+        
+         
+    */
+
+/**
+        @typedef CreateCollection
+        
+        
+        @property { boolean } [isActive]
+        
+        @property { string } type
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } name
+        
+        @property { Object } [customJson]
+        
+        @property { Object } [localeLanguage]
+        
+        @property { Schedule } [schedule]
+        
+        @property { string } slug
+        
+        @property { Object } [meta]
+        
+        @property { SeoDetail } [seo]
+        
+        @property { string } [description]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { CollectionBadge } [badge]
+        
+        @property { CollectionImage } logo
+        
+        @property { UserInfo } [createdBy]
+        
+        @property { string } appId
+        
+        @property { UserInfo } [modifiedBy]
+        
+        @property { string } [sortOn]
+        
+        @property { boolean } [allowSort]
+        
+        @property { boolean } [published]
+        
+        @property { Object } [query]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { CollectionBanner } banners
+        
+         
+    */
+
+/**
+        @typedef CollectionCreateResponse
+        
+        
+        @property { boolean } [isActive]
         
         @property { string } [appId]
         
         @property { Array<string> } [tag]
         
-        @property { string } [type]
-        
-        @property { Object } [schedule]
-        
-        @property { Object } [badge]
-        
-        @property { Array<string> } [visibleFacetsKeys]
+        @property { Object } [meta]
         
         @property { string } [description]
         
-        @property { Object } [query]
+        @property { Object } [cron]
         
-        @property { Media1 } [logo]
+        @property { string } [type]
         
-        @property { Object } [meta]
+        @property { boolean } [allowSort]
         
         @property { string } [name]
         
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { Object } [badge]
+        
+        @property { Object } [query]
+        
         @property { boolean } [allowFacets]
         
-        @property { boolean } [allowSort]
+        @property { BannerImage } [logo]
+        
+        @property { Object } [schedule]
         
         @property { ImageUrls } [banners]
         
         @property { string } [slug]
         
-        @property { Object } [cron]
+         
+    */
+
+/**
+        @typedef CollectionDetailResponse
+        
         
         @property { boolean } [isActive]
+        
+        @property { string } [appId]
+        
+        @property { Array<string> } [tag]
+        
+        @property { Object } [meta]
+        
+        @property { string } [description]
+        
+        @property { Object } [cron]
+        
+        @property { string } [type]
+        
+        @property { boolean } [allowSort]
+        
+        @property { string } [name]
+        
+        @property { Array<string> } [visibleFacetsKeys]
+        
+        @property { Object } [badge]
+        
+        @property { Object } [query]
+        
+        @property { boolean } [allowFacets]
+        
+        @property { Media1 } [logo]
+        
+        @property { Object } [schedule]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { string } [slug]
+        
+         
+    */
+
+/**
+        @typedef Price1
+        
+        
+        @property { string } [currencyCode]
+        
+        @property { number } [min]
+        
+        @property { string } [currencySymbol]
+        
+        @property { number } [max]
+        
+         
+    */
+
+/**
+        @typedef ProductListingPrice
+        
+        
+        @property { Price1 } [effective]
+        
+        @property { Price1 } [marked]
+        
+         
+    */
+
+/**
+        @typedef ProductListingDetail
+        
+        
+        @property { boolean } [hasVariant]
+        
+        @property { Object } [promoMeta]
+        
+        @property { Object } [attributes]
+        
+        @property { Array<Media1> } [medias]
+        
+        @property { string } [type]
+        
+        @property { string } [productOnlineDate]
+        
+        @property { string } [itemType]
+        
+        @property { string } [discount]
+        
+        @property { string } [name]
+        
+        @property { string } [shortDescription]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { string } [imageNature]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { number } [rating]
+        
+        @property { number } [uid]
+        
+        @property { string } [description]
+        
+        @property { boolean } [sellable]
+        
+        @property { string } [color]
+        
+        @property { Object } [teaserTag]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { number } [ratingCount]
+        
+        @property { Array<string> } [similars]
+        
+        @property { string } slug
+        
+         
+    */
+
+/**
+        @typedef GetCollectionItemsResponse
+        
+        
+        @property { Page } [page]
+        
+        @property { Array<ProductFilters> } [filters]
+        
+        @property { Array<ProductListingDetail> } [items]
+        
+        @property { Array<ProductSortOn> } [sortOn]
         
          
     */
@@ -2621,95 +3171,20 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef Price1
+        @typedef CatalogInsightBrand
         
         
-        @property { string } [currencyCode]
+        @property { number } [availableArticles]
         
-        @property { string } [currencySymbol]
-        
-        @property { number } [max]
-        
-        @property { number } [min]
-        
-         
-    */
-
-/**
-        @typedef ProductListingPrice
-        
-        
-        @property { Price1 } [marked]
-        
-        @property { Price1 } [effective]
-        
-         
-    */
-
-/**
-        @typedef ProductListingDetail
-        
-        
-        @property { Array<string> } [highlights]
-        
-        @property { string } [type]
-        
-        @property { Object } [promoMeta]
-        
-        @property { string } [discount]
-        
-        @property { Object } [teaserTag]
-        
-        @property { number } [ratingCount]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [shortDescription]
-        
-        @property { string } [description]
-        
-        @property { Array<string> } [similars]
-        
-        @property { number } [uid]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { number } [rating]
-        
-        @property { string } [itemType]
-        
-        @property { ProductListingPrice } [price]
+        @property { number } [totalArticles]
         
         @property { string } [name]
         
-        @property { boolean } [sellable]
+        @property { number } [availableSizes]
         
-        @property { Array<Media1> } [medias]
+        @property { number } [totalSizes]
         
-        @property { string } [color]
-        
-        @property { string } [imageNature]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { string } slug
-        
-         
-    */
-
-/**
-        @typedef GetCollectionItemsResponse
-        
-        
-        @property { Page } [page]
-        
-        @property { Array<ProductFilters> } [filters]
-        
-        @property { Array<ProductSortOn> } [sortOn]
-        
-        @property { Array<ProductListingDetail> } [items]
+        @property { number } [articleFreshness]
         
          
     */
@@ -2720,28 +3195,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { number } [outOfStockCount]
         
-        @property { number } [sellableCount]
-        
         @property { number } [count]
         
-         
-    */
-
-/**
-        @typedef CatalogInsightBrand
-        
-        
-        @property { number } [totalArticles]
-        
-        @property { number } [availableSizes]
-        
-        @property { number } [availableArticles]
-        
-        @property { string } [name]
-        
-        @property { number } [articleFreshness]
-        
-        @property { number } [totalSizes]
+        @property { number } [sellableCount]
         
          
     */
@@ -2750,9 +3206,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CatalogInsightResponse
         
         
-        @property { CatalogInsightItem } [item]
-        
         @property { CatalogInsightBrand } [brandDistribution]
+        
+        @property { CatalogInsightItem } [item]
         
          
     */
@@ -2772,9 +3228,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CrossSellingResponse
         
         
-        @property { CrossSellingData } [data]
-        
         @property { CatalogInsightBrand } [brandDistribution]
+        
+        @property { CrossSellingData } [data]
         
          
     */
@@ -2783,13 +3239,13 @@ const APIClient = require("./PlatformAPIClient");
         @typedef OptInPostRequest
         
         
-        @property { Array<number> } [brandIds]
+        @property { string } optLevel
         
         @property { Array<number> } [storeIds]
         
-        @property { boolean } [enabled]
+        @property { Array<number> } [brandIds]
         
-        @property { string } optLevel
+        @property { boolean } [enabled]
         
          
     */
@@ -2798,25 +3254,25 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CompanyOptIn
         
         
+        @property { Object } [createdBy]
+        
         @property { number } createdOn
         
-        @property { Array<number> } storeIds
-        
-        @property { string } optLevel
+        @property { Array<number> } brandIds
         
         @property { number } modifiedOn
         
-        @property { string } platform
+        @property { string } optLevel
         
         @property { boolean } enabled
         
-        @property { number } companyId
+        @property { string } platform
         
         @property { Object } [modifiedBy]
         
-        @property { Object } [createdBy]
+        @property { Array<number> } storeIds
         
-        @property { Array<number> } brandIds
+        @property { number } companyId
         
          
     */
@@ -2836,11 +3292,11 @@ const APIClient = require("./PlatformAPIClient");
         @typedef OptinCompanyDetail
         
         
+        @property { string } [name]
+        
         @property { string } [businessType]
         
         @property { string } [companyType]
-        
-        @property { string } [name]
         
         @property { number } [uid]
         
@@ -2851,13 +3307,13 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CompanyBrandDetail
         
         
-        @property { number } [brandId]
+        @property { string } [brandName]
         
         @property { number } [companyId]
         
-        @property { number } [totalArticle]
+        @property { number } [brandId]
         
-        @property { string } [brandName]
+        @property { number } [totalArticle]
         
          
     */
@@ -2879,9 +3335,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { number } [brand]
         
-        @property { number } [store]
-        
         @property { string } [company]
+        
+        @property { number } [store]
         
          
     */
@@ -2890,27 +3346,27 @@ const APIClient = require("./PlatformAPIClient");
         @typedef StoreDetail
         
         
-        @property { string } [modifiedOn]
-        
-        @property { string } [displayName]
-        
-        @property { Object } [timing]
+        @property { string } [createdOn]
         
         @property { string } [storeCode]
         
-        @property { string } [storeType]
+        @property { string } [modifiedOn]
         
         @property { Array<Object> } [documents]
         
-        @property { number } [companyId]
+        @property { Object } [timing]
         
-        @property { string } [name]
+        @property { string } [storeType]
         
         @property { Array<Object> } [additionalContacts]
         
-        @property { string } [createdOn]
+        @property { string } [name]
+        
+        @property { number } [companyId]
         
         @property { number } [uid]
+        
+        @property { string } [displayName]
         
          
     */
@@ -2934,9 +3390,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { boolean } [hasNext]
         
-        @property { number } [itemTotal]
-        
         @property { number } [size]
+        
+        @property { number } [itemTotal]
         
          
     */
@@ -2961,15 +3417,15 @@ const APIClient = require("./PlatformAPIClient");
         @typedef PTErrorResponse
         
         
-        @property { string } [message]
+        @property { Object } [errors]
         
         @property { string } [code]
         
-        @property { number } [status]
-        
         @property { Object } [meta]
         
-        @property { Object } [errors]
+        @property { number } [status]
+        
+        @property { string } [message]
         
          
     */
@@ -2982,9 +3438,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { boolean } [hasNext]
         
-        @property { number } [itemTotal]
-        
         @property { string } [nextPageId]
+        
+        @property { number } [itemTotal]
         
          
     */
@@ -2993,11 +3449,11 @@ const APIClient = require("./PlatformAPIClient");
         @typedef UserSerializer
         
         
+        @property { string } [userId]
+        
         @property { string } [username]
         
         @property { string } [contact]
-        
-        @property { string } [userId]
         
          
     */
@@ -3006,35 +3462,35 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetDepartment
         
         
-        @property { number } [priorityOrder]
-        
-        @property { number } [pageSize]
-        
-        @property { number } [pageNo]
-        
-        @property { string } [search]
-        
-        @property { string } [itemType]
-        
-        @property { string } [modifiedOn]
-        
-        @property { number } [uid]
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { string } [logo]
-        
-        @property { UserSerializer } [modifiedBy]
-        
-        @property { string } [name]
+        @property { boolean } [isActive]
         
         @property { UserSerializer } [createdBy]
         
-        @property { string } [slug]
+        @property { Array<string> } [synonyms]
         
         @property { string } [createdOn]
         
-        @property { boolean } [isActive]
+        @property { string } [modifiedOn]
+        
+        @property { number } [priorityOrder]
+        
+        @property { UserSerializer } [modifiedBy]
+        
+        @property { string } [itemType]
+        
+        @property { string } [name]
+        
+        @property { number } [pageNo]
+        
+        @property { number } [pageSize]
+        
+        @property { number } [uid]
+        
+        @property { string } [logo]
+        
+        @property { string } [slug]
+        
+        @property { string } [search]
         
          
     */
@@ -3054,15 +3510,15 @@ const APIClient = require("./PlatformAPIClient");
         @typedef DepartmentErrorResponse
         
         
-        @property { string } [message]
+        @property { Object } [errors]
         
         @property { string } [code]
         
-        @property { number } [status]
-        
         @property { Object } [meta]
         
-        @property { Object } [errors]
+        @property { number } [status]
+        
+        @property { string } [message]
         
          
     */
@@ -3071,35 +3527,35 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ProductTemplate
         
         
-        @property { string } [tag]
-        
         @property { Array<string> } [departments]
+        
+        @property { boolean } [isActive]
+        
+        @property { string } [tag]
         
         @property { Array<string> } [attributes]
         
-        @property { boolean } [isArchived]
-        
-        @property { string } [modifiedOn]
-        
-        @property { boolean } isPhysical
-        
-        @property { string } [description]
-        
-        @property { string } [logo]
-        
-        @property { Object } [modifiedBy]
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [categories]
-        
         @property { Object } [createdBy]
-        
-        @property { string } slug
         
         @property { string } [createdOn]
         
-        @property { boolean } [isActive]
+        @property { string } [description]
+        
+        @property { string } [modifiedOn]
+        
+        @property { Object } [modifiedBy]
+        
+        @property { Array<string> } [categories]
+        
+        @property { string } [name]
+        
+        @property { boolean } [isArchived]
+        
+        @property { boolean } isPhysical
+        
+        @property { string } [logo]
+        
+        @property { string } slug
         
          
     */
@@ -3139,9 +3595,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef HSNData
         
         
-        @property { Array<string> } [countryOfOrigin]
-        
         @property { Array<string> } [hsnCode]
+        
+        @property { Array<string> } [countryOfOrigin]
         
          
     */
@@ -3161,9 +3617,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ProductConfligurationDownloads
         
         
-        @property { Array<MultipleCommon> } [data]
-        
         @property { boolean } [multivalue]
+        
+        @property { Array<MultipleCommon> } [data]
         
          
     */
@@ -3183,11 +3639,11 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CategoryMapping
         
         
-        @property { CategoryMappingValues } [facebook]
-        
         @property { CategoryMappingValues } [google]
         
         @property { CategoryMappingValues } [ajio]
+        
+        @property { CategoryMappingValues } [facebook]
         
          
     */
@@ -3198,9 +3654,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { string } logo
         
-        @property { string } portrait
-        
         @property { string } landscape
+        
+        @property { string } portrait
         
          
     */
@@ -3211,90 +3667,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { number } l2
         
-        @property { number } l1
-        
         @property { number } department
         
-         
-    */
-
-/**
-        @typedef CategoryRequestBody
-        
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { Array<number> } departments
-        
-        @property { CategoryMapping } [marketplaces]
-        
-        @property { number } [priority]
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { string } name
-        
-        @property { Media2 } [media]
-        
-        @property { Array<Hierarchy> } [hierarchy]
-        
-        @property { string } [slug]
-        
-        @property { number } level
-        
-        @property { boolean } isActive
-        
-         
-    */
-
-/**
-        @typedef CategoryCreateResponse
-        
-        
-        @property { string } [message]
-        
-        @property { number } [uid]
-        
-         
-    */
-
-/**
-        @typedef Category
-        
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { Array<number> } departments
-        
-        @property { CategoryMapping } [marketplaces]
-        
-        @property { number } [priority]
-        
-        @property { boolean } isActive
-        
-        @property { string } [modifiedOn]
-        
-        @property { string } [id]
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { Object } [modifiedBy]
-        
-        @property { string } name
-        
-        @property { Object } [createdBy]
-        
-        @property { Media2 } [media]
-        
-        @property { Array<Hierarchy> } [hierarchy]
-        
-        @property { string } [slug]
-        
-        @property { string } [createdOn]
-        
-        @property { number } level
-        
-        @property { number } [uid]
+        @property { number } l1
         
          
     */
@@ -3311,47 +3686,253 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef CategoryUpdateResponse
+        @typedef CategoryRequestBody
+        
+        
+        @property { Array<number> } departments
+        
+        @property { boolean } isActive
+        
+        @property { CategoryMapping } [marketplaces]
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { number } level
+        
+        @property { Media2 } [media]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { string } name
+        
+        @property { number } [priority]
+        
+        @property { string } [slug]
+        
+        @property { Array<Hierarchy> } [hierarchy]
+        
+         
+    */
+
+/**
+        @typedef CategoryCreateResponse
         
         
         @property { string } [message]
         
-        @property { boolean } [success]
+        @property { number } [uid]
         
          
     */
 
 /**
-        @typedef TeaserTag
+        @typedef CategoryUpdateResponse
         
         
-        @property { string } [tag]
+        @property { boolean } [success]
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef PageData
+        
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { string } [current]
+        
+        @property { boolean } [hasNext]
+        
+        @property { number } [itemTotal]
+        
+        @property { number } [size]
+        
+         
+    */
+
+/**
+        @typedef Logo
+        
         
         @property { string } [url]
         
-         
-    */
-
-/**
-        @typedef CustomOrder
+        @property { string } [secureUrl]
         
+        @property { number } [aspectRatioF]
         
-        @property { boolean } [isCustomOrder]
-        
-        @property { number } [manufacturingTime]
-        
-        @property { string } [manufacturingTimeUnit]
+        @property { string } [aspectRatio]
         
          
     */
 
 /**
-        @typedef ProductPublish
+        @typedef Brand
         
+        
+        @property { Logo } [logo]
+        
+        @property { string } [name]
+        
+        @property { number } [uid]
+        
+         
+    */
+
+/**
+        @typedef UserCommon
+        
+        
+        @property { number } [companyId]
+        
+        @property { string } [userId]
+        
+        @property { string } [username]
+        
+         
+    */
+
+/**
+        @typedef VerifiedBy
+        
+        
+        @property { string } [userId]
+        
+        @property { string } [username]
+        
+         
+    */
+
+/**
+        @typedef Attributes
+        
+        
+        @property { string } [primaryMaterial]
+        
+        @property { string } [modifiedOn]
+        
+        @property { boolean } [isImageLessProduct]
+        
+        @property { string } [neckType]
+        
+        @property { string } [stage]
+        
+        @property { string } [createdOn]
+        
+        @property { string } [imageNature]
+        
+        @property { string } [productFit]
+        
+        @property { string } [sleeveLength]
+        
+        @property { string } [verifiedOn]
+        
+        @property { string } [essential]
+        
+        @property { string } [primaryColor]
+        
+        @property { string } [material]
+        
+        @property { string } [color]
+        
+        @property { string } [pattern]
+        
+        @property { string } [metaNature]
+        
+        @property { UserCommon } [createdBy]
+        
+        @property { UserCommon } [modifiedBy]
+        
+        @property { VerifiedBy } [verifiedBy]
+        
+        @property { Array<string> } [l3Mapping]
+        
+        @property { Array<string> } [gender]
+        
+         
+    */
+
+/**
+        @typedef ProductPublished
+        
+        
+        @property { number } [productOnlineDate]
         
         @property { boolean } [isSet]
         
-        @property { string } [productOnlineDate]
+         
+    */
+
+/**
+        @typedef Product
+        
+        
+        @property { boolean } [isActive]
+        
+        @property { Brand } [brand]
+        
+        @property { Attributes } [attributes]
+        
+        @property { Array<string> } [media]
+        
+        @property { string } [itemType]
+        
+        @property { string } [name]
+        
+        @property { number } [companyId]
+        
+        @property { Array<Object> } [sizes]
+        
+        @property { string } [highlights]
+        
+        @property { ProductPublished } [productPublish]
+        
+        @property { string } [categorySlug]
+        
+        @property { Array<string> } [allSizes]
+        
+        @property { boolean } [multiSize]
+        
+        @property { number } [uid]
+        
+        @property { string } [templateTag]
+        
+        @property { string } [countryOfOrigin]
+        
+        @property { Array<string> } [images]
+        
+        @property { string } [description]
+        
+        @property { string } [hsnCode]
+        
+        @property { string } [itemCode]
+        
+        @property { Array<number> } [departments]
+        
+        @property { boolean } [isSet]
+        
+        @property { string } [id]
+        
+        @property { string } [currency]
+        
+        @property { string } [sizeGuide]
+        
+        @property { string } [slug]
+        
+        @property { boolean } [isDependent]
+        
+         
+    */
+
+/**
+        @typedef ProductListingResponse
+        
+        
+        @property { PageData } [page]
+        
+        @property { Array<Product> } [items]
         
          
     */
@@ -3371,11 +3952,22 @@ const APIClient = require("./PlatformAPIClient");
         @typedef OrderQuantity
         
         
-        @property { boolean } [isSet]
-        
         @property { number } [maximum]
         
         @property { number } [minimum]
+        
+        @property { boolean } [isSet]
+        
+         
+    */
+
+/**
+        @typedef ProductPublish
+        
+        
+        @property { string } [productOnlineDate]
+        
+        @property { boolean } [isSet]
         
          
     */
@@ -3394,283 +3986,106 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
+        @typedef TeaserTag
+        
+        
+        @property { string } [url]
+        
+        @property { string } [tag]
+        
+         
+    */
+
+/**
+        @typedef CustomOrder
+        
+        
+        @property { boolean } [isCustomOrder]
+        
+        @property { number } [manufacturingTime]
+        
+        @property { string } [manufacturingTimeUnit]
+        
+         
+    */
+
+/**
         @typedef ProductCreateUpdate
         
         
-        @property { Array<string> } [highlights]
+        @property { boolean } [isActive]
         
-        @property { string } currency
-        
-        @property { number } companyId
-        
-        @property { string } [traderType]
-        
-        @property { number } brandUid
-        
-        @property { TeaserTag } [teaserTag]
+        @property { Object } [variants]
         
         @property { Array<Media1> } [media]
         
-        @property { string } categorySlug
-        
-        @property { boolean } [isActive]
-        
-        @property { CustomOrder } [customOrder]
+        @property { string } itemType
         
         @property { Array<string> } [tags]
         
-        @property { boolean } [isImageLessProduct]
-        
-        @property { string } [description]
-        
-        @property { string } itemCode
-        
-        @property { string } [shortDescription]
-        
-        @property { ProductPublish } [productPublish]
-        
-        @property { string } [changeRequestId]
-        
         @property { Trader } [trader]
-        
-        @property { number } [uid]
-        
-        @property { string } itemType
-        
-        @property { Array<number> } departments
-        
-        @property { string } countryOfOrigin
-        
-        @property { string } [requester]
-        
-        @property { boolean } [isSet]
         
         @property { string } name
         
         @property { OrderQuantity } [moq]
         
-        @property { boolean } [multiSize]
+        @property { number } companyId
         
-        @property { Array<string> } [productGroupTag]
+        @property { string } [shortDescription]
         
-        @property { Object } [variants]
-        
-        @property { boolean } [isDependent]
-        
-        @property { string } [sizeGuide]
-        
-        @property { ReturnConfig } [returnConfig]
-        
-        @property { number } [noOfBoxes]
-        
-        @property { string } hsnCode
-        
-        @property { string } templateTag
-        
-        @property { string } slug
-        
-        @property { Object } [customJson]
-        
-         
-    */
-
-/**
-        @typedef PageData
-        
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { string } [current]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [size]
-        
-         
-    */
-
-/**
-        @typedef UserCommon
-        
-        
-        @property { number } [companyId]
-        
-        @property { string } [username]
-        
-        @property { string } [userId]
-        
-         
-    */
-
-/**
-        @typedef VerifiedBy
-        
-        
-        @property { string } [username]
-        
-        @property { string } [userId]
-        
-         
-    */
-
-/**
-        @typedef Attributes
-        
-        
-        @property { string } [metaNature]
-        
-        @property { string } [primaryMaterial]
-        
-        @property { string } [productFit]
-        
-        @property { string } [sleeveLength]
-        
-        @property { string } [modifiedOn]
+        @property { Array<string> } [highlights]
         
         @property { boolean } [isImageLessProduct]
         
-        @property { string } [pattern]
+        @property { ProductPublish } [productPublish]
         
-        @property { UserCommon } [modifiedBy]
+        @property { Object } [customJson]
         
-        @property { string } [stage]
+        @property { string } categorySlug
         
-        @property { UserCommon } [createdBy]
-        
-        @property { Array<string> } [l3Mapping]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } [essential]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [primaryColor]
-        
-        @property { string } [neckType]
-        
-        @property { Array<string> } [gender]
-        
-        @property { string } [color]
-        
-        @property { VerifiedBy } [verifiedBy]
-        
-        @property { string } [material]
-        
-        @property { string } [imageNature]
-        
-         
-    */
-
-/**
-        @typedef ProductPublished
-        
-        
-        @property { boolean } [isSet]
-        
-        @property { number } [productOnlineDate]
-        
-         
-    */
-
-/**
-        @typedef Logo
-        
-        
-        @property { string } [aspectRatio]
-        
-        @property { string } [url]
-        
-        @property { number } [aspectRatioF]
-        
-        @property { string } [secureUrl]
-        
-         
-    */
-
-/**
-        @typedef Brand
-        
-        
-        @property { Logo } [logo]
-        
-        @property { string } [name]
-        
-        @property { number } [uid]
-        
-         
-    */
-
-/**
-        @typedef Product
-        
-        
-        @property { string } [highlights]
-        
-        @property { string } [currency]
-        
-        @property { number } [companyId]
-        
-        @property { Array<string> } [media]
-        
-        @property { string } [categorySlug]
-        
-        @property { Array<string> } [allSizes]
-        
-        @property { boolean } [isActive]
-        
-        @property { Array<Object> } [sizes]
-        
-        @property { Attributes } [attributes]
-        
-        @property { string } [description]
-        
-        @property { string } [itemCode]
-        
-        @property { Array<string> } [images]
-        
-        @property { ProductPublished } [productPublish]
-        
-        @property { string } [id]
-        
-        @property { number } [uid]
-        
-        @property { Array<number> } [departments]
-        
-        @property { string } [itemType]
-        
-        @property { string } [countryOfOrigin]
-        
-        @property { boolean } [isSet]
-        
-        @property { string } [name]
+        @property { ReturnConfig } [returnConfig]
         
         @property { boolean } [multiSize]
         
-        @property { boolean } [isDependent]
+        @property { number } [uid]
+        
+        @property { string } [requester]
+        
+        @property { string } templateTag
+        
+        @property { string } countryOfOrigin
+        
+        @property { number } [noOfBoxes]
+        
+        @property { string } [traderType]
+        
+        @property { string } [description]
+        
+        @property { string } hsnCode
+        
+        @property { string } [changeRequestId]
+        
+        @property { string } itemCode
+        
+        @property { Array<number> } departments
+        
+        @property { TeaserTag } [teaserTag]
+        
+        @property { boolean } [isSet]
+        
+        @property { CustomOrder } [customOrder]
+        
+        @property { Array<string> } [productGroupTag]
+        
+        @property { number } brandUid
+        
+        @property { string } currency
         
         @property { string } [sizeGuide]
         
-        @property { string } [hsnCode]
+        @property { string } slug
         
-        @property { string } [templateTag]
-        
-        @property { Brand } [brand]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef ProductListingResponse
-        
-        
-        @property { PageData } [page]
-        
-        @property { Array<Product> } [items]
+        @property { boolean } [isDependent]
         
          
     */
@@ -3685,70 +4100,14 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef UserInfo1
-        
-        
-        @property { string } [email]
-        
-        @property { string } [username]
-        
-        @property { string } [userId]
-        
-        @property { string } [uid]
-        
-         
-    */
-
-/**
-        @typedef BulkJob
-        
-        
-        @property { number } [succeed]
-        
-        @property { number } [cancelled]
-        
-        @property { Array<Object> } [cancelledRecords]
-        
-        @property { string } [modifiedOn]
-        
-        @property { string } [filePath]
-        
-        @property { number } [failed]
-        
-        @property { Array<Object> } [failedRecords]
-        
-        @property { UserInfo1 } [modifiedBy]
-        
-        @property { number } companyId
-        
-        @property { UserInfo1 } [createdBy]
-        
-        @property { number } total
-        
-        @property { string } [stage]
-        
-        @property { string } [customTemplateTag]
-        
-        @property { string } [templateTag]
-        
-        @property { string } [trackingUrl]
-        
-        @property { string } createdOn
-        
-        @property { boolean } [isActive]
-        
-         
-    */
-
-/**
         @typedef UserDetail
         
         
         @property { string } [fullName]
         
-        @property { string } [username]
-        
         @property { string } [userId]
+        
+        @property { string } [username]
         
          
     */
@@ -3757,37 +4116,37 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ProductBulkRequest
         
         
-        @property { number } [succeed]
+        @property { string } [stage]
         
-        @property { number } [cancelled]
-        
-        @property { ProductTemplate } [template]
+        @property { boolean } [isActive]
         
         @property { Array<string> } [cancelledRecords]
         
-        @property { string } [modifiedOn]
-        
-        @property { string } [filePath]
-        
-        @property { number } [failed]
+        @property { string } [createdOn]
         
         @property { Array<string> } [failedRecords]
         
-        @property { string } [stage]
-        
-        @property { number } [companyId]
-        
         @property { UserDetail } [createdBy]
+        
+        @property { number } [cancelled]
+        
+        @property { string } [modifiedOn]
+        
+        @property { number } [failed]
         
         @property { number } [total]
         
         @property { UserDetail } [modifiedBy]
         
+        @property { number } [companyId]
+        
+        @property { ProductTemplate } [template]
+        
+        @property { number } [succeed]
+        
+        @property { string } [filePath]
+        
         @property { string } [templateTag]
-        
-        @property { string } [createdOn]
-        
-        @property { boolean } [isActive]
         
          
     */
@@ -3804,16 +4163,72 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef BulkProductRequest
+        @typedef UserInfo1
         
+        
+        @property { string } [email]
+        
+        @property { string } [userId]
+        
+        @property { string } [username]
+        
+        @property { string } [uid]
+        
+         
+    */
+
+/**
+        @typedef BulkJob
+        
+        
+        @property { boolean } [isActive]
+        
+        @property { UserInfo1 } [createdBy]
+        
+        @property { string } createdOn
+        
+        @property { number } [cancelled]
+        
+        @property { Array<Object> } [cancelledRecords]
+        
+        @property { Array<Object> } [failedRecords]
+        
+        @property { string } [stage]
+        
+        @property { string } [modifiedOn]
+        
+        @property { number } total
+        
+        @property { number } [failed]
+        
+        @property { UserInfo1 } [modifiedBy]
+        
+        @property { string } [trackingUrl]
         
         @property { number } companyId
         
-        @property { Array<Object> } data
+        @property { number } [succeed]
+        
+        @property { string } [filePath]
+        
+        @property { string } [customTemplateTag]
+        
+        @property { string } [templateTag]
+        
+         
+    */
+
+/**
+        @typedef BulkProductRequest
+        
         
         @property { string } batchId
         
+        @property { number } companyId
+        
         @property { string } templateTag
+        
+        @property { Array<Object> } data
         
          
     */
@@ -3837,55 +4252,42 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef ProductBulkAssets
-        
-        
-        @property { number } [companyId]
-        
-        @property { Object } user
-        
-        @property { string } url
-        
-         
-    */
-
-/**
         @typedef Items
         
         
-        @property { number } [succeed]
-        
-        @property { number } [cancelled]
-        
-        @property { string } [id]
-        
-        @property { string } [filePath]
-        
-        @property { string } [modifiedOn]
-        
         @property { Array<string> } [cancelledRecords]
-        
-        @property { number } [failed]
-        
-        @property { Array<string> } [failedRecords]
-        
-        @property { UserCommon } [modifiedBy]
-        
-        @property { string } [stage]
         
         @property { UserCommon } [createdBy]
         
+        @property { string } [createdOn]
+        
+        @property { Array<string> } [failedRecords]
+        
+        @property { string } [stage]
+        
+        @property { boolean } [isActive]
+        
+        @property { number } [cancelled]
+        
+        @property { string } [modifiedOn]
+        
+        @property { number } [failed]
+        
         @property { number } [total]
         
-        @property { number } [retry]
+        @property { UserCommon } [modifiedBy]
         
-        @property { number } [companyId]
+        @property { string } [id]
         
         @property { string } [trackingUrl]
         
-        @property { string } [createdOn]
+        @property { number } [companyId]
         
-        @property { boolean } [isActive]
+        @property { number } [retry]
+        
+        @property { number } [succeed]
+        
+        @property { string } [filePath]
         
          
     */
@@ -3902,14 +4304,31 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef GTIN
+        @typedef ProductBulkAssets
         
         
-        @property { string } gtinType
+        @property { string } url
         
-        @property { string } gtinValue
+        @property { number } [companyId]
         
-        @property { boolean } [primary]
+        @property { Object } user
+        
+         
+    */
+
+/**
+        @typedef InventoryRequest
+        
+        
+        @property { number } [total]
+        
+        @property { string } [size]
+        
+        @property { number } [pageSize]
+        
+        @property { number } [pageNo]
+        
+        @property { string } [search]
         
          
     */
@@ -3946,40 +4365,53 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
+        @typedef GTIN
+        
+        
+        @property { string } gtinType
+        
+        @property { string } gtinValue
+        
+        @property { boolean } [primary]
+        
+         
+    */
+
+/**
         @typedef InvSize
         
         
+        @property { number } priceEffective
+        
+        @property { string } storeCode
+        
+        @property { number } [itemLength]
+        
+        @property { boolean } [isSet]
+        
+        @property { InventorySet } [set]
+        
         @property { number } price
         
-        @property { number } [itemWidth]
+        @property { number } [priceTransfer]
+        
+        @property { string } size
         
         @property { string } [itemWeightUnitOfMeasure]
         
         @property { Array<GTIN> } identifiers
         
-        @property { number } [priceTransfer]
-        
-        @property { InventorySet } [set]
-        
-        @property { string } storeCode
-        
-        @property { string } [itemDimensionsUnitOfMeasure]
+        @property { number } quantity
         
         @property { string } currency
         
-        @property { boolean } [isSet]
-        
-        @property { number } quantity
-        
-        @property { number } [itemHeight]
+        @property { string } [itemDimensionsUnitOfMeasure]
         
         @property { number } [itemWeight]
         
-        @property { number } priceEffective
+        @property { number } [itemHeight]
         
-        @property { number } [itemLength]
-        
-        @property { string } size
+        @property { number } [itemWidth]
         
          
     */
@@ -3988,9 +4420,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ItemQuery
         
         
-        @property { number } [brandUid]
-        
         @property { string } [itemCode]
+        
+        @property { number } [brandUid]
         
         @property { number } [uid]
         
@@ -3998,7 +4430,7 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef InventoryRequest
+        @typedef InventoryRequest1
         
         
         @property { Array<InvSize> } sizes
@@ -4011,18 +4443,26 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef InventoryRequest1
+        @typedef BulkRequestGet
         
+        
+        @property { string } [stage]
+        
+        @property { number } [total]
+        
+        @property { string } [startDate]
         
         @property { number } [pageSize]
         
         @property { number } [pageNo]
         
+        @property { string } [endDate]
+        
+        @property { string } [customTemplateTag]
+        
+        @property { string } [templateTag]
+        
         @property { string } [search]
-        
-        @property { number } [total]
-        
-        @property { string } [size]
         
          
     */
@@ -4037,67 +4477,42 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef BulkRequestGet
-        
-        
-        @property { number } [pageSize]
-        
-        @property { number } [pageNo]
-        
-        @property { string } [search]
-        
-        @property { string } [startDate]
-        
-        @property { string } [endDate]
-        
-        @property { number } [total]
-        
-        @property { string } [stage]
-        
-        @property { string } [templateTag]
-        
-        @property { string } [customTemplateTag]
-        
-         
-    */
-
-/**
         @typedef Size1
         
         
+        @property { number } priceEffective
+        
+        @property { string } sellerIdentifier
+        
+        @property { string } storeCode
+        
+        @property { number } [itemLength]
+        
+        @property { boolean } [isSet]
+        
+        @property { InventorySet } [set]
+        
         @property { number } price
         
-        @property { number } [itemWidth]
+        @property { number } [priceTransfer]
+        
+        @property { string } [size]
         
         @property { string } [itemWeightUnitOfMeasure]
         
         @property { Array<Object> } [identifiers]
         
-        @property { string } sellerIdentifier
-        
-        @property { number } [priceTransfer]
-        
-        @property { InventorySet } [set]
-        
-        @property { string } storeCode
-        
-        @property { string } [itemDimensionsUnitOfMeasure]
+        @property { number } quantity
         
         @property { string } currency
         
-        @property { boolean } [isSet]
-        
-        @property { number } quantity
-        
-        @property { number } [itemHeight]
+        @property { string } [itemDimensionsUnitOfMeasure]
         
         @property { number } [itemWeight]
         
-        @property { number } priceEffective
+        @property { number } [itemHeight]
         
-        @property { number } [itemLength]
-        
-        @property { string } [size]
+        @property { number } [itemWidth]
         
          
     */
@@ -4118,35 +4533,35 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef InventoryExportRequest
-        
-        
-        @property { Array<number> } [brand]
-        
-        @property { Array<number> } [store]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
         @typedef InventoryExportJob
         
         
-        @property { string } [completedOn]
-        
         @property { Object } [requestParams]
+        
+        @property { number } sellerId
         
         @property { string } [url]
         
         @property { string } [status]
         
-        @property { number } sellerId
+        @property { string } taskId
+        
+        @property { string } [completedOn]
         
         @property { string } [triggerOn]
         
-        @property { string } taskId
+         
+    */
+
+/**
+        @typedef InventoryExportRequest
+        
+        
+        @property { string } [type]
+        
+        @property { Array<number> } [brand]
+        
+        @property { Array<number> } [store]
         
          
     */
@@ -4166,9 +4581,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef InventoryConfig
         
         
-        @property { Array<FilerList> } [data]
-        
         @property { boolean } [multivalues]
+        
+        @property { Array<FilerList> } [data]
         
          
     */
@@ -4192,12 +4607,18 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef BusinessCountryInfo
+        @typedef Document
         
         
-        @property { string } [country]
+        @property { string } legalName
         
-        @property { string } [countryCode]
+        @property { string } type
+        
+        @property { string } [url]
+        
+        @property { boolean } [verified]
+        
+        @property { string } value
         
          
     */
@@ -4206,38 +4627,27 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetAddressSerializer
         
         
-        @property { string } [address2]
-        
         @property { string } [addressType]
-        
-        @property { string } [city]
-        
-        @property { string } [country]
-        
-        @property { number } [pincode]
-        
-        @property { number } [latitude]
         
         @property { number } [longitude]
         
-        @property { string } [countryCode]
+        @property { string } [city]
         
         @property { string } [landmark]
         
+        @property { number } [pincode]
+        
+        @property { string } [country]
+        
         @property { string } [address1]
+        
+        @property { number } [latitude]
+        
+        @property { string } [countryCode]
         
         @property { string } [state]
         
-         
-    */
-
-/**
-        @typedef PhoneNumber
-        
-        
-        @property { string } number
-        
-        @property { number } countryCode
+        @property { string } [address2]
         
          
     */
@@ -4246,26 +4656,20 @@ const APIClient = require("./PlatformAPIClient");
         @typedef ContactDetails
         
         
-        @property { Array<PhoneNumber> } [phone]
-        
         @property { Array<string> } [emails]
+        
+        @property { Array<PhoneNumber> } [phone]
         
          
     */
 
 /**
-        @typedef Document
+        @typedef BusinessCountryInfo
         
         
-        @property { boolean } [verified]
+        @property { string } [countryCode]
         
-        @property { string } type
-        
-        @property { string } [url]
-        
-        @property { string } legalName
-        
-        @property { string } value
+        @property { string } [country]
         
          
     */
@@ -4274,45 +4678,56 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetCompanyProfileSerializerResponse
         
         
-        @property { string } [name]
-        
-        @property { string } [modifiedOn]
-        
         @property { BusinessDetails } [businessDetails]
         
-        @property { BusinessCountryInfo } [businessCountryInfo]
+        @property { string } [stage]
         
-        @property { Array<string> } [notificationEmails]
-        
-        @property { string } [createdOn]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } companyType
+        @property { number } uid
         
         @property { UserSerializer } [modifiedBy]
         
         @property { string } [businessInfo]
         
-        @property { Object } [warnings]
+        @property { string } [modifiedOn]
         
-        @property { string } [stage]
+        @property { string } [createdOn]
         
-        @property { ContactDetails } [contactDetails]
+        @property { string } [verifiedOn]
+        
+        @property { string } [name]
         
         @property { UserSerializer } [verifiedBy]
         
-        @property { UserSerializer } [createdBy]
-        
         @property { Array<Document> } [documents]
+        
+        @property { Array<GetAddressSerializer> } [addresses]
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { UserSerializer } [createdBy]
         
         @property { boolean } [franchiseEnabled]
         
-        @property { number } uid
+        @property { ContactDetails } [contactDetails]
+        
+        @property { string } companyType
+        
+        @property { BusinessCountryInfo } [businessCountryInfo]
         
         @property { string } businessType
+        
+        @property { Object } [warnings]
+        
+         
+    */
+
+/**
+        @typedef BusinessCountryInfo1
+        
+        
+        @property { string } [countryCode]
+        
+        @property { string } [country]
         
          
     */
@@ -4321,25 +4736,25 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CompanyAddress
         
         
-        @property { string } [address2]
+        @property { number } longitude
         
         @property { string } city
         
-        @property { string } country
+        @property { string } [landmark]
         
         @property { number } pincode
         
-        @property { number } latitude
-        
-        @property { number } longitude
-        
-        @property { string } [countryCode]
-        
-        @property { string } [landmark]
+        @property { string } country
         
         @property { string } address1
         
+        @property { number } latitude
+        
+        @property { string } [countryCode]
+        
         @property { string } state
+        
+        @property { string } [address2]
         
          
     */
@@ -4354,21 +4769,8 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef BusinessCountryInfo1
-        
-        
-        @property { string } [country]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
         @typedef CompanyStoreSerializerRequest
         
-        
-        @property { string } name
         
         @property { Array<number> } brands
         
@@ -4376,21 +4778,23 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { number } [uid]
         
-        @property { CompanyAddress } address
-        
-        @property { string } businessType
+        @property { string } name
         
         @property { Document } document
         
+        @property { BusinessCountryInfo1 } businessCountryInfo
+        
+        @property { CompanyAddress } address
+        
         @property { string } [businessInfo]
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { string } businessType
         
         @property { ReferralInfo } [referralInfo]
         
         @property { Object } [warnings]
-        
-        @property { BusinessCountryInfo1 } businessCountryInfo
-        
-        @property { Array<string> } [notificationEmails]
         
          
     */
@@ -4410,32 +4814,19 @@ const APIClient = require("./PlatformAPIClient");
         @typedef MetricsSerializer
         
         
-        @property { DocumentsObj } [product]
+        @property { string } [stage]
         
         @property { DocumentsObj } [companyDocuments]
-        
-        @property { DocumentsObj } [store]
         
         @property { number } [uid]
         
         @property { DocumentsObj } [brand]
         
+        @property { DocumentsObj } [product]
+        
         @property { DocumentsObj } [storeDocuments]
         
-        @property { string } [stage]
-        
-         
-    */
-
-/**
-        @typedef UserSerializer1
-        
-        
-        @property { string } [username]
-        
-        @property { string } [userId]
-        
-        @property { string } [contact]
+        @property { DocumentsObj } [store]
         
          
     */
@@ -4452,44 +4843,57 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
+        @typedef UserSerializer1
+        
+        
+        @property { string } [userId]
+        
+        @property { string } [username]
+        
+        @property { string } [contact]
+        
+         
+    */
+
+/**
         @typedef GetBrandResponseSerializer
         
         
         @property { string } [slugKey]
         
-        @property { string } name
-        
         @property { string } [verifiedOn]
-        
-        @property { Object } [localeLanguage]
-        
-        @property { number } [uid]
-        
-        @property { UserSerializer1 } [modifiedBy]
-        
-        @property { string } [description]
-        
-        @property { Object } [customJson]
-        
-        @property { string } [modifiedOn]
-        
-        @property { Object } [warnings]
-        
-        @property { UserSerializer1 } [verifiedBy]
-        
-        @property { string } [logo]
-        
-        @property { UserSerializer1 } [createdBy]
-        
-        @property { string } [createdOn]
-        
-        @property { Array<string> } [synonyms]
         
         @property { BrandBannerSerializer } [banner]
         
         @property { string } [stage]
         
+        @property { number } [uid]
+        
+        @property { string } name
+        
+        @property { UserSerializer1 } [verifiedBy]
+        
+        @property { UserSerializer1 } [modifiedBy]
+        
+        @property { Object } [customJson]
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { string } [modifiedOn]
+        
+        @property { Object } [localeLanguage]
+        
+        @property { string } [description]
+        
+        @property { string } [createdOn]
+        
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { Object } [warnings]
+        
         @property { string } [rejectReason]
+        
+        @property { string } [logo]
         
          
     */
@@ -4498,25 +4902,25 @@ const APIClient = require("./PlatformAPIClient");
         @typedef CreateUpdateBrandRequestSerializer
         
         
-        @property { string } name
-        
-        @property { number } [companyId]
+        @property { BrandBannerSerializer } [banner]
         
         @property { number } [uid]
         
-        @property { Object } [customJson]
+        @property { string } name
         
         @property { string } [brandTier]
+        
+        @property { number } [companyId]
+        
+        @property { Object } [customJson]
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { Object } [localeLanguage]
         
         @property { string } [description]
         
         @property { string } logo
-        
-        @property { Object } [localeLanguage]
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { BrandBannerSerializer } [banner]
         
          
     */
@@ -4538,9 +4942,9 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { Array<number> } brands
         
-        @property { number } [uid]
-        
         @property { number } company
+        
+        @property { number } [uid]
         
          
     */
@@ -4557,6 +4961,45 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
+        @typedef LocationTimingSerializer
+        
+        
+        @property { number } [hour]
+        
+        @property { number } [minute]
+        
+         
+    */
+
+/**
+        @typedef LocationDayWiseSerializer
+        
+        
+        @property { boolean } open
+        
+        @property { string } weekday
+        
+        @property { LocationTimingSerializer } [closing]
+        
+        @property { LocationTimingSerializer } [opening]
+        
+         
+    */
+
+/**
+        @typedef LocationManagerSerializer
+        
+        
+        @property { string } [name]
+        
+        @property { PhoneNumber } mobileNo
+        
+        @property { string } [email]
+        
+         
+    */
+
+/**
         @typedef ProductReturnConfigSerializer
         
         
@@ -4568,14 +5011,43 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
+        @typedef GetAddressSerializer1
+        
+        
+        @property { string } [addressType]
+        
+        @property { number } [longitude]
+        
+        @property { string } [city]
+        
+        @property { string } [landmark]
+        
+        @property { number } [pincode]
+        
+        @property { string } [country]
+        
+        @property { string } [address1]
+        
+        @property { number } [latitude]
+        
+        @property { string } [countryCode]
+        
+        @property { string } [state]
+        
+        @property { string } [address2]
+        
+         
+    */
+
+/**
         @typedef InvoiceCredSerializer
         
         
-        @property { boolean } [enabled]
+        @property { string } [password]
         
         @property { string } [username]
         
-        @property { string } [password]
+        @property { boolean } [enabled]
         
          
     */
@@ -4592,110 +5064,42 @@ const APIClient = require("./PlatformAPIClient");
     */
 
 /**
-        @typedef GetAddressSerializer1
-        
-        
-        @property { string } [address2]
-        
-        @property { string } [addressType]
-        
-        @property { string } [city]
-        
-        @property { string } [country]
-        
-        @property { number } [pincode]
-        
-        @property { number } [latitude]
-        
-        @property { number } [longitude]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [landmark]
-        
-        @property { string } [address1]
-        
-        @property { string } [state]
-        
-         
-    */
-
-/**
-        @typedef LocationTimingSerializer
-        
-        
-        @property { number } [minute]
-        
-        @property { number } [hour]
-        
-         
-    */
-
-/**
-        @typedef LocationDayWiseSerializer
-        
-        
-        @property { string } weekday
-        
-        @property { LocationTimingSerializer } [closing]
-        
-        @property { LocationTimingSerializer } [opening]
-        
-        @property { boolean } open
-        
-         
-    */
-
-/**
-        @typedef LocationManagerSerializer
-        
-        
-        @property { string } [email]
-        
-        @property { string } [name]
-        
-        @property { PhoneNumber } mobileNo
-        
-         
-    */
-
-/**
         @typedef LocationSerializer
         
         
-        @property { ProductReturnConfigSerializer } [productReturnConfig]
-        
-        @property { string } name
-        
-        @property { string } displayName
-        
         @property { string } [storeType]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { number } [uid]
-        
-        @property { InvoiceDetailsSerializer } [gstCredentials]
-        
-        @property { Object } [customJson]
-        
-        @property { number } company
-        
-        @property { GetAddressSerializer1 } address
         
         @property { Array<LocationDayWiseSerializer> } [timing]
         
-        @property { string } code
-        
         @property { Object } [warnings]
         
-        @property { Array<string> } [notificationEmails]
-        
-        @property { LocationManagerSerializer } [manager]
+        @property { number } company
         
         @property { string } [stage]
         
+        @property { number } [uid]
+        
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { string } name
+        
+        @property { ProductReturnConfigSerializer } [productReturnConfig]
+        
+        @property { GetAddressSerializer1 } address
+        
+        @property { Array<Document> } [documents]
+        
+        @property { Object } [customJson]
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { InvoiceDetailsSerializer } [gstCredentials]
+        
         @property { Array<PhoneNumber> } [contactNumbers]
+        
+        @property { string } displayName
+        
+        @property { string } code
         
          
     */
@@ -4704,9 +5108,9 @@ const APIClient = require("./PlatformAPIClient");
         @typedef LocationIntegrationType
         
         
-        @property { string } [inventory]
-        
         @property { string } [order]
+        
+        @property { string } [inventory]
         
          
     */
@@ -4715,29 +5119,29 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetCompanySerializer
         
         
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { string } [name]
-        
         @property { string } [verifiedOn]
+        
+        @property { string } [stage]
         
         @property { number } [uid]
         
+        @property { string } [name]
+        
         @property { string } [companyType]
-        
-        @property { UserSerializer } [modifiedBy]
-        
-        @property { string } [businessType]
-        
-        @property { string } [modifiedOn]
         
         @property { UserSerializer } [verifiedBy]
         
-        @property { UserSerializer } [createdBy]
+        @property { UserSerializer } [modifiedBy]
+        
+        @property { string } [modifiedOn]
+        
+        @property { Array<GetAddressSerializer> } [addresses]
         
         @property { string } [createdOn]
         
-        @property { string } [stage]
+        @property { UserSerializer } [createdBy]
+        
+        @property { string } [businessType]
         
         @property { string } [rejectReason]
         
@@ -4748,7 +5152,19 @@ const APIClient = require("./PlatformAPIClient");
         @typedef GetLocationSerializer
         
         
-        @property { string } name
+        @property { string } [storeType]
+        
+        @property { string } [stage]
+        
+        @property { number } [uid]
+        
+        @property { ProductReturnConfigSerializer } [productReturnConfig]
+        
+        @property { LocationIntegrationType } [integrationType]
+        
+        @property { UserSerializer1 } [modifiedBy]
+        
+        @property { GetAddressSerializer } address
         
         @property { Object } [customJson]
         
@@ -4756,47 +5172,35 @@ const APIClient = require("./PlatformAPIClient");
         
         @property { string } [createdOn]
         
-        @property { Array<string> } [notificationEmails]
-        
-        @property { string } displayName
+        @property { Array<PhoneNumber> } [contactNumbers]
         
         @property { string } [verifiedOn]
         
-        @property { UserSerializer1 } [modifiedBy]
-        
-        @property { Object } [warnings]
-        
-        @property { LocationIntegrationType } [integrationType]
+        @property { GetCompanySerializer } [company]
         
         @property { LocationManagerSerializer } [manager]
         
-        @property { string } [stage]
-        
-        @property { Array<PhoneNumber> } [contactNumbers]
-        
-        @property { string } [storeType]
-        
-        @property { InvoiceDetailsSerializer } [gstCredentials]
-        
-        @property { GetCompanySerializer } [company]
-        
-        @property { GetAddressSerializer } address
-        
-        @property { string } phoneNumber
+        @property { string } name
         
         @property { UserSerializer1 } [verifiedBy]
         
-        @property { UserSerializer1 } [createdBy]
-        
-        @property { ProductReturnConfigSerializer } [productReturnConfig]
-        
         @property { Array<Document> } [documents]
         
-        @property { number } [uid]
+        @property { InvoiceDetailsSerializer } [gstCredentials]
+        
+        @property { string } displayName
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { string } code
+        
+        @property { string } phoneNumber
         
         @property { Array<LocationDayWiseSerializer> } [timing]
         
-        @property { string } code
+        @property { Object } [warnings]
         
          
     */
@@ -5068,6 +5472,1268 @@ const APIClient = require("./PlatformAPIClient");
          
     */
 
+/**
+        @typedef DataTresholdDTO
+        
+        
+        @property { number } [minPrice]
+        
+        @property { number } [safeStock]
+        
+        @property { number } [periodThreshold]
+        
+        @property { string } [periodThresholdType]
+        
+        @property { Array<GenericDTO> } [periodTypeList]
+        
+         
+    */
+
+/**
+        @typedef GenericDTO
+        
+        
+        @property { string } [text]
+        
+        @property { Object } [value]
+        
+         
+    */
+
+/**
+        @typedef JobConfigDTO
+        
+        
+        @property { string } integration
+        
+        @property { Object } [integrationData]
+        
+        @property { string } [companyName]
+        
+        @property { number } companyId
+        
+        @property { TaskDTO } [taskDetails]
+        
+        @property { DataTresholdDTO } [thresholdDetails]
+        
+        @property { string } [jobCode]
+        
+        @property { string } [alias]
+        
+         
+    */
+
+/**
+        @typedef TaskDTO
+        
+        
+        @property { number } [type]
+        
+        @property { Array<GenericDTO> } [groupList]
+        
+         
+    */
+
+/**
+        @typedef ResponseEnvelopeString
+        
+        
+        @property { string } [timestamp]
+        
+        @property { number } [status]
+        
+        @property { string } [error]
+        
+        @property { string } [exception]
+        
+        @property { string } [message]
+        
+        @property { number } [totalTimeTakenInMillis]
+        
+        @property { string } [httpStatus]
+        
+        @property { string } [items]
+        
+        @property { string } [payload]
+        
+        @property { string } [traceId]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef AWSS3config
+        
+        
+        @property { string } [bucket]
+        
+        @property { string } [region]
+        
+        @property { string } [dir]
+        
+        @property { string } [accessKey]
+        
+        @property { string } [secretKey]
+        
+        @property { string } [localFilePath]
+        
+        @property { string } [archivePath]
+        
+        @property { boolean } [archive]
+        
+        @property { boolean } [delete]
+        
+        @property { boolean } [unzip]
+        
+        @property { string } [zipFormat]
+        
+        @property { string } [fileRegex]
+        
+        @property { ArchiveConfig } [archiveConfig]
+        
+         
+    */
+
+/**
+        @typedef ArchiveConfig
+        
+        
+        @property { boolean } [delete]
+        
+        @property { boolean } [archive]
+        
+        @property { string } [archiveDir]
+        
+         
+    */
+
+/**
+        @typedef Audit
+        
+        
+        @property { string } [createdBy]
+        
+        @property { string } [modifiedBy]
+        
+        @property { string } [createdOn]
+        
+        @property { string } [modifiedOn]
+        
+         
+    */
+
+/**
+        @typedef CatalogMasterConfig
+        
+        
+        @property { string } [sourceSlug]
+        
+         
+    */
+
+/**
+        @typedef CompanyConfig
+        
+        
+        @property { number } [companyId]
+        
+        @property { Array<number> } [excludeSteps]
+        
+        @property { Array<string> } [hiddenClosetKeys]
+        
+        @property { Object } [openTags]
+        
+        @property { Array<string> } [taxIdentifiers]
+        
+        @property { number } [deleteQuantityThreshold]
+        
+         
+    */
+
+/**
+        @typedef DBConfig
+        
+        
+        @property { string } [vendor]
+        
+        @property { string } [host]
+        
+        @property { number } [port]
+        
+        @property { string } [username]
+        
+        @property { string } [password]
+        
+        @property { string } [dbname]
+        
+        @property { string } [query]
+        
+        @property { boolean } [procedure]
+        
+        @property { string } [driverClass]
+        
+        @property { string } [jdbcUrl]
+        
+        @property { Object } [optionalProperties]
+        
+         
+    */
+
+/**
+        @typedef DBConnectionProfile
+        
+        
+        @property { string } [inventory]
+        
+         
+    */
+
+/**
+        @typedef DBParamConfig
+        
+        
+        @property { Object } [params]
+        
+         
+    */
+
+/**
+        @typedef DefaultHeadersDTO
+        
+        
+        @property { PropBeanDTO } [store]
+        
+        @property { PropBeanDTO } [intfArticleId]
+        
+        @property { PropBeanDTO } [priceEffective]
+        
+        @property { PropBeanDTO } [quantity]
+        
+         
+    */
+
+/**
+        @typedef DocMappingConfig
+        
+        
+        @property { Object } [properties]
+        
+        @property { number } [junkDataThresholdCount]
+        
+        @property { Array<PropBeanConfig> } [propBeanConfigs]
+        
+        @property { string } [unwindField]
+        
+        @property { DefaultHeadersDTO } [defaultHeaders]
+        
+         
+    */
+
+/**
+        @typedef EmailConfig
+        
+        
+        @property { string } [recepient]
+        
+        @property { string } [host]
+        
+        @property { string } [username]
+        
+        @property { string } [password]
+        
+        @property { boolean } [unzip]
+        
+        @property { boolean } [readFromContent]
+        
+        @property { boolean } [filterBasedOnRecepients]
+        
+        @property { string } [pcol]
+        
+        @property { string } [subjectLineRegex]
+        
+        @property { string } [senderAddress]
+        
+        @property { string } [localDir]
+        
+        @property { Array<string> } [folderNameHierarchies]
+        
+        @property { string } [attachmentRegex]
+        
+        @property { string } [bodyContentRegex]
+        
+        @property { boolean } [passwordProtected]
+        
+        @property { string } [zipFormat]
+        
+        @property { boolean } [attachmentMandate]
+        
+        @property { boolean } [filterFilesAfterExtraction]
+        
+        @property { ArchiveConfig } [archiveConfig]
+        
+        @property { boolean } [readAllUnreadMails]
+        
+        @property { string } [contentType]
+        
+        @property { boolean } [downloadableLink]
+        
+        @property { Object } [properties]
+        
+         
+    */
+
+/**
+        @typedef FTPConfig
+        
+        
+        @property { string } [host]
+        
+        @property { number } [port]
+        
+        @property { string } [username]
+        
+        @property { string } [password]
+        
+        @property { boolean } [unzip]
+        
+        @property { number } [retries]
+        
+        @property { number } [interval]
+        
+        @property { string } [localDir]
+        
+        @property { string } [remoteDir]
+        
+        @property { string } [zipFileRegex]
+        
+        @property { ArchiveConfig } [archiveConfig]
+        
+        @property { string } [fileRegex]
+        
+        @property { string } [zipFormat]
+        
+        @property { boolean } [readAllFiles]
+        
+         
+    */
+
+/**
+        @typedef FileConfig
+        
+        
+        @property { string } [delimiter]
+        
+        @property { string } [charset]
+        
+        @property { Object } [properties]
+        
+        @property { boolean } [fileHasHeader]
+        
+        @property { number } [headerIndex]
+        
+        @property { Array<string> } [headerArray]
+        
+        @property { number } [dataStartIndex]
+        
+        @property { Array<PropBeanConfig> } [propBeanConfigs]
+        
+        @property { number } [junkDataThresholdCount]
+        
+        @property { string } [fileType]
+        
+        @property { boolean } [lineValidityCheck]
+        
+        @property { Array<string> } [sheetNames]
+        
+        @property { boolean } [readAllSheets]
+        
+        @property { string } [quoteChar]
+        
+        @property { string } [escapeChar]
+        
+        @property { DefaultHeadersDTO } [defaultHeaders]
+        
+         
+    */
+
+/**
+        @typedef GoogleSpreadSheetConfig
+        
+        
+        @property { string } [range]
+        
+        @property { string } [sheetId]
+        
+        @property { string } [clientSecretLocation]
+        
+        @property { string } [credStorageDirectory]
+        
+        @property { string } [localDir]
+        
+        @property { ArchiveConfig } [archiveConfig]
+        
+         
+    */
+
+/**
+        @typedef HttpConfig
+        
+        
+        @property { string } [hosturl]
+        
+        @property { string } [username]
+        
+        @property { string } [password]
+        
+        @property { Object } [requestParams]
+        
+        @property { string } [httpMethod]
+        
+        @property { string } [requestPayload]
+        
+        @property { string } [localPath]
+        
+        @property { ArchiveConfig } [archiveConfig]
+        
+         
+    */
+
+/**
+        @typedef JobConfig
+        
+        
+        @property { number } [id]
+        
+        @property { string } [jobCode]
+        
+        @property { string } [taskType]
+        
+        @property { number } [syncDelay]
+        
+        @property { string } [cronExpression]
+        
+        @property { StoreFilter } [storeFilter]
+        
+        @property { ProcessConfig } [processConfig]
+        
+        @property { Array<StoreConfig> } [storeConfig]
+        
+        @property { Object } [properties]
+        
+        @property { boolean } [immediateFirstRun]
+        
+        @property { boolean } [disable]
+        
+        @property { Array<string> } [dependentJobCodes]
+        
+        @property { Array<CompanyConfig> } [companyConfig]
+        
+        @property { Array<number> } [companyIds]
+        
+        @property { Array<string> } [taxIdentifiers]
+        
+        @property { string } [priority]
+        
+        @property { number } [periodThreshold]
+        
+        @property { string } [periodThresholdType]
+        
+        @property { DBConnectionProfile } [dbConnectionProfile]
+        
+        @property { Object } [params]
+        
+        @property { Object } [openTags]
+        
+        @property { number } [deleteQuantityThreshold]
+        
+        @property { CatalogMasterConfig } [catalogMasterConfig]
+        
+        @property { Array<string> } [aggregatorTypes]
+        
+        @property { string } [integrationType]
+        
+        @property { number } [minPrice]
+        
+        @property { Audit } [audit]
+        
+        @property { number } [version]
+        
+        @property { string } [alias]
+        
+         
+    */
+
+/**
+        @typedef JobConfigRawDTO
+        
+        
+        @property { string } integration
+        
+        @property { string } companyName
+        
+        @property { number } companyId
+        
+        @property { JobConfig } [data]
+        
+         
+    */
+
+/**
+        @typedef JsonDocConfig
+        
+        
+        @property { Array<PropBeanConfig> } [propBeanConfigs]
+        
+         
+    */
+
+/**
+        @typedef LocalFileConfig
+        
+        
+        @property { number } [retries]
+        
+        @property { number } [interval]
+        
+        @property { string } [localDir]
+        
+        @property { string } [workingDir]
+        
+        @property { boolean } [unzip]
+        
+        @property { string } [zipFileRegex]
+        
+        @property { string } [fileRegex]
+        
+        @property { string } [zipFormat]
+        
+        @property { ArchiveConfig } [archiveConfig]
+        
+        @property { boolean } [readAllFiles]
+        
+         
+    */
+
+/**
+        @typedef MongoDocConfig
+        
+        
+        @property { string } [collectionName]
+        
+        @property { Object } [findQuery]
+        
+        @property { Object } [projectionQuery]
+        
+        @property { Array<PropBeanConfig> } [propBeanConfigs]
+        
+        @property { Array<Object> } [aggregatePipeline]
+        
+        @property { boolean } [skipSave]
+        
+         
+    */
+
+/**
+        @typedef OAuthConfig
+        
+        
+        @property { number } [limit]
+        
+        @property { number } [pages]
+        
+        @property { number } [interval]
+        
+        @property { string } [consumerKey]
+        
+        @property { string } [consumerSecret]
+        
+        @property { string } [token]
+        
+        @property { string } [tokenSecret]
+        
+        @property { string } [restUrl]
+        
+        @property { string } [restBaseUrl]
+        
+        @property { string } [functionName]
+        
+         
+    */
+
+/**
+        @typedef ProcessConfig
+        
+        
+        @property { DBConfig } [dbConfig]
+        
+        @property { DBParamConfig } [dbParamConfig]
+        
+        @property { SFTPConfig } [sftpConfig]
+        
+        @property { AWSS3config } [awsS3Config]
+        
+        @property { MongoDocConfig } [mongoDocConfig]
+        
+        @property { FTPConfig } [ftpConfig]
+        
+        @property { EmailConfig } [emailConfig]
+        
+        @property { FileConfig } [fileConfig]
+        
+        @property { JsonDocConfig } [jsonDocConfig]
+        
+        @property { DocMappingConfig } [docMappingConfig]
+        
+        @property { TaskStepConfig } [taskStepConfig]
+        
+        @property { HttpConfig } [httpConfig]
+        
+        @property { LocalFileConfig } [localFileConfig]
+        
+        @property { OAuthConfig } [oauthConfig]
+        
+        @property { GoogleSpreadSheetConfig } [googleSpreadsheetConfig]
+        
+         
+    */
+
+/**
+        @typedef PropBeanConfig
+        
+        
+        @property { boolean } [required]
+        
+        @property { Object } [mapping]
+        
+        @property { boolean } [optional]
+        
+        @property { Send } [send]
+        
+        @property { Array<Object> } [validations]
+        
+        @property { Array<string> } [values]
+        
+        @property { boolean } [include]
+        
+        @property { string } [sourceField]
+        
+        @property { Array<string> } [sourceFields]
+        
+        @property { string } [destinationField]
+        
+        @property { string } [dataType]
+        
+        @property { Object } [defaultValue]
+        
+        @property { Object } [constValue]
+        
+        @property { string } [concatStr]
+        
+        @property { string } [functionName]
+        
+        @property { string } [transformerName]
+        
+        @property { string } [allParamFunctionName]
+        
+        @property { string } [subSeparator]
+        
+        @property { string } [indexField]
+        
+        @property { boolean } [ignoreIfNotExists]
+        
+        @property { string } [identifierType]
+        
+        @property { Object } [projectionQuery]
+        
+        @property { boolean } [enrichFromMaster]
+        
+         
+    */
+
+/**
+        @typedef PropBeanDTO
+        
+        
+        @property { boolean } [required]
+        
+        @property { boolean } [optional]
+        
+        @property { boolean } [include]
+        
+        @property { string } [sourceField]
+        
+        @property { Array<string> } [sourceFields]
+        
+        @property { string } [destinationField]
+        
+        @property { string } [dataType]
+        
+        @property { Object } [defaultValue]
+        
+        @property { Object } [constValue]
+        
+        @property { string } [concatStr]
+        
+        @property { string } [functionName]
+        
+        @property { string } [transformerName]
+        
+        @property { string } [allParamFunctionName]
+        
+        @property { string } [subSeparator]
+        
+        @property { string } [indexField]
+        
+        @property { boolean } [ignoreIfNotExists]
+        
+        @property { string } [identifierType]
+        
+        @property { Object } [projectionQuery]
+        
+        @property { boolean } [enrichFromMaster]
+        
+         
+    */
+
+/**
+        @typedef ResponseEnvelopeListJobConfigRawDTO
+        
+        
+        @property { string } [timestamp]
+        
+        @property { number } [status]
+        
+        @property { string } [error]
+        
+        @property { string } [exception]
+        
+        @property { string } [message]
+        
+        @property { number } [totalTimeTakenInMillis]
+        
+        @property { string } [httpStatus]
+        
+        @property { Array<JobConfigRawDTO> } [items]
+        
+        @property { Array<JobConfigRawDTO> } [payload]
+        
+        @property { string } [traceId]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef SFTPConfig
+        
+        
+        @property { string } [host]
+        
+        @property { number } [port]
+        
+        @property { string } [username]
+        
+        @property { string } [password]
+        
+        @property { boolean } [unzip]
+        
+        @property { number } [retries]
+        
+        @property { number } [interval]
+        
+        @property { string } [privateKeyPath]
+        
+        @property { boolean } [strictHostKeyChecking]
+        
+        @property { string } [localDir]
+        
+        @property { string } [remoteDir]
+        
+        @property { boolean } [passwordProtected]
+        
+        @property { string } [zipFileRegex]
+        
+        @property { string } [fileRegex]
+        
+        @property { string } [zipFormat]
+        
+        @property { ArchiveConfig } [archiveConfig]
+        
+        @property { boolean } [readAllFiles]
+        
+         
+    */
+
+/**
+        @typedef Send
+        
+        
+        @property { boolean } [raw]
+        
+        @property { boolean } [processed]
+        
+         
+    */
+
+/**
+        @typedef StoreConfig
+        
+        
+        @property { string } [jobCode]
+        
+        @property { string } [storeid]
+        
+        @property { string } [storeAlias]
+        
+        @property { string } [storeFileRegex]
+        
+        @property { string } [storeFileName]
+        
+        @property { ProcessConfig } [processConfig]
+        
+        @property { Object } [properties]
+        
+         
+    */
+
+/**
+        @typedef StoreFilter
+        
+        
+        @property { Array<string> } [includeTags]
+        
+        @property { Array<string> } [excludeTags]
+        
+        @property { Object } [query]
+        
+         
+    */
+
+/**
+        @typedef TaskConfig
+        
+        
+        @property { string } [name]
+        
+        @property { number } [taskConfigId]
+        
+        @property { Array<TaskParam> } [taskParams]
+        
+         
+    */
+
+/**
+        @typedef TaskParam
+        
+        
+        @property { string } [name]
+        
+        @property { Object } [value]
+        
+         
+    */
+
+/**
+        @typedef TaskStepConfig
+        
+        
+        @property { Array<TaskConfig> } [taskConfigs]
+        
+        @property { Array<number> } [taskConfigIds]
+        
+        @property { Array<number> } [taskConfigGroupIds]
+        
+         
+    */
+
+/**
+        @typedef ResponseEnvelopeListJobConfigDTO
+        
+        
+        @property { string } [timestamp]
+        
+        @property { number } [status]
+        
+        @property { string } [error]
+        
+        @property { string } [exception]
+        
+        @property { string } [message]
+        
+        @property { number } [totalTimeTakenInMillis]
+        
+        @property { string } [httpStatus]
+        
+        @property { Array<JobConfigDTO> } [items]
+        
+        @property { Array<JobConfigDTO> } [payload]
+        
+        @property { string } [traceId]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef ResponseEnvelopeJobConfigDTO
+        
+        
+        @property { string } [timestamp]
+        
+        @property { number } [status]
+        
+        @property { string } [error]
+        
+        @property { string } [exception]
+        
+        @property { string } [message]
+        
+        @property { number } [totalTimeTakenInMillis]
+        
+        @property { string } [httpStatus]
+        
+        @property { JobConfigDTO } [items]
+        
+        @property { JobConfigDTO } [payload]
+        
+        @property { string } [traceId]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef JobConfigListDTO
+        
+        
+        @property { string } [code]
+        
+        @property { string } [alias]
+        
+        @property { string } [modifiedBy]
+        
+        @property { string } [createdBy]
+        
+        @property { string } [modifiedOn]
+        
+        @property { string } [createdOn]
+        
+        @property { boolean } [active]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef ResponseEnvelopeListJobConfigListDTO
+        
+        
+        @property { string } [timestamp]
+        
+        @property { number } [status]
+        
+        @property { string } [error]
+        
+        @property { string } [exception]
+        
+        @property { string } [message]
+        
+        @property { number } [totalTimeTakenInMillis]
+        
+        @property { string } [httpStatus]
+        
+        @property { Array<JobConfigListDTO> } [items]
+        
+        @property { Array<JobConfigListDTO> } [payload]
+        
+        @property { string } [traceId]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+class Lead {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
+  }
+
+  /**
+    *
+    * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
+    * @description: Gets the list of Application level Tickets and/or ticket filters
+    * @param {Object} arg - arg object.
+    * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
+    * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
+    * @param {string} [arg.q] - Search through ticket titles and description
+    * @param {string} [arg.status] - Filter tickets on status
+    * @param {string} [arg.priority] - Filter tickets on priority
+    * @param {string} [arg.category] - Filter tickets on category
+    
+    **/
+  getTickets({ items, filters, q, status, priority, category } = {}) {
+    const queryObj = {};
+    queryObj["items"] = items;
+    queryObj["filters"] = filters;
+    queryObj["q"] = q;
+    queryObj["status"] = status;
+    queryObj["priority"] = priority;
+    queryObj["category"] = category;
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Retreives ticket details of a application level ticket
+    * @description: Retreives ticket details of a application level ticket with ticket ID
+    * @param {Object} arg - arg object.
+    * @param {string} arg.ticketId - Tiket ID of the ticket to be fetched
+    
+    **/
+  getTicket({ ticketId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Edits ticket details of a application level ticket
+   * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
+   * @param {Object} arg - arg object.
+   * @param {string} arg.ticketId - Ticket ID of ticket to be edited
+   * @param {EditTicketPayload} arg.body
+   **/
+  editTicket({ ticketId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Create history for specific application level ticket
+   * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.ticketId - Ticket ID for which history is created
+   * @param {TicketHistoryPayload} arg.body
+   **/
+  createHistory({ ticketId, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}/history`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Gets history list for specific application level ticket
+    * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.ticketId - Ticket ID for which history is to be fetched
+    
+    **/
+  getTicketHistory({ ticketId } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}/history`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get specific custom form using it's slug
+    * @description: Get specific custom form using it's slug, this is used to view the form.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - Slug of form whose response is getting submitted
+    
+    **/
+  getCustomForm({ slug } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form/${slug}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Edit the given custom form
+   * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.slug - Slug of form whose response is getting submitted
+   * @param {EditCustomFormPayload} arg.body
+   **/
+  editCustomForm({ slug, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form/${slug}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of custom form
+    * @description: Get list of custom form for given application
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCustomForms({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Creates a new custom form
+   * @description: Creates a new custom form for given application
+   * @param {Object} arg - arg object.
+   * @param {CreateCustomFormPayload} arg.body
+   **/
+  createCustomForm({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Token to join a specific Video Room using it's unqiue name
+    * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.uniqueName - Unique name of video room
+    
+    **/
+  getTokenForVideoRoom({ uniqueName } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}/token`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get participants of a specific Video Room using it's unique name
+    * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.uniqueName - Unique name of Video Room
+    
+    **/
+  getVideoParticipants({ uniqueName } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}/participants`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Open a video room.
+   * @description: Open a video room.
+   * @param {Object} arg - arg object.
+   * @param {CreateVideoRoomPayload} arg.body
+   **/
+  openVideoRoom({ body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Close the video room and force all participants to leave.
+    * @description: Close the video room and force all participants to leave.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.uniqueName - Unique name of Video Room
+    
+    **/
+  closeVideoRoom({ uniqueName } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}`,
+      queryObj,
+      undefined
+    );
+  }
+}
+
 class User {
   constructor(config, applicationId) {
     this.config = config;
@@ -5254,18 +6920,18 @@ class Catalog {
 
   /**
     *
-    * @summary: Delete a Search Keywords
-    * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+    * @summary: Get a Search Keywords Details
+    * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
     * @param {Object} arg - arg object.
-    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
+    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve.
     
     **/
-  deleteSearchKeywords({ id } = {}) {
+  getSearchKeywords({ id } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
-      "delete",
+      "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
       queryObj,
       undefined
@@ -5294,19 +6960,38 @@ class Catalog {
 
   /**
     *
-    * @summary: Get a Search Keywords Details
-    * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+    * @summary: Delete a Search Keywords
+    * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
     * @param {Object} arg - arg object.
-    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve.
+    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
     
     **/
-  getSearchKeywords({ id } = {}) {
+  deleteSearchKeywords({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: List all Search Custom Keyword Listing
+    * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAllSearchKeyword({} = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
       queryObj,
       undefined
     );
@@ -5333,37 +7018,18 @@ class Catalog {
 
   /**
     *
-    * @summary: List all Search Custom Keyword Listing
-    * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+    * @summary: Get a Autocomplete Keywords Details
+    * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
     * @param {Object} arg - arg object.
+    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve.
     
     **/
-  getAllSearchKeyword({} = {}) {
+  getAutocompleteKeywordDetail({ id } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete a Autocomplete Keywords
-    * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
-    
-    **/
-  deleteAutocompleteKeyword({ id } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "delete",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
       queryObj,
       undefined
@@ -5392,19 +7058,38 @@ class Catalog {
 
   /**
     *
-    * @summary: Get a Autocomplete Keywords Details
-    * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+    * @summary: Delete a Autocomplete Keywords
+    * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
     * @param {Object} arg - arg object.
-    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve.
+    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
     
     **/
-  getAutocompleteKeywordDetail({ id } = {}) {
+  deleteAutocompleteKeyword({ id } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: List all Autocomplete Keyword Listing
+    * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAutocompleteConfig({} = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
       queryObj,
       undefined
     );
@@ -5431,25 +7116,6 @@ class Catalog {
 
   /**
     *
-    * @summary: List all Autocomplete Keyword Listing
-    * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
-    * @param {Object} arg - arg object.
-    
-    **/
-  getAutocompleteConfig({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
     * @summary: Get configuration meta  details for catalog for admin panel
     * @description: configuration meta  details for catalog.
     * @param {Object} arg - arg object.
@@ -5462,6 +7128,25 @@ class Catalog {
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/metadata/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get configured details for catalog
+    * @description: configured details for catalog.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getConfigurations({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
       queryObj,
       undefined
     );
@@ -5491,15 +7176,16 @@ class Catalog {
     * @summary: Get configured details for catalog
     * @description: configured details for catalog.
     * @param {Object} arg - arg object.
+    * @param {string} arg.type - type can be brands, categories etc.
     
     **/
-  getConfigurations({} = {}) {
+  getConfigurationByType({ type } = {}) {
     const queryObj = {};
 
     return APIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
       queryObj,
       undefined
     );
@@ -5527,26 +7213,6 @@ class Catalog {
 
   /**
     *
-    * @summary: Get configured details for catalog
-    * @description: configured details for catalog.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.type - type can be brands, categories etc.
-    
-    **/
-  getConfigurationByType({ type } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
     * @summary: Get query filters to configure a collection
     * @description: Get query filters to configure a collection
     * @param {Object} arg - arg object.
@@ -5559,6 +7225,25 @@ class Catalog {
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/query-options/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: List all the collections
+    * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAllCollections({} = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
       queryObj,
       undefined
     );
@@ -5580,25 +7265,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
       queryObj,
       body
-    );
-  }
-
-  /**
-    *
-    * @summary: List all the collections
-    * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
-    * @param {Object} arg - arg object.
-    
-    **/
-  getAllCollections({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
-      queryObj,
-      undefined
     );
   }
 
@@ -5663,26 +7329,6 @@ class Catalog {
   }
 
   /**
-   *
-   * @summary: Add items to a collection
-   * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
-   * @param {CollectionItemRequest} arg.body
-   **/
-  addCollectionItems({ id, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
     *
     * @summary: Get the items for a collection
     * @description: Get items from a collection specified by its `id`.
@@ -5705,6 +7351,26 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
       queryObj,
       undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Add items to a collection
+   * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - A `id` is a unique identifier of a collection.
+   * @param {CollectionItemRequest} arg.body
+   **/
+  addCollectionItems({ id, body } = {}) {
+    const queryObj = {};
+
+    return APIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
+      queryObj,
+      body
     );
   }
 
@@ -5779,6 +7445,7 @@ class Assets {
 }
 
 module.exports = {
+  Lead,
   User,
   Payment,
   Catalog,
