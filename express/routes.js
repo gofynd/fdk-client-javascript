@@ -73,12 +73,18 @@ function setupRoutes(ext) {
                 }
             }
 
+            let sessionExpires = new Date(Date.now() + 900000);
+
             if(session.isNew) {
                 session.cluster = cluster;
                 session.company_id = companyId;
                 session.scope = ext.scopes;
-                session.expires = new Date(Date.now() + 900000);
+                session.expires = sessionExpires;
                 session.access_mode = extension.access_mode;
+            } else {
+                if(session.expires) {
+                    session.expires = new Date(session.expires);
+                }
             }
 
             req.fdkSession = session;
@@ -93,7 +99,7 @@ function setupRoutes(ext) {
             });
             
             let redirectUrl;
-            if(!session.accessToken) {
+            if(!session.access_token) {
                 session.state = uuidv4();
                 // start authorization flow
                 redirectUrl = platformConfig.oauthClient.startAuthorization({

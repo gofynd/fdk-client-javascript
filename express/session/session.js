@@ -28,7 +28,7 @@ class Session {
             company_id: this.company_id,
             state: this.state,
             scope: this.scope,
-            expires: this.expires.getTime(),
+            expires: this.expires && this.expires.getTime(),
             access_mode: this.access_mode,
             access_token: this.access_token,
             current_user: this.current_user,
