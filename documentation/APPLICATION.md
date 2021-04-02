@@ -6,6 +6,7 @@
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
+* [Share](#Share) - Short link and QR Code 
 * [FileStorage](#FileStorage) - File Storage 
 * [Order](#Order) - Handles Platform websites OMS 
 * [Feedback](#Feedback) - User Reviews and Rating System 
@@ -43,8 +44,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [unfollowById](#unfollowbyid)
     * [followById](#followbyid)
+    * [unfollowById](#unfollowbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -128,6 +129,17 @@
     * [deleteEmail](#deleteemail)
     * [setEmailAsPrimary](#setemailasprimary)
     * [sendVerificationLinkToEmail](#sendverificationlinktoemail)
+    
+
+* [Share](#Share)
+  * Methods
+    * [getApplicationQRCode](#getapplicationqrcode)
+    * [getProductQRCodeBySlug](#getproductqrcodebyslug)
+    * [getCollectionQRCodeBySlug](#getcollectionqrcodebyslug)
+    * [getUrlQRCode](#geturlqrcode)
+    * [createShortLink](#createshortlink)
+    * [getShortLinkByHash](#getshortlinkbyhash)
+    * [getOriginalShortLinkByHash](#getoriginalshortlinkbyhash)
     
 
 * [FileStorage](#FileStorage)
@@ -1380,23 +1392,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collectionType,collectionId);
+const promise = catalog.followById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.unfollowById(collectionType,collectionId);
+const data = await catalog.followById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to unfollow | 
+| collectionId | string | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1430,23 +1442,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collectionType,collectionId);
+const promise = catalog.unfollowById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.followById(collectionType,collectionId);
+const data = await catalog.unfollowById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | integer | the `id` of the collection type you want to follow | 
+| collectionId | string | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -8307,6 +8319,270 @@ Schema: `AuthenticationApiError`
 ---
 
 
+## Share
+
+
+#### getApplicationQRCode
+Create application QR Code
+
+```javascript
+// Promise
+const promise = share.getApplicationQRCode();
+
+// Async/Await
+const data = await share.getApplicationQRCode();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create application QR Code
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `QRCodeResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getProductQRCodeBySlug
+Create product QR Code
+
+```javascript
+// Promise
+const promise = share.getProductQRCodeBySlug(slug);
+
+// Async/Await
+const data = await share.getProductQRCodeBySlug(slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The unique identifier of a product | 
+
+Create product QR Code
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `QRCodeResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCollectionQRCodeBySlug
+Create collection QR Code
+
+```javascript
+// Promise
+const promise = share.getCollectionQRCodeBySlug(slug);
+
+// Async/Await
+const data = await share.getCollectionQRCodeBySlug(slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The unique identifier of a collection | 
+
+Create collection QR Code
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `QRCodeResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUrlQRCode
+Create url QR Code
+
+```javascript
+// Promise
+const promise = share.getUrlQRCode(url);
+
+// Async/Await
+const data = await share.getUrlQRCode(url);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| url | string | Url | 
+
+Create url QR Code
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `QRCodeResp`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createShortLink
+Create short link
+
+```javascript
+// Promise
+const promise = share.createShortLink(body);
+
+// Async/Await
+const data = await share.createShortLink(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Create short link
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getShortLinkByHash
+Get short link by hash
+
+```javascript
+// Promise
+const promise = share.getShortLinkByHash(hash);
+
+// Async/Await
+const data = await share.getShortLinkByHash(hash);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| hash | string | Hash of short link | 
+
+Get short link by hash
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOriginalShortLinkByHash
+Get original link by hash
+
+```javascript
+// Promise
+const promise = share.getOriginalShortLinkByHash(hash);
+
+// Async/Await
+const data = await share.getOriginalShortLinkByHash(hash);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| hash | string | Hash of short link | 
+
+Get original link by hash
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ShortLinkRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## FileStorage
 
 
@@ -8333,15 +8609,15 @@ It has three Major Steps:
 * Complete
 
 ### Start
-Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+Initiates the assets upload using `startUpload`.
 It returns the storage link in response.
 
 ### Upload
 Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
 
 ### Complete
-After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+After successfully upload, call `completeUpload` api to complete the upload process.
 This operation will return the url for the uploaded file.
 
 
@@ -8400,15 +8676,15 @@ It has three Major Steps:
 * Complete
 
 ### Start
-Initiates the assets upload using `/v1.0/uploads/{namespace}/start`.
+Initiates the assets upload using `startUpload`.
 It returns the storage link in response.
 
 ### Upload
 Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `/v1.0/uploads/{namespace}/start` api with file (Buffer or Blob) as a request body.
+Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
 
 ### Complete
-After successfully upload, call `/v1.0/uploads/{namespace}/complete` api to complete the upload process.
+After successfully upload, call `completeUpload` api to complete the upload process.
 This operation will return the url for the uploaded file.
 
 

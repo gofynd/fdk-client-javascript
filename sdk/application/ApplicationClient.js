@@ -4,6 +4,7 @@ const {
   Lead,
   Theme,
   User,
+  Share,
   FileStorage,
   Order,
   Feedback,
@@ -18,6 +19,7 @@ class ApplicationClient {
     this.lead = new Lead(config);
     this.theme = new Theme(config);
     this.user = new User(config);
+    this.share = new Share(config);
     this.fileStorage = new FileStorage(config);
     this.order = new Order(config);
     this.feedback = new Feedback(config);

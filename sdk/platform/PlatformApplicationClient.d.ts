@@ -8,12 +8,16 @@ declare class Application {
     theme: Theme;
     user: User;
     payment: Payment;
-    catalog: Catalog;
+    order: Order;
     assets: Assets;
+    share: Share;
+    analytics: Analytics;
 }
 import { Lead } from "./PlatformApplicationModels";
 import { Theme } from "./PlatformApplicationModels";
 import { User } from "./PlatformApplicationModels";
 import { Payment } from "./PlatformApplicationModels";
-import { Catalog } from "./PlatformApplicationModels";
+import { Order } from "./PlatformApplicationModels";
 import { Assets } from "./PlatformApplicationModels";
+import { Share } from "./PlatformApplicationModels";
+import { Analytics } from "./PlatformApplicationModels";

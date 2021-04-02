@@ -3,8 +3,10 @@ const {
   Theme,
   User,
   Payment,
-  Catalog,
+  Order,
   Assets,
+  Share,
+  Analytics,
 } = require("./PlatformApplicationModels");
 
 class Application {
@@ -17,8 +19,10 @@ class Application {
     this.theme = new Theme(config, applicationId);
     this.user = new User(config, applicationId);
     this.payment = new Payment(config, applicationId);
-    this.catalog = new Catalog(config, applicationId);
+    this.order = new Order(config, applicationId);
     this.assets = new Assets(config, applicationId);
+    this.share = new Share(config, applicationId);
+    this.analytics = new Analytics(config, applicationId);
   }
 }
 
