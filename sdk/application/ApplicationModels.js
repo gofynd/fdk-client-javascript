@@ -1,10618 +1,7139 @@
-const APIClient = require("./APIClient");
-const Paginator = require("../common/Paginator");
-
-/**
-        @typedef ProductDetailAttribute
-        
-        
-        @property { string } [key]
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef ProductDetailGroupedAttribute
-        
-        
-        @property { Array<ProductDetailAttribute> } [details]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef Media
-        
-        
-        @property { string } [url]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ProductListingActionPage
-        
-        
-        @property { Object } [query]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ProductListingAction
-        
-        
-        @property { string } [type]
-        
-        @property { ProductListingActionPage } [page]
-        
-         
-    */
-
-/**
-        @typedef ProductBrand
-        
-        
-        @property { number } [uid]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { Media } [logo]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef ProductDetail
-        
-        
-        @property { Object } [attributes]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { string } [type]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { string } [imageNature]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [shortDescription]
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { string } [color]
-        
-        @property { number } [rating]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { string } [teaserTag]
-        
-        @property { string } [itemType]
-        
-        @property { string } [description]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { string } slug
-        
-         
-    */
-
-/**
-        @typedef ErrorResponse
-        
-        
-        @property { string } [error]
-        
-         
-    */
-
-/**
-        @typedef ProductSize
-        
-        
-        @property { number } [quantity]
-        
-        @property { string } [display]
-        
-        @property { boolean } [isAvailable]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef SizeChartValues
-        
-        
-        @property { string } [col3]
-        
-        @property { string } [col6]
-        
-        @property { string } [col2]
-        
-        @property { string } [col1]
-        
-        @property { string } [col5]
-        
-        @property { string } [col4]
-        
-         
-    */
-
-/**
-        @typedef ColumnHeader
-        
-        
-        @property { boolean } [convertable]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef ColumnHeaders
-        
-        
-        @property { ColumnHeader } [col3]
-        
-        @property { ColumnHeader } [col6]
-        
-        @property { ColumnHeader } [col2]
-        
-        @property { ColumnHeader } [col1]
-        
-        @property { ColumnHeader } [col5]
-        
-        @property { ColumnHeader } [col4]
-        
-         
-    */
-
-/**
-        @typedef SizeChart
-        
-        
-        @property { Array<SizeChartValues> } [sizes]
-        
-        @property { string } [unit]
-        
-        @property { string } [title]
-        
-        @property { string } [description]
-        
-        @property { ColumnHeaders } [headers]
-        
-        @property { string } [sizeTip]
-        
-        @property { string } [image]
-        
-         
-    */
-
-/**
-        @typedef Price
-        
-        
-        @property { string } [currencyCode]
-        
-        @property { string } [currencySymbol]
-        
-        @property { number } [min]
-        
-        @property { number } [max]
-        
-         
-    */
-
-/**
-        @typedef ProductListingPrice
-        
-        
-        @property { Price } [effective]
-        
-        @property { Price } [marked]
-        
-         
-    */
-
-/**
-        @typedef ProductSizeStores
-        
-        
-        @property { number } [count]
-        
-         
-    */
-
-/**
-        @typedef ProductSizes
-        
-        
-        @property { string } [discount]
-        
-        @property { Array<ProductSize> } [sizes]
-        
-        @property { SizeChart } [sizeChart]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { boolean } [sellable]
-        
-        @property { ProductSizeStores } [stores]
-        
-         
-    */
-
-/**
-        @typedef ProductStockPrice
-        
-        
-        @property { number } [effective]
-        
-        @property { number } [marked]
-        
-        @property { string } [currency]
-        
-         
-    */
-
-/**
-        @typedef Store
-        
-        
-        @property { number } [uid]
-        
-        @property { number } [count]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef ArticleAssignment
-        
-        
-        @property { string } [level]
-        
-        @property { string } [strategy]
-        
-         
-    */
-
-/**
-        @typedef ProductSetDistributionSize
-        
-        
-        @property { number } [pieces]
-        
-        @property { string } [size]
-        
-         
-    */
-
-/**
-        @typedef ProductSetDistribution
-        
-        
-        @property { Array<ProductSetDistributionSize> } [sizes]
-        
-         
-    */
-
-/**
-        @typedef ProductSet
-        
-        
-        @property { ProductSetDistribution } [sizeDistribution]
-        
-        @property { number } [quantity]
-        
-         
-    */
-
-/**
-        @typedef Seller
-        
-        
-        @property { number } [uid]
-        
-        @property { number } [count]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef ProductSizePriceResponse
-        
-        
-        @property { string } [discount]
-        
-        @property { ProductStockPrice } [price]
-        
-        @property { string } [itemType]
-        
-        @property { string } [articleId]
-        
-        @property { Store } [store]
-        
-        @property { number } [sellerCount]
-        
-        @property { Array<Object> } [strategyWiseListing]
-        
-        @property { ProductStockPrice } [pricePerPrice]
-        
-        @property { string } [specialBadge]
-        
-        @property { number } [quantity]
-        
-        @property { ArticleAssignment } [articleAssignment]
-        
-        @property { ProductSet } [set]
-        
-        @property { Array<number> } [longLat]
-        
-        @property { number } [pincode]
-        
-        @property { Seller } [seller]
-        
-         
-    */
-
-/**
-        @typedef ProductSizeSellerFilter
-        
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [name]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef Page
-        
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [itemTotal]
-        
-        @property { string } [type]
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { number } [size]
-        
-        @property { number } [current]
-        
-         
-    */
-
-/**
-        @typedef ProductSizeSellersResponse
-        
-        
-        @property { Array<ProductSizeSellerFilter> } [sortOn]
-        
-        @property { Array<ProductSizePriceResponse> } [items]
-        
-        @property { Page } page
-        
-         
-    */
-
-/**
-        @typedef AttributeDetail
-        
-        
-        @property { string } [description]
-        
-        @property { string } [key]
-        
-        @property { string } [display]
-        
-         
-    */
-
-/**
-        @typedef ProductsComparisonResponse
-        
-        
-        @property { Array<AttributeDetail> } [attributesMetadata]
-        
-        @property { Array<ProductDetail> } [items]
-        
-         
-    */
-
-/**
-        @typedef ProductCompareResponse
-        
-        
-        @property { string } [subtitle]
-        
-        @property { Array<AttributeDetail> } [attributesMetadata]
-        
-        @property { string } [title]
-        
-        @property { Array<ProductDetail> } [items]
-        
-         
-    */
-
-/**
-        @typedef ProductFrequentlyComparedSimilarResponse
-        
-        
-        @property { Array<ProductCompareResponse> } [similars]
-        
-         
-    */
-
-/**
-        @typedef ProductSimilarItem
-        
-        
-        @property { string } [subtitle]
-        
-        @property { string } [title]
-        
-        @property { Array<ProductDetail> } [items]
-        
-         
-    */
-
-/**
-        @typedef SimilarProductByTypeResponse
-        
-        
-        @property { Array<ProductSimilarItem> } [similars]
-        
-         
-    */
-
-/**
-        @typedef ProductVariantItemResponse
-        
-        
-        @property { Array<Media> } [medias]
-        
-        @property { string } [value]
-        
-        @property { number } [uid]
-        
-        @property { boolean } [isAvailable]
-        
-        @property { string } [colorName]
-        
-        @property { string } [slug]
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { string } [color]
-        
-         
-    */
-
-/**
-        @typedef ProductVariantResponse
-        
-        
-        @property { string } [displayType]
-        
-        @property { string } [header]
-        
-        @property { Array<ProductVariantItemResponse> } [items]
-        
-         
-    */
-
-/**
-        @typedef ProductVariantsResponse
-        
-        
-        @property { Array<ProductVariantResponse> } [variants]
-        
-         
-    */
-
-/**
-        @typedef CompanyDetail
-        
-        
-        @property { string } [name]
-        
-        @property { number } [id]
-        
-         
-    */
-
-/**
-        @typedef StoreDetail
-        
-        
-        @property { string } [code]
-        
-        @property { string } [name]
-        
-        @property { number } [id]
-        
-        @property { string } [city]
-        
-         
-    */
-
-/**
-        @typedef ProductStockStatusItem
-        
-        
-        @property { ProductStockPrice } [price]
-        
-        @property { CompanyDetail } [company]
-        
-        @property { number } [itemId]
-        
-        @property { string } [uid]
-        
-        @property { number } [quantity]
-        
-        @property { Object } [identifier]
-        
-        @property { string } [size]
-        
-        @property { StoreDetail } [store]
-        
-        @property { Seller } [seller]
-        
-         
-    */
-
-/**
-        @typedef ProductStockStatusResponse
-        
-        
-        @property { Array<ProductStockStatusItem> } [items]
-        
-         
-    */
-
-/**
-        @typedef ProductStockPolling
-        
-        
-        @property { Page } page
-        
-        @property { Array<ProductStockStatusItem> } [items]
-        
-         
-    */
-
-/**
-        @typedef ProductSortOn
-        
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [name]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef ProductListingDetail
-        
-        
-        @property { Object } [attributes]
-        
-        @property { string } [productOnlineDate]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [groupedAttributes]
-        
-        @property { string } [discount]
-        
-        @property { number } [ratingCount]
-        
-        @property { Array<Media> } [medias]
-        
-        @property { string } [type]
-        
-        @property { ProductBrand } [brand]
-        
-        @property { string } [imageNature]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [shortDescription]
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-        @property { Array<ProductBrand> } [categories]
-        
-        @property { string } [color]
-        
-        @property { number } [rating]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { string } [teaserTag]
-        
-        @property { string } [itemType]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { string } [description]
-        
-        @property { boolean } [hasVariant]
-        
-        @property { string } slug
-        
-        @property { boolean } [sellable]
-        
-         
-    */
-
-/**
-        @typedef ProductFiltersKey
-        
-        
-        @property { string } [kind]
-        
-        @property { string } [logo]
-        
-        @property { string } name
-        
-        @property { string } display
-        
-         
-    */
-
-/**
-        @typedef ProductFiltersValue
-        
-        
-        @property { number } [count]
-        
-        @property { string } [value]
-        
-        @property { string } [displayFormat]
-        
-        @property { string } [queryFormat]
-        
-        @property { string } [currencyCode]
-        
-        @property { number } [selectedMin]
-        
-        @property { number } [min]
-        
-        @property { number } [max]
-        
-        @property { number } [selectedMax]
-        
-        @property { string } [currencySymbol]
-        
-        @property { boolean } isSelected
-        
-        @property { string } display
-        
-         
-    */
-
-/**
-        @typedef ProductFilters
-        
-        
-        @property { ProductFiltersKey } key
-        
-        @property { Array<ProductFiltersValue> } values
-        
-         
-    */
-
-/**
-        @typedef ProductListingResponse
-        
-        
-        @property { Array<ProductSortOn> } [sortOn]
-        
-        @property { Array<ProductListingDetail> } [items]
-        
-        @property { Array<ProductFilters> } [filters]
-        
-        @property { Page } page
-        
-         
-    */
-
-/**
-        @typedef ImageUrls
-        
-        
-        @property { Media } [portrait]
-        
-        @property { Media } [landscape]
-        
-         
-    */
-
-/**
-        @typedef BrandItem
-        
-        
-        @property { string } [discount]
-        
-        @property { Media } [logo]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { number } [uid]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [departments]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef BrandListingResponse
-        
-        
-        @property { Page } page
-        
-        @property { Array<BrandItem> } [items]
-        
-         
-    */
-
-/**
-        @typedef BrandDetailResponse
-        
-        
-        @property { number } [uid]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { Media } [logo]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef DepartmentIdentifier
-        
-        
-        @property { number } [uid]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef CategoryItems
-        
-        
-        @property { ImageUrls } [banners]
-        
-        @property { number } [uid]
-        
-        @property { Array<Object> } [childs]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { string } [slug]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef DepartmentCategoryTree
-        
-        
-        @property { string } [department]
-        
-        @property { Array<CategoryItems> } [items]
-        
-         
-    */
-
-/**
-        @typedef CategoryListingResponse
-        
-        
-        @property { Array<DepartmentIdentifier> } [departments]
-        
-        @property { Array<DepartmentCategoryTree> } [data]
-        
-         
-    */
-
-/**
-        @typedef CategoryMetaResponse
-        
-        
-        @property { number } [uid]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { Media } [logo]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef HomeListingResponse
-        
-        
-        @property { Page } page
-        
-        @property { string } [message]
-        
-        @property { Array<ProductListingDetail> } [items]
-        
-         
-    */
-
-/**
-        @typedef Department
-        
-        
-        @property { Media } [logo]
-        
-        @property { number } [uid]
-        
-        @property { string } [slug]
-        
-        @property { string } [name]
-        
-        @property { number } [priorityOrder]
-        
-         
-    */
-
-/**
-        @typedef DepartmentResponse
-        
-        
-        @property { Array<Department> } [items]
-        
-         
-    */
-
-/**
-        @typedef PageQuery
-        
-        
-        @property { Array<string> } [brand]
-        
-        @property { Array<string> } [category]
-        
-         
-    */
-
-/**
-        @typedef AutocompletePage
-        
-        
-        @property { PageQuery } [query]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Action
-        
-        
-        @property { string } [type]
-        
-        @property { AutocompletePage } [page]
-        
-         
-    */
-
-/**
-        @typedef AutocompleteItem
-        
-        
-        @property { Media } [logo]
-        
-        @property { Action } [action]
-        
-        @property { string } [display]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef AutoCompleteResponse
-        
-        
-        @property { Array<AutocompleteItem> } [items]
-        
-         
-    */
-
-/**
-        @typedef CollectionListingFilterTag
-        
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [name]
-        
-        @property { string } [display]
-        
-         
-    */
-
-/**
-        @typedef CollectionListingFilterType
-        
-        
-        @property { boolean } [isSelected]
-        
-        @property { string } [name]
-        
-        @property { string } [display]
-        
-         
-    */
-
-/**
-        @typedef CollectionListingFilter
-        
-        
-        @property { Array<CollectionListingFilterTag> } [tags]
-        
-        @property { Array<CollectionListingFilterType> } [type]
-        
-         
-    */
-
-/**
-        @typedef GetCollectionDetailNest
-        
-        
-        @property { boolean } [allowFacets]
-        
-        @property { Object } [query]
-        
-        @property { Array<string> } [tag]
-        
-        @property { Object } [badge]
-        
-        @property { Media } [logo]
-        
-        @property { string } [type]
-        
-        @property { Object } [schedule]
-        
-        @property { Object } [meta]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [uid]
-        
-        @property { string } [appId]
-        
-        @property { boolean } [allowSort]
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [description]
-        
-        @property { string } [slug]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { Object } [cron]
-        
-         
-    */
-
-/**
-        @typedef GetCollectionListingResponse
-        
-        
-        @property { Page } page
-        
-        @property { CollectionListingFilter } [filters]
-        
-        @property { Array<GetCollectionDetailNest> } [items]
-        
-         
-    */
-
-/**
-        @typedef CollectionDetailResponse
-        
-        
-        @property { Object } [badge]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { Media } [logo]
-        
-        @property { boolean } [allowFacets]
-        
-        @property { string } [type]
-        
-        @property { string } [description]
-        
-        @property { Object } [query]
-        
-        @property { string } [appId]
-        
-        @property { boolean } [allowSort]
-        
-        @property { Object } [schedule]
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [visibleFacetsKeys]
-        
-        @property { Object } [cron]
-        
-        @property { boolean } [isActive]
-        
-        @property { Object } [meta]
-        
-        @property { Array<string> } [tag]
-        
-         
-    */
-
-/**
-        @typedef GetFollowListingResponse
-        
-        
-        @property { Array<ProductDetail> } items
-        
-        @property { Page } page
-        
-         
-    */
-
-/**
-        @typedef FollowPostResponse
-        
-        
-        @property { string } id
-        
-        @property { string } message
-        
-         
-    */
-
-/**
-        @typedef FollowerCountResponse
-        
-        
-        @property { number } [count]
-        
-         
-    */
-
-/**
-        @typedef FollowIdsData
-        
-        
-        @property { Array<number> } [brands]
-        
-        @property { Array<number> } [products]
-        
-        @property { Array<number> } [collections]
-        
-         
-    */
-
-/**
-        @typedef FollowIdsResponse
-        
-        
-        @property { FollowIdsData } [data]
-        
-         
-    */
-
-/**
-        @typedef LatLong
-        
-        
-        @property { Array<number> } [coordinates]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Store1
-        
-        
-        @property { string } [storeEmail]
-        
-        @property { string } [address]
-        
-        @property { LatLong } [latLong]
-        
-        @property { number } [uid]
-        
-        @property { string } [city]
-        
-        @property { string } [name]
-        
-        @property { string } [storeCode]
-        
-        @property { string } [state]
-        
-        @property { number } [pincode]
-        
-        @property { string } [country]
-        
-         
-    */
-
-/**
-        @typedef StoreListingResponse
-        
-        
-        @property { Page } page
-        
-        @property { Array<Store1> } items
-        
-         
-    */
-
-/**
-        @typedef CouponBreakup
-        
-        
-        @property { number } [value]
-        
-        @property { boolean } [isApplied]
-        
-        @property { string } [code]
-        
-        @property { string } [uid]
-        
-        @property { string } [message]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef DisplayBreakup
-        
-        
-        @property { string } [currencyCode]
-        
-        @property { string } [currencySymbol]
-        
-        @property { number } [value]
-        
-        @property { string } [display]
-        
-        @property { string } [key]
-        
-        @property { Array<string> } [message]
-        
-         
-    */
-
-/**
-        @typedef LoyaltyPoints
-        
-        
-        @property { boolean } [isApplied]
-        
-        @property { string } [description]
-        
-        @property { number } [total]
-        
-        @property { number } [applicable]
-        
-         
-    */
-
-/**
-        @typedef RawBreakup
-        
-        
-        @property { number } [subtotal]
-        
-        @property { number } [fyndCash]
-        
-        @property { number } [coupon]
-        
-        @property { number } [youSaved]
-        
-        @property { number } [codCharge]
-        
-        @property { number } [deliveryCharge]
-        
-        @property { number } [total]
-        
-         
-    */
-
-/**
-        @typedef CartBreakup
-        
-        
-        @property { CouponBreakup } [coupon]
-        
-        @property { Array<DisplayBreakup> } [display]
-        
-        @property { LoyaltyPoints } [loyaltyPoints]
-        
-        @property { RawBreakup } [raw]
-        
-         
-    */
-
-/**
-        @typedef CartCurrency
-        
-        
-        @property { string } [code]
-        
-        @property { string } [symbol]
-        
-         
-    */
-
-/**
-        @typedef PromiseTimestamp
-        
-        
-        @property { number } [min]
-        
-        @property { number } [max]
-        
-         
-    */
-
-/**
-        @typedef PromiseFormatted
-        
-        
-        @property { string } [min]
-        
-        @property { string } [max]
-        
-         
-    */
-
-/**
-        @typedef ShipmentPromise
-        
-        
-        @property { PromiseTimestamp } [timestamp]
-        
-        @property { PromiseFormatted } [formatted]
-        
-         
-    */
-
-/**
-        @typedef Image
-        
-        
-        @property { string } [aspectRatio]
-        
-        @property { string } [secureUrl]
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef CategoryInfo
-        
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef ActionQuery
-        
-        
-        @property { Array<string> } [productSlug]
-        
-         
-    */
-
-/**
-        @typedef ProductAction
-        
-        
-        @property { string } [url]
-        
-        @property { ActionQuery } [query]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef BaseInfo
-        
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef Product
-        
-        
-        @property { Array<Image> } [images]
-        
-        @property { Array<CategoryInfo> } [categories]
-        
-        @property { number } [uid]
-        
-        @property { string } [slug]
-        
-        @property { string } [name]
-        
-        @property { ProductAction } [action]
-        
-        @property { BaseInfo } [brand]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef CartProductIdentifer
-        
-        
-        @property { string } [identifier]
-        
-         
-    */
-
-/**
-        @typedef ProductPrice
-        
-        
-        @property { string } [currencyCode]
-        
-        @property { string } [currencySymbol]
-        
-        @property { number } [effective]
-        
-        @property { number } [addOn]
-        
-        @property { number } [selling]
-        
-        @property { number } [marked]
-        
-         
-    */
-
-/**
-        @typedef ProductPriceInfo
-        
-        
-        @property { ProductPrice } [base]
-        
-        @property { ProductPrice } [converted]
-        
-         
-    */
-
-/**
-        @typedef BasePrice
-        
-        
-        @property { number } [marked]
-        
-        @property { string } [currencyCode]
-        
-        @property { string } [currencySymbol]
-        
-        @property { number } [effective]
-        
-         
-    */
-
-/**
-        @typedef ArticlePriceInfo
-        
-        
-        @property { BasePrice } [base]
-        
-        @property { BasePrice } [converted]
-        
-         
-    */
-
-/**
-        @typedef ProductArticle
-        
-        
-        @property { BaseInfo } [seller]
-        
-        @property { BaseInfo } [store]
-        
-        @property { string } [size]
-        
-        @property { string } [uid]
-        
-        @property { ArticlePriceInfo } [price]
-        
-        @property { string } [type]
-        
-        @property { number } [quantity]
-        
-         
-    */
-
-/**
-        @typedef ProductAvailability
-        
-        
-        @property { boolean } [outOfStock]
-        
-        @property { number } [otherStoreQuantity]
-        
-        @property { boolean } [deliverable]
-        
-        @property { Array<string> } [sizes]
-        
-        @property { boolean } [isValid]
-        
-         
-    */
-
-/**
-        @typedef CartProductInfo
-        
-        
-        @property { Product } [product]
-        
-        @property { CartProductIdentifer } identifiers
-        
-        @property { Object } [bulkOffer]
-        
-        @property { ProductPriceInfo } [price]
-        
-        @property { string } [couponMessage]
-        
-        @property { string } [discount]
-        
-        @property { ProductArticle } [article]
-        
-        @property { boolean } [isSet]
-        
-        @property { ProductAvailability } [availability]
-        
-        @property { string } [key]
-        
-        @property { string } [message]
-        
-        @property { number } [quantity]
-        
-         
-    */
-
-/**
-        @typedef CartResponse
-        
-        
-        @property { CartBreakup } [breakupValues]
-        
-        @property { string } [lastModified]
-        
-        @property { string } [uid]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [checkoutMode]
-        
-        @property { boolean } [restrictCheckout]
-        
-        @property { string } [couponText]
-        
-        @property { boolean } [isValid]
-        
-        @property { string } [comment]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { number } [cartId]
-        
-        @property { Array<CartProductInfo> } [items]
-        
-        @property { string } [deliveryChargeInfo]
-        
-        @property { string } [message]
-        
-        @property { string } [gstin]
-        
-         
-    */
-
-/**
-        @typedef AddProductCart
-        
-        
-        @property { boolean } [pos]
-        
-        @property { string } [itemSize]
-        
-        @property { string } [articleId]
-        
-        @property { number } [storeId]
-        
-        @property { number } [sellerId]
-        
-        @property { Object } [articleAssignment]
-        
-        @property { string } [display]
-        
-        @property { number } [itemId]
-        
-        @property { number } [quantity]
-        
-         
-    */
-
-/**
-        @typedef AddCartRequest
-        
-        
-        @property { Array<AddProductCart> } [items]
-        
-         
-    */
-
-/**
-        @typedef AddCartResponse
-        
-        
-        @property { CartResponse } [cart]
-        
-        @property { string } [message]
-        
-        @property { boolean } [success]
-        
-        @property { boolean } [partial]
-        
-         
-    */
-
-/**
-        @typedef UpdateProductCart
-        
-        
-        @property { string } [itemSize]
-        
-        @property { CartProductIdentifer } identifiers
-        
-        @property { number } [itemIndex]
-        
-        @property { string } [articleId]
-        
-        @property { number } [itemId]
-        
-        @property { number } [quantity]
-        
-         
-    */
-
-/**
-        @typedef UpdateCartRequest
-        
-        
-        @property { string } operation
-        
-        @property { Array<UpdateProductCart> } [items]
-        
-         
-    */
-
-/**
-        @typedef UpdateCartResponse
-        
-        
-        @property { CartResponse } [cart]
-        
-        @property { string } [message]
-        
-        @property { boolean } [success]
-        
-         
-    */
-
-/**
-        @typedef CartItemCountResponse
-        
-        
-        @property { number } [userCartItemsCount]
-        
-         
-    */
-
-/**
-        @typedef Coupon
-        
-        
-        @property { string } [subTitle]
-        
-        @property { string } [title]
-        
-        @property { boolean } [isApplied]
-        
-        @property { boolean } [isApplicable]
-        
-        @property { string } [expiresOn]
-        
-        @property { number } [maxDiscountValue]
-        
-        @property { string } [couponCode]
-        
-        @property { string } [message]
-        
-        @property { number } [couponValue]
-        
-        @property { number } [minimumCartValue]
-        
-         
-    */
-
-/**
-        @typedef PageCoupon
-        
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [totalItemCount]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { number } [current]
-        
-        @property { number } [total]
-        
-         
-    */
-
-/**
-        @typedef GetCouponResponse
-        
-        
-        @property { Array<Coupon> } [availableCouponList]
-        
-        @property { PageCoupon } [page]
-        
-         
-    */
-
-/**
-        @typedef ApplyCouponRequest
-        
-        
-        @property { string } couponCode
-        
-         
-    */
-
-/**
-        @typedef OfferSeller
-        
-        
-        @property { number } [uid]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef OfferPrice
-        
-        
-        @property { number } [bulkEffective]
-        
-        @property { string } [currencySymbol]
-        
-        @property { number } [effective]
-        
-        @property { string } [currencyCode]
-        
-        @property { number } [marked]
-        
-         
-    */
-
-/**
-        @typedef OfferItem
-        
-        
-        @property { number } [total]
-        
-        @property { boolean } [best]
-        
-        @property { number } [margin]
-        
-        @property { OfferPrice } [price]
-        
-        @property { boolean } [autoApplied]
-        
-        @property { string } [type]
-        
-        @property { number } [quantity]
-        
-         
-    */
-
-/**
-        @typedef BulkPriceOffer
-        
-        
-        @property { OfferSeller } [seller]
-        
-        @property { Array<OfferItem> } [offers]
-        
-         
-    */
-
-/**
-        @typedef BulkPriceResponse
-        
-        
-        @property { Array<BulkPriceOffer> } [data]
-        
-         
-    */
-
-/**
-        @typedef GeoLocation
-        
-        
-        @property { number } [latitude]
-        
-        @property { number } [longitude]
-        
-         
-    */
-
-/**
-        @typedef Address
-        
-        
-        @property { Object } [meta]
-        
-        @property { string } [country]
-        
-        @property { boolean } [isDefaultAddress]
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-        @property { string } [userId]
-        
-        @property { string } [addressType]
-        
-        @property { number } [uid]
-        
-        @property { string } [landmark]
-        
-        @property { string } [phone]
-        
-        @property { string } [checkoutMode]
-        
-        @property { GeoLocation } [geoLocation]
-        
-        @property { Array<Object> } [tags]
-        
-        @property { string } [state]
-        
-        @property { string } [areaCodeSlug]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [area]
-        
-        @property { string } [city]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [areaCode]
-        
-        @property { string } [address]
-        
-         
-    */
-
-/**
-        @typedef GetAddressesResponse
-        
-        
-        @property { Array<Address> } [address]
-        
-         
-    */
-
-/**
-        @typedef SaveAddressResponse
-        
-        
-        @property { number } [addressId]
-        
-        @property { boolean } [isDefaultAddress]
-        
-        @property { string } [success]
-        
-         
-    */
-
-/**
-        @typedef UpdateAddressResponse
-        
-        
-        @property { number } [addressId]
-        
-        @property { boolean } [isUpdated]
-        
-        @property { boolean } [success]
-        
-        @property { boolean } [isDefaultAddress]
-        
-         
-    */
-
-/**
-        @typedef DeleteAddressResponse
-        
-        
-        @property { number } [addressId]
-        
-        @property { boolean } [isDeleted]
-        
-         
-    */
-
-/**
-        @typedef SelectCartAddressRequest
-        
-        
-        @property { string } [addressId]
-        
-        @property { string } [uid]
-        
-        @property { number } [billingAddressId]
-        
-         
-    */
-
-/**
-        @typedef UpdateCartPaymentRequest
-        
-        
-        @property { string } [paymentMode]
-        
-        @property { string } [paymentIdentifier]
-        
-        @property { number } [uid]
-        
-        @property { number } [addressId]
-        
-        @property { string } [merchantCode]
-        
-        @property { string } [aggregatorName]
-        
-         
-    */
-
-/**
-        @typedef CouponValidity
-        
-        
-        @property { string } [code]
-        
-        @property { number } [discount]
-        
-        @property { boolean } [valid]
-        
-        @property { string } [displayMessageEn]
-        
-         
-    */
-
-/**
-        @typedef PaymentUpdate
-        
-        
-        @property { CouponValidity } [couponValidity]
-        
-        @property { string } [message]
-        
-        @property { boolean } success
-        
-         
-    */
-
-/**
-        @typedef ShipmentResponse
-        
-        
-        @property { number } [fulfillmentId]
-        
-        @property { ShipmentPromise } [promise]
-        
-        @property { number } [shipments]
-        
-        @property { string } [shipmentType]
-        
-        @property { number } [dpId]
-        
-        @property { string } [boxType]
-        
-        @property { string } [orderType]
-        
-        @property { Object } [dpOptions]
-        
-        @property { Array<CartProductInfo> } [items]
-        
-        @property { string } [fulfillmentType]
-        
-         
-    */
-
-/**
-        @typedef CartShipmentsResponse
-        
-        
-        @property { CartBreakup } [breakupValues]
-        
-        @property { string } [lastModified]
-        
-        @property { string } [uid]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { Array<ShipmentResponse> } [shipments]
-        
-        @property { string } [checkoutMode]
-        
-        @property { boolean } [restrictCheckout]
-        
-        @property { string } [couponText]
-        
-        @property { boolean } [isValid]
-        
-        @property { string } [comment]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { number } [cartId]
-        
-        @property { string } [deliveryChargeInfo]
-        
-        @property { string } [message]
-        
-        @property { string } [gstin]
-        
-         
-    */
-
-/**
-        @typedef CartCheckoutRequest
-        
-        
-        @property { Object } [paymentParams]
-        
-        @property { string } [merchantCode]
-        
-        @property { string } paymentMode
-        
-        @property { string } [callbackUrl]
-        
-        @property { Object } [staff]
-        
-        @property { Object } [deliveryAddress]
-        
-        @property { string } [paymentIdentifier]
-        
-        @property { Object } [meta]
-        
-        @property { string } [fyndstoreEmpId]
-        
-        @property { number } [addressId]
-        
-        @property { boolean } [paymentAutoConfirm]
-        
-        @property { string } [aggregator]
-        
-        @property { number } [billingAddressId]
-        
-        @property { Object } [extraMeta]
-        
-        @property { number } [orderingStore]
-        
-        @property { Object } [billingAddress]
-        
-         
-    */
-
-/**
-        @typedef CheckCart
-        
-        
-        @property { string } [lastModified]
-        
-        @property { number } [deliveryCharges]
-        
-        @property { string } [orderId]
-        
-        @property { boolean } [restrictCheckout]
-        
-        @property { string } [couponText]
-        
-        @property { number } [deliveryChargeOrderValue]
-        
-        @property { string } [gstin]
-        
-        @property { CartBreakup } [breakupValues]
-        
-        @property { string } [userType]
-        
-        @property { Array<Object> } [storeEmps]
-        
-        @property { boolean } [success]
-        
-        @property { number } [cartId]
-        
-        @property { Array<CartProductInfo> } [items]
-        
-        @property { string } [storeCode]
-        
-        @property { string } [uid]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { string } [errorMessage]
-        
-        @property { string } [comment]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { string } [checkoutMode]
-        
-        @property { boolean } [isValid]
-        
-        @property { string } [codMessage]
-        
-        @property { string } [message]
-        
-        @property { boolean } [codAvailable]
-        
-        @property { number } [codCharges]
-        
-        @property { string } [deliveryChargeInfo]
-        
-         
-    */
-
-/**
-        @typedef CartCheckoutResponse
-        
-        
-        @property { CheckCart } [cart]
-        
-        @property { string } [callbackUrl]
-        
-        @property { boolean } [success]
-        
-        @property { string } [orderId]
-        
-        @property { string } [appInterceptUrl]
-        
-        @property { Object } [data]
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef CartMetaRequest
-        
-        
-        @property { string } [comment]
-        
-        @property { Object } [pickUpCustomerDetails]
-        
-        @property { string } [gstin]
-        
-        @property { string } [checkoutMode]
-        
-         
-    */
-
-/**
-        @typedef CartMetaResponse
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef CartMetaMissingResponse
-        
-        
-        @property { Array<string> } [errors]
-        
-         
-    */
-
-/**
-        @typedef GetShareCartLinkRequest
-        
-        
-        @property { Object } [meta]
-        
-        @property { number } uid
-        
-         
-    */
-
-/**
-        @typedef GetShareCartLinkResponse
-        
-        
-        @property { string } [shareUrl]
-        
-        @property { string } [token]
-        
-         
-    */
-
-/**
-        @typedef SharedCartDetails
-        
-        
-        @property { string } [createdOn]
-        
-        @property { Object } [meta]
-        
-        @property { string } [token]
-        
-        @property { Object } [source]
-        
-        @property { Object } [user]
-        
-         
-    */
-
-/**
-        @typedef SharedCart
-        
-        
-        @property { CartBreakup } [breakupValues]
-        
-        @property { string } [lastModified]
-        
-        @property { string } [uid]
-        
-        @property { CartCurrency } [currency]
-        
-        @property { SharedCartDetails } [sharedCartDetails]
-        
-        @property { string } [checkoutMode]
-        
-        @property { boolean } [restrictCheckout]
-        
-        @property { string } [couponText]
-        
-        @property { boolean } [isValid]
-        
-        @property { string } [comment]
-        
-        @property { ShipmentPromise } [deliveryPromise]
-        
-        @property { number } [cartId]
-        
-        @property { Array<CartProductInfo> } [items]
-        
-        @property { string } [deliveryChargeInfo]
-        
-        @property { string } [message]
-        
-        @property { string } [gstin]
-        
-         
-    */
-
-/**
-        @typedef SharedCartResponse
-        
-        
-        @property { SharedCart } [cart]
-        
-        @property { string } [error]
-        
-         
-    */
-
-/**
-        @typedef TicketList
-        
-        
-        @property { Array<Ticket> } [items]
-        
-        @property { Filter } [filters]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef TicketHistoryList
-        
-        
-        @property { Array<TicketHistory> } [docs]
-        
-        @property { number } [limit]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
-        
-        @property { number } [total]
-        
-         
-    */
-
-/**
-        @typedef CustomFormList
-        
-        
-        @property { Array<CustomForm> } [docs]
-        
-        @property { number } [limit]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
-        
-        @property { number } [total]
-        
-         
-    */
-
-/**
-        @typedef CreateCustomFormPayload
-        
-        
-        @property { string } slug
-        
-        @property { string } title
-        
-        @property { Array<Object> } inputs
-        
-        @property { string } [description]
-        
-        @property { string } [headerImage]
-        
-        @property { boolean } [shouldNotify]
-        
-        @property { string } [successMessage]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-         
-    */
-
-/**
-        @typedef EditCustomFormPayload
-        
-        
-        @property { string } title
-        
-        @property { Array<Object> } inputs
-        
-        @property { string } [description]
-        
-        @property { string } [headerImage]
-        
-        @property { boolean } [shouldNotify]
-        
-        @property { boolean } [loginRequired]
-        
-        @property { string } [successMessage]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-         
-    */
-
-/**
-        @typedef EditTicketPayload
-        
-        
-        @property { TicketContent } [content]
-        
-        @property { string } [category]
-        
-        @property { string } [source]
-        
-        @property { string } [status]
-        
-        @property { string } [priority]
-        
-        @property { AgentChangePayload } [assignedTo]
-        
-        @property { Array<string> } [tags]
-        
-         
-    */
-
-/**
-        @typedef AgentChangePayload
-        
-        
-        @property { string } agentId
-        
-         
-    */
-
-/**
-        @typedef CreateVideoRoomResponse
-        
-        
-        @property { string } uniqueName
-        
-         
-    */
-
-/**
-        @typedef CloseVideoRoomResponse
-        
-        
-        @property { boolean } success
-        
-         
-    */
-
-/**
-        @typedef CreateVideoRoomPayload
-        
-        
-        @property { string } uniqueName
-        
-        @property { Array<Object> } [notify]
-        
-         
-    */
-
-/**
-        @typedef Filter
-        
-        
-        @property { Array<Priority> } priorities
-        
-        @property { Array<TicketCategory> } [categories]
-        
-        @property { Array<Status> } statuses
-        
-        @property { Array<Object> } assignees
-        
-         
-    */
-
-/**
-        @typedef TicketHistoryPayload
-        
-        
-        @property { Object } value
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef CustomFormSubmissionPayload
-        
-        
-        @property { Array<KeyValue> } response
-        
-         
-    */
-
-/**
-        @typedef KeyValue
-        
-        
-        @property { string } key
-        
-        @property { string } value
-        
-         
-    */
-
-/**
-        @typedef GetTokenForVideoRoomResponse
-        
-        
-        @property { string } accessToken
-        
-         
-    */
-
-/**
-        @typedef GetParticipantsInsideVideoRoomResponse
-        
-        
-        @property { Array<Participant> } participants
-        
-         
-    */
-
-/**
-        @typedef Participant
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { string } [identity]
-        
-        @property { string } [status]
-        
-         
-    */
-
-/**
-        @typedef UserSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { Array<PhoneNumber> } [phoneNumbers]
-        
-        @property { Array<Email> } [emails]
-        
-        @property { string } [gender]
-        
-        @property { boolean } [active]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [username]
-        
-        @property { string } [accountType]
-        
-        @property { string } [uid]
-        
-        @property { Debug } [debug]
-        
-        @property { boolean } [hasOldPasswordHash]
-        
-        @property { string } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-         
-    */
-
-/**
-        @typedef PhoneNumber
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [phone]
-        
-        @property { number } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef Email
-        
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [email]
-        
-        @property { boolean } [active]
-        
-         
-    */
-
-/**
-        @typedef Debug
-        
-        
-        @property { string } [source]
-        
-        @property { string } [platform]
-        
-         
-    */
-
-/**
-        @typedef SubmitCustomFormResponse
-        
-        
-        @property { Ticket } ticket
-        
-         
-    */
-
-/**
-        @typedef TicketContext
-        
-        
-        @property { string } [applicationId]
-        
-        @property { string } companyId
-        
-         
-    */
-
-/**
-        @typedef CreatedOn
-        
-        
-        @property { string } userAgent
-        
-         
-    */
-
-/**
-        @typedef TicketAsset
-        
-        
-        @property { string } [display]
-        
-        @property { string } value
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef TicketContent
-        
-        
-        @property { string } title
-        
-        @property { string } [description]
-        
-        @property { Array<TicketAsset> } [attachments]
-        
-         
-    */
-
-/**
-        @typedef AddTicketPayload
-        
-        
-        @property { string } status
-        
-        @property { string } priority
-        
-        @property { string } category
-        
-        @property { TicketContent } content
-        
-         
-    */
-
-/**
-        @typedef Priority
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { string } color
-        
-         
-    */
-
-/**
-        @typedef Status
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { string } color
-        
-         
-    */
-
-/**
-        @typedef TicketCategory
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { CustomForm } [form]
-        
-         
-    */
-
-/**
-        @typedef SubmitButton
-        
-        
-        @property { string } title
-        
-        @property { string } titleColor
-        
-        @property { string } backgroundColor
-        
-         
-    */
-
-/**
-        @typedef PollForAssignment
-        
-        
-        @property { number } duration
-        
-        @property { string } message
-        
-        @property { string } successMessage
-        
-        @property { string } failureMessage
-        
-         
-    */
-
-/**
-        @typedef CustomForm
-        
-        
-        @property { string } applicationId
-        
-        @property { string } slug
-        
-        @property { string } [headerImage]
-        
-        @property { string } title
-        
-        @property { string } [description]
-        
-        @property { boolean } loginRequired
-        
-        @property { boolean } shouldNotify
-        
-        @property { string } [successMessage]
-        
-        @property { SubmitButton } [submitButton]
-        
-        @property { Array<Object> } inputs
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { Object } [createdBy]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-        @property { string } id
-        
-         
-    */
-
-/**
-        @typedef TicketHistory
-        
-        
-        @property { string } type
-        
-        @property { Object } value
-        
-        @property { string } ticketId
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { Object } [createdBy]
-        
-        @property { string } id
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
-        
-         
-    */
-
-/**
-        @typedef Ticket
-        
-        
-        @property { TicketContext } [context]
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { string } [responseId]
-        
-        @property { TicketContent } [content]
-        
-        @property { string } ticketId
-        
-        @property { TicketCategory } category
-        
-        @property { string } source
-        
-        @property { Status } status
-        
-        @property { Priority } priority
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [assignedTo]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Object } [customJson]
-        
-        @property { string } [id]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
-        
-         
-    */
-
-/**
-        @typedef PaginationSchema
-        
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
-        
-         
-    */
-
-/**
-        @typedef ThemesListingResponseSchema
-        
-        
-        @property { Array<ThemesSchema> } [items]
-        
-        @property { PaginationSchema } [page]
-        
-         
-    */
-
-/**
-        @typedef AddThemeRequestSchema
-        
-        
-        @property { string } [themeId]
-        
-         
-    */
-
-/**
-        @typedef UpgradableThemeSchema
-        
-        
-        @property { string } [parentTheme]
-        
-        @property { string } [appliedTheme]
-        
-        @property { boolean } [upgrade]
-        
-         
-    */
-
-/**
-        @typedef FontsSchema
-        
-        
-        @property { FontsSchemaItems } [items]
-        
-        @property { string } [kind]
-        
-         
-    */
-
-/**
-        @typedef BlitzkriegApiErrorSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef BlitzkriegNotFoundSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef BlitzkriegInternalServerErrorSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef FontsSchemaItems
-        
-        
-        @property { string } [family]
-        
-        @property { Array<string> } [variants]
-        
-        @property { Array<string> } [subsets]
-        
-        @property { string } [version]
-        
-        @property { string } [lastModified]
-        
-        @property { FontsSchemaItemsFiles } [files]
-        
-        @property { string } [category]
-        
-        @property { string } [kind]
-        
-         
-    */
-
-/**
-        @typedef FontsSchemaItemsFiles
-        
-        
-        @property { string } [regular]
-        
-        @property { string } [italic]
-        
-        @property { string } [bold]
-        
-         
-    */
-
-/**
-        @typedef ThemesSchema
-        
-        
-        @property { string } [application]
-        
-        @property { boolean } [applied]
-        
-        @property { boolean } [customized]
-        
-        @property { boolean } [published]
-        
-        @property { boolean } [archived]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [version]
-        
-        @property { string } [parentThemeVersion]
-        
-        @property { string } [parentTheme]
-        
-        @property { Information } [information]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Src } [src]
-        
-        @property { AssetsSchema } [assets]
-        
-        @property { AvailablePages } [availablePages]
-        
-        @property { Pages } [pages]
-        
-        @property { Array<availableSectionSchema> } [availableSections]
-        
-        @property { Array<sectionSchema> } [sections]
-        
-        @property { Object } [constants]
-        
-        @property { Object } [styles]
-        
-        @property { Config } [config]
-        
-        @property { Object } [settings]
-        
-        @property { Font } [font]
-        
-        @property { string } [id]
-        
-        @property { number } [v]
-        
-        @property { Colors } [colors]
-        
-         
-    */
-
-/**
-        @typedef pagesSchema
-        
-        
-        @property { string } [text]
-        
-        @property { string } [path]
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-        @property { Sections } [sections]
-        
-         
-    */
-
-/**
-        @typedef availableSectionSchema
-        
-        
-        @property { Blocks } [blocks]
-        
-        @property { string } [name]
-        
-        @property { string } [label]
-        
-        @property { Object } [props]
-        
-         
-    */
-
-/**
-        @typedef sectionSchema
-        
-        
-        @property { string } [pageKey]
-        
-        @property { PageSections } [pageSections]
-        
-         
-    */
-
-/**
-        @typedef Information
-        
-        
-        @property { Images } [images]
-        
-        @property { Array<string> } [features]
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-         
-    */
-
-/**
-        @typedef Images
-        
-        
-        @property { Array<string> } [desktop]
-        
-        @property { Array<string> } [android]
-        
-        @property { Array<string> } [ios]
-        
-        @property { Array<string> } [thumbnail]
-        
-         
-    */
-
-/**
-        @typedef Src
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef AssetsSchema
-        
-        
-        @property { UmdJs } [umdJs]
-        
-        @property { CommonJs } [commonJs]
-        
-        @property { Css } [css]
-        
-         
-    */
-
-/**
-        @typedef UmdJs
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef CommonJs
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef Css
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef AvailablePages
-        
-        
-        @property { string } [path]
-        
-        @property { string } [type]
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-        @property { Seo } [seo]
-        
-        @property { Object } [props]
-        
-        @property { Sections } [sections]
-        
-         
-    */
-
-/**
-        @typedef Seo
-        
-        
-        @property { string } [title]
-        
-        @property { string } [description]
-        
-         
-    */
-
-/**
-        @typedef Sections
-        
-        
-        @property { string } [attributes]
-        
-         
-    */
-
-/**
-        @typedef Pages
-        
-        
-        @property { pagesSchema } [collectionListing]
-        
-        @property { pagesSchema } [brands]
-        
-        @property { pagesSchema } [cartLanding]
-        
-        @property { pagesSchema } [collections]
-        
-        @property { pagesSchema } [productDescription]
-        
-        @property { pagesSchema } [productListing]
-        
-        @property { pagesSchema } [home]
-        
-        @property { pagesSchema } [categories]
-        
-        @property { pagesSchema } [compareProducts]
-        
-        @property { pagesSchema } [wishlist]
-        
-         
-    */
-
-/**
-        @typedef Config
-        
-        
-        @property { Preset } [preset]
-        
-        @property { GlobalSchema } [globalSchema]
-        
-        @property { string } [current]
-        
-        @property { ListSchema } [list]
-        
-         
-    */
-
-/**
-        @typedef Preset
-        
-        
-        @property { sectionSchema } [sections]
-        
-         
-    */
-
-/**
-        @typedef GlobalSchema
-        
-        
-        @property { Object } [props]
-        
-         
-    */
-
-/**
-        @typedef ListSchema
-        
-        
-        @property { Object } [global]
-        
-        @property { ConfigPage } [page]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef Colors
-        
-        
-        @property { string } [bgColor]
-        
-        @property { string } [primaryColor]
-        
-        @property { string } [secondaryColor]
-        
-        @property { string } [accentColor]
-        
-        @property { string } [linkColor]
-        
-        @property { string } [buttonSecondaryColor]
-        
-         
-    */
-
-/**
-        @typedef Custom
-        
-        
-        @property { Object } [props]
-        
-         
-    */
-
-/**
-        @typedef ConfigPage
-        
-        
-        @property { Object } [settings]
-        
-        @property { string } [page]
-        
-         
-    */
-
-/**
-        @typedef Font
-        
-        
-        @property { string } [family]
-        
-        @property { Variants } [variants]
-        
-         
-    */
-
-/**
-        @typedef Variants
-        
-        
-        @property { Medium } [medium]
-        
-        @property { SemiBold } [semiBold]
-        
-        @property { Bold } [bold]
-        
-        @property { Light } [light]
-        
-        @property { Regular } [regular]
-        
-         
-    */
-
-/**
-        @typedef Medium
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef SemiBold
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Bold
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Light
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Regular
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Blocks
-        
-        
-        @property { string } [type]
-        
-        @property { string } [name]
-        
-        @property { BlocksProps } [props]
-        
-         
-    */
-
-/**
-        @typedef BlocksProps
-        
-        
-        @property { string } [id]
-        
-        @property { string } [label]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef PageSections
-        
-        
-        @property { PageSectionsBlocks } [blocks]
-        
-        @property { string } [name]
-        
-        @property { string } [label]
-        
-        @property { Object } [props]
-        
-        @property { Object } [preset]
-        
-        @property { Predicate } [predicate]
-        
-         
-    */
-
-/**
-        @typedef PageSectionsBlocks
-        
-        
-        @property { string } [type]
-        
-        @property { string } [name]
-        
-        @property { PageSectionsBlocksProps } [props]
-        
-         
-    */
-
-/**
-        @typedef PageSectionsBlocksProps
-        
-        
-        @property { string } [id]
-        
-        @property { string } [label]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Predicate
-        
-        
-        @property { Screen } [screen]
-        
-        @property { PredicateUserSchema } [user]
-        
-        @property { Route } [route]
-        
-         
-    */
-
-/**
-        @typedef Screen
-        
-        
-        @property { boolean } [mobile]
-        
-        @property { boolean } [desktop]
-        
-        @property { boolean } [tablet]
-        
-         
-    */
-
-/**
-        @typedef PredicateUserSchema
-        
-        
-        @property { boolean } [authenticated]
-        
-        @property { boolean } [anonymous]
-        
-         
-    */
-
-/**
-        @typedef Route
-        
-        
-        @property { string } [selected]
-        
-        @property { string } [exactUrl]
-        
-        @property { Object } [query]
-        
-         
-    */
-
-/**
-        @typedef EditEmailRequestSchema
-        
-        
-        @property { string } [email]
-        
-         
-    */
-
-/**
-        @typedef SendVerificationLinkMobileRequestSchema
-        
-        
-        @property { boolean } [verified]
-        
-        @property { boolean } [active]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [phone]
-        
-        @property { boolean } [primary]
-        
-         
-    */
-
-/**
-        @typedef EditMobileRequestSchema
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [phone]
-        
-         
-    */
-
-/**
-        @typedef EditProfileRequestSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { string } [mobile]
-        
-        @property { string } [email]
-        
-        @property { string } [gender]
-        
-        @property { string } [dob]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [androidHash]
-        
-        @property { string } [sender]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-
-/**
-        @typedef SendEmailOtpRequestSchema
-        
-        
-        @property { string } [email]
-        
-        @property { string } [action]
-        
-        @property { string } [token]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-
-/**
-        @typedef VerifyOtpRequestSchema
-        
-        
-        @property { string } [requestId]
-        
-        @property { string } [registerToken]
-        
-        @property { string } [otp]
-        
-         
-    */
-
-/**
-        @typedef SendMobileOtpRequestSchema
-        
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [action]
-        
-        @property { string } [token]
-        
-        @property { string } [androidHash]
-        
-        @property { string } [force]
-        
-         
-    */
-
-/**
-        @typedef UpdatePasswordRequestSchema
-        
-        
-        @property { string } [oldPassword]
-        
-        @property { string } [newPassword]
-        
-         
-    */
-
-/**
-        @typedef FormRegisterRequestSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { string } [gender]
-        
-        @property { string } [email]
-        
-        @property { string } [password]
-        
-        @property { FormRegisterRequestSchemaPhone } [phone]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-
-/**
-        @typedef TokenRequestBodySchema
-        
-        
-        @property { string } [token]
-        
-         
-    */
-
-/**
-        @typedef ForgotPasswordRequestSchema
-        
-        
-        @property { string } [code]
-        
-        @property { string } [password]
-        
-         
-    */
-
-/**
-        @typedef CodeRequestBodySchema
-        
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef SendResetPasswordEmailRequestSchema
-        
-        
-        @property { string } [email]
-        
-        @property { string } [gRecaptchaResponse]
-        
-         
-    */
-
-/**
-        @typedef PasswordLoginRequestSchema
-        
-        
-        @property { string } [gRecaptchaResponse]
-        
-        @property { string } [password]
-        
-        @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef SendOtpRequestSchema
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [gRecaptchaResponse]
-        
-        @property { string } [mobile]
-        
-         
-    */
-
-/**
-        @typedef OAuthRequestSchema
-        
-        
-        @property { boolean } [isSignedIn]
-        
-        @property { OAuthRequestSchemaOauth2 } [oauth2]
-        
-        @property { OAuthRequestSchemaProfile } [profile]
-        
-         
-    */
-
-/**
-        @typedef AuthSuccess
-        
-        
-        @property { string } [registerToken]
-        
-        @property { boolean } [userExists]
-        
-        @property { AuthSuccessUser } [user]
-        
-         
-    */
-
-/**
-        @typedef SendOtpResponse
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef LoginSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-         
-    */
-
-/**
-        @typedef VerifyOtpSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [userExists]
-        
-         
-    */
-
-/**
-        @typedef ResetPasswordSuccess
-        
-        
-        @property { string } [status]
-        
-         
-    */
-
-/**
-        @typedef RegisterFormSuccess
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef VerifyEmailSuccess
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef HasPasswordSuccess
-        
-        
-        @property { boolean } [result]
-        
-         
-    */
-
-/**
-        @typedef LogoutSuccess
-        
-        
-        @property { boolean } [logout]
-        
-         
-    */
-
-/**
-        @typedef OtpSuccess
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef EmailOtpSuccess
-        
-        
-        @property { string } [resendToken]
-        
-         
-    */
-
-/**
-        @typedef SessionListSuccess
-        
-        
-        @property { Array<string> } [sessions]
-        
-         
-    */
-
-/**
-        @typedef VerifyMobileOTPSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [verifyMobileLink]
-        
-         
-    */
-
-/**
-        @typedef VerifyEmailOTPSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [verifyEmailLink]
-        
-         
-    */
-
-/**
-        @typedef SendMobileVerifyLinkSuccess
-        
-        
-        @property { boolean } [verifyMobileLink]
-        
-         
-    */
-
-/**
-        @typedef SendEmailVerifyLinkSuccess
-        
-        
-        @property { boolean } [verifyEmailLink]
-        
-         
-    */
-
-/**
-        @typedef UserSearchResponseSchema
-        
-        
-        @property { Array<UserSchema> } [users]
-        
-         
-    */
-
-/**
-        @typedef CustomerListResponseSchema
-        
-        
-        @property { Array<UserSchema> } [items]
-        
-        @property { PaginationSchema } [page]
-        
-         
-    */
-
-/**
-        @typedef UnauthorizedSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef UnauthenticatedSchema
-        
-        
-        @property { boolean } [authenticated]
-        
-         
-    */
-
-/**
-        @typedef NotFoundSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef AuthenticationApiErrorSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef ProfileEditSuccessSchema
-        
-        
-        @property { string } [email]
-        
-        @property { boolean } [verifyEmailOtp]
-        
-        @property { boolean } [verifyEmailLink]
-        
-        @property { boolean } [verifyMobileOtp]
-        
-        @property { string } [user]
-        
-        @property { string } [registerToken]
-        
-        @property { boolean } [userExists]
-        
-         
-    */
-
-/**
-        @typedef FormRegisterRequestSchemaPhone
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [mobile]
-        
-         
-    */
-
-/**
-        @typedef OAuthRequestSchemaOauth2
-        
-        
-        @property { string } [accessToken]
-        
-        @property { number } [expiry]
-        
-        @property { string } [refreshToken]
-        
-         
-    */
-
-/**
-        @typedef OAuthRequestSchemaProfile
-        
-        
-        @property { string } [lastName]
-        
-        @property { string } [image]
-        
-        @property { string } [id]
-        
-        @property { string } [email]
-        
-        @property { string } [fullName]
-        
-        @property { string } [firstName]
-        
-         
-    */
-
-/**
-        @typedef AuthSuccessUser
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { AuthSuccessUserDebug } [debug]
-        
-        @property { boolean } [active]
-        
-        @property { AuthSuccessUserEmails } [emails]
-        
-         
-    */
-
-/**
-        @typedef AuthSuccessUserDebug
-        
-        
-        @property { string } [platform]
-        
-         
-    */
-
-/**
-        @typedef AuthSuccessUserEmails
-        
-        
-        @property { string } [email]
-        
-        @property { boolean } [verified]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [active]
-        
-         
-    */
-
-/**
-        @typedef PlatformSchema
-        
-        
-        @property { string } [display]
-        
-        @property { LookAndFeel } [lookAndFeel]
-        
-        @property { string } [updatedAt]
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [forgotPassword]
-        
-        @property { Login } [login]
-        
-        @property { boolean } [skipCaptcha]
-        
-        @property { string } [name]
-        
-        @property { MetaSchema } [meta]
-        
-        @property { string } [id]
-        
-        @property { Social } [social]
-        
-        @property { RequiredFields } [requiredFields]
-        
-        @property { RegisterRequiredFields } [registerRequiredFields]
-        
-        @property { boolean } [skipLogin]
-        
-        @property { FlashCard } [flashCard]
-        
-        @property { string } [subtext]
-        
-        @property { SocialTokens } [socialTokens]
-        
-        @property { string } [createdAt]
-        
-        @property { boolean } [register]
-        
-         
-    */
-
-/**
-        @typedef LookAndFeel
-        
-        
-        @property { string } [cardPosition]
-        
-        @property { string } [backgroundColor]
-        
-         
-    */
-
-/**
-        @typedef Login
-        
-        
-        @property { boolean } [password]
-        
-        @property { boolean } [otp]
-        
-         
-    */
-
-/**
-        @typedef MetaSchema
-        
-        
-        @property { boolean } [fyndDefault]
-        
-         
-    */
-
-/**
-        @typedef Social
-        
-        
-        @property { boolean } [accountKit]
-        
-        @property { boolean } [facebook]
-        
-        @property { boolean } [google]
-        
-         
-    */
-
-/**
-        @typedef RequiredFields
-        
-        
-        @property { Email } [email]
-        
-        @property { Mobile } [mobile]
-        
-         
-    */
-
-/**
-        @typedef Mobile
-        
-        
-        @property { boolean } [isRequired]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
-        @typedef RegisterRequiredFields
-        
-        
-        @property { RegisterRequiredFieldsEmail } [email]
-        
-        @property { RegisterRequiredFieldsMobile } [mobile]
-        
-         
-    */
-
-/**
-        @typedef RegisterRequiredFieldsEmail
-        
-        
-        @property { boolean } [isRequired]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
-        @typedef RegisterRequiredFieldsMobile
-        
-        
-        @property { boolean } [isRequired]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
-        @typedef FlashCard
-        
-        
-        @property { string } [text]
-        
-        @property { string } [textColor]
-        
-        @property { string } [backgroundColor]
-        
-         
-    */
-
-/**
-        @typedef SocialTokens
-        
-        
-        @property { Facebook } [facebook]
-        
-        @property { Accountkit } [accountKit]
-        
-        @property { Google } [google]
-        
-         
-    */
-
-/**
-        @typedef Facebook
-        
-        
-        @property { string } [appId]
-        
-         
-    */
-
-/**
-        @typedef Accountkit
-        
-        
-        @property { string } [appId]
-        
-         
-    */
-
-/**
-        @typedef Google
-        
-        
-        @property { string } [appId]
-        
-         
-    */
-
-/**
-        @typedef QRCodeResp
-        
-        
-        @property { string } [link]
-        
-        @property { string } [svg]
-        
-         
-    */
-
-/**
-        @typedef RedirectDevice
-        
-        
-        @property { string } link
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef WebRedirect
-        
-        
-        @property { string } [link]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Redirects
-        
-        
-        @property { RedirectDevice } [ios]
-        
-        @property { RedirectDevice } [android]
-        
-        @property { WebRedirect } [web]
-        
-        @property { boolean } [forceWeb]
-        
-         
-    */
-
-/**
-        @typedef ShortLinkReq
-        
-        
-        @property { string } title
-        
-        @property { string } url
-        
-        @property { string } [hash]
-        
-        @property { string } [active]
-        
-        @property { string } [type]
-        
-        @property { string } [expireAt]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { Redirects } [redirects]
-        
-         
-    */
-
-/**
-        @typedef UrlInfo
-        
-        
-        @property { string } [original]
-        
-        @property { string } [short]
-        
-        @property { string } [hash]
-        
-         
-    */
-
-/**
-        @typedef ShortLinkRes
-        
-        
-        @property { string } [title]
-        
-        @property { UrlInfo } [url]
-        
-        @property { string } [createdBy]
-        
-        @property { string } [personalized]
-        
-        @property { string } [appRedirect]
-        
-        @property { string } [fallback]
-        
-        @property { boolean } [active]
-        
-        @property { string } [id]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { boolean } [expireAt]
-        
-        @property { string } [application]
-        
-        @property { boolean } [userId]
-        
-        @property { boolean } [createdAt]
-        
-        @property { boolean } [updatedAt]
-        
-        @property { Redirects } [redirects]
-        
-         
-    */
-
-/**
-        @typedef ShortLinkList
-        
-        
-        @property { Array<ShortLinkRes> } [items]
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { number } [current]
-        
-        @property { string } [hasNext]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef FailedResponse
-        
-        
-        @property { string } message
-        
-         
-    */
-
-/**
-        @typedef CDN
-        
-        
-        @property { string } url
-        
-         
-    */
-
-/**
-        @typedef Upload
-        
-        
-        @property { number } expiry
-        
-        @property { string } url
-        
-         
-    */
-
-/**
-        @typedef StartResponse
-        
-        
-        @property { string } fileName
-        
-        @property { string } filePath
-        
-        @property { string } contentType
-        
-        @property { string } method
-        
-        @property { string } namespace
-        
-        @property { string } operation
-        
-        @property { number } size
-        
-        @property { Upload } upload
-        
-        @property { CDN } cdn
-        
-         
-    */
-
-/**
-        @typedef StartRequest
-        
-        
-        @property { string } fileName
-        
-        @property { string } contentType
-        
-        @property { number } size
-        
-        @property { Array<string> } [tags]
-        
-         
-    */
-
-/**
-        @typedef CompleteResponse
-        
-        
-        @property { string } id
-        
-        @property { string } fileName
-        
-        @property { string } filePath
-        
-        @property { string } contentType
-        
-        @property { string } method
-        
-        @property { string } namespace
-        
-        @property { string } operation
-        
-        @property { number } size
-        
-        @property { Upload } upload
-        
-        @property { CDN } cdn
-        
-        @property { string } success
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } createdOn
-        
-        @property { string } modifiedOn
-        
-         
-    */
-
-/**
-        @typedef Opts
-        
-        
-        @property { number } [attempts]
-        
-        @property { number } [timestamp]
-        
-        @property { number } [delay]
-        
-         
-    */
-
-/**
-        @typedef CopyFileTask
-        
-        
-        @property { string } id
-        
-        @property { string } name
-        
-        @property { BulkRequest } data
-        
-        @property { Opts } opts
-        
-        @property { number } progress
-        
-        @property { number } delay
-        
-        @property { number } timestamp
-        
-        @property { number } attemptsMade
-        
-        @property { Array<string> } [stacktrace]
-        
-        @property { number } finishedOn
-        
-        @property { number } processedOn
-        
-         
-    */
-
-/**
-        @typedef BulkResponse
-        
-        
-        @property { string } trackingUrl
-        
-        @property { CopyFileTask } task
-        
-         
-    */
-
-/**
-        @typedef ReqConfiguration
-        
-        
-        @property { number } [concurrency]
-        
-         
-    */
-
-/**
-        @typedef Destination
-        
-        
-        @property { string } namespace
-        
-        @property { string } rewrite
-        
-        @property { string } [basepath]
-        
-         
-    */
-
-/**
-        @typedef BulkRequest
-        
-        
-        @property { Array<string> } urls
-        
-        @property { Destination } destination
-        
-        @property { ReqConfiguration } [configuration]
-        
-         
-    */
-
-/**
-        @typedef Urls
-        
-        
-        @property { string } url
-        
-        @property { string } signedUrl
-        
-        @property { number } expiry
-        
-         
-    */
-
-/**
-        @typedef SignUrlResponse
-        
-        
-        @property { Array<Urls> } urls
-        
-         
-    */
-
-/**
-        @typedef SignUrlRequest
-        
-        
-        @property { number } expiry
-        
-        @property { Array<string> } urls
-        
-         
-    */
-
-/**
-        @typedef DbRecord
-        
-        
-        @property { boolean } success
-        
-        @property { Array<string> } tags
-        
-        @property { string } id
-        
-        @property { string } fileName
-        
-        @property { string } [operation]
-        
-        @property { string } namespace
-        
-        @property { string } contentType
-        
-        @property { string } filePath
-        
-        @property { Upload } upload
-        
-        @property { CDN } cdn
-        
-        @property { string } createdOn
-        
-        @property { string } modifiedOn
-        
-         
-    */
-
-/**
-        @typedef BrowseResponse
-        
-        
-        @property { Array<DbRecord> } items
-        
-        @property { Page } page
-        
-         
-    */
-
-/**
-        @typedef OrderById
-        
-        
-        @property { OrderSchema } order
-        
-         
-    */
-
-/**
-        @typedef OrderList
-        
-        
-        @property { Array<OrderSchema> } orders
-        
-        @property { OrderPage } page
-        
-         
-    */
-
-/**
-        @typedef OrderPage
-        
-        
-        @property { number } [itemTotal]
-        
-        @property { string } [type]
-        
-        @property { number } [size]
-        
-        @property { number } [current]
-        
-        @property { boolean } [hasNext]
-        
-         
-    */
-
-/**
-        @typedef ShipmentById
-        
-        
-        @property { Shipments } shipment
-        
-         
-    */
-
-/**
-        @typedef ShipmentReasons
-        
-        
-        @property { Array<Reasons> } reasons
-        
-         
-    */
-
-/**
-        @typedef ShipmentStatusUpdateBody
-        
-        
-        @property { Shipments } shipments
-        
-        @property { boolean } forceTransition
-        
-        @property { boolean } task
-        
-         
-    */
-
-/**
-        @typedef Shipments
-        
-        
-        @property { string } [shipmentId]
-        
-        @property { string } [orderId]
-        
-        @property { Array<BreakupValues> } [breakupValues]
-        
-        @property { boolean } [enableCanReturn]
-        
-        @property { string } [paymentModeSource]
-        
-        @property { Array<string> } [shipmentImages]
-        
-        @property { string } [trackUrl]
-        
-        @property { string } [trakingNo]
-        
-        @property { Array<TrackingDetails> } [trackingDetails]
-        
-        @property { boolean } [beneficiaryDetails]
-        
-        @property { boolean } [canReturn]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { Prices } [prices]
-        
-        @property { string } [needHelpUrl]
-        
-        @property { number } [totalBags]
-        
-        @property { Array<ProductItems> } [items]
-        
-        @property { DeliveryAddress } [deliveryAddress]
-        
-        @property { string } [paymentStatus]
-        
-        @property { Invoice } [invoice]
-        
-        @property { string } [comment]
-        
-        @property { string } [orderType]
-        
-        @property { Promise } [promise]
-        
-        @property { FulfillingStore } [fulfillingStore]
-        
-        @property { number } [totalItems]
-        
-        @property { Array<Bags> } [bags]
-        
-        @property { boolean } [canCancel]
-        
-        @property { string } [paymentLogo]
-        
-        @property { string } [shipmentCreatedAt]
-        
-        @property { ShipmentStatus } [shipmentStatus]
-        
-        @property { ShipmentUserInfo } [userInfo]
-        
-        @property { ShipmentMeta } [meta]
-        
-         
-    */
-
-/**
-        @typedef ShipmentId
-        
-        
-        @property { StatusUpdate } [statusUpdate]
-        
-        @property { Array<any> } [message]
-        
-        @property { string } [error]
-        
-        @property { boolean } [status]
-        
-         
-    */
-
-/**
-        @typedef StatusUpdate
-        
-        
-        @property { string } [status]
-        
-         
-    */
-
-/**
-        @typedef ShipmentStatusUpdate
-        
-        
-        @property { Shipments } shipments
-        
-         
-    */
-
-/**
-        @typedef ShipmentTrack
-        
-        
-        @property { Array<Track> } results
-        
-         
-    */
-
-/**
-        @typedef OrderSchema
-        
-        
-        @property { string } [orderId]
-        
-        @property { Array<BreakupValues> } [breakupValues]
-        
-        @property { string } [orderCreatedTime]
-        
-        @property { Array<Shipments> } [shipments]
-        
-        @property { number } [totalShipmentsInOrder]
-        
-        @property { UserInfo } [userInfo]
-        
-         
-    */
-
-/**
-        @typedef PosOrderById
-        
-        
-        @property { OrderSchema } order
-        
-         
-    */
-
-/**
-        @typedef Bags
-        
-        
-        @property { Item } [item]
-        
-        @property { Prices } [prices]
-        
-        @property { number } [promotionEffectiveDiscount]
-        
-        @property { CurrentStatus } [currentStatus]
-        
-        @property { Array<BagStatus> } [bagStatus]
-        
-        @property { Dates } [dates]
-        
-        @property { number } [id]
-        
-        @property { BagState } [status]
-        
-        @property { string } [type]
-        
-        @property { Array<FinancialBreakup> } [financialBreakup]
-        
-        @property { Array<BagReasons> } [reasons]
-        
-        @property { Article } [article]
-        
-        @property { string } [journeyType]
-        
-        @property { CurrentOperationalStatus } [currentOperationalStatus]
-        
-        @property { string } [displayName]
-        
-        @property { string } [entityType]
-        
-        @property { Brand } [brand]
-        
-        @property { AffiliateBagDetails } [affiliateBagDetails]
-        
-        @property { GstDetails } [gstDetails]
-        
-        @property { number } [bagId]
-        
-        @property { number } [bagUpdateTime]
-        
-         
-    */
-
-/**
-        @typedef Item
-        
-        
-        @property { number } [brandId]
-        
-        @property { boolean } [canCancel]
-        
-        @property { string } [brand]
-        
-        @property { Array<string> } [l1Category]
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [l2Category]
-        
-        @property { string } [size]
-        
-        @property { boolean } [canReturn]
-        
-        @property { number } [l3Category]
-        
-        @property { string } [lastUpdatedAt]
-        
-        @property { string } [slugKey]
-        
-        @property { BagItemAttributes } [attributes]
-        
-        @property { number } [id]
-        
-        @property { string } [code]
-        
-        @property { string } [l3CategoryName]
-        
-        @property { Array<string> } [image]
-        
-         
-    */
-
-/**
-        @typedef BagItemAttributes
-        
-        
-        @property { string } [itemCode]
-        
-        @property { string } [brandName]
-        
-        @property { string } [countryOfOrigin]
-        
-         
-    */
-
-/**
-        @typedef Prices
-        
-        
-        @property { number } [amountPaidRoundoff]
-        
-        @property { number } [fyndCredits]
-        
-        @property { number } [codCharges]
-        
-        @property { number } [cashback]
-        
-        @property { boolean } [addedToFyndCash]
-        
-        @property { number } [priceMarked]
-        
-        @property { number } [transferPrice]
-        
-        @property { number } [couponValue]
-        
-        @property { number } [priceEffective]
-        
-        @property { number } [refundCredit]
-        
-        @property { number } [amountPaid]
-        
-        @property { number } [refundAmount]
-        
-        @property { number } [cashbackApplied]
-        
-        @property { number } [gstTaxPercentage]
-        
-        @property { number } [valueOfGood]
-        
-        @property { number } [brandCalculatedAmount]
-        
-        @property { number } [promotionEffectiveDiscount]
-        
-        @property { number } [discount]
-        
-        @property { number } [couponEffectiveDiscount]
-        
-        @property { number } [deliveryCharge]
-        
-         
-    */
-
-/**
-        @typedef CurrentStatus
-        
-        
-        @property { number } [storeId]
-        
-        @property { number } [bagId]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [stateType]
-        
-        @property { number } [id]
-        
-        @property { number } [stateId]
-        
-        @property { string } [updatedAt]
-        
-        @property { boolean } [kafkaSync]
-        
-        @property { string } [status]
-        
-        @property { BagStateMapper } [bagStateMapper]
-        
-         
-    */
-
-/**
-        @typedef BagStateMapper
-        
-        
-        @property { string } [name]
-        
-        @property { string } [appStateName]
-        
-        @property { string } [displayName]
-        
-        @property { string } [appDisplayName]
-        
-        @property { boolean } [isActive]
-        
-        @property { boolean } [appFacing]
-        
-        @property { boolean } [notifyCustomer]
-        
-        @property { string } [journeyType]
-        
-        @property { number } [id]
-        
-        @property { string } [stateType]
-        
-         
-    */
-
-/**
-        @typedef BagStatus
-        
-        
-        @property { number } [bagId]
-        
-        @property { boolean } [kafkaSync]
-        
-        @property { string } [status]
-        
-        @property { number } [storeId]
-        
-        @property { string } [stateType]
-        
-        @property { number } [id]
-        
-        @property { string } [updatedAt]
-        
-        @property { BagStatusBagStateMapper } [bagStateMapper]
-        
-        @property { number } [stateId]
-        
-        @property { string } [createdAt]
-        
-         
-    */
-
-/**
-        @typedef BagStatusBagStateMapper
-        
-        
-        @property { string } [appStateName]
-        
-        @property { boolean } [isActive]
-        
-        @property { number } [id]
-        
-        @property { string } [appDisplayName]
-        
-        @property { boolean } [appFacing]
-        
-        @property { boolean } [notifyCustomer]
-        
-        @property { string } [stateType]
-        
-        @property { string } [journeyType]
-        
-        @property { string } [name]
-        
-        @property { string } [displayName]
-        
-         
-    */
-
-/**
-        @typedef Dates
-        
-        
-        @property { string } [orderCreated]
-        
-         
-    */
-
-/**
-        @typedef BagState
-        
-        
-        @property { boolean } [isReturnable]
-        
-        @property { boolean } [canBeCancelled]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { boolean } [isCustomerReturnAllowed]
-        
-        @property { boolean } [isActive]
-        
-         
-    */
-
-/**
-        @typedef FinancialBreakup
-        
-        
-        @property { number } [brandCalculatedAmount]
-        
-        @property { number } [couponValue]
-        
-        @property { number } [amountPaidRoundoff]
-        
-        @property { string } [gstFee]
-        
-        @property { number } [refundCredit]
-        
-        @property { number } [cashback]
-        
-        @property { number } [refundAmount]
-        
-        @property { number } [valueOfGood]
-        
-        @property { number } [promotionEffectiveDiscount]
-        
-        @property { string } [size]
-        
-        @property { number } [totalUnits]
-        
-        @property { number } [discount]
-        
-        @property { number } [amountPaid]
-        
-        @property { number } [fyndCredits]
-        
-        @property { boolean } [addedToFyndCash]
-        
-        @property { number } [deliveryCharge]
-        
-        @property { string } [hsnCode]
-        
-        @property { number } [couponEffectiveDiscount]
-        
-        @property { number } [transferPrice]
-        
-        @property { Identifiers } [identifiers]
-        
-        @property { string } [gstTag]
-        
-        @property { number } [priceMarked]
-        
-        @property { number } [priceEffective]
-        
-        @property { number } [codCharges]
-        
-        @property { string } [itemName]
-        
-        @property { number } [cashbackApplied]
-        
-        @property { number } [gstTaxPercentage]
-        
-         
-    */
-
-/**
-        @typedef Identifiers
-        
-        
-        @property { string } [ean]
-        
-        @property { string } [skuCode]
-        
-         
-    */
-
-/**
-        @typedef BagReasons
-        
-        
-        @property { number } [id]
-        
-        @property { string } [state]
-        
-        @property { number } [bagId]
-        
-        @property { string } [slug]
-        
-        @property { string } [displayName]
-        
-         
-    */
-
-/**
-        @typedef Article
-        
-        
-        @property { boolean } [espModified]
-        
-        @property { string } [size]
-        
-        @property { string } [id]
-        
-        @property { ArticleIdentifiers } [identifiers]
-        
-        @property { boolean } [isSet]
-        
-        @property { string } [sellerIdentifier]
-        
-        @property { ReturnConfig } [returnConfig]
-        
-        @property { string } [uid]
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef ArticleIdentifiers
-        
-        
-        @property { string } [ean]
-        
-        @property { string } [skuCode]
-        
-         
-    */
-
-/**
-        @typedef ReturnConfig
-        
-        
-        @property { number } [time]
-        
-        @property { string } [unit]
-        
-        @property { boolean } [returnable]
-        
-         
-    */
-
-/**
-        @typedef CurrentOperationalStatus
-        
-        
-        @property { number } [id]
-        
-        @property { number } [stateId]
-        
-        @property { boolean } [kafkaSync]
-        
-        @property { Array<CurrentOperationalStatusReasons> } [reasons]
-        
-        @property { number } [storeId]
-        
-        @property { string } [stateType]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [bagId]
-        
-        @property { string } [status]
-        
-        @property { string } [createdAt]
-        
-        @property { CurrentOperationalStatusBagStateMapper } [bagStateMapper]
-        
-         
-    */
-
-/**
-        @typedef CurrentOperationalStatusReasons
-        
-        
-        @property { number } [id]
-        
-        @property { string } [state]
-        
-        @property { string } [slug]
-        
-        @property { string } [displayName]
-        
-         
-    */
-
-/**
-        @typedef CurrentOperationalStatusBagStateMapper
-        
-        
-        @property { string } [stateType]
-        
-        @property { string } [appStateName]
-        
-        @property { string } [displayName]
-        
-        @property { number } [id]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [journeyType]
-        
-        @property { string } [name]
-        
-        @property { string } [appDisplayName]
-        
-        @property { boolean } [appFacing]
-        
-        @property { boolean } [notifyCustomer]
-        
-         
-    */
-
-/**
-        @typedef Brand
-        
-        
-        @property { string } [modifiedOn]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [brandName]
-        
-        @property { boolean } [isVirtualInvoice]
-        
-        @property { number } [id]
-        
-        @property { boolean } [creditNoteAllowed]
-        
-        @property { string } [logo]
-        
-         
-    */
-
-/**
-        @typedef AffiliateBagDetails
-        
-        
-        @property { string } [affiliateBagId]
-        
-        @property { string } [affiliateOrderId]
-        
-        @property { AffiliateMeta } [affiliateMeta]
-        
-        @property { number } [loyaltyDiscount]
-        
-        @property { number } [employeeDiscount]
-        
-         
-    */
-
-/**
-        @typedef AffiliateMeta
-        
-        
-        @property { number } [sizeLevelTotalQty]
-        
-        @property { Fynd } [fynd]
-        
-        @property { boolean } [isPriority]
-        
-        @property { number } [employeeDiscount]
-        
-        @property { number } [loyaltyDiscount]
-        
-         
-    */
-
-/**
-        @typedef Fynd
-        
-        
-        @property { string } [fulfilmentIdentifier]
-        
-         
-    */
-
-/**
-        @typedef GstDetails
-        
-        
-        @property { number } [valueOfGood]
-        
-        @property { number } [gstTaxPercentage]
-        
-        @property { boolean } [isDefaultHsnCode]
-        
-        @property { number } [brandCalculatedAmount]
-        
-        @property { string } [gstFee]
-        
-        @property { string } [gstTag]
-        
-        @property { string } [hsnCode]
-        
-         
-    */
-
-/**
-        @typedef BreakupValues
-        
-        
-        @property { string } [display]
-        
-        @property { number } [value]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef DeliveryAddress
-        
-        
-        @property { string } [pincode]
-        
-        @property { string } [landmark]
-        
-        @property { string } [contactPerson]
-        
-        @property { string } [phone]
-        
-        @property { string } [state]
-        
-        @property { string } [version]
-        
-        @property { string } [address1]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [addressType]
-        
-        @property { string } [addressCategory]
-        
-        @property { string } [area]
-        
-        @property { string } [city]
-        
-        @property { number } [latitude]
-        
-        @property { number } [longitude]
-        
-        @property { string } [email]
-        
-        @property { string } [country]
-        
-        @property { string } [address2]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [name]
-        
-        @property { string } [address]
-        
-         
-    */
-
-/**
-        @typedef FulfillingStore
-        
-        
-        @property { string } [address1]
-        
-        @property { string } [storeEmail]
-        
-        @property { string } [code]
-        
-        @property { StoreAddressJson } [storeAddressJson]
-        
-        @property { string } [country]
-        
-        @property { string } [state]
-        
-        @property { string } [pincode]
-        
-        @property { string } [contactPerson]
-        
-        @property { Array<any> } [brandStoreTags]
-        
-        @property { string } [locationType]
-        
-        @property { string } [address2]
-        
-        @property { boolean } [isArchived]
-        
-        @property { number } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { boolean } [isEnabledForRecon]
-        
-        @property { string } [city]
-        
-        @property { FulfillingStoreMeta } [meta]
-        
-        @property { string } [fulfillmentChannel]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [loginUsername]
-        
-        @property { string } [phone]
-        
-        @property { number } [packagingMaterialCount]
-        
-        @property { string } [name]
-        
-        @property { number } [companyId]
-        
-         
-    */
-
-/**
-        @typedef StoreAddressJson
-        
-        
-        @property { string } [area]
-        
-        @property { string } [city]
-        
-        @property { number } [longitude]
-        
-        @property { string } [email]
-        
-        @property { string } [phone]
-        
-        @property { string } [address2]
-        
-        @property { string } [landmark]
-        
-        @property { number } [latitude]
-        
-        @property { string } [addressType]
-        
-        @property { string } [addressCategory]
-        
-        @property { string } [state]
-        
-        @property { string } [pincode]
-        
-        @property { string } [version]
-        
-        @property { string } [address1]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [country]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [contactPerson]
-        
-         
-    */
-
-/**
-        @typedef FulfillingStoreMeta
-        
-        
-        @property { AdditionalContactDetails } [additionalContactDetails]
-        
-        @property { Array<Timing> } [timing]
-        
-        @property { Documents } [documents]
-        
-        @property { string } [displayName]
-        
-        @property { string } [stage]
-        
-        @property { string } [gstNumber]
-        
-        @property { boolean } [allowDpAssignmentFromFynd]
-        
-         
-    */
-
-/**
-        @typedef AdditionalContactDetails
-        
-        
-        @property { Array<any> } [number]
-        
-         
-    */
-
-/**
-        @typedef Timing
-        
-        
-        @property { Opening } [opening]
-        
-        @property { string } [weekday]
-        
-        @property { boolean } [open]
-        
-        @property { Closing } [closing]
-        
-         
-    */
-
-/**
-        @typedef Opening
-        
-        
-        @property { number } [hour]
-        
-        @property { number } [minute]
-        
-         
-    */
-
-/**
-        @typedef Closing
-        
-        
-        @property { number } [hour]
-        
-        @property { number } [minute]
-        
-         
-    */
-
-/**
-        @typedef Documents
-        
-        
-        @property { Gst } [gst]
-        
-         
-    */
-
-/**
-        @typedef Gst
-        
-        
-        @property { string } [value]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [legalName]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Invoice
-        
-        
-        @property { string } [updatedDate]
-        
-        @property { string } [invoiceUrl]
-        
-        @property { string } [labelUrl]
-        
-         
-    */
-
-/**
-        @typedef ProductItems
-        
-        
-        @property { string } [code]
-        
-        @property { string } [lastUpdatedAt]
-        
-        @property { string } [brand]
-        
-        @property { Array<string> } [image]
-        
-        @property { number } [l3Category]
-        
-        @property { number } [brandId]
-        
-        @property { string } [name]
-        
-        @property { boolean } [canCancel]
-        
-        @property { string } [size]
-        
-        @property { string } [slugKey]
-        
-        @property { string } [l3CategoryName]
-        
-        @property { Array<string> } [l2Category]
-        
-        @property { number } [id]
-        
-        @property { boolean } [canReturn]
-        
-        @property { Array<string> } [l1Category]
-        
-        @property { ProductItemAttributes } [attributes]
-        
-         
-    */
-
-/**
-        @typedef ProductItemAttributes
-        
-        
-        @property { string } [itemCode]
-        
-        @property { string } [brandName]
-        
-        @property { string } [countryOfOrigin]
-        
-         
-    */
-
-/**
-        @typedef ShipmentMeta
-        
-        
-        @property { Timestamp } [timestamp]
-        
-        @property { Object } [bagWeight]
-        
-        @property { DpOptions } [dpOptions]
-        
-        @property { string } [orderType]
-        
-        @property { boolean } [sameStoreAvailable]
-        
-        @property { boolean } [assignDpFromSb]
-        
-        @property { string } [dpId]
-        
-        @property { number } [weight]
-        
-        @property { Formatted } [formatted]
-        
-        @property { DebugInfo } [debugInfo]
-        
-        @property { string } [dpSortKey]
-        
-        @property { string } [packagingName]
-        
-         
-    */
-
-/**
-        @typedef Timestamp
-        
-        
-        @property { string } [max]
-        
-        @property { string } [min]
-        
-         
-    */
-
-/**
-        @typedef DpOptions
-        
-        
-        @property { DpOptionId } [dpOptionId]
-        
-         
-    */
-
-/**
-        @typedef DpOptionId
-        
-        
-        @property { number } [fPriority]
-        
-        @property { string } [operations]
-        
-        @property { number } [rPriority]
-        
-        @property { string } [paymentMode]
-        
-        @property { number } [fmPriority]
-        
-        @property { number } [lmPriority]
-        
-        @property { number } [rvpPriority]
-        
-        @property { boolean } [assignDpFromSb]
-        
-         
-    */
-
-/**
-        @typedef Formatted
-        
-        
-        @property { string } [max]
-        
-        @property { string } [min]
-        
-         
-    */
-
-/**
-        @typedef DebugInfo
-        
-        
-        @property { string } [stormbreakerUuid]
-        
-         
-    */
-
-/**
-        @typedef Promise
-        
-        
-        @property { Timestamp } [timestamp]
-        
-         
-    */
-
-/**
-        @typedef Reasons
-        
-        
-        @property { string } [reasonText]
-        
-        @property { boolean } [showTextArea]
-        
-        @property { string } [feedbackType]
-        
-        @property { string } [flow]
-        
-        @property { number } [reasonId]
-        
-        @property { number } [priority]
-        
-         
-    */
-
-/**
-        @typedef ShipmentStatus
-        
-        
-        @property { string } [title]
-        
-        @property { string } [hexCode]
-        
-         
-    */
-
-/**
-        @typedef ShipmentUserInfo
-        
-        
-        @property { string } [gender]
-        
-        @property { string } [mobile]
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-         
-    */
-
-/**
-        @typedef Track
-        
-        
-        @property { string } [awb]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [lastLocationRecievedAt]
-        
-        @property { string } [reason]
-        
-        @property { string } [shipmentType]
-        
-        @property { string } [status]
-        
-        @property { string } [updatedTime]
-        
-        @property { string } [accountName]
-        
-         
-    */
-
-/**
-        @typedef TrackingDetails
-        
-        
-        @property { boolean } [isCurrent]
-        
-        @property { string } [status]
-        
-        @property { string } [time]
-        
-        @property { string } [isPassed]
-        
-         
-    */
-
-/**
-        @typedef UserInfo
-        
-        
-        @property { string } [gender]
-        
-        @property { string } [mobile]
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-         
-    */
-
-/**
-        @typedef ApefaceApiError
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef Access
-        
-        
-        @property { boolean } [answer]
-        
-        @property { boolean } [askQuestion]
-        
-        @property { boolean } [comment]
-        
-        @property { boolean } [rnr]
-        
-         
-    */
-
-/**
-        @typedef AddMediaListRequest
-        
-        
-        @property { string } [entityId]
-        
-        @property { string } [entityType]
-        
-        @property { Array<AddMediaRequest> } [mediaList]
-        
-        @property { string } [refId]
-        
-        @property { string } [refType]
-        
-         
-    */
-
-/**
-        @typedef AddMediaRequest
-        
-        
-        @property { string } [cloudId]
-        
-        @property { string } [cloudName]
-        
-        @property { string } [cloudProvider]
-        
-        @property { string } [entityId]
-        
-        @property { string } [entityType]
-        
-        @property { string } [mediaUrl]
-        
-        @property { string } [refId]
-        
-        @property { string } [refType]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [thumbnailUrl]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Attribute
-        
-        
-        @property { string } [createdOn]
-        
-        @property { string } [description]
-        
-        @property { string } [id]
-        
-        @property { string } [modifiedOn]
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { Array<TagMeta> } [tags]
-        
-         
-    */
-
-/**
-        @typedef AttributeObject
-        
-        
-        @property { string } [description]
-        
-        @property { string } name
-        
-        @property { string } [slug]
-        
-        @property { string } [title]
-        
-        @property { string } type
-        
-        @property { number } value
-        
-         
-    */
-
-/**
-        @typedef CheckEligibilityResponse
-        
-        
-        @property { Access } [access]
-        
-        @property { MediaCloud } [mediaCloud]
-        
-         
-    */
-
-/**
-        @typedef Cloud
-        
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-        @property { string } [provider]
-        
-         
-    */
-
-/**
-        @typedef CommentRequest
-        
-        
-        @property { Array<string> } comment
-        
-        @property { string } entityId
-        
-        @property { string } entityType
-        
-         
-    */
-
-/**
-        @typedef CreateQNARequest
-        
-        
-        @property { Array<string> } [choices]
-        
-        @property { string } entityId
-        
-        @property { string } entityType
-        
-        @property { number } [maxLen]
-        
-        @property { number } [sortPriority]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } text
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef DeviceMeta
-        
-        
-        @property { string } [appVersion]
-        
-        @property { string } [platform]
-        
-         
-    */
-
-/**
-        @typedef MediaCloud
-        
-        
-        @property { string } [key]
-        
-        @property { string } [name]
-        
-        @property { string } [namespace]
-        
-        @property { string } [path]
-        
-        @property { string } [provider]
-        
-        @property { string } [secret]
-        
-         
-    */
-
-/**
-        @typedef MediaMeta
-        
-        
-        @property { Cloud } [cloud]
-        
-        @property { Array<string> } [comment]
-        
-        @property { string } [description]
-        
-        @property { string } [id]
-        
-        @property { string } [type]
-        
-        @property { Url } [url]
-        
-         
-    */
-
-/**
-        @typedef PageCursor
-        
-        
-        @property { boolean } [hasNext]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { number } [itemTotal]
-        
-        @property { string } [nextId]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef PageNumber
-        
-        
-        @property { number } [current]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [itemTotal]
-        
-        @property { number } [size]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ReportAbuseRequest
-        
-        
-        @property { string } [description]
-        
-        @property { string } entityId
-        
-        @property { string } entityType
-        
-         
-    */
-
-/**
-        @typedef SaveAttributeRequest
-        
-        
-        @property { string } [description]
-        
-        @property { string } name
-        
-        @property { string } slug
-        
-         
-    */
-
-/**
-        @typedef TagMeta
-        
-        
-        @property { Array<MediaMeta> } [media]
-        
-        @property { string } [name]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef UpdateAbuseStatusRequest
-        
-        
-        @property { boolean } [abusive]
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [approve]
-        
-        @property { string } [description]
-        
-        @property { string } [entityId]
-        
-        @property { string } [entityType]
-        
-        @property { string } [id]
-        
-         
-    */
-
-/**
-        @typedef UpdateAttributeRequest
-        
-        
-        @property { string } [description]
-        
-        @property { string } name
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef UpdateCommentRequest
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [approve]
-        
-        @property { Array<string> } comment
-        
-        @property { string } id
-        
-         
-    */
-
-/**
-        @typedef UpdateMediaListRequest
-        
-        
-        @property { boolean } [approve]
-        
-        @property { boolean } [archive]
-        
-        @property { string } [entityType]
-        
-        @property { Array<string> } [ids]
-        
-         
-    */
-
-/**
-        @typedef UpdateQNARequest
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [approve]
-        
-        @property { Array<string> } [choices]
-        
-        @property { string } [id]
-        
-        @property { Array<string> } [tags]
-        
-         
-    */
-
-/**
-        @typedef UpdateReviewRequest
-        
-        
-        @property { boolean } [active]
-        
-        @property { string } [application]
-        
-        @property { boolean } [approve]
-        
-        @property { boolean } [archive]
-        
-        @property { Array<AttributeObject> } [attributesRating]
-        
-        @property { string } [description]
-        
-        @property { DeviceMeta } [deviceMeta]
-        
-        @property { string } [entityId]
-        
-        @property { string } [entityType]
-        
-        @property { Array<MediaMeta> } [mediaResource]
-        
-        @property { number } [rating]
-        
-        @property { string } [reviewId]
-        
-        @property { string } [templateId]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef UpdateVoteRequest
-        
-        
-        @property { string } [action]
-        
-        @property { boolean } [active]
-        
-        @property { string } [id]
-        
-        @property { string } [refId]
-        
-        @property { string } [refType]
-        
-         
-    */
-
-/**
-        @typedef Url
-        
-        
-        @property { string } [main]
-        
-        @property { string } [thumbnail]
-        
-         
-    */
-
-/**
-        @typedef VoteRequest
-        
-        
-        @property { string } [action]
-        
-        @property { string } [entityId]
-        
-        @property { string } [entityType]
-        
-        @property { string } [refId]
-        
-        @property { string } [refType]
-        
-         
-    */
-
-/**
-        @typedef XCursorGetResponse
-        
-        
-        @property { Object } [items]
-        
-        @property { PageCursor } [page]
-        
-         
-    */
-
-/**
-        @typedef XInsertResponse
-        
-        
-        @property { string } [ids]
-        
-         
-    */
-
-/**
-        @typedef XNumberGetResponse
-        
-        
-        @property { Object } [items]
-        
-        @property { PageNumber } [page]
-        
-         
-    */
-
-/**
-        @typedef XUpdateResponse
-        
-        
-        @property { string } [id]
-        
-         
-    */
-
-/**
-        @typedef UpdateCartShipmentItem
-        
-        
-        @property { number } [quantity]
-        
-        @property { string } articleUid
-        
-        @property { string } shipmentType
-        
-         
-    */
-
-/**
-        @typedef UpdateCartShipmentRequest
-        
-        
-        @property { Array<UpdateCartShipmentItem> } shipments
-        
-         
-    */
-
-/**
-        @typedef Files
-        
-        
-        @property { Array<string> } values
-        
-        @property { string } key
-        
-         
-    */
-
-/**
-        @typedef CartPosCheckoutRequest
-        
-        
-        @property { string } [merchantCode]
-        
-        @property { Object } [extraMeta]
-        
-        @property { string } [fyndstoreEmpId]
-        
-        @property { Object } [billingAddress]
-        
-        @property { number } [billingAddressId]
-        
-        @property { Object } [staff]
-        
-        @property { boolean } [pos]
-        
-        @property { string } paymentMode
-        
-        @property { number } [pickAtStoreUid]
-        
-        @property { number } [addressId]
-        
-        @property { Files } [files]
-        
-        @property { string } [paymentIdentifier]
-        
-        @property { Object } [deliveryAddress]
-        
-        @property { Object } [paymentParams]
-        
-        @property { number } [orderingStore]
-        
-        @property { string } [aggregator]
-        
-        @property { string } orderType
-        
-        @property { boolean } [paymentAutoConfirm]
-        
-        @property { Object } [meta]
-        
-        @property { string } [callbackUrl]
-        
-         
-    */
-
-/**
-        @typedef CartDeliveryModesResponse
-        
-        
-        @property { Array<number> } [pickupStores]
-        
-        @property { Array<string> } [availableModes]
-        
-         
-    */
-
-/**
-        @typedef PickupStoreDetail
-        
-        
-        @property { string } [area]
-        
-        @property { string } [landmark]
-        
-        @property { string } [address]
-        
-        @property { string } [country]
-        
-        @property { number } [pincode]
-        
-        @property { string } [storeCode]
-        
-        @property { number } [uid]
-        
-        @property { string } [phone]
-        
-        @property { string } [areaCode]
-        
-        @property { string } [addressType]
-        
-        @property { string } [areaCodeSlug]
-        
-        @property { string } [city]
-        
-        @property { string } [state]
-        
-        @property { string } [email]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef StoreDetailsResponse
-        
-        
-        @property { Array<PickupStoreDetail> } [items]
-        
-         
-    */
-
-/**
-        @typedef GetPincodeCityResponse
-        
-        
-        @property { string } requestUuid
-        
-        @property { string } stormbreakerUuid
-        
-        @property { boolean } success
-        
-        @property { Array<LogisticPincodeData> } data
-        
-         
-    */
-
-/**
-        @typedef LogisticPincodeData
-        
-        
-        @property { LogisticMeta } [meta]
-        
-        @property { Array<LogisticParents> } [parents]
-        
-        @property { string } [subType]
-        
-        @property { string } [name]
-        
-        @property { LogisticError } [error]
-        
-        @property { string } [uid]
-        
-        @property { string } [displayName]
-        
-         
-    */
-
-/**
-        @typedef LogisticMeta
-        
-        
-        @property { string } [zone]
-        
-        @property { Array<any> } [deliverables]
-        
-         
-    */
-
-/**
-        @typedef LogisticParents
-        
-        
-        @property { string } [subType]
-        
-        @property { string } [name]
-        
-        @property { string } [displayName]
-        
-        @property { string } [uid]
-        
-         
-    */
-
-/**
-        @typedef LogisticError
-        
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef GetTatProductReqBody
-        
-        
-        @property { LocationDetails } locationDetails
-        
-        @property { string } source
-        
-        @property { string } toPincode
-        
-        @property { string } action
-        
-        @property { string } identifier
-        
-        @property { string } journey
-        
-         
-    */
-
-/**
-        @typedef LocationDetails
-        
-        
-        @property { string } [fromPincode]
-        
-        @property { TatProductArticles } [articles]
-        
-        @property { number } [fulfillmentId]
-        
-         
-    */
-
-/**
-        @typedef TatProductArticles
-        
-        
-        @property { Object } [error]
-        
-        @property { LogisticResponseCategory } [category]
-        
-        @property { LogisticPromise } [promise]
-        
-         
-    */
-
-/**
-        @typedef LogisticRequestCategory
-        
-        
-        @property { number } [id]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
-        @typedef LogisticPromise
-        
-        
-        @property { LogisticTimestamp } [timestamp]
-        
-        @property { Formatted } [formatted]
-        
-         
-    */
-
-/**
-        @typedef LogisticTimestamp
-        
-        
-        @property { number } [min]
-        
-        @property { number } [max]
-        
-         
-    */
-
-/**
-        @typedef GetTatProductResponse
-        
-        
-        @property { LocationDetails } locationDetails
-        
-        @property { string } requestUuid
-        
-        @property { Object } error
-        
-        @property { string } toCity
-        
-        @property { string } source
-        
-        @property { string } toPincode
-        
-        @property { string } action
-        
-        @property { string } stormbreakerUuid
-        
-        @property { boolean } success
-        
-        @property { string } identifier
-        
-        @property { string } journey
-        
-         
-    */
-
-/**
-        @typedef LogisticResponseCategory
-        
-        
-        @property { number } [id]
-        
-        @property { string } [level]
-        
-         
-    */
-
-class Catalog {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-    *
-    * @summary: Get a product
-    * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-    
-    **/
-  getProductDetailBySlug({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/${slug}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get the sizes of a product
-    * @description: A product can exist in multiple sizes. Use this API to fetch all the available sizes of a product. If successful, returns a ProductSize object in the response body as specified in `ProductSizes`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-    * @param {string} [arg.storeId] - The store id of the product whose sizes need to be retrieved
-    
-    **/
-  getProductSizesBySlug({ slug, storeId } = {}) {
-    const query = {};
-    query["store_id"] = storeId;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/${slug}/sizes/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get price a product size
-    * @description: Any available product can exist in multiple sizes. Sometimes prices may vary among different sizes of the same product. Use this API to retrieve the price of the product of a particular size with the location details it is available in.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-    * @param {string} arg.size - The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0/products/{slug}/sizes/**
-    * @param {string} arg.pincode - The pincode of the product for which the price needs to be retrieved.
-    * @param {string} [arg.storeId] - The store of the product whose size level price need to be retrieved
-    
-    **/
-  getProductPriceBySlug({ slug, size, pincode, storeId } = {}) {
-    const query = {};
-    query["store_id"] = storeId;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/${slug}/sizes/${size}/pincode/${pincode}/price/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List sellers of a product
-    * @description: A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-    * @param {string} arg.size - The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0.0/products/sizes**
-    * @param {string} arg.pincode - The pincode of the product for which the price needs to be retrieved.
-    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getProductSellersBySlug({ slug, size, pincode, pageNo, pageSize } = {}) {
-    const query = {};
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/${slug}/sizes/${size}/pincode/${pincode}/sellers/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Compare products
-    * @description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/**
-    
-    **/
-  getProductComparisonBySlugs({ slug } = {}) {
-    const query = {};
-    query["slug"] = slug;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/compare/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get comparison between similar products
-    * @description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **v1.0/products/**
-    
-    **/
-  getSimilarComparisonProductBySlug({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/${slug}/similar/compare/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get comparison between frequently compared products with the given product
-    * @description: Compare between the features of the give product with frequently compared products Use this API to compare how one product ranks against other products
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier `slug` of a product. You can retrieve this from the APIs that list products like **v1.0/products/**
-    
-    **/
-  getComparedFrequentlyProductBySlug({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/${slug}/similar/compared-frequently/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get similar products
-    * @description: Get products similar to the one specified by the `identifier`. If successful, it returns a group of similar products based on type as described in `SimilarProductByTypeResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-    * @param {string} arg.similarType - The tag_identifier is used to fetch the particular type of similar product such as basic, visual, price, seller, category and spec.
-    
-    **/
-  getProductSimilarByIdentifier({ slug, similarType } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/${slug}/similar/${similarType}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get variant of a particular product
-    * @description: A product can have a different type of variants varies from color to shade etc. Use this API to fetch all the available variants of a product. If successful, returns a Products for different variants type in the response body as specified in `ProductVariantResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-    
-    **/
-  getProductVariantsBySlug({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/${slug}/variants/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get the stock of a product
-    * @description: Retrieve the available stock of the products. You can use this API to retrieve stock of multiple products at a time. Only 50 product IDs can be given in a single API request
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.itemId] - Product id to get product stock (Max. 50 allowed)
-    * @param {string} [arg.alu] - Product identifier alu to get product stock (Max. 50 allowed)
-    * @param {string} [arg.skuCode] - Product identifier sku_code to get product stock (Max. 50 allowed)
-    * @param {string} [arg.ean] - Product identifier ean to get product stock (Max. 50 allowed)
-    * @param {string} [arg.upc] - Product identifier upc to get product stock (Max. 50 allowed)
-    
-    **/
-  getProductStockByIds({ itemId, alu, skuCode, ean, upc } = {}) {
-    const query = {};
-    query["item_id"] = itemId;
-    query["alu"] = alu;
-    query["sku_code"] = skuCode;
-    query["ean"] = ean;
-    query["upc"] = upc;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/stock-status/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get the stock of a product
-    * @description: Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
-    * @param {Object} arg - arg object.
-    * @param {string} arg.timestamp - timestamp in UTC format (2020-07-23T10:27:50Z)
-    * @param {number} [arg.pageSize] - Limit of number of items for stock status default 12
-    * @param {string} [arg.pageId] - will give next page results
-    
-    **/
-  getProductStockForTimeByIds({ timestamp, pageSize, pageId } = {}) {
-    const query = {};
-    query["timestamp"] = timestamp;
-    query["page_size"] = pageSize;
-    query["page_id"] = pageId;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/stock-status/poll/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List the products
-    * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
-    * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
-    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
-    * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-    * @param {string} [arg.pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    * @param {number} [arg.pageNo] - If page_type is number then pass it to fetch page items. Default is 1.
-    * @param {string} [arg.pageType] - For pagination type should be cursor or number. Default is cursor.
-    
-    **/
-  getProducts({
-    q,
-    f,
-    filters,
-    sortOn,
-    pageId,
-    pageSize,
-    pageNo,
-    pageType,
-  } = {}) {
-    const query = {};
-    query["q"] = q;
-    query["f"] = f;
-    query["filters"] = filters;
-    query["sort_on"] = sortOn;
-    query["page_id"] = pageId;
-    query["page_size"] = pageSize;
-    query["page_no"] = pageNo;
-    query["page_type"] = pageType;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/products/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List the products
-    * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
-    * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
-    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
-    * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getProductsPaginator({ q, f, filters, sortOn, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getProducts({
-        q: q,
-        f: f,
-        filters: filters,
-        sortOn: sortOn,
-        pageId: pageId,
-        pageSize: pageSize,
-        pageNo: pageNo,
-        pageType: pageType,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback);
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: List all the brands
-    * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
-    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getBrands({ department, pageNo, pageSize } = {}) {
-    const query = {};
-    query["department"] = department;
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/brands/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get metadata of a brand
-    * @description: Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a brand. i.e; `slug` of a brand. You can retrieve these from the APIs that list brands like **v1.0/brands/**
-    
-    **/
-  getBrandDetailBySlug({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/brands/${slug}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List all the categories
-    * @description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
-    
-    **/
-  getCategories({ department } = {}) {
-    const query = {};
-    query["department"] = department;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/categories/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get metadata of a category
-    * @description: Fetch metadata of a category. If successful, returns a metadata object specified in `CategoryMetaResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a category. i.e; `slug` of a category. You can retrieve these from the APIs that list categories like **v1.0/categories/**
-    
-    **/
-  getCategoryDetailBySlug({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/categories/${slug}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List the products
-    * @description: List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.sortOn] - Each response will contain **sort_on** param, which should be sent back to make pagination work.
-    * @param {string} [arg.pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getHomeProducts({ sortOn, pageId, pageSize } = {}) {
-    const query = {};
-    query["sort_on"] = sortOn;
-    query["page_id"] = pageId;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/home/listing/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List all the departments
-    * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
-    * @param {Object} arg - arg object.
-    
-    **/
-  getDepartments({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/departments/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get relevant suggestions for a search query
-    * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of what is given in query. This is particularly useful to enhance the user experience in search. The given search query can be a partial name of any product, brand and category. For example, if the given search query `q` is _ski_ the relevant search suggestions returned might be a list containing _skirt_, _ski shoes_, __skin cream_ etc.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.q - The search query. This can be a partial or complete name of a either a product, brand or category
-    
-    **/
-  getSearchResults({ q } = {}) {
-    const query = {};
-    query["q"] = q;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/auto-complete/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List all the collections
-    * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getCollections({ pageNo, pageSize } = {}) {
-    const query = {};
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/collections/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get the items in a collection
-    * @description: Get items in a collection specified by its `slug`.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items
-    * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
-    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
-    * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-    * @param {string} [arg.pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getCollectionItemsBySlug({
-    slug,
-    f,
-    filters,
-    sortOn,
-    pageId,
-    pageSize,
-  } = {}) {
-    const query = {};
-    query["f"] = f;
-    query["filters"] = filters;
-    query["sort_on"] = sortOn;
-    query["page_id"] = pageId;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/collections/${slug}/items/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get a particular collection
-    * @description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve.
-    
-    **/
-  getCollectionDetailBySlug({ slug } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/collections/${slug}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get a list of followed Products, Brands, Collections
-    * @description: A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-    
-    **/
-  getFollowedListing({ collectionType } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/follow/${collectionType}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Follow a particular Product
-    * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-    * @param {string} arg.collectionId - the `id` of the collection type you want to follow
-    
-    **/
-  followById({ collectionType, collectionId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: UnFollow a Product
-    * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-    * @param {string} arg.collectionId - the `id` of the collection type you want to unfollow
-    
-    **/
-  unfollowById({ collectionType, collectionId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Follow Count
-    * @description: Get count of followers for given collection type and collection id.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - the `type` of the collection products/brands/collections.
-    * @param {string} arg.collectionId - the `id` of the product/brand/collection.
-    
-    **/
-  getFollowerCountById({ collectionType, collectionId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/count/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get the Ids of followed product, brand and collection.
-    * @description: You can get the ids of all the followed Product, Brand and Collections. Pass collection_type as query parameter to fetch specific Ids
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.collectionType] - Type of collection followed. i. e. products, brands, collections
-    
-    **/
-  getFollowIds({ collectionType } = {}) {
-    const query = {};
-    query["collection_type"] = collectionType;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/follow/ids/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List store meta information.
-    * @description: Use this API to get list of stores for specific application. If successful, returns list of stores specified in `StoreListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    * @param {string} [arg.q] - This can be used to search a particulr store by its name or store_code.
-    * @param {number} [arg.range] - This can be used to retrieve store within a particular range. For eg range=10000 (in meters)
-    * @param {number} [arg.latitude] - This should be the latitude of the location from which one needs to retreive the nearest stores.
-    * @param {number} [arg.longitude] - This should be the longitude of the location from which one needs to retreive the nearest stores.
-    
-    **/
-  getStores({ pageNo, pageSize, q, range, latitude, longitude } = {}) {
-    const query = {};
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
-    query["q"] = q;
-    query["range"] = range;
-    query["latitude"] = latitude;
-    query["longitude"] = longitude;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/catalog/v1.0/locations/`,
-      query,
-      undefined
-    );
-  }
+const Joi = require("joi");
+class Validator {
+  static ProductDetailAttribute = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      type: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static ProductDetailGroupedAttribute = function () {
+    return Joi.object({
+      details: Joi.array().items(this.ProductDetailAttribute()),
+
+      title: Joi.string(),
+    });
+  };
+
+  static Media = function () {
+    return Joi.object({
+      url: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static ProductListingActionPage = function () {
+    return Joi.object({
+      query: Joi.object(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static ProductListingAction = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      page: this.ProductListingActionPage(),
+    });
+  };
+
+  static ProductBrand = function () {
+    return Joi.object({
+      uid: Joi.number(),
+
+      action: this.ProductListingAction(),
+
+      logo: this.Media(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static ProductDetail = function () {
+    return Joi.object({
+      attributes: Joi.object(),
+
+      productOnlineDate: Joi.string(),
+
+      highlights: Joi.array().items(Joi.string()),
+
+      groupedAttributes: Joi.array().items(
+        this.ProductDetailGroupedAttribute()
+      ),
+
+      ratingCount: Joi.number(),
+
+      medias: Joi.array().items(this.Media()),
+
+      type: Joi.string(),
+
+      brand: this.ProductBrand(),
+
+      imageNature: Joi.string(),
+
+      similars: Joi.array().items(Joi.string()),
+
+      shortDescription: Joi.string(),
+
+      uid: Joi.number(),
+
+      name: Joi.string(),
+
+      categories: Joi.array().items(this.ProductBrand()),
+
+      color: Joi.string(),
+
+      rating: Joi.number(),
+
+      tryouts: Joi.array().items(Joi.string()),
+
+      teaserTag: Joi.string(),
+
+      itemType: Joi.string(),
+
+      description: Joi.string(),
+
+      hasVariant: Joi.boolean(),
+
+      slug: Joi.string(),
+    });
+  };
+
+  static ErrorResponse = function () {
+    return Joi.object({
+      error: Joi.string(),
+    });
+  };
+
+  static ProductSize = function () {
+    return Joi.object({
+      quantity: Joi.number(),
+
+      display: Joi.string(),
+
+      isAvailable: Joi.boolean(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static SizeChartValues = function () {
+    return Joi.object({
+      col3: Joi.string(),
+
+      col6: Joi.string(),
+
+      col2: Joi.string(),
+
+      col1: Joi.string(),
+
+      col5: Joi.string(),
+
+      col4: Joi.string(),
+    });
+  };
+
+  static ColumnHeader = function () {
+    return Joi.object({
+      convertable: Joi.boolean(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static ColumnHeaders = function () {
+    return Joi.object({
+      col3: this.ColumnHeader(),
+
+      col6: this.ColumnHeader(),
+
+      col2: this.ColumnHeader(),
+
+      col1: this.ColumnHeader(),
+
+      col5: this.ColumnHeader(),
+
+      col4: this.ColumnHeader(),
+    });
+  };
+
+  static SizeChart = function () {
+    return Joi.object({
+      sizes: Joi.array().items(this.SizeChartValues()),
+
+      unit: Joi.string(),
+
+      title: Joi.string(),
+
+      description: Joi.string(),
+
+      headers: this.ColumnHeaders(),
+
+      sizeTip: Joi.string(),
+
+      image: Joi.string(),
+    });
+  };
+
+  static Price = function () {
+    return Joi.object({
+      currencyCode: Joi.string(),
+
+      currencySymbol: Joi.string(),
+
+      min: Joi.number(),
+
+      max: Joi.number(),
+    });
+  };
+
+  static ProductListingPrice = function () {
+    return Joi.object({
+      effective: this.Price(),
+
+      marked: this.Price(),
+    });
+  };
+
+  static ProductSizeStores = function () {
+    return Joi.object({
+      count: Joi.number(),
+    });
+  };
+
+  static ProductSizes = function () {
+    return Joi.object({
+      discount: Joi.string(),
+
+      sizes: Joi.array().items(this.ProductSize()),
+
+      sizeChart: this.SizeChart(),
+
+      price: this.ProductListingPrice(),
+
+      sellable: Joi.boolean(),
+
+      stores: this.ProductSizeStores(),
+    });
+  };
+
+  static ProductStockPrice = function () {
+    return Joi.object({
+      effective: Joi.number(),
+
+      marked: Joi.number(),
+
+      currency: Joi.string(),
+    });
+  };
+
+  static Store = function () {
+    return Joi.object({
+      uid: Joi.number(),
+
+      count: Joi.number(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static ArticleAssignment = function () {
+    return Joi.object({
+      level: Joi.string(),
+
+      strategy: Joi.string(),
+    });
+  };
+
+  static ProductSetDistributionSize = function () {
+    return Joi.object({
+      pieces: Joi.number(),
+
+      size: Joi.string(),
+    });
+  };
+
+  static ProductSetDistribution = function () {
+    return Joi.object({
+      sizes: Joi.array().items(this.ProductSetDistributionSize()),
+    });
+  };
+
+  static ProductSet = function () {
+    return Joi.object({
+      sizeDistribution: this.ProductSetDistribution(),
+
+      quantity: Joi.number(),
+    });
+  };
+
+  static Seller = function () {
+    return Joi.object({
+      uid: Joi.number(),
+
+      count: Joi.number(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static ProductSizePriceResponse = function () {
+    return Joi.object({
+      discount: Joi.string(),
+
+      price: this.ProductStockPrice(),
+
+      itemType: Joi.string(),
+
+      articleId: Joi.string(),
+
+      store: this.Store(),
+
+      sellerCount: Joi.number(),
+
+      strategyWiseListing: Joi.array().items(Joi.object()),
+
+      pricePerPrice: this.ProductStockPrice(),
+
+      specialBadge: Joi.string(),
+
+      quantity: Joi.number(),
+
+      articleAssignment: this.ArticleAssignment(),
+
+      set: this.ProductSet(),
+
+      longLat: Joi.array().items(Joi.number()),
+
+      pincode: Joi.number(),
+
+      seller: this.Seller(),
+    });
+  };
+
+  static ProductSizeSellerFilter = function () {
+    return Joi.object({
+      isSelected: Joi.boolean(),
+
+      name: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static Page = function () {
+    return Joi.object({
+      hasNext: Joi.boolean(),
+
+      itemTotal: Joi.number(),
+
+      type: Joi.string(),
+
+      nextId: Joi.string(),
+
+      hasPrevious: Joi.boolean(),
+
+      size: Joi.number(),
+
+      current: Joi.number(),
+    });
+  };
+
+  static ProductSizeSellersResponse = function () {
+    return Joi.object({
+      sortOn: Joi.array().items(this.ProductSizeSellerFilter()),
+
+      items: Joi.array().items(this.ProductSizePriceResponse()),
+
+      page: this.Page(),
+    });
+  };
+
+  static AttributeDetail = function () {
+    return Joi.object({
+      description: Joi.string(),
+
+      key: Joi.string(),
+
+      display: Joi.string(),
+    });
+  };
+
+  static ProductsComparisonResponse = function () {
+    return Joi.object({
+      attributesMetadata: Joi.array().items(this.AttributeDetail()),
+
+      items: Joi.array().items(this.ProductDetail()),
+    });
+  };
+
+  static ProductCompareResponse = function () {
+    return Joi.object({
+      subtitle: Joi.string(),
+
+      attributesMetadata: Joi.array().items(this.AttributeDetail()),
+
+      title: Joi.string(),
+
+      items: Joi.array().items(this.ProductDetail()),
+    });
+  };
+
+  static ProductFrequentlyComparedSimilarResponse = function () {
+    return Joi.object({
+      similars: Joi.array().items(this.ProductCompareResponse()),
+    });
+  };
+
+  static ProductSimilarItem = function () {
+    return Joi.object({
+      subtitle: Joi.string(),
+
+      title: Joi.string(),
+
+      items: Joi.array().items(this.ProductDetail()),
+    });
+  };
+
+  static SimilarProductByTypeResponse = function () {
+    return Joi.object({
+      similars: Joi.array().items(this.ProductSimilarItem()),
+    });
+  };
+
+  static ProductVariantItemResponse = function () {
+    return Joi.object({
+      medias: Joi.array().items(this.Media()),
+
+      value: Joi.string(),
+
+      uid: Joi.number(),
+
+      isAvailable: Joi.boolean(),
+
+      colorName: Joi.string(),
+
+      slug: Joi.string(),
+
+      name: Joi.string(),
+
+      action: this.ProductListingAction(),
+
+      color: Joi.string(),
+    });
+  };
+
+  static ProductVariantResponse = function () {
+    return Joi.object({
+      displayType: Joi.string(),
+
+      header: Joi.string(),
+
+      items: Joi.array().items(this.ProductVariantItemResponse()),
+    });
+  };
+
+  static ProductVariantsResponse = function () {
+    return Joi.object({
+      variants: Joi.array().items(this.ProductVariantResponse()),
+    });
+  };
+
+  static CompanyDetail = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      id: Joi.number(),
+    });
+  };
+
+  static StoreDetail = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      name: Joi.string(),
+
+      id: Joi.number(),
+
+      city: Joi.string(),
+    });
+  };
+
+  static ProductStockStatusItem = function () {
+    return Joi.object({
+      price: this.ProductStockPrice(),
+
+      company: this.CompanyDetail(),
+
+      itemId: Joi.number(),
+
+      uid: Joi.string(),
+
+      quantity: Joi.number(),
+
+      identifier: Joi.object(),
+
+      size: Joi.string(),
+
+      store: this.StoreDetail(),
+
+      seller: this.Seller(),
+    });
+  };
+
+  static ProductStockStatusResponse = function () {
+    return Joi.object({
+      items: Joi.array().items(this.ProductStockStatusItem()),
+    });
+  };
+
+  static ProductStockPolling = function () {
+    return Joi.object({
+      page: this.Page(),
+
+      items: Joi.array().items(this.ProductStockStatusItem()),
+    });
+  };
+
+  static ProductSortOn = function () {
+    return Joi.object({
+      isSelected: Joi.boolean(),
+
+      name: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static ProductListingDetail = function () {
+    return Joi.object({
+      attributes: Joi.object(),
+
+      productOnlineDate: Joi.string(),
+
+      highlights: Joi.array().items(Joi.string()),
+
+      groupedAttributes: Joi.array().items(
+        this.ProductDetailGroupedAttribute()
+      ),
+
+      discount: Joi.string(),
+
+      ratingCount: Joi.number(),
+
+      medias: Joi.array().items(this.Media()),
+
+      type: Joi.string(),
+
+      brand: this.ProductBrand(),
+
+      imageNature: Joi.string(),
+
+      similars: Joi.array().items(Joi.string()),
+
+      shortDescription: Joi.string(),
+
+      uid: Joi.number(),
+
+      name: Joi.string(),
+
+      categories: Joi.array().items(this.ProductBrand()),
+
+      color: Joi.string(),
+
+      rating: Joi.number(),
+
+      tryouts: Joi.array().items(Joi.string()),
+
+      teaserTag: Joi.string(),
+
+      itemType: Joi.string(),
+
+      price: this.ProductListingPrice(),
+
+      description: Joi.string(),
+
+      hasVariant: Joi.boolean(),
+
+      slug: Joi.string(),
+
+      sellable: Joi.boolean(),
+    });
+  };
+
+  static ProductFiltersKey = function () {
+    return Joi.object({
+      kind: Joi.string(),
+
+      logo: Joi.string(),
+
+      name: Joi.string(),
+
+      display: Joi.string(),
+    });
+  };
+
+  static ProductFiltersValue = function () {
+    return Joi.object({
+      count: Joi.number(),
+
+      value: Joi.string(),
+
+      displayFormat: Joi.string(),
+
+      queryFormat: Joi.string(),
+
+      currencyCode: Joi.string(),
+
+      selectedMin: Joi.number(),
+
+      min: Joi.number(),
+
+      max: Joi.number(),
+
+      selectedMax: Joi.number(),
+
+      currencySymbol: Joi.string(),
+
+      isSelected: Joi.boolean(),
+
+      display: Joi.string(),
+    });
+  };
+
+  static ProductFilters = function () {
+    return Joi.object({
+      key: this.ProductFiltersKey(),
+
+      values: Joi.array().items(this.ProductFiltersValue()),
+    });
+  };
+
+  static ProductListingResponse = function () {
+    return Joi.object({
+      sortOn: Joi.array().items(this.ProductSortOn()),
+
+      items: Joi.array().items(this.ProductListingDetail()),
+
+      filters: Joi.array().items(this.ProductFilters()),
+
+      page: this.Page(),
+    });
+  };
+
+  static ImageUrls = function () {
+    return Joi.object({
+      portrait: this.Media(),
+
+      landscape: this.Media(),
+    });
+  };
+
+  static BrandItem = function () {
+    return Joi.object({
+      discount: Joi.string(),
+
+      logo: this.Media(),
+
+      banners: this.ImageUrls(),
+
+      uid: Joi.number(),
+
+      action: this.ProductListingAction(),
+
+      name: Joi.string(),
+
+      departments: Joi.array().items(Joi.string()),
+
+      slug: Joi.string(),
+    });
+  };
+
+  static BrandListingResponse = function () {
+    return Joi.object({
+      page: this.Page(),
+
+      items: Joi.array().items(this.BrandItem()),
+    });
+  };
+
+  static BrandDetailResponse = function () {
+    return Joi.object({
+      uid: Joi.number(),
+
+      banners: this.ImageUrls(),
+
+      logo: this.Media(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static DepartmentIdentifier = function () {
+    return Joi.object({
+      uid: Joi.number(),
+
+      slug: Joi.string(),
+    });
+  };
+
+  static CategoryItems = function () {
+    return Joi.object({
+      banners: this.ImageUrls(),
+
+      uid: Joi.number(),
+
+      childs: Joi.array().items(Joi.object()),
+
+      action: this.ProductListingAction(),
+
+      slug: Joi.string(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static DepartmentCategoryTree = function () {
+    return Joi.object({
+      department: Joi.string(),
+
+      items: Joi.array().items(this.CategoryItems()),
+    });
+  };
+
+  static CategoryListingResponse = function () {
+    return Joi.object({
+      departments: Joi.array().items(this.DepartmentIdentifier()),
+
+      data: Joi.array().items(this.DepartmentCategoryTree()),
+    });
+  };
+
+  static CategoryMetaResponse = function () {
+    return Joi.object({
+      uid: Joi.number(),
+
+      banners: this.ImageUrls(),
+
+      logo: this.Media(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static HomeListingResponse = function () {
+    return Joi.object({
+      page: this.Page(),
+
+      message: Joi.string(),
+
+      items: Joi.array().items(this.ProductListingDetail()),
+    });
+  };
+
+  static Department = function () {
+    return Joi.object({
+      logo: this.Media(),
+
+      uid: Joi.number(),
+
+      slug: Joi.string(),
+
+      name: Joi.string(),
+
+      priorityOrder: Joi.number(),
+    });
+  };
+
+  static DepartmentResponse = function () {
+    return Joi.object({
+      items: Joi.array().items(this.Department()),
+    });
+  };
+
+  static PageQuery = function () {
+    return Joi.object({
+      brand: Joi.array().items(Joi.string()),
+
+      category: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static AutocompletePage = function () {
+    return Joi.object({
+      query: this.PageQuery(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static Action = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      page: this.AutocompletePage(),
+    });
+  };
+
+  static AutocompleteItem = function () {
+    return Joi.object({
+      logo: this.Media(),
+
+      action: this.Action(),
+
+      display: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static AutoCompleteResponse = function () {
+    return Joi.object({
+      items: Joi.array().items(this.AutocompleteItem()),
+    });
+  };
+
+  static CollectionListingFilterTag = function () {
+    return Joi.object({
+      isSelected: Joi.boolean(),
+
+      name: Joi.string(),
+
+      display: Joi.string(),
+    });
+  };
+
+  static CollectionListingFilterType = function () {
+    return Joi.object({
+      isSelected: Joi.boolean(),
+
+      name: Joi.string(),
+
+      display: Joi.string(),
+    });
+  };
+
+  static CollectionListingFilter = function () {
+    return Joi.object({
+      tags: Joi.array().items(this.CollectionListingFilterTag()),
+
+      type: Joi.array().items(this.CollectionListingFilterType()),
+    });
+  };
+
+  static GetCollectionDetailNest = function () {
+    return Joi.object({
+      allowFacets: Joi.boolean(),
+
+      query: Joi.object(),
+
+      tag: Joi.array().items(Joi.string()),
+
+      badge: Joi.object(),
+
+      logo: this.Media(),
+
+      type: Joi.string(),
+
+      schedule: Joi.object(),
+
+      meta: Joi.object(),
+
+      banners: this.ImageUrls(),
+
+      uid: Joi.string(),
+
+      appId: Joi.string(),
+
+      allowSort: Joi.boolean(),
+
+      name: Joi.string(),
+
+      visibleFacetsKeys: Joi.array().items(Joi.string()),
+
+      isActive: Joi.boolean(),
+
+      description: Joi.string(),
+
+      slug: Joi.string(),
+
+      action: this.ProductListingAction(),
+
+      cron: Joi.object(),
+    });
+  };
+
+  static GetCollectionListingResponse = function () {
+    return Joi.object({
+      page: this.Page(),
+
+      filters: this.CollectionListingFilter(),
+
+      items: Joi.array().items(this.GetCollectionDetailNest()),
+    });
+  };
+
+  static CollectionDetailResponse = function () {
+    return Joi.object({
+      badge: Joi.object(),
+
+      banners: this.ImageUrls(),
+
+      logo: this.Media(),
+
+      allowFacets: Joi.boolean(),
+
+      type: Joi.string(),
+
+      description: Joi.string(),
+
+      query: Joi.object(),
+
+      appId: Joi.string(),
+
+      allowSort: Joi.boolean(),
+
+      schedule: Joi.object(),
+
+      name: Joi.string(),
+
+      slug: Joi.string(),
+
+      visibleFacetsKeys: Joi.array().items(Joi.string()),
+
+      cron: Joi.object(),
+
+      isActive: Joi.boolean(),
+
+      meta: Joi.object(),
+
+      tag: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static GetFollowListingResponse = function () {
+    return Joi.object({
+      items: Joi.array().items(this.ProductDetail()),
+
+      page: this.Page(),
+    });
+  };
+
+  static FollowPostResponse = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      message: Joi.string(),
+    });
+  };
+
+  static FollowerCountResponse = function () {
+    return Joi.object({
+      count: Joi.number(),
+    });
+  };
+
+  static FollowIdsData = function () {
+    return Joi.object({
+      brands: Joi.array().items(Joi.number()),
+
+      products: Joi.array().items(Joi.number()),
+
+      collections: Joi.array().items(Joi.number()),
+    });
+  };
+
+  static FollowIdsResponse = function () {
+    return Joi.object({
+      data: this.FollowIdsData(),
+    });
+  };
+
+  static LatLong = function () {
+    return Joi.object({
+      coordinates: Joi.array().items(Joi.number()),
+
+      type: Joi.string(),
+    });
+  };
+
+  static Store1 = function () {
+    return Joi.object({
+      storeEmail: Joi.string(),
+
+      address: Joi.string(),
+
+      latLong: this.LatLong(),
+
+      uid: Joi.number(),
+
+      city: Joi.string(),
+
+      name: Joi.string(),
+
+      storeCode: Joi.string(),
+
+      state: Joi.string(),
+
+      pincode: Joi.number(),
+
+      country: Joi.string(),
+    });
+  };
+
+  static StoreListingResponse = function () {
+    return Joi.object({
+      page: this.Page(),
+
+      items: Joi.array().items(this.Store1()),
+    });
+  };
+
+  static CouponBreakup = function () {
+    return Joi.object({
+      value: Joi.number(),
+
+      isApplied: Joi.boolean(),
+
+      code: Joi.string(),
+
+      uid: Joi.string(),
+
+      message: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static DisplayBreakup = function () {
+    return Joi.object({
+      currencyCode: Joi.string(),
+
+      currencySymbol: Joi.string(),
+
+      value: Joi.number(),
+
+      display: Joi.string(),
+
+      key: Joi.string(),
+
+      message: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static LoyaltyPoints = function () {
+    return Joi.object({
+      isApplied: Joi.boolean(),
+
+      description: Joi.string(),
+
+      total: Joi.number(),
+
+      applicable: Joi.number(),
+    });
+  };
+
+  static RawBreakup = function () {
+    return Joi.object({
+      subtotal: Joi.number(),
+
+      fyndCash: Joi.number(),
+
+      coupon: Joi.number(),
+
+      youSaved: Joi.number(),
+
+      codCharge: Joi.number(),
+
+      deliveryCharge: Joi.number(),
+
+      total: Joi.number(),
+    });
+  };
+
+  static CartBreakup = function () {
+    return Joi.object({
+      coupon: this.CouponBreakup(),
+
+      display: Joi.array().items(this.DisplayBreakup()),
+
+      loyaltyPoints: this.LoyaltyPoints(),
+
+      raw: this.RawBreakup(),
+    });
+  };
+
+  static CartCurrency = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      symbol: Joi.string(),
+    });
+  };
+
+  static PromiseTimestamp = function () {
+    return Joi.object({
+      min: Joi.number(),
+
+      max: Joi.number(),
+    });
+  };
+
+  static PromiseFormatted = function () {
+    return Joi.object({
+      min: Joi.string(),
+
+      max: Joi.string(),
+    });
+  };
+
+  static ShipmentPromise = function () {
+    return Joi.object({
+      timestamp: this.PromiseTimestamp(),
+
+      formatted: this.PromiseFormatted(),
+    });
+  };
+
+  static Image = function () {
+    return Joi.object({
+      aspectRatio: Joi.string(),
+
+      secureUrl: Joi.string(),
+
+      url: Joi.string(),
+    });
+  };
+
+  static CategoryInfo = function () {
+    return Joi.object({
+      uid: Joi.number(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static ActionQuery = function () {
+    return Joi.object({
+      productSlug: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static ProductAction = function () {
+    return Joi.object({
+      url: Joi.string(),
+
+      query: this.ActionQuery(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static BaseInfo = function () {
+    return Joi.object({
+      uid: Joi.number(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static Product = function () {
+    return Joi.object({
+      images: Joi.array().items(this.Image()),
+
+      categories: Joi.array().items(this.CategoryInfo()),
+
+      uid: Joi.number(),
+
+      slug: Joi.string(),
+
+      name: Joi.string(),
+
+      action: this.ProductAction(),
+
+      brand: this.BaseInfo(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static CartProductIdentifer = function () {
+    return Joi.object({
+      identifier: Joi.string(),
+    });
+  };
+
+  static ProductPrice = function () {
+    return Joi.object({
+      currencyCode: Joi.string(),
+
+      currencySymbol: Joi.string(),
+
+      effective: Joi.number(),
+
+      addOn: Joi.number(),
+
+      selling: Joi.number(),
+
+      marked: Joi.number(),
+    });
+  };
+
+  static ProductPriceInfo = function () {
+    return Joi.object({
+      base: this.ProductPrice(),
+
+      converted: this.ProductPrice(),
+    });
+  };
+
+  static BasePrice = function () {
+    return Joi.object({
+      marked: Joi.number(),
+
+      currencyCode: Joi.string(),
+
+      currencySymbol: Joi.string(),
+
+      effective: Joi.number(),
+    });
+  };
+
+  static ArticlePriceInfo = function () {
+    return Joi.object({
+      base: this.BasePrice(),
+
+      converted: this.BasePrice(),
+    });
+  };
+
+  static ProductArticle = function () {
+    return Joi.object({
+      seller: this.BaseInfo(),
+
+      store: this.BaseInfo(),
+
+      size: Joi.string(),
+
+      uid: Joi.string(),
+
+      price: this.ArticlePriceInfo(),
+
+      type: Joi.string(),
+
+      quantity: Joi.number(),
+    });
+  };
+
+  static ProductAvailability = function () {
+    return Joi.object({
+      outOfStock: Joi.boolean(),
+
+      otherStoreQuantity: Joi.number(),
+
+      deliverable: Joi.boolean(),
+
+      sizes: Joi.array().items(Joi.string()),
+
+      isValid: Joi.boolean(),
+    });
+  };
+
+  static CartProductInfo = function () {
+    return Joi.object({
+      product: this.Product(),
+
+      identifiers: this.CartProductIdentifer(),
+
+      bulkOffer: Joi.object(),
+
+      price: this.ProductPriceInfo(),
+
+      couponMessage: Joi.string(),
+
+      discount: Joi.string(),
+
+      article: this.ProductArticle(),
+
+      isSet: Joi.boolean(),
+
+      availability: this.ProductAvailability(),
+
+      key: Joi.string(),
+
+      message: Joi.string(),
+
+      quantity: Joi.number(),
+    });
+  };
+
+  static CartResponse = function () {
+    return Joi.object({
+      breakupValues: this.CartBreakup(),
+
+      lastModified: Joi.string(),
+
+      uid: Joi.string(),
+
+      currency: this.CartCurrency(),
+
+      checkoutMode: Joi.string(),
+
+      restrictCheckout: Joi.boolean(),
+
+      couponText: Joi.string(),
+
+      isValid: Joi.boolean(),
+
+      comment: Joi.string(),
+
+      deliveryPromise: this.ShipmentPromise(),
+
+      cartId: Joi.number(),
+
+      items: Joi.array().items(this.CartProductInfo()),
+
+      deliveryChargeInfo: Joi.string(),
+
+      message: Joi.string(),
+
+      gstin: Joi.string(),
+    });
+  };
+
+  static AddProductCart = function () {
+    return Joi.object({
+      pos: Joi.boolean(),
+
+      itemSize: Joi.string(),
+
+      articleId: Joi.string(),
+
+      storeId: Joi.number(),
+
+      sellerId: Joi.number(),
+
+      articleAssignment: Joi.object(),
+
+      display: Joi.string(),
+
+      itemId: Joi.number(),
+
+      quantity: Joi.number(),
+    });
+  };
+
+  static AddCartRequest = function () {
+    return Joi.object({
+      items: Joi.array().items(this.AddProductCart()),
+    });
+  };
+
+  static AddCartResponse = function () {
+    return Joi.object({
+      cart: this.CartResponse(),
+
+      message: Joi.string(),
+
+      success: Joi.boolean(),
+
+      partial: Joi.boolean(),
+    });
+  };
+
+  static UpdateProductCart = function () {
+    return Joi.object({
+      itemSize: Joi.string(),
+
+      identifiers: this.CartProductIdentifer(),
+
+      itemIndex: Joi.number(),
+
+      articleId: Joi.string(),
+
+      itemId: Joi.number(),
+
+      quantity: Joi.number(),
+    });
+  };
+
+  static UpdateCartRequest = function () {
+    return Joi.object({
+      operation: Joi.string(),
+
+      items: Joi.array().items(this.UpdateProductCart()),
+    });
+  };
+
+  static UpdateCartResponse = function () {
+    return Joi.object({
+      cart: this.CartResponse(),
+
+      message: Joi.string(),
+
+      success: Joi.boolean(),
+    });
+  };
+
+  static CartItemCountResponse = function () {
+    return Joi.object({
+      userCartItemsCount: Joi.number(),
+    });
+  };
+
+  static Coupon = function () {
+    return Joi.object({
+      subTitle: Joi.string(),
+
+      title: Joi.string(),
+
+      isApplied: Joi.boolean(),
+
+      isApplicable: Joi.boolean(),
+
+      expiresOn: Joi.string(),
+
+      maxDiscountValue: Joi.number(),
+
+      couponCode: Joi.string(),
+
+      message: Joi.string(),
+
+      couponValue: Joi.number(),
+
+      minimumCartValue: Joi.number(),
+    });
+  };
+
+  static PageCoupon = function () {
+    return Joi.object({
+      hasNext: Joi.boolean(),
+
+      totalItemCount: Joi.number(),
+
+      hasPrevious: Joi.boolean(),
+
+      current: Joi.number(),
+
+      total: Joi.number(),
+    });
+  };
+
+  static GetCouponResponse = function () {
+    return Joi.object({
+      availableCouponList: Joi.array().items(this.Coupon()),
+
+      page: this.PageCoupon(),
+    });
+  };
+
+  static ApplyCouponRequest = function () {
+    return Joi.object({
+      couponCode: Joi.string(),
+    });
+  };
+
+  static OfferSeller = function () {
+    return Joi.object({
+      uid: Joi.number(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static OfferPrice = function () {
+    return Joi.object({
+      bulkEffective: Joi.number(),
+
+      currencySymbol: Joi.string(),
+
+      effective: Joi.number(),
+
+      currencyCode: Joi.string(),
+
+      marked: Joi.number(),
+    });
+  };
+
+  static OfferItem = function () {
+    return Joi.object({
+      total: Joi.number(),
+
+      best: Joi.boolean(),
+
+      margin: Joi.number(),
+
+      price: this.OfferPrice(),
+
+      autoApplied: Joi.boolean(),
+
+      type: Joi.string(),
+
+      quantity: Joi.number(),
+    });
+  };
+
+  static BulkPriceOffer = function () {
+    return Joi.object({
+      seller: this.OfferSeller(),
+
+      offers: Joi.array().items(this.OfferItem()),
+    });
+  };
+
+  static BulkPriceResponse = function () {
+    return Joi.object({
+      data: Joi.array().items(this.BulkPriceOffer()),
+    });
+  };
+
+  static GeoLocation = function () {
+    return Joi.object({
+      latitude: Joi.number(),
+
+      longitude: Joi.number(),
+    });
+  };
+
+  static Address = function () {
+    return Joi.object({
+      meta: Joi.object(),
+
+      country: Joi.string(),
+
+      isDefaultAddress: Joi.boolean(),
+
+      name: Joi.string(),
+
+      email: Joi.string(),
+
+      userId: Joi.string(),
+
+      addressType: Joi.string(),
+
+      uid: Joi.number(),
+
+      landmark: Joi.string(),
+
+      phone: Joi.string(),
+
+      checkoutMode: Joi.string(),
+
+      geoLocation: this.GeoLocation(),
+
+      tags: Joi.array().items(Joi.object()),
+
+      state: Joi.string(),
+
+      areaCodeSlug: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      area: Joi.string(),
+
+      city: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      areaCode: Joi.string(),
+
+      address: Joi.string(),
+    });
+  };
+
+  static GetAddressesResponse = function () {
+    return Joi.object({
+      address: Joi.array().items(this.Address()),
+    });
+  };
+
+  static SaveAddressResponse = function () {
+    return Joi.object({
+      addressId: Joi.number(),
+
+      isDefaultAddress: Joi.boolean(),
+
+      success: Joi.string(),
+    });
+  };
+
+  static UpdateAddressResponse = function () {
+    return Joi.object({
+      addressId: Joi.number(),
+
+      isUpdated: Joi.boolean(),
+
+      success: Joi.boolean(),
+
+      isDefaultAddress: Joi.boolean(),
+    });
+  };
+
+  static DeleteAddressResponse = function () {
+    return Joi.object({
+      addressId: Joi.number(),
+
+      isDeleted: Joi.boolean(),
+    });
+  };
+
+  static SelectCartAddressRequest = function () {
+    return Joi.object({
+      addressId: Joi.string(),
+
+      uid: Joi.string(),
+
+      billingAddressId: Joi.number(),
+    });
+  };
+
+  static UpdateCartPaymentRequest = function () {
+    return Joi.object({
+      paymentMode: Joi.string(),
+
+      paymentIdentifier: Joi.string(),
+
+      uid: Joi.number(),
+
+      addressId: Joi.number(),
+
+      merchantCode: Joi.string(),
+
+      aggregatorName: Joi.string(),
+    });
+  };
+
+  static CouponValidity = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      discount: Joi.number(),
+
+      valid: Joi.boolean(),
+
+      displayMessageEn: Joi.string(),
+    });
+  };
+
+  static PaymentUpdate = function () {
+    return Joi.object({
+      couponValidity: this.CouponValidity(),
+
+      message: Joi.string(),
+
+      success: Joi.boolean(),
+    });
+  };
+
+  static ShipmentResponse = function () {
+    return Joi.object({
+      fulfillmentId: Joi.number(),
+
+      promise: this.ShipmentPromise(),
+
+      shipments: Joi.number(),
+
+      shipmentType: Joi.string(),
+
+      dpId: Joi.number(),
+
+      boxType: Joi.string(),
+
+      orderType: Joi.string(),
+
+      dpOptions: Joi.object(),
+
+      items: Joi.array().items(this.CartProductInfo()),
+
+      fulfillmentType: Joi.string(),
+    });
+  };
+
+  static CartShipmentsResponse = function () {
+    return Joi.object({
+      breakupValues: this.CartBreakup(),
+
+      lastModified: Joi.string(),
+
+      uid: Joi.string(),
+
+      currency: this.CartCurrency(),
+
+      shipments: Joi.array().items(this.ShipmentResponse()),
+
+      checkoutMode: Joi.string(),
+
+      restrictCheckout: Joi.boolean(),
+
+      couponText: Joi.string(),
+
+      isValid: Joi.boolean(),
+
+      comment: Joi.string(),
+
+      deliveryPromise: this.ShipmentPromise(),
+
+      cartId: Joi.number(),
+
+      deliveryChargeInfo: Joi.string(),
+
+      message: Joi.string(),
+
+      gstin: Joi.string(),
+    });
+  };
+
+  static CartCheckoutRequest = function () {
+    return Joi.object({
+      paymentParams: Joi.object(),
+
+      merchantCode: Joi.string(),
+
+      paymentMode: Joi.string(),
+
+      callbackUrl: Joi.string(),
+
+      staff: Joi.object(),
+
+      deliveryAddress: Joi.object(),
+
+      paymentIdentifier: Joi.string(),
+
+      meta: Joi.object(),
+
+      fyndstoreEmpId: Joi.string(),
+
+      addressId: Joi.number(),
+
+      paymentAutoConfirm: Joi.boolean(),
+
+      aggregator: Joi.string(),
+
+      billingAddressId: Joi.number(),
+
+      extraMeta: Joi.object(),
+
+      orderingStore: Joi.number(),
+
+      billingAddress: Joi.object(),
+    });
+  };
+
+  static CheckCart = function () {
+    return Joi.object({
+      lastModified: Joi.string(),
+
+      deliveryCharges: Joi.number(),
+
+      orderId: Joi.string(),
+
+      restrictCheckout: Joi.boolean(),
+
+      couponText: Joi.string(),
+
+      deliveryChargeOrderValue: Joi.number(),
+
+      gstin: Joi.string(),
+
+      breakupValues: this.CartBreakup(),
+
+      userType: Joi.string(),
+
+      storeEmps: Joi.array().items(Joi.object()),
+
+      success: Joi.boolean(),
+
+      cartId: Joi.number(),
+
+      items: Joi.array().items(this.CartProductInfo()),
+
+      storeCode: Joi.string(),
+
+      uid: Joi.string(),
+
+      currency: this.CartCurrency(),
+
+      errorMessage: Joi.string(),
+
+      comment: Joi.string(),
+
+      deliveryPromise: this.ShipmentPromise(),
+
+      checkoutMode: Joi.string(),
+
+      isValid: Joi.boolean(),
+
+      codMessage: Joi.string(),
+
+      message: Joi.string(),
+
+      codAvailable: Joi.boolean(),
+
+      codCharges: Joi.number(),
+
+      deliveryChargeInfo: Joi.string(),
+    });
+  };
+
+  static CartCheckoutResponse = function () {
+    return Joi.object({
+      cart: this.CheckCart(),
+
+      callbackUrl: Joi.string(),
+
+      success: Joi.boolean(),
+
+      orderId: Joi.string(),
+
+      appInterceptUrl: Joi.string(),
+
+      data: Joi.object(),
+
+      message: Joi.string(),
+    });
+  };
+
+  static CartMetaRequest = function () {
+    return Joi.object({
+      comment: Joi.string(),
+
+      pickUpCustomerDetails: Joi.object(),
+
+      gstin: Joi.string(),
+
+      checkoutMode: Joi.string(),
+    });
+  };
+
+  static CartMetaResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static CartMetaMissingResponse = function () {
+    return Joi.object({
+      errors: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static GetShareCartLinkRequest = function () {
+    return Joi.object({
+      meta: Joi.object(),
+
+      uid: Joi.number(),
+    });
+  };
+
+  static GetShareCartLinkResponse = function () {
+    return Joi.object({
+      shareUrl: Joi.string(),
+
+      token: Joi.string(),
+    });
+  };
+
+  static SharedCartDetails = function () {
+    return Joi.object({
+      createdOn: Joi.string(),
+
+      meta: Joi.object(),
+
+      token: Joi.string(),
+
+      source: Joi.object(),
+
+      user: Joi.object(),
+    });
+  };
+
+  static SharedCart = function () {
+    return Joi.object({
+      breakupValues: this.CartBreakup(),
+
+      lastModified: Joi.string(),
+
+      uid: Joi.string(),
+
+      currency: this.CartCurrency(),
+
+      sharedCartDetails: this.SharedCartDetails(),
+
+      checkoutMode: Joi.string(),
+
+      restrictCheckout: Joi.boolean(),
+
+      couponText: Joi.string(),
+
+      isValid: Joi.boolean(),
+
+      comment: Joi.string(),
+
+      deliveryPromise: this.ShipmentPromise(),
+
+      cartId: Joi.number(),
+
+      items: Joi.array().items(this.CartProductInfo()),
+
+      deliveryChargeInfo: Joi.string(),
+
+      message: Joi.string(),
+
+      gstin: Joi.string(),
+    });
+  };
+
+  static SharedCartResponse = function () {
+    return Joi.object({
+      cart: this.SharedCart(),
+
+      error: Joi.string(),
+    });
+  };
+
+  static TicketList = function () {
+    return Joi.object({
+      items: Joi.array().items(this.Ticket()),
+
+      filters: this.Filter(),
+
+      page: this.Page(),
+    });
+  };
+
+  static TicketHistoryList = function () {
+    return Joi.object({
+      docs: Joi.array().items(this.TicketHistory()),
+
+      limit: Joi.number(),
+
+      page: Joi.number(),
+
+      pages: Joi.number(),
+
+      total: Joi.number(),
+    });
+  };
+
+  static CustomFormList = function () {
+    return Joi.object({
+      docs: Joi.array().items(this.CustomForm()),
+
+      limit: Joi.number(),
+
+      page: Joi.number(),
+
+      pages: Joi.number(),
+
+      total: Joi.number(),
+    });
+  };
+
+  static CreateCustomFormPayload = function () {
+    return Joi.object({
+      slug: Joi.string(),
+
+      title: Joi.string(),
+
+      inputs: Joi.array().items(Joi.object()),
+
+      description: Joi.string(),
+
+      headerImage: Joi.string(),
+
+      shouldNotify: Joi.boolean(),
+
+      successMessage: Joi.string(),
+
+      pollForAssignment: this.PollForAssignment(),
+    });
+  };
+
+  static EditCustomFormPayload = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      inputs: Joi.array().items(Joi.object()),
+
+      description: Joi.string(),
+
+      headerImage: Joi.string(),
+
+      shouldNotify: Joi.boolean(),
+
+      loginRequired: Joi.boolean(),
+
+      successMessage: Joi.string(),
+
+      pollForAssignment: this.PollForAssignment(),
+    });
+  };
+
+  static EditTicketPayload = function () {
+    return Joi.object({
+      content: this.TicketContent(),
+
+      category: Joi.string(),
+
+      source: Joi.string(),
+
+      status: Joi.string(),
+
+      priority: Joi.string(),
+
+      assignedTo: this.AgentChangePayload(),
+
+      tags: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static AgentChangePayload = function () {
+    return Joi.object({
+      agentId: Joi.string(),
+    });
+  };
+
+  static CreateVideoRoomResponse = function () {
+    return Joi.object({
+      uniqueName: Joi.string(),
+    });
+  };
+
+  static CloseVideoRoomResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  };
+
+  static CreateVideoRoomPayload = function () {
+    return Joi.object({
+      uniqueName: Joi.string(),
+
+      notify: Joi.array().items(Joi.object()),
+    });
+  };
+
+  static Filter = function () {
+    return Joi.object({
+      priorities: Joi.array().items(this.Priority()),
+
+      categories: Joi.array().items(this.TicketCategory()),
+
+      statuses: Joi.array().items(this.Status()),
+
+      assignees: Joi.array().items(Joi.object()),
+    });
+  };
+
+  static TicketHistoryPayload = function () {
+    return Joi.object({
+      value: Joi.object(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static CustomFormSubmissionPayload = function () {
+    return Joi.object({
+      response: Joi.array().items(this.KeyValue()),
+    });
+  };
+
+  static KeyValue = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static GetTokenForVideoRoomResponse = function () {
+    return Joi.object({
+      accessToken: Joi.string(),
+    });
+  };
+
+  static GetParticipantsInsideVideoRoomResponse = function () {
+    return Joi.object({
+      participants: Joi.array().items(this.Participant()),
+    });
+  };
+
+  static Participant = function () {
+    return Joi.object({
+      user: this.UserSchema(),
+
+      identity: Joi.string(),
+
+      status: Joi.string(),
+    });
+  };
+
+  static UserSchema = function () {
+    return Joi.object({
+      firstName: Joi.string(),
+
+      lastName: Joi.string(),
+
+      phoneNumbers: Joi.array().items(this.PhoneNumber()),
+
+      emails: Joi.array().items(this.Email()),
+
+      gender: Joi.string(),
+
+      active: Joi.boolean(),
+
+      profilePicUrl: Joi.string(),
+
+      username: Joi.string(),
+
+      accountType: Joi.string(),
+
+      uid: Joi.string(),
+
+      debug: this.Debug(),
+
+      hasOldPasswordHash: Joi.boolean(),
+
+      id: Joi.string(),
+
+      createdAt: Joi.string(),
+
+      updatedAt: Joi.string(),
+    });
+  };
+
+  static PhoneNumber = function () {
+    return Joi.object({
+      active: Joi.boolean(),
+
+      primary: Joi.boolean(),
+
+      verified: Joi.boolean(),
+
+      phone: Joi.string(),
+
+      countryCode: Joi.number(),
+    });
+  };
+
+  static Email = function () {
+    return Joi.object({
+      primary: Joi.boolean(),
+
+      verified: Joi.boolean(),
+
+      email: Joi.string(),
+
+      active: Joi.boolean(),
+    });
+  };
+
+  static Debug = function () {
+    return Joi.object({
+      source: Joi.string(),
+
+      platform: Joi.string(),
+    });
+  };
+
+  static SubmitCustomFormResponse = function () {
+    return Joi.object({
+      ticket: this.Ticket(),
+    });
+  };
+
+  static TicketContext = function () {
+    return Joi.object({
+      applicationId: Joi.string(),
+
+      companyId: Joi.string(),
+    });
+  };
+
+  static CreatedOn = function () {
+    return Joi.object({
+      userAgent: Joi.string(),
+    });
+  };
+
+  static TicketAsset = function () {
+    return Joi.object({
+      display: Joi.string(),
+
+      value: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static TicketContent = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      description: Joi.string(),
+
+      attachments: Joi.array().items(this.TicketAsset()),
+    });
+  };
+
+  static AddTicketPayload = function () {
+    return Joi.object({
+      status: Joi.string(),
+
+      priority: Joi.string(),
+
+      category: Joi.string(),
+
+      content: this.TicketContent(),
+    });
+  };
+
+  static Priority = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      display: Joi.string(),
+
+      color: Joi.string(),
+    });
+  };
+
+  static Status = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      display: Joi.string(),
+
+      color: Joi.string(),
+    });
+  };
+
+  static TicketCategory = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      display: Joi.string(),
+
+      form: this.CustomForm(),
+    });
+  };
+
+  static SubmitButton = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      titleColor: Joi.string(),
+
+      backgroundColor: Joi.string(),
+    });
+  };
+
+  static PollForAssignment = function () {
+    return Joi.object({
+      duration: Joi.number(),
+
+      message: Joi.string(),
+
+      successMessage: Joi.string(),
+
+      failureMessage: Joi.string(),
+    });
+  };
+
+  static CustomForm = function () {
+    return Joi.object({
+      applicationId: Joi.string(),
+
+      slug: Joi.string(),
+
+      headerImage: Joi.string(),
+
+      title: Joi.string(),
+
+      description: Joi.string(),
+
+      loginRequired: Joi.boolean(),
+
+      shouldNotify: Joi.boolean(),
+
+      successMessage: Joi.string(),
+
+      submitButton: this.SubmitButton(),
+
+      inputs: Joi.array().items(Joi.object()),
+
+      createdOn: this.CreatedOn(),
+
+      createdBy: Joi.object(),
+
+      pollForAssignment: this.PollForAssignment(),
+
+      id: Joi.string(),
+    });
+  };
+
+  static TicketHistory = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      value: Joi.object(),
+
+      ticketId: Joi.string(),
+
+      createdOn: this.CreatedOn(),
+
+      createdBy: Joi.object(),
+
+      id: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      createdAt: Joi.string(),
+    });
+  };
+
+  static Ticket = function () {
+    return Joi.object({
+      context: this.TicketContext(),
+
+      createdOn: this.CreatedOn(),
+
+      responseId: Joi.string(),
+
+      content: this.TicketContent(),
+
+      ticketId: Joi.string(),
+
+      category: this.TicketCategory(),
+
+      source: Joi.string(),
+
+      status: this.Status(),
+
+      priority: this.Priority(),
+
+      createdBy: Joi.object(),
+
+      assignedTo: Joi.object(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      customJson: Joi.object(),
+
+      id: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      createdAt: Joi.string(),
+    });
+  };
+
+  static PaginationSchema = function () {
+    return Joi.object({
+      size: Joi.number(),
+
+      itemTotal: Joi.number(),
+
+      hasNext: Joi.boolean(),
+
+      type: Joi.string(),
+
+      current: Joi.number(),
+    });
+  };
+
+  static ThemesListingResponseSchema = function () {
+    return Joi.object({
+      items: Joi.array().items(this.ThemesSchema()),
+
+      page: this.PaginationSchema(),
+    });
+  };
+
+  static AddThemeRequestSchema = function () {
+    return Joi.object({
+      themeId: Joi.string(),
+    });
+  };
+
+  static UpgradableThemeSchema = function () {
+    return Joi.object({
+      parentTheme: Joi.string(),
+
+      appliedTheme: Joi.string(),
+
+      upgrade: Joi.boolean(),
+    });
+  };
+
+  static FontsSchema = function () {
+    return Joi.object({
+      items: this.FontsSchemaItems(),
+
+      kind: Joi.string(),
+    });
+  };
+
+  static BlitzkriegApiErrorSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static BlitzkriegNotFoundSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static BlitzkriegInternalServerErrorSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static FontsSchemaItems = function () {
+    return Joi.object({
+      family: Joi.string(),
+
+      variants: Joi.array().items(Joi.string()),
+
+      subsets: Joi.array().items(Joi.string()),
+
+      version: Joi.string(),
+
+      lastModified: Joi.string(),
+
+      files: this.FontsSchemaItemsFiles(),
+
+      category: Joi.string(),
+
+      kind: Joi.string(),
+    });
+  };
+
+  static FontsSchemaItemsFiles = function () {
+    return Joi.object({
+      regular: Joi.string(),
+
+      italic: Joi.string(),
+
+      bold: Joi.string(),
+    });
+  };
+
+  static ThemesSchema = function () {
+    return Joi.object({
+      application: Joi.string(),
+
+      applied: Joi.boolean(),
+
+      customized: Joi.boolean(),
+
+      published: Joi.boolean(),
+
+      archived: Joi.boolean(),
+
+      createdAt: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      version: Joi.string(),
+
+      parentThemeVersion: Joi.string(),
+
+      parentTheme: Joi.string(),
+
+      information: this.Information(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      src: this.Src(),
+
+      assets: this.AssetsSchema(),
+
+      availablePages: this.AvailablePages(),
+
+      pages: this.Pages(),
+
+      availableSections: Joi.array().items(this.availableSectionSchema()),
+
+      sections: Joi.array().items(this.sectionSchema()),
+
+      constants: Joi.object(),
+
+      styles: Joi.object(),
+
+      config: this.Config(),
+
+      settings: Joi.object(),
+
+      font: this.Font(),
+
+      id: Joi.string(),
+
+      v: Joi.number(),
+
+      colors: this.Colors(),
+    });
+  };
+
+  static pagesSchema = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      path: Joi.string(),
+
+      type: Joi.string(),
+
+      value: Joi.string(),
+
+      sections: this.Sections(),
+    });
+  };
+
+  static availableSectionSchema = function () {
+    return Joi.object({
+      blocks: this.Blocks(),
+
+      name: Joi.string(),
+
+      label: Joi.string(),
+
+      props: Joi.object(),
+    });
+  };
+
+  static sectionSchema = function () {
+    return Joi.object({
+      pageKey: Joi.string(),
+
+      pageSections: this.PageSections(),
+    });
+  };
+
+  static Information = function () {
+    return Joi.object({
+      images: this.Images(),
+
+      features: Joi.array().items(Joi.string()),
+
+      name: Joi.string(),
+
+      description: Joi.string(),
+    });
+  };
+
+  static Images = function () {
+    return Joi.object({
+      desktop: Joi.array().items(Joi.string()),
+
+      android: Joi.array().items(Joi.string()),
+
+      ios: Joi.array().items(Joi.string()),
+
+      thumbnail: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static Src = function () {
+    return Joi.object({
+      link: Joi.string(),
+    });
+  };
+
+  static AssetsSchema = function () {
+    return Joi.object({
+      umdJs: this.UmdJs(),
+
+      commonJs: this.CommonJs(),
+
+      css: this.Css(),
+    });
+  };
+
+  static UmdJs = function () {
+    return Joi.object({
+      link: Joi.string(),
+    });
+  };
+
+  static CommonJs = function () {
+    return Joi.object({
+      link: Joi.string(),
+    });
+  };
+
+  static Css = function () {
+    return Joi.object({
+      link: Joi.string(),
+    });
+  };
+
+  static AvailablePages = function () {
+    return Joi.object({
+      path: Joi.string(),
+
+      type: Joi.string(),
+
+      text: Joi.string(),
+
+      value: Joi.string(),
+
+      seo: this.Seo(),
+
+      props: Joi.object(),
+
+      sections: this.Sections(),
+    });
+  };
+
+  static Seo = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      description: Joi.string(),
+    });
+  };
+
+  static Sections = function () {
+    return Joi.object({
+      attributes: Joi.string(),
+    });
+  };
+
+  static Pages = function () {
+    return Joi.object({
+      collectionListing: this.pagesSchema(),
+
+      brands: this.pagesSchema(),
+
+      cartLanding: this.pagesSchema(),
+
+      collections: this.pagesSchema(),
+
+      productDescription: this.pagesSchema(),
+
+      productListing: this.pagesSchema(),
+
+      home: this.pagesSchema(),
+
+      categories: this.pagesSchema(),
+
+      compareProducts: this.pagesSchema(),
+
+      wishlist: this.pagesSchema(),
+    });
+  };
+
+  static Config = function () {
+    return Joi.object({
+      preset: this.Preset(),
+
+      globalSchema: this.GlobalSchema(),
+
+      current: Joi.string(),
+
+      list: this.ListSchema(),
+    });
+  };
+
+  static Preset = function () {
+    return Joi.object({
+      sections: this.sectionSchema(),
+    });
+  };
+
+  static GlobalSchema = function () {
+    return Joi.object({
+      props: Joi.object(),
+    });
+  };
+
+  static ListSchema = function () {
+    return Joi.object({
+      global: Joi.object(),
+
+      page: this.ConfigPage(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static Colors = function () {
+    return Joi.object({
+      bgColor: Joi.string(),
+
+      primaryColor: Joi.string(),
+
+      secondaryColor: Joi.string(),
+
+      accentColor: Joi.string(),
+
+      linkColor: Joi.string(),
+
+      buttonSecondaryColor: Joi.string(),
+    });
+  };
+
+  static Custom = function () {
+    return Joi.object({
+      props: Joi.object(),
+    });
+  };
+
+  static ConfigPage = function () {
+    return Joi.object({
+      settings: Joi.object(),
+
+      page: Joi.string(),
+    });
+  };
+
+  static Font = function () {
+    return Joi.object({
+      family: Joi.string(),
+
+      variants: this.Variants(),
+    });
+  };
+
+  static Variants = function () {
+    return Joi.object({
+      medium: this.Medium(),
+
+      semiBold: this.SemiBold(),
+
+      bold: this.Bold(),
+
+      light: this.Light(),
+
+      regular: this.Regular(),
+    });
+  };
+
+  static Medium = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      file: Joi.string(),
+    });
+  };
+
+  static SemiBold = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      file: Joi.string(),
+    });
+  };
+
+  static Bold = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      file: Joi.string(),
+    });
+  };
+
+  static Light = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      file: Joi.string(),
+    });
+  };
+
+  static Regular = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      file: Joi.string(),
+    });
+  };
+
+  static Blocks = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      name: Joi.string(),
+
+      props: this.BlocksProps(),
+    });
+  };
+
+  static BlocksProps = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      label: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static PageSections = function () {
+    return Joi.object({
+      blocks: this.PageSectionsBlocks(),
+
+      name: Joi.string(),
+
+      label: Joi.string(),
+
+      props: Joi.object(),
+
+      preset: Joi.object(),
+
+      predicate: this.Predicate(),
+    });
+  };
+
+  static PageSectionsBlocks = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      name: Joi.string(),
+
+      props: this.PageSectionsBlocksProps(),
+    });
+  };
+
+  static PageSectionsBlocksProps = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      label: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static Predicate = function () {
+    return Joi.object({
+      screen: this.Screen(),
+
+      user: this.PredicateUserSchema(),
+
+      route: this.Route(),
+    });
+  };
+
+  static Screen = function () {
+    return Joi.object({
+      mobile: Joi.boolean(),
+
+      desktop: Joi.boolean(),
+
+      tablet: Joi.boolean(),
+    });
+  };
+
+  static PredicateUserSchema = function () {
+    return Joi.object({
+      authenticated: Joi.boolean(),
+
+      anonymous: Joi.boolean(),
+    });
+  };
+
+  static Route = function () {
+    return Joi.object({
+      selected: Joi.string(),
+
+      exactUrl: Joi.string(),
+
+      query: Joi.object(),
+    });
+  };
+
+  static EditEmailRequestSchema = function () {
+    return Joi.object({
+      email: Joi.string(),
+    });
+  };
+
+  static SendVerificationLinkMobileRequestSchema = function () {
+    return Joi.object({
+      verified: Joi.boolean(),
+
+      active: Joi.boolean(),
+
+      countryCode: Joi.string(),
+
+      phone: Joi.string(),
+
+      primary: Joi.boolean(),
+    });
+  };
+
+  static EditMobileRequestSchema = function () {
+    return Joi.object({
+      countryCode: Joi.string(),
+
+      phone: Joi.string(),
+    });
+  };
+
+  static EditProfileRequestSchema = function () {
+    return Joi.object({
+      firstName: Joi.string(),
+
+      lastName: Joi.string(),
+
+      mobile: Joi.string(),
+
+      email: Joi.string(),
+
+      gender: Joi.string(),
+
+      dob: Joi.string(),
+
+      profilePicUrl: Joi.string(),
+
+      androidHash: Joi.string(),
+
+      sender: Joi.string(),
+
+      registerToken: Joi.string(),
+    });
+  };
+
+  static SendEmailOtpRequestSchema = function () {
+    return Joi.object({
+      email: Joi.string(),
+
+      action: Joi.string(),
+
+      token: Joi.string(),
+
+      registerToken: Joi.string(),
+    });
+  };
+
+  static VerifyOtpRequestSchema = function () {
+    return Joi.object({
+      requestId: Joi.string(),
+
+      registerToken: Joi.string(),
+
+      otp: Joi.string(),
+    });
+  };
+
+  static SendMobileOtpRequestSchema = function () {
+    return Joi.object({
+      mobile: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      action: Joi.string(),
+
+      token: Joi.string(),
+
+      androidHash: Joi.string(),
+
+      force: Joi.string(),
+    });
+  };
+
+  static UpdatePasswordRequestSchema = function () {
+    return Joi.object({
+      oldPassword: Joi.string(),
+
+      newPassword: Joi.string(),
+    });
+  };
+
+  static FormRegisterRequestSchema = function () {
+    return Joi.object({
+      firstName: Joi.string(),
+
+      lastName: Joi.string(),
+
+      gender: Joi.string(),
+
+      email: Joi.string(),
+
+      password: Joi.string(),
+
+      phone: this.FormRegisterRequestSchemaPhone(),
+
+      registerToken: Joi.string(),
+    });
+  };
+
+  static TokenRequestBodySchema = function () {
+    return Joi.object({
+      token: Joi.string(),
+    });
+  };
+
+  static ForgotPasswordRequestSchema = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      password: Joi.string(),
+    });
+  };
+
+  static CodeRequestBodySchema = function () {
+    return Joi.object({
+      code: Joi.string(),
+    });
+  };
+
+  static SendResetPasswordEmailRequestSchema = function () {
+    return Joi.object({
+      email: Joi.string(),
+
+      gRecaptchaResponse: Joi.string(),
+    });
+  };
+
+  static PasswordLoginRequestSchema = function () {
+    return Joi.object({
+      gRecaptchaResponse: Joi.string(),
+
+      password: Joi.string(),
+
+      username: Joi.string(),
+    });
+  };
+
+  static SendOtpRequestSchema = function () {
+    return Joi.object({
+      countryCode: Joi.string(),
+
+      gRecaptchaResponse: Joi.string(),
+
+      mobile: Joi.string(),
+    });
+  };
+
+  static OAuthRequestSchema = function () {
+    return Joi.object({
+      isSignedIn: Joi.boolean(),
+
+      oauth2: this.OAuthRequestSchemaOauth2(),
+
+      profile: this.OAuthRequestSchemaProfile(),
+    });
+  };
+
+  static AuthSuccess = function () {
+    return Joi.object({
+      registerToken: Joi.string(),
+
+      userExists: Joi.boolean(),
+
+      user: this.AuthSuccessUser(),
+    });
+  };
+
+  static SendOtpResponse = function () {
+    return Joi.object({
+      resendTimer: Joi.number(),
+
+      resendToken: Joi.string(),
+
+      success: Joi.boolean(),
+
+      requestId: Joi.string(),
+
+      message: Joi.string(),
+
+      mobile: Joi.string(),
+
+      countryCode: Joi.string(),
+    });
+  };
+
+  static LoginSuccess = function () {
+    return Joi.object({
+      user: this.UserSchema(),
+    });
+  };
+
+  static VerifyOtpSuccess = function () {
+    return Joi.object({
+      user: this.UserSchema(),
+
+      userExists: Joi.boolean(),
+    });
+  };
+
+  static ResetPasswordSuccess = function () {
+    return Joi.object({
+      status: Joi.string(),
+    });
+  };
+
+  static RegisterFormSuccess = function () {
+    return Joi.object({
+      resendTimer: Joi.number(),
+
+      resendToken: Joi.string(),
+
+      success: Joi.boolean(),
+
+      requestId: Joi.string(),
+
+      message: Joi.string(),
+
+      mobile: Joi.string(),
+
+      countryCode: Joi.string(),
+    });
+  };
+
+  static VerifyEmailSuccess = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static HasPasswordSuccess = function () {
+    return Joi.object({
+      result: Joi.boolean(),
+    });
+  };
+
+  static LogoutSuccess = function () {
+    return Joi.object({
+      logout: Joi.boolean(),
+    });
+  };
+
+  static OtpSuccess = function () {
+    return Joi.object({
+      resendTimer: Joi.number(),
+
+      resendToken: Joi.string(),
+
+      success: Joi.boolean(),
+
+      requestId: Joi.string(),
+
+      message: Joi.string(),
+
+      mobile: Joi.string(),
+
+      countryCode: Joi.string(),
+    });
+  };
+
+  static EmailOtpSuccess = function () {
+    return Joi.object({
+      resendToken: Joi.string(),
+    });
+  };
+
+  static SessionListSuccess = function () {
+    return Joi.object({
+      sessions: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static VerifyMobileOTPSuccess = function () {
+    return Joi.object({
+      user: this.UserSchema(),
+
+      verifyMobileLink: Joi.boolean(),
+    });
+  };
+
+  static VerifyEmailOTPSuccess = function () {
+    return Joi.object({
+      user: this.UserSchema(),
+
+      verifyEmailLink: Joi.boolean(),
+    });
+  };
+
+  static SendMobileVerifyLinkSuccess = function () {
+    return Joi.object({
+      verifyMobileLink: Joi.boolean(),
+    });
+  };
+
+  static SendEmailVerifyLinkSuccess = function () {
+    return Joi.object({
+      verifyEmailLink: Joi.boolean(),
+    });
+  };
+
+  static UserSearchResponseSchema = function () {
+    return Joi.object({
+      users: Joi.array().items(this.UserSchema()),
+    });
+  };
+
+  static CustomerListResponseSchema = function () {
+    return Joi.object({
+      items: Joi.array().items(this.UserSchema()),
+
+      page: this.PaginationSchema(),
+    });
+  };
+
+  static UnauthorizedSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static UnauthenticatedSchema = function () {
+    return Joi.object({
+      authenticated: Joi.boolean(),
+    });
+  };
+
+  static NotFoundSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static AuthenticationApiErrorSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static ProfileEditSuccessSchema = function () {
+    return Joi.object({
+      email: Joi.string(),
+
+      verifyEmailOtp: Joi.boolean(),
+
+      verifyEmailLink: Joi.boolean(),
+
+      verifyMobileOtp: Joi.boolean(),
+
+      user: Joi.string(),
+
+      registerToken: Joi.string(),
+
+      userExists: Joi.boolean(),
+    });
+  };
+
+  static FormRegisterRequestSchemaPhone = function () {
+    return Joi.object({
+      countryCode: Joi.string(),
+
+      mobile: Joi.string(),
+    });
+  };
+
+  static OAuthRequestSchemaOauth2 = function () {
+    return Joi.object({
+      accessToken: Joi.string(),
+
+      expiry: Joi.number(),
+
+      refreshToken: Joi.string(),
+    });
+  };
+
+  static OAuthRequestSchemaProfile = function () {
+    return Joi.object({
+      lastName: Joi.string(),
+
+      image: Joi.string(),
+
+      id: Joi.string(),
+
+      email: Joi.string(),
+
+      fullName: Joi.string(),
+
+      firstName: Joi.string(),
+    });
+  };
+
+  static AuthSuccessUser = function () {
+    return Joi.object({
+      firstName: Joi.string(),
+
+      lastName: Joi.string(),
+
+      debug: this.AuthSuccessUserDebug(),
+
+      active: Joi.boolean(),
+
+      emails: this.AuthSuccessUserEmails(),
+    });
+  };
+
+  static AuthSuccessUserDebug = function () {
+    return Joi.object({
+      platform: Joi.string(),
+    });
+  };
+
+  static AuthSuccessUserEmails = function () {
+    return Joi.object({
+      email: Joi.string(),
+
+      verified: Joi.boolean(),
+
+      primary: Joi.boolean(),
+
+      active: Joi.boolean(),
+    });
+  };
+
+  static PlatformSchema = function () {
+    return Joi.object({
+      display: Joi.string(),
+
+      lookAndFeel: this.LookAndFeel(),
+
+      updatedAt: Joi.string(),
+
+      active: Joi.boolean(),
+
+      forgotPassword: Joi.boolean(),
+
+      login: this.Login(),
+
+      skipCaptcha: Joi.boolean(),
+
+      name: Joi.string(),
+
+      meta: this.MetaSchema(),
+
+      id: Joi.string(),
+
+      social: this.Social(),
+
+      requiredFields: this.RequiredFields(),
+
+      registerRequiredFields: this.RegisterRequiredFields(),
+
+      skipLogin: Joi.boolean(),
+
+      flashCard: this.FlashCard(),
+
+      subtext: Joi.string(),
+
+      socialTokens: this.SocialTokens(),
+
+      createdAt: Joi.string(),
+
+      register: Joi.boolean(),
+    });
+  };
+
+  static LookAndFeel = function () {
+    return Joi.object({
+      cardPosition: Joi.string(),
+
+      backgroundColor: Joi.string(),
+    });
+  };
+
+  static Login = function () {
+    return Joi.object({
+      password: Joi.boolean(),
+
+      otp: Joi.boolean(),
+    });
+  };
+
+  static MetaSchema = function () {
+    return Joi.object({
+      fyndDefault: Joi.boolean(),
+    });
+  };
+
+  static Social = function () {
+    return Joi.object({
+      accountKit: Joi.boolean(),
+
+      facebook: Joi.boolean(),
+
+      google: Joi.boolean(),
+    });
+  };
+
+  static RequiredFields = function () {
+    return Joi.object({
+      email: this.Email(),
+
+      mobile: this.Mobile(),
+    });
+  };
+
+  static Mobile = function () {
+    return Joi.object({
+      isRequired: Joi.boolean(),
+
+      level: Joi.string(),
+    });
+  };
+
+  static RegisterRequiredFields = function () {
+    return Joi.object({
+      email: this.RegisterRequiredFieldsEmail(),
+
+      mobile: this.RegisterRequiredFieldsMobile(),
+    });
+  };
+
+  static RegisterRequiredFieldsEmail = function () {
+    return Joi.object({
+      isRequired: Joi.boolean(),
+
+      level: Joi.string(),
+    });
+  };
+
+  static RegisterRequiredFieldsMobile = function () {
+    return Joi.object({
+      isRequired: Joi.boolean(),
+
+      level: Joi.string(),
+    });
+  };
+
+  static FlashCard = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      textColor: Joi.string(),
+
+      backgroundColor: Joi.string(),
+    });
+  };
+
+  static SocialTokens = function () {
+    return Joi.object({
+      facebook: this.Facebook(),
+
+      accountKit: this.Accountkit(),
+
+      google: this.Google(),
+    });
+  };
+
+  static Facebook = function () {
+    return Joi.object({
+      appId: Joi.string(),
+    });
+  };
+
+  static Accountkit = function () {
+    return Joi.object({
+      appId: Joi.string(),
+    });
+  };
+
+  static Google = function () {
+    return Joi.object({
+      appId: Joi.string(),
+    });
+  };
+
+  static QRCodeResp = function () {
+    return Joi.object({
+      link: Joi.string(),
+
+      svg: Joi.string(),
+    });
+  };
+
+  static RedirectDevice = function () {
+    return Joi.object({
+      link: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static WebRedirect = function () {
+    return Joi.object({
+      link: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static Redirects = function () {
+    return Joi.object({
+      ios: this.RedirectDevice(),
+
+      android: this.RedirectDevice(),
+
+      web: this.WebRedirect(),
+
+      forceWeb: Joi.boolean(),
+    });
+  };
+
+  static ShortLinkReq = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      url: Joi.string(),
+
+      hash: Joi.string(),
+
+      active: Joi.string(),
+
+      type: Joi.string(),
+
+      expireAt: Joi.string(),
+
+      enableTracking: Joi.boolean(),
+
+      redirects: this.Redirects(),
+    });
+  };
+
+  static UrlInfo = function () {
+    return Joi.object({
+      original: Joi.string(),
+
+      short: Joi.string(),
+
+      hash: Joi.string(),
+    });
+  };
+
+  static ShortLinkRes = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      url: this.UrlInfo(),
+
+      createdBy: Joi.string(),
+
+      personalized: Joi.string(),
+
+      appRedirect: Joi.string(),
+
+      fallback: Joi.string(),
+
+      active: Joi.boolean(),
+
+      id: Joi.string(),
+
+      enableTracking: Joi.boolean(),
+
+      expireAt: Joi.boolean(),
+
+      application: Joi.string(),
+
+      userId: Joi.boolean(),
+
+      createdAt: Joi.boolean(),
+
+      updatedAt: Joi.boolean(),
+
+      redirects: this.Redirects(),
+    });
+  };
+
+  static ShortLinkList = function () {
+    return Joi.object({
+      items: Joi.array().items(this.ShortLinkRes()),
+
+      size: Joi.number(),
+
+      itemTotal: Joi.number(),
+
+      current: Joi.number(),
+
+      hasNext: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static FailedResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static CDN = function () {
+    return Joi.object({
+      url: Joi.string(),
+    });
+  };
+
+  static Upload = function () {
+    return Joi.object({
+      expiry: Joi.number(),
+
+      url: Joi.string(),
+    });
+  };
+
+  static StartResponse = function () {
+    return Joi.object({
+      fileName: Joi.string(),
+
+      filePath: Joi.string(),
+
+      contentType: Joi.string(),
+
+      method: Joi.string(),
+
+      namespace: Joi.string(),
+
+      operation: Joi.string(),
+
+      size: Joi.number(),
+
+      upload: this.Upload(),
+
+      cdn: this.CDN(),
+    });
+  };
+
+  static StartRequest = function () {
+    return Joi.object({
+      fileName: Joi.string(),
+
+      contentType: Joi.string(),
+
+      size: Joi.number(),
+
+      tags: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static CompleteResponse = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      fileName: Joi.string(),
+
+      filePath: Joi.string(),
+
+      contentType: Joi.string(),
+
+      method: Joi.string(),
+
+      namespace: Joi.string(),
+
+      operation: Joi.string(),
+
+      size: Joi.number(),
+
+      upload: this.Upload(),
+
+      cdn: this.CDN(),
+
+      success: Joi.string(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      createdOn: Joi.string(),
+
+      modifiedOn: Joi.string(),
+    });
+  };
+
+  static Opts = function () {
+    return Joi.object({
+      attempts: Joi.number(),
+
+      timestamp: Joi.number(),
+
+      delay: Joi.number(),
+    });
+  };
+
+  static CopyFileTask = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      name: Joi.string(),
+
+      data: this.BulkRequest(),
+
+      opts: this.Opts(),
+
+      progress: Joi.number(),
+
+      delay: Joi.number(),
+
+      timestamp: Joi.number(),
+
+      attemptsMade: Joi.number(),
+
+      stacktrace: Joi.array().items(Joi.string()),
+
+      finishedOn: Joi.number(),
+
+      processedOn: Joi.number(),
+    });
+  };
+
+  static BulkResponse = function () {
+    return Joi.object({
+      trackingUrl: Joi.string(),
+
+      task: this.CopyFileTask(),
+    });
+  };
+
+  static ReqConfiguration = function () {
+    return Joi.object({
+      concurrency: Joi.number(),
+    });
+  };
+
+  static Destination = function () {
+    return Joi.object({
+      namespace: Joi.string(),
+
+      rewrite: Joi.string(),
+
+      basepath: Joi.string(),
+    });
+  };
+
+  static BulkRequest = function () {
+    return Joi.object({
+      urls: Joi.array().items(Joi.string()),
+
+      destination: this.Destination(),
+
+      configuration: this.ReqConfiguration(),
+    });
+  };
+
+  static Urls = function () {
+    return Joi.object({
+      url: Joi.string(),
+
+      signedUrl: Joi.string(),
+
+      expiry: Joi.number(),
+    });
+  };
+
+  static SignUrlResponse = function () {
+    return Joi.object({
+      urls: Joi.array().items(this.Urls()),
+    });
+  };
+
+  static SignUrlRequest = function () {
+    return Joi.object({
+      expiry: Joi.number(),
+
+      urls: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static DbRecord = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      id: Joi.string(),
+
+      fileName: Joi.string(),
+
+      operation: Joi.string(),
+
+      namespace: Joi.string(),
+
+      contentType: Joi.string(),
+
+      filePath: Joi.string(),
+
+      upload: this.Upload(),
+
+      cdn: this.CDN(),
+
+      createdOn: Joi.string(),
+
+      modifiedOn: Joi.string(),
+    });
+  };
+
+  static BrowseResponse = function () {
+    return Joi.object({
+      items: Joi.array().items(this.DbRecord()),
+
+      page: this.Page(),
+    });
+  };
+
+  static AggregatorConfigDetail = function () {
+    return Joi.object({
+      configType: Joi.string(),
+
+      key: Joi.string(),
+
+      merchantId: Joi.string(),
+
+      api: Joi.string(),
+
+      sdk: Joi.boolean(),
+
+      verifyApi: Joi.string(),
+
+      merchantKey: Joi.string(),
+
+      secret: Joi.string(),
+
+      userId: Joi.string(),
+
+      pin: Joi.string(),
+    });
+  };
+
+  static AggregatorsConfigDetailResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      simpl: this.AggregatorConfigDetail(),
+
+      ccavenue: this.AggregatorConfigDetail(),
+
+      mswipe: this.AggregatorConfigDetail(),
+
+      stripe: this.AggregatorConfigDetail(),
+
+      razorpay: this.AggregatorConfigDetail(),
+
+      payumoney: this.AggregatorConfigDetail(),
+
+      rupifi: this.AggregatorConfigDetail(),
+
+      env: Joi.string(),
+
+      juspay: this.AggregatorConfigDetail(),
+    });
+  };
+
+  static ErrorCodeAndDescription = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      description: Joi.string(),
+    });
+  };
+
+  static HttpErrorCodeAndResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      error: this.ErrorCodeAndDescription(),
+    });
+  };
+
+  static AttachCardRequest = function () {
+    return Joi.object({
+      refresh: Joi.boolean(),
+
+      cardId: Joi.string(),
+    });
+  };
+
+  static AttachCardsResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+
+      success: Joi.boolean(),
+
+      data: Joi.object(),
+    });
+  };
+
+  static CardPaymentGateway = function () {
+    return Joi.object({
+      aggregator: Joi.string(),
+
+      customerId: Joi.string(),
+
+      api: Joi.string(),
+    });
+  };
+
+  static ActiveCardPaymentGatewayResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+
+      success: Joi.boolean(),
+
+      cards: this.CardPaymentGateway(),
+    });
+  };
+
+  static Card = function () {
+    return Joi.object({
+      cardToken: Joi.string(),
+
+      cardNumber: Joi.string(),
+
+      expMonth: Joi.number(),
+
+      expYear: Joi.number(),
+
+      aggregatorName: Joi.string(),
+
+      cardId: Joi.string(),
+
+      nickname: Joi.string(),
+
+      cardBrand: Joi.string(),
+
+      cardFingerprint: Joi.string(),
+
+      cardIsin: Joi.string(),
+
+      cardIssuer: Joi.string(),
+
+      expired: Joi.boolean(),
+
+      cardType: Joi.string(),
+
+      cardName: Joi.string(),
+
+      cardBrandImage: Joi.string(),
+
+      cardReference: Joi.string(),
+    });
+  };
+
+  static ListCardsResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+
+      success: Joi.boolean(),
+
+      data: Joi.array().items(this.Card()),
+    });
+  };
+
+  static DeletehCardRequest = function () {
+    return Joi.object({
+      cardId: Joi.string(),
+    });
+  };
+
+  static DeleteCardsResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+
+      success: Joi.boolean(),
+    });
+  };
+
+  static ValidateCustomerRequest = function () {
+    return Joi.object({
+      merchantParams: Joi.object(),
+
+      transactionAmountInPaise: Joi.number(),
+
+      phoneNumber: Joi.string(),
+
+      payload: Joi.string(),
+
+      aggregator: Joi.string(),
+    });
+  };
+
+  static ValidateCustomerResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+
+      success: Joi.boolean(),
+
+      data: Joi.object(),
+    });
+  };
+
+  static ChargeCustomerRequest = function () {
+    return Joi.object({
+      amount: Joi.number(),
+
+      verified: Joi.boolean(),
+
+      transactionToken: Joi.string(),
+
+      orderId: Joi.string(),
+
+      aggregator: Joi.string(),
+    });
+  };
+
+  static ChargeCustomerResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+
+      success: Joi.boolean(),
+
+      status: Joi.string(),
+
+      deliveryAddressId: Joi.string(),
+
+      cartId: Joi.string(),
+
+      orderId: Joi.string(),
+
+      aggregator: Joi.string(),
+    });
+  };
+
+  static PaymentInitializationRequest = function () {
+    return Joi.object({
+      method: Joi.string(),
+
+      timeout: Joi.number(),
+
+      customerId: Joi.string(),
+
+      virtualId: Joi.string(),
+
+      pollingUrl: Joi.string(),
+
+      merchantOrderId: Joi.string(),
+
+      aggregatorOrderId: Joi.string(),
+
+      aggregator: Joi.string(),
+
+      razorpayPaymentId: Joi.string(),
+    });
+  };
+
+  static PaymentInitializationResponse = function () {
+    return Joi.object({
+      method: Joi.string(),
+
+      customerId: Joi.string(),
+
+      success: Joi.boolean(),
+
+      status: Joi.string(),
+
+      amount: Joi.number(),
+
+      vpa: Joi.string(),
+
+      timeout: Joi.number(),
+
+      bqrImage: Joi.string(),
+
+      currency: Joi.string(),
+
+      virtualId: Joi.string(),
+
+      pollingUrl: Joi.string(),
+
+      merchantOrderId: Joi.string(),
+
+      aggregatorOrderId: Joi.string(),
+
+      aggregator: Joi.string(),
+
+      razorpayPaymentId: Joi.string(),
+    });
+  };
+
+  static PaymentStatusUpdateRequest = function () {
+    return Joi.object({
+      contact: Joi.string(),
+
+      status: Joi.string(),
+
+      amount: Joi.number(),
+
+      customerId: Joi.string(),
+
+      vpa: Joi.string(),
+
+      currency: Joi.string(),
+
+      orderId: Joi.string(),
+
+      merchantOrderId: Joi.string(),
+
+      method: Joi.string(),
+
+      aggregator: Joi.string(),
+
+      email: Joi.string(),
+    });
+  };
+
+  static PaymentStatusUpdateResponse = function () {
+    return Joi.object({
+      retry: Joi.boolean(),
+
+      status: Joi.string(),
+
+      aggregatorName: Joi.string(),
+    });
+  };
+
+  static PaymentModeLogo = function () {
+    return Joi.object({
+      large: Joi.string(),
+
+      small: Joi.string(),
+    });
+  };
+
+  static PaymentModeList = function () {
+    return Joi.object({
+      cardId: Joi.string(),
+
+      cardBrand: Joi.string(),
+
+      name: Joi.string(),
+
+      cardIssuer: Joi.string(),
+
+      expired: Joi.boolean(),
+
+      displayPriority: Joi.number(),
+
+      cardName: Joi.string(),
+
+      merchantCode: Joi.string(),
+
+      cardToken: Joi.string(),
+
+      intentFlow: Joi.string(),
+
+      expMonth: Joi.number(),
+
+      aggregatorName: Joi.string(),
+
+      fyndVpa: Joi.string(),
+
+      cardIsin: Joi.string(),
+
+      timeout: Joi.number(),
+
+      expYear: Joi.number(),
+
+      nickname: Joi.string(),
+
+      displayName: Joi.string(),
+
+      logoUrl: this.PaymentModeLogo(),
+
+      cardNumber: Joi.string(),
+
+      code: Joi.string(),
+
+      intentAppErrorList: Joi.array().items(Joi.string()),
+
+      cardFingerprint: Joi.string(),
+
+      retryCount: Joi.number(),
+
+      cardType: Joi.string(),
+
+      cardBrandImage: Joi.string(),
+
+      cardReference: Joi.string(),
+    });
+  };
+
+  static RootPaymentMode = function () {
+    return Joi.object({
+      anonymousEnable: Joi.boolean(),
+
+      list: Joi.array().items(this.PaymentModeList()),
+
+      aggregatorName: Joi.string(),
+
+      name: Joi.string(),
+
+      displayPriority: Joi.number(),
+
+      addCardEnabled: Joi.boolean(),
+
+      displayName: Joi.string(),
+    });
+  };
+
+  static AggregatorRoute = function () {
+    return Joi.object({
+      paymentFlow: Joi.string(),
+
+      apiLink: Joi.string(),
+
+      data: Joi.object(),
+    });
+  };
+
+  static PaymentFlow = function () {
+    return Joi.object({
+      simpl: this.AggregatorRoute(),
+
+      msipe: this.AggregatorRoute(),
+
+      ccavenue: this.AggregatorRoute(),
+
+      payubiz: this.AggregatorRoute(),
+
+      bqrRazorpay: this.AggregatorRoute(),
+
+      stripe: this.AggregatorRoute(),
+
+      razorpay: this.AggregatorRoute(),
+
+      fynd: this.AggregatorRoute(),
+
+      rupifi: this.AggregatorRoute(),
+
+      upiRazorpay: this.AggregatorRoute(),
+
+      juspay: this.AggregatorRoute(),
+    });
+  };
+
+  static PaymentOptionAndFlow = function () {
+    return Joi.object({
+      paymentOption: Joi.array().items(this.RootPaymentMode()),
+
+      paymentFlows: this.PaymentFlow(),
+    });
+  };
+
+  static PaymentModeRouteResponse = function () {
+    return Joi.object({
+      paymentOptions: this.PaymentOptionAndFlow(),
+
+      success: Joi.boolean(),
+    });
+  };
+
+  static OrderBeneficiaryDetails = function () {
+    return Joi.object({
+      address: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      ifscCode: Joi.string(),
+
+      id: Joi.number(),
+
+      accountNo: Joi.string(),
+
+      subtitle: Joi.string(),
+
+      transferMode: Joi.string(),
+
+      beneficiaryId: Joi.string(),
+
+      branchName: Joi.boolean(),
+
+      accountHolder: Joi.string(),
+
+      modifiedOn: Joi.string(),
+
+      bankName: Joi.string(),
+
+      delightsUserName: Joi.string(),
+
+      comment: Joi.boolean(),
+
+      email: Joi.string(),
+
+      displayName: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      title: Joi.string(),
+
+      mobile: Joi.boolean(),
+    });
+  };
+
+  static OrderBeneficiaryResponse = function () {
+    return Joi.object({
+      beneficiaries: Joi.array().items(this.OrderBeneficiaryDetails()),
+    });
+  };
+
+  static NotFoundResourceError = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      description: Joi.string(),
+
+      success: Joi.boolean(),
+    });
+  };
+
+  static IfscCodeResponse = function () {
+    return Joi.object({
+      bankName: Joi.string(),
+
+      success: Joi.boolean(),
+
+      branchName: Joi.string(),
+    });
+  };
+
+  static ErrorCodeDescription = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      description: Joi.string(),
+
+      success: Joi.boolean(),
+    });
+  };
+
+  static AddBeneficiaryViaOtpVerificationRequest = function () {
+    return Joi.object({
+      otp: Joi.string(),
+
+      hashKey: Joi.string(),
+
+      requestId: Joi.string(),
+    });
+  };
+
+  static AddBeneficiaryViaOtpVerificationResponse = function () {
+    return Joi.object({
+      otp: Joi.string(),
+
+      hashKey: Joi.string(),
+
+      requestId: Joi.string(),
+    });
+  };
+
+  static WrongOtpError = function () {
+    return Joi.object({
+      description: Joi.string(),
+
+      success: Joi.string(),
+    });
+  };
+
+  static BankDetails = function () {
+    return Joi.object({
+      address: Joi.string(),
+
+      ifscCode: Joi.string(),
+
+      branchName: Joi.string(),
+
+      accountNo: Joi.string(),
+
+      accountHolder: Joi.string(),
+
+      bankName: Joi.string(),
+
+      comment: Joi.string(),
+
+      email: Joi.string(),
+
+      mobile: Joi.string(),
+    });
+  };
+
+  static AddBeneficiaryDetailsRequest = function () {
+    return Joi.object({
+      shipmentId: Joi.string(),
+
+      transferMode: Joi.string(),
+
+      orderId: Joi.string(),
+
+      details: this.BankDetails(),
+
+      delights: Joi.boolean(),
+    });
+  };
+
+  static RefundAccountResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+
+      success: Joi.boolean(),
+
+      data: Joi.object(),
+    });
+  };
+
+  static WalletOtpRequest = function () {
+    return Joi.object({
+      countryCode: Joi.string(),
+
+      mobile: Joi.boolean(),
+    });
+  };
+
+  static WalletOtpResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      isVerifiedFlag: Joi.string(),
+
+      requestId: Joi.string(),
+    });
+  };
+
+  static SetDefaultBeneficiaryRequest = function () {
+    return Joi.object({
+      orderId: Joi.string(),
+
+      beneficiaryId: Joi.string(),
+    });
+  };
+
+  static SetDefaultBeneficiaryResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      isBeneficiarySet: Joi.boolean(),
+    });
+  };
+
+  static OrderById = function () {
+    return Joi.object({
+      order: this.OrderSchema(),
+    });
+  };
+
+  static OrderList = function () {
+    return Joi.object({
+      orders: Joi.array().items(this.OrderSchema()),
+
+      page: this.OrderPage(),
+    });
+  };
+
+  static OrderPage = function () {
+    return Joi.object({
+      itemTotal: Joi.number(),
+
+      type: Joi.string(),
+
+      size: Joi.number(),
+
+      current: Joi.number(),
+
+      hasNext: Joi.boolean(),
+    });
+  };
+
+  static ShipmentById = function () {
+    return Joi.object({
+      shipment: this.Shipments(),
+    });
+  };
+
+  static ShipmentReasons = function () {
+    return Joi.object({
+      reasons: Joi.array().items(this.Reasons()),
+    });
+  };
+
+  static ShipmentStatusUpdateBody = function () {
+    return Joi.object({
+      shipments: this.Shipments(),
+
+      forceTransition: Joi.boolean(),
+
+      task: Joi.boolean(),
+    });
+  };
+
+  static Shipments = function () {
+    return Joi.object({
+      shipmentId: Joi.string(),
+
+      orderId: Joi.string(),
+
+      breakupValues: Joi.array().items(this.BreakupValues()),
+
+      enableCanReturn: Joi.boolean(),
+
+      paymentModeSource: Joi.string(),
+
+      shipmentImages: Joi.array().items(Joi.string()),
+
+      trackUrl: Joi.string(),
+
+      trakingNo: Joi.string(),
+
+      trackingDetails: Joi.array().items(this.TrackingDetails()),
+
+      beneficiaryDetails: Joi.boolean(),
+
+      canReturn: Joi.boolean(),
+
+      enableTracking: Joi.boolean(),
+
+      prices: this.Prices(),
+
+      needHelpUrl: Joi.string(),
+
+      totalBags: Joi.number(),
+
+      items: Joi.array().items(this.ProductItems()),
+
+      deliveryAddress: this.DeliveryAddress(),
+
+      paymentStatus: Joi.string(),
+
+      invoice: this.Invoice(),
+
+      comment: Joi.string(),
+
+      orderType: Joi.string(),
+
+      promise: this.Promise(),
+
+      fulfillingStore: this.FulfillingStore(),
+
+      totalItems: Joi.number(),
+
+      bags: Joi.array().items(this.Bags()),
+
+      canCancel: Joi.boolean(),
+
+      paymentLogo: Joi.string(),
+
+      shipmentCreatedAt: Joi.string(),
+
+      shipmentStatus: this.ShipmentStatus(),
+
+      userInfo: this.ShipmentUserInfo(),
+
+      meta: this.ShipmentMeta(),
+    });
+  };
+
+  static ShipmentId = function () {
+    return Joi.object({
+      statusUpdate: this.StatusUpdate(),
+
+      message: Joi.array().items(Joi.any()),
+
+      error: Joi.string(),
+
+      status: Joi.boolean(),
+    });
+  };
+
+  static StatusUpdate = function () {
+    return Joi.object({
+      status: Joi.string(),
+    });
+  };
+
+  static ShipmentStatusUpdate = function () {
+    return Joi.object({
+      shipments: this.Shipments(),
+    });
+  };
+
+  static ShipmentTrack = function () {
+    return Joi.object({
+      results: Joi.array().items(this.Track()),
+    });
+  };
+
+  static OrderSchema = function () {
+    return Joi.object({
+      orderId: Joi.string(),
+
+      breakupValues: Joi.array().items(this.BreakupValues()),
+
+      orderCreatedTime: Joi.string(),
+
+      shipments: Joi.array().items(this.Shipments()),
+
+      totalShipmentsInOrder: Joi.number(),
+
+      userInfo: this.UserInfo(),
+    });
+  };
+
+  static PosOrderById = function () {
+    return Joi.object({
+      order: this.OrderSchema(),
+    });
+  };
+
+  static Bags = function () {
+    return Joi.object({
+      item: this.Item(),
+
+      prices: this.Prices(),
+
+      promotionEffectiveDiscount: Joi.number(),
+
+      currentStatus: this.CurrentStatus(),
+
+      bagStatus: Joi.array().items(this.BagStatus()),
+
+      dates: this.Dates(),
+
+      id: Joi.number(),
+
+      status: this.BagState(),
+
+      type: Joi.string(),
+
+      financialBreakup: Joi.array().items(this.FinancialBreakup()),
+
+      reasons: Joi.array().items(this.BagReasons()),
+
+      article: this.Article(),
+
+      journeyType: Joi.string(),
+
+      currentOperationalStatus: this.CurrentOperationalStatus(),
+
+      displayName: Joi.string(),
+
+      entityType: Joi.string(),
+
+      brand: this.Brand(),
+
+      affiliateBagDetails: this.AffiliateBagDetails(),
+
+      gstDetails: this.GstDetails(),
+
+      bagId: Joi.number(),
+
+      bagUpdateTime: Joi.number(),
+    });
+  };
+
+  static Item = function () {
+    return Joi.object({
+      brandId: Joi.number(),
+
+      canCancel: Joi.boolean(),
+
+      brand: Joi.string(),
+
+      l1Category: Joi.array().items(Joi.string()),
+
+      name: Joi.string(),
+
+      l2Category: Joi.array().items(Joi.string()),
+
+      size: Joi.string(),
+
+      canReturn: Joi.boolean(),
+
+      l3Category: Joi.number(),
+
+      lastUpdatedAt: Joi.string(),
+
+      slugKey: Joi.string(),
+
+      attributes: this.BagItemAttributes(),
+
+      id: Joi.number(),
+
+      code: Joi.string(),
+
+      l3CategoryName: Joi.string(),
+
+      image: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static BagItemAttributes = function () {
+    return Joi.object({
+      itemCode: Joi.string(),
+
+      brandName: Joi.string(),
+
+      countryOfOrigin: Joi.string(),
+    });
+  };
+
+  static Prices = function () {
+    return Joi.object({
+      amountPaidRoundoff: Joi.number(),
+
+      fyndCredits: Joi.number(),
+
+      codCharges: Joi.number(),
+
+      cashback: Joi.number(),
+
+      addedToFyndCash: Joi.boolean(),
+
+      priceMarked: Joi.number(),
+
+      transferPrice: Joi.number(),
+
+      couponValue: Joi.number(),
+
+      priceEffective: Joi.number(),
+
+      refundCredit: Joi.number(),
+
+      amountPaid: Joi.number(),
+
+      refundAmount: Joi.number(),
+
+      cashbackApplied: Joi.number(),
+
+      gstTaxPercentage: Joi.number(),
+
+      valueOfGood: Joi.number(),
+
+      brandCalculatedAmount: Joi.number(),
+
+      promotionEffectiveDiscount: Joi.number(),
+
+      discount: Joi.number(),
+
+      couponEffectiveDiscount: Joi.number(),
+
+      deliveryCharge: Joi.number(),
+    });
+  };
+
+  static CurrentStatus = function () {
+    return Joi.object({
+      storeId: Joi.number(),
+
+      bagId: Joi.number(),
+
+      createdAt: Joi.string(),
+
+      stateType: Joi.string(),
+
+      id: Joi.number(),
+
+      stateId: Joi.number(),
+
+      updatedAt: Joi.string(),
+
+      kafkaSync: Joi.boolean(),
+
+      status: Joi.string(),
+
+      bagStateMapper: this.BagStateMapper(),
+    });
+  };
+
+  static BagStateMapper = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      appStateName: Joi.string(),
+
+      displayName: Joi.string(),
+
+      appDisplayName: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      appFacing: Joi.boolean(),
+
+      notifyCustomer: Joi.boolean(),
+
+      journeyType: Joi.string(),
+
+      id: Joi.number(),
+
+      stateType: Joi.string(),
+    });
+  };
+
+  static BagStatus = function () {
+    return Joi.object({
+      bagId: Joi.number(),
+
+      kafkaSync: Joi.boolean(),
+
+      status: Joi.string(),
+
+      storeId: Joi.number(),
+
+      stateType: Joi.string(),
+
+      id: Joi.number(),
+
+      updatedAt: Joi.string(),
+
+      bagStateMapper: this.BagStatusBagStateMapper(),
+
+      stateId: Joi.number(),
+
+      createdAt: Joi.string(),
+    });
+  };
+
+  static BagStatusBagStateMapper = function () {
+    return Joi.object({
+      appStateName: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      id: Joi.number(),
+
+      appDisplayName: Joi.string(),
+
+      appFacing: Joi.boolean(),
+
+      notifyCustomer: Joi.boolean(),
+
+      stateType: Joi.string(),
+
+      journeyType: Joi.string(),
+
+      name: Joi.string(),
+
+      displayName: Joi.string(),
+    });
+  };
+
+  static Dates = function () {
+    return Joi.object({
+      orderCreated: Joi.string(),
+    });
+  };
+
+  static BagState = function () {
+    return Joi.object({
+      isReturnable: Joi.boolean(),
+
+      canBeCancelled: Joi.boolean(),
+
+      enableTracking: Joi.boolean(),
+
+      isCustomerReturnAllowed: Joi.boolean(),
+
+      isActive: Joi.boolean(),
+    });
+  };
+
+  static FinancialBreakup = function () {
+    return Joi.object({
+      brandCalculatedAmount: Joi.number(),
+
+      couponValue: Joi.number(),
+
+      amountPaidRoundoff: Joi.number(),
+
+      gstFee: Joi.string(),
+
+      refundCredit: Joi.number(),
+
+      cashback: Joi.number(),
+
+      refundAmount: Joi.number(),
+
+      valueOfGood: Joi.number(),
+
+      promotionEffectiveDiscount: Joi.number(),
+
+      size: Joi.string(),
+
+      totalUnits: Joi.number(),
+
+      discount: Joi.number(),
+
+      amountPaid: Joi.number(),
+
+      fyndCredits: Joi.number(),
+
+      addedToFyndCash: Joi.boolean(),
+
+      deliveryCharge: Joi.number(),
+
+      hsnCode: Joi.string(),
+
+      couponEffectiveDiscount: Joi.number(),
+
+      transferPrice: Joi.number(),
+
+      identifiers: this.Identifiers(),
+
+      gstTag: Joi.string(),
+
+      priceMarked: Joi.number(),
+
+      priceEffective: Joi.number(),
+
+      codCharges: Joi.number(),
+
+      itemName: Joi.string(),
+
+      cashbackApplied: Joi.number(),
+
+      gstTaxPercentage: Joi.number(),
+    });
+  };
+
+  static Identifiers = function () {
+    return Joi.object({
+      ean: Joi.string(),
+
+      skuCode: Joi.string(),
+    });
+  };
+
+  static BagReasons = function () {
+    return Joi.object({
+      id: Joi.number(),
+
+      state: Joi.string(),
+
+      bagId: Joi.number(),
+
+      slug: Joi.string(),
+
+      displayName: Joi.string(),
+    });
+  };
+
+  static Article = function () {
+    return Joi.object({
+      espModified: Joi.boolean(),
+
+      size: Joi.string(),
+
+      id: Joi.string(),
+
+      identifiers: this.ArticleIdentifiers(),
+
+      isSet: Joi.boolean(),
+
+      sellerIdentifier: Joi.string(),
+
+      returnConfig: this.ReturnConfig(),
+
+      uid: Joi.string(),
+
+      code: Joi.string(),
+    });
+  };
+
+  static ArticleIdentifiers = function () {
+    return Joi.object({
+      ean: Joi.string(),
+
+      skuCode: Joi.string(),
+    });
+  };
+
+  static ReturnConfig = function () {
+    return Joi.object({
+      time: Joi.number(),
+
+      unit: Joi.string(),
+
+      returnable: Joi.boolean(),
+    });
+  };
+
+  static CurrentOperationalStatus = function () {
+    return Joi.object({
+      id: Joi.number(),
+
+      stateId: Joi.number(),
+
+      kafkaSync: Joi.boolean(),
+
+      reasons: Joi.array().items(this.CurrentOperationalStatusReasons()),
+
+      storeId: Joi.number(),
+
+      stateType: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      bagId: Joi.number(),
+
+      status: Joi.string(),
+
+      createdAt: Joi.string(),
+
+      bagStateMapper: this.CurrentOperationalStatusBagStateMapper(),
+    });
+  };
+
+  static CurrentOperationalStatusReasons = function () {
+    return Joi.object({
+      id: Joi.number(),
+
+      state: Joi.string(),
+
+      slug: Joi.string(),
+
+      displayName: Joi.string(),
+    });
+  };
+
+  static CurrentOperationalStatusBagStateMapper = function () {
+    return Joi.object({
+      stateType: Joi.string(),
+
+      appStateName: Joi.string(),
+
+      displayName: Joi.string(),
+
+      id: Joi.number(),
+
+      isActive: Joi.boolean(),
+
+      journeyType: Joi.string(),
+
+      name: Joi.string(),
+
+      appDisplayName: Joi.string(),
+
+      appFacing: Joi.boolean(),
+
+      notifyCustomer: Joi.boolean(),
+    });
+  };
+
+  static Brand = function () {
+    return Joi.object({
+      modifiedOn: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      brandName: Joi.string(),
+
+      isVirtualInvoice: Joi.boolean(),
+
+      id: Joi.number(),
+
+      creditNoteAllowed: Joi.boolean(),
+
+      logo: Joi.string(),
+    });
+  };
+
+  static AffiliateBagDetails = function () {
+    return Joi.object({
+      affiliateBagId: Joi.string(),
+
+      affiliateOrderId: Joi.string(),
+
+      affiliateMeta: this.AffiliateMeta(),
+
+      loyaltyDiscount: Joi.number(),
+
+      employeeDiscount: Joi.number(),
+    });
+  };
+
+  static AffiliateMeta = function () {
+    return Joi.object({
+      sizeLevelTotalQty: Joi.number(),
+
+      fynd: this.Fynd(),
+
+      isPriority: Joi.boolean(),
+
+      employeeDiscount: Joi.number(),
+
+      loyaltyDiscount: Joi.number(),
+    });
+  };
+
+  static Fynd = function () {
+    return Joi.object({
+      fulfilmentIdentifier: Joi.string(),
+    });
+  };
+
+  static GstDetails = function () {
+    return Joi.object({
+      valueOfGood: Joi.number(),
+
+      gstTaxPercentage: Joi.number(),
+
+      isDefaultHsnCode: Joi.boolean(),
+
+      brandCalculatedAmount: Joi.number(),
+
+      gstFee: Joi.string(),
+
+      gstTag: Joi.string(),
+
+      hsnCode: Joi.string(),
+    });
+  };
+
+  static BreakupValues = function () {
+    return Joi.object({
+      display: Joi.string(),
+
+      value: Joi.number(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static DeliveryAddress = function () {
+    return Joi.object({
+      pincode: Joi.string(),
+
+      landmark: Joi.string(),
+
+      contactPerson: Joi.string(),
+
+      phone: Joi.string(),
+
+      state: Joi.string(),
+
+      version: Joi.string(),
+
+      address1: Joi.string(),
+
+      createdAt: Joi.string(),
+
+      addressType: Joi.string(),
+
+      addressCategory: Joi.string(),
+
+      area: Joi.string(),
+
+      city: Joi.string(),
+
+      latitude: Joi.number(),
+
+      longitude: Joi.number(),
+
+      email: Joi.string(),
+
+      country: Joi.string(),
+
+      address2: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      name: Joi.string(),
+
+      address: Joi.string(),
+    });
+  };
+
+  static FulfillingStore = function () {
+    return Joi.object({
+      address1: Joi.string(),
+
+      storeEmail: Joi.string(),
+
+      code: Joi.string(),
+
+      storeAddressJson: this.StoreAddressJson(),
+
+      country: Joi.string(),
+
+      state: Joi.string(),
+
+      pincode: Joi.string(),
+
+      contactPerson: Joi.string(),
+
+      brandStoreTags: Joi.array().items(Joi.any()),
+
+      locationType: Joi.string(),
+
+      address2: Joi.string(),
+
+      isArchived: Joi.boolean(),
+
+      id: Joi.number(),
+
+      createdAt: Joi.string(),
+
+      isEnabledForRecon: Joi.boolean(),
+
+      city: Joi.string(),
+
+      meta: this.FulfillingStoreMeta(),
+
+      fulfillmentChannel: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      updatedAt: Joi.string(),
+
+      loginUsername: Joi.string(),
+
+      phone: Joi.string(),
+
+      packagingMaterialCount: Joi.number(),
+
+      name: Joi.string(),
+
+      companyId: Joi.number(),
+    });
+  };
+
+  static StoreAddressJson = function () {
+    return Joi.object({
+      area: Joi.string(),
+
+      city: Joi.string(),
+
+      longitude: Joi.number(),
+
+      email: Joi.string(),
+
+      phone: Joi.string(),
+
+      address2: Joi.string(),
+
+      landmark: Joi.string(),
+
+      latitude: Joi.number(),
+
+      addressType: Joi.string(),
+
+      addressCategory: Joi.string(),
+
+      state: Joi.string(),
+
+      pincode: Joi.string(),
+
+      version: Joi.string(),
+
+      address1: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      country: Joi.string(),
+
+      createdAt: Joi.string(),
+
+      contactPerson: Joi.string(),
+    });
+  };
+
+  static FulfillingStoreMeta = function () {
+    return Joi.object({
+      additionalContactDetails: this.AdditionalContactDetails(),
+
+      timing: Joi.array().items(this.Timing()),
+
+      documents: this.Documents(),
+
+      displayName: Joi.string(),
+
+      stage: Joi.string(),
+
+      gstNumber: Joi.string(),
+
+      allowDpAssignmentFromFynd: Joi.boolean(),
+    });
+  };
+
+  static AdditionalContactDetails = function () {
+    return Joi.object({
+      number: Joi.array().items(Joi.any()),
+    });
+  };
+
+  static Timing = function () {
+    return Joi.object({
+      opening: this.Opening(),
+
+      weekday: Joi.string(),
+
+      open: Joi.boolean(),
+
+      closing: this.Closing(),
+    });
+  };
+
+  static Opening = function () {
+    return Joi.object({
+      hour: Joi.number(),
+
+      minute: Joi.number(),
+    });
+  };
+
+  static Closing = function () {
+    return Joi.object({
+      hour: Joi.number(),
+
+      minute: Joi.number(),
+    });
+  };
+
+  static Documents = function () {
+    return Joi.object({
+      gst: this.Gst(),
+    });
+  };
+
+  static Gst = function () {
+    return Joi.object({
+      value: Joi.string(),
+
+      verified: Joi.boolean(),
+
+      legalName: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static Invoice = function () {
+    return Joi.object({
+      updatedDate: Joi.string(),
+
+      invoiceUrl: Joi.string(),
+
+      labelUrl: Joi.string(),
+    });
+  };
+
+  static ProductItems = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      lastUpdatedAt: Joi.string(),
+
+      brand: Joi.string(),
+
+      image: Joi.array().items(Joi.string()),
+
+      l3Category: Joi.number(),
+
+      brandId: Joi.number(),
+
+      name: Joi.string(),
+
+      canCancel: Joi.boolean(),
+
+      size: Joi.string(),
+
+      slugKey: Joi.string(),
+
+      l3CategoryName: Joi.string(),
+
+      l2Category: Joi.array().items(Joi.string()),
+
+      id: Joi.number(),
+
+      canReturn: Joi.boolean(),
+
+      l1Category: Joi.array().items(Joi.string()),
+
+      attributes: this.ProductItemAttributes(),
+    });
+  };
+
+  static ProductItemAttributes = function () {
+    return Joi.object({
+      itemCode: Joi.string(),
+
+      brandName: Joi.string(),
+
+      countryOfOrigin: Joi.string(),
+    });
+  };
+
+  static ShipmentMeta = function () {
+    return Joi.object({
+      timestamp: this.Timestamp(),
+
+      bagWeight: Joi.object(),
+
+      dpOptions: this.DpOptions(),
+
+      orderType: Joi.string(),
+
+      sameStoreAvailable: Joi.boolean(),
+
+      assignDpFromSb: Joi.boolean(),
+
+      dpId: Joi.string(),
+
+      weight: Joi.number(),
+
+      formatted: this.Formatted(),
+
+      debugInfo: this.DebugInfo(),
+
+      dpSortKey: Joi.string(),
+
+      packagingName: Joi.string(),
+    });
+  };
+
+  static Timestamp = function () {
+    return Joi.object({
+      max: Joi.string(),
+
+      min: Joi.string(),
+    });
+  };
+
+  static DpOptions = function () {
+    return Joi.object({
+      dpOptionId: this.DpOptionId(),
+    });
+  };
+
+  static DpOptionId = function () {
+    return Joi.object({
+      fPriority: Joi.number(),
+
+      operations: Joi.string(),
+
+      rPriority: Joi.number(),
+
+      paymentMode: Joi.string(),
+
+      fmPriority: Joi.number(),
+
+      lmPriority: Joi.number(),
+
+      rvpPriority: Joi.number(),
+
+      assignDpFromSb: Joi.boolean(),
+    });
+  };
+
+  static Formatted = function () {
+    return Joi.object({
+      max: Joi.string(),
+
+      min: Joi.string(),
+    });
+  };
+
+  static DebugInfo = function () {
+    return Joi.object({
+      stormbreakerUuid: Joi.string(),
+    });
+  };
+
+  static Promise = function () {
+    return Joi.object({
+      timestamp: this.Timestamp(),
+    });
+  };
+
+  static Reasons = function () {
+    return Joi.object({
+      reasonText: Joi.string(),
+
+      showTextArea: Joi.boolean(),
+
+      feedbackType: Joi.string(),
+
+      flow: Joi.string(),
+
+      reasonId: Joi.number(),
+
+      priority: Joi.number(),
+    });
+  };
+
+  static ShipmentStatus = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      hexCode: Joi.string(),
+    });
+  };
+
+  static ShipmentUserInfo = function () {
+    return Joi.object({
+      gender: Joi.string(),
+
+      mobile: Joi.string(),
+
+      firstName: Joi.string(),
+
+      lastName: Joi.string(),
+    });
+  };
+
+  static Track = function () {
+    return Joi.object({
+      awb: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      lastLocationRecievedAt: Joi.string(),
+
+      reason: Joi.string(),
+
+      shipmentType: Joi.string(),
+
+      status: Joi.string(),
+
+      updatedTime: Joi.string(),
+
+      accountName: Joi.string(),
+    });
+  };
+
+  static TrackingDetails = function () {
+    return Joi.object({
+      isCurrent: Joi.boolean(),
+
+      status: Joi.string(),
+
+      time: Joi.string(),
+
+      isPassed: Joi.string(),
+    });
+  };
+
+  static UserInfo = function () {
+    return Joi.object({
+      gender: Joi.string(),
+
+      mobile: Joi.string(),
+
+      name: Joi.string(),
+
+      email: Joi.string(),
+    });
+  };
+
+  static ApefaceApiError = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static Access = function () {
+    return Joi.object({
+      answer: Joi.boolean(),
+
+      askQuestion: Joi.boolean(),
+
+      comment: Joi.boolean(),
+
+      rnr: Joi.boolean(),
+    });
+  };
+
+  static AddMediaListRequest = function () {
+    return Joi.object({
+      entityId: Joi.string(),
+
+      entityType: Joi.string(),
+
+      mediaList: Joi.array().items(this.AddMediaRequest()),
+
+      refId: Joi.string(),
+
+      refType: Joi.string(),
+    });
+  };
+
+  static AddMediaRequest = function () {
+    return Joi.object({
+      cloudId: Joi.string(),
+
+      cloudName: Joi.string(),
+
+      cloudProvider: Joi.string(),
+
+      entityId: Joi.string(),
+
+      entityType: Joi.string(),
+
+      mediaUrl: Joi.string(),
+
+      refId: Joi.string(),
+
+      refType: Joi.string(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      thumbnailUrl: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static Attribute = function () {
+    return Joi.object({
+      createdOn: Joi.string(),
+
+      description: Joi.string(),
+
+      id: Joi.string(),
+
+      modifiedOn: Joi.string(),
+
+      name: Joi.string(),
+
+      slug: Joi.string(),
+
+      tags: Joi.array().items(this.TagMeta()),
+    });
+  };
+
+  static AttributeObject = function () {
+    return Joi.object({
+      description: Joi.string(),
+
+      name: Joi.string(),
+
+      slug: Joi.string(),
+
+      title: Joi.string(),
+
+      type: Joi.string(),
+
+      value: Joi.number(),
+    });
+  };
+
+  static CheckEligibilityResponse = function () {
+    return Joi.object({
+      access: this.Access(),
+
+      mediaCloud: this.MediaCloud(),
+    });
+  };
+
+  static Cloud = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      name: Joi.string(),
+
+      provider: Joi.string(),
+    });
+  };
+
+  static CommentRequest = function () {
+    return Joi.object({
+      comment: Joi.array().items(Joi.string()),
+
+      entityId: Joi.string(),
+
+      entityType: Joi.string(),
+    });
+  };
+
+  static CreateQNARequest = function () {
+    return Joi.object({
+      choices: Joi.array().items(Joi.string()),
+
+      entityId: Joi.string(),
+
+      entityType: Joi.string(),
+
+      maxLen: Joi.number(),
+
+      sortPriority: Joi.number(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      text: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static DeviceMeta = function () {
+    return Joi.object({
+      appVersion: Joi.string(),
+
+      platform: Joi.string(),
+    });
+  };
+
+  static MediaCloud = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      name: Joi.string(),
+
+      namespace: Joi.string(),
+
+      path: Joi.string(),
+
+      provider: Joi.string(),
+
+      secret: Joi.string(),
+    });
+  };
+
+  static MediaMeta = function () {
+    return Joi.object({
+      cloud: this.Cloud(),
+
+      comment: Joi.array().items(Joi.string()),
+
+      description: Joi.string(),
+
+      id: Joi.string(),
+
+      type: Joi.string(),
+
+      url: this.Url(),
+    });
+  };
+
+  static PageCursor = function () {
+    return Joi.object({
+      hasNext: Joi.boolean(),
+
+      hasPrevious: Joi.boolean(),
+
+      itemTotal: Joi.number(),
+
+      nextId: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static PageNumber = function () {
+    return Joi.object({
+      current: Joi.number(),
+
+      hasNext: Joi.boolean(),
+
+      itemTotal: Joi.number(),
+
+      size: Joi.number(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static ReportAbuseRequest = function () {
+    return Joi.object({
+      description: Joi.string(),
+
+      entityId: Joi.string(),
+
+      entityType: Joi.string(),
+    });
+  };
+
+  static SaveAttributeRequest = function () {
+    return Joi.object({
+      description: Joi.string(),
+
+      name: Joi.string(),
+
+      slug: Joi.string(),
+    });
+  };
+
+  static TagMeta = function () {
+    return Joi.object({
+      media: Joi.array().items(this.MediaMeta()),
+
+      name: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static UpdateAbuseStatusRequest = function () {
+    return Joi.object({
+      abusive: Joi.boolean(),
+
+      active: Joi.boolean(),
+
+      approve: Joi.boolean(),
+
+      description: Joi.string(),
+
+      entityId: Joi.string(),
+
+      entityType: Joi.string(),
+
+      id: Joi.string(),
+    });
+  };
+
+  static UpdateAttributeRequest = function () {
+    return Joi.object({
+      description: Joi.string(),
+
+      name: Joi.string(),
+
+      slug: Joi.string(),
+    });
+  };
+
+  static UpdateCommentRequest = function () {
+    return Joi.object({
+      active: Joi.boolean(),
+
+      approve: Joi.boolean(),
+
+      comment: Joi.array().items(Joi.string()),
+
+      id: Joi.string(),
+    });
+  };
+
+  static UpdateMediaListRequest = function () {
+    return Joi.object({
+      approve: Joi.boolean(),
+
+      archive: Joi.boolean(),
+
+      entityType: Joi.string(),
+
+      ids: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static UpdateQNARequest = function () {
+    return Joi.object({
+      active: Joi.boolean(),
+
+      approve: Joi.boolean(),
+
+      choices: Joi.array().items(Joi.string()),
+
+      id: Joi.string(),
+
+      tags: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static UpdateReviewRequest = function () {
+    return Joi.object({
+      active: Joi.boolean(),
+
+      application: Joi.string(),
+
+      approve: Joi.boolean(),
+
+      archive: Joi.boolean(),
+
+      attributesRating: Joi.array().items(this.AttributeObject()),
+
+      description: Joi.string(),
+
+      deviceMeta: this.DeviceMeta(),
+
+      entityId: Joi.string(),
+
+      entityType: Joi.string(),
+
+      mediaResource: Joi.array().items(this.MediaMeta()),
+
+      rating: Joi.number(),
+
+      reviewId: Joi.string(),
+
+      templateId: Joi.string(),
+
+      title: Joi.string(),
+    });
+  };
+
+  static UpdateVoteRequest = function () {
+    return Joi.object({
+      action: Joi.string(),
+
+      active: Joi.boolean(),
+
+      id: Joi.string(),
+
+      refId: Joi.string(),
+
+      refType: Joi.string(),
+    });
+  };
+
+  static Url = function () {
+    return Joi.object({
+      main: Joi.string(),
+
+      thumbnail: Joi.string(),
+    });
+  };
+
+  static VoteRequest = function () {
+    return Joi.object({
+      action: Joi.string(),
+
+      entityId: Joi.string(),
+
+      entityType: Joi.string(),
+
+      refId: Joi.string(),
+
+      refType: Joi.string(),
+    });
+  };
+
+  static XCursorGetResponse = function () {
+    return Joi.object({
+      items: Joi.object(),
+
+      page: this.PageCursor(),
+    });
+  };
+
+  static XInsertResponse = function () {
+    return Joi.object({
+      ids: Joi.string(),
+    });
+  };
+
+  static XNumberGetResponse = function () {
+    return Joi.object({
+      items: Joi.object(),
+
+      page: this.PageNumber(),
+    });
+  };
+
+  static XUpdateResponse = function () {
+    return Joi.object({
+      id: Joi.string(),
+    });
+  };
+
+  static UpdateCartShipmentItem = function () {
+    return Joi.object({
+      quantity: Joi.number(),
+
+      articleUid: Joi.string(),
+
+      shipmentType: Joi.string(),
+    });
+  };
+
+  static UpdateCartShipmentRequest = function () {
+    return Joi.object({
+      shipments: Joi.array().items(this.UpdateCartShipmentItem()),
+    });
+  };
+
+  static Files = function () {
+    return Joi.object({
+      values: Joi.array().items(Joi.string()),
+
+      key: Joi.string(),
+    });
+  };
+
+  static CartPosCheckoutRequest = function () {
+    return Joi.object({
+      merchantCode: Joi.string(),
+
+      extraMeta: Joi.object(),
+
+      fyndstoreEmpId: Joi.string(),
+
+      billingAddress: Joi.object(),
+
+      billingAddressId: Joi.number(),
+
+      staff: Joi.object(),
+
+      pos: Joi.boolean(),
+
+      paymentMode: Joi.string(),
+
+      pickAtStoreUid: Joi.number(),
+
+      addressId: Joi.number(),
+
+      files: this.Files(),
+
+      paymentIdentifier: Joi.string(),
+
+      deliveryAddress: Joi.object(),
+
+      paymentParams: Joi.object(),
+
+      orderingStore: Joi.number(),
+
+      aggregator: Joi.string(),
+
+      orderType: Joi.string(),
+
+      paymentAutoConfirm: Joi.boolean(),
+
+      meta: Joi.object(),
+
+      callbackUrl: Joi.string(),
+    });
+  };
+
+  static CartDeliveryModesResponse = function () {
+    return Joi.object({
+      pickupStores: Joi.array().items(Joi.number()),
+
+      availableModes: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static PickupStoreDetail = function () {
+    return Joi.object({
+      area: Joi.string(),
+
+      landmark: Joi.string(),
+
+      address: Joi.string(),
+
+      country: Joi.string(),
+
+      pincode: Joi.number(),
+
+      storeCode: Joi.string(),
+
+      uid: Joi.number(),
+
+      phone: Joi.string(),
+
+      areaCode: Joi.string(),
+
+      addressType: Joi.string(),
+
+      areaCodeSlug: Joi.string(),
+
+      city: Joi.string(),
+
+      state: Joi.string(),
+
+      email: Joi.string(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static StoreDetailsResponse = function () {
+    return Joi.object({
+      items: Joi.array().items(this.PickupStoreDetail()),
+    });
+  };
+
+  static GetPincodeCityResponse = function () {
+    return Joi.object({
+      requestUuid: Joi.string(),
+
+      stormbreakerUuid: Joi.string(),
+
+      success: Joi.boolean(),
+
+      data: Joi.array().items(this.LogisticPincodeData()),
+    });
+  };
+
+  static LogisticPincodeData = function () {
+    return Joi.object({
+      meta: this.LogisticMeta(),
+
+      parents: Joi.array().items(this.LogisticParents()),
+
+      subType: Joi.string(),
+
+      name: Joi.string(),
+
+      error: this.LogisticError(),
+
+      uid: Joi.string(),
+
+      displayName: Joi.string(),
+    });
+  };
+
+  static LogisticMeta = function () {
+    return Joi.object({
+      zone: Joi.string(),
+
+      deliverables: Joi.array().items(Joi.any()),
+    });
+  };
+
+  static LogisticParents = function () {
+    return Joi.object({
+      subType: Joi.string(),
+
+      name: Joi.string(),
+
+      displayName: Joi.string(),
+
+      uid: Joi.string(),
+    });
+  };
+
+  static LogisticError = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      value: Joi.string(),
+
+      message: Joi.string(),
+    });
+  };
+
+  static GetTatProductReqBody = function () {
+    return Joi.object({
+      locationDetails: this.LocationDetails(),
+
+      source: Joi.string(),
+
+      toPincode: Joi.string(),
+
+      action: Joi.string(),
+
+      identifier: Joi.string(),
+
+      journey: Joi.string(),
+    });
+  };
+
+  static LocationDetails = function () {
+    return Joi.object({
+      fromPincode: Joi.string(),
+
+      articles: this.TatProductArticles(),
+
+      fulfillmentId: Joi.number(),
+    });
+  };
+
+  static TatProductArticles = function () {
+    return Joi.object({
+      error: Joi.object(),
+
+      category: this.LogisticResponseCategory(),
+
+      promise: this.LogisticPromise(),
+    });
+  };
+
+  static LogisticRequestCategory = function () {
+    return Joi.object({
+      id: Joi.number(),
+
+      level: Joi.string(),
+    });
+  };
+
+  static LogisticPromise = function () {
+    return Joi.object({
+      timestamp: this.LogisticTimestamp(),
+
+      formatted: this.Formatted(),
+    });
+  };
+
+  static LogisticTimestamp = function () {
+    return Joi.object({
+      min: Joi.number(),
+
+      max: Joi.number(),
+    });
+  };
+
+  static GetTatProductResponse = function () {
+    return Joi.object({
+      locationDetails: this.LocationDetails(),
+
+      requestUuid: Joi.string(),
+
+      error: Joi.object(),
+
+      toCity: Joi.string(),
+
+      source: Joi.string(),
+
+      toPincode: Joi.string(),
+
+      action: Joi.string(),
+
+      stormbreakerUuid: Joi.string(),
+
+      success: Joi.boolean(),
+
+      identifier: Joi.string(),
+
+      journey: Joi.string(),
+    });
+  };
+
+  static LogisticResponseCategory = function () {
+    return Joi.object({
+      id: Joi.number(),
+
+      level: Joi.string(),
+    });
+  };
 }
 
-class Cart {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
+class CatalogValidator {
+  static getProductDetailBySlug = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Fetch all Items Added to  Cart
-    * @description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - 
-    * @param {boolean} [arg.i] - 
-    * @param {boolean} [arg.b] - 
-    * @param {number} [arg.assignCardId] - 
-    
-    **/
-  getCart({ uid, i, b, assignCardId } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["i"] = i;
-    query["b"] = b;
-    query["assign_card_id"] = assignCardId;
+  static getProductSizesBySlug = Joi.object({
+    slug: Joi.string().required(),
+    storeId: Joi.string(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/cart/v1.0/detail`,
-      query,
-      undefined
-    );
-  }
+  static getProductPriceBySlug = Joi.object({
+    slug: Joi.string().required(),
+    size: Joi.string().required(),
+    pincode: Joi.string().required(),
+    storeId: Joi.string(),
+  }).required();
 
-  /**
-    *
-    * @summary: Fetch Last-Modified timestamp
-    * @description: Fetch Last-Modified timestamp in header metadata
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - 
-    
-    **/
-  getCartLastModified({ uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
+  static getProductSellersBySlug = Joi.object({
+    slug: Joi.string().required(),
+    size: Joi.string().required(),
+    pincode: Joi.string().required(),
+    pageNo: Joi.number(),
+    pageSize: Joi.number(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "head",
-      `/service/application/cart/v1.0/detail`,
-      query,
-      undefined
-    );
-  }
+  static getProductComparisonBySlugs = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-  /**
-   *
-   * @summary: Add Items to Cart
-   * @description: <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
-   * @param {Object} arg - arg object.
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {AddCartRequest} arg.body
-   **/
-  addItems({ body, i, b } = {}) {
-    const query = {};
-    query["i"] = i;
-    query["b"] = b;
+  static getSimilarComparisonProductBySlug = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/cart/v1.0/detail`,
-      query,
-      body
-    );
-  }
+  static getComparedFrequentlyProductBySlug = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-  /**
-   *
-   * @summary: Update Items already added to Cart
-   * @description: Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-   * @param {Object} arg - arg object.
-   * @param {number} [arg.uid] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {UpdateCartRequest} arg.body
-   **/
-  updateCart({ body, uid, i, b } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["i"] = i;
-    query["b"] = b;
+  static getProductSimilarByIdentifier = Joi.object({
+    slug: Joi.string().required(),
+    similarType: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/cart/v1.0/detail`,
-      query,
-      body
-    );
-  }
+  static getProductVariantsBySlug = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Cart item count
-    * @description: Get total count of item present in cart
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - Cart id
-    
-    **/
-  getItemCount({ uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
+  static getProductStockByIds = Joi.object({
+    itemId: Joi.string(),
+    alu: Joi.string(),
+    skuCode: Joi.string(),
+    ean: Joi.string(),
+    upc: Joi.string(),
+  });
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/cart/v1.0/basic`,
-      query,
-      undefined
-    );
-  }
+  static getProductStockForTimeByIds = Joi.object({
+    timestamp: Joi.string().required(),
+    pageSize: Joi.number(),
+    pageId: Joi.string(),
+  }).required();
 
-  /**
-    *
-    * @summary: Fetch Coupon
-    * @description: Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - 
-    
-    **/
-  getCoupons({ uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
+  static getProducts = Joi.object({
+    q: Joi.string(),
+    f: Joi.string(),
+    filters: Joi.boolean(),
+    sortOn: Joi.string(),
+    pageId: Joi.string(),
+    pageSize: Joi.number(),
+    pageNo: Joi.number(),
+    pageType: Joi.string(),
+  });
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/cart/v1.0/coupon`,
-      query,
-      undefined
-    );
-  }
+  static getBrands = Joi.object({
+    department: Joi.string(),
+    pageNo: Joi.number(),
+    pageSize: Joi.number(),
+  });
 
-  /**
-    *
-    * @summary: Apply Coupon
-    * @description: <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
-</ul>
-    * @param {Object} arg - arg object.
-    * @param {boolean} [arg.i] - 
-    * @param {boolean} [arg.b] - 
-    * @param {boolean} [arg.p] - 
-    * @param {number} [arg.uid] - 
-    * @param {ApplyCouponRequest} arg.body
-    **/
-  applyCoupon({ body, i, b, p, uid } = {}) {
-    const query = {};
-    query["i"] = i;
-    query["b"] = b;
-    query["p"] = p;
-    query["uid"] = uid;
+  static getBrandDetailBySlug = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/cart/v1.0/coupon`,
-      query,
-      body
-    );
-  }
+  static getCategories = Joi.object({
+    department: Joi.string(),
+  });
 
-  /**
-    *
-    * @summary: Remove Coupon Applied
-    * @description: Remove Coupon applied on the cart by passing uid in request body.
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - Cart id
-    
-    **/
-  removeCoupon({ uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
+  static getCategoryDetailBySlug = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/cart/v1.0/coupon`,
-      query,
-      undefined
-    );
-  }
+  static getHomeProducts = Joi.object({
+    sortOn: Joi.string(),
+    pageId: Joi.string(),
+    pageSize: Joi.number(),
+  });
 
-  /**
-    *
-    * @summary: Get discount offers based on quantity
-    * @description: List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.itemId] - Item id
-    * @param {string} [arg.articleId] - Article mongo id
-    * @param {number} [arg.uid] - Item id
-    * @param {string} [arg.slug] - Item unique url from product page
-    
-    **/
-  getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
-    const query = {};
-    query["item_id"] = itemId;
-    query["article_id"] = articleId;
-    query["uid"] = uid;
-    query["slug"] = slug;
+  static getDepartments = Joi.object({});
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/cart/v1.0/bulk-price`,
-      query,
-      undefined
-    );
-  }
+  static getSearchResults = Joi.object({
+    q: Joi.string().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Fetch Address
-    * @description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - 
-    * @param {string} [arg.mobileNo] - 
-    * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
-    * @param {boolean} [arg.isDefault] - 
-    
-    **/
-  getAddresses({ uid, mobileNo, checkoutMode, tags, isDefault } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["mobile_no"] = mobileNo;
-    query["checkout_mode"] = checkoutMode;
-    query["tags"] = tags;
-    query["is_default"] = isDefault;
+  static getCollections = Joi.object({
+    pageNo: Joi.number(),
+    pageSize: Joi.number(),
+  });
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/cart/v1.0/address`,
-      query,
-      undefined
-    );
-  }
+  static getCollectionItemsBySlug = Joi.object({
+    slug: Joi.string().required(),
+    f: Joi.string(),
+    filters: Joi.boolean(),
+    sortOn: Joi.string(),
+    pageId: Joi.string(),
+    pageSize: Joi.number(),
+  }).required();
 
-  /**
-   *
-   * @summary: Add Address to the account
-   * @description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
-   * @param {Object} arg - arg object.
-   * @param {Address} arg.body
-   **/
-  addAddress({ body } = {}) {
-    const query = {};
+  static getCollectionDetailBySlug = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/cart/v1.0/address`,
-      query,
-      body
-    );
-  }
+  static getFollowedListing = Joi.object({
+    collectionType: Joi.string().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Fetch Single Address
-    * @description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-    * @param {Object} arg - arg object.
-    * @param {number} arg.id - 
-    * @param {number} [arg.uid] - 
-    * @param {string} [arg.mobileNo] - 
-    * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
-    * @param {boolean} [arg.isDefault] - 
-    
-    **/
-  getAddressById({ id, uid, mobileNo, checkoutMode, tags, isDefault } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["mobile_no"] = mobileNo;
-    query["checkout_mode"] = checkoutMode;
-    query["tags"] = tags;
-    query["is_default"] = isDefault;
+  static followById = Joi.object({
+    collectionType: Joi.string().required(),
+    collectionId: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/cart/v1.0/address/${id}`,
-      query,
-      undefined
-    );
-  }
+  static unfollowById = Joi.object({
+    collectionType: Joi.string().required(),
+    collectionId: Joi.string().required(),
+  }).required();
 
-  /**
-   *
-   * @summary: Update Address alreay added to account
-   * @description: Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
-   * @param {Object} arg - arg object.
-   * @param {number} arg.id - Address id
-   * @param {Address} arg.body
-   **/
-  updateAddress({ id, body } = {}) {
-    const query = {};
+  static getFollowerCountById = Joi.object({
+    collectionType: Joi.string().required(),
+    collectionId: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/cart/v1.0/address/${id}`,
-      query,
-      body
-    );
-  }
+  static getFollowIds = Joi.object({
+    collectionType: Joi.string(),
+  });
 
-  /**
-    *
-    * @summary: Remove Address Associated to the account
-    * @description: Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
-    * @param {Object} arg - arg object.
-    * @param {number} arg.id - Address id
-    
-    **/
-  removeAddress({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/cart/v1.0/address/${id}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Select Address from All Addresses
-   * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
-   * @param {Object} arg - arg object.
-   * @param {number} [arg.uid] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {SelectCartAddressRequest} arg.body
-   **/
-  selectAddress({ body, uid, i, b } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["i"] = i;
-    query["b"] = b;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/cart/v1.0/select-address`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Cart Payment
-   * @description: Update Cart Payment for Your Account
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.uid] -
-   * @param {UpdateCartPaymentRequest} arg.body
-   **/
-  selectPaymentMode({ body, uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/cart/v1.0/payment`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Cart Payment for valid coupon
-    * @description: Validate coupon for selected payment mode
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.uid] - 
-    * @param {string} [arg.addressId] - 
-    * @param {string} [arg.paymentMode] - 
-    * @param {string} [arg.paymentIdentifier] - 
-    * @param {string} [arg.aggregatorName] - 
-    * @param {string} [arg.merchantCode] - 
-    
-    **/
-  validateCouponForPayment({
-    uid,
-    addressId,
-    paymentMode,
-    paymentIdentifier,
-    aggregatorName,
-    merchantCode,
-  } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["address_id"] = addressId;
-    query["payment_mode"] = paymentMode;
-    query["payment_identifier"] = paymentIdentifier;
-    query["aggregator_name"] = aggregatorName;
-    query["merchant_code"] = merchantCode;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/cart/v1.0/payment/validate/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get delivery date and options before checkout
-    * @description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
-    * @param {Object} arg - arg object.
-    * @param {boolean} [arg.p] - Get payment options or not
-    * @param {number} [arg.uid] - Cart id
-    * @param {number} [arg.addressId] - Address id
-    * @param {string} [arg.areaCode] - Destination pincode.
-    
-    **/
-  getShipments({ p, uid, addressId, areaCode } = {}) {
-    const query = {};
-    query["p"] = p;
-    query["uid"] = uid;
-    query["address_id"] = addressId;
-    query["area_code"] = areaCode;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/cart/v1.0/shipment`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Checkout Cart
-   * @description: Checkout all items in cart to payment and order generation.                         For COD only order will be generated while for other checkout mode                         user will be redirected to payment gateway
-   * @param {Object} arg - arg object.
-   * @param {CartCheckoutRequest} arg.body
-   **/
-  checkoutCart({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/cart/v1.0/checkout`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Cart Meta
-   * @description: Update cart meta like checkout_mode, gstin.
-   * @param {Object} arg - arg object.
-   * @param {number} [arg.uid] - Cart id received in get cart.
-   * @param {CartMetaRequest} arg.body
-   **/
-  updateCartMeta({ body, uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/cart/v1.0/meta`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Generate Cart sharing link token
-   * @description: Generates shared cart snapshot and returns shortlink token
-   * @param {Object} arg - arg object.
-   * @param {GetShareCartLinkRequest} arg.body
-   **/
-  getCartShareLink({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/cart/v1.0/share-cart`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get shared cart snapshot and cart response
-    * @description: Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.token - Shared short link token.
-    
-    **/
-  getCartSharedItems({ token } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/cart/v1.0/share-cart/${token}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Merge or Replace existing cart
-    * @description: Merge or Replace cart based on `action` parameter with shared cart of `token`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.token - Shared short link token.
-    * @param {string} arg.action - Operation to perform on existing cart, whether to merge or replace.
-    
-    **/
-  updateCartWithSharedItems({ token, action } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/cart/v1.0/share-cart/${token}/${action}`,
-      query,
-      undefined
-    );
-  }
+  static getStores = Joi.object({
+    pageNo: Joi.number(),
+    pageSize: Joi.number(),
+    q: Joi.string(),
+    range: Joi.number(),
+    latitude: Joi.number(),
+    longitude: Joi.number(),
+  });
 }
 
-class Lead {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
+class CartValidator {
+  static getCart = Joi.object({
+    uid: Joi.number(),
+    i: Joi.boolean(),
+    b: Joi.boolean(),
+    assignCardId: Joi.number(),
+  });
 
-  /**
-    *
-    * @summary: Get Ticket with the specific id
-    * @description: Get Ticket with the specific id, this is used to view the ticket details
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - ID of ticket to be retrieved
-    
-    **/
-  getTicket({ id } = {}) {
-    const query = {};
+  static getCartLastModified = Joi.object({
+    uid: Joi.number(),
+  });
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/lead/v1.0/ticket/${id}`,
-      query,
-      undefined
-    );
-  }
+  static addItems = Joi.object({
+    i: Joi.boolean(),
+    b: Joi.boolean(),
+    body: Validator.AddCartRequest().required(),
+  }).required();
 
-  /**
-   *
-   * @summary: Create history for specific Ticket
-   * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.ticketId - Ticket ID for which history is created
-   * @param {TicketHistoryPayload} arg.body
-   **/
-  createHistory({ ticketId, body } = {}) {
-    const query = {};
+  static updateCart = Joi.object({
+    uid: Joi.number(),
+    i: Joi.boolean(),
+    b: Joi.boolean(),
+    body: Validator.UpdateCartRequest().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/lead/v1.0/ticket/${ticketId}/history`,
-      query,
-      body
-    );
-  }
+  static getItemCount = Joi.object({
+    uid: Joi.number(),
+  });
 
-  /**
-   *
-   * @summary: Create Ticket
-   * @description: This is used to Create Ticket.
-   * @param {Object} arg - arg object.
-   * @param {AddTicketPayload} arg.body
-   **/
-  createTicket({ body } = {}) {
-    const query = {};
+  static getCoupons = Joi.object({
+    uid: Joi.number(),
+  });
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/lead/v1.0/ticket/`,
-      query,
-      body
-    );
-  }
+  static applyCoupon = Joi.object({
+    i: Joi.boolean(),
+    b: Joi.boolean(),
+    p: Joi.boolean(),
+    uid: Joi.number(),
+    body: Validator.ApplyCouponRequest().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get specific Custom Form using it's slug
-    * @description: Get specific Custom Form using it's slug, this is used to view the form.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - Slug of form whose response is getting submitted
-    
-    **/
-  getCustomForm({ slug } = {}) {
-    const query = {};
+  static removeCoupon = Joi.object({
+    uid: Joi.number(),
+  });
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/lead/v1.0/form/${slug}`,
-      query,
-      undefined
-    );
-  }
+  static getBulkDiscountOffers = Joi.object({
+    itemId: Joi.number(),
+    articleId: Joi.string(),
+    uid: Joi.number(),
+    slug: Joi.string(),
+  });
 
-  /**
-   *
-   * @summary: Submit Response for a specific Custom Form using it's slug
-   * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.slug - Slug of form whose response is getting submitted
-   * @param {CustomFormSubmissionPayload} arg.body
-   **/
-  submitCustomForm({ slug, body } = {}) {
-    const query = {};
+  static getAddresses = Joi.object({
+    uid: Joi.number(),
+    mobileNo: Joi.string(),
+    checkoutMode: Joi.string(),
+    tags: Joi.number(),
+    isDefault: Joi.boolean(),
+  });
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/lead/v1.0/form/${slug}/submit`,
-      query,
-      body
-    );
-  }
+  static addAddress = Joi.object({
+    body: Validator.Address().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get participants of a specific Video Room using it's unique name
-    * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.uniqueName - Unique name of Video Room
-    
-    **/
-  getParticipantsInsideVideoRoom({ uniqueName } = {}) {
-    const query = {};
+  static getAddressById = Joi.object({
+    id: Joi.number().required(),
+    uid: Joi.number(),
+    mobileNo: Joi.string(),
+    checkoutMode: Joi.string(),
+    tags: Joi.number(),
+    isDefault: Joi.boolean(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/lead/v1.0/video/room/${uniqueName}/participants`,
-      query,
-      undefined
-    );
-  }
+  static updateAddress = Joi.object({
+    id: Joi.number().required(),
+    body: Validator.Address().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get Token to join a specific Video Room using it's unqiue name
-    * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.uniqueName - Unique name of Video Room
-    
-    **/
-  getTokenForVideoRoom({ uniqueName } = {}) {
-    const query = {};
+  static removeAddress = Joi.object({
+    id: Joi.number().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/lead/v1.0/video/room/${uniqueName}/token`,
-      query,
-      undefined
-    );
-  }
+  static selectAddress = Joi.object({
+    uid: Joi.number(),
+    i: Joi.boolean(),
+    b: Joi.boolean(),
+    body: Validator.SelectCartAddressRequest().required(),
+  }).required();
+
+  static selectPaymentMode = Joi.object({
+    uid: Joi.string(),
+    body: Validator.UpdateCartPaymentRequest().required(),
+  }).required();
+
+  static validateCouponForPayment = Joi.object({
+    uid: Joi.string(),
+    addressId: Joi.string(),
+    paymentMode: Joi.string(),
+    paymentIdentifier: Joi.string(),
+    aggregatorName: Joi.string(),
+    merchantCode: Joi.string(),
+  });
+
+  static getShipments = Joi.object({
+    p: Joi.boolean(),
+    uid: Joi.number(),
+    addressId: Joi.number(),
+    areaCode: Joi.string(),
+  });
+
+  static checkoutCart = Joi.object({
+    body: Validator.CartCheckoutRequest().required(),
+  }).required();
+
+  static updateCartMeta = Joi.object({
+    uid: Joi.number(),
+    body: Validator.CartMetaRequest().required(),
+  }).required();
+
+  static getCartShareLink = Joi.object({
+    body: Validator.GetShareCartLinkRequest().required(),
+  }).required();
+
+  static getCartSharedItems = Joi.object({
+    token: Joi.string().required(),
+  }).required();
+
+  static updateCartWithSharedItems = Joi.object({
+    token: Joi.string().required(),
+    action: Joi.string().required(),
+  }).required();
 }
 
-class Theme {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
+class LeadValidator {
+  static getTicket = Joi.object({
+    id: Joi.string().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get applied theme for an application
-    * @description: 
-    * @param {Object} arg - arg object.
-    
-    **/
-  getAppliedTheme({} = {}) {
-    const query = {};
+  static createHistory = Joi.object({
+    ticketId: Joi.string().required(),
+    body: Validator.TicketHistoryPayload().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/theme/v1.0/applied-theme`,
-      query,
-      undefined
-    );
-  }
+  static createTicket = Joi.object({
+    body: Validator.AddTicketPayload().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get theme for preview
-    * @description: 
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - ID of the theme to be retrieved
-    
-    **/
-  getThemeForPreview({ themeId } = {}) {
-    const query = {};
+  static getCustomForm = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/theme/v1.0/${themeId}/preview`,
-      query,
-      undefined
-    );
-  }
+  static submitCustomForm = Joi.object({
+    slug: Joi.string().required(),
+    body: Validator.CustomFormSubmissionPayload().required(),
+  }).required();
+
+  static getParticipantsInsideVideoRoom = Joi.object({
+    uniqueName: Joi.string().required(),
+  }).required();
+
+  static getTokenForVideoRoom = Joi.object({
+    uniqueName: Joi.string().required(),
+  }).required();
 }
 
-class User {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Facebook
-   * @description: Used to login or register with Facebook
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithFacebook({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/facebook-token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Google
-   * @description: Used to login or register with Google
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithGoogle({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Google for android
-   * @description: Used to login or register with Google for android
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithGoogleAndroid({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-android`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with Google for ios
-   * @description: Used to login or register with google for ios
-   * @param {Object} arg - arg object.
-   * @param {OAuthRequestSchema} arg.body
-   **/
-  loginWithGoogleIOS({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/google-ios`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with OTP
-   * @description: Used to login or register with OTP
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendOtpRequestSchema} arg.body
-   **/
-  loginWithOTP({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/otp`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with password
-   * @description: Used to login or register with email & password
-   * @param {Object} arg - arg object.
-   * @param {PasswordLoginRequestSchema} arg.body
-   **/
-  loginWithEmailAndPassword({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Reset Password
-   * @description: Used to reset account password
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendResetPasswordEmailRequestSchema} arg.body
-   **/
-  sendResetPasswordEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password/reset`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary:
-   * @description:
-   * @param {Object} arg - arg object.
-   * @param {ForgotPasswordRequestSchema} arg.body
-   **/
-  forgotPassword({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/userauthentication/v1.0/login/password/reset/forgot`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary:
-   * @description: Send code incase of reset password
-   * @param {Object} arg - arg object.
-   * @param {CodeRequestBodySchema} arg.body
-   **/
-  sendResetToken({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/password/reset/token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Login/Register with token
-   * @description: Login/Register with token
-   * @param {Object} arg - arg object.
-   * @param {TokenRequestBodySchema} arg.body
-   **/
-  loginWithToken({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/login/token`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Registration Form
-   * @description: Register using form
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {FormRegisterRequestSchema} arg.body
-   **/
-  registerWithForm({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/register/form`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify email
-   * @description: Used to verify email
-   * @param {Object} arg - arg object.
-   * @param {CodeRequestBodySchema} arg.body
-   **/
-  verifyEmail({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/verify/email`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify mobile
-   * @description: Verify mobile
-   * @param {Object} arg - arg object.
-   * @param {CodeRequestBodySchema} arg.body
-   **/
-  verifyMobile({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/verify/mobile`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Check if user has password
-    * @description: Checks if user is using password or not
-    * @param {Object} arg - arg object.
-    
-    **/
-  hasPassword({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/has-password`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update user password
-   * @description: Used to update user password
-   * @param {Object} arg - arg object.
-   * @param {UpdatePasswordRequestSchema} arg.body
-   **/
-  updatePassword({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/password`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Logout user
-    * @description: Used to log out user
-    * @param {Object} arg - arg object.
-    
-    **/
-  logout({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/logout`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Send OTP on mobile
-   * @description: Used to send otp to mobile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendMobileOtpRequestSchema} arg.body
-   **/
-  sendOTPOnMobile({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/mobile/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify OTP on mobile
-   * @description: Used to verify otp sent to mobile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {VerifyOtpRequestSchema} arg.body
-   **/
-  verifyMobileOTP({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/mobile/verify`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Send OTP on email
-   * @description: Used to send otp to email
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendEmailOtpRequestSchema} arg.body
-   **/
-  sendOTPOnEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/email/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Verify OTP on email
-   * @description: Used to verify otp sent to email
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {VerifyOtpRequestSchema} arg.body
-   **/
-  verifyEmailOTP({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/authentication/v1.0/otp/email/verify`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get logged in user
-    * @description: Used to get logged in user details
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLoggedInUser({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/session`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of sessions
-    * @description: Lists all active sessions
-    * @param {Object} arg - arg object.
-    
-    **/
-  getListOfActiveSessions({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/authentication/v1.0/sessions`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get platform config
-    * @description: Used to get platform config
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.name] - Name
-    
-    **/
-  getPlatformConfig({ name } = {}) {
-    const query = {};
-    query["name"] = name;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/user/platform/v1.0/config`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Edit Profile Details
-   * @description: Used to update profile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditProfileRequestSchema} arg.body
-   **/
-  updateProfile({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/detail`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Add mobile number to profile
-   * @description: Used to add new mobile number to profile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditMobileRequestSchema} arg.body
-   **/
-  addMobileNumber({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/user/profile/v1.0/mobile`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete mobile number from profile
-    * @description: Used to delete mobile number from profile
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.platform] - Platform
-    * @param {boolean} arg.active - Active mobile number
-    * @param {boolean} arg.primary - Primary number
-    * @param {boolean} arg.verified - Verified Number
-    * @param {string} arg.countryCode - Country code of phone number
-    * @param {string} arg.phone - Phone number
-    
-    **/
-  deleteMobileNumber({
-    active,
-    primary,
-    verified,
-    countryCode,
-    phone,
-    platform,
-  } = {}) {
-    const query = {};
-    query["platform"] = platform;
-    query["active"] = active;
-    query["primary"] = primary;
-    query["verified"] = verified;
-    query["country_code"] = countryCode;
-    query["phone"] = phone;
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/user/profile/v1.0/mobile`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Set mobile as primary
-   * @description: Used to set a mobile number as primary
-   * @param {Object} arg - arg object.
-   * @param {SendVerificationLinkMobileRequestSchema} arg.body
-   **/
-  setMobileNumberAsPrimary({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/mobile/primary`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Send verification link to mobile
-   * @description: Used to send verification link to a mobile number
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {SendVerificationLinkMobileRequestSchema} arg.body
-   **/
-  sendVerificationLinkToMobile({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/mobile/link/send`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Add email to profile
-   * @description: Used to add new email to profile
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditEmailRequestSchema} arg.body
-   **/
-  addEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/user/profile/v1.0/email`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete email from profile
-    * @description: Used to delete email from profile
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.platform] - Platform
-    * @param {boolean} arg.active - Whether email id is active
-    * @param {boolean} arg.primary - Whether email id is primary email
-    * @param {boolean} arg.verified - Whether email id is verified
-    * @param {string} arg.email - Email ID to be deleted
-    
-    **/
-  deleteEmail({ active, primary, verified, email, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-    query["active"] = active;
-    query["primary"] = primary;
-    query["verified"] = verified;
-    query["email"] = email;
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/user/profile/v1.0/email`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Set email as primary
-   * @description: Used to set an email as primart
-   * @param {Object} arg - arg object.
-   * @param {EditEmailRequestSchema} arg.body
-   **/
-  setEmailAsPrimary({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/email/primary`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Send verification link to email
-   * @description: Used to sent verification to an email
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.platform] - Platform
-   * @param {EditEmailRequestSchema} arg.body
-   **/
-  sendVerificationLinkToEmail({ body, platform } = {}) {
-    const query = {};
-    query["platform"] = platform;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/user/profile/v1.0/email/link/send`,
-      query,
-      body
-    );
-  }
+class ThemeValidator {
+  static getAppliedTheme = Joi.object({});
+
+  static getThemeForPreview = Joi.object({
+    themeId: Joi.string().required(),
+  }).required();
 }
 
-class Share {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
+class UserValidator {
+  static loginWithFacebook = Joi.object({
+    body: Validator.OAuthRequestSchema().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Create application QR Code
-    * @description: Create application QR Code
-    * @param {Object} arg - arg object.
-    
-    **/
-  getApplicationQRCode({} = {}) {
-    const query = {};
+  static loginWithGoogle = Joi.object({
+    body: Validator.OAuthRequestSchema().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/share/v1.0/qr/`,
-      query,
-      undefined
-    );
-  }
+  static loginWithGoogleAndroid = Joi.object({
+    body: Validator.OAuthRequestSchema().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Create product QR Code
-    * @description: Create product QR Code
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a product
-    
-    **/
-  getProductQRCodeBySlug({ slug } = {}) {
-    const query = {};
+  static loginWithGoogleIOS = Joi.object({
+    body: Validator.OAuthRequestSchema().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/share/v1.0/qr/products/${slug}/`,
-      query,
-      undefined
-    );
-  }
+  static loginWithOTP = Joi.object({
+    platform: Joi.string(),
+    body: Validator.SendOtpRequestSchema().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Create collection QR Code
-    * @description: Create collection QR Code
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a collection
-    
-    **/
-  getCollectionQRCodeBySlug({ slug } = {}) {
-    const query = {};
+  static loginWithEmailAndPassword = Joi.object({
+    body: Validator.PasswordLoginRequestSchema().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/share/v1.0/qr/collection/${slug}/`,
-      query,
-      undefined
-    );
-  }
+  static sendResetPasswordEmail = Joi.object({
+    platform: Joi.string(),
+    body: Validator.SendResetPasswordEmailRequestSchema().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Create url QR Code
-    * @description: Create url QR Code
-    * @param {Object} arg - arg object.
-    * @param {string} arg.url - Url
-    
-    **/
-  getUrlQRCode({ url } = {}) {
-    const query = {};
-    query["url"] = url;
+  static forgotPassword = Joi.object({
+    body: Validator.ForgotPasswordRequestSchema().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/share/v1.0/qr/url/`,
-      query,
-      undefined
-    );
-  }
+  static sendResetToken = Joi.object({
+    body: Validator.CodeRequestBodySchema().required(),
+  }).required();
 
-  /**
-   *
-   * @summary: Create short link
-   * @description: Create short link
-   * @param {Object} arg - arg object.
-   * @param {ShortLinkReq} arg.body
-   **/
-  createShortLink({ body } = {}) {
-    const query = {};
+  static loginWithToken = Joi.object({
+    body: Validator.TokenRequestBodySchema().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/share/v1.0/links/short-link/`,
-      query,
-      body
-    );
-  }
+  static registerWithForm = Joi.object({
+    platform: Joi.string(),
+    body: Validator.FormRegisterRequestSchema().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get short link by hash
-    * @description: Get short link by hash
-    * @param {Object} arg - arg object.
-    * @param {string} arg.hash - Hash of short link
-    
-    **/
-  getShortLinkByHash({ hash } = {}) {
-    const query = {};
+  static verifyEmail = Joi.object({
+    body: Validator.CodeRequestBodySchema().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/share/v1.0/links/short-link/${hash}/`,
-      query,
-      undefined
-    );
-  }
+  static verifyMobile = Joi.object({
+    body: Validator.CodeRequestBodySchema().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get original link by hash
-    * @description: Get original link by hash
-    * @param {Object} arg - arg object.
-    * @param {string} arg.hash - Hash of short link
-    
-    **/
-  getOriginalShortLinkByHash({ hash } = {}) {
-    const query = {};
+  static hasPassword = Joi.object({});
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/share/v1.0/links/short-link/${hash}/original/`,
-      query,
-      undefined
-    );
-  }
+  static updatePassword = Joi.object({
+    body: Validator.UpdatePasswordRequestSchema().required(),
+  }).required();
+
+  static logout = Joi.object({});
+
+  static sendOTPOnMobile = Joi.object({
+    platform: Joi.string(),
+    body: Validator.SendMobileOtpRequestSchema().required(),
+  }).required();
+
+  static verifyMobileOTP = Joi.object({
+    platform: Joi.string(),
+    body: Validator.VerifyOtpRequestSchema().required(),
+  }).required();
+
+  static sendOTPOnEmail = Joi.object({
+    platform: Joi.string(),
+    body: Validator.SendEmailOtpRequestSchema().required(),
+  }).required();
+
+  static verifyEmailOTP = Joi.object({
+    platform: Joi.string(),
+    body: Validator.VerifyOtpRequestSchema().required(),
+  }).required();
+
+  static getLoggedInUser = Joi.object({});
+
+  static getListOfActiveSessions = Joi.object({});
+
+  static getPlatformConfig = Joi.object({
+    name: Joi.string(),
+  });
+
+  static updateProfile = Joi.object({
+    platform: Joi.string(),
+    body: Validator.EditProfileRequestSchema().required(),
+  }).required();
+
+  static addMobileNumber = Joi.object({
+    platform: Joi.string(),
+    body: Validator.EditMobileRequestSchema().required(),
+  }).required();
+
+  static deleteMobileNumber = Joi.object({
+    platform: Joi.string(),
+    active: Joi.boolean().required(),
+    primary: Joi.boolean().required(),
+    verified: Joi.boolean().required(),
+    countryCode: Joi.string().required(),
+    phone: Joi.string().required(),
+  }).required();
+
+  static setMobileNumberAsPrimary = Joi.object({
+    body: Validator.SendVerificationLinkMobileRequestSchema().required(),
+  }).required();
+
+  static sendVerificationLinkToMobile = Joi.object({
+    platform: Joi.string(),
+    body: Validator.SendVerificationLinkMobileRequestSchema().required(),
+  }).required();
+
+  static addEmail = Joi.object({
+    platform: Joi.string(),
+    body: Validator.EditEmailRequestSchema().required(),
+  }).required();
+
+  static deleteEmail = Joi.object({
+    platform: Joi.string(),
+    active: Joi.boolean().required(),
+    primary: Joi.boolean().required(),
+    verified: Joi.boolean().required(),
+    email: Joi.string().required(),
+  }).required();
+
+  static setEmailAsPrimary = Joi.object({
+    body: Validator.EditEmailRequestSchema().required(),
+  }).required();
+
+  static sendVerificationLinkToEmail = Joi.object({
+    platform: Joi.string(),
+    body: Validator.EditEmailRequestSchema().required(),
+  }).required();
 }
 
-class FileStorage {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
+class ShareValidator {
+  static getApplicationQRCode = Joi.object({});
 
-  /**
-    *
-    * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
-    * @description: Uploads an arbitrarily sized buffer or blob.
+  static getProductQRCodeBySlug = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-It has three Major Steps:
-* Start
-* Upload
-* Complete
+  static getCollectionQRCodeBySlug = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
 
-### Start
-Initiates the assets upload using `startUpload`.
-It returns the storage link in response.
+  static getUrlQRCode = Joi.object({
+    url: Joi.string().required(),
+  }).required();
 
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
+  static createShortLink = Joi.object({
+    body: Validator.ShortLinkReq().required(),
+  }).required();
 
-### Complete
-After successfully upload, call `completeUpload` api to complete the upload process.
-This operation will return the url for the uploaded file.
+  static getShortLinkByHash = Joi.object({
+    hash: Joi.string().required(),
+  }).required();
 
-    * @param {Object} arg - arg object.
-    * @param {string} arg.namespace - bucket name
-    * @param {StartRequest} arg.body
-    **/
-  startUpload({ namespace, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/assets/v1.0/namespaces/${namespace}/upload/start/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
-    * @description: Uploads an arbitrarily sized buffer or blob.
-
-It has three Major Steps:
-* Start
-* Upload
-* Complete
-
-### Start
-Initiates the assets upload using `startUpload`.
-It returns the storage link in response.
-
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
-
-### Complete
-After successfully upload, call `completeUpload` api to complete the upload process.
-This operation will return the url for the uploaded file.
-
-    * @param {Object} arg - arg object.
-    * @param {string} arg.namespace - bucket name
-    * @param {StartResponse} arg.body
-    **/
-  completeUpload({ namespace, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/assets/v1.0/namespaces/${namespace}/upload/complete/`,
-      query,
-      body
-    );
-  }
+  static getOriginalShortLinkByHash = Joi.object({
+    hash: Joi.string().required(),
+  }).required();
 }
 
-class Order {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
+class FileStorageValidator {
+  static startUpload = Joi.object({
+    namespace: Joi.string().required(),
+    body: Validator.StartRequest().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get Orders for application based on application Id
-    * @description: Get Orders
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.pageNo] - Current page number
-    * @param {string} [arg.pageSize] - Page limit
-    * @param {string} [arg.fromDate] - From Date
-    * @param {string} [arg.toDate] - To Date
-    
-    **/
-  getOrders({ pageNo, pageSize, fromDate, toDate } = {}) {
-    const query = {};
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
-    query["from_date"] = fromDate;
-    query["to_date"] = toDate;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Order by order id for application based on application Id
-    * @description: Get Order By Fynd Order Id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.orderId - Order Id
-    
-    **/
-  getOrderById({ orderId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders/${orderId}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Shipment by shipment id and order id for application based on application Id
-    * @description: Get Shipment
-    * @param {Object} arg - arg object.
-    * @param {string} arg.shipmentId - Shipment Id
-    
-    **/
-  getShipmentById({ shipmentId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders/shipments/${shipmentId}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Shipment reasons by shipment id and order id for application based on application Id
-    * @description: Get Shipment Reasons
-    * @param {Object} arg - arg object.
-    * @param {string} arg.shipmentId - Shipment Id
-    
-    **/
-  getShipmentReasons({ shipmentId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders/shipments/${shipmentId}/reasons`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Shipment status by shipment id and order id for application based on application Id
-   * @description: Update Shipment Status
-   * @param {Object} arg - arg object.
-   * @param {string} arg.shipmentId - Shipment Id
-   * @param {ShipmentStatusUpdateBody} arg.body
-   **/
-  updateShipmentStatus({ shipmentId, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/order/v1.0/orders/shipments/${shipmentId}/status`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Track Shipment by shipment id and order id for application based on application Id
-    * @description: Shipment Track
-    * @param {Object} arg - arg object.
-    * @param {string} arg.shipmentId - Shipment Id
-    
-    **/
-  trackShipment({ shipmentId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders/shipments/${shipmentId}/track`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get POS Order by order id for application based on application Id
-    * @description: Get Order By Fynd Order Id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.orderId - Order Id
-    
-    **/
-  getPosOrderById({ orderId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/order/v1.0/orders/pos-order/${orderId}`,
-      query,
-      undefined
-    );
-  }
+  static completeUpload = Joi.object({
+    namespace: Joi.string().required(),
+    body: Validator.StartResponse().required(),
+  }).required();
 }
 
-class Feedback {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
+class PaymentValidator {
+  static getAggregatorsConfig = Joi.object({
+    xApiToken: Joi.string().required(),
+    refresh: Joi.boolean(),
+  }).required();
 
-  /**
-   *
-   * @summary: post a new abuse request
-   * @description: Report a new abuse for specific entity with description text.
-   * @param {Object} arg - arg object.
-   * @param {ReportAbuseRequest} arg.body
-   **/
-  createAbuseReport({ body } = {}) {
-    const query = {};
+  static attachCardToCustomer = Joi.object({
+    body: Validator.AttachCardRequest().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/feedback/v1.0/abuse`,
-      query,
-      body
-    );
-  }
+  static getActiveCardAggregator = Joi.object({
+    refresh: Joi.boolean(),
+  });
 
-  /**
-   *
-   * @summary: Update abuse details
-   * @description: Update the abuse details like status and description text.
-   * @param {Object} arg - arg object.
-   * @param {UpdateAbuseStatusRequest} arg.body
-   **/
-  updateAbuseReport({ body } = {}) {
-    const query = {};
+  static getActiveUserCards = Joi.object({
+    forceRefresh: Joi.boolean(),
+  });
 
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/feedback/v1.0/abuse`,
-      query,
-      body
-    );
-  }
+  static deleteUserCard = Joi.object({
+    body: Validator.DeletehCardRequest().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get list of abuse data
-    * @description: Get the list of abuse data from entity type and entity ID.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.entityId - entity id
-    * @param {string} arg.entityType - entity type
-    * @param {string} [arg.id] - abuse id
-    * @param {string} [arg.pageId] - pagination page id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getAbuseReports({ entityId, entityType, id, pageId, pageSize } = {}) {
-    const query = {};
-    query["id"] = id;
-    query["page_id"] = pageId;
-    query["page_size"] = pageSize;
+  static verifyCustomerForPayment = Joi.object({
+    body: Validator.ValidateCustomerRequest().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/abuse/entity/${entityType}/entity-id/${entityId}`,
-      query,
-      undefined
-    );
-  }
+  static verifyAndChargePayment = Joi.object({
+    body: Validator.ChargeCustomerRequest().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get list of attribute data
-    * @description: Provides a list of all attribute data.
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - pagination page number
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getAttributes({ pageNo, pageSize } = {}) {
-    const query = {};
-    query["page_no"] = pageNo;
-    query["page_size"] = pageSize;
+  static initialisePayment = Joi.object({
+    body: Validator.PaymentInitializationRequest().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/attributes`,
-      query,
-      undefined
-    );
-  }
+  static checkAndUpdatePaymentStatus = Joi.object({
+    body: Validator.PaymentStatusUpdateRequest().required(),
+  }).required();
 
-  /**
-   *
-   * @summary: Add a new attribute request
-   * @description: Add a new attribute with its name, slug and description.
-   * @param {Object} arg - arg object.
-   * @param {SaveAttributeRequest} arg.body
-   **/
-  createAttribute({ body } = {}) {
-    const query = {};
+  static getPaymentModeRoutes = Joi.object({
+    amount: Joi.number().required(),
+    cartId: Joi.string().required(),
+    pincode: Joi.string().required(),
+    checkoutMode: Joi.string().required(),
+    refresh: Joi.boolean(),
+    assignCardId: Joi.string(),
+    userDetails: Joi.string(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/feedback/v1.0/attributes`,
-      query,
-      body
-    );
-  }
+  static getPosPaymentModeRoutes = Joi.object({
+    amount: Joi.number().required(),
+    cartId: Joi.string().required(),
+    pincode: Joi.string().required(),
+    checkoutMode: Joi.string().required(),
+    refresh: Joi.boolean(),
+    assignCardId: Joi.string(),
+    orderType: Joi.string().required(),
+    userDetails: Joi.string(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get single attribute data
-    * @description: Get a single attribute data from a given slug.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - Slug of attribute
-    
-    **/
-  getAttribute({ slug } = {}) {
-    const query = {};
+  static getUserBeneficiariesDetail = Joi.object({
+    orderId: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/attributes/${slug}`,
-      query,
-      undefined
-    );
-  }
+  static verifyIfscCode = Joi.object({
+    ifscCode: Joi.string(),
+  });
 
-  /**
-   *
-   * @summary: Update attribute details
-   * @description: Update the attribute's name and description.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.slug - Slug of attribute
-   * @param {UpdateAttributeRequest} arg.body
-   **/
-  updateAttribute({ slug, body } = {}) {
-    const query = {};
+  static getOrderBeneficiariesDetail = Joi.object({
+    orderId: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/feedback/v1.0/attributes/${slug}`,
-      query,
-      body
-    );
-  }
+  static verifyOtpAndAddBeneficiaryForBank = Joi.object({
+    body: Validator.AddBeneficiaryViaOtpVerificationRequest().required(),
+  }).required();
 
-  /**
-   *
-   * @summary: post a new comment
-   * @description: This is used to add a new comment for specific entity.
-   * @param {Object} arg - arg object.
-   * @param {CommentRequest} arg.body
-   **/
-  createComment({ body } = {}) {
-    const query = {};
+  static addBeneficiaryDetails = Joi.object({
+    body: Validator.AddBeneficiaryDetailsRequest().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/feedback/v1.0/comment`,
-      query,
-      body
-    );
-  }
+  static verifyOtpAndAddBeneficiaryForWallet = Joi.object({
+    body: Validator.WalletOtpRequest().required(),
+  }).required();
 
-  /**
-   *
-   * @summary: Update comment status
-   * @description: Update the comment status (active/approve) or text.
-   * @param {Object} arg - arg object.
-   * @param {UpdateCommentRequest} arg.body
-   **/
-  updateComment({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/feedback/v1.0/comment`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of comments
-    * @description: Get the list of comments from specific entity type.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.entityType - entity type
-    * @param {string} [arg.id] - comment id
-    * @param {string} [arg.entityId] - entity id
-    * @param {string} [arg.userId] - user id - flag/filter to get comments for user
-    * @param {string} [arg.pageId] - pagination page id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getComments({ entityType, id, entityId, userId, pageId, pageSize } = {}) {
-    const query = {};
-    query["id"] = id;
-    query["entity_id"] = entityId;
-    query["user_id"] = userId;
-    query["page_id"] = pageId;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/comment/entity/${entityType}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Checks eligibility and cloud media config
-    * @description: Checks eligibility to rate and review and cloud media configuration
-    * @param {Object} arg - arg object.
-    * @param {string} arg.entityType - entity type
-    * @param {string} arg.entityId - entity id
-    
-    **/
-  checkEligibility({ entityType, entityId } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/config/entity/${entityType}/entity-id/${entityId}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete Media
-    * @description: Delete Media for the given entity IDs.
-    * @param {Object} arg - arg object.
-    
-    **/
-  deleteMedia({} = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/feedback/v1.0/media/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Add Media
-   * @description: Add Media list for specific entity.
-   * @param {Object} arg - arg object.
-   * @param {AddMediaListRequest} arg.body
-   **/
-  createMedia({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/feedback/v1.0/media/`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Media
-   * @description: Update Media (archive/approve) for the given entity.
-   * @param {Object} arg - arg object.
-   * @param {UpdateMediaListRequest} arg.body
-   **/
-  updateMedia({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/feedback/v1.0/media/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Media
-    * @description: Get Media from the given entity type and entity ID.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.entityType - entity type
-    * @param {string} arg.entityId - entity id
-    * @param {string} [arg.id] - vote id
-    * @param {string} [arg.pageId] - pagination page id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getMedias({ entityType, entityId, id, pageId, pageSize } = {}) {
-    const query = {};
-    query["id"] = id;
-    query["page_id"] = pageId;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/media/entity/${entityType}/entity-id/${entityId}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get a review summary
-    * @description: Review summary gives ratings and attribute metrics of a review per entity
-It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.entityType - entity type
-    * @param {string} arg.entityId - entity id
-    * @param {string} [arg.id] - review summary identifier
-    * @param {string} [arg.pageId] - pagination page id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getReviewSummaries({ entityType, entityId, id, pageId, pageSize } = {}) {
-    const query = {};
-    query["id"] = id;
-    query["page_id"] = pageId;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/rating/summary/entity/${entityType}/entity-id/${entityId}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Add customer reviews
-    * @description: Add customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
-    * @param {Object} arg - arg object.
-    * @param {UpdateReviewRequest} arg.body
-    **/
-  createReview({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/feedback/v1.0/review/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Update customer reviews
-    * @description: Update customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
-    * @param {Object} arg - arg object.
-    * @param {UpdateReviewRequest} arg.body
-    **/
-  updateReview({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/feedback/v1.0/review/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of customer reviews
-    * @description: This is used to get the list of customer reviews based on entity and provided filters.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.entityType - entity type
-    * @param {string} arg.entityId - entity id
-    * @param {string} [arg.id] - review id
-    * @param {string} [arg.userId] - user id
-    * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
-    * @param {Array<number>} [arg.rating] - rating filter, 1-5
-    * @param {Array<string>} [arg.attributeRating] - attribute rating filter
-    * @param {boolean} [arg.facets] - facets (true|false)
-    * @param {string} [arg.sort] - sort by : default | top | recent
-    * @param {string} [arg.pageId] - pagination page id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getReviews({
-    entityType,
-    entityId,
-    id,
-    userId,
-    media,
-    rating,
-    attributeRating,
-    facets,
-    sort,
-    pageId,
-    pageSize,
-  } = {}) {
-    const query = {};
-    query["id"] = id;
-    query["user_id"] = userId;
-    query["media"] = media;
-    query["rating"] = rating;
-    query["attribute_rating"] = attributeRating;
-    query["facets"] = facets;
-    query["sort"] = sort;
-    query["page_id"] = pageId;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/review/entity/${entityType}/entity-id/${entityId}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get the templates for product or l3 type
-    * @description: This is used to get the templates details.
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.templateId] - template id
-    * @param {string} [arg.entityId] - entity id
-    * @param {string} [arg.entityType] - entity type e.g. product | l3
-    
-    **/
-  getTemplates({ templateId, entityId, entityType } = {}) {
-    const query = {};
-    query["template_id"] = templateId;
-    query["entity_id"] = entityId;
-    query["entity_type"] = entityType;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/template/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Create a new question
-    * @description: This is used to create a new question with following data:
-tags, text, type, choices for MCQ type questions, maximum length of answer.
-    * @param {Object} arg - arg object.
-    * @param {CreateQNARequest} arg.body
-    **/
-  createQuestion({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/feedback/v1.0/template/qna/`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update question
-   * @description: This is used to update question's status, tags and choices.
-   * @param {Object} arg - arg object.
-   * @param {UpdateQNARequest} arg.body
-   **/
-  updateQuestion({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/feedback/v1.0/template/qna/`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get a list of QnA
-    * @description: This is used to get a list of questions and its answers.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.entityType - entity type
-    * @param {string} arg.entityId - entity id
-    * @param {string} [arg.id] - qna id
-    * @param {boolean} [arg.showAnswer] - show answer flag
-    * @param {string} [arg.pageId] - pagination page id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getQuestionAndAnswers({
-    entityType,
-    entityId,
-    id,
-    showAnswer,
-    pageId,
-    pageSize,
-  } = {}) {
-    const query = {};
-    query["id"] = id;
-    query["show_answer"] = showAnswer;
-    query["page_id"] = pageId;
-    query["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/template/qna/entity/${entityType}/entity-id/${entityId}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of votes
-    * @description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.id] - vote id
-    * @param {string} [arg.refType] - entity type e.g. review | comment
-    
-    **/
-  getVotes({ id, refType } = {}) {
-    const query = {};
-    query["id"] = id;
-    query["ref_type"] = refType;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/feedback/v1.0/vote/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create a new vote
-   * @description: This is used to create a new vote and the actions can be upvote or downvote.
-   * @param {Object} arg - arg object.
-   * @param {VoteRequest} arg.body
-   **/
-  createVote({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/feedback/v1.0/vote/`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update vote
-   * @description: This is used to update the vote and the actions can be upvote or downvote.
-   * @param {Object} arg - arg object.
-   * @param {UpdateVoteRequest} arg.body
-   **/
-  updateVote({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/feedback/v1.0/vote/`,
-      query,
-      body
-    );
-  }
+  static updateDefaultBeneficiary = Joi.object({
+    body: Validator.SetDefaultBeneficiaryRequest().required(),
+  }).required();
 }
 
-class PosCart {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
+class OrderValidator {
+  static getOrders = Joi.object({
+    pageNo: Joi.string(),
+    pageSize: Joi.string(),
+    fromDate: Joi.string(),
+    toDate: Joi.string(),
+  });
 
-  /**
-    *
-    * @summary: Fetch all Items Added to  Cart
-    * @description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - 
-    * @param {boolean} [arg.i] - 
-    * @param {boolean} [arg.b] - 
-    * @param {number} [arg.assignCardId] - 
-    
-    **/
-  getCart({ uid, i, b, assignCardId } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["i"] = i;
-    query["b"] = b;
-    query["assign_card_id"] = assignCardId;
+  static getOrderById = Joi.object({
+    orderId: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/detail`,
-      query,
-      undefined
-    );
-  }
+  static getShipmentById = Joi.object({
+    shipmentId: Joi.string().required(),
+  }).required();
 
-  /**
-    *
-    * @summary: Fetch Last-Modified timestamp
-    * @description: Fetch Last-Modified timestamp in header metadata
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - 
-    
-    **/
-  getCartLastModified({ uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
+  static getShipmentReasons = Joi.object({
+    shipmentId: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "head",
-      `/service/application/pos/cart/v1.0/detail`,
-      query,
-      undefined
-    );
-  }
+  static updateShipmentStatus = Joi.object({
+    shipmentId: Joi.string().required(),
+    body: Validator.ShipmentStatusUpdateBody().required(),
+  }).required();
 
-  /**
-   *
-   * @summary: Add Items to Cart
-   * @description: <p>Add Items to cart. See `AddCartRequest` in schema of request body for the list of attributes needed to add items to a cart. On successful request, returns cart response containing details of items, coupons available etc.these attributes will be fetched from the folowing api's</p>
-   * @param {Object} arg - arg object.
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {AddCartRequest} arg.body
-   **/
-  addItems({ body, i, b } = {}) {
-    const query = {};
-    query["i"] = i;
-    query["b"] = b;
+  static trackShipment = Joi.object({
+    shipmentId: Joi.string().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/pos/cart/v1.0/detail`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Items already added to Cart
-   * @description: Request object containing attributes like item_quantity and item_size which can be updated .these attributes will be fetched from the folowing api's</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-   * @param {Object} arg - arg object.
-   * @param {number} [arg.uid] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {UpdateCartRequest} arg.body
-   **/
-  updateCart({ body, uid, i, b } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["i"] = i;
-    query["b"] = b;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/pos/cart/v1.0/detail`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Cart item count
-    * @description: Get total count of item present in cart
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - Cart id
-    
-    **/
-  getItemCount({ uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/basic`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Fetch Coupon
-    * @description: Get all the details of a coupons applicable to cart  by uid. If successful, returns a Coupon resource in the response body specified in GetCouponResponse
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - 
-    
-    **/
-  getCoupons({ uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/coupon`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Apply Coupon
-    * @description: <p>Apply Coupons on Items added to cart. On successful request, returns cart response containing details of items ,coupons applied etc.these attributes will be consumed by  api</p> <ul> <li> <font color="monochrome">coupon_code</font></li>
-</ul>
-    * @param {Object} arg - arg object.
-    * @param {boolean} [arg.i] - 
-    * @param {boolean} [arg.b] - 
-    * @param {boolean} [arg.p] - 
-    * @param {number} [arg.uid] - 
-    * @param {ApplyCouponRequest} arg.body
-    **/
-  applyCoupon({ body, i, b, p, uid } = {}) {
-    const query = {};
-    query["i"] = i;
-    query["b"] = b;
-    query["p"] = p;
-    query["uid"] = uid;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/pos/cart/v1.0/coupon`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Remove Coupon Applied
-    * @description: Remove Coupon applied on the cart by passing uid in request body.
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - Cart id
-    
-    **/
-  removeCoupon({ uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/pos/cart/v1.0/coupon`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get discount offers based on quantity
-    * @description: List applicable offers along with current, next and best offer for given product. Either one of **uid**, **item_id**, **slug** should be present*
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.itemId] - Item id
-    * @param {string} [arg.articleId] - Article mongo id
-    * @param {number} [arg.uid] - Item id
-    * @param {string} [arg.slug] - Item unique url from product page
-    
-    **/
-  getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
-    const query = {};
-    query["item_id"] = itemId;
-    query["article_id"] = articleId;
-    query["uid"] = uid;
-    query["slug"] = slug;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/bulk-price`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Fetch Address
-    * @description: Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.uid] - 
-    * @param {string} [arg.mobileNo] - 
-    * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
-    * @param {boolean} [arg.isDefault] - 
-    
-    **/
-  getAddresses({ uid, mobileNo, checkoutMode, tags, isDefault } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["mobile_no"] = mobileNo;
-    query["checkout_mode"] = checkoutMode;
-    query["tags"] = tags;
-    query["is_default"] = isDefault;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/address`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Add Address to the account
-   * @description: <p>Add Address to account. See `Address` in schema of request body for the list of attributes needed to add Address to account. On successful request, returns response containing address_id ,is_default_address and success message.
-   * @param {Object} arg - arg object.
-   * @param {Address} arg.body
-   **/
-  addAddress({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/pos/cart/v1.0/address`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Fetch Single Address
-    * @description: Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-    * @param {Object} arg - arg object.
-    * @param {number} arg.id - 
-    * @param {number} [arg.uid] - 
-    * @param {string} [arg.mobileNo] - 
-    * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
-    * @param {boolean} [arg.isDefault] - 
-    
-    **/
-  getAddressById({ id, uid, mobileNo, checkoutMode, tags, isDefault } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["mobile_no"] = mobileNo;
-    query["checkout_mode"] = checkoutMode;
-    query["tags"] = tags;
-    query["is_default"] = isDefault;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/address/${id}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Address alreay added to account
-   * @description: Request object containing attributes mentioned in  <font color="blue">Address </font> can be updated .these attributes are :</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
-   * @param {Object} arg - arg object.
-   * @param {number} arg.id - Address id
-   * @param {Address} arg.body
-   **/
-  updateAddress({ id, body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/pos/cart/v1.0/address/${id}`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Remove Address Associated to the account
-    * @description: Delete a Address by it's address_id. Returns an object that tells whether the address was deleted successfully
-    * @param {Object} arg - arg object.
-    * @param {number} arg.id - Address id
-    
-    **/
-  removeAddress({ id } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/pos/cart/v1.0/address/${id}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Select Address from All Addresses
-   * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to .that address,otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, returns Cart object response.below are the address attributes which needs to be sent. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
-   * @param {Object} arg - arg object.
-   * @param {number} [arg.uid] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {SelectCartAddressRequest} arg.body
-   **/
-  selectAddress({ body, uid, i, b } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["i"] = i;
-    query["b"] = b;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/pos/cart/v1.0/select-address`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Cart Payment
-   * @description: Update Cart Payment for Your Account
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.uid] -
-   * @param {UpdateCartPaymentRequest} arg.body
-   **/
-  selectPaymentMode({ body, uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/pos/cart/v1.0/payment`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Cart Payment for valid coupon
-    * @description: Validate coupon for selected payment mode
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.uid] - 
-    * @param {string} [arg.addressId] - 
-    * @param {string} [arg.paymentMode] - 
-    * @param {string} [arg.paymentIdentifier] - 
-    * @param {string} [arg.aggregatorName] - 
-    * @param {string} [arg.merchantCode] - 
-    
-    **/
-  validateCouponForPayment({
-    uid,
-    addressId,
-    paymentMode,
-    paymentIdentifier,
-    aggregatorName,
-    merchantCode,
-  } = {}) {
-    const query = {};
-    query["uid"] = uid;
-    query["address_id"] = addressId;
-    query["payment_mode"] = paymentMode;
-    query["payment_identifier"] = paymentIdentifier;
-    query["aggregator_name"] = aggregatorName;
-    query["merchant_code"] = merchantCode;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/payment/validate/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get delivery date and options before checkout
-    * @description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created.
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pickAtStoreUid] - 
-    * @param {number} [arg.orderingStoreId] - 
-    * @param {boolean} [arg.p] - Get payment options or not
-    * @param {number} [arg.uid] - Cart id
-    * @param {number} [arg.addressId] - Address id
-    * @param {string} [arg.areaCode] - Destination pincode.
-    * @param {string} [arg.orderType] - Order type of shipment
-    
-    **/
-  getShipments({
-    pickAtStoreUid,
-    orderingStoreId,
-    p,
-    uid,
-    addressId,
-    areaCode,
-    orderType,
-  } = {}) {
-    const query = {};
-    query["pick_at_store_uid"] = pickAtStoreUid;
-    query["ordering_store_id"] = orderingStoreId;
-    query["p"] = p;
-    query["uid"] = uid;
-    query["address_id"] = addressId;
-    query["area_code"] = areaCode;
-    query["order_type"] = orderType;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/shipment`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update shipment delivery type and quantity before checkout
-   * @description: Shipment break up item wise with delivery date. Actual                      delivery will be during given dates only. Items will be                      delivered in group of shipments created. Update the shipment                      type and quantity as per customer preference for store pick up or home delivery
-   * @param {Object} arg - arg object.
-   * @param {boolean} [arg.i] - Get items or not
-   * @param {boolean} [arg.p] - Get payment options or not
-   * @param {number} [arg.uid] - Cart id
-   * @param {number} [arg.addressId] - Address id
-   * @param {string} [arg.orderType] - Order is hand over or home delivery
-   * @param {UpdateCartShipmentRequest} arg.body
-   **/
-  updateShipments({ body, i, p, uid, addressId, orderType } = {}) {
-    const query = {};
-    query["i"] = i;
-    query["p"] = p;
-    query["uid"] = uid;
-    query["address_id"] = addressId;
-    query["order_type"] = orderType;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/pos/cart/v1.0/shipment`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Checkout Cart
-   * @description: Checkout all items in cart to payment and order generation.                        For COD only order will be generated while for other checkout mode                        user will be redirected to payment gateway
-   * @param {Object} arg - arg object.
-   * @param {number} [arg.uid] -
-   * @param {CartPosCheckoutRequest} arg.body
-   **/
-  checkoutCart({ body, uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/pos/cart/v1.0/checkout`,
-      query,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Cart Meta
-   * @description: Update cart meta like checkout_mode, gstin.
-   * @param {Object} arg - arg object.
-   * @param {number} [arg.uid] - Cart id received in get cart.
-   * @param {CartMetaRequest} arg.body
-   **/
-  updateCartMeta({ body, uid } = {}) {
-    const query = {};
-    query["uid"] = uid;
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      `/service/application/pos/cart/v1.0/meta`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get available delivery modes for cart
-    * @description: Get available delivery modes for cart and pick up store uid list. From given pick stores list user can pick up delivery. Use this uid to show store address
-    * @param {Object} arg - arg object.
-    * @param {string} arg.areaCode - 
-    * @param {number} [arg.uid] - 
-    
-    **/
-  getAvailableDeliveryModes({ areaCode, uid } = {}) {
-    const query = {};
-    query["area_code"] = areaCode;
-    query["uid"] = uid;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/available-delivery-mode`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of stores for give uids
-    * @description: Get list of stores by providing pick up available store uids.
-    * @param {Object} arg - arg object.
-    * @param {number} arg.storeUid - 
-    
-    **/
-  getStoreAddressByUid({ storeUid } = {}) {
-    const query = {};
-    query["store_uid"] = storeUid;
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/store-address`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Generate Cart sharing link token
-   * @description: Generates shared cart snapshot and returns shortlink token
-   * @param {Object} arg - arg object.
-   * @param {GetShareCartLinkRequest} arg.body
-   **/
-  getCartShareLink({ body } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/pos/cart/v1.0/share-cart`,
-      query,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get shared cart snapshot and cart response
-    * @description: Returns shared cart response for sent token with `shared_cart_details`                    containing shared cart details in response.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.token - Shared short link token.
-    
-    **/
-  getCartSharedItems({ token } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/pos/cart/v1.0/share-cart/${token}`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Merge or Replace existing cart
-    * @description: Merge or Replace cart based on `action` parameter with shared cart of `token`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.token - Shared short link token.
-    * @param {string} arg.action - Operation to perform on existing cart, whether to merge or replace.
-    
-    **/
-  updateCartWithSharedItems({ token, action } = {}) {
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/pos/cart/v1.0/share-cart/${token}/${action}`,
-      query,
-      undefined
-    );
-  }
+  static getPosOrderById = Joi.object({
+    orderId: Joi.string().required(),
+  }).required();
 }
 
-class Logistic {
-  constructor(_conf) {
-    this._conf = _conf;
-  }
+class FeedbackValidator {
+  static createAbuseReport = Joi.object({
+    body: Validator.ReportAbuseRequest().required(),
+  }).required();
 
-  /**
-   *
-   * @summary: Get Tat Product
-   * @description: Get Tat Product
-   * @param {Object} arg - arg object.
-   * @param {GetTatProductReqBody} arg.body
-   **/
-  getTatProduct({ body } = {}) {
-    const query = {};
+  static updateAbuseReport = Joi.object({
+    body: Validator.UpdateAbuseStatusRequest().required(),
+  }).required();
 
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/logistics/v1.0`,
-      query,
-      body
-    );
-  }
+  static getAbuseReports = Joi.object({
+    entityId: Joi.string().required(),
+    entityType: Joi.string().required(),
+    id: Joi.string(),
+    pageId: Joi.string(),
+    pageSize: Joi.number(),
+  }).required();
 
-  /**
-    *
-    * @summary: Get City from Pincode
-    * @description: Get City from Pincode
-    * @param {Object} arg - arg object.
-    * @param {string} arg.pincode - Pincode
-    
-    **/
-  getPincodeCity({ pincode } = {}) {
-    const query = {};
+  static getAttributes = Joi.object({
+    pageNo: Joi.number(),
+    pageSize: Joi.number(),
+  });
 
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/logistics/v1.0/pincode/${pincode}`,
-      query,
-      undefined
-    );
-  }
+  static createAttribute = Joi.object({
+    body: Validator.SaveAttributeRequest().required(),
+  }).required();
+
+  static getAttribute = Joi.object({
+    slug: Joi.string().required(),
+  }).required();
+
+  static updateAttribute = Joi.object({
+    slug: Joi.string().required(),
+    body: Validator.UpdateAttributeRequest().required(),
+  }).required();
+
+  static createComment = Joi.object({
+    body: Validator.CommentRequest().required(),
+  }).required();
+
+  static updateComment = Joi.object({
+    body: Validator.UpdateCommentRequest().required(),
+  }).required();
+
+  static getComments = Joi.object({
+    entityType: Joi.string().required(),
+    id: Joi.string(),
+    entityId: Joi.string(),
+    userId: Joi.string(),
+    pageId: Joi.string(),
+    pageSize: Joi.number(),
+  }).required();
+
+  static checkEligibility = Joi.object({
+    entityType: Joi.string().required(),
+    entityId: Joi.string().required(),
+  }).required();
+
+  static deleteMedia = Joi.object({});
+
+  static createMedia = Joi.object({
+    body: Validator.AddMediaListRequest().required(),
+  }).required();
+
+  static updateMedia = Joi.object({
+    body: Validator.UpdateMediaListRequest().required(),
+  }).required();
+
+  static getMedias = Joi.object({
+    entityType: Joi.string().required(),
+    entityId: Joi.string().required(),
+    id: Joi.string(),
+    pageId: Joi.string(),
+    pageSize: Joi.number(),
+  }).required();
+
+  static getReviewSummaries = Joi.object({
+    entityType: Joi.string().required(),
+    entityId: Joi.string().required(),
+    id: Joi.string(),
+    pageId: Joi.string(),
+    pageSize: Joi.number(),
+  }).required();
+
+  static createReview = Joi.object({
+    body: Validator.UpdateReviewRequest().required(),
+  }).required();
+
+  static updateReview = Joi.object({
+    body: Validator.UpdateReviewRequest().required(),
+  }).required();
+
+  static getReviews = Joi.object({
+    entityType: Joi.string().required(),
+    entityId: Joi.string().required(),
+    id: Joi.string(),
+    userId: Joi.string(),
+    media: Joi.string(),
+    rating: Joi.array().items(Joi.number()),
+    attributeRating: Joi.array().items(Joi.string()),
+    facets: Joi.boolean(),
+    sort: Joi.string(),
+    pageId: Joi.string(),
+    pageSize: Joi.number(),
+  }).required();
+
+  static getTemplates = Joi.object({
+    templateId: Joi.string(),
+    entityId: Joi.string(),
+    entityType: Joi.string(),
+  });
+
+  static createQuestion = Joi.object({
+    body: Validator.CreateQNARequest().required(),
+  }).required();
+
+  static updateQuestion = Joi.object({
+    body: Validator.UpdateQNARequest().required(),
+  }).required();
+
+  static getQuestionAndAnswers = Joi.object({
+    entityType: Joi.string().required(),
+    entityId: Joi.string().required(),
+    id: Joi.string(),
+    showAnswer: Joi.boolean(),
+    pageId: Joi.string(),
+    pageSize: Joi.number(),
+  }).required();
+
+  static getVotes = Joi.object({
+    id: Joi.string(),
+    refType: Joi.string(),
+  });
+
+  static createVote = Joi.object({
+    body: Validator.VoteRequest().required(),
+  }).required();
+
+  static updateVote = Joi.object({
+    body: Validator.UpdateVoteRequest().required(),
+  }).required();
+}
+
+class PosCartValidator {
+  static getCart = Joi.object({
+    uid: Joi.number(),
+    i: Joi.boolean(),
+    b: Joi.boolean(),
+    assignCardId: Joi.number(),
+  });
+
+  static getCartLastModified = Joi.object({
+    uid: Joi.number(),
+  });
+
+  static addItems = Joi.object({
+    i: Joi.boolean(),
+    b: Joi.boolean(),
+    body: Validator.AddCartRequest().required(),
+  }).required();
+
+  static updateCart = Joi.object({
+    uid: Joi.number(),
+    i: Joi.boolean(),
+    b: Joi.boolean(),
+    body: Validator.UpdateCartRequest().required(),
+  }).required();
+
+  static getItemCount = Joi.object({
+    uid: Joi.number(),
+  });
+
+  static getCoupons = Joi.object({
+    uid: Joi.number(),
+  });
+
+  static applyCoupon = Joi.object({
+    i: Joi.boolean(),
+    b: Joi.boolean(),
+    p: Joi.boolean(),
+    uid: Joi.number(),
+    body: Validator.ApplyCouponRequest().required(),
+  }).required();
+
+  static removeCoupon = Joi.object({
+    uid: Joi.number(),
+  });
+
+  static getBulkDiscountOffers = Joi.object({
+    itemId: Joi.number(),
+    articleId: Joi.string(),
+    uid: Joi.number(),
+    slug: Joi.string(),
+  });
+
+  static getAddresses = Joi.object({
+    uid: Joi.number(),
+    mobileNo: Joi.string(),
+    checkoutMode: Joi.string(),
+    tags: Joi.number(),
+    isDefault: Joi.boolean(),
+  });
+
+  static addAddress = Joi.object({
+    body: Validator.Address().required(),
+  }).required();
+
+  static getAddressById = Joi.object({
+    id: Joi.number().required(),
+    uid: Joi.number(),
+    mobileNo: Joi.string(),
+    checkoutMode: Joi.string(),
+    tags: Joi.number(),
+    isDefault: Joi.boolean(),
+  }).required();
+
+  static updateAddress = Joi.object({
+    id: Joi.number().required(),
+    body: Validator.Address().required(),
+  }).required();
+
+  static removeAddress = Joi.object({
+    id: Joi.number().required(),
+  }).required();
+
+  static selectAddress = Joi.object({
+    uid: Joi.number(),
+    i: Joi.boolean(),
+    b: Joi.boolean(),
+    body: Validator.SelectCartAddressRequest().required(),
+  }).required();
+
+  static selectPaymentMode = Joi.object({
+    uid: Joi.string(),
+    body: Validator.UpdateCartPaymentRequest().required(),
+  }).required();
+
+  static validateCouponForPayment = Joi.object({
+    uid: Joi.string(),
+    addressId: Joi.string(),
+    paymentMode: Joi.string(),
+    paymentIdentifier: Joi.string(),
+    aggregatorName: Joi.string(),
+    merchantCode: Joi.string(),
+  });
+
+  static getShipments = Joi.object({
+    pickAtStoreUid: Joi.number(),
+    orderingStoreId: Joi.number(),
+    p: Joi.boolean(),
+    uid: Joi.number(),
+    addressId: Joi.number(),
+    areaCode: Joi.string(),
+    orderType: Joi.string(),
+  });
+
+  static updateShipments = Joi.object({
+    i: Joi.boolean(),
+    p: Joi.boolean(),
+    uid: Joi.number(),
+    addressId: Joi.number(),
+    orderType: Joi.string(),
+    body: Validator.UpdateCartShipmentRequest().required(),
+  }).required();
+
+  static checkoutCart = Joi.object({
+    uid: Joi.number(),
+    body: Validator.CartPosCheckoutRequest().required(),
+  }).required();
+
+  static updateCartMeta = Joi.object({
+    uid: Joi.number(),
+    body: Validator.CartMetaRequest().required(),
+  }).required();
+
+  static getAvailableDeliveryModes = Joi.object({
+    areaCode: Joi.string().required(),
+    uid: Joi.number(),
+  }).required();
+
+  static getStoreAddressByUid = Joi.object({
+    storeUid: Joi.number().required(),
+  }).required();
+
+  static getCartShareLink = Joi.object({
+    body: Validator.GetShareCartLinkRequest().required(),
+  }).required();
+
+  static getCartSharedItems = Joi.object({
+    token: Joi.string().required(),
+  }).required();
+
+  static updateCartWithSharedItems = Joi.object({
+    token: Joi.string().required(),
+    action: Joi.string().required(),
+  }).required();
+}
+
+class LogisticValidator {
+  static getTatProduct = Joi.object({
+    body: Validator.GetTatProductReqBody().required(),
+  }).required();
+
+  static getPincodeCity = Joi.object({
+    pincode: Joi.string().required(),
+  }).required();
 }
 
 module.exports = {
-  Catalog,
-  Cart,
-  Lead,
-  Theme,
-  User,
-  Share,
-  FileStorage,
-  Order,
-  Feedback,
-  PosCart,
-  Logistic,
+  CatalogValidator,
+  CartValidator,
+  LeadValidator,
+  ThemeValidator,
+  UserValidator,
+  ShareValidator,
+  FileStorageValidator,
+  PaymentValidator,
+  OrderValidator,
+  FeedbackValidator,
+  PosCartValidator,
+  LogisticValidator,
+  Validator,
 };

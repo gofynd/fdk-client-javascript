@@ -1,8980 +1,6591 @@
-const APIClient = require("./PlatformAPIClient");
-
-/**
-        @typedef TicketList
-        
-        
-        @property { Array<Ticket> } [items]
-        
-        @property { Filter } [filters]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef Page
-        
-        
-        @property { number } itemTotal
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [current]
-        
-        @property { string } type
-        
-        @property { number } size
-        
-         
-    */
-
-/**
-        @typedef TicketHistoryList
-        
-        
-        @property { Array<TicketHistory> } [docs]
-        
-        @property { number } [limit]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
-        
-        @property { number } [total]
-        
-         
-    */
-
-/**
-        @typedef CustomFormList
-        
-        
-        @property { Array<CustomForm> } [docs]
-        
-        @property { number } [limit]
-        
-        @property { number } [page]
-        
-        @property { number } [pages]
-        
-        @property { number } [total]
-        
-         
-    */
-
-/**
-        @typedef CreateCustomFormPayload
-        
-        
-        @property { string } slug
-        
-        @property { string } title
-        
-        @property { Array<Object> } inputs
-        
-        @property { string } [description]
-        
-        @property { string } [headerImage]
-        
-        @property { boolean } [shouldNotify]
-        
-        @property { string } [successMessage]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-         
-    */
-
-/**
-        @typedef EditCustomFormPayload
-        
-        
-        @property { string } title
-        
-        @property { Array<Object> } inputs
-        
-        @property { string } [description]
-        
-        @property { string } [headerImage]
-        
-        @property { boolean } [shouldNotify]
-        
-        @property { boolean } [loginRequired]
-        
-        @property { string } [successMessage]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-         
-    */
-
-/**
-        @typedef EditTicketPayload
-        
-        
-        @property { TicketContent } [content]
-        
-        @property { string } [category]
-        
-        @property { string } [source]
-        
-        @property { string } [status]
-        
-        @property { string } [priority]
-        
-        @property { AgentChangePayload } [assignedTo]
-        
-        @property { Array<string> } [tags]
-        
-         
-    */
-
-/**
-        @typedef AgentChangePayload
-        
-        
-        @property { string } agentId
-        
-         
-    */
-
-/**
-        @typedef CreateVideoRoomResponse
-        
-        
-        @property { string } uniqueName
-        
-         
-    */
-
-/**
-        @typedef CloseVideoRoomResponse
-        
-        
-        @property { boolean } success
-        
-         
-    */
-
-/**
-        @typedef CreateVideoRoomPayload
-        
-        
-        @property { string } uniqueName
-        
-        @property { Array<Object> } [notify]
-        
-         
-    */
-
-/**
-        @typedef Filter
-        
-        
-        @property { Array<Priority> } priorities
-        
-        @property { Array<TicketCategory> } [categories]
-        
-        @property { Array<Status> } statuses
-        
-        @property { Array<Object> } assignees
-        
-         
-    */
-
-/**
-        @typedef TicketHistoryPayload
-        
-        
-        @property { Object } value
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef CustomFormSubmissionPayload
-        
-        
-        @property { Array<KeyValue> } response
-        
-         
-    */
-
-/**
-        @typedef KeyValue
-        
-        
-        @property { string } key
-        
-        @property { string } value
-        
-         
-    */
-
-/**
-        @typedef GetTokenForVideoRoomResponse
-        
-        
-        @property { string } accessToken
-        
-         
-    */
-
-/**
-        @typedef GetParticipantsInsideVideoRoomResponse
-        
-        
-        @property { Array<Participant> } participants
-        
-         
-    */
-
-/**
-        @typedef Participant
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { string } [identity]
-        
-        @property { string } [status]
-        
-         
-    */
-
-/**
-        @typedef UserSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { Array<PhoneNumber> } [phoneNumbers]
-        
-        @property { Array<Email> } [emails]
-        
-        @property { string } [gender]
-        
-        @property { boolean } [active]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [username]
-        
-        @property { string } [accountType]
-        
-        @property { string } [uid]
-        
-        @property { Debug } [debug]
-        
-        @property { boolean } [hasOldPasswordHash]
-        
-        @property { string } [id]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-         
-    */
-
-/**
-        @typedef PhoneNumber
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [phone]
-        
-        @property { number } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef Email
-        
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [verified]
-        
-        @property { string } [email]
-        
-        @property { boolean } [active]
-        
-         
-    */
-
-/**
-        @typedef Debug
-        
-        
-        @property { string } [source]
-        
-        @property { string } [platform]
-        
-         
-    */
-
-/**
-        @typedef SubmitCustomFormResponse
-        
-        
-        @property { Ticket } ticket
-        
-         
-    */
-
-/**
-        @typedef TicketContext
-        
-        
-        @property { string } [applicationId]
-        
-        @property { string } companyId
-        
-         
-    */
-
-/**
-        @typedef CreatedOn
-        
-        
-        @property { string } userAgent
-        
-         
-    */
-
-/**
-        @typedef TicketAsset
-        
-        
-        @property { string } [display]
-        
-        @property { string } value
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef TicketContent
-        
-        
-        @property { string } title
-        
-        @property { string } [description]
-        
-        @property { Array<TicketAsset> } [attachments]
-        
-         
-    */
-
-/**
-        @typedef AddTicketPayload
-        
-        
-        @property { string } status
-        
-        @property { string } priority
-        
-        @property { string } category
-        
-        @property { TicketContent } content
-        
-         
-    */
-
-/**
-        @typedef Priority
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { string } color
-        
-         
-    */
-
-/**
-        @typedef Status
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { string } color
-        
-         
-    */
-
-/**
-        @typedef TicketCategory
-        
-        
-        @property { string } key
-        
-        @property { string } display
-        
-        @property { CustomForm } [form]
-        
-         
-    */
-
-/**
-        @typedef SubmitButton
-        
-        
-        @property { string } title
-        
-        @property { string } titleColor
-        
-        @property { string } backgroundColor
-        
-         
-    */
-
-/**
-        @typedef PollForAssignment
-        
-        
-        @property { number } duration
-        
-        @property { string } message
-        
-        @property { string } successMessage
-        
-        @property { string } failureMessage
-        
-         
-    */
-
-/**
-        @typedef CustomForm
-        
-        
-        @property { string } applicationId
-        
-        @property { string } slug
-        
-        @property { string } [headerImage]
-        
-        @property { string } title
-        
-        @property { string } [description]
-        
-        @property { boolean } loginRequired
-        
-        @property { boolean } shouldNotify
-        
-        @property { string } [successMessage]
-        
-        @property { SubmitButton } [submitButton]
-        
-        @property { Array<Object> } inputs
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { Object } [createdBy]
-        
-        @property { PollForAssignment } [pollForAssignment]
-        
-        @property { string } id
-        
-         
-    */
-
-/**
-        @typedef TicketHistory
-        
-        
-        @property { string } type
-        
-        @property { Object } value
-        
-        @property { string } ticketId
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { Object } [createdBy]
-        
-        @property { string } id
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
-        
-         
-    */
-
-/**
-        @typedef Ticket
-        
-        
-        @property { TicketContext } [context]
-        
-        @property { CreatedOn } [createdOn]
-        
-        @property { string } [responseId]
-        
-        @property { TicketContent } [content]
-        
-        @property { string } ticketId
-        
-        @property { TicketCategory } category
-        
-        @property { string } source
-        
-        @property { Status } status
-        
-        @property { Priority } priority
-        
-        @property { Object } [createdBy]
-        
-        @property { Object } [assignedTo]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Object } [customJson]
-        
-        @property { string } [id]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [createdAt]
-        
-         
-    */
-
-/**
-        @typedef PaginationSchema
-        
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
-        
-         
-    */
-
-/**
-        @typedef ThemesListingResponseSchema
-        
-        
-        @property { Array<ThemesSchema> } [items]
-        
-        @property { PaginationSchema } [page]
-        
-         
-    */
-
-/**
-        @typedef AddThemeRequestSchema
-        
-        
-        @property { string } [themeId]
-        
-         
-    */
-
-/**
-        @typedef UpgradableThemeSchema
-        
-        
-        @property { string } [parentTheme]
-        
-        @property { string } [appliedTheme]
-        
-        @property { boolean } [upgrade]
-        
-         
-    */
-
-/**
-        @typedef FontsSchema
-        
-        
-        @property { FontsSchemaItems } [items]
-        
-        @property { string } [kind]
-        
-         
-    */
-
-/**
-        @typedef BlitzkriegApiErrorSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef BlitzkriegNotFoundSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef BlitzkriegInternalServerErrorSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef FontsSchemaItems
-        
-        
-        @property { string } [family]
-        
-        @property { Array<string> } [variants]
-        
-        @property { Array<string> } [subsets]
-        
-        @property { string } [version]
-        
-        @property { string } [lastModified]
-        
-        @property { FontsSchemaItemsFiles } [files]
-        
-        @property { string } [category]
-        
-        @property { string } [kind]
-        
-         
-    */
-
-/**
-        @typedef FontsSchemaItemsFiles
-        
-        
-        @property { string } [regular]
-        
-        @property { string } [italic]
-        
-        @property { string } [bold]
-        
-         
-    */
-
-/**
-        @typedef ThemesSchema
-        
-        
-        @property { string } [application]
-        
-        @property { boolean } [applied]
-        
-        @property { boolean } [customized]
-        
-        @property { boolean } [published]
-        
-        @property { boolean } [archived]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [version]
-        
-        @property { string } [parentThemeVersion]
-        
-        @property { string } [parentTheme]
-        
-        @property { Information } [information]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Src } [src]
-        
-        @property { AssetsSchema } [assets]
-        
-        @property { AvailablePages } [availablePages]
-        
-        @property { Pages } [pages]
-        
-        @property { Array<availableSectionSchema> } [availableSections]
-        
-        @property { Array<sectionSchema> } [sections]
-        
-        @property { Object } [constants]
-        
-        @property { Object } [styles]
-        
-        @property { Config } [config]
-        
-        @property { Object } [settings]
-        
-        @property { Font } [font]
-        
-        @property { string } [id]
-        
-        @property { number } [v]
-        
-        @property { Colors } [colors]
-        
-         
-    */
-
-/**
-        @typedef pagesSchema
-        
-        
-        @property { string } [text]
-        
-        @property { string } [path]
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-        @property { Sections } [sections]
-        
-         
-    */
-
-/**
-        @typedef availableSectionSchema
-        
-        
-        @property { Blocks } [blocks]
-        
-        @property { string } [name]
-        
-        @property { string } [label]
-        
-        @property { Object } [props]
-        
-         
-    */
-
-/**
-        @typedef sectionSchema
-        
-        
-        @property { string } [pageKey]
-        
-        @property { PageSections } [pageSections]
-        
-         
-    */
-
-/**
-        @typedef Information
-        
-        
-        @property { Images } [images]
-        
-        @property { Array<string> } [features]
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-         
-    */
-
-/**
-        @typedef Images
-        
-        
-        @property { Array<string> } [desktop]
-        
-        @property { Array<string> } [android]
-        
-        @property { Array<string> } [ios]
-        
-        @property { Array<string> } [thumbnail]
-        
-         
-    */
-
-/**
-        @typedef Src
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef AssetsSchema
-        
-        
-        @property { UmdJs } [umdJs]
-        
-        @property { CommonJs } [commonJs]
-        
-        @property { Css } [css]
-        
-         
-    */
-
-/**
-        @typedef UmdJs
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef CommonJs
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef Css
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef AvailablePages
-        
-        
-        @property { string } [path]
-        
-        @property { string } [type]
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-        @property { Seo } [seo]
-        
-        @property { Object } [props]
-        
-        @property { Sections } [sections]
-        
-         
-    */
-
-/**
-        @typedef Seo
-        
-        
-        @property { string } [title]
-        
-        @property { string } [description]
-        
-         
-    */
-
-/**
-        @typedef Sections
-        
-        
-        @property { string } [attributes]
-        
-         
-    */
-
-/**
-        @typedef Pages
-        
-        
-        @property { pagesSchema } [collectionListing]
-        
-        @property { pagesSchema } [brands]
-        
-        @property { pagesSchema } [cartLanding]
-        
-        @property { pagesSchema } [collections]
-        
-        @property { pagesSchema } [productDescription]
-        
-        @property { pagesSchema } [productListing]
-        
-        @property { pagesSchema } [home]
-        
-        @property { pagesSchema } [categories]
-        
-        @property { pagesSchema } [compareProducts]
-        
-        @property { pagesSchema } [wishlist]
-        
-         
-    */
-
-/**
-        @typedef Config
-        
-        
-        @property { Preset } [preset]
-        
-        @property { GlobalSchema } [globalSchema]
-        
-        @property { string } [current]
-        
-        @property { ListSchema } [list]
-        
-         
-    */
-
-/**
-        @typedef Preset
-        
-        
-        @property { sectionSchema } [sections]
-        
-         
-    */
-
-/**
-        @typedef GlobalSchema
-        
-        
-        @property { Object } [props]
-        
-         
-    */
-
-/**
-        @typedef ListSchema
-        
-        
-        @property { Object } [global]
-        
-        @property { ConfigPage } [page]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef Colors
-        
-        
-        @property { string } [bgColor]
-        
-        @property { string } [primaryColor]
-        
-        @property { string } [secondaryColor]
-        
-        @property { string } [accentColor]
-        
-        @property { string } [linkColor]
-        
-        @property { string } [buttonSecondaryColor]
-        
-         
-    */
-
-/**
-        @typedef Custom
-        
-        
-        @property { Object } [props]
-        
-         
-    */
-
-/**
-        @typedef ConfigPage
-        
-        
-        @property { Object } [settings]
-        
-        @property { string } [page]
-        
-         
-    */
-
-/**
-        @typedef Font
-        
-        
-        @property { string } [family]
-        
-        @property { Variants } [variants]
-        
-         
-    */
-
-/**
-        @typedef Variants
-        
-        
-        @property { Medium } [medium]
-        
-        @property { SemiBold } [semiBold]
-        
-        @property { Bold } [bold]
-        
-        @property { Light } [light]
-        
-        @property { Regular } [regular]
-        
-         
-    */
-
-/**
-        @typedef Medium
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef SemiBold
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Bold
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Light
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Regular
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Blocks
-        
-        
-        @property { string } [type]
-        
-        @property { string } [name]
-        
-        @property { BlocksProps } [props]
-        
-         
-    */
-
-/**
-        @typedef BlocksProps
-        
-        
-        @property { string } [id]
-        
-        @property { string } [label]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef PageSections
-        
-        
-        @property { PageSectionsBlocks } [blocks]
-        
-        @property { string } [name]
-        
-        @property { string } [label]
-        
-        @property { Object } [props]
-        
-        @property { Object } [preset]
-        
-        @property { Predicate } [predicate]
-        
-         
-    */
-
-/**
-        @typedef PageSectionsBlocks
-        
-        
-        @property { string } [type]
-        
-        @property { string } [name]
-        
-        @property { PageSectionsBlocksProps } [props]
-        
-         
-    */
-
-/**
-        @typedef PageSectionsBlocksProps
-        
-        
-        @property { string } [id]
-        
-        @property { string } [label]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Predicate
-        
-        
-        @property { Screen } [screen]
-        
-        @property { PredicateUserSchema } [user]
-        
-        @property { Route } [route]
-        
-         
-    */
-
-/**
-        @typedef Screen
-        
-        
-        @property { boolean } [mobile]
-        
-        @property { boolean } [desktop]
-        
-        @property { boolean } [tablet]
-        
-         
-    */
-
-/**
-        @typedef PredicateUserSchema
-        
-        
-        @property { boolean } [authenticated]
-        
-        @property { boolean } [anonymous]
-        
-         
-    */
-
-/**
-        @typedef Route
-        
-        
-        @property { string } [selected]
-        
-        @property { string } [exactUrl]
-        
-        @property { Object } [query]
-        
-         
-    */
-
-/**
-        @typedef EditEmailRequestSchema
-        
-        
-        @property { string } [email]
-        
-         
-    */
-
-/**
-        @typedef SendVerificationLinkMobileRequestSchema
-        
-        
-        @property { boolean } [verified]
-        
-        @property { boolean } [active]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [phone]
-        
-        @property { boolean } [primary]
-        
-         
-    */
-
-/**
-        @typedef EditMobileRequestSchema
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [phone]
-        
-         
-    */
-
-/**
-        @typedef EditProfileRequestSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { string } [mobile]
-        
-        @property { string } [email]
-        
-        @property { string } [gender]
-        
-        @property { string } [dob]
-        
-        @property { string } [profilePicUrl]
-        
-        @property { string } [androidHash]
-        
-        @property { string } [sender]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-
-/**
-        @typedef SendEmailOtpRequestSchema
-        
-        
-        @property { string } [email]
-        
-        @property { string } [action]
-        
-        @property { string } [token]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-
-/**
-        @typedef VerifyOtpRequestSchema
-        
-        
-        @property { string } [requestId]
-        
-        @property { string } [registerToken]
-        
-        @property { string } [otp]
-        
-         
-    */
-
-/**
-        @typedef SendMobileOtpRequestSchema
-        
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [action]
-        
-        @property { string } [token]
-        
-        @property { string } [androidHash]
-        
-        @property { string } [force]
-        
-         
-    */
-
-/**
-        @typedef UpdatePasswordRequestSchema
-        
-        
-        @property { string } [oldPassword]
-        
-        @property { string } [newPassword]
-        
-         
-    */
-
-/**
-        @typedef FormRegisterRequestSchema
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { string } [gender]
-        
-        @property { string } [email]
-        
-        @property { string } [password]
-        
-        @property { FormRegisterRequestSchemaPhone } [phone]
-        
-        @property { string } [registerToken]
-        
-         
-    */
-
-/**
-        @typedef TokenRequestBodySchema
-        
-        
-        @property { string } [token]
-        
-         
-    */
-
-/**
-        @typedef ForgotPasswordRequestSchema
-        
-        
-        @property { string } [code]
-        
-        @property { string } [password]
-        
-         
-    */
-
-/**
-        @typedef CodeRequestBodySchema
-        
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef SendResetPasswordEmailRequestSchema
-        
-        
-        @property { string } [email]
-        
-        @property { string } [gRecaptchaResponse]
-        
-         
-    */
-
-/**
-        @typedef PasswordLoginRequestSchema
-        
-        
-        @property { string } [gRecaptchaResponse]
-        
-        @property { string } [password]
-        
-        @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef SendOtpRequestSchema
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [gRecaptchaResponse]
-        
-        @property { string } [mobile]
-        
-         
-    */
-
-/**
-        @typedef OAuthRequestSchema
-        
-        
-        @property { boolean } [isSignedIn]
-        
-        @property { OAuthRequestSchemaOauth2 } [oauth2]
-        
-        @property { OAuthRequestSchemaProfile } [profile]
-        
-         
-    */
-
-/**
-        @typedef AuthSuccess
-        
-        
-        @property { string } [registerToken]
-        
-        @property { boolean } [userExists]
-        
-        @property { AuthSuccessUser } [user]
-        
-         
-    */
-
-/**
-        @typedef SendOtpResponse
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef LoginSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-         
-    */
-
-/**
-        @typedef VerifyOtpSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [userExists]
-        
-         
-    */
-
-/**
-        @typedef ResetPasswordSuccess
-        
-        
-        @property { string } [status]
-        
-         
-    */
-
-/**
-        @typedef RegisterFormSuccess
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef VerifyEmailSuccess
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef HasPasswordSuccess
-        
-        
-        @property { boolean } [result]
-        
-         
-    */
-
-/**
-        @typedef LogoutSuccess
-        
-        
-        @property { boolean } [logout]
-        
-         
-    */
-
-/**
-        @typedef OtpSuccess
-        
-        
-        @property { number } [resendTimer]
-        
-        @property { string } [resendToken]
-        
-        @property { boolean } [success]
-        
-        @property { string } [requestId]
-        
-        @property { string } [message]
-        
-        @property { string } [mobile]
-        
-        @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef EmailOtpSuccess
-        
-        
-        @property { string } [resendToken]
-        
-         
-    */
-
-/**
-        @typedef SessionListSuccess
-        
-        
-        @property { Array<string> } [sessions]
-        
-         
-    */
-
-/**
-        @typedef VerifyMobileOTPSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [verifyMobileLink]
-        
-         
-    */
-
-/**
-        @typedef VerifyEmailOTPSuccess
-        
-        
-        @property { UserSchema } [user]
-        
-        @property { boolean } [verifyEmailLink]
-        
-         
-    */
-
-/**
-        @typedef SendMobileVerifyLinkSuccess
-        
-        
-        @property { boolean } [verifyMobileLink]
-        
-         
-    */
-
-/**
-        @typedef SendEmailVerifyLinkSuccess
-        
-        
-        @property { boolean } [verifyEmailLink]
-        
-         
-    */
-
-/**
-        @typedef UserSearchResponseSchema
-        
-        
-        @property { Array<UserSchema> } [users]
-        
-         
-    */
-
-/**
-        @typedef CustomerListResponseSchema
-        
-        
-        @property { Array<UserSchema> } [items]
-        
-        @property { PaginationSchema } [page]
-        
-         
-    */
-
-/**
-        @typedef UnauthorizedSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef UnauthenticatedSchema
-        
-        
-        @property { boolean } [authenticated]
-        
-         
-    */
-
-/**
-        @typedef NotFoundSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef AuthenticationApiErrorSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef ProfileEditSuccessSchema
-        
-        
-        @property { string } [email]
-        
-        @property { boolean } [verifyEmailOtp]
-        
-        @property { boolean } [verifyEmailLink]
-        
-        @property { boolean } [verifyMobileOtp]
-        
-        @property { string } [user]
-        
-        @property { string } [registerToken]
-        
-        @property { boolean } [userExists]
-        
-         
-    */
-
-/**
-        @typedef FormRegisterRequestSchemaPhone
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [mobile]
-        
-         
-    */
-
-/**
-        @typedef OAuthRequestSchemaOauth2
-        
-        
-        @property { string } [accessToken]
-        
-        @property { number } [expiry]
-        
-        @property { string } [refreshToken]
-        
-         
-    */
-
-/**
-        @typedef OAuthRequestSchemaProfile
-        
-        
-        @property { string } [lastName]
-        
-        @property { string } [image]
-        
-        @property { string } [id]
-        
-        @property { string } [email]
-        
-        @property { string } [fullName]
-        
-        @property { string } [firstName]
-        
-         
-    */
-
-/**
-        @typedef AuthSuccessUser
-        
-        
-        @property { string } [firstName]
-        
-        @property { string } [lastName]
-        
-        @property { AuthSuccessUserDebug } [debug]
-        
-        @property { boolean } [active]
-        
-        @property { AuthSuccessUserEmails } [emails]
-        
-         
-    */
-
-/**
-        @typedef AuthSuccessUserDebug
-        
-        
-        @property { string } [platform]
-        
-         
-    */
-
-/**
-        @typedef AuthSuccessUserEmails
-        
-        
-        @property { string } [email]
-        
-        @property { boolean } [verified]
-        
-        @property { boolean } [primary]
-        
-        @property { boolean } [active]
-        
-         
-    */
-
-/**
-        @typedef PlatformSchema
-        
-        
-        @property { string } [display]
-        
-        @property { LookAndFeel } [lookAndFeel]
-        
-        @property { string } [updatedAt]
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [forgotPassword]
-        
-        @property { Login } [login]
-        
-        @property { boolean } [skipCaptcha]
-        
-        @property { string } [name]
-        
-        @property { MetaSchema } [meta]
-        
-        @property { string } [id]
-        
-        @property { Social } [social]
-        
-        @property { RequiredFields } [requiredFields]
-        
-        @property { RegisterRequiredFields } [registerRequiredFields]
-        
-        @property { boolean } [skipLogin]
-        
-        @property { FlashCard } [flashCard]
-        
-        @property { string } [subtext]
-        
-        @property { SocialTokens } [socialTokens]
-        
-        @property { string } [createdAt]
-        
-        @property { boolean } [register]
-        
-         
-    */
-
-/**
-        @typedef LookAndFeel
-        
-        
-        @property { string } [cardPosition]
-        
-        @property { string } [backgroundColor]
-        
-         
-    */
-
-/**
-        @typedef Login
-        
-        
-        @property { boolean } [password]
-        
-        @property { boolean } [otp]
-        
-         
-    */
-
-/**
-        @typedef MetaSchema
-        
-        
-        @property { boolean } [fyndDefault]
-        
-         
-    */
-
-/**
-        @typedef Social
-        
-        
-        @property { boolean } [accountKit]
-        
-        @property { boolean } [facebook]
-        
-        @property { boolean } [google]
-        
-         
-    */
-
-/**
-        @typedef RequiredFields
-        
-        
-        @property { Email } [email]
-        
-        @property { Mobile } [mobile]
-        
-         
-    */
-
-/**
-        @typedef Mobile
-        
-        
-        @property { boolean } [isRequired]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
-        @typedef RegisterRequiredFields
-        
-        
-        @property { RegisterRequiredFieldsEmail } [email]
-        
-        @property { RegisterRequiredFieldsMobile } [mobile]
-        
-         
-    */
-
-/**
-        @typedef RegisterRequiredFieldsEmail
-        
-        
-        @property { boolean } [isRequired]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
-        @typedef RegisterRequiredFieldsMobile
-        
-        
-        @property { boolean } [isRequired]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
-        @typedef FlashCard
-        
-        
-        @property { string } [text]
-        
-        @property { string } [textColor]
-        
-        @property { string } [backgroundColor]
-        
-         
-    */
-
-/**
-        @typedef SocialTokens
-        
-        
-        @property { Facebook } [facebook]
-        
-        @property { Accountkit } [accountKit]
-        
-        @property { Google } [google]
-        
-         
-    */
-
-/**
-        @typedef Facebook
-        
-        
-        @property { string } [appId]
-        
-         
-    */
-
-/**
-        @typedef Accountkit
-        
-        
-        @property { string } [appId]
-        
-         
-    */
-
-/**
-        @typedef Google
-        
-        
-        @property { string } [appId]
-        
-         
-    */
-
-/**
-        @typedef PaymentGatewayConfigResponse
-        
-        
-        @property { boolean } success
-        
-        @property { boolean } created
-        
-        @property { Array<string> } displayFields
-        
-        @property { Array<Object> } [aggregators]
-        
-        @property { Array<string> } excludedFields
-        
-        @property { string } appId
-        
-         
-    */
-
-/**
-        @typedef ErrorCodeDescription
-        
-        
-        @property { boolean } success
-        
-        @property { string } code
-        
-        @property { string } description
-        
-         
-    */
-
-/**
-        @typedef PaymentGatewayConfig
-        
-        
-        @property { string } merchantSalt
-        
-        @property { string } configType
-        
-        @property { boolean } [isActive]
-        
-        @property { string } secret
-        
-        @property { string } key
-        
-         
-    */
-
-/**
-        @typedef PaymentGatewayConfigRequest
-        
-        
-        @property { PaymentGatewayConfig } [aggregatorName]
-        
-        @property { string } appId
-        
-        @property { boolean } [isActive]
-        
-         
-    */
-
-/**
-        @typedef PaymentGatewayToBeReviewed
-        
-        
-        @property { boolean } success
-        
-        @property { Array<string> } aggregator
-        
-         
-    */
-
-/**
-        @typedef ErrorCodeAndDescription
-        
-        
-        @property { string } code
-        
-        @property { string } description
-        
-         
-    */
-
-/**
-        @typedef HttpErrorCodeAndResponse
-        
-        
-        @property { boolean } success
-        
-        @property { ErrorCodeAndDescription } error
-        
-         
-    */
-
-/**
-        @typedef PaymentModeLogo
-        
-        
-        @property { string } small
-        
-        @property { string } large
-        
-         
-    */
-
-/**
-        @typedef PaymentModeList
-        
-        
-        @property { number } [expYear]
-        
-        @property { Array<string> } [intentAppErrorList]
-        
-        @property { number } [retryCount]
-        
-        @property { number } [expMonth]
-        
-        @property { string } [cardBrandImage]
-        
-        @property { string } [cardBrand]
-        
-        @property { string } [merchantCode]
-        
-        @property { string } [displayName]
-        
-        @property { string } [name]
-        
-        @property { boolean } [expired]
-        
-        @property { string } [cardReference]
-        
-        @property { string } [intentFlow]
-        
-        @property { number } [timeout]
-        
-        @property { string } [cardToken]
-        
-        @property { string } [cardType]
-        
-        @property { string } [cardId]
-        
-        @property { string } [code]
-        
-        @property { string } [cardNumber]
-        
-        @property { string } [fyndVpa]
-        
-        @property { PaymentModeLogo } [logoUrl]
-        
-        @property { string } [cardFingerprint]
-        
-        @property { string } [cardName]
-        
-        @property { string } [nickname]
-        
-        @property { string } [cardIsin]
-        
-        @property { string } aggregatorName
-        
-        @property { number } [displayPriority]
-        
-        @property { string } [cardIssuer]
-        
-         
-    */
-
-/**
-        @typedef RootPaymentMode
-        
-        
-        @property { string } displayName
-        
-        @property { string } name
-        
-        @property { number } displayPriority
-        
-        @property { boolean } [addCardEnabled]
-        
-        @property { string } [aggregatorName]
-        
-        @property { Array<PaymentModeList> } [list]
-        
-        @property { boolean } [anonymousEnable]
-        
-         
-    */
-
-/**
-        @typedef PaymentOptions
-        
-        
-        @property { Array<RootPaymentMode> } paymentOption
-        
-         
-    */
-
-/**
-        @typedef PaymentOptionsResponse
-        
-        
-        @property { boolean } success
-        
-        @property { PaymentOptions } paymentOptions
-        
-         
-    */
-
-/**
-        @typedef PayoutsResponse
-        
-        
-        @property { Object } uniqueTransferNo
-        
-        @property { Array<Object> } payoutsAggregators
-        
-        @property { Object } customers
-        
-        @property { Object } moreAttributes
-        
-        @property { boolean } isActive
-        
-        @property { string } transferType
-        
-        @property { boolean } isDefault
-        
-         
-    */
-
-/**
-        @typedef PayoutRequest
-        
-        
-        @property { string } uniqueExternalId
-        
-        @property { Object } users
-        
-        @property { string } aggregator
-        
-        @property { boolean } isActive
-        
-        @property { string } transferType
-        
-        @property { Object } bankDetails
-        
-         
-    */
-
-/**
-        @typedef PayoutResponse
-        
-        
-        @property { string } uniqueTransferNo
-        
-        @property { Object } payouts
-        
-        @property { boolean } success
-        
-        @property { Object } users
-        
-        @property { boolean } created
-        
-        @property { string } aggregator
-        
-        @property { boolean } isActive
-        
-        @property { string } transferType
-        
-        @property { string } paymentStatus
-        
-        @property { Object } bankDetails
-        
-         
-    */
-
-/**
-        @typedef UpdatePayoutResponse
-        
-        
-        @property { boolean } success
-        
-        @property { boolean } isDefault
-        
-        @property { boolean } isActive
-        
-         
-    */
-
-/**
-        @typedef UpdatePayoutRequest
-        
-        
-        @property { boolean } isDefault
-        
-        @property { string } uniqueExternalId
-        
-        @property { boolean } isActive
-        
-         
-    */
-
-/**
-        @typedef DeletePayoutResponse
-        
-        
-        @property { boolean } success
-        
-         
-    */
-
-/**
-        @typedef SubscriptionPaymentMethodResponse
-        
-        
-        @property { boolean } success
-        
-        @property { Array<Object> } data
-        
-         
-    */
-
-/**
-        @typedef DeleteSubscriptionPaymentMethodResponse
-        
-        
-        @property { boolean } success
-        
-         
-    */
-
-/**
-        @typedef SubscriptionConfigResponse
-        
-        
-        @property { boolean } success
-        
-        @property { Object } config
-        
-        @property { string } aggregator
-        
-         
-    */
-
-/**
-        @typedef SaveSubscriptionSetupIntentRequest
-        
-        
-        @property { string } uniqueExternalId
-        
-         
-    */
-
-/**
-        @typedef SaveSubscriptionSetupIntentResponse
-        
-        
-        @property { boolean } success
-        
-        @property { Object } data
-        
-         
-    */
-
-/**
-        @typedef GetActivityStatus
-        
-        
-        @property { ActivityHistory } activityHistory
-        
-         
-    */
-
-/**
-        @typedef ActivityHistory
-        
-        
-        @property { string } [createdat]
-        
-        @property { string } [message]
-        
-        @property { string } [type]
-        
-        @property { string } [user]
-        
-         
-    */
-
-/**
-        @typedef FailedOrders
-        
-        
-        @property { FailOrder } orders
-        
-         
-    */
-
-/**
-        @typedef FailOrder
-        
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [id]
-        
-        @property { string } [reason]
-        
-        @property { MarketplaceOrder } [marketplaceOrder]
-        
-        @property { string } [marketplaceOrderId]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [appId]
-        
-        @property { string } [marketplace]
-        
-        @property { number } [companyId]
-        
-         
-    */
-
-/**
-        @typedef MarketplaceOrder
-        
-        
-        @property { string } [orderStatusUrl]
-        
-        @property { string } [adminGraphqlApiId]
-        
-        @property { string } [email]
-        
-        @property { boolean } [test]
-        
-        @property { string } [note]
-        
-        @property { string } [totalPrice]
-        
-        @property { number } [appId]
-        
-        @property { TotalDiscountsSet } [totalDiscountsSet]
-        
-        @property { TotalPriceSet } [totalPriceSet]
-        
-        @property { TotalTaxSet } [totalTaxSet]
-        
-        @property { string } [gateway]
-        
-        @property { string } [name]
-        
-        @property { SubtotalPriceSet } [subtotalPriceSet]
-        
-        @property { number } [number]
-        
-        @property { boolean } [buyerAcceptsMarketing]
-        
-        @property { string } [contactEmail]
-        
-        @property { string } [token]
-        
-        @property { string } [sourceName]
-        
-        @property { Array<any> } [paymentGatewayNames]
-        
-        @property { string } [presentmentCurrency]
-        
-        @property { string } [subtotalPrice]
-        
-        @property { string } [processedAt]
-        
-        @property { number } [orderNumber]
-        
-        @property { string } [totalTipReceived]
-        
-        @property { number } [id]
-        
-        @property { boolean } [confirmed]
-        
-        @property { string } [currency]
-        
-        @property { string } [totalLineItemsPrice]
-        
-        @property { LineItems } [lineItems]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [totalWeight]
-        
-        @property { BillingAddress } [billingAddress]
-        
-        @property { TotalShippingPriceSet } [totalShippingPriceSet]
-        
-        @property { Customer } [customer]
-        
-        @property { string } [totalDiscounts]
-        
-        @property { TotalLineItemsPriceSet } [totalLineItemsPriceSet]
-        
-        @property { string } [tags]
-        
-        @property { string } [totalPriceUsd]
-        
-        @property { number } [userId]
-        
-        @property { string } [totalTax]
-        
-        @property { string } [processingMethod]
-        
-        @property { ShippingAddress } [shippingAddress]
-        
-        @property { boolean } [taxesIncluded]
-        
-        @property { string } [financialStatus]
-        
-         
-    */
-
-/**
-        @typedef TotalDiscountsSet
-        
-        
-        @property { PresentmentMoney } [presentmentMoney]
-        
-        @property { ShopMoney } [shopMoney]
-        
-         
-    */
-
-/**
-        @typedef PresentmentMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef ShopMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef TotalPriceSet
-        
-        
-        @property { TotalPriceSetShopMoney } [shopMoney]
-        
-        @property { TotalPriceSetPresentmentMoney } [presentmentMoney]
-        
-         
-    */
-
-/**
-        @typedef TotalPriceSetShopMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef TotalPriceSetPresentmentMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef TotalTaxSet
-        
-        
-        @property { TotalTaxSetShopMoney } [shopMoney]
-        
-        @property { TotalTaxSetPresentmentMoney } [presentmentMoney]
-        
-         
-    */
-
-/**
-        @typedef TotalTaxSetShopMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef TotalTaxSetPresentmentMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef SubtotalPriceSet
-        
-        
-        @property { SubtotalPriceSetShopMoney } [shopMoney]
-        
-        @property { SubtotalPriceSetPresentmentMoney } [presentmentMoney]
-        
-         
-    */
-
-/**
-        @typedef SubtotalPriceSetShopMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef SubtotalPriceSetPresentmentMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef LineItems
-        
-        
-        @property { string } [sku]
-        
-        @property { number } [fulfillableQuantity]
-        
-        @property { number } [grams]
-        
-        @property { string } [totalDiscount]
-        
-        @property { LineItemsArticle } [article]
-        
-        @property { string } [title]
-        
-        @property { string } [variantInventoryManagement]
-        
-        @property { number } [id]
-        
-        @property { number } [variantId]
-        
-        @property { string } [variantTitle]
-        
-        @property { boolean } [productExists]
-        
-        @property { string } [price]
-        
-        @property { string } [adminGraphqlApiId]
-        
-        @property { number } [quantity]
-        
-        @property { string } [vendor]
-        
-        @property { string } [fulfillmentService]
-        
-        @property { boolean } [taxable]
-        
-        @property { string } [name]
-        
-        @property { number } [productId]
-        
-        @property { PriceSet } [priceSet]
-        
-        @property { TaxLines } [taxLines]
-        
-        @property { boolean } [requiresShipping]
-        
-        @property { boolean } [giftCard]
-        
-        @property { TotalDiscountSet } [totalDiscountSet]
-        
-         
-    */
-
-/**
-        @typedef LineItemsArticle
-        
-        
-        @property { Quantities } [quantities]
-        
-        @property { string } [oldArticleUid]
-        
-        @property { number } [totalQuantity]
-        
-        @property { Manufacturer } [manufacturer]
-        
-        @property { ArticlePrice } [price]
-        
-        @property { boolean } [trackInventory]
-        
-        @property { Company } [company]
-        
-        @property { boolean } [isActive]
-        
-        @property { DateMeta } [dateMeta]
-        
-        @property { boolean } [fragile]
-        
-        @property { MarketplaceIdentifiers } [marketplaceIdentifiers]
-        
-        @property { string } [size]
-        
-        @property { boolean } [isSet]
-        
-        @property { Dimension } [dimension]
-        
-        @property { Weight } [weight]
-        
-        @property { Store } [store]
-        
-        @property { ArticleMeta } [meta]
-        
-        @property { string } [uid]
-        
-        @property { ArticleBrand } [brand]
-        
-        @property { number } [itemId]
-        
-        @property { string } [fyndArticleCode]
-        
-        @property { string } [id]
-        
-        @property { Identifier } [identifier]
-        
-        @property { string } [sellerIdentifier]
-        
-        @property { string } [fyndItemCode]
-        
-        @property { string } [countryOfOrigin]
-        
-         
-    */
-
-/**
-        @typedef Quantities
-        
-        
-        @property { NotAvailable } [notAvailable]
-        
-        @property { Sellable } [sellable]
-        
-        @property { OrderCommitted } [orderCommitted]
-        
-        @property { Damaged } [damaged]
-        
-         
-    */
-
-/**
-        @typedef NotAvailable
-        
-        
-        @property { number } [count]
-        
-        @property { string } [updatedAt]
-        
-         
-    */
-
-/**
-        @typedef Sellable
-        
-        
-        @property { number } [count]
-        
-        @property { string } [updatedAt]
-        
-         
-    */
-
-/**
-        @typedef OrderCommitted
-        
-        
-        @property { number } [count]
-        
-        @property { string } [updatedAt]
-        
-         
-    */
-
-/**
-        @typedef Damaged
-        
-        
-        @property { string } [updatedAt]
-        
-        @property { number } [count]
-        
-         
-    */
-
-/**
-        @typedef Manufacturer
-        
-        
-        @property { boolean } [isDefault]
-        
-        @property { string } [address]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef ArticlePrice
-        
-        
-        @property { number } [marked]
-        
-        @property { string } [currency]
-        
-        @property { number } [effective]
-        
-        @property { number } [transfer]
-        
-         
-    */
-
-/**
-        @typedef Company
-        
-        
-        @property { number } [id]
-        
-        @property { string } [companyType]
-        
-        @property { string } [businessType]
-        
-        @property { string } [companyName]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [panNo]
-        
-        @property { boolean } [returnAllowed]
-        
-        @property { string } [meta]
-        
-        @property { boolean } [exchangeAllowed]
-        
-        @property { string } [agreementStartDate]
-        
-        @property { number } [exchangeWithinDays]
-        
-        @property { number } [paymentProcesingCharge]
-        
-        @property { boolean } [fyndAFitAvailable]
-        
-        @property { string } [modifiedOn]
-        
-        @property { number } [returnWithinDays]
-        
-         
-    */
-
-/**
-        @typedef DateMeta
-        
-        
-        @property { string } [addedOnStore]
-        
-        @property { string } [inventoryUpdatedOn]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [modifiedOn]
-        
-         
-    */
-
-/**
-        @typedef MarketplaceIdentifiers
-        
-        
-        @property { TatacliqLuxury } [tatacliqLuxury]
-        
-         
-    */
-
-/**
-        @typedef TatacliqLuxury
-        
-        
-        @property { string } [sku]
-        
-         
-    */
-
-/**
-        @typedef Dimension
-        
-        
-        @property { number } [height]
-        
-        @property { number } [width]
-        
-        @property { string } [unit]
-        
-        @property { number } [length]
-        
-        @property { boolean } [isDefault]
-        
-         
-    */
-
-/**
-        @typedef Weight
-        
-        
-        @property { boolean } [isDefault]
-        
-        @property { string } [unit]
-        
-        @property { number } [shipping]
-        
-         
-    */
-
-/**
-        @typedef Store
-        
-        
-        @property { number } [id]
-        
-         
-    */
-
-/**
-        @typedef ArticleMeta
-        
-        
-        @property { string } [service]
-        
-         
-    */
-
-/**
-        @typedef ArticleBrand
-        
-        
-        @property { string } [name]
-        
-        @property { number } [id]
-        
-         
-    */
-
-/**
-        @typedef Identifier
-        
-        
-        @property { string } [skuCode]
-        
-         
-    */
-
-/**
-        @typedef PriceSet
-        
-        
-        @property { PriceSetShopMoney } [shopMoney]
-        
-        @property { PriceSetPresentmentMoney } [presentmentMoney]
-        
-         
-    */
-
-/**
-        @typedef PriceSetShopMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef PriceSetPresentmentMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef TaxLines
-        
-        
-        @property { string } [title]
-        
-        @property { string } [price]
-        
-        @property { number } [rate]
-        
-        @property { TaxLinesPriceSet } [priceSet]
-        
-         
-    */
-
-/**
-        @typedef TaxLinesPriceSet
-        
-        
-        @property { TaxLinesPriceSetShopMoney } [shopMoney]
-        
-        @property { TaxLinesPriceSetPresentmentMoney } [presentmentMoney]
-        
-         
-    */
-
-/**
-        @typedef TaxLinesPriceSetShopMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef TaxLinesPriceSetPresentmentMoney
-        
-        
-        @property { string } [currencyCode]
-        
-        @property { string } [amount]
-        
-         
-    */
-
-/**
-        @typedef TotalDiscountSet
-        
-        
-        @property { TotalDiscountSetPresentmentMoney } [presentmentMoney]
-        
-        @property { TotalDiscountSetShopMoney } [shopMoney]
-        
-         
-    */
-
-/**
-        @typedef TotalDiscountSetPresentmentMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef TotalDiscountSetShopMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef BillingAddress
-        
-        
-        @property { string } [address1]
-        
-        @property { string } [city]
-        
-        @property { string } [zip]
-        
-        @property { string } [lastName]
-        
-        @property { string } [address2]
-        
-        @property { number } [longitude]
-        
-        @property { string } [provinceCode]
-        
-        @property { string } [phone]
-        
-        @property { string } [company]
-        
-        @property { number } [latitude]
-        
-        @property { string } [name]
-        
-        @property { string } [country]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [firstName]
-        
-        @property { string } [province]
-        
-         
-    */
-
-/**
-        @typedef TotalShippingPriceSet
-        
-        
-        @property { TotalShippingPriceSetShopMoney } [shopMoney]
-        
-        @property { TotalShippingPriceSetPresentmentMoney } [presentmentMoney]
-        
-         
-    */
-
-/**
-        @typedef TotalShippingPriceSetShopMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef TotalShippingPriceSetPresentmentMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef Customer
-        
-        
-        @property { string } [createdAt]
-        
-        @property { number } [id]
-        
-        @property { string } [lastName]
-        
-        @property { string } [state]
-        
-        @property { number } [lastOrderId]
-        
-        @property { string } [note]
-        
-        @property { boolean } [verifiedEmail]
-        
-        @property { string } [phone]
-        
-        @property { boolean } [acceptsMarketing]
-        
-        @property { string } [firstName]
-        
-        @property { string } [tags]
-        
-        @property { string } [lastOrderName]
-        
-        @property { number } [ordersCount]
-        
-        @property { string } [totalSpent]
-        
-        @property { boolean } [taxExempt]
-        
-        @property { string } [currency]
-        
-        @property { string } [acceptsMarketingUpdatedAt]
-        
-        @property { string } [email]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [adminGraphqlApiId]
-        
-        @property { DefaultAddress } [defaultAddress]
-        
-         
-    */
-
-/**
-        @typedef DefaultAddress
-        
-        
-        @property { string } [lastName]
-        
-        @property { string } [name]
-        
-        @property { string } [provinceCode]
-        
-        @property { string } [countryCode]
-        
-        @property { boolean } [isDefault]
-        
-        @property { number } [id]
-        
-        @property { number } [customerId]
-        
-        @property { string } [firstName]
-        
-        @property { string } [address1]
-        
-        @property { string } [phone]
-        
-        @property { string } [countryName]
-        
-        @property { string } [company]
-        
-        @property { string } [address2]
-        
-        @property { string } [city]
-        
-        @property { string } [province]
-        
-        @property { string } [country]
-        
-        @property { string } [zip]
-        
-         
-    */
-
-/**
-        @typedef TotalLineItemsPriceSet
-        
-        
-        @property { TotalLineItemsPriceSetShopMoney } [shopMoney]
-        
-        @property { TotalLineItemsPriceSetPresentmentMoney } [presentmentMoney]
-        
-         
-    */
-
-/**
-        @typedef TotalLineItemsPriceSetShopMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef TotalLineItemsPriceSetPresentmentMoney
-        
-        
-        @property { string } [amount]
-        
-        @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef ShippingAddress
-        
-        
-        @property { string } [address1]
-        
-        @property { string } [zip]
-        
-        @property { string } [address2]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [country]
-        
-        @property { string } [lastName]
-        
-        @property { number } [latitude]
-        
-        @property { string } [provinceCode]
-        
-        @property { string } [firstName]
-        
-        @property { string } [phone]
-        
-        @property { string } [province]
-        
-        @property { number } [longitude]
-        
-        @property { string } [city]
-        
-        @property { string } [company]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef OrderListing
-        
-        
-        @property { Array<OrderItems> } items
-        
-        @property { Filters } filters
-        
-        @property { NextOrderStatus } nextOrderStatus
-        
-        @property { PlatformOrderPage } page
-        
-        @property { AppliedFilters } appliedFilters
-        
-         
-    */
-
-/**
-        @typedef OrderItems
-        
-        
-        @property { PlatformOrderUserInfo } [user]
-        
-        @property { PlatformDeliveryAddress } [deliveryAddress]
-        
-        @property { Channel } [channel]
-        
-        @property { PlatformBreakupValues } [breakupValues]
-        
-        @property { string } [id]
-        
-        @property { PlatformApplication } [application]
-        
-        @property { PlatformShipment } [shipments]
-        
-        @property { string } [createdAt]
-        
-        @property { number } [totalShipmentsInOrder]
-        
-        @property { ItemsPayments } [payments]
-        
-         
-    */
-
-/**
-        @typedef PlatformOrderUserInfo
-        
-        
-        @property { string } [mobile]
-        
-        @property { string } [firstName]
-        
-        @property { string } [gender]
-        
-        @property { string } [email]
-        
-        @property { string } [lastName]
-        
-        @property { boolean } [isAnonymousUser]
-        
-        @property { number } [uid]
-        
-        @property { string } [avisUserId]
-        
-         
-    */
-
-/**
-        @typedef PlatformDeliveryAddress
-        
-        
-        @property { string } [area]
-        
-        @property { string } [state]
-        
-        @property { string } [country]
-        
-        @property { string } [version]
-        
-        @property { string } [address1]
-        
-        @property { number } [latitude]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [city]
-        
-        @property { string } [landmark]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [name]
-        
-        @property { string } [address]
-        
-        @property { string } [phone]
-        
-        @property { number } [longitude]
-        
-        @property { string } [addressType]
-        
-        @property { string } [email]
-        
-        @property { string } [pincode]
-        
-        @property { string } [address2]
-        
-        @property { string } [contactPerson]
-        
-        @property { string } [addressCategory]
-        
-         
-    */
-
-/**
-        @typedef Channel
-        
-        
-        @property { string } [name]
-        
-        @property { string } [logo]
-        
-         
-    */
-
-/**
-        @typedef PlatformBreakupValues
-        
-        
-        @property { string } [display]
-        
-        @property { number } [value]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef PlatformApplication
-        
-        
-        @property { string } [name]
-        
-        @property { string } [owner]
-        
-        @property { boolean } [postOrderReassignment]
-        
-        @property { string } [id]
-        
-        @property { string } [description]
-        
-        @property { boolean } [dpAssignment]
-        
-        @property { ArticleAssignment } [articleAssignment]
-        
-        @property { boolean } [forceReassignment]
-        
-        @property { string } [token]
-        
-        @property { string } [secret]
-        
-         
-    */
-
-/**
-        @typedef ArticleAssignment
-        
-        
-        @property { string } [strategy]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
-        @typedef PlatformShipment
-        
-        
-        @property { PlatformShipmentStatus } [status]
-        
-        @property { Bags } [bags]
-        
-        @property { ShipmentPrices } [prices]
-        
-        @property { ShipmentBreakupValues } [breakupValues]
-        
-        @property { string } [id]
-        
-        @property { DpDetails } [dpDetails]
-        
-        @property { ShipmentInvoice } [invoice]
-        
-        @property { PlatformFulfillingStore } [fulfillingStore]
-        
-        @property { Payments } [payments]
-        
-        @property { ShipmentGst } [gst]
-        
-        @property { Company } [company]
-        
-        @property { PlatformShipmentBrand } [brand]
-        
-        @property { Object } [coupon]
-        
-        @property { string } [orderSource]
-        
-        @property { boolean } [isNotFyndSource]
-        
-        @property { string } [comment]
-        
-        @property { Promise } [promise]
-        
-        @property { ShipmentTrackingDetails } [trackingDetails]
-        
-        @property { boolean } [isFyndCoupon]
-        
-        @property { string } [orderType]
-        
-        @property { ShipmentUser } [user]
-        
-         
-    */
-
-/**
-        @typedef PlatformShipmentStatus
-        
-        
-        @property { number } [id]
-        
-        @property { Array<number> } [bagList]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [status]
-        
-        @property { string } [name]
-        
-        @property { number } [progress]
-        
-        @property { string } [shipmentId]
-        
-        @property { string } [currentShipmentStatus]
-        
-        @property { string } [colorCode]
-        
-         
-    */
-
-/**
-        @typedef Bags
-        
-        
-        @property { Array<BagFinancialBreakup> } [financialBreakup]
-        
-        @property { BagCurrStatus } [status]
-        
-        @property { BagItem } [item]
-        
-        @property { BagArticle } [article]
-        
-        @property { number } [id]
-        
-        @property { BagPrices } [prices]
-        
-        @property { GstDetails } [gstDetails]
-        
-        @property { BagBreakupValues } [breakupValues]
-        
-        @property { number } [updateTime]
-        
-        @property { BagCurrentStatus } [currentStatus]
-        
-        @property { BagStatus } [bagStatus]
-        
-         
-    */
-
-/**
-        @typedef BagFinancialBreakup
-        
-        
-        @property { number } [valueOfGood]
-        
-        @property { string } [hsnCode]
-        
-        @property { number } [priceEffective]
-        
-        @property { number } [codCharges]
-        
-        @property { string } [gstFee]
-        
-        @property { number } [fyndCredits]
-        
-        @property { number } [refundAmount]
-        
-        @property { number } [cashbackApplied]
-        
-        @property { number } [transferPrice]
-        
-        @property { number } [amountPaidRoundoff]
-        
-        @property { number } [couponValue]
-        
-        @property { number } [amountPaid]
-        
-        @property { number } [gstTaxPercentage]
-        
-        @property { string } [size]
-        
-        @property { number } [totalUnits]
-        
-        @property { number } [discount]
-        
-        @property { number } [couponEffectiveDiscount]
-        
-        @property { number } [cashback]
-        
-        @property { number } [promotionEffectiveDiscount]
-        
-        @property { string } [gstTag]
-        
-        @property { number } [deliveryCharge]
-        
-        @property { number } [refundCredit]
-        
-        @property { number } [priceMarked]
-        
-        @property { Identifiers } [identifiers]
-        
-        @property { string } [itemName]
-        
-        @property { boolean } [addedToFyndCash]
-        
-        @property { number } [brandCalculatedAmount]
-        
-         
-    */
-
-/**
-        @typedef Identifiers
-        
-        
-        @property { string } [ean]
-        
-         
-    */
-
-/**
-        @typedef BagCurrStatus
-        
-        
-        @property { boolean } [enableTracking]
-        
-        @property { boolean } [isCustomerReturnAllowed]
-        
-        @property { boolean } [isActive]
-        
-        @property { boolean } [isReturnable]
-        
-        @property { boolean } [canBeCancelled]
-        
-         
-    */
-
-/**
-        @typedef BagItem
-        
-        
-        @property { number } [id]
-        
-        @property { string } [size]
-        
-        @property { string } [slugKey]
-        
-        @property { boolean } [canReturn]
-        
-        @property { number } [brandId]
-        
-        @property { Array<string> } [l2Category]
-        
-        @property { string } [name]
-        
-        @property { string } [code]
-        
-        @property { boolean } [canCancel]
-        
-        @property { BagItemAttributes } [attributes]
-        
-        @property { string } [l3CategoryName]
-        
-        @property { number } [l3Category]
-        
-        @property { Array<string> } [l1Category]
-        
-        @property { Array<string> } [image]
-        
-        @property { string } [brand]
-        
-        @property { string } [lastUpdatedAt]
-        
-         
-    */
-
-/**
-        @typedef BagItemAttributes
-        
-        
-        @property { string } [itemCode]
-        
-        @property { string } [brandName]
-        
-        @property { string } [countryOfOrigin]
-        
-         
-    */
-
-/**
-        @typedef BagArticle
-        
-        
-        @property { ArticleIdentifiers } [identifiers]
-        
-        @property { boolean } [espModified]
-        
-        @property { boolean } [isSet]
-        
-        @property { string } [size]
-        
-        @property { string } [code]
-        
-        @property { Set } [set]
-        
-        @property { string } [sellerIdentifier]
-        
-        @property { BagArticleReturnConfig } [returnConfig]
-        
-        @property { string } [id]
-        
-        @property { string } [uid]
-        
-        @property { Object } [childDetails]
-        
-         
-    */
-
-/**
-        @typedef ArticleIdentifiers
-        
-        
-        @property { string } [ean]
-        
-         
-    */
-
-/**
-        @typedef Set
-        
-        
-        @property { number } [quantity]
-        
-        @property { SetSizeDistribution } [sizeDistribution]
-        
-         
-    */
-
-/**
-        @typedef SetSizeDistribution
-        
-        
-        @property { Sizes } [sizes]
-        
-         
-    */
-
-/**
-        @typedef Sizes
-        
-        
-        @property { string } [size]
-        
-        @property { number } [pieces]
-        
-         
-    */
-
-/**
-        @typedef BagArticleReturnConfig
-        
-        
-        @property { number } [time]
-        
-        @property { string } [unit]
-        
-        @property { boolean } [returnable]
-        
-         
-    */
-
-/**
-        @typedef ShipmentPrices
-        
-        
-        @property { number } [refundAmount]
-        
-        @property { number } [cashbackApplied]
-        
-        @property { number } [transferPrice]
-        
-        @property { number } [couponValue]
-        
-        @property { number } [amountPaid]
-        
-        @property { number } [deliveryCharge]
-        
-        @property { number } [couponEffectiveDiscount]
-        
-        @property { number } [codCharges]
-        
-        @property { number } [refundCredit]
-        
-        @property { boolean } [addedToFyndCash]
-        
-        @property { number } [gstTaxPercentage]
-        
-        @property { number } [priceMarked]
-        
-        @property { number } [priceEffective]
-        
-        @property { number } [discount]
-        
-        @property { number } [promotionEffectiveDiscount]
-        
-        @property { number } [amountPaidRoundoff]
-        
-        @property { number } [fyndCredits]
-        
-        @property { number } [brandCalculatedAmount]
-        
-        @property { number } [cashback]
-        
-        @property { number } [valueOfGood]
-        
-         
-    */
-
-/**
-        @typedef GstDetails
-        
-        
-        @property { number } [brandCalculatedAmount]
-        
-        @property { string } [gstFee]
-        
-        @property { string } [gstTag]
-        
-        @property { string } [hsnCode]
-        
-        @property { number } [valueOfGood]
-        
-        @property { number } [gstTaxPercentage]
-        
-        @property { boolean } [isDefaultHsnCode]
-        
-         
-    */
-
-/**
-        @typedef BagBreakupValues
-        
-        
-        @property { string } [name]
-        
-        @property { string } [display]
-        
-        @property { number } [value]
-        
-         
-    */
-
-/**
-        @typedef BagCurrentStatus
-        
-        
-        @property { string } [updatedAt]
-        
-        @property { BagStateMapper } [bagStateMapper]
-        
-        @property { string } [status]
-        
-        @property { string } [stateType]
-        
-         
-    */
-
-/**
-        @typedef BagStateMapper
-        
-        
-        @property { string } [appStateName]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [displayName]
-        
-        @property { string } [name]
-        
-        @property { string } [appDisplayName]
-        
-         
-    */
-
-/**
-        @typedef BagStatus
-        
-        
-        @property { string } [status]
-        
-        @property { string } [stateType]
-        
-        @property { string } [updatedAt]
-        
-        @property { BagStatusBagStateMapper } [bagStateMapper]
-        
-         
-    */
-
-/**
-        @typedef BagStatusBagStateMapper
-        
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [displayName]
-        
-        @property { string } [name]
-        
-        @property { string } [appDisplayName]
-        
-        @property { string } [appStateName]
-        
-         
-    */
-
-/**
-        @typedef BagPrices
-        
-        
-        @property { number } [cashback]
-        
-        @property { number } [refundCredit]
-        
-        @property { number } [couponValue]
-        
-        @property { number } [deliveryCharge]
-        
-        @property { number } [fyndCredits]
-        
-        @property { number } [priceMarked]
-        
-        @property { number } [cashbackApplied]
-        
-        @property { number } [valueOfGood]
-        
-        @property { number } [amountPaidRoundoff]
-        
-        @property { number } [amountPaid]
-        
-        @property { number } [codCharges]
-        
-        @property { number } [priceEffective]
-        
-        @property { number } [refundAmount]
-        
-        @property { number } [discount]
-        
-         
-    */
-
-/**
-        @typedef ShipmentBreakupValues
-        
-        
-        @property { string } [name]
-        
-        @property { string } [display]
-        
-        @property { number } [value]
-        
-         
-    */
-
-/**
-        @typedef DpDetails
-        
-        
-        @property { string } [gstTag]
-        
-         
-    */
-
-/**
-        @typedef ShipmentInvoice
-        
-        
-        @property { string } [paymentType]
-        
-        @property { string } [updatedDate]
-        
-        @property { string } [invoiceUrl]
-        
-        @property { string } [labelUrl]
-        
-        @property { string } [paymentMode]
-        
-        @property { number } [amountToCollect]
-        
-        @property { RtoAddress } [rtoAddress]
-        
-         
-    */
-
-/**
-        @typedef RtoAddress
-        
-        
-        @property { string } [name]
-        
-        @property { number } [id]
-        
-        @property { string } [phone]
-        
-        @property { string } [locationType]
-        
-        @property { StoreAddressJson } [storeAddressJson]
-        
-        @property { string } [code]
-        
-        @property { string } [address1]
-        
-        @property { string } [city]
-        
-        @property { string } [country]
-        
-        @property { string } [pincode]
-        
-        @property { number } [companyId]
-        
-        @property { string } [contactPerson]
-        
-        @property { string } [state]
-        
-        @property { string } [storeEmail]
-        
-        @property { string } [address2]
-        
-         
-    */
-
-/**
-        @typedef StoreAddressJson
-        
-        
-        @property { string } [country]
-        
-        @property { number } [latitude]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [area]
-        
-        @property { string } [state]
-        
-        @property { string } [addressType]
-        
-        @property { string } [city]
-        
-        @property { string } [pincode]
-        
-        @property { string } [address1]
-        
-        @property { string } [address2]
-        
-        @property { number } [longitude]
-        
-        @property { string } [email]
-        
-        @property { string } [phone]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [contactPerson]
-        
-        @property { string } [addressCategory]
-        
-        @property { string } [version]
-        
-        @property { string } [landmark]
-        
-         
-    */
-
-/**
-        @typedef PlatformFulfillingStore
-        
-        
-        @property { number } [packagingMaterialCount]
-        
-        @property { string } [locationType]
-        
-        @property { string } [code]
-        
-        @property { string } [city]
-        
-        @property { FulfillingStoreMeta } [meta]
-        
-        @property { string } [name]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [address1]
-        
-        @property { string } [storeEmail]
-        
-        @property { boolean } [isArchived]
-        
-        @property { string } [state]
-        
-        @property { string } [address2]
-        
-        @property { string } [contactPerson]
-        
-        @property { string } [phone]
-        
-        @property { boolean } [isEnabledForRecon]
-        
-        @property { string } [fulfillmentChannel]
-        
-        @property { string } [createdAt]
-        
-        @property { number } [id]
-        
-        @property { string } [pincode]
-        
-        @property { Array<string> } [brandStoreTags]
-        
-        @property { number } [companyId]
-        
-        @property { FulfillingStoreStoreAddressJson } [storeAddressJson]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [loginUsername]
-        
-        @property { string } [country]
-        
-         
-    */
-
-/**
-        @typedef FulfillingStoreMeta
-        
-        
-        @property { AdditionalContactDetails } [additionalContactDetails]
-        
-        @property { Documents } [documents]
-        
-        @property { string } [gstNumber]
-        
-        @property { string } [displayName]
-        
-        @property { ProductReturnConfig } [productReturnConfig]
-        
-        @property { boolean } [allowDpAssignmentFromFynd]
-        
-        @property { string } [stage]
-        
-        @property { Timing } [timing]
-        
-         
-    */
-
-/**
-        @typedef AdditionalContactDetails
-        
-        
-        @property { Array<string> } [number]
-        
-         
-    */
-
-/**
-        @typedef Documents
-        
-        
-        @property { Gst } [gst]
-        
-         
-    */
-
-/**
-        @typedef Gst
-        
-        
-        @property { string } [legalName]
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-        @property { boolean } [verified]
-        
-         
-    */
-
-/**
-        @typedef ProductReturnConfig
-        
-        
-        @property { boolean } [onSameStore]
-        
-         
-    */
-
-/**
-        @typedef Timing
-        
-        
-        @property { Opening } [opening]
-        
-        @property { string } [weekday]
-        
-        @property { boolean } [open]
-        
-        @property { Closing } [closing]
-        
-         
-    */
-
-/**
-        @typedef Opening
-        
-        
-        @property { number } [minute]
-        
-        @property { number } [hour]
-        
-         
-    */
-
-/**
-        @typedef Closing
-        
-        
-        @property { number } [hour]
-        
-        @property { number } [minute]
-        
-         
-    */
-
-/**
-        @typedef FulfillingStoreStoreAddressJson
-        
-        
-        @property { string } [address2]
-        
-        @property { string } [area]
-        
-        @property { string } [email]
-        
-        @property { string } [phone]
-        
-        @property { string } [state]
-        
-        @property { string } [contactPerson]
-        
-        @property { string } [country]
-        
-        @property { string } [pincode]
-        
-        @property { string } [version]
-        
-        @property { string } [createdAt]
-        
-        @property { string } [addressType]
-        
-        @property { string } [city]
-        
-        @property { string } [address1]
-        
-        @property { string } [landmark]
-        
-        @property { number } [latitude]
-        
-        @property { number } [longitude]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [addressCategory]
-        
-         
-    */
-
-/**
-        @typedef Payments
-        
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [displayName]
-        
-        @property { string } [logo]
-        
-        @property { string } [source]
-        
-        @property { string } [sourceNickname]
-        
-        @property { number } [displayPriority]
-        
-        @property { number } [id]
-        
-        @property { string } [mode]
-        
-        @property { string } [paymentIdentifier]
-        
-         
-    */
-
-/**
-        @typedef ShipmentGst
-        
-        
-        @property { number } [brandCalculatedAmount]
-        
-        @property { number } [valueOfGood]
-        
-        @property { number } [gstFee]
-        
-         
-    */
-
-/**
-        @typedef PlatformShipmentBrand
-        
-        
-        @property { boolean } [creditNoteAllowed]
-        
-        @property { string } [brandName]
-        
-        @property { string } [modifiedOn]
-        
-        @property { number } [id]
-        
-        @property { boolean } [isVirtualInvoice]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [logo]
-        
-         
-    */
-
-/**
-        @typedef Promise
-        
-        
-        @property { Timestamp } [timestamp]
-        
-         
-    */
-
-/**
-        @typedef Timestamp
-        
-        
-        @property { string } [min]
-        
-        @property { string } [max]
-        
-         
-    */
-
-/**
-        @typedef ShipmentTrackingDetails
-        
-        
-        @property { string } [status]
-        
-        @property { string } [time]
-        
-        @property { boolean } [isPassed]
-        
-        @property { boolean } [isCurrent]
-        
-         
-    */
-
-/**
-        @typedef ShipmentUser
-        
-        
-        @property { string } [email]
-        
-        @property { number } [id]
-        
-        @property { string } [firstName]
-        
-        @property { string } [mobile]
-        
-        @property { string } [gender]
-        
-        @property { string } [lastName]
-        
-        @property { boolean } [isAnonymousUser]
-        
-        @property { string } [mongoUserId]
-        
-         
-    */
-
-/**
-        @typedef ItemsPayments
-        
-        
-        @property { number } [displayPriority]
-        
-        @property { number } [id]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [displayName]
-        
-        @property { string } [logo]
-        
-        @property { string } [paymentIdentifier]
-        
-        @property { string } [sourceNickname]
-        
-        @property { string } [mode]
-        
-        @property { string } [source]
-        
-         
-    */
-
-/**
-        @typedef Filters
-        
-        
-        @property { Stages } [stages]
-        
-         
-    */
-
-/**
-        @typedef Stages
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-        @property { boolean } [isDefault]
-        
-        @property { StagesFilters } [filters]
-        
-         
-    */
-
-/**
-        @typedef StagesFilters
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-        @property { string } [type]
-        
-        @property { Options } [options]
-        
-         
-    */
-
-/**
-        @typedef Options
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef NextOrderStatus
-        
-        
-        @property { BagConfirmed } [bagConfirmed]
-        
-        @property { DpAssigned } [dpAssigned]
-        
-        @property { ReturnBagDelivered } [returnBagDelivered]
-        
-        @property { Placed } [placed]
-        
-        @property { DeliveryDone } [deliveryDone]
-        
-        @property { Pending } [pending]
-        
-        @property { BagPacked } [bagPacked]
-        
-         
-    */
-
-/**
-        @typedef BagConfirmed
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef DpAssigned
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef ReturnBagDelivered
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef Placed
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef DeliveryDone
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef Pending
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef BagPacked
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef PlatformOrderPage
-        
-        
-        @property { string } [next]
-        
-        @property { string } [previous]
-        
-        @property { string } [type]
-        
-        @property { number } [size]
-        
-        @property { number } [current]
-        
-        @property { boolean } [hasNext]
-        
-        @property { ItemTotal } [itemTotal]
-        
-         
-    */
-
-/**
-        @typedef ItemTotal
-        
-        
-        @property { number } [new]
-        
-        @property { number } [processing]
-        
-        @property { number } [returns]
-        
-        @property { number } [all]
-        
-         
-    */
-
-/**
-        @typedef AppliedFilters
-        
-        
-        @property { string } [stage]
-        
-        @property { Array<string> } [stores]
-        
-        @property { string } [fromDate]
-        
-        @property { string } [toDate]
-        
-         
-    */
-
-/**
-        @typedef UpdateOrderReprocessResponse
-        
-        
-        @property { string } status
-        
-         
-    */
-
-/**
-        @typedef PlatformOrderTrack
-        
-        
-        @property { boolean } success
-        
-        @property { string } requestId
-        
-        @property { string } message
-        
-        @property { string } mobile
-        
-        @property { string } countryCode
-        
-        @property { number } resendTimer
-        
-        @property { string } [resendToken]
-        
-         
-    */
-
-/**
-        @typedef GetPingResponse
-        
-        
-        @property { string } ping
-        
-         
-    */
-
-/**
-        @typedef UpdateShipmentStatusResponse
-        
-        
-        @property { Object } shipments
-        
-        @property { Array<any> } [errorShipments]
-        
-         
-    */
-
-/**
-        @typedef UpdateShipmentStatusBody
-        
-        
-        @property { Object } shipments
-        
-        @property { boolean } forceTransition
-        
-        @property { boolean } task
-        
-         
-    */
-
-/**
-        @typedef PlatformShipmentTrack
-        
-        
-        @property { Results } results
-        
-         
-    */
-
-/**
-        @typedef Results
-        
-        
-        @property { string } [awb]
-        
-        @property { string } [updatedAt]
-        
-        @property { string } [lastLocationRecievedAt]
-        
-        @property { string } [reason]
-        
-        @property { string } [shipmentType]
-        
-        @property { string } [status]
-        
-        @property { string } [updatedTime]
-        
-        @property { string } [accountName]
-        
-         
-    */
-
-/**
-        @typedef UpdateProcessShipmenstRequestBody
-        
-        
-        @property { Array<string> } shipmentIds
-        
-        @property { string } expectedStatus
-        
-         
-    */
-
-/**
-        @typedef UpdateProcessShipmenstRequestResponse
-        
-        
-        @property { boolean } success
-        
-        @property { string } message
-        
-         
-    */
-
-/**
-        @typedef GetVoiceCallbackResponse
-        
-        
-        @property { string } message
-        
-         
-    */
-
-/**
-        @typedef GetClickToCallResponse
-        
-        
-        @property { string } message
-        
-         
-    */
-
-/**
-        @typedef ApefaceApiError
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef CompanyAddress
-        
-        
-        @property { string } [landmark]
-        
-        @property { number } pincode
-        
-        @property { number } latitude
-        
-        @property { string } [address2]
-        
-        @property { string } state
-        
-        @property { number } longitude
-        
-        @property { string } address1
-        
-        @property { string } [countryCode]
-        
-        @property { string } city
-        
-        @property { string } country
-        
-         
-    */
-
-/**
-        @typedef Document
-        
-        
-        @property { string } value
-        
-        @property { string } type
-        
-        @property { boolean } [verified]
-        
-        @property { string } [url]
-        
-        @property { string } legalName
-        
-         
-    */
-
-/**
-        @typedef BusinessCountryInfo
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [country]
-        
-         
-    */
-
-/**
-        @typedef ReferralInfo
-        
-        
-        @property { string } [referralCode]
-        
-         
-    */
-
-/**
-        @typedef CompanyStoreSerializerRequest
-        
-        
-        @property { CompanyAddress } address
-        
-        @property { Array<number> } brands
-        
-        @property { number } [uid]
-        
-        @property { Document } document
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { string } businessType
-        
-        @property { string } [businessInfo]
-        
-        @property { Object } [warnings]
-        
-        @property { BusinessCountryInfo } businessCountryInfo
-        
-        @property { string } name
-        
-        @property { boolean } [franchiseEnabled]
-        
-        @property { ReferralInfo } [referralInfo]
-        
-         
-    */
-
-/**
-        @typedef SuccessResponse
-        
-        
-        @property { boolean } [success]
-        
-        @property { number } [uid]
-        
-         
-    */
-
-/**
-        @typedef ErrorResponse
-        
-        
-        @property { string } [message]
-        
-        @property { Object } [meta]
-        
-        @property { number } [status]
-        
-        @property { Object } [errors]
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef UserSerializer
-        
-        
-        @property { string } [contact]
-        
-        @property { string } [userId]
-        
-        @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef GetAddressSerializer
-        
-        
-        @property { string } [addressType]
-        
-        @property { string } [landmark]
-        
-        @property { number } [pincode]
-        
-        @property { number } [latitude]
-        
-        @property { string } [address2]
-        
-        @property { string } [state]
-        
-        @property { number } [longitude]
-        
-        @property { string } [address1]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [city]
-        
-        @property { string } [country]
-        
-         
-    */
-
-/**
-        @typedef Website
-        
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef BusinessDetails
-        
-        
-        @property { Website } [website]
-        
-         
-    */
-
-/**
-        @typedef BusinessCountryInfo1
-        
-        
-        @property { string } [countryCode]
-        
-        @property { string } [country]
-        
-         
-    */
-
-/**
-        @typedef ContactDetails
-        
-        
-        @property { Array<PhoneNumber> } [phone]
-        
-        @property { Array<string> } [emails]
-        
-         
-    */
-
-/**
-        @typedef GetCompanyProfileSerializerResponse
-        
-        
-        @property { string } [stage]
-        
-        @property { UserSerializer } [createdBy]
-        
-        @property { string } [createdOn]
-        
-        @property { Object } [warnings]
-        
-        @property { string } [name]
-        
-        @property { number } uid
-        
-        @property { string } [modifiedOn]
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { string } businessType
-        
-        @property { boolean } [franchiseEnabled]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { BusinessDetails } [businessDetails]
-        
-        @property { string } [businessInfo]
-        
-        @property { BusinessCountryInfo1 } [businessCountryInfo]
-        
-        @property { UserSerializer } [modifiedBy]
-        
-        @property { ContactDetails } [contactDetails]
-        
-        @property { UserSerializer } [verifiedBy]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } companyType
-        
-         
-    */
-
-/**
-        @typedef DocumentsObj
-        
-        
-        @property { number } [pending]
-        
-        @property { number } [verified]
-        
-         
-    */
-
-/**
-        @typedef MetricsSerializer
-        
-        
-        @property { DocumentsObj } [brand]
-        
-        @property { DocumentsObj } [product]
-        
-        @property { number } [uid]
-        
-        @property { DocumentsObj } [storeDocuments]
-        
-        @property { string } [stage]
-        
-        @property { DocumentsObj } [companyDocuments]
-        
-        @property { DocumentsObj } [store]
-        
-         
-    */
-
-/**
-        @typedef BrandBannerSerializer
-        
-        
-        @property { string } [portrait]
-        
-        @property { string } [landscape]
-        
-         
-    */
-
-/**
-        @typedef CreateUpdateBrandRequestSerializer
-        
-        
-        @property { BrandBannerSerializer } [banner]
-        
-        @property { number } [uid]
-        
-        @property { Object } [localeLanguage]
-        
-        @property { Object } [customJson]
-        
-        @property { string } logo
-        
-        @property { string } name
-        
-        @property { number } [companyId]
-        
-        @property { string } [description]
-        
-        @property { string } [brandTier]
-        
-        @property { Array<string> } [synonyms]
-        
-         
-    */
-
-/**
-        @typedef UserSerializer1
-        
-        
-        @property { string } [contact]
-        
-        @property { string } [userId]
-        
-        @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef GetBrandResponseSerializer
-        
-        
-        @property { BrandBannerSerializer } [banner]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } [slugKey]
-        
-        @property { number } [uid]
-        
-        @property { string } [stage]
-        
-        @property { string } [modifiedOn]
-        
-        @property { UserSerializer1 } [createdBy]
-        
-        @property { Object } [localeLanguage]
-        
-        @property { string } [rejectReason]
-        
-        @property { string } [createdOn]
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { string } [logo]
-        
-        @property { string } name
-        
-        @property { Object } [customJson]
-        
-        @property { Object } [warnings]
-        
-        @property { UserSerializer1 } [modifiedBy]
-        
-        @property { string } [description]
-        
-        @property { UserSerializer1 } [verifiedBy]
-        
-         
-    */
-
-/**
-        @typedef CompanyBrandPostRequestSerializer
-        
-        
-        @property { Array<number> } brands
-        
-        @property { number } company
-        
-        @property { number } [uid]
-        
-         
-    */
-
-/**
-        @typedef CompanyBrandListSerializer
-        
-        
-        @property { Object } [page]
-        
-        @property { Array<Object> } [items]
-        
-         
-    */
-
-/**
-        @typedef GetAddressSerializer1
-        
-        
-        @property { string } [addressType]
-        
-        @property { string } [landmark]
-        
-        @property { number } [pincode]
-        
-        @property { number } [latitude]
-        
-        @property { string } [address2]
-        
-        @property { string } [state]
-        
-        @property { number } [longitude]
-        
-        @property { string } [address1]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [city]
-        
-        @property { string } [country]
-        
-         
-    */
-
-/**
-        @typedef LocationManagerSerializer
-        
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-        @property { PhoneNumber } mobileNo
-        
-         
-    */
-
-/**
-        @typedef ProductReturnConfigSerializer
-        
-        
-        @property { number } [storeUid]
-        
-        @property { boolean } [onSameStore]
-        
-         
-    */
-
-/**
-        @typedef LocationTimingSerializer
-        
-        
-        @property { number } [hour]
-        
-        @property { number } [minute]
-        
-         
-    */
-
-/**
-        @typedef LocationDayWiseSerializer
-        
-        
-        @property { LocationTimingSerializer } [closing]
-        
-        @property { boolean } open
-        
-        @property { LocationTimingSerializer } [opening]
-        
-        @property { string } weekday
-        
-         
-    */
-
-/**
-        @typedef InvoiceCredSerializer
-        
-        
-        @property { boolean } [enabled]
-        
-        @property { string } [password]
-        
-        @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsSerializer
-        
-        
-        @property { InvoiceCredSerializer } [eInvoice]
-        
-        @property { InvoiceCredSerializer } [eWaybill]
-        
-         
-    */
-
-/**
-        @typedef LocationSerializer
-        
-        
-        @property { GetAddressSerializer1 } address
-        
-        @property { number } company
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { number } [uid]
-        
-        @property { string } [stage]
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { string } displayName
-        
-        @property { ProductReturnConfigSerializer } [productReturnConfig]
-        
-        @property { Object } [customJson]
-        
-        @property { Array<PhoneNumber> } [contactNumbers]
-        
-        @property { string } name
-        
-        @property { Object } [warnings]
-        
-        @property { string } [storeType]
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { InvoiceDetailsSerializer } [gstCredentials]
-        
-        @property { string } code
-        
-         
-    */
-
-/**
-        @typedef LocationListSerializer
-        
-        
-        @property { Object } [page]
-        
-        @property { Array<Object> } [items]
-        
-         
-    */
-
-/**
-        @typedef GetCompanySerializer
-        
-        
-        @property { string } [verifiedOn]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { number } [uid]
-        
-        @property { string } [stage]
-        
-        @property { string } [modifiedOn]
-        
-        @property { UserSerializer } [createdBy]
-        
-        @property { string } [companyType]
-        
-        @property { string } [businessType]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [rejectReason]
-        
-        @property { string } [name]
-        
-        @property { UserSerializer } [modifiedBy]
-        
-        @property { UserSerializer } [verifiedBy]
-        
-         
-    */
-
-/**
-        @typedef LocationIntegrationType
-        
-        
-        @property { string } [order]
-        
-        @property { string } [inventory]
-        
-         
-    */
-
-/**
-        @typedef GetLocationSerializer
-        
-        
-        @property { string } [stage]
-        
-        @property { UserSerializer1 } [createdBy]
-        
-        @property { string } [createdOn]
-        
-        @property { Object } [warnings]
-        
-        @property { string } name
-        
-        @property { GetAddressSerializer } address
-        
-        @property { GetCompanySerializer } [company]
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { number } [uid]
-        
-        @property { string } [modifiedOn]
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { ProductReturnConfigSerializer } [productReturnConfig]
-        
-        @property { string } code
-        
-        @property { LocationIntegrationType } [integrationType]
-        
-        @property { string } phoneNumber
-        
-        @property { Array<PhoneNumber> } [contactNumbers]
-        
-        @property { UserSerializer1 } [modifiedBy]
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { UserSerializer1 } [verifiedBy]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } displayName
-        
-        @property { Object } [customJson]
-        
-        @property { string } [storeType]
-        
-        @property { InvoiceDetailsSerializer } [gstCredentials]
-        
-         
-    */
-
-/**
-        @typedef FailedResponse
-        
-        
-        @property { string } message
-        
-         
-    */
-
-/**
-        @typedef CDN
-        
-        
-        @property { string } url
-        
-         
-    */
-
-/**
-        @typedef Upload
-        
-        
-        @property { number } expiry
-        
-        @property { string } url
-        
-         
-    */
-
-/**
-        @typedef StartResponse
-        
-        
-        @property { string } fileName
-        
-        @property { string } filePath
-        
-        @property { string } contentType
-        
-        @property { string } method
-        
-        @property { string } namespace
-        
-        @property { string } operation
-        
-        @property { number } size
-        
-        @property { Upload } upload
-        
-        @property { CDN } cdn
-        
-         
-    */
-
-/**
-        @typedef StartRequest
-        
-        
-        @property { string } fileName
-        
-        @property { string } contentType
-        
-        @property { number } size
-        
-        @property { Array<string> } [tags]
-        
-         
-    */
-
-/**
-        @typedef CompleteResponse
-        
-        
-        @property { string } id
-        
-        @property { string } fileName
-        
-        @property { string } filePath
-        
-        @property { string } contentType
-        
-        @property { string } method
-        
-        @property { string } namespace
-        
-        @property { string } operation
-        
-        @property { number } size
-        
-        @property { Upload } upload
-        
-        @property { CDN } cdn
-        
-        @property { string } success
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } createdOn
-        
-        @property { string } modifiedOn
-        
-         
-    */
-
-/**
-        @typedef Opts
-        
-        
-        @property { number } [attempts]
-        
-        @property { number } [timestamp]
-        
-        @property { number } [delay]
-        
-         
-    */
-
-/**
-        @typedef CopyFileTask
-        
-        
-        @property { string } id
-        
-        @property { string } name
-        
-        @property { BulkRequest } data
-        
-        @property { Opts } opts
-        
-        @property { number } progress
-        
-        @property { number } delay
-        
-        @property { number } timestamp
-        
-        @property { number } attemptsMade
-        
-        @property { Array<string> } [stacktrace]
-        
-        @property { number } finishedOn
-        
-        @property { number } processedOn
-        
-         
-    */
-
-/**
-        @typedef BulkResponse
-        
-        
-        @property { string } trackingUrl
-        
-        @property { CopyFileTask } task
-        
-         
-    */
-
-/**
-        @typedef ReqConfiguration
-        
-        
-        @property { number } [concurrency]
-        
-         
-    */
-
-/**
-        @typedef Destination
-        
-        
-        @property { string } namespace
-        
-        @property { string } rewrite
-        
-        @property { string } [basepath]
-        
-         
-    */
-
-/**
-        @typedef BulkRequest
-        
-        
-        @property { Array<string> } urls
-        
-        @property { Destination } destination
-        
-        @property { ReqConfiguration } [configuration]
-        
-         
-    */
-
-/**
-        @typedef Urls
-        
-        
-        @property { string } url
-        
-        @property { string } signedUrl
-        
-        @property { number } expiry
-        
-         
-    */
-
-/**
-        @typedef SignUrlResponse
-        
-        
-        @property { Array<Urls> } urls
-        
-         
-    */
-
-/**
-        @typedef SignUrlRequest
-        
-        
-        @property { number } expiry
-        
-        @property { Array<string> } urls
-        
-         
-    */
-
-/**
-        @typedef DbRecord
-        
-        
-        @property { boolean } success
-        
-        @property { Array<string> } tags
-        
-        @property { string } id
-        
-        @property { string } fileName
-        
-        @property { string } [operation]
-        
-        @property { string } namespace
-        
-        @property { string } contentType
-        
-        @property { string } filePath
-        
-        @property { Upload } upload
-        
-        @property { CDN } cdn
-        
-        @property { string } createdOn
-        
-        @property { string } modifiedOn
-        
-         
-    */
-
-/**
-        @typedef BrowseResponse
-        
-        
-        @property { Array<DbRecord> } items
-        
-        @property { Page } page
-        
-         
-    */
-
-/**
-        @typedef RedirectDevice
-        
-        
-        @property { string } link
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef WebRedirect
-        
-        
-        @property { string } [link]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Redirects
-        
-        
-        @property { RedirectDevice } [ios]
-        
-        @property { RedirectDevice } [android]
-        
-        @property { WebRedirect } [web]
-        
-        @property { boolean } [forceWeb]
-        
-         
-    */
-
-/**
-        @typedef ShortLinkReq
-        
-        
-        @property { string } title
-        
-        @property { string } url
-        
-        @property { string } [hash]
-        
-        @property { string } [active]
-        
-        @property { string } [type]
-        
-        @property { string } [expireAt]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { Redirects } [redirects]
-        
-         
-    */
-
-/**
-        @typedef UrlInfo
-        
-        
-        @property { string } [original]
-        
-        @property { string } [short]
-        
-        @property { string } [hash]
-        
-         
-    */
-
-/**
-        @typedef ShortLinkRes
-        
-        
-        @property { string } [title]
-        
-        @property { UrlInfo } [url]
-        
-        @property { string } [createdBy]
-        
-        @property { string } [personalized]
-        
-        @property { string } [appRedirect]
-        
-        @property { string } [fallback]
-        
-        @property { boolean } [active]
-        
-        @property { string } [id]
-        
-        @property { boolean } [enableTracking]
-        
-        @property { boolean } [expireAt]
-        
-        @property { string } [application]
-        
-        @property { boolean } [userId]
-        
-        @property { boolean } [createdAt]
-        
-        @property { boolean } [updatedAt]
-        
-        @property { Redirects } [redirects]
-        
-         
-    */
-
-/**
-        @typedef ShortLinkList
-        
-        
-        @property { Array<ShortLinkRes> } [items]
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { number } [current]
-        
-        @property { string } [hasNext]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef DataTresholdDTO
-        
-        
-        @property { number } [minPrice]
-        
-        @property { number } [safeStock]
-        
-        @property { number } [periodThreshold]
-        
-        @property { string } [periodThresholdType]
-        
-        @property { Array<GenericDTO> } [periodTypeList]
-        
-         
-    */
-
-/**
-        @typedef GenericDTO
-        
-        
-        @property { string } [text]
-        
-        @property { Object } [value]
-        
-         
-    */
-
-/**
-        @typedef JobConfigDTO
-        
-        
-        @property { string } integration
-        
-        @property { Object } [integrationData]
-        
-        @property { string } [companyName]
-        
-        @property { number } companyId
-        
-        @property { TaskDTO } [taskDetails]
-        
-        @property { DataTresholdDTO } [thresholdDetails]
-        
-        @property { string } [jobCode]
-        
-        @property { string } [alias]
-        
-         
-    */
-
-/**
-        @typedef TaskDTO
-        
-        
-        @property { number } [type]
-        
-        @property { Array<GenericDTO> } [groupList]
-        
-         
-    */
-
-/**
-        @typedef ResponseEnvelopeString
-        
-        
-        @property { string } [timestamp]
-        
-        @property { number } [status]
-        
-        @property { string } [error]
-        
-        @property { string } [exception]
-        
-        @property { string } [message]
-        
-        @property { number } [totalTimeTakenInMillis]
-        
-        @property { string } [httpStatus]
-        
-        @property { string } [items]
-        
-        @property { string } [payload]
-        
-        @property { string } [traceId]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef AWSS3config
-        
-        
-        @property { string } [bucket]
-        
-        @property { string } [region]
-        
-        @property { string } [dir]
-        
-        @property { string } [accessKey]
-        
-        @property { string } [secretKey]
-        
-        @property { string } [localFilePath]
-        
-        @property { string } [archivePath]
-        
-        @property { boolean } [archive]
-        
-        @property { boolean } [delete]
-        
-        @property { boolean } [unzip]
-        
-        @property { string } [zipFormat]
-        
-        @property { string } [fileRegex]
-        
-        @property { ArchiveConfig } [archiveConfig]
-        
-         
-    */
-
-/**
-        @typedef ArchiveConfig
-        
-        
-        @property { boolean } [delete]
-        
-        @property { boolean } [archive]
-        
-        @property { string } [archiveDir]
-        
-         
-    */
-
-/**
-        @typedef Audit
-        
-        
-        @property { string } [createdBy]
-        
-        @property { string } [modifiedBy]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [modifiedOn]
-        
-         
-    */
-
-/**
-        @typedef CatalogMasterConfig
-        
-        
-        @property { string } [sourceSlug]
-        
-         
-    */
-
-/**
-        @typedef CompanyConfig
-        
-        
-        @property { number } [companyId]
-        
-        @property { Array<number> } [excludeSteps]
-        
-        @property { Array<string> } [hiddenClosetKeys]
-        
-        @property { Object } [openTags]
-        
-        @property { Array<string> } [taxIdentifiers]
-        
-        @property { number } [deleteQuantityThreshold]
-        
-         
-    */
-
-/**
-        @typedef DBConfig
-        
-        
-        @property { string } [vendor]
-        
-        @property { string } [host]
-        
-        @property { number } [port]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { string } [dbname]
-        
-        @property { string } [query]
-        
-        @property { boolean } [procedure]
-        
-        @property { string } [driverClass]
-        
-        @property { string } [jdbcUrl]
-        
-        @property { Object } [optionalProperties]
-        
-         
-    */
-
-/**
-        @typedef DBConnectionProfile
-        
-        
-        @property { string } [inventory]
-        
-         
-    */
-
-/**
-        @typedef DBParamConfig
-        
-        
-        @property { Object } [params]
-        
-         
-    */
-
-/**
-        @typedef DefaultHeadersDTO
-        
-        
-        @property { PropBeanDTO } [store]
-        
-        @property { PropBeanDTO } [intfArticleId]
-        
-        @property { PropBeanDTO } [priceEffective]
-        
-        @property { PropBeanDTO } [quantity]
-        
-         
-    */
-
-/**
-        @typedef DocMappingConfig
-        
-        
-        @property { Object } [properties]
-        
-        @property { number } [junkDataThresholdCount]
-        
-        @property { Array<PropBeanConfig> } [propBeanConfigs]
-        
-        @property { string } [unwindField]
-        
-        @property { DefaultHeadersDTO } [defaultHeaders]
-        
-         
-    */
-
-/**
-        @typedef EmailConfig
-        
-        
-        @property { string } [recepient]
-        
-        @property { string } [host]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { boolean } [unzip]
-        
-        @property { boolean } [readFromContent]
-        
-        @property { boolean } [filterBasedOnRecepients]
-        
-        @property { string } [pcol]
-        
-        @property { string } [subjectLineRegex]
-        
-        @property { string } [senderAddress]
-        
-        @property { string } [localDir]
-        
-        @property { Array<string> } [folderNameHierarchies]
-        
-        @property { string } [attachmentRegex]
-        
-        @property { string } [bodyContentRegex]
-        
-        @property { boolean } [passwordProtected]
-        
-        @property { string } [zipFormat]
-        
-        @property { boolean } [attachmentMandate]
-        
-        @property { boolean } [filterFilesAfterExtraction]
-        
-        @property { ArchiveConfig } [archiveConfig]
-        
-        @property { boolean } [readAllUnreadMails]
-        
-        @property { string } [contentType]
-        
-        @property { boolean } [downloadableLink]
-        
-        @property { Object } [properties]
-        
-         
-    */
-
-/**
-        @typedef FTPConfig
-        
-        
-        @property { string } [host]
-        
-        @property { number } [port]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { boolean } [unzip]
-        
-        @property { number } [retries]
-        
-        @property { number } [interval]
-        
-        @property { string } [localDir]
-        
-        @property { string } [remoteDir]
-        
-        @property { string } [zipFileRegex]
-        
-        @property { ArchiveConfig } [archiveConfig]
-        
-        @property { string } [fileRegex]
-        
-        @property { string } [zipFormat]
-        
-        @property { boolean } [readAllFiles]
-        
-         
-    */
-
-/**
-        @typedef FileConfig
-        
-        
-        @property { string } [delimiter]
-        
-        @property { string } [charset]
-        
-        @property { Object } [properties]
-        
-        @property { boolean } [fileHasHeader]
-        
-        @property { number } [headerIndex]
-        
-        @property { Array<string> } [headerArray]
-        
-        @property { number } [dataStartIndex]
-        
-        @property { Array<PropBeanConfig> } [propBeanConfigs]
-        
-        @property { number } [junkDataThresholdCount]
-        
-        @property { string } [fileType]
-        
-        @property { boolean } [lineValidityCheck]
-        
-        @property { Array<string> } [sheetNames]
-        
-        @property { boolean } [readAllSheets]
-        
-        @property { string } [quoteChar]
-        
-        @property { string } [escapeChar]
-        
-        @property { DefaultHeadersDTO } [defaultHeaders]
-        
-         
-    */
-
-/**
-        @typedef GoogleSpreadSheetConfig
-        
-        
-        @property { string } [range]
-        
-        @property { string } [sheetId]
-        
-        @property { string } [clientSecretLocation]
-        
-        @property { string } [credStorageDirectory]
-        
-        @property { string } [localDir]
-        
-        @property { ArchiveConfig } [archiveConfig]
-        
-         
-    */
-
-/**
-        @typedef HttpConfig
-        
-        
-        @property { string } [hosturl]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { Object } [requestParams]
-        
-        @property { string } [httpMethod]
-        
-        @property { string } [requestPayload]
-        
-        @property { string } [localPath]
-        
-        @property { ArchiveConfig } [archiveConfig]
-        
-         
-    */
-
-/**
-        @typedef JobConfig
-        
-        
-        @property { number } [id]
-        
-        @property { string } [jobCode]
-        
-        @property { string } [taskType]
-        
-        @property { number } [syncDelay]
-        
-        @property { string } [cronExpression]
-        
-        @property { StoreFilter } [storeFilter]
-        
-        @property { ProcessConfig } [processConfig]
-        
-        @property { Array<StoreConfig> } [storeConfig]
-        
-        @property { Object } [properties]
-        
-        @property { boolean } [immediateFirstRun]
-        
-        @property { boolean } [disable]
-        
-        @property { Array<string> } [dependentJobCodes]
-        
-        @property { Array<CompanyConfig> } [companyConfig]
-        
-        @property { Array<number> } [companyIds]
-        
-        @property { Array<string> } [taxIdentifiers]
-        
-        @property { string } [priority]
-        
-        @property { number } [periodThreshold]
-        
-        @property { string } [periodThresholdType]
-        
-        @property { DBConnectionProfile } [dbConnectionProfile]
-        
-        @property { Object } [params]
-        
-        @property { Object } [openTags]
-        
-        @property { number } [deleteQuantityThreshold]
-        
-        @property { CatalogMasterConfig } [catalogMasterConfig]
-        
-        @property { Array<string> } [aggregatorTypes]
-        
-        @property { string } [integrationType]
-        
-        @property { number } [minPrice]
-        
-        @property { Audit } [audit]
-        
-        @property { number } [version]
-        
-        @property { string } [alias]
-        
-         
-    */
-
-/**
-        @typedef JobConfigRawDTO
-        
-        
-        @property { string } integration
-        
-        @property { string } companyName
-        
-        @property { number } companyId
-        
-        @property { JobConfig } [data]
-        
-         
-    */
-
-/**
-        @typedef JsonDocConfig
-        
-        
-        @property { Array<PropBeanConfig> } [propBeanConfigs]
-        
-         
-    */
-
-/**
-        @typedef LocalFileConfig
-        
-        
-        @property { number } [retries]
-        
-        @property { number } [interval]
-        
-        @property { string } [localDir]
-        
-        @property { string } [workingDir]
-        
-        @property { boolean } [unzip]
-        
-        @property { string } [zipFileRegex]
-        
-        @property { string } [fileRegex]
-        
-        @property { string } [zipFormat]
-        
-        @property { ArchiveConfig } [archiveConfig]
-        
-        @property { boolean } [readAllFiles]
-        
-         
-    */
-
-/**
-        @typedef MongoDocConfig
-        
-        
-        @property { string } [collectionName]
-        
-        @property { Object } [findQuery]
-        
-        @property { Object } [projectionQuery]
-        
-        @property { Array<PropBeanConfig> } [propBeanConfigs]
-        
-        @property { Array<Object> } [aggregatePipeline]
-        
-        @property { boolean } [skipSave]
-        
-         
-    */
-
-/**
-        @typedef OAuthConfig
-        
-        
-        @property { number } [limit]
-        
-        @property { number } [pages]
-        
-        @property { number } [interval]
-        
-        @property { string } [consumerKey]
-        
-        @property { string } [consumerSecret]
-        
-        @property { string } [token]
-        
-        @property { string } [tokenSecret]
-        
-        @property { string } [restUrl]
-        
-        @property { string } [restBaseUrl]
-        
-        @property { string } [functionName]
-        
-         
-    */
-
-/**
-        @typedef ProcessConfig
-        
-        
-        @property { DBConfig } [dbConfig]
-        
-        @property { DBParamConfig } [dbParamConfig]
-        
-        @property { SFTPConfig } [sftpConfig]
-        
-        @property { AWSS3config } [awsS3Config]
-        
-        @property { MongoDocConfig } [mongoDocConfig]
-        
-        @property { FTPConfig } [ftpConfig]
-        
-        @property { EmailConfig } [emailConfig]
-        
-        @property { FileConfig } [fileConfig]
-        
-        @property { JsonDocConfig } [jsonDocConfig]
-        
-        @property { DocMappingConfig } [docMappingConfig]
-        
-        @property { TaskStepConfig } [taskStepConfig]
-        
-        @property { HttpConfig } [httpConfig]
-        
-        @property { LocalFileConfig } [localFileConfig]
-        
-        @property { OAuthConfig } [oauthConfig]
-        
-        @property { GoogleSpreadSheetConfig } [googleSpreadsheetConfig]
-        
-         
-    */
-
-/**
-        @typedef PropBeanConfig
-        
-        
-        @property { boolean } [required]
-        
-        @property { Object } [mapping]
-        
-        @property { boolean } [optional]
-        
-        @property { Send } [send]
-        
-        @property { Array<Object> } [validations]
-        
-        @property { Array<string> } [values]
-        
-        @property { boolean } [include]
-        
-        @property { string } [sourceField]
-        
-        @property { Array<string> } [sourceFields]
-        
-        @property { string } [destinationField]
-        
-        @property { string } [dataType]
-        
-        @property { Object } [defaultValue]
-        
-        @property { Object } [constValue]
-        
-        @property { string } [concatStr]
-        
-        @property { string } [functionName]
-        
-        @property { string } [transformerName]
-        
-        @property { string } [allParamFunctionName]
-        
-        @property { string } [subSeparator]
-        
-        @property { string } [indexField]
-        
-        @property { boolean } [ignoreIfNotExists]
-        
-        @property { string } [identifierType]
-        
-        @property { Object } [projectionQuery]
-        
-        @property { boolean } [enrichFromMaster]
-        
-         
-    */
-
-/**
-        @typedef PropBeanDTO
-        
-        
-        @property { boolean } [required]
-        
-        @property { boolean } [optional]
-        
-        @property { boolean } [include]
-        
-        @property { string } [sourceField]
-        
-        @property { Array<string> } [sourceFields]
-        
-        @property { string } [destinationField]
-        
-        @property { string } [dataType]
-        
-        @property { Object } [defaultValue]
-        
-        @property { Object } [constValue]
-        
-        @property { string } [concatStr]
-        
-        @property { string } [functionName]
-        
-        @property { string } [transformerName]
-        
-        @property { string } [allParamFunctionName]
-        
-        @property { string } [subSeparator]
-        
-        @property { string } [indexField]
-        
-        @property { boolean } [ignoreIfNotExists]
-        
-        @property { string } [identifierType]
-        
-        @property { Object } [projectionQuery]
-        
-        @property { boolean } [enrichFromMaster]
-        
-         
-    */
-
-/**
-        @typedef ResponseEnvelopeListJobConfigRawDTO
-        
-        
-        @property { string } [timestamp]
-        
-        @property { number } [status]
-        
-        @property { string } [error]
-        
-        @property { string } [exception]
-        
-        @property { string } [message]
-        
-        @property { number } [totalTimeTakenInMillis]
-        
-        @property { string } [httpStatus]
-        
-        @property { Array<JobConfigRawDTO> } [items]
-        
-        @property { Array<JobConfigRawDTO> } [payload]
-        
-        @property { string } [traceId]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef SFTPConfig
-        
-        
-        @property { string } [host]
-        
-        @property { number } [port]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { boolean } [unzip]
-        
-        @property { number } [retries]
-        
-        @property { number } [interval]
-        
-        @property { string } [privateKeyPath]
-        
-        @property { boolean } [strictHostKeyChecking]
-        
-        @property { string } [localDir]
-        
-        @property { string } [remoteDir]
-        
-        @property { boolean } [passwordProtected]
-        
-        @property { string } [zipFileRegex]
-        
-        @property { string } [fileRegex]
-        
-        @property { string } [zipFormat]
-        
-        @property { ArchiveConfig } [archiveConfig]
-        
-        @property { boolean } [readAllFiles]
-        
-         
-    */
-
-/**
-        @typedef Send
-        
-        
-        @property { boolean } [raw]
-        
-        @property { boolean } [processed]
-        
-         
-    */
-
-/**
-        @typedef StoreConfig
-        
-        
-        @property { string } [jobCode]
-        
-        @property { string } [storeid]
-        
-        @property { string } [storeAlias]
-        
-        @property { string } [storeFileRegex]
-        
-        @property { string } [storeFileName]
-        
-        @property { ProcessConfig } [processConfig]
-        
-        @property { Object } [properties]
-        
-         
-    */
-
-/**
-        @typedef StoreFilter
-        
-        
-        @property { Array<string> } [includeTags]
-        
-        @property { Array<string> } [excludeTags]
-        
-        @property { Object } [query]
-        
-         
-    */
-
-/**
-        @typedef TaskConfig
-        
-        
-        @property { string } [name]
-        
-        @property { number } [taskConfigId]
-        
-        @property { Array<TaskParam> } [taskParams]
-        
-         
-    */
-
-/**
-        @typedef TaskParam
-        
-        
-        @property { string } [name]
-        
-        @property { Object } [value]
-        
-         
-    */
-
-/**
-        @typedef TaskStepConfig
-        
-        
-        @property { Array<TaskConfig> } [taskConfigs]
-        
-        @property { Array<number> } [taskConfigIds]
-        
-        @property { Array<number> } [taskConfigGroupIds]
-        
-         
-    */
-
-/**
-        @typedef ResponseEnvelopeListJobConfigDTO
-        
-        
-        @property { string } [timestamp]
-        
-        @property { number } [status]
-        
-        @property { string } [error]
-        
-        @property { string } [exception]
-        
-        @property { string } [message]
-        
-        @property { number } [totalTimeTakenInMillis]
-        
-        @property { string } [httpStatus]
-        
-        @property { Array<JobConfigDTO> } [items]
-        
-        @property { Array<JobConfigDTO> } [payload]
-        
-        @property { string } [traceId]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef ResponseEnvelopeJobConfigDTO
-        
-        
-        @property { string } [timestamp]
-        
-        @property { number } [status]
-        
-        @property { string } [error]
-        
-        @property { string } [exception]
-        
-        @property { string } [message]
-        
-        @property { number } [totalTimeTakenInMillis]
-        
-        @property { string } [httpStatus]
-        
-        @property { JobConfigDTO } [items]
-        
-        @property { JobConfigDTO } [payload]
-        
-        @property { string } [traceId]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef JobConfigListDTO
-        
-        
-        @property { string } [code]
-        
-        @property { string } [alias]
-        
-        @property { string } [modifiedBy]
-        
-        @property { string } [createdBy]
-        
-        @property { string } [modifiedOn]
-        
-        @property { string } [createdOn]
-        
-        @property { boolean } [active]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ResponseEnvelopeListJobConfigListDTO
-        
-        
-        @property { string } [timestamp]
-        
-        @property { number } [status]
-        
-        @property { string } [error]
-        
-        @property { string } [exception]
-        
-        @property { string } [message]
-        
-        @property { number } [totalTimeTakenInMillis]
-        
-        @property { string } [httpStatus]
-        
-        @property { Array<JobConfigListDTO> } [items]
-        
-        @property { Array<JobConfigListDTO> } [payload]
-        
-        @property { string } [traceId]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef StoreMapping
-        
-        
-        @property { string } [enabled]
-        
-        @property { string } [marketplaceStoreId]
-        
-        @property { number } [storeId]
-        
-        @property { Object } [meta]
-        
-         
-    */
-
-/**
-        @typedef AllChannels
-        
-        
-        @property { boolean } [mkpName]
-        
-         
-    */
-
-/**
-        @typedef MyntraPayload
-        
-        
-        @property { string } [merchantId]
-        
-        @property { string } [secretKey]
-        
-         
-    */
-
-/**
-        @typedef AmazonPayload
-        
-        
-        @property { string } [sellerId]
-        
-        @property { string } [mwsAuthToken]
-        
-         
-    */
-
-/**
-        @typedef FlipkartPayload
-        
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef TatacliqPayload
-        
-        
-        @property { string } [userName]
-        
-        @property { string } [password]
-        
-        @property { string } [merchantId]
-        
-         
-    */
-
-/**
-        @typedef AjioPayload
-        
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { string } [clientIp]
-        
-         
-    */
-
-/**
-        @typedef InventoryConfig
-        
-        
-        @property { boolean } [inventory]
-        
-        @property { boolean } [price]
-        
-         
-    */
-
-/**
-        @typedef StoreMappingPayload
-        
-        
-        @property { boolean } [storeMappingEnabled]
-        
-        @property { Array<StoreMapping> } [storeMapping]
-        
-         
-    */
-
-/**
-        @typedef StatusPayload
-        
-        
-        @property { boolean } [isActive]
-        
-         
-    */
-
-/**
-        @typedef StatusResp
-        
-        
-        @property { boolean } [isActive]
-        
-         
-    */
-
-/**
-        @typedef SyncPayload
-        
-        
-        @property { string } [modifiedSince]
-        
-         
-    */
-
-/**
-        @typedef SyncResp
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef MkpResp
-        
-        
-        @property { string } [marketplace]
-        
-        @property { number } [worker]
-        
-        @property { string } [workerAssigned]
-        
-        @property { boolean } [isActive]
-        
-        @property { string } [storeMappingEnabled]
-        
-        @property { number } [companyId]
-        
-        @property { Object } [configuration]
-        
-        @property { Array<StoreMapping> } [storeMapping]
-        
-         
-    */
-
-/**
-        @typedef StatGroup
-        
-        
-        @property { string } [key]
-        
-        @property { string } [url]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef StatsGroups
-        
-        
-        @property { Array<StatGroup> } [groups]
-        
-         
-    */
-
-/**
-        @typedef StatsGroupComponent
-        
-        
-        @property { string } [key]
-        
-        @property { string } [url]
-        
-        @property { string } [title]
-        
-        @property { string } [type]
-        
-        @property { Object } [filters]
-        
-         
-    */
-
-/**
-        @typedef StatsGroupComponents
-        
-        
-        @property { string } [title]
-        
-        @property { Array<StatsGroupComponent> } [components]
-        
-         
-    */
-
-/**
-        @typedef StatsRes
-        
-        
-        @property { string } [key]
-        
-        @property { string } [title]
-        
-        @property { string } [type]
-        
-        @property { Object } [data]
-        
-         
-    */
-
-/**
-        @typedef ReceivedAt
-        
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef AbandonCartsDetail
-        
-        
-        @property { string } [propertiesCartId]
-        
-        @property { string } [contextTraitsFirstName]
-        
-        @property { string } [contextTraitsLastName]
-        
-        @property { string } [contextTraitsPhoneNumber]
-        
-        @property { string } [contextTraitsEmail]
-        
-        @property { string } [contextAppApplicationId]
-        
-        @property { string } [propertiesBreakupValuesRawTotal]
-        
-        @property { ReceivedAt } [receivedAt]
-        
-         
-    */
-
-/**
-        @typedef AbdCartPage
-        
-        
-        @property { string } [type]
-        
-        @property { string } [size]
-        
-        @property { string } [current]
-        
-        @property { string } [hasNext]
-        
-        @property { string } [itemTotal]
-        
-         
-    */
-
-/**
-        @typedef AbandonCartsList
-        
-        
-        @property { Array<AbandonCartsDetail> } [items]
-        
-        @property { string } [cartTotal]
-        
-        @property { AbdCartPage } [page]
-        
-         
-    */
-
-/**
-        @typedef AbandonCartDetail
-        
-        
-        @property { string } [id]
-        
-        @property { string } [userId]
-        
-        @property { string } [cartValue]
-        
-        @property { Array<Object> } [articles]
-        
-        @property { Object } [breakup]
-        
-        @property { Object } [address]
-        
-         
-    */
-
-/**
-        @typedef ExportJobReq
-        
-        
-        @property { string } [marketplaceName]
-        
-        @property { string } [startTime]
-        
-        @property { string } [endTime]
-        
-        @property { string } [eventType]
-        
-         
-    */
-
-/**
-        @typedef ExportJobRes
-        
-        
-        @property { string } [status]
-        
-        @property { string } [jobId]
-        
-         
-    */
-
-/**
-        @typedef ExportJobStatusRes
-        
-        
-        @property { string } [status]
-        
-        @property { string } [jobId]
-        
-        @property { string } [downloadUrl]
-        
-         
-    */
-
-/**
-        @typedef GetLogsListReq
-        
-        
-        @property { string } [marketplaceName]
-        
-        @property { string } [startDate]
-        
-        @property { string } [companyId]
-        
-        @property { string } [endDate]
-        
-         
-    */
-
-/**
-        @typedef MkpLogsResp
-        
-        
-        @property { string } [startTimeIso]
-        
-        @property { string } [endTimeIso]
-        
-        @property { string } [eventType]
-        
-        @property { string } [traceId]
-        
-        @property { string } [count]
-        
-        @property { string } [status]
-        
-         
-    */
-
-/**
-        @typedef LogsPage
-        
-        
-        @property { string } [type]
-        
-        @property { string } [size]
-        
-        @property { string } [current]
-        
-        @property { string } [hasNext]
-        
-        @property { string } [itemTotal]
-        
-         
-    */
-
-/**
-        @typedef GetLogsListRes
-        
-        
-        @property { Array<MkpLogsResp> } [items]
-        
-        @property { LogsPage } [page]
-        
-         
-    */
-
-/**
-        @typedef SearchLogReq
-        
-        
-        @property { string } [marketplaceName]
-        
-        @property { string } [startDate]
-        
-        @property { string } [companyId]
-        
-        @property { string } [endDate]
-        
-        @property { string } [identifier]
-        
-        @property { string } [identifierValue]
-        
-         
-    */
-
-/**
-        @typedef LogInfo
-        
-        
-        @property { string } [id]
-        
-        @property { string } [status]
-        
-        @property { string } [eventType]
-        
-        @property { string } [marketplaceName]
-        
-        @property { string } [event]
-        
-        @property { string } [traceId]
-        
-        @property { number } [companyId]
-        
-        @property { number } [brandId]
-        
-        @property { string } [storeCode]
-        
-        @property { number } [storeId]
-        
-        @property { number } [itemId]
-        
-        @property { string } [articleId]
-        
-        @property { string } [sellerIdentifier]
-        
-         
-    */
-
-/**
-        @typedef SearchLogRes
-        
-        
-        @property { Array<LogInfo> } [items]
-        
-        @property { LogsPage } [page]
-        
-         
-    */
-
-class Lead {
-  constructor(config) {
-    this.config = config;
-  }
-
-  /**
-    *
-    * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
-    * @description: Gets the list of company level tickets and/or ticket filters
-    * @param {Object} arg - arg object.
-    * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
-    * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
-    * @param {string} [arg.q] - Search through ticket titles and description
-    * @param {string} [arg.status] - Filter tickets on status
-    * @param {string} [arg.priority] - Filter tickets on priority
-    * @param {string} [arg.category] - Filter tickets on category
-    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getTickets({
-    items,
-    filters,
-    q,
-    status,
-    priority,
-    category,
-    pageNo,
-    pageSize,
-  } = {}) {
-    const queryObj = {};
-    queryObj["items"] = items;
-    queryObj["filters"] = filters;
-    queryObj["q"] = q;
-    queryObj["status"] = status;
-    queryObj["priority"] = priority;
-    queryObj["category"] = category;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
-    * @description: Gets the list of company level tickets and/or ticket filters
-    * @param {Object} arg - arg object.
-    * @param {boolean} [arg.items] - Decides that the reponse will contain the list of tickets
-    * @param {boolean} [arg.filters] - Decides that the reponse will contain the ticket filters
-    * @param {string} [arg.q] - Search through ticket titles and description
-    * @param {string} [arg.status] - Filter tickets on status
-    * @param {string} [arg.priority] - Filter tickets on priority
-    * @param {string} [arg.category] - Filter tickets on category
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getTicketsPaginator({
-    items,
-    filters,
-    q,
-    status,
-    priority,
-    category,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getTickets({
-        items: items,
-        filters: filters,
-        q: q,
-        status: status,
-        priority: priority,
-        category: category,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback);
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Creates a company level ticket
-   * @description: Creates a company level ticket
-   * @param {Object} arg - arg object.
-   * @param {AddTicketPayload} arg.body
-   **/
-  createTicket({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Retreives ticket details of a company level ticket with ticket ID
-    * @description: Retreives ticket details of a company level ticket
-    * @param {Object} arg - arg object.
-    * @param {string} arg.ticketId - Tiket ID of the ticket to be fetched
-    
-    **/
-  getTicket({ ticketId } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Edits ticket details of a company level ticket
-   * @description: Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
-   * @param {Object} arg - arg object.
-   * @param {string} arg.ticketId - Ticket ID of ticket to be edited
-   * @param {EditTicketPayload} arg.body
-   **/
-  editTicket({ ticketId, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Create history for specific company level ticket
-   * @description: Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.ticketId - Ticket ID for which history is created
-   * @param {TicketHistoryPayload} arg.body
-   **/
-  createHistory({ ticketId, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}/history`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Gets history list for specific company level ticket
-    * @description: Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.ticketId - Ticket ID for which history is to be fetched
-    
-    **/
-  getTicketHistory({ ticketId } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}/history`,
-      queryObj,
-      undefined
-    );
-  }
+const Joi = require("joi");
+class Validator {
+  static TicketList = function () {
+    return Joi.object({
+      items: Joi.array().items(this.Ticket()),
+
+      filters: this.Filter(),
+
+      page: this.Page(),
+    });
+  };
+
+  static Page = function () {
+    return Joi.object({
+      itemTotal: Joi.number(),
+
+      nextId: Joi.string(),
+
+      hasPrevious: Joi.boolean(),
+
+      hasNext: Joi.boolean(),
+
+      current: Joi.number(),
+
+      type: Joi.string(),
+
+      size: Joi.number(),
+    });
+  };
+
+  static TicketHistoryList = function () {
+    return Joi.object({
+      docs: Joi.array().items(this.TicketHistory()),
+
+      limit: Joi.number(),
+
+      page: Joi.number(),
+
+      pages: Joi.number(),
+
+      total: Joi.number(),
+    });
+  };
+
+  static CustomFormList = function () {
+    return Joi.object({
+      docs: Joi.array().items(this.CustomForm()),
+
+      limit: Joi.number(),
+
+      page: Joi.number(),
+
+      pages: Joi.number(),
+
+      total: Joi.number(),
+    });
+  };
+
+  static CreateCustomFormPayload = function () {
+    return Joi.object({
+      slug: Joi.string(),
+
+      title: Joi.string(),
+
+      inputs: Joi.array().items(Joi.object()),
+
+      description: Joi.string(),
+
+      headerImage: Joi.string(),
+
+      shouldNotify: Joi.boolean(),
+
+      successMessage: Joi.string(),
+
+      pollForAssignment: this.PollForAssignment(),
+    });
+  };
+
+  static EditCustomFormPayload = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      inputs: Joi.array().items(Joi.object()),
+
+      description: Joi.string(),
+
+      headerImage: Joi.string(),
+
+      shouldNotify: Joi.boolean(),
+
+      loginRequired: Joi.boolean(),
+
+      successMessage: Joi.string(),
+
+      pollForAssignment: this.PollForAssignment(),
+    });
+  };
+
+  static EditTicketPayload = function () {
+    return Joi.object({
+      content: this.TicketContent(),
+
+      category: Joi.string(),
+
+      source: Joi.string(),
+
+      status: Joi.string(),
+
+      priority: Joi.string(),
+
+      assignedTo: this.AgentChangePayload(),
+
+      tags: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static AgentChangePayload = function () {
+    return Joi.object({
+      agentId: Joi.string(),
+    });
+  };
+
+  static CreateVideoRoomResponse = function () {
+    return Joi.object({
+      uniqueName: Joi.string(),
+    });
+  };
+
+  static CloseVideoRoomResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  };
+
+  static CreateVideoRoomPayload = function () {
+    return Joi.object({
+      uniqueName: Joi.string(),
+
+      notify: Joi.array().items(Joi.object()),
+    });
+  };
+
+  static Filter = function () {
+    return Joi.object({
+      priorities: Joi.array().items(this.Priority()),
+
+      categories: Joi.array().items(this.TicketCategory()),
+
+      statuses: Joi.array().items(this.Status()),
+
+      assignees: Joi.array().items(Joi.object()),
+    });
+  };
+
+  static TicketHistoryPayload = function () {
+    return Joi.object({
+      value: Joi.object(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static CustomFormSubmissionPayload = function () {
+    return Joi.object({
+      response: Joi.array().items(this.KeyValue()),
+    });
+  };
+
+  static KeyValue = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static GetTokenForVideoRoomResponse = function () {
+    return Joi.object({
+      accessToken: Joi.string(),
+    });
+  };
+
+  static GetParticipantsInsideVideoRoomResponse = function () {
+    return Joi.object({
+      participants: Joi.array().items(this.Participant()),
+    });
+  };
+
+  static Participant = function () {
+    return Joi.object({
+      user: this.UserSchema(),
+
+      identity: Joi.string(),
+
+      status: Joi.string(),
+    });
+  };
+
+  static UserSchema = function () {
+    return Joi.object({
+      firstName: Joi.string(),
+
+      lastName: Joi.string(),
+
+      phoneNumbers: Joi.array().items(this.PhoneNumber()),
+
+      emails: Joi.array().items(this.Email()),
+
+      gender: Joi.string(),
+
+      active: Joi.boolean(),
+
+      profilePicUrl: Joi.string(),
+
+      username: Joi.string(),
+
+      accountType: Joi.string(),
+
+      uid: Joi.string(),
+
+      debug: this.Debug(),
+
+      hasOldPasswordHash: Joi.boolean(),
+
+      id: Joi.string(),
+
+      createdAt: Joi.string(),
+
+      updatedAt: Joi.string(),
+    });
+  };
+
+  static PhoneNumber = function () {
+    return Joi.object({
+      active: Joi.boolean(),
+
+      primary: Joi.boolean(),
+
+      verified: Joi.boolean(),
+
+      phone: Joi.string(),
+
+      countryCode: Joi.number(),
+    });
+  };
+
+  static Email = function () {
+    return Joi.object({
+      primary: Joi.boolean(),
+
+      verified: Joi.boolean(),
+
+      email: Joi.string(),
+
+      active: Joi.boolean(),
+    });
+  };
+
+  static Debug = function () {
+    return Joi.object({
+      source: Joi.string(),
+
+      platform: Joi.string(),
+    });
+  };
+
+  static SubmitCustomFormResponse = function () {
+    return Joi.object({
+      ticket: this.Ticket(),
+    });
+  };
+
+  static TicketContext = function () {
+    return Joi.object({
+      applicationId: Joi.string(),
+
+      companyId: Joi.string(),
+    });
+  };
+
+  static CreatedOn = function () {
+    return Joi.object({
+      userAgent: Joi.string(),
+    });
+  };
+
+  static TicketAsset = function () {
+    return Joi.object({
+      display: Joi.string(),
+
+      value: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static TicketContent = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      description: Joi.string(),
+
+      attachments: Joi.array().items(this.TicketAsset()),
+    });
+  };
+
+  static AddTicketPayload = function () {
+    return Joi.object({
+      status: Joi.string(),
+
+      priority: Joi.string(),
+
+      category: Joi.string(),
+
+      content: this.TicketContent(),
+    });
+  };
+
+  static Priority = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      display: Joi.string(),
+
+      color: Joi.string(),
+    });
+  };
+
+  static Status = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      display: Joi.string(),
+
+      color: Joi.string(),
+    });
+  };
+
+  static TicketCategory = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      display: Joi.string(),
+
+      form: this.CustomForm(),
+    });
+  };
+
+  static SubmitButton = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      titleColor: Joi.string(),
+
+      backgroundColor: Joi.string(),
+    });
+  };
+
+  static PollForAssignment = function () {
+    return Joi.object({
+      duration: Joi.number(),
+
+      message: Joi.string(),
+
+      successMessage: Joi.string(),
+
+      failureMessage: Joi.string(),
+    });
+  };
+
+  static CustomForm = function () {
+    return Joi.object({
+      applicationId: Joi.string(),
+
+      slug: Joi.string(),
+
+      headerImage: Joi.string(),
+
+      title: Joi.string(),
+
+      description: Joi.string(),
+
+      loginRequired: Joi.boolean(),
+
+      shouldNotify: Joi.boolean(),
+
+      successMessage: Joi.string(),
+
+      submitButton: this.SubmitButton(),
+
+      inputs: Joi.array().items(Joi.object()),
+
+      createdOn: this.CreatedOn(),
+
+      createdBy: Joi.object(),
+
+      pollForAssignment: this.PollForAssignment(),
+
+      id: Joi.string(),
+    });
+  };
+
+  static TicketHistory = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      value: Joi.object(),
+
+      ticketId: Joi.string(),
+
+      createdOn: this.CreatedOn(),
+
+      createdBy: Joi.object(),
+
+      id: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      createdAt: Joi.string(),
+    });
+  };
+
+  static Ticket = function () {
+    return Joi.object({
+      context: this.TicketContext(),
+
+      createdOn: this.CreatedOn(),
+
+      responseId: Joi.string(),
+
+      content: this.TicketContent(),
+
+      ticketId: Joi.string(),
+
+      category: this.TicketCategory(),
+
+      source: Joi.string(),
+
+      status: this.Status(),
+
+      priority: this.Priority(),
+
+      createdBy: Joi.object(),
+
+      assignedTo: Joi.object(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      customJson: Joi.object(),
+
+      id: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      createdAt: Joi.string(),
+    });
+  };
+
+  static PaginationSchema = function () {
+    return Joi.object({
+      size: Joi.number(),
+
+      itemTotal: Joi.number(),
+
+      hasNext: Joi.boolean(),
+
+      type: Joi.string(),
+
+      current: Joi.number(),
+    });
+  };
+
+  static ThemesListingResponseSchema = function () {
+    return Joi.object({
+      items: Joi.array().items(this.ThemesSchema()),
+
+      page: this.PaginationSchema(),
+    });
+  };
+
+  static AddThemeRequestSchema = function () {
+    return Joi.object({
+      themeId: Joi.string(),
+    });
+  };
+
+  static UpgradableThemeSchema = function () {
+    return Joi.object({
+      parentTheme: Joi.string(),
+
+      appliedTheme: Joi.string(),
+
+      upgrade: Joi.boolean(),
+    });
+  };
+
+  static FontsSchema = function () {
+    return Joi.object({
+      items: this.FontsSchemaItems(),
+
+      kind: Joi.string(),
+    });
+  };
+
+  static BlitzkriegApiErrorSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static BlitzkriegNotFoundSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static BlitzkriegInternalServerErrorSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static FontsSchemaItems = function () {
+    return Joi.object({
+      family: Joi.string(),
+
+      variants: Joi.array().items(Joi.string()),
+
+      subsets: Joi.array().items(Joi.string()),
+
+      version: Joi.string(),
+
+      lastModified: Joi.string(),
+
+      files: this.FontsSchemaItemsFiles(),
+
+      category: Joi.string(),
+
+      kind: Joi.string(),
+    });
+  };
+
+  static FontsSchemaItemsFiles = function () {
+    return Joi.object({
+      regular: Joi.string(),
+
+      italic: Joi.string(),
+
+      bold: Joi.string(),
+    });
+  };
+
+  static ThemesSchema = function () {
+    return Joi.object({
+      application: Joi.string(),
+
+      applied: Joi.boolean(),
+
+      customized: Joi.boolean(),
+
+      published: Joi.boolean(),
+
+      archived: Joi.boolean(),
+
+      createdAt: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      version: Joi.string(),
+
+      parentThemeVersion: Joi.string(),
+
+      parentTheme: Joi.string(),
+
+      information: this.Information(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      src: this.Src(),
+
+      assets: this.AssetsSchema(),
+
+      availablePages: this.AvailablePages(),
+
+      pages: this.Pages(),
+
+      availableSections: Joi.array().items(this.availableSectionSchema()),
+
+      sections: Joi.array().items(this.sectionSchema()),
+
+      constants: Joi.object(),
+
+      styles: Joi.object(),
+
+      config: this.Config(),
+
+      settings: Joi.object(),
+
+      font: this.Font(),
+
+      id: Joi.string(),
+
+      v: Joi.number(),
+
+      colors: this.Colors(),
+    });
+  };
+
+  static pagesSchema = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      path: Joi.string(),
+
+      type: Joi.string(),
+
+      value: Joi.string(),
+
+      sections: this.Sections(),
+    });
+  };
+
+  static availableSectionSchema = function () {
+    return Joi.object({
+      blocks: this.Blocks(),
+
+      name: Joi.string(),
+
+      label: Joi.string(),
+
+      props: Joi.object(),
+    });
+  };
+
+  static sectionSchema = function () {
+    return Joi.object({
+      pageKey: Joi.string(),
+
+      pageSections: this.PageSections(),
+    });
+  };
+
+  static Information = function () {
+    return Joi.object({
+      images: this.Images(),
+
+      features: Joi.array().items(Joi.string()),
+
+      name: Joi.string(),
+
+      description: Joi.string(),
+    });
+  };
+
+  static Images = function () {
+    return Joi.object({
+      desktop: Joi.array().items(Joi.string()),
+
+      android: Joi.array().items(Joi.string()),
+
+      ios: Joi.array().items(Joi.string()),
+
+      thumbnail: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static Src = function () {
+    return Joi.object({
+      link: Joi.string(),
+    });
+  };
+
+  static AssetsSchema = function () {
+    return Joi.object({
+      umdJs: this.UmdJs(),
+
+      commonJs: this.CommonJs(),
+
+      css: this.Css(),
+    });
+  };
+
+  static UmdJs = function () {
+    return Joi.object({
+      link: Joi.string(),
+    });
+  };
+
+  static CommonJs = function () {
+    return Joi.object({
+      link: Joi.string(),
+    });
+  };
+
+  static Css = function () {
+    return Joi.object({
+      link: Joi.string(),
+    });
+  };
+
+  static AvailablePages = function () {
+    return Joi.object({
+      path: Joi.string(),
+
+      type: Joi.string(),
+
+      text: Joi.string(),
+
+      value: Joi.string(),
+
+      seo: this.Seo(),
+
+      props: Joi.object(),
+
+      sections: this.Sections(),
+    });
+  };
+
+  static Seo = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      description: Joi.string(),
+    });
+  };
+
+  static Sections = function () {
+    return Joi.object({
+      attributes: Joi.string(),
+    });
+  };
+
+  static Pages = function () {
+    return Joi.object({
+      collectionListing: this.pagesSchema(),
+
+      brands: this.pagesSchema(),
+
+      cartLanding: this.pagesSchema(),
+
+      collections: this.pagesSchema(),
+
+      productDescription: this.pagesSchema(),
+
+      productListing: this.pagesSchema(),
+
+      home: this.pagesSchema(),
+
+      categories: this.pagesSchema(),
+
+      compareProducts: this.pagesSchema(),
+
+      wishlist: this.pagesSchema(),
+    });
+  };
+
+  static Config = function () {
+    return Joi.object({
+      preset: this.Preset(),
+
+      globalSchema: this.GlobalSchema(),
+
+      current: Joi.string(),
+
+      list: this.ListSchema(),
+    });
+  };
+
+  static Preset = function () {
+    return Joi.object({
+      sections: this.sectionSchema(),
+    });
+  };
+
+  static GlobalSchema = function () {
+    return Joi.object({
+      props: Joi.object(),
+    });
+  };
+
+  static ListSchema = function () {
+    return Joi.object({
+      global: Joi.object(),
+
+      page: this.ConfigPage(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static Colors = function () {
+    return Joi.object({
+      bgColor: Joi.string(),
+
+      primaryColor: Joi.string(),
+
+      secondaryColor: Joi.string(),
+
+      accentColor: Joi.string(),
+
+      linkColor: Joi.string(),
+
+      buttonSecondaryColor: Joi.string(),
+    });
+  };
+
+  static Custom = function () {
+    return Joi.object({
+      props: Joi.object(),
+    });
+  };
+
+  static ConfigPage = function () {
+    return Joi.object({
+      settings: Joi.object(),
+
+      page: Joi.string(),
+    });
+  };
+
+  static Font = function () {
+    return Joi.object({
+      family: Joi.string(),
+
+      variants: this.Variants(),
+    });
+  };
+
+  static Variants = function () {
+    return Joi.object({
+      medium: this.Medium(),
+
+      semiBold: this.SemiBold(),
+
+      bold: this.Bold(),
+
+      light: this.Light(),
+
+      regular: this.Regular(),
+    });
+  };
+
+  static Medium = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      file: Joi.string(),
+    });
+  };
+
+  static SemiBold = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      file: Joi.string(),
+    });
+  };
+
+  static Bold = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      file: Joi.string(),
+    });
+  };
+
+  static Light = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      file: Joi.string(),
+    });
+  };
+
+  static Regular = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      file: Joi.string(),
+    });
+  };
+
+  static Blocks = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      name: Joi.string(),
+
+      props: this.BlocksProps(),
+    });
+  };
+
+  static BlocksProps = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      label: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static PageSections = function () {
+    return Joi.object({
+      blocks: this.PageSectionsBlocks(),
+
+      name: Joi.string(),
+
+      label: Joi.string(),
+
+      props: Joi.object(),
+
+      preset: Joi.object(),
+
+      predicate: this.Predicate(),
+    });
+  };
+
+  static PageSectionsBlocks = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      name: Joi.string(),
+
+      props: this.PageSectionsBlocksProps(),
+    });
+  };
+
+  static PageSectionsBlocksProps = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      label: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static Predicate = function () {
+    return Joi.object({
+      screen: this.Screen(),
+
+      user: this.PredicateUserSchema(),
+
+      route: this.Route(),
+    });
+  };
+
+  static Screen = function () {
+    return Joi.object({
+      mobile: Joi.boolean(),
+
+      desktop: Joi.boolean(),
+
+      tablet: Joi.boolean(),
+    });
+  };
+
+  static PredicateUserSchema = function () {
+    return Joi.object({
+      authenticated: Joi.boolean(),
+
+      anonymous: Joi.boolean(),
+    });
+  };
+
+  static Route = function () {
+    return Joi.object({
+      selected: Joi.string(),
+
+      exactUrl: Joi.string(),
+
+      query: Joi.object(),
+    });
+  };
+
+  static EditEmailRequestSchema = function () {
+    return Joi.object({
+      email: Joi.string(),
+    });
+  };
+
+  static SendVerificationLinkMobileRequestSchema = function () {
+    return Joi.object({
+      verified: Joi.boolean(),
+
+      active: Joi.boolean(),
+
+      countryCode: Joi.string(),
+
+      phone: Joi.string(),
+
+      primary: Joi.boolean(),
+    });
+  };
+
+  static EditMobileRequestSchema = function () {
+    return Joi.object({
+      countryCode: Joi.string(),
+
+      phone: Joi.string(),
+    });
+  };
+
+  static EditProfileRequestSchema = function () {
+    return Joi.object({
+      firstName: Joi.string(),
+
+      lastName: Joi.string(),
+
+      mobile: Joi.string(),
+
+      email: Joi.string(),
+
+      gender: Joi.string(),
+
+      dob: Joi.string(),
+
+      profilePicUrl: Joi.string(),
+
+      androidHash: Joi.string(),
+
+      sender: Joi.string(),
+
+      registerToken: Joi.string(),
+    });
+  };
+
+  static SendEmailOtpRequestSchema = function () {
+    return Joi.object({
+      email: Joi.string(),
+
+      action: Joi.string(),
+
+      token: Joi.string(),
+
+      registerToken: Joi.string(),
+    });
+  };
+
+  static VerifyOtpRequestSchema = function () {
+    return Joi.object({
+      requestId: Joi.string(),
+
+      registerToken: Joi.string(),
+
+      otp: Joi.string(),
+    });
+  };
+
+  static SendMobileOtpRequestSchema = function () {
+    return Joi.object({
+      mobile: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      action: Joi.string(),
+
+      token: Joi.string(),
+
+      androidHash: Joi.string(),
+
+      force: Joi.string(),
+    });
+  };
+
+  static UpdatePasswordRequestSchema = function () {
+    return Joi.object({
+      oldPassword: Joi.string(),
+
+      newPassword: Joi.string(),
+    });
+  };
+
+  static FormRegisterRequestSchema = function () {
+    return Joi.object({
+      firstName: Joi.string(),
+
+      lastName: Joi.string(),
+
+      gender: Joi.string(),
+
+      email: Joi.string(),
+
+      password: Joi.string(),
+
+      phone: this.FormRegisterRequestSchemaPhone(),
+
+      registerToken: Joi.string(),
+    });
+  };
+
+  static TokenRequestBodySchema = function () {
+    return Joi.object({
+      token: Joi.string(),
+    });
+  };
+
+  static ForgotPasswordRequestSchema = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      password: Joi.string(),
+    });
+  };
+
+  static CodeRequestBodySchema = function () {
+    return Joi.object({
+      code: Joi.string(),
+    });
+  };
+
+  static SendResetPasswordEmailRequestSchema = function () {
+    return Joi.object({
+      email: Joi.string(),
+
+      gRecaptchaResponse: Joi.string(),
+    });
+  };
+
+  static PasswordLoginRequestSchema = function () {
+    return Joi.object({
+      gRecaptchaResponse: Joi.string(),
+
+      password: Joi.string(),
+
+      username: Joi.string(),
+    });
+  };
+
+  static SendOtpRequestSchema = function () {
+    return Joi.object({
+      countryCode: Joi.string(),
+
+      gRecaptchaResponse: Joi.string(),
+
+      mobile: Joi.string(),
+    });
+  };
+
+  static OAuthRequestSchema = function () {
+    return Joi.object({
+      isSignedIn: Joi.boolean(),
+
+      oauth2: this.OAuthRequestSchemaOauth2(),
+
+      profile: this.OAuthRequestSchemaProfile(),
+    });
+  };
+
+  static AuthSuccess = function () {
+    return Joi.object({
+      registerToken: Joi.string(),
+
+      userExists: Joi.boolean(),
+
+      user: this.AuthSuccessUser(),
+    });
+  };
+
+  static SendOtpResponse = function () {
+    return Joi.object({
+      resendTimer: Joi.number(),
+
+      resendToken: Joi.string(),
+
+      success: Joi.boolean(),
+
+      requestId: Joi.string(),
+
+      message: Joi.string(),
+
+      mobile: Joi.string(),
+
+      countryCode: Joi.string(),
+    });
+  };
+
+  static LoginSuccess = function () {
+    return Joi.object({
+      user: this.UserSchema(),
+    });
+  };
+
+  static VerifyOtpSuccess = function () {
+    return Joi.object({
+      user: this.UserSchema(),
+
+      userExists: Joi.boolean(),
+    });
+  };
+
+  static ResetPasswordSuccess = function () {
+    return Joi.object({
+      status: Joi.string(),
+    });
+  };
+
+  static RegisterFormSuccess = function () {
+    return Joi.object({
+      resendTimer: Joi.number(),
+
+      resendToken: Joi.string(),
+
+      success: Joi.boolean(),
+
+      requestId: Joi.string(),
+
+      message: Joi.string(),
+
+      mobile: Joi.string(),
+
+      countryCode: Joi.string(),
+    });
+  };
+
+  static VerifyEmailSuccess = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static HasPasswordSuccess = function () {
+    return Joi.object({
+      result: Joi.boolean(),
+    });
+  };
+
+  static LogoutSuccess = function () {
+    return Joi.object({
+      logout: Joi.boolean(),
+    });
+  };
+
+  static OtpSuccess = function () {
+    return Joi.object({
+      resendTimer: Joi.number(),
+
+      resendToken: Joi.string(),
+
+      success: Joi.boolean(),
+
+      requestId: Joi.string(),
+
+      message: Joi.string(),
+
+      mobile: Joi.string(),
+
+      countryCode: Joi.string(),
+    });
+  };
+
+  static EmailOtpSuccess = function () {
+    return Joi.object({
+      resendToken: Joi.string(),
+    });
+  };
+
+  static SessionListSuccess = function () {
+    return Joi.object({
+      sessions: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static VerifyMobileOTPSuccess = function () {
+    return Joi.object({
+      user: this.UserSchema(),
+
+      verifyMobileLink: Joi.boolean(),
+    });
+  };
+
+  static VerifyEmailOTPSuccess = function () {
+    return Joi.object({
+      user: this.UserSchema(),
+
+      verifyEmailLink: Joi.boolean(),
+    });
+  };
+
+  static SendMobileVerifyLinkSuccess = function () {
+    return Joi.object({
+      verifyMobileLink: Joi.boolean(),
+    });
+  };
+
+  static SendEmailVerifyLinkSuccess = function () {
+    return Joi.object({
+      verifyEmailLink: Joi.boolean(),
+    });
+  };
+
+  static UserSearchResponseSchema = function () {
+    return Joi.object({
+      users: Joi.array().items(this.UserSchema()),
+    });
+  };
+
+  static CustomerListResponseSchema = function () {
+    return Joi.object({
+      items: Joi.array().items(this.UserSchema()),
+
+      page: this.PaginationSchema(),
+    });
+  };
+
+  static UnauthorizedSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static UnauthenticatedSchema = function () {
+    return Joi.object({
+      authenticated: Joi.boolean(),
+    });
+  };
+
+  static NotFoundSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static AuthenticationApiErrorSchema = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static ProfileEditSuccessSchema = function () {
+    return Joi.object({
+      email: Joi.string(),
+
+      verifyEmailOtp: Joi.boolean(),
+
+      verifyEmailLink: Joi.boolean(),
+
+      verifyMobileOtp: Joi.boolean(),
+
+      user: Joi.string(),
+
+      registerToken: Joi.string(),
+
+      userExists: Joi.boolean(),
+    });
+  };
+
+  static FormRegisterRequestSchemaPhone = function () {
+    return Joi.object({
+      countryCode: Joi.string(),
+
+      mobile: Joi.string(),
+    });
+  };
+
+  static OAuthRequestSchemaOauth2 = function () {
+    return Joi.object({
+      accessToken: Joi.string(),
+
+      expiry: Joi.number(),
+
+      refreshToken: Joi.string(),
+    });
+  };
+
+  static OAuthRequestSchemaProfile = function () {
+    return Joi.object({
+      lastName: Joi.string(),
+
+      image: Joi.string(),
+
+      id: Joi.string(),
+
+      email: Joi.string(),
+
+      fullName: Joi.string(),
+
+      firstName: Joi.string(),
+    });
+  };
+
+  static AuthSuccessUser = function () {
+    return Joi.object({
+      firstName: Joi.string(),
+
+      lastName: Joi.string(),
+
+      debug: this.AuthSuccessUserDebug(),
+
+      active: Joi.boolean(),
+
+      emails: this.AuthSuccessUserEmails(),
+    });
+  };
+
+  static AuthSuccessUserDebug = function () {
+    return Joi.object({
+      platform: Joi.string(),
+    });
+  };
+
+  static AuthSuccessUserEmails = function () {
+    return Joi.object({
+      email: Joi.string(),
+
+      verified: Joi.boolean(),
+
+      primary: Joi.boolean(),
+
+      active: Joi.boolean(),
+    });
+  };
+
+  static PlatformSchema = function () {
+    return Joi.object({
+      display: Joi.string(),
+
+      lookAndFeel: this.LookAndFeel(),
+
+      updatedAt: Joi.string(),
+
+      active: Joi.boolean(),
+
+      forgotPassword: Joi.boolean(),
+
+      login: this.Login(),
+
+      skipCaptcha: Joi.boolean(),
+
+      name: Joi.string(),
+
+      meta: this.MetaSchema(),
+
+      id: Joi.string(),
+
+      social: this.Social(),
+
+      requiredFields: this.RequiredFields(),
+
+      registerRequiredFields: this.RegisterRequiredFields(),
+
+      skipLogin: Joi.boolean(),
+
+      flashCard: this.FlashCard(),
+
+      subtext: Joi.string(),
+
+      socialTokens: this.SocialTokens(),
+
+      createdAt: Joi.string(),
+
+      register: Joi.boolean(),
+    });
+  };
+
+  static LookAndFeel = function () {
+    return Joi.object({
+      cardPosition: Joi.string(),
+
+      backgroundColor: Joi.string(),
+    });
+  };
+
+  static Login = function () {
+    return Joi.object({
+      password: Joi.boolean(),
+
+      otp: Joi.boolean(),
+    });
+  };
+
+  static MetaSchema = function () {
+    return Joi.object({
+      fyndDefault: Joi.boolean(),
+    });
+  };
+
+  static Social = function () {
+    return Joi.object({
+      accountKit: Joi.boolean(),
+
+      facebook: Joi.boolean(),
+
+      google: Joi.boolean(),
+    });
+  };
+
+  static RequiredFields = function () {
+    return Joi.object({
+      email: this.Email(),
+
+      mobile: this.Mobile(),
+    });
+  };
+
+  static Mobile = function () {
+    return Joi.object({
+      isRequired: Joi.boolean(),
+
+      level: Joi.string(),
+    });
+  };
+
+  static RegisterRequiredFields = function () {
+    return Joi.object({
+      email: this.RegisterRequiredFieldsEmail(),
+
+      mobile: this.RegisterRequiredFieldsMobile(),
+    });
+  };
+
+  static RegisterRequiredFieldsEmail = function () {
+    return Joi.object({
+      isRequired: Joi.boolean(),
+
+      level: Joi.string(),
+    });
+  };
+
+  static RegisterRequiredFieldsMobile = function () {
+    return Joi.object({
+      isRequired: Joi.boolean(),
+
+      level: Joi.string(),
+    });
+  };
+
+  static FlashCard = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      textColor: Joi.string(),
+
+      backgroundColor: Joi.string(),
+    });
+  };
+
+  static SocialTokens = function () {
+    return Joi.object({
+      facebook: this.Facebook(),
+
+      accountKit: this.Accountkit(),
+
+      google: this.Google(),
+    });
+  };
+
+  static Facebook = function () {
+    return Joi.object({
+      appId: Joi.string(),
+    });
+  };
+
+  static Accountkit = function () {
+    return Joi.object({
+      appId: Joi.string(),
+    });
+  };
+
+  static Google = function () {
+    return Joi.object({
+      appId: Joi.string(),
+    });
+  };
+
+  static PaymentGatewayConfigResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      appId: Joi.string(),
+
+      displayFields: Joi.array().items(Joi.string()),
+
+      created: Joi.boolean(),
+
+      aggregators: Joi.array().items(Joi.object()),
+
+      excludedFields: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static ErrorCodeDescription = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      success: Joi.boolean(),
+
+      description: Joi.string(),
+    });
+  };
+
+  static PaymentGatewayConfig = function () {
+    return Joi.object({
+      merchantSalt: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      configType: Joi.string(),
+
+      key: Joi.string(),
+
+      secret: Joi.string(),
+    });
+  };
+
+  static PaymentGatewayConfigRequest = function () {
+    return Joi.object({
+      isActive: Joi.boolean(),
+
+      aggregatorName: this.PaymentGatewayConfig(),
+
+      appId: Joi.string(),
+    });
+  };
+
+  static PaymentGatewayToBeReviewed = function () {
+    return Joi.object({
+      aggregator: Joi.array().items(Joi.string()),
+
+      success: Joi.boolean(),
+    });
+  };
+
+  static ErrorCodeAndDescription = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      description: Joi.string(),
+    });
+  };
+
+  static HttpErrorCodeAndResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      error: this.ErrorCodeAndDescription(),
+    });
+  };
+
+  static PaymentModeLogo = function () {
+    return Joi.object({
+      large: Joi.string(),
+
+      small: Joi.string(),
+    });
+  };
+
+  static PaymentModeList = function () {
+    return Joi.object({
+      expYear: Joi.number(),
+
+      cardIsin: Joi.string(),
+
+      intentFlow: Joi.string(),
+
+      cardNumber: Joi.string(),
+
+      merchantCode: Joi.string(),
+
+      cardBrand: Joi.string(),
+
+      cardIssuer: Joi.string(),
+
+      fyndVpa: Joi.string(),
+
+      expMonth: Joi.number(),
+
+      cardReference: Joi.string(),
+
+      displayPriority: Joi.number(),
+
+      cardId: Joi.string(),
+
+      displayName: Joi.string(),
+
+      aggregatorName: Joi.string(),
+
+      timeout: Joi.number(),
+
+      intentAppErrorList: Joi.array().items(Joi.string()),
+
+      cardBrandImage: Joi.string(),
+
+      cardType: Joi.string(),
+
+      expired: Joi.boolean(),
+
+      retryCount: Joi.number(),
+
+      cardToken: Joi.string(),
+
+      cardName: Joi.string(),
+
+      cardFingerprint: Joi.string(),
+
+      code: Joi.string(),
+
+      logoUrl: this.PaymentModeLogo(),
+
+      name: Joi.string(),
+
+      nickname: Joi.string(),
+    });
+  };
+
+  static RootPaymentMode = function () {
+    return Joi.object({
+      addCardEnabled: Joi.boolean(),
+
+      list: Joi.array().items(this.PaymentModeList()),
+
+      displayPriority: Joi.number(),
+
+      displayName: Joi.string(),
+
+      name: Joi.string(),
+
+      anonymousEnable: Joi.boolean(),
+
+      aggregatorName: Joi.string(),
+    });
+  };
+
+  static PaymentOptions = function () {
+    return Joi.object({
+      paymentOption: Joi.array().items(this.RootPaymentMode()),
+    });
+  };
+
+  static PaymentOptionsResponse = function () {
+    return Joi.object({
+      paymentOptions: this.PaymentOptions(),
+
+      success: Joi.boolean(),
+    });
+  };
+
+  static PayoutsResponse = function () {
+    return Joi.object({
+      payoutsAggregators: Joi.array().items(Joi.object()),
+
+      isActive: Joi.boolean(),
+
+      isDefault: Joi.boolean(),
+
+      uniqueTransferNo: Joi.object(),
+
+      moreAttributes: Joi.object(),
+
+      customers: Joi.object(),
+
+      transferType: Joi.string(),
+    });
+  };
+
+  static PayoutRequest = function () {
+    return Joi.object({
+      aggregator: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      bankDetails: Joi.object(),
+
+      users: Joi.object(),
+
+      uniqueExternalId: Joi.string(),
+
+      transferType: Joi.string(),
+    });
+  };
+
+  static PayoutResponse = function () {
+    return Joi.object({
+      aggregator: Joi.string(),
+
+      success: Joi.boolean(),
+
+      isActive: Joi.boolean(),
+
+      bankDetails: Joi.object(),
+
+      payouts: Joi.object(),
+
+      uniqueTransferNo: Joi.string(),
+
+      users: Joi.object(),
+
+      paymentStatus: Joi.string(),
+
+      created: Joi.boolean(),
+
+      transferType: Joi.string(),
+    });
+  };
+
+  static UpdatePayoutResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      isActive: Joi.boolean(),
+
+      isDefault: Joi.boolean(),
+    });
+  };
+
+  static UpdatePayoutRequest = function () {
+    return Joi.object({
+      uniqueExternalId: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      isDefault: Joi.boolean(),
+    });
+  };
+
+  static DeletePayoutResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  };
+
+  static SubscriptionPaymentMethodResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      data: Joi.array().items(Joi.object()),
+    });
+  };
+
+  static DeleteSubscriptionPaymentMethodResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  };
+
+  static SubscriptionConfigResponse = function () {
+    return Joi.object({
+      aggregator: Joi.string(),
+
+      success: Joi.boolean(),
+
+      config: Joi.object(),
+    });
+  };
+
+  static SaveSubscriptionSetupIntentRequest = function () {
+    return Joi.object({
+      uniqueExternalId: Joi.string(),
+    });
+  };
+
+  static SaveSubscriptionSetupIntentResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      data: Joi.object(),
+    });
+  };
+
+  static GetActivityStatus = function () {
+    return Joi.object({
+      activityHistory: this.ActivityHistory(),
+    });
+  };
+
+  static ActivityHistory = function () {
+    return Joi.object({
+      createdat: Joi.string(),
+
+      message: Joi.string(),
+
+      type: Joi.string(),
+
+      user: Joi.string(),
+    });
+  };
+
+  static FailedOrders = function () {
+    return Joi.object({
+      orders: this.FailOrder(),
+    });
+  };
+
+  static FailOrder = function () {
+    return Joi.object({
+      updatedAt: Joi.string(),
+
+      id: Joi.string(),
+
+      reason: Joi.string(),
+
+      marketplaceOrder: this.MarketplaceOrder(),
+
+      marketplaceOrderId: Joi.string(),
+
+      createdAt: Joi.string(),
+
+      appId: Joi.string(),
+
+      marketplace: Joi.string(),
+
+      companyId: Joi.number(),
+    });
+  };
+
+  static MarketplaceOrder = function () {
+    return Joi.object({
+      orderStatusUrl: Joi.string(),
+
+      adminGraphqlApiId: Joi.string(),
+
+      email: Joi.string(),
+
+      test: Joi.boolean(),
+
+      note: Joi.string(),
+
+      totalPrice: Joi.string(),
+
+      appId: Joi.number(),
+
+      totalDiscountsSet: this.TotalDiscountsSet(),
+
+      totalPriceSet: this.TotalPriceSet(),
+
+      totalTaxSet: this.TotalTaxSet(),
+
+      gateway: Joi.string(),
+
+      name: Joi.string(),
+
+      subtotalPriceSet: this.SubtotalPriceSet(),
+
+      number: Joi.number(),
+
+      buyerAcceptsMarketing: Joi.boolean(),
+
+      contactEmail: Joi.string(),
+
+      token: Joi.string(),
+
+      sourceName: Joi.string(),
+
+      paymentGatewayNames: Joi.array().items(Joi.any()),
+
+      presentmentCurrency: Joi.string(),
+
+      subtotalPrice: Joi.string(),
+
+      processedAt: Joi.string(),
+
+      orderNumber: Joi.number(),
+
+      totalTipReceived: Joi.string(),
+
+      id: Joi.number(),
+
+      confirmed: Joi.boolean(),
+
+      currency: Joi.string(),
+
+      totalLineItemsPrice: Joi.string(),
+
+      lineItems: this.LineItems(),
+
+      createdAt: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      totalWeight: Joi.number(),
+
+      billingAddress: this.BillingAddress(),
+
+      totalShippingPriceSet: this.TotalShippingPriceSet(),
+
+      customer: this.Customer(),
+
+      totalDiscounts: Joi.string(),
+
+      totalLineItemsPriceSet: this.TotalLineItemsPriceSet(),
+
+      tags: Joi.string(),
+
+      totalPriceUsd: Joi.string(),
+
+      userId: Joi.number(),
+
+      totalTax: Joi.string(),
+
+      processingMethod: Joi.string(),
+
+      shippingAddress: this.ShippingAddress(),
+
+      taxesIncluded: Joi.boolean(),
+
+      financialStatus: Joi.string(),
+    });
+  };
+
+  static TotalDiscountsSet = function () {
+    return Joi.object({
+      presentmentMoney: this.PresentmentMoney(),
+
+      shopMoney: this.ShopMoney(),
+    });
+  };
+
+  static PresentmentMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static ShopMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static TotalPriceSet = function () {
+    return Joi.object({
+      shopMoney: this.TotalPriceSetShopMoney(),
+
+      presentmentMoney: this.TotalPriceSetPresentmentMoney(),
+    });
+  };
+
+  static TotalPriceSetShopMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static TotalPriceSetPresentmentMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static TotalTaxSet = function () {
+    return Joi.object({
+      shopMoney: this.TotalTaxSetShopMoney(),
+
+      presentmentMoney: this.TotalTaxSetPresentmentMoney(),
+    });
+  };
+
+  static TotalTaxSetShopMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static TotalTaxSetPresentmentMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static SubtotalPriceSet = function () {
+    return Joi.object({
+      shopMoney: this.SubtotalPriceSetShopMoney(),
+
+      presentmentMoney: this.SubtotalPriceSetPresentmentMoney(),
+    });
+  };
+
+  static SubtotalPriceSetShopMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static SubtotalPriceSetPresentmentMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static LineItems = function () {
+    return Joi.object({
+      sku: Joi.string(),
+
+      fulfillableQuantity: Joi.number(),
+
+      grams: Joi.number(),
+
+      totalDiscount: Joi.string(),
+
+      article: this.LineItemsArticle(),
+
+      title: Joi.string(),
+
+      variantInventoryManagement: Joi.string(),
+
+      id: Joi.number(),
+
+      variantId: Joi.number(),
+
+      variantTitle: Joi.string(),
+
+      productExists: Joi.boolean(),
+
+      price: Joi.string(),
+
+      adminGraphqlApiId: Joi.string(),
+
+      quantity: Joi.number(),
+
+      vendor: Joi.string(),
+
+      fulfillmentService: Joi.string(),
+
+      taxable: Joi.boolean(),
+
+      name: Joi.string(),
+
+      productId: Joi.number(),
+
+      priceSet: this.PriceSet(),
+
+      taxLines: this.TaxLines(),
+
+      requiresShipping: Joi.boolean(),
+
+      giftCard: Joi.boolean(),
+
+      totalDiscountSet: this.TotalDiscountSet(),
+    });
+  };
+
+  static LineItemsArticle = function () {
+    return Joi.object({
+      quantities: this.Quantities(),
+
+      oldArticleUid: Joi.string(),
+
+      totalQuantity: Joi.number(),
+
+      manufacturer: this.Manufacturer(),
+
+      price: this.ArticlePrice(),
+
+      trackInventory: Joi.boolean(),
+
+      company: this.Company(),
+
+      isActive: Joi.boolean(),
+
+      dateMeta: this.DateMeta(),
+
+      fragile: Joi.boolean(),
+
+      marketplaceIdentifiers: this.MarketplaceIdentifiers(),
+
+      size: Joi.string(),
+
+      isSet: Joi.boolean(),
+
+      dimension: this.Dimension(),
+
+      weight: this.Weight(),
+
+      store: this.Store(),
+
+      meta: this.ArticleMeta(),
+
+      uid: Joi.string(),
+
+      brand: this.ArticleBrand(),
+
+      itemId: Joi.number(),
+
+      fyndArticleCode: Joi.string(),
+
+      id: Joi.string(),
+
+      identifier: this.Identifier(),
+
+      sellerIdentifier: Joi.string(),
+
+      fyndItemCode: Joi.string(),
+
+      countryOfOrigin: Joi.string(),
+    });
+  };
+
+  static Quantities = function () {
+    return Joi.object({
+      notAvailable: this.NotAvailable(),
+
+      sellable: this.Sellable(),
+
+      orderCommitted: this.OrderCommitted(),
+
+      damaged: this.Damaged(),
+    });
+  };
+
+  static NotAvailable = function () {
+    return Joi.object({
+      count: Joi.number(),
+
+      updatedAt: Joi.string(),
+    });
+  };
+
+  static Sellable = function () {
+    return Joi.object({
+      count: Joi.number(),
+
+      updatedAt: Joi.string(),
+    });
+  };
+
+  static OrderCommitted = function () {
+    return Joi.object({
+      count: Joi.number(),
+
+      updatedAt: Joi.string(),
+    });
+  };
+
+  static Damaged = function () {
+    return Joi.object({
+      updatedAt: Joi.string(),
+
+      count: Joi.number(),
+    });
+  };
+
+  static Manufacturer = function () {
+    return Joi.object({
+      isDefault: Joi.boolean(),
+
+      address: Joi.string(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static ArticlePrice = function () {
+    return Joi.object({
+      marked: Joi.number(),
+
+      currency: Joi.string(),
+
+      effective: Joi.number(),
+
+      transfer: Joi.number(),
+    });
+  };
+
+  static Company = function () {
+    return Joi.object({
+      id: Joi.number(),
+
+      companyType: Joi.string(),
+
+      businessType: Joi.string(),
+
+      companyName: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      panNo: Joi.string(),
+
+      returnAllowed: Joi.boolean(),
+
+      meta: Joi.string(),
+
+      exchangeAllowed: Joi.boolean(),
+
+      agreementStartDate: Joi.string(),
+
+      exchangeWithinDays: Joi.number(),
+
+      paymentProcesingCharge: Joi.number(),
+
+      fyndAFitAvailable: Joi.boolean(),
+
+      modifiedOn: Joi.string(),
+
+      returnWithinDays: Joi.number(),
+    });
+  };
+
+  static DateMeta = function () {
+    return Joi.object({
+      addedOnStore: Joi.string(),
+
+      inventoryUpdatedOn: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      modifiedOn: Joi.string(),
+    });
+  };
+
+  static MarketplaceIdentifiers = function () {
+    return Joi.object({
+      tatacliqLuxury: this.TatacliqLuxury(),
+    });
+  };
+
+  static TatacliqLuxury = function () {
+    return Joi.object({
+      sku: Joi.string(),
+    });
+  };
+
+  static Dimension = function () {
+    return Joi.object({
+      height: Joi.number(),
+
+      width: Joi.number(),
+
+      unit: Joi.string(),
+
+      length: Joi.number(),
+
+      isDefault: Joi.boolean(),
+    });
+  };
+
+  static Weight = function () {
+    return Joi.object({
+      isDefault: Joi.boolean(),
+
+      unit: Joi.string(),
+
+      shipping: Joi.number(),
+    });
+  };
+
+  static Store = function () {
+    return Joi.object({
+      id: Joi.number(),
+    });
+  };
+
+  static ArticleMeta = function () {
+    return Joi.object({
+      service: Joi.string(),
+    });
+  };
+
+  static ArticleBrand = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      id: Joi.number(),
+    });
+  };
+
+  static Identifier = function () {
+    return Joi.object({
+      skuCode: Joi.string(),
+    });
+  };
+
+  static PriceSet = function () {
+    return Joi.object({
+      shopMoney: this.PriceSetShopMoney(),
+
+      presentmentMoney: this.PriceSetPresentmentMoney(),
+    });
+  };
+
+  static PriceSetShopMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static PriceSetPresentmentMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static TaxLines = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      price: Joi.string(),
+
+      rate: Joi.number(),
+
+      priceSet: this.TaxLinesPriceSet(),
+    });
+  };
+
+  static TaxLinesPriceSet = function () {
+    return Joi.object({
+      shopMoney: this.TaxLinesPriceSetShopMoney(),
+
+      presentmentMoney: this.TaxLinesPriceSetPresentmentMoney(),
+    });
+  };
+
+  static TaxLinesPriceSetShopMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static TaxLinesPriceSetPresentmentMoney = function () {
+    return Joi.object({
+      currencyCode: Joi.string(),
+
+      amount: Joi.string(),
+    });
+  };
+
+  static TotalDiscountSet = function () {
+    return Joi.object({
+      presentmentMoney: this.TotalDiscountSetPresentmentMoney(),
+
+      shopMoney: this.TotalDiscountSetShopMoney(),
+    });
+  };
+
+  static TotalDiscountSetPresentmentMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static TotalDiscountSetShopMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static BillingAddress = function () {
+    return Joi.object({
+      address1: Joi.string(),
+
+      city: Joi.string(),
+
+      zip: Joi.string(),
+
+      lastName: Joi.string(),
+
+      address2: Joi.string(),
+
+      longitude: Joi.number(),
+
+      provinceCode: Joi.string(),
+
+      phone: Joi.string(),
+
+      company: Joi.string(),
+
+      latitude: Joi.number(),
+
+      name: Joi.string(),
+
+      country: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      firstName: Joi.string(),
+
+      province: Joi.string(),
+    });
+  };
+
+  static TotalShippingPriceSet = function () {
+    return Joi.object({
+      shopMoney: this.TotalShippingPriceSetShopMoney(),
+
+      presentmentMoney: this.TotalShippingPriceSetPresentmentMoney(),
+    });
+  };
+
+  static TotalShippingPriceSetShopMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static TotalShippingPriceSetPresentmentMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static Customer = function () {
+    return Joi.object({
+      createdAt: Joi.string(),
+
+      id: Joi.number(),
+
+      lastName: Joi.string(),
+
+      state: Joi.string(),
+
+      lastOrderId: Joi.number(),
+
+      note: Joi.string(),
+
+      verifiedEmail: Joi.boolean(),
+
+      phone: Joi.string(),
+
+      acceptsMarketing: Joi.boolean(),
+
+      firstName: Joi.string(),
+
+      tags: Joi.string(),
+
+      lastOrderName: Joi.string(),
+
+      ordersCount: Joi.number(),
+
+      totalSpent: Joi.string(),
+
+      taxExempt: Joi.boolean(),
+
+      currency: Joi.string(),
+
+      acceptsMarketingUpdatedAt: Joi.string(),
+
+      email: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      adminGraphqlApiId: Joi.string(),
+
+      defaultAddress: this.DefaultAddress(),
+    });
+  };
+
+  static DefaultAddress = function () {
+    return Joi.object({
+      lastName: Joi.string(),
+
+      name: Joi.string(),
+
+      provinceCode: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      isDefault: Joi.boolean(),
+
+      id: Joi.number(),
+
+      customerId: Joi.number(),
+
+      firstName: Joi.string(),
+
+      address1: Joi.string(),
+
+      phone: Joi.string(),
+
+      countryName: Joi.string(),
+
+      company: Joi.string(),
+
+      address2: Joi.string(),
+
+      city: Joi.string(),
+
+      province: Joi.string(),
+
+      country: Joi.string(),
+
+      zip: Joi.string(),
+    });
+  };
+
+  static TotalLineItemsPriceSet = function () {
+    return Joi.object({
+      shopMoney: this.TotalLineItemsPriceSetShopMoney(),
+
+      presentmentMoney: this.TotalLineItemsPriceSetPresentmentMoney(),
+    });
+  };
+
+  static TotalLineItemsPriceSetShopMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static TotalLineItemsPriceSetPresentmentMoney = function () {
+    return Joi.object({
+      amount: Joi.string(),
+
+      currencyCode: Joi.string(),
+    });
+  };
+
+  static ShippingAddress = function () {
+    return Joi.object({
+      address1: Joi.string(),
+
+      zip: Joi.string(),
+
+      address2: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      country: Joi.string(),
+
+      lastName: Joi.string(),
+
+      latitude: Joi.number(),
+
+      provinceCode: Joi.string(),
+
+      firstName: Joi.string(),
+
+      phone: Joi.string(),
+
+      province: Joi.string(),
+
+      longitude: Joi.number(),
+
+      city: Joi.string(),
+
+      company: Joi.string(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static OrderListing = function () {
+    return Joi.object({
+      items: Joi.array().items(this.OrderItems()),
+
+      filters: this.Filters(),
+
+      nextOrderStatus: this.NextOrderStatus(),
+
+      page: this.PlatformOrderPage(),
+
+      appliedFilters: this.AppliedFilters(),
+    });
+  };
+
+  static OrderItems = function () {
+    return Joi.object({
+      user: this.PlatformOrderUserInfo(),
+
+      deliveryAddress: this.PlatformDeliveryAddress(),
+
+      channel: this.Channel(),
+
+      breakupValues: this.PlatformBreakupValues(),
+
+      id: Joi.string(),
+
+      application: this.PlatformApplication(),
+
+      shipments: this.PlatformShipment(),
+
+      createdAt: Joi.string(),
+
+      totalShipmentsInOrder: Joi.number(),
+
+      payments: this.ItemsPayments(),
+    });
+  };
+
+  static PlatformOrderUserInfo = function () {
+    return Joi.object({
+      mobile: Joi.string(),
+
+      firstName: Joi.string(),
+
+      gender: Joi.string(),
+
+      email: Joi.string(),
+
+      lastName: Joi.string(),
+
+      isAnonymousUser: Joi.boolean(),
+
+      uid: Joi.number(),
+
+      avisUserId: Joi.string(),
+    });
+  };
+
+  static PlatformDeliveryAddress = function () {
+    return Joi.object({
+      area: Joi.string(),
+
+      state: Joi.string(),
+
+      country: Joi.string(),
+
+      version: Joi.string(),
+
+      address1: Joi.string(),
+
+      latitude: Joi.number(),
+
+      updatedAt: Joi.string(),
+
+      city: Joi.string(),
+
+      landmark: Joi.string(),
+
+      createdAt: Joi.string(),
+
+      name: Joi.string(),
+
+      address: Joi.string(),
+
+      phone: Joi.string(),
+
+      longitude: Joi.number(),
+
+      addressType: Joi.string(),
+
+      email: Joi.string(),
+
+      pincode: Joi.string(),
+
+      address2: Joi.string(),
+
+      contactPerson: Joi.string(),
+
+      addressCategory: Joi.string(),
+    });
+  };
+
+  static Channel = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      logo: Joi.string(),
+    });
+  };
+
+  static PlatformBreakupValues = function () {
+    return Joi.object({
+      display: Joi.string(),
+
+      value: Joi.number(),
+
+      name: Joi.string(),
+    });
+  };
+
+  static PlatformApplication = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      owner: Joi.string(),
+
+      postOrderReassignment: Joi.boolean(),
+
+      id: Joi.string(),
+
+      description: Joi.string(),
+
+      dpAssignment: Joi.boolean(),
+
+      articleAssignment: this.ArticleAssignment(),
+
+      forceReassignment: Joi.boolean(),
+
+      token: Joi.string(),
+
+      secret: Joi.string(),
+    });
+  };
+
+  static ArticleAssignment = function () {
+    return Joi.object({
+      strategy: Joi.string(),
+
+      level: Joi.string(),
+    });
+  };
+
+  static PlatformShipment = function () {
+    return Joi.object({
+      status: this.PlatformShipmentStatus(),
+
+      bags: this.Bags(),
+
+      prices: this.ShipmentPrices(),
+
+      breakupValues: this.ShipmentBreakupValues(),
+
+      id: Joi.string(),
+
+      dpDetails: this.DpDetails(),
+
+      invoice: this.ShipmentInvoice(),
+
+      fulfillingStore: this.PlatformFulfillingStore(),
+
+      payments: this.Payments(),
+
+      gst: this.ShipmentGst(),
+
+      company: this.Company(),
+
+      brand: this.PlatformShipmentBrand(),
+
+      coupon: Joi.object(),
+
+      orderSource: Joi.string(),
+
+      isNotFyndSource: Joi.boolean(),
+
+      comment: Joi.string(),
+
+      promise: this.Promise(),
+
+      trackingDetails: this.ShipmentTrackingDetails(),
+
+      isFyndCoupon: Joi.boolean(),
+
+      orderType: Joi.string(),
+
+      user: this.ShipmentUser(),
+    });
+  };
+
+  static PlatformShipmentStatus = function () {
+    return Joi.object({
+      id: Joi.number(),
+
+      bagList: Joi.array().items(Joi.number()),
+
+      createdAt: Joi.string(),
+
+      status: Joi.string(),
+
+      name: Joi.string(),
+
+      progress: Joi.number(),
+
+      shipmentId: Joi.string(),
+
+      currentShipmentStatus: Joi.string(),
+
+      colorCode: Joi.string(),
+    });
+  };
+
+  static Bags = function () {
+    return Joi.object({
+      financialBreakup: Joi.array().items(this.BagFinancialBreakup()),
+
+      status: this.BagCurrStatus(),
+
+      item: this.BagItem(),
+
+      article: this.BagArticle(),
+
+      id: Joi.number(),
+
+      prices: this.BagPrices(),
+
+      gstDetails: this.GstDetails(),
+
+      breakupValues: this.BagBreakupValues(),
+
+      updateTime: Joi.number(),
+
+      currentStatus: this.BagCurrentStatus(),
+
+      bagStatus: this.BagStatus(),
+    });
+  };
+
+  static BagFinancialBreakup = function () {
+    return Joi.object({
+      valueOfGood: Joi.number(),
+
+      hsnCode: Joi.string(),
+
+      priceEffective: Joi.number(),
+
+      codCharges: Joi.number(),
+
+      gstFee: Joi.string(),
+
+      fyndCredits: Joi.number(),
+
+      refundAmount: Joi.number(),
+
+      cashbackApplied: Joi.number(),
+
+      transferPrice: Joi.number(),
+
+      amountPaidRoundoff: Joi.number(),
+
+      couponValue: Joi.number(),
+
+      amountPaid: Joi.number(),
+
+      gstTaxPercentage: Joi.number(),
+
+      size: Joi.string(),
+
+      totalUnits: Joi.number(),
+
+      discount: Joi.number(),
+
+      couponEffectiveDiscount: Joi.number(),
+
+      cashback: Joi.number(),
+
+      promotionEffectiveDiscount: Joi.number(),
+
+      gstTag: Joi.string(),
+
+      deliveryCharge: Joi.number(),
+
+      refundCredit: Joi.number(),
+
+      priceMarked: Joi.number(),
+
+      identifiers: this.Identifiers(),
+
+      itemName: Joi.string(),
+
+      addedToFyndCash: Joi.boolean(),
+
+      brandCalculatedAmount: Joi.number(),
+    });
+  };
+
+  static Identifiers = function () {
+    return Joi.object({
+      ean: Joi.string(),
+    });
+  };
+
+  static BagCurrStatus = function () {
+    return Joi.object({
+      enableTracking: Joi.boolean(),
+
+      isCustomerReturnAllowed: Joi.boolean(),
+
+      isActive: Joi.boolean(),
+
+      isReturnable: Joi.boolean(),
+
+      canBeCancelled: Joi.boolean(),
+    });
+  };
+
+  static BagItem = function () {
+    return Joi.object({
+      id: Joi.number(),
+
+      size: Joi.string(),
+
+      slugKey: Joi.string(),
+
+      canReturn: Joi.boolean(),
+
+      brandId: Joi.number(),
+
+      l2Category: Joi.array().items(Joi.string()),
+
+      name: Joi.string(),
+
+      code: Joi.string(),
+
+      canCancel: Joi.boolean(),
+
+      attributes: this.BagItemAttributes(),
+
+      l3CategoryName: Joi.string(),
+
+      l3Category: Joi.number(),
+
+      l1Category: Joi.array().items(Joi.string()),
+
+      image: Joi.array().items(Joi.string()),
+
+      brand: Joi.string(),
+
+      lastUpdatedAt: Joi.string(),
+    });
+  };
+
+  static BagItemAttributes = function () {
+    return Joi.object({
+      itemCode: Joi.string(),
+
+      brandName: Joi.string(),
+
+      countryOfOrigin: Joi.string(),
+    });
+  };
+
+  static BagArticle = function () {
+    return Joi.object({
+      identifiers: this.ArticleIdentifiers(),
+
+      espModified: Joi.boolean(),
+
+      isSet: Joi.boolean(),
+
+      size: Joi.string(),
+
+      code: Joi.string(),
+
+      set: this.Set(),
+
+      sellerIdentifier: Joi.string(),
+
+      returnConfig: this.BagArticleReturnConfig(),
+
+      id: Joi.string(),
+
+      uid: Joi.string(),
+
+      childDetails: Joi.object(),
+    });
+  };
+
+  static ArticleIdentifiers = function () {
+    return Joi.object({
+      ean: Joi.string(),
+    });
+  };
+
+  static Set = function () {
+    return Joi.object({
+      quantity: Joi.number(),
+
+      sizeDistribution: this.SetSizeDistribution(),
+    });
+  };
+
+  static SetSizeDistribution = function () {
+    return Joi.object({
+      sizes: this.Sizes(),
+    });
+  };
+
+  static Sizes = function () {
+    return Joi.object({
+      size: Joi.string(),
+
+      pieces: Joi.number(),
+    });
+  };
+
+  static BagArticleReturnConfig = function () {
+    return Joi.object({
+      time: Joi.number(),
+
+      unit: Joi.string(),
+
+      returnable: Joi.boolean(),
+    });
+  };
+
+  static ShipmentPrices = function () {
+    return Joi.object({
+      refundAmount: Joi.number(),
+
+      cashbackApplied: Joi.number(),
+
+      transferPrice: Joi.number(),
+
+      couponValue: Joi.number(),
+
+      amountPaid: Joi.number(),
+
+      deliveryCharge: Joi.number(),
+
+      couponEffectiveDiscount: Joi.number(),
+
+      codCharges: Joi.number(),
+
+      refundCredit: Joi.number(),
+
+      addedToFyndCash: Joi.boolean(),
+
+      gstTaxPercentage: Joi.number(),
+
+      priceMarked: Joi.number(),
+
+      priceEffective: Joi.number(),
+
+      discount: Joi.number(),
+
+      promotionEffectiveDiscount: Joi.number(),
+
+      amountPaidRoundoff: Joi.number(),
+
+      fyndCredits: Joi.number(),
+
+      brandCalculatedAmount: Joi.number(),
+
+      cashback: Joi.number(),
+
+      valueOfGood: Joi.number(),
+    });
+  };
+
+  static GstDetails = function () {
+    return Joi.object({
+      brandCalculatedAmount: Joi.number(),
+
+      gstFee: Joi.string(),
+
+      gstTag: Joi.string(),
+
+      hsnCode: Joi.string(),
+
+      valueOfGood: Joi.number(),
+
+      gstTaxPercentage: Joi.number(),
+
+      isDefaultHsnCode: Joi.boolean(),
+    });
+  };
+
+  static BagBreakupValues = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      display: Joi.string(),
+
+      value: Joi.number(),
+    });
+  };
+
+  static BagCurrentStatus = function () {
+    return Joi.object({
+      updatedAt: Joi.string(),
+
+      bagStateMapper: this.BagStateMapper(),
+
+      status: Joi.string(),
+
+      stateType: Joi.string(),
+    });
+  };
+
+  static BagStateMapper = function () {
+    return Joi.object({
+      appStateName: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      displayName: Joi.string(),
+
+      name: Joi.string(),
+
+      appDisplayName: Joi.string(),
+    });
+  };
+
+  static BagStatus = function () {
+    return Joi.object({
+      status: Joi.string(),
+
+      stateType: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      bagStateMapper: this.BagStatusBagStateMapper(),
+    });
+  };
+
+  static BagStatusBagStateMapper = function () {
+    return Joi.object({
+      isActive: Joi.boolean(),
+
+      displayName: Joi.string(),
+
+      name: Joi.string(),
+
+      appDisplayName: Joi.string(),
+
+      appStateName: Joi.string(),
+    });
+  };
+
+  static BagPrices = function () {
+    return Joi.object({
+      cashback: Joi.number(),
+
+      refundCredit: Joi.number(),
+
+      couponValue: Joi.number(),
+
+      deliveryCharge: Joi.number(),
+
+      fyndCredits: Joi.number(),
+
+      priceMarked: Joi.number(),
+
+      cashbackApplied: Joi.number(),
+
+      valueOfGood: Joi.number(),
+
+      amountPaidRoundoff: Joi.number(),
+
+      amountPaid: Joi.number(),
+
+      codCharges: Joi.number(),
+
+      priceEffective: Joi.number(),
+
+      refundAmount: Joi.number(),
+
+      discount: Joi.number(),
+    });
+  };
+
+  static ShipmentBreakupValues = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      display: Joi.string(),
+
+      value: Joi.number(),
+    });
+  };
+
+  static DpDetails = function () {
+    return Joi.object({
+      gstTag: Joi.string(),
+    });
+  };
+
+  static ShipmentInvoice = function () {
+    return Joi.object({
+      paymentType: Joi.string(),
+
+      updatedDate: Joi.string(),
+
+      invoiceUrl: Joi.string(),
+
+      labelUrl: Joi.string(),
+
+      paymentMode: Joi.string(),
+
+      amountToCollect: Joi.number(),
+
+      rtoAddress: this.RtoAddress(),
+    });
+  };
+
+  static RtoAddress = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      id: Joi.number(),
+
+      phone: Joi.string(),
+
+      locationType: Joi.string(),
+
+      storeAddressJson: this.StoreAddressJson(),
+
+      code: Joi.string(),
+
+      address1: Joi.string(),
+
+      city: Joi.string(),
+
+      country: Joi.string(),
+
+      pincode: Joi.string(),
+
+      companyId: Joi.number(),
+
+      contactPerson: Joi.string(),
+
+      state: Joi.string(),
+
+      storeEmail: Joi.string(),
+
+      address2: Joi.string(),
+    });
+  };
+
+  static StoreAddressJson = function () {
+    return Joi.object({
+      country: Joi.string(),
+
+      latitude: Joi.number(),
+
+      updatedAt: Joi.string(),
+
+      area: Joi.string(),
+
+      state: Joi.string(),
+
+      addressType: Joi.string(),
+
+      city: Joi.string(),
+
+      pincode: Joi.string(),
+
+      address1: Joi.string(),
+
+      address2: Joi.string(),
+
+      longitude: Joi.number(),
+
+      email: Joi.string(),
+
+      phone: Joi.string(),
+
+      createdAt: Joi.string(),
+
+      contactPerson: Joi.string(),
+
+      addressCategory: Joi.string(),
+
+      version: Joi.string(),
+
+      landmark: Joi.string(),
+    });
+  };
+
+  static PlatformFulfillingStore = function () {
+    return Joi.object({
+      packagingMaterialCount: Joi.number(),
+
+      locationType: Joi.string(),
+
+      code: Joi.string(),
+
+      city: Joi.string(),
+
+      meta: this.FulfillingStoreMeta(),
+
+      name: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      address1: Joi.string(),
+
+      storeEmail: Joi.string(),
+
+      isArchived: Joi.boolean(),
+
+      state: Joi.string(),
+
+      address2: Joi.string(),
+
+      contactPerson: Joi.string(),
+
+      phone: Joi.string(),
+
+      isEnabledForRecon: Joi.boolean(),
+
+      fulfillmentChannel: Joi.string(),
+
+      createdAt: Joi.string(),
+
+      id: Joi.number(),
+
+      pincode: Joi.string(),
+
+      brandStoreTags: Joi.array().items(Joi.string()),
+
+      companyId: Joi.number(),
+
+      storeAddressJson: this.FulfillingStoreStoreAddressJson(),
+
+      updatedAt: Joi.string(),
+
+      loginUsername: Joi.string(),
+
+      country: Joi.string(),
+    });
+  };
+
+  static FulfillingStoreMeta = function () {
+    return Joi.object({
+      additionalContactDetails: this.AdditionalContactDetails(),
+
+      documents: this.Documents(),
+
+      gstNumber: Joi.string(),
+
+      displayName: Joi.string(),
+
+      productReturnConfig: this.ProductReturnConfig(),
+
+      allowDpAssignmentFromFynd: Joi.boolean(),
+
+      stage: Joi.string(),
+
+      timing: this.Timing(),
+    });
+  };
+
+  static AdditionalContactDetails = function () {
+    return Joi.object({
+      number: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static Documents = function () {
+    return Joi.object({
+      gst: this.Gst(),
+    });
+  };
+
+  static Gst = function () {
+    return Joi.object({
+      legalName: Joi.string(),
+
+      type: Joi.string(),
+
+      value: Joi.string(),
+
+      verified: Joi.boolean(),
+    });
+  };
+
+  static ProductReturnConfig = function () {
+    return Joi.object({
+      onSameStore: Joi.boolean(),
+    });
+  };
+
+  static Timing = function () {
+    return Joi.object({
+      opening: this.Opening(),
+
+      weekday: Joi.string(),
+
+      open: Joi.boolean(),
+
+      closing: this.Closing(),
+    });
+  };
+
+  static Opening = function () {
+    return Joi.object({
+      minute: Joi.number(),
+
+      hour: Joi.number(),
+    });
+  };
+
+  static Closing = function () {
+    return Joi.object({
+      hour: Joi.number(),
+
+      minute: Joi.number(),
+    });
+  };
+
+  static FulfillingStoreStoreAddressJson = function () {
+    return Joi.object({
+      address2: Joi.string(),
+
+      area: Joi.string(),
+
+      email: Joi.string(),
+
+      phone: Joi.string(),
+
+      state: Joi.string(),
+
+      contactPerson: Joi.string(),
+
+      country: Joi.string(),
+
+      pincode: Joi.string(),
+
+      version: Joi.string(),
+
+      createdAt: Joi.string(),
+
+      addressType: Joi.string(),
+
+      city: Joi.string(),
+
+      address1: Joi.string(),
+
+      landmark: Joi.string(),
+
+      latitude: Joi.number(),
+
+      longitude: Joi.number(),
+
+      updatedAt: Joi.string(),
+
+      addressCategory: Joi.string(),
+    });
+  };
+
+  static Payments = function () {
+    return Joi.object({
+      isActive: Joi.boolean(),
+
+      displayName: Joi.string(),
+
+      logo: Joi.string(),
+
+      source: Joi.string(),
+
+      sourceNickname: Joi.string(),
+
+      displayPriority: Joi.number(),
+
+      id: Joi.number(),
+
+      mode: Joi.string(),
+
+      paymentIdentifier: Joi.string(),
+    });
+  };
+
+  static ShipmentGst = function () {
+    return Joi.object({
+      brandCalculatedAmount: Joi.number(),
+
+      valueOfGood: Joi.number(),
+
+      gstFee: Joi.number(),
+    });
+  };
+
+  static PlatformShipmentBrand = function () {
+    return Joi.object({
+      creditNoteAllowed: Joi.boolean(),
+
+      brandName: Joi.string(),
+
+      modifiedOn: Joi.string(),
+
+      id: Joi.number(),
+
+      isVirtualInvoice: Joi.boolean(),
+
+      createdOn: Joi.string(),
+
+      logo: Joi.string(),
+    });
+  };
+
+  static Promise = function () {
+    return Joi.object({
+      timestamp: this.Timestamp(),
+    });
+  };
+
+  static Timestamp = function () {
+    return Joi.object({
+      min: Joi.string(),
+
+      max: Joi.string(),
+    });
+  };
+
+  static ShipmentTrackingDetails = function () {
+    return Joi.object({
+      status: Joi.string(),
+
+      time: Joi.string(),
+
+      isPassed: Joi.boolean(),
+
+      isCurrent: Joi.boolean(),
+    });
+  };
+
+  static ShipmentUser = function () {
+    return Joi.object({
+      email: Joi.string(),
+
+      id: Joi.number(),
+
+      firstName: Joi.string(),
+
+      mobile: Joi.string(),
+
+      gender: Joi.string(),
+
+      lastName: Joi.string(),
+
+      isAnonymousUser: Joi.boolean(),
+
+      mongoUserId: Joi.string(),
+    });
+  };
+
+  static ItemsPayments = function () {
+    return Joi.object({
+      displayPriority: Joi.number(),
+
+      id: Joi.number(),
+
+      isActive: Joi.boolean(),
+
+      displayName: Joi.string(),
+
+      logo: Joi.string(),
+
+      paymentIdentifier: Joi.string(),
+
+      sourceNickname: Joi.string(),
+
+      mode: Joi.string(),
+
+      source: Joi.string(),
+    });
+  };
+
+  static Filters = function () {
+    return Joi.object({
+      stages: this.Stages(),
+    });
+  };
+
+  static Stages = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.string(),
+
+      isDefault: Joi.boolean(),
+
+      filters: this.StagesFilters(),
+    });
+  };
+
+  static StagesFilters = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.string(),
+
+      type: Joi.string(),
+
+      options: this.Options(),
+    });
+  };
+
+  static Options = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static NextOrderStatus = function () {
+    return Joi.object({
+      bagConfirmed: this.BagConfirmed(),
+
+      dpAssigned: this.DpAssigned(),
+
+      returnBagDelivered: this.ReturnBagDelivered(),
+
+      placed: this.Placed(),
+
+      deliveryDone: this.DeliveryDone(),
+
+      pending: this.Pending(),
+
+      bagPacked: this.BagPacked(),
+    });
+  };
+
+  static BagConfirmed = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static DpAssigned = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static ReturnBagDelivered = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static Placed = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static DeliveryDone = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static Pending = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static BagPacked = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.string(),
+    });
+  };
+
+  static PlatformOrderPage = function () {
+    return Joi.object({
+      next: Joi.string(),
+
+      previous: Joi.string(),
+
+      type: Joi.string(),
+
+      size: Joi.number(),
+
+      current: Joi.number(),
+
+      hasNext: Joi.boolean(),
+
+      itemTotal: this.ItemTotal(),
+    });
+  };
+
+  static ItemTotal = function () {
+    return Joi.object({
+      new: Joi.number(),
+
+      processing: Joi.number(),
+
+      returns: Joi.number(),
+
+      all: Joi.number(),
+    });
+  };
+
+  static AppliedFilters = function () {
+    return Joi.object({
+      stage: Joi.string(),
+
+      stores: Joi.array().items(Joi.string()),
+
+      fromDate: Joi.string(),
+
+      toDate: Joi.string(),
+    });
+  };
+
+  static UpdateOrderReprocessResponse = function () {
+    return Joi.object({
+      status: Joi.string(),
+    });
+  };
+
+  static PlatformOrderTrack = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      requestId: Joi.string(),
+
+      message: Joi.string(),
+
+      mobile: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      resendTimer: Joi.number(),
+
+      resendToken: Joi.string(),
+    });
+  };
+
+  static GetPingResponse = function () {
+    return Joi.object({
+      ping: Joi.string(),
+    });
+  };
+
+  static UpdateShipmentStatusResponse = function () {
+    return Joi.object({
+      shipments: Joi.object(),
+
+      errorShipments: Joi.array().items(any),
+    });
+  };
+
+  static UpdateShipmentStatusBody = function () {
+    return Joi.object({
+      shipments: Joi.object(),
+
+      forceTransition: Joi.boolean(),
+
+      task: Joi.boolean(),
+    });
+  };
+
+  static PlatformShipmentTrack = function () {
+    return Joi.object({
+      results: this.Results(),
+    });
+  };
+
+  static Results = function () {
+    return Joi.object({
+      awb: Joi.string(),
+
+      updatedAt: Joi.string(),
+
+      lastLocationRecievedAt: Joi.string(),
+
+      reason: Joi.string(),
+
+      shipmentType: Joi.string(),
+
+      status: Joi.string(),
+
+      updatedTime: Joi.string(),
+
+      accountName: Joi.string(),
+    });
+  };
+
+  static UpdateProcessShipmenstRequestBody = function () {
+    return Joi.object({
+      shipmentIds: Joi.array().items(Joi.string()),
+
+      expectedStatus: Joi.string(),
+    });
+  };
+
+  static UpdateProcessShipmenstRequestResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      message: Joi.string(),
+    });
+  };
+
+  static GetVoiceCallbackResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static GetClickToCallResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static ApefaceApiError = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static CompanyAddress = function () {
+    return Joi.object({
+      landmark: Joi.string(),
+
+      pincode: Joi.number(),
+
+      latitude: Joi.number(),
+
+      address2: Joi.string(),
+
+      state: Joi.string(),
+
+      longitude: Joi.number(),
+
+      address1: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      city: Joi.string(),
+
+      country: Joi.string(),
+    });
+  };
+
+  static Document = function () {
+    return Joi.object({
+      value: Joi.string(),
+
+      type: Joi.string(),
+
+      verified: Joi.boolean(),
+
+      url: Joi.string(),
+
+      legalName: Joi.string(),
+    });
+  };
+
+  static BusinessCountryInfo = function () {
+    return Joi.object({
+      countryCode: Joi.string(),
+
+      country: Joi.string(),
+    });
+  };
+
+  static ReferralInfo = function () {
+    return Joi.object({
+      referralCode: Joi.string(),
+    });
+  };
+
+  static CompanyStoreSerializerRequest = function () {
+    return Joi.object({
+      address: this.CompanyAddress(),
+
+      brands: Joi.array().items(Joi.number()),
+
+      uid: Joi.number(),
+
+      document: this.Document(),
+
+      notificationEmails: Joi.array().items(Joi.string()),
+
+      businessType: Joi.string(),
+
+      businessInfo: Joi.string(),
+
+      warnings: Joi.object(),
+
+      businessCountryInfo: this.BusinessCountryInfo(),
+
+      name: Joi.string(),
+
+      franchiseEnabled: Joi.boolean(),
+
+      referralInfo: this.ReferralInfo(),
+    });
+  };
+
+  static SuccessResponse = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      uid: Joi.number(),
+    });
+  };
+
+  static ErrorResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+
+      meta: Joi.object(),
+
+      status: Joi.number(),
+
+      errors: Joi.object(),
+
+      code: Joi.string(),
+    });
+  };
+
+  static UserSerializer = function () {
+    return Joi.object({
+      contact: Joi.string(),
+
+      userId: Joi.string(),
+
+      username: Joi.string(),
+    });
+  };
+
+  static GetAddressSerializer = function () {
+    return Joi.object({
+      addressType: Joi.string(),
+
+      landmark: Joi.string(),
+
+      pincode: Joi.number(),
+
+      latitude: Joi.number(),
+
+      address2: Joi.string(),
+
+      state: Joi.string(),
+
+      longitude: Joi.number(),
+
+      address1: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      city: Joi.string(),
+
+      country: Joi.string(),
+    });
+  };
+
+  static Website = function () {
+    return Joi.object({
+      url: Joi.string(),
+    });
+  };
+
+  static BusinessDetails = function () {
+    return Joi.object({
+      website: this.Website(),
+    });
+  };
+
+  static BusinessCountryInfo1 = function () {
+    return Joi.object({
+      countryCode: Joi.string(),
+
+      country: Joi.string(),
+    });
+  };
+
+  static ContactDetails = function () {
+    return Joi.object({
+      phone: Joi.array().items(this.PhoneNumber()),
+
+      emails: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static GetCompanyProfileSerializerResponse = function () {
+    return Joi.object({
+      stage: Joi.string(),
+
+      createdBy: this.UserSerializer(),
+
+      createdOn: Joi.string(),
+
+      warnings: Joi.object(),
+
+      name: Joi.string(),
+
+      uid: Joi.number(),
+
+      modifiedOn: Joi.string(),
+
+      notificationEmails: Joi.array().items(Joi.string()),
+
+      documents: Joi.array().items(this.Document()),
+
+      businessType: Joi.string(),
+
+      franchiseEnabled: Joi.boolean(),
+
+      addresses: Joi.array().items(this.GetAddressSerializer()),
+
+      businessDetails: this.BusinessDetails(),
+
+      businessInfo: Joi.string(),
+
+      businessCountryInfo: this.BusinessCountryInfo1(),
+
+      modifiedBy: this.UserSerializer(),
+
+      contactDetails: this.ContactDetails(),
+
+      verifiedBy: this.UserSerializer(),
+
+      verifiedOn: Joi.string(),
+
+      companyType: Joi.string(),
+    });
+  };
+
+  static DocumentsObj = function () {
+    return Joi.object({
+      pending: Joi.number(),
+
+      verified: Joi.number(),
+    });
+  };
+
+  static MetricsSerializer = function () {
+    return Joi.object({
+      brand: this.DocumentsObj(),
+
+      product: this.DocumentsObj(),
+
+      uid: Joi.number(),
+
+      storeDocuments: this.DocumentsObj(),
+
+      stage: Joi.string(),
+
+      companyDocuments: this.DocumentsObj(),
+
+      store: this.DocumentsObj(),
+    });
+  };
+
+  static BrandBannerSerializer = function () {
+    return Joi.object({
+      portrait: Joi.string(),
+
+      landscape: Joi.string(),
+    });
+  };
+
+  static CreateUpdateBrandRequestSerializer = function () {
+    return Joi.object({
+      banner: this.BrandBannerSerializer(),
+
+      uid: Joi.number(),
+
+      localeLanguage: Joi.object(),
+
+      customJson: Joi.object(),
+
+      logo: Joi.string(),
+
+      name: Joi.string(),
+
+      companyId: Joi.number(),
+
+      description: Joi.string(),
+
+      brandTier: Joi.string(),
+
+      synonyms: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static UserSerializer1 = function () {
+    return Joi.object({
+      contact: Joi.string(),
+
+      userId: Joi.string(),
+
+      username: Joi.string(),
+    });
+  };
+
+  static GetBrandResponseSerializer = function () {
+    return Joi.object({
+      banner: this.BrandBannerSerializer(),
+
+      verifiedOn: Joi.string(),
+
+      slugKey: Joi.string(),
+
+      uid: Joi.number(),
+
+      stage: Joi.string(),
+
+      modifiedOn: Joi.string(),
+
+      createdBy: this.UserSerializer1(),
+
+      localeLanguage: Joi.object(),
+
+      rejectReason: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      synonyms: Joi.array().items(Joi.string()),
+
+      logo: Joi.string(),
+
+      name: Joi.string(),
+
+      customJson: Joi.object(),
+
+      warnings: Joi.object(),
+
+      modifiedBy: this.UserSerializer1(),
+
+      description: Joi.string(),
+
+      verifiedBy: this.UserSerializer1(),
+    });
+  };
+
+  static CompanyBrandPostRequestSerializer = function () {
+    return Joi.object({
+      brands: Joi.array().items(Joi.number()),
+
+      company: Joi.number(),
+
+      uid: Joi.number(),
+    });
+  };
+
+  static CompanyBrandListSerializer = function () {
+    return Joi.object({
+      page: Joi.object(),
+
+      items: Joi.array().items(Joi.object()),
+    });
+  };
+
+  static GetAddressSerializer1 = function () {
+    return Joi.object({
+      addressType: Joi.string(),
+
+      landmark: Joi.string(),
+
+      pincode: Joi.number(),
+
+      latitude: Joi.number(),
+
+      address2: Joi.string(),
+
+      state: Joi.string(),
+
+      longitude: Joi.number(),
+
+      address1: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      city: Joi.string(),
+
+      country: Joi.string(),
+    });
+  };
+
+  static LocationManagerSerializer = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      email: Joi.string(),
+
+      mobileNo: this.PhoneNumber(),
+    });
+  };
+
+  static ProductReturnConfigSerializer = function () {
+    return Joi.object({
+      storeUid: Joi.number(),
+
+      onSameStore: Joi.boolean(),
+    });
+  };
+
+  static LocationTimingSerializer = function () {
+    return Joi.object({
+      hour: Joi.number(),
+
+      minute: Joi.number(),
+    });
+  };
+
+  static LocationDayWiseSerializer = function () {
+    return Joi.object({
+      closing: this.LocationTimingSerializer(),
+
+      open: Joi.boolean(),
+
+      opening: this.LocationTimingSerializer(),
+
+      weekday: Joi.string(),
+    });
+  };
+
+  static InvoiceCredSerializer = function () {
+    return Joi.object({
+      enabled: Joi.boolean(),
+
+      password: Joi.string(),
+
+      username: Joi.string(),
+    });
+  };
+
+  static InvoiceDetailsSerializer = function () {
+    return Joi.object({
+      eInvoice: this.InvoiceCredSerializer(),
+
+      eWaybill: this.InvoiceCredSerializer(),
+    });
+  };
+
+  static LocationSerializer = function () {
+    return Joi.object({
+      address: this.GetAddressSerializer1(),
+
+      company: Joi.number(),
+
+      manager: this.LocationManagerSerializer(),
+
+      uid: Joi.number(),
+
+      stage: Joi.string(),
+
+      notificationEmails: Joi.array().items(Joi.string()),
+
+      documents: Joi.array().items(this.Document()),
+
+      displayName: Joi.string(),
+
+      productReturnConfig: this.ProductReturnConfigSerializer(),
+
+      customJson: Joi.object(),
+
+      contactNumbers: Joi.array().items(this.PhoneNumber()),
+
+      name: Joi.string(),
+
+      warnings: Joi.object(),
+
+      storeType: Joi.string(),
+
+      timing: Joi.array().items(this.LocationDayWiseSerializer()),
+
+      gstCredentials: this.InvoiceDetailsSerializer(),
+
+      code: Joi.string(),
+    });
+  };
+
+  static LocationListSerializer = function () {
+    return Joi.object({
+      page: Joi.object(),
+
+      items: Joi.array().items(Joi.object()),
+    });
+  };
+
+  static GetCompanySerializer = function () {
+    return Joi.object({
+      verifiedOn: Joi.string(),
+
+      addresses: Joi.array().items(this.GetAddressSerializer()),
+
+      uid: Joi.number(),
+
+      stage: Joi.string(),
+
+      modifiedOn: Joi.string(),
+
+      createdBy: this.UserSerializer(),
+
+      companyType: Joi.string(),
+
+      businessType: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      rejectReason: Joi.string(),
+
+      name: Joi.string(),
+
+      modifiedBy: this.UserSerializer(),
+
+      verifiedBy: this.UserSerializer(),
+    });
+  };
+
+  static LocationIntegrationType = function () {
+    return Joi.object({
+      order: Joi.string(),
+
+      inventory: Joi.string(),
+    });
+  };
+
+  static GetLocationSerializer = function () {
+    return Joi.object({
+      stage: Joi.string(),
+
+      createdBy: this.UserSerializer1(),
+
+      createdOn: Joi.string(),
+
+      warnings: Joi.object(),
+
+      name: Joi.string(),
+
+      address: this.GetAddressSerializer(),
+
+      company: this.GetCompanySerializer(),
+
+      manager: this.LocationManagerSerializer(),
+
+      uid: Joi.number(),
+
+      modifiedOn: Joi.string(),
+
+      notificationEmails: Joi.array().items(Joi.string()),
+
+      documents: Joi.array().items(this.Document()),
+
+      productReturnConfig: this.ProductReturnConfigSerializer(),
+
+      code: Joi.string(),
+
+      integrationType: this.LocationIntegrationType(),
+
+      phoneNumber: Joi.string(),
+
+      contactNumbers: Joi.array().items(this.PhoneNumber()),
+
+      modifiedBy: this.UserSerializer1(),
+
+      timing: Joi.array().items(this.LocationDayWiseSerializer()),
+
+      verifiedBy: this.UserSerializer1(),
+
+      verifiedOn: Joi.string(),
+
+      displayName: Joi.string(),
+
+      customJson: Joi.object(),
+
+      storeType: Joi.string(),
+
+      gstCredentials: this.InvoiceDetailsSerializer(),
+    });
+  };
+
+  static FailedResponse = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static CDN = function () {
+    return Joi.object({
+      url: Joi.string(),
+    });
+  };
+
+  static Upload = function () {
+    return Joi.object({
+      expiry: Joi.number(),
+
+      url: Joi.string(),
+    });
+  };
+
+  static StartResponse = function () {
+    return Joi.object({
+      fileName: Joi.string(),
+
+      filePath: Joi.string(),
+
+      contentType: Joi.string(),
+
+      method: Joi.string(),
+
+      namespace: Joi.string(),
+
+      operation: Joi.string(),
+
+      size: Joi.number(),
+
+      upload: this.Upload(),
+
+      cdn: this.CDN(),
+    });
+  };
+
+  static StartRequest = function () {
+    return Joi.object({
+      fileName: Joi.string(),
+
+      contentType: Joi.string(),
+
+      size: Joi.number(),
+
+      tags: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static CompleteResponse = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      fileName: Joi.string(),
+
+      filePath: Joi.string(),
+
+      contentType: Joi.string(),
+
+      method: Joi.string(),
+
+      namespace: Joi.string(),
+
+      operation: Joi.string(),
+
+      size: Joi.number(),
+
+      upload: this.Upload(),
+
+      cdn: this.CDN(),
+
+      success: Joi.string(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      createdOn: Joi.string(),
+
+      modifiedOn: Joi.string(),
+    });
+  };
+
+  static Opts = function () {
+    return Joi.object({
+      attempts: Joi.number(),
+
+      timestamp: Joi.number(),
+
+      delay: Joi.number(),
+    });
+  };
+
+  static CopyFileTask = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      name: Joi.string(),
+
+      data: this.BulkRequest(),
+
+      opts: this.Opts(),
+
+      progress: Joi.number(),
+
+      delay: Joi.number(),
+
+      timestamp: Joi.number(),
+
+      attemptsMade: Joi.number(),
+
+      stacktrace: Joi.array().items(Joi.string()),
+
+      finishedOn: Joi.number(),
+
+      processedOn: Joi.number(),
+    });
+  };
+
+  static BulkResponse = function () {
+    return Joi.object({
+      trackingUrl: Joi.string(),
+
+      task: this.CopyFileTask(),
+    });
+  };
+
+  static ReqConfiguration = function () {
+    return Joi.object({
+      concurrency: Joi.number(),
+    });
+  };
+
+  static Destination = function () {
+    return Joi.object({
+      namespace: Joi.string(),
+
+      rewrite: Joi.string(),
+
+      basepath: Joi.string(),
+    });
+  };
+
+  static BulkRequest = function () {
+    return Joi.object({
+      urls: Joi.array().items(Joi.string()),
+
+      destination: this.Destination(),
+
+      configuration: this.ReqConfiguration(),
+    });
+  };
+
+  static Urls = function () {
+    return Joi.object({
+      url: Joi.string(),
+
+      signedUrl: Joi.string(),
+
+      expiry: Joi.number(),
+    });
+  };
+
+  static SignUrlResponse = function () {
+    return Joi.object({
+      urls: Joi.array().items(this.Urls()),
+    });
+  };
+
+  static SignUrlRequest = function () {
+    return Joi.object({
+      expiry: Joi.number(),
+
+      urls: Joi.array().items(Joi.string()),
+    });
+  };
+
+  static DbRecord = function () {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      id: Joi.string(),
+
+      fileName: Joi.string(),
+
+      operation: Joi.string(),
+
+      namespace: Joi.string(),
+
+      contentType: Joi.string(),
+
+      filePath: Joi.string(),
+
+      upload: this.Upload(),
+
+      cdn: this.CDN(),
+
+      createdOn: Joi.string(),
+
+      modifiedOn: Joi.string(),
+    });
+  };
+
+  static BrowseResponse = function () {
+    return Joi.object({
+      items: Joi.array().items(this.DbRecord()),
+
+      page: this.Page(),
+    });
+  };
+
+  static RedirectDevice = function () {
+    return Joi.object({
+      link: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static WebRedirect = function () {
+    return Joi.object({
+      link: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static Redirects = function () {
+    return Joi.object({
+      ios: this.RedirectDevice(),
+
+      android: this.RedirectDevice(),
+
+      web: this.WebRedirect(),
+
+      forceWeb: Joi.boolean(),
+    });
+  };
+
+  static ShortLinkReq = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      url: Joi.string(),
+
+      hash: Joi.string(),
+
+      active: Joi.string(),
+
+      type: Joi.string(),
+
+      expireAt: Joi.string(),
+
+      enableTracking: Joi.boolean(),
+
+      redirects: this.Redirects(),
+    });
+  };
+
+  static UrlInfo = function () {
+    return Joi.object({
+      original: Joi.string(),
+
+      short: Joi.string(),
+
+      hash: Joi.string(),
+    });
+  };
+
+  static ShortLinkRes = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      url: this.UrlInfo(),
+
+      createdBy: Joi.string(),
+
+      personalized: Joi.string(),
+
+      appRedirect: Joi.string(),
+
+      fallback: Joi.string(),
+
+      active: Joi.boolean(),
+
+      id: Joi.string(),
+
+      enableTracking: Joi.boolean(),
+
+      expireAt: Joi.boolean(),
+
+      application: Joi.string(),
+
+      userId: Joi.boolean(),
+
+      createdAt: Joi.boolean(),
+
+      updatedAt: Joi.boolean(),
+
+      redirects: this.Redirects(),
+    });
+  };
+
+  static ShortLinkList = function () {
+    return Joi.object({
+      items: Joi.array().items(this.ShortLinkRes()),
+
+      size: Joi.number(),
+
+      itemTotal: Joi.number(),
+
+      current: Joi.number(),
+
+      hasNext: Joi.string(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static DataTresholdDTO = function () {
+    return Joi.object({
+      minPrice: Joi.number(),
+
+      safeStock: Joi.number(),
+
+      periodThreshold: Joi.number(),
+
+      periodThresholdType: Joi.string(),
+
+      periodTypeList: Joi.array().items(this.GenericDTO()),
+    });
+  };
+
+  static GenericDTO = function () {
+    return Joi.object({
+      text: Joi.string(),
+
+      value: Joi.object(),
+    });
+  };
+
+  static JobConfigDTO = function () {
+    return Joi.object({
+      integration: Joi.string(),
+
+      integrationData: Joi.object(),
+
+      companyName: Joi.string(),
+
+      companyId: Joi.number(),
+
+      taskDetails: this.TaskDTO(),
+
+      thresholdDetails: this.DataTresholdDTO(),
+
+      jobCode: Joi.string(),
+
+      alias: Joi.string(),
+    });
+  };
+
+  static TaskDTO = function () {
+    return Joi.object({
+      type: Joi.number(),
+
+      groupList: Joi.array().items(this.GenericDTO()),
+    });
+  };
+
+  static ResponseEnvelopeString = function () {
+    return Joi.object({
+      timestamp: Joi.string(),
+
+      status: Joi.number(),
+
+      error: Joi.string(),
+
+      exception: Joi.string(),
+
+      message: Joi.string(),
+
+      totalTimeTakenInMillis: Joi.number(),
+
+      httpStatus: Joi.string(),
+
+      items: Joi.string(),
+
+      payload: Joi.string(),
+
+      traceId: Joi.string(),
+
+      page: this.Page(),
+    });
+  };
+
+  static AWSS3config = function () {
+    return Joi.object({
+      bucket: Joi.string(),
+
+      region: Joi.string(),
+
+      dir: Joi.string(),
+
+      accessKey: Joi.string(),
+
+      secretKey: Joi.string(),
+
+      localFilePath: Joi.string(),
+
+      archivePath: Joi.string(),
+
+      archive: Joi.boolean(),
+
+      delete: Joi.boolean(),
+
+      unzip: Joi.boolean(),
+
+      zipFormat: Joi.string(),
+
+      fileRegex: Joi.string(),
+
+      archiveConfig: this.ArchiveConfig(),
+    });
+  };
+
+  static ArchiveConfig = function () {
+    return Joi.object({
+      delete: Joi.boolean(),
+
+      archive: Joi.boolean(),
+
+      archiveDir: Joi.string(),
+    });
+  };
+
+  static Audit = function () {
+    return Joi.object({
+      createdBy: Joi.string(),
+
+      modifiedBy: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      modifiedOn: Joi.string(),
+    });
+  };
+
+  static CatalogMasterConfig = function () {
+    return Joi.object({
+      sourceSlug: Joi.string(),
+    });
+  };
+
+  static CompanyConfig = function () {
+    return Joi.object({
+      companyId: Joi.number(),
+
+      excludeSteps: Joi.array().items(Joi.number()),
+
+      hiddenClosetKeys: Joi.array().items(Joi.string()),
+
+      openTags: Joi.object(),
+
+      taxIdentifiers: Joi.array().items(Joi.string()),
+
+      deleteQuantityThreshold: Joi.number(),
+    });
+  };
+
+  static DBConfig = function () {
+    return Joi.object({
+      vendor: Joi.string(),
+
+      host: Joi.string(),
+
+      port: Joi.number(),
+
+      username: Joi.string(),
+
+      password: Joi.string(),
+
+      dbname: Joi.string(),
+
+      query: Joi.string(),
+
+      procedure: Joi.boolean(),
+
+      driverClass: Joi.string(),
+
+      jdbcUrl: Joi.string(),
+
+      optionalProperties: Joi.object(),
+    });
+  };
+
+  static DBConnectionProfile = function () {
+    return Joi.object({
+      inventory: Joi.string(),
+    });
+  };
+
+  static DBParamConfig = function () {
+    return Joi.object({
+      params: Joi.object(),
+    });
+  };
+
+  static DefaultHeadersDTO = function () {
+    return Joi.object({
+      store: this.PropBeanDTO(),
+
+      intfArticleId: this.PropBeanDTO(),
+
+      priceEffective: this.PropBeanDTO(),
+
+      quantity: this.PropBeanDTO(),
+    });
+  };
+
+  static DocMappingConfig = function () {
+    return Joi.object({
+      properties: Joi.object(),
+
+      junkDataThresholdCount: Joi.number(),
+
+      propBeanConfigs: Joi.array().items(this.PropBeanConfig()),
+
+      unwindField: Joi.string(),
+
+      defaultHeaders: this.DefaultHeadersDTO(),
+    });
+  };
+
+  static EmailConfig = function () {
+    return Joi.object({
+      recepient: Joi.string(),
+
+      host: Joi.string(),
+
+      username: Joi.string(),
+
+      password: Joi.string(),
+
+      unzip: Joi.boolean(),
+
+      readFromContent: Joi.boolean(),
+
+      filterBasedOnRecepients: Joi.boolean(),
+
+      pcol: Joi.string(),
+
+      subjectLineRegex: Joi.string(),
+
+      senderAddress: Joi.string(),
+
+      localDir: Joi.string(),
+
+      folderNameHierarchies: Joi.array().items(Joi.string()),
+
+      attachmentRegex: Joi.string(),
+
+      bodyContentRegex: Joi.string(),
+
+      passwordProtected: Joi.boolean(),
+
+      zipFormat: Joi.string(),
+
+      attachmentMandate: Joi.boolean(),
+
+      filterFilesAfterExtraction: Joi.boolean(),
+
+      archiveConfig: this.ArchiveConfig(),
+
+      readAllUnreadMails: Joi.boolean(),
+
+      contentType: Joi.string(),
+
+      downloadableLink: Joi.boolean(),
+
+      properties: Joi.object(),
+    });
+  };
+
+  static FTPConfig = function () {
+    return Joi.object({
+      host: Joi.string(),
+
+      port: Joi.number(),
+
+      username: Joi.string(),
+
+      password: Joi.string(),
+
+      unzip: Joi.boolean(),
+
+      retries: Joi.number(),
+
+      interval: Joi.number(),
+
+      localDir: Joi.string(),
+
+      remoteDir: Joi.string(),
+
+      zipFileRegex: Joi.string(),
+
+      archiveConfig: this.ArchiveConfig(),
+
+      fileRegex: Joi.string(),
+
+      zipFormat: Joi.string(),
+
+      readAllFiles: Joi.boolean(),
+    });
+  };
+
+  static FileConfig = function () {
+    return Joi.object({
+      delimiter: Joi.string(),
+
+      charset: Joi.string(),
+
+      properties: Joi.object(),
+
+      fileHasHeader: Joi.boolean(),
+
+      headerIndex: Joi.number(),
+
+      headerArray: Joi.array().items(Joi.string()),
+
+      dataStartIndex: Joi.number(),
+
+      propBeanConfigs: Joi.array().items(this.PropBeanConfig()),
+
+      junkDataThresholdCount: Joi.number(),
+
+      fileType: Joi.string(),
+
+      lineValidityCheck: Joi.boolean(),
+
+      sheetNames: Joi.array().items(Joi.string()),
+
+      readAllSheets: Joi.boolean(),
+
+      quoteChar: Joi.string(),
+
+      escapeChar: Joi.string(),
+
+      defaultHeaders: this.DefaultHeadersDTO(),
+    });
+  };
+
+  static GoogleSpreadSheetConfig = function () {
+    return Joi.object({
+      range: Joi.string(),
+
+      sheetId: Joi.string(),
+
+      clientSecretLocation: Joi.string(),
+
+      credStorageDirectory: Joi.string(),
+
+      localDir: Joi.string(),
+
+      archiveConfig: this.ArchiveConfig(),
+    });
+  };
+
+  static HttpConfig = function () {
+    return Joi.object({
+      hosturl: Joi.string(),
+
+      username: Joi.string(),
+
+      password: Joi.string(),
+
+      requestParams: Joi.object(),
+
+      httpMethod: Joi.string(),
+
+      requestPayload: Joi.string(),
+
+      localPath: Joi.string(),
+
+      archiveConfig: this.ArchiveConfig(),
+    });
+  };
+
+  static JobConfig = function () {
+    return Joi.object({
+      id: Joi.number(),
+
+      jobCode: Joi.string(),
+
+      taskType: Joi.string(),
+
+      syncDelay: Joi.number(),
+
+      cronExpression: Joi.string(),
+
+      storeFilter: this.StoreFilter(),
+
+      processConfig: this.ProcessConfig(),
+
+      storeConfig: Joi.array().items(this.StoreConfig()),
+
+      properties: Joi.object(),
+
+      immediateFirstRun: Joi.boolean(),
+
+      disable: Joi.boolean(),
+
+      dependentJobCodes: Joi.array().items(Joi.string()),
+
+      companyConfig: Joi.array().items(this.CompanyConfig()),
+
+      companyIds: Joi.array().items(Joi.number()),
+
+      taxIdentifiers: Joi.array().items(Joi.string()),
+
+      priority: Joi.string(),
+
+      periodThreshold: Joi.number(),
+
+      periodThresholdType: Joi.string(),
+
+      dbConnectionProfile: this.DBConnectionProfile(),
+
+      params: Joi.object(),
+
+      openTags: Joi.object(),
+
+      deleteQuantityThreshold: Joi.number(),
+
+      catalogMasterConfig: this.CatalogMasterConfig(),
+
+      aggregatorTypes: Joi.array().items(Joi.string()),
+
+      integrationType: Joi.string(),
+
+      minPrice: Joi.number(),
+
+      audit: this.Audit(),
+
+      version: Joi.number(),
+
+      alias: Joi.string(),
+    });
+  };
+
+  static JobConfigRawDTO = function () {
+    return Joi.object({
+      integration: Joi.string(),
+
+      companyName: Joi.string(),
+
+      companyId: Joi.number(),
+
+      data: this.JobConfig(),
+    });
+  };
+
+  static JsonDocConfig = function () {
+    return Joi.object({
+      propBeanConfigs: Joi.array().items(this.PropBeanConfig()),
+    });
+  };
+
+  static LocalFileConfig = function () {
+    return Joi.object({
+      retries: Joi.number(),
+
+      interval: Joi.number(),
+
+      localDir: Joi.string(),
+
+      workingDir: Joi.string(),
+
+      unzip: Joi.boolean(),
+
+      zipFileRegex: Joi.string(),
+
+      fileRegex: Joi.string(),
+
+      zipFormat: Joi.string(),
+
+      archiveConfig: this.ArchiveConfig(),
+
+      readAllFiles: Joi.boolean(),
+    });
+  };
+
+  static MongoDocConfig = function () {
+    return Joi.object({
+      collectionName: Joi.string(),
+
+      findQuery: Joi.object(),
+
+      projectionQuery: Joi.object(),
+
+      propBeanConfigs: Joi.array().items(this.PropBeanConfig()),
+
+      aggregatePipeline: Joi.array().items(Joi.object()),
+
+      skipSave: Joi.boolean(),
+    });
+  };
+
+  static OAuthConfig = function () {
+    return Joi.object({
+      limit: Joi.number(),
+
+      pages: Joi.number(),
+
+      interval: Joi.number(),
+
+      consumerKey: Joi.string(),
+
+      consumerSecret: Joi.string(),
+
+      token: Joi.string(),
+
+      tokenSecret: Joi.string(),
+
+      restUrl: Joi.string(),
+
+      restBaseUrl: Joi.string(),
+
+      functionName: Joi.string(),
+    });
+  };
+
+  static ProcessConfig = function () {
+    return Joi.object({
+      dbConfig: this.DBConfig(),
+
+      dbParamConfig: this.DBParamConfig(),
+
+      sftpConfig: this.SFTPConfig(),
+
+      awsS3Config: this.AWSS3config(),
+
+      mongoDocConfig: this.MongoDocConfig(),
+
+      ftpConfig: this.FTPConfig(),
+
+      emailConfig: this.EmailConfig(),
+
+      fileConfig: this.FileConfig(),
+
+      jsonDocConfig: this.JsonDocConfig(),
+
+      docMappingConfig: this.DocMappingConfig(),
+
+      taskStepConfig: this.TaskStepConfig(),
+
+      httpConfig: this.HttpConfig(),
+
+      localFileConfig: this.LocalFileConfig(),
+
+      oauthConfig: this.OAuthConfig(),
+
+      googleSpreadsheetConfig: this.GoogleSpreadSheetConfig(),
+    });
+  };
+
+  static PropBeanConfig = function () {
+    return Joi.object({
+      required: Joi.boolean(),
+
+      mapping: Joi.object(),
+
+      optional: Joi.boolean(),
+
+      send: this.Send(),
+
+      validations: Joi.array().items(Joi.object()),
+
+      values: Joi.array().items(Joi.string()),
+
+      include: Joi.boolean(),
+
+      sourceField: Joi.string(),
+
+      sourceFields: Joi.array().items(Joi.string()),
+
+      destinationField: Joi.string(),
+
+      dataType: Joi.string(),
+
+      defaultValue: Joi.object(),
+
+      constValue: Joi.object(),
+
+      concatStr: Joi.string(),
+
+      functionName: Joi.string(),
+
+      transformerName: Joi.string(),
+
+      allParamFunctionName: Joi.string(),
+
+      subSeparator: Joi.string(),
+
+      indexField: Joi.string(),
+
+      ignoreIfNotExists: Joi.boolean(),
+
+      identifierType: Joi.string(),
+
+      projectionQuery: Joi.object(),
+
+      enrichFromMaster: Joi.boolean(),
+    });
+  };
+
+  static PropBeanDTO = function () {
+    return Joi.object({
+      required: Joi.boolean(),
+
+      optional: Joi.boolean(),
+
+      include: Joi.boolean(),
+
+      sourceField: Joi.string(),
+
+      sourceFields: Joi.array().items(Joi.string()),
+
+      destinationField: Joi.string(),
+
+      dataType: Joi.string(),
+
+      defaultValue: Joi.object(),
+
+      constValue: Joi.object(),
+
+      concatStr: Joi.string(),
+
+      functionName: Joi.string(),
+
+      transformerName: Joi.string(),
+
+      allParamFunctionName: Joi.string(),
+
+      subSeparator: Joi.string(),
+
+      indexField: Joi.string(),
+
+      ignoreIfNotExists: Joi.boolean(),
+
+      identifierType: Joi.string(),
+
+      projectionQuery: Joi.object(),
+
+      enrichFromMaster: Joi.boolean(),
+    });
+  };
+
+  static ResponseEnvelopeListJobConfigRawDTO = function () {
+    return Joi.object({
+      timestamp: Joi.string(),
+
+      status: Joi.number(),
+
+      error: Joi.string(),
+
+      exception: Joi.string(),
+
+      message: Joi.string(),
+
+      totalTimeTakenInMillis: Joi.number(),
+
+      httpStatus: Joi.string(),
+
+      items: Joi.array().items(this.JobConfigRawDTO()),
+
+      payload: Joi.array().items(this.JobConfigRawDTO()),
+
+      traceId: Joi.string(),
+
+      page: this.Page(),
+    });
+  };
+
+  static SFTPConfig = function () {
+    return Joi.object({
+      host: Joi.string(),
+
+      port: Joi.number(),
+
+      username: Joi.string(),
+
+      password: Joi.string(),
+
+      unzip: Joi.boolean(),
+
+      retries: Joi.number(),
+
+      interval: Joi.number(),
+
+      privateKeyPath: Joi.string(),
+
+      strictHostKeyChecking: Joi.boolean(),
+
+      localDir: Joi.string(),
+
+      remoteDir: Joi.string(),
+
+      passwordProtected: Joi.boolean(),
+
+      zipFileRegex: Joi.string(),
+
+      fileRegex: Joi.string(),
+
+      zipFormat: Joi.string(),
+
+      archiveConfig: this.ArchiveConfig(),
+
+      readAllFiles: Joi.boolean(),
+    });
+  };
+
+  static Send = function () {
+    return Joi.object({
+      raw: Joi.boolean(),
+
+      processed: Joi.boolean(),
+    });
+  };
+
+  static StoreConfig = function () {
+    return Joi.object({
+      jobCode: Joi.string(),
+
+      storeid: Joi.string(),
+
+      storeAlias: Joi.string(),
+
+      storeFileRegex: Joi.string(),
+
+      storeFileName: Joi.string(),
+
+      processConfig: this.ProcessConfig(),
+
+      properties: Joi.object(),
+    });
+  };
+
+  static StoreFilter = function () {
+    return Joi.object({
+      includeTags: Joi.array().items(Joi.string()),
+
+      excludeTags: Joi.array().items(Joi.string()),
+
+      query: Joi.object(),
+    });
+  };
+
+  static TaskConfig = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      taskConfigId: Joi.number(),
+
+      taskParams: Joi.array().items(this.TaskParam()),
+    });
+  };
+
+  static TaskParam = function () {
+    return Joi.object({
+      name: Joi.string(),
+
+      value: Joi.object(),
+    });
+  };
+
+  static TaskStepConfig = function () {
+    return Joi.object({
+      taskConfigs: Joi.array().items(this.TaskConfig()),
+
+      taskConfigIds: Joi.array().items(Joi.number()),
+
+      taskConfigGroupIds: Joi.array().items(Joi.number()),
+    });
+  };
+
+  static ResponseEnvelopeListJobConfigDTO = function () {
+    return Joi.object({
+      timestamp: Joi.string(),
+
+      status: Joi.number(),
+
+      error: Joi.string(),
+
+      exception: Joi.string(),
+
+      message: Joi.string(),
+
+      totalTimeTakenInMillis: Joi.number(),
+
+      httpStatus: Joi.string(),
+
+      items: Joi.array().items(this.JobConfigDTO()),
+
+      payload: Joi.array().items(this.JobConfigDTO()),
+
+      traceId: Joi.string(),
+
+      page: this.Page(),
+    });
+  };
+
+  static ResponseEnvelopeJobConfigDTO = function () {
+    return Joi.object({
+      timestamp: Joi.string(),
+
+      status: Joi.number(),
+
+      error: Joi.string(),
+
+      exception: Joi.string(),
+
+      message: Joi.string(),
+
+      totalTimeTakenInMillis: Joi.number(),
+
+      httpStatus: Joi.string(),
+
+      items: this.JobConfigDTO(),
+
+      payload: this.JobConfigDTO(),
+
+      traceId: Joi.string(),
+
+      page: this.Page(),
+    });
+  };
+
+  static JobConfigListDTO = function () {
+    return Joi.object({
+      code: Joi.string(),
+
+      alias: Joi.string(),
+
+      modifiedBy: Joi.string(),
+
+      createdBy: Joi.string(),
+
+      modifiedOn: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      active: Joi.boolean(),
+
+      type: Joi.string(),
+    });
+  };
+
+  static ResponseEnvelopeListJobConfigListDTO = function () {
+    return Joi.object({
+      timestamp: Joi.string(),
+
+      status: Joi.number(),
+
+      error: Joi.string(),
+
+      exception: Joi.string(),
+
+      message: Joi.string(),
+
+      totalTimeTakenInMillis: Joi.number(),
+
+      httpStatus: Joi.string(),
+
+      items: Joi.array().items(this.JobConfigListDTO()),
+
+      payload: Joi.array().items(this.JobConfigListDTO()),
+
+      traceId: Joi.string(),
+
+      page: this.Page(),
+    });
+  };
+
+  static StoreMapping = function () {
+    return Joi.object({
+      enabled: Joi.string(),
+
+      marketplaceStoreId: Joi.string(),
+
+      storeId: Joi.number(),
+
+      meta: Joi.object(),
+    });
+  };
+
+  static AllChannels = function () {
+    return Joi.object({
+      mkpName: Joi.boolean(),
+    });
+  };
+
+  static MyntraPayload = function () {
+    return Joi.object({
+      merchantId: Joi.string(),
+
+      secretKey: Joi.string(),
+    });
+  };
+
+  static AmazonPayload = function () {
+    return Joi.object({
+      sellerId: Joi.string(),
+
+      mwsAuthToken: Joi.string(),
+    });
+  };
+
+  static FlipkartPayload = function () {
+    return Joi.object({
+      code: Joi.string(),
+    });
+  };
+
+  static TatacliqPayload = function () {
+    return Joi.object({
+      userName: Joi.string(),
+
+      password: Joi.string(),
+
+      merchantId: Joi.string(),
+    });
+  };
+
+  static AjioPayload = function () {
+    return Joi.object({
+      username: Joi.string(),
+
+      password: Joi.string(),
+
+      clientIp: Joi.string(),
+    });
+  };
+
+  static InventoryConfig = function () {
+    return Joi.object({
+      inventory: Joi.boolean(),
+
+      price: Joi.boolean(),
+    });
+  };
+
+  static StoreMappingPayload = function () {
+    return Joi.object({
+      storeMappingEnabled: Joi.boolean(),
+
+      storeMapping: Joi.array().items(this.StoreMapping()),
+    });
+  };
+
+  static StatusPayload = function () {
+    return Joi.object({
+      isActive: Joi.boolean(),
+    });
+  };
+
+  static StatusResp = function () {
+    return Joi.object({
+      isActive: Joi.boolean(),
+    });
+  };
+
+  static SyncPayload = function () {
+    return Joi.object({
+      modifiedSince: Joi.string(),
+    });
+  };
+
+  static SyncResp = function () {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  };
+
+  static MkpResp = function () {
+    return Joi.object({
+      marketplace: Joi.string(),
+
+      worker: Joi.number(),
+
+      workerAssigned: Joi.string(),
+
+      isActive: Joi.boolean(),
+
+      storeMappingEnabled: Joi.string(),
+
+      companyId: Joi.number(),
+
+      configuration: Joi.object(),
+
+      storeMapping: Joi.array().items(this.StoreMapping()),
+    });
+  };
+
+  static StatGroup = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      url: Joi.string(),
+
+      title: Joi.string(),
+    });
+  };
+
+  static StatsGroups = function () {
+    return Joi.object({
+      groups: Joi.array().items(this.StatGroup()),
+    });
+  };
+
+  static StatsGroupComponent = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      url: Joi.string(),
+
+      title: Joi.string(),
+
+      type: Joi.string(),
+
+      filters: Joi.object(),
+    });
+  };
+
+  static StatsGroupComponents = function () {
+    return Joi.object({
+      title: Joi.string(),
+
+      components: Joi.array().items(this.StatsGroupComponent()),
+    });
+  };
+
+  static StatsRes = function () {
+    return Joi.object({
+      key: Joi.string(),
+
+      title: Joi.string(),
+
+      type: Joi.string(),
+
+      data: Joi.object(),
+    });
+  };
+
+  static ReceivedAt = function () {
+    return Joi.object({
+      value: Joi.string(),
+    });
+  };
+
+  static AbandonCartsDetail = function () {
+    return Joi.object({
+      propertiesCartId: Joi.string(),
+
+      contextTraitsFirstName: Joi.string(),
+
+      contextTraitsLastName: Joi.string(),
+
+      contextTraitsPhoneNumber: Joi.string(),
+
+      contextTraitsEmail: Joi.string(),
+
+      contextAppApplicationId: Joi.string(),
+
+      propertiesBreakupValuesRawTotal: Joi.string(),
+
+      receivedAt: this.ReceivedAt(),
+    });
+  };
+
+  static AbdCartPage = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      size: Joi.string(),
+
+      current: Joi.string(),
+
+      hasNext: Joi.string(),
+
+      itemTotal: Joi.string(),
+    });
+  };
+
+  static AbandonCartsList = function () {
+    return Joi.object({
+      items: Joi.array().items(this.AbandonCartsDetail()),
+
+      cartTotal: Joi.string(),
+
+      page: this.AbdCartPage(),
+    });
+  };
+
+  static AbandonCartDetail = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      userId: Joi.string(),
+
+      cartValue: Joi.string(),
+
+      articles: Joi.array().items(Joi.object()),
+
+      breakup: Joi.object(),
+
+      address: Joi.object(),
+    });
+  };
+
+  static ExportJobReq = function () {
+    return Joi.object({
+      marketplaceName: Joi.string(),
+
+      startTime: Joi.string(),
+
+      endTime: Joi.string(),
+
+      eventType: Joi.string(),
+    });
+  };
+
+  static ExportJobRes = function () {
+    return Joi.object({
+      status: Joi.string(),
+
+      jobId: Joi.string(),
+    });
+  };
+
+  static ExportJobStatusRes = function () {
+    return Joi.object({
+      status: Joi.string(),
+
+      jobId: Joi.string(),
+
+      downloadUrl: Joi.string(),
+    });
+  };
+
+  static GetLogsListReq = function () {
+    return Joi.object({
+      marketplaceName: Joi.string(),
+
+      startDate: Joi.string(),
+
+      companyId: Joi.string(),
+
+      endDate: Joi.string(),
+    });
+  };
+
+  static MkpLogsResp = function () {
+    return Joi.object({
+      startTimeIso: Joi.string(),
+
+      endTimeIso: Joi.string(),
+
+      eventType: Joi.string(),
+
+      traceId: Joi.string(),
+
+      count: Joi.string(),
+
+      status: Joi.string(),
+    });
+  };
+
+  static LogsPage = function () {
+    return Joi.object({
+      type: Joi.string(),
+
+      size: Joi.string(),
+
+      current: Joi.string(),
+
+      hasNext: Joi.string(),
+
+      itemTotal: Joi.string(),
+    });
+  };
+
+  static GetLogsListRes = function () {
+    return Joi.object({
+      items: Joi.array().items(this.MkpLogsResp()),
+
+      page: this.LogsPage(),
+    });
+  };
+
+  static SearchLogReq = function () {
+    return Joi.object({
+      marketplaceName: Joi.string(),
+
+      startDate: Joi.string(),
+
+      companyId: Joi.string(),
+
+      endDate: Joi.string(),
+
+      identifier: Joi.string(),
+
+      identifierValue: Joi.string(),
+    });
+  };
+
+  static LogInfo = function () {
+    return Joi.object({
+      id: Joi.string(),
+
+      status: Joi.string(),
+
+      eventType: Joi.string(),
+
+      marketplaceName: Joi.string(),
+
+      event: Joi.string(),
+
+      traceId: Joi.string(),
+
+      companyId: Joi.number(),
+
+      brandId: Joi.number(),
+
+      storeCode: Joi.string(),
+
+      storeId: Joi.number(),
+
+      itemId: Joi.number(),
+
+      articleId: Joi.string(),
+
+      sellerIdentifier: Joi.string(),
+    });
+  };
+
+  static SearchLogRes = function () {
+    return Joi.object({
+      items: Joi.array().items(this.LogInfo()),
+
+      page: this.LogsPage(),
+    });
+  };
 }
 
-class Payment {
-  constructor(config) {
-    this.config = config;
-  }
+class LeadValidator {
+  static getTickets = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      items: Joi.boolean(),
+      filters: Joi.boolean(),
+      q: Joi.string(),
+      status: Joi.string(),
+      priority: Joi.string(),
+      category: Joi.string(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: Get All Payouts
-    * @description: Get All Payouts
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.uniqueExternalId] - Fetch payouts using unique external id
-    
-    **/
-  getAllPayouts({ uniqueExternalId } = {}) {
-    const queryObj = {};
-    queryObj["unique_external_id"] = uniqueExternalId;
+  static createTicket = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.AddTicketPayload().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts`,
-      queryObj,
-      undefined
-    );
-  }
+  static getTicket = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      ticketId: Joi.string().required(),
+    }).required();
+  };
 
-  /**
-   *
-   * @summary: Save Payout
-   * @description: Save Payout
-   * @param {Object} arg - arg object.
-   * @param {PayoutRequest} arg.body
-   **/
-  savePayout({ body } = {}) {
-    const queryObj = {};
+  static editTicket = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      ticketId: Joi.string().required(),
+      body: Validator.EditTicketPayload().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts`,
-      queryObj,
-      body
-    );
-  }
+  static createHistory = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      ticketId: Joi.string().required(),
+      body: Validator.TicketHistoryPayload().required(),
+    }).required();
+  };
 
-  /**
-   *
-   * @summary: Update Payout
-   * @description: Update Payout
-   * @param {Object} arg - arg object.
-   * @param {string} arg.uniqueTransferNo - Unique transfer id
-   * @param {PayoutRequest} arg.body
-   **/
-  updatePayout({ uniqueTransferNo, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Partial Update Payout
-   * @description: Partial Update Payout
-   * @param {Object} arg - arg object.
-   * @param {string} arg.uniqueTransferNo - Unique transfer id
-   * @param {UpdatePayoutRequest} arg.body
-   **/
-  activateAndDectivatePayout({ uniqueTransferNo, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete Payout
-    * @description: Delete Payout
-    * @param {Object} arg - arg object.
-    * @param {string} arg.uniqueTransferNo - Unique transfer id
-    
-    **/
-  deletePayout({ uniqueTransferNo } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List Subscription Payment Method
-    * @description: Get all  Subscription  Payment Method
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSubscriptionPaymentMethod({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/methods`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete Subscription Payment Method
-    * @description: Uses this api to Delete Subscription Payment Method
-    * @param {Object} arg - arg object.
-    * @param {string} arg.uniqueExternalId - 
-    * @param {string} arg.paymentMethodId - 
-    
-    **/
-  deleteSubscriptionPaymentMethod({ uniqueExternalId, paymentMethodId } = {}) {
-    const queryObj = {};
-    queryObj["unique_external_id"] = uniqueExternalId;
-    queryObj["payment_method_id"] = paymentMethodId;
-
-    return APIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/methods`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List Subscription Config
-    * @description: Get all  Subscription Config details
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSubscriptionConfig({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/configs`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Save Subscription Setup Intent
-   * @description: Uses this api to Save Subscription Setup Intent
-   * @param {Object} arg - arg object.
-   * @param {SaveSubscriptionSetupIntentRequest} arg.body
-   **/
-  saveSubscriptionSetupIntent({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/setup/intent`,
-      queryObj,
-      body
-    );
-  }
+  static getTicketHistory = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      ticketId: Joi.string().required(),
+    }).required();
+  };
 }
 
-class Order {
-  constructor(config) {
-    this.config = config;
-  }
+class PaymentValidator {
+  static getAllPayouts = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      uniqueExternalId: Joi.string(),
+    }).required();
+  };
 
-  /**
-   *
-   * @summary: Update status of Shipment
-   * @description: Update Shipment Status
-   * @param {Object} arg - arg object.
-   * @param {UpdateShipmentStatusBody} arg.body
-   **/
-  shipmentStatusUpdate({ body } = {}) {
-    const queryObj = {};
+  static savePayout = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      body: Validator.PayoutRequest().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/actions/status`,
-      queryObj,
-      body
-    );
-  }
+  static updatePayout = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      uniqueTransferNo: Joi.string().required(),
+      body: Validator.PayoutRequest().required(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: Get Activity Status
-    * @description: Get Activity Status
-    * @param {Object} arg - arg object.
-    * @param {string} arg.bagId - Bag Id
-    
-    **/
-  activityStatus({ bagId } = {}) {
-    const queryObj = {};
-    queryObj["bag_id"] = bagId;
+  static activateAndDectivatePayout = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      uniqueTransferNo: Joi.string().required(),
+      body: Validator.UpdatePayoutRequest().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/actions/activity/status`,
-      queryObj,
-      undefined
-    );
-  }
+  static deletePayout = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      uniqueTransferNo: Joi.string().required(),
+    }).required();
+  };
 
-  /**
-   *
-   * @summary: Update Store Process-Shipment
-   * @description: Update Store Process-Shipment
-   * @param {Object} arg - arg object.
-   * @param {UpdateProcessShipmenstRequestBody} arg.body
-   **/
-  storeProcessShipmentUpdate({ body } = {}) {
-    const queryObj = {};
+  static getSubscriptionPaymentMethod = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/actions/store/process-shipments`,
-      queryObj,
-      body
-    );
-  }
+  static deleteSubscriptionPaymentMethod = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      uniqueExternalId: Joi.string().required(),
+      paymentMethodId: Joi.string().required(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: Get Orders for company based on Company Id
-    * @description: Get Orders
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.pageNo] - Current page number
-    * @param {string} [arg.pageSize] - Page limit
-    * @param {string} [arg.fromDate] - From Date
-    * @param {string} [arg.toDate] - To Date
-    * @param {string} [arg.q] - Keyword for Search
-    * @param {string} [arg.stage] - Specefic Order Stage
-    * @param {string} [arg.salesChannels] - Selected Sales Channel
-    * @param {string} [arg.orderId] - Order Id
-    * @param {string} [arg.stores] - Selected Stores
-    * @param {string} [arg.status] - Status of order
-    * @param {boolean} [arg.shortenUrls] - Shorten URL option
-    * @param {string} [arg.filterType] - Filters
-    
-    **/
-  getOrdersByCompanyId({
-    pageNo,
-    pageSize,
-    fromDate,
-    toDate,
-    q,
-    stage,
-    salesChannels,
-    orderId,
-    stores,
-    status,
-    shortenUrls,
-    filterType,
-  } = {}) {
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["from_date"] = fromDate;
-    queryObj["to_date"] = toDate;
-    queryObj["q"] = q;
-    queryObj["stage"] = stage;
-    queryObj["sales_channels"] = salesChannels;
-    queryObj["order_id"] = orderId;
-    queryObj["stores"] = stores;
-    queryObj["status"] = status;
-    queryObj["shorten_urls"] = shortenUrls;
-    queryObj["filter_type"] = filterType;
+  static getSubscriptionConfig = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/orders`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Ping
-    * @description: Get Ping
-    * @param {Object} arg - arg object.
-    
-    **/
-  getPing({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/ping`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Voice Callback
-    * @description: Voice Callback
-    * @param {Object} arg - arg object.
-    
-    **/
-  voiceCallback({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/voice/callback`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Voice Click to Call
-    * @description: Voice Click to Call
-    * @param {Object} arg - arg object.
-    * @param {string} arg.caller - Caller contact number
-    * @param {string} arg.receiver - Receiver contact number
-    
-    **/
-  voiceClickToCall({ caller, receiver } = {}) {
-    const queryObj = {};
-    queryObj["caller"] = caller;
-    queryObj["receiver"] = receiver;
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/voice/click-to-call`,
-      queryObj,
-      undefined
-    );
-  }
+  static saveSubscriptionSetupIntent = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      body: Validator.SaveSubscriptionSetupIntentRequest().required(),
+    }).required();
+  };
 }
 
-class CompanyProfile {
-  constructor(config) {
-    this.config = config;
-  }
+class OrderValidator {
+  static shipmentStatusUpdate = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.UpdateShipmentStatusBody().required(),
+    }).required();
+  };
 
-  /**
-   *
-   * @summary: Edit company profile
-   * @description: This API allows to edit the company profile of the seller account.
-   * @param {Object} arg - arg object.
-   * @param {CompanyStoreSerializerRequest} arg.body
-   **/
-  updateCompany({ body } = {}) {
-    const queryObj = {};
+  static activityStatus = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      bagId: Joi.string().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
-      queryObj,
-      body
-    );
-  }
+  static storeProcessShipmentUpdate = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.UpdateProcessShipmenstRequestBody().required(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: Get company profile
-    * @description: This API allows to view the company profile of the seller account.
-    * @param {Object} arg - arg object.
-    
-    **/
-  cbsOnboardGet({} = {}) {
-    const queryObj = {};
+  static getOrdersByCompanyId = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      pageNo: Joi.string(),
+      pageSize: Joi.string(),
+      fromDate: Joi.string(),
+      toDate: Joi.string(),
+      q: Joi.string(),
+      stage: Joi.string(),
+      salesChannels: Joi.string(),
+      orderId: Joi.string(),
+      stores: Joi.string(),
+      status: Joi.string(),
+      shortenUrls: Joi.boolean(),
+      filterType: Joi.string(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
-      queryObj,
-      undefined
-    );
-  }
+  static getPing = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: Get company metrics
-    * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getCompanyMetrics({} = {}) {
-    const queryObj = {};
+  static voiceCallback = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/metrics`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Edit a brand.
-   * @description: This API allows to edit meta of a brand.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.brandId - Id of the brand to be viewed.
-   * @param {CreateUpdateBrandRequestSerializer} arg.body
-   **/
-  editBrand({ brandId, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get a single brand.
-    * @description: This API helps to get data associated to a particular brand.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.brandId - Id of the brand to be viewed.
-    
-    **/
-  getBrand({ brandId } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create a Brand.
-   * @description: This API allows to create a brand associated to a company.
-   * @param {Object} arg - arg object.
-   * @param {CreateUpdateBrandRequestSerializer} arg.body
-   **/
-  createBrand({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Create a company brand mapping.
-   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
-   * @param {Object} arg - arg object.
-   * @param {CompanyBrandPostRequestSerializer} arg.body
-   **/
-  createBrand({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get brands associated to a company
-    * @description: This API helps to get view brands associated to a particular company.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getBrands({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create a location asscoiated to a company.
-   * @description: This API allows to create a location associated to a company.
-   * @param {Object} arg - arg object.
-   * @param {LocationSerializer} arg.body
-   **/
-  createLocation({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of locations
-    * @description: This API allows to view all the locations asscoiated to a company.
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.storeType] - Helps to sort the location list on the basis of location type.
-    * @param {string} [arg.q] - Query that is to be searched.
-    * @param {string} [arg.stage] - to filter companies on basis of verified or unverified companies.
-    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 10.
-    
-    **/
-  getLocations({ storeType, q, stage, pageNo, pageSize } = {}) {
-    const queryObj = {};
-    queryObj["store_type"] = storeType;
-    queryObj["q"] = q;
-    queryObj["stage"] = stage;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Edit a location asscoiated to a company.
-   * @description: This API allows to edit a location associated to a company.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.locationId - Id of the location which you want to edit.
-   * @param {LocationSerializer} arg.body
-   **/
-  updateLocation({ locationId, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get details of a specific location.
-    * @description: This API helps to get data associated to a specific location.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.locationId - Id of the location which you want to view.
-    
-    **/
-  getLocationDetail({ locationId } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
-      queryObj,
-      undefined
-    );
-  }
+  static voiceClickToCall = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      caller: Joi.string().required(),
+      receiver: Joi.string().required(),
+    }).required();
+  };
 }
 
-class Assets {
-  constructor(config) {
-    this.config = config;
-  }
+class CompanyProfileValidator {
+  static updateCompany = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.CompanyStoreSerializerRequest().required(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
-    * @description: Uploads an arbitrarily sized buffer or blob.
+  static cbsOnboardGet = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+    }).required();
+  };
 
-It has three Major Steps:
-* Start
-* Upload
-* Complete
+  static getCompanyMetrics = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+    }).required();
+  };
 
-### Start
-Initiates the assets upload using `startUpload`.
-It returns the storage link in response.
+  static editBrand = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      brandId: Joi.string().required(),
+      body: Validator.CreateUpdateBrandRequestSerializer().required(),
+    }).required();
+  };
 
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
+  static getBrand = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      brandId: Joi.string().required(),
+    }).required();
+  };
 
-### Complete
-After successfully upload, call `completeUpload` api to complete the upload process.
-This operation will return the url for the uploaded file.
+  static createBrand = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.CreateUpdateBrandRequestSerializer().required(),
+    }).required();
+  };
 
-    * @param {Object} arg - arg object.
-    * @param {string} arg.namespace - bucket name
-    * @param {StartRequest} arg.body
-    **/
-  startUpload({ namespace, body } = {}) {
-    const queryObj = {};
+  static createBrand = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.CompanyBrandPostRequestSerializer().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/start/`,
-      queryObj,
-      body
-    );
-  }
+  static getBrands = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
-    * @description: Uploads an arbitrarily sized buffer or blob.
+  static createLocation = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.LocationSerializer().required(),
+    }).required();
+  };
 
-It has three Major Steps:
-* Start
-* Upload
-* Complete
+  static getLocations = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      storeType: Joi.string(),
+      q: Joi.string(),
+      stage: Joi.string(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  };
 
-### Start
-Initiates the assets upload using `startUpload`.
-It returns the storage link in response.
+  static updateLocation = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      locationId: Joi.string().required(),
+      body: Validator.LocationSerializer().required(),
+    }).required();
+  };
 
-### Upload
-Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
-
-### Complete
-After successfully upload, call `completeUpload` api to complete the upload process.
-This operation will return the url for the uploaded file.
-
-    * @param {Object} arg - arg object.
-    * @param {string} arg.namespace - bucket name
-    * @param {StartResponse} arg.body
-    **/
-  completeUpload({ namespace, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/complete/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Explain here
-   * @description: Describe here
-   * @param {Object} arg - arg object.
-   * @param {SignUrlRequest} arg.body
-   **/
-  getSignUrls({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/sign-urls/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Copy Files
-   * @description: Copy Files
-   * @param {Object} arg - arg object.
-   * @param {boolean} [arg.sync] - sync
-   * @param {BulkRequest} arg.body
-   **/
-  copyFiles({ body, sync } = {}) {
-    const queryObj = {};
-    queryObj["sync"] = sync;
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/uploads/copy/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Browse Files
-    * @description: Browse Files
-    * @param {Object} arg - arg object.
-    * @param {string} arg.namespace - bucket name
-    
-    **/
-  browse({ namespace } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/browse/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Browse Files
-    * @description: Browse Files
-    * @param {Object} arg - arg object.
-    * @param {string} arg.namespace - bucket name
-    
-    **/
-  browsePaginator({ namespace } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.browse({
-        namespace: namespace,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback);
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: Proxy
-    * @description: Proxy
-    * @param {Object} arg - arg object.
-    * @param {string} arg.url - url
-    
-    **/
-  proxy({ url } = {}) {
-    const queryObj = {};
-    queryObj["url"] = url;
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/proxy/`,
-      queryObj,
-      undefined
-    );
-  }
+  static getLocationDetail = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      locationId: Joi.string().required(),
+    }).required();
+  };
 }
 
-class Inventory {
-  constructor(config) {
-    this.config = config;
-  }
+class AssetsValidator {
+  static startUpload = function () {
+    return Joi.object({
+      namespace: Joi.string().required(),
+      companyId: Joi.number().required(),
+      body: Validator.StartRequest().required(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: Get Job Configs For A Company
-    * @description: REST Endpoint that returns all job configs for a company
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Page Number
-    * @param {number} [arg.pageSize] - Page Size
-    
-    **/
-  getJobsByCompany({ pageNo, pageSize } = {}) {
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+  static completeUpload = function () {
+    return Joi.object({
+      namespace: Joi.string().required(),
+      companyId: Joi.number().required(),
+      body: Validator.StartResponse().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/v1.0/company/${this.config.companyId}/jobs`,
-      queryObj,
-      undefined
-    );
-  }
+  static getSignUrls = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      body: Validator.SignUrlRequest().required(),
+    }).required();
+  };
 
-  /**
-   *
-   * @summary: Updates An Existing Job Config
-   * @description: REST Endpoint that updates a job config
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.xUserData] -
-   * @param {JobConfigDTO} arg.body
-   **/
-  updateJob({ body, xUserData } = {}) {
-    const queryObj = {};
+  static copyFiles = function () {
+    return Joi.object({
+      sync: Joi.boolean(),
+      companyId: Joi.number().required(),
+      body: Validator.BulkRequest().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/v1.0/company/${this.config.companyId}/jobs`,
-      queryObj,
-      body
-    );
-  }
+  static browse = function () {
+    return Joi.object({
+      namespace: Joi.string().required(),
+      companyId: Joi.number().required(),
+    }).required();
+  };
 
-  /**
-   *
-   * @summary: Creates A New Job Config
-   * @description: REST Endpoint that creates a new job config
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.xUserData] -
-   * @param {JobConfigDTO} arg.body
-   **/
-  createJob({ body, xUserData } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/v1.0/company/${this.config.companyId}/jobs`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Job Configs By Company And Integration
-    * @description: REST Endpoint that returns all job configs by company And integration
-    * @param {Object} arg - arg object.
-    * @param {string} arg.integrationId - Integration Id
-    * @param {number} [arg.pageNo] - Page Number
-    * @param {number} [arg.pageSize] - Page Size
-    
-    **/
-  getJobByCompanyAndIntegration({ integrationId, pageNo, pageSize } = {}) {
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/v1.0/company/${this.config.companyId}/jobs/integration/${integrationId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Job Configs Defaults
-    * @description: REST Endpoint that returns default fields job configs by company And integration
-    * @param {Object} arg - arg object.
-    
-    **/
-  getJobConfigDefaults({} = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/v1.0/company/${this.config.companyId}/jobs/defaults`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Job Config By Code
-    * @description: REST Endpoint that returns job config by code
-    * @param {Object} arg - arg object.
-    * @param {string} arg.code - Job Code
-    
-    **/
-  getJobByCode({ code } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/v1.0/company/${this.config.companyId}/jobs/code/${code}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get Job Codes By Company And Integration
-    * @description: REST Endpoint that returns all job codes by company And integration
-    * @param {Object} arg - arg object.
-    * @param {string} arg.integrationId - Integration Id
-    * @param {number} [arg.pageNo] - Page Number
-    * @param {number} [arg.pageSize] - Page Size
-    
-    **/
-  getJobCodesByCompanyAndIntegration({ integrationId, pageNo, pageSize } = {}) {
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/v1.0/company/${this.config.companyId}/jobs/code/integration/${integrationId}`,
-      queryObj,
-      undefined
-    );
-  }
+  static proxy = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      url: Joi.string().required(),
+    }).required();
+  };
 }
 
-class Marketplaces {
-  constructor(config) {
-    this.config = config;
-  }
+class InventoryValidator {
+  static getJobsByCompany = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: Get available marketplace channels
-    * @description: Get available marketplace channels
-    * @param {Object} arg - arg object.
-    
-    **/
-  getAvailableChannels({} = {}) {
-    const queryObj = {};
+  static updateJob = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      xUserData: Joi.string(),
+      body: Validator.JobConfigDTO().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/all-channels`,
-      queryObj,
-      undefined
-    );
-  }
+  static createJob = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      xUserData: Joi.string(),
+      body: Validator.JobConfigDTO().required(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: Get all registered marketplace channels for a seller
-    * @description: Get all registered marketplace channels for a seller
-    * @param {Object} arg - arg object.
-    
-    **/
-  getChannels({} = {}) {
-    const queryObj = {};
+  static getJobByCompanyAndIntegration = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      integrationId: Joi.string().required(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/`,
-      queryObj,
-      undefined
-    );
-  }
+  static getJobConfigDefaults = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: Get registered marketplace channel for a seller
-    * @description: Get registered marketplace channel for a seller
-    * @param {Object} arg - arg object.
-    * @param {string} arg.channel - Name of marketplace channel
-    
-    **/
-  getChannel({ channel } = {}) {
-    const queryObj = {};
+  static getJobByCode = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      code: Joi.string().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create Myntra marketplace channel for a seller
-   * @description: Create Myntra marketplace channel for a seller
-   * @param {Object} arg - arg object.
-   * @param {MyntraPayload} arg.body
-   **/
-  registerMyntraChannel({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/myntra_in`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Myntra marketplace channel credentials for a seller
-   * @description: Update Myntra marketplace channel credentials for a seller
-   * @param {Object} arg - arg object.
-   * @param {MyntraPayload} arg.body
-   **/
-  updateMyntraChannelCredentials({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/myntra_in`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Create Amazon marketplace channel for a seller
-   * @description: Create Amazon marketplace channel for a seller
-   * @param {Object} arg - arg object.
-   * @param {AmazonPayload} arg.body
-   **/
-  registerAmazonChannel({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/amazon_in`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Amazon marketplace channel credentials for a seller
-   * @description: Update Amazon marketplace channel credentials for a seller
-   * @param {Object} arg - arg object.
-   * @param {AmazonPayload} arg.body
-   **/
-  updateAmazonChannelCredentials({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/amazon_in`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Create Flipkart / Flipkart Assured marketplace channel for a seller
-   * @description: Create Flipkart / Flipkart Assured marketplace channel for a seller
-   * @param {Object} arg - arg object.
-   * @param {string} arg.flipkartChannel - Name of marketplace channel
-   * @param {FlipkartPayload} arg.body
-   **/
-  registerFlipkartChannel({ flipkartChannel, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${flipkartChannel}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Flipkart / Flipkart Assured marketplace channel credentials for a seller
-   * @description: Update Flipkart / Flipkart Assured marketplace channel credentials for a seller
-   * @param {Object} arg - arg object.
-   * @param {string} arg.flipkartChannel - Name of marketplace channel
-   * @param {FlipkartPayload} arg.body
-   **/
-  updateFlipkartChannelCredentials({ flipkartChannel, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${flipkartChannel}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Create Tatacliq / Tatacliq Luxury marketplace channel for a seller
-   * @description: Create Tatacliq / Tatacliq Luxury marketplace channel for a seller
-   * @param {Object} arg - arg object.
-   * @param {string} arg.tatacliqChannel - Name of marketplace channel
-   * @param {TatacliqPayload} arg.body
-   **/
-  registerTatacliqChannel({ tatacliqChannel, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${tatacliqChannel}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Tatacliq / Tatacliq Luxury Assured marketplace channel credentials for a seller
-   * @description: Update Tatacliq / Tatacliq Luxury marketplace channel credentials for a seller
-   * @param {Object} arg - arg object.
-   * @param {string} arg.tatacliqChannel - Name of marketplace channel
-   * @param {TatacliqPayload} arg.body
-   **/
-  updateTatacliqChannelCredentials({ tatacliqChannel, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${tatacliqChannel}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Create Ajio marketplace channel for a seller
-   * @description: Create Ajio marketplace channel for a seller
-   * @param {Object} arg - arg object.
-   * @param {AjioPayload} arg.body
-   **/
-  registerAjioChannel({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/ajio_in`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update Ajio marketplace channel credentials for a seller
-   * @description: Update Ajio marketplace channel credentials for a seller
-   * @param {Object} arg - arg object.
-   * @param {AjioPayload} arg.body
-   **/
-  updateAjioChannelCredentials({ body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/ajio_in`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update inventory sync configuration of marketplace channel for a seller
-   * @description: Update inventory sync configuration of marketplace channel for a seller
-   * @param {Object} arg - arg object.
-   * @param {string} arg.channel - Name of marketplace channel
-   * @param {string} [arg.validateCred] - Validate marketplace cred while saving inventory config
-   * @param {InventoryConfig} arg.body
-   **/
-  updateChannelInventoryConfig({ channel, body, validateCred } = {}) {
-    const queryObj = {};
-    queryObj["validate_cred"] = validateCred;
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/marketplaces/company/${this.config.companyId}/v1.0/channels/${channel}/inventory/config`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get marketplace channel location config for a seller
-    * @description: Get marketplace channel location config for a seller
-    * @param {Object} arg - arg object.
-    * @param {string} arg.channel - Name of marketplace channel
-    
-    **/
-  getChannelLocationConfig({ channel } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}/location/config`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: update marketplace channel location config for a seller
-   * @description: update marketplace channel location config for a seller
-   * @param {Object} arg - arg object.
-   * @param {string} arg.channel - Name of marketplace channel
-   * @param {StoreMappingPayload} arg.body
-   **/
-  updateChannelLocationConfig({ channel, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}/location/config`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get marketplace channel active status for a seller
-    * @description: Get marketplace channel active status for a seller
-    * @param {Object} arg - arg object.
-    * @param {string} arg.channel - Name of marketplace channel
-    
-    **/
-  getChannelStatus({ channel } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}/status`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update marketplace channel active status for a seller
-   * @description: Update marketplace channel active status for a seller
-   * @param {Object} arg - arg object.
-   * @param {string} arg.channel - Name of marketplace channel
-   * @param {StatusPayload} arg.body
-   **/
-  updateChannelStatus({ channel, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}/status`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Trigger marketplace channel inventory updates for a seller
-   * @description: Trigger marketplace channel inventory updates for a seller
-   * @param {Object} arg - arg object.
-   * @param {string} arg.channel - Name of marketplace channel
-   * @param {string} arg.updateType - Inventory update type
-   * @param {SyncPayload} arg.body
-   **/
-  triggerChannelInventoryUpdates({ channel, updateType, body } = {}) {
-    const queryObj = {};
-
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/marketplaces/v1.0/company/${this.config.companyId}/channels/${channel}/inventory/${updateType}/sync`,
-      queryObj,
-      body
-    );
-  }
+  static getJobCodesByCompanyAndIntegration = function () {
+    return Joi.object({
+      companyId: Joi.number().required(),
+      integrationId: Joi.string().required(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  };
 }
 
-class Analytics {
-  constructor(config) {
-    this.config = config;
-  }
+class MarketplacesValidator {
+  static getAvailableChannels = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+    }).required();
+  };
 
-  /**
-   *
-   * @summary: Create data export job in required format
-   * @description: Create data export job in required format
-   * @param {Object} arg - arg object.
-   * @param {string} arg.exportType - Export type / format
-   * @param {ExportJobReq} arg.body
-   **/
-  createExportJob({ exportType, body } = {}) {
-    const queryObj = {};
+  static getChannels = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/export/${exportType}`,
-      queryObj,
-      body
-    );
-  }
+  static getChannel = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      channel: Joi.string().required(),
+    }).required();
+  };
 
-  /**
-    *
-    * @summary: Get data export job status
-    * @description: Get data export job status
-    * @param {Object} arg - arg object.
-    * @param {string} arg.exportType - Export type / format
-    * @param {string} arg.jobId - Export job id
-    
-    **/
-  getExportJobStatus({ exportType, jobId } = {}) {
-    const queryObj = {};
-    queryObj["job_id"] = jobId;
+  static registerMyntraChannel = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.MyntraPayload().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/export/${exportType}`,
-      queryObj,
-      undefined
-    );
-  }
+  static updateMyntraChannelCredentials = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.MyntraPayload().required(),
+    }).required();
+  };
 
-  /**
-   *
-   * @summary: Get logs list
-   * @description: Get logs list
-   * @param {Object} arg - arg object.
-   * @param {string} arg.logType - Log type
-   * @param {string} [arg.pageNo] - Current page number
-   * @param {string} [arg.pageSize] - Current page size
-   * @param {GetLogsListReq} arg.body
-   **/
-  getLogsList({ logType, body, pageNo, pageSize } = {}) {
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+  static registerAmazonChannel = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.AmazonPayload().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/logs/${logType}`,
-      queryObj,
-      body
-    );
-  }
+  static updateAmazonChannelCredentials = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.AmazonPayload().required(),
+    }).required();
+  };
 
-  /**
-   *
-   * @summary: Search logs
-   * @description: Search logs
-   * @param {Object} arg - arg object.
-   * @param {string} [arg.pageNo] - Current page number
-   * @param {string} [arg.pageSize] - Current page size
-   * @param {string} arg.logType - Log type
-   * @param {SearchLogReq} arg.body
-   **/
-  searchLogs({ logType, body, pageNo, pageSize } = {}) {
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+  static registerFlipkartChannel = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      flipkartChannel: Joi.string().required(),
+      body: Validator.FlipkartPayload().required(),
+    }).required();
+  };
 
-    return APIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/logs/${logType}/search`,
-      queryObj,
-      body
-    );
-  }
+  static updateFlipkartChannelCredentials = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      flipkartChannel: Joi.string().required(),
+      body: Validator.FlipkartPayload().required(),
+    }).required();
+  };
+
+  static registerTatacliqChannel = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      tatacliqChannel: Joi.string().required(),
+      body: Validator.TatacliqPayload().required(),
+    }).required();
+  };
+
+  static updateTatacliqChannelCredentials = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      tatacliqChannel: Joi.string().required(),
+      body: Validator.TatacliqPayload().required(),
+    }).required();
+  };
+
+  static registerAjioChannel = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.AjioPayload().required(),
+    }).required();
+  };
+
+  static updateAjioChannelCredentials = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.AjioPayload().required(),
+    }).required();
+  };
+
+  static updateChannelInventoryConfig = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      channel: Joi.string().required(),
+      validateCred: Joi.string(),
+      body: Validator.InventoryConfig().required(),
+    }).required();
+  };
+
+  static getChannelLocationConfig = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      channel: Joi.string().required(),
+    }).required();
+  };
+
+  static updateChannelLocationConfig = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      channel: Joi.string().required(),
+      body: Validator.StoreMappingPayload().required(),
+    }).required();
+  };
+
+  static getChannelStatus = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      channel: Joi.string().required(),
+    }).required();
+  };
+
+  static updateChannelStatus = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      channel: Joi.string().required(),
+      body: Validator.StatusPayload().required(),
+    }).required();
+  };
+
+  static triggerChannelInventoryUpdates = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      channel: Joi.string().required(),
+      updateType: Joi.string().required(),
+      body: Validator.SyncPayload().required(),
+    }).required();
+  };
+}
+
+class AnalyticsValidator {
+  static createExportJob = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      exportType: Joi.string().required(),
+      body: Validator.ExportJobReq().required(),
+    }).required();
+  };
+
+  static getExportJobStatus = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      exportType: Joi.string().required(),
+      jobId: Joi.string().required(),
+    }).required();
+  };
+
+  static getLogsList = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      logType: Joi.string().required(),
+      pageNo: Joi.string(),
+      pageSize: Joi.string(),
+      body: Validator.GetLogsListReq().required(),
+    }).required();
+  };
+
+  static searchLogs = function () {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      pageNo: Joi.string(),
+      pageSize: Joi.string(),
+      logType: Joi.string().required(),
+      body: Validator.SearchLogReq().required(),
+    }).required();
+  };
 }
 
 module.exports = {
-  Lead,
-  Payment,
-  Order,
-  CompanyProfile,
-  Assets,
-  Inventory,
-  Marketplaces,
-  Analytics,
+  LeadValidator,
+  PaymentValidator,
+  OrderValidator,
+  CompanyProfileValidator,
+  AssetsValidator,
+  InventoryValidator,
+  MarketplacesValidator,
+  AnalyticsValidator,
 };
