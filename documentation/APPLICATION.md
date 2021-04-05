@@ -12343,7 +12343,7 @@ Get the list of abuse data from entity type and entity ID.
 ok
 
 
-Schema: `XCursorGetResponse`
+Schema: `ReportAbuseGetResponse`
 
 
 
@@ -12373,16 +12373,14 @@ Get list of attribute data
 
 ```javascript
 // Promise
-const promise = feedback.getAttributes(pageNo,pageSize);
+const promise = feedback.getAttributes();
 
 // Async/Await
-const data = await feedback.getAttributes(pageNo,pageSize);
+const data = await feedback.getAttributes();
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | integer | pagination page number | 
-| pageSize | integer | pagination page size | 
 
 Provides a list of all attribute data.
 
@@ -12689,7 +12687,7 @@ Get the list of comments from specific entity type.
 ok
 
 
-Schema: `XCursorGetResponse`
+Schema: `CommentGetResponse`
 
 
 
@@ -12936,7 +12934,7 @@ Get Media from the given entity type and entity ID.
 ok
 
 
-Schema: `XCursorGetResponse`
+Schema: `MediaGetResponse`
 
 
 
@@ -12990,7 +12988,7 @@ It gives following response data: review count, rating average. review metrics /
 success
 
 
-Schema: `XCursorGetResponse`
+Schema: `RatingGetResponse`
 
 
 
@@ -13147,7 +13145,7 @@ This is used to get the list of customer reviews based on entity and provided fi
 Success
 
 
-Schema: `XCursorGetResponse`
+Schema: `ReviewGetResponse`
 
 
 
@@ -13349,7 +13347,7 @@ This is used to get a list of questions and its answers.
 ok
 
 
-Schema: `XCursorGetResponse`
+Schema: `QNAGetResponse`
 
 
 

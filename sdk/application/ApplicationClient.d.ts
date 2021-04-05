@@ -30,7 +30,7 @@ declare class Catalog {
       **/
     getProductDetailBySlug({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get the sizes of a product
@@ -43,7 +43,7 @@ declare class Catalog {
     getProductSizesBySlug({ slug, storeId }?: {
         slug: string;
         storeId?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get price a product size
@@ -60,7 +60,7 @@ declare class Catalog {
         size: string;
         pincode: string;
         storeId?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: List sellers of a product
@@ -79,7 +79,7 @@ declare class Catalog {
         pincode: string;
         pageNo?: number;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Compare products
@@ -90,7 +90,7 @@ declare class Catalog {
       **/
     getProductComparisonBySlugs({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get comparison between similar products
@@ -101,7 +101,7 @@ declare class Catalog {
       **/
     getSimilarComparisonProductBySlug({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get comparison between frequently compared products with the given product
@@ -112,7 +112,7 @@ declare class Catalog {
       **/
     getComparedFrequentlyProductBySlug({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get similar products
@@ -125,7 +125,7 @@ declare class Catalog {
     getProductSimilarByIdentifier({ slug, similarType }?: {
         slug: string;
         similarType: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get variant of a particular product
@@ -136,7 +136,7 @@ declare class Catalog {
       **/
     getProductVariantsBySlug({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get the stock of a product
@@ -155,7 +155,7 @@ declare class Catalog {
         skuCode?: string;
         ean?: string;
         upc?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get the stock of a product
@@ -170,7 +170,7 @@ declare class Catalog {
         timestamp: string;
         pageSize?: number;
         pageId?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: List the products
@@ -195,7 +195,7 @@ declare class Catalog {
         pageSize?: number;
         pageNo?: number;
         pageType?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: List the products
@@ -229,7 +229,7 @@ declare class Catalog {
         department?: string;
         pageNo?: number;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get metadata of a brand
@@ -240,7 +240,7 @@ declare class Catalog {
       **/
     getBrandDetailBySlug({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: List all the categories
@@ -251,7 +251,7 @@ declare class Catalog {
       **/
     getCategories({ department }?: {
         department?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get metadata of a category
@@ -262,7 +262,7 @@ declare class Catalog {
       **/
     getCategoryDetailBySlug({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: List the products
@@ -277,7 +277,7 @@ declare class Catalog {
         sortOn?: string;
         pageId?: string;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: List all the departments
@@ -285,7 +285,7 @@ declare class Catalog {
       * @param {Object} arg - arg object.
       
       **/
-    getDepartments({}?: any, ...args: any[]): any;
+    getDepartments({}?: any): any;
     /**
       *
       * @summary: Get relevant suggestions for a search query
@@ -296,7 +296,7 @@ declare class Catalog {
       **/
     getSearchResults({ q }?: {
         q: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: List all the collections
@@ -309,7 +309,7 @@ declare class Catalog {
     getCollections({ pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get the items in a collection
@@ -330,7 +330,7 @@ declare class Catalog {
         sortOn?: string;
         pageId?: string;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get a particular collection
@@ -341,7 +341,7 @@ declare class Catalog {
       **/
     getCollectionDetailBySlug({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get a list of followed Products, Brands, Collections
@@ -352,7 +352,7 @@ declare class Catalog {
       **/
     getFollowedListing({ collectionType }?: {
         collectionType: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Follow a particular Product
@@ -365,7 +365,7 @@ declare class Catalog {
     followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: UnFollow a Product
@@ -378,7 +378,7 @@ declare class Catalog {
     unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get Follow Count
@@ -391,7 +391,7 @@ declare class Catalog {
     getFollowerCountById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get the Ids of followed product, brand and collection.
@@ -402,7 +402,7 @@ declare class Catalog {
       **/
     getFollowIds({ collectionType }?: {
         collectionType?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: List store meta information.
@@ -423,7 +423,7 @@ declare class Catalog {
         range?: number;
         latitude?: number;
         longitude?: number;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class Cart {
     constructor(_conf: any);
@@ -444,7 +444,7 @@ declare class Cart {
         i?: boolean;
         b?: boolean;
         assignCardId?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Fetch Last-Modified timestamp
@@ -455,7 +455,7 @@ declare class Cart {
       **/
     getCartLastModified({ uid }?: {
         uid?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Add Items to Cart
@@ -469,7 +469,7 @@ declare class Cart {
         i?: boolean;
         b?: boolean;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update Items already added to Cart
@@ -485,7 +485,7 @@ declare class Cart {
         i?: boolean;
         b?: boolean;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Cart item count
@@ -496,7 +496,7 @@ declare class Cart {
       **/
     getItemCount({ uid }?: {
         uid?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Fetch Coupon
@@ -507,7 +507,7 @@ declare class Cart {
       **/
     getCoupons({ uid }?: {
         uid?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Apply Coupon
@@ -526,7 +526,7 @@ declare class Cart {
         p?: boolean;
         uid?: number;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Remove Coupon Applied
@@ -537,7 +537,7 @@ declare class Cart {
       **/
     removeCoupon({ uid }?: {
         uid?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get discount offers based on quantity
@@ -554,7 +554,7 @@ declare class Cart {
         articleId?: string;
         uid?: number;
         slug?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Fetch Address
@@ -573,7 +573,7 @@ declare class Cart {
         checkoutMode?: string;
         tags?: number;
         isDefault?: boolean;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Add Address to the account
@@ -583,7 +583,7 @@ declare class Cart {
      **/
     addAddress({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Fetch Single Address
@@ -604,7 +604,7 @@ declare class Cart {
         checkoutMode?: string;
         tags?: number;
         isDefault?: boolean;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update Address alreay added to account
@@ -616,7 +616,7 @@ declare class Cart {
     updateAddress({ id, body }?: {
         id: number;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Remove Address Associated to the account
@@ -627,7 +627,7 @@ declare class Cart {
       **/
     removeAddress({ id }?: {
         id: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Select Address from All Addresses
@@ -643,7 +643,7 @@ declare class Cart {
         i?: boolean;
         b?: boolean;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update Cart Payment
@@ -655,7 +655,7 @@ declare class Cart {
     selectPaymentMode({ body, uid }?: {
         uid?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get Cart Payment for valid coupon
@@ -676,7 +676,7 @@ declare class Cart {
         paymentIdentifier?: string;
         aggregatorName?: string;
         merchantCode?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get delivery date and options before checkout
@@ -693,7 +693,7 @@ declare class Cart {
         uid?: number;
         addressId?: number;
         areaCode?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Checkout Cart
@@ -703,7 +703,7 @@ declare class Cart {
      **/
     checkoutCart({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update Cart Meta
@@ -715,7 +715,7 @@ declare class Cart {
     updateCartMeta({ body, uid }?: {
         uid?: number;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Generate Cart sharing link token
@@ -725,7 +725,7 @@ declare class Cart {
      **/
     getCartShareLink({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get shared cart snapshot and cart response
@@ -736,7 +736,7 @@ declare class Cart {
       **/
     getCartSharedItems({ token }?: {
         token: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Merge or Replace existing cart
@@ -749,7 +749,7 @@ declare class Cart {
     updateCartWithSharedItems({ token, action }?: {
         token: string;
         action: string;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class Lead {
     constructor(_conf: any);
@@ -764,7 +764,7 @@ declare class Lead {
       **/
     getTicket({ id }?: {
         id: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Create history for specific Ticket
@@ -776,7 +776,7 @@ declare class Lead {
     createHistory({ ticketId, body }?: {
         ticketId: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Create Ticket
@@ -786,7 +786,7 @@ declare class Lead {
      **/
     createTicket({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get specific Custom Form using it's slug
@@ -797,7 +797,7 @@ declare class Lead {
       **/
     getCustomForm({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Submit Response for a specific Custom Form using it's slug
@@ -809,7 +809,7 @@ declare class Lead {
     submitCustomForm({ slug, body }?: {
         slug: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get participants of a specific Video Room using it's unique name
@@ -820,7 +820,7 @@ declare class Lead {
       **/
     getParticipantsInsideVideoRoom({ uniqueName }?: {
         uniqueName: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get Token to join a specific Video Room using it's unqiue name
@@ -831,7 +831,7 @@ declare class Lead {
       **/
     getTokenForVideoRoom({ uniqueName }?: {
         uniqueName: string;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class Theme {
     constructor(_conf: any);
@@ -843,7 +843,7 @@ declare class Theme {
       * @param {Object} arg - arg object.
       
       **/
-    getAppliedTheme({}?: any, ...args: any[]): any;
+    getAppliedTheme({}?: any): any;
     /**
       *
       * @summary: Get theme for preview
@@ -854,7 +854,7 @@ declare class Theme {
       **/
     getThemeForPreview({ themeId }?: {
         themeId: string;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class User {
     constructor(_conf: any);
@@ -868,7 +868,7 @@ declare class User {
      **/
     loginWithFacebook({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Login/Register with Google
@@ -878,7 +878,7 @@ declare class User {
      **/
     loginWithGoogle({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Login/Register with Google for android
@@ -888,7 +888,7 @@ declare class User {
      **/
     loginWithGoogleAndroid({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Login/Register with Google for ios
@@ -898,7 +898,7 @@ declare class User {
      **/
     loginWithGoogleIOS({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Login/Register with OTP
@@ -910,7 +910,7 @@ declare class User {
     loginWithOTP({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Login/Register with password
@@ -920,7 +920,7 @@ declare class User {
      **/
     loginWithEmailAndPassword({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Reset Password
@@ -932,7 +932,7 @@ declare class User {
     sendResetPasswordEmail({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary:
@@ -942,7 +942,7 @@ declare class User {
      **/
     forgotPassword({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary:
@@ -952,7 +952,7 @@ declare class User {
      **/
     sendResetToken({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Login/Register with token
@@ -962,7 +962,7 @@ declare class User {
      **/
     loginWithToken({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Registration Form
@@ -974,7 +974,7 @@ declare class User {
     registerWithForm({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Verify email
@@ -984,7 +984,7 @@ declare class User {
      **/
     verifyEmail({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Verify mobile
@@ -994,7 +994,7 @@ declare class User {
      **/
     verifyMobile({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Check if user has password
@@ -1002,7 +1002,7 @@ declare class User {
       * @param {Object} arg - arg object.
       
       **/
-    hasPassword({}?: any, ...args: any[]): any;
+    hasPassword({}?: any): any;
     /**
      *
      * @summary: Update user password
@@ -1012,7 +1012,7 @@ declare class User {
      **/
     updatePassword({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Logout user
@@ -1020,7 +1020,7 @@ declare class User {
       * @param {Object} arg - arg object.
       
       **/
-    logout({}?: any, ...args: any[]): any;
+    logout({}?: any): any;
     /**
      *
      * @summary: Send OTP on mobile
@@ -1032,7 +1032,7 @@ declare class User {
     sendOTPOnMobile({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Verify OTP on mobile
@@ -1044,7 +1044,7 @@ declare class User {
     verifyMobileOTP({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Send OTP on email
@@ -1056,7 +1056,7 @@ declare class User {
     sendOTPOnEmail({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Verify OTP on email
@@ -1068,7 +1068,7 @@ declare class User {
     verifyEmailOTP({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get logged in user
@@ -1076,7 +1076,7 @@ declare class User {
       * @param {Object} arg - arg object.
       
       **/
-    getLoggedInUser({}?: any, ...args: any[]): any;
+    getLoggedInUser({}?: any): any;
     /**
       *
       * @summary: Get list of sessions
@@ -1084,7 +1084,7 @@ declare class User {
       * @param {Object} arg - arg object.
       
       **/
-    getListOfActiveSessions({}?: any, ...args: any[]): any;
+    getListOfActiveSessions({}?: any): any;
     /**
       *
       * @summary: Get platform config
@@ -1095,7 +1095,7 @@ declare class User {
       **/
     getPlatformConfig({ name }?: {
         name?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Edit Profile Details
@@ -1107,7 +1107,7 @@ declare class User {
     updateProfile({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Add mobile number to profile
@@ -1119,7 +1119,7 @@ declare class User {
     addMobileNumber({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Delete mobile number from profile
@@ -1140,7 +1140,7 @@ declare class User {
         verified: boolean;
         countryCode: string;
         phone: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Set mobile as primary
@@ -1150,7 +1150,7 @@ declare class User {
      **/
     setMobileNumberAsPrimary({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Send verification link to mobile
@@ -1162,7 +1162,7 @@ declare class User {
     sendVerificationLinkToMobile({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Add email to profile
@@ -1174,7 +1174,7 @@ declare class User {
     addEmail({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Delete email from profile
@@ -1193,7 +1193,7 @@ declare class User {
         primary: boolean;
         verified: boolean;
         email: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Set email as primary
@@ -1203,7 +1203,7 @@ declare class User {
      **/
     setEmailAsPrimary({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Send verification link to email
@@ -1215,7 +1215,7 @@ declare class User {
     sendVerificationLinkToEmail({ body, platform }?: {
         platform?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class Content {
     constructor(_conf: any);
@@ -1227,7 +1227,7 @@ declare class Content {
       * @param {Object} arg - arg object.
       
       **/
-    getAnnouncements({}?: any, ...args: any[]): any;
+    getAnnouncements({}?: any): any;
     /**
       *
       * @summary: Get Blog by slug
@@ -1238,7 +1238,7 @@ declare class Content {
       **/
     getBlog({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get frequently asked questions
@@ -1246,7 +1246,7 @@ declare class Content {
       * @param {Object} arg - arg object.
       
       **/
-    getFaqs({}?: any, ...args: any[]): any;
+    getFaqs({}?: any): any;
     /**
       *
       * @summary: Get FAQ categories list
@@ -1254,7 +1254,7 @@ declare class Content {
       * @param {Object} arg - arg object.
       
       **/
-    getFaqCategories({}?: any, ...args: any[]): any;
+    getFaqCategories({}?: any): any;
     /**
       *
       * @summary: Get frequently asked question
@@ -1265,7 +1265,7 @@ declare class Content {
       **/
     getFaqByIdOrSlug({ idOrSlug }?: {
         idOrSlug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get FAQ category by slug or id
@@ -1276,7 +1276,7 @@ declare class Content {
       **/
     getFaqCategoryBySlugOrId({ idOrSlug }?: {
         idOrSlug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get FAQs of a Faq Category id or slug
@@ -1287,7 +1287,7 @@ declare class Content {
       **/
     getFaqsByCategoryIdOrSlug({ idOrSlug }?: {
         idOrSlug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get landing page
@@ -1295,7 +1295,7 @@ declare class Content {
       * @param {Object} arg - arg object.
       
       **/
-    getLandingPage({}?: any, ...args: any[]): any;
+    getLandingPage({}?: any): any;
     /**
       *
       * @summary: Get legal information
@@ -1303,7 +1303,7 @@ declare class Content {
       * @param {Object} arg - arg object.
       
       **/
-    getLegalInformation({}?: any, ...args: any[]): any;
+    getLegalInformation({}?: any): any;
     /**
       *
       * @summary: Get navigation
@@ -1311,7 +1311,7 @@ declare class Content {
       * @param {Object} arg - arg object.
       
       **/
-    getNavigations({}?: any, ...args: any[]): any;
+    getNavigations({}?: any): any;
     /**
       *
       * @summary: Get Page by slug
@@ -1322,7 +1322,7 @@ declare class Content {
       **/
     getPage({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get seo of application
@@ -1330,7 +1330,7 @@ declare class Content {
       * @param {Object} arg - arg object.
       
       **/
-    getSeoConfiguration({}?: any, ...args: any[]): any;
+    getSeoConfiguration({}?: any): any;
     /**
       *
       * @summary: Get slideshow by slug
@@ -1341,7 +1341,7 @@ declare class Content {
       **/
     getSlideshow({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get support information
@@ -1349,7 +1349,7 @@ declare class Content {
       * @param {Object} arg - arg object.
       
       **/
-    getSupportInformation({}?: any, ...args: any[]): any;
+    getSupportInformation({}?: any): any;
     /**
       *
       * @summary: Get Tags for application
@@ -1357,7 +1357,7 @@ declare class Content {
       * @param {Object} arg - arg object.
       
       **/
-    getTags({}?: any, ...args: any[]): any;
+    getTags({}?: any): any;
 }
 declare class Share {
     constructor(_conf: any);
@@ -1369,7 +1369,7 @@ declare class Share {
       * @param {Object} arg - arg object.
       
       **/
-    getApplicationQRCode({}?: any, ...args: any[]): any;
+    getApplicationQRCode({}?: any): any;
     /**
       *
       * @summary: Create product QR Code
@@ -1380,7 +1380,7 @@ declare class Share {
       **/
     getProductQRCodeBySlug({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Create collection QR Code
@@ -1391,7 +1391,7 @@ declare class Share {
       **/
     getCollectionQRCodeBySlug({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Create url QR Code
@@ -1402,7 +1402,7 @@ declare class Share {
       **/
     getUrlQRCode({ url }?: {
         url: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Create short link
@@ -1412,7 +1412,7 @@ declare class Share {
      **/
     createShortLink({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get short link by hash
@@ -1423,7 +1423,7 @@ declare class Share {
       **/
     getShortLinkByHash({ hash }?: {
         hash: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get original link by hash
@@ -1434,7 +1434,7 @@ declare class Share {
       **/
     getOriginalShortLinkByHash({ hash }?: {
         hash: string;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class FileStorage {
     constructor(_conf: any);
@@ -1468,7 +1468,7 @@ declare class FileStorage {
     startUpload({ namespace, body }?: {
         namespace: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
@@ -1498,7 +1498,7 @@ declare class FileStorage {
     completeUpload({ namespace, body }?: {
         namespace: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class Configuration {
     constructor(_conf: any);
@@ -1510,7 +1510,7 @@ declare class Configuration {
       * @param {Object} arg - arg object.
       
       **/
-    getApplication({}?: any, ...args: any[]): any;
+    getApplication({}?: any): any;
     /**
       *
       * @summary: Get application, owner and seller information
@@ -1518,7 +1518,7 @@ declare class Configuration {
       * @param {Object} arg - arg object.
       
       **/
-    getOwnerInfo({}?: any, ...args: any[]): any;
+    getOwnerInfo({}?: any): any;
     /**
       *
       * @summary: Get basic application details
@@ -1526,7 +1526,7 @@ declare class Configuration {
       * @param {Object} arg - arg object.
       
       **/
-    getBasicDetails({}?: any, ...args: any[]): any;
+    getBasicDetails({}?: any): any;
     /**
       *
       * @summary: Get integration tokens
@@ -1534,7 +1534,7 @@ declare class Configuration {
       * @param {Object} arg - arg object.
       
       **/
-    getIntegrationTokens({}?: any, ...args: any[]): any;
+    getIntegrationTokens({}?: any): any;
     /**
       *
       * @summary: Get deployment meta stores
@@ -1549,7 +1549,7 @@ declare class Configuration {
         pageNo?: number;
         pageSize?: number;
         q?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get features of application
@@ -1557,7 +1557,7 @@ declare class Configuration {
       * @param {Object} arg - arg object.
       
       **/
-    getFeatures({}?: any, ...args: any[]): any;
+    getFeatures({}?: any): any;
     /**
       *
       * @summary: Get application information
@@ -1565,7 +1565,7 @@ declare class Configuration {
       * @param {Object} arg - arg object.
       
       **/
-    getContactInfo({}?: any, ...args: any[]): any;
+    getContactInfo({}?: any): any;
     /**
       *
       * @summary: Get application enabled currencies
@@ -1573,7 +1573,7 @@ declare class Configuration {
       * @param {Object} arg - arg object.
       
       **/
-    getCurrencies({}?: any, ...args: any[]): any;
+    getCurrencies({}?: any): any;
     /**
       *
       * @summary: Get currency by id
@@ -1584,7 +1584,7 @@ declare class Configuration {
       **/
     getCurrencyById({ id }?: {
         id: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get list of languages
@@ -1592,7 +1592,7 @@ declare class Configuration {
       * @param {Object} arg - arg object.
       
       **/
-    getLanguages({}?: any, ...args: any[]): any;
+    getLanguages({}?: any): any;
     /**
      *
      * @summary: Get ordering store signed cookie on selection of ordering store. This will be used by cart service to verify coupon against selected ordering store in cart.
@@ -1602,7 +1602,7 @@ declare class Configuration {
      **/
     getOrderingStoreCookie({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
@@ -1610,7 +1610,7 @@ declare class Configuration {
       * @param {Object} arg - arg object.
       
       **/
-    removeOrderingStoreCookie({}?: any, ...args: any[]): any;
+    removeOrderingStoreCookie({}?: any): any;
     /**
       *
       * @summary: Get Staff List.
@@ -1625,7 +1625,7 @@ declare class Configuration {
         orderIncent?: boolean;
         orderingStore?: number;
         user?: string;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class Payment {
     constructor(_conf: any);
@@ -1642,7 +1642,7 @@ declare class Payment {
     getAggregatorsConfig({ xApiToken, refresh }?: {
         xApiToken: string;
         refresh?: boolean;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Attach a saved card to customer.
@@ -1652,7 +1652,7 @@ declare class Payment {
      **/
     attachCardToCustomer({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Fetch active payment gateway for card
@@ -1663,7 +1663,7 @@ declare class Payment {
       **/
     getActiveCardAggregator({ refresh }?: {
         refresh?: boolean;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Fetch the list of saved cards of user.
@@ -1674,7 +1674,7 @@ declare class Payment {
       **/
     getActiveUserCards({ forceRefresh }?: {
         forceRefresh?: boolean;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Delete an user card.
@@ -1684,7 +1684,7 @@ declare class Payment {
      **/
     deleteUserCard({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Validate customer for payment.
@@ -1694,7 +1694,7 @@ declare class Payment {
      **/
     verifyCustomerForPayment({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Verify and charge payment
@@ -1704,7 +1704,7 @@ declare class Payment {
      **/
     verifyAndChargePayment({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Payment Initialisation server to server for UPI and BharatQR.
@@ -1714,7 +1714,7 @@ declare class Payment {
      **/
     initialisePayment({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Continous polling to check status of payment on server.
@@ -1724,7 +1724,7 @@ declare class Payment {
      **/
     checkAndUpdatePaymentStatus({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get All Valid Payment Options
@@ -1747,7 +1747,7 @@ declare class Payment {
         refresh?: boolean;
         assignCardId?: string;
         userDetails?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get All Valid Payment Options for POS
@@ -1772,7 +1772,7 @@ declare class Payment {
         assignCardId?: string;
         orderType: string;
         userDetails?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: List User Beneficiary
@@ -1783,7 +1783,7 @@ declare class Payment {
       **/
     getUserBeneficiariesDetail({ orderId }?: {
         orderId: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Ifsc Code Verification
@@ -1794,7 +1794,7 @@ declare class Payment {
       **/
     verifyIfscCode({ ifscCode }?: {
         ifscCode?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: List Order Beneficiary
@@ -1805,7 +1805,7 @@ declare class Payment {
       **/
     getOrderBeneficiariesDetail({ orderId }?: {
         orderId: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Save Beneficiary details on otp validation.
@@ -1815,7 +1815,7 @@ declare class Payment {
      **/
     verifyOtpAndAddBeneficiaryForBank({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Save bank details for cancelled/returned order
@@ -1825,7 +1825,7 @@ declare class Payment {
      **/
     addBeneficiaryDetails({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Send Otp on Adding wallet beneficiary
@@ -1835,7 +1835,7 @@ declare class Payment {
      **/
     verifyOtpAndAddBeneficiaryForWallet({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Mark Default Beneficiary For Refund
@@ -1845,7 +1845,7 @@ declare class Payment {
      **/
     updateDefaultBeneficiary({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class Order {
     constructor(_conf: any);
@@ -1866,7 +1866,7 @@ declare class Order {
         pageSize?: string;
         fromDate?: string;
         toDate?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get Order by order id for application based on application Id
@@ -1877,7 +1877,7 @@ declare class Order {
       **/
     getOrderById({ orderId }?: {
         orderId: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get Shipment by shipment id and order id for application based on application Id
@@ -1888,7 +1888,7 @@ declare class Order {
       **/
     getShipmentById({ shipmentId }?: {
         shipmentId: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get Shipment reasons by shipment id and order id for application based on application Id
@@ -1899,7 +1899,7 @@ declare class Order {
       **/
     getShipmentReasons({ shipmentId }?: {
         shipmentId: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update Shipment status by shipment id and order id for application based on application Id
@@ -1911,7 +1911,7 @@ declare class Order {
     updateShipmentStatus({ shipmentId, body }?: {
         shipmentId: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Track Shipment by shipment id and order id for application based on application Id
@@ -1922,7 +1922,7 @@ declare class Order {
       **/
     trackShipment({ shipmentId }?: {
         shipmentId: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get POS Order by order id for application based on application Id
@@ -1933,7 +1933,7 @@ declare class Order {
       **/
     getPosOrderById({ orderId }?: {
         orderId: string;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class Rewards {
     constructor(_conf: any);
@@ -1947,7 +1947,7 @@ declare class Rewards {
      **/
     getPointsOnProduct({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
@@ -1957,7 +1957,7 @@ declare class Rewards {
      **/
     getOrderDiscount({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Total available points of a user for current application
@@ -1965,7 +1965,7 @@ declare class Rewards {
       * @param {Object} arg - arg object.
       
       **/
-    getUserPoints({}?: any, ...args: any[]): any;
+    getUserPoints({}?: any): any;
     /**
       *
       * @summary: Get list of points transactions.
@@ -1979,7 +1979,7 @@ declare class Rewards {
     getUserPointsHistory({ pageId, pageSize }?: {
         pageId?: string;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: User's referral details.
@@ -1987,7 +1987,7 @@ declare class Rewards {
       * @param {Object} arg - arg object.
       
       **/
-    getUserReferralDetails({}?: any, ...args: any[]): any;
+    getUserReferralDetails({}?: any): any;
     /**
      *
      * @summary: Redeems referral code and credits points to users points account.
@@ -1997,7 +1997,7 @@ declare class Rewards {
      **/
     redeemReferralCode({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class Feedback {
     constructor(_conf: any);
@@ -2011,7 +2011,7 @@ declare class Feedback {
      **/
     createAbuseReport({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update abuse details
@@ -2021,7 +2021,7 @@ declare class Feedback {
      **/
     updateAbuseReport({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get list of abuse data
@@ -2040,20 +2040,15 @@ declare class Feedback {
         id?: string;
         pageId?: string;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get list of attribute data
       * @description: Provides a list of all attribute data.
       * @param {Object} arg - arg object.
-      * @param {number} [arg.pageNo] - pagination page number
-      * @param {number} [arg.pageSize] - pagination page size
       
       **/
-    getAttributes({ pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-    }, ...args: any[]): any;
+    getAttributes({}?: any): any;
     /**
      *
      * @summary: Add a new attribute request
@@ -2063,7 +2058,7 @@ declare class Feedback {
      **/
     createAttribute({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get single attribute data
@@ -2074,7 +2069,7 @@ declare class Feedback {
       **/
     getAttribute({ slug }?: {
         slug: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update attribute details
@@ -2086,7 +2081,7 @@ declare class Feedback {
     updateAttribute({ slug, body }?: {
         slug: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: post a new comment
@@ -2096,7 +2091,7 @@ declare class Feedback {
      **/
     createComment({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update comment status
@@ -2106,7 +2101,7 @@ declare class Feedback {
      **/
     updateComment({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get list of comments
@@ -2127,7 +2122,7 @@ declare class Feedback {
         userId?: string;
         pageId?: string;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Checks eligibility and cloud media config
@@ -2140,7 +2135,7 @@ declare class Feedback {
     checkEligibility({ entityType, entityId }?: {
         entityType: string;
         entityId: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Delete Media
@@ -2148,7 +2143,7 @@ declare class Feedback {
       * @param {Object} arg - arg object.
       
       **/
-    deleteMedia({}?: any, ...args: any[]): any;
+    deleteMedia({}?: any): any;
     /**
      *
      * @summary: Add Media
@@ -2158,7 +2153,7 @@ declare class Feedback {
      **/
     createMedia({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update Media
@@ -2168,7 +2163,7 @@ declare class Feedback {
      **/
     updateMedia({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get Media
@@ -2187,7 +2182,7 @@ declare class Feedback {
         id?: string;
         pageId?: string;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get a review summary
@@ -2207,7 +2202,7 @@ declare class Feedback {
         id?: string;
         pageId?: string;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Add customer reviews
@@ -2218,7 +2213,7 @@ declare class Feedback {
       **/
     createReview({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Update customer reviews
@@ -2229,7 +2224,7 @@ declare class Feedback {
       **/
     updateReview({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get list of customer reviews
@@ -2260,7 +2255,7 @@ declare class Feedback {
         sort?: string;
         pageId?: string;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get the templates for product or l3 type
@@ -2275,7 +2270,7 @@ declare class Feedback {
         templateId?: string;
         entityId?: string;
         entityType?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Create a new question
@@ -2286,7 +2281,7 @@ declare class Feedback {
       **/
     createQuestion({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update question
@@ -2296,7 +2291,7 @@ declare class Feedback {
      **/
     updateQuestion({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get a list of QnA
@@ -2317,7 +2312,7 @@ declare class Feedback {
         showAnswer?: boolean;
         pageId?: string;
         pageSize?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get list of votes
@@ -2330,7 +2325,7 @@ declare class Feedback {
     getVotes({ id, refType }?: {
         id?: string;
         refType?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Create a new vote
@@ -2340,7 +2335,7 @@ declare class Feedback {
      **/
     createVote({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update vote
@@ -2350,7 +2345,7 @@ declare class Feedback {
      **/
     updateVote({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class PosCart {
     constructor(_conf: any);
@@ -2371,7 +2366,7 @@ declare class PosCart {
         i?: boolean;
         b?: boolean;
         assignCardId?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Fetch Last-Modified timestamp
@@ -2382,7 +2377,7 @@ declare class PosCart {
       **/
     getCartLastModified({ uid }?: {
         uid?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Add Items to Cart
@@ -2396,7 +2391,7 @@ declare class PosCart {
         i?: boolean;
         b?: boolean;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update Items already added to Cart
@@ -2412,7 +2407,7 @@ declare class PosCart {
         i?: boolean;
         b?: boolean;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Cart item count
@@ -2423,7 +2418,7 @@ declare class PosCart {
       **/
     getItemCount({ uid }?: {
         uid?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Fetch Coupon
@@ -2434,7 +2429,7 @@ declare class PosCart {
       **/
     getCoupons({ uid }?: {
         uid?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Apply Coupon
@@ -2453,7 +2448,7 @@ declare class PosCart {
         p?: boolean;
         uid?: number;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Remove Coupon Applied
@@ -2464,7 +2459,7 @@ declare class PosCart {
       **/
     removeCoupon({ uid }?: {
         uid?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get discount offers based on quantity
@@ -2481,7 +2476,7 @@ declare class PosCart {
         articleId?: string;
         uid?: number;
         slug?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Fetch Address
@@ -2500,7 +2495,7 @@ declare class PosCart {
         checkoutMode?: string;
         tags?: number;
         isDefault?: boolean;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Add Address to the account
@@ -2510,7 +2505,7 @@ declare class PosCart {
      **/
     addAddress({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Fetch Single Address
@@ -2531,7 +2526,7 @@ declare class PosCart {
         checkoutMode?: string;
         tags?: number;
         isDefault?: boolean;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update Address alreay added to account
@@ -2543,7 +2538,7 @@ declare class PosCart {
     updateAddress({ id, body }?: {
         id: number;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Remove Address Associated to the account
@@ -2554,7 +2549,7 @@ declare class PosCart {
       **/
     removeAddress({ id }?: {
         id: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Select Address from All Addresses
@@ -2570,7 +2565,7 @@ declare class PosCart {
         i?: boolean;
         b?: boolean;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update Cart Payment
@@ -2582,7 +2577,7 @@ declare class PosCart {
     selectPaymentMode({ body, uid }?: {
         uid?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get Cart Payment for valid coupon
@@ -2603,7 +2598,7 @@ declare class PosCart {
         paymentIdentifier?: string;
         aggregatorName?: string;
         merchantCode?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get delivery date and options before checkout
@@ -2626,7 +2621,7 @@ declare class PosCart {
         addressId?: number;
         areaCode?: string;
         orderType?: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update shipment delivery type and quantity before checkout
@@ -2646,7 +2641,7 @@ declare class PosCart {
         addressId?: number;
         orderType?: string;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Checkout Cart
@@ -2658,7 +2653,7 @@ declare class PosCart {
     checkoutCart({ body, uid }?: {
         uid?: number;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Update Cart Meta
@@ -2670,7 +2665,7 @@ declare class PosCart {
     updateCartMeta({ body, uid }?: {
         uid?: number;
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get available delivery modes for cart
@@ -2683,7 +2678,7 @@ declare class PosCart {
     getAvailableDeliveryModes({ areaCode, uid }?: {
         areaCode: string;
         uid?: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get list of stores for give uids
@@ -2694,7 +2689,7 @@ declare class PosCart {
       **/
     getStoreAddressByUid({ storeUid }?: {
         storeUid: number;
-    }, ...args: any[]): any;
+    }): any;
     /**
      *
      * @summary: Generate Cart sharing link token
@@ -2704,7 +2699,7 @@ declare class PosCart {
      **/
     getCartShareLink({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get shared cart snapshot and cart response
@@ -2715,7 +2710,7 @@ declare class PosCart {
       **/
     getCartSharedItems({ token }?: {
         token: string;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Merge or Replace existing cart
@@ -2728,7 +2723,7 @@ declare class PosCart {
     updateCartWithSharedItems({ token, action }?: {
         token: string;
         action: string;
-    }, ...args: any[]): any;
+    }): any;
 }
 declare class Logistic {
     constructor(_conf: any);
@@ -2742,7 +2737,7 @@ declare class Logistic {
      **/
     getTatProduct({ body }?: {
         body: any;
-    }, ...args: any[]): any;
+    }): any;
     /**
       *
       * @summary: Get City from Pincode
@@ -2753,6 +2748,6 @@ declare class Logistic {
       **/
     getPincodeCity({ pincode }?: {
         pincode: string;
-    }, ...args: any[]): any;
+    }): any;
 }
 import Paginator = require("../common/Paginator");
