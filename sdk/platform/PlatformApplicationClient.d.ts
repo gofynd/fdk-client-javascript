@@ -17,7 +17,7 @@ declare class PlatformApplicationClient {
     analytics: Analytics;
 }
 declare namespace PlatformApplicationClient {
-    export { TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, Filter, TicketHistoryPayload, CustomFormSubmissionPayload, KeyValue, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, Email, Debug, SubmitCustomFormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketCategory, SubmitButton, PollForAssignment, CustomForm, TicketHistory, Ticket, PaginationSchema, ThemesListingResponseSchema, AddThemeRequestSchema, UpgradableThemeSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegNotFoundSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, pagesSchema, availableSectionSchema, sectionSchema, Information, Images, Src, AssetsSchema, UmdJs, CommonJs, Css, AvailablePages, Seo, Sections, Pages, Config, Preset, GlobalSchema, ListSchema, Colors, Custom, ConfigPage, Font, Variants, Medium, SemiBold, Bold, Light, Regular, Blocks, BlocksProps, PageSections, PageSectionsBlocks, PageSectionsBlocksProps, Predicate, Screen, PredicateUserSchema, Route, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, SendEmailOtpRequestSchema, VerifyOtpRequestSchema, SendMobileOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, AuthSuccess, SendOtpResponse, LoginSuccess, VerifyOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, UserSearchResponseSchema, CustomerListResponseSchema, UnauthorizedSchema, UnauthenticatedSchema, NotFoundSchema, AuthenticationApiErrorSchema, ProfileEditSuccessSchema, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, AuthSuccessUser, AuthSuccessUserDebug, AuthSuccessUserEmails, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, Mobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, Facebook, Accountkit, Google, ApplicationLegal, ApplicationLegalFAQ, CustomMetaTag, Detail, StorefrontAnnouncement, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, ScheduleSchema, NextSchedule, AnnouncementSchema, announcementSchema, scheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, Navigation, LocaleLanguage, Language, Action, NavigationReference, LandingPage, ConfigurationSchema, Media, Slideshow, AnnouncementsResponseSchema, AnnouncementDataSchema, FaqResponseSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, APIError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryByIdOrSlugSchema, Pagination, LandingPageGetResponse, LandingPageSchema, LandingPageRequest, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, CustomPageSchema, ContentSchema, CustomPage, CustomBlogSchema, FeatureImage, CustomBlog, PageGetResponse, PageSpec, PageSpecItem, PageSchema, CreatedBy, PageContent, PageMeta, PageRequest, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, Phone, PhoneSchema, EmailSchema, ContactSchema, TagsSchema, TagSchema, PaymentGatewayConfigResponse, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorCodeAndResponse, PaymentModeLogo, PaymentModeList, RootPaymentMode, PaymentOptions, PaymentOptionsResponse, PayoutsResponse, PayoutRequest, PayoutResponse, UpdatePayoutResponse, UpdatePayoutRequest, DeletePayoutResponse, SubscriptionPaymentMethodResponse, DeleteSubscriptionPaymentMethodResponse, SubscriptionConfigResponse, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, GetActivityStatus, ActivityHistory, FailedOrders, FailOrder, MarketplaceOrder, TotalDiscountsSet, PresentmentMoney, ShopMoney, TotalPriceSet, TotalPriceSetShopMoney, TotalPriceSetPresentmentMoney, TotalTaxSet, TotalTaxSetShopMoney, TotalTaxSetPresentmentMoney, SubtotalPriceSet, SubtotalPriceSetShopMoney, SubtotalPriceSetPresentmentMoney, LineItems, LineItemsArticle, Quantities, NotAvailable, Sellable, OrderCommitted, Damaged, Manufacturer, ArticlePrice, Company, MarketplaceIdentifiers, TatacliqLuxury, Dimension, Weight, Store, ArticleMeta, ArticleBrand, Identifier, PriceSet, PriceSetShopMoney, PriceSetPresentmentMoney, TaxLines, TaxLinesPriceSet, TaxLinesPriceSetShopMoney, TaxLinesPriceSetPresentmentMoney, TotalDiscountSet, TotalDiscountSetPresentmentMoney, TotalDiscountSetShopMoney, BillingAddress, TotalShippingPriceSet, TotalShippingPriceSetShopMoney, TotalShippingPriceSetPresentmentMoney, Customer, DefaultAddress, TotalLineItemsPriceSet, TotalLineItemsPriceSetShopMoney, TotalLineItemsPriceSetPresentmentMoney, ShippingAddress, OrderListing, OrderItems, PlatformOrderUserInfo, PlatformDeliveryAddress, Channel, PlatformBreakupValues, PlatformApplication, ArticleAssignment, PlatformShipment, PlatformShipmentStatus, Bags, BagFinancialBreakup, Identifiers, BagCurrStatus, BagItem, BagItemAttributes, BagArticle, ArticleIdentifiers, Set, SetSizeDistribution, Sizes, BagArticleReturnConfig, ShipmentPrices, GstDetails, BagBreakupValues, BagCurrentStatus, BagStateMapper, BagStatus, BagStatusBagStateMapper, BagPrices, ShipmentBreakupValues, DpDetails, ShipmentInvoice, RtoAddress, StoreAddressJson, PlatformFulfillingStore, FulfillingStoreMeta, AdditionalContactDetails, Documents, Gst, ProductReturnConfig, Timing, Opening, Closing, FulfillingStoreStoreAddressJson, Payments, ShipmentGst, PlatformShipmentBrand, Promise, Timestamp, ShipmentTrackingDetails, ShipmentUser, ItemsPayments, Filters, Stages, StagesFilters, Options, NextOrderStatus, BagConfirmed, DpAssigned, ReturnBagDelivered, Placed, DeliveryDone, Pending, BagPacked, PlatformOrderPage, ItemTotal, AppliedFilters, UpdateOrderReprocessResponse, PlatformOrderTrack, GetPingResponse, UpdateShipmentStatusResponse, UpdateShipmentStatusBody, PlatformShipmentTrack, Results, UpdateProcessShipmenstRequestBody, UpdateProcessShipmenstRequestResponse, GetVoiceCallbackResponse, GetClickToCallResponse, ApefaceApiError, CompanyAddress, ReferralInfo, BusinessCountryInfo, Document, CompanyStoreSerializerRequest, SuccessResponse, ErrorResponse, BusinessCountryInfo1, GetAddressSerializer, UserSerializer, Website, BusinessDetails, ContactDetails, GetCompanyProfileSerializerResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, CreateUpdateBrandRequestSerializer, UserSerializer1, GetBrandResponseSerializer, CompanyBrandPostRequestSerializer, CompanyBrandListSerializer, GetAddressSerializer1, LocationManagerSerializer, LocationTimingSerializer, LocationDayWiseSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, ProductReturnConfigSerializer, LocationSerializer, LocationListSerializer, GetCompanySerializer, LocationIntegrationType, GetLocationSerializer, FailedResponse, CDN, Upload, StartResponse, StartRequest, CompleteResponse, Opts, CopyFileTask, BulkResponse, ReqConfiguration, Destination, BulkRequest, Urls, SignUrlResponse, SignUrlRequest, DbRecord, BrowseResponse, RedirectDevice, WebRedirect, Redirects, ShortLinkReq, UrlInfo, ShortLinkRes, ShortLinkList, DataTresholdDTO, GenericDTO, JobConfigDTO, TaskDTO, ResponseEnvelopeString, AWSS3config, ArchiveConfig, Audit, CatalogMasterConfig, CompanyConfig, DBConfig, DBConnectionProfile, DBParamConfig, DefaultHeadersDTO, DocMappingConfig, EmailConfig, FTPConfig, FileConfig, GoogleSpreadSheetConfig, HttpConfig, JobConfig, JobConfigRawDTO, JsonDocConfig, LocalFileConfig, MongoDocConfig, OAuthConfig, ProcessConfig, PropBeanConfig, PropBeanDTO, ResponseEnvelopeListJobConfigRawDTO, SFTPConfig, Send, StoreConfig, StoreFilter, TaskConfig, TaskParam, TaskStepConfig, ResponseEnvelopeListJobConfigDTO, ResponseEnvelopeJobConfigDTO, JobConfigListDTO, ResponseEnvelopeListJobConfigListDTO, ApplicationInventory, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, RewardPointsConfig, Credit, Debit, AppCartConfig, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPoints, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, CurrencyConfig, DomainAdd, DomainAddRequest, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequest, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, UnhandledError, InvalidPayloadRequest, SuccessMessageResponse, InventoryBrandRule, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, CompanyAboutAddress, UserEmail, UserPhoneNumber, ApplicationInformation, InformationAddress, InformationPhone, InformationSupport, SocialLinks, Instagram, Twitter, Pinterest, GooglePlus, Youtube, LinkedIn, Vimeo, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, LatLong, OptedStoreAddress, OrderingStore, OrderingStores, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, Auth, GoogleMap, GoogleMapCredentials, Validation, CouponDateMeta, State, Validity, Rule, Ownership, Schedule, CouponAuthor, RuleDefinition, PaymentAllowValue, PaymentModes, PaymentCodes, BulkBundleRestriction, UsesRemaining, UsesRestriction, PostOrder, PriceRange, Restrictions, DisplayMetaDict, DisplayMeta, CouponAdd, CouponsResponse, OperationErrorResponse, CouponUpdate, CouponPartialUpdate, StoreMapping, AllChannels, MyntraPayload, AmazonPayload, FlipkartPayload, TatacliqPayload, AjioPayload, InventoryConfig, StoreMappingPayload, StatusPayload, StatusResp, SyncPayload, SyncResp, MkpResp, StatGroup, StatsGroups, StatsGroupComponent, StatsGroupComponents, StatsRes, ReceivedAt, AbandonCartsDetail, AbdCartPage, AbandonCartsList, AbandonCartDetail, ExportJobReq, ExportJobRes, ExportJobStatusRes, GetLogsListReq, MkpLogsResp, LogsPage, GetLogsListRes, SearchLogReq, LogInfo, SearchLogRes };
+    export { TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, Filter, TicketHistoryPayload, CustomFormSubmissionPayload, KeyValue, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, Email, Debug, SubmitCustomFormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketCategory, SubmitButton, PollForAssignment, CustomForm, TicketHistory, Ticket, PaginationSchema, ThemesListingResponseSchema, AddThemeRequestSchema, UpgradableThemeSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegNotFoundSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, pagesSchema, availableSectionSchema, sectionSchema, Information, Images, Src, AssetsSchema, UmdJs, CommonJs, Css, AvailablePages, Seo, Sections, Pages, Config, Preset, GlobalSchema, ListSchema, Colors, Custom, ConfigPage, Font, Variants, Medium, SemiBold, Bold, Light, Regular, Blocks, BlocksProps, PageSections, PageSectionsBlocks, PageSectionsBlocksProps, Predicate, Screen, PredicateUserSchema, Route, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, SendEmailOtpRequestSchema, VerifyOtpRequestSchema, SendMobileOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, AuthSuccess, SendOtpResponse, LoginSuccess, VerifyOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, UserSearchResponseSchema, CustomerListResponseSchema, UnauthorizedSchema, UnauthenticatedSchema, NotFoundSchema, AuthenticationApiErrorSchema, ProfileEditSuccessSchema, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, AuthSuccessUser, AuthSuccessUserDebug, AuthSuccessUserEmails, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, Mobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, Facebook, Accountkit, Google, ApplicationLegal, ApplicationLegalFAQ, CustomMetaTag, Detail, StorefrontAnnouncement, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, ScheduleSchema, NextSchedule, AnnouncementSchema, announcementSchema, scheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, Navigation, LocaleLanguage, Language, Action, NavigationReference, LandingPage, ConfigurationSchema, Media, Slideshow, AnnouncementsResponseSchema, AnnouncementDataSchema, FaqResponseSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, APIError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryByIdOrSlugSchema, Pagination, LandingPageGetResponse, LandingPageSchema, LandingPageRequest, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, CustomPageSchema, ContentSchema, CustomPage, CustomBlogSchema, FeatureImage, CustomBlog, PageGetResponse, PageSpec, PageSpecItem, PageSchema, CreatedBy, PageContent, PageMeta, PageRequest, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, Phone, PhoneSchema, EmailSchema, ContactSchema, TagsSchema, TagSchema, PaymentGatewayConfigResponse, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorCodeAndResponse, PaymentModeLogo, PaymentModeList, RootPaymentMode, PaymentOptions, PaymentOptionsResponse, PayoutsResponse, PayoutRequest, PayoutResponse, UpdatePayoutResponse, UpdatePayoutRequest, DeletePayoutResponse, SubscriptionPaymentMethodResponse, DeleteSubscriptionPaymentMethodResponse, SubscriptionConfigResponse, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, GetActivityStatus, ActivityHistory, FailedOrders, FailOrder, MarketplaceOrder, TotalDiscountsSet, PresentmentMoney, ShopMoney, TotalPriceSet, TotalPriceSetShopMoney, TotalPriceSetPresentmentMoney, TotalTaxSet, TotalTaxSetShopMoney, TotalTaxSetPresentmentMoney, SubtotalPriceSet, SubtotalPriceSetShopMoney, SubtotalPriceSetPresentmentMoney, LineItems, LineItemsArticle, Quantities, NotAvailable, Sellable, OrderCommitted, Damaged, Manufacturer, ArticlePrice, Company, FailOrderDateMeta, MarketplaceIdentifiers, TatacliqLuxury, Dimension, Weight, Store, ArticleMeta, ArticleBrand, LineItemsArticleIdentifier, PriceSet, PriceSetShopMoney, PriceSetPresentmentMoney, TaxLines, TaxLinesPriceSet, TaxLinesPriceSetShopMoney, TaxLinesPriceSetPresentmentMoney, TotalDiscountSet, TotalDiscountSetPresentmentMoney, TotalDiscountSetShopMoney, BillingAddress, TotalShippingPriceSet, TotalShippingPriceSetShopMoney, TotalShippingPriceSetPresentmentMoney, Customer, DefaultAddress, TotalLineItemsPriceSet, TotalLineItemsPriceSetShopMoney, TotalLineItemsPriceSetPresentmentMoney, ShippingAddress, OrderListing, OrderItems, PlatformOrderUserInfo, PlatformDeliveryAddress, Channel, PlatformBreakupValues, PlatformApplication, ArticleAssignment, PlatformShipment, PlatformShipmentStatus, Bags, BagFinancialBreakup, Identifiers, BagCurrStatus, BagItem, BagItemAttributes, BagArticle, ArticleIdentifiers, Set, SetSizeDistribution, Sizes, BagArticleReturnConfig, ShipmentPrices, GstDetails, BagBreakupValues, BagCurrentStatus, BagStateMapper, BagStatus, BagStatusBagStateMapper, BagPrices, ShipmentBreakupValues, DpDetails, ShipmentInvoice, RtoAddress, StoreAddressJson, PlatformFulfillingStore, FulfillingStoreMeta, AdditionalContactDetails, Documents, Gst, ProductReturnConfig, Timing, Opening, Closing, FulfillingStoreStoreAddressJson, Payments, ShipmentGst, PlatformShipmentBrand, Promise, Timestamp, ShipmentTrackingDetails, ShipmentUser, ItemsPayments, Filters, Stages, StagesFilters, Options, NextOrderStatus, BagConfirmed, DpAssigned, ReturnBagDelivered, Placed, DeliveryDone, Pending, BagPacked, PlatformOrderPage, ItemTotal, AppliedFilters, UpdateOrderReprocessResponse, PlatformOrderTrack, GetPingResponse, UpdateShipmentStatusResponse, UpdateShipmentStatusBody, PlatformShipmentTrack, Results, UpdateProcessShipmenstRequestBody, UpdateProcessShipmenstRequestResponse, GetVoiceCallbackResponse, GetClickToCallResponse, ApefaceApiError, CompanyAddress, ReferralInfo, BusinessCountryInfo, Document, CompanyStoreSerializerRequest, SuccessResponse, ErrorResponse, ContactDetails, UserSerializer, BusinessCountryInfo1, Website, BusinessDetails, GetAddressSerializer, GetCompanyProfileSerializerResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, CreateUpdateBrandRequestSerializer, UserSerializer1, GetBrandResponseSerializer, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, LocationListSerializer, GetAddressSerializer1, LocationTimingSerializer, LocationDayWiseSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, LocationManagerSerializer, ProductReturnConfigSerializer, LocationSerializer, GetCompanySerializer, LocationIntegrationType, GetLocationSerializer, FailedResponse, CDN, Upload, StartResponse, StartRequest, CompleteResponse, Opts, CopyFileTask, BulkResponse, ReqConfiguration, Destination, BulkRequest, Urls, SignUrlResponse, SignUrlRequest, DbRecord, BrowseResponse, RedirectDevice, WebRedirect, Redirects, ShortLinkReq, UrlInfo, ShortLinkRes, ShortLinkList, DataTresholdDTO, GenericDTO, JobConfigDTO, TaskDTO, ResponseEnvelopeString, AWSS3config, ArchiveConfig, Audit, CatalogMasterConfig, CompanyConfig, DBConfig, DBConnectionProfile, DBParamConfig, DefaultHeadersDTO, DocMappingConfig, EmailConfig, FTPConfig, FileConfig, GoogleSpreadSheetConfig, HttpConfig, JobConfig, JobConfigRawDTO, JsonDocConfig, LocalFileConfig, MongoDocConfig, OAuthConfig, ProcessConfig, PropBeanConfig, PropBeanDTO, ResponseEnvelopeListJobConfigRawDTO, SFTPConfig, Send, StoreConfig, StoreFilter, TaskConfig, TaskParam, TaskStepConfig, ResponseEnvelopeListJobConfigDTO, ResponseEnvelopeJobConfigDTO, JobConfigListDTO, ResponseEnvelopeListJobConfigListDTO, ApplicationInventory, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, RewardPointsConfig, Credit, Debit, AppCartConfig, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPoints, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, CurrencyConfig, DomainAdd, DomainAddRequest, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequest, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, UnhandledError, InvalidPayloadRequest, SuccessMessageResponse, InventoryBrandRule, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, CompanyAboutAddress, UserEmail, UserPhoneNumber, ApplicationInformation, InformationAddress, InformationPhone, InformationSupport, SocialLinks, Instagram, Twitter, Pinterest, GooglePlus, Youtube, LinkedIn, Vimeo, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, Auth, GoogleMap, GoogleMapCredentials, Validation, CouponDateMeta, State, Validity, Rule, Ownership, Schedule, CouponAuthor, RuleDefinition, PaymentAllowValue, PaymentModes, PaymentCodes, BulkBundleRestriction, UsesRemaining, UsesRestriction, PostOrder, PriceRange, Restrictions, Identifier, DisplayMetaDict, DisplayMeta, CouponAdd, CouponsResponse, OperationErrorResponse, CouponUpdate, CouponPartialUpdate, StoreMapping, AllChannels, MyntraPayload, AmazonPayload, FlipkartPayload, TatacliqPayload, AjioPayload, InventoryConfig, StoreMappingPayload, StatusPayload, StatusResp, SyncPayload, SyncResp, MkpResp, StatGroup, StatsGroups, StatsGroupComponent, StatsGroupComponents, StatsRes, ReceivedAt, AbandonCartsDetail, AbdCartPage, AbandonCartsList, AbandonCartDetail, ExportJobReq, ExportJobRes, ExportJobStatusRes, GetLogsListReq, MkpLogsResp, LogsPage, GetLogsListRes, SearchLogReq, LogInfo, SearchLogRes };
 }
 /**
         @typedef TicketList
@@ -3127,17 +3127,17 @@ declare namespace PlatformApplicationClient {
         @typedef PaymentGatewayConfigResponse
         
         
+        @property { Array<Object> } [aggregators]
+        
+        @property { boolean } created
+        
         @property { string } appId
         
         @property { boolean } success
         
-        @property { Array<Object> } [aggregators]
+        @property { Array<string> } excludedFields
         
         @property { Array<string> } displayFields
-        
-        @property { boolean } created
-        
-        @property { Array<string> } excludedFields
         
          
     */
@@ -3145,11 +3145,11 @@ declare namespace PlatformApplicationClient {
         @typedef ErrorCodeDescription
         
         
-        @property { boolean } success
+        @property { string } code
         
         @property { string } description
         
-        @property { string } code
+        @property { boolean } success
         
          
     */
@@ -3157,15 +3157,15 @@ declare namespace PlatformApplicationClient {
         @typedef PaymentGatewayConfig
         
         
+        @property { string } key
+        
         @property { string } secret
         
         @property { string } configType
         
-        @property { string } key
+        @property { boolean } [isActive]
         
         @property { string } merchantSalt
-        
-        @property { boolean } [isActive]
         
          
     */
@@ -3173,9 +3173,9 @@ declare namespace PlatformApplicationClient {
         @typedef PaymentGatewayConfigRequest
         
         
-        @property { boolean } [isActive]
-        
         @property { string } appId
+        
+        @property { boolean } [isActive]
         
         @property { PaymentGatewayConfig } [aggregatorName]
         
@@ -3185,9 +3185,9 @@ declare namespace PlatformApplicationClient {
         @typedef PaymentGatewayToBeReviewed
         
         
-        @property { Array<string> } aggregator
-        
         @property { boolean } success
+        
+        @property { Array<string> } aggregator
         
          
     */
@@ -3195,9 +3195,9 @@ declare namespace PlatformApplicationClient {
         @typedef ErrorCodeAndDescription
         
         
-        @property { string } description
-        
         @property { string } code
+        
+        @property { string } description
         
          
     */
@@ -3215,9 +3215,9 @@ declare namespace PlatformApplicationClient {
         @typedef PaymentModeLogo
         
         
-        @property { string } large
-        
         @property { string } small
+        
+        @property { string } large
         
          
     */
@@ -3225,59 +3225,59 @@ declare namespace PlatformApplicationClient {
         @typedef PaymentModeList
         
         
+        @property { string } [cardName]
+        
         @property { string } [cardReference]
-        
-        @property { string } [displayName]
-        
-        @property { string } [code]
-        
-        @property { string } [intentFlow]
-        
-        @property { number } [retryCount]
-        
-        @property { string } [cardBrandImage]
-        
-        @property { boolean } [expired]
-        
-        @property { string } [cardIssuer]
-        
-        @property { number } [expMonth]
-        
-        @property { string } [fyndVpa]
-        
-        @property { PaymentModeLogo } [logoUrl]
         
         @property { string } [nickname]
         
-        @property { number } [timeout]
+        @property { string } [cardIssuer]
         
-        @property { Array<string> } [intentAppErrorList]
+        @property { PaymentModeLogo } [logoUrl]
         
-        @property { string } [cardToken]
-        
-        @property { number } [expYear]
-        
-        @property { string } [merchantCode]
-        
-        @property { string } [cardName]
-        
-        @property { string } [cardFingerprint]
-        
-        @property { string } aggregatorName
-        
-        @property { number } [displayPriority]
+        @property { string } [displayName]
         
         @property { string } [cardNumber]
         
-        @property { string } [cardId]
+        @property { number } [expYear]
         
-        @property { string } [cardType]
+        @property { number } [expMonth]
+        
+        @property { string } [merchantCode]
+        
+        @property { number } [displayPriority]
+        
+        @property { string } aggregatorName
+        
+        @property { string } [cardToken]
+        
+        @property { number } [retryCount]
         
         @property { string } [cardBrand]
         
-        @property { string } [name]
+        @property { string } [cardFingerprint]
+        
+        @property { string } [code]
+        
+        @property { string } [cardBrandImage]
+        
+        @property { Array<string> } [intentAppErrorList]
+        
+        @property { boolean } [expired]
+        
+        @property { string } [cardType]
+        
+        @property { string } [intentFlow]
+        
+        @property { number } [timeout]
         
         @property { string } [cardIsin]
+        
+        @property { string } [name]
+        
+        @property { string } [fyndVpa]
+        
+        @property { string } [cardId]
         
          
     */
@@ -3287,15 +3287,15 @@ declare namespace PlatformApplicationClient {
         
         @property { string } displayName
         
-        @property { boolean } [addCardEnabled]
-        
         @property { number } displayPriority
         
-        @property { Array<PaymentModeList> } [list]
+        @property { string } name
         
         @property { string } [aggregatorName]
         
-        @property { string } name
+        @property { boolean } [addCardEnabled]
+        
+        @property { Array<PaymentModeList> } [list]
         
         @property { boolean } [anonymousEnable]
         
@@ -3323,19 +3323,19 @@ declare namespace PlatformApplicationClient {
         @typedef PayoutsResponse
         
         
+        @property { Object } uniqueTransferNo
+        
+        @property { Array<Object> } payoutsAggregators
+        
         @property { Object } moreAttributes
         
         @property { boolean } isActive
         
-        @property { string } transferType
+        @property { Object } customers
         
         @property { boolean } isDefault
         
-        @property { Object } uniqueTransferNo
-        
-        @property { Object } customers
-        
-        @property { Array<Object> } payoutsAggregators
+        @property { string } transferType
         
          
     */
@@ -3343,17 +3343,17 @@ declare namespace PlatformApplicationClient {
         @typedef PayoutRequest
         
         
-        @property { Object } bankDetails
-        
         @property { Object } users
         
         @property { boolean } isActive
         
-        @property { string } transferType
+        @property { string } aggregator
         
         @property { string } uniqueExternalId
         
-        @property { string } aggregator
+        @property { Object } bankDetails
+        
+        @property { string } transferType
         
          
     */
@@ -3361,25 +3361,25 @@ declare namespace PlatformApplicationClient {
         @typedef PayoutResponse
         
         
-        @property { Object } payouts
-        
-        @property { Object } bankDetails
-        
-        @property { Object } users
-        
-        @property { boolean } success
-        
-        @property { boolean } isActive
-        
-        @property { string } transferType
+        @property { string } paymentStatus
         
         @property { string } uniqueTransferNo
         
         @property { boolean } created
         
-        @property { string } paymentStatus
+        @property { boolean } success
+        
+        @property { Object } payouts
+        
+        @property { Object } users
+        
+        @property { boolean } isActive
         
         @property { string } aggregator
+        
+        @property { Object } bankDetails
+        
+        @property { string } transferType
         
          
     */
@@ -3387,11 +3387,11 @@ declare namespace PlatformApplicationClient {
         @typedef UpdatePayoutResponse
         
         
-        @property { boolean } isActive
+        @property { boolean } isDefault
         
         @property { boolean } success
         
-        @property { boolean } isDefault
+        @property { boolean } isActive
         
          
     */
@@ -3399,11 +3399,11 @@ declare namespace PlatformApplicationClient {
         @typedef UpdatePayoutRequest
         
         
-        @property { boolean } isActive
+        @property { string } uniqueExternalId
         
         @property { boolean } isDefault
         
-        @property { string } uniqueExternalId
+        @property { boolean } isActive
         
          
     */
@@ -3437,9 +3437,9 @@ declare namespace PlatformApplicationClient {
         @typedef SubscriptionConfigResponse
         
         
-        @property { string } aggregator
-        
         @property { boolean } success
+        
+        @property { string } aggregator
         
         @property { Object } config
         
@@ -3807,7 +3807,7 @@ declare namespace PlatformApplicationClient {
         
         @property { boolean } [isActive]
         
-        @property { DateMeta } [dateMeta]
+        @property { FailOrderDateMeta } [dateMeta]
         
         @property { boolean } [fragile]
         
@@ -3835,7 +3835,7 @@ declare namespace PlatformApplicationClient {
         
         @property { string } [id]
         
-        @property { Identifier } [identifier]
+        @property { LineItemsArticleIdentifier } [identifier]
         
         @property { string } [sellerIdentifier]
         
@@ -3962,6 +3962,20 @@ declare namespace PlatformApplicationClient {
          
     */
 /**
+        @typedef FailOrderDateMeta
+        
+        
+        @property { string } [addedOnStore]
+        
+        @property { string } [inventoryUpdatedOn]
+        
+        @property { string } [createdOn]
+        
+        @property { string } [modifiedOn]
+        
+         
+    */
+/**
         @typedef MarketplaceIdentifiers
         
         
@@ -4032,7 +4046,7 @@ declare namespace PlatformApplicationClient {
          
     */
 /**
-        @typedef Identifier
+        @typedef LineItemsArticleIdentifier
         
         
         @property { string } [skuCode]
@@ -5777,25 +5791,25 @@ declare namespace PlatformApplicationClient {
         @typedef CompanyAddress
         
         
-        @property { string } city
-        
         @property { number } longitude
         
-        @property { string } [landmark]
+        @property { string } city
+        
+        @property { string } [address2]
         
         @property { string } [countryCode]
         
         @property { number } pincode
         
-        @property { string } address1
-        
-        @property { string } [address2]
-        
-        @property { string } state
+        @property { string } [landmark]
         
         @property { string } country
         
+        @property { string } state
+        
         @property { number } latitude
+        
+        @property { string } address1
         
          
     */
@@ -5821,15 +5835,15 @@ declare namespace PlatformApplicationClient {
         @typedef Document
         
         
-        @property { boolean } [verified]
+        @property { string } legalName
         
-        @property { string } value
+        @property { boolean } [verified]
         
         @property { string } [url]
         
-        @property { string } legalName
-        
         @property { string } type
+        
+        @property { string } value
         
          
     */
@@ -5837,7 +5851,11 @@ declare namespace PlatformApplicationClient {
         @typedef CompanyStoreSerializerRequest
         
         
-        @property { Object } [warnings]
+        @property { string } name
+        
+        @property { string } businessType
+        
+        @property { number } [uid]
         
         @property { CompanyAddress } address
         
@@ -5845,21 +5863,17 @@ declare namespace PlatformApplicationClient {
         
         @property { ReferralInfo } [referralInfo]
         
-        @property { string } name
-        
         @property { BusinessCountryInfo } businessCountryInfo
         
         @property { boolean } [franchiseEnabled]
         
-        @property { string } businessType
-        
-        @property { Array<number> } brands
+        @property { string } [businessInfo]
         
         @property { Document } document
         
-        @property { number } [uid]
+        @property { Array<number> } brands
         
-        @property { string } [businessInfo]
+        @property { Object } [warnings]
         
          
     */
@@ -5867,9 +5881,9 @@ declare namespace PlatformApplicationClient {
         @typedef SuccessResponse
         
         
-        @property { number } [uid]
-        
         @property { boolean } [success]
+        
+        @property { number } [uid]
         
          
     */
@@ -5877,15 +5891,37 @@ declare namespace PlatformApplicationClient {
         @typedef ErrorResponse
         
         
-        @property { Object } [meta]
-        
-        @property { Object } [errors]
-        
         @property { string } [message]
         
         @property { string } [code]
         
+        @property { Object } [meta]
+        
         @property { number } [status]
+        
+        @property { Object } [errors]
+        
+         
+    */
+/**
+        @typedef ContactDetails
+        
+        
+        @property { Array<PhoneNumber> } [phone]
+        
+        @property { Array<string> } [emails]
+        
+         
+    */
+/**
+        @typedef UserSerializer
+        
+        
+        @property { string } [username]
+        
+        @property { string } [contact]
+        
+        @property { string } [userId]
         
          
     */
@@ -5896,46 +5932,6 @@ declare namespace PlatformApplicationClient {
         @property { string } [country]
         
         @property { string } [countryCode]
-        
-         
-    */
-/**
-        @typedef GetAddressSerializer
-        
-        
-        @property { string } [addressType]
-        
-        @property { string } [city]
-        
-        @property { number } [longitude]
-        
-        @property { string } [landmark]
-        
-        @property { string } [countryCode]
-        
-        @property { number } [pincode]
-        
-        @property { string } [address1]
-        
-        @property { string } [address2]
-        
-        @property { string } [state]
-        
-        @property { string } [country]
-        
-        @property { number } [latitude]
-        
-         
-    */
-/**
-        @typedef UserSerializer
-        
-        
-        @property { string } [contact]
-        
-        @property { string } [userId]
-        
-        @property { string } [username]
         
          
     */
@@ -5956,12 +5952,30 @@ declare namespace PlatformApplicationClient {
          
     */
 /**
-        @typedef ContactDetails
+        @typedef GetAddressSerializer
         
         
-        @property { Array<PhoneNumber> } [phone]
+        @property { number } [longitude]
         
-        @property { Array<string> } [emails]
+        @property { string } [city]
+        
+        @property { string } [address2]
+        
+        @property { string } [countryCode]
+        
+        @property { number } [pincode]
+        
+        @property { string } [addressType]
+        
+        @property { string } [landmark]
+        
+        @property { string } [country]
+        
+        @property { string } [state]
+        
+        @property { number } [latitude]
+        
+        @property { string } [address1]
         
          
     */
@@ -5969,45 +5983,45 @@ declare namespace PlatformApplicationClient {
         @typedef GetCompanyProfileSerializerResponse
         
         
-        @property { Array<Document> } [documents]
+        @property { string } [verifiedOn]
         
         @property { string } [name]
-        
-        @property { BusinessCountryInfo1 } [businessCountryInfo]
-        
-        @property { Object } [warnings]
-        
-        @property { string } [stage]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { string } businessType
-        
-        @property { string } [businessInfo]
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { UserSerializer } [modifiedBy]
-        
-        @property { string } [createdOn]
-        
-        @property { UserSerializer } [verifiedBy]
-        
-        @property { BusinessDetails } [businessDetails]
         
         @property { ContactDetails } [contactDetails]
         
         @property { UserSerializer } [createdBy]
         
-        @property { string } [modifiedOn]
+        @property { Array<Document> } [documents]
+        
+        @property { string } businessType
+        
+        @property { string } [businessInfo]
+        
+        @property { string } [stage]
         
         @property { string } companyType
         
+        @property { BusinessCountryInfo1 } [businessCountryInfo]
+        
+        @property { string } [createdOn]
+        
+        @property { BusinessDetails } [businessDetails]
+        
         @property { boolean } [franchiseEnabled]
         
-        @property { string } [verifiedOn]
+        @property { Object } [warnings]
+        
+        @property { string } [modifiedOn]
         
         @property { number } uid
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { UserSerializer } [verifiedBy]
+        
+        @property { UserSerializer } [modifiedBy]
+        
+        @property { Array<GetAddressSerializer> } [addresses]
         
          
     */
@@ -6025,19 +6039,19 @@ declare namespace PlatformApplicationClient {
         @typedef MetricsSerializer
         
         
-        @property { string } [stage]
+        @property { DocumentsObj } [brand]
         
-        @property { DocumentsObj } [product]
-        
-        @property { DocumentsObj } [storeDocuments]
+        @property { number } [uid]
         
         @property { DocumentsObj } [store]
         
-        @property { DocumentsObj } [brand]
+        @property { DocumentsObj } [storeDocuments]
+        
+        @property { DocumentsObj } [product]
         
         @property { DocumentsObj } [companyDocuments]
         
-        @property { number } [uid]
+        @property { string } [stage]
         
          
     */
@@ -6055,25 +6069,25 @@ declare namespace PlatformApplicationClient {
         @typedef CreateUpdateBrandRequestSerializer
         
         
-        @property { string } [description]
-        
-        @property { BrandBannerSerializer } [banner]
+        @property { string } name
         
         @property { string } [brandTier]
         
-        @property { Object } [customJson]
-        
-        @property { string } name
+        @property { number } [uid]
         
         @property { Array<string> } [synonyms]
         
-        @property { number } [companyId]
-        
         @property { Object } [localeLanguage]
         
-        @property { number } [uid]
-        
         @property { string } logo
+        
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [description]
+        
+        @property { number } [companyId]
         
          
     */
@@ -6081,11 +6095,11 @@ declare namespace PlatformApplicationClient {
         @typedef UserSerializer1
         
         
+        @property { string } [username]
+        
         @property { string } [contact]
         
         @property { string } [userId]
-        
-        @property { string } [username]
         
          
     */
@@ -6093,11 +6107,33 @@ declare namespace PlatformApplicationClient {
         @typedef GetBrandResponseSerializer
         
         
+        @property { string } [verifiedOn]
+        
+        @property { string } name
+        
+        @property { number } [uid]
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { string } [rejectReason]
+        
+        @property { Object } [localeLanguage]
+        
+        @property { string } [createdOn]
+        
         @property { UserSerializer1 } [verifiedBy]
         
-        @property { string } [description]
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { UserSerializer1 } [modifiedBy]
+        
+        @property { string } [logo]
         
         @property { BrandBannerSerializer } [banner]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [description]
         
         @property { string } [slugKey]
         
@@ -6105,41 +6141,7 @@ declare namespace PlatformApplicationClient {
         
         @property { Object } [warnings]
         
-        @property { Object } [customJson]
-        
-        @property { UserSerializer1 } [createdBy]
-        
-        @property { UserSerializer1 } [modifiedBy]
-        
         @property { string } [modifiedOn]
-        
-        @property { string } name
-        
-        @property { string } [rejectReason]
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { Object } [localeLanguage]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [verifiedOn]
-        
-        @property { number } [uid]
-        
-        @property { string } [logo]
-        
-         
-    */
-/**
-        @typedef CompanyBrandPostRequestSerializer
-        
-        
-        @property { Array<number> } brands
-        
-        @property { number } [uid]
-        
-        @property { number } company
         
          
     */
@@ -6154,42 +6156,52 @@ declare namespace PlatformApplicationClient {
          
     */
 /**
+        @typedef CompanyBrandPostRequestSerializer
+        
+        
+        @property { number } company
+        
+        @property { Array<number> } brands
+        
+        @property { number } [uid]
+        
+         
+    */
+/**
+        @typedef LocationListSerializer
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Object } [page]
+        
+         
+    */
+/**
         @typedef GetAddressSerializer1
         
         
-        @property { string } [addressType]
+        @property { number } [longitude]
         
         @property { string } [city]
         
-        @property { number } [longitude]
-        
-        @property { string } [landmark]
+        @property { string } [address2]
         
         @property { string } [countryCode]
         
         @property { number } [pincode]
         
-        @property { string } [address1]
+        @property { string } [addressType]
         
-        @property { string } [address2]
-        
-        @property { string } [state]
+        @property { string } [landmark]
         
         @property { string } [country]
         
+        @property { string } [state]
+        
         @property { number } [latitude]
         
-         
-    */
-/**
-        @typedef LocationManagerSerializer
-        
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-        @property { PhoneNumber } mobileNo
+        @property { string } [address1]
         
          
     */
@@ -6207,13 +6219,13 @@ declare namespace PlatformApplicationClient {
         @typedef LocationDayWiseSerializer
         
         
-        @property { string } weekday
+        @property { LocationTimingSerializer } [closing]
         
-        @property { LocationTimingSerializer } [opening]
+        @property { string } weekday
         
         @property { boolean } open
         
-        @property { LocationTimingSerializer } [closing]
+        @property { LocationTimingSerializer } [opening]
         
          
     */
@@ -6221,11 +6233,11 @@ declare namespace PlatformApplicationClient {
         @typedef InvoiceCredSerializer
         
         
+        @property { string } [username]
+        
         @property { boolean } [enabled]
         
         @property { string } [password]
-        
-        @property { string } [username]
         
          
     */
@@ -6236,6 +6248,18 @@ declare namespace PlatformApplicationClient {
         @property { InvoiceCredSerializer } [eInvoice]
         
         @property { InvoiceCredSerializer } [eWaybill]
+        
+         
+    */
+/**
+        @typedef LocationManagerSerializer
+        
+        
+        @property { string } [name]
+        
+        @property { PhoneNumber } mobileNo
+        
+        @property { string } [email]
         
          
     */
@@ -6253,49 +6277,39 @@ declare namespace PlatformApplicationClient {
         @typedef LocationSerializer
         
         
-        @property { Object } [warnings]
-        
-        @property { GetAddressSerializer1 } address
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { string } [stage]
+        @property { string } name
         
         @property { string } displayName
         
-        @property { Object } [customJson]
-        
-        @property { string } [storeType]
+        @property { number } [uid]
         
         @property { string } code
         
         @property { Array<PhoneNumber> } [contactNumbers]
         
-        @property { number } company
+        @property { string } [storeType]
         
-        @property { Array<Document> } [documents]
-        
-        @property { string } name
+        @property { GetAddressSerializer1 } address
         
         @property { Array<string> } [notificationEmails]
         
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
         @property { InvoiceDetailsSerializer } [gstCredentials]
         
-        @property { number } [uid]
+        @property { number } company
+        
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { Object } [customJson]
         
         @property { ProductReturnConfigSerializer } [productReturnConfig]
         
-         
-    */
-/**
-        @typedef LocationListSerializer
+        @property { Array<Document> } [documents]
         
+        @property { string } [stage]
         
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
+        @property { Object } [warnings]
         
          
     */
@@ -6303,31 +6317,31 @@ declare namespace PlatformApplicationClient {
         @typedef GetCompanySerializer
         
         
-        @property { UserSerializer } [verifiedBy]
+        @property { string } [verifiedOn]
         
-        @property { string } [stage]
+        @property { string } [name]
+        
+        @property { string } [businessType]
+        
+        @property { number } [uid]
+        
+        @property { string } [companyType]
+        
+        @property { string } [rejectReason]
+        
+        @property { string } [createdOn]
+        
+        @property { UserSerializer } [verifiedBy]
         
         @property { UserSerializer } [createdBy]
         
         @property { UserSerializer } [modifiedBy]
         
-        @property { string } [modifiedOn]
-        
-        @property { string } [name]
-        
-        @property { string } [rejectReason]
-        
-        @property { string } [companyType]
-        
         @property { Array<GetAddressSerializer> } [addresses]
         
-        @property { string } [createdOn]
+        @property { string } [stage]
         
-        @property { string } [businessType]
-        
-        @property { string } [verifiedOn]
-        
-        @property { number } [uid]
+        @property { string } [modifiedOn]
         
          
     */
@@ -6345,55 +6359,55 @@ declare namespace PlatformApplicationClient {
         @typedef GetLocationSerializer
         
         
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { string } code
-        
-        @property { Array<PhoneNumber> } [contactNumbers]
-        
-        @property { Array<Document> } [documents]
+        @property { string } [verifiedOn]
         
         @property { string } name
         
-        @property { Object } [warnings]
+        @property { string } phoneNumber
+        
+        @property { Array<PhoneNumber> } [contactNumbers]
         
         @property { GetAddressSerializer } address
         
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { string } [stage]
-        
-        @property { ProductReturnConfigSerializer } [productReturnConfig]
-        
-        @property { string } phoneNumber
-        
-        @property { string } displayName
-        
-        @property { Object } [customJson]
-        
         @property { string } [storeType]
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { UserSerializer1 } [modifiedBy]
-        
-        @property { string } [createdOn]
-        
-        @property { UserSerializer1 } [verifiedBy]
-        
-        @property { UserSerializer1 } [createdBy]
         
         @property { GetCompanySerializer } [company]
         
-        @property { string } [modifiedOn]
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { ProductReturnConfigSerializer } [productReturnConfig]
+        
+        @property { Array<Document> } [documents]
         
         @property { LocationIntegrationType } [integrationType]
         
-        @property { string } [verifiedOn]
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
+        @property { string } [stage]
+        
+        @property { string } code
+        
+        @property { string } [createdOn]
+        
+        @property { string } [modifiedOn]
+        
+        @property { Object } [warnings]
+        
+        @property { string } displayName
+        
+        @property { number } [uid]
+        
+        @property { Array<string> } [notificationEmails]
         
         @property { InvoiceDetailsSerializer } [gstCredentials]
         
-        @property { number } [uid]
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { UserSerializer1 } [verifiedBy]
+        
+        @property { UserSerializer1 } [modifiedBy]
+        
+        @property { Object } [customJson]
         
          
     */
@@ -9802,7 +9816,7 @@ declare namespace PlatformApplicationClient {
          
     */
 /**
-        @typedef LatLong
+        @typedef StoreLatLong
         
         
         @property { string } [type]
@@ -9819,7 +9833,7 @@ declare namespace PlatformApplicationClient {
         
         @property { string } [address1]
         
-        @property { LatLong } [latLong]
+        @property { StoreLatLong } [latLong]
         
         @property { string } [address2]
         
@@ -10334,6 +10348,28 @@ declare namespace PlatformApplicationClient {
         @property { PostOrder } [postOrder]
         
         @property { PriceRange } [priceRange]
+        
+         
+    */
+/**
+        @typedef Identifier
+        
+        
+        @property { Array<number> } [categoryId]
+        
+        @property { Array<string> } [articleId]
+        
+        @property { Array<number> } [storeId]
+        
+        @property { Array<number> } [companyId]
+        
+        @property { Array<string> } [collectionId]
+        
+        @property { Array<string> } [userId]
+        
+        @property { Array<number> } [brandId]
+        
+        @property { Array<number> } [itemId]
         
          
     */
@@ -13889,82 +13925,82 @@ type TagSchema = {
     attributes?: any;
 };
 type PaymentGatewayConfigResponse = {
+    aggregators?: Array<any>;
+    created: boolean;
     appId: string;
     success: boolean;
-    aggregators?: Array<any>;
-    displayFields: Array<string>;
-    created: boolean;
     excludedFields: Array<string>;
+    displayFields: Array<string>;
 };
 type ErrorCodeDescription = {
-    success: boolean;
-    description: string;
     code: string;
+    description: string;
+    success: boolean;
 };
 type PaymentGatewayConfig = {
+    key: string;
     secret: string;
     configType: string;
-    key: string;
-    merchantSalt: string;
     isActive?: boolean;
+    merchantSalt: string;
 };
 type PaymentGatewayConfigRequest = {
-    isActive?: boolean;
     appId: string;
+    isActive?: boolean;
     aggregatorName?: PaymentGatewayConfig;
 };
 type PaymentGatewayToBeReviewed = {
-    aggregator: Array<string>;
     success: boolean;
+    aggregator: Array<string>;
 };
 type ErrorCodeAndDescription = {
-    description: string;
     code: string;
+    description: string;
 };
 type HttpErrorCodeAndResponse = {
     error: ErrorCodeAndDescription;
     success: boolean;
 };
 type PaymentModeLogo = {
-    large: string;
     small: string;
+    large: string;
 };
 type PaymentModeList = {
-    cardReference?: string;
-    displayName?: string;
-    code?: string;
-    intentFlow?: string;
-    retryCount?: number;
-    cardBrandImage?: string;
-    expired?: boolean;
-    cardIssuer?: string;
-    expMonth?: number;
-    fyndVpa?: string;
-    logoUrl?: PaymentModeLogo;
-    nickname?: string;
-    timeout?: number;
-    intentAppErrorList?: Array<string>;
-    cardToken?: string;
-    expYear?: number;
-    merchantCode?: string;
     cardName?: string;
-    cardFingerprint?: string;
-    aggregatorName: string;
-    displayPriority?: number;
+    cardReference?: string;
+    nickname?: string;
+    cardIssuer?: string;
+    logoUrl?: PaymentModeLogo;
+    displayName?: string;
     cardNumber?: string;
-    cardId?: string;
-    cardType?: string;
+    expYear?: number;
+    expMonth?: number;
+    merchantCode?: string;
+    displayPriority?: number;
+    aggregatorName: string;
+    cardToken?: string;
+    retryCount?: number;
     cardBrand?: string;
-    name?: string;
+    cardFingerprint?: string;
+    code?: string;
+    cardBrandImage?: string;
+    intentAppErrorList?: Array<string>;
+    expired?: boolean;
+    cardType?: string;
+    intentFlow?: string;
+    timeout?: number;
     cardIsin?: string;
+    name?: string;
+    fyndVpa?: string;
+    cardId?: string;
 };
 type RootPaymentMode = {
     displayName: string;
-    addCardEnabled?: boolean;
     displayPriority: number;
-    list?: Array<PaymentModeList>;
-    aggregatorName?: string;
     name: string;
+    aggregatorName?: string;
+    addCardEnabled?: boolean;
+    list?: Array<PaymentModeList>;
     anonymousEnable?: boolean;
 };
 type PaymentOptions = {
@@ -13975,43 +14011,43 @@ type PaymentOptionsResponse = {
     success: boolean;
 };
 type PayoutsResponse = {
+    uniqueTransferNo: any;
+    payoutsAggregators: Array<any>;
     moreAttributes: any;
     isActive: boolean;
-    transferType: string;
-    isDefault: boolean;
-    uniqueTransferNo: any;
     customers: any;
-    payoutsAggregators: Array<any>;
+    isDefault: boolean;
+    transferType: string;
 };
 type PayoutRequest = {
-    bankDetails: any;
     users: any;
     isActive: boolean;
-    transferType: string;
-    uniqueExternalId: string;
     aggregator: string;
+    uniqueExternalId: string;
+    bankDetails: any;
+    transferType: string;
 };
 type PayoutResponse = {
-    payouts: any;
-    bankDetails: any;
-    users: any;
-    success: boolean;
-    isActive: boolean;
-    transferType: string;
+    paymentStatus: string;
     uniqueTransferNo: string;
     created: boolean;
-    paymentStatus: string;
+    success: boolean;
+    payouts: any;
+    users: any;
+    isActive: boolean;
     aggregator: string;
+    bankDetails: any;
+    transferType: string;
 };
 type UpdatePayoutResponse = {
-    isActive: boolean;
-    success: boolean;
     isDefault: boolean;
+    success: boolean;
+    isActive: boolean;
 };
 type UpdatePayoutRequest = {
-    isActive: boolean;
-    isDefault: boolean;
     uniqueExternalId: string;
+    isDefault: boolean;
+    isActive: boolean;
 };
 type DeletePayoutResponse = {
     success: boolean;
@@ -14024,8 +14060,8 @@ type DeleteSubscriptionPaymentMethodResponse = {
     success: boolean;
 };
 type SubscriptionConfigResponse = {
-    aggregator: string;
     success: boolean;
+    aggregator: string;
     config: any;
 };
 type SaveSubscriptionSetupIntentRequest = {
@@ -14188,7 +14224,7 @@ type LineItemsArticle = {
     trackInventory?: boolean;
     company?: Company;
     isActive?: boolean;
-    dateMeta?: DateMeta;
+    dateMeta?: FailOrderDateMeta;
     fragile?: boolean;
     marketplaceIdentifiers?: MarketplaceIdentifiers;
     size?: string;
@@ -14202,7 +14238,7 @@ type LineItemsArticle = {
     itemId?: number;
     fyndArticleCode?: string;
     id?: string;
-    identifier?: Identifier;
+    identifier?: LineItemsArticleIdentifier;
     sellerIdentifier?: string;
     fyndItemCode?: string;
     countryOfOrigin?: string;
@@ -14257,6 +14293,12 @@ type Company = {
     modifiedOn?: string;
     returnWithinDays?: number;
 };
+type FailOrderDateMeta = {
+    addedOnStore?: string;
+    inventoryUpdatedOn?: string;
+    createdOn?: string;
+    modifiedOn?: string;
+};
 type MarketplaceIdentifiers = {
     tatacliqLuxury?: TatacliqLuxury;
 };
@@ -14285,7 +14327,7 @@ type ArticleBrand = {
     name?: string;
     id?: number;
 };
-type Identifier = {
+type LineItemsArticleIdentifier = {
     skuCode?: string;
 };
 type PriceSet = {
@@ -15056,16 +15098,16 @@ type ApefaceApiError = {
     message?: string;
 };
 type CompanyAddress = {
-    city: string;
     longitude: number;
-    landmark?: string;
+    city: string;
+    address2?: string;
     countryCode?: string;
     pincode: number;
-    address1: string;
-    address2?: string;
-    state: string;
+    landmark?: string;
     country: string;
+    state: string;
     latitude: number;
+    address1: string;
 };
 type ReferralInfo = {
     referralCode?: string;
@@ -15075,58 +15117,49 @@ type BusinessCountryInfo = {
     countryCode?: string;
 };
 type Document = {
-    verified?: boolean;
-    value: string;
-    url?: string;
     legalName: string;
+    verified?: boolean;
+    url?: string;
     type: string;
+    value: string;
 };
 type CompanyStoreSerializerRequest = {
-    warnings?: any;
+    name: string;
+    businessType: string;
+    uid?: number;
     address: CompanyAddress;
     notificationEmails?: Array<string>;
     referralInfo?: ReferralInfo;
-    name: string;
     businessCountryInfo: BusinessCountryInfo;
     franchiseEnabled?: boolean;
-    businessType: string;
-    brands: Array<number>;
-    document: Document;
-    uid?: number;
     businessInfo?: string;
+    document: Document;
+    brands: Array<number>;
+    warnings?: any;
 };
 type SuccessResponse = {
-    uid?: number;
     success?: boolean;
+    uid?: number;
 };
 type ErrorResponse = {
-    meta?: any;
-    errors?: any;
     message?: string;
     code?: string;
+    meta?: any;
     status?: number;
+    errors?: any;
+};
+type ContactDetails = {
+    phone?: Array<PhoneNumber>;
+    emails?: Array<string>;
+};
+type UserSerializer = {
+    username?: string;
+    contact?: string;
+    userId?: string;
 };
 type BusinessCountryInfo1 = {
     country?: string;
     countryCode?: string;
-};
-type GetAddressSerializer = {
-    addressType?: string;
-    city?: string;
-    longitude?: number;
-    landmark?: string;
-    countryCode?: string;
-    pincode?: number;
-    address1?: string;
-    address2?: string;
-    state?: string;
-    country?: string;
-    latitude?: number;
-};
-type UserSerializer = {
-    contact?: string;
-    userId?: string;
-    username?: string;
 };
 type Website = {
     url?: string;
@@ -15134,204 +15167,213 @@ type Website = {
 type BusinessDetails = {
     website?: Website;
 };
-type ContactDetails = {
-    phone?: Array<PhoneNumber>;
-    emails?: Array<string>;
+type GetAddressSerializer = {
+    longitude?: number;
+    city?: string;
+    address2?: string;
+    countryCode?: string;
+    pincode?: number;
+    addressType?: string;
+    landmark?: string;
+    country?: string;
+    state?: string;
+    latitude?: number;
+    address1?: string;
 };
 type GetCompanyProfileSerializerResponse = {
-    documents?: Array<Document>;
+    verifiedOn?: string;
     name?: string;
-    businessCountryInfo?: BusinessCountryInfo1;
-    warnings?: any;
-    stage?: string;
-    addresses?: Array<GetAddressSerializer>;
-    businessType: string;
-    businessInfo?: string;
-    notificationEmails?: Array<string>;
-    modifiedBy?: UserSerializer;
-    createdOn?: string;
-    verifiedBy?: UserSerializer;
-    businessDetails?: BusinessDetails;
     contactDetails?: ContactDetails;
     createdBy?: UserSerializer;
-    modifiedOn?: string;
+    documents?: Array<Document>;
+    businessType: string;
+    businessInfo?: string;
+    stage?: string;
     companyType: string;
+    businessCountryInfo?: BusinessCountryInfo1;
+    createdOn?: string;
+    businessDetails?: BusinessDetails;
     franchiseEnabled?: boolean;
-    verifiedOn?: string;
+    warnings?: any;
+    modifiedOn?: string;
     uid: number;
+    notificationEmails?: Array<string>;
+    verifiedBy?: UserSerializer;
+    modifiedBy?: UserSerializer;
+    addresses?: Array<GetAddressSerializer>;
 };
 type DocumentsObj = {
     pending?: number;
     verified?: number;
 };
 type MetricsSerializer = {
-    stage?: string;
-    product?: DocumentsObj;
-    storeDocuments?: DocumentsObj;
-    store?: DocumentsObj;
     brand?: DocumentsObj;
-    companyDocuments?: DocumentsObj;
     uid?: number;
+    store?: DocumentsObj;
+    storeDocuments?: DocumentsObj;
+    product?: DocumentsObj;
+    companyDocuments?: DocumentsObj;
+    stage?: string;
 };
 type BrandBannerSerializer = {
     landscape?: string;
     portrait?: string;
 };
 type CreateUpdateBrandRequestSerializer = {
-    description?: string;
-    banner?: BrandBannerSerializer;
-    brandTier?: string;
-    customJson?: any;
     name: string;
-    synonyms?: Array<string>;
-    companyId?: number;
-    localeLanguage?: any;
+    brandTier?: string;
     uid?: number;
+    synonyms?: Array<string>;
+    localeLanguage?: any;
     logo: string;
+    banner?: BrandBannerSerializer;
+    customJson?: any;
+    description?: string;
+    companyId?: number;
 };
 type UserSerializer1 = {
+    username?: string;
     contact?: string;
     userId?: string;
-    username?: string;
 };
 type GetBrandResponseSerializer = {
+    verifiedOn?: string;
+    name: string;
+    uid?: number;
+    synonyms?: Array<string>;
+    rejectReason?: string;
+    localeLanguage?: any;
+    createdOn?: string;
     verifiedBy?: UserSerializer1;
-    description?: string;
+    createdBy?: UserSerializer1;
+    modifiedBy?: UserSerializer1;
+    logo?: string;
     banner?: BrandBannerSerializer;
+    customJson?: any;
+    description?: string;
     slugKey?: string;
     stage?: string;
     warnings?: any;
-    customJson?: any;
-    createdBy?: UserSerializer1;
-    modifiedBy?: UserSerializer1;
     modifiedOn?: string;
-    name: string;
-    rejectReason?: string;
-    synonyms?: Array<string>;
-    localeLanguage?: any;
-    createdOn?: string;
-    verifiedOn?: string;
-    uid?: number;
-    logo?: string;
-};
-type CompanyBrandPostRequestSerializer = {
-    brands: Array<number>;
-    uid?: number;
-    company: number;
 };
 type CompanyBrandListSerializer = {
     items?: Array<any>;
     page?: any;
 };
+type CompanyBrandPostRequestSerializer = {
+    company: number;
+    brands: Array<number>;
+    uid?: number;
+};
+type LocationListSerializer = {
+    items?: Array<any>;
+    page?: any;
+};
 type GetAddressSerializer1 = {
-    addressType?: string;
-    city?: string;
     longitude?: number;
-    landmark?: string;
+    city?: string;
+    address2?: string;
     countryCode?: string;
     pincode?: number;
-    address1?: string;
-    address2?: string;
-    state?: string;
+    addressType?: string;
+    landmark?: string;
     country?: string;
+    state?: string;
     latitude?: number;
-};
-type LocationManagerSerializer = {
-    name?: string;
-    email?: string;
-    mobileNo: PhoneNumber;
+    address1?: string;
 };
 type LocationTimingSerializer = {
     minute?: number;
     hour?: number;
 };
 type LocationDayWiseSerializer = {
-    weekday: string;
-    opening?: LocationTimingSerializer;
-    open: boolean;
     closing?: LocationTimingSerializer;
+    weekday: string;
+    open: boolean;
+    opening?: LocationTimingSerializer;
 };
 type InvoiceCredSerializer = {
+    username?: string;
     enabled?: boolean;
     password?: string;
-    username?: string;
 };
 type InvoiceDetailsSerializer = {
     eInvoice?: InvoiceCredSerializer;
     eWaybill?: InvoiceCredSerializer;
+};
+type LocationManagerSerializer = {
+    name?: string;
+    mobileNo: PhoneNumber;
+    email?: string;
 };
 type ProductReturnConfigSerializer = {
     onSameStore?: boolean;
     storeUid?: number;
 };
 type LocationSerializer = {
-    warnings?: any;
-    address: GetAddressSerializer1;
-    manager?: LocationManagerSerializer;
-    timing?: Array<LocationDayWiseSerializer>;
-    stage?: string;
+    name: string;
     displayName: string;
-    customJson?: any;
-    storeType?: string;
+    uid?: number;
     code: string;
     contactNumbers?: Array<PhoneNumber>;
-    company: number;
-    documents?: Array<Document>;
-    name: string;
+    storeType?: string;
+    address: GetAddressSerializer1;
     notificationEmails?: Array<string>;
+    timing?: Array<LocationDayWiseSerializer>;
     gstCredentials?: InvoiceDetailsSerializer;
-    uid?: number;
+    company: number;
+    manager?: LocationManagerSerializer;
+    customJson?: any;
     productReturnConfig?: ProductReturnConfigSerializer;
-};
-type LocationListSerializer = {
-    items?: Array<any>;
-    page?: any;
+    documents?: Array<Document>;
+    stage?: string;
+    warnings?: any;
 };
 type GetCompanySerializer = {
+    verifiedOn?: string;
+    name?: string;
+    businessType?: string;
+    uid?: number;
+    companyType?: string;
+    rejectReason?: string;
+    createdOn?: string;
     verifiedBy?: UserSerializer;
-    stage?: string;
     createdBy?: UserSerializer;
     modifiedBy?: UserSerializer;
-    modifiedOn?: string;
-    name?: string;
-    rejectReason?: string;
-    companyType?: string;
     addresses?: Array<GetAddressSerializer>;
-    createdOn?: string;
-    businessType?: string;
-    verifiedOn?: string;
-    uid?: number;
+    stage?: string;
+    modifiedOn?: string;
 };
 type LocationIntegrationType = {
     inventory?: string;
     order?: string;
 };
 type GetLocationSerializer = {
-    timing?: Array<LocationDayWiseSerializer>;
-    code: string;
-    contactNumbers?: Array<PhoneNumber>;
-    documents?: Array<Document>;
-    name: string;
-    warnings?: any;
-    address: GetAddressSerializer;
-    manager?: LocationManagerSerializer;
-    stage?: string;
-    productReturnConfig?: ProductReturnConfigSerializer;
-    phoneNumber: string;
-    displayName: string;
-    customJson?: any;
-    storeType?: string;
-    notificationEmails?: Array<string>;
-    modifiedBy?: UserSerializer1;
-    createdOn?: string;
-    verifiedBy?: UserSerializer1;
-    createdBy?: UserSerializer1;
-    company?: GetCompanySerializer;
-    modifiedOn?: string;
-    integrationType?: LocationIntegrationType;
     verifiedOn?: string;
-    gstCredentials?: InvoiceDetailsSerializer;
+    name: string;
+    phoneNumber: string;
+    contactNumbers?: Array<PhoneNumber>;
+    address: GetAddressSerializer;
+    storeType?: string;
+    company?: GetCompanySerializer;
+    createdBy?: UserSerializer1;
+    productReturnConfig?: ProductReturnConfigSerializer;
+    documents?: Array<Document>;
+    integrationType?: LocationIntegrationType;
+    timing?: Array<LocationDayWiseSerializer>;
+    stage?: string;
+    code: string;
+    createdOn?: string;
+    modifiedOn?: string;
+    warnings?: any;
+    displayName: string;
     uid?: number;
+    notificationEmails?: Array<string>;
+    gstCredentials?: InvoiceDetailsSerializer;
+    manager?: LocationManagerSerializer;
+    verifiedBy?: UserSerializer1;
+    modifiedBy?: UserSerializer1;
+    customJson?: any;
 };
 type FailedResponse = {
     message: string;
@@ -16816,14 +16858,14 @@ type ApplicationDetail = {
 type CurrenciesResponse = {
     items?: Array<Currency>;
 };
-type LatLong = {
+type StoreLatLong = {
     type?: string;
     coordinates?: Array<number>;
 };
 type OptedStoreAddress = {
     state?: string;
     address1?: string;
-    latLong?: LatLong;
+    latLong?: StoreLatLong;
     address2?: string;
     pincode?: number;
     country?: string;
@@ -17040,6 +17082,16 @@ type Restrictions = {
     uses?: UsesRestriction;
     postOrder?: PostOrder;
     priceRange?: PriceRange;
+};
+type Identifier = {
+    categoryId?: Array<number>;
+    articleId?: Array<string>;
+    storeId?: Array<number>;
+    companyId?: Array<number>;
+    collectionId?: Array<string>;
+    userId?: Array<string>;
+    brandId?: Array<number>;
+    itemId?: Array<number>;
 };
 type DisplayMetaDict = {
     subtitle?: string;

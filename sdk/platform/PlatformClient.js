@@ -3373,17 +3373,17 @@ class PlatformClient {
         @typedef PaymentGatewayConfigResponse
         
         
+        @property { Array<Object> } [aggregators]
+        
+        @property { boolean } created
+        
         @property { string } appId
         
         @property { boolean } success
         
-        @property { Array<Object> } [aggregators]
+        @property { Array<string> } excludedFields
         
         @property { Array<string> } displayFields
-        
-        @property { boolean } created
-        
-        @property { Array<string> } excludedFields
         
          
     */
@@ -3392,11 +3392,11 @@ class PlatformClient {
         @typedef ErrorCodeDescription
         
         
-        @property { boolean } success
+        @property { string } code
         
         @property { string } description
         
-        @property { string } code
+        @property { boolean } success
         
          
     */
@@ -3405,15 +3405,15 @@ class PlatformClient {
         @typedef PaymentGatewayConfig
         
         
+        @property { string } key
+        
         @property { string } secret
         
         @property { string } configType
         
-        @property { string } key
+        @property { boolean } [isActive]
         
         @property { string } merchantSalt
-        
-        @property { boolean } [isActive]
         
          
     */
@@ -3422,9 +3422,9 @@ class PlatformClient {
         @typedef PaymentGatewayConfigRequest
         
         
-        @property { boolean } [isActive]
-        
         @property { string } appId
+        
+        @property { boolean } [isActive]
         
         @property { PaymentGatewayConfig } [aggregatorName]
         
@@ -3435,9 +3435,9 @@ class PlatformClient {
         @typedef PaymentGatewayToBeReviewed
         
         
-        @property { Array<string> } aggregator
-        
         @property { boolean } success
+        
+        @property { Array<string> } aggregator
         
          
     */
@@ -3446,9 +3446,9 @@ class PlatformClient {
         @typedef ErrorCodeAndDescription
         
         
-        @property { string } description
-        
         @property { string } code
+        
+        @property { string } description
         
          
     */
@@ -3468,9 +3468,9 @@ class PlatformClient {
         @typedef PaymentModeLogo
         
         
-        @property { string } large
-        
         @property { string } small
+        
+        @property { string } large
         
          
     */
@@ -3479,59 +3479,59 @@ class PlatformClient {
         @typedef PaymentModeList
         
         
+        @property { string } [cardName]
+        
         @property { string } [cardReference]
-        
-        @property { string } [displayName]
-        
-        @property { string } [code]
-        
-        @property { string } [intentFlow]
-        
-        @property { number } [retryCount]
-        
-        @property { string } [cardBrandImage]
-        
-        @property { boolean } [expired]
-        
-        @property { string } [cardIssuer]
-        
-        @property { number } [expMonth]
-        
-        @property { string } [fyndVpa]
-        
-        @property { PaymentModeLogo } [logoUrl]
         
         @property { string } [nickname]
         
-        @property { number } [timeout]
+        @property { string } [cardIssuer]
         
-        @property { Array<string> } [intentAppErrorList]
+        @property { PaymentModeLogo } [logoUrl]
         
-        @property { string } [cardToken]
-        
-        @property { number } [expYear]
-        
-        @property { string } [merchantCode]
-        
-        @property { string } [cardName]
-        
-        @property { string } [cardFingerprint]
-        
-        @property { string } aggregatorName
-        
-        @property { number } [displayPriority]
+        @property { string } [displayName]
         
         @property { string } [cardNumber]
         
-        @property { string } [cardId]
+        @property { number } [expYear]
         
-        @property { string } [cardType]
+        @property { number } [expMonth]
+        
+        @property { string } [merchantCode]
+        
+        @property { number } [displayPriority]
+        
+        @property { string } aggregatorName
+        
+        @property { string } [cardToken]
+        
+        @property { number } [retryCount]
         
         @property { string } [cardBrand]
         
-        @property { string } [name]
+        @property { string } [cardFingerprint]
+        
+        @property { string } [code]
+        
+        @property { string } [cardBrandImage]
+        
+        @property { Array<string> } [intentAppErrorList]
+        
+        @property { boolean } [expired]
+        
+        @property { string } [cardType]
+        
+        @property { string } [intentFlow]
+        
+        @property { number } [timeout]
         
         @property { string } [cardIsin]
+        
+        @property { string } [name]
+        
+        @property { string } [fyndVpa]
+        
+        @property { string } [cardId]
         
          
     */
@@ -3542,15 +3542,15 @@ class PlatformClient {
         
         @property { string } displayName
         
-        @property { boolean } [addCardEnabled]
-        
         @property { number } displayPriority
         
-        @property { Array<PaymentModeList> } [list]
+        @property { string } name
         
         @property { string } [aggregatorName]
         
-        @property { string } name
+        @property { boolean } [addCardEnabled]
+        
+        @property { Array<PaymentModeList> } [list]
         
         @property { boolean } [anonymousEnable]
         
@@ -3581,19 +3581,19 @@ class PlatformClient {
         @typedef PayoutsResponse
         
         
+        @property { Object } uniqueTransferNo
+        
+        @property { Array<Object> } payoutsAggregators
+        
         @property { Object } moreAttributes
         
         @property { boolean } isActive
         
-        @property { string } transferType
+        @property { Object } customers
         
         @property { boolean } isDefault
         
-        @property { Object } uniqueTransferNo
-        
-        @property { Object } customers
-        
-        @property { Array<Object> } payoutsAggregators
+        @property { string } transferType
         
          
     */
@@ -3602,17 +3602,17 @@ class PlatformClient {
         @typedef PayoutRequest
         
         
-        @property { Object } bankDetails
-        
         @property { Object } users
         
         @property { boolean } isActive
         
-        @property { string } transferType
+        @property { string } aggregator
         
         @property { string } uniqueExternalId
         
-        @property { string } aggregator
+        @property { Object } bankDetails
+        
+        @property { string } transferType
         
          
     */
@@ -3621,25 +3621,25 @@ class PlatformClient {
         @typedef PayoutResponse
         
         
-        @property { Object } payouts
-        
-        @property { Object } bankDetails
-        
-        @property { Object } users
-        
-        @property { boolean } success
-        
-        @property { boolean } isActive
-        
-        @property { string } transferType
+        @property { string } paymentStatus
         
         @property { string } uniqueTransferNo
         
         @property { boolean } created
         
-        @property { string } paymentStatus
+        @property { boolean } success
+        
+        @property { Object } payouts
+        
+        @property { Object } users
+        
+        @property { boolean } isActive
         
         @property { string } aggregator
+        
+        @property { Object } bankDetails
+        
+        @property { string } transferType
         
          
     */
@@ -3648,11 +3648,11 @@ class PlatformClient {
         @typedef UpdatePayoutResponse
         
         
-        @property { boolean } isActive
+        @property { boolean } isDefault
         
         @property { boolean } success
         
-        @property { boolean } isDefault
+        @property { boolean } isActive
         
          
     */
@@ -3661,11 +3661,11 @@ class PlatformClient {
         @typedef UpdatePayoutRequest
         
         
-        @property { boolean } isActive
+        @property { string } uniqueExternalId
         
         @property { boolean } isDefault
         
-        @property { string } uniqueExternalId
+        @property { boolean } isActive
         
          
     */
@@ -3703,9 +3703,9 @@ class PlatformClient {
         @typedef SubscriptionConfigResponse
         
         
-        @property { string } aggregator
-        
         @property { boolean } success
+        
+        @property { string } aggregator
         
         @property { Object } config
         
@@ -4094,7 +4094,7 @@ class PlatformClient {
         
         @property { boolean } [isActive]
         
-        @property { DateMeta } [dateMeta]
+        @property { FailOrderDateMeta } [dateMeta]
         
         @property { boolean } [fragile]
         
@@ -4122,7 +4122,7 @@ class PlatformClient {
         
         @property { string } [id]
         
-        @property { Identifier } [identifier]
+        @property { LineItemsArticleIdentifier } [identifier]
         
         @property { string } [sellerIdentifier]
         
@@ -4258,6 +4258,21 @@ class PlatformClient {
     */
 
 /**
+        @typedef FailOrderDateMeta
+        
+        
+        @property { string } [addedOnStore]
+        
+        @property { string } [inventoryUpdatedOn]
+        
+        @property { string } [createdOn]
+        
+        @property { string } [modifiedOn]
+        
+         
+    */
+
+/**
         @typedef MarketplaceIdentifiers
         
         
@@ -4335,7 +4350,7 @@ class PlatformClient {
     */
 
 /**
-        @typedef Identifier
+        @typedef LineItemsArticleIdentifier
         
         
         @property { string } [skuCode]
@@ -6181,25 +6196,25 @@ class PlatformClient {
         @typedef CompanyAddress
         
         
-        @property { string } city
-        
         @property { number } longitude
         
-        @property { string } [landmark]
+        @property { string } city
+        
+        @property { string } [address2]
         
         @property { string } [countryCode]
         
         @property { number } pincode
         
-        @property { string } address1
-        
-        @property { string } [address2]
-        
-        @property { string } state
+        @property { string } [landmark]
         
         @property { string } country
         
+        @property { string } state
+        
         @property { number } latitude
+        
+        @property { string } address1
         
          
     */
@@ -6228,15 +6243,15 @@ class PlatformClient {
         @typedef Document
         
         
-        @property { boolean } [verified]
+        @property { string } legalName
         
-        @property { string } value
+        @property { boolean } [verified]
         
         @property { string } [url]
         
-        @property { string } legalName
-        
         @property { string } type
+        
+        @property { string } value
         
          
     */
@@ -6245,7 +6260,11 @@ class PlatformClient {
         @typedef CompanyStoreSerializerRequest
         
         
-        @property { Object } [warnings]
+        @property { string } name
+        
+        @property { string } businessType
+        
+        @property { number } [uid]
         
         @property { CompanyAddress } address
         
@@ -6253,21 +6272,17 @@ class PlatformClient {
         
         @property { ReferralInfo } [referralInfo]
         
-        @property { string } name
-        
         @property { BusinessCountryInfo } businessCountryInfo
         
         @property { boolean } [franchiseEnabled]
         
-        @property { string } businessType
-        
-        @property { Array<number> } brands
+        @property { string } [businessInfo]
         
         @property { Document } document
         
-        @property { number } [uid]
+        @property { Array<number> } brands
         
-        @property { string } [businessInfo]
+        @property { Object } [warnings]
         
          
     */
@@ -6276,9 +6291,9 @@ class PlatformClient {
         @typedef SuccessResponse
         
         
-        @property { number } [uid]
-        
         @property { boolean } [success]
+        
+        @property { number } [uid]
         
          
     */
@@ -6287,15 +6302,39 @@ class PlatformClient {
         @typedef ErrorResponse
         
         
-        @property { Object } [meta]
-        
-        @property { Object } [errors]
-        
         @property { string } [message]
         
         @property { string } [code]
         
+        @property { Object } [meta]
+        
         @property { number } [status]
+        
+        @property { Object } [errors]
+        
+         
+    */
+
+/**
+        @typedef ContactDetails
+        
+        
+        @property { Array<PhoneNumber> } [phone]
+        
+        @property { Array<string> } [emails]
+        
+         
+    */
+
+/**
+        @typedef UserSerializer
+        
+        
+        @property { string } [username]
+        
+        @property { string } [contact]
+        
+        @property { string } [userId]
         
          
     */
@@ -6307,48 +6346,6 @@ class PlatformClient {
         @property { string } [country]
         
         @property { string } [countryCode]
-        
-         
-    */
-
-/**
-        @typedef GetAddressSerializer
-        
-        
-        @property { string } [addressType]
-        
-        @property { string } [city]
-        
-        @property { number } [longitude]
-        
-        @property { string } [landmark]
-        
-        @property { string } [countryCode]
-        
-        @property { number } [pincode]
-        
-        @property { string } [address1]
-        
-        @property { string } [address2]
-        
-        @property { string } [state]
-        
-        @property { string } [country]
-        
-        @property { number } [latitude]
-        
-         
-    */
-
-/**
-        @typedef UserSerializer
-        
-        
-        @property { string } [contact]
-        
-        @property { string } [userId]
-        
-        @property { string } [username]
         
          
     */
@@ -6372,12 +6369,30 @@ class PlatformClient {
     */
 
 /**
-        @typedef ContactDetails
+        @typedef GetAddressSerializer
         
         
-        @property { Array<PhoneNumber> } [phone]
+        @property { number } [longitude]
         
-        @property { Array<string> } [emails]
+        @property { string } [city]
+        
+        @property { string } [address2]
+        
+        @property { string } [countryCode]
+        
+        @property { number } [pincode]
+        
+        @property { string } [addressType]
+        
+        @property { string } [landmark]
+        
+        @property { string } [country]
+        
+        @property { string } [state]
+        
+        @property { number } [latitude]
+        
+        @property { string } [address1]
         
          
     */
@@ -6386,45 +6401,45 @@ class PlatformClient {
         @typedef GetCompanyProfileSerializerResponse
         
         
-        @property { Array<Document> } [documents]
+        @property { string } [verifiedOn]
         
         @property { string } [name]
-        
-        @property { BusinessCountryInfo1 } [businessCountryInfo]
-        
-        @property { Object } [warnings]
-        
-        @property { string } [stage]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { string } businessType
-        
-        @property { string } [businessInfo]
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { UserSerializer } [modifiedBy]
-        
-        @property { string } [createdOn]
-        
-        @property { UserSerializer } [verifiedBy]
-        
-        @property { BusinessDetails } [businessDetails]
         
         @property { ContactDetails } [contactDetails]
         
         @property { UserSerializer } [createdBy]
         
-        @property { string } [modifiedOn]
+        @property { Array<Document> } [documents]
+        
+        @property { string } businessType
+        
+        @property { string } [businessInfo]
+        
+        @property { string } [stage]
         
         @property { string } companyType
         
+        @property { BusinessCountryInfo1 } [businessCountryInfo]
+        
+        @property { string } [createdOn]
+        
+        @property { BusinessDetails } [businessDetails]
+        
         @property { boolean } [franchiseEnabled]
         
-        @property { string } [verifiedOn]
+        @property { Object } [warnings]
+        
+        @property { string } [modifiedOn]
         
         @property { number } uid
+        
+        @property { Array<string> } [notificationEmails]
+        
+        @property { UserSerializer } [verifiedBy]
+        
+        @property { UserSerializer } [modifiedBy]
+        
+        @property { Array<GetAddressSerializer> } [addresses]
         
          
     */
@@ -6444,19 +6459,19 @@ class PlatformClient {
         @typedef MetricsSerializer
         
         
-        @property { string } [stage]
+        @property { DocumentsObj } [brand]
         
-        @property { DocumentsObj } [product]
-        
-        @property { DocumentsObj } [storeDocuments]
+        @property { number } [uid]
         
         @property { DocumentsObj } [store]
         
-        @property { DocumentsObj } [brand]
+        @property { DocumentsObj } [storeDocuments]
+        
+        @property { DocumentsObj } [product]
         
         @property { DocumentsObj } [companyDocuments]
         
-        @property { number } [uid]
+        @property { string } [stage]
         
          
     */
@@ -6476,25 +6491,25 @@ class PlatformClient {
         @typedef CreateUpdateBrandRequestSerializer
         
         
-        @property { string } [description]
-        
-        @property { BrandBannerSerializer } [banner]
+        @property { string } name
         
         @property { string } [brandTier]
         
-        @property { Object } [customJson]
-        
-        @property { string } name
+        @property { number } [uid]
         
         @property { Array<string> } [synonyms]
         
-        @property { number } [companyId]
-        
         @property { Object } [localeLanguage]
         
-        @property { number } [uid]
-        
         @property { string } logo
+        
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [description]
+        
+        @property { number } [companyId]
         
          
     */
@@ -6503,11 +6518,11 @@ class PlatformClient {
         @typedef UserSerializer1
         
         
+        @property { string } [username]
+        
         @property { string } [contact]
         
         @property { string } [userId]
-        
-        @property { string } [username]
         
          
     */
@@ -6516,11 +6531,33 @@ class PlatformClient {
         @typedef GetBrandResponseSerializer
         
         
+        @property { string } [verifiedOn]
+        
+        @property { string } name
+        
+        @property { number } [uid]
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { string } [rejectReason]
+        
+        @property { Object } [localeLanguage]
+        
+        @property { string } [createdOn]
+        
         @property { UserSerializer1 } [verifiedBy]
         
-        @property { string } [description]
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { UserSerializer1 } [modifiedBy]
+        
+        @property { string } [logo]
         
         @property { BrandBannerSerializer } [banner]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [description]
         
         @property { string } [slugKey]
         
@@ -6528,42 +6565,7 @@ class PlatformClient {
         
         @property { Object } [warnings]
         
-        @property { Object } [customJson]
-        
-        @property { UserSerializer1 } [createdBy]
-        
-        @property { UserSerializer1 } [modifiedBy]
-        
         @property { string } [modifiedOn]
-        
-        @property { string } name
-        
-        @property { string } [rejectReason]
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { Object } [localeLanguage]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [verifiedOn]
-        
-        @property { number } [uid]
-        
-        @property { string } [logo]
-        
-         
-    */
-
-/**
-        @typedef CompanyBrandPostRequestSerializer
-        
-        
-        @property { Array<number> } brands
-        
-        @property { number } [uid]
-        
-        @property { number } company
         
          
     */
@@ -6580,43 +6582,54 @@ class PlatformClient {
     */
 
 /**
-        @typedef GetAddressSerializer1
+        @typedef CompanyBrandPostRequestSerializer
         
         
-        @property { string } [addressType]
+        @property { number } company
         
-        @property { string } [city]
+        @property { Array<number> } brands
         
-        @property { number } [longitude]
-        
-        @property { string } [landmark]
-        
-        @property { string } [countryCode]
-        
-        @property { number } [pincode]
-        
-        @property { string } [address1]
-        
-        @property { string } [address2]
-        
-        @property { string } [state]
-        
-        @property { string } [country]
-        
-        @property { number } [latitude]
+        @property { number } [uid]
         
          
     */
 
 /**
-        @typedef LocationManagerSerializer
+        @typedef LocationListSerializer
         
         
-        @property { string } [name]
+        @property { Array<Object> } [items]
         
-        @property { string } [email]
+        @property { Object } [page]
         
-        @property { PhoneNumber } mobileNo
+         
+    */
+
+/**
+        @typedef GetAddressSerializer1
+        
+        
+        @property { number } [longitude]
+        
+        @property { string } [city]
+        
+        @property { string } [address2]
+        
+        @property { string } [countryCode]
+        
+        @property { number } [pincode]
+        
+        @property { string } [addressType]
+        
+        @property { string } [landmark]
+        
+        @property { string } [country]
+        
+        @property { string } [state]
+        
+        @property { number } [latitude]
+        
+        @property { string } [address1]
         
          
     */
@@ -6636,13 +6649,13 @@ class PlatformClient {
         @typedef LocationDayWiseSerializer
         
         
-        @property { string } weekday
+        @property { LocationTimingSerializer } [closing]
         
-        @property { LocationTimingSerializer } [opening]
+        @property { string } weekday
         
         @property { boolean } open
         
-        @property { LocationTimingSerializer } [closing]
+        @property { LocationTimingSerializer } [opening]
         
          
     */
@@ -6651,11 +6664,11 @@ class PlatformClient {
         @typedef InvoiceCredSerializer
         
         
+        @property { string } [username]
+        
         @property { boolean } [enabled]
         
         @property { string } [password]
-        
-        @property { string } [username]
         
          
     */
@@ -6667,6 +6680,19 @@ class PlatformClient {
         @property { InvoiceCredSerializer } [eInvoice]
         
         @property { InvoiceCredSerializer } [eWaybill]
+        
+         
+    */
+
+/**
+        @typedef LocationManagerSerializer
+        
+        
+        @property { string } [name]
+        
+        @property { PhoneNumber } mobileNo
+        
+        @property { string } [email]
         
          
     */
@@ -6686,50 +6712,39 @@ class PlatformClient {
         @typedef LocationSerializer
         
         
-        @property { Object } [warnings]
-        
-        @property { GetAddressSerializer1 } address
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { string } [stage]
+        @property { string } name
         
         @property { string } displayName
         
-        @property { Object } [customJson]
-        
-        @property { string } [storeType]
+        @property { number } [uid]
         
         @property { string } code
         
         @property { Array<PhoneNumber> } [contactNumbers]
         
-        @property { number } company
+        @property { string } [storeType]
         
-        @property { Array<Document> } [documents]
-        
-        @property { string } name
+        @property { GetAddressSerializer1 } address
         
         @property { Array<string> } [notificationEmails]
         
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
         @property { InvoiceDetailsSerializer } [gstCredentials]
         
-        @property { number } [uid]
+        @property { number } company
+        
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { Object } [customJson]
         
         @property { ProductReturnConfigSerializer } [productReturnConfig]
         
-         
-    */
-
-/**
-        @typedef LocationListSerializer
+        @property { Array<Document> } [documents]
         
+        @property { string } [stage]
         
-        @property { Array<Object> } [items]
-        
-        @property { Object } [page]
+        @property { Object } [warnings]
         
          
     */
@@ -6738,31 +6753,31 @@ class PlatformClient {
         @typedef GetCompanySerializer
         
         
-        @property { UserSerializer } [verifiedBy]
+        @property { string } [verifiedOn]
         
-        @property { string } [stage]
+        @property { string } [name]
+        
+        @property { string } [businessType]
+        
+        @property { number } [uid]
+        
+        @property { string } [companyType]
+        
+        @property { string } [rejectReason]
+        
+        @property { string } [createdOn]
+        
+        @property { UserSerializer } [verifiedBy]
         
         @property { UserSerializer } [createdBy]
         
         @property { UserSerializer } [modifiedBy]
         
-        @property { string } [modifiedOn]
-        
-        @property { string } [name]
-        
-        @property { string } [rejectReason]
-        
-        @property { string } [companyType]
-        
         @property { Array<GetAddressSerializer> } [addresses]
         
-        @property { string } [createdOn]
+        @property { string } [stage]
         
-        @property { string } [businessType]
-        
-        @property { string } [verifiedOn]
-        
-        @property { number } [uid]
+        @property { string } [modifiedOn]
         
          
     */
@@ -6782,55 +6797,55 @@ class PlatformClient {
         @typedef GetLocationSerializer
         
         
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { string } code
-        
-        @property { Array<PhoneNumber> } [contactNumbers]
-        
-        @property { Array<Document> } [documents]
+        @property { string } [verifiedOn]
         
         @property { string } name
         
-        @property { Object } [warnings]
+        @property { string } phoneNumber
+        
+        @property { Array<PhoneNumber> } [contactNumbers]
         
         @property { GetAddressSerializer } address
         
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { string } [stage]
-        
-        @property { ProductReturnConfigSerializer } [productReturnConfig]
-        
-        @property { string } phoneNumber
-        
-        @property { string } displayName
-        
-        @property { Object } [customJson]
-        
         @property { string } [storeType]
-        
-        @property { Array<string> } [notificationEmails]
-        
-        @property { UserSerializer1 } [modifiedBy]
-        
-        @property { string } [createdOn]
-        
-        @property { UserSerializer1 } [verifiedBy]
-        
-        @property { UserSerializer1 } [createdBy]
         
         @property { GetCompanySerializer } [company]
         
-        @property { string } [modifiedOn]
+        @property { UserSerializer1 } [createdBy]
+        
+        @property { ProductReturnConfigSerializer } [productReturnConfig]
+        
+        @property { Array<Document> } [documents]
         
         @property { LocationIntegrationType } [integrationType]
         
-        @property { string } [verifiedOn]
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
+        @property { string } [stage]
+        
+        @property { string } code
+        
+        @property { string } [createdOn]
+        
+        @property { string } [modifiedOn]
+        
+        @property { Object } [warnings]
+        
+        @property { string } displayName
+        
+        @property { number } [uid]
+        
+        @property { Array<string> } [notificationEmails]
         
         @property { InvoiceDetailsSerializer } [gstCredentials]
         
-        @property { number } [uid]
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { UserSerializer1 } [verifiedBy]
+        
+        @property { UserSerializer1 } [modifiedBy]
+        
+        @property { Object } [customJson]
         
          
     */
@@ -10459,7 +10474,7 @@ class PlatformClient {
     */
 
 /**
-        @typedef LatLong
+        @typedef StoreLatLong
         
         
         @property { string } [type]
@@ -10477,7 +10492,7 @@ class PlatformClient {
         
         @property { string } [address1]
         
-        @property { LatLong } [latLong]
+        @property { StoreLatLong } [latLong]
         
         @property { string } [address2]
         
@@ -11033,6 +11048,29 @@ class PlatformClient {
         @property { PostOrder } [postOrder]
         
         @property { PriceRange } [priceRange]
+        
+         
+    */
+
+/**
+        @typedef Identifier
+        
+        
+        @property { Array<number> } [categoryId]
+        
+        @property { Array<string> } [articleId]
+        
+        @property { Array<number> } [storeId]
+        
+        @property { Array<number> } [companyId]
+        
+        @property { Array<string> } [collectionId]
+        
+        @property { Array<string> } [userId]
+        
+        @property { Array<number> } [brandId]
+        
+        @property { Array<number> } [itemId]
         
          
     */
@@ -12560,34 +12598,6 @@ class CompanyProfile {
   }
 
   /**
-   *
-   * @summary: Create a company brand mapping.
-   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
-   * @param {Object} arg - arg object.
-   * @param {CompanyBrandPostRequestSerializer} arg.body
-   **/
-  createBrand({ body } = {}) {
-    const {
-      error,
-    } = CompanyProfileValidator.createBrand().validate(arguments[0], {
-      abortEarly: false,
-    });
-    if (error) {
-      throw error;
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
     *
     * @summary: Get brands associated to a company
     * @description: This API helps to get view brands associated to a particular company.
@@ -12616,15 +12626,15 @@ class CompanyProfile {
 
   /**
    *
-   * @summary: Create a location asscoiated to a company.
-   * @description: This API allows to create a location associated to a company.
+   * @summary: Create a company brand mapping.
+   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
    * @param {Object} arg - arg object.
-   * @param {LocationSerializer} arg.body
+   * @param {CompanyBrandPostRequestSerializer} arg.body
    **/
-  createLocation({ body } = {}) {
+  createBrand({ body } = {}) {
     const {
       error,
-    } = CompanyProfileValidator.createLocation().validate(arguments[0], {
+    } = CompanyProfileValidator.createBrand().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -12636,7 +12646,7 @@ class CompanyProfile {
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       queryObj,
       body
     );
@@ -12677,6 +12687,34 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       queryObj,
       undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create a location asscoiated to a company.
+   * @description: This API allows to create a location associated to a company.
+   * @param {Object} arg - arg object.
+   * @param {LocationSerializer} arg.body
+   **/
+  createLocation({ body } = {}) {
+    const {
+      error,
+    } = CompanyProfileValidator.createLocation().validate(arguments[0], {
+      abortEarly: false,
+    });
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
+      queryObj,
+      body
     );
   }
 

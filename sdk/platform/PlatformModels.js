@@ -2638,49 +2638,49 @@ class Validator {
 
   static PaymentGatewayConfigResponse() {
     return Joi.object({
+      aggregators: Joi.array().items(Joi.object()),
+
+      created: Joi.boolean(),
+
       appId: Joi.string(),
 
       success: Joi.boolean(),
 
-      aggregators: Joi.array().items(Joi.object()),
+      excludedFields: Joi.array().items(Joi.string()),
 
       displayFields: Joi.array().items(Joi.string()),
-
-      created: Joi.boolean(),
-
-      excludedFields: Joi.array().items(Joi.string()),
     });
   }
 
   static ErrorCodeDescription() {
     return Joi.object({
-      success: Joi.boolean(),
+      code: Joi.string(),
 
       description: Joi.string(),
 
-      code: Joi.string(),
+      success: Joi.boolean(),
     });
   }
 
   static PaymentGatewayConfig() {
     return Joi.object({
+      key: Joi.string(),
+
       secret: Joi.string(),
 
       configType: Joi.string(),
 
-      key: Joi.string(),
+      isActive: Joi.boolean(),
 
       merchantSalt: Joi.string(),
-
-      isActive: Joi.boolean(),
     });
   }
 
   static PaymentGatewayConfigRequest() {
     return Joi.object({
-      isActive: Joi.boolean(),
-
       appId: Joi.string(),
+
+      isActive: Joi.boolean(),
 
       aggregatorName: this.PaymentGatewayConfig(),
     });
@@ -2688,17 +2688,17 @@ class Validator {
 
   static PaymentGatewayToBeReviewed() {
     return Joi.object({
-      aggregator: Joi.array().items(Joi.string()),
-
       success: Joi.boolean(),
+
+      aggregator: Joi.array().items(Joi.string()),
     });
   }
 
   static ErrorCodeAndDescription() {
     return Joi.object({
-      description: Joi.string(),
-
       code: Joi.string(),
+
+      description: Joi.string(),
     });
   }
 
@@ -2712,67 +2712,67 @@ class Validator {
 
   static PaymentModeLogo() {
     return Joi.object({
-      large: Joi.string(),
-
       small: Joi.string(),
+
+      large: Joi.string(),
     });
   }
 
   static PaymentModeList() {
     return Joi.object({
+      cardName: Joi.string(),
+
       cardReference: Joi.string(),
-
-      displayName: Joi.string(),
-
-      code: Joi.string(),
-
-      intentFlow: Joi.string(),
-
-      retryCount: Joi.number(),
-
-      cardBrandImage: Joi.string(),
-
-      expired: Joi.boolean(),
-
-      cardIssuer: Joi.string(),
-
-      expMonth: Joi.number(),
-
-      fyndVpa: Joi.string(),
-
-      logoUrl: this.PaymentModeLogo(),
 
       nickname: Joi.string(),
 
-      timeout: Joi.number(),
+      cardIssuer: Joi.string(),
 
-      intentAppErrorList: Joi.array().items(Joi.string()),
+      logoUrl: this.PaymentModeLogo(),
 
-      cardToken: Joi.string(),
-
-      expYear: Joi.number(),
-
-      merchantCode: Joi.string(),
-
-      cardName: Joi.string(),
-
-      cardFingerprint: Joi.string(),
-
-      aggregatorName: Joi.string(),
-
-      displayPriority: Joi.number(),
+      displayName: Joi.string(),
 
       cardNumber: Joi.string(),
 
-      cardId: Joi.string(),
+      expYear: Joi.number(),
 
-      cardType: Joi.string(),
+      expMonth: Joi.number(),
+
+      merchantCode: Joi.string(),
+
+      displayPriority: Joi.number(),
+
+      aggregatorName: Joi.string(),
+
+      cardToken: Joi.string(),
+
+      retryCount: Joi.number(),
 
       cardBrand: Joi.string(),
 
-      name: Joi.string(),
+      cardFingerprint: Joi.string(),
+
+      code: Joi.string(),
+
+      cardBrandImage: Joi.string(),
+
+      intentAppErrorList: Joi.array().items(Joi.string()),
+
+      expired: Joi.boolean(),
+
+      cardType: Joi.string(),
+
+      intentFlow: Joi.string(),
+
+      timeout: Joi.number(),
 
       cardIsin: Joi.string(),
+
+      name: Joi.string(),
+
+      fyndVpa: Joi.string(),
+
+      cardId: Joi.string(),
     });
   }
 
@@ -2780,15 +2780,15 @@ class Validator {
     return Joi.object({
       displayName: Joi.string(),
 
-      addCardEnabled: Joi.boolean(),
-
       displayPriority: Joi.number(),
 
-      list: Joi.array().items(this.PaymentModeList()),
+      name: Joi.string(),
 
       aggregatorName: Joi.string(),
 
-      name: Joi.string(),
+      addCardEnabled: Joi.boolean(),
+
+      list: Joi.array().items(this.PaymentModeList()),
 
       anonymousEnable: Joi.boolean(),
     });
@@ -2810,79 +2810,79 @@ class Validator {
 
   static PayoutsResponse() {
     return Joi.object({
+      uniqueTransferNo: Joi.object(),
+
+      payoutsAggregators: Joi.array().items(Joi.object()),
+
       moreAttributes: Joi.object(),
 
       isActive: Joi.boolean(),
 
-      transferType: Joi.string(),
+      customers: Joi.object(),
 
       isDefault: Joi.boolean(),
 
-      uniqueTransferNo: Joi.object(),
-
-      customers: Joi.object(),
-
-      payoutsAggregators: Joi.array().items(Joi.object()),
+      transferType: Joi.string(),
     });
   }
 
   static PayoutRequest() {
     return Joi.object({
-      bankDetails: Joi.object(),
-
       users: Joi.object(),
 
       isActive: Joi.boolean(),
 
-      transferType: Joi.string(),
+      aggregator: Joi.string(),
 
       uniqueExternalId: Joi.string(),
 
-      aggregator: Joi.string(),
+      bankDetails: Joi.object(),
+
+      transferType: Joi.string(),
     });
   }
 
   static PayoutResponse() {
     return Joi.object({
-      payouts: Joi.object(),
-
-      bankDetails: Joi.object(),
-
-      users: Joi.object(),
-
-      success: Joi.boolean(),
-
-      isActive: Joi.boolean(),
-
-      transferType: Joi.string(),
+      paymentStatus: Joi.string(),
 
       uniqueTransferNo: Joi.string(),
 
       created: Joi.boolean(),
 
-      paymentStatus: Joi.string(),
+      success: Joi.boolean(),
+
+      payouts: Joi.object(),
+
+      users: Joi.object(),
+
+      isActive: Joi.boolean(),
 
       aggregator: Joi.string(),
+
+      bankDetails: Joi.object(),
+
+      transferType: Joi.string(),
     });
   }
 
   static UpdatePayoutResponse() {
     return Joi.object({
-      isActive: Joi.boolean(),
+      isDefault: Joi.boolean(),
 
       success: Joi.boolean(),
 
-      isDefault: Joi.boolean(),
+      isActive: Joi.boolean(),
     });
   }
 
   static UpdatePayoutRequest() {
     return Joi.object({
-      isActive: Joi.boolean(),
+      uniqueExternalId: Joi.string(),
 
       isDefault: Joi.boolean(),
 
-      uniqueExternalId: Joi.string(),
+      isActive: Joi.boolean(),
     });
   }
 
@@ -2908,9 +2908,9 @@ class Validator {
 
   static SubscriptionConfigResponse() {
     return Joi.object({
-      aggregator: Joi.string(),
-
       success: Joi.boolean(),
+
+      aggregator: Joi.string(),
 
       config: Joi.object(),
     });
@@ -3236,7 +3236,7 @@ class Validator {
 
       isActive: Joi.boolean(),
 
-      dateMeta: this.DateMeta(),
+      dateMeta: this.FailOrderDateMeta(),
 
       fragile: Joi.boolean(),
 
@@ -3264,7 +3264,7 @@ class Validator {
 
       id: Joi.string(),
 
-      identifier: this.Identifier(),
+      identifier: this.LineItemsArticleIdentifier(),
 
       sellerIdentifier: Joi.string(),
 
@@ -3374,6 +3374,18 @@ class Validator {
     });
   }
 
+  static FailOrderDateMeta() {
+    return Joi.object({
+      addedOnStore: Joi.string(),
+
+      inventoryUpdatedOn: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      modifiedOn: Joi.string(),
+    });
+  }
+
   static MarketplaceIdentifiers() {
     return Joi.object({
       tatacliqLuxury: this.TatacliqLuxury(),
@@ -3430,7 +3442,7 @@ class Validator {
     });
   }
 
-  static Identifier() {
+  static LineItemsArticleIdentifier() {
     return Joi.object({
       skuCode: Joi.string(),
     });
@@ -4972,25 +4984,25 @@ class Validator {
 
   static CompanyAddress() {
     return Joi.object({
-      city: Joi.string(),
-
       longitude: Joi.number(),
 
-      landmark: Joi.string(),
+      city: Joi.string(),
+
+      address2: Joi.string(),
 
       countryCode: Joi.string(),
 
       pincode: Joi.number(),
 
-      address1: Joi.string(),
-
-      address2: Joi.string(),
-
-      state: Joi.string(),
+      landmark: Joi.string(),
 
       country: Joi.string(),
 
+      state: Joi.string(),
+
       latitude: Joi.number(),
+
+      address1: Joi.string(),
     });
   }
 
@@ -5010,21 +5022,25 @@ class Validator {
 
   static Document() {
     return Joi.object({
-      verified: Joi.boolean(),
+      legalName: Joi.string(),
 
-      value: Joi.string(),
+      verified: Joi.boolean(),
 
       url: Joi.string(),
 
-      legalName: Joi.string(),
-
       type: Joi.string(),
+
+      value: Joi.string(),
     });
   }
 
   static CompanyStoreSerializerRequest() {
     return Joi.object({
-      warnings: Joi.object(),
+      name: Joi.string(),
+
+      businessType: Joi.string(),
+
+      uid: Joi.number(),
 
       address: this.CompanyAddress(),
 
@@ -5032,43 +5048,57 @@ class Validator {
 
       referralInfo: this.ReferralInfo(),
 
-      name: Joi.string(),
-
       businessCountryInfo: this.BusinessCountryInfo(),
 
       franchiseEnabled: Joi.boolean(),
 
-      businessType: Joi.string(),
-
-      brands: Joi.array().items(Joi.number()),
+      businessInfo: Joi.string(),
 
       document: this.Document(),
 
-      uid: Joi.number(),
+      brands: Joi.array().items(Joi.number()),
 
-      businessInfo: Joi.string(),
+      warnings: Joi.object(),
     });
   }
 
   static SuccessResponse() {
     return Joi.object({
-      uid: Joi.number(),
-
       success: Joi.boolean(),
+
+      uid: Joi.number(),
     });
   }
 
   static ErrorResponse() {
     return Joi.object({
-      meta: Joi.object(),
-
-      errors: Joi.object(),
-
       message: Joi.string(),
 
       code: Joi.string(),
 
+      meta: Joi.object(),
+
       status: Joi.number(),
+
+      errors: Joi.object(),
+    });
+  }
+
+  static ContactDetails() {
+    return Joi.object({
+      phone: Joi.array().items(this.PhoneNumber()),
+
+      emails: Joi.array().items(Joi.string()),
+    });
+  }
+
+  static UserSerializer() {
+    return Joi.object({
+      username: Joi.string(),
+
+      contact: Joi.string(),
+
+      userId: Joi.string(),
     });
   }
 
@@ -5077,42 +5107,6 @@ class Validator {
       country: Joi.string(),
 
       countryCode: Joi.string(),
-    });
-  }
-
-  static GetAddressSerializer() {
-    return Joi.object({
-      addressType: Joi.string(),
-
-      city: Joi.string(),
-
-      longitude: Joi.number(),
-
-      landmark: Joi.string(),
-
-      countryCode: Joi.string(),
-
-      pincode: Joi.number(),
-
-      address1: Joi.string(),
-
-      address2: Joi.string(),
-
-      state: Joi.string(),
-
-      country: Joi.string(),
-
-      latitude: Joi.number(),
-    });
-  }
-
-  static UserSerializer() {
-    return Joi.object({
-      contact: Joi.string(),
-
-      userId: Joi.string(),
-
-      username: Joi.string(),
     });
   }
 
@@ -5128,55 +5122,73 @@ class Validator {
     });
   }
 
-  static ContactDetails() {
+  static GetAddressSerializer() {
     return Joi.object({
-      phone: Joi.array().items(this.PhoneNumber()),
+      longitude: Joi.number(),
 
-      emails: Joi.array().items(Joi.string()),
+      city: Joi.string(),
+
+      address2: Joi.string(),
+
+      countryCode: Joi.string(),
+
+      pincode: Joi.number(),
+
+      addressType: Joi.string(),
+
+      landmark: Joi.string(),
+
+      country: Joi.string(),
+
+      state: Joi.string(),
+
+      latitude: Joi.number(),
+
+      address1: Joi.string(),
     });
   }
 
   static GetCompanyProfileSerializerResponse() {
     return Joi.object({
-      documents: Joi.array().items(this.Document()),
+      verifiedOn: Joi.string(),
 
       name: Joi.string(),
-
-      businessCountryInfo: this.BusinessCountryInfo1(),
-
-      warnings: Joi.object(),
-
-      stage: Joi.string(),
-
-      addresses: Joi.array().items(this.GetAddressSerializer()),
-
-      businessType: Joi.string(),
-
-      businessInfo: Joi.string(),
-
-      notificationEmails: Joi.array().items(Joi.string()),
-
-      modifiedBy: this.UserSerializer(),
-
-      createdOn: Joi.string(),
-
-      verifiedBy: this.UserSerializer(),
-
-      businessDetails: this.BusinessDetails(),
 
       contactDetails: this.ContactDetails(),
 
       createdBy: this.UserSerializer(),
 
-      modifiedOn: Joi.string(),
+      documents: Joi.array().items(this.Document()),
+
+      businessType: Joi.string(),
+
+      businessInfo: Joi.string(),
+
+      stage: Joi.string(),
 
       companyType: Joi.string(),
 
+      businessCountryInfo: this.BusinessCountryInfo1(),
+
+      createdOn: Joi.string(),
+
+      businessDetails: this.BusinessDetails(),
+
       franchiseEnabled: Joi.boolean(),
 
-      verifiedOn: Joi.string(),
+      warnings: Joi.object(),
+
+      modifiedOn: Joi.string(),
 
       uid: Joi.number(),
+
+      notificationEmails: Joi.array().items(Joi.string()),
+
+      verifiedBy: this.UserSerializer(),
+
+      modifiedBy: this.UserSerializer(),
+
+      addresses: Joi.array().items(this.GetAddressSerializer()),
     });
   }
 
@@ -5190,19 +5202,19 @@ class Validator {
 
   static MetricsSerializer() {
     return Joi.object({
-      stage: Joi.string(),
+      brand: this.DocumentsObj(),
 
-      product: this.DocumentsObj(),
-
-      storeDocuments: this.DocumentsObj(),
+      uid: Joi.number(),
 
       store: this.DocumentsObj(),
 
-      brand: this.DocumentsObj(),
+      storeDocuments: this.DocumentsObj(),
+
+      product: this.DocumentsObj(),
 
       companyDocuments: this.DocumentsObj(),
 
-      uid: Joi.number(),
+      stage: Joi.string(),
     });
   }
 
@@ -5216,45 +5228,67 @@ class Validator {
 
   static CreateUpdateBrandRequestSerializer() {
     return Joi.object({
-      description: Joi.string(),
-
-      banner: this.BrandBannerSerializer(),
+      name: Joi.string(),
 
       brandTier: Joi.string(),
 
-      customJson: Joi.object(),
-
-      name: Joi.string(),
+      uid: Joi.number(),
 
       synonyms: Joi.array().items(Joi.string()),
 
-      companyId: Joi.number(),
-
       localeLanguage: Joi.object(),
 
-      uid: Joi.number(),
-
       logo: Joi.string(),
+
+      banner: this.BrandBannerSerializer(),
+
+      customJson: Joi.object(),
+
+      description: Joi.string(),
+
+      companyId: Joi.number(),
     });
   }
 
   static UserSerializer1() {
     return Joi.object({
+      username: Joi.string(),
+
       contact: Joi.string(),
 
       userId: Joi.string(),
-
-      username: Joi.string(),
     });
   }
 
   static GetBrandResponseSerializer() {
     return Joi.object({
+      verifiedOn: Joi.string(),
+
+      name: Joi.string(),
+
+      uid: Joi.number(),
+
+      synonyms: Joi.array().items(Joi.string()),
+
+      rejectReason: Joi.string(),
+
+      localeLanguage: Joi.object(),
+
+      createdOn: Joi.string(),
+
       verifiedBy: this.UserSerializer1(),
 
-      description: Joi.string(),
+      createdBy: this.UserSerializer1(),
+
+      modifiedBy: this.UserSerializer1(),
+
+      logo: Joi.string(),
 
       banner: this.BrandBannerSerializer(),
+
+      customJson: Joi.object(),
+
+      description: Joi.string(),
 
       slugKey: Joi.string(),
 
@@ -5262,39 +5296,7 @@ class Validator {
 
       warnings: Joi.object(),
 
-      customJson: Joi.object(),
-
-      createdBy: this.UserSerializer1(),
-
-      modifiedBy: this.UserSerializer1(),
-
       modifiedOn: Joi.string(),
-
-      name: Joi.string(),
-
-      rejectReason: Joi.string(),
-
-      synonyms: Joi.array().items(Joi.string()),
-
-      localeLanguage: Joi.object(),
-
-      createdOn: Joi.string(),
-
-      verifiedOn: Joi.string(),
-
-      uid: Joi.number(),
-
-      logo: Joi.string(),
-    });
-  }
-
-  static CompanyBrandPostRequestSerializer() {
-    return Joi.object({
-      brands: Joi.array().items(Joi.number()),
-
-      uid: Joi.number(),
-
-      company: Joi.number(),
     });
   }
 
@@ -5306,39 +5308,47 @@ class Validator {
     });
   }
 
+  static CompanyBrandPostRequestSerializer() {
+    return Joi.object({
+      company: Joi.number(),
+
+      brands: Joi.array().items(Joi.number()),
+
+      uid: Joi.number(),
+    });
+  }
+
+  static LocationListSerializer() {
+    return Joi.object({
+      items: Joi.array().items(Joi.object()),
+
+      page: Joi.object(),
+    });
+  }
+
   static GetAddressSerializer1() {
     return Joi.object({
-      addressType: Joi.string(),
+      longitude: Joi.number(),
 
       city: Joi.string(),
 
-      longitude: Joi.number(),
-
-      landmark: Joi.string(),
+      address2: Joi.string(),
 
       countryCode: Joi.string(),
 
       pincode: Joi.number(),
 
-      address1: Joi.string(),
+      addressType: Joi.string(),
 
-      address2: Joi.string(),
-
-      state: Joi.string(),
+      landmark: Joi.string(),
 
       country: Joi.string(),
 
+      state: Joi.string(),
+
       latitude: Joi.number(),
-    });
-  }
 
-  static LocationManagerSerializer() {
-    return Joi.object({
-      name: Joi.string(),
-
-      email: Joi.string(),
-
-      mobileNo: this.PhoneNumber(),
+      address1: Joi.string(),
     });
   }
 
@@ -5352,23 +5362,23 @@ class Validator {
 
   static LocationDayWiseSerializer() {
     return Joi.object({
-      weekday: Joi.string(),
+      closing: this.LocationTimingSerializer(),
 
-      opening: this.LocationTimingSerializer(),
+      weekday: Joi.string(),
 
       open: Joi.boolean(),
 
-      closing: this.LocationTimingSerializer(),
+      opening: this.LocationTimingSerializer(),
     });
   }
 
   static InvoiceCredSerializer() {
     return Joi.object({
+      username: Joi.string(),
+
       enabled: Joi.boolean(),
 
       password: Joi.string(),
-
-      username: Joi.string(),
     });
   }
 
@@ -5377,6 +5387,16 @@ class Validator {
       eInvoice: this.InvoiceCredSerializer(),
 
       eWaybill: this.InvoiceCredSerializer(),
+    });
+  }
+
+  static LocationManagerSerializer() {
+    return Joi.object({
+      name: Joi.string(),
+
+      mobileNo: this.PhoneNumber(),
+
+      email: Joi.string(),
     });
   }
 
@@ -5390,77 +5410,69 @@ class Validator {
 
   static LocationSerializer() {
     return Joi.object({
-      warnings: Joi.object(),
-
-      address: this.GetAddressSerializer1(),
-
-      manager: this.LocationManagerSerializer(),
-
-      timing: Joi.array().items(this.LocationDayWiseSerializer()),
-
-      stage: Joi.string(),
+      name: Joi.string(),
 
       displayName: Joi.string(),
 
-      customJson: Joi.object(),
-
-      storeType: Joi.string(),
+      uid: Joi.number(),
 
       code: Joi.string(),
 
       contactNumbers: Joi.array().items(this.PhoneNumber()),
 
-      company: Joi.number(),
+      storeType: Joi.string(),
 
-      documents: Joi.array().items(this.Document()),
-
-      name: Joi.string(),
+      address: this.GetAddressSerializer1(),
 
       notificationEmails: Joi.array().items(Joi.string()),
 
+      timing: Joi.array().items(this.LocationDayWiseSerializer()),
+
       gstCredentials: this.InvoiceDetailsSerializer(),
 
-      uid: Joi.number(),
+      company: Joi.number(),
+
+      manager: this.LocationManagerSerializer(),
+
+      customJson: Joi.object(),
 
       productReturnConfig: this.ProductReturnConfigSerializer(),
-    });
-  }
 
-  static LocationListSerializer() {
-    return Joi.object({
-      items: Joi.array().items(Joi.object()),
+      documents: Joi.array().items(this.Document()),
 
-      page: Joi.object(),
+      stage: Joi.string(),
+
+      warnings: Joi.object(),
     });
   }
 
   static GetCompanySerializer() {
     return Joi.object({
-      verifiedBy: this.UserSerializer(),
+      verifiedOn: Joi.string(),
 
-      stage: Joi.string(),
+      name: Joi.string(),
+
+      businessType: Joi.string(),
+
+      uid: Joi.number(),
+
+      companyType: Joi.string(),
+
+      rejectReason: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      verifiedBy: this.UserSerializer(),
 
       createdBy: this.UserSerializer(),
 
       modifiedBy: this.UserSerializer(),
 
-      modifiedOn: Joi.string(),
-
-      name: Joi.string(),
-
-      rejectReason: Joi.string(),
-
-      companyType: Joi.string(),
-
       addresses: Joi.array().items(this.GetAddressSerializer()),
 
-      createdOn: Joi.string(),
+      stage: Joi.string(),
 
-      businessType: Joi.string(),
-
-      verifiedOn: Joi.string(),
-
-      uid: Joi.number(),
+      modifiedOn: Joi.string(),
     });
   }
 
@@ -5474,55 +5486,55 @@ class Validator {
 
   static GetLocationSerializer() {
     return Joi.object({
-      timing: Joi.array().items(this.LocationDayWiseSerializer()),
-
-      code: Joi.string(),
-
-      contactNumbers: Joi.array().items(this.PhoneNumber()),
-
-      documents: Joi.array().items(this.Document()),
+      verifiedOn: Joi.string(),
 
       name: Joi.string(),
 
-      warnings: Joi.object(),
+      phoneNumber: Joi.string(),
+
+      contactNumbers: Joi.array().items(this.PhoneNumber()),
 
       address: this.GetAddressSerializer(),
 
-      manager: this.LocationManagerSerializer(),
-
-      stage: Joi.string(),
-
-      productReturnConfig: this.ProductReturnConfigSerializer(),
-
-      phoneNumber: Joi.string(),
-
-      displayName: Joi.string(),
-
-      customJson: Joi.object(),
-
       storeType: Joi.string(),
-
-      notificationEmails: Joi.array().items(Joi.string()),
-
-      modifiedBy: this.UserSerializer1(),
-
-      createdOn: Joi.string(),
-
-      verifiedBy: this.UserSerializer1(),
-
-      createdBy: this.UserSerializer1(),
 
       company: this.GetCompanySerializer(),
 
-      modifiedOn: Joi.string(),
+      createdBy: this.UserSerializer1(),
+
+      productReturnConfig: this.ProductReturnConfigSerializer(),
+
+      documents: Joi.array().items(this.Document()),
 
       integrationType: this.LocationIntegrationType(),
 
-      verifiedOn: Joi.string(),
+      timing: Joi.array().items(this.LocationDayWiseSerializer()),
+
+      stage: Joi.string(),
+
+      code: Joi.string(),
+
+      createdOn: Joi.string(),
+
+      modifiedOn: Joi.string(),
+
+      warnings: Joi.object(),
+
+      displayName: Joi.string(),
+
+      uid: Joi.number(),
+
+      notificationEmails: Joi.array().items(Joi.string()),
 
       gstCredentials: this.InvoiceDetailsSerializer(),
 
-      uid: Joi.number(),
+      manager: this.LocationManagerSerializer(),
+
+      verifiedBy: this.UserSerializer1(),
+
+      modifiedBy: this.UserSerializer1(),
+
+      customJson: Joi.object(),
     });
   }
 
@@ -8492,7 +8504,7 @@ class Validator {
     });
   }
 
-  static LatLong() {
+  static StoreLatLong() {
     return Joi.object({
       type: Joi.string(),
 
@@ -8506,7 +8518,7 @@ class Validator {
 
       address1: Joi.string(),
 
-      latLong: this.LatLong(),
+      latLong: this.StoreLatLong(),
 
       address2: Joi.string(),
 
@@ -8939,6 +8951,26 @@ class Validator {
       postOrder: this.PostOrder(),
 
       priceRange: this.PriceRange(),
+    });
+  }
+
+  static Identifier() {
+    return Joi.object({
+      categoryId: Joi.array().items(Joi.number()),
+
+      articleId: Joi.array().items(Joi.string()),
+
+      storeId: Joi.array().items(Joi.number()),
+
+      companyId: Joi.array().items(Joi.number()),
+
+      collectionId: Joi.array().items(Joi.string()),
+
+      userId: Joi.array().items(Joi.string()),
+
+      brandId: Joi.array().items(Joi.number()),
+
+      itemId: Joi.array().items(Joi.number()),
     });
   }
 
@@ -9655,23 +9687,16 @@ class CompanyProfileValidator {
     }).required();
   }
 
-  static createBrand() {
-    return Joi.object({
-      companyId: Joi.string().required(),
-      body: Validator.CompanyBrandPostRequestSerializer().required(),
-    }).required();
-  }
-
   static getBrands() {
     return Joi.object({
       companyId: Joi.string().required(),
     }).required();
   }
 
-  static createLocation() {
+  static createBrand() {
     return Joi.object({
       companyId: Joi.string().required(),
-      body: Validator.LocationSerializer().required(),
+      body: Validator.CompanyBrandPostRequestSerializer().required(),
     }).required();
   }
 
@@ -9683,6 +9708,13 @@ class CompanyProfileValidator {
       stage: Joi.string(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+    }).required();
+  }
+
+  static createLocation() {
+    return Joi.object({
+      companyId: Joi.string().required(),
+      body: Validator.LocationSerializer().required(),
     }).required();
   }
 

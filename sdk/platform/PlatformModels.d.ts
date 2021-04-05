@@ -33,9 +33,10 @@ export class CompanyProfileValidator {
     static editBrand(): any;
     static getBrand(): any;
     static createBrand(): any;
+    static createBrand(): any;
     static getBrands(): any;
-    static createLocation(): any;
     static getLocations(): any;
+    static createLocation(): any;
     static updateLocation(): any;
     static getLocationDetail(): any;
 }

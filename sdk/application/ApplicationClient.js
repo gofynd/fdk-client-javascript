@@ -55,7 +55,7 @@ class Catalog {
   getProductDetailBySlug({ slug } = {}) {
     const {
       error,
-    } = CatalogValidator.getProductDetailBySlug.validate(arguments[0], {
+    } = CatalogValidator.getProductDetailBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -84,7 +84,7 @@ class Catalog {
   getProductSizesBySlug({ slug, storeId } = {}) {
     const {
       error,
-    } = CatalogValidator.getProductSizesBySlug.validate(arguments[0], {
+    } = CatalogValidator.getProductSizesBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -116,7 +116,7 @@ class Catalog {
   getProductPriceBySlug({ slug, size, pincode, storeId } = {}) {
     const {
       error,
-    } = CatalogValidator.getProductPriceBySlug.validate(arguments[0], {
+    } = CatalogValidator.getProductPriceBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -149,7 +149,7 @@ class Catalog {
   getProductSellersBySlug({ slug, size, pincode, pageNo, pageSize } = {}) {
     const {
       error,
-    } = CatalogValidator.getProductSellersBySlug.validate(arguments[0], {
+    } = CatalogValidator.getProductSellersBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -179,7 +179,7 @@ class Catalog {
   getProductComparisonBySlugs({ slug } = {}) {
     const {
       error,
-    } = CatalogValidator.getProductComparisonBySlugs.validate(arguments[0], {
+    } = CatalogValidator.getProductComparisonBySlugs().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -208,7 +208,7 @@ class Catalog {
   getSimilarComparisonProductBySlug({ slug } = {}) {
     const {
       error,
-    } = CatalogValidator.getSimilarComparisonProductBySlug.validate(
+    } = CatalogValidator.getSimilarComparisonProductBySlug().validate(
       arguments[0],
       { abortEarly: false }
     );
@@ -237,7 +237,7 @@ class Catalog {
   getComparedFrequentlyProductBySlug({ slug } = {}) {
     const {
       error,
-    } = CatalogValidator.getComparedFrequentlyProductBySlug.validate(
+    } = CatalogValidator.getComparedFrequentlyProductBySlug().validate(
       arguments[0],
       { abortEarly: false }
     );
@@ -267,9 +267,10 @@ class Catalog {
   getProductSimilarByIdentifier({ slug, similarType } = {}) {
     const {
       error,
-    } = CatalogValidator.getProductSimilarByIdentifier.validate(arguments[0], {
-      abortEarly: false,
-    });
+    } = CatalogValidator.getProductSimilarByIdentifier().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -295,7 +296,7 @@ class Catalog {
   getProductVariantsBySlug({ slug } = {}) {
     const {
       error,
-    } = CatalogValidator.getProductVariantsBySlug.validate(arguments[0], {
+    } = CatalogValidator.getProductVariantsBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -327,7 +328,7 @@ class Catalog {
   getProductStockByIds({ itemId, alu, skuCode, ean, upc } = {}) {
     const {
       error,
-    } = CatalogValidator.getProductStockByIds.validate(arguments[0], {
+    } = CatalogValidator.getProductStockByIds().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -362,7 +363,7 @@ class Catalog {
   getProductStockForTimeByIds({ timestamp, pageSize, pageId } = {}) {
     const {
       error,
-    } = CatalogValidator.getProductStockForTimeByIds.validate(arguments[0], {
+    } = CatalogValidator.getProductStockForTimeByIds().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -407,7 +408,7 @@ class Catalog {
     pageNo,
     pageType,
   } = {}) {
-    const { error } = CatalogValidator.getProducts.validate(arguments[0], {
+    const { error } = CatalogValidator.getProducts().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -481,7 +482,7 @@ class Catalog {
     
     **/
   getBrands({ department, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getBrands.validate(arguments[0], {
+    const { error } = CatalogValidator.getBrands().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -512,7 +513,7 @@ class Catalog {
   getBrandDetailBySlug({ slug } = {}) {
     const {
       error,
-    } = CatalogValidator.getBrandDetailBySlug.validate(arguments[0], {
+    } = CatalogValidator.getBrandDetailBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -538,7 +539,7 @@ class Catalog {
     
     **/
   getCategories({ department } = {}) {
-    const { error } = CatalogValidator.getCategories.validate(arguments[0], {
+    const { error } = CatalogValidator.getCategories().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -567,7 +568,7 @@ class Catalog {
   getCategoryDetailBySlug({ slug } = {}) {
     const {
       error,
-    } = CatalogValidator.getCategoryDetailBySlug.validate(arguments[0], {
+    } = CatalogValidator.getCategoryDetailBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -595,9 +596,10 @@ class Catalog {
     
     **/
   getHomeProducts({ sortOn, pageId, pageSize } = {}) {
-    const { error } = CatalogValidator.getHomeProducts.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = CatalogValidator.getHomeProducts().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -623,7 +625,7 @@ class Catalog {
     
     **/
   getDepartments({} = {}) {
-    const { error } = CatalogValidator.getDepartments.validate(arguments[0], {
+    const { error } = CatalogValidator.getDepartments().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -649,9 +651,10 @@ class Catalog {
     
     **/
   getSearchResults({ q } = {}) {
-    const { error } = CatalogValidator.getSearchResults.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = CatalogValidator.getSearchResults().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -677,7 +680,7 @@ class Catalog {
     
     **/
   getCollections({ pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getCollections.validate(arguments[0], {
+    const { error } = CatalogValidator.getCollections().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -719,7 +722,7 @@ class Catalog {
   } = {}) {
     const {
       error,
-    } = CatalogValidator.getCollectionItemsBySlug.validate(arguments[0], {
+    } = CatalogValidator.getCollectionItemsBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -752,7 +755,7 @@ class Catalog {
   getCollectionDetailBySlug({ slug } = {}) {
     const {
       error,
-    } = CatalogValidator.getCollectionDetailBySlug.validate(arguments[0], {
+    } = CatalogValidator.getCollectionDetailBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -778,10 +781,11 @@ class Catalog {
     
     **/
   getFollowedListing({ collectionType } = {}) {
-    const { error } = CatalogValidator.getFollowedListing.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = CatalogValidator.getFollowedListing().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -806,7 +810,7 @@ class Catalog {
     
     **/
   followById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.followById.validate(arguments[0], {
+    const { error } = CatalogValidator.followById().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -833,7 +837,7 @@ class Catalog {
     
     **/
   unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById.validate(arguments[0], {
+    const { error } = CatalogValidator.unfollowById().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -862,7 +866,7 @@ class Catalog {
   getFollowerCountById({ collectionType, collectionId } = {}) {
     const {
       error,
-    } = CatalogValidator.getFollowerCountById.validate(arguments[0], {
+    } = CatalogValidator.getFollowerCountById().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -888,7 +892,7 @@ class Catalog {
     
     **/
   getFollowIds({ collectionType } = {}) {
-    const { error } = CatalogValidator.getFollowIds.validate(arguments[0], {
+    const { error } = CatalogValidator.getFollowIds().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -920,7 +924,7 @@ class Catalog {
     
     **/
   getStores({ pageNo, pageSize, q, range, latitude, longitude } = {}) {
-    const { error } = CatalogValidator.getStores.validate(arguments[0], {
+    const { error } = CatalogValidator.getStores().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -961,7 +965,7 @@ class Cart {
     
     **/
   getCart({ uid, i, b, assignCardId } = {}) {
-    const { error } = CartValidator.getCart.validate(arguments[0], {
+    const { error } = CartValidator.getCart().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -991,9 +995,10 @@ class Cart {
     
     **/
   getCartLastModified({ uid } = {}) {
-    const { error } = CartValidator.getCartLastModified.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = CartValidator.getCartLastModified().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -1019,7 +1024,7 @@ class Cart {
    * @param {AddCartRequest} arg.body
    **/
   addItems({ body, i, b } = {}) {
-    const { error } = CartValidator.addItems.validate(arguments[0], {
+    const { error } = CartValidator.addItems().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1049,7 +1054,7 @@ class Cart {
    * @param {UpdateCartRequest} arg.body
    **/
   updateCart({ body, uid, i, b } = {}) {
-    const { error } = CartValidator.updateCart.validate(arguments[0], {
+    const { error } = CartValidator.updateCart().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1078,7 +1083,7 @@ class Cart {
     
     **/
   getItemCount({ uid } = {}) {
-    const { error } = CartValidator.getItemCount.validate(arguments[0], {
+    const { error } = CartValidator.getItemCount().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1105,7 +1110,7 @@ class Cart {
     
     **/
   getCoupons({ uid } = {}) {
-    const { error } = CartValidator.getCoupons.validate(arguments[0], {
+    const { error } = CartValidator.getCoupons().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1136,7 +1141,7 @@ class Cart {
     * @param {ApplyCouponRequest} arg.body
     **/
   applyCoupon({ body, i, b, p, uid } = {}) {
-    const { error } = CartValidator.applyCoupon.validate(arguments[0], {
+    const { error } = CartValidator.applyCoupon().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1166,7 +1171,7 @@ class Cart {
     
     **/
   removeCoupon({ uid } = {}) {
-    const { error } = CartValidator.removeCoupon.validate(arguments[0], {
+    const { error } = CartValidator.removeCoupon().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1196,10 +1201,11 @@ class Cart {
     
     **/
   getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
-    const { error } = CartValidator.getBulkDiscountOffers.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = CartValidator.getBulkDiscountOffers().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -1231,7 +1237,7 @@ class Cart {
     
     **/
   getAddresses({ uid, mobileNo, checkoutMode, tags, isDefault } = {}) {
-    const { error } = CartValidator.getAddresses.validate(arguments[0], {
+    const { error } = CartValidator.getAddresses().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1261,7 +1267,7 @@ class Cart {
    * @param {Address} arg.body
    **/
   addAddress({ body } = {}) {
-    const { error } = CartValidator.addAddress.validate(arguments[0], {
+    const { error } = CartValidator.addAddress().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1292,7 +1298,7 @@ class Cart {
     
     **/
   getAddressById({ id, uid, mobileNo, checkoutMode, tags, isDefault } = {}) {
-    const { error } = CartValidator.getAddressById.validate(arguments[0], {
+    const { error } = CartValidator.getAddressById().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1323,7 +1329,7 @@ class Cart {
    * @param {Address} arg.body
    **/
   updateAddress({ id, body } = {}) {
-    const { error } = CartValidator.updateAddress.validate(arguments[0], {
+    const { error } = CartValidator.updateAddress().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1349,7 +1355,7 @@ class Cart {
     
     **/
   removeAddress({ id } = {}) {
-    const { error } = CartValidator.removeAddress.validate(arguments[0], {
+    const { error } = CartValidator.removeAddress().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1377,7 +1383,7 @@ class Cart {
    * @param {SelectCartAddressRequest} arg.body
    **/
   selectAddress({ body, uid, i, b } = {}) {
-    const { error } = CartValidator.selectAddress.validate(arguments[0], {
+    const { error } = CartValidator.selectAddress().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1406,7 +1412,7 @@ class Cart {
    * @param {UpdateCartPaymentRequest} arg.body
    **/
   selectPaymentMode({ body, uid } = {}) {
-    const { error } = CartValidator.selectPaymentMode.validate(arguments[0], {
+    const { error } = CartValidator.selectPaymentMode().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1447,7 +1453,7 @@ class Cart {
   } = {}) {
     const {
       error,
-    } = CartValidator.validateCouponForPayment.validate(arguments[0], {
+    } = CartValidator.validateCouponForPayment().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1482,7 +1488,7 @@ class Cart {
     
     **/
   getShipments({ p, uid, addressId, areaCode } = {}) {
-    const { error } = CartValidator.getShipments.validate(arguments[0], {
+    const { error } = CartValidator.getShipments().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1511,7 +1517,7 @@ class Cart {
    * @param {CartCheckoutRequest} arg.body
    **/
   checkoutCart({ body } = {}) {
-    const { error } = CartValidator.checkoutCart.validate(arguments[0], {
+    const { error } = CartValidator.checkoutCart().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1537,7 +1543,7 @@ class Cart {
    * @param {CartMetaRequest} arg.body
    **/
   updateCartMeta({ body, uid } = {}) {
-    const { error } = CartValidator.updateCartMeta.validate(arguments[0], {
+    const { error } = CartValidator.updateCartMeta().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1563,7 +1569,7 @@ class Cart {
    * @param {GetShareCartLinkRequest} arg.body
    **/
   getCartShareLink({ body } = {}) {
-    const { error } = CartValidator.getCartShareLink.validate(arguments[0], {
+    const { error } = CartValidator.getCartShareLink().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1589,9 +1595,10 @@ class Cart {
     
     **/
   getCartSharedItems({ token } = {}) {
-    const { error } = CartValidator.getCartSharedItems.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = CartValidator.getCartSharedItems().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -1618,7 +1625,7 @@ class Cart {
   updateCartWithSharedItems({ token, action } = {}) {
     const {
       error,
-    } = CartValidator.updateCartWithSharedItems.validate(arguments[0], {
+    } = CartValidator.updateCartWithSharedItems().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1650,7 +1657,7 @@ class Lead {
     
     **/
   getTicket({ id } = {}) {
-    const { error } = LeadValidator.getTicket.validate(arguments[0], {
+    const { error } = LeadValidator.getTicket().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1676,7 +1683,7 @@ class Lead {
    * @param {TicketHistoryPayload} arg.body
    **/
   createHistory({ ticketId, body } = {}) {
-    const { error } = LeadValidator.createHistory.validate(arguments[0], {
+    const { error } = LeadValidator.createHistory().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1701,7 +1708,7 @@ class Lead {
    * @param {AddTicketPayload} arg.body
    **/
   createTicket({ body } = {}) {
-    const { error } = LeadValidator.createTicket.validate(arguments[0], {
+    const { error } = LeadValidator.createTicket().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1727,7 +1734,7 @@ class Lead {
     
     **/
   getCustomForm({ slug } = {}) {
-    const { error } = LeadValidator.getCustomForm.validate(arguments[0], {
+    const { error } = LeadValidator.getCustomForm().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1753,7 +1760,7 @@ class Lead {
    * @param {CustomFormSubmissionPayload} arg.body
    **/
   submitCustomForm({ slug, body } = {}) {
-    const { error } = LeadValidator.submitCustomForm.validate(arguments[0], {
+    const { error } = LeadValidator.submitCustomForm().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1781,7 +1788,7 @@ class Lead {
   getParticipantsInsideVideoRoom({ uniqueName } = {}) {
     const {
       error,
-    } = LeadValidator.getParticipantsInsideVideoRoom.validate(arguments[0], {
+    } = LeadValidator.getParticipantsInsideVideoRoom().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1807,10 +1814,11 @@ class Lead {
     
     **/
   getTokenForVideoRoom({ uniqueName } = {}) {
-    const { error } = LeadValidator.getTokenForVideoRoom.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = LeadValidator.getTokenForVideoRoom().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -1839,7 +1847,7 @@ class Theme {
     
     **/
   getAppliedTheme({} = {}) {
-    const { error } = ThemeValidator.getAppliedTheme.validate(arguments[0], {
+    const { error } = ThemeValidator.getAppliedTheme().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1865,9 +1873,10 @@ class Theme {
     
     **/
   getThemeForPreview({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeForPreview.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = ThemeValidator.getThemeForPreview().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -1896,7 +1905,7 @@ class User {
    * @param {OAuthRequestSchema} arg.body
    **/
   loginWithFacebook({ body } = {}) {
-    const { error } = UserValidator.loginWithFacebook.validate(arguments[0], {
+    const { error } = UserValidator.loginWithFacebook().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1921,7 +1930,7 @@ class User {
    * @param {OAuthRequestSchema} arg.body
    **/
   loginWithGoogle({ body } = {}) {
-    const { error } = UserValidator.loginWithGoogle.validate(arguments[0], {
+    const { error } = UserValidator.loginWithGoogle().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1948,7 +1957,7 @@ class User {
   loginWithGoogleAndroid({ body } = {}) {
     const {
       error,
-    } = UserValidator.loginWithGoogleAndroid.validate(arguments[0], {
+    } = UserValidator.loginWithGoogleAndroid().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -1973,9 +1982,10 @@ class User {
    * @param {OAuthRequestSchema} arg.body
    **/
   loginWithGoogleIOS({ body } = {}) {
-    const { error } = UserValidator.loginWithGoogleIOS.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = UserValidator.loginWithGoogleIOS().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -1999,7 +2009,7 @@ class User {
    * @param {SendOtpRequestSchema} arg.body
    **/
   loginWithOTP({ body, platform } = {}) {
-    const { error } = UserValidator.loginWithOTP.validate(arguments[0], {
+    const { error } = UserValidator.loginWithOTP().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2027,7 +2037,7 @@ class User {
   loginWithEmailAndPassword({ body } = {}) {
     const {
       error,
-    } = UserValidator.loginWithEmailAndPassword.validate(arguments[0], {
+    } = UserValidator.loginWithEmailAndPassword().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2055,7 +2065,7 @@ class User {
   sendResetPasswordEmail({ body, platform } = {}) {
     const {
       error,
-    } = UserValidator.sendResetPasswordEmail.validate(arguments[0], {
+    } = UserValidator.sendResetPasswordEmail().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2081,7 +2091,7 @@ class User {
    * @param {ForgotPasswordRequestSchema} arg.body
    **/
   forgotPassword({ body } = {}) {
-    const { error } = UserValidator.forgotPassword.validate(arguments[0], {
+    const { error } = UserValidator.forgotPassword().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2106,7 +2116,7 @@ class User {
    * @param {CodeRequestBodySchema} arg.body
    **/
   sendResetToken({ body } = {}) {
-    const { error } = UserValidator.sendResetToken.validate(arguments[0], {
+    const { error } = UserValidator.sendResetToken().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2131,7 +2141,7 @@ class User {
    * @param {TokenRequestBodySchema} arg.body
    **/
   loginWithToken({ body } = {}) {
-    const { error } = UserValidator.loginWithToken.validate(arguments[0], {
+    const { error } = UserValidator.loginWithToken().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2157,7 +2167,7 @@ class User {
    * @param {FormRegisterRequestSchema} arg.body
    **/
   registerWithForm({ body, platform } = {}) {
-    const { error } = UserValidator.registerWithForm.validate(arguments[0], {
+    const { error } = UserValidator.registerWithForm().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2183,7 +2193,7 @@ class User {
    * @param {CodeRequestBodySchema} arg.body
    **/
   verifyEmail({ body } = {}) {
-    const { error } = UserValidator.verifyEmail.validate(arguments[0], {
+    const { error } = UserValidator.verifyEmail().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2208,7 +2218,7 @@ class User {
    * @param {CodeRequestBodySchema} arg.body
    **/
   verifyMobile({ body } = {}) {
-    const { error } = UserValidator.verifyMobile.validate(arguments[0], {
+    const { error } = UserValidator.verifyMobile().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2233,7 +2243,7 @@ class User {
     
     **/
   hasPassword({} = {}) {
-    const { error } = UserValidator.hasPassword.validate(arguments[0], {
+    const { error } = UserValidator.hasPassword().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2258,7 +2268,7 @@ class User {
    * @param {UpdatePasswordRequestSchema} arg.body
    **/
   updatePassword({ body } = {}) {
-    const { error } = UserValidator.updatePassword.validate(arguments[0], {
+    const { error } = UserValidator.updatePassword().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2283,7 +2293,7 @@ class User {
     
     **/
   logout({} = {}) {
-    const { error } = UserValidator.logout.validate(arguments[0], {
+    const { error } = UserValidator.logout().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2309,7 +2319,7 @@ class User {
    * @param {SendMobileOtpRequestSchema} arg.body
    **/
   sendOTPOnMobile({ body, platform } = {}) {
-    const { error } = UserValidator.sendOTPOnMobile.validate(arguments[0], {
+    const { error } = UserValidator.sendOTPOnMobile().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2336,7 +2346,7 @@ class User {
    * @param {VerifyOtpRequestSchema} arg.body
    **/
   verifyMobileOTP({ body, platform } = {}) {
-    const { error } = UserValidator.verifyMobileOTP.validate(arguments[0], {
+    const { error } = UserValidator.verifyMobileOTP().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2363,7 +2373,7 @@ class User {
    * @param {SendEmailOtpRequestSchema} arg.body
    **/
   sendOTPOnEmail({ body, platform } = {}) {
-    const { error } = UserValidator.sendOTPOnEmail.validate(arguments[0], {
+    const { error } = UserValidator.sendOTPOnEmail().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2390,7 +2400,7 @@ class User {
    * @param {VerifyOtpRequestSchema} arg.body
    **/
   verifyEmailOTP({ body, platform } = {}) {
-    const { error } = UserValidator.verifyEmailOTP.validate(arguments[0], {
+    const { error } = UserValidator.verifyEmailOTP().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2416,7 +2426,7 @@ class User {
     
     **/
   getLoggedInUser({} = {}) {
-    const { error } = UserValidator.getLoggedInUser.validate(arguments[0], {
+    const { error } = UserValidator.getLoggedInUser().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2443,7 +2453,7 @@ class User {
   getListOfActiveSessions({} = {}) {
     const {
       error,
-    } = UserValidator.getListOfActiveSessions.validate(arguments[0], {
+    } = UserValidator.getListOfActiveSessions().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2469,7 +2479,7 @@ class User {
     
     **/
   getPlatformConfig({ name } = {}) {
-    const { error } = UserValidator.getPlatformConfig.validate(arguments[0], {
+    const { error } = UserValidator.getPlatformConfig().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2496,7 +2506,7 @@ class User {
    * @param {EditProfileRequestSchema} arg.body
    **/
   updateProfile({ body, platform } = {}) {
-    const { error } = UserValidator.updateProfile.validate(arguments[0], {
+    const { error } = UserValidator.updateProfile().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2523,7 +2533,7 @@ class User {
    * @param {EditMobileRequestSchema} arg.body
    **/
   addMobileNumber({ body, platform } = {}) {
-    const { error } = UserValidator.addMobileNumber.validate(arguments[0], {
+    const { error } = UserValidator.addMobileNumber().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2562,9 +2572,10 @@ class User {
     phone,
     platform,
   } = {}) {
-    const { error } = UserValidator.deleteMobileNumber.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = UserValidator.deleteMobileNumber().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -2595,7 +2606,7 @@ class User {
   setMobileNumberAsPrimary({ body } = {}) {
     const {
       error,
-    } = UserValidator.setMobileNumberAsPrimary.validate(arguments[0], {
+    } = UserValidator.setMobileNumberAsPrimary().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2623,7 +2634,7 @@ class User {
   sendVerificationLinkToMobile({ body, platform } = {}) {
     const {
       error,
-    } = UserValidator.sendVerificationLinkToMobile.validate(arguments[0], {
+    } = UserValidator.sendVerificationLinkToMobile().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2650,7 +2661,7 @@ class User {
    * @param {EditEmailRequestSchema} arg.body
    **/
   addEmail({ body, platform } = {}) {
-    const { error } = UserValidator.addEmail.validate(arguments[0], {
+    const { error } = UserValidator.addEmail().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2681,7 +2692,7 @@ class User {
     
     **/
   deleteEmail({ active, primary, verified, email, platform } = {}) {
-    const { error } = UserValidator.deleteEmail.validate(arguments[0], {
+    const { error } = UserValidator.deleteEmail().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2711,7 +2722,7 @@ class User {
    * @param {EditEmailRequestSchema} arg.body
    **/
   setEmailAsPrimary({ body } = {}) {
-    const { error } = UserValidator.setEmailAsPrimary.validate(arguments[0], {
+    const { error } = UserValidator.setEmailAsPrimary().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2739,7 +2750,7 @@ class User {
   sendVerificationLinkToEmail({ body, platform } = {}) {
     const {
       error,
-    } = UserValidator.sendVerificationLinkToEmail.validate(arguments[0], {
+    } = UserValidator.sendVerificationLinkToEmail().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2771,9 +2782,10 @@ class Content {
     
     **/
   getAnnouncements({} = {}) {
-    const { error } = ContentValidator.getAnnouncements.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = ContentValidator.getAnnouncements().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -2797,7 +2809,7 @@ class Content {
     
     **/
   getBlog({ slug } = {}) {
-    const { error } = ContentValidator.getBlog.validate(arguments[0], {
+    const { error } = ContentValidator.getBlog().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2822,7 +2834,7 @@ class Content {
     
     **/
   getFaqs({} = {}) {
-    const { error } = ContentValidator.getFaqs.validate(arguments[0], {
+    const { error } = ContentValidator.getFaqs().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2847,9 +2859,10 @@ class Content {
     
     **/
   getFaqCategories({} = {}) {
-    const { error } = ContentValidator.getFaqCategories.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = ContentValidator.getFaqCategories().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -2873,9 +2886,10 @@ class Content {
     
     **/
   getFaqByIdOrSlug({ idOrSlug } = {}) {
-    const { error } = ContentValidator.getFaqByIdOrSlug.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = ContentValidator.getFaqByIdOrSlug().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -2901,7 +2915,7 @@ class Content {
   getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
     const {
       error,
-    } = ContentValidator.getFaqCategoryBySlugOrId.validate(arguments[0], {
+    } = ContentValidator.getFaqCategoryBySlugOrId().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2929,7 +2943,7 @@ class Content {
   getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
     const {
       error,
-    } = ContentValidator.getFaqsByCategoryIdOrSlug.validate(arguments[0], {
+    } = ContentValidator.getFaqsByCategoryIdOrSlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2954,7 +2968,7 @@ class Content {
     
     **/
   getLandingPage({} = {}) {
-    const { error } = ContentValidator.getLandingPage.validate(arguments[0], {
+    const { error } = ContentValidator.getLandingPage().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -2981,7 +2995,7 @@ class Content {
   getLegalInformation({} = {}) {
     const {
       error,
-    } = ContentValidator.getLegalInformation.validate(arguments[0], {
+    } = ContentValidator.getLegalInformation().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3006,7 +3020,7 @@ class Content {
     
     **/
   getNavigations({} = {}) {
-    const { error } = ContentValidator.getNavigations.validate(arguments[0], {
+    const { error } = ContentValidator.getNavigations().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3032,7 +3046,7 @@ class Content {
     
     **/
   getPage({ slug } = {}) {
-    const { error } = ContentValidator.getPage.validate(arguments[0], {
+    const { error } = ContentValidator.getPage().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3059,7 +3073,7 @@ class Content {
   getSeoConfiguration({} = {}) {
     const {
       error,
-    } = ContentValidator.getSeoConfiguration.validate(arguments[0], {
+    } = ContentValidator.getSeoConfiguration().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3085,7 +3099,7 @@ class Content {
     
     **/
   getSlideshow({ slug } = {}) {
-    const { error } = ContentValidator.getSlideshow.validate(arguments[0], {
+    const { error } = ContentValidator.getSlideshow().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3112,7 +3126,7 @@ class Content {
   getSupportInformation({} = {}) {
     const {
       error,
-    } = ContentValidator.getSupportInformation.validate(arguments[0], {
+    } = ContentValidator.getSupportInformation().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3137,7 +3151,7 @@ class Content {
     
     **/
   getTags({} = {}) {
-    const { error } = ContentValidator.getTags.validate(arguments[0], {
+    const { error } = ContentValidator.getTags().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3168,10 +3182,11 @@ class Share {
     
     **/
   getApplicationQRCode({} = {}) {
-    const { error } = ShareValidator.getApplicationQRCode.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = ShareValidator.getApplicationQRCode().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -3197,7 +3212,7 @@ class Share {
   getProductQRCodeBySlug({ slug } = {}) {
     const {
       error,
-    } = ShareValidator.getProductQRCodeBySlug.validate(arguments[0], {
+    } = ShareValidator.getProductQRCodeBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3225,7 +3240,7 @@ class Share {
   getCollectionQRCodeBySlug({ slug } = {}) {
     const {
       error,
-    } = ShareValidator.getCollectionQRCodeBySlug.validate(arguments[0], {
+    } = ShareValidator.getCollectionQRCodeBySlug().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3251,7 +3266,7 @@ class Share {
     
     **/
   getUrlQRCode({ url } = {}) {
-    const { error } = ShareValidator.getUrlQRCode.validate(arguments[0], {
+    const { error } = ShareValidator.getUrlQRCode().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3277,7 +3292,7 @@ class Share {
    * @param {ShortLinkReq} arg.body
    **/
   createShortLink({ body } = {}) {
-    const { error } = ShareValidator.createShortLink.validate(arguments[0], {
+    const { error } = ShareValidator.createShortLink().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3303,9 +3318,10 @@ class Share {
     
     **/
   getShortLinkByHash({ hash } = {}) {
-    const { error } = ShareValidator.getShortLinkByHash.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = ShareValidator.getShortLinkByHash().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -3331,7 +3347,7 @@ class Share {
   getOriginalShortLinkByHash({ hash } = {}) {
     const {
       error,
-    } = ShareValidator.getOriginalShortLinkByHash.validate(arguments[0], {
+    } = ShareValidator.getOriginalShortLinkByHash().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3381,9 +3397,10 @@ This operation will return the url for the uploaded file.
     * @param {StartRequest} arg.body
     **/
   startUpload({ namespace, body } = {}) {
-    const { error } = FileStorageValidator.startUpload.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = FileStorageValidator.startUpload().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -3425,10 +3442,11 @@ This operation will return the url for the uploaded file.
     * @param {StartResponse} arg.body
     **/
   completeUpload({ namespace, body } = {}) {
-    const { error } = FileStorageValidator.completeUpload.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = FileStorageValidator.completeUpload().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -3459,7 +3477,7 @@ class Configuration {
   getApplication({} = {}) {
     const {
       error,
-    } = ConfigurationValidator.getApplication.validate(arguments[0], {
+    } = ConfigurationValidator.getApplication().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3484,10 +3502,11 @@ class Configuration {
     
     **/
   getOwnerInfo({} = {}) {
-    const { error } = ConfigurationValidator.getOwnerInfo.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = ConfigurationValidator.getOwnerInfo().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -3512,7 +3531,7 @@ class Configuration {
   getBasicDetails({} = {}) {
     const {
       error,
-    } = ConfigurationValidator.getBasicDetails.validate(arguments[0], {
+    } = ConfigurationValidator.getBasicDetails().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3539,7 +3558,7 @@ class Configuration {
   getIntegrationTokens({} = {}) {
     const {
       error,
-    } = ConfigurationValidator.getIntegrationTokens.validate(arguments[0], {
+    } = ConfigurationValidator.getIntegrationTokens().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3569,7 +3588,7 @@ class Configuration {
   getOrderingStores({ pageNo, pageSize, q } = {}) {
     const {
       error,
-    } = ConfigurationValidator.getOrderingStores.validate(arguments[0], {
+    } = ConfigurationValidator.getOrderingStores().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3597,10 +3616,11 @@ class Configuration {
     
     **/
   getFeatures({} = {}) {
-    const { error } = ConfigurationValidator.getFeatures.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = ConfigurationValidator.getFeatures().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -3625,7 +3645,7 @@ class Configuration {
   getContactInfo({} = {}) {
     const {
       error,
-    } = ConfigurationValidator.getContactInfo.validate(arguments[0], {
+    } = ConfigurationValidator.getContactInfo().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3652,7 +3672,7 @@ class Configuration {
   getCurrencies({} = {}) {
     const {
       error,
-    } = ConfigurationValidator.getCurrencies.validate(arguments[0], {
+    } = ConfigurationValidator.getCurrencies().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3680,7 +3700,7 @@ class Configuration {
   getCurrencyById({ id } = {}) {
     const {
       error,
-    } = ConfigurationValidator.getCurrencyById.validate(arguments[0], {
+    } = ConfigurationValidator.getCurrencyById().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3705,10 +3725,11 @@ class Configuration {
     
     **/
   getLanguages({} = {}) {
-    const { error } = ConfigurationValidator.getLanguages.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = ConfigurationValidator.getLanguages().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -3733,7 +3754,7 @@ class Configuration {
   getOrderingStoreCookie({ body } = {}) {
     const {
       error,
-    } = ConfigurationValidator.getOrderingStoreCookie.validate(arguments[0], {
+    } = ConfigurationValidator.getOrderingStoreCookie().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3760,7 +3781,7 @@ class Configuration {
   removeOrderingStoreCookie({} = {}) {
     const {
       error,
-    } = ConfigurationValidator.removeOrderingStoreCookie.validate(
+    } = ConfigurationValidator.removeOrderingStoreCookie().validate(
       arguments[0],
       { abortEarly: false }
     );
@@ -3789,10 +3810,11 @@ class Configuration {
     
     **/
   getAppStaffs({ orderIncent, orderingStore, user } = {}) {
-    const { error } = ConfigurationValidator.getAppStaffs.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = ConfigurationValidator.getAppStaffs().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -3828,7 +3850,7 @@ class Payment {
   getAggregatorsConfig({ xApiToken, refresh } = {}) {
     const {
       error,
-    } = PaymentValidator.getAggregatorsConfig.validate(arguments[0], {
+    } = PaymentValidator.getAggregatorsConfig().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3856,7 +3878,7 @@ class Payment {
   attachCardToCustomer({ body } = {}) {
     const {
       error,
-    } = PaymentValidator.attachCardToCustomer.validate(arguments[0], {
+    } = PaymentValidator.attachCardToCustomer().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3884,7 +3906,7 @@ class Payment {
   getActiveCardAggregator({ refresh } = {}) {
     const {
       error,
-    } = PaymentValidator.getActiveCardAggregator.validate(arguments[0], {
+    } = PaymentValidator.getActiveCardAggregator().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3911,10 +3933,11 @@ class Payment {
     
     **/
   getActiveUserCards({ forceRefresh } = {}) {
-    const { error } = PaymentValidator.getActiveUserCards.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = PaymentValidator.getActiveUserCards().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -3938,7 +3961,7 @@ class Payment {
    * @param {DeletehCardRequest} arg.body
    **/
   deleteUserCard({ body } = {}) {
-    const { error } = PaymentValidator.deleteUserCard.validate(arguments[0], {
+    const { error } = PaymentValidator.deleteUserCard().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3965,7 +3988,7 @@ class Payment {
   verifyCustomerForPayment({ body } = {}) {
     const {
       error,
-    } = PaymentValidator.verifyCustomerForPayment.validate(arguments[0], {
+    } = PaymentValidator.verifyCustomerForPayment().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -3992,7 +4015,7 @@ class Payment {
   verifyAndChargePayment({ body } = {}) {
     const {
       error,
-    } = PaymentValidator.verifyAndChargePayment.validate(arguments[0], {
+    } = PaymentValidator.verifyAndChargePayment().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4017,10 +4040,11 @@ class Payment {
    * @param {PaymentInitializationRequest} arg.body
    **/
   initialisePayment({ body } = {}) {
-    const { error } = PaymentValidator.initialisePayment.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = PaymentValidator.initialisePayment().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -4045,7 +4069,7 @@ class Payment {
   checkAndUpdatePaymentStatus({ body } = {}) {
     const {
       error,
-    } = PaymentValidator.checkAndUpdatePaymentStatus.validate(arguments[0], {
+    } = PaymentValidator.checkAndUpdatePaymentStatus().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4087,7 +4111,7 @@ class Payment {
   } = {}) {
     const {
       error,
-    } = PaymentValidator.getPaymentModeRoutes.validate(arguments[0], {
+    } = PaymentValidator.getPaymentModeRoutes().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4138,7 +4162,7 @@ class Payment {
   } = {}) {
     const {
       error,
-    } = PaymentValidator.getPosPaymentModeRoutes.validate(arguments[0], {
+    } = PaymentValidator.getPosPaymentModeRoutes().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4174,7 +4198,7 @@ class Payment {
   getUserBeneficiariesDetail({ orderId } = {}) {
     const {
       error,
-    } = PaymentValidator.getUserBeneficiariesDetail.validate(arguments[0], {
+    } = PaymentValidator.getUserBeneficiariesDetail().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4201,7 +4225,7 @@ class Payment {
     
     **/
   verifyIfscCode({ ifscCode } = {}) {
-    const { error } = PaymentValidator.verifyIfscCode.validate(arguments[0], {
+    const { error } = PaymentValidator.verifyIfscCode().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4230,7 +4254,7 @@ class Payment {
   getOrderBeneficiariesDetail({ orderId } = {}) {
     const {
       error,
-    } = PaymentValidator.getOrderBeneficiariesDetail.validate(arguments[0], {
+    } = PaymentValidator.getOrderBeneficiariesDetail().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4258,7 +4282,7 @@ class Payment {
   verifyOtpAndAddBeneficiaryForBank({ body } = {}) {
     const {
       error,
-    } = PaymentValidator.verifyOtpAndAddBeneficiaryForBank.validate(
+    } = PaymentValidator.verifyOtpAndAddBeneficiaryForBank().validate(
       arguments[0],
       { abortEarly: false }
     );
@@ -4286,7 +4310,7 @@ class Payment {
   addBeneficiaryDetails({ body } = {}) {
     const {
       error,
-    } = PaymentValidator.addBeneficiaryDetails.validate(arguments[0], {
+    } = PaymentValidator.addBeneficiaryDetails().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4313,7 +4337,7 @@ class Payment {
   verifyOtpAndAddBeneficiaryForWallet({ body } = {}) {
     const {
       error,
-    } = PaymentValidator.verifyOtpAndAddBeneficiaryForWallet.validate(
+    } = PaymentValidator.verifyOtpAndAddBeneficiaryForWallet().validate(
       arguments[0],
       { abortEarly: false }
     );
@@ -4341,7 +4365,7 @@ class Payment {
   updateDefaultBeneficiary({ body } = {}) {
     const {
       error,
-    } = PaymentValidator.updateDefaultBeneficiary.validate(arguments[0], {
+    } = PaymentValidator.updateDefaultBeneficiary().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4376,7 +4400,7 @@ class Order {
     
     **/
   getOrders({ pageNo, pageSize, fromDate, toDate } = {}) {
-    const { error } = OrderValidator.getOrders.validate(arguments[0], {
+    const { error } = OrderValidator.getOrders().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4406,7 +4430,7 @@ class Order {
     
     **/
   getOrderById({ orderId } = {}) {
-    const { error } = OrderValidator.getOrderById.validate(arguments[0], {
+    const { error } = OrderValidator.getOrderById().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4432,7 +4456,7 @@ class Order {
     
     **/
   getShipmentById({ shipmentId } = {}) {
-    const { error } = OrderValidator.getShipmentById.validate(arguments[0], {
+    const { error } = OrderValidator.getShipmentById().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4458,9 +4482,10 @@ class Order {
     
     **/
   getShipmentReasons({ shipmentId } = {}) {
-    const { error } = OrderValidator.getShipmentReasons.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = OrderValidator.getShipmentReasons().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -4484,10 +4509,11 @@ class Order {
    * @param {ShipmentStatusUpdateBody} arg.body
    **/
   updateShipmentStatus({ shipmentId, body } = {}) {
-    const { error } = OrderValidator.updateShipmentStatus.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = OrderValidator.updateShipmentStatus().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -4511,7 +4537,7 @@ class Order {
     
     **/
   trackShipment({ shipmentId } = {}) {
-    const { error } = OrderValidator.trackShipment.validate(arguments[0], {
+    const { error } = OrderValidator.trackShipment().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4537,7 +4563,7 @@ class Order {
     
     **/
   getPosOrderById({ orderId } = {}) {
-    const { error } = OrderValidator.getPosOrderById.validate(arguments[0], {
+    const { error } = OrderValidator.getPosOrderById().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4568,10 +4594,11 @@ class Rewards {
    * @param {CatalogueOrderRequest} arg.body
    **/
   getPointsOnProduct({ body } = {}) {
-    const { error } = RewardsValidator.getPointsOnProduct.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = RewardsValidator.getPointsOnProduct().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -4594,9 +4621,10 @@ class Rewards {
    * @param {OrderDiscountRequest} arg.body
    **/
   getOrderDiscount({ body } = {}) {
-    const { error } = RewardsValidator.getOrderDiscount.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = RewardsValidator.getOrderDiscount().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -4619,7 +4647,7 @@ class Rewards {
     
     **/
   getUserPoints({} = {}) {
-    const { error } = RewardsValidator.getUserPoints.validate(arguments[0], {
+    const { error } = RewardsValidator.getUserPoints().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4649,7 +4677,7 @@ The list of points history is paginated.
   getUserPointsHistory({ pageId, pageSize } = {}) {
     const {
       error,
-    } = RewardsValidator.getUserPointsHistory.validate(arguments[0], {
+    } = RewardsValidator.getUserPointsHistory().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4678,7 +4706,7 @@ The list of points history is paginated.
   getUserReferralDetails({} = {}) {
     const {
       error,
-    } = RewardsValidator.getUserReferralDetails.validate(arguments[0], {
+    } = RewardsValidator.getUserReferralDetails().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4703,10 +4731,11 @@ The list of points history is paginated.
    * @param {RedeemReferralCodeRequest} arg.body
    **/
   redeemReferralCode({ body } = {}) {
-    const { error } = RewardsValidator.redeemReferralCode.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = RewardsValidator.redeemReferralCode().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -4735,10 +4764,11 @@ class Feedback {
    * @param {ReportAbuseRequest} arg.body
    **/
   createAbuseReport({ body } = {}) {
-    const { error } = FeedbackValidator.createAbuseReport.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = FeedbackValidator.createAbuseReport().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -4761,10 +4791,11 @@ class Feedback {
    * @param {UpdateAbuseStatusRequest} arg.body
    **/
   updateAbuseReport({ body } = {}) {
-    const { error } = FeedbackValidator.updateAbuseReport.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = FeedbackValidator.updateAbuseReport().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -4792,9 +4823,10 @@ class Feedback {
     
     **/
   getAbuseReports({ entityId, entityType, id, pageId, pageSize } = {}) {
-    const { error } = FeedbackValidator.getAbuseReports.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = FeedbackValidator.getAbuseReports().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -4822,7 +4854,7 @@ class Feedback {
     
     **/
   getAttributes({ pageNo, pageSize } = {}) {
-    const { error } = FeedbackValidator.getAttributes.validate(arguments[0], {
+    const { error } = FeedbackValidator.getAttributes().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4849,9 +4881,10 @@ class Feedback {
    * @param {SaveAttributeRequest} arg.body
    **/
   createAttribute({ body } = {}) {
-    const { error } = FeedbackValidator.createAttribute.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = FeedbackValidator.createAttribute().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -4875,7 +4908,7 @@ class Feedback {
     
     **/
   getAttribute({ slug } = {}) {
-    const { error } = FeedbackValidator.getAttribute.validate(arguments[0], {
+    const { error } = FeedbackValidator.getAttribute().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4901,9 +4934,10 @@ class Feedback {
    * @param {UpdateAttributeRequest} arg.body
    **/
   updateAttribute({ slug, body } = {}) {
-    const { error } = FeedbackValidator.updateAttribute.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = FeedbackValidator.updateAttribute().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -4926,7 +4960,7 @@ class Feedback {
    * @param {CommentRequest} arg.body
    **/
   createComment({ body } = {}) {
-    const { error } = FeedbackValidator.createComment.validate(arguments[0], {
+    const { error } = FeedbackValidator.createComment().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4951,7 +4985,7 @@ class Feedback {
    * @param {UpdateCommentRequest} arg.body
    **/
   updateComment({ body } = {}) {
-    const { error } = FeedbackValidator.updateComment.validate(arguments[0], {
+    const { error } = FeedbackValidator.updateComment().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -4982,7 +5016,7 @@ class Feedback {
     
     **/
   getComments({ entityType, id, entityId, userId, pageId, pageSize } = {}) {
-    const { error } = FeedbackValidator.getComments.validate(arguments[0], {
+    const { error } = FeedbackValidator.getComments().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5014,10 +5048,11 @@ class Feedback {
     
     **/
   checkEligibility({ entityType, entityId } = {}) {
-    const { error } = FeedbackValidator.checkEligibility.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = FeedbackValidator.checkEligibility().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -5040,7 +5075,7 @@ class Feedback {
     
     **/
   deleteMedia({} = {}) {
-    const { error } = FeedbackValidator.deleteMedia.validate(arguments[0], {
+    const { error } = FeedbackValidator.deleteMedia().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5065,7 +5100,7 @@ class Feedback {
    * @param {AddMediaListRequest} arg.body
    **/
   createMedia({ body } = {}) {
-    const { error } = FeedbackValidator.createMedia.validate(arguments[0], {
+    const { error } = FeedbackValidator.createMedia().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5090,7 +5125,7 @@ class Feedback {
    * @param {UpdateMediaListRequest} arg.body
    **/
   updateMedia({ body } = {}) {
-    const { error } = FeedbackValidator.updateMedia.validate(arguments[0], {
+    const { error } = FeedbackValidator.updateMedia().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5120,7 +5155,7 @@ class Feedback {
     
     **/
   getMedias({ entityType, entityId, id, pageId, pageSize } = {}) {
-    const { error } = FeedbackValidator.getMedias.validate(arguments[0], {
+    const { error } = FeedbackValidator.getMedias().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5156,7 +5191,7 @@ It gives following response data: review count, rating average. review metrics /
   getReviewSummaries({ entityType, entityId, id, pageId, pageSize } = {}) {
     const {
       error,
-    } = FeedbackValidator.getReviewSummaries.validate(arguments[0], {
+    } = FeedbackValidator.getReviewSummaries().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5185,7 +5220,7 @@ attributes rating, entity rating, title, description, media resources and templa
     * @param {UpdateReviewRequest} arg.body
     **/
   createReview({ body } = {}) {
-    const { error } = FeedbackValidator.createReview.validate(arguments[0], {
+    const { error } = FeedbackValidator.createReview().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5211,7 +5246,7 @@ attributes rating, entity rating, title, description, media resources and templa
     * @param {UpdateReviewRequest} arg.body
     **/
   updateReview({ body } = {}) {
-    const { error } = FeedbackValidator.updateReview.validate(arguments[0], {
+    const { error } = FeedbackValidator.updateReview().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5259,7 +5294,7 @@ attributes rating, entity rating, title, description, media resources and templa
     pageId,
     pageSize,
   } = {}) {
-    const { error } = FeedbackValidator.getReviews.validate(arguments[0], {
+    const { error } = FeedbackValidator.getReviews().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5296,7 +5331,7 @@ attributes rating, entity rating, title, description, media resources and templa
     
     **/
   getTemplates({ templateId, entityId, entityType } = {}) {
-    const { error } = FeedbackValidator.getTemplates.validate(arguments[0], {
+    const { error } = FeedbackValidator.getTemplates().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5325,9 +5360,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
     * @param {CreateQNARequest} arg.body
     **/
   createQuestion({ body } = {}) {
-    const { error } = FeedbackValidator.createQuestion.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = FeedbackValidator.createQuestion().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -5350,9 +5386,10 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
    * @param {UpdateQNARequest} arg.body
    **/
   updateQuestion({ body } = {}) {
-    const { error } = FeedbackValidator.updateQuestion.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = FeedbackValidator.updateQuestion().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -5390,7 +5427,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
   } = {}) {
     const {
       error,
-    } = FeedbackValidator.getQuestionAndAnswers.validate(arguments[0], {
+    } = FeedbackValidator.getQuestionAndAnswers().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5421,7 +5458,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
     
     **/
   getVotes({ id, refType } = {}) {
-    const { error } = FeedbackValidator.getVotes.validate(arguments[0], {
+    const { error } = FeedbackValidator.getVotes().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5448,7 +5485,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
    * @param {VoteRequest} arg.body
    **/
   createVote({ body } = {}) {
-    const { error } = FeedbackValidator.createVote.validate(arguments[0], {
+    const { error } = FeedbackValidator.createVote().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5473,7 +5510,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
    * @param {UpdateVoteRequest} arg.body
    **/
   updateVote({ body } = {}) {
-    const { error } = FeedbackValidator.updateVote.validate(arguments[0], {
+    const { error } = FeedbackValidator.updateVote().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5508,7 +5545,7 @@ class PosCart {
     
     **/
   getCart({ uid, i, b, assignCardId } = {}) {
-    const { error } = PosCartValidator.getCart.validate(arguments[0], {
+    const { error } = PosCartValidator.getCart().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5540,7 +5577,7 @@ class PosCart {
   getCartLastModified({ uid } = {}) {
     const {
       error,
-    } = PosCartValidator.getCartLastModified.validate(arguments[0], {
+    } = PosCartValidator.getCartLastModified().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5568,7 +5605,7 @@ class PosCart {
    * @param {AddCartRequest} arg.body
    **/
   addItems({ body, i, b } = {}) {
-    const { error } = PosCartValidator.addItems.validate(arguments[0], {
+    const { error } = PosCartValidator.addItems().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5598,7 +5635,7 @@ class PosCart {
    * @param {UpdateCartRequest} arg.body
    **/
   updateCart({ body, uid, i, b } = {}) {
-    const { error } = PosCartValidator.updateCart.validate(arguments[0], {
+    const { error } = PosCartValidator.updateCart().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5627,7 +5664,7 @@ class PosCart {
     
     **/
   getItemCount({ uid } = {}) {
-    const { error } = PosCartValidator.getItemCount.validate(arguments[0], {
+    const { error } = PosCartValidator.getItemCount().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5654,7 +5691,7 @@ class PosCart {
     
     **/
   getCoupons({ uid } = {}) {
-    const { error } = PosCartValidator.getCoupons.validate(arguments[0], {
+    const { error } = PosCartValidator.getCoupons().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5685,7 +5722,7 @@ class PosCart {
     * @param {ApplyCouponRequest} arg.body
     **/
   applyCoupon({ body, i, b, p, uid } = {}) {
-    const { error } = PosCartValidator.applyCoupon.validate(arguments[0], {
+    const { error } = PosCartValidator.applyCoupon().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5715,7 +5752,7 @@ class PosCart {
     
     **/
   removeCoupon({ uid } = {}) {
-    const { error } = PosCartValidator.removeCoupon.validate(arguments[0], {
+    const { error } = PosCartValidator.removeCoupon().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5747,7 +5784,7 @@ class PosCart {
   getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
     const {
       error,
-    } = PosCartValidator.getBulkDiscountOffers.validate(arguments[0], {
+    } = PosCartValidator.getBulkDiscountOffers().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5781,7 +5818,7 @@ class PosCart {
     
     **/
   getAddresses({ uid, mobileNo, checkoutMode, tags, isDefault } = {}) {
-    const { error } = PosCartValidator.getAddresses.validate(arguments[0], {
+    const { error } = PosCartValidator.getAddresses().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5811,7 +5848,7 @@ class PosCart {
    * @param {Address} arg.body
    **/
   addAddress({ body } = {}) {
-    const { error } = PosCartValidator.addAddress.validate(arguments[0], {
+    const { error } = PosCartValidator.addAddress().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5842,7 +5879,7 @@ class PosCart {
     
     **/
   getAddressById({ id, uid, mobileNo, checkoutMode, tags, isDefault } = {}) {
-    const { error } = PosCartValidator.getAddressById.validate(arguments[0], {
+    const { error } = PosCartValidator.getAddressById().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5873,7 +5910,7 @@ class PosCart {
    * @param {Address} arg.body
    **/
   updateAddress({ id, body } = {}) {
-    const { error } = PosCartValidator.updateAddress.validate(arguments[0], {
+    const { error } = PosCartValidator.updateAddress().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5899,7 +5936,7 @@ class PosCart {
     
     **/
   removeAddress({ id } = {}) {
-    const { error } = PosCartValidator.removeAddress.validate(arguments[0], {
+    const { error } = PosCartValidator.removeAddress().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5927,7 +5964,7 @@ class PosCart {
    * @param {SelectCartAddressRequest} arg.body
    **/
   selectAddress({ body, uid, i, b } = {}) {
-    const { error } = PosCartValidator.selectAddress.validate(arguments[0], {
+    const { error } = PosCartValidator.selectAddress().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -5956,10 +5993,11 @@ class PosCart {
    * @param {UpdateCartPaymentRequest} arg.body
    **/
   selectPaymentMode({ body, uid } = {}) {
-    const { error } = PosCartValidator.selectPaymentMode.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = PosCartValidator.selectPaymentMode().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -5998,7 +6036,7 @@ class PosCart {
   } = {}) {
     const {
       error,
-    } = PosCartValidator.validateCouponForPayment.validate(arguments[0], {
+    } = PosCartValidator.validateCouponForPayment().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -6044,7 +6082,7 @@ class PosCart {
     areaCode,
     orderType,
   } = {}) {
-    const { error } = PosCartValidator.getShipments.validate(arguments[0], {
+    const { error } = PosCartValidator.getShipments().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -6081,9 +6119,10 @@ class PosCart {
    * @param {UpdateCartShipmentRequest} arg.body
    **/
   updateShipments({ body, i, p, uid, addressId, orderType } = {}) {
-    const { error } = PosCartValidator.updateShipments.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = PosCartValidator.updateShipments().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -6112,7 +6151,7 @@ class PosCart {
    * @param {CartPosCheckoutRequest} arg.body
    **/
   checkoutCart({ body, uid } = {}) {
-    const { error } = PosCartValidator.checkoutCart.validate(arguments[0], {
+    const { error } = PosCartValidator.checkoutCart().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -6139,7 +6178,7 @@ class PosCart {
    * @param {CartMetaRequest} arg.body
    **/
   updateCartMeta({ body, uid } = {}) {
-    const { error } = PosCartValidator.updateCartMeta.validate(arguments[0], {
+    const { error } = PosCartValidator.updateCartMeta().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -6169,7 +6208,7 @@ class PosCart {
   getAvailableDeliveryModes({ areaCode, uid } = {}) {
     const {
       error,
-    } = PosCartValidator.getAvailableDeliveryModes.validate(arguments[0], {
+    } = PosCartValidator.getAvailableDeliveryModes().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -6199,7 +6238,7 @@ class PosCart {
   getStoreAddressByUid({ storeUid } = {}) {
     const {
       error,
-    } = PosCartValidator.getStoreAddressByUid.validate(arguments[0], {
+    } = PosCartValidator.getStoreAddressByUid().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -6225,9 +6264,10 @@ class PosCart {
    * @param {GetShareCartLinkRequest} arg.body
    **/
   getCartShareLink({ body } = {}) {
-    const { error } = PosCartValidator.getCartShareLink.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = PosCartValidator.getCartShareLink().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
@@ -6251,10 +6291,11 @@ class PosCart {
     
     **/
   getCartSharedItems({ token } = {}) {
-    const { error } = PosCartValidator.getCartSharedItems.validate(
-      arguments[0],
-      { abortEarly: false }
-    );
+    const {
+      error,
+    } = PosCartValidator.getCartSharedItems().validate(arguments[0], {
+      abortEarly: false,
+    });
     if (error) {
       throw error;
     }
@@ -6281,7 +6322,7 @@ class PosCart {
   updateCartWithSharedItems({ token, action } = {}) {
     const {
       error,
-    } = PosCartValidator.updateCartWithSharedItems.validate(arguments[0], {
+    } = PosCartValidator.updateCartWithSharedItems().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -6312,7 +6353,7 @@ class Logistic {
    * @param {GetTatProductReqBody} arg.body
    **/
   getTatProduct({ body } = {}) {
-    const { error } = LogisticValidator.getTatProduct.validate(arguments[0], {
+    const { error } = LogisticValidator.getTatProduct().validate(arguments[0], {
       abortEarly: false,
     });
     if (error) {
@@ -6338,9 +6379,10 @@ class Logistic {
     
     **/
   getPincodeCity({ pincode } = {}) {
-    const { error } = LogisticValidator.getPincodeCity.validate(arguments[0], {
-      abortEarly: false,
-    });
+    const { error } = LogisticValidator.getPincodeCity().validate(
+      arguments[0],
+      { abortEarly: false }
+    );
     if (error) {
       throw error;
     }
