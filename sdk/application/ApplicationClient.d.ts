@@ -6,10 +6,13 @@ declare class ApplicationClient {
     lead: Lead;
     theme: Theme;
     user: User;
+    content: Content;
     share: Share;
     fileStorage: FileStorage;
+    configuration: Configuration;
     payment: Payment;
     order: Order;
+    rewards: Rewards;
     feedback: Feedback;
     posCart: PosCart;
     logistic: Logistic;
@@ -1214,6 +1217,148 @@ declare class User {
         body: any;
     }, ...args: any[]): any;
 }
+declare class Content {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+      *
+      * @summary: Get live announcements
+      * @description: Get live announcements for each or all pages with page slug of page and end date schedule.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAnnouncements({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get Blog by slug
+      * @description: Use this API to fetch a blog using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
+      
+      **/
+    getBlog({ slug }?: {
+        slug: string;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get frequently asked questions
+      * @description: Get frequently asked questions list. These will be helpful for users to using website.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getFaqs({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get FAQ categories list
+      * @description: Get list of FAQ categories
+      * @param {Object} arg - arg object.
+      
+      **/
+    getFaqCategories({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get frequently asked question
+      * @description: Get frequently asked questions list. These will be helpful for users to using website.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Slug or Id of FAQ
+      
+      **/
+    getFaqByIdOrSlug({ idOrSlug }?: {
+        idOrSlug: string;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get FAQ category by slug or id
+      * @description: Get FAQ category by slug or id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
+      
+      **/
+    getFaqCategoryBySlugOrId({ idOrSlug }?: {
+        idOrSlug: string;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get FAQs of a Faq Category id or slug
+      * @description: Get FAQs of a Faq Category `id` or `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Faq category ID or slug
+      
+      **/
+    getFaqsByCategoryIdOrSlug({ idOrSlug }?: {
+        idOrSlug: string;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get landing page
+      * @description: Use this API to fetch a landing page
+      * @param {Object} arg - arg object.
+      
+      **/
+    getLandingPage({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get legal information
+      * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getLegalInformation({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get navigation
+      * @description: Use this API to fetch a navigation
+      * @param {Object} arg - arg object.
+      
+      **/
+    getNavigations({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get Page by slug
+      * @description: Use this API to fetch a custom page using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
+      
+      **/
+    getPage({ slug }?: {
+        slug: string;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get seo of application
+      * @description: Get seo of application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSeoConfiguration({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get slideshow by slug
+      * @description: Use this API to fetch a slideshow using `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
+      
+      **/
+    getSlideshow({ slug }?: {
+        slug: string;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get support information
+      * @description: Get contact details for customer support. Including emails and phone numbers
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSupportInformation({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get Tags for application
+      * @description:
+      * @param {Object} arg - arg object.
+      
+      **/
+    getTags({}?: any, ...args: any[]): any;
+}
 declare class Share {
     constructor(_conf: any);
     _conf: any;
@@ -1353,6 +1498,133 @@ declare class FileStorage {
     completeUpload({ namespace, body }?: {
         namespace: string;
         body: any;
+    }, ...args: any[]): any;
+}
+declare class Configuration {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+      *
+      * @summary: Get current application details
+      * @description: Get current application details.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getApplication({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get application, owner and seller information
+      * @description: Get application information with owner and seller basic details
+      * @param {Object} arg - arg object.
+      
+      **/
+    getOwnerInfo({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get basic application details
+      * @description: Get basic application details like name
+      * @param {Object} arg - arg object.
+      
+      **/
+    getBasicDetails({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get integration tokens
+      * @description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getIntegrationTokens({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get deployment meta stores
+      * @description: Get deployment meta stores.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - Current page no
+      * @param {number} [arg.pageSize] - Current request items count
+      * @param {string} [arg.q] - Search ordering store by name or store code
+      
+      **/
+    getOrderingStores({ pageNo, pageSize, q }?: {
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get features of application
+      * @description: Get features of application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getFeatures({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get application information
+      * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getContactInfo({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get application enabled currencies
+      * @description: Get currency list for allowed currencies under current application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getCurrencies({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get currency by id
+      * @description: Get currency object with symbol and name information by id.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Currency object id
+      
+      **/
+    getCurrencyById({ id }?: {
+        id: string;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get list of languages
+      * @description: Get list of supported languages under application.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getLanguages({}?: any, ...args: any[]): any;
+    /**
+     *
+     * @summary: Get ordering store signed cookie on selection of ordering store. This will be used by cart service to verify coupon against selected ordering store in cart.
+     * @description: Get ordering store signed cookie on selection of ordering store.
+     * @param {Object} arg - arg object.
+     * @param {OrderingStoreSelectRequest} arg.body
+     **/
+    getOrderingStoreCookie({ body }?: {
+        body: any;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
+      * @description: Unset ordering store cookie.
+      * @param {Object} arg - arg object.
+      
+      **/
+    removeOrderingStoreCookie({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get Staff List.
+      * @description: Get a staff list based on the user's session token passed in the header.
+      * @param {Object} arg - arg object.
+      * @param {boolean} [arg.orderIncent] - This is to check which staff members are applicable for order incentives.
+      * @param {number} [arg.orderingStore] - This is to filter staff members from only selected ordering store.
+      * @param {string} [arg.user] - Get single staff member details using staff user mongo id
+      
+      **/
+    getAppStaffs({ orderIncent, orderingStore, user }?: {
+        orderIncent?: boolean;
+        orderingStore?: number;
+        user?: string;
     }, ...args: any[]): any;
 }
 declare class Payment {
@@ -1661,6 +1933,70 @@ declare class Order {
       **/
     getPosOrderById({ orderId }?: {
         orderId: string;
+    }, ...args: any[]): any;
+}
+declare class Rewards {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+     *
+     * @summary: Get reward points that could be earned on any catalogue product.
+     * @description: Evaluate the amount of reward points that could be earned on any catalogue product.
+     * @param {Object} arg - arg object.
+     * @param {CatalogueOrderRequest} arg.body
+     **/
+    getPointsOnProduct({ body }?: {
+        body: any;
+    }, ...args: any[]): any;
+    /**
+     *
+     * @summary: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+     * @description: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+     * @param {Object} arg - arg object.
+     * @param {OrderDiscountRequest} arg.body
+     **/
+    getOrderDiscount({ body }?: {
+        body: any;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: Total available points of a user for current application
+      * @description: Total available points of a user for current application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getUserPoints({}?: any, ...args: any[]): any;
+    /**
+      *
+      * @summary: Get list of points transactions.
+      * @description: Get list of points transactions.
+  The list of points history is paginated.
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.pageId] - PageID is the ID of the requested page. For first request it should be kept empty.
+      * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
+      
+      **/
+    getUserPointsHistory({ pageId, pageSize }?: {
+        pageId?: string;
+        pageSize?: number;
+    }, ...args: any[]): any;
+    /**
+      *
+      * @summary: User's referral details.
+      * @description: User's referral details.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getUserReferralDetails({}?: any, ...args: any[]): any;
+    /**
+     *
+     * @summary: Redeems referral code and credits points to users points account.
+     * @description: Redeems referral code and credits points to users points account.
+     * @param {Object} arg - arg object.
+     * @param {RedeemReferralCodeRequest} arg.body
+     **/
+    redeemReferralCode({ body }?: {
+        body: any;
     }, ...args: any[]): any;
 }
 declare class Feedback {

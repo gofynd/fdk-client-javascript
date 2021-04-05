@@ -6,10 +6,13 @@
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
+* [Content](#Content) - Content System 
 * [Share](#Share) - Short link and QR Code 
 * [FileStorage](#FileStorage) - File Storage 
+* [Configuration](#Configuration) - Application configuration apis 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
+* [Rewards](#Rewards) - Earn and redeem Reward Points 
 * [Feedback](#Feedback) - User Reviews and Rating System 
 * [PosCart](#PosCart) - Cart APIs 
 * [Logistic](#Logistic) - Handles Platform websites OMS 
@@ -132,6 +135,25 @@
     * [sendVerificationLinkToEmail](#sendverificationlinktoemail)
     
 
+* [Content](#Content)
+  * Methods
+    * [getAnnouncements](#getannouncements)
+    * [getBlog](#getblog)
+    * [getFaqs](#getfaqs)
+    * [getFaqCategories](#getfaqcategories)
+    * [getFaqByIdOrSlug](#getfaqbyidorslug)
+    * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
+    * [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
+    * [getLandingPage](#getlandingpage)
+    * [getLegalInformation](#getlegalinformation)
+    * [getNavigations](#getnavigations)
+    * [getPage](#getpage)
+    * [getSeoConfiguration](#getseoconfiguration)
+    * [getSlideshow](#getslideshow)
+    * [getSupportInformation](#getsupportinformation)
+    * [getTags](#gettags)
+    
+
 * [Share](#Share)
   * Methods
     * [getApplicationQRCode](#getapplicationqrcode)
@@ -147,6 +169,23 @@
   * Methods
     * [startUpload](#startupload)
     * [completeUpload](#completeupload)
+    
+
+* [Configuration](#Configuration)
+  * Methods
+    * [getApplication](#getapplication)
+    * [getOwnerInfo](#getownerinfo)
+    * [getBasicDetails](#getbasicdetails)
+    * [getIntegrationTokens](#getintegrationtokens)
+    * [getOrderingStores](#getorderingstores)
+    * [getFeatures](#getfeatures)
+    * [getContactInfo](#getcontactinfo)
+    * [getCurrencies](#getcurrencies)
+    * [getCurrencyById](#getcurrencybyid)
+    * [getLanguages](#getlanguages)
+    * [getOrderingStoreCookie](#getorderingstorecookie)
+    * [removeOrderingStoreCookie](#removeorderingstorecookie)
+    * [getAppStaffs](#getappstaffs)
     
 
 * [Payment](#Payment)
@@ -180,6 +219,16 @@
     * [updateShipmentStatus](#updateshipmentstatus)
     * [trackShipment](#trackshipment)
     * [getPosOrderById](#getposorderbyid)
+    
+
+* [Rewards](#Rewards)
+  * Methods
+    * [getPointsOnProduct](#getpointsonproduct)
+    * [getOrderDiscount](#getorderdiscount)
+    * [getUserPoints](#getuserpoints)
+    * [getUserPointsHistory](#getuserpointshistory)
+    * [getUserReferralDetails](#getuserreferraldetails)
+    * [redeemReferralCode](#redeemreferralcode)
     
 
 * [Feedback](#Feedback)
@@ -8342,6 +8391,1040 @@ Schema: `AuthenticationApiError`
 ---
 
 
+## Content
+
+
+#### getAnnouncements
+Get live announcements
+
+```javascript
+// Promise
+const promise = content.getAnnouncements();
+
+// Async/Await
+const data = await content.getAnnouncements();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get live announcements for each or all pages with page slug of page and end date schedule.
+
+*Success Response:*
+
+
+
+Announcement api response. announcements object contains page slug name as propery with list of announcements enabled for that page. `$all` is special page slug to indicate show announcemnt on all pages.
+
+
+Schema: `AnnouncementsResponseSchema`
+
+
+*Examples:*
+
+
+Announcements enabled
+```json
+{
+  "$ref": "#/components/examples/AnnouncementEnabledExample"
+}
+```
+
+No Announcement enabled
+```json
+{
+  "value": {
+    "announcements": [],
+    "refresh_rate": 900,
+    "refresh_pages": []
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBlog
+Get Blog by slug
+
+```javascript
+// Promise
+const promise = content.getBlog(slug);
+
+// Async/Await
+const data = await content.getBlog(slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
+
+Use this API to fetch a blog using `slug`
+
+*Success Response:*
+
+
+
+A JSON object with blog details
+
+
+Schema: `CustomBlog`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CustomBlog"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqs
+Get frequently asked questions
+
+```javascript
+// Promise
+const promise = content.getFaqs();
+
+// Async/Await
+const data = await content.getFaqs();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FaqResponseSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/AppFaqs"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategories
+Get FAQ categories list
+
+```javascript
+// Promise
+const promise = content.getFaqCategories();
+
+// Async/Await
+const data = await content.getFaqCategories();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get list of FAQ categories
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoriesSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqByIdOrSlug
+Get frequently asked question
+
+```javascript
+// Promise
+const promise = content.getFaqByIdOrSlug(idOrSlug);
+
+// Async/Await
+const data = await content.getFaqByIdOrSlug(idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| idOrSlug | string | Slug or Id of FAQ | 
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FaqSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategoryBySlugOrId
+Get FAQ category by slug or id
+
+```javascript
+// Promise
+const promise = content.getFaqCategoryBySlugOrId(idOrSlug);
+
+// Async/Await
+const data = await content.getFaqCategoryBySlugOrId(idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| idOrSlug | string | Slug or Id of FAQ Category | 
+
+Get FAQ category by slug or id
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoryByIdOrSlugSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqsByCategoryIdOrSlug
+Get FAQs of a Faq Category id or slug
+
+```javascript
+// Promise
+const promise = content.getFaqsByCategoryIdOrSlug(idOrSlug);
+
+// Async/Await
+const data = await content.getFaqsByCategoryIdOrSlug(idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| idOrSlug | string | Faq category ID or slug | 
+
+Get FAQs of a Faq Category `id` or `slug`
+
+*Success Response:*
+
+
+
+Get FAQs by slug/id of FAQ Category
+
+
+Schema: `GetFaqSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLandingPage
+Get landing page
+
+```javascript
+// Promise
+const promise = content.getLandingPage();
+
+// Async/Await
+const data = await content.getLandingPage();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Use this API to fetch a landing page
+
+*Success Response:*
+
+
+
+A JSON object with landing details
+
+
+Schema: `LandingPage`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/LandingPage"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLegalInformation
+Get legal information
+
+```javascript
+// Promise
+const promise = content.getLegalInformation();
+
+// Async/Await
+const data = await content.getLegalInformation();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationLegal`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Legal"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getNavigations
+Get navigation
+
+```javascript
+// Promise
+const promise = content.getNavigations();
+
+// Async/Await
+const data = await content.getNavigations();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Use this API to fetch a navigation
+
+*Success Response:*
+
+
+
+A JSON object with navigation details
+
+
+Schema: `Navigation`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Navigation"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPage
+Get Page by slug
+
+```javascript
+// Promise
+const promise = content.getPage(slug);
+
+// Async/Await
+const data = await content.getPage(slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
+
+Use this API to fetch a custom page using `slug`
+
+*Success Response:*
+
+
+
+A JSON object with page details
+
+
+Schema: `CustomPage`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CustomPage"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSeoConfiguration
+Get seo of application
+
+```javascript
+// Promise
+const promise = content.getSeoConfiguration();
+
+// Async/Await
+const data = await content.getSeoConfiguration();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get seo of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Seo`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSlideshow
+Get slideshow by slug
+
+```javascript
+// Promise
+const promise = content.getSlideshow(slug);
+
+// Async/Await
+const data = await content.getSlideshow(slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| slug | string | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow | 
+
+Use this API to fetch a slideshow using `slug`
+
+*Success Response:*
+
+
+
+A JSON object with slideshow details
+
+
+Schema: `Slideshow`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Slideshow"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSupportInformation
+Get support information
+
+```javascript
+// Promise
+const promise = content.getSupportInformation();
+
+// Async/Await
+const data = await content.getSupportInformation();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get contact details for customer support. Including emails and phone numbers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Support`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Support"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getTags
+Get Tags for application
+
+```javascript
+// Promise
+const promise = content.getTags();
+
+// Async/Await
+const data = await content.getTags();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+
+
+*Success Response:*
+
+
+
+A JSON object of tags
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Share
 
 
@@ -8731,6 +9814,548 @@ Failed
 
 
 Schema: `FailedResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Configuration
+
+
+#### getApplication
+Get current application details
+
+```javascript
+// Promise
+const promise = configuration.getApplication();
+
+// Async/Await
+const data = await configuration.getApplication();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get current application details.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Application`
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOwnerInfo
+Get application, owner and seller information
+
+```javascript
+// Promise
+const promise = configuration.getOwnerInfo();
+
+// Async/Await
+const data = await configuration.getOwnerInfo();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get application information with owner and seller basic details
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationAboutResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBasicDetails
+Get basic application details
+
+```javascript
+// Promise
+const promise = configuration.getBasicDetails();
+
+// Async/Await
+const data = await configuration.getBasicDetails();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get basic application details like name
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationDetail`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getIntegrationTokens
+Get integration tokens
+
+```javascript
+// Promise
+const promise = configuration.getIntegrationTokens();
+
+// Async/Await
+const data = await configuration.getIntegrationTokens();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TokenResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderingStores
+Get deployment meta stores
+
+```javascript
+// Promise
+const promise = configuration.getOrderingStores(pageNo,pageSize,q);
+
+// Async/Await
+const data = await configuration.getOrderingStores(pageNo,pageSize,q);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+| q | string | Search ordering store by name or store code | 
+
+Get deployment meta stores.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderingStores`
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFeatures
+Get features of application
+
+```javascript
+// Promise
+const promise = configuration.getFeatures();
+
+// Async/Await
+const data = await configuration.getFeatures();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get features of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppFeatureResponse`
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getContactInfo
+Get application information
+
+```javascript
+// Promise
+const promise = configuration.getContactInfo();
+
+// Async/Await
+const data = await configuration.getContactInfo();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInformation`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCurrencies
+Get application enabled currencies
+
+```javascript
+// Promise
+const promise = configuration.getCurrencies();
+
+// Async/Await
+const data = await configuration.getCurrencies();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get currency list for allowed currencies under current application
+
+*Success Response:*
+
+
+
+Currencies Success response
+
+
+Schema: `CurrenciesResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCurrencyById
+Get currency by id
+
+```javascript
+// Promise
+const promise = configuration.getCurrencyById(id);
+
+// Async/Await
+const data = await configuration.getCurrencyById(id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | string | Currency object id | 
+
+Get currency object with symbol and name information by id.
+
+*Success Response:*
+
+
+
+Success response
+
+
+Schema: `Currency`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLanguages
+Get list of languages
+
+```javascript
+// Promise
+const promise = configuration.getLanguages();
+
+// Async/Await
+const data = await configuration.getLanguages();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get list of supported languages under application.
+
+*Success Response:*
+
+
+
+Success response
+
+
+Schema: `LanguageResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderingStoreCookie
+Get ordering store signed cookie on selection of ordering store. This will be used by cart service to verify coupon against selected ordering store in cart.
+
+```javascript
+// Promise
+const promise = configuration.getOrderingStoreCookie(body);
+
+// Async/Await
+const data = await configuration.getOrderingStoreCookie(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get ordering store signed cookie on selection of ordering store.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SuccessMessageResponse`
+
+
+
+
+
+
+
+
+Success
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### removeOrderingStoreCookie
+Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
+
+```javascript
+// Promise
+const promise = configuration.removeOrderingStoreCookie();
+
+// Async/Await
+const data = await configuration.removeOrderingStoreCookie();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Unset ordering store cookie.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SuccessMessageResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppStaffs
+Get Staff List.
+
+```javascript
+// Promise
+const promise = configuration.getAppStaffs(orderIncent,orderingStore,user);
+
+// Async/Await
+const data = await configuration.getAppStaffs(orderIncent,orderingStore,user);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| orderIncent | boolean | This is to check which staff members are applicable for order incentives. | 
+| orderingStore | integer | This is to filter staff members from only selected ordering store. | 
+| user | string | Get single staff member details using staff user mongo id | 
+
+Get a staff list based on the user's session token passed in the header.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppStaffResponse`
+
+
+
+
+
+
+
+
+Request failed with internal server error.
+
+
+Schema: `UnhandledError`
 
 
 
@@ -10277,6 +11902,304 @@ Internal Server Error
 
 
 Schema: `ApefaceApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Rewards
+
+
+#### getPointsOnProduct
+Get reward points that could be earned on any catalogue product.
+
+```javascript
+// Promise
+const promise = rewards.getPointsOnProduct(body);
+
+// Async/Await
+const data = await rewards.getPointsOnProduct(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Evaluate the amount of reward points that could be earned on any catalogue product.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `CatalogueOrderResponse`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `Error`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderDiscount
+Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+
+```javascript
+// Promise
+const promise = rewards.getOrderDiscount(body);
+
+// Async/Await
+const data = await rewards.getOrderDiscount(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `OrderDiscountResponse`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `Error`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserPoints
+Total available points of a user for current application
+
+```javascript
+// Promise
+const promise = rewards.getUserPoints();
+
+// Async/Await
+const data = await rewards.getUserPoints();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Total available points of a user for current application
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `PointsResponse`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `Error`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserPointsHistory
+Get list of points transactions.
+
+```javascript
+// Promise
+const promise = rewards.getUserPointsHistory(pageId,pageSize);
+
+// Async/Await
+const data = await rewards.getUserPointsHistory(pageId,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pageId | string | PageID is the ID of the requested page. For first request it should be kept empty. | 
+| pageSize | integer | PageSize is the number of requested items in response. | 
+
+Get list of points transactions.
+The list of points history is paginated.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `PointsHistoryResponse`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `Error`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getUserReferralDetails
+User's referral details.
+
+```javascript
+// Promise
+const promise = rewards.getUserReferralDetails();
+
+// Async/Await
+const data = await rewards.getUserReferralDetails();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+User's referral details.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `ReferralDetailsResponse`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `Error`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### redeemReferralCode
+Redeems referral code and credits points to users points account.
+
+```javascript
+// Promise
+const promise = rewards.redeemReferralCode(body);
+
+// Async/Await
+const data = await rewards.redeemReferralCode(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Redeems referral code and credits points to users points account.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `RedeemReferralCodeResponse`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `Error`
 
 
 

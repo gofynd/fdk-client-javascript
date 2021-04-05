@@ -4,12 +4,15 @@
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
+* [Content](#Content) - Content System 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Assets](#Assets) - File Storage 
 * [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
+* [Configuration](#Configuration) - Application configuration apis 
+* [Cart](#Cart) - Cart APIs 
 * [Marketplaces](#Marketplaces) - Marketplaces 
 * [Analytics](#Analytics) - Perceptor analytics 
 
@@ -69,6 +72,68 @@
     * [searchUsers](#searchusers)
     * [getPlatformConfig](#getplatformconfig)
     * [updatePlatformConfig](#updateplatformconfig)
+    
+
+* [Content](#Content)
+  * Methods
+    * [getAnnouncementsList](#getannouncementslist)
+    * [createAnnouncement](#createannouncement)
+    * [getAnnouncementById](#getannouncementbyid)
+    * [updateAnnouncement](#updateannouncement)
+    * [updateAnnouncementSchedule](#updateannouncementschedule)
+    * [deleteAnnouncement](#deleteannouncement)
+    * [createBlog](#createblog)
+    * [getBlogs](#getblogs)
+    * [updateBlog](#updateblog)
+    * [deleteBlog](#deleteblog)
+    * [getComponentById](#getcomponentbyid)
+    * [getFaqCategories](#getfaqcategories)
+    * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
+    * [createFaqCategory](#createfaqcategory)
+    * [updateFaqCategory](#updatefaqcategory)
+    * [deleteFaqCategory](#deletefaqcategory)
+    * [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
+    * [addFaq](#addfaq)
+    * [updateFaq](#updatefaq)
+    * [deleteFaq](#deletefaq)
+    * [getFaqByIdOrSlug](#getfaqbyidorslug)
+    * [getLandingPages](#getlandingpages)
+    * [createLandingPage](#createlandingpage)
+    * [updateLandingPage](#updatelandingpage)
+    * [deleteLandingPage](#deletelandingpage)
+    * [getLegalInformation](#getlegalinformation)
+    * [updateLegalInformation](#updatelegalinformation)
+    * [getNavigations](#getnavigations)
+    * [createNavigation](#createnavigation)
+    * [getDefaultNavigations](#getdefaultnavigations)
+    * [getNavigationBySlug](#getnavigationbyslug)
+    * [updateNavigation](#updatenavigation)
+    * [deleteNavigation](#deletenavigation)
+    * [getPageMeta](#getpagemeta)
+    * [getPageSpec](#getpagespec)
+    * [createPage](#createpage)
+    * [getPages](#getpages)
+    * [createPagePreview](#createpagepreview)
+    * [updatePagePreview](#updatepagepreview)
+    * [updatePage](#updatepage)
+    * [deletePage](#deletepage)
+    * [getPageBySlug](#getpagebyslug)
+    * [getSeoConfiguration](#getseoconfiguration)
+    * [updateSeoConfiguration](#updateseoconfiguration)
+    * [getSlideshows](#getslideshows)
+    * [createSlideshow](#createslideshow)
+    * [getSlideshowBySlug](#getslideshowbyslug)
+    * [updateSlideshow](#updateslideshow)
+    * [deleteSlideshow](#deleteslideshow)
+    * [getSupportInformation](#getsupportinformation)
+    * [updateSupportInformation](#updatesupportinformation)
+    * [createInjectableTag](#createinjectabletag)
+    * [updateInjectableTag](#updateinjectabletag)
+    * [deleteAllInjectableTags](#deleteallinjectabletags)
+    * [getInjectableTags](#getinjectabletags)
+    * [addInjectableTag](#addinjectabletag)
+    * [removeInjectableTag](#removeinjectabletag)
+    * [editInjectableTag](#editinjectabletag)
     
 
 * [Payment](#Payment)
@@ -150,6 +215,61 @@
     * [getJobConfigDefaults](#getjobconfigdefaults)
     * [getJobByCode](#getjobbycode)
     * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
+    
+
+* [Configuration](#Configuration)
+  * Methods
+    * [getBuildConfig](#getbuildconfig)
+    * [updateBuildConfig](#updatebuildconfig)
+    * [getPreviousVersions](#getpreviousversions)
+    * [getAppFeatures](#getappfeatures)
+    * [updateAppFeatures](#updateappfeatures)
+    * [getAppBasicDetails](#getappbasicdetails)
+    * [updateAppBasicDetails](#updateappbasicdetails)
+    * [getAppContactInfo](#getappcontactinfo)
+    * [updateAppContactInfo](#updateappcontactinfo)
+    * [getAppApiTokens](#getappapitokens)
+    * [updateAppApiTokens](#updateappapitokens)
+    * [getAppCompanies](#getappcompanies)
+    * [getAppStores](#getappstores)
+    * [getInventoryConfig](#getinventoryconfig)
+    * [updateInventoryConfig](#updateinventoryconfig)
+    * [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
+    * [getAppCurrencyConfig](#getappcurrencyconfig)
+    * [updateAppCurrencyConfig](#updateappcurrencyconfig)
+    * [getOrderingStoresByFilter](#getorderingstoresbyfilter)
+    * [updateOrderingStoreConfig](#updateorderingstoreconfig)
+    * [getDomains](#getdomains)
+    * [addDomain](#adddomain)
+    * [removeDomainById](#removedomainbyid)
+    * [changeDomainType](#changedomaintype)
+    * [getDomainStatus](#getdomainstatus)
+    * [createApplication](#createapplication)
+    * [getApplications](#getapplications)
+    * [getApplicationById](#getapplicationbyid)
+    * [getCurrencies](#getcurrencies)
+    * [getDomainAvailibility](#getdomainavailibility)
+    * [getIntegrationById](#getintegrationbyid)
+    * [getAvailableOptIns](#getavailableoptins)
+    * [getSelectedOptIns](#getselectedoptins)
+    * [getIntegrationLevelConfig](#getintegrationlevelconfig)
+    * [getIntegrationByLevelId](#getintegrationbylevelid)
+    * [getLevelActiveIntegrations](#getlevelactiveintegrations)
+    * [getBrandsByCompany](#getbrandsbycompany)
+    * [getCompanyByBrands](#getcompanybybrands)
+    * [getStoreByBrands](#getstorebybrands)
+    * [getOtherSellerApplications](#getothersellerapplications)
+    * [getOtherSellerApplicationById](#getothersellerapplicationbyid)
+    * [optOutFromApplication](#optoutfromapplication)
+    
+
+* [Cart](#Cart)
+  * Methods
+    * [getCoupons](#getcoupons)
+    * [createCoupon](#createcoupon)
+    * [getCouponById](#getcouponbyid)
+    * [updateCoupon](#updatecoupon)
+    * [updateCouponPartially](#updatecouponpartially)
     
 
 * [Marketplaces](#Marketplaces)
@@ -5003,6 +5123,5498 @@ Schema: `AuthenticationApiError`
 ---
 
 
+## Content
+
+
+#### getAnnouncementsList
+Get annoucements list
+
+```javascript
+// Promise
+const promise = content.getAnnouncementsList(companyId,applicationId);
+
+// Async/Await
+const data = await content.getAnnouncementsList(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get list of announcements
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetAnnouncementListSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/GetAnnouncementList"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createAnnouncement
+Create an annoucement
+
+```javascript
+// Promise
+const promise = content.createAnnouncement(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createAnnouncement(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create an announcement
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/CreateAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAnnouncementById
+Get annoucement by id
+
+```javascript
+// Promise
+const promise = content.getAnnouncementById(companyId,applicationId,announcementId);
+
+// Async/Await
+const data = await content.getAnnouncementById(companyId,applicationId,announcementId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Get announcement by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AdminAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/Announcement"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAnnouncement
+Update an annoucement
+
+```javascript
+// Promise
+const promise = content.updateAnnouncement(companyId,applicationId,announcementId,body);
+
+// Async/Await
+const data = await content.updateAnnouncement(companyId,applicationId,announcementId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Update an announcement
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/UpdateAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAnnouncementSchedule
+Update schedule or published status of an annoucement
+
+```javascript
+// Promise
+const promise = content.updateAnnouncementSchedule(companyId,applicationId,announcementId,body);
+
+// Async/Await
+const data = await content.updateAnnouncementSchedule(companyId,applicationId,announcementId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Update schedule or published status of an announcement
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/PatchAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAnnouncement
+Delete annoucement by id
+
+```javascript
+// Promise
+const promise = content.deleteAnnouncement(companyId,applicationId,announcementId);
+
+// Async/Await
+const data = await content.deleteAnnouncement(companyId,applicationId,announcementId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Delete announcement by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/DeleteAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createBlog
+Create blog
+
+```javascript
+// Promise
+const promise = content.createBlog(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createBlog(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to create a blog.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BlogSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBlogs
+Get blogs
+
+```javascript
+// Promise
+const promise = content.getBlogs(companyId,applicationId);
+
+// Async/Await
+const data = await content.getBlogs(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to get blogs.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BlogSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateBlog
+Update blog
+
+```javascript
+// Promise
+const promise = content.updateBlog(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updateBlog(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| id | string | Blog Id | 
+
+Use this to update blog.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BlogSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteBlog
+Delete blogs
+
+```javascript
+// Promise
+const promise = content.deleteBlog(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteBlog(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| id | string | Blog Id | 
+
+Use this to delete blogs.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BlogSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponentById
+Get components by component Id
+
+```javascript
+// Promise
+const promise = content.getComponentById(companyId,applicationId,slug);
+
+// Async/Await
+const data = await content.getComponentById(companyId,applicationId,slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| slug | string | slug of page to be fetched | 
+
+The endpoint fetches the component by component Id
+
+*Success Response:*
+
+
+
+A JSON object with components
+
+
+Schema: `BlogSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategories
+Get FAQ categories list
+
+```javascript
+// Promise
+const promise = content.getFaqCategories(companyId,applicationId);
+
+// Async/Await
+const data = await content.getFaqCategories(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get list of FAQ categories
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoriesSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategoryBySlugOrId
+Get FAQ category by slug or id
+
+```javascript
+// Promise
+const promise = content.getFaqCategoryBySlugOrId(companyId,applicationId,idOrSlug);
+
+// Async/Await
+const data = await content.getFaqCategoryBySlugOrId(companyId,applicationId,idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| idOrSlug | string | Slug or Id of FAQ Category | 
+
+Get FAQ category by slug or id
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoryByIdOrSlugSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createFaqCategory
+Creates a FAQ category
+
+```javascript
+// Promise
+const promise = content.createFaqCategory(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createFaqCategory(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Add Faq Category
+
+*Success Response:*
+
+
+
+Create a FAQ Category
+
+
+Schema: `CreateFaqCategorySchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateFaqCategory
+Updates a FAQ category
+
+```javascript
+// Promise
+const promise = content.updateFaqCategory(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updateFaqCategory(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Faq category ID | 
+
+Update Faq Category
+
+*Success Response:*
+
+
+
+Update a FAQ Category
+
+
+Schema: `CreateFaqCategorySchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteFaqCategory
+Deletes a FAQ category
+
+```javascript
+// Promise
+const promise = content.deleteFaqCategory(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteFaqCategory(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Faq category ID | 
+
+Delete Faq Category
+
+*Success Response:*
+
+
+
+Delete a FAQ Category
+
+
+Schema: `FaqSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqsByCategoryIdOrSlug
+Get FAQs of a Faq Category id or slug
+
+```javascript
+// Promise
+const promise = content.getFaqsByCategoryIdOrSlug(companyId,applicationId,idOrSlug);
+
+// Async/Await
+const data = await content.getFaqsByCategoryIdOrSlug(companyId,applicationId,idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| idOrSlug | string | Faq category ID or slug | 
+
+Get FAQs of a Faq Category `id` or `slug`
+
+*Success Response:*
+
+
+
+Get FAQs by slug/id of FAQ Category
+
+
+Schema: `GetFaqSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addFaq
+Creates FAQs for category whose `id` is specified
+
+```javascript
+// Promise
+const promise = content.addFaq(companyId,applicationId,categoryId,body);
+
+// Async/Await
+const data = await content.addFaq(companyId,applicationId,categoryId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| categoryId | string | Faq category ID | 
+
+Creates FAQs for category whose `id` is specified
+
+*Success Response:*
+
+
+
+Create a FAQ for FAQ Category
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateFaq
+Updates FAQ
+
+```javascript
+// Promise
+const promise = content.updateFaq(companyId,applicationId,categoryId,faqId,body);
+
+// Async/Await
+const data = await content.updateFaq(companyId,applicationId,categoryId,faqId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| categoryId | string | Faq category ID | 
+| faqId | string | Faq ID | 
+
+Updates FAQ
+
+*Success Response:*
+
+
+
+Update FAQ by id
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteFaq
+Delete FAQ
+
+```javascript
+// Promise
+const promise = content.deleteFaq(companyId,applicationId,categoryId,faqId);
+
+// Async/Await
+const data = await content.deleteFaq(companyId,applicationId,categoryId,faqId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| categoryId | string | Faq category ID | 
+| faqId | string | Faq ID | 
+
+Delete FAQ
+
+*Success Response:*
+
+
+
+Delete FAQ by id
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqByIdOrSlug
+Get frequently asked question
+
+```javascript
+// Promise
+const promise = content.getFaqByIdOrSlug(companyId,applicationId,idOrSlug);
+
+// Async/Await
+const data = await content.getFaqByIdOrSlug(companyId,applicationId,idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| idOrSlug | string | Slug or Id of FAQ | 
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLandingPages
+Get landing-pages
+
+```javascript
+// Promise
+const promise = content.getLandingPages(companyId,applicationId);
+
+// Async/Await
+const data = await content.getLandingPages(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to get landing-pages.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `LandingPageGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/LandingPageGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createLandingPage
+Create landing-page
+
+```javascript
+// Promise
+const promise = content.createLandingPage(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createLandingPage(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to create landing-page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `LandingPageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/LandingPageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLandingPage
+Update landing-page
+
+```javascript
+// Promise
+const promise = content.updateLandingPage(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updateLandingPage(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Landing page ID | 
+
+Use this to update landing-page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `LandingPageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/LandingPageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteLandingPage
+Delete landing-page
+
+```javascript
+// Promise
+const promise = content.deleteLandingPage(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteLandingPage(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Landing page ID | 
+
+Use this to delete landing-page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `LandingPageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "_custom_json": null,
+    "slug": "pnc-landing",
+    "action": {
+      "page": {
+        "type": "home"
+      },
+      "popup": {},
+      "type": "page"
+    },
+    "platform": [
+      "web"
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2020-04-30T03:25:14.549Z",
+      "modified_on": "2020-04-30T03:25:14.549Z"
+    },
+    "archived": true
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLegalInformation
+Get legal information
+
+```javascript
+// Promise
+const promise = content.getLegalInformation(companyId,applicationId);
+
+// Async/Await
+const data = await content.getLegalInformation(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationLegal`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Legal"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLegalInformation
+Save legal information
+
+```javascript
+// Promise
+const promise = content.updateLegalInformation(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.updateLegalInformation(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationLegal`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getNavigations
+Get navigations
+
+```javascript
+// Promise
+const promise = content.getNavigations(companyId,applicationId,devicePlatform);
+
+// Async/Await
+const data = await content.getNavigations(companyId,applicationId,devicePlatform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| devicePlatform | string | Device platform | 
+
+Use this to get navigations.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `NavigationGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/NavigationGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createNavigation
+Create navigation
+
+```javascript
+// Promise
+const promise = content.createNavigation(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createNavigation(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to create navigation.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `NavigationSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/NavigationResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDefaultNavigations
+Get default navigations
+
+```javascript
+// Promise
+const promise = content.getDefaultNavigations(companyId,applicationId);
+
+// Async/Await
+const data = await content.getDefaultNavigations(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to get default navigations.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DefaultNavigationResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/DefaultNavigationResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getNavigationBySlug
+Get navigation by slug
+
+```javascript
+// Promise
+const promise = content.getNavigationBySlug(companyId,applicationId,slug,devicePlatform);
+
+// Async/Await
+const data = await content.getNavigationBySlug(companyId,applicationId,slug,devicePlatform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| slug | string | Slug | 
+| devicePlatform | string | Device platform | 
+
+Use this to get navigation by slug.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `NavigationSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/NavigationResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateNavigation
+Update navigation
+
+```javascript
+// Promise
+const promise = content.updateNavigation(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updateNavigation(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Navigation ID | 
+
+Use this to update navigation.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `NavigationSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/NavigationResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteNavigation
+Delete navigation
+
+```javascript
+// Promise
+const promise = content.deleteNavigation(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteNavigation(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Navigation ID | 
+
+Use this to delete navigation.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `NavigationSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "_id": "5ffbd9b90ac98678ae0458d7",
+    "application": "000000000000000000000001",
+    "_custom_json": null,
+    "name": "temp",
+    "slug": "temp",
+    "platform": "web",
+    "position": "top",
+    "orientation": "landscape",
+    "navigation": [
+      {
+        "display": "Home",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+        "sort_order": 1,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/",
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en-US": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Brands",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/brands/",
+                "type": "brands"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en-US": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Collections",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+        "sort_order": 2,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/collections/",
+            "type": "collections"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en-US": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Categories",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/categories/",
+                "type": "categories"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en-US": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Primary Menu",
+        "image": "",
+        "sort_order": 3,
+        "type": "",
+        "action": {
+          "page": {
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en-US": {
+            "display": ""
+          }
+        }
+      }
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2021-01-11T04:53:13.585Z",
+      "modified_on": "2021-01-14T10:24:34.485Z"
+    },
+    "archived": true
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPageMeta
+Get page meta
+
+```javascript
+// Promise
+const promise = content.getPageMeta(companyId,applicationId);
+
+// Async/Await
+const data = await content.getPageMeta(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to get Page Meta.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageMetaSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageMeta"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPageSpec
+Get page spec
+
+```javascript
+// Promise
+const promise = content.getPageSpec(companyId,applicationId);
+
+// Async/Await
+const data = await content.getPageSpec(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to get page spec.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSpec`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "specifications": [
+      {
+        "page_type": "home",
+        "display_name": "Home",
+        "params": [],
+        "query": []
+      },
+      {
+        "page_type": "collections",
+        "display_name": "Collections",
+        "params": [],
+        "query": []
+      },
+      {
+        "page_type": "collection",
+        "display_name": "Collection",
+        "params": [
+          {
+            "key": "slug",
+            "required": true
+          }
+        ],
+        "query": []
+      }
+    ]
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createPage
+Create page
+
+```javascript
+// Promise
+const promise = content.createPage(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createPage(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to create a page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPages
+Get pages
+
+```javascript
+// Promise
+const promise = content.getPages(companyId,applicationId);
+
+// Async/Await
+const data = await content.getPages(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to get pages.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createPagePreview
+Create page preview
+
+```javascript
+// Promise
+const promise = content.createPagePreview(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createPagePreview(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to create a page preview.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePagePreview
+Update page
+
+```javascript
+// Promise
+const promise = content.updatePagePreview(companyId,applicationId,slug,body);
+
+// Async/Await
+const data = await content.updatePagePreview(companyId,applicationId,slug,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| slug | string | Page publish slug | 
+
+Use this to update page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePage
+Update page
+
+```javascript
+// Promise
+const promise = content.updatePage(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updatePage(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| id | string | Page Id | 
+
+Use this to update page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deletePage
+Delete page
+
+```javascript
+// Promise
+const promise = content.deletePage(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deletePage(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| id | string | Page Id | 
+
+Use this to delete page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPageBySlug
+Get pages by component Id
+
+```javascript
+// Promise
+const promise = content.getPageBySlug(companyId,applicationId,slug);
+
+// Async/Await
+const data = await content.getPageBySlug(companyId,applicationId,slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| slug | string | Slug of page to be fetched | 
+
+The endpoint fetches the component by component Id
+
+*Success Response:*
+
+
+
+A JSON object with page
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSeoConfiguration
+Get seo of application
+
+```javascript
+// Promise
+const promise = content.getSeoConfiguration(companyId,applicationId);
+
+// Async/Await
+const data = await content.getSeoConfiguration(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get seo of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Seo`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSeoConfiguration
+Update seo of application
+
+```javascript
+// Promise
+const promise = content.updateSeoConfiguration(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.updateSeoConfiguration(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Update seo of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Seo`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSlideshows
+Get slideshows
+
+```javascript
+// Promise
+const promise = content.getSlideshows(companyId,applicationId,devicePlatform);
+
+// Async/Await
+const data = await content.getSlideshows(companyId,applicationId,devicePlatform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| devicePlatform | string | Device platform | 
+
+Use this to get slideshows.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createSlideshow
+Create slideshow
+
+```javascript
+// Promise
+const promise = content.createSlideshow(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createSlideshow(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to create slideshow.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSlideshowBySlug
+Get slideshow by slug
+
+```javascript
+// Promise
+const promise = content.getSlideshowBySlug(companyId,applicationId,slug,devicePlatform);
+
+// Async/Await
+const data = await content.getSlideshowBySlug(companyId,applicationId,slug,devicePlatform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| slug | string | Slug | 
+| devicePlatform | string | Device platform | 
+
+Use this to get slideshow by slug.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSlideshow
+Update slideshow
+
+```javascript
+// Promise
+const promise = content.updateSlideshow(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updateSlideshow(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Slideshow ID | 
+
+Use this to update slideshow.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSlideshow
+Delete slideshow
+
+```javascript
+// Promise
+const promise = content.deleteSlideshow(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteSlideshow(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Slideshow ID | 
+
+Use this to delete slideshow.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-14T05:27:12.319Z",
+      "modified_on": "2021-03-14T05:27:12.319Z"
+    },
+    "archived": true,
+    "_id": "604d9eb975e9d136bb1b8b83",
+    "configuration": {
+      "start_on_launch": false,
+      "duration": 50,
+      "sleep_time": 100,
+      "slide_direction": "horizontal"
+    },
+    "slug": "ss-sfsd-updated",
+    "platform": "ios",
+    "media": [
+      {
+        "auto_decide_duration": false,
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+        "bg_color": "#ffffff",
+        "duration": 10,
+        "action": {
+          "type": ""
+        }
+      },
+      {
+        "auto_decide_duration": true,
+        "type": "youtube",
+        "url": "https://www.youtube.com/embed/9vJRopau0g0",
+        "bg_color": "#ffffff",
+        "duration": 909,
+        "action": {
+          "type": ""
+        }
+      }
+    ],
+    "application": "5cd3db5e9d692cfe5302a7bb",
+    "active": true,
+    "__v": 0
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "Invalid Object ID",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSupportInformation
+Get support information
+
+```javascript
+// Promise
+const promise = content.getSupportInformation(companyId,applicationId);
+
+// Async/Await
+const data = await content.getSupportInformation(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get contact details for customer support. Including emails and phone numbers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Support`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Support"
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSupportInformation
+Update support data of application
+
+```javascript
+// Promise
+const promise = content.updateSupportInformation(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.updateSupportInformation(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Update support data of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Support`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createInjectableTag
+Creates Tag
+
+```javascript
+// Promise
+const promise = content.createInjectableTag(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createInjectableTag(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create tags
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateInjectableTag
+Updates a Tag
+
+```javascript
+// Promise
+const promise = content.updateInjectableTag(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.updateInjectableTag(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Update tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAllInjectableTags
+Delete tags for application
+
+```javascript
+// Promise
+const promise = content.deleteAllInjectableTags(companyId,applicationId);
+
+// Async/Await
+const data = await content.deleteAllInjectableTags(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Delete tags for application
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInjectableTags
+Get tags for application
+
+```javascript
+// Promise
+const promise = content.getInjectableTags(companyId,applicationId);
+
+// Async/Await
+const data = await content.getInjectableTags(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get tags for application
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addInjectableTag
+Adds a Tag
+
+```javascript
+// Promise
+const promise = content.addInjectableTag(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.addInjectableTag(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Add tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### removeInjectableTag
+Removes a Tag
+
+```javascript
+// Promise
+const promise = content.removeInjectableTag(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.removeInjectableTag(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Remove a particular tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editInjectableTag
+Edits a Tag by Id
+
+```javascript
+// Promise
+const promise = content.editInjectableTag(companyId,applicationId,tagId,body);
+
+// Async/Await
+const data = await content.editInjectableTag(companyId,applicationId,tagId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| tagId | string | Tag ID | 
+
+Edits a particular tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+
+
+Schema: `ConvexApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Payment
 
 
@@ -8308,6 +13920,2207 @@ Internal Server Error
 
 
 Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Configuration
+
+
+#### getBuildConfig
+Get latest build config
+
+```javascript
+// Promise
+const promise = configuration.getBuildConfig(companyId,applicationId,platformType);
+
+// Async/Await
+const data = await configuration.getBuildConfig(companyId,applicationId,platformType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| platformType | string | Current platform name | 
+
+Get latest build config
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MobileAppConfiguration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateBuildConfig
+Update build config for next build
+
+```javascript
+// Promise
+const promise = configuration.updateBuildConfig(companyId,applicationId,platformType,body);
+
+// Async/Await
+const data = await configuration.updateBuildConfig(companyId,applicationId,platformType,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| platformType | string | Current platform name | 
+
+Update build config for next build
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MobileAppConfiguration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPreviousVersions
+Get previous versions
+
+```javascript
+// Promise
+const promise = configuration.getPreviousVersions(companyId,applicationId,platformType);
+
+// Async/Await
+const data = await configuration.getPreviousVersions(companyId,applicationId,platformType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| platformType | string | Current platform name | 
+
+Get previous versions
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BuildVersionHistory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppFeatures
+Get features of application
+
+```javascript
+// Promise
+const promise = configuration.getAppFeatures(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppFeatures(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get features of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppFeatureResponse`
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppFeatures
+Update features of application
+
+```javascript
+// Promise
+const promise = configuration.updateAppFeatures(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateAppFeatures(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Update features of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppFeature`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppBasicDetails
+Get basic application details
+
+```javascript
+// Promise
+const promise = configuration.getAppBasicDetails(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppBasicDetails(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get basic application details like name
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationDetail`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppBasicDetails
+Add or update application's basic details
+
+```javascript
+// Promise
+const promise = configuration.updateAppBasicDetails(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateAppBasicDetails(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add or update application's basic details
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationDetail`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppContactInfo
+Get application information
+
+```javascript
+// Promise
+const promise = configuration.getAppContactInfo(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppContactInfo(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInformation`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppContactInfo
+Get application information
+
+```javascript
+// Promise
+const promise = configuration.updateAppContactInfo(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateAppContactInfo(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Save Application Current Information. This includes information about social links, address and contact information of an application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInformation`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppApiTokens
+Get social tokens
+
+```javascript
+// Promise
+const promise = configuration.getAppApiTokens(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppApiTokens(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get social tokens.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TokenResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppApiTokens
+Add social tokens
+
+```javascript
+// Promise
+const promise = configuration.updateAppApiTokens(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateAppApiTokens(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add social tokens.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TokenResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppCompanies
+Application inventory enabled companies
+
+```javascript
+// Promise
+const promise = configuration.getAppCompanies(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppCompanies(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Application inventory enabled companies.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CompaniesResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppStores
+Application inventory enabled stores
+
+```javascript
+// Promise
+const promise = configuration.getAppStores(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppStores(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Application inventory enabled stores.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StoresResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInventoryConfig
+Get application configuration
+
+```javascript
+// Promise
+const promise = configuration.getInventoryConfig(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getInventoryConfig(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get application configuration for various features and data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInventory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateInventoryConfig
+Update application configuration
+
+```javascript
+// Promise
+const promise = configuration.updateInventoryConfig(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateInventoryConfig(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Update application configuration for various features and data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInventory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### partiallyUpdateInventoryConfig
+Partially update application configuration
+
+```javascript
+// Promise
+const promise = configuration.partiallyUpdateInventoryConfig(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.partiallyUpdateInventoryConfig(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Partially update application configuration for various features and data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInventory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppCurrencyConfig
+Get application enabled currency list
+
+```javascript
+// Promise
+const promise = configuration.getAppCurrencyConfig(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppCurrencyConfig(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get application enabled currency list
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppSupportedCurrency`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppCurrencyConfig
+Add initial application supported currency
+
+```javascript
+// Promise
+const promise = configuration.updateAppCurrencyConfig(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateAppCurrencyConfig(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add initial application supported currency for various features and data. Default INR will be enabled.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppSupportedCurrency`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderingStoresByFilter
+Get ordering store by filter
+
+```javascript
+// Promise
+const promise = configuration.getOrderingStoresByFilter(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.getOrderingStoresByFilter(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get ordering store by filter
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderingStores`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateOrderingStoreConfig
+Add/Update ordering store config
+
+```javascript
+// Promise
+const promise = configuration.updateOrderingStoreConfig(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateOrderingStoreConfig(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add/Update ordering store config.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DeploymentMeta`
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `InvalidPayloadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDomains
+Get attached domain list
+
+```javascript
+// Promise
+const promise = configuration.getDomains(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getDomains(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get attached domain list.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addDomain
+Add new domain to application
+
+```javascript
+// Promise
+const promise = configuration.addDomain(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.addDomain(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add new domain to application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Domain`
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `InvalidPayloadRequest`
+
+
+*Examples:*
+
+
+Maximum domain limit reached
+```json
+{
+  "value": {
+    "message": "Maximum 4 domains can be added to application. Please remove existing one to add new"
+  }
+}
+```
+
+Failed to verify domain record
+```json
+{
+  "value": {
+    "message": "Failed to verify domain records"
+  }
+}
+```
+
+Domain already registered
+```json
+{
+  "value": {
+    "message": "Domain already linked to application"
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### removeDomainById
+Remove attached domain
+
+```javascript
+// Promise
+const promise = configuration.removeDomainById(companyId,applicationId,id);
+
+// Async/Await
+const data = await configuration.removeDomainById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| id | string | Domain _id | 
+
+Remove attached domain.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SuccessMessageResponse`
+
+
+
+
+
+
+
+
+Invalid request or Missing params
+
+
+Schema: `InvalidPayloadRequest`
+
+
+*Examples:*
+
+
+Primary or Shortlink or Default domain deletiion
+```json
+{
+  "value": {
+    "message": "Primary domain deletion not allowed"
+  }
+}
+```
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### changeDomainType
+Change domain type
+
+```javascript
+// Promise
+const promise = configuration.changeDomainType(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.changeDomainType(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Change a domain to Primary or Shortlink domain
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainsResponse`
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDomainStatus
+Get domain connected status.
+
+```javascript
+// Promise
+const promise = configuration.getDomainStatus(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.getDomainStatus(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainStatusResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createApplication
+Create application
+
+```javascript
+// Promise
+const promise = configuration.createApplication(companyId,body);
+
+// Async/Await
+const data = await configuration.createApplication(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Create new application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAppResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplications
+Get list of application under company
+
+```javascript
+// Promise
+const promise = configuration.getApplications(companyId,pageNo,pageSize,q);
+
+// Async/Await
+const data = await configuration.getApplications(companyId,pageNo,pageSize,q);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer |  | 
+| pageSize | integer |  | 
+| q | object | Url encoded object used as mongodb query | 
+
+Get list of application under company
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplicationById
+Get application data from id
+
+```javascript
+// Promise
+const promise = configuration.getApplicationById(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getApplicationById(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get application data from id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Application`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCurrencies
+Get all currencies
+
+```javascript
+// Promise
+const promise = configuration.getCurrencies(companyId);
+
+// Async/Await
+const data = await configuration.getCurrencies(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Get all currencies
+
+*Success Response:*
+
+
+
+Currencies Success response
+
+
+Schema: `CurrenciesResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDomainAvailibility
+Check domain availibility before linking to application
+
+```javascript
+// Promise
+const promise = configuration.getDomainAvailibility(companyId,body);
+
+// Async/Await
+const data = await configuration.getDomainAvailibility(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainSuggestionsResponse`
+
+
+*Examples:*
+
+
+Suggestions for fynd domains
+```json
+{
+  "value": {
+    "domains": [
+      {
+        "name": "test.hostx1.de",
+        "is_available": false
+      },
+      {
+        "name": "testhive.hostx1.de",
+        "is_available": true
+      }
+    ]
+  }
+}
+```
+
+Suggestions for custom domains
+```json
+{
+  "value": {
+    "domains": [
+      {
+        "name": "test25.in",
+        "unsupported": false,
+        "is_available": false
+      },
+      {
+        "name": "try25.in",
+        "unsupported": false,
+        "is_available": true,
+        "price": 14.99,
+        "currency": "USD"
+      }
+    ]
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getIntegrationById
+Get integration data
+
+```javascript
+// Promise
+const promise = configuration.getIntegrationById(companyId,id);
+
+// Async/Await
+const data = await configuration.getIntegrationById(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | integer | Integration id | 
+
+Get integration data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Integration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAvailableOptIns
+Get all available integration opt-ins
+
+```javascript
+// Promise
+const promise = configuration.getAvailableOptIns(companyId,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getAvailableOptIns(companyId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get all available integration opt-ins
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetIntegrationsOptInsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSelectedOptIns
+Get company/store level integration opt-ins
+
+```javascript
+// Promise
+const promise = configuration.getSelectedOptIns(companyId,level,uid,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getSelectedOptIns(companyId,level,uid,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| level | string | Integration level | 
+| uid | integer | Integration level uid | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get company/store level integration opt-ins
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetIntegrationsOptInsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getIntegrationLevelConfig
+Get integration level config
+
+```javascript
+// Promise
+const promise = configuration.getIntegrationLevelConfig(companyId,id,level);
+
+// Async/Await
+const data = await configuration.getIntegrationLevelConfig(companyId,id,level);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Integration id | 
+| level | string | Integration level | 
+
+Get integration level config
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `IntegrationConfigResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getIntegrationByLevelId
+Get level data for integration
+
+```javascript
+// Promise
+const promise = configuration.getIntegrationByLevelId(companyId,id,level,uid);
+
+// Async/Await
+const data = await configuration.getIntegrationByLevelId(companyId,id,level,uid);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Integration id | 
+| level | string | Integration level | 
+| uid | integer | Integration level uid | 
+
+Get level data for integration
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `IntegrationLevel`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLevelActiveIntegrations
+Check store has active integration
+
+```javascript
+// Promise
+const promise = configuration.getLevelActiveIntegrations(companyId,id,level,uid);
+
+// Async/Await
+const data = await configuration.getLevelActiveIntegrations(companyId,id,level,uid);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Integration id | 
+| level | string | Integration level | 
+| uid | integer | Integration level uid | 
+
+API checks if a store is already opted in any other integrations
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OptedStoreIntegration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBrandsByCompany
+Get brands by company
+
+```javascript
+// Promise
+const promise = configuration.getBrandsByCompany(companyId,q);
+
+// Async/Await
+const data = await configuration.getBrandsByCompany(companyId,q);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| q | string | Search text for brand name | 
+
+Get brands by company
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BrandsByCompanyResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCompanyByBrands
+Get company by brand uids
+
+```javascript
+// Promise
+const promise = configuration.getCompanyByBrands(companyId,body,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getCompanyByBrands(companyId,body,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get company by brand uids
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CompanyByBrandsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getStoreByBrands
+Get stores by brand uids
+
+```javascript
+// Promise
+const promise = configuration.getStoreByBrands(companyId,body,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getStoreByBrands(companyId,body,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get stores by brand uids
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StoreByBrandsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOtherSellerApplications
+Get other seller applications
+
+```javascript
+// Promise
+const promise = configuration.getOtherSellerApplications(companyId);
+
+// Async/Await
+const data = await configuration.getOtherSellerApplications(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Get other seller applications who has opted current company as inventory
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OtherSellerApplications`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOtherSellerApplicationById
+Get other seller applications
+
+```javascript
+// Promise
+const promise = configuration.getOtherSellerApplicationById(companyId,id);
+
+// Async/Await
+const data = await configuration.getOtherSellerApplicationById(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Application Id | 
+
+Get other seller application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OptedApplicationResponse`
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### optOutFromApplication
+Opt out company or store from other seller application
+
+```javascript
+// Promise
+const promise = configuration.optOutFromApplication(companyId,id,body);
+
+// Async/Await
+const data = await configuration.optOutFromApplication(companyId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Application Id | 
+
+Opt out company or store from other seller application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SuccessMessageResponse`
+
+
+
+
+
+
+
+
+Invalid params or Not configured inventory
+
+
+Schema: `InvalidPayloadRequest`
+
+
+*Examples:*
+
+
+Missing parameter
+```json
+{
+  "value": {
+    "message": "Invalid opt out request data. Either of `store` and `company` fields are missing"
+  }
+}
+```
+
+Company other than current company sent for opt out
+```json
+{
+  "value": {
+    "message": "Invalid company id"
+  }
+}
+```
+
+Store other than current company sent for opt out
+```json
+{
+  "value": {
+    "message": "Invalid store ids"
+  }
+}
+```
+
+Inventory not configured for sent application id
+```json
+{
+  "value": {
+    "message": "Inventory is not configured"
+  }
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Cart
+
+
+#### getCoupons
+Get with single coupon details or coupon list
+
+```javascript
+// Promise
+const promise = cart.getCoupons(companyId,applicationId,pageNo,pageSize,isArchived,title,isPublic,isDisplay,typeSlug,code);
+
+// Async/Await
+const data = await cart.getCoupons(companyId,applicationId,pageNo,pageSize,isArchived,title,isPublic,isDisplay,typeSlug,code);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current Application _id | 
+| pageNo | integer |  | 
+| pageSize | integer |  | 
+| isArchived | boolean |  | 
+| title | string |  | 
+| isPublic | boolean |  | 
+| isDisplay | boolean |  | 
+| typeSlug | string |  | 
+| code | string |  | 
+
+Get coupon list with pagination
+
+*Success Response:*
+
+
+
+Coupon List for sent page_size and page_no
+
+
+Schema: `CouponsResponse`
+
+
+*Examples:*
+
+
+Coupon list for sent filter and page size
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "5e1d9bec6d6b7e000146c840",
+        "display_meta": {
+          "title": "percent50 title"
+        },
+        "_schedule": {
+          "next_schedule": [
+            {
+              "start": "2020-01-14T10:45:03.600000+00:00",
+              "end": "2020-01-16T10:45:03+00:00"
+            }
+          ],
+          "duration": null,
+          "start": "2020-01-14T10:45:03.600000+00:00",
+          "end": "2020-01-16T10:45:03+00:00",
+          "cron": ""
+        },
+        "state": {
+          "is_public": true,
+          "is_display": true,
+          "is_archived": false
+        },
+        "ownership": {
+          "payable_category": "seller",
+          "payable_by": ""
+        },
+        "code": "percent50",
+        "rule_definition": {
+          "type": "percentage",
+          "scope": [
+            "category_id"
+          ],
+          "applicable_on": "quantity"
+        }
+      }
+    ],
+    "page": {
+      "has_next": true,
+      "size": 10,
+      "current": 1,
+      "item_total": 30
+    }
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createCoupon
+Create new coupon
+
+```javascript
+// Promise
+const promise = cart.createCoupon(companyId,applicationId,body);
+
+// Async/Await
+const data = await cart.createCoupon(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current Application _id | 
+
+Create new coupon
+
+*Success Response:*
+
+
+
+Coupon Created successfully
+
+
+Schema: `SuccessMessageResponse`
+
+
+
+
+
+
+
+
+Invalid coupon data or existing coupon code
+
+
+Schema: `OperationErrorResponse`
+
+
+*Examples:*
+
+
+Coupon code exists
+```json
+{
+  "value": {
+    "success": false,
+    "message": "Coupon already code exist"
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCouponById
+Get with single coupon details or coupon list
+
+```javascript
+// Promise
+const promise = cart.getCouponById(companyId,applicationId,id);
+
+// Async/Await
+const data = await cart.getCouponById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current Application _id | 
+| id | string |  | 
+
+Get single coupon details with `id` in path param
+
+*Success Response:*
+
+
+
+Coupon object for sent `id`
+
+
+Schema: `CouponUpdate`
+
+
+
+
+
+
+
+
+Coupon not found for passed `id`
+
+
+Schema: `OperationErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCoupon
+Update existing coupon configuration
+
+```javascript
+// Promise
+const promise = cart.updateCoupon(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await cart.updateCoupon(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current Application _id | 
+| id | string |  | 
+
+Update coupon with id sent in `id`
+
+*Success Response:*
+
+
+
+Coupon updated successfully
+
+
+Schema: `SuccessMessageResponse`
+
+
+
+
+
+
+
+
+Coupon not found for `id` from path params
+
+
+Schema: `OperationErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCouponPartially
+Update coupon archive state and schedule
+
+```javascript
+// Promise
+const promise = cart.updateCouponPartially(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await cart.updateCouponPartially(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current Application _id | 
+| id | string |  | 
+
+Update archive/unarchive and change schedule for coupon
+
+*Success Response:*
+
+
+
+Coupon updated successfully
+
+
+Schema: `SuccessMessageResponse`
+
+
+*Examples:*
+
+
+Archive or Unarchive coupon
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Coupon Updated"
+  }
+}
+```
+
+Coupon schedule updated successfully
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Coupon schedule updated"
+  }
+}
+```
+
+
+
+
+
+
+
+
+Coupon not found for `id` from path params
+
+
+Schema: `OperationErrorResponse`
 
 
 
