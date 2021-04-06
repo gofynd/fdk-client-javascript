@@ -99,18 +99,28 @@ function setupRoutes(ext) {
             });
             
             let redirectUrl;
-            if(!session.access_token) {
-                session.state = uuidv4();
-                // start authorization flow
-                redirectUrl = platformConfig.oauthClient.startAuthorization({
-                    scope: session.scope,
-                    redirectUri: ext.getAuthCallback(),
-                    state: session.state,
-                    access_mode: ext.access_mode
-                });
-            } else {
-                redirectUrl = await ext.callbacks.install(req);
-            }
+
+            session.state = uuidv4();
+            // start authorization flow
+            redirectUrl = platformConfig.oauthClient.startAuthorization({
+                scope: session.scope,
+                redirectUri: ext.getAuthCallback(),
+                state: session.state,
+                access_mode: ext.access_mode
+            });
+
+            // if(!session.access_token) {
+            //     session.state = uuidv4();
+            //     // start authorization flow
+            //     redirectUrl = platformConfig.oauthClient.startAuthorization({
+            //         scope: session.scope,
+            //         redirectUri: ext.getAuthCallback(),
+            //         state: session.state,
+            //         access_mode: ext.access_mode
+            //     });
+            // } else {
+            //     redirectUrl = await ext.callbacks.install(req);
+            // }
             await SessionStorage.saveSession(session);
             res.redirect(redirectUrl);
         } catch (error) {
