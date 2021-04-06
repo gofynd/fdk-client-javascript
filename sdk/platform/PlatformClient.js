@@ -45,27 +45,6 @@ class PlatformClient {
     */
 
 /**
-        @typedef Page
-        
-        
-        @property { number } itemTotal
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [current]
-        
-        @property { string } type
-        
-        @property { number } size
-        
-         
-    */
-
-/**
         @typedef TicketHistoryList
         
         
@@ -4712,23 +4691,6 @@ class PlatformClient {
         @property { number } [lastReadAnchor]
         
         @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef Page
-        
-        
-        @property { string } [type]
-        
-        @property { number } [current]
-        
-        @property { number } [size]
-        
-        @property { number } [itemTotal]
-        
-        @property { boolean } [hasNext]
         
          
     */
@@ -11339,23 +11301,6 @@ class PlatformClient {
     */
 
 /**
-        @typedef Page
-        
-        
-        @property { number } current
-        
-        @property { number } itemTotal
-        
-        @property { number } type
-        
-        @property { boolean } hasNext
-        
-        @property { number } [size]
-        
-         
-    */
-
-/**
         @typedef DbRecord
         
         
@@ -11546,27 +11491,6 @@ class PlatformClient {
     */
 
 /**
-        @typedef Page
-        
-        
-        @property { number } itemTotal
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [current]
-        
-        @property { string } type
-        
-        @property { number } size
-        
-         
-    */
-
-/**
         @typedef ShortLinkList
         
         
@@ -11578,12 +11502,42 @@ class PlatformClient {
     */
 
 /**
-        @typedef PostOrder
+        @typedef Rule
         
         
-        @property { boolean } [cancellationAllowed]
+        @property { number } [min]
         
-        @property { boolean } [returnAllowed]
+        @property { number } [discountQty]
+        
+        @property { number } [key]
+        
+        @property { number } [value]
+        
+        @property { number } [max]
+        
+         
+    */
+
+/**
+        @typedef UsesRemaining
+        
+        
+        @property { number } [total]
+        
+        @property { number } [user]
+        
+        @property { number } [app]
+        
+         
+    */
+
+/**
+        @typedef UsesRestriction
+        
+        
+        @property { UsesRemaining } [remaining]
+        
+        @property { UsesRemaining } [maximum]
         
          
     */
@@ -11593,6 +11547,17 @@ class PlatformClient {
         
         
         @property { boolean } multiStoreAllowed
+        
+         
+    */
+
+/**
+        @typedef PostOrder
+        
+        
+        @property { boolean } [returnAllowed]
+        
+        @property { boolean } [cancellationAllowed]
         
          
     */
@@ -11610,11 +11575,11 @@ class PlatformClient {
         @typedef PaymentModes
         
         
+        @property { Array<string> } [networks]
+        
         @property { Array<string> } [codes]
         
         @property { PaymentAllowValue } [uses]
-        
-        @property { Array<string> } [networks]
         
         @property { Array<string> } [types]
         
@@ -11625,43 +11590,19 @@ class PlatformClient {
         @typedef PaymentCodes
         
         
-        @property { PaymentModes } [ps]
-        
         @property { PaymentModes } [wl]
         
-        @property { PaymentModes } [qr]
+        @property { PaymentModes } [ps]
         
-        @property { PaymentModes } [upi]
+        @property { PaymentModes } [pl]
         
         @property { PaymentModes } [card]
         
         @property { PaymentModes } [nb]
         
-        @property { PaymentModes } [pl]
+        @property { PaymentModes } [qr]
         
-         
-    */
-
-/**
-        @typedef UsesRemaining
-        
-        
-        @property { number } [app]
-        
-        @property { number } [total]
-        
-        @property { number } [user]
-        
-         
-    */
-
-/**
-        @typedef UsesRestriction
-        
-        
-        @property { UsesRemaining } [maximum]
-        
-        @property { UsesRemaining } [remaining]
+        @property { PaymentModes } [upi]
         
          
     */
@@ -11681,95 +11622,32 @@ class PlatformClient {
         @typedef Restrictions
         
         
+        @property { UsesRestriction } [uses]
+        
+        @property { BulkBundleRestriction } [bulkBundle]
+        
         @property { PostOrder } [postOrder]
+        
+        @property { PaymentCodes } [payments]
+        
+        @property { PriceRange } [priceRange]
         
         @property { Array<string> } [platforms]
         
         @property { boolean } [couponAllowed]
         
-        @property { BulkBundleRestriction } [bulkBundle]
-        
-        @property { PaymentCodes } [payments]
-        
         @property { Array<number> } [orderingStores]
         
-        @property { UsesRestriction } [uses]
-        
-        @property { PriceRange } [priceRange]
-        
          
     */
 
 /**
-        @typedef RuleDefinition
+        @typedef CouponAction
         
         
-        @property { string } applicableOn
+        @property { string } [actionDate]
         
-        @property { boolean } [isExact]
-        
-        @property { string } [currencyCode]
-        
-        @property { Array<string> } [scope]
-        
-        @property { string } valueType
-        
-        @property { string } type
-        
-        @property { boolean } [autoApply]
-        
-        @property { string } calculateOn
-        
-         
-    */
-
-/**
-        @typedef CouponSchedule
-        
-        
-        @property { string } [end]
-        
-        @property { string } [cron]
-        
-        @property { string } [start]
-        
-        @property { Array<Object> } [nextSchedule]
-        
-        @property { number } [duration]
-        
-         
-    */
-
-/**
-        @typedef Identifier
-        
-        
-        @property { Array<string> } [articleId]
-        
-        @property { Array<number> } [storeId]
-        
-        @property { Array<number> } [brandId]
-        
-        @property { Array<string> } [collectionId]
-        
-        @property { Array<number> } [companyId]
-        
-        @property { Array<string> } [userId]
-        
-        @property { Array<number> } [categoryId]
-        
-        @property { Array<number> } [itemId]
-        
-         
-    */
-
-/**
-        @typedef Ownership
-        
-        
-        @property { string } payableBy
-        
-        @property { string } payableCategory
+        @property { string } [txnMode]
         
          
     */
@@ -11784,12 +11662,27 @@ class PlatformClient {
     */
 
 /**
-        @typedef CouponAction
+        @typedef Validation
         
         
-        @property { string } [txnMode]
+        @property { boolean } [anonymous]
         
-        @property { string } [actionDate]
+        @property { string } [userRegisteredAfter]
+        
+        @property { Array<string> } [appId]
+        
+         
+    */
+
+/**
+        @typedef State
+        
+        
+        @property { boolean } [isArchived]
+        
+        @property { boolean } [isPublic]
+        
+        @property { boolean } [isDisplay]
         
          
     */
@@ -11798,9 +11691,9 @@ class PlatformClient {
         @typedef DisplayMetaDict
         
         
-        @property { string } [subtitle]
-        
         @property { string } [title]
+        
+        @property { string } [subtitle]
         
          
     */
@@ -11811,15 +11704,54 @@ class PlatformClient {
         
         @property { string } [subtitle]
         
-        @property { string } [description]
-        
         @property { DisplayMetaDict } [apply]
-        
-        @property { string } [title]
         
         @property { DisplayMetaDict } [remove]
         
+        @property { string } [description]
+        
+        @property { string } [title]
+        
         @property { DisplayMetaDict } [auto]
+        
+         
+    */
+
+/**
+        @typedef Ownership
+        
+        
+        @property { string } payableCategory
+        
+        @property { string } payableBy
+        
+         
+    */
+
+/**
+        @typedef CouponSchedule
+        
+        
+        @property { number } [duration]
+        
+        @property { string } [end]
+        
+        @property { string } [start]
+        
+        @property { Array<Object> } [nextSchedule]
+        
+        @property { string } [cron]
+        
+         
+    */
+
+/**
+        @typedef CouponAuthor
+        
+        
+        @property { string } [createdBy]
+        
+        @property { string } [modifiedBy]
         
          
     */
@@ -11836,55 +11768,47 @@ class PlatformClient {
     */
 
 /**
-        @typedef State
+        @typedef Identifier
         
         
-        @property { boolean } [isDisplay]
+        @property { Array<string> } [collectionId]
         
-        @property { boolean } [isArchived]
+        @property { Array<number> } [companyId]
         
-        @property { boolean } [isPublic]
+        @property { Array<string> } [articleId]
         
-         
-    */
-
-/**
-        @typedef Validation
+        @property { Array<string> } [userId]
         
+        @property { Array<number> } [brandId]
         
-        @property { Array<string> } [appId]
+        @property { Array<number> } [itemId]
         
-        @property { string } [userRegisteredAfter]
+        @property { Array<number> } [storeId]
         
-        @property { boolean } [anonymous]
+        @property { Array<number> } [categoryId]
         
          
     */
 
 /**
-        @typedef Rule
+        @typedef RuleDefinition
         
         
-        @property { number } [min]
+        @property { string } valueType
         
-        @property { number } [discountQty]
+        @property { Array<string> } [scope]
         
-        @property { number } [value]
+        @property { boolean } [isExact]
         
-        @property { number } [key]
+        @property { string } type
         
-        @property { number } [max]
+        @property { string } applicableOn
         
-         
-    */
-
-/**
-        @typedef CouponAuthor
+        @property { string } [currencyCode]
         
+        @property { boolean } [autoApply]
         
-        @property { string } [modifiedBy]
-        
-        @property { string } [createdBy]
+        @property { string } calculateOn
         
          
     */
@@ -11893,37 +11817,37 @@ class PlatformClient {
         @typedef CouponAdd
         
         
+        @property { Array<Rule> } rule
+        
         @property { Restrictions } [restrictions]
-        
-        @property { string } code
-        
-        @property { RuleDefinition } ruleDefinition
-        
-        @property { CouponSchedule } [schedule]
-        
-        @property { string } typeSlug
-        
-        @property { Identifier } identifiers
-        
-        @property { Ownership } ownership
-        
-        @property { Validity } validity
         
         @property { CouponAction } [action]
         
-        @property { Array<string> } [tags]
-        
-        @property { DisplayMeta } displayMeta
-        
-        @property { CouponDateMeta } [dateMeta]
-        
-        @property { State } [state]
+        @property { Validity } validity
         
         @property { Validation } [validation]
         
-        @property { Array<Rule> } rule
+        @property { string } code
+        
+        @property { State } [state]
+        
+        @property { DisplayMeta } displayMeta
+        
+        @property { Ownership } ownership
+        
+        @property { string } typeSlug
+        
+        @property { CouponSchedule } [schedule]
         
         @property { CouponAuthor } [author]
+        
+        @property { CouponDateMeta } [dateMeta]
+        
+        @property { Identifier } identifiers
+        
+        @property { RuleDefinition } ruleDefinition
+        
+        @property { Array<string> } [tags]
         
          
     */
@@ -11932,9 +11856,9 @@ class PlatformClient {
         @typedef CouponsResponse
         
         
-        @property { Pagination } [page]
-        
         @property { CouponAdd } [items]
+        
+        @property { Pagination } [page]
         
          
     */
@@ -11965,37 +11889,37 @@ class PlatformClient {
         @typedef CouponUpdate
         
         
+        @property { Array<Rule> } rule
+        
         @property { Restrictions } [restrictions]
-        
-        @property { string } code
-        
-        @property { RuleDefinition } ruleDefinition
-        
-        @property { CouponSchedule } [schedule]
-        
-        @property { string } typeSlug
-        
-        @property { Identifier } identifiers
-        
-        @property { Ownership } ownership
-        
-        @property { Validity } validity
         
         @property { CouponAction } [action]
         
-        @property { Array<string> } [tags]
-        
-        @property { DisplayMeta } displayMeta
-        
-        @property { CouponDateMeta } [dateMeta]
-        
-        @property { State } [state]
+        @property { Validity } validity
         
         @property { Validation } [validation]
         
-        @property { Array<Rule> } rule
+        @property { string } code
+        
+        @property { State } [state]
+        
+        @property { DisplayMeta } displayMeta
+        
+        @property { Ownership } ownership
+        
+        @property { string } typeSlug
+        
+        @property { CouponSchedule } [schedule]
         
         @property { CouponAuthor } [author]
+        
+        @property { CouponDateMeta } [dateMeta]
+        
+        @property { Identifier } identifiers
+        
+        @property { RuleDefinition } ruleDefinition
+        
+        @property { Array<string> } [tags]
         
          
     */
@@ -12255,27 +12179,6 @@ class PlatformClient {
         @property { string } [propertiesBreakupValuesRawTotal]
         
         @property { ReceivedAt } [receivedAt]
-        
-         
-    */
-
-/**
-        @typedef Page
-        
-        
-        @property { number } itemTotal
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [current]
-        
-        @property { string } type
-        
-        @property { number } size
         
          
     */
