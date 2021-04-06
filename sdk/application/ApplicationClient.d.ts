@@ -1307,7 +1307,7 @@ declare class Content {
     /**
       *
       * @summary: Get navigation
-      * @description: Use this API to fetch a navigation
+      * @description: Use this API to fetch navigations
       * @param {Object} arg - arg object.
       
       **/
@@ -1330,7 +1330,7 @@ declare class Content {
       * @param {Object} arg - arg object.
       
       **/
-    getSeoConfiguration({}?: any): any;
+    getSEOConfiguration({}?: any): any;
     /**
       *
       * @summary: Get slideshow by slug

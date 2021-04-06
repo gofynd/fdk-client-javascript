@@ -2122,7 +2122,7 @@ class User {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/userauthentication/v1.0/login/password/reset/forgot`,
+      `/service/application/user/authentication/v1.0/login/password/reset/forgot`,
       query,
       body
     );
@@ -3050,7 +3050,7 @@ class Content {
   /**
     *
     * @summary: Get navigation
-    * @description: Use this API to fetch a navigation
+    * @description: Use this API to fetch navigations
     * @param {Object} arg - arg object.
     
     **/
@@ -3107,8 +3107,8 @@ class Content {
     * @param {Object} arg - arg object.
     
     **/
-  getSeoConfiguration({} = {}) {
-    const { error } = ContentValidator.getSeoConfiguration().validate(
+  getSEOConfiguration({} = {}) {
+    const { error } = ContentValidator.getSEOConfiguration().validate(
       {},
       { abortEarly: false }
     );

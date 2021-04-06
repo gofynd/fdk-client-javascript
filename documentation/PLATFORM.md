@@ -5,14 +5,13 @@
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
+* [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Assets](#Assets) - File Storage 
 * [Share](#Share) - Short link and QR Code 
-* [Inventory](#Inventory) -  
-* [Configuration](#Configuration) - Application configuration apis 
 * [Cart](#Cart) - Cart APIs 
 * [Marketplaces](#Marketplaces) - Marketplaces 
 * [Analytics](#Analytics) - Perceptor analytics 
@@ -119,8 +118,8 @@
     * [updatePage](#updatepage)
     * [deletePage](#deletepage)
     * [getPageBySlug](#getpagebyslug)
-    * [getSeoConfiguration](#getseoconfiguration)
-    * [updateSeoConfiguration](#updateseoconfiguration)
+    * [getSEOConfiguration](#getseoconfiguration)
+    * [updateSEOConfiguration](#updateseoconfiguration)
     * [getSlideshows](#getslideshows)
     * [createSlideshow](#createslideshow)
     * [getSlideshowBySlug](#getslideshowbyslug)
@@ -135,6 +134,47 @@
     * [addInjectableTag](#addinjectabletag)
     * [removeInjectableTag](#removeinjectabletag)
     * [editInjectableTag](#editinjectabletag)
+    
+
+* [Communication](#Communication)
+  * Methods
+    * [getCampaigns](#getcampaigns)
+    * [createCampaign](#createcampaign)
+    * [getCampaignById](#getcampaignbyid)
+    * [updateCampaignById](#updatecampaignbyid)
+    * [getStatsOfCampaignById](#getstatsofcampaignbyid)
+    * [getAudiences](#getaudiences)
+    * [createAudience](#createaudience)
+    * [getBigqueryHeaders](#getbigqueryheaders)
+    * [getAudienceById](#getaudiencebyid)
+    * [updateAudienceById](#updateaudiencebyid)
+    * [getNSampleRecordsFromCsv](#getnsamplerecordsfromcsv)
+    * [getEmailProviders](#getemailproviders)
+    * [createEmailProvider](#createemailprovider)
+    * [getEmailProviderById](#getemailproviderbyid)
+    * [updateEmailProviderById](#updateemailproviderbyid)
+    * [getEmailTemplates](#getemailtemplates)
+    * [createEmailTemplate](#createemailtemplate)
+    * [getSystemEmailTemplates](#getsystememailtemplates)
+    * [getEmailTemplateById](#getemailtemplatebyid)
+    * [updateEmailTemplateById](#updateemailtemplatebyid)
+    * [deleteEmailTemplateById](#deleteemailtemplatebyid)
+    * [getEventSubscriptions](#geteventsubscriptions)
+    * [getJobs](#getjobs)
+    * [triggerCampaignJob](#triggercampaignjob)
+    * [getJobLogs](#getjoblogs)
+    * [getCommunicationLogs](#getcommunicationlogs)
+    * [getSystemNotifications](#getsystemnotifications)
+    * [getSmsProviders](#getsmsproviders)
+    * [createSmsProvider](#createsmsprovider)
+    * [getSmsProviderById](#getsmsproviderbyid)
+    * [updateSmsProviderById](#updatesmsproviderbyid)
+    * [getSmsTemplates](#getsmstemplates)
+    * [createSmsTemplate](#createsmstemplate)
+    * [getSmsTemplateById](#getsmstemplatebyid)
+    * [updateSmsTemplateById](#updatesmstemplatebyid)
+    * [deleteSmsTemplateById](#deletesmstemplatebyid)
+    * [getSystemSystemTemplates](#getsystemsystemtemplates)
     
 
 * [Payment](#Payment)
@@ -171,37 +211,37 @@
 
 * [Catalog](#Catalog)
   * Methods
-    * [getSearchKeywords](#getsearchkeywords)
-    * [updateSearchKeywords](#updatesearchkeywords)
     * [deleteSearchKeywords](#deletesearchkeywords)
-    * [getAllSearchKeyword](#getallsearchkeyword)
+    * [updateSearchKeywords](#updatesearchkeywords)
+    * [getSearchKeywords](#getsearchkeywords)
     * [createCustomKeyword](#createcustomkeyword)
-    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-    * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [getAllSearchKeyword](#getallsearchkeyword)
     * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
-    * [getAutocompleteConfig](#getautocompleteconfig)
+    * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
-    * [getProductBundle](#getproductbundle)
+    * [getAutocompleteConfig](#getautocompleteconfig)
     * [createProductBundle](#createproductbundle)
-    * [getProductBundleDetail](#getproductbundledetail)
+    * [getProductBundle](#getproductbundle)
     * [updateProductBundle](#updateproductbundle)
-    * [getSizeGuides](#getsizeguides)
+    * [getProductBundleDetail](#getproductbundledetail)
     * [createSizeGuide](#createsizeguide)
-    * [getSizeGuide](#getsizeguide)
+    * [getSizeGuides](#getsizeguides)
     * [updateSizeGuide](#updatesizeguide)
+    * [getSizeGuide](#getsizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
-    * [getConfigurations](#getconfigurations)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
-    * [getConfigurationByType](#getconfigurationbytype)
+    * [getConfigurations](#getconfigurations)
     * [createConfigurationByType](#createconfigurationbytype)
+    * [getConfigurationByType](#getconfigurationbytype)
     * [getQueryFilters](#getqueryfilters)
-    * [getAllCollections](#getallcollections)
     * [createCollection](#createcollection)
+    * [getAllCollections](#getallcollections)
     * [getCollectionDetail](#getcollectiondetail)
-    * [updateCollection](#updatecollection)
     * [deleteCollection](#deletecollection)
-    * [getCollectionItems](#getcollectionitems)
+    * [updateCollection](#updatecollection)
     * [addCollectionItems](#addcollectionitems)
+    * [getCollectionItems](#getcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
     * [getSellerInsights](#getsellerinsights)
     * [createMarketplaceOptin](#createmarketplaceoptin)
@@ -221,34 +261,34 @@
     * [listHSNCodes](#listhsncodes)
     * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
-    * [listCategories](#listcategories)
     * [createCategories](#createcategories)
-    * [getCategoryData](#getcategorydata)
+    * [listCategories](#listcategories)
     * [updateCategory](#updatecategory)
-    * [getProducts](#getproducts)
+    * [getCategoryData](#getcategorydata)
     * [createProduct](#createproduct)
-    * [getProduct](#getproduct)
-    * [editProduct](#editproduct)
+    * [getProducts](#getproducts)
     * [deleteProduct](#deleteproduct)
+    * [editProduct](#editproduct)
+    * [getProduct](#getproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
-    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
+    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [deleteProductBulkJob](#deleteproductbulkjob)
     * [createProductsInBulk](#createproductsinbulk)
     * [getCompanyTags](#getcompanytags)
-    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [createProductAssetsInBulk](#createproductassetsinbulk)
+    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [deleteSize](#deletesize)
-    * [getInventory](#getinventory)
     * [addInventory](#addinventory)
+    * [getInventory](#getinventory)
     * [deleteInventory](#deleteinventory)
-    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [createBulkInventoryJob](#createbulkinventoryjob)
+    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [deleteBulkInventoryJob](#deletebulkinventoryjob)
     * [createBulkInventory](#createbulkinventory)
-    * [getInventoryExport](#getinventoryexport)
     * [createInventoryExportJob](#createinventoryexportjob)
+    * [getInventoryExport](#getinventoryexport)
     * [exportInventoryConfig](#exportinventoryconfig)
     
 
@@ -257,15 +297,15 @@
     * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
     * [createLocation](#createlocation)
     * [getLocations](#getlocations)
-    * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     
 
 * [Assets](#Assets)
@@ -288,63 +328,6 @@
     * [getShortLinks](#getshortlinks)
     * [getShortLinkByHash](#getshortlinkbyhash)
     * [updateShortLinkById](#updateshortlinkbyid)
-    
-
-* [Inventory](#Inventory)
-  * Methods
-    * [getJobsByCompany](#getjobsbycompany)
-    * [updateJob](#updatejob)
-    * [createJob](#createjob)
-    * [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
-    * [getJobConfigDefaults](#getjobconfigdefaults)
-    * [getJobByCode](#getjobbycode)
-    * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
-    
-
-* [Configuration](#Configuration)
-  * Methods
-    * [getBuildConfig](#getbuildconfig)
-    * [updateBuildConfig](#updatebuildconfig)
-    * [getPreviousVersions](#getpreviousversions)
-    * [getAppFeatures](#getappfeatures)
-    * [updateAppFeatures](#updateappfeatures)
-    * [getAppBasicDetails](#getappbasicdetails)
-    * [updateAppBasicDetails](#updateappbasicdetails)
-    * [getAppContactInfo](#getappcontactinfo)
-    * [updateAppContactInfo](#updateappcontactinfo)
-    * [getAppApiTokens](#getappapitokens)
-    * [updateAppApiTokens](#updateappapitokens)
-    * [getAppCompanies](#getappcompanies)
-    * [getAppStores](#getappstores)
-    * [getInventoryConfig](#getinventoryconfig)
-    * [updateInventoryConfig](#updateinventoryconfig)
-    * [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
-    * [getAppCurrencyConfig](#getappcurrencyconfig)
-    * [updateAppCurrencyConfig](#updateappcurrencyconfig)
-    * [getOrderingStoresByFilter](#getorderingstoresbyfilter)
-    * [updateOrderingStoreConfig](#updateorderingstoreconfig)
-    * [getDomains](#getdomains)
-    * [addDomain](#adddomain)
-    * [removeDomainById](#removedomainbyid)
-    * [changeDomainType](#changedomaintype)
-    * [getDomainStatus](#getdomainstatus)
-    * [createApplication](#createapplication)
-    * [getApplications](#getapplications)
-    * [getApplicationById](#getapplicationbyid)
-    * [getCurrencies](#getcurrencies)
-    * [getDomainAvailibility](#getdomainavailibility)
-    * [getIntegrationById](#getintegrationbyid)
-    * [getAvailableOptIns](#getavailableoptins)
-    * [getSelectedOptIns](#getselectedoptins)
-    * [getIntegrationLevelConfig](#getintegrationlevelconfig)
-    * [getIntegrationByLevelId](#getintegrationbylevelid)
-    * [getLevelActiveIntegrations](#getlevelactiveintegrations)
-    * [getBrandsByCompany](#getbrandsbycompany)
-    * [getCompanyByBrands](#getcompanybybrands)
-    * [getStoreByBrands](#getstorebybrands)
-    * [getOtherSellerApplications](#getothersellerapplications)
-    * [getOtherSellerApplicationById](#getothersellerapplicationbyid)
-    * [optOutFromApplication](#optoutfromapplication)
     
 
 * [Cart](#Cart)
@@ -5255,22 +5238,44 @@ success
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -5328,22 +5333,44 @@ success
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -5402,22 +5429,44 @@ success
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -5476,22 +5525,44 @@ success
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -5550,22 +5621,44 @@ success
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -5624,22 +5717,44 @@ success
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -5790,7 +5905,7 @@ Use this to get blogs.
 Success
 
 
-Schema: `BlogSchema`
+Schema: `BlogGetResponse`
 
 
 *Examples:*
@@ -5822,16 +5937,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -5854,16 +5960,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -6050,16 +6147,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -6082,16 +6170,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -6164,16 +6243,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -6196,16 +6266,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -6254,22 +6315,44 @@ Schema: `GetFaqCategoriesSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -6317,22 +6400,44 @@ Schema: `GetFaqCategoryByIdOrSlugSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -6379,22 +6484,44 @@ Schema: `CreateFaqCategorySchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -6442,22 +6569,44 @@ Schema: `CreateFaqCategorySchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -6505,22 +6654,44 @@ Schema: `FaqSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -6568,22 +6739,44 @@ Schema: `GetFaqSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -6631,22 +6824,44 @@ Schema: `CreateFaqResponseSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -6695,22 +6910,44 @@ Schema: `CreateFaqResponseSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -6759,22 +6996,44 @@ Schema: `CreateFaqResponseSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -6822,22 +7081,44 @@ Schema: `CreateFaqResponseSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -6907,16 +7188,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -6939,16 +7211,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -7020,16 +7283,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -7052,16 +7306,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -7134,16 +7379,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -7166,16 +7402,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -7271,16 +7498,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -7303,16 +7521,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -7372,22 +7581,44 @@ Success
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -7434,22 +7665,44 @@ Schema: `ApplicationLegal`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -7520,16 +7773,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -7552,16 +7796,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -7633,16 +7868,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -7665,16 +7891,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -7746,16 +7963,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -7778,16 +7986,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -7861,16 +8060,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -7893,16 +8083,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -7975,16 +8156,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -8007,16 +8179,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -8072,9 +8235,12 @@ default
     "_custom_json": null,
     "name": "temp",
     "slug": "temp",
-    "platform": "web",
-    "position": "top",
-    "orientation": "landscape",
+    "platform": "[web]",
+    "orientation": {
+      "portrait": [
+        "left"
+      ]
+    },
     "navigation": [
       {
         "display": "Home",
@@ -8266,16 +8432,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -8298,16 +8455,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -8379,16 +8527,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -8411,16 +8550,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -8518,16 +8648,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -8550,16 +8671,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -8631,16 +8743,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -8663,16 +8766,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -8744,16 +8838,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -8776,16 +8861,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -8857,16 +8933,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -8889,16 +8956,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -8971,16 +9029,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -9003,16 +9052,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -9085,16 +9125,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -9117,16 +9148,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -9199,16 +9221,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -9231,16 +9244,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -9313,15 +9317,196 @@ Schema: `APIError`
 default
 ```json
 {
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSEOConfiguration
+Get seo of application
+
+```javascript
+// Promise
+const promise = content.getSEOConfiguration(companyId,applicationId);
+
+// Async/Await
+const data = await content.getSEOConfiguration(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get seo of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Seo`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSEOConfiguration
+Update seo of application
+
+```javascript
+// Promise
+const promise = content.updateSEOConfiguration(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.updateSEOConfiguration(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Update seo of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SeoSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
   "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
+    "details": {
+      "title": "Zyosa Zyosa"
+    },
+    "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
+    "sitemap_enabled": false,
+    "_id": "6009819ee463ad40de397eb2",
+    "app": "000000000000000000000001",
+    "created_at": "2021-01-21T13:29:02.543Z",
+    "updated_at": "2021-02-05T06:36:16.048Z",
+    "__v": 11,
+    "custom_meta_tags": [
+      {
+        "name": "test 0000",
+        "content": "<meta name=\"test\" content=\"0000 cn dcje dcj rejre cjrenurenc \">",
+        "_id": "6017c301bde3c21dbb13b284"
+      },
+      {
+        "name": "cwdcdc",
+        "content": "<meta content=\"wdcewdewc\">",
+        "_id": "6017c675bde3c22cfb13b290"
+      }
+    ]
   }
 }
 ```
@@ -9345,16 +9530,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -9365,36 +9541,10 @@ default
 
 
 
-
----
-
-
-#### getSeoConfiguration
-Get seo of application
-
-```javascript
-// Promise
-const promise = content.getSeoConfiguration(companyId,applicationId);
-
-// Async/Await
-const data = await content.getSeoConfiguration(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Get seo of application
-
-*Success Response:*
+Failed
 
 
-
-Success
-
-
-Schema: `Seo`
+Schema: `APIError`
 
 
 *Examples:*
@@ -9403,106 +9553,9 @@ Schema: `Seo`
 default
 ```json
 {
-  "$ref": "#/components/examples/Seo"
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateSeoConfiguration
-Update seo of application
-
-```javascript
-// Promise
-const promise = content.updateSeoConfiguration(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.updateSeoConfiguration(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Update seo of application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Seo`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/Seo"
-}
-```
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
-
-
-
-
-
-
-
-
-
-
-
-Schema: `ConvexApiError`
 
 
 
@@ -9573,16 +9626,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -9605,16 +9649,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -9686,16 +9721,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -9718,16 +9744,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -9801,16 +9818,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -9833,16 +9841,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -9915,16 +9914,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -9947,16 +9937,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -10044,8 +10025,7 @@ default
       }
     ],
     "application": "5cd3db5e9d692cfe5302a7bb",
-    "active": true,
-    "__v": 0
+    "active": true
   }
 }
 ```
@@ -10069,16 +10049,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 400,
-    "code": "CX-1003",
-    "exception": "",
-    "info": "Invalid Object ID",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/4XXAPIError"
 }
 ```
 
@@ -10101,16 +10072,7 @@ Schema: `APIError`
 default
 ```json
 {
-  "value": {
-    "message": "Oops! Something went wrong. Please try later",
-    "status": 500,
-    "code": "CX-1004",
-    "exception": "",
-    "info": "",
-    "request_id": "",
-    "stack_trace": "",
-    "meta": {}
-  }
+  "$ref": "#/components/examples/5XXAPIError"
 }
 ```
 
@@ -10170,22 +10132,44 @@ default
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -10226,6 +10210,15 @@ Success
 Schema: `Support`
 
 
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Support"
+}
+```
 
 
 
@@ -10234,11 +10227,21 @@ Schema: `Support`
 
 
 
-
-Schema: `ConvexApiError`
-
+Failed
 
 
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
@@ -10247,7 +10250,21 @@ Schema: `ConvexApiError`
 
 
 
-Schema: `ConvexApiError`
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -10294,22 +10311,44 @@ Schema: `TagsSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -10356,22 +10395,44 @@ Schema: `TagsSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -10418,22 +10479,44 @@ Schema: `TagsSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -10480,22 +10563,44 @@ Schema: `TagsSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -10542,22 +10647,44 @@ Schema: `TagsSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -10604,22 +10731,44 @@ Schema: `TagsSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -10667,10 +10816,44 @@ Schema: `TagsSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -10680,9 +10863,2000 @@ Schema: `ConvexApiError`
 
 
 
+---
 
 
-Schema: `ConvexApiError`
+
+---
+
+
+## Communication
+
+
+#### getCampaigns
+Get campaigns
+
+```javascript
+// Promise
+const promise = communication.getCampaigns(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getCampaigns(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get campaigns
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaigns`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaigns"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createCampaign
+Create campaign
+
+```javascript
+// Promise
+const promise = communication.createCampaign(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createCampaign(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create campaign
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaign`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaign"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCampaignById
+Get campaign by id
+
+```javascript
+// Promise
+const promise = communication.getCampaignById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getCampaignById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Campaign id | 
+
+Get campaign by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaign`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaign"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCampaignById
+Update campaign by id
+
+```javascript
+// Promise
+const promise = communication.updateCampaignById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateCampaignById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Campaign id | 
+
+Update campaign by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Campaign`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Campaign"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getStatsOfCampaignById
+Get stats of campaign by id
+
+```javascript
+// Promise
+const promise = communication.getStatsOfCampaignById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getStatsOfCampaignById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Campaign id | 
+
+Get stats of campaign by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetStats`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/GetStats"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAudiences
+Get audiences
+
+```javascript
+// Promise
+const promise = communication.getAudiences(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getAudiences(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get audiences
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audiences`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audiences"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createAudience
+Create audience
+
+```javascript
+// Promise
+const promise = communication.createAudience(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createAudience(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create audience
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audience`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audience"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBigqueryHeaders
+Get bigquery headers
+
+```javascript
+// Promise
+const promise = communication.getBigqueryHeaders(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.getBigqueryHeaders(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get bigquery headers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BigqueryHeadersRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BigqueryHeadersRes"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAudienceById
+Get audience by id
+
+```javascript
+// Promise
+const promise = communication.getAudienceById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getAudienceById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Audience id | 
+
+Get audience by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audience`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audience"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAudienceById
+Update audience by id
+
+```javascript
+// Promise
+const promise = communication.updateAudienceById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateAudienceById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Audience id | 
+
+Update audience by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Audience`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Audience"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getNSampleRecordsFromCsv
+Get n sample records from csv
+
+```javascript
+// Promise
+const promise = communication.getNSampleRecordsFromCsv(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.getNSampleRecordsFromCsv(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get n sample records from csv
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetNRecordsCsvRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/GetNRecordsCsvRes"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailProviders
+Get email providers
+
+```javascript
+// Promise
+const promise = communication.getEmailProviders(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getEmailProviders(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get email providers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProviders`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProviders"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createEmailProvider
+Create email provider
+
+```javascript
+// Promise
+const promise = communication.createEmailProvider(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createEmailProvider(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create email provider
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailProviderById
+Get email provider by id
+
+```javascript
+// Promise
+const promise = communication.getEmailProviderById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getEmailProviderById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Email provider id | 
+
+Get email provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateEmailProviderById
+Update email provider by id
+
+```javascript
+// Promise
+const promise = communication.updateEmailProviderById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateEmailProviderById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Email provider id | 
+
+Update email provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailTemplates
+Get email templates
+
+```javascript
+// Promise
+const promise = communication.getEmailTemplates(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getEmailTemplates(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get email templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplates"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createEmailTemplate
+Create email template
+
+```javascript
+// Promise
+const promise = communication.createEmailTemplate(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createEmailTemplate(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create email template
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSystemEmailTemplates
+Get system email templates
+
+```javascript
+// Promise
+const promise = communication.getSystemEmailTemplates(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getSystemEmailTemplates(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get system email templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SystemEmailTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SystemEmailTemplates"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEmailTemplateById
+Get email template by id
+
+```javascript
+// Promise
+const promise = communication.getEmailTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getEmailTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Email template id | 
+
+Get email template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplate`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplate"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateEmailTemplateById
+Update email template by id
+
+```javascript
+// Promise
+const promise = communication.updateEmailTemplateById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateEmailTemplateById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Email template id | 
+
+Update email template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteEmailTemplateById
+Delete email template by id
+
+```javascript
+// Promise
+const promise = communication.deleteEmailTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.deleteEmailTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Email template id | 
+
+Delete email template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EmailTemplateDeleteSuccessRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateDeleteSuccessRes"
+}
+```
+
+
+
+
+
+
+
+
+Failure
+
+
+Schema: `EmailTemplateDeleteFailureRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EmailTemplateDeleteFailureRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEventSubscriptions
+Get event subscriptions
+
+```javascript
+// Promise
+const promise = communication.getEventSubscriptions(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getEventSubscriptions(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get event subscriptions
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `EventSubscriptions`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/EventSubscriptions"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobs
+Get jobs
+
+```javascript
+// Promise
+const promise = communication.getJobs(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getJobs(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get jobs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Jobs`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Jobs"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### triggerCampaignJob
+Trigger campaign job
+
+```javascript
+// Promise
+const promise = communication.triggerCampaignJob(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.triggerCampaignJob(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Trigger campaign job
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TriggerJobResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/TriggerJobResponse"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobLogs
+Get job logs
+
+```javascript
+// Promise
+const promise = communication.getJobLogs(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getJobLogs(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get job logs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `JobLogs`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/JobLogs"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCommunicationLogs
+Get communication logs
+
+```javascript
+// Promise
+const promise = communication.getCommunicationLogs(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getCommunicationLogs(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get communication logs
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Logs`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Logs"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSystemNotifications
+Get system notifications
+
+```javascript
+// Promise
+const promise = communication.getSystemNotifications(companyId,query,pageNo,pageSize);
+
+// Async/Await
+const data = await communication.getSystemNotifications(companyId,query,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| query | object |  | 
+| pageNo | integer |  | 
+| pageSize | integer |  | 
+
+Get system notifications
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SystemNotifications`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SystemNotifications"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsProviders
+Get sms providers
+
+```javascript
+// Promise
+const promise = communication.getSmsProviders(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getSmsProviders(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get sms providers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProviders`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProviders"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createSmsProvider
+Create sms provider
+
+```javascript
+// Promise
+const promise = communication.createSmsProvider(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createSmsProvider(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create sms provider
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsProviderById
+Get sms provider by id
+
+```javascript
+// Promise
+const promise = communication.getSmsProviderById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getSmsProviderById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Sms provider id | 
+
+Get sms provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSmsProviderById
+Update sms provider by id
+
+```javascript
+// Promise
+const promise = communication.updateSmsProviderById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateSmsProviderById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Sms provider id | 
+
+Update sms provider by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsProvider`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsProvider"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsTemplates
+Get sms templates
+
+```javascript
+// Promise
+const promise = communication.getSmsTemplates(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getSmsTemplates(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get sms templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplates"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createSmsTemplate
+Create sms template
+
+```javascript
+// Promise
+const promise = communication.createSmsTemplate(companyId,applicationId,body);
+
+// Async/Await
+const data = await communication.createSmsTemplate(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Create sms template
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSmsTemplateById
+Get sms template by id
+
+```javascript
+// Promise
+const promise = communication.getSmsTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.getSmsTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Sms template id | 
+
+Get sms template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplate`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplate"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSmsTemplateById
+Update sms template by id
+
+```javascript
+// Promise
+const promise = communication.updateSmsTemplateById(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await communication.updateSmsTemplateById(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Sms template id | 
+
+Update sms template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplateRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateRes"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSmsTemplateById
+Delete sms template by id
+
+```javascript
+// Promise
+const promise = communication.deleteSmsTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await communication.deleteSmsTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+| id | string | Sms template id | 
+
+Delete sms template by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SmsTemplateDeleteSuccessRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateDeleteSuccessRes"
+}
+```
+
+
+
+
+
+
+
+
+Failure
+
+
+Schema: `SmsTemplateDeleteFailureRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SmsTemplateDeleteFailureRes"
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSystemSystemTemplates
+Get system sms templates
+
+```javascript
+// Promise
+const promise = communication.getSystemSystemTemplates(companyId,applicationId);
+
+// Async/Await
+const data = await communication.getSystemSystemTemplates(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company id | 
+| applicationId | string | Application id | 
+
+Get system sms templates
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SystemSmsTemplates`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SystemSmsTemplates"
+}
+```
 
 
 
@@ -12202,33 +14376,33 @@ Schema: `ApefaceApiError`
 ## Catalog
 
 
-#### getSearchKeywords
-Get a Search Keywords Details
+#### deleteSearchKeywords
+Delete a Search Keywords
 
 ```javascript
 // Promise
-const promise = catalog.getSearchKeywords(companyId,applicationId,id);
+const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
 
 // Async/Await
-const data = await catalog.getSearchKeywords(companyId,applicationId,id);
+const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
-Schema: `GetSearchWordsDetailResponse`
+Schema: `DeleteResponse`
 
 
 
@@ -12304,83 +14478,33 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
+#### getSearchKeywords
+Get a Search Keywords Details
 
 ```javascript
 // Promise
-const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
+const promise = catalog.getSearchKeywords(companyId,applicationId,id);
 
 // Async/Await
-const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
+const data = await catalog.getSearchKeywords(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
 
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAllSearchKeyword
-List all Search Custom Keyword Listing
-
-```javascript
-// Promise
-const promise = catalog.getAllSearchKeyword(companyId,applicationId);
-
-// Async/Await
-const data = await catalog.getAllSearchKeyword(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
+Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
 
 *Success Response:*
 
 
 
-List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
+The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
 
 
-Schema: `GetSearchWordsResponse`
+Schema: `GetSearchWordsDetailResponse`
 
 
 
@@ -12455,84 +14579,32 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAutocompleteKeywordDetail
-Get a Autocomplete Keywords Details
+#### getAllSearchKeyword
+List all Search Custom Keyword Listing
 
 ```javascript
 // Promise
-const promise = catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
+const promise = catalog.getAllSearchKeyword(companyId,applicationId);
 
 // Async/Await
-const data = await catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
+const data = await catalog.getAllSearchKeyword(companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
 
-Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
-
-*Success Response:*
-
-
-
-The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
-
-
-Schema: `GetAutocompleteWordsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
-
-```javascript
-// Promise
-const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
-
-// Async/Await
-const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
 
 *Success Response:*
 
 
 
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
 
 
-Schema: `GetAutocompleteWordsResponse`
+Schema: `GetSearchWordsResponse`
 
 
 
@@ -12608,29 +14680,81 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAutocompleteConfig
-List all Autocomplete Keyword Listing
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
 
 ```javascript
 // Promise
-const promise = catalog.getAutocompleteConfig(companyId,applicationId);
+const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.getAutocompleteConfig(companyId,applicationId);
+const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
 
 *Success Response:*
 
 
 
-List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+
+
+Schema: `GetAutocompleteWordsResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAutocompleteKeywordDetail
+Get a Autocomplete Keywords Details
+
+```javascript
+// Promise
+const promise = catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
+
+Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+
+*Success Response:*
+
+
+
+The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
 
 
 Schema: `GetAutocompleteWordsResponse`
@@ -12708,6 +14832,105 @@ Schema: `ErrorResponse`
 ---
 
 
+#### getAutocompleteConfig
+List all Autocomplete Keyword Listing
+
+```javascript
+// Promise
+const promise = catalog.getAutocompleteConfig(companyId,applicationId);
+
+// Async/Await
+const data = await catalog.getAutocompleteConfig(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+
+*Success Response:*
+
+
+
+List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+
+
+Schema: `GetAutocompleteWordsResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createProductBundle
+Create Product Bundle
+
+```javascript
+// Promise
+const promise = catalog.createProductBundle(companyId,body);
+
+// Async/Await
+const data = await catalog.createProductBundle(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+
+*Success Response:*
+
+
+
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+
+
+Schema: `GetProductBundleCreateResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getProductBundle
 List all Product Bundles
 
@@ -12758,28 +14981,29 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createProductBundle
-Create Product Bundle
+#### updateProductBundle
+Update a Product Bundle
 
 ```javascript
 // Promise
-const promise = catalog.createProductBundle(companyId,body);
+const promise = catalog.updateProductBundle(companyId,id,body);
 
 // Async/Await
-const data = await catalog.createProductBundle(companyId,body);
+const data = await catalog.updateProductBundle(companyId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+Update a Product Bundle by its id. On successful request, returns the updated product bundle
 
 *Success Response:*
 
 
 
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
 
 
 Schema: `GetProductBundleCreateResponse`
@@ -12857,32 +15081,31 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateProductBundle
-Update a Product Bundle
+#### createSizeGuide
+Create a size guide.
 
 ```javascript
 // Promise
-const promise = catalog.updateProductBundle(companyId,id,body);
+const promise = catalog.createSizeGuide(companyId,body);
 
 // Async/Await
-const data = await catalog.updateProductBundle(companyId,id,body);
+const data = await catalog.createSizeGuide(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+| companyId | string | Id of the company inside which the size guide is to be created. | 
 
-Update a Product Bundle by its id. On successful request, returns the updated product bundle
+This API allows to create a size guide associated to a brand.
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
+Returns a success response
 
 
-Schema: `GetProductBundleCreateResponse`
+Schema: `SuccessResponse`
 
 
 
@@ -12961,22 +15184,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createSizeGuide
-Create a size guide.
+#### updateSizeGuide
+Edit a size guide.
 
 ```javascript
 // Promise
-const promise = catalog.createSizeGuide(companyId,body);
+const promise = catalog.updateSizeGuide(companyId,id,body);
 
 // Async/Await
-const data = await catalog.createSizeGuide(companyId,body);
+const data = await catalog.updateSizeGuide(companyId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the size guide is to be created. | 
+| companyId | string | Id of the company. | 
+| id | string | Mongo id of the size guide to be edited | 
 
-This API allows to create a size guide associated to a brand.
+This API allows to edit a size guide.
 
 *Success Response:*
 
@@ -13060,56 +15284,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateSizeGuide
-Edit a size guide.
-
-```javascript
-// Promise
-const promise = catalog.updateSizeGuide(companyId,id,body);
-
-// Async/Await
-const data = await catalog.updateSizeGuide(companyId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company. | 
-| id | string | Mongo id of the size guide to be edited | 
-
-This API allows to edit a size guide.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCatalogConfiguration
 Get configuration meta  details for catalog for admin panel
 
@@ -13136,6 +15310,56 @@ configuration details for catalog. See example below or refer `GetCatalogConfigu
 
 
 Schema: `GetCatalogConfigurationMetaData`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createConfigurationProductListing
+Add configuration for products & listings
+
+```javascript
+// Promise
+const promise = catalog.createConfigurationProductListing(companyId,applicationId,body);
+
+// Async/Await
+const data = await catalog.createConfigurationProductListing(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+Add configuration for products & listing.
+
+*Success Response:*
+
+
+
+success flag will tell whether the operation was successful.
+
+
+Schema: `GetAppCatalogConfiguration`
 
 
 
@@ -13210,23 +15434,24 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createConfigurationProductListing
-Add configuration for products & listings
+#### createConfigurationByType
+Add configuration for categories and brands
 
 ```javascript
 // Promise
-const promise = catalog.createConfigurationProductListing(companyId,applicationId,body);
+const promise = catalog.createConfigurationByType(companyId,applicationId,type,body);
 
 // Async/Await
-const data = await catalog.createConfigurationProductListing(companyId,applicationId,body);
+const data = await catalog.createConfigurationByType(companyId,applicationId,type,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| type | string | type can be brands, categories etc. | 
 
-Add configuration for products & listing.
+Add configuration for categories & brands.
 
 *Success Response:*
 
@@ -13311,57 +15536,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createConfigurationByType
-Add configuration for categories and brands
-
-```javascript
-// Promise
-const promise = catalog.createConfigurationByType(companyId,applicationId,type,body);
-
-// Async/Await
-const data = await catalog.createConfigurationByType(companyId,applicationId,type,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| type | string | type can be brands, categories etc. | 
-
-Add configuration for categories & brands.
-
-*Success Response:*
-
-
-
-success flag will tell whether the operation was successful.
-
-
-Schema: `GetAppCatalogConfiguration`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getQueryFilters
 Get query filters to configure a collection
 
@@ -13412,56 +15586,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAllCollections
-List all the collections
-
-```javascript
-// Promise
-const promise = catalog.getAllCollections(companyId,applicationId);
-
-// Async/Await
-const data = await catalog.getAllCollections(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
-
-*Success Response:*
-
-
-
-List of collections. See example below or refer `GetCollectionListingResponse` for details
-
-
-Schema: `GetCollectionListingResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### createCollection
 Add a Collection
 
@@ -13488,6 +15612,56 @@ List of all the collections including the one you added. See example below or re
 
 
 Schema: `CollectionCreateResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAllCollections
+List all the collections
+
+```javascript
+// Promise
+const promise = catalog.getAllCollections(companyId,applicationId);
+
+// Async/Await
+const data = await catalog.getAllCollections(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
+
+*Success Response:*
+
+
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+Schema: `GetCollectionListingResponse`
 
 
 
@@ -13563,6 +15737,57 @@ Schema: `ErrorResponse`
 ---
 
 
+#### deleteCollection
+Delete a Collection
+
+```javascript
+// Promise
+const promise = catalog.deleteCollection(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteCollection(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier of a collection. | 
+
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### updateCollection
 Update a collection
 
@@ -13614,15 +15839,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteCollection
-Delete a Collection
+#### addCollectionItems
+Add items to a collection
 
 ```javascript
 // Promise
-const promise = catalog.deleteCollection(companyId,applicationId,id);
+const promise = catalog.addCollectionItems(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.deleteCollection(companyId,applicationId,id);
+const data = await catalog.addCollectionItems(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -13631,16 +15856,16 @@ const data = await catalog.deleteCollection(companyId,applicationId,id);
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
 | id | string | A `id` is a unique identifier of a collection. | 
 
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
 
 *Success Response:*
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Status object. Tells whether the operation was successful.
 
 
-Schema: `DeleteResponse`
+Schema: `UpdatedResponse`
 
 
 
@@ -13695,57 +15920,6 @@ The attached items of an collection. See example below or refer `GetCollectionIt
 
 
 Schema: `GetCollectionItemsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addCollectionItems
-Add items to a collection
-
-```javascript
-// Promise
-const promise = catalog.addCollectionItems(companyId,applicationId,id,body);
-
-// Async/Await
-const data = await catalog.addCollectionItems(companyId,applicationId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
-
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful.
-
-
-Schema: `UpdatedResponse`
 
 
 
@@ -14722,6 +16896,55 @@ Schema: `PTErrorResponse`
 ---
 
 
+#### createCategories
+Create product categories
+
+```javascript
+// Promise
+const promise = catalog.createCategories(companyId,body);
+
+// Async/Await
+const data = await catalog.createCategories(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API lets user create product categories
+
+*Success Response:*
+
+
+
+Category Meta. See example below or refer `CategoryCreateResponse` for details
+
+
+Schema: `CategoryCreateResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### listCategories
 Get product categories list
 
@@ -14773,31 +16996,32 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createCategories
-Create product categories
+#### updateCategory
+Update product categories
 
 ```javascript
 // Promise
-const promise = catalog.createCategories(companyId,body);
+const promise = catalog.updateCategory(companyId,uid,body);
 
 // Async/Await
-const data = await catalog.createCategories(companyId,body);
+const data = await catalog.updateCategory(companyId,uid,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| uid | string | Category unique id | 
 
-This API lets user create product categories
+Update a product category using this apu
 
 *Success Response:*
 
 
 
-Category Meta. See example below or refer `CategoryCreateResponse` for details
+Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
-Schema: `CategoryCreateResponse`
+Schema: `CategoryUpdateResponse`
 
 
 
@@ -14872,32 +17096,31 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateCategory
-Update product categories
+#### createProduct
+Create a product.
 
 ```javascript
 // Promise
-const promise = catalog.updateCategory(companyId,uid,body);
+const promise = catalog.createProduct(companyId,body);
 
 // Async/Await
-const data = await catalog.updateCategory(companyId,uid,body);
+const data = await catalog.createProduct(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| uid | string | Category unique id | 
+| companyId | string | Id of the company associated to product that is to be viewed. | 
 
-Update a product category using this apu
+This API allows to create product.
 
 *Success Response:*
 
 
 
-Category Meta. See example below or refer `CategoryUpdateResponse` for details
+Returns a success response
 
 
-Schema: `CategoryUpdateResponse`
+Schema: `SuccessResponse`
 
 
 
@@ -14976,22 +17199,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createProduct
-Create a product.
+#### deleteProduct
+Delete a product.
 
 ```javascript
 // Promise
-const promise = catalog.createProduct(companyId,body);
+const promise = catalog.deleteProduct(companyId,itemId);
 
 // Async/Await
-const data = await catalog.createProduct(companyId,body);
+const data = await catalog.deleteProduct(companyId,itemId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
+| companyId | string | Company Id of the company associated to product that is to be deleted. | 
+| itemId | integer | Id of the product to be updated. | 
 
-This API allows to create product.
+This API allows to delete product.
 
 *Success Response:*
 
@@ -15001,59 +17225,6 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getProduct
-Get a single product.
-
-```javascript
-// Promise
-const promise = catalog.getProduct(companyId,itemId,itemCode,brandUid,uid);
-
-// Async/Await
-const data = await catalog.getProduct(companyId,itemId,itemCode,brandUid,uid);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| itemCode | string | Item code of the product. | 
-| companyId | integer | Company Id of the product. | 
-| itemId | integer | Item Id of the product. | 
-| brandUid | integer | Brand Id of the product. | 
-| uid | integer | Id of the product. | 
-
-This API helps to get data associated to a particular product.
-
-*Success Response:*
-
-
-
-Product object. See example below or refer `product.utils.format_product_response` for details
-
-
-Schema: `Product`
 
 
 
@@ -15128,32 +17299,35 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteProduct
-Delete a product.
+#### getProduct
+Get a single product.
 
 ```javascript
 // Promise
-const promise = catalog.deleteProduct(companyId,itemId);
+const promise = catalog.getProduct(companyId,itemId,itemCode,brandUid,uid);
 
 // Async/Await
-const data = await catalog.deleteProduct(companyId,itemId);
+const data = await catalog.getProduct(companyId,itemId,itemCode,brandUid,uid);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to product that is to be deleted. | 
-| itemId | integer | Id of the product to be updated. | 
+| itemCode | string | Item code of the product. | 
+| companyId | integer | Company Id of the product. | 
+| itemId | integer | Item Id of the product. | 
+| brandUid | integer | Brand Id of the product. | 
+| uid | integer | Id of the product. | 
 
-This API allows to delete product.
+This API helps to get data associated to a particular product.
 
 *Success Response:*
 
 
 
-Returns a success response
+Product object. See example below or refer `product.utils.format_product_response` for details
 
 
-Schema: `SuccessResponse`
+Schema: `Product`
 
 
 
@@ -15280,6 +17454,55 @@ Schema: `ErrorResponse`
 ---
 
 
+#### updateProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+```javascript
+// Promise
+const promise = catalog.updateProductAssetsInBulk(companyId,body);
+
+// Async/Await
+const data = await catalog.updateProductAssetsInBulk(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which assets to be uploaded. | 
+
+This API helps to create a bulk asset upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getProductBulkUploadHistory
 Get a list of all bulk product upload jobs.
 
@@ -15307,55 +17530,6 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 
 
 Schema: `ProductBulkRequestList`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-```javascript
-// Promise
-const promise = catalog.updateProductAssetsInBulk(companyId,body);
-
-// Async/Await
-const data = await catalog.updateProductAssetsInBulk(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to create a bulk asset upload job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -15529,6 +17703,55 @@ Schema: `ErrorResponse`
 ---
 
 
+#### createProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+```javascript
+// Promise
+const promise = catalog.createProductAssetsInBulk(companyId,body);
+
+// Async/Await
+const data = await catalog.createProductAssetsInBulk(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which assets to be uploaded. | 
+
+This API helps to create a bulk asset upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getProductAssetsInBulk
 Get a list of all bulk asset jobs.
 
@@ -15556,55 +17779,6 @@ List of bulk asset jobs List. See `BulkUtil.modify_batch_response` for details
 
 
 Schema: `BulkAssetResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-```javascript
-// Promise
-const promise = catalog.createProductAssetsInBulk(companyId,body);
-
-// Async/Await
-const data = await catalog.createProductAssetsInBulk(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to create a bulk asset upload job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -15680,6 +17854,57 @@ Schema: `ErrorResponse`
 ---
 
 
+#### addInventory
+Add Inventory for particular size and store.
+
+```javascript
+// Promise
+const promise = catalog.addInventory(companyId,itemId,size,body);
+
+// Async/Await
+const data = await catalog.addInventory(companyId,itemId,size,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to product that is to be viewed. | 
+| itemId | number | Item of the company associated to product that is to be viewed. | 
+| size | string | Size in which inventory is to be added. | 
+
+This API allows add Inventory for particular size and store.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getInventory
 Get Inventory for company
 
@@ -15708,58 +17933,7 @@ This API allows get Inventory data for particular company grouped by size and st
 returns a list of all inventory grouped by size and store
 
 
-Schema: `InventoryRequest`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addInventory
-Add Inventory for particular size and store.
-
-```javascript
-// Promise
-const promise = catalog.addInventory(companyId,itemId,size,body);
-
-// Async/Await
-const data = await catalog.addInventory(companyId,itemId,size,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | number | Item of the company associated to product that is to be viewed. | 
-| size | string | Size in which inventory is to be added. | 
-
-This API allows add Inventory for particular size and store.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
+Schema: `InventoryRequest1`
 
 
 
@@ -15835,6 +18009,55 @@ Schema: `ErrorResponse`
 ---
 
 
+#### createBulkInventoryJob
+Create a Bulk Inventory upload Job.
+
+```javascript
+// Promise
+const promise = catalog.createBulkInventoryJob(companyId,body);
+
+// Async/Await
+const data = await catalog.createBulkInventoryJob(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which Inventory to be uploaded. | 
+
+This API helps to create a bulk Inventory upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `CommonResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getInventoryBulkUploadHistory
 Get a list of all bulk Inventory upload jobs.
 
@@ -15862,55 +18085,6 @@ List of bulk Inventory upload jobs. See `BulkRequestGetSchema` for details
 
 
 Schema: `BulkRequestGet`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createBulkInventoryJob
-Create a Bulk Inventory upload Job.
-
-```javascript
-// Promise
-const promise = catalog.createBulkInventoryJob(companyId,body);
-
-// Async/Await
-const data = await catalog.createBulkInventoryJob(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which Inventory to be uploaded. | 
-
-This API helps to create a bulk Inventory upload job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `CommonResponse`
 
 
 
@@ -16033,55 +18207,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getInventoryExport
-Get Inventory export history.
-
-```javascript
-// Promise
-const promise = catalog.getInventoryExport(companyId);
-
-// Async/Await
-const data = await catalog.getInventoryExport(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to get Inventory export history.
-
-*Success Response:*
-
-
-
-Returns a list of inventory export jobs
-
-
-Schema: `InventoryExportJob`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### createInventoryExportJob
 Create a Inventory export Job.
 
@@ -16107,6 +18232,55 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInventoryExport
+Get Inventory export history.
+
+```javascript
+// Promise
+const promise = catalog.getInventoryExport(companyId);
+
+// Async/Await
+const data = await catalog.getInventoryExport(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which assets to be uploaded. | 
+
+This API helps to get Inventory export history.
+
+*Success Response:*
+
+
+
+Returns a list of inventory export jobs
+
+
+Schema: `InventoryExportJob`
 
 
 
@@ -16335,56 +18509,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(companyId,brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(companyId,brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getBrand
 Get a single brand.
 
@@ -16411,6 +18535,56 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 
 
 Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editBrand
+Edit a brand.
+
+```javascript
+// Promise
+const promise = companyprofile.editBrand(companyId,brandId,body);
+
+// Async/Await
+const data = await companyprofile.editBrand(companyId,brandId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API allows to edit meta of a brand.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -16685,56 +18859,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
-
-```javascript
-// Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
-
-// Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getLocationDetail
 Get details of a specific location.
 
@@ -16761,6 +18885,56 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.updateLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -17525,2339 +19699,6 @@ Schema: `ShortLinkRes`
 ---
 
 
-## Inventory
-
-
-#### getJobsByCompany
-Get Job Configs For A Company
-
-```javascript
-// Promise
-const promise = inventory.getJobsByCompany(companyId,pageNo,pageSize);
-
-// Async/Await
-const data = await inventory.getJobsByCompany(companyId,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
-
-REST Endpoint that returns all job configs for a company
-
-*Success Response:*
-
-
-
-Successful operation
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateJob
-Updates An Existing Job Config
-
-```javascript
-// Promise
-const promise = inventory.updateJob(companyId,body,xUserData);
-
-// Async/Await
-const data = await inventory.updateJob(companyId,body,xUserData);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| xUserData | string |  | 
-
-REST Endpoint that updates a job config
-
-*Success Response:*
-
-
-
-Job Config Updated Successfully
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Unauthorized
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createJob
-Creates A New Job Config
-
-```javascript
-// Promise
-const promise = inventory.createJob(companyId,body,xUserData);
-
-// Async/Await
-const data = await inventory.createJob(companyId,body,xUserData);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| xUserData | string |  | 
-
-REST Endpoint that creates a new job config
-
-*Success Response:*
-
-
-
-Job Config Created Successfully
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Unauthorized
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Job Config Already Exists
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeString`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getJobByCompanyAndIntegration
-Get Job Configs By Company And Integration
-
-```javascript
-// Promise
-const promise = inventory.getJobByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
-
-// Async/Await
-const data = await inventory.getJobByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| integrationId | string | Integration Id | 
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
-
-REST Endpoint that returns all job configs by company And integration
-
-*Success Response:*
-
-
-
-Successful operation
-
-
-Schema: `ResponseEnvelopeListJobConfigDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeListJobConfigDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeListJobConfigDTO`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getJobConfigDefaults
-Get Job Configs Defaults
-
-```javascript
-// Promise
-const promise = inventory.getJobConfigDefaults(companyId);
-
-// Async/Await
-const data = await inventory.getJobConfigDefaults(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-
-REST Endpoint that returns default fields job configs by company And integration
-
-*Success Response:*
-
-
-
-Successful operation
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getJobByCode
-Get Job Config By Code
-
-```javascript
-// Promise
-const promise = inventory.getJobByCode(companyId,code);
-
-// Async/Await
-const data = await inventory.getJobByCode(companyId,code);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| code | string | Job Code | 
-
-REST Endpoint that returns job config by code
-
-*Success Response:*
-
-
-
-Successful operation
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeJobConfigDTO`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getJobCodesByCompanyAndIntegration
-Get Job Codes By Company And Integration
-
-```javascript
-// Promise
-const promise = inventory.getJobCodesByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
-
-// Async/Await
-const data = await inventory.getJobCodesByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| integrationId | string | Integration Id | 
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
-
-REST Endpoint that returns all job codes by company And integration
-
-*Success Response:*
-
-
-
-Successful operation
-
-
-Schema: `ResponseEnvelopeListJobConfigListDTO`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `ResponseEnvelopeListJobConfigListDTO`
-
-
-
-
-
-
-
-
-Internal Server Error
-
-
-Schema: `ResponseEnvelopeListJobConfigListDTO`
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
-## Configuration
-
-
-#### getBuildConfig
-Get latest build config
-
-```javascript
-// Promise
-const promise = configuration.getBuildConfig(companyId,applicationId,platformType);
-
-// Async/Await
-const data = await configuration.getBuildConfig(companyId,applicationId,platformType);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| platformType | string | Current platform name | 
-
-Get latest build config
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MobileAppConfiguration`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateBuildConfig
-Update build config for next build
-
-```javascript
-// Promise
-const promise = configuration.updateBuildConfig(companyId,applicationId,platformType,body);
-
-// Async/Await
-const data = await configuration.updateBuildConfig(companyId,applicationId,platformType,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| platformType | string | Current platform name | 
-
-Update build config for next build
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `MobileAppConfiguration`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPreviousVersions
-Get previous versions
-
-```javascript
-// Promise
-const promise = configuration.getPreviousVersions(companyId,applicationId,platformType);
-
-// Async/Await
-const data = await configuration.getPreviousVersions(companyId,applicationId,platformType);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| platformType | string | Current platform name | 
-
-Get previous versions
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `BuildVersionHistory`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAppFeatures
-Get features of application
-
-```javascript
-// Promise
-const promise = configuration.getAppFeatures(companyId,applicationId);
-
-// Async/Await
-const data = await configuration.getAppFeatures(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Get features of application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `AppFeatureResponse`
-
-
-
-
-
-
-
-
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAppFeatures
-Update features of application
-
-```javascript
-// Promise
-const promise = configuration.updateAppFeatures(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.updateAppFeatures(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Update features of application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `AppFeature`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAppBasicDetails
-Get basic application details
-
-```javascript
-// Promise
-const promise = configuration.getAppBasicDetails(companyId,applicationId);
-
-// Async/Await
-const data = await configuration.getAppBasicDetails(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Get basic application details like name
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationDetail`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAppBasicDetails
-Add or update application's basic details
-
-```javascript
-// Promise
-const promise = configuration.updateAppBasicDetails(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.updateAppBasicDetails(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Add or update application's basic details
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationDetail`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAppContactInfo
-Get application information
-
-```javascript
-// Promise
-const promise = configuration.getAppContactInfo(companyId,applicationId);
-
-// Async/Await
-const data = await configuration.getAppContactInfo(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationInformation`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAppContactInfo
-Get application information
-
-```javascript
-// Promise
-const promise = configuration.updateAppContactInfo(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.updateAppContactInfo(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Save Application Current Information. This includes information about social links, address and contact information of an application.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationInformation`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAppApiTokens
-Get social tokens
-
-```javascript
-// Promise
-const promise = configuration.getAppApiTokens(companyId,applicationId);
-
-// Async/Await
-const data = await configuration.getAppApiTokens(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Get social tokens.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `TokenResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAppApiTokens
-Add social tokens
-
-```javascript
-// Promise
-const promise = configuration.updateAppApiTokens(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.updateAppApiTokens(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Add social tokens.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `TokenResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAppCompanies
-Application inventory enabled companies
-
-```javascript
-// Promise
-const promise = configuration.getAppCompanies(companyId,applicationId);
-
-// Async/Await
-const data = await configuration.getAppCompanies(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Application inventory enabled companies.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CompaniesResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAppStores
-Application inventory enabled stores
-
-```javascript
-// Promise
-const promise = configuration.getAppStores(companyId,applicationId);
-
-// Async/Await
-const data = await configuration.getAppStores(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Application inventory enabled stores.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `StoresResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getInventoryConfig
-Get application configuration
-
-```javascript
-// Promise
-const promise = configuration.getInventoryConfig(companyId,applicationId);
-
-// Async/Await
-const data = await configuration.getInventoryConfig(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Get application configuration for various features and data
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationInventory`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateInventoryConfig
-Update application configuration
-
-```javascript
-// Promise
-const promise = configuration.updateInventoryConfig(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.updateInventoryConfig(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Update application configuration for various features and data
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationInventory`
-
-
-
-
-
-
-
-
-
----
-
-
-#### partiallyUpdateInventoryConfig
-Partially update application configuration
-
-```javascript
-// Promise
-const promise = configuration.partiallyUpdateInventoryConfig(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.partiallyUpdateInventoryConfig(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Partially update application configuration for various features and data
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationInventory`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAppCurrencyConfig
-Get application enabled currency list
-
-```javascript
-// Promise
-const promise = configuration.getAppCurrencyConfig(companyId,applicationId);
-
-// Async/Await
-const data = await configuration.getAppCurrencyConfig(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Get application enabled currency list
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `AppSupportedCurrency`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAppCurrencyConfig
-Add initial application supported currency
-
-```javascript
-// Promise
-const promise = configuration.updateAppCurrencyConfig(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.updateAppCurrencyConfig(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Add initial application supported currency for various features and data. Default INR will be enabled.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `AppSupportedCurrency`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getOrderingStoresByFilter
-Get ordering store by filter
-
-```javascript
-// Promise
-const promise = configuration.getOrderingStoresByFilter(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.getOrderingStoresByFilter(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Get ordering store by filter
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `OrderingStores`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateOrderingStoreConfig
-Add/Update ordering store config
-
-```javascript
-// Promise
-const promise = configuration.updateOrderingStoreConfig(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.updateOrderingStoreConfig(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Add/Update ordering store config.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `DeploymentMeta`
-
-
-
-
-
-
-
-
-Invalid/Missing params
-
-
-Schema: `InvalidPayloadRequest`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getDomains
-Get attached domain list
-
-```javascript
-// Promise
-const promise = configuration.getDomains(companyId,applicationId);
-
-// Async/Await
-const data = await configuration.getDomains(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Get attached domain list.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `DomainsResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addDomain
-Add new domain to application
-
-```javascript
-// Promise
-const promise = configuration.addDomain(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.addDomain(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Add new domain to application.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Domain`
-
-
-
-
-
-
-
-
-Invalid/Missing params
-
-
-Schema: `InvalidPayloadRequest`
-
-
-*Examples:*
-
-
-Maximum domain limit reached
-```json
-{
-  "value": {
-    "message": "Maximum 4 domains can be added to application. Please remove existing one to add new"
-  }
-}
-```
-
-Failed to verify domain record
-```json
-{
-  "value": {
-    "message": "Failed to verify domain records"
-  }
-}
-```
-
-Domain already registered
-```json
-{
-  "value": {
-    "message": "Domain already linked to application"
-  }
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### removeDomainById
-Remove attached domain
-
-```javascript
-// Promise
-const promise = configuration.removeDomainById(companyId,applicationId,id);
-
-// Async/Await
-const data = await configuration.removeDomainById(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| id | string | Domain _id | 
-
-Remove attached domain.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `SuccessMessageResponse`
-
-
-
-
-
-
-
-
-Invalid request or Missing params
-
-
-Schema: `InvalidPayloadRequest`
-
-
-*Examples:*
-
-
-Primary or Shortlink or Default domain deletiion
-```json
-{
-  "value": {
-    "message": "Primary domain deletion not allowed"
-  }
-}
-```
-
-
-
-
-
-
-
-
-Invalid/Missing params
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
-
----
-
-
-#### changeDomainType
-Change domain type
-
-```javascript
-// Promise
-const promise = configuration.changeDomainType(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.changeDomainType(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Change a domain to Primary or Shortlink domain
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `DomainsResponse`
-
-
-
-
-
-
-
-
-Invalid/Missing params
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getDomainStatus
-Get domain connected status.
-
-```javascript
-// Promise
-const promise = configuration.getDomainStatus(companyId,applicationId,body);
-
-// Async/Await
-const data = await configuration.getDomainStatus(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `DomainStatusResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createApplication
-Create application
-
-```javascript
-// Promise
-const promise = configuration.createApplication(companyId,body);
-
-// Async/Await
-const data = await configuration.createApplication(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-
-Create new application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CreateAppResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getApplications
-Get list of application under company
-
-```javascript
-// Promise
-const promise = configuration.getApplications(companyId,pageNo,pageSize,q);
-
-// Async/Await
-const data = await configuration.getApplications(companyId,pageNo,pageSize,q);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| pageNo | integer |  | 
-| pageSize | integer |  | 
-| q | object | Url encoded object used as mongodb query | 
-
-Get list of application under company
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ApplicationsResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getApplicationById
-Get application data from id
-
-```javascript
-// Promise
-const promise = configuration.getApplicationById(companyId,applicationId);
-
-// Async/Await
-const data = await configuration.getApplicationById(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-
-Get application data from id
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Application`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCurrencies
-Get all currencies
-
-```javascript
-// Promise
-const promise = configuration.getCurrencies(companyId);
-
-// Async/Await
-const data = await configuration.getCurrencies(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-
-Get all currencies
-
-*Success Response:*
-
-
-
-Currencies Success response
-
-
-Schema: `CurrenciesResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getDomainAvailibility
-Check domain availibility before linking to application
-
-```javascript
-// Promise
-const promise = configuration.getDomainAvailibility(companyId,body);
-
-// Async/Await
-const data = await configuration.getDomainAvailibility(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-
-Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `DomainSuggestionsResponse`
-
-
-*Examples:*
-
-
-Suggestions for fynd domains
-```json
-{
-  "value": {
-    "domains": [
-      {
-        "name": "test.hostx1.de",
-        "is_available": false
-      },
-      {
-        "name": "testhive.hostx1.de",
-        "is_available": true
-      }
-    ]
-  }
-}
-```
-
-Suggestions for custom domains
-```json
-{
-  "value": {
-    "domains": [
-      {
-        "name": "test25.in",
-        "unsupported": false,
-        "is_available": false
-      },
-      {
-        "name": "try25.in",
-        "unsupported": false,
-        "is_available": true,
-        "price": 14.99,
-        "currency": "USD"
-      }
-    ]
-  }
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### getIntegrationById
-Get integration data
-
-```javascript
-// Promise
-const promise = configuration.getIntegrationById(companyId,id);
-
-// Async/Await
-const data = await configuration.getIntegrationById(companyId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | integer | Integration id | 
-
-Get integration data
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `Integration`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAvailableOptIns
-Get all available integration opt-ins
-
-```javascript
-// Promise
-const promise = configuration.getAvailableOptIns(companyId,pageNo,pageSize);
-
-// Async/Await
-const data = await configuration.getAvailableOptIns(companyId,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-
-Get all available integration opt-ins
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `GetIntegrationsOptInsResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getSelectedOptIns
-Get company/store level integration opt-ins
-
-```javascript
-// Promise
-const promise = configuration.getSelectedOptIns(companyId,level,uid,pageNo,pageSize);
-
-// Async/Await
-const data = await configuration.getSelectedOptIns(companyId,level,uid,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| level | string | Integration level | 
-| uid | integer | Integration level uid | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-
-Get company/store level integration opt-ins
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `GetIntegrationsOptInsResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getIntegrationLevelConfig
-Get integration level config
-
-```javascript
-// Promise
-const promise = configuration.getIntegrationLevelConfig(companyId,id,level);
-
-// Async/Await
-const data = await configuration.getIntegrationLevelConfig(companyId,id,level);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | string | Integration id | 
-| level | string | Integration level | 
-
-Get integration level config
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `IntegrationConfigResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getIntegrationByLevelId
-Get level data for integration
-
-```javascript
-// Promise
-const promise = configuration.getIntegrationByLevelId(companyId,id,level,uid);
-
-// Async/Await
-const data = await configuration.getIntegrationByLevelId(companyId,id,level,uid);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | string | Integration id | 
-| level | string | Integration level | 
-| uid | integer | Integration level uid | 
-
-Get level data for integration
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `IntegrationLevel`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getLevelActiveIntegrations
-Check store has active integration
-
-```javascript
-// Promise
-const promise = configuration.getLevelActiveIntegrations(companyId,id,level,uid);
-
-// Async/Await
-const data = await configuration.getLevelActiveIntegrations(companyId,id,level,uid);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | string | Integration id | 
-| level | string | Integration level | 
-| uid | integer | Integration level uid | 
-
-API checks if a store is already opted in any other integrations
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `OptedStoreIntegration`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getBrandsByCompany
-Get brands by company
-
-```javascript
-// Promise
-const promise = configuration.getBrandsByCompany(companyId,q);
-
-// Async/Await
-const data = await configuration.getBrandsByCompany(companyId,q);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| q | string | Search text for brand name | 
-
-Get brands by company
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `BrandsByCompanyResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCompanyByBrands
-Get company by brand uids
-
-```javascript
-// Promise
-const promise = configuration.getCompanyByBrands(companyId,body,pageNo,pageSize);
-
-// Async/Await
-const data = await configuration.getCompanyByBrands(companyId,body,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-
-Get company by brand uids
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CompanyByBrandsResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getStoreByBrands
-Get stores by brand uids
-
-```javascript
-// Promise
-const promise = configuration.getStoreByBrands(companyId,body,pageNo,pageSize);
-
-// Async/Await
-const data = await configuration.getStoreByBrands(companyId,body,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-
-Get stores by brand uids
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `StoreByBrandsResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getOtherSellerApplications
-Get other seller applications
-
-```javascript
-// Promise
-const promise = configuration.getOtherSellerApplications(companyId);
-
-// Async/Await
-const data = await configuration.getOtherSellerApplications(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-
-Get other seller applications who has opted current company as inventory
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `OtherSellerApplications`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getOtherSellerApplicationById
-Get other seller applications
-
-```javascript
-// Promise
-const promise = configuration.getOtherSellerApplicationById(companyId,id);
-
-// Async/Await
-const data = await configuration.getOtherSellerApplicationById(companyId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | string | Application Id | 
-
-Get other seller application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `OptedApplicationResponse`
-
-
-
-
-
-
-
-
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
-
----
-
-
-#### optOutFromApplication
-Opt out company or store from other seller application
-
-```javascript
-// Promise
-const promise = configuration.optOutFromApplication(companyId,id,body);
-
-// Async/Await
-const data = await configuration.optOutFromApplication(companyId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | string | Application Id | 
-
-Opt out company or store from other seller application
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `SuccessMessageResponse`
-
-
-
-
-
-
-
-
-Invalid params or Not configured inventory
-
-
-Schema: `InvalidPayloadRequest`
-
-
-*Examples:*
-
-
-Missing parameter
-```json
-{
-  "value": {
-    "message": "Invalid opt out request data. Either of `store` and `company` fields are missing"
-  }
-}
-```
-
-Company other than current company sent for opt out
-```json
-{
-  "value": {
-    "message": "Invalid company id"
-  }
-}
-```
-
-Store other than current company sent for opt out
-```json
-{
-  "value": {
-    "message": "Invalid store ids"
-  }
-}
-```
-
-Inventory not configured for sent application id
-```json
-{
-  "value": {
-    "message": "Inventory is not configured"
-  }
-}
-```
-
-
-
-
-
-
-
-
-Not found
-
-
-Schema: `NotFound`
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
 ## Cart
 
 
@@ -19987,7 +19828,7 @@ Create new coupon
 Coupon Created successfully
 
 
-Schema: `SuccessMessageResponse`
+Schema: `SuccessMessage`
 
 
 
@@ -20103,7 +19944,7 @@ Update coupon with id sent in `id`
 Coupon updated successfully
 
 
-Schema: `SuccessMessageResponse`
+Schema: `SuccessMessage`
 
 
 
@@ -20154,7 +19995,7 @@ Update archive/unarchive and change schedule for coupon
 Coupon updated successfully
 
 
-Schema: `SuccessMessageResponse`
+Schema: `SuccessMessage`
 
 
 *Examples:*

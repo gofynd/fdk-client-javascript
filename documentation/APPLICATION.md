@@ -148,7 +148,7 @@
     * [getLegalInformation](#getlegalinformation)
     * [getNavigations](#getnavigations)
     * [getPage](#getpage)
-    * [getSeoConfiguration](#getseoconfiguration)
+    * [getSEOConfiguration](#getseoconfiguration)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
@@ -8434,7 +8434,7 @@ No Announcement enabled
 ```json
 {
   "value": {
-    "announcements": [],
+    "announcements": {},
     "refresh_rate": 900,
     "refresh_pages": []
   }
@@ -8448,22 +8448,44 @@ No Announcement enabled
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -8500,7 +8522,7 @@ Use this API to fetch a blog using `slug`
 A JSON object with blog details
 
 
-Schema: `CustomBlog`
+Schema: `CustomBlogSchema`
 
 
 *Examples:*
@@ -8520,22 +8542,44 @@ default
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -8591,22 +8635,44 @@ default
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -8651,22 +8717,44 @@ Schema: `GetFaqCategoriesSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -8712,22 +8800,44 @@ Schema: `FaqSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -8773,22 +8883,44 @@ Schema: `GetFaqCategoryByIdOrSlugSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -8834,22 +8966,44 @@ Schema: `GetFaqSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -8885,7 +9039,7 @@ Use this API to fetch a landing page
 A JSON object with landing details
 
 
-Schema: `LandingPage`
+Schema: `LandingPageSchema`
 
 
 *Examples:*
@@ -8894,7 +9048,7 @@ Schema: `LandingPage`
 default
 ```json
 {
-  "$ref": "#/components/examples/LandingPage"
+  "$ref": "#/components/examples/LandingPageResponse"
 }
 ```
 
@@ -8905,22 +9059,44 @@ default
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -8976,22 +9152,44 @@ Success
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -9018,7 +9216,7 @@ const data = await content.getNavigations();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Use this API to fetch a navigation
+Use this API to fetch navigations
 
 *Success Response:*
 
@@ -9027,7 +9225,7 @@ Use this API to fetch a navigation
 A JSON object with navigation details
 
 
-Schema: `Navigation`
+Schema: `NavigationGetResponse`
 
 
 *Examples:*
@@ -9036,7 +9234,7 @@ Schema: `Navigation`
 default
 ```json
 {
-  "$ref": "#/components/examples/Navigation"
+  "$ref": "#/components/examples/NavigationGetResponse"
 }
 ```
 
@@ -9047,22 +9245,44 @@ default
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -9099,7 +9319,7 @@ Use this API to fetch a custom page using `slug`
 A JSON object with page details
 
 
-Schema: `CustomPage`
+Schema: `CustomPageSchema`
 
 
 *Examples:*
@@ -9108,7 +9328,7 @@ Schema: `CustomPage`
 default
 ```json
 {
-  "$ref": "#/components/examples/CustomPage"
+  "$ref": "#/components/examples/PageResponse"
 }
 ```
 
@@ -9119,22 +9339,44 @@ default
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -9147,15 +9389,15 @@ Schema: `ConvexApiError`
 ---
 
 
-#### getSeoConfiguration
+#### getSEOConfiguration
 Get seo of application
 
 ```javascript
 // Promise
-const promise = content.getSeoConfiguration();
+const promise = content.getSEOConfiguration();
 
 // Async/Await
-const data = await content.getSeoConfiguration();
+const data = await content.getSEOConfiguration();
 ```
 
 | Argument  |  Type  | Description |
@@ -9190,22 +9432,44 @@ Success
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -9242,7 +9506,7 @@ Use this API to fetch a slideshow using `slug`
 A JSON object with slideshow details
 
 
-Schema: `Slideshow`
+Schema: `SlideshowSchema`
 
 
 *Examples:*
@@ -9251,7 +9515,7 @@ Schema: `Slideshow`
 default
 ```json
 {
-  "$ref": "#/components/examples/Slideshow"
+  "$ref": "#/components/examples/SlideshowResponse"
 }
 ```
 
@@ -9262,22 +9526,44 @@ default
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -9333,22 +9619,44 @@ default
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
@@ -9393,22 +9701,44 @@ Schema: `TagsSchema`
 
 
 
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
 
 
 
-Schema: `ConvexApiError`
 
 
 
 
 
+Failed
 
 
+Schema: `APIError`
 
 
+*Examples:*
 
 
-Schema: `ConvexApiError`
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 
