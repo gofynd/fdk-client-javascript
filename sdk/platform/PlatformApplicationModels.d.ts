@@ -38,66 +38,6 @@ export class UserValidator {
     static getPlatformConfig(): any;
     static updatePlatformConfig(): any;
 }
-export class ContentValidator {
-    static getAnnouncementsList(): any;
-    static createAnnouncement(): any;
-    static getAnnouncementById(): any;
-    static updateAnnouncement(): any;
-    static updateAnnouncementSchedule(): any;
-    static deleteAnnouncement(): any;
-    static createBlog(): any;
-    static getBlogs(): any;
-    static updateBlog(): any;
-    static deleteBlog(): any;
-    static getComponentById(): any;
-    static getFaqCategories(): any;
-    static getFaqCategoryBySlugOrId(): any;
-    static createFaqCategory(): any;
-    static updateFaqCategory(): any;
-    static deleteFaqCategory(): any;
-    static getFaqsByCategoryIdOrSlug(): any;
-    static addFaq(): any;
-    static updateFaq(): any;
-    static deleteFaq(): any;
-    static getFaqByIdOrSlug(): any;
-    static getLandingPages(): any;
-    static createLandingPage(): any;
-    static updateLandingPage(): any;
-    static deleteLandingPage(): any;
-    static getLegalInformation(): any;
-    static updateLegalInformation(): any;
-    static getNavigations(): any;
-    static createNavigation(): any;
-    static getDefaultNavigations(): any;
-    static getNavigationBySlug(): any;
-    static updateNavigation(): any;
-    static deleteNavigation(): any;
-    static getPageMeta(): any;
-    static getPageSpec(): any;
-    static createPage(): any;
-    static getPages(): any;
-    static createPagePreview(): any;
-    static updatePagePreview(): any;
-    static updatePage(): any;
-    static deletePage(): any;
-    static getPageBySlug(): any;
-    static getSEOConfiguration(): any;
-    static updateSEOConfiguration(): any;
-    static getSlideshows(): any;
-    static createSlideshow(): any;
-    static getSlideshowBySlug(): any;
-    static updateSlideshow(): any;
-    static deleteSlideshow(): any;
-    static getSupportInformation(): any;
-    static updateSupportInformation(): any;
-    static createInjectableTag(): any;
-    static updateInjectableTag(): any;
-    static deleteAllInjectableTags(): any;
-    static getInjectableTags(): any;
-    static addInjectableTag(): any;
-    static removeInjectableTag(): any;
-    static editInjectableTag(): any;
-}
 export class CommunicationValidator {
     static getCampaigns(): any;
     static createCampaign(): any;
@@ -185,6 +125,34 @@ export class ShareValidator {
     static getShortLinks(): any;
     static getShortLinkByHash(): any;
     static updateShortLinkById(): any;
+}
+export class ConfigurationValidator {
+    static getBuildConfig(): any;
+    static updateBuildConfig(): any;
+    static getPreviousVersions(): any;
+    static getAppFeatures(): any;
+    static updateAppFeatures(): any;
+    static getAppBasicDetails(): any;
+    static updateAppBasicDetails(): any;
+    static getAppContactInfo(): any;
+    static updateAppContactInfo(): any;
+    static getAppApiTokens(): any;
+    static updateAppApiTokens(): any;
+    static getAppCompanies(): any;
+    static getAppStores(): any;
+    static getInventoryConfig(): any;
+    static updateInventoryConfig(): any;
+    static partiallyUpdateInventoryConfig(): any;
+    static getAppCurrencyConfig(): any;
+    static updateAppCurrencyConfig(): any;
+    static getOrderingStoresByFilter(): any;
+    static updateOrderingStoreConfig(): any;
+    static getDomains(): any;
+    static addDomain(): any;
+    static removeDomainById(): any;
+    static changeDomainType(): any;
+    static getDomainStatus(): any;
+    static getApplicationById(): any;
 }
 export class CartValidator {
     static getCoupons(): any;
