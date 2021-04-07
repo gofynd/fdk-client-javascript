@@ -13,17 +13,6 @@ export class LeadValidator {
     static openVideoRoom(): any;
     static closeVideoRoom(): any;
 }
-export class FeedbackValidator {
-    static getAttributes(): any;
-    static getCustomerReviews(): any;
-    static updateApprove(): any;
-    static getHistory(): any;
-    static getApplicationTemplates(): any;
-    static createTemplate(): any;
-    static getTemplateById(): any;
-    static updateTemplate(): any;
-    static updateTemplateStatus(): any;
-}
 export class ThemeValidator {
     static getThemeLibrary(): any;
     static addToThemeLibrary(): any;
@@ -109,44 +98,6 @@ export class ContentValidator {
     static removeInjectableTag(): any;
     static editInjectableTag(): any;
 }
-export class CommunicationValidator {
-    static getCampaigns(): any;
-    static createCampaign(): any;
-    static getCampaignById(): any;
-    static updateCampaignById(): any;
-    static getStatsOfCampaignById(): any;
-    static getAudiences(): any;
-    static createAudience(): any;
-    static getBigqueryHeaders(): any;
-    static getAudienceById(): any;
-    static updateAudienceById(): any;
-    static getNSampleRecordsFromCsv(): any;
-    static getEmailProviders(): any;
-    static createEmailProvider(): any;
-    static getEmailProviderById(): any;
-    static updateEmailProviderById(): any;
-    static getEmailTemplates(): any;
-    static createEmailTemplate(): any;
-    static getSystemEmailTemplates(): any;
-    static getEmailTemplateById(): any;
-    static updateEmailTemplateById(): any;
-    static deleteEmailTemplateById(): any;
-    static getEventSubscriptions(): any;
-    static getJobs(): any;
-    static triggerCampaignJob(): any;
-    static getJobLogs(): any;
-    static getCommunicationLogs(): any;
-    static getSmsProviders(): any;
-    static createSmsProvider(): any;
-    static getSmsProviderById(): any;
-    static updateSmsProviderById(): any;
-    static getSmsTemplates(): any;
-    static createSmsTemplate(): any;
-    static getSmsTemplateById(): any;
-    static updateSmsTemplateById(): any;
-    static deleteSmsTemplateById(): any;
-    static getSystemSystemTemplates(): any;
-}
 export class PaymentValidator {
     static getBrandPaymentGatewayConfig(): any;
     static saveBrandPaymentGatewayConfig(): any;
@@ -160,36 +111,30 @@ export class OrderValidator {
     static reprocessOrder(): any;
 }
 export class CatalogValidator {
-    static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
-    static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
-    static updateAutocompleteKeyword(): any;
+    static createCustomKeyword(): any;
     static deleteAutocompleteKeyword(): any;
+    static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
     static deleteCollection(): any;
     static updateCollection(): any;
-    static addCollectionItems(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
-}
-export class FileStorageValidator {
-    static appStartUpload(): any;
-    static appCompleteUpload(): any;
-    static appCopyFiles(): any;
-    static appBrowse(): any;
 }
 export class ShareValidator {
     static createShortLink(): any;
@@ -197,40 +142,24 @@ export class ShareValidator {
     static getShortLinkByHash(): any;
     static updateShortLinkById(): any;
 }
-export class ConfigurationValidator {
-    static getBuildConfig(): any;
-    static updateBuildConfig(): any;
-    static getPreviousVersions(): any;
-    static getAppFeatures(): any;
-    static updateAppFeatures(): any;
-    static getAppBasicDetails(): any;
-    static updateAppBasicDetails(): any;
-    static getAppContactInfo(): any;
-    static updateAppContactInfo(): any;
-    static getAppApiTokens(): any;
-    static updateAppApiTokens(): any;
-    static getAppCompanies(): any;
-    static getAppStores(): any;
-    static getInventoryConfig(): any;
-    static updateInventoryConfig(): any;
-    static partiallyUpdateInventoryConfig(): any;
-    static getAppCurrencyConfig(): any;
-    static updateAppCurrencyConfig(): any;
-    static getOrderingStoresByFilter(): any;
-    static updateOrderingStoreConfig(): any;
-    static getDomains(): any;
-    static addDomain(): any;
-    static removeDomainById(): any;
-    static changeDomainType(): any;
-    static getDomainStatus(): any;
-    static getApplicationById(): any;
-}
 export class CartValidator {
     static getCoupons(): any;
     static createCoupon(): any;
     static getCouponById(): any;
     static updateCoupon(): any;
     static updateCouponPartially(): any;
+}
+export class RewardsValidator {
+    static getGiveaways(): any;
+    static createGiveaway(): any;
+    static getGiveawayByID(): any;
+    static updateGiveaway(): any;
+    static getOffers(): any;
+    static getOfferByName(): any;
+    static updateOfferByName(): any;
+    static getUserAvailablePoints(): any;
+    static updateUserStatus(): any;
+    static getUserPointsHistory(): any;
 }
 export class AnalyticsValidator {
     static getStatiscticsGroups(): any;
