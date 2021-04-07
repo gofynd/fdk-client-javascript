@@ -4806,6 +4806,12 @@ class Validator {
     });
   }
 
+  static ErrorRes() {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  }
+
   static FailedResponse() {
     return Joi.object({
       message: Joi.string().required(),

@@ -9981,6 +9981,18 @@ Schema: `QRCodeResp`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
+
+
+
 
 ---
 
@@ -10010,6 +10022,18 @@ Success
 
 
 Schema: `QRCodeResp`
+
+
+
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -10055,6 +10079,18 @@ Schema: `QRCodeResp`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
+
+
+
 
 ---
 
@@ -10083,6 +10119,18 @@ Success
 
 
 Schema: `ShortLinkRes`
+
+
+
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 
@@ -10128,6 +10176,18 @@ Schema: `ShortLinkRes`
 
 
 
+Error
+
+
+Schema: `ErrorRes`
+
+
+
+
+
+
+
+
 
 ---
 
@@ -10157,6 +10217,18 @@ Success
 
 
 Schema: `ShortLinkRes`
+
+
+
+
+
+
+
+
+Error
+
+
+Schema: `ErrorRes`
 
 
 

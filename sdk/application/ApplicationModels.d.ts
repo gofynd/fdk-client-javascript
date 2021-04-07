@@ -609,6 +609,7 @@ export class Validator {
     static UrlInfo(): any;
     static ShortLinkRes(): any;
     static ShortLinkList(): any;
+    static ErrorRes(): any;
     static FailedResponse(): any;
     static CDN(): any;
     static Upload(): any;
