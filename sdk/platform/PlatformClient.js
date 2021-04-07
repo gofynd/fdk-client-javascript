@@ -1,5 +1,6 @@
 const {
   LeadValidator,
+  BillingValidator,
   CommunicationValidator,
   PaymentValidator,
   OrderValidator,
@@ -18,6 +19,7 @@ class PlatformClient {
   constructor(config) {
     this.config = config;
     this.lead = new Lead(config);
+    this.billing = new Billing(config);
     this.communication = new Communication(config);
     this.payment = new Payment(config);
     this.order = new Order(config);
@@ -1996,6 +1998,905 @@ class PlatformClient {
         
         
         @property { string } [appId]
+        
+         
+    */
+
+/**
+        @typedef UnauthenticatedUser
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef UnauthenticatedApplication
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef BadRequest
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef ResourceNotFound
+        
+        
+        @property { string } [message]
+        
+         
+    */
+
+/**
+        @typedef InternalServerError
+        
+        
+        @property { string } [message]
+        
+        @property { string } [code]
+        
+         
+    */
+
+/**
+        @typedef PlanRecurring
+        
+        
+        @property { string } [interval]
+        
+        @property { number } [intervalCount]
+        
+         
+    */
+
+/**
+        @typedef Plan
+        
+        
+        @property { PlanRecurring } [recurring]
+        
+        @property { boolean } [isTrialPlan]
+        
+        @property { string } [planGroup]
+        
+        @property { Array<string> } [tagLines]
+        
+        @property { string } [currency]
+        
+        @property { boolean } [isActive]
+        
+        @property { boolean } [isVisible]
+        
+        @property { number } [trialPeriod]
+        
+        @property { Array<string> } [addons]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } [type]
+        
+        @property { string } [country]
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+        @property { string } [description]
+        
+        @property { number } [amount]
+        
+        @property { string } [productSuiteId]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [modifiedAt]
+        
+         
+    */
+
+/**
+        @typedef DetailedPlanComponents
+        
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { string } [description]
+        
+        @property { string } [group]
+        
+        @property { string } [icon]
+        
+        @property { Object } [links]
+        
+        @property { boolean } [enabled]
+        
+        @property { string } [displayText]
+        
+         
+    */
+
+/**
+        @typedef DetailedPlan
+        
+        
+        @property { PlanRecurring } [recurring]
+        
+        @property { boolean } [isTrialPlan]
+        
+        @property { string } [planGroup]
+        
+        @property { Array<string> } [tagLines]
+        
+        @property { string } [currency]
+        
+        @property { boolean } [isActive]
+        
+        @property { boolean } [isVisible]
+        
+        @property { number } [trialPeriod]
+        
+        @property { Array<string> } [addons]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } [type]
+        
+        @property { string } [country]
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+        @property { string } [description]
+        
+        @property { number } [amount]
+        
+        @property { string } [productSuiteId]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [modifiedAt]
+        
+        @property { Array<DetailedPlanComponents> } [components]
+        
+         
+    */
+
+/**
+        @typedef InvoiceDetailsPeriod
+        
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+         
+    */
+
+/**
+        @typedef InvoiceDetailsClient
+        
+        
+        @property { Array<string> } [addressLines]
+        
+        @property { string } [name]
+        
+        @property { string } [email]
+        
+        @property { string } [phone]
+        
+         
+    */
+
+/**
+        @typedef InvoiceDetailsStatusTrail
+        
+        
+        @property { string } [id]
+        
+        @property { string } [value]
+        
+        @property { string } [timestamp]
+        
+         
+    */
+
+/**
+        @typedef InvoiceDetailsPaymentMethodsDataChecks
+        
+        
+        @property { string } [cvcCheck]
+        
+        @property { string } [addressLine1Check]
+        
+        @property { string } [addressPostalCodeCheck]
+        
+         
+    */
+
+/**
+        @typedef InvoiceDetailsPaymentMethodsDataNetworks
+        
+        
+        @property { Array<string> } [available]
+        
+        @property { string } [preferred]
+        
+         
+    */
+
+/**
+        @typedef InvoiceDetailsPaymentMethodsDataThreeDSecureUsage
+        
+        
+        @property { boolean } [supported]
+        
+         
+    */
+
+/**
+        @typedef InvoiceDetailsPaymentMethodsData
+        
+        
+        @property { string } [brand]
+        
+        @property { string } [last4]
+        
+        @property { InvoiceDetailsPaymentMethodsDataChecks } [checks]
+        
+        @property { string } [wallet]
+        
+        @property { string } [country]
+        
+        @property { string } [funding]
+        
+        @property { number } [expYear]
+        
+        @property { InvoiceDetailsPaymentMethodsDataNetworks } [networks]
+        
+        @property { number } [expMonth]
+        
+        @property { string } [fingerprint]
+        
+        @property { string } [generatedFrom]
+        
+        @property { InvoiceDetailsPaymentMethodsDataThreeDSecureUsage } [threeDSecureUsage]
+        
+         
+    */
+
+/**
+        @typedef InvoiceDetailsPaymentMethods
+        
+        
+        @property { number } [id]
+        
+        @property { string } [type]
+        
+        @property { string } [pgPaymentMethodId]
+        
+        @property { InvoiceDetailsPaymentMethodsData } [data]
+        
+        @property { boolean } [isDefault]
+        
+         
+    */
+
+/**
+        @typedef InvoicePaymentMethod
+        
+        
+        @property { string } [pgPaymentMethodId]
+        
+         
+    */
+
+/**
+        @typedef InvoiceDetails
+        
+        
+        @property { InvoiceDetailsPeriod } [period]
+        
+        @property { InvoiceDetailsClient } [client]
+        
+        @property { boolean } [autoAdvance]
+        
+        @property { string } [currency]
+        
+        @property { boolean } [paid]
+        
+        @property { number } [attemp]
+        
+        @property { string } [id]
+        
+        @property { string } [collectionMethod]
+        
+        @property { string } [subscriberId]
+        
+        @property { string } [invoiceUrl]
+        
+        @property { string } [number]
+        
+        @property { Object } [pgData]
+        
+        @property { string } [receiptNumber]
+        
+        @property { string } [statementDescriptor]
+        
+        @property { string } [currentStatus]
+        
+        @property { Array<InvoiceDetailsStatusTrail> } [statusTrail]
+        
+        @property { number } [subtotal]
+        
+        @property { number } [total]
+        
+        @property { string } [subscription]
+        
+        @property { string } [nextActionTime]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [modifiedAt]
+        
+        @property { string } [hashIdentifier]
+        
+        @property { InvoicePaymentMethod } [paymentMethod]
+        
+         
+    */
+
+/**
+        @typedef InvoiceItemsPlanRecurring
+        
+        
+        @property { string } [interval]
+        
+        @property { number } [intervalCount]
+        
+         
+    */
+
+/**
+        @typedef InvoiceItemsPlan
+        
+        
+        @property { InvoiceItemsPlanRecurring } [recurring]
+        
+        @property { boolean } [isTrialPlan]
+        
+        @property { string } [planGroup]
+        
+        @property { Array<string> } [tagLines]
+        
+        @property { string } [currency]
+        
+        @property { boolean } [isActive]
+        
+        @property { boolean } [isVisible]
+        
+        @property { number } [trialPeriod]
+        
+        @property { Array<string> } [addons]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } [type]
+        
+        @property { string } [country]
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+        @property { string } [description]
+        
+        @property { number } [amount]
+        
+        @property { string } [productSuiteId]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [modifiedAt]
+        
+         
+    */
+
+/**
+        @typedef InvoiceItemsPeriod
+        
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+         
+    */
+
+/**
+        @typedef InvoiceItems
+        
+        
+        @property { string } [id]
+        
+        @property { string } [currency]
+        
+        @property { InvoiceItemsPlan } [plan]
+        
+        @property { string } [name]
+        
+        @property { number } [quantity]
+        
+        @property { string } [description]
+        
+        @property { InvoiceItemsPeriod } [period]
+        
+        @property { number } [unitAmount]
+        
+        @property { number } [amount]
+        
+        @property { string } [type]
+        
+        @property { string } [invoiceId]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [modifiedAt]
+        
+         
+    */
+
+/**
+        @typedef Invoice
+        
+        
+        @property { InvoiceDetails } [invoice]
+        
+        @property { Array<InvoiceItems> } [invoiceItems]
+        
+         
+    */
+
+/**
+        @typedef InvoicesDataClient
+        
+        
+        @property { string } [name]
+        
+        @property { string } [email]
+        
+        @property { string } [phone]
+        
+        @property { Array<string> } [addressLines]
+        
+         
+    */
+
+/**
+        @typedef InvoicesDataPeriod
+        
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+         
+    */
+
+/**
+        @typedef InvoicesDataPaymentMethod
+        
+        
+        @property { string } [pgPaymentMethodId]
+        
+         
+    */
+
+/**
+        @typedef InvoicesData
+        
+        
+        @property { string } [id]
+        
+        @property { InvoicesDataClient } [client]
+        
+        @property { boolean } [autoAdvance]
+        
+        @property { string } [currency]
+        
+        @property { boolean } [paid]
+        
+        @property { number } [attemp]
+        
+        @property { string } [collectionMethod]
+        
+        @property { string } [subscriberId]
+        
+        @property { string } [invoiceUrl]
+        
+        @property { string } [number]
+        
+        @property { Object } [pgData]
+        
+        @property { InvoicesDataPeriod } [period]
+        
+        @property { string } [receiptNumber]
+        
+        @property { string } [statementDescriptor]
+        
+        @property { string } [currentStatus]
+        
+        @property { Array<InvoiceDetailsStatusTrail> } [statusTrail]
+        
+        @property { number } [subtotal]
+        
+        @property { number } [total]
+        
+        @property { string } [subscription]
+        
+        @property { string } [nextActionTime]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [modifiedAt]
+        
+        @property { string } [hashIdentifier]
+        
+        @property { InvoicesDataPaymentMethod } [paymentMethod]
+        
+        @property { Array<InvoiceItems> } [invoiceItems]
+        
+         
+    */
+
+/**
+        @typedef Invoices
+        
+        
+        @property { Array<InvoicesData> } [data]
+        
+        @property { number } [start]
+        
+        @property { number } [end]
+        
+        @property { number } [limit]
+        
+        @property { number } [page]
+        
+        @property { number } [total]
+        
+         
+    */
+
+/**
+        @typedef Phone
+        
+        
+        @property { string } [phoneNumber]
+        
+        @property { string } [phoneCountryCode]
+        
+         
+    */
+
+/**
+        @typedef BillingAddress
+        
+        
+        @property { string } [country]
+        
+        @property { string } [state]
+        
+        @property { string } [city]
+        
+        @property { string } [line1]
+        
+        @property { string } [line2]
+        
+        @property { string } [postalCode]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionCustomer
+        
+        
+        @property { Phone } [phone]
+        
+        @property { BillingAddress } [billingAddress]
+        
+        @property { string } [id]
+        
+        @property { string } [uniqueId]
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { string } [email]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [modifiedAt]
+        
+        @property { Object } [data]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionCustomerCreate
+        
+        
+        @property { Phone } [phone]
+        
+        @property { BillingAddress } [billingAddress]
+        
+        @property { string } [uniqueId]
+        
+        @property { string } [type]
+        
+        @property { string } [name]
+        
+        @property { string } [email]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionCurrentPeriod
+        
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionPauseCollection
+        
+        
+        @property { string } [behavior]
+        
+        @property { string } [resumeAt]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionTrial
+        
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionInvoiceSettings
+        
+        
+        @property { boolean } [generation]
+        
+        @property { boolean } [charging]
+        
+         
+    */
+
+/**
+        @typedef Subscription
+        
+        
+        @property { SubscriptionCurrentPeriod } [currentPeriod]
+        
+        @property { SubscriptionPauseCollection } [pauseCollection]
+        
+        @property { SubscriptionTrial } [trial]
+        
+        @property { SubscriptionInvoiceSettings } [invoiceSettings]
+        
+        @property { boolean } [isActive]
+        
+        @property { boolean } [cancelAtPeriodEnd]
+        
+        @property { string } [id]
+        
+        @property { string } [subscriberId]
+        
+        @property { string } [planId]
+        
+        @property { string } [productSuiteId]
+        
+        @property { Plan } [planData]
+        
+        @property { string } [currentStatus]
+        
+        @property { string } [collectionMethod]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [modifiedAt]
+        
+        @property { string } [latestInvoice]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionStatus
+        
+        
+        @property { boolean } [isEnabled]
+        
+        @property { Subscription } [subscription]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionLimitApplication
+        
+        
+        @property { boolean } [enabled]
+        
+        @property { number } [hardLimit]
+        
+        @property { number } [softLimit]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionLimitMarketplace
+        
+        
+        @property { boolean } [enabled]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionLimitOtherPlatform
+        
+        
+        @property { boolean } [enabled]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionLimitTeam
+        
+        
+        @property { number } [limit]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionLimitProducts
+        
+        
+        @property { boolean } [bulk]
+        
+        @property { number } [limit]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionLimitExtensions
+        
+        
+        @property { boolean } [enabled]
+        
+        @property { number } [limit]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionLimitIntegrations
+        
+        
+        @property { boolean } [enabled]
+        
+        @property { number } [limit]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionLimit
+        
+        
+        @property { SubscriptionLimitApplication } [application]
+        
+        @property { SubscriptionLimitMarketplace } [marketplace]
+        
+        @property { SubscriptionLimitOtherPlatform } [otherPlatform]
+        
+        @property { SubscriptionLimitTeam } [team]
+        
+        @property { SubscriptionLimitProducts } [products]
+        
+        @property { SubscriptionLimitExtensions } [extensions]
+        
+        @property { SubscriptionLimitIntegrations } [integrations]
+        
+        @property { boolean } [isTrialPlan]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionActivateReq
+        
+        
+        @property { string } [uniqueId]
+        
+        @property { string } [type]
+        
+        @property { string } [productSuite]
+        
+        @property { string } [planId]
+        
+        @property { string } [paymentMethod]
+        
+         
+    */
+
+/**
+        @typedef SubscriptionActivateRes
+        
+        
+        @property { boolean } [success]
+        
+        @property { Subscription } [data]
+        
+         
+    */
+
+/**
+        @typedef CancelSubscriptionReq
+        
+        
+        @property { string } [uniqueId]
+        
+        @property { string } [type]
+        
+        @property { string } [productSuite]
+        
+        @property { string } [subscriptionId]
+        
+         
+    */
+
+/**
+        @typedef CancelSubscriptionRes
+        
+        
+        @property { boolean } [success]
+        
+        @property { Subscription } [data]
         
          
     */
@@ -4380,43 +5281,6 @@ class PlatformClient {
         @property { string } [amount]
         
         @property { string } [currencyCode]
-        
-         
-    */
-
-/**
-        @typedef BillingAddress
-        
-        
-        @property { string } [address1]
-        
-        @property { string } [city]
-        
-        @property { string } [zip]
-        
-        @property { string } [lastName]
-        
-        @property { string } [address2]
-        
-        @property { number } [longitude]
-        
-        @property { string } [provinceCode]
-        
-        @property { string } [phone]
-        
-        @property { string } [company]
-        
-        @property { number } [latitude]
-        
-        @property { string } [name]
-        
-        @property { string } [country]
-        
-        @property { string } [countryCode]
-        
-        @property { string } [firstName]
-        
-        @property { string } [province]
         
          
     */
@@ -13807,6 +14671,238 @@ class Lead {
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${ticketId}/history`,
       queryObj,
       undefined
+    );
+  }
+}
+
+class Billing {
+  constructor(config) {
+    this.config = config;
+  }
+
+  /**
+    *
+    * @summary: Get invoices
+    * @description: Get invoices.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getInvoices({} = {}) {
+    const { error } = BillingValidator.getInvoices().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/invoice/list`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get invoice by id
+    * @description: Get invoice by id.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.invoiceId - Invoice id
+    
+    **/
+  getInvoiceById({ invoiceId } = {}) {
+    const { error } = BillingValidator.getInvoiceById().validate(
+      {
+        invoiceId,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/invoice/${invoiceId}`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get subscription customer detail
+    * @description: Get subscription customer detail.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCustomerDetail({} = {}) {
+    const { error } = BillingValidator.getCustomerDetail().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/customer-detail`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Upsert subscription customer detail
+   * @description: Upsert subscription customer detail.
+   * @param {Object} arg - arg object.
+   * @param {SubscriptionCustomerCreate} arg.body
+   **/
+  upsertCustomerDetail({ body } = {}) {
+    const { error } = BillingValidator.upsertCustomerDetail().validate(
+      {
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/customer-detail`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get current subscription detail
+    * @description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
+
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSubscription({} = {}) {
+    const { error } = BillingValidator.getSubscription().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/current`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get subscription subscription limits
+    * @description: Get subscription subscription limits.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getFeatureLimitConfig({} = {}) {
+    const { error } = BillingValidator.getFeatureLimitConfig().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/current-limit`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Activate subscription
+   * @description: It will activate subscription plan for customer
+   * @param {Object} arg - arg object.
+   * @param {SubscriptionActivateReq} arg.body
+   **/
+  activateSubscriptionPlan({ body } = {}) {
+    const { error } = BillingValidator.activateSubscriptionPlan().validate(
+      {
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/activate`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Cancel subscription
+   * @description: It will cancel current active subscription.
+   * @param {Object} arg - arg object.
+   * @param {CancelSubscriptionReq} arg.body
+   **/
+  cancelSubscriptionPlan({ body } = {}) {
+    const { error } = BillingValidator.cancelSubscriptionPlan().validate(
+      {
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/cancel`,
+      queryObj,
+      body
     );
   }
 }

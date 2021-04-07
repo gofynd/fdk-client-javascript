@@ -6,6 +6,16 @@ export class LeadValidator {
     static createHistory(): any;
     static getTicketHistory(): any;
 }
+export class BillingValidator {
+    static getInvoices(): any;
+    static getInvoiceById(): any;
+    static getCustomerDetail(): any;
+    static upsertCustomerDetail(): any;
+    static getSubscription(): any;
+    static getFeatureLimitConfig(): any;
+    static activateSubscriptionPlan(): any;
+    static cancelSubscriptionPlan(): any;
+}
 export class CommunicationValidator {
     static getSystemNotifications(): any;
 }

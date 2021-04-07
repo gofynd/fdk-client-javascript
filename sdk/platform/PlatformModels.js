@@ -1538,6 +1538,752 @@ class Validator {
     });
   }
 
+  static UnauthenticatedUser() {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  }
+
+  static UnauthenticatedApplication() {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  }
+
+  static BadRequest() {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  }
+
+  static ResourceNotFound() {
+    return Joi.object({
+      message: Joi.string(),
+    });
+  }
+
+  static InternalServerError() {
+    return Joi.object({
+      message: Joi.string(),
+
+      code: Joi.string(),
+    });
+  }
+
+  static PlanRecurring() {
+    return Joi.object({
+      interval: Joi.string(),
+
+      interval_count: Joi.number(),
+    });
+  }
+
+  static Plan() {
+    return Joi.object({
+      recurring: this.PlanRecurring(),
+
+      is_trial_plan: Joi.boolean(),
+
+      plan_group: Joi.string(),
+
+      tag_lines: Joi.array().items(Joi.string()),
+
+      currency: Joi.string(),
+
+      is_active: Joi.boolean(),
+
+      is_visible: Joi.boolean(),
+
+      trial_period: Joi.number(),
+
+      addons: Joi.array().items(Joi.string()),
+
+      tags: Joi.array().items(Joi.string()),
+
+      type: Joi.string(),
+
+      country: Joi.string(),
+
+      _id: Joi.string(),
+
+      name: Joi.string(),
+
+      description: Joi.string(),
+
+      amount: Joi.number(),
+
+      product_suite_id: Joi.string(),
+
+      created_at: Joi.string(),
+
+      modified_at: Joi.string(),
+    });
+  }
+
+  static DetailedPlanComponents() {
+    return Joi.object({
+      name: Joi.string(),
+
+      slug: Joi.string(),
+
+      description: Joi.string(),
+
+      group: Joi.string(),
+
+      icon: Joi.string(),
+
+      links: Joi.object(),
+
+      enabled: Joi.boolean(),
+
+      display_text: Joi.string(),
+    });
+  }
+
+  static DetailedPlan() {
+    return Joi.object({
+      recurring: this.PlanRecurring(),
+
+      is_trial_plan: Joi.boolean(),
+
+      plan_group: Joi.string(),
+
+      tag_lines: Joi.array().items(Joi.string()),
+
+      currency: Joi.string(),
+
+      is_active: Joi.boolean(),
+
+      is_visible: Joi.boolean(),
+
+      trial_period: Joi.number(),
+
+      addons: Joi.array().items(Joi.string()),
+
+      tags: Joi.array().items(Joi.string()),
+
+      type: Joi.string(),
+
+      country: Joi.string(),
+
+      _id: Joi.string(),
+
+      name: Joi.string(),
+
+      description: Joi.string(),
+
+      amount: Joi.number(),
+
+      product_suite_id: Joi.string(),
+
+      created_at: Joi.string(),
+
+      modified_at: Joi.string(),
+
+      components: Joi.array().items(this.DetailedPlanComponents()),
+    });
+  }
+
+  static InvoiceDetailsPeriod() {
+    return Joi.object({
+      start: Joi.string(),
+
+      end: Joi.string(),
+    });
+  }
+
+  static InvoiceDetailsClient() {
+    return Joi.object({
+      address_lines: Joi.array().items(Joi.string()),
+
+      name: Joi.string(),
+
+      email: Joi.string(),
+
+      phone: Joi.string(),
+    });
+  }
+
+  static InvoiceDetailsStatusTrail() {
+    return Joi.object({
+      _id: Joi.string(),
+
+      value: Joi.string(),
+
+      timestamp: Joi.string(),
+    });
+  }
+
+  static InvoiceDetailsPaymentMethodsDataChecks() {
+    return Joi.object({
+      cvc_check: Joi.string(),
+
+      address_line1_check: Joi.string(),
+
+      address_postal_code_check: Joi.string(),
+    });
+  }
+
+  static InvoiceDetailsPaymentMethodsDataNetworks() {
+    return Joi.object({
+      available: Joi.array().items(Joi.string()),
+
+      preferred: Joi.string(),
+    });
+  }
+
+  static InvoiceDetailsPaymentMethodsDataThreeDSecureUsage() {
+    return Joi.object({
+      supported: Joi.boolean(),
+    });
+  }
+
+  static InvoiceDetailsPaymentMethodsData() {
+    return Joi.object({
+      brand: Joi.string(),
+
+      last4: Joi.string(),
+
+      checks: this.InvoiceDetailsPaymentMethodsDataChecks(),
+
+      wallet: Joi.string(),
+
+      country: Joi.string(),
+
+      funding: Joi.string(),
+
+      exp_year: Joi.number(),
+
+      networks: this.InvoiceDetailsPaymentMethodsDataNetworks(),
+
+      exp_month: Joi.number(),
+
+      fingerprint: Joi.string(),
+
+      generated_from: Joi.string(),
+
+      three_d_secure_usage: this.InvoiceDetailsPaymentMethodsDataThreeDSecureUsage(),
+    });
+  }
+
+  static InvoiceDetailsPaymentMethods() {
+    return Joi.object({
+      id: Joi.number(),
+
+      type: Joi.string(),
+
+      pg_payment_method_id: Joi.string(),
+
+      data: this.InvoiceDetailsPaymentMethodsData(),
+
+      is_default: Joi.boolean(),
+    });
+  }
+
+  static InvoicePaymentMethod() {
+    return Joi.object({
+      pg_payment_method_id: Joi.string(),
+    });
+  }
+
+  static InvoiceDetails() {
+    return Joi.object({
+      period: this.InvoiceDetailsPeriod(),
+
+      client: this.InvoiceDetailsClient(),
+
+      auto_advance: Joi.boolean(),
+
+      currency: Joi.string(),
+
+      paid: Joi.boolean(),
+
+      attemp: Joi.number(),
+
+      _id: Joi.string(),
+
+      collection_method: Joi.string(),
+
+      subscriber_id: Joi.string(),
+
+      invoice_url: Joi.string(),
+
+      number: Joi.string(),
+
+      pg_data: Joi.object(),
+
+      receipt_number: Joi.string(),
+
+      statement_descriptor: Joi.string(),
+
+      current_status: Joi.string(),
+
+      status_trail: Joi.array().items(this.InvoiceDetailsStatusTrail()),
+
+      subtotal: Joi.number(),
+
+      total: Joi.number(),
+
+      subscription: Joi.string(),
+
+      next_action_time: Joi.string(),
+
+      created_at: Joi.string(),
+
+      modified_at: Joi.string(),
+
+      hash_identifier: Joi.string(),
+
+      payment_method: this.InvoicePaymentMethod(),
+    });
+  }
+
+  static InvoiceItemsPlanRecurring() {
+    return Joi.object({
+      interval: Joi.string(),
+
+      interval_count: Joi.number(),
+    });
+  }
+
+  static InvoiceItemsPlan() {
+    return Joi.object({
+      recurring: this.InvoiceItemsPlanRecurring(),
+
+      is_trial_plan: Joi.boolean(),
+
+      plan_group: Joi.string(),
+
+      tag_lines: Joi.array().items(Joi.string()),
+
+      currency: Joi.string(),
+
+      is_active: Joi.boolean(),
+
+      is_visible: Joi.boolean(),
+
+      trial_period: Joi.number(),
+
+      addons: Joi.array().items(Joi.string()),
+
+      tags: Joi.array().items(Joi.string()),
+
+      type: Joi.string(),
+
+      country: Joi.string(),
+
+      _id: Joi.string(),
+
+      name: Joi.string(),
+
+      description: Joi.string(),
+
+      amount: Joi.number(),
+
+      product_suite_id: Joi.string(),
+
+      created_at: Joi.string(),
+
+      modified_at: Joi.string(),
+    });
+  }
+
+  static InvoiceItemsPeriod() {
+    return Joi.object({
+      start: Joi.string(),
+
+      end: Joi.string(),
+    });
+  }
+
+  static InvoiceItems() {
+    return Joi.object({
+      _id: Joi.string(),
+
+      currency: Joi.string(),
+
+      plan: this.InvoiceItemsPlan(),
+
+      name: Joi.string(),
+
+      quantity: Joi.number(),
+
+      description: Joi.string(),
+
+      period: this.InvoiceItemsPeriod(),
+
+      unit_amount: Joi.number(),
+
+      amount: Joi.number(),
+
+      type: Joi.string(),
+
+      invoice_id: Joi.string(),
+
+      created_at: Joi.string(),
+
+      modified_at: Joi.string(),
+    });
+  }
+
+  static Invoice() {
+    return Joi.object({
+      invoice: this.InvoiceDetails(),
+
+      invoice_items: Joi.array().items(this.InvoiceItems()),
+    });
+  }
+
+  static InvoicesDataClient() {
+    return Joi.object({
+      name: Joi.string(),
+
+      email: Joi.string(),
+
+      phone: Joi.string(),
+
+      address_lines: Joi.array().items(Joi.string()),
+    });
+  }
+
+  static InvoicesDataPeriod() {
+    return Joi.object({
+      start: Joi.string(),
+
+      end: Joi.string(),
+    });
+  }
+
+  static InvoicesDataPaymentMethod() {
+    return Joi.object({
+      pg_payment_method_id: Joi.string(),
+    });
+  }
+
+  static InvoicesData() {
+    return Joi.object({
+      _id: Joi.string(),
+
+      client: this.InvoicesDataClient(),
+
+      auto_advance: Joi.boolean(),
+
+      currency: Joi.string(),
+
+      paid: Joi.boolean(),
+
+      attemp: Joi.number(),
+
+      collection_method: Joi.string(),
+
+      subscriber_id: Joi.string(),
+
+      invoice_url: Joi.string(),
+
+      number: Joi.string(),
+
+      pg_data: Joi.object(),
+
+      period: this.InvoicesDataPeriod(),
+
+      receipt_number: Joi.string(),
+
+      statement_descriptor: Joi.string(),
+
+      current_status: Joi.string(),
+
+      status_trail: Joi.array().items(this.InvoiceDetailsStatusTrail()),
+
+      subtotal: Joi.number(),
+
+      total: Joi.number(),
+
+      subscription: Joi.string(),
+
+      next_action_time: Joi.string(),
+
+      created_at: Joi.string(),
+
+      modified_at: Joi.string(),
+
+      hash_identifier: Joi.string(),
+
+      payment_method: this.InvoicesDataPaymentMethod(),
+
+      invoice_items: Joi.array().items(this.InvoiceItems()),
+    });
+  }
+
+  static Invoices() {
+    return Joi.object({
+      data: Joi.array().items(this.InvoicesData()),
+
+      start: Joi.number(),
+
+      end: Joi.number(),
+
+      limit: Joi.number(),
+
+      page: Joi.number(),
+
+      total: Joi.number(),
+    });
+  }
+
+  static Phone() {
+    return Joi.object({
+      phone_number: Joi.string(),
+
+      phone_country_code: Joi.string(),
+    });
+  }
+
+  static BillingAddress() {
+    return Joi.object({
+      country: Joi.string(),
+
+      state: Joi.string(),
+
+      city: Joi.string(),
+
+      line1: Joi.string(),
+
+      line2: Joi.string(),
+
+      postal_code: Joi.string(),
+    });
+  }
+
+  static SubscriptionCustomer() {
+    return Joi.object({
+      phone: this.Phone(),
+
+      billing_address: this.BillingAddress(),
+
+      _id: Joi.string(),
+
+      unique_id: Joi.string(),
+
+      type: Joi.string(),
+
+      name: Joi.string(),
+
+      email: Joi.string(),
+
+      created_at: Joi.string(),
+
+      modified_at: Joi.string(),
+
+      data: Joi.object(),
+    });
+  }
+
+  static SubscriptionCustomerCreate() {
+    return Joi.object({
+      phone: this.Phone(),
+
+      billing_address: this.BillingAddress(),
+
+      unique_id: Joi.string(),
+
+      type: Joi.string(),
+
+      name: Joi.string(),
+
+      email: Joi.string(),
+    });
+  }
+
+  static SubscriptionCurrentPeriod() {
+    return Joi.object({
+      start: Joi.string(),
+
+      end: Joi.string(),
+    });
+  }
+
+  static SubscriptionPauseCollection() {
+    return Joi.object({
+      behavior: Joi.string(),
+
+      resume_at: Joi.string(),
+    });
+  }
+
+  static SubscriptionTrial() {
+    return Joi.object({
+      start: Joi.string(),
+
+      end: Joi.string(),
+    });
+  }
+
+  static SubscriptionInvoiceSettings() {
+    return Joi.object({
+      generation: Joi.boolean(),
+
+      charging: Joi.boolean(),
+    });
+  }
+
+  static Subscription() {
+    return Joi.object({
+      current_period: this.SubscriptionCurrentPeriod(),
+
+      pause_collection: this.SubscriptionPauseCollection(),
+
+      trial: this.SubscriptionTrial(),
+
+      invoice_settings: this.SubscriptionInvoiceSettings(),
+
+      is_active: Joi.boolean(),
+
+      cancel_at_period_end: Joi.boolean(),
+
+      _id: Joi.string(),
+
+      subscriber_id: Joi.string(),
+
+      plan_id: Joi.string(),
+
+      product_suite_id: Joi.string(),
+
+      plan_data: this.Plan(),
+
+      current_status: Joi.string(),
+
+      collection_method: Joi.string(),
+
+      created_at: Joi.string(),
+
+      modified_at: Joi.string(),
+
+      latest_invoice: Joi.string(),
+    });
+  }
+
+  static SubscriptionStatus() {
+    return Joi.object({
+      is_enabled: Joi.boolean(),
+
+      subscription: this.Subscription(),
+    });
+  }
+
+  static SubscriptionLimitApplication() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+
+      hard_limit: Joi.number(),
+
+      soft_limit: Joi.number(),
+    });
+  }
+
+  static SubscriptionLimitMarketplace() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+
+  static SubscriptionLimitOtherPlatform() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+
+  static SubscriptionLimitTeam() {
+    return Joi.object({
+      limit: Joi.number(),
+    });
+  }
+
+  static SubscriptionLimitProducts() {
+    return Joi.object({
+      bulk: Joi.boolean(),
+
+      limit: Joi.number(),
+    });
+  }
+
+  static SubscriptionLimitExtensions() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+
+      limit: Joi.number(),
+    });
+  }
+
+  static SubscriptionLimitIntegrations() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+
+      limit: Joi.number(),
+    });
+  }
+
+  static SubscriptionLimit() {
+    return Joi.object({
+      application: this.SubscriptionLimitApplication(),
+
+      marketplace: this.SubscriptionLimitMarketplace(),
+
+      other_platform: this.SubscriptionLimitOtherPlatform(),
+
+      team: this.SubscriptionLimitTeam(),
+
+      products: this.SubscriptionLimitProducts(),
+
+      extensions: this.SubscriptionLimitExtensions(),
+
+      integrations: this.SubscriptionLimitIntegrations(),
+
+      is_trial_plan: Joi.boolean(),
+    });
+  }
+
+  static SubscriptionActivateReq() {
+    return Joi.object({
+      unique_id: Joi.string(),
+
+      type: Joi.string(),
+
+      product_suite: Joi.string(),
+
+      plan_id: Joi.string(),
+
+      payment_method: Joi.string(),
+    });
+  }
+
+  static SubscriptionActivateRes() {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      data: this.Subscription(),
+    });
+  }
+
+  static CancelSubscriptionReq() {
+    return Joi.object({
+      unique_id: Joi.string(),
+
+      type: Joi.string(),
+
+      product_suite: Joi.string(),
+
+      subscription_id: Joi.string(),
+    });
+  }
+
+  static CancelSubscriptionRes() {
+    return Joi.object({
+      success: Joi.boolean(),
+
+      data: this.Subscription(),
+    });
+  }
+
   static StatsImported() {
     return Joi.object({
       count: Joi.number(),
@@ -3493,40 +4239,6 @@ class Validator {
       amount: Joi.string(),
 
       currency_code: Joi.string(),
-    });
-  }
-
-  static BillingAddress() {
-    return Joi.object({
-      address1: Joi.string(),
-
-      city: Joi.string(),
-
-      zip: Joi.string(),
-
-      last_name: Joi.string(),
-
-      address2: Joi.string(),
-
-      longitude: Joi.number(),
-
-      province_code: Joi.string(),
-
-      phone: Joi.string(),
-
-      company: Joi.string(),
-
-      latitude: Joi.number(),
-
-      name: Joi.string(),
-
-      country: Joi.string(),
-
-      country_code: Joi.string(),
-
-      first_name: Joi.string(),
-
-      province: Joi.string(),
     });
   }
 
@@ -11036,6 +11748,48 @@ class LeadValidator {
   }
 }
 
+class BillingValidator {
+  static getInvoices() {
+    return Joi.object({}).required();
+  }
+
+  static getInvoiceById() {
+    return Joi.object({
+      invoiceId: Joi.string().required(),
+    }).required();
+  }
+
+  static getCustomerDetail() {
+    return Joi.object({}).required();
+  }
+
+  static upsertCustomerDetail() {
+    return Joi.object({
+      body: Validator.SubscriptionCustomerCreate().required(),
+    }).required();
+  }
+
+  static getSubscription() {
+    return Joi.object({}).required();
+  }
+
+  static getFeatureLimitConfig() {
+    return Joi.object({}).required();
+  }
+
+  static activateSubscriptionPlan() {
+    return Joi.object({
+      body: Validator.SubscriptionActivateReq().required(),
+    }).required();
+  }
+
+  static cancelSubscriptionPlan() {
+    return Joi.object({
+      body: Validator.CancelSubscriptionReq().required(),
+    }).required();
+  }
+}
+
 class CommunicationValidator {
   static getSystemNotifications() {
     return Joi.object({
@@ -11886,6 +12640,7 @@ class AnalyticsValidator {
 
 module.exports = {
   LeadValidator,
+  BillingValidator,
   CommunicationValidator,
   PaymentValidator,
   OrderValidator,
