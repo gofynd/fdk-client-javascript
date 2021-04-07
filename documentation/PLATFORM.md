@@ -4,6 +4,7 @@
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
+* [Content](#Content) - Content System 
 * [Billing](#Billing) - Handle platform subscription 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
@@ -73,6 +74,68 @@
     * [searchUsers](#searchusers)
     * [getPlatformConfig](#getplatformconfig)
     * [updatePlatformConfig](#updateplatformconfig)
+    
+
+* [Content](#Content)
+  * Methods
+    * [getAnnouncementsList](#getannouncementslist)
+    * [createAnnouncement](#createannouncement)
+    * [getAnnouncementById](#getannouncementbyid)
+    * [updateAnnouncement](#updateannouncement)
+    * [updateAnnouncementSchedule](#updateannouncementschedule)
+    * [deleteAnnouncement](#deleteannouncement)
+    * [createBlog](#createblog)
+    * [getBlogs](#getblogs)
+    * [updateBlog](#updateblog)
+    * [deleteBlog](#deleteblog)
+    * [getComponentById](#getcomponentbyid)
+    * [getFaqCategories](#getfaqcategories)
+    * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
+    * [createFaqCategory](#createfaqcategory)
+    * [updateFaqCategory](#updatefaqcategory)
+    * [deleteFaqCategory](#deletefaqcategory)
+    * [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
+    * [addFaq](#addfaq)
+    * [updateFaq](#updatefaq)
+    * [deleteFaq](#deletefaq)
+    * [getFaqByIdOrSlug](#getfaqbyidorslug)
+    * [getLandingPages](#getlandingpages)
+    * [createLandingPage](#createlandingpage)
+    * [updateLandingPage](#updatelandingpage)
+    * [deleteLandingPage](#deletelandingpage)
+    * [getLegalInformation](#getlegalinformation)
+    * [updateLegalInformation](#updatelegalinformation)
+    * [getNavigations](#getnavigations)
+    * [createNavigation](#createnavigation)
+    * [getDefaultNavigations](#getdefaultnavigations)
+    * [getNavigationBySlug](#getnavigationbyslug)
+    * [updateNavigation](#updatenavigation)
+    * [deleteNavigation](#deletenavigation)
+    * [getPageMeta](#getpagemeta)
+    * [getPageSpec](#getpagespec)
+    * [createPage](#createpage)
+    * [getPages](#getpages)
+    * [createPagePreview](#createpagepreview)
+    * [updatePagePreview](#updatepagepreview)
+    * [updatePage](#updatepage)
+    * [deletePage](#deletepage)
+    * [getPageBySlug](#getpagebyslug)
+    * [getSEOConfiguration](#getseoconfiguration)
+    * [updateSEOConfiguration](#updateseoconfiguration)
+    * [getSlideshows](#getslideshows)
+    * [createSlideshow](#createslideshow)
+    * [getSlideshowBySlug](#getslideshowbyslug)
+    * [updateSlideshow](#updateslideshow)
+    * [deleteSlideshow](#deleteslideshow)
+    * [getSupportInformation](#getsupportinformation)
+    * [updateSupportInformation](#updatesupportinformation)
+    * [createInjectableTag](#createinjectabletag)
+    * [updateInjectableTag](#updateinjectabletag)
+    * [deleteAllInjectableTags](#deleteallinjectabletags)
+    * [getInjectableTags](#getinjectabletags)
+    * [addInjectableTag](#addinjectabletag)
+    * [removeInjectableTag](#removeinjectabletag)
+    * [editInjectableTag](#editinjectabletag)
     
 
 * [Billing](#Billing)
@@ -5171,6 +5234,5686 @@ Schema: `AuthenticationApiError`
 
 
 Schema: `AuthenticationApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Content
+
+
+#### getAnnouncementsList
+Get annoucements list
+
+```javascript
+// Promise
+const promise = content.getAnnouncementsList(companyId,applicationId);
+
+// Async/Await
+const data = await content.getAnnouncementsList(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get list of announcements
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetAnnouncementListSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/GetAnnouncementList"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createAnnouncement
+Create an annoucement
+
+```javascript
+// Promise
+const promise = content.createAnnouncement(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createAnnouncement(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create an announcement
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/CreateAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAnnouncementById
+Get annoucement by id
+
+```javascript
+// Promise
+const promise = content.getAnnouncementById(companyId,applicationId,announcementId);
+
+// Async/Await
+const data = await content.getAnnouncementById(companyId,applicationId,announcementId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Get announcement by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AdminAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/Announcement"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAnnouncement
+Update an annoucement
+
+```javascript
+// Promise
+const promise = content.updateAnnouncement(companyId,applicationId,announcementId,body);
+
+// Async/Await
+const data = await content.updateAnnouncement(companyId,applicationId,announcementId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Update an announcement
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/UpdateAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAnnouncementSchedule
+Update schedule or published status of an annoucement
+
+```javascript
+// Promise
+const promise = content.updateAnnouncementSchedule(companyId,applicationId,announcementId,body);
+
+// Async/Await
+const data = await content.updateAnnouncementSchedule(companyId,applicationId,announcementId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Update schedule or published status of an announcement
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/PatchAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAnnouncement
+Delete annoucement by id
+
+```javascript
+// Promise
+const promise = content.deleteAnnouncement(companyId,applicationId,announcementId);
+
+// Async/Await
+const data = await content.deleteAnnouncement(companyId,applicationId,announcementId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| announcementId | string | Announcement ID | 
+
+Delete announcement by id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAnnouncementSchema`
+
+
+*Examples:*
+
+
+success
+```json
+{
+  "$ref": "#/components/examples/DeleteAnnouncement"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createBlog
+Create blog
+
+```javascript
+// Promise
+const promise = content.createBlog(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createBlog(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to create a blog.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BlogSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBlogs
+Get blogs
+
+```javascript
+// Promise
+const promise = content.getBlogs(companyId,applicationId);
+
+// Async/Await
+const data = await content.getBlogs(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to get blogs.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BlogGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateBlog
+Update blog
+
+```javascript
+// Promise
+const promise = content.updateBlog(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updateBlog(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| id | string | Blog Id | 
+
+Use this to update blog.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BlogSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 400,
+    "code": "CX-1003",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "message": "Oops! Something went wrong. Please try later",
+    "status": 500,
+    "code": "CX-1004",
+    "exception": "",
+    "info": "",
+    "request_id": "",
+    "stack_trace": "",
+    "meta": {}
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteBlog
+Delete blogs
+
+```javascript
+// Promise
+const promise = content.deleteBlog(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteBlog(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| id | string | Blog Id | 
+
+Use this to delete blogs.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BlogSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getComponentById
+Get components by component Id
+
+```javascript
+// Promise
+const promise = content.getComponentById(companyId,applicationId,slug);
+
+// Async/Await
+const data = await content.getComponentById(companyId,applicationId,slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| slug | string | slug of page to be fetched | 
+
+The endpoint fetches the component by component Id
+
+*Success Response:*
+
+
+
+A JSON object with components
+
+
+Schema: `BlogSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategories
+Get FAQ categories list
+
+```javascript
+// Promise
+const promise = content.getFaqCategories(companyId,applicationId);
+
+// Async/Await
+const data = await content.getFaqCategories(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get list of FAQ categories
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoriesSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqCategoryBySlugOrId
+Get FAQ category by slug or id
+
+```javascript
+// Promise
+const promise = content.getFaqCategoryBySlugOrId(companyId,applicationId,idOrSlug);
+
+// Async/Await
+const data = await content.getFaqCategoryBySlugOrId(companyId,applicationId,idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| idOrSlug | string | Slug or Id of FAQ Category | 
+
+Get FAQ category by slug or id
+
+*Success Response:*
+
+
+
+Get FAQ Categories
+
+
+Schema: `GetFaqCategoryByIdOrSlugSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createFaqCategory
+Creates a FAQ category
+
+```javascript
+// Promise
+const promise = content.createFaqCategory(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createFaqCategory(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Add Faq Category
+
+*Success Response:*
+
+
+
+Create a FAQ Category
+
+
+Schema: `CreateFaqCategorySchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateFaqCategory
+Updates a FAQ category
+
+```javascript
+// Promise
+const promise = content.updateFaqCategory(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updateFaqCategory(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Faq category ID | 
+
+Update Faq Category
+
+*Success Response:*
+
+
+
+Update a FAQ Category
+
+
+Schema: `CreateFaqCategorySchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteFaqCategory
+Deletes a FAQ category
+
+```javascript
+// Promise
+const promise = content.deleteFaqCategory(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteFaqCategory(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Faq category ID | 
+
+Delete Faq Category
+
+*Success Response:*
+
+
+
+Delete a FAQ Category
+
+
+Schema: `FaqSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqsByCategoryIdOrSlug
+Get FAQs of a Faq Category id or slug
+
+```javascript
+// Promise
+const promise = content.getFaqsByCategoryIdOrSlug(companyId,applicationId,idOrSlug);
+
+// Async/Await
+const data = await content.getFaqsByCategoryIdOrSlug(companyId,applicationId,idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| idOrSlug | string | Faq category ID or slug | 
+
+Get FAQs of a Faq Category `id` or `slug`
+
+*Success Response:*
+
+
+
+Get FAQs by slug/id of FAQ Category
+
+
+Schema: `GetFaqSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addFaq
+Creates FAQs for category whose `id` is specified
+
+```javascript
+// Promise
+const promise = content.addFaq(companyId,applicationId,categoryId,body);
+
+// Async/Await
+const data = await content.addFaq(companyId,applicationId,categoryId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| categoryId | string | Faq category ID | 
+
+Creates FAQs for category whose `id` is specified
+
+*Success Response:*
+
+
+
+Create a FAQ for FAQ Category
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateFaq
+Updates FAQ
+
+```javascript
+// Promise
+const promise = content.updateFaq(companyId,applicationId,categoryId,faqId,body);
+
+// Async/Await
+const data = await content.updateFaq(companyId,applicationId,categoryId,faqId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| categoryId | string | Faq category ID | 
+| faqId | string | Faq ID | 
+
+Updates FAQ
+
+*Success Response:*
+
+
+
+Update FAQ by id
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteFaq
+Delete FAQ
+
+```javascript
+// Promise
+const promise = content.deleteFaq(companyId,applicationId,categoryId,faqId);
+
+// Async/Await
+const data = await content.deleteFaq(companyId,applicationId,categoryId,faqId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| categoryId | string | Faq category ID | 
+| faqId | string | Faq ID | 
+
+Delete FAQ
+
+*Success Response:*
+
+
+
+Delete FAQ by id
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getFaqByIdOrSlug
+Get frequently asked question
+
+```javascript
+// Promise
+const promise = content.getFaqByIdOrSlug(companyId,applicationId,idOrSlug);
+
+// Async/Await
+const data = await content.getFaqByIdOrSlug(companyId,applicationId,idOrSlug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| idOrSlug | string | Slug or Id of FAQ | 
+
+Get frequently asked questions list. These will be helpful for users to using website.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateFaqResponseSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLandingPages
+Get landing-pages
+
+```javascript
+// Promise
+const promise = content.getLandingPages(companyId,applicationId);
+
+// Async/Await
+const data = await content.getLandingPages(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to get landing-pages.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `LandingPageGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/LandingPageGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createLandingPage
+Create landing-page
+
+```javascript
+// Promise
+const promise = content.createLandingPage(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createLandingPage(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to create landing-page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `LandingPageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/LandingPageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLandingPage
+Update landing-page
+
+```javascript
+// Promise
+const promise = content.updateLandingPage(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updateLandingPage(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Landing page ID | 
+
+Use this to update landing-page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `LandingPageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/LandingPageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteLandingPage
+Delete landing-page
+
+```javascript
+// Promise
+const promise = content.deleteLandingPage(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteLandingPage(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Landing page ID | 
+
+Use this to delete landing-page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `LandingPageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "_custom_json": null,
+    "slug": "pnc-landing",
+    "action": {
+      "page": {
+        "type": "home"
+      },
+      "popup": {},
+      "type": "page"
+    },
+    "platform": [
+      "web"
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2020-04-30T03:25:14.549Z",
+      "modified_on": "2020-04-30T03:25:14.549Z"
+    },
+    "archived": true
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLegalInformation
+Get legal information
+
+```javascript
+// Promise
+const promise = content.getLegalInformation(companyId,applicationId);
+
+// Async/Await
+const data = await content.getLegalInformation(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationLegal`
+
+
+*Examples:*
+
+
+Success
+```json
+{
+  "$ref": "#/components/examples/Legal"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLegalInformation
+Save legal information
+
+```javascript
+// Promise
+const promise = content.updateLegalInformation(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.updateLegalInformation(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationLegal`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getNavigations
+Get navigations
+
+```javascript
+// Promise
+const promise = content.getNavigations(companyId,applicationId,devicePlatform);
+
+// Async/Await
+const data = await content.getNavigations(companyId,applicationId,devicePlatform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| devicePlatform | string | Device platform | 
+
+Use this to get navigations.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `NavigationGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/NavigationGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createNavigation
+Create navigation
+
+```javascript
+// Promise
+const promise = content.createNavigation(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createNavigation(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to create navigation.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `NavigationSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/NavigationResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDefaultNavigations
+Get default navigations
+
+```javascript
+// Promise
+const promise = content.getDefaultNavigations(companyId,applicationId);
+
+// Async/Await
+const data = await content.getDefaultNavigations(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to get default navigations.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DefaultNavigationResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/DefaultNavigationResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getNavigationBySlug
+Get navigation by slug
+
+```javascript
+// Promise
+const promise = content.getNavigationBySlug(companyId,applicationId,slug,devicePlatform);
+
+// Async/Await
+const data = await content.getNavigationBySlug(companyId,applicationId,slug,devicePlatform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| slug | string | Slug | 
+| devicePlatform | string | Device platform | 
+
+Use this to get navigation by slug.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `NavigationSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/NavigationResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateNavigation
+Update navigation
+
+```javascript
+// Promise
+const promise = content.updateNavigation(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updateNavigation(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Navigation ID | 
+
+Use this to update navigation.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `NavigationSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/NavigationResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteNavigation
+Delete navigation
+
+```javascript
+// Promise
+const promise = content.deleteNavigation(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteNavigation(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Navigation ID | 
+
+Use this to delete navigation.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `NavigationSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "_id": "5ffbd9b90ac98678ae0458d7",
+    "application": "000000000000000000000001",
+    "_custom_json": null,
+    "name": "temp",
+    "slug": "temp",
+    "platform": "[web]",
+    "orientation": {
+      "portrait": [
+        "left"
+      ]
+    },
+    "navigation": [
+      {
+        "display": "Home",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+        "sort_order": 1,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/",
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Brands",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/brands/",
+                "type": "brands"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Collections",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+        "sort_order": 2,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/collections/",
+            "type": "collections"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Categories",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/categories/",
+                "type": "categories"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Primary Menu",
+        "image": "",
+        "sort_order": 3,
+        "type": "",
+        "action": {
+          "page": {
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        }
+      }
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2021-01-11T04:53:13.585Z",
+      "modified_on": "2021-01-14T10:24:34.485Z"
+    },
+    "archived": true
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPageMeta
+Get page meta
+
+```javascript
+// Promise
+const promise = content.getPageMeta(companyId,applicationId);
+
+// Async/Await
+const data = await content.getPageMeta(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to get Page Meta.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageMetaSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageMeta"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPageSpec
+Get page spec
+
+```javascript
+// Promise
+const promise = content.getPageSpec(companyId,applicationId);
+
+// Async/Await
+const data = await content.getPageSpec(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to get page spec.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSpec`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "specifications": [
+      {
+        "page_type": "home",
+        "display_name": "Home",
+        "params": [],
+        "query": []
+      },
+      {
+        "page_type": "collections",
+        "display_name": "Collections",
+        "params": [],
+        "query": []
+      },
+      {
+        "page_type": "collection",
+        "display_name": "Collection",
+        "params": [
+          {
+            "key": "slug",
+            "required": true
+          }
+        ],
+        "query": []
+      }
+    ]
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createPage
+Create page
+
+```javascript
+// Promise
+const promise = content.createPage(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createPage(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to create a page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPages
+Get pages
+
+```javascript
+// Promise
+const promise = content.getPages(companyId,applicationId);
+
+// Async/Await
+const data = await content.getPages(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to get pages.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createPagePreview
+Create page preview
+
+```javascript
+// Promise
+const promise = content.createPagePreview(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createPagePreview(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+
+Use this to create a page preview.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePagePreview
+Update page
+
+```javascript
+// Promise
+const promise = content.updatePagePreview(companyId,applicationId,slug,body);
+
+// Async/Await
+const data = await content.updatePagePreview(companyId,applicationId,slug,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| slug | string | Page publish slug | 
+
+Use this to update page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePage
+Update page
+
+```javascript
+// Promise
+const promise = content.updatePage(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updatePage(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| id | string | Page Id | 
+
+Use this to update page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deletePage
+Delete page
+
+```javascript
+// Promise
+const promise = content.deletePage(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deletePage(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| id | string | Page Id | 
+
+Use this to delete page.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPageBySlug
+Get pages by component Id
+
+```javascript
+// Promise
+const promise = content.getPageBySlug(companyId,applicationId,slug);
+
+// Async/Await
+const data = await content.getPageBySlug(companyId,applicationId,slug);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id | 
+| applicationId | string | Application Id | 
+| slug | string | Slug of page to be fetched | 
+
+The endpoint fetches the component by component Id
+
+*Success Response:*
+
+
+
+A JSON object with page
+
+
+Schema: `PageSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSEOConfiguration
+Get seo of application
+
+```javascript
+// Promise
+const promise = content.getSEOConfiguration(companyId,applicationId);
+
+// Async/Await
+const data = await content.getSEOConfiguration(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get seo of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SeoComponent`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSEOConfiguration
+Update seo of application
+
+```javascript
+// Promise
+const promise = content.updateSEOConfiguration(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.updateSEOConfiguration(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Update seo of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SeoSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "details": {
+      "title": "Zyosa Zyosa"
+    },
+    "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
+    "sitemap_enabled": false,
+    "_id": "6009819ee463ad40de397eb2",
+    "app": "000000000000000000000001",
+    "created_at": "2021-01-21T13:29:02.543Z",
+    "updated_at": "2021-02-05T06:36:16.048Z",
+    "__v": 11,
+    "custom_meta_tags": [
+      {
+        "name": "test 0000",
+        "content": "<meta name=\"test\" content=\"0000 cn dcje dcj rejre cjrenurenc \">",
+        "_id": "6017c301bde3c21dbb13b284"
+      },
+      {
+        "name": "cwdcdc",
+        "content": "<meta content=\"wdcewdewc\">",
+        "_id": "6017c675bde3c22cfb13b290"
+      }
+    ]
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSlideshows
+Get slideshows
+
+```javascript
+// Promise
+const promise = content.getSlideshows(companyId,applicationId,devicePlatform);
+
+// Async/Await
+const data = await content.getSlideshows(companyId,applicationId,devicePlatform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| devicePlatform | string | Device platform | 
+
+Use this to get slideshows.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createSlideshow
+Create slideshow
+
+```javascript
+// Promise
+const promise = content.createSlideshow(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createSlideshow(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Use this to create slideshow.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSlideshowBySlug
+Get slideshow by slug
+
+```javascript
+// Promise
+const promise = content.getSlideshowBySlug(companyId,applicationId,slug,devicePlatform);
+
+// Async/Await
+const data = await content.getSlideshowBySlug(companyId,applicationId,slug,devicePlatform);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| slug | string | Slug | 
+| devicePlatform | string | Device platform | 
+
+Use this to get slideshow by slug.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSlideshow
+Update slideshow
+
+```javascript
+// Promise
+const promise = content.updateSlideshow(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await content.updateSlideshow(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Slideshow ID | 
+
+Use this to update slideshow.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSlideshow
+Delete slideshow
+
+```javascript
+// Promise
+const promise = content.deleteSlideshow(companyId,applicationId,id);
+
+// Async/Await
+const data = await content.deleteSlideshow(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| id | string | Slideshow ID | 
+
+Use this to delete slideshow.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowSchema`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-14T05:27:12.319Z",
+      "modified_on": "2021-03-14T05:27:12.319Z"
+    },
+    "archived": true,
+    "_id": "604d9eb975e9d136bb1b8b83",
+    "configuration": {
+      "start_on_launch": false,
+      "duration": 50,
+      "sleep_time": 100,
+      "slide_direction": "horizontal"
+    },
+    "slug": "ss-sfsd-updated",
+    "platform": "ios",
+    "media": [
+      {
+        "auto_decide_duration": false,
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+        "bg_color": "#ffffff",
+        "duration": 10,
+        "action": {
+          "type": ""
+        }
+      },
+      {
+        "auto_decide_duration": true,
+        "type": "youtube",
+        "url": "https://www.youtube.com/embed/9vJRopau0g0",
+        "bg_color": "#ffffff",
+        "duration": 909,
+        "action": {
+          "type": ""
+        }
+      }
+    ],
+    "application": "5cd3db5e9d692cfe5302a7bb",
+    "active": true
+  }
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSupportInformation
+Get support information
+
+```javascript
+// Promise
+const promise = content.getSupportInformation(companyId,applicationId);
+
+// Async/Await
+const data = await content.getSupportInformation(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get contact details for customer support. Including emails and phone numbers
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Support`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Support"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSupportInformation
+Update support data of application
+
+```javascript
+// Promise
+const promise = content.updateSupportInformation(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.updateSupportInformation(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Update support data of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Support`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/Support"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createInjectableTag
+Creates Tag
+
+```javascript
+// Promise
+const promise = content.createInjectableTag(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.createInjectableTag(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Create tags
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateInjectableTag
+Updates a Tag
+
+```javascript
+// Promise
+const promise = content.updateInjectableTag(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.updateInjectableTag(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Update tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAllInjectableTags
+Delete tags for application
+
+```javascript
+// Promise
+const promise = content.deleteAllInjectableTags(companyId,applicationId);
+
+// Async/Await
+const data = await content.deleteAllInjectableTags(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Delete tags for application
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInjectableTags
+Get tags for application
+
+```javascript
+// Promise
+const promise = content.getInjectableTags(companyId,applicationId);
+
+// Async/Await
+const data = await content.getInjectableTags(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Get tags for application
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addInjectableTag
+Adds a Tag
+
+```javascript
+// Promise
+const promise = content.addInjectableTag(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.addInjectableTag(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Add tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### removeInjectableTag
+Removes a Tag
+
+```javascript
+// Promise
+const promise = content.removeInjectableTag(companyId,applicationId,body);
+
+// Async/Await
+const data = await content.removeInjectableTag(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+
+Remove a particular tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editInjectableTag
+Edits a Tag by Id
+
+```javascript
+// Promise
+const promise = content.editInjectableTag(companyId,applicationId,tagId,body);
+
+// Async/Await
+const data = await content.editInjectableTag(companyId,applicationId,tagId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company ID | 
+| applicationId | string | Application ID | 
+| tagId | string | Tag ID | 
+
+Edits a particular tag
+
+*Success Response:*
+
+
+
+Tags Array
+
+
+Schema: `TagsSchema`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
 
 
 

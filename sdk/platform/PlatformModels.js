@@ -1538,6 +1538,1162 @@ class Validator {
     });
   }
 
+  static ApplicationLegal() {
+    return Joi.object({
+      application: Joi.string(),
+
+      tnc: Joi.string(),
+
+      policy: Joi.string(),
+
+      shipping: Joi.string(),
+
+      faq: Joi.array().items(this.ApplicationLegalFAQ()),
+
+      _id: Joi.string(),
+
+      updated_at: Joi.string(),
+
+      created_at: Joi.string(),
+    });
+  }
+
+  static ApplicationLegalFAQ() {
+    return Joi.object({
+      question: Joi.string(),
+
+      answer: Joi.string(),
+    });
+  }
+
+  static SeoComponent() {
+    return Joi.object({
+      seo: this.SeoSchema(),
+    });
+  }
+
+  static SeoSchema() {
+    return Joi.object({
+      app: Joi.string(),
+
+      _id: Joi.string(),
+
+      robots_txt: Joi.string(),
+
+      sitemap_enabled: Joi.boolean(),
+
+      custom_meta_tags: Joi.array().items(Joi.object()),
+
+      details: Joi.object(),
+
+      created_at: Joi.string(),
+
+      updated_at: Joi.string(),
+    });
+  }
+
+  static CustomMetaTag() {
+    return Joi.object({
+      name: Joi.string(),
+
+      content: Joi.string(),
+
+      _id: Joi.string(),
+    });
+  }
+
+  static Detail() {
+    return Joi.object({
+      title: Joi.string(),
+
+      description: Joi.string(),
+    });
+  }
+
+  static StorefrontAnnouncement() {
+    return Joi.object({
+      announcements: this.AnnouncementSchema(),
+
+      refresh_rate: Joi.number(),
+
+      refresh_pages: Joi.array().items(Joi.string()),
+    });
+  }
+
+  static AnnouncementPageSchema() {
+    return Joi.object({
+      page_slug: Joi.string(),
+
+      type: Joi.string(),
+    });
+  }
+
+  static EditorMeta() {
+    return Joi.object({
+      foreground_color: Joi.string(),
+
+      background_color: Joi.string(),
+
+      content_type: Joi.string(),
+
+      content: Joi.string(),
+    });
+  }
+
+  static AnnouncementAuthorSchema() {
+    return Joi.object({
+      created_by: Joi.string(),
+
+      modified_by: Joi.string(),
+    });
+  }
+
+  static AdminAnnouncementSchema() {
+    return Joi.object({
+      _id: Joi.string(),
+
+      platforms: Joi.array().items(Joi.string()),
+
+      title: Joi.string(),
+
+      announcement: Joi.string(),
+
+      pages: Joi.array().items(this.AnnouncementPageSchema()),
+
+      editor_meta: this.EditorMeta(),
+
+      author: this.AnnouncementAuthorSchema(),
+
+      created_at: Joi.string(),
+
+      app: Joi.string(),
+
+      modified_at: Joi.string(),
+
+      _schedule: this.ScheduleSchema(),
+    });
+  }
+
+  static ScheduleSchema() {
+    return Joi.object({
+      cron: Joi.string(),
+
+      start: Joi.string(),
+
+      end: Joi.string(),
+
+      duration: Joi.number(),
+
+      next_schedule: Joi.array().items(Joi.object()),
+    });
+  }
+
+  static NextSchedule() {
+    return Joi.object({
+      start: Joi.string(),
+
+      end: Joi.string(),
+    });
+  }
+
+  static AnnouncementSchema() {
+    return Joi.object({
+      page_slug: Joi.array().items(Joi.object()),
+    });
+  }
+
+  static announcementSchema() {
+    return Joi.object({
+      announcement: Joi.string(),
+
+      schedule: this.scheduleStartSchema(),
+    });
+  }
+
+  static scheduleStartSchema() {
+    return Joi.object({
+      start: Joi.string(),
+    });
+  }
+
+  static BlogGetResponse() {
+    return Joi.object({
+      items: Joi.array().items(Joi.object()),
+
+      page: this.Page(),
+    });
+  }
+
+  static ResourceContent() {
+    return Joi.object({
+      type: Joi.string(),
+
+      value: Joi.string(),
+    });
+  }
+
+  static Asset() {
+    return Joi.object({
+      aspect_ratio: Joi.string(),
+
+      id: Joi.string(),
+
+      secure_url: Joi.string(),
+    });
+  }
+
+  static Author() {
+    return Joi.object({
+      designation: Joi.string(),
+
+      id: Joi.string(),
+
+      name: Joi.string(),
+    });
+  }
+
+  static BlogSchema() {
+    return Joi.object({
+      _id: Joi.string(),
+
+      _custom_json: Joi.object(),
+
+      application: Joi.string(),
+
+      archived: Joi.boolean(),
+
+      author: Joi.object(),
+
+      content: Joi.array().items(this.ResourceContent()),
+
+      feature_image: Joi.object(),
+
+      published: Joi.boolean(),
+
+      reading_time: Joi.string(),
+
+      slug: Joi.string(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      seo: this.SEO(),
+
+      _schedule: this.CronSchedule(),
+
+      title: Joi.string(),
+
+      date_meta: this.DateMeta(),
+    });
+  }
+
+  static SEO() {
+    return Joi.object({
+      description: Joi.string(),
+
+      image: this.SEOImage(),
+
+      title: Joi.string(),
+    });
+  }
+
+  static SEOImage() {
+    return Joi.object({
+      url: Joi.string(),
+    });
+  }
+
+  static DateMeta() {
+    return Joi.object({
+      created_on: Joi.string(),
+
+      modified_on: Joi.string(),
+    });
+  }
+
+  static BlogRequest() {
+    return Joi.object({
+      application: Joi.string(),
+
+      _custom_json: Joi.object(),
+
+      author: Joi.object(),
+
+      content: Joi.array().items(this.ResourceContent()),
+
+      feature_image: Joi.object(),
+
+      published: Joi.boolean(),
+
+      reading_time: Joi.string(),
+
+      slug: Joi.string(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      title: Joi.string(),
+
+      seo: this.SEO(),
+
+      _schedule: this.CronSchedule(),
+    });
+  }
+
+  static GetAnnouncementListSchema() {
+    return Joi.object({
+      items: Joi.array().items(this.AdminAnnouncementSchema()),
+
+      page: this.Page(),
+    });
+  }
+
+  static CreateAnnouncementSchema() {
+    return Joi.object({
+      message: Joi.string(),
+
+      data: this.AdminAnnouncementSchema(),
+    });
+  }
+
+  static Navigation() {
+    return Joi.object({
+      name: Joi.string(),
+
+      slug: Joi.string(),
+
+      orientation: Joi.string(),
+
+      created_by: this.CreatedBy(),
+
+      date_meta: this.DateMeta(),
+
+      _id: Joi.string(),
+
+      position: Joi.string(),
+
+      application: Joi.string(),
+
+      platform: Joi.string(),
+
+      navigation: this.NavigationReference(),
+    });
+  }
+
+  static LocaleLanguage() {
+    return Joi.object({
+      hi: this.Language(),
+
+      ar: this.Language(),
+
+      en_us: this.Language(),
+    });
+  }
+
+  static Language() {
+    return Joi.object({
+      display: Joi.string(),
+    });
+  }
+
+  static Action() {
+    return Joi.object({
+      page: this.ActionPage(),
+
+      popup: this.ActionPage(),
+
+      type: Joi.string(),
+    });
+  }
+
+  static ActionPage() {
+    return Joi.object({
+      params: Joi.object(),
+
+      query: Joi.object(),
+
+      url: Joi.string(),
+
+      type: Joi.string(),
+    });
+  }
+
+  static NavigationReference() {
+    return Joi.object({
+      acl: Joi.array().items(Joi.string()),
+
+      tags: Joi.array().items(Joi.string()),
+
+      _locale_language: this.LocaleLanguage(),
+
+      image: Joi.string(),
+
+      type: Joi.string(),
+
+      action: this.Action(),
+
+      active: Joi.boolean(),
+
+      display: Joi.string(),
+
+      sort_order: Joi.number(),
+
+      sub_navigation: this.NavigationReference(),
+    });
+  }
+
+  static LandingPage() {
+    return Joi.object({
+      data: this.LandingPageSchema(),
+
+      success: Joi.boolean(),
+    });
+  }
+
+  static ConfigurationSchema() {
+    return Joi.object({
+      sleep_time: Joi.number(),
+
+      start_on_launch: Joi.boolean(),
+
+      duration: Joi.number(),
+
+      slide_direction: Joi.string(),
+    });
+  }
+
+  static SlideshowMedia() {
+    return Joi.object({
+      type: Joi.string(),
+
+      url: Joi.string(),
+
+      bg_color: Joi.string(),
+
+      duration: Joi.number(),
+
+      auto_decide_duration: Joi.boolean(),
+
+      action: this.Action(),
+    });
+  }
+
+  static Slideshow() {
+    return Joi.object({
+      data: this.SlideshowSchema(),
+
+      success: Joi.boolean(),
+    });
+  }
+
+  static AnnouncementsResponseSchema() {
+    return Joi.object({
+      announcements: Joi.object(),
+
+      refresh_rate: Joi.number(),
+
+      refresh_pages: Joi.array().items(Joi.string()),
+    });
+  }
+
+  static AnnouncementDataSchema() {
+    return Joi.object({
+      page_slug: Joi.string(),
+
+      announcement: this.StorefrontAnnouncement(),
+    });
+  }
+
+  static FaqResponseSchema() {
+    return Joi.object({
+      faqs: Joi.array().items(this.FAQ()),
+    });
+  }
+
+  static UpdateHandpickedSchema() {
+    return Joi.object({
+      tag: this.HandpickedTagSchema(),
+    });
+  }
+
+  static HandpickedTagSchema() {
+    return Joi.object({
+      position: Joi.string(),
+
+      attributes: Joi.object(),
+
+      name: Joi.string(),
+
+      url: Joi.string(),
+
+      type: Joi.string(),
+
+      sub_type: Joi.string(),
+
+      content: Joi.string(),
+    });
+  }
+
+  static RemoveHandpickedSchema() {
+    return Joi.object({
+      tags: Joi.array().items(Joi.string()),
+    });
+  }
+
+  static CreateTagSchema() {
+    return Joi.object({
+      name: Joi.string(),
+
+      sub_type: Joi.string(),
+
+      _id: Joi.string(),
+
+      type: Joi.string(),
+
+      url: Joi.string(),
+
+      position: Joi.string(),
+
+      attributes: Joi.object(),
+
+      content: Joi.string(),
+    });
+  }
+
+  static CreateTagRequestSchema() {
+    return Joi.object({
+      tags: Joi.array().items(this.CreateTagSchema()),
+    });
+  }
+
+  static APIError() {
+    return Joi.object({
+      message: Joi.string(),
+
+      status: Joi.number(),
+
+      code: Joi.string(),
+
+      exception: Joi.string(),
+
+      info: Joi.string(),
+
+      request_id: Joi.string(),
+
+      stack_trace: Joi.string(),
+
+      meta: Joi.object(),
+    });
+  }
+
+  static CategorySchema() {
+    return Joi.object({
+      index: Joi.number(),
+
+      _id: Joi.string(),
+
+      slug: Joi.string(),
+
+      title: Joi.string(),
+
+      application: Joi.string(),
+    });
+  }
+
+  static ChildrenSchema() {
+    return Joi.object({
+      question: Joi.string(),
+
+      answer: Joi.string(),
+
+      slug: Joi.string(),
+
+      application: Joi.string(),
+
+      _id: Joi.string(),
+    });
+  }
+
+  static CategoryRequestSchema() {
+    return Joi.object({
+      slug: Joi.string(),
+
+      title: Joi.string(),
+    });
+  }
+
+  static FAQCategorySchema() {
+    return Joi.object({
+      index: Joi.number(),
+
+      title: Joi.string(),
+
+      description: Joi.string(),
+
+      children: this.ChildrenSchema(),
+
+      _id: Joi.string(),
+
+      slug: Joi.string(),
+
+      application: Joi.string(),
+
+      icon_url: Joi.string(),
+
+      _custom_json: Joi.object(),
+    });
+  }
+
+  static FaqSchema() {
+    return Joi.object({
+      slug: Joi.string(),
+
+      application: Joi.string(),
+
+      _id: Joi.string(),
+
+      question: Joi.string(),
+
+      answer: Joi.string(),
+    });
+  }
+
+  static FAQ() {
+    return Joi.object({
+      slug: Joi.string(),
+
+      question: Joi.string(),
+
+      answer: Joi.string(),
+    });
+  }
+
+  static CreateFaqResponseSchema() {
+    return Joi.object({
+      faq: this.FaqSchema(),
+    });
+  }
+
+  static CreateFaqSchema() {
+    return Joi.object({
+      faq: this.FAQ(),
+    });
+  }
+
+  static GetFaqSchema() {
+    return Joi.object({
+      faqs: Joi.array().items(Joi.object()),
+    });
+  }
+
+  static UpdateFaqCategoryRequestSchema() {
+    return Joi.object({
+      category: this.CategorySchema(),
+    });
+  }
+
+  static CreateFaqCategoryRequestSchema() {
+    return Joi.object({
+      category: this.CategoryRequestSchema(),
+    });
+  }
+
+  static CreateFaqCategorySchema() {
+    return Joi.object({
+      category: this.CategorySchema(),
+    });
+  }
+
+  static GetFaqCategoriesSchema() {
+    return Joi.object({
+      categories: Joi.array().items(this.CategorySchema()),
+    });
+  }
+
+  static GetFaqCategoryByIdOrSlugSchema() {
+    return Joi.object({
+      category: this.FAQCategorySchema(),
+    });
+  }
+
+  static LandingPageGetResponse() {
+    return Joi.object({
+      items: Joi.array().items(Joi.object()),
+
+      page: this.Page(),
+    });
+  }
+
+  static LandingPageSchema() {
+    return Joi.object({
+      slug: Joi.string(),
+
+      action: this.Action(),
+
+      platform: Joi.array().items(Joi.string()),
+
+      created_by: this.CreatedBy(),
+
+      date_meta: this.DateMeta(),
+
+      _id: Joi.string(),
+
+      application: Joi.string(),
+
+      archived: Joi.boolean(),
+
+      _custom_json: Joi.object(),
+    });
+  }
+
+  static DefaultNavigationResponse() {
+    return Joi.object({
+      items: Joi.array().items(Joi.object()),
+    });
+  }
+
+  static NavigationGetResponse() {
+    return Joi.object({
+      items: Joi.array().items(Joi.object()),
+
+      page: this.Page(),
+    });
+  }
+
+  static Orientation() {
+    return Joi.object({
+      portrait: Joi.array().items(Joi.string()),
+
+      landscape: Joi.array().items(Joi.string()),
+    });
+  }
+
+  static NavigationSchema() {
+    return Joi.object({
+      _id: Joi.string(),
+
+      application: Joi.string(),
+
+      archived: Joi.boolean(),
+
+      name: Joi.string(),
+
+      slug: Joi.string(),
+
+      platform: Joi.array().items(Joi.string()),
+
+      created_by: this.CreatedBy(),
+
+      date_meta: this.DateMeta(),
+
+      orientation: this.Orientation(),
+
+      version: Joi.number(),
+
+      navigation: this.NavigationReference(),
+    });
+  }
+
+  static NavigationRequest() {
+    return Joi.object({
+      name: Joi.string(),
+
+      slug: Joi.string(),
+
+      platform: Joi.array().items(Joi.string()),
+
+      orientation: this.Orientation(),
+
+      navigation: this.NavigationReference(),
+    });
+  }
+
+  static CustomPageSchema() {
+    return Joi.object({
+      _id: Joi.string(),
+
+      platform: Joi.string(),
+
+      title: Joi.string(),
+
+      slug: Joi.string(),
+
+      type: Joi.string(),
+
+      orientation: Joi.string(),
+
+      application: Joi.string(),
+
+      description: Joi.string(),
+
+      published: Joi.boolean(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      content: Joi.array().items(this.ContentSchema()),
+
+      created_by: this.CreatedBy(),
+
+      date_meta: this.DateMeta(),
+
+      _schedule: this.ScheduleSchema(),
+    });
+  }
+
+  static ContentSchema() {
+    return Joi.object({
+      type: Joi.string(),
+
+      value: Joi.string(),
+    });
+  }
+
+  static CustomPage() {
+    return Joi.object({
+      data: this.CustomPageSchema(),
+    });
+  }
+
+  static CustomBlogSchema() {
+    return Joi.object({
+      _id: Joi.string(),
+
+      title: Joi.string(),
+
+      slug: Joi.string(),
+
+      reading_time: Joi.string(),
+
+      application: Joi.string(),
+
+      description: Joi.string(),
+
+      feature_image: this.FeatureImage(),
+
+      published: Joi.boolean(),
+
+      archived: Joi.boolean(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      content: this.ContentSchema(),
+
+      author: this.Author(),
+
+      _schedule: this.ScheduleSchema(),
+
+      created_at: Joi.string(),
+
+      updated_at: Joi.string(),
+
+      _custom_json: Joi.object(),
+    });
+  }
+
+  static FeatureImage() {
+    return Joi.object({
+      secure_url: Joi.string(),
+    });
+  }
+
+  static CustomBlog() {
+    return Joi.object({
+      data: this.CustomBlogSchema(),
+    });
+  }
+
+  static PageGetResponse() {
+    return Joi.object({
+      items: Joi.array().items(Joi.object()),
+
+      page: this.Page(),
+    });
+  }
+
+  static PageSpec() {
+    return Joi.object({
+      specifications: Joi.array().items(Joi.object()),
+    });
+  }
+
+  static PageSpecParam() {
+    return Joi.object({
+      key: Joi.string(),
+
+      required: Joi.boolean(),
+    });
+  }
+
+  static PageSpecItem() {
+    return Joi.object({
+      page_type: Joi.string(),
+
+      display_name: Joi.string(),
+
+      params: Joi.array().items(this.PageSpecParam()),
+
+      query: Joi.array().items(this.PageSpecParam()),
+    });
+  }
+
+  static PageSchema() {
+    return Joi.object({
+      _id: Joi.string(),
+
+      application: Joi.string(),
+
+      component_ids: Joi.array().items(Joi.string()),
+
+      content: Joi.array().items(this.PageContent()),
+
+      created_by: Joi.object(),
+
+      date_meta: Joi.object(),
+
+      description: Joi.string(),
+
+      feature_image: Joi.object(),
+
+      page_meta: Joi.array().items(this.PageMeta()),
+
+      _schedule: this.ScheduleSchema(),
+
+      _custom_json: Joi.object(),
+
+      orientation: Joi.string(),
+
+      platform: Joi.string(),
+
+      published: Joi.boolean(),
+
+      slug: Joi.string(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      title: Joi.string(),
+
+      type: Joi.string(),
+
+      seo: this.SEO(),
+
+      visibility: Joi.object(),
+    });
+  }
+
+  static CreatedBy() {
+    return Joi.object({
+      id: Joi.string(),
+    });
+  }
+
+  static PageContent() {
+    return Joi.object({
+      type: Joi.string(),
+
+      value: Joi.object(),
+    });
+  }
+
+  static PageMeta() {
+    return Joi.object({
+      key: Joi.string(),
+
+      value: Joi.object(),
+    });
+  }
+
+  static PageRequest() {
+    return Joi.object({
+      _schedule: this.CronSchedule(),
+
+      application: Joi.string(),
+
+      author: Joi.object(),
+
+      _custom_json: Joi.object(),
+
+      orientation: Joi.string(),
+
+      content: Joi.array().items(this.ResourceContent()),
+
+      feature_image: Joi.object(),
+
+      published: Joi.boolean(),
+
+      reading_time: Joi.string(),
+
+      slug: Joi.string(),
+
+      tags: Joi.array().items(Joi.string()),
+
+      seo: this.SEO(),
+
+      title: Joi.string(),
+    });
+  }
+
+  static CronSchedule() {
+    return Joi.object({
+      cron: Joi.string(),
+
+      start: Joi.string(),
+
+      end: Joi.string(),
+
+      duration: Joi.number(),
+    });
+  }
+
+  static PagePublishRequest() {
+    return Joi.object({
+      publish: Joi.boolean(),
+    });
+  }
+
+  static PageMetaSchema() {
+    return Joi.object({
+      system_pages: Joi.array().items(Joi.object()),
+
+      custom_pages: Joi.array().items(Joi.object()),
+
+      application_id: Joi.string(),
+    });
+  }
+
+  static SlideshowGetResponse() {
+    return Joi.object({
+      items: Joi.array().items(Joi.object()),
+
+      page: this.Page(),
+    });
+  }
+
+  static SlideshowSchema() {
+    return Joi.object({
+      _id: Joi.string(),
+
+      slug: Joi.string(),
+
+      date_meta: this.DateMeta(),
+
+      application: Joi.string(),
+
+      platform: Joi.string(),
+
+      configuration: this.ConfigurationSchema(),
+
+      media: Joi.array().items(this.SlideshowMedia()),
+
+      active: Joi.boolean(),
+
+      archived: Joi.boolean(),
+
+      _custom_json: Joi.object(),
+    });
+  }
+
+  static SlideshowRequest() {
+    return Joi.object({
+      slug: Joi.string(),
+
+      platform: Joi.string(),
+
+      configuration: this.ConfigurationSchema(),
+
+      media: this.SlideshowMedia(),
+
+      active: Joi.boolean(),
+    });
+  }
+
+  static Support() {
+    return Joi.object({
+      created: Joi.boolean(),
+
+      _id: Joi.string(),
+
+      config_type: Joi.string(),
+
+      application: Joi.string(),
+
+      created_at: Joi.string(),
+
+      updated_at: Joi.string(),
+
+      contact: this.ContactSchema(),
+    });
+  }
+
+  static PhoneProperties() {
+    return Joi.object({
+      key: Joi.string(),
+
+      code: Joi.string(),
+
+      number: Joi.string(),
+    });
+  }
+
+  static PhoneSchema() {
+    return Joi.object({
+      active: Joi.boolean(),
+
+      phone: Joi.array().items(this.PhoneProperties()),
+    });
+  }
+
+  static EmailProperties() {
+    return Joi.object({
+      key: Joi.string(),
+
+      value: Joi.string(),
+    });
+  }
+
+  static EmailSchema() {
+    return Joi.object({
+      active: Joi.boolean(),
+
+      email: Joi.array().items(this.EmailProperties()),
+    });
+  }
+
+  static ContactSchema() {
+    return Joi.object({
+      phone: this.PhoneSchema(),
+
+      email: this.EmailSchema(),
+    });
+  }
+
+  static TagsSchema() {
+    return Joi.object({
+      application: Joi.string(),
+
+      _id: Joi.string(),
+
+      tags: Joi.array().items(this.TagSchema()),
+    });
+  }
+
+  static TagSchema() {
+    return Joi.object({
+      name: Joi.string(),
+
+      url: Joi.string(),
+
+      type: Joi.string(),
+
+      sub_type: Joi.string(),
+
+      _id: Joi.string(),
+
+      position: Joi.string(),
+
+      attributes: Joi.object(),
+
+      content: Joi.string(),
+    });
+  }
+
   static UnauthenticatedUser() {
     return Joi.object({
       message: Joi.string(),

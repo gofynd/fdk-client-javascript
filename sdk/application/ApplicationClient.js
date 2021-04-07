@@ -4,6 +4,7 @@ const {
   LeadValidator,
   ThemeValidator,
   UserValidator,
+  ContentValidator,
   ShareValidator,
   FileStorageValidator,
   ConfigurationValidator,
@@ -23,6 +24,7 @@ class ApplicationClient {
     this.lead = new Lead(config);
     this.theme = new Theme(config);
     this.user = new User(config);
+    this.content = new Content(config);
     this.share = new Share(config);
     this.fileStorage = new FileStorage(config);
     this.configuration = new Configuration(config);
@@ -3051,6 +3053,432 @@ class User {
       `/service/application/user/profile/v1.0/email/link/send`,
       query,
       body
+    );
+  }
+}
+
+class Content {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary: Get live announcements
+    * @description: Get live announcements for each or all pages with page slug of page and end date schedule.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAnnouncements({} = {}) {
+    const { error } = ContentValidator.getAnnouncements().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/announcements`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Blog by slug
+    * @description: Use this API to fetch a blog using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
+    
+    **/
+  getBlog({ slug } = {}) {
+    const { error } = ContentValidator.getBlog().validate(
+      { slug },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/blogs/${slug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get frequently asked questions
+    * @description: Get frequently asked questions list. These will be helpful for users to using website.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getFaqs({} = {}) {
+    const { error } = ContentValidator.getFaqs().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/faq`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get FAQ categories list
+    * @description: Get list of FAQ categories
+    * @param {Object} arg - arg object.
+    
+    **/
+  getFaqCategories({} = {}) {
+    const { error } = ContentValidator.getFaqCategories().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/faq/categories`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get frequently asked question
+    * @description: Get frequently asked questions list. These will be helpful for users to using website.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.idOrSlug - Slug or Id of FAQ
+    
+    **/
+  getFaqByIdOrSlug({ idOrSlug } = {}) {
+    const { error } = ContentValidator.getFaqByIdOrSlug().validate(
+      { idOrSlug },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/faq/${idOrSlug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get FAQ category by slug or id
+    * @description: Get FAQ category by slug or id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
+    
+    **/
+  getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
+    const { error } = ContentValidator.getFaqCategoryBySlugOrId().validate(
+      { idOrSlug },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/faq/category/${idOrSlug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get FAQs of a Faq Category id or slug
+    * @description: Get FAQs of a Faq Category `id` or `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.idOrSlug - Faq category ID or slug
+    
+    **/
+  getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
+    const { error } = ContentValidator.getFaqsByCategoryIdOrSlug().validate(
+      { idOrSlug },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/faq/category/${idOrSlug}/faqs`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get landing page
+    * @description: Use this API to fetch a landing page
+    * @param {Object} arg - arg object.
+    
+    **/
+  getLandingPage({} = {}) {
+    const { error } = ContentValidator.getLandingPage().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/landing-page`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get legal information
+    * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getLegalInformation({} = {}) {
+    const { error } = ContentValidator.getLegalInformation().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/legal`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get navigation
+    * @description: Use this API to fetch navigations
+    * @param {Object} arg - arg object.
+    
+    **/
+  getNavigations({} = {}) {
+    const { error } = ContentValidator.getNavigations().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/navigations/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get navigation
+    * @description: Use this API to fetch navigations
+    * @param {Object} arg - arg object.
+    
+    **/
+  getNavigationsPaginator({} = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getNavigations({});
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get Page by slug
+    * @description: Use this API to fetch a custom page using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
+    
+    **/
+  getPage({ slug } = {}) {
+    const { error } = ContentValidator.getPage().validate(
+      { slug },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/pages/${slug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get seo of application
+    * @description: Get seo of application
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSEOConfiguration({} = {}) {
+    const { error } = ContentValidator.getSEOConfiguration().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/seo`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get slideshow by slug
+    * @description: Use this API to fetch a slideshow using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow
+    
+    **/
+  getSlideshow({ slug } = {}) {
+    const { error } = ContentValidator.getSlideshow().validate(
+      { slug },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/slideshow/${slug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get support information
+    * @description: Get contact details for customer support. Including emails and phone numbers
+    * @param {Object} arg - arg object.
+    
+    **/
+  getSupportInformation({} = {}) {
+    const { error } = ContentValidator.getSupportInformation().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/support`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Tags for application
+    * @description: 
+    * @param {Object} arg - arg object.
+    
+    **/
+  getTags({} = {}) {
+    const { error } = ContentValidator.getTags().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/tags`,
+      query,
+      undefined
     );
   }
 }

@@ -7,6 +7,7 @@ declare class PlatformApplicationClient {
     lead: Lead;
     theme: Theme;
     user: User;
+    content: Content;
     communication: Communication;
     payment: Payment;
     order: Order;
@@ -18,7 +19,7 @@ declare class PlatformApplicationClient {
     analytics: Analytics;
 }
 declare namespace PlatformApplicationClient {
-    export { TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, Filter, TicketHistoryPayload, CustomFormSubmissionPayload, KeyValue, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, Email, Debug, SubmitCustomFormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketCategory, SubmitButton, PollForAssignment, CustomForm, TicketHistory, Ticket, PaginationSchema, ThemesListingResponseSchema, AddThemeRequestSchema, UpgradableThemeSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegNotFoundSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, pagesSchema, availableSectionSchema, sectionSchema, Information, Images, Src, AssetsSchema, UmdJs, CommonJs, Css, AvailablePages, Seo, Sections, Config, Preset, GlobalSchema, ListSchema, Colors, Custom, ConfigPage, Font, Variants, Medium, SemiBold, Bold, Light, Regular, Blocks, BlocksProps, PageSections, PageSectionsBlocks, PageSectionsBlocksProps, Predicate, Screen, PredicateUserSchema, Route, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, SendEmailOtpRequestSchema, VerifyOtpRequestSchema, SendMobileOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, AuthSuccess, SendOtpResponse, LoginSuccess, VerifyOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, UserSearchResponseSchema, CustomerListResponseSchema, UnauthorizedSchema, UnauthenticatedSchema, NotFoundSchema, AuthenticationApiErrorSchema, ProfileEditSuccessSchema, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, AuthSuccessUser, AuthSuccessUserDebug, AuthSuccessUserEmails, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, Mobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, Facebook, Accountkit, Google, UnauthenticatedUser, UnauthenticatedApplication, BadRequest, ResourceNotFound, InternalServerError, PlanRecurring, Plan, DetailedPlanComponents, DetailedPlan, InvoiceDetailsPeriod, InvoiceDetailsClient, InvoiceDetailsStatusTrail, InvoiceDetailsPaymentMethodsDataChecks, InvoiceDetailsPaymentMethodsDataNetworks, InvoiceDetailsPaymentMethodsDataThreeDSecureUsage, InvoiceDetailsPaymentMethodsData, InvoiceDetailsPaymentMethods, InvoicePaymentMethod, InvoiceDetails, InvoiceItemsPlanRecurring, InvoiceItemsPlan, InvoiceItemsPeriod, InvoiceItems, Invoice, InvoicesDataClient, InvoicesDataPeriod, InvoicesDataPaymentMethod, InvoicesData, Invoices, Phone, BillingAddress, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionCurrentPeriod, SubscriptionPauseCollection, SubscriptionTrial, SubscriptionInvoiceSettings, Subscription, SubscriptionStatus, SubscriptionLimitApplication, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitTeam, SubscriptionLimitProducts, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimit, SubscriptionActivateReq, SubscriptionActivateRes, CancelSubscriptionReq, CancelSubscriptionRes, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BigqueryHeadersReq, BigqueryHeadersResHeaders, BigqueryHeadersRes, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, AudienceReq, Audience, Audiences, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateDeleteSuccessRes, EmailTemplateDeleteFailureRes, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplateRes, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptions, TriggerJobResponse, TriggerJobRequest, Job, Jobs, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, PushtokenReq, PushtokenRes, SmsProviderReq, SmsProvider, SmsProviders, SmsTemplateDeleteSuccessRes, SmsTemplateDeleteFailureRes, SmsTemplateMessage, SmsTemplateReq, SmsTemplateRes, SmsTemplate, SystemSmsTemplate, SmsTemplates, SystemSmsTemplates, Notification, SystemNotificationUser, SystemNotificationSettings, SystemNotification, SystemNotificationsPage, SystemNotifications, PaymentGatewayConfigResponse, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorCodeAndResponse, PaymentModeLogo, PaymentModeList, RootPaymentMode, PaymentOptions, PaymentOptionsResponse, PayoutsResponse, PayoutRequest, PayoutResponse, UpdatePayoutResponse, UpdatePayoutRequest, DeletePayoutResponse, SubscriptionPaymentMethodResponse, DeleteSubscriptionPaymentMethodResponse, SubscriptionConfigResponse, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, GetActivityStatus, ActivityHistory, FailedOrders, FailOrder, MarketplaceOrder, TotalDiscountsSet, PresentmentMoney, ShopMoney, TotalPriceSet, TotalPriceSetShopMoney, TotalPriceSetPresentmentMoney, TotalTaxSet, TotalTaxSetShopMoney, TotalTaxSetPresentmentMoney, SubtotalPriceSet, SubtotalPriceSetShopMoney, SubtotalPriceSetPresentmentMoney, LineItems, LineItemsArticle, Quantities, NotAvailable, Sellable, OrderCommitted, Damaged, Manufacturer, ArticlePrice, Company, FailOrderDateMeta, MarketplaceIdentifiers, TatacliqLuxury, Dimension, Weight, Store, ArticleMeta, ArticleBrand, LineItemsArticleIdentifier, PriceSet, PriceSetShopMoney, PriceSetPresentmentMoney, TaxLines, TaxLinesPriceSet, TaxLinesPriceSetShopMoney, TaxLinesPriceSetPresentmentMoney, TotalDiscountSet, TotalDiscountSetPresentmentMoney, TotalDiscountSetShopMoney, TotalShippingPriceSet, TotalShippingPriceSetShopMoney, TotalShippingPriceSetPresentmentMoney, Customer, DefaultAddress, TotalLineItemsPriceSet, TotalLineItemsPriceSetShopMoney, TotalLineItemsPriceSetPresentmentMoney, ShippingAddress, OrderListing, OrderItems, PlatformOrderUserInfo, PlatformDeliveryAddress, Channel, PlatformBreakupValues, PlatformApplication, ArticleAssignment, PlatformShipment, PlatformShipmentStatus, Bags, BagFinancialBreakup, Identifiers, BagCurrStatus, BagItem, BagItemAttributes, BagArticle, ArticleIdentifiers, Set, SetSizeDistribution, Sizes, BagArticleReturnConfig, ShipmentPrices, GstDetails, BagBreakupValues, BagCurrentStatus, BagStateMapper, BagStatus, BagStatusBagStateMapper, BagPrices, ShipmentBreakupValues, DpDetails, ShipmentInvoice, RtoAddress, StoreAddressJson, PlatformFulfillingStore, FulfillingStoreMeta, AdditionalContactDetails, Documents, Gst, ProductReturnConfig, Timing, Opening, Closing, FulfillingStoreStoreAddressJson, Payments, ShipmentGst, PlatformShipmentBrand, Promise, Timestamp, ShipmentTrackingDetails, ShipmentUser, ItemsPayments, Filters, Stages, StagesFilters, Options, NextOrderStatus, BagConfirmed, DpAssigned, ReturnBagDelivered, Placed, DeliveryDone, Pending, BagPacked, PlatformOrderPage, ItemTotal, AppliedFilters, UpdateOrderReprocessResponse, PlatformOrderTrack, GetPingResponse, UpdateShipmentStatusResponse, UpdateShipmentStatusBody, PlatformShipmentTrack, Results, UpdateProcessShipmenstRequestBody, UpdateProcessShipmenstRequestResponse, GetVoiceCallbackResponse, GetClickToCallResponse, ApefaceApiError, GetSearchWordsData, GetSearchWordsDetailResponse, ErrorResponse, SearchKeywordResult, CreateSearchKeyword, DeleteResponse, GetSearchWordsResponse, GetAutocompleteWordsData, GetAutocompleteWordsResponse, Media, AutocompletePageAction, AutocompleteAction, AutocompleteResult, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, ProductBundleItem, GetProductBundleCreateResponse, GetProductBundleListingResponse, ProductBundleRequest, Price, Size, LimitedProductData, GetProducts, GetProductBundleResponse, ProductBundleUpdateRequest, ListSizeGuide, Meta, Guide, ValidateSizeGuide, SuccessResponse, SizeGuideResponse, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaDataListingResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationMetaData, ProductSize, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariantConfig, ConfigurationProductVariant, ConfigurationProduct, ConfigurationBucketPoints, ConfigurationListingFilterValue, ConfigurationListingFilterConfig, ConfigurationListingFilter, ConfigurationListingSortConfig, ConfigurationListingSort, ConfigurationListing, AppCatalogConfiguration, GetAppCatalogConfiguration, AppConfiguration, GetCatalogConfigurationDetailsSchemaListing, EntityConfiguration, GetAppCatalogEntityConfiguration, ProductSortOn, ProductFiltersKey, ProductFiltersValue, ProductFilters, GetCollectionQueryOptionResponse, Media1, ProductListingActionPage, ProductListingAction, BannerImage, ImageUrls, GetCollectionDetailNest, CollectionListingFilterTag, CollectionListingFilterType, CollectionListingFilter, GetCollectionListingResponse, CollectionBadge, CollectionImage, SeoDetail, UserInfo, Schedule, CollectionBanner, CreateCollection, CollectionCreateResponse, CollectionDetailResponse, Price1, ProductListingPrice, ProductListingDetail, GetCollectionItemsResponse, CollectionItemRequest, UpdatedResponse, CatalogInsightItem, CatalogInsightBrand, CatalogInsightResponse, CrossSellingData, CrossSellingResponse, OptInPostRequest, CompanyOptIn, GetOptInPlatform, OptinCompanyDetail, CompanyBrandDetail, OptinCompanyBrandDetailsView, OptinCompanyMetrics, StoreDetail, OptinStoreDetails, MultipleCommon, BasePage, ProdcutTemplateCategoriesResponse, PTErrorResponse, UserSerializer, GetDepartment, BasePage1, DepartmentsResponse, DepartmentErrorResponse, ProductTemplate, TemplatesResponse, TemplatesValidationResponse, InventoryValidationResponse, HSNData, HSNCodesResponse, ProductConfligurationDownloads, Hierarchy, Media2, CategoryMappingValues, CategoryMapping, Category, CategoryResponse, CategoryRequestBody, CategoryCreateResponse, CategoryUpdateResponse, VerifiedBy, UserCommon, Attributes, Logo, Brand, ProductPublished, Product, PageData, ProductListingResponse, ReturnConfig, Trader, ProductPublish, OrderQuantity, TeaserTag, CustomOrder, ProductCreateUpdate, ValidateProduct, UserDetail, ProductBulkRequest, ProductBulkRequestList, UserInfo1, BulkJob, BulkProductRequest, NestedTags, ProductTagsViewResponse, Items, BulkAssetResponse, ProductBulkAssets, InventoryRequest, GTIN, SetSize, SizeDistribution, InventorySet, InvSize, ItemQuery, InventoryRequest1, BulkRequestGet, CommonResponse, Size1, InventoryBulkRequest, InventoryExportJob, InventoryExportRequest, FilerList, InventoryConfig, CompanyAddress, Document, ReferralInfo, BusinessCountryInfo, CompanyStoreSerializerRequest, Website, BusinessDetails, GetAddressSerializer, BusinessCountryInfo1, ContactDetails, GetCompanyProfileSerializerResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, CreateUpdateBrandRequestSerializer, UserSerializer1, GetBrandResponseSerializer, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, LocationListSerializer, GetAddressSerializer1, LocationManagerSerializer, LocationTimingSerializer, LocationDayWiseSerializer, ProductReturnConfigSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, LocationSerializer, GetCompanySerializer, LocationIntegrationType, GetLocationSerializer, FailedResponse, CDN, Upload, StartResponse, StartRequest, CompleteResponse, Opts, CopyFileTask, BulkResponse, ReqConfiguration, Destination, BulkRequest, Urls, SignUrlResponse, SignUrlRequest, DbRecord, BrowseResponse, RedirectDevice, WebRedirect, Redirects, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, ShortLinkList, ApplicationInventory, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, RewardPointsConfig, Credit, Debit, AppCartConfig, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPoints, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, CurrencyConfig, DomainAdd, DomainAddRequest, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequest, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, UnhandledError, InvalidPayloadRequest, SuccessMessageResponse, InventoryBrandRule, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, CompanyAboutAddress, UserEmail, UserPhoneNumber, ApplicationInformation, InformationAddress, InformationPhone, InformationSupport, SocialLinks, Instagram, Twitter, Pinterest, GooglePlus, Youtube, LinkedIn, Vimeo, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, Auth, GoogleMap, GoogleMapCredentials, Rule, Ownership, CouponDateMeta, DisplayMetaDict, DisplayMeta, CouponSchedule, BulkBundleRestriction, UsesRemaining, UsesRestriction, PostOrder, PriceRange, PaymentAllowValue, PaymentModes, PaymentCodes, Restrictions, RuleDefinition, State, Validation, Identifier, Validity, CouponAction, CouponAuthor, CouponAdd, CouponsResponse, SuccessMessage, OperationErrorResponse, CouponUpdate, CouponPartialUpdate, StoreMapping, AllChannels, MyntraPayload, AmazonPayload, FlipkartPayload, TatacliqPayload, AjioPayload, InventorySyncConfig, StoreMappingPayload, StatusPayload, StatusResp, SyncPayload, SyncResp, MkpResp, StatGroup, StatsGroups, StatsGroupComponent, StatsGroupComponents, StatsRes, ReceivedAt, AbandonCartsDetail, AbandonCartsList, AbandonCartDetail, ExportJobReq, ExportJobRes, ExportJobStatusRes, GetLogsListReq, MkpLogsResp, GetLogsListRes, SearchLogReq, LogInfo, SearchLogRes };
+    export { TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, Filter, TicketHistoryPayload, CustomFormSubmissionPayload, KeyValue, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, UserSchema, PhoneNumber, Email, Debug, SubmitCustomFormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketCategory, SubmitButton, PollForAssignment, CustomForm, TicketHistory, Ticket, PaginationSchema, ThemesListingResponseSchema, AddThemeRequestSchema, UpgradableThemeSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegNotFoundSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, pagesSchema, availableSectionSchema, sectionSchema, Information, Images, Src, AssetsSchema, UmdJs, CommonJs, Css, AvailablePages, Seo, Sections, Config, Preset, GlobalSchema, ListSchema, Colors, Custom, ConfigPage, Font, Variants, Medium, SemiBold, Bold, Light, Regular, Blocks, BlocksProps, PageSections, PageSectionsBlocks, PageSectionsBlocksProps, Predicate, Screen, PredicateUserSchema, Route, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, SendEmailOtpRequestSchema, VerifyOtpRequestSchema, SendMobileOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, AuthSuccess, SendOtpResponse, LoginSuccess, VerifyOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, UserSearchResponseSchema, CustomerListResponseSchema, UnauthorizedSchema, UnauthenticatedSchema, NotFoundSchema, AuthenticationApiErrorSchema, ProfileEditSuccessSchema, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, AuthSuccessUser, AuthSuccessUserDebug, AuthSuccessUserEmails, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, Mobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, Facebook, Accountkit, Google, ApplicationLegal, ApplicationLegalFAQ, SeoComponent, SeoSchema, CustomMetaTag, Detail, StorefrontAnnouncement, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, ScheduleSchema, NextSchedule, AnnouncementSchema, announcementSchema, scheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, Navigation, LocaleLanguage, Language, Action, ActionPage, NavigationReference, LandingPage, ConfigurationSchema, SlideshowMedia, Slideshow, AnnouncementsResponseSchema, AnnouncementDataSchema, FaqResponseSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, APIError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryByIdOrSlugSchema, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, CustomPageSchema, ContentSchema, CustomPage, CustomBlogSchema, FeatureImage, CustomBlog, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBy, PageContent, PageMeta, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, UnauthenticatedUser, UnauthenticatedApplication, BadRequest, ResourceNotFound, InternalServerError, PlanRecurring, Plan, DetailedPlanComponents, DetailedPlan, InvoiceDetailsPeriod, InvoiceDetailsClient, InvoiceDetailsStatusTrail, InvoiceDetailsPaymentMethodsDataChecks, InvoiceDetailsPaymentMethodsDataNetworks, InvoiceDetailsPaymentMethodsDataThreeDSecureUsage, InvoiceDetailsPaymentMethodsData, InvoiceDetailsPaymentMethods, InvoicePaymentMethod, InvoiceDetails, InvoiceItemsPlanRecurring, InvoiceItemsPlan, InvoiceItemsPeriod, InvoiceItems, Invoice, InvoicesDataClient, InvoicesDataPeriod, InvoicesDataPaymentMethod, InvoicesData, Invoices, Phone, BillingAddress, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionCurrentPeriod, SubscriptionPauseCollection, SubscriptionTrial, SubscriptionInvoiceSettings, Subscription, SubscriptionStatus, SubscriptionLimitApplication, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitTeam, SubscriptionLimitProducts, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimit, SubscriptionActivateReq, SubscriptionActivateRes, CancelSubscriptionReq, CancelSubscriptionRes, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BigqueryHeadersReq, BigqueryHeadersResHeaders, BigqueryHeadersRes, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, AudienceReq, Audience, Audiences, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateDeleteSuccessRes, EmailTemplateDeleteFailureRes, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplateRes, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptions, TriggerJobResponse, TriggerJobRequest, Job, Jobs, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, PushtokenReq, PushtokenRes, SmsProviderReq, SmsProvider, SmsProviders, SmsTemplateDeleteSuccessRes, SmsTemplateDeleteFailureRes, SmsTemplateMessage, SmsTemplateReq, SmsTemplateRes, SmsTemplate, SystemSmsTemplate, SmsTemplates, SystemSmsTemplates, Notification, SystemNotificationUser, SystemNotificationSettings, SystemNotification, SystemNotificationsPage, SystemNotifications, PaymentGatewayConfigResponse, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorCodeAndResponse, PaymentModeLogo, PaymentModeList, RootPaymentMode, PaymentOptions, PaymentOptionsResponse, PayoutsResponse, PayoutRequest, PayoutResponse, UpdatePayoutResponse, UpdatePayoutRequest, DeletePayoutResponse, SubscriptionPaymentMethodResponse, DeleteSubscriptionPaymentMethodResponse, SubscriptionConfigResponse, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, GetActivityStatus, ActivityHistory, FailedOrders, FailOrder, MarketplaceOrder, TotalDiscountsSet, PresentmentMoney, ShopMoney, TotalPriceSet, TotalPriceSetShopMoney, TotalPriceSetPresentmentMoney, TotalTaxSet, TotalTaxSetShopMoney, TotalTaxSetPresentmentMoney, SubtotalPriceSet, SubtotalPriceSetShopMoney, SubtotalPriceSetPresentmentMoney, LineItems, LineItemsArticle, Quantities, NotAvailable, Sellable, OrderCommitted, Damaged, Manufacturer, ArticlePrice, Company, FailOrderDateMeta, MarketplaceIdentifiers, TatacliqLuxury, Dimension, Weight, Store, ArticleMeta, ArticleBrand, LineItemsArticleIdentifier, PriceSet, PriceSetShopMoney, PriceSetPresentmentMoney, TaxLines, TaxLinesPriceSet, TaxLinesPriceSetShopMoney, TaxLinesPriceSetPresentmentMoney, TotalDiscountSet, TotalDiscountSetPresentmentMoney, TotalDiscountSetShopMoney, TotalShippingPriceSet, TotalShippingPriceSetShopMoney, TotalShippingPriceSetPresentmentMoney, Customer, DefaultAddress, TotalLineItemsPriceSet, TotalLineItemsPriceSetShopMoney, TotalLineItemsPriceSetPresentmentMoney, ShippingAddress, OrderListing, OrderItems, PlatformOrderUserInfo, PlatformDeliveryAddress, Channel, PlatformBreakupValues, PlatformApplication, ArticleAssignment, PlatformShipment, PlatformShipmentStatus, Bags, BagFinancialBreakup, Identifiers, BagCurrStatus, BagItem, BagItemAttributes, BagArticle, ArticleIdentifiers, Set, SetSizeDistribution, Sizes, BagArticleReturnConfig, ShipmentPrices, GstDetails, BagBreakupValues, BagCurrentStatus, BagStateMapper, BagStatus, BagStatusBagStateMapper, BagPrices, ShipmentBreakupValues, DpDetails, ShipmentInvoice, RtoAddress, StoreAddressJson, PlatformFulfillingStore, FulfillingStoreMeta, AdditionalContactDetails, Documents, Gst, ProductReturnConfig, Timing, Opening, Closing, FulfillingStoreStoreAddressJson, Payments, ShipmentGst, PlatformShipmentBrand, Promise, Timestamp, ShipmentTrackingDetails, ShipmentUser, ItemsPayments, Filters, Stages, StagesFilters, Options, NextOrderStatus, BagConfirmed, DpAssigned, ReturnBagDelivered, Placed, DeliveryDone, Pending, BagPacked, PlatformOrderPage, ItemTotal, AppliedFilters, UpdateOrderReprocessResponse, PlatformOrderTrack, GetPingResponse, UpdateShipmentStatusResponse, UpdateShipmentStatusBody, PlatformShipmentTrack, Results, UpdateProcessShipmenstRequestBody, UpdateProcessShipmenstRequestResponse, GetVoiceCallbackResponse, GetClickToCallResponse, ApefaceApiError, GetSearchWordsData, GetSearchWordsDetailResponse, ErrorResponse, SearchKeywordResult, CreateSearchKeyword, DeleteResponse, GetSearchWordsResponse, GetAutocompleteWordsData, GetAutocompleteWordsResponse, Media, AutocompletePageAction, AutocompleteAction, AutocompleteResult, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, ProductBundleItem, GetProductBundleCreateResponse, GetProductBundleListingResponse, ProductBundleRequest, Price, Size, LimitedProductData, GetProducts, GetProductBundleResponse, ProductBundleUpdateRequest, ListSizeGuide, Meta, Guide, ValidateSizeGuide, SuccessResponse, SizeGuideResponse, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaDataListingResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationMetaData, ProductSize, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariantConfig, ConfigurationProductVariant, ConfigurationProduct, ConfigurationBucketPoints, ConfigurationListingFilterValue, ConfigurationListingFilterConfig, ConfigurationListingFilter, ConfigurationListingSortConfig, ConfigurationListingSort, ConfigurationListing, AppCatalogConfiguration, GetAppCatalogConfiguration, AppConfiguration, GetCatalogConfigurationDetailsSchemaListing, EntityConfiguration, GetAppCatalogEntityConfiguration, ProductSortOn, ProductFiltersKey, ProductFiltersValue, ProductFilters, GetCollectionQueryOptionResponse, Media1, ProductListingActionPage, ProductListingAction, BannerImage, ImageUrls, GetCollectionDetailNest, CollectionListingFilterTag, CollectionListingFilterType, CollectionListingFilter, GetCollectionListingResponse, CollectionBadge, CollectionImage, SeoDetail, UserInfo, Schedule, CollectionBanner, CreateCollection, CollectionCreateResponse, CollectionDetailResponse, Price1, ProductListingPrice, ProductListingDetail, GetCollectionItemsResponse, CollectionItemRequest, UpdatedResponse, CatalogInsightItem, CatalogInsightBrand, CatalogInsightResponse, CrossSellingData, CrossSellingResponse, OptInPostRequest, CompanyOptIn, GetOptInPlatform, OptinCompanyDetail, CompanyBrandDetail, OptinCompanyBrandDetailsView, OptinCompanyMetrics, StoreDetail, OptinStoreDetails, MultipleCommon, BasePage, ProdcutTemplateCategoriesResponse, PTErrorResponse, UserSerializer, GetDepartment, BasePage1, DepartmentsResponse, DepartmentErrorResponse, ProductTemplate, TemplatesResponse, TemplatesValidationResponse, InventoryValidationResponse, HSNData, HSNCodesResponse, ProductConfligurationDownloads, Hierarchy, Media2, CategoryMappingValues, CategoryMapping, Category, CategoryResponse, CategoryRequestBody, CategoryCreateResponse, CategoryUpdateResponse, VerifiedBy, UserCommon, Attributes, Logo, Brand, ProductPublished, Product, PageData, ProductListingResponse, ReturnConfig, Trader, ProductPublish, OrderQuantity, TeaserTag, CustomOrder, ProductCreateUpdate, ValidateProduct, UserDetail, ProductBulkRequest, ProductBulkRequestList, UserInfo1, BulkJob, BulkProductRequest, NestedTags, ProductTagsViewResponse, Items, BulkAssetResponse, ProductBulkAssets, InventoryRequest, GTIN, SetSize, SizeDistribution, InventorySet, InvSize, ItemQuery, InventoryRequest1, BulkRequestGet, CommonResponse, Size1, InventoryBulkRequest, InventoryExportJob, InventoryExportRequest, FilerList, InventoryConfig, CompanyAddress, Document, ReferralInfo, BusinessCountryInfo, CompanyStoreSerializerRequest, Website, BusinessDetails, GetAddressSerializer, BusinessCountryInfo1, ContactDetails, GetCompanyProfileSerializerResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, CreateUpdateBrandRequestSerializer, UserSerializer1, GetBrandResponseSerializer, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, LocationListSerializer, GetAddressSerializer1, LocationManagerSerializer, LocationTimingSerializer, LocationDayWiseSerializer, ProductReturnConfigSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, LocationSerializer, GetCompanySerializer, LocationIntegrationType, GetLocationSerializer, FailedResponse, CDN, Upload, StartResponse, StartRequest, CompleteResponse, Opts, CopyFileTask, BulkResponse, ReqConfiguration, Destination, BulkRequest, Urls, SignUrlResponse, SignUrlRequest, DbRecord, BrowseResponse, RedirectDevice, WebRedirect, Redirects, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, ShortLinkList, ApplicationInventory, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, RewardPointsConfig, Credit, Debit, AppCartConfig, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPoints, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, CurrencyConfig, DomainAdd, DomainAddRequest, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequest, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, UnhandledError, InvalidPayloadRequest, SuccessMessageResponse, InventoryBrandRule, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, CompanyAboutAddress, UserEmail, UserPhoneNumber, ApplicationInformation, InformationAddress, InformationPhone, InformationSupport, SocialLinks, Instagram, Twitter, Pinterest, GooglePlus, Youtube, LinkedIn, Vimeo, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, Auth, GoogleMap, GoogleMapCredentials, Rule, Ownership, CouponDateMeta, DisplayMetaDict, DisplayMeta, CouponSchedule, BulkBundleRestriction, UsesRemaining, UsesRestriction, PostOrder, PriceRange, PaymentAllowValue, PaymentModes, PaymentCodes, Restrictions, RuleDefinition, State, Validation, Identifier, Validity, CouponAction, CouponAuthor, CouponAdd, CouponsResponse, SuccessMessage, OperationErrorResponse, CouponUpdate, CouponPartialUpdate, StoreMapping, AllChannels, MyntraPayload, AmazonPayload, FlipkartPayload, TatacliqPayload, AjioPayload, InventorySyncConfig, StoreMappingPayload, StatusPayload, StatusResp, SyncPayload, SyncResp, MkpResp, StatGroup, StatsGroups, StatsGroupComponent, StatsGroupComponents, StatsRes, ReceivedAt, AbandonCartsDetail, AbandonCartsList, AbandonCartDetail, ExportJobReq, ExportJobRes, ExportJobStatusRes, GetLogsListReq, MkpLogsResp, GetLogsListRes, SearchLogReq, LogInfo, SearchLogRes };
 }
 /**
         @typedef TicketList
@@ -1841,6 +1842,1354 @@ declare namespace PlatformApplicationClient {
         
         
         @property { string } [appId]
+        
+         
+    */
+/**
+        @typedef ApplicationLegal
+        
+        
+        @property { string } [application]
+        
+        @property { string } [tnc]
+        
+        @property { string } [policy]
+        
+        @property { string } [shipping]
+        
+        @property { Array<ApplicationLegalFAQ> } [faq]
+        
+        @property { string } [id]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [createdAt]
+        
+         
+    */
+/**
+        @typedef ApplicationLegalFAQ
+        
+        
+        @property { string } [question]
+        
+        @property { string } [answer]
+        
+         
+    */
+/**
+        @typedef SeoComponent
+        
+        
+        @property { SeoSchema } [seo]
+        
+         
+    */
+/**
+        @typedef SeoSchema
+        
+        
+        @property { string } [app]
+        
+        @property { string } [id]
+        
+        @property { string } [robotsTxt]
+        
+        @property { boolean } [sitemapEnabled]
+        
+        @property { Array<Object> } [customMetaTags]
+        
+        @property { Object } [details]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+         
+    */
+/**
+        @typedef CustomMetaTag
+        
+        
+        @property { string } [name]
+        
+        @property { string } [content]
+        
+        @property { string } [id]
+        
+         
+    */
+/**
+        @typedef Detail
+        
+        
+        @property { string } [title]
+        
+        @property { string } [description]
+        
+         
+    */
+/**
+        @typedef StorefrontAnnouncement
+        
+        
+        @property { AnnouncementSchema } [announcements]
+        
+        @property { number } [refreshRate]
+        
+        @property { Array<string> } [refreshPages]
+        
+         
+    */
+/**
+        @typedef AnnouncementPageSchema
+        
+        
+        @property { string } [pageSlug]
+        
+        @property { string } [type]
+        
+         
+    */
+/**
+        @typedef EditorMeta
+        
+        
+        @property { string } [foregroundColor]
+        
+        @property { string } [backgroundColor]
+        
+        @property { string } [contentType]
+        
+        @property { string } [content]
+        
+         
+    */
+/**
+        @typedef AnnouncementAuthorSchema
+        
+        
+        @property { string } [createdBy]
+        
+        @property { string } [modifiedBy]
+        
+         
+    */
+/**
+        @typedef AdminAnnouncementSchema
+        
+        
+        @property { string } [id]
+        
+        @property { Array<string> } [platforms]
+        
+        @property { string } [title]
+        
+        @property { string } [announcement]
+        
+        @property { Array<AnnouncementPageSchema> } [pages]
+        
+        @property { EditorMeta } [editorMeta]
+        
+        @property { AnnouncementAuthorSchema } [author]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [app]
+        
+        @property { string } [modifiedAt]
+        
+        @property { ScheduleSchema } [schedule]
+        
+         
+    */
+/**
+        @typedef ScheduleSchema
+        
+        
+        @property { string } [cron]
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+        @property { number } [duration]
+        
+        @property { Array<Object> } [nextSchedule]
+        
+         
+    */
+/**
+        @typedef NextSchedule
+        
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+         
+    */
+/**
+        @typedef AnnouncementSchema
+        
+        
+        @property { Array<Object> } [pageSlug]
+        
+         
+    */
+/**
+        @typedef announcementSchema
+        
+        
+        @property { string } [announcement]
+        
+        @property { scheduleStartSchema } [schedule]
+        
+         
+    */
+/**
+        @typedef scheduleStartSchema
+        
+        
+        @property { string } [start]
+        
+         
+    */
+/**
+        @typedef BlogGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+/**
+        @typedef ResourceContent
+        
+        
+        @property { string } [type]
+        
+        @property { string } [value]
+        
+         
+    */
+/**
+        @typedef Asset
+        
+        
+        @property { string } [aspectRatio]
+        
+        @property { string } [id]
+        
+        @property { string } [secureUrl]
+        
+         
+    */
+/**
+        @typedef Author
+        
+        
+        @property { string } [designation]
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+         
+    */
+/**
+        @typedef BlogSchema
+        
+        
+        @property { string } [id]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [application]
+        
+        @property { boolean } [archived]
+        
+        @property { Object } [author]
+        
+        @property { Array<ResourceContent> } [content]
+        
+        @property { Object } [featureImage]
+        
+        @property { boolean } [published]
+        
+        @property { string } [readingTime]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [tags]
+        
+        @property { SEO } [seo]
+        
+        @property { CronSchedule } [schedule]
+        
+        @property { string } [title]
+        
+        @property { DateMeta } [dateMeta]
+        
+         
+    */
+/**
+        @typedef SEO
+        
+        
+        @property { string } [description]
+        
+        @property { SEOImage } [image]
+        
+        @property { string } [title]
+        
+         
+    */
+/**
+        @typedef SEOImage
+        
+        
+        @property { string } [url]
+        
+         
+    */
+/**
+        @typedef DateMeta
+        
+        
+        @property { string } [createdOn]
+        
+        @property { string } [modifiedOn]
+        
+         
+    */
+/**
+        @typedef BlogRequest
+        
+        
+        @property { string } [application]
+        
+        @property { Object } [customJson]
+        
+        @property { Object } [author]
+        
+        @property { Array<ResourceContent> } [content]
+        
+        @property { Object } [featureImage]
+        
+        @property { boolean } [published]
+        
+        @property { string } [readingTime]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } [title]
+        
+        @property { SEO } [seo]
+        
+        @property { CronSchedule } [schedule]
+        
+         
+    */
+/**
+        @typedef GetAnnouncementListSchema
+        
+        
+        @property { Array<AdminAnnouncementSchema> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+/**
+        @typedef CreateAnnouncementSchema
+        
+        
+        @property { string } [message]
+        
+        @property { AdminAnnouncementSchema } [data]
+        
+         
+    */
+/**
+        @typedef Navigation
+        
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { string } [orientation]
+        
+        @property { CreatedBy } [createdBy]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { string } [id]
+        
+        @property { string } [position]
+        
+        @property { string } [application]
+        
+        @property { string } [platform]
+        
+        @property { NavigationReference } [navigation]
+        
+         
+    */
+/**
+        @typedef LocaleLanguage
+        
+        
+        @property { Language } [hi]
+        
+        @property { Language } [ar]
+        
+        @property { Language } [enUs]
+        
+         
+    */
+/**
+        @typedef Language
+        
+        
+        @property { string } [display]
+        
+         
+    */
+/**
+        @typedef Action
+        
+        
+        @property { ActionPage } [page]
+        
+        @property { ActionPage } [popup]
+        
+        @property { string } [type]
+        
+         
+    */
+/**
+        @typedef ActionPage
+        
+        
+        @property { Object } [params]
+        
+        @property { Object } [query]
+        
+        @property { string } [url]
+        
+        @property { string } [type]
+        
+         
+    */
+/**
+        @typedef NavigationReference
+        
+        
+        @property { Array<string> } [acl]
+        
+        @property { Array<string> } [tags]
+        
+        @property { LocaleLanguage } [localeLanguage]
+        
+        @property { string } [image]
+        
+        @property { string } [type]
+        
+        @property { Action } [action]
+        
+        @property { boolean } [active]
+        
+        @property { string } [display]
+        
+        @property { number } [sortOrder]
+        
+        @property { NavigationReference } [subNavigation]
+        
+         
+    */
+/**
+        @typedef LandingPage
+        
+        
+        @property { LandingPageSchema } [data]
+        
+        @property { boolean } [success]
+        
+         
+    */
+/**
+        @typedef ConfigurationSchema
+        
+        
+        @property { number } [sleepTime]
+        
+        @property { boolean } [startOnLaunch]
+        
+        @property { number } [duration]
+        
+        @property { string } [slideDirection]
+        
+         
+    */
+/**
+        @typedef SlideshowMedia
+        
+        
+        @property { string } [type]
+        
+        @property { string } [url]
+        
+        @property { string } [bgColor]
+        
+        @property { number } [duration]
+        
+        @property { boolean } [autoDecideDuration]
+        
+        @property { Action } [action]
+        
+         
+    */
+/**
+        @typedef Slideshow
+        
+        
+        @property { SlideshowSchema } [data]
+        
+        @property { boolean } [success]
+        
+         
+    */
+/**
+        @typedef AnnouncementsResponseSchema
+        
+        
+        @property { Object } [announcements]
+        
+        @property { number } [refreshRate]
+        
+        @property { Array<string> } [refreshPages]
+        
+         
+    */
+/**
+        @typedef AnnouncementDataSchema
+        
+        
+        @property { string } [pageSlug]
+        
+        @property { StorefrontAnnouncement } [announcement]
+        
+         
+    */
+/**
+        @typedef FaqResponseSchema
+        
+        
+        @property { Array<FAQ> } [faqs]
+        
+         
+    */
+/**
+        @typedef UpdateHandpickedSchema
+        
+        
+        @property { HandpickedTagSchema } [tag]
+        
+         
+    */
+/**
+        @typedef HandpickedTagSchema
+        
+        
+        @property { string } [position]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [name]
+        
+        @property { string } [url]
+        
+        @property { string } [type]
+        
+        @property { string } [subType]
+        
+        @property { string } [content]
+        
+         
+    */
+/**
+        @typedef RemoveHandpickedSchema
+        
+        
+        @property { Array<string> } [tags]
+        
+         
+    */
+/**
+        @typedef CreateTagSchema
+        
+        
+        @property { string } [name]
+        
+        @property { string } [subType]
+        
+        @property { string } [id]
+        
+        @property { string } [type]
+        
+        @property { string } [url]
+        
+        @property { string } [position]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [content]
+        
+         
+    */
+/**
+        @typedef CreateTagRequestSchema
+        
+        
+        @property { Array<CreateTagSchema> } [tags]
+        
+         
+    */
+/**
+        @typedef APIError
+        
+        
+        @property { string } [message]
+        
+        @property { number } [status]
+        
+        @property { string } [code]
+        
+        @property { string } [exception]
+        
+        @property { string } [info]
+        
+        @property { string } [requestId]
+        
+        @property { string } [stackTrace]
+        
+        @property { Object } [meta]
+        
+         
+    */
+/**
+        @typedef CategorySchema
+        
+        
+        @property { number } [index]
+        
+        @property { string } [id]
+        
+        @property { string } [slug]
+        
+        @property { string } [title]
+        
+        @property { string } [application]
+        
+         
+    */
+/**
+        @typedef ChildrenSchema
+        
+        
+        @property { string } [question]
+        
+        @property { string } [answer]
+        
+        @property { string } [slug]
+        
+        @property { string } [application]
+        
+        @property { string } [id]
+        
+         
+    */
+/**
+        @typedef CategoryRequestSchema
+        
+        
+        @property { string } [slug]
+        
+        @property { string } [title]
+        
+         
+    */
+/**
+        @typedef FAQCategorySchema
+        
+        
+        @property { number } [index]
+        
+        @property { string } [title]
+        
+        @property { string } [description]
+        
+        @property { ChildrenSchema } [children]
+        
+        @property { string } [id]
+        
+        @property { string } [slug]
+        
+        @property { string } [application]
+        
+        @property { string } [iconUrl]
+        
+        @property { Object } [customJson]
+        
+         
+    */
+/**
+        @typedef FaqSchema
+        
+        
+        @property { string } [slug]
+        
+        @property { string } [application]
+        
+        @property { string } [id]
+        
+        @property { string } [question]
+        
+        @property { string } [answer]
+        
+         
+    */
+/**
+        @typedef FAQ
+        
+        
+        @property { string } [slug]
+        
+        @property { string } [question]
+        
+        @property { string } [answer]
+        
+         
+    */
+/**
+        @typedef CreateFaqResponseSchema
+        
+        
+        @property { FaqSchema } [faq]
+        
+         
+    */
+/**
+        @typedef CreateFaqSchema
+        
+        
+        @property { FAQ } [faq]
+        
+         
+    */
+/**
+        @typedef GetFaqSchema
+        
+        
+        @property { Array<Object> } [faqs]
+        
+         
+    */
+/**
+        @typedef UpdateFaqCategoryRequestSchema
+        
+        
+        @property { CategorySchema } [category]
+        
+         
+    */
+/**
+        @typedef CreateFaqCategoryRequestSchema
+        
+        
+        @property { CategoryRequestSchema } [category]
+        
+         
+    */
+/**
+        @typedef CreateFaqCategorySchema
+        
+        
+        @property { CategorySchema } [category]
+        
+         
+    */
+/**
+        @typedef GetFaqCategoriesSchema
+        
+        
+        @property { Array<CategorySchema> } [categories]
+        
+         
+    */
+/**
+        @typedef GetFaqCategoryByIdOrSlugSchema
+        
+        
+        @property { FAQCategorySchema } [category]
+        
+         
+    */
+/**
+        @typedef LandingPageGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+/**
+        @typedef LandingPageSchema
+        
+        
+        @property { string } [slug]
+        
+        @property { Action } [action]
+        
+        @property { Array<string> } [platform]
+        
+        @property { CreatedBy } [createdBy]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { string } [id]
+        
+        @property { string } [application]
+        
+        @property { boolean } [archived]
+        
+        @property { Object } [customJson]
+        
+         
+    */
+/**
+        @typedef DefaultNavigationResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+         
+    */
+/**
+        @typedef NavigationGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+/**
+        @typedef Orientation
+        
+        
+        @property { Array<string> } [portrait]
+        
+        @property { Array<string> } [landscape]
+        
+         
+    */
+/**
+        @typedef NavigationSchema
+        
+        
+        @property { string } [id]
+        
+        @property { string } [application]
+        
+        @property { boolean } [archived]
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [platform]
+        
+        @property { CreatedBy } [createdBy]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { Orientation } [orientation]
+        
+        @property { number } [version]
+        
+        @property { NavigationReference } [navigation]
+        
+         
+    */
+/**
+        @typedef NavigationRequest
+        
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [platform]
+        
+        @property { Orientation } [orientation]
+        
+        @property { NavigationReference } [navigation]
+        
+         
+    */
+/**
+        @typedef CustomPageSchema
+        
+        
+        @property { string } [id]
+        
+        @property { string } [platform]
+        
+        @property { string } [title]
+        
+        @property { string } [slug]
+        
+        @property { string } [type]
+        
+        @property { string } [orientation]
+        
+        @property { string } [application]
+        
+        @property { string } [description]
+        
+        @property { boolean } [published]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Array<ContentSchema> } [content]
+        
+        @property { CreatedBy } [createdBy]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { ScheduleSchema } [schedule]
+        
+         
+    */
+/**
+        @typedef ContentSchema
+        
+        
+        @property { string } [type]
+        
+        @property { string } [value]
+        
+         
+    */
+/**
+        @typedef CustomPage
+        
+        
+        @property { CustomPageSchema } [data]
+        
+         
+    */
+/**
+        @typedef CustomBlogSchema
+        
+        
+        @property { string } [id]
+        
+        @property { string } [title]
+        
+        @property { string } [slug]
+        
+        @property { string } [readingTime]
+        
+        @property { string } [application]
+        
+        @property { string } [description]
+        
+        @property { FeatureImage } [featureImage]
+        
+        @property { boolean } [published]
+        
+        @property { boolean } [archived]
+        
+        @property { Array<string> } [tags]
+        
+        @property { ContentSchema } [content]
+        
+        @property { Author } [author]
+        
+        @property { ScheduleSchema } [schedule]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+        @property { Object } [customJson]
+        
+         
+    */
+/**
+        @typedef FeatureImage
+        
+        
+        @property { string } [secureUrl]
+        
+         
+    */
+/**
+        @typedef CustomBlog
+        
+        
+        @property { CustomBlogSchema } [data]
+        
+         
+    */
+/**
+        @typedef PageGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+/**
+        @typedef PageSpec
+        
+        
+        @property { Array<Object> } [specifications]
+        
+         
+    */
+/**
+        @typedef PageSpecParam
+        
+        
+        @property { string } [key]
+        
+        @property { boolean } [required]
+        
+         
+    */
+/**
+        @typedef PageSpecItem
+        
+        
+        @property { string } [pageType]
+        
+        @property { string } [displayName]
+        
+        @property { Array<PageSpecParam> } [params]
+        
+        @property { Array<PageSpecParam> } [query]
+        
+         
+    */
+/**
+        @typedef PageSchema
+        
+        
+        @property { string } [id]
+        
+        @property { string } [application]
+        
+        @property { Array<string> } [componentIds]
+        
+        @property { Array<PageContent> } [content]
+        
+        @property { Object } [createdBy]
+        
+        @property { Object } [dateMeta]
+        
+        @property { string } [description]
+        
+        @property { Object } [featureImage]
+        
+        @property { Array<PageMeta> } [pageMeta]
+        
+        @property { ScheduleSchema } [schedule]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [orientation]
+        
+        @property { string } [platform]
+        
+        @property { boolean } [published]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } [title]
+        
+        @property { string } [type]
+        
+        @property { SEO } [seo]
+        
+        @property { Object } [visibility]
+        
+         
+    */
+/**
+        @typedef CreatedBy
+        
+        
+        @property { string } [id]
+        
+         
+    */
+/**
+        @typedef PageContent
+        
+        
+        @property { string } [type]
+        
+        @property { Object } [value]
+        
+         
+    */
+/**
+        @typedef PageMeta
+        
+        
+        @property { string } [key]
+        
+        @property { Object } [value]
+        
+         
+    */
+/**
+        @typedef PageRequest
+        
+        
+        @property { CronSchedule } [schedule]
+        
+        @property { string } [application]
+        
+        @property { Object } [author]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [orientation]
+        
+        @property { Array<ResourceContent> } [content]
+        
+        @property { Object } [featureImage]
+        
+        @property { boolean } [published]
+        
+        @property { string } [readingTime]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [tags]
+        
+        @property { SEO } [seo]
+        
+        @property { string } [title]
+        
+         
+    */
+/**
+        @typedef CronSchedule
+        
+        
+        @property { string } [cron]
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+        @property { number } [duration]
+        
+         
+    */
+/**
+        @typedef PagePublishRequest
+        
+        
+        @property { boolean } [publish]
+        
+         
+    */
+/**
+        @typedef PageMetaSchema
+        
+        
+        @property { Array<Object> } [systemPages]
+        
+        @property { Array<Object> } [customPages]
+        
+        @property { string } [applicationId]
+        
+         
+    */
+/**
+        @typedef SlideshowGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+/**
+        @typedef SlideshowSchema
+        
+        
+        @property { string } [id]
+        
+        @property { string } [slug]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { string } [application]
+        
+        @property { string } [platform]
+        
+        @property { ConfigurationSchema } [configuration]
+        
+        @property { Array<SlideshowMedia> } [media]
+        
+        @property { boolean } [active]
+        
+        @property { boolean } [archived]
+        
+        @property { Object } [customJson]
+        
+         
+    */
+/**
+        @typedef SlideshowRequest
+        
+        
+        @property { string } [slug]
+        
+        @property { string } [platform]
+        
+        @property { ConfigurationSchema } [configuration]
+        
+        @property { SlideshowMedia } [media]
+        
+        @property { boolean } [active]
+        
+         
+    */
+/**
+        @typedef Support
+        
+        
+        @property { boolean } [created]
+        
+        @property { string } [id]
+        
+        @property { string } [configType]
+        
+        @property { string } [application]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+        @property { ContactSchema } [contact]
+        
+         
+    */
+/**
+        @typedef PhoneProperties
+        
+        
+        @property { string } [key]
+        
+        @property { string } [code]
+        
+        @property { string } [number]
+        
+         
+    */
+/**
+        @typedef PhoneSchema
+        
+        
+        @property { boolean } [active]
+        
+        @property { Array<PhoneProperties> } [phone]
+        
+         
+    */
+/**
+        @typedef EmailProperties
+        
+        
+        @property { string } [key]
+        
+        @property { string } [value]
+        
+         
+    */
+/**
+        @typedef EmailSchema
+        
+        
+        @property { boolean } [active]
+        
+        @property { Array<EmailProperties> } [email]
+        
+         
+    */
+/**
+        @typedef ContactSchema
+        
+        
+        @property { PhoneSchema } [phone]
+        
+        @property { EmailSchema } [email]
+        
+         
+    */
+/**
+        @typedef TagsSchema
+        
+        
+        @property { string } [application]
+        
+        @property { string } [id]
+        
+        @property { Array<TagSchema> } [tags]
+        
+         
+    */
+/**
+        @typedef TagSchema
+        
+        
+        @property { string } [name]
+        
+        @property { string } [url]
+        
+        @property { string } [type]
+        
+        @property { string } [subType]
+        
+        @property { string } [id]
+        
+        @property { string } [position]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [content]
         
          
     */
@@ -13895,6 +15244,697 @@ declare class User {
         body: PlatformSchema;
     }): any;
 }
+declare class Content {
+    constructor(config: any, applicationId: any);
+    config: any;
+    applicationId: any;
+    /**
+      *
+      * @summary: Get annoucements list
+      * @description: Get list of announcements
+      * @param {Object} arg - arg object.
+      
+      **/
+    getAnnouncementsList({}?: any): any;
+    /**
+      *
+      * @summary: Get annoucements list
+      * @description: Get list of announcements
+      * @param {Object} arg - arg object.
+      * @param {string} arg.companyId - Company ID
+      * @param {string} arg.applicationId - Application ID
+      
+      **/
+    getAnnouncementsListPaginator({ companyId, applicationId }?: {
+        companyId: string;
+        applicationId: string;
+    }): Paginator;
+    /**
+     *
+     * @summary: Create an annoucement
+     * @description: Create an announcement
+     * @param {Object} arg - arg object.
+     * @param {AdminAnnouncementSchema} arg.body
+     **/
+    createAnnouncement({ body }?: {
+        body: AdminAnnouncementSchema;
+    }): any;
+    /**
+      *
+      * @summary: Get annoucement by id
+      * @description: Get announcement by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.announcementId - Announcement ID
+      
+      **/
+    getAnnouncementById({ announcementId }?: {
+        announcementId: string;
+    }): any;
+    /**
+     *
+     * @summary: Update an annoucement
+     * @description: Update an announcement
+     * @param {Object} arg - arg object.
+     * @param {string} arg.announcementId - Announcement ID
+     * @param {AdminAnnouncementSchema} arg.body
+     **/
+    updateAnnouncement({ announcementId, body }?: {
+        announcementId: string;
+        body: AdminAnnouncementSchema;
+    }): any;
+    /**
+     *
+     * @summary: Update schedule or published status of an annoucement
+     * @description: Update schedule or published status of an announcement
+     * @param {Object} arg - arg object.
+     * @param {string} arg.announcementId - Announcement ID
+     * @param {ScheduleSchema} arg.body
+     **/
+    updateAnnouncementSchedule({ announcementId, body }?: {
+        announcementId: string;
+        body: ScheduleSchema;
+    }): any;
+    /**
+      *
+      * @summary: Delete annoucement by id
+      * @description: Delete announcement by id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.announcementId - Announcement ID
+      
+      **/
+    deleteAnnouncement({ announcementId }?: {
+        announcementId: string;
+    }): any;
+    /**
+     *
+     * @summary: Create blog
+     * @description: Use this to create a blog.
+     * @param {Object} arg - arg object.
+     * @param {BlogRequest} arg.body
+     **/
+    createBlog({ body }?: {
+        body: BlogRequest;
+    }): any;
+    /**
+      *
+      * @summary: Get blogs
+      * @description: Use this to get blogs.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getBlogs({}?: any): any;
+    /**
+      *
+      * @summary: Get blogs
+      * @description: Use this to get blogs.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.companyId - Company Id
+      * @param {string} arg.applicationId - Application Id
+      
+      **/
+    getBlogsPaginator({ companyId, applicationId }?: {
+        companyId: string;
+        applicationId: string;
+    }): Paginator;
+    /**
+     *
+     * @summary: Update blog
+     * @description: Use this to update blog.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Blog Id
+     * @param {BlogRequest} arg.body
+     **/
+    updateBlog({ id, body }?: {
+        id: string;
+        body: BlogRequest;
+    }): any;
+    /**
+      *
+      * @summary: Delete blogs
+      * @description: Use this to delete blogs.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Blog Id
+      
+      **/
+    deleteBlog({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get components by component Id
+      * @description: The endpoint fetches the component by component Id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - slug of page to be fetched
+      
+      **/
+    getComponentById({ slug }?: {
+        slug: string;
+    }): any;
+    /**
+      *
+      * @summary: Get FAQ categories list
+      * @description: Get list of FAQ categories
+      * @param {Object} arg - arg object.
+      
+      **/
+    getFaqCategories({}?: any): any;
+    /**
+      *
+      * @summary: Get FAQ category by slug or id
+      * @description: Get FAQ category by slug or id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
+      
+      **/
+    getFaqCategoryBySlugOrId({ idOrSlug }?: {
+        idOrSlug: string;
+    }): any;
+    /**
+     *
+     * @summary: Creates a FAQ category
+     * @description: Add Faq Category
+     * @param {Object} arg - arg object.
+     * @param {CreateFaqCategoryRequestSchema} arg.body
+     **/
+    createFaqCategory({ body }?: {
+        body: CreateFaqCategoryRequestSchema;
+    }): any;
+    /**
+     *
+     * @summary: Updates a FAQ category
+     * @description: Update Faq Category
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Faq category ID
+     * @param {UpdateFaqCategoryRequestSchema} arg.body
+     **/
+    updateFaqCategory({ id, body }?: {
+        id: string;
+        body: UpdateFaqCategoryRequestSchema;
+    }): any;
+    /**
+      *
+      * @summary: Deletes a FAQ category
+      * @description: Delete Faq Category
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Faq category ID
+      
+      **/
+    deleteFaqCategory({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get FAQs of a Faq Category id or slug
+      * @description: Get FAQs of a Faq Category `id` or `slug`
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Faq category ID or slug
+      
+      **/
+    getFaqsByCategoryIdOrSlug({ idOrSlug }?: {
+        idOrSlug: string;
+    }): any;
+    /**
+     *
+     * @summary: Creates FAQs for category whose `id` is specified
+     * @description: Creates FAQs for category whose `id` is specified
+     * @param {Object} arg - arg object.
+     * @param {string} arg.categoryId - Faq category ID
+     * @param {CreateFaqSchema} arg.body
+     **/
+    addFaq({ categoryId, body }?: {
+        categoryId: string;
+        body: CreateFaqSchema;
+    }): any;
+    /**
+     *
+     * @summary: Updates FAQ
+     * @description: Updates FAQ
+     * @param {Object} arg - arg object.
+     * @param {string} arg.categoryId - Faq category ID
+     * @param {string} arg.faqId - Faq ID
+     * @param {CreateFaqSchema} arg.body
+     **/
+    updateFaq({ categoryId, faqId, body }?: {
+        categoryId: string;
+        faqId: string;
+        body: CreateFaqSchema;
+    }): any;
+    /**
+      *
+      * @summary: Delete FAQ
+      * @description: Delete FAQ
+      * @param {Object} arg - arg object.
+      * @param {string} arg.categoryId - Faq category ID
+      * @param {string} arg.faqId - Faq ID
+      
+      **/
+    deleteFaq({ categoryId, faqId }?: {
+        categoryId: string;
+        faqId: string;
+    }): any;
+    /**
+      *
+      * @summary: Get frequently asked question
+      * @description: Get frequently asked questions list. These will be helpful for users to using website.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.idOrSlug - Slug or Id of FAQ
+      
+      **/
+    getFaqByIdOrSlug({ idOrSlug }?: {
+        idOrSlug: string;
+    }): any;
+    /**
+      *
+      * @summary: Get landing-pages
+      * @description: Use this to get landing-pages.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getLandingPages({}?: any): any;
+    /**
+      *
+      * @summary: Get landing-pages
+      * @description: Use this to get landing-pages.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.companyId - Company ID
+      * @param {string} arg.applicationId - Application ID
+      
+      **/
+    getLandingPagesPaginator({ companyId, applicationId }?: {
+        companyId: string;
+        applicationId: string;
+    }): Paginator;
+    /**
+     *
+     * @summary: Create landing-page
+     * @description: Use this to create landing-page.
+     * @param {Object} arg - arg object.
+     * @param {LandingPageSchema} arg.body
+     **/
+    createLandingPage({ body }?: {
+        body: LandingPageSchema;
+    }): any;
+    /**
+     *
+     * @summary: Update landing-page
+     * @description: Use this to update landing-page.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Landing page ID
+     * @param {LandingPageSchema} arg.body
+     **/
+    updateLandingPage({ id, body }?: {
+        id: string;
+        body: LandingPageSchema;
+    }): any;
+    /**
+      *
+      * @summary: Delete landing-page
+      * @description: Use this to delete landing-page.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Landing page ID
+      
+      **/
+    deleteLandingPage({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get legal information
+      * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getLegalInformation({}?: any): any;
+    /**
+     *
+     * @summary: Save legal information
+     * @description: Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+     * @param {Object} arg - arg object.
+     * @param {ApplicationLegal} arg.body
+     **/
+    updateLegalInformation({ body }?: {
+        body: ApplicationLegal;
+    }): any;
+    /**
+      *
+      * @summary: Get navigations
+      * @description: Use this to get navigations.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.devicePlatform - Device platform
+      
+      **/
+    getNavigations({ devicePlatform }?: {
+        devicePlatform: string;
+    }): any;
+    /**
+      *
+      * @summary: Get navigations
+      * @description: Use this to get navigations.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.companyId - Company ID
+      * @param {string} arg.applicationId - Application ID
+      * @param {string} arg.devicePlatform - Device platform
+      
+      **/
+    getNavigationsPaginator({ companyId, applicationId, devicePlatform }?: {
+        companyId: string;
+        applicationId: string;
+        devicePlatform: string;
+    }): Paginator;
+    /**
+     *
+     * @summary: Create navigation
+     * @description: Use this to create navigation.
+     * @param {Object} arg - arg object.
+     * @param {NavigationRequest} arg.body
+     **/
+    createNavigation({ body }?: {
+        body: NavigationRequest;
+    }): any;
+    /**
+      *
+      * @summary: Get default navigations
+      * @description: Use this to get default navigations.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getDefaultNavigations({}?: any): any;
+    /**
+      *
+      * @summary: Get navigation by slug
+      * @description: Use this to get navigation by slug.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - Slug
+      * @param {string} arg.devicePlatform - Device platform
+      
+      **/
+    getNavigationBySlug({ slug, devicePlatform }?: {
+        slug: string;
+        devicePlatform: string;
+    }): any;
+    /**
+     *
+     * @summary: Update navigation
+     * @description: Use this to update navigation.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Navigation ID
+     * @param {NavigationRequest} arg.body
+     **/
+    updateNavigation({ id, body }?: {
+        id: string;
+        body: NavigationRequest;
+    }): any;
+    /**
+      *
+      * @summary: Delete navigation
+      * @description: Use this to delete navigation.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Navigation ID
+      
+      **/
+    deleteNavigation({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get page meta
+      * @description: Use this to get Page Meta.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getPageMeta({}?: any): any;
+    /**
+      *
+      * @summary: Get page spec
+      * @description: Use this to get page spec.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getPageSpec({}?: any): any;
+    /**
+     *
+     * @summary: Create page
+     * @description: Use this to create a page.
+     * @param {Object} arg - arg object.
+     * @param {PageRequest} arg.body
+     **/
+    createPage({ body }?: {
+        body: PageRequest;
+    }): any;
+    /**
+      *
+      * @summary: Get pages
+      * @description: Use this to get pages.
+      * @param {Object} arg - arg object.
+      
+      **/
+    getPages({}?: any): any;
+    /**
+      *
+      * @summary: Get pages
+      * @description: Use this to get pages.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.companyId - Company Id
+      * @param {string} arg.applicationId - Application Id
+      
+      **/
+    getPagesPaginator({ companyId, applicationId }?: {
+        companyId: string;
+        applicationId: string;
+    }): Paginator;
+    /**
+     *
+     * @summary: Create page preview
+     * @description: Use this to create a page preview.
+     * @param {Object} arg - arg object.
+     * @param {PageRequest} arg.body
+     **/
+    createPagePreview({ body }?: {
+        body: PageRequest;
+    }): any;
+    /**
+     *
+     * @summary: Update page
+     * @description: Use this to update page.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.slug - Page publish slug
+     * @param {PagePublishRequest} arg.body
+     **/
+    updatePagePreview({ slug, body }?: {
+        slug: string;
+        body: PagePublishRequest;
+    }): any;
+    /**
+     *
+     * @summary: Update page
+     * @description: Use this to update page.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Page Id
+     * @param {PageSchema} arg.body
+     **/
+    updatePage({ id, body }?: {
+        id: string;
+        body: PageSchema;
+    }): any;
+    /**
+      *
+      * @summary: Delete page
+      * @description: Use this to delete page.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Page Id
+      
+      **/
+    deletePage({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get pages by component Id
+      * @description: The endpoint fetches the component by component Id
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - Slug of page to be fetched
+      
+      **/
+    getPageBySlug({ slug }?: {
+        slug: string;
+    }): any;
+    /**
+      *
+      * @summary: Get seo of application
+      * @description: Get seo of application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSEOConfiguration({}?: any): any;
+    /**
+     *
+     * @summary: Update seo of application
+     * @description: Update seo of application
+     * @param {Object} arg - arg object.
+     * @param {SeoComponent} arg.body
+     **/
+    updateSEOConfiguration({ body }?: {
+        body: SeoComponent;
+    }): any;
+    /**
+      *
+      * @summary: Get slideshows
+      * @description: Use this to get slideshows.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.devicePlatform - Device platform
+      
+      **/
+    getSlideshows({ devicePlatform }?: {
+        devicePlatform: string;
+    }): any;
+    /**
+      *
+      * @summary: Get slideshows
+      * @description: Use this to get slideshows.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.companyId - Company ID
+      * @param {string} arg.applicationId - Application ID
+      * @param {string} arg.devicePlatform - Device platform
+      
+      **/
+    getSlideshowsPaginator({ companyId, applicationId, devicePlatform }?: {
+        companyId: string;
+        applicationId: string;
+        devicePlatform: string;
+    }): Paginator;
+    /**
+     *
+     * @summary: Create slideshow
+     * @description: Use this to create slideshow.
+     * @param {Object} arg - arg object.
+     * @param {SlideshowRequest} arg.body
+     **/
+    createSlideshow({ body }?: {
+        body: SlideshowRequest;
+    }): any;
+    /**
+      *
+      * @summary: Get slideshow by slug
+      * @description: Use this to get slideshow by slug.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - Slug
+      * @param {string} arg.devicePlatform - Device platform
+      
+      **/
+    getSlideshowBySlug({ slug, devicePlatform }?: {
+        slug: string;
+        devicePlatform: string;
+    }): any;
+    /**
+     *
+     * @summary: Update slideshow
+     * @description: Use this to update slideshow.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.id - Slideshow ID
+     * @param {SlideshowRequest} arg.body
+     **/
+    updateSlideshow({ id, body }?: {
+        id: string;
+        body: SlideshowRequest;
+    }): any;
+    /**
+      *
+      * @summary: Delete slideshow
+      * @description: Use this to delete slideshow.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.id - Slideshow ID
+      
+      **/
+    deleteSlideshow({ id }?: {
+        id: string;
+    }): any;
+    /**
+      *
+      * @summary: Get support information
+      * @description: Get contact details for customer support. Including emails and phone numbers
+      * @param {Object} arg - arg object.
+      
+      **/
+    getSupportInformation({}?: any): any;
+    /**
+     *
+     * @summary: Update support data of application
+     * @description: Update support data of application
+     * @param {Object} arg - arg object.
+     * @param {Support} arg.body
+     **/
+    updateSupportInformation({ body }?: {
+        body: Support;
+    }): any;
+    /**
+     *
+     * @summary: Creates Tag
+     * @description: Create tags
+     * @param {Object} arg - arg object.
+     * @param {CreateTagRequestSchema} arg.body
+     **/
+    createInjectableTag({ body }?: {
+        body: CreateTagRequestSchema;
+    }): any;
+    /**
+     *
+     * @summary: Updates a Tag
+     * @description: Update tag
+     * @param {Object} arg - arg object.
+     * @param {CreateTagRequestSchema} arg.body
+     **/
+    updateInjectableTag({ body }?: {
+        body: CreateTagRequestSchema;
+    }): any;
+    /**
+      *
+      * @summary: Delete tags for application
+      * @description: Delete tags for application
+      * @param {Object} arg - arg object.
+      
+      **/
+    deleteAllInjectableTags({}?: any): any;
+    /**
+      *
+      * @summary: Get tags for application
+      * @description: Get tags for application
+      * @param {Object} arg - arg object.
+      
+      **/
+    getInjectableTags({}?: any): any;
+    /**
+     *
+     * @summary: Adds a Tag
+     * @description: Add tag
+     * @param {Object} arg - arg object.
+     * @param {CreateTagRequestSchema} arg.body
+     **/
+    addInjectableTag({ body }?: {
+        body: CreateTagRequestSchema;
+    }): any;
+    /**
+     *
+     * @summary: Removes a Tag
+     * @description: Remove a particular tag
+     * @param {Object} arg - arg object.
+     * @param {RemoveHandpickedSchema} arg.body
+     **/
+    removeInjectableTag({ body }?: {
+        body: RemoveHandpickedSchema;
+    }): any;
+    /**
+     *
+     * @summary: Edits a Tag by Id
+     * @description: Edits a particular tag
+     * @param {Object} arg - arg object.
+     * @param {string} arg.tagId - Tag ID
+     * @param {UpdateHandpickedSchema} arg.body
+     **/
+    editInjectableTag({ tagId, body }?: {
+        tagId: string;
+        body: UpdateHandpickedSchema;
+    }): any;
+}
 declare class Communication {
     constructor(config: any, applicationId: any);
     config: any;
@@ -16179,6 +18219,584 @@ type Accountkit = {
 };
 type Google = {
     appId?: string;
+};
+type ApplicationLegal = {
+    application?: string;
+    tnc?: string;
+    policy?: string;
+    shipping?: string;
+    faq?: Array<ApplicationLegalFAQ>;
+    id?: string;
+    updatedAt?: string;
+    createdAt?: string;
+};
+type ApplicationLegalFAQ = {
+    question?: string;
+    answer?: string;
+};
+type SeoComponent = {
+    seo?: SeoSchema;
+};
+type SeoSchema = {
+    app?: string;
+    id?: string;
+    robotsTxt?: string;
+    sitemapEnabled?: boolean;
+    customMetaTags?: Array<any>;
+    details?: any;
+    createdAt?: string;
+    updatedAt?: string;
+};
+type CustomMetaTag = {
+    name?: string;
+    content?: string;
+    id?: string;
+};
+type Detail = {
+    title?: string;
+    description?: string;
+};
+type StorefrontAnnouncement = {
+    announcements?: AnnouncementSchema;
+    refreshRate?: number;
+    refreshPages?: Array<string>;
+};
+type AnnouncementPageSchema = {
+    pageSlug?: string;
+    type?: string;
+};
+type EditorMeta = {
+    foregroundColor?: string;
+    backgroundColor?: string;
+    contentType?: string;
+    content?: string;
+};
+type AnnouncementAuthorSchema = {
+    createdBy?: string;
+    modifiedBy?: string;
+};
+type AdminAnnouncementSchema = {
+    id?: string;
+    platforms?: Array<string>;
+    title?: string;
+    announcement?: string;
+    pages?: Array<AnnouncementPageSchema>;
+    editorMeta?: EditorMeta;
+    author?: AnnouncementAuthorSchema;
+    createdAt?: string;
+    app?: string;
+    modifiedAt?: string;
+    schedule?: ScheduleSchema;
+};
+type ScheduleSchema = {
+    cron?: string;
+    start?: string;
+    end?: string;
+    duration?: number;
+    nextSchedule?: Array<any>;
+};
+type NextSchedule = {
+    start?: string;
+    end?: string;
+};
+type AnnouncementSchema = {
+    pageSlug?: Array<any>;
+};
+type announcementSchema = {
+    announcement?: string;
+    schedule?: scheduleStartSchema;
+};
+type scheduleStartSchema = {
+    start?: string;
+};
+type BlogGetResponse = {
+    items?: Array<any>;
+    page?: Page;
+};
+type ResourceContent = {
+    type?: string;
+    value?: string;
+};
+type Asset = {
+    aspectRatio?: string;
+    id?: string;
+    secureUrl?: string;
+};
+type Author = {
+    designation?: string;
+    id?: string;
+    name?: string;
+};
+type BlogSchema = {
+    id?: string;
+    customJson?: any;
+    application?: string;
+    archived?: boolean;
+    author?: any;
+    content?: Array<ResourceContent>;
+    featureImage?: any;
+    published?: boolean;
+    readingTime?: string;
+    slug?: string;
+    tags?: Array<string>;
+    seo?: SEO;
+    schedule?: CronSchedule;
+    title?: string;
+    dateMeta?: DateMeta;
+};
+type SEO = {
+    description?: string;
+    image?: SEOImage;
+    title?: string;
+};
+type SEOImage = {
+    url?: string;
+};
+type DateMeta = {
+    createdOn?: string;
+    modifiedOn?: string;
+};
+type BlogRequest = {
+    application?: string;
+    customJson?: any;
+    author?: any;
+    content?: Array<ResourceContent>;
+    featureImage?: any;
+    published?: boolean;
+    readingTime?: string;
+    slug?: string;
+    tags?: Array<string>;
+    title?: string;
+    seo?: SEO;
+    schedule?: CronSchedule;
+};
+type GetAnnouncementListSchema = {
+    items?: Array<AdminAnnouncementSchema>;
+    page?: Page;
+};
+type CreateAnnouncementSchema = {
+    message?: string;
+    data?: AdminAnnouncementSchema;
+};
+type Navigation = {
+    name?: string;
+    slug?: string;
+    orientation?: string;
+    createdBy?: CreatedBy;
+    dateMeta?: DateMeta;
+    id?: string;
+    position?: string;
+    application?: string;
+    platform?: string;
+    navigation?: NavigationReference;
+};
+type LocaleLanguage = {
+    hi?: Language;
+    ar?: Language;
+    enUs?: Language;
+};
+type Language = {
+    display?: string;
+};
+type Action = {
+    page?: ActionPage;
+    popup?: ActionPage;
+    type?: string;
+};
+type ActionPage = {
+    params?: any;
+    query?: any;
+    url?: string;
+    type?: string;
+};
+type NavigationReference = {
+    acl?: Array<string>;
+    tags?: Array<string>;
+    localeLanguage?: LocaleLanguage;
+    image?: string;
+    type?: string;
+    action?: Action;
+    active?: boolean;
+    display?: string;
+    sortOrder?: number;
+    subNavigation?: NavigationReference;
+};
+type LandingPage = {
+    data?: LandingPageSchema;
+    success?: boolean;
+};
+type ConfigurationSchema = {
+    sleepTime?: number;
+    startOnLaunch?: boolean;
+    duration?: number;
+    slideDirection?: string;
+};
+type SlideshowMedia = {
+    type?: string;
+    url?: string;
+    bgColor?: string;
+    duration?: number;
+    autoDecideDuration?: boolean;
+    action?: Action;
+};
+type Slideshow = {
+    data?: SlideshowSchema;
+    success?: boolean;
+};
+type AnnouncementsResponseSchema = {
+    announcements?: any;
+    refreshRate?: number;
+    refreshPages?: Array<string>;
+};
+type AnnouncementDataSchema = {
+    pageSlug?: string;
+    announcement?: StorefrontAnnouncement;
+};
+type FaqResponseSchema = {
+    faqs?: Array<FAQ>;
+};
+type UpdateHandpickedSchema = {
+    tag?: HandpickedTagSchema;
+};
+type HandpickedTagSchema = {
+    position?: string;
+    attributes?: any;
+    name?: string;
+    url?: string;
+    type?: string;
+    subType?: string;
+    content?: string;
+};
+type RemoveHandpickedSchema = {
+    tags?: Array<string>;
+};
+type CreateTagSchema = {
+    name?: string;
+    subType?: string;
+    id?: string;
+    type?: string;
+    url?: string;
+    position?: string;
+    attributes?: any;
+    content?: string;
+};
+type CreateTagRequestSchema = {
+    tags?: Array<CreateTagSchema>;
+};
+type APIError = {
+    message?: string;
+    status?: number;
+    code?: string;
+    exception?: string;
+    info?: string;
+    requestId?: string;
+    stackTrace?: string;
+    meta?: any;
+};
+type CategorySchema = {
+    index?: number;
+    id?: string;
+    slug?: string;
+    title?: string;
+    application?: string;
+};
+type ChildrenSchema = {
+    question?: string;
+    answer?: string;
+    slug?: string;
+    application?: string;
+    id?: string;
+};
+type CategoryRequestSchema = {
+    slug?: string;
+    title?: string;
+};
+type FAQCategorySchema = {
+    index?: number;
+    title?: string;
+    description?: string;
+    children?: ChildrenSchema;
+    id?: string;
+    slug?: string;
+    application?: string;
+    iconUrl?: string;
+    customJson?: any;
+};
+type FaqSchema = {
+    slug?: string;
+    application?: string;
+    id?: string;
+    question?: string;
+    answer?: string;
+};
+type FAQ = {
+    slug?: string;
+    question?: string;
+    answer?: string;
+};
+type CreateFaqResponseSchema = {
+    faq?: FaqSchema;
+};
+type CreateFaqSchema = {
+    faq?: FAQ;
+};
+type GetFaqSchema = {
+    faqs?: Array<any>;
+};
+type UpdateFaqCategoryRequestSchema = {
+    category?: CategorySchema;
+};
+type CreateFaqCategoryRequestSchema = {
+    category?: CategoryRequestSchema;
+};
+type CreateFaqCategorySchema = {
+    category?: CategorySchema;
+};
+type GetFaqCategoriesSchema = {
+    categories?: Array<CategorySchema>;
+};
+type GetFaqCategoryByIdOrSlugSchema = {
+    category?: FAQCategorySchema;
+};
+type LandingPageGetResponse = {
+    items?: Array<any>;
+    page?: Page;
+};
+type LandingPageSchema = {
+    slug?: string;
+    action?: Action;
+    platform?: Array<string>;
+    createdBy?: CreatedBy;
+    dateMeta?: DateMeta;
+    id?: string;
+    application?: string;
+    archived?: boolean;
+    customJson?: any;
+};
+type DefaultNavigationResponse = {
+    items?: Array<any>;
+};
+type NavigationGetResponse = {
+    items?: Array<any>;
+    page?: Page;
+};
+type Orientation = {
+    portrait?: Array<string>;
+    landscape?: Array<string>;
+};
+type NavigationSchema = {
+    id?: string;
+    application?: string;
+    archived?: boolean;
+    name?: string;
+    slug?: string;
+    platform?: Array<string>;
+    createdBy?: CreatedBy;
+    dateMeta?: DateMeta;
+    orientation?: Orientation;
+    version?: number;
+    navigation?: NavigationReference;
+};
+type NavigationRequest = {
+    name?: string;
+    slug?: string;
+    platform?: Array<string>;
+    orientation?: Orientation;
+    navigation?: NavigationReference;
+};
+type CustomPageSchema = {
+    id?: string;
+    platform?: string;
+    title?: string;
+    slug?: string;
+    type?: string;
+    orientation?: string;
+    application?: string;
+    description?: string;
+    published?: boolean;
+    tags?: Array<string>;
+    content?: Array<ContentSchema>;
+    createdBy?: CreatedBy;
+    dateMeta?: DateMeta;
+    schedule?: ScheduleSchema;
+};
+type ContentSchema = {
+    type?: string;
+    value?: string;
+};
+type CustomPage = {
+    data?: CustomPageSchema;
+};
+type CustomBlogSchema = {
+    id?: string;
+    title?: string;
+    slug?: string;
+    readingTime?: string;
+    application?: string;
+    description?: string;
+    featureImage?: FeatureImage;
+    published?: boolean;
+    archived?: boolean;
+    tags?: Array<string>;
+    content?: ContentSchema;
+    author?: Author;
+    schedule?: ScheduleSchema;
+    createdAt?: string;
+    updatedAt?: string;
+    customJson?: any;
+};
+type FeatureImage = {
+    secureUrl?: string;
+};
+type CustomBlog = {
+    data?: CustomBlogSchema;
+};
+type PageGetResponse = {
+    items?: Array<any>;
+    page?: Page;
+};
+type PageSpec = {
+    specifications?: Array<any>;
+};
+type PageSpecParam = {
+    key?: string;
+    required?: boolean;
+};
+type PageSpecItem = {
+    pageType?: string;
+    displayName?: string;
+    params?: Array<PageSpecParam>;
+    query?: Array<PageSpecParam>;
+};
+type PageSchema = {
+    id?: string;
+    application?: string;
+    componentIds?: Array<string>;
+    content?: Array<PageContent>;
+    createdBy?: any;
+    dateMeta?: any;
+    description?: string;
+    featureImage?: any;
+    pageMeta?: Array<PageMeta>;
+    schedule?: ScheduleSchema;
+    customJson?: any;
+    orientation?: string;
+    platform?: string;
+    published?: boolean;
+    slug?: string;
+    tags?: Array<string>;
+    title?: string;
+    type?: string;
+    seo?: SEO;
+    visibility?: any;
+};
+type CreatedBy = {
+    id?: string;
+};
+type PageContent = {
+    type?: string;
+    value?: any;
+};
+type PageMeta = {
+    key?: string;
+    value?: any;
+};
+type PageRequest = {
+    schedule?: CronSchedule;
+    application?: string;
+    author?: any;
+    customJson?: any;
+    orientation?: string;
+    content?: Array<ResourceContent>;
+    featureImage?: any;
+    published?: boolean;
+    readingTime?: string;
+    slug?: string;
+    tags?: Array<string>;
+    seo?: SEO;
+    title?: string;
+};
+type CronSchedule = {
+    cron?: string;
+    start?: string;
+    end?: string;
+    duration?: number;
+};
+type PagePublishRequest = {
+    publish?: boolean;
+};
+type PageMetaSchema = {
+    systemPages?: Array<any>;
+    customPages?: Array<any>;
+    applicationId?: string;
+};
+type SlideshowGetResponse = {
+    items?: Array<any>;
+    page?: Page;
+};
+type SlideshowSchema = {
+    id?: string;
+    slug?: string;
+    dateMeta?: DateMeta;
+    application?: string;
+    platform?: string;
+    configuration?: ConfigurationSchema;
+    media?: Array<SlideshowMedia>;
+    active?: boolean;
+    archived?: boolean;
+    customJson?: any;
+};
+type SlideshowRequest = {
+    slug?: string;
+    platform?: string;
+    configuration?: ConfigurationSchema;
+    media?: SlideshowMedia;
+    active?: boolean;
+};
+type Support = {
+    created?: boolean;
+    id?: string;
+    configType?: string;
+    application?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    contact?: ContactSchema;
+};
+type PhoneProperties = {
+    key?: string;
+    code?: string;
+    number?: string;
+};
+type PhoneSchema = {
+    active?: boolean;
+    phone?: Array<PhoneProperties>;
+};
+type EmailProperties = {
+    key?: string;
+    value?: string;
+};
+type EmailSchema = {
+    active?: boolean;
+    email?: Array<EmailProperties>;
+};
+type ContactSchema = {
+    phone?: PhoneSchema;
+    email?: EmailSchema;
+};
+type TagsSchema = {
+    application?: string;
+    id?: string;
+    tags?: Array<TagSchema>;
+};
+type TagSchema = {
+    name?: string;
+    url?: string;
+    type?: string;
+    subType?: string;
+    id?: string;
+    position?: string;
+    attributes?: any;
+    content?: string;
 };
 type UnauthenticatedUser = {
     message?: string;

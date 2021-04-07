@@ -2003,6 +2003,1450 @@ class PlatformClient {
     */
 
 /**
+        @typedef ApplicationLegal
+        
+        
+        @property { string } [application]
+        
+        @property { string } [tnc]
+        
+        @property { string } [policy]
+        
+        @property { string } [shipping]
+        
+        @property { Array<ApplicationLegalFAQ> } [faq]
+        
+        @property { string } [id]
+        
+        @property { string } [updatedAt]
+        
+        @property { string } [createdAt]
+        
+         
+    */
+
+/**
+        @typedef ApplicationLegalFAQ
+        
+        
+        @property { string } [question]
+        
+        @property { string } [answer]
+        
+         
+    */
+
+/**
+        @typedef SeoComponent
+        
+        
+        @property { SeoSchema } [seo]
+        
+         
+    */
+
+/**
+        @typedef SeoSchema
+        
+        
+        @property { string } [app]
+        
+        @property { string } [id]
+        
+        @property { string } [robotsTxt]
+        
+        @property { boolean } [sitemapEnabled]
+        
+        @property { Array<Object> } [customMetaTags]
+        
+        @property { Object } [details]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+         
+    */
+
+/**
+        @typedef CustomMetaTag
+        
+        
+        @property { string } [name]
+        
+        @property { string } [content]
+        
+        @property { string } [id]
+        
+         
+    */
+
+/**
+        @typedef Detail
+        
+        
+        @property { string } [title]
+        
+        @property { string } [description]
+        
+         
+    */
+
+/**
+        @typedef StorefrontAnnouncement
+        
+        
+        @property { AnnouncementSchema } [announcements]
+        
+        @property { number } [refreshRate]
+        
+        @property { Array<string> } [refreshPages]
+        
+         
+    */
+
+/**
+        @typedef AnnouncementPageSchema
+        
+        
+        @property { string } [pageSlug]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef EditorMeta
+        
+        
+        @property { string } [foregroundColor]
+        
+        @property { string } [backgroundColor]
+        
+        @property { string } [contentType]
+        
+        @property { string } [content]
+        
+         
+    */
+
+/**
+        @typedef AnnouncementAuthorSchema
+        
+        
+        @property { string } [createdBy]
+        
+        @property { string } [modifiedBy]
+        
+         
+    */
+
+/**
+        @typedef AdminAnnouncementSchema
+        
+        
+        @property { string } [id]
+        
+        @property { Array<string> } [platforms]
+        
+        @property { string } [title]
+        
+        @property { string } [announcement]
+        
+        @property { Array<AnnouncementPageSchema> } [pages]
+        
+        @property { EditorMeta } [editorMeta]
+        
+        @property { AnnouncementAuthorSchema } [author]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [app]
+        
+        @property { string } [modifiedAt]
+        
+        @property { ScheduleSchema } [schedule]
+        
+         
+    */
+
+/**
+        @typedef ScheduleSchema
+        
+        
+        @property { string } [cron]
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+        @property { number } [duration]
+        
+        @property { Array<Object> } [nextSchedule]
+        
+         
+    */
+
+/**
+        @typedef NextSchedule
+        
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+         
+    */
+
+/**
+        @typedef AnnouncementSchema
+        
+        
+        @property { Array<Object> } [pageSlug]
+        
+         
+    */
+
+/**
+        @typedef announcementSchema
+        
+        
+        @property { string } [announcement]
+        
+        @property { scheduleStartSchema } [schedule]
+        
+         
+    */
+
+/**
+        @typedef scheduleStartSchema
+        
+        
+        @property { string } [start]
+        
+         
+    */
+
+/**
+        @typedef BlogGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef ResourceContent
+        
+        
+        @property { string } [type]
+        
+        @property { string } [value]
+        
+         
+    */
+
+/**
+        @typedef Asset
+        
+        
+        @property { string } [aspectRatio]
+        
+        @property { string } [id]
+        
+        @property { string } [secureUrl]
+        
+         
+    */
+
+/**
+        @typedef Author
+        
+        
+        @property { string } [designation]
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+         
+    */
+
+/**
+        @typedef BlogSchema
+        
+        
+        @property { string } [id]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [application]
+        
+        @property { boolean } [archived]
+        
+        @property { Object } [author]
+        
+        @property { Array<ResourceContent> } [content]
+        
+        @property { Object } [featureImage]
+        
+        @property { boolean } [published]
+        
+        @property { string } [readingTime]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [tags]
+        
+        @property { SEO } [seo]
+        
+        @property { CronSchedule } [schedule]
+        
+        @property { string } [title]
+        
+        @property { DateMeta } [dateMeta]
+        
+         
+    */
+
+/**
+        @typedef SEO
+        
+        
+        @property { string } [description]
+        
+        @property { SEOImage } [image]
+        
+        @property { string } [title]
+        
+         
+    */
+
+/**
+        @typedef SEOImage
+        
+        
+        @property { string } [url]
+        
+         
+    */
+
+/**
+        @typedef DateMeta
+        
+        
+        @property { string } [createdOn]
+        
+        @property { string } [modifiedOn]
+        
+         
+    */
+
+/**
+        @typedef BlogRequest
+        
+        
+        @property { string } [application]
+        
+        @property { Object } [customJson]
+        
+        @property { Object } [author]
+        
+        @property { Array<ResourceContent> } [content]
+        
+        @property { Object } [featureImage]
+        
+        @property { boolean } [published]
+        
+        @property { string } [readingTime]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } [title]
+        
+        @property { SEO } [seo]
+        
+        @property { CronSchedule } [schedule]
+        
+         
+    */
+
+/**
+        @typedef GetAnnouncementListSchema
+        
+        
+        @property { Array<AdminAnnouncementSchema> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef CreateAnnouncementSchema
+        
+        
+        @property { string } [message]
+        
+        @property { AdminAnnouncementSchema } [data]
+        
+         
+    */
+
+/**
+        @typedef Navigation
+        
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { string } [orientation]
+        
+        @property { CreatedBy } [createdBy]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { string } [id]
+        
+        @property { string } [position]
+        
+        @property { string } [application]
+        
+        @property { string } [platform]
+        
+        @property { NavigationReference } [navigation]
+        
+         
+    */
+
+/**
+        @typedef LocaleLanguage
+        
+        
+        @property { Language } [hi]
+        
+        @property { Language } [ar]
+        
+        @property { Language } [enUs]
+        
+         
+    */
+
+/**
+        @typedef Language
+        
+        
+        @property { string } [display]
+        
+         
+    */
+
+/**
+        @typedef Action
+        
+        
+        @property { ActionPage } [page]
+        
+        @property { ActionPage } [popup]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef ActionPage
+        
+        
+        @property { Object } [params]
+        
+        @property { Object } [query]
+        
+        @property { string } [url]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef NavigationReference
+        
+        
+        @property { Array<string> } [acl]
+        
+        @property { Array<string> } [tags]
+        
+        @property { LocaleLanguage } [localeLanguage]
+        
+        @property { string } [image]
+        
+        @property { string } [type]
+        
+        @property { Action } [action]
+        
+        @property { boolean } [active]
+        
+        @property { string } [display]
+        
+        @property { number } [sortOrder]
+        
+        @property { NavigationReference } [subNavigation]
+        
+         
+    */
+
+/**
+        @typedef LandingPage
+        
+        
+        @property { LandingPageSchema } [data]
+        
+        @property { boolean } [success]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationSchema
+        
+        
+        @property { number } [sleepTime]
+        
+        @property { boolean } [startOnLaunch]
+        
+        @property { number } [duration]
+        
+        @property { string } [slideDirection]
+        
+         
+    */
+
+/**
+        @typedef SlideshowMedia
+        
+        
+        @property { string } [type]
+        
+        @property { string } [url]
+        
+        @property { string } [bgColor]
+        
+        @property { number } [duration]
+        
+        @property { boolean } [autoDecideDuration]
+        
+        @property { Action } [action]
+        
+         
+    */
+
+/**
+        @typedef Slideshow
+        
+        
+        @property { SlideshowSchema } [data]
+        
+        @property { boolean } [success]
+        
+         
+    */
+
+/**
+        @typedef AnnouncementsResponseSchema
+        
+        
+        @property { Object } [announcements]
+        
+        @property { number } [refreshRate]
+        
+        @property { Array<string> } [refreshPages]
+        
+         
+    */
+
+/**
+        @typedef AnnouncementDataSchema
+        
+        
+        @property { string } [pageSlug]
+        
+        @property { StorefrontAnnouncement } [announcement]
+        
+         
+    */
+
+/**
+        @typedef FaqResponseSchema
+        
+        
+        @property { Array<FAQ> } [faqs]
+        
+         
+    */
+
+/**
+        @typedef UpdateHandpickedSchema
+        
+        
+        @property { HandpickedTagSchema } [tag]
+        
+         
+    */
+
+/**
+        @typedef HandpickedTagSchema
+        
+        
+        @property { string } [position]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [name]
+        
+        @property { string } [url]
+        
+        @property { string } [type]
+        
+        @property { string } [subType]
+        
+        @property { string } [content]
+        
+         
+    */
+
+/**
+        @typedef RemoveHandpickedSchema
+        
+        
+        @property { Array<string> } [tags]
+        
+         
+    */
+
+/**
+        @typedef CreateTagSchema
+        
+        
+        @property { string } [name]
+        
+        @property { string } [subType]
+        
+        @property { string } [id]
+        
+        @property { string } [type]
+        
+        @property { string } [url]
+        
+        @property { string } [position]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [content]
+        
+         
+    */
+
+/**
+        @typedef CreateTagRequestSchema
+        
+        
+        @property { Array<CreateTagSchema> } [tags]
+        
+         
+    */
+
+/**
+        @typedef APIError
+        
+        
+        @property { string } [message]
+        
+        @property { number } [status]
+        
+        @property { string } [code]
+        
+        @property { string } [exception]
+        
+        @property { string } [info]
+        
+        @property { string } [requestId]
+        
+        @property { string } [stackTrace]
+        
+        @property { Object } [meta]
+        
+         
+    */
+
+/**
+        @typedef CategorySchema
+        
+        
+        @property { number } [index]
+        
+        @property { string } [id]
+        
+        @property { string } [slug]
+        
+        @property { string } [title]
+        
+        @property { string } [application]
+        
+         
+    */
+
+/**
+        @typedef ChildrenSchema
+        
+        
+        @property { string } [question]
+        
+        @property { string } [answer]
+        
+        @property { string } [slug]
+        
+        @property { string } [application]
+        
+        @property { string } [id]
+        
+         
+    */
+
+/**
+        @typedef CategoryRequestSchema
+        
+        
+        @property { string } [slug]
+        
+        @property { string } [title]
+        
+         
+    */
+
+/**
+        @typedef FAQCategorySchema
+        
+        
+        @property { number } [index]
+        
+        @property { string } [title]
+        
+        @property { string } [description]
+        
+        @property { ChildrenSchema } [children]
+        
+        @property { string } [id]
+        
+        @property { string } [slug]
+        
+        @property { string } [application]
+        
+        @property { string } [iconUrl]
+        
+        @property { Object } [customJson]
+        
+         
+    */
+
+/**
+        @typedef FaqSchema
+        
+        
+        @property { string } [slug]
+        
+        @property { string } [application]
+        
+        @property { string } [id]
+        
+        @property { string } [question]
+        
+        @property { string } [answer]
+        
+         
+    */
+
+/**
+        @typedef FAQ
+        
+        
+        @property { string } [slug]
+        
+        @property { string } [question]
+        
+        @property { string } [answer]
+        
+         
+    */
+
+/**
+        @typedef CreateFaqResponseSchema
+        
+        
+        @property { FaqSchema } [faq]
+        
+         
+    */
+
+/**
+        @typedef CreateFaqSchema
+        
+        
+        @property { FAQ } [faq]
+        
+         
+    */
+
+/**
+        @typedef GetFaqSchema
+        
+        
+        @property { Array<Object> } [faqs]
+        
+         
+    */
+
+/**
+        @typedef UpdateFaqCategoryRequestSchema
+        
+        
+        @property { CategorySchema } [category]
+        
+         
+    */
+
+/**
+        @typedef CreateFaqCategoryRequestSchema
+        
+        
+        @property { CategoryRequestSchema } [category]
+        
+         
+    */
+
+/**
+        @typedef CreateFaqCategorySchema
+        
+        
+        @property { CategorySchema } [category]
+        
+         
+    */
+
+/**
+        @typedef GetFaqCategoriesSchema
+        
+        
+        @property { Array<CategorySchema> } [categories]
+        
+         
+    */
+
+/**
+        @typedef GetFaqCategoryByIdOrSlugSchema
+        
+        
+        @property { FAQCategorySchema } [category]
+        
+         
+    */
+
+/**
+        @typedef LandingPageGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef LandingPageSchema
+        
+        
+        @property { string } [slug]
+        
+        @property { Action } [action]
+        
+        @property { Array<string> } [platform]
+        
+        @property { CreatedBy } [createdBy]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { string } [id]
+        
+        @property { string } [application]
+        
+        @property { boolean } [archived]
+        
+        @property { Object } [customJson]
+        
+         
+    */
+
+/**
+        @typedef DefaultNavigationResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+         
+    */
+
+/**
+        @typedef NavigationGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef Orientation
+        
+        
+        @property { Array<string> } [portrait]
+        
+        @property { Array<string> } [landscape]
+        
+         
+    */
+
+/**
+        @typedef NavigationSchema
+        
+        
+        @property { string } [id]
+        
+        @property { string } [application]
+        
+        @property { boolean } [archived]
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [platform]
+        
+        @property { CreatedBy } [createdBy]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { Orientation } [orientation]
+        
+        @property { number } [version]
+        
+        @property { NavigationReference } [navigation]
+        
+         
+    */
+
+/**
+        @typedef NavigationRequest
+        
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [platform]
+        
+        @property { Orientation } [orientation]
+        
+        @property { NavigationReference } [navigation]
+        
+         
+    */
+
+/**
+        @typedef CustomPageSchema
+        
+        
+        @property { string } [id]
+        
+        @property { string } [platform]
+        
+        @property { string } [title]
+        
+        @property { string } [slug]
+        
+        @property { string } [type]
+        
+        @property { string } [orientation]
+        
+        @property { string } [application]
+        
+        @property { string } [description]
+        
+        @property { boolean } [published]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Array<ContentSchema> } [content]
+        
+        @property { CreatedBy } [createdBy]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { ScheduleSchema } [schedule]
+        
+         
+    */
+
+/**
+        @typedef ContentSchema
+        
+        
+        @property { string } [type]
+        
+        @property { string } [value]
+        
+         
+    */
+
+/**
+        @typedef CustomPage
+        
+        
+        @property { CustomPageSchema } [data]
+        
+         
+    */
+
+/**
+        @typedef CustomBlogSchema
+        
+        
+        @property { string } [id]
+        
+        @property { string } [title]
+        
+        @property { string } [slug]
+        
+        @property { string } [readingTime]
+        
+        @property { string } [application]
+        
+        @property { string } [description]
+        
+        @property { FeatureImage } [featureImage]
+        
+        @property { boolean } [published]
+        
+        @property { boolean } [archived]
+        
+        @property { Array<string> } [tags]
+        
+        @property { ContentSchema } [content]
+        
+        @property { Author } [author]
+        
+        @property { ScheduleSchema } [schedule]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+        @property { Object } [customJson]
+        
+         
+    */
+
+/**
+        @typedef FeatureImage
+        
+        
+        @property { string } [secureUrl]
+        
+         
+    */
+
+/**
+        @typedef CustomBlog
+        
+        
+        @property { CustomBlogSchema } [data]
+        
+         
+    */
+
+/**
+        @typedef PageGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef PageSpec
+        
+        
+        @property { Array<Object> } [specifications]
+        
+         
+    */
+
+/**
+        @typedef PageSpecParam
+        
+        
+        @property { string } [key]
+        
+        @property { boolean } [required]
+        
+         
+    */
+
+/**
+        @typedef PageSpecItem
+        
+        
+        @property { string } [pageType]
+        
+        @property { string } [displayName]
+        
+        @property { Array<PageSpecParam> } [params]
+        
+        @property { Array<PageSpecParam> } [query]
+        
+         
+    */
+
+/**
+        @typedef PageSchema
+        
+        
+        @property { string } [id]
+        
+        @property { string } [application]
+        
+        @property { Array<string> } [componentIds]
+        
+        @property { Array<PageContent> } [content]
+        
+        @property { Object } [createdBy]
+        
+        @property { Object } [dateMeta]
+        
+        @property { string } [description]
+        
+        @property { Object } [featureImage]
+        
+        @property { Array<PageMeta> } [pageMeta]
+        
+        @property { ScheduleSchema } [schedule]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [orientation]
+        
+        @property { string } [platform]
+        
+        @property { boolean } [published]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } [title]
+        
+        @property { string } [type]
+        
+        @property { SEO } [seo]
+        
+        @property { Object } [visibility]
+        
+         
+    */
+
+/**
+        @typedef CreatedBy
+        
+        
+        @property { string } [id]
+        
+         
+    */
+
+/**
+        @typedef PageContent
+        
+        
+        @property { string } [type]
+        
+        @property { Object } [value]
+        
+         
+    */
+
+/**
+        @typedef PageMeta
+        
+        
+        @property { string } [key]
+        
+        @property { Object } [value]
+        
+         
+    */
+
+/**
+        @typedef PageRequest
+        
+        
+        @property { CronSchedule } [schedule]
+        
+        @property { string } [application]
+        
+        @property { Object } [author]
+        
+        @property { Object } [customJson]
+        
+        @property { string } [orientation]
+        
+        @property { Array<ResourceContent> } [content]
+        
+        @property { Object } [featureImage]
+        
+        @property { boolean } [published]
+        
+        @property { string } [readingTime]
+        
+        @property { string } [slug]
+        
+        @property { Array<string> } [tags]
+        
+        @property { SEO } [seo]
+        
+        @property { string } [title]
+        
+         
+    */
+
+/**
+        @typedef CronSchedule
+        
+        
+        @property { string } [cron]
+        
+        @property { string } [start]
+        
+        @property { string } [end]
+        
+        @property { number } [duration]
+        
+         
+    */
+
+/**
+        @typedef PagePublishRequest
+        
+        
+        @property { boolean } [publish]
+        
+         
+    */
+
+/**
+        @typedef PageMetaSchema
+        
+        
+        @property { Array<Object> } [systemPages]
+        
+        @property { Array<Object> } [customPages]
+        
+        @property { string } [applicationId]
+        
+         
+    */
+
+/**
+        @typedef SlideshowGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef SlideshowSchema
+        
+        
+        @property { string } [id]
+        
+        @property { string } [slug]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { string } [application]
+        
+        @property { string } [platform]
+        
+        @property { ConfigurationSchema } [configuration]
+        
+        @property { Array<SlideshowMedia> } [media]
+        
+        @property { boolean } [active]
+        
+        @property { boolean } [archived]
+        
+        @property { Object } [customJson]
+        
+         
+    */
+
+/**
+        @typedef SlideshowRequest
+        
+        
+        @property { string } [slug]
+        
+        @property { string } [platform]
+        
+        @property { ConfigurationSchema } [configuration]
+        
+        @property { SlideshowMedia } [media]
+        
+        @property { boolean } [active]
+        
+         
+    */
+
+/**
+        @typedef Support
+        
+        
+        @property { boolean } [created]
+        
+        @property { string } [id]
+        
+        @property { string } [configType]
+        
+        @property { string } [application]
+        
+        @property { string } [createdAt]
+        
+        @property { string } [updatedAt]
+        
+        @property { ContactSchema } [contact]
+        
+         
+    */
+
+/**
+        @typedef PhoneProperties
+        
+        
+        @property { string } [key]
+        
+        @property { string } [code]
+        
+        @property { string } [number]
+        
+         
+    */
+
+/**
+        @typedef PhoneSchema
+        
+        
+        @property { boolean } [active]
+        
+        @property { Array<PhoneProperties> } [phone]
+        
+         
+    */
+
+/**
+        @typedef EmailProperties
+        
+        
+        @property { string } [key]
+        
+        @property { string } [value]
+        
+         
+    */
+
+/**
+        @typedef EmailSchema
+        
+        
+        @property { boolean } [active]
+        
+        @property { Array<EmailProperties> } [email]
+        
+         
+    */
+
+/**
+        @typedef ContactSchema
+        
+        
+        @property { PhoneSchema } [phone]
+        
+        @property { EmailSchema } [email]
+        
+         
+    */
+
+/**
+        @typedef TagsSchema
+        
+        
+        @property { string } [application]
+        
+        @property { string } [id]
+        
+        @property { Array<TagSchema> } [tags]
+        
+         
+    */
+
+/**
+        @typedef TagSchema
+        
+        
+        @property { string } [name]
+        
+        @property { string } [url]
+        
+        @property { string } [type]
+        
+        @property { string } [subType]
+        
+        @property { string } [id]
+        
+        @property { string } [position]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [content]
+        
+         
+    */
+
+/**
         @typedef UnauthenticatedUser
         
         
