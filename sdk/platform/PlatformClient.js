@@ -3049,7 +3049,7 @@ class PlatformClient {
         
         @property { string } [orientation]
         
-        @property { CreatedBy } [createdBy]
+        @property { CreatedBySchema } [createdBy]
         
         @property { DateMeta } [dateMeta]
         
@@ -3519,7 +3519,7 @@ class PlatformClient {
         
         @property { Array<string> } [platform]
         
-        @property { CreatedBy } [createdBy]
+        @property { CreatedBySchema } [createdBy]
         
         @property { DateMeta } [dateMeta]
         
@@ -3581,7 +3581,7 @@ class PlatformClient {
         
         @property { Array<string> } [platform]
         
-        @property { CreatedBy } [createdBy]
+        @property { CreatedBySchema } [createdBy]
         
         @property { DateMeta } [dateMeta]
         
@@ -3637,7 +3637,7 @@ class PlatformClient {
         
         @property { Array<ContentSchema> } [content]
         
-        @property { CreatedBy } [createdBy]
+        @property { CreatedBySchema } [createdBy]
         
         @property { DateMeta } [dateMeta]
         
@@ -3812,6 +3812,15 @@ class PlatformClient {
         @property { SEO } [seo]
         
         @property { Object } [visibility]
+        
+         
+    */
+
+/**
+        @typedef CreatedBySchema
+        
+        
+        @property { string } [id]
         
          
     */
@@ -19938,7 +19947,7 @@ class Configuration {
     * @param {Object} arg - arg object.
     * @param {number} [arg.pageNo] - 
     * @param {number} [arg.pageSize] - 
-    * @param {Object} [arg.q] - Url encoded object used as mongodb query
+    * @param {string} [arg.q] - Url encoded object used as mongodb query
     
     **/
   getApplications({ pageNo, pageSize, q } = {}) {
@@ -19974,7 +19983,7 @@ class Configuration {
     * @description: Get list of application under company
     * @param {Object} arg - arg object.
     * @param {number} [arg.pageSize] - 
-    * @param {Object} [arg.q] - Url encoded object used as mongodb query
+    * @param {string} [arg.q] - Url encoded object used as mongodb query
     
     **/
   getApplicationsPaginator({ pageSize, q } = {}) {

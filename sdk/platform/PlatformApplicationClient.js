@@ -3054,7 +3054,7 @@ class PlatformApplicationClient {
         
         @property { string } [orientation]
         
-        @property { CreatedBy } [createdBy]
+        @property { CreatedBySchema } [createdBy]
         
         @property { DateMeta } [dateMeta]
         
@@ -3524,7 +3524,7 @@ class PlatformApplicationClient {
         
         @property { Array<string> } [platform]
         
-        @property { CreatedBy } [createdBy]
+        @property { CreatedBySchema } [createdBy]
         
         @property { DateMeta } [dateMeta]
         
@@ -3586,7 +3586,7 @@ class PlatformApplicationClient {
         
         @property { Array<string> } [platform]
         
-        @property { CreatedBy } [createdBy]
+        @property { CreatedBySchema } [createdBy]
         
         @property { DateMeta } [dateMeta]
         
@@ -3642,7 +3642,7 @@ class PlatformApplicationClient {
         
         @property { Array<ContentSchema> } [content]
         
-        @property { CreatedBy } [createdBy]
+        @property { CreatedBySchema } [createdBy]
         
         @property { DateMeta } [dateMeta]
         
@@ -3817,6 +3817,15 @@ class PlatformApplicationClient {
         @property { SEO } [seo]
         
         @property { Object } [visibility]
+        
+         
+    */
+
+/**
+        @typedef CreatedBySchema
+        
+        
+        @property { string } [id]
         
          
     */

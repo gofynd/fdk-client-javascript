@@ -2376,7 +2376,7 @@ class Validator {
 
       orientation: Joi.string(),
 
-      created_by: this.CreatedBy(),
+      created_by: this.CreatedBySchema(),
 
       date_meta: this.DateMeta(),
 
@@ -2744,7 +2744,7 @@ class Validator {
 
       platform: Joi.array().items(Joi.string()),
 
-      created_by: this.CreatedBy(),
+      created_by: this.CreatedBySchema(),
 
       date_meta: this.DateMeta(),
 
@@ -2794,7 +2794,7 @@ class Validator {
 
       platform: Joi.array().items(Joi.string()),
 
-      created_by: this.CreatedBy(),
+      created_by: this.CreatedBySchema(),
 
       date_meta: this.DateMeta(),
 
@@ -2844,7 +2844,7 @@ class Validator {
 
       content: Joi.array().items(this.ContentSchema()),
 
-      created_by: this.CreatedBy(),
+      created_by: this.CreatedBySchema(),
 
       date_meta: this.DateMeta(),
 
@@ -2989,6 +2989,12 @@ class Validator {
       seo: this.SEO(),
 
       visibility: Joi.object(),
+    });
+  }
+
+  static CreatedBySchema() {
+    return Joi.object({
+      id: Joi.string(),
     });
   }
 
@@ -14007,7 +14013,7 @@ class ConfigurationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      q: Joi.object(),
+      q: Joi.string(),
     }).required();
   }
 

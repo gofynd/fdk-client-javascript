@@ -571,7 +571,7 @@ export class Validator {
     static PageSpecParam(): any;
     static PageSpecItem(): any;
     static PageSchema(): any;
-    static CreatedBy(): any;
+    static CreatedBySchema(): any;
     static PageContent(): any;
     static PageMeta(): any;
     static PageRequest(): any;
