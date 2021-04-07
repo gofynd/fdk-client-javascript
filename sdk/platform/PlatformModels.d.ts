@@ -110,7 +110,7 @@ export class CompanyProfileValidator {
     static updateLocation(): any;
     static getLocationDetail(): any;
 }
-export class AssetsValidator {
+export class FileStorageValidator {
     static startUpload(): any;
     static completeUpload(): any;
     static getSignUrls(): any;

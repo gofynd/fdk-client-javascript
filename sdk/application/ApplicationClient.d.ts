@@ -7,6 +7,7 @@ declare class ApplicationClient {
     theme: Theme;
     user: User;
     content: Content;
+    communication: Communication;
     share: Share;
     fileStorage: FileStorage;
     configuration: Configuration;
@@ -1423,17 +1424,25 @@ declare class Content {
       * @summary: Get navigation
       * @description: Use this API to fetch navigations
       * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
       
       **/
-    getNavigations({}?: any): any;
+    getNavigations({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
     /**
       *
       * @summary: Get navigation
       * @description: Use this API to fetch navigations
       * @param {Object} arg - arg object.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
       
       **/
-    getNavigationsPaginator({}?: any): Paginator;
+    getNavigationsPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator;
     /**
       *
       * @summary: Get Page by slug
@@ -1480,6 +1489,38 @@ declare class Content {
       
       **/
     getTags({}?: any): any;
+}
+declare class Communication {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+      *
+      * @summary: Get communication consent
+      * @description: Get communication consent
+      * @param {Object} arg - arg object.
+      
+      **/
+    getCommunicationConsent({}?: any): any;
+    /**
+     *
+     * @summary: Upsert communication consent
+     * @description: Upsert communication consent
+     * @param {Object} arg - arg object.
+     * @param {CommunicationConsentReq} arg.body
+     **/
+    upsertCommunicationConsent({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Upsert push token of a user
+     * @description: Upsert push token of a user
+     * @param {Object} arg - arg object.
+     * @param {PushtokenReq} arg.body
+     **/
+    upsertAppPushtoken({ body }?: {
+        body: any;
+    }): any;
 }
 declare class Share {
     constructor(_conf: any);

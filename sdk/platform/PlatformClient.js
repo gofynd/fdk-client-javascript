@@ -6,7 +6,7 @@ const {
   OrderValidator,
   CatalogValidator,
   CompanyProfileValidator,
-  AssetsValidator,
+  FileStorageValidator,
   ConfigurationValidator,
   MarketplacesValidator,
   AnalyticsValidator,
@@ -25,7 +25,7 @@ class PlatformClient {
     this.order = new Order(config);
     this.catalog = new Catalog(config);
     this.companyProfile = new CompanyProfile(config);
-    this.assets = new Assets(config);
+    this.fileStorage = new FileStorage(config);
     this.configuration = new Configuration(config);
     this.marketplaces = new Marketplaces(config);
     this.analytics = new Analytics(config);
@@ -44,27 +44,6 @@ class PlatformClient {
         @property { Filter } [filters]
         
         @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef Page
-        
-        
-        @property { number } [itemTotal]
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [current]
-        
-        @property { string } type
-        
-        @property { number } [size]
         
          
     */
@@ -595,6 +574,678 @@ class PlatformClient {
         @property { string } [updatedAt]
         
         @property { string } [createdAt]
+        
+         
+    */
+
+/**
+        @typedef Activity
+        
+        
+        @property { Object } [currentState]
+        
+        @property { string } [documentId]
+        
+        @property { Object } [previousState]
+        
+         
+    */
+
+/**
+        @typedef ActivityDump
+        
+        
+        @property { Activity } [activity]
+        
+        @property { CreatedBy } [createdBy]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { string } [id]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef AddMediaListRequest
+        
+        
+        @property { string } [entityId]
+        
+        @property { string } [entityType]
+        
+        @property { Array<AddMediaRequest> } [mediaList]
+        
+        @property { string } [refId]
+        
+        @property { string } [refType]
+        
+         
+    */
+
+/**
+        @typedef AddMediaRequest
+        
+        
+        @property { string } [cloudId]
+        
+        @property { string } [cloudName]
+        
+        @property { string } [cloudProvider]
+        
+        @property { string } [entityId]
+        
+        @property { string } [entityType]
+        
+        @property { string } [mediaUrl]
+        
+        @property { string } [refId]
+        
+        @property { string } [refType]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } [thumbnailUrl]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef ApproveRequest
+        
+        
+        @property { boolean } [approve]
+        
+        @property { string } [entityType]
+        
+        @property { string } id
+        
+        @property { string } [reason]
+        
+         
+    */
+
+/**
+        @typedef Attribute
+        
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { string } [description]
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { Array<TagMeta> } [tags]
+        
+         
+    */
+
+/**
+        @typedef AttributeObject
+        
+        
+        @property { string } [description]
+        
+        @property { string } name
+        
+        @property { string } [slug]
+        
+        @property { string } [title]
+        
+        @property { string } type
+        
+        @property { number } value
+        
+         
+    */
+
+/**
+        @typedef Attributes
+        
+        
+        @property { Array<Attribute> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef CreatedBy
+        
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+        @property { Array<TagMeta> } [tags]
+        
+         
+    */
+
+/**
+        @typedef CursorGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef DateMeta
+        
+        
+        @property { string } [createdOn]
+        
+        @property { string } [modifiedOn]
+        
+         
+    */
+
+/**
+        @typedef DeviceMeta
+        
+        
+        @property { string } [appVersion]
+        
+        @property { string } [platform]
+        
+         
+    */
+
+/**
+        @typedef Entity
+        
+        
+        @property { string } [id]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef EntityRequest
+        
+        
+        @property { string } [entityId]
+        
+        @property { string } [entityType]
+        
+         
+    */
+
+/**
+        @typedef ErrorResponse
+        
+        
+        @property { Object } [code]
+        
+        @property { string } [exception]
+        
+        @property { string } [info]
+        
+        @property { Object } [meta]
+        
+        @property { string } [requestId]
+        
+        @property { string } [stackTrace]
+        
+        @property { number } [status]
+        
+         
+    */
+
+/**
+        @typedef GetResponse
+        
+        
+        @property { Object } [data]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef GetReviewResponse
+        
+        
+        @property { Array<ReviewFacet> } [facets]
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+        @property { Array<SortMethod> } [sort]
+        
+         
+    */
+
+/**
+        @typedef InsertResponse
+        
+        
+        @property { number } [count]
+        
+         
+    */
+
+/**
+        @typedef MediaMeta
+        
+        
+        @property { number } [maxCount]
+        
+        @property { number } [size]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef MediaMetaRequest
+        
+        
+        @property { number } maxCount
+        
+        @property { number } size
+        
+         
+    */
+
+/**
+        @typedef NumberGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef PageCursor
+        
+        
+        @property { number } [current]
+        
+        @property { boolean } [hasNext]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { number } [itemTotal]
+        
+        @property { string } [nextId]
+        
+        @property { number } size
+        
+        @property { string } type
+        
+         
+    */
+
+/**
+        @typedef PageNumber
+        
+        
+        @property { number } [current]
+        
+        @property { boolean } [hasNext]
+        
+        @property { number } [itemTotal]
+        
+        @property { number } [size]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef Rating
+        
+        
+        @property { Array<Attribute> } [attributes]
+        
+        @property { Array<string> } [attributesSlugs]
+        
+        @property { UI } [ui]
+        
+         
+    */
+
+/**
+        @typedef RatingRequest
+        
+        
+        @property { Array<string> } attributes
+        
+        @property { UI } [ui]
+        
+         
+    */
+
+/**
+        @typedef ReportAbuseRequest
+        
+        
+        @property { string } [description]
+        
+        @property { string } entityId
+        
+        @property { string } entityType
+        
+         
+    */
+
+/**
+        @typedef Review
+        
+        
+        @property { string } [description]
+        
+        @property { string } [header]
+        
+        @property { MediaMeta } [imageMeta]
+        
+        @property { string } [title]
+        
+        @property { MediaMeta } [videoMeta]
+        
+        @property { boolean } [voteAllowed]
+        
+         
+    */
+
+/**
+        @typedef ReviewFacet
+        
+        
+        @property { string } [display]
+        
+        @property { string } [name]
+        
+        @property { boolean } [selected]
+        
+        @property { string } [slug]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef ReviewRequest
+        
+        
+        @property { string } description
+        
+        @property { string } header
+        
+        @property { MediaMetaRequest } imageMeta
+        
+        @property { boolean } isVoteAllowed
+        
+        @property { string } title
+        
+        @property { MediaMetaRequest } videoMeta
+        
+         
+    */
+
+/**
+        @typedef SaveAttributeRequest
+        
+        
+        @property { string } [description]
+        
+        @property { string } name
+        
+        @property { string } slug
+        
+         
+    */
+
+/**
+        @typedef SortMethod
+        
+        
+        @property { string } [name]
+        
+        @property { boolean } [selected]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef State
+        
+        
+        @property { boolean } [active]
+        
+        @property { boolean } [archive]
+        
+        @property { string } [media]
+        
+        @property { boolean } [qna]
+        
+        @property { boolean } [rating]
+        
+        @property { boolean } [review]
+        
+         
+    */
+
+/**
+        @typedef TagMeta
+        
+        
+        @property { Array<MediaMeta> } [media]
+        
+        @property { string } [name]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef Template
+        
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { Entity } [entity]
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+        @property { Rating } [rating]
+        
+        @property { Review } [review]
+        
+        @property { State } [state]
+        
+        @property { Array<TagMeta> } [tags]
+        
+         
+    */
+
+/**
+        @typedef TemplateGetResponse
+        
+        
+        @property { Array<Template> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef TemplateRequest
+        
+        
+        @property { boolean } active
+        
+        @property { string } [enableMediaType]
+        
+        @property { boolean } [enableQna]
+        
+        @property { boolean } enableRating
+        
+        @property { boolean } enableReview
+        
+        @property { EntityRequest } entity
+        
+        @property { RatingRequest } rating
+        
+        @property { ReviewRequest } review
+        
+         
+    */
+
+/**
+        @typedef TemplateRequestList
+        
+        
+        @property { Array<TemplateRequest> } templateList
+        
+         
+    */
+
+/**
+        @typedef UI
+        
+        
+        @property { Array<string> } [feedbackQuestion]
+        
+        @property { UIIcon } [icon]
+        
+        @property { Array<string> } [text]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef UIIcon
+        
+        
+        @property { string } [active]
+        
+        @property { string } [inactive]
+        
+        @property { Array<string> } [selected]
+        
+         
+    */
+
+/**
+        @typedef UpdateAttributeRequest
+        
+        
+        @property { string } [description]
+        
+        @property { string } name
+        
+        @property { string } [slug]
+        
+         
+    */
+
+/**
+        @typedef UpdateResponse
+        
+        
+        @property { number } [count]
+        
+         
+    */
+
+/**
+        @typedef UpdateReviewRequest
+        
+        
+        @property { boolean } [active]
+        
+        @property { string } [application]
+        
+        @property { boolean } [approve]
+        
+        @property { boolean } [archive]
+        
+        @property { Array<AttributeObject> } [attributesRating]
+        
+        @property { string } [description]
+        
+        @property { DeviceMeta } [deviceMeta]
+        
+        @property { string } [entityId]
+        
+        @property { string } [entityType]
+        
+        @property { Array<MediaMeta> } [mediaResource]
+        
+        @property { number } [rating]
+        
+        @property { string } [reviewId]
+        
+        @property { string } [templateId]
+        
+        @property { string } [title]
+        
+         
+    */
+
+/**
+        @typedef UpdateTemplateRequest
+        
+        
+        @property { boolean } active
+        
+        @property { string } [enableMediaType]
+        
+        @property { boolean } [enableQna]
+        
+        @property { boolean } enableRating
+        
+        @property { boolean } enableReview
+        
+        @property { EntityRequest } entity
+        
+        @property { RatingRequest } rating
+        
+        @property { ReviewRequest } review
+        
+         
+    */
+
+/**
+        @typedef UpdateTemplateStatusRequest
+        
+        
+        @property { boolean } [active]
+        
+        @property { boolean } [archive]
         
          
     */
@@ -2336,17 +2987,6 @@ class PlatformClient {
     */
 
 /**
-        @typedef DateMeta
-        
-        
-        @property { string } [createdOn]
-        
-        @property { string } [modifiedOn]
-        
-         
-    */
-
-/**
         @typedef BlogRequest
         
         
@@ -3172,15 +3812,6 @@ class PlatformClient {
         @property { SEO } [seo]
         
         @property { Object } [visibility]
-        
-         
-    */
-
-/**
-        @typedef CreatedBy
-        
-        
-        @property { string } [id]
         
          
     */
@@ -4037,7 +4668,7 @@ class PlatformClient {
     */
 
 /**
-        @typedef BillingAddress
+        @typedef SubscriptionBillingAddress
         
         
         @property { string } [country]
@@ -4061,7 +4692,7 @@ class PlatformClient {
         
         @property { Phone } [phone]
         
-        @property { BillingAddress } [billingAddress]
+        @property { SubscriptionBillingAddress } [billingAddress]
         
         @property { string } [id]
         
@@ -4088,7 +4719,7 @@ class PlatformClient {
         
         @property { Phone } [phone]
         
-        @property { BillingAddress } [billingAddress]
+        @property { SubscriptionBillingAddress } [billingAddress]
         
         @property { string } [uniqueId]
         
@@ -6730,6 +7361,43 @@ class PlatformClient {
     */
 
 /**
+        @typedef BillingAddress
+        
+        
+        @property { string } [address1]
+        
+        @property { string } [city]
+        
+        @property { string } [zip]
+        
+        @property { string } [lastName]
+        
+        @property { string } [address2]
+        
+        @property { number } [longitude]
+        
+        @property { string } [provinceCode]
+        
+        @property { string } [phone]
+        
+        @property { string } [company]
+        
+        @property { number } [latitude]
+        
+        @property { string } [name]
+        
+        @property { string } [country]
+        
+        @property { string } [countryCode]
+        
+        @property { string } [firstName]
+        
+        @property { string } [province]
+        
+         
+    */
+
+/**
         @typedef TotalShippingPriceSet
         
         
@@ -8430,29 +9098,29 @@ class PlatformClient {
     */
 
 /**
+        @typedef Page
+        
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { boolean } [hasNext]
+        
+        @property { string } [nextPageId]
+        
+        @property { number } [itemTotal]
+        
+        @property { number } [current]
+        
+         
+    */
+
+/**
         @typedef GetSearchWordsDetailResponse
         
         
         @property { GetSearchWordsData } [items]
         
         @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef ErrorResponse
-        
-        
-        @property { Object } [meta]
-        
-        @property { Object } [errors]
-        
-        @property { string } [message]
-        
-        @property { string } [code]
-        
-        @property { number } [status]
         
          
     */
@@ -10514,55 +11182,6 @@ class PlatformClient {
         @property { string } [userId]
         
         @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef Attributes
-        
-        
-        @property { string } [primaryColor]
-        
-        @property { VerifiedBy } [verifiedBy]
-        
-        @property { string } [essential]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [sleeveLength]
-        
-        @property { string } [metaNature]
-        
-        @property { string } [imageNature]
-        
-        @property { Array<string> } [l3Mapping]
-        
-        @property { string } [neckType]
-        
-        @property { UserCommon } [modifiedBy]
-        
-        @property { string } [modifiedOn]
-        
-        @property { string } [productFit]
-        
-        @property { string } [pattern]
-        
-        @property { string } [stage]
-        
-        @property { string } [material]
-        
-        @property { boolean } [isImageLessProduct]
-        
-        @property { string } [color]
-        
-        @property { UserCommon } [createdBy]
-        
-        @property { string } [primaryMaterial]
-        
-        @property { Array<string> } [gender]
         
          
     */
@@ -14369,27 +14988,6 @@ class PlatformClient {
     */
 
 /**
-        @typedef Page
-        
-        
-        @property { string } type
-        
-        @property { number } [size]
-        
-        @property { number } [current]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [itemTotal]
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-         
-    */
-
-/**
         @typedef ApplicationInformation
         
         
@@ -14982,29 +15580,24 @@ class PlatformClient {
     */
 
 /**
-        @typedef Rule
+        @typedef RuleDefinition
         
         
-        @property { number } [min]
+        @property { string } calculateOn
         
-        @property { number } [value]
+        @property { string } type
         
-        @property { number } [discountQty]
+        @property { string } [currencyCode]
         
-        @property { number } [max]
+        @property { string } applicableOn
         
-        @property { number } [key]
+        @property { boolean } [autoApply]
         
-         
-    */
-
-/**
-        @typedef Ownership
+        @property { Array<string> } [scope]
         
+        @property { string } valueType
         
-        @property { string } payableCategory
-        
-        @property { string } payableBy
+        @property { boolean } [isExact]
         
          
     */
@@ -15013,9 +15606,81 @@ class PlatformClient {
         @typedef CouponDateMeta
         
         
+        @property { string } [createdOn]
+        
         @property { string } [modifiedOn]
         
-        @property { string } [createdOn]
+         
+    */
+
+/**
+        @typedef Validation
+        
+        
+        @property { boolean } [anonymous]
+        
+        @property { string } [userRegisteredAfter]
+        
+        @property { Array<string> } [appId]
+        
+         
+    */
+
+/**
+        @typedef Rule
+        
+        
+        @property { number } [discountQty]
+        
+        @property { number } [max]
+        
+        @property { number } [key]
+        
+        @property { number } [value]
+        
+        @property { number } [min]
+        
+         
+    */
+
+/**
+        @typedef Validity
+        
+        
+        @property { number } [priority]
+        
+         
+    */
+
+/**
+        @typedef Ownership
+        
+        
+        @property { string } payableBy
+        
+        @property { string } payableCategory
+        
+         
+    */
+
+/**
+        @typedef CouponAuthor
+        
+        
+        @property { string } [createdBy]
+        
+        @property { string } [modifiedBy]
+        
+         
+    */
+
+/**
+        @typedef CouponAction
+        
+        
+        @property { string } [actionDate]
+        
+        @property { string } [txnMode]
         
          
     */
@@ -15035,17 +15700,17 @@ class PlatformClient {
         @typedef DisplayMeta
         
         
-        @property { DisplayMetaDict } [auto]
+        @property { string } [description]
         
         @property { DisplayMetaDict } [apply]
+        
+        @property { string } [subtitle]
+        
+        @property { DisplayMetaDict } [auto]
         
         @property { DisplayMetaDict } [remove]
         
         @property { string } [title]
-        
-        @property { string } [description]
-        
-        @property { string } [subtitle]
         
          
     */
@@ -15054,15 +15719,26 @@ class PlatformClient {
         @typedef CouponSchedule
         
         
-        @property { string } [end]
-        
         @property { string } [cron]
         
-        @property { number } [duration]
+        @property { Array<Object> } [nextSchedule]
         
         @property { string } [start]
         
-        @property { Array<Object> } [nextSchedule]
+        @property { string } [end]
+        
+        @property { number } [duration]
+        
+         
+    */
+
+/**
+        @typedef PriceRange
+        
+        
+        @property { number } [min]
+        
+        @property { number } [max]
         
          
     */
@@ -15077,14 +15753,25 @@ class PlatformClient {
     */
 
 /**
+        @typedef PostOrder
+        
+        
+        @property { boolean } [cancellationAllowed]
+        
+        @property { boolean } [returnAllowed]
+        
+         
+    */
+
+/**
         @typedef UsesRemaining
         
+        
+        @property { number } [app]
         
         @property { number } [total]
         
         @property { number } [user]
-        
-        @property { number } [app]
         
          
     */
@@ -15096,28 +15783,6 @@ class PlatformClient {
         @property { UsesRemaining } [remaining]
         
         @property { UsesRemaining } [maximum]
-        
-         
-    */
-
-/**
-        @typedef PostOrder
-        
-        
-        @property { boolean } [returnAllowed]
-        
-        @property { boolean } [cancellationAllowed]
-        
-         
-    */
-
-/**
-        @typedef PriceRange
-        
-        
-        @property { number } [min]
-        
-        @property { number } [max]
         
          
     */
@@ -15137,9 +15802,9 @@ class PlatformClient {
         
         @property { Array<string> } [codes]
         
-        @property { Array<string> } [types]
-        
         @property { PaymentAllowValue } [uses]
+        
+        @property { Array<string> } [types]
         
         @property { Array<string> } [networks]
         
@@ -15150,19 +15815,19 @@ class PlatformClient {
         @typedef PaymentCodes
         
         
-        @property { PaymentModes } [upi]
-        
         @property { PaymentModes } [qr]
         
+        @property { PaymentModes } [nb]
+        
         @property { PaymentModes } [pl]
+        
+        @property { PaymentModes } [upi]
+        
+        @property { PaymentModes } [card]
         
         @property { PaymentModes } [wl]
         
         @property { PaymentModes } [ps]
-        
-        @property { PaymentModes } [nb]
-        
-        @property { PaymentModes } [card]
         
          
     */
@@ -15171,70 +15836,21 @@ class PlatformClient {
         @typedef Restrictions
         
         
-        @property { boolean } [couponAllowed]
+        @property { PriceRange } [priceRange]
         
         @property { Array<number> } [orderingStores]
         
+        @property { boolean } [couponAllowed]
+        
         @property { BulkBundleRestriction } [bulkBundle]
+        
+        @property { PostOrder } [postOrder]
         
         @property { UsesRestriction } [uses]
         
         @property { Array<string> } [platforms]
         
-        @property { PostOrder } [postOrder]
-        
-        @property { PriceRange } [priceRange]
-        
         @property { PaymentCodes } [payments]
-        
-         
-    */
-
-/**
-        @typedef RuleDefinition
-        
-        
-        @property { Array<string> } [scope]
-        
-        @property { string } calculateOn
-        
-        @property { string } [currencyCode]
-        
-        @property { boolean } [isExact]
-        
-        @property { boolean } [autoApply]
-        
-        @property { string } type
-        
-        @property { string } applicableOn
-        
-        @property { string } valueType
-        
-         
-    */
-
-/**
-        @typedef State
-        
-        
-        @property { boolean } [isDisplay]
-        
-        @property { boolean } [isPublic]
-        
-        @property { boolean } [isArchived]
-        
-         
-    */
-
-/**
-        @typedef Validation
-        
-        
-        @property { boolean } [anonymous]
-        
-        @property { Array<string> } [appId]
-        
-        @property { string } [userRegisteredAfter]
         
          
     */
@@ -15243,52 +15859,21 @@ class PlatformClient {
         @typedef Identifier
         
         
-        @property { Array<string> } [collectionId]
-        
-        @property { Array<string> } [articleId]
-        
-        @property { Array<number> } [itemId]
-        
-        @property { Array<number> } [brandId]
-        
-        @property { Array<number> } [companyId]
-        
         @property { Array<string> } [userId]
+        
+        @property { Array<string> } [collectionId]
         
         @property { Array<number> } [storeId]
         
+        @property { Array<number> } [brandId]
+        
+        @property { Array<number> } [itemId]
+        
+        @property { Array<number> } [companyId]
+        
+        @property { Array<string> } [articleId]
+        
         @property { Array<number> } [categoryId]
-        
-         
-    */
-
-/**
-        @typedef Validity
-        
-        
-        @property { number } [priority]
-        
-         
-    */
-
-/**
-        @typedef CouponAction
-        
-        
-        @property { string } [actionDate]
-        
-        @property { string } [txnMode]
-        
-         
-    */
-
-/**
-        @typedef CouponAuthor
-        
-        
-        @property { string } [modifiedBy]
-        
-        @property { string } [createdBy]
         
          
     */
@@ -15297,17 +15882,29 @@ class PlatformClient {
         @typedef CouponAdd
         
         
-        @property { string } code
-        
-        @property { Array<Rule> } rule
+        @property { RuleDefinition } ruleDefinition
         
         @property { string } typeSlug
         
-        @property { Ownership } ownership
-        
         @property { CouponDateMeta } [dateMeta]
         
+        @property { Validation } [validation]
+        
         @property { Array<string> } [tags]
+        
+        @property { Array<Rule> } rule
+        
+        @property { State } [state]
+        
+        @property { Validity } validity
+        
+        @property { string } code
+        
+        @property { Ownership } ownership
+        
+        @property { CouponAuthor } [author]
+        
+        @property { CouponAction } [action]
         
         @property { DisplayMeta } displayMeta
         
@@ -15315,19 +15912,7 @@ class PlatformClient {
         
         @property { Restrictions } [restrictions]
         
-        @property { RuleDefinition } ruleDefinition
-        
-        @property { State } [state]
-        
-        @property { Validation } [validation]
-        
         @property { Identifier } identifiers
-        
-        @property { Validity } validity
-        
-        @property { CouponAction } [action]
-        
-        @property { CouponAuthor } [author]
         
          
     */
@@ -15347,9 +15932,9 @@ class PlatformClient {
         @typedef SuccessMessage
         
         
-        @property { boolean } [success]
-        
         @property { string } [message]
+        
+        @property { boolean } [success]
         
          
     */
@@ -15358,9 +15943,9 @@ class PlatformClient {
         @typedef OperationErrorResponse
         
         
-        @property { boolean } [success]
-        
         @property { string } [message]
+        
+        @property { boolean } [success]
         
          
     */
@@ -15369,17 +15954,29 @@ class PlatformClient {
         @typedef CouponUpdate
         
         
-        @property { string } code
-        
-        @property { Array<Rule> } rule
+        @property { RuleDefinition } ruleDefinition
         
         @property { string } typeSlug
         
-        @property { Ownership } ownership
-        
         @property { CouponDateMeta } [dateMeta]
         
+        @property { Validation } [validation]
+        
         @property { Array<string> } [tags]
+        
+        @property { Array<Rule> } rule
+        
+        @property { State } [state]
+        
+        @property { Validity } validity
+        
+        @property { string } code
+        
+        @property { Ownership } ownership
+        
+        @property { CouponAuthor } [author]
+        
+        @property { CouponAction } [action]
         
         @property { DisplayMeta } displayMeta
         
@@ -15387,19 +15984,7 @@ class PlatformClient {
         
         @property { Restrictions } [restrictions]
         
-        @property { RuleDefinition } ruleDefinition
-        
-        @property { State } [state]
-        
-        @property { Validation } [validation]
-        
         @property { Identifier } identifiers
-        
-        @property { Validity } validity
-        
-        @property { CouponAction } [action]
-        
-        @property { CouponAuthor } [author]
         
          
     */
@@ -19059,7 +19644,7 @@ class CompanyProfile {
   }
 }
 
-class Assets {
+class FileStorage {
   constructor(config) {
     this.config = config;
   }
@@ -19091,7 +19676,7 @@ This operation will return the url for the uploaded file.
     * @param {StartRequest} arg.body
     **/
   startUpload({ namespace, body } = {}) {
-    const { error } = AssetsValidator.startUpload().validate(
+    const { error } = FileStorageValidator.startUpload().validate(
       {
         namespace,
         body,
@@ -19140,7 +19725,7 @@ This operation will return the url for the uploaded file.
     * @param {StartResponse} arg.body
     **/
   completeUpload({ namespace, body } = {}) {
-    const { error } = AssetsValidator.completeUpload().validate(
+    const { error } = FileStorageValidator.completeUpload().validate(
       {
         namespace,
         body,
@@ -19170,7 +19755,7 @@ This operation will return the url for the uploaded file.
    * @param {SignUrlRequest} arg.body
    **/
   getSignUrls({ body } = {}) {
-    const { error } = AssetsValidator.getSignUrls().validate(
+    const { error } = FileStorageValidator.getSignUrls().validate(
       {
         body,
       },
@@ -19200,7 +19785,7 @@ This operation will return the url for the uploaded file.
    * @param {BulkRequest} arg.body
    **/
   copyFiles({ body, sync } = {}) {
-    const { error } = AssetsValidator.copyFiles().validate(
+    const { error } = FileStorageValidator.copyFiles().validate(
       {
         body,
         sync,
@@ -19232,7 +19817,7 @@ This operation will return the url for the uploaded file.
     
     **/
   browse({ namespace } = {}) {
-    const { error } = AssetsValidator.browse().validate(
+    const { error } = FileStorageValidator.browse().validate(
       {
         namespace,
       },
@@ -19289,7 +19874,7 @@ This operation will return the url for the uploaded file.
     
     **/
   proxy({ url } = {}) {
-    const { error } = AssetsValidator.proxy().validate(
+    const { error } = FileStorageValidator.proxy().validate(
       {
         url,
       },

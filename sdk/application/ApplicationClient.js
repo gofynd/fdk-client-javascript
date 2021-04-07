@@ -5,6 +5,7 @@ const {
   ThemeValidator,
   UserValidator,
   ContentValidator,
+  CommunicationValidator,
   ShareValidator,
   FileStorageValidator,
   ConfigurationValidator,
@@ -25,6 +26,7 @@ class ApplicationClient {
     this.theme = new Theme(config);
     this.user = new User(config);
     this.content = new Content(config);
+    this.communication = new Communication(config);
     this.share = new Share(config);
     this.fileStorage = new FileStorage(config);
     this.configuration = new Configuration(config);
@@ -3305,17 +3307,21 @@ class Content {
     * @summary: Get navigation
     * @description: Use this API to fetch navigations
     * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getNavigations({} = {}) {
+  getNavigations({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getNavigations().validate(
-      {},
+      { pageNo, pageSize },
       { abortEarly: false }
     );
     if (error) {
       throw error;
     }
     const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
 
     return APIClient.execute(
       this._conf,
@@ -3331,15 +3337,19 @@ class Content {
     * @summary: Get navigation
     * @description: Use this API to fetch navigations
     * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getNavigationsPaginator({} = {}) {
+  getNavigationsPaginator({ pageSize } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
       const pageNo = paginator.pageNo;
       const pageType = "number";
-      const data = await this.getNavigations({});
+      const data = await this.getNavigations({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
         nextId: data.page.next_id,
@@ -3479,6 +3489,92 @@ class Content {
       `/service/application/content/v1.0/tags`,
       query,
       undefined
+    );
+  }
+}
+
+class Communication {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+    *
+    * @summary: Get communication consent
+    * @description: Get communication consent
+    * @param {Object} arg - arg object.
+    
+    **/
+  getCommunicationConsent({} = {}) {
+    const { error } = CommunicationValidator.getCommunicationConsent().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/communication/v1.0/consent`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Upsert communication consent
+   * @description: Upsert communication consent
+   * @param {Object} arg - arg object.
+   * @param {CommunicationConsentReq} arg.body
+   **/
+  upsertCommunicationConsent({ body } = {}) {
+    const {
+      error,
+    } = CommunicationValidator.upsertCommunicationConsent().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/communication/v1.0/consent`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Upsert push token of a user
+   * @description: Upsert push token of a user
+   * @param {Object} arg - arg object.
+   * @param {PushtokenReq} arg.body
+   **/
+  upsertAppPushtoken({ body } = {}) {
+    const { error } = CommunicationValidator.upsertAppPushtoken().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/communication/v1.0/pn-token`,
+      query,
+      body
     );
   }
 }

@@ -1,5 +1,6 @@
 const {
   LeadValidator,
+  FeedbackValidator,
   ThemeValidator,
   UserValidator,
   ContentValidator,
@@ -7,7 +8,7 @@ const {
   PaymentValidator,
   OrderValidator,
   CatalogValidator,
-  AssetsValidator,
+  FileStorageValidator,
   ShareValidator,
   ConfigurationValidator,
   CartValidator,
@@ -23,6 +24,7 @@ class PlatformApplicationClient {
     this.applicationId = applicationId;
 
     this.lead = new Lead(config, applicationId);
+    this.feedback = new Feedback(config, applicationId);
     this.theme = new Theme(config, applicationId);
     this.user = new User(config, applicationId);
     this.content = new Content(config, applicationId);
@@ -30,7 +32,7 @@ class PlatformApplicationClient {
     this.payment = new Payment(config, applicationId);
     this.order = new Order(config, applicationId);
     this.catalog = new Catalog(config, applicationId);
-    this.assets = new Assets(config, applicationId);
+    this.fileStorage = new FileStorage(config, applicationId);
     this.share = new Share(config, applicationId);
     this.configuration = new Configuration(config, applicationId);
     this.cart = new Cart(config, applicationId);
@@ -47,27 +49,6 @@ class PlatformApplicationClient {
         @property { Filter } [filters]
         
         @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef Page
-        
-        
-        @property { number } [itemTotal]
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [current]
-        
-        @property { string } type
-        
-        @property { number } [size]
         
          
     */
@@ -598,6 +579,678 @@ class PlatformApplicationClient {
         @property { string } [updatedAt]
         
         @property { string } [createdAt]
+        
+         
+    */
+
+/**
+        @typedef Activity
+        
+        
+        @property { Object } [currentState]
+        
+        @property { string } [documentId]
+        
+        @property { Object } [previousState]
+        
+         
+    */
+
+/**
+        @typedef ActivityDump
+        
+        
+        @property { Activity } [activity]
+        
+        @property { CreatedBy } [createdBy]
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { string } [id]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef AddMediaListRequest
+        
+        
+        @property { string } [entityId]
+        
+        @property { string } [entityType]
+        
+        @property { Array<AddMediaRequest> } [mediaList]
+        
+        @property { string } [refId]
+        
+        @property { string } [refType]
+        
+         
+    */
+
+/**
+        @typedef AddMediaRequest
+        
+        
+        @property { string } [cloudId]
+        
+        @property { string } [cloudName]
+        
+        @property { string } [cloudProvider]
+        
+        @property { string } [entityId]
+        
+        @property { string } [entityType]
+        
+        @property { string } [mediaUrl]
+        
+        @property { string } [refId]
+        
+        @property { string } [refType]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } [thumbnailUrl]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef ApproveRequest
+        
+        
+        @property { boolean } [approve]
+        
+        @property { string } [entityType]
+        
+        @property { string } id
+        
+        @property { string } [reason]
+        
+         
+    */
+
+/**
+        @typedef Attribute
+        
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { string } [description]
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { Array<TagMeta> } [tags]
+        
+         
+    */
+
+/**
+        @typedef AttributeObject
+        
+        
+        @property { string } [description]
+        
+        @property { string } name
+        
+        @property { string } [slug]
+        
+        @property { string } [title]
+        
+        @property { string } type
+        
+        @property { number } value
+        
+         
+    */
+
+/**
+        @typedef Attributes
+        
+        
+        @property { Array<Attribute> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef CreatedBy
+        
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+        @property { Array<TagMeta> } [tags]
+        
+         
+    */
+
+/**
+        @typedef CursorGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef DateMeta
+        
+        
+        @property { string } [createdOn]
+        
+        @property { string } [modifiedOn]
+        
+         
+    */
+
+/**
+        @typedef DeviceMeta
+        
+        
+        @property { string } [appVersion]
+        
+        @property { string } [platform]
+        
+         
+    */
+
+/**
+        @typedef Entity
+        
+        
+        @property { string } [id]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef EntityRequest
+        
+        
+        @property { string } [entityId]
+        
+        @property { string } [entityType]
+        
+         
+    */
+
+/**
+        @typedef ErrorResponse
+        
+        
+        @property { Object } [code]
+        
+        @property { string } [exception]
+        
+        @property { string } [info]
+        
+        @property { Object } [meta]
+        
+        @property { string } [requestId]
+        
+        @property { string } [stackTrace]
+        
+        @property { number } [status]
+        
+         
+    */
+
+/**
+        @typedef GetResponse
+        
+        
+        @property { Object } [data]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef GetReviewResponse
+        
+        
+        @property { Array<ReviewFacet> } [facets]
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+        @property { Array<SortMethod> } [sort]
+        
+         
+    */
+
+/**
+        @typedef InsertResponse
+        
+        
+        @property { number } [count]
+        
+         
+    */
+
+/**
+        @typedef MediaMeta
+        
+        
+        @property { number } [maxCount]
+        
+        @property { number } [size]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef MediaMetaRequest
+        
+        
+        @property { number } maxCount
+        
+        @property { number } size
+        
+         
+    */
+
+/**
+        @typedef NumberGetResponse
+        
+        
+        @property { Array<Object> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef PageCursor
+        
+        
+        @property { number } [current]
+        
+        @property { boolean } [hasNext]
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { number } [itemTotal]
+        
+        @property { string } [nextId]
+        
+        @property { number } size
+        
+        @property { string } type
+        
+         
+    */
+
+/**
+        @typedef PageNumber
+        
+        
+        @property { number } [current]
+        
+        @property { boolean } [hasNext]
+        
+        @property { number } [itemTotal]
+        
+        @property { number } [size]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef Rating
+        
+        
+        @property { Array<Attribute> } [attributes]
+        
+        @property { Array<string> } [attributesSlugs]
+        
+        @property { UI } [ui]
+        
+         
+    */
+
+/**
+        @typedef RatingRequest
+        
+        
+        @property { Array<string> } attributes
+        
+        @property { UI } [ui]
+        
+         
+    */
+
+/**
+        @typedef ReportAbuseRequest
+        
+        
+        @property { string } [description]
+        
+        @property { string } entityId
+        
+        @property { string } entityType
+        
+         
+    */
+
+/**
+        @typedef Review
+        
+        
+        @property { string } [description]
+        
+        @property { string } [header]
+        
+        @property { MediaMeta } [imageMeta]
+        
+        @property { string } [title]
+        
+        @property { MediaMeta } [videoMeta]
+        
+        @property { boolean } [voteAllowed]
+        
+         
+    */
+
+/**
+        @typedef ReviewFacet
+        
+        
+        @property { string } [display]
+        
+        @property { string } [name]
+        
+        @property { boolean } [selected]
+        
+        @property { string } [slug]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef ReviewRequest
+        
+        
+        @property { string } description
+        
+        @property { string } header
+        
+        @property { MediaMetaRequest } imageMeta
+        
+        @property { boolean } isVoteAllowed
+        
+        @property { string } title
+        
+        @property { MediaMetaRequest } videoMeta
+        
+         
+    */
+
+/**
+        @typedef SaveAttributeRequest
+        
+        
+        @property { string } [description]
+        
+        @property { string } name
+        
+        @property { string } slug
+        
+         
+    */
+
+/**
+        @typedef SortMethod
+        
+        
+        @property { string } [name]
+        
+        @property { boolean } [selected]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef State
+        
+        
+        @property { boolean } [active]
+        
+        @property { boolean } [archive]
+        
+        @property { string } [media]
+        
+        @property { boolean } [qna]
+        
+        @property { boolean } [rating]
+        
+        @property { boolean } [review]
+        
+         
+    */
+
+/**
+        @typedef TagMeta
+        
+        
+        @property { Array<MediaMeta> } [media]
+        
+        @property { string } [name]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef Template
+        
+        
+        @property { DateMeta } [dateMeta]
+        
+        @property { Entity } [entity]
+        
+        @property { string } [id]
+        
+        @property { string } [name]
+        
+        @property { Rating } [rating]
+        
+        @property { Review } [review]
+        
+        @property { State } [state]
+        
+        @property { Array<TagMeta> } [tags]
+        
+         
+    */
+
+/**
+        @typedef TemplateGetResponse
+        
+        
+        @property { Array<Template> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+/**
+        @typedef TemplateRequest
+        
+        
+        @property { boolean } active
+        
+        @property { string } [enableMediaType]
+        
+        @property { boolean } [enableQna]
+        
+        @property { boolean } enableRating
+        
+        @property { boolean } enableReview
+        
+        @property { EntityRequest } entity
+        
+        @property { RatingRequest } rating
+        
+        @property { ReviewRequest } review
+        
+         
+    */
+
+/**
+        @typedef TemplateRequestList
+        
+        
+        @property { Array<TemplateRequest> } templateList
+        
+         
+    */
+
+/**
+        @typedef UI
+        
+        
+        @property { Array<string> } [feedbackQuestion]
+        
+        @property { UIIcon } [icon]
+        
+        @property { Array<string> } [text]
+        
+        @property { string } [type]
+        
+         
+    */
+
+/**
+        @typedef UIIcon
+        
+        
+        @property { string } [active]
+        
+        @property { string } [inactive]
+        
+        @property { Array<string> } [selected]
+        
+         
+    */
+
+/**
+        @typedef UpdateAttributeRequest
+        
+        
+        @property { string } [description]
+        
+        @property { string } name
+        
+        @property { string } [slug]
+        
+         
+    */
+
+/**
+        @typedef UpdateResponse
+        
+        
+        @property { number } [count]
+        
+         
+    */
+
+/**
+        @typedef UpdateReviewRequest
+        
+        
+        @property { boolean } [active]
+        
+        @property { string } [application]
+        
+        @property { boolean } [approve]
+        
+        @property { boolean } [archive]
+        
+        @property { Array<AttributeObject> } [attributesRating]
+        
+        @property { string } [description]
+        
+        @property { DeviceMeta } [deviceMeta]
+        
+        @property { string } [entityId]
+        
+        @property { string } [entityType]
+        
+        @property { Array<MediaMeta> } [mediaResource]
+        
+        @property { number } [rating]
+        
+        @property { string } [reviewId]
+        
+        @property { string } [templateId]
+        
+        @property { string } [title]
+        
+         
+    */
+
+/**
+        @typedef UpdateTemplateRequest
+        
+        
+        @property { boolean } active
+        
+        @property { string } [enableMediaType]
+        
+        @property { boolean } [enableQna]
+        
+        @property { boolean } enableRating
+        
+        @property { boolean } enableReview
+        
+        @property { EntityRequest } entity
+        
+        @property { RatingRequest } rating
+        
+        @property { ReviewRequest } review
+        
+         
+    */
+
+/**
+        @typedef UpdateTemplateStatusRequest
+        
+        
+        @property { boolean } [active]
+        
+        @property { boolean } [archive]
         
          
     */
@@ -2339,17 +2992,6 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef DateMeta
-        
-        
-        @property { string } [createdOn]
-        
-        @property { string } [modifiedOn]
-        
-         
-    */
-
-/**
         @typedef BlogRequest
         
         
@@ -3175,15 +3817,6 @@ class PlatformApplicationClient {
         @property { SEO } [seo]
         
         @property { Object } [visibility]
-        
-         
-    */
-
-/**
-        @typedef CreatedBy
-        
-        
-        @property { string } [id]
         
          
     */
@@ -4040,7 +4673,7 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef BillingAddress
+        @typedef SubscriptionBillingAddress
         
         
         @property { string } [country]
@@ -4064,7 +4697,7 @@ class PlatformApplicationClient {
         
         @property { Phone } [phone]
         
-        @property { BillingAddress } [billingAddress]
+        @property { SubscriptionBillingAddress } [billingAddress]
         
         @property { string } [id]
         
@@ -4091,7 +4724,7 @@ class PlatformApplicationClient {
         
         @property { Phone } [phone]
         
-        @property { BillingAddress } [billingAddress]
+        @property { SubscriptionBillingAddress } [billingAddress]
         
         @property { string } [uniqueId]
         
@@ -6733,6 +7366,43 @@ class PlatformApplicationClient {
     */
 
 /**
+        @typedef BillingAddress
+        
+        
+        @property { string } [address1]
+        
+        @property { string } [city]
+        
+        @property { string } [zip]
+        
+        @property { string } [lastName]
+        
+        @property { string } [address2]
+        
+        @property { number } [longitude]
+        
+        @property { string } [provinceCode]
+        
+        @property { string } [phone]
+        
+        @property { string } [company]
+        
+        @property { number } [latitude]
+        
+        @property { string } [name]
+        
+        @property { string } [country]
+        
+        @property { string } [countryCode]
+        
+        @property { string } [firstName]
+        
+        @property { string } [province]
+        
+         
+    */
+
+/**
         @typedef TotalShippingPriceSet
         
         
@@ -8433,29 +9103,29 @@ class PlatformApplicationClient {
     */
 
 /**
+        @typedef Page
+        
+        
+        @property { boolean } [hasPrevious]
+        
+        @property { boolean } [hasNext]
+        
+        @property { string } [nextPageId]
+        
+        @property { number } [itemTotal]
+        
+        @property { number } [current]
+        
+         
+    */
+
+/**
         @typedef GetSearchWordsDetailResponse
         
         
         @property { GetSearchWordsData } [items]
         
         @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef ErrorResponse
-        
-        
-        @property { Object } [meta]
-        
-        @property { Object } [errors]
-        
-        @property { string } [message]
-        
-        @property { string } [code]
-        
-        @property { number } [status]
         
          
     */
@@ -10517,55 +11187,6 @@ class PlatformApplicationClient {
         @property { string } [userId]
         
         @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef Attributes
-        
-        
-        @property { string } [primaryColor]
-        
-        @property { VerifiedBy } [verifiedBy]
-        
-        @property { string } [essential]
-        
-        @property { string } [verifiedOn]
-        
-        @property { string } [createdOn]
-        
-        @property { string } [sleeveLength]
-        
-        @property { string } [metaNature]
-        
-        @property { string } [imageNature]
-        
-        @property { Array<string> } [l3Mapping]
-        
-        @property { string } [neckType]
-        
-        @property { UserCommon } [modifiedBy]
-        
-        @property { string } [modifiedOn]
-        
-        @property { string } [productFit]
-        
-        @property { string } [pattern]
-        
-        @property { string } [stage]
-        
-        @property { string } [material]
-        
-        @property { boolean } [isImageLessProduct]
-        
-        @property { string } [color]
-        
-        @property { UserCommon } [createdBy]
-        
-        @property { string } [primaryMaterial]
-        
-        @property { Array<string> } [gender]
         
          
     */
@@ -14372,27 +14993,6 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef Page
-        
-        
-        @property { string } type
-        
-        @property { number } [size]
-        
-        @property { number } [current]
-        
-        @property { boolean } [hasNext]
-        
-        @property { number } [itemTotal]
-        
-        @property { string } [nextId]
-        
-        @property { boolean } [hasPrevious]
-        
-         
-    */
-
-/**
         @typedef ApplicationInformation
         
         
@@ -14985,29 +15585,24 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef Rule
+        @typedef RuleDefinition
         
         
-        @property { number } [min]
+        @property { string } calculateOn
         
-        @property { number } [value]
+        @property { string } type
         
-        @property { number } [discountQty]
+        @property { string } [currencyCode]
         
-        @property { number } [max]
+        @property { string } applicableOn
         
-        @property { number } [key]
+        @property { boolean } [autoApply]
         
-         
-    */
-
-/**
-        @typedef Ownership
+        @property { Array<string> } [scope]
         
+        @property { string } valueType
         
-        @property { string } payableCategory
-        
-        @property { string } payableBy
+        @property { boolean } [isExact]
         
          
     */
@@ -15016,9 +15611,81 @@ class PlatformApplicationClient {
         @typedef CouponDateMeta
         
         
+        @property { string } [createdOn]
+        
         @property { string } [modifiedOn]
         
-        @property { string } [createdOn]
+         
+    */
+
+/**
+        @typedef Validation
+        
+        
+        @property { boolean } [anonymous]
+        
+        @property { string } [userRegisteredAfter]
+        
+        @property { Array<string> } [appId]
+        
+         
+    */
+
+/**
+        @typedef Rule
+        
+        
+        @property { number } [discountQty]
+        
+        @property { number } [max]
+        
+        @property { number } [key]
+        
+        @property { number } [value]
+        
+        @property { number } [min]
+        
+         
+    */
+
+/**
+        @typedef Validity
+        
+        
+        @property { number } [priority]
+        
+         
+    */
+
+/**
+        @typedef Ownership
+        
+        
+        @property { string } payableBy
+        
+        @property { string } payableCategory
+        
+         
+    */
+
+/**
+        @typedef CouponAuthor
+        
+        
+        @property { string } [createdBy]
+        
+        @property { string } [modifiedBy]
+        
+         
+    */
+
+/**
+        @typedef CouponAction
+        
+        
+        @property { string } [actionDate]
+        
+        @property { string } [txnMode]
         
          
     */
@@ -15038,17 +15705,17 @@ class PlatformApplicationClient {
         @typedef DisplayMeta
         
         
-        @property { DisplayMetaDict } [auto]
+        @property { string } [description]
         
         @property { DisplayMetaDict } [apply]
+        
+        @property { string } [subtitle]
+        
+        @property { DisplayMetaDict } [auto]
         
         @property { DisplayMetaDict } [remove]
         
         @property { string } [title]
-        
-        @property { string } [description]
-        
-        @property { string } [subtitle]
         
          
     */
@@ -15057,15 +15724,26 @@ class PlatformApplicationClient {
         @typedef CouponSchedule
         
         
-        @property { string } [end]
-        
         @property { string } [cron]
         
-        @property { number } [duration]
+        @property { Array<Object> } [nextSchedule]
         
         @property { string } [start]
         
-        @property { Array<Object> } [nextSchedule]
+        @property { string } [end]
+        
+        @property { number } [duration]
+        
+         
+    */
+
+/**
+        @typedef PriceRange
+        
+        
+        @property { number } [min]
+        
+        @property { number } [max]
         
          
     */
@@ -15080,14 +15758,25 @@ class PlatformApplicationClient {
     */
 
 /**
+        @typedef PostOrder
+        
+        
+        @property { boolean } [cancellationAllowed]
+        
+        @property { boolean } [returnAllowed]
+        
+         
+    */
+
+/**
         @typedef UsesRemaining
         
+        
+        @property { number } [app]
         
         @property { number } [total]
         
         @property { number } [user]
-        
-        @property { number } [app]
         
          
     */
@@ -15099,28 +15788,6 @@ class PlatformApplicationClient {
         @property { UsesRemaining } [remaining]
         
         @property { UsesRemaining } [maximum]
-        
-         
-    */
-
-/**
-        @typedef PostOrder
-        
-        
-        @property { boolean } [returnAllowed]
-        
-        @property { boolean } [cancellationAllowed]
-        
-         
-    */
-
-/**
-        @typedef PriceRange
-        
-        
-        @property { number } [min]
-        
-        @property { number } [max]
         
          
     */
@@ -15140,9 +15807,9 @@ class PlatformApplicationClient {
         
         @property { Array<string> } [codes]
         
-        @property { Array<string> } [types]
-        
         @property { PaymentAllowValue } [uses]
+        
+        @property { Array<string> } [types]
         
         @property { Array<string> } [networks]
         
@@ -15153,19 +15820,19 @@ class PlatformApplicationClient {
         @typedef PaymentCodes
         
         
-        @property { PaymentModes } [upi]
-        
         @property { PaymentModes } [qr]
         
+        @property { PaymentModes } [nb]
+        
         @property { PaymentModes } [pl]
+        
+        @property { PaymentModes } [upi]
+        
+        @property { PaymentModes } [card]
         
         @property { PaymentModes } [wl]
         
         @property { PaymentModes } [ps]
-        
-        @property { PaymentModes } [nb]
-        
-        @property { PaymentModes } [card]
         
          
     */
@@ -15174,70 +15841,21 @@ class PlatformApplicationClient {
         @typedef Restrictions
         
         
-        @property { boolean } [couponAllowed]
+        @property { PriceRange } [priceRange]
         
         @property { Array<number> } [orderingStores]
         
+        @property { boolean } [couponAllowed]
+        
         @property { BulkBundleRestriction } [bulkBundle]
+        
+        @property { PostOrder } [postOrder]
         
         @property { UsesRestriction } [uses]
         
         @property { Array<string> } [platforms]
         
-        @property { PostOrder } [postOrder]
-        
-        @property { PriceRange } [priceRange]
-        
         @property { PaymentCodes } [payments]
-        
-         
-    */
-
-/**
-        @typedef RuleDefinition
-        
-        
-        @property { Array<string> } [scope]
-        
-        @property { string } calculateOn
-        
-        @property { string } [currencyCode]
-        
-        @property { boolean } [isExact]
-        
-        @property { boolean } [autoApply]
-        
-        @property { string } type
-        
-        @property { string } applicableOn
-        
-        @property { string } valueType
-        
-         
-    */
-
-/**
-        @typedef State
-        
-        
-        @property { boolean } [isDisplay]
-        
-        @property { boolean } [isPublic]
-        
-        @property { boolean } [isArchived]
-        
-         
-    */
-
-/**
-        @typedef Validation
-        
-        
-        @property { boolean } [anonymous]
-        
-        @property { Array<string> } [appId]
-        
-        @property { string } [userRegisteredAfter]
         
          
     */
@@ -15246,52 +15864,21 @@ class PlatformApplicationClient {
         @typedef Identifier
         
         
-        @property { Array<string> } [collectionId]
-        
-        @property { Array<string> } [articleId]
-        
-        @property { Array<number> } [itemId]
-        
-        @property { Array<number> } [brandId]
-        
-        @property { Array<number> } [companyId]
-        
         @property { Array<string> } [userId]
+        
+        @property { Array<string> } [collectionId]
         
         @property { Array<number> } [storeId]
         
+        @property { Array<number> } [brandId]
+        
+        @property { Array<number> } [itemId]
+        
+        @property { Array<number> } [companyId]
+        
+        @property { Array<string> } [articleId]
+        
         @property { Array<number> } [categoryId]
-        
-         
-    */
-
-/**
-        @typedef Validity
-        
-        
-        @property { number } [priority]
-        
-         
-    */
-
-/**
-        @typedef CouponAction
-        
-        
-        @property { string } [actionDate]
-        
-        @property { string } [txnMode]
-        
-         
-    */
-
-/**
-        @typedef CouponAuthor
-        
-        
-        @property { string } [modifiedBy]
-        
-        @property { string } [createdBy]
         
          
     */
@@ -15300,17 +15887,29 @@ class PlatformApplicationClient {
         @typedef CouponAdd
         
         
-        @property { string } code
-        
-        @property { Array<Rule> } rule
+        @property { RuleDefinition } ruleDefinition
         
         @property { string } typeSlug
         
-        @property { Ownership } ownership
-        
         @property { CouponDateMeta } [dateMeta]
         
+        @property { Validation } [validation]
+        
         @property { Array<string> } [tags]
+        
+        @property { Array<Rule> } rule
+        
+        @property { State } [state]
+        
+        @property { Validity } validity
+        
+        @property { string } code
+        
+        @property { Ownership } ownership
+        
+        @property { CouponAuthor } [author]
+        
+        @property { CouponAction } [action]
         
         @property { DisplayMeta } displayMeta
         
@@ -15318,19 +15917,7 @@ class PlatformApplicationClient {
         
         @property { Restrictions } [restrictions]
         
-        @property { RuleDefinition } ruleDefinition
-        
-        @property { State } [state]
-        
-        @property { Validation } [validation]
-        
         @property { Identifier } identifiers
-        
-        @property { Validity } validity
-        
-        @property { CouponAction } [action]
-        
-        @property { CouponAuthor } [author]
         
          
     */
@@ -15350,9 +15937,9 @@ class PlatformApplicationClient {
         @typedef SuccessMessage
         
         
-        @property { boolean } [success]
-        
         @property { string } [message]
+        
+        @property { boolean } [success]
         
          
     */
@@ -15361,9 +15948,9 @@ class PlatformApplicationClient {
         @typedef OperationErrorResponse
         
         
-        @property { boolean } [success]
-        
         @property { string } [message]
+        
+        @property { boolean } [success]
         
          
     */
@@ -15372,17 +15959,29 @@ class PlatformApplicationClient {
         @typedef CouponUpdate
         
         
-        @property { string } code
-        
-        @property { Array<Rule> } rule
+        @property { RuleDefinition } ruleDefinition
         
         @property { string } typeSlug
         
-        @property { Ownership } ownership
-        
         @property { CouponDateMeta } [dateMeta]
         
+        @property { Validation } [validation]
+        
         @property { Array<string> } [tags]
+        
+        @property { Array<Rule> } rule
+        
+        @property { State } [state]
+        
+        @property { Validity } validity
+        
+        @property { string } code
+        
+        @property { Ownership } ownership
+        
+        @property { CouponAuthor } [author]
+        
+        @property { CouponAction } [action]
         
         @property { DisplayMeta } displayMeta
         
@@ -15390,19 +15989,7 @@ class PlatformApplicationClient {
         
         @property { Restrictions } [restrictions]
         
-        @property { RuleDefinition } ruleDefinition
-        
-        @property { State } [state]
-        
-        @property { Validation } [validation]
-        
         @property { Identifier } identifiers
-        
-        @property { Validity } validity
-        
-        @property { CouponAction } [action]
-        
-        @property { CouponAuthor } [author]
         
          
     */
@@ -16267,6 +16854,476 @@ class Lead {
   }
 }
 
+class Feedback {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
+  }
+
+  /**
+    *
+    * @summary: Get list of attribute data
+    * @description: Provides a list of all attribute data.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAttributes({} = {}) {
+    const { error } = FeedbackValidator.getAttributes().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/attributes/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of attribute data
+    * @description: Provides a list of all attribute data.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.companyId - company id
+    * @param {string} arg.applicationId - application id
+    
+    **/
+  getAttributesPaginator({ companyId, applicationId } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAttributes({
+        companyId: companyId,
+        applicationId: applicationId,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get list of customer reviews [admin]
+    * @description: The endpoint provides a list of customer reviews based on entity and provided filters
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.id] - review id
+    * @param {string} [arg.entityId] - entity id
+    * @param {string} [arg.entityType] - entity type
+    * @param {string} [arg.userId] - user id
+    * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
+    * @param {Array<number>} [arg.rating] - rating filter, 1-5
+    * @param {Array<string>} [arg.attributeRating] - attribute rating filter with ma,e of attribute
+    * @param {boolean} [arg.facets] - facets (true|false)
+    * @param {string} [arg.sort] - sort by : default | top | recent
+    * @param {string} [arg.next] - pagination next
+    * @param {string} [arg.start] - pagination start
+    * @param {string} [arg.limit] - pagination limit
+    * @param {string} [arg.count] - pagination count
+    
+    **/
+  getCustomerReviews({
+    id,
+    entityId,
+    entityType,
+    userId,
+    media,
+    rating,
+    attributeRating,
+    facets,
+    sort,
+    next,
+    start,
+    limit,
+    count,
+  } = {}) {
+    const { error } = FeedbackValidator.getCustomerReviews().validate(
+      {
+        id,
+        entityId,
+        entityType,
+        userId,
+        media,
+        rating,
+        attributeRating,
+        facets,
+        sort,
+        next,
+        start,
+        limit,
+        count,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+    queryObj["id"] = id;
+    queryObj["entity_id"] = entityId;
+    queryObj["entity_type"] = entityType;
+    queryObj["user_id"] = userId;
+    queryObj["media"] = media;
+    queryObj["rating"] = rating;
+    queryObj["attribute_rating"] = attributeRating;
+    queryObj["facets"] = facets;
+    queryObj["sort"] = sort;
+    queryObj["next"] = next;
+    queryObj["start"] = start;
+    queryObj["limit"] = limit;
+    queryObj["count"] = count;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of customer reviews [admin]
+    * @description: The endpoint provides a list of customer reviews based on entity and provided filters
+    * @param {Object} arg - arg object.
+    * @param {string} arg.companyId - company id
+    * @param {string} arg.applicationId - application id
+    * @param {string} [arg.id] - review id
+    * @param {string} [arg.entityId] - entity id
+    * @param {string} [arg.entityType] - entity type
+    * @param {string} [arg.userId] - user id
+    * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
+    * @param {Array<number>} [arg.rating] - rating filter, 1-5
+    * @param {Array<string>} [arg.attributeRating] - attribute rating filter with ma,e of attribute
+    * @param {boolean} [arg.facets] - facets (true|false)
+    * @param {string} [arg.sort] - sort by : default | top | recent
+    * @param {string} [arg.next] - pagination next
+    * @param {string} [arg.start] - pagination start
+    * @param {string} [arg.limit] - pagination limit
+    * @param {string} [arg.count] - pagination count
+    
+    **/
+  getCustomerReviewsPaginator({
+    companyId,
+    applicationId,
+    id,
+    entityId,
+    entityType,
+    userId,
+    media,
+    rating,
+    attributeRating,
+    facets,
+    sort,
+    next,
+    start,
+    limit,
+    count,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getCustomerReviews({
+        companyId: companyId,
+        applicationId: applicationId,
+        id: id,
+        entityId: entityId,
+        entityType: entityType,
+        userId: userId,
+        media: media,
+        rating: rating,
+        attributeRating: attributeRating,
+        facets: facets,
+        sort: sort,
+        next: next,
+        start: start,
+        limit: limit,
+        count: count,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   *
+   * @summary: update approve details
+   * @description: The is used to update approve details like status and description text
+   * @param {Object} arg - arg object.
+   * @param {string} arg.reviewId - review id
+   * @param {ApproveRequest} arg.body
+   **/
+  updateApprove({ reviewId, body } = {}) {
+    const { error } = FeedbackValidator.updateApprove().validate(
+      {
+        reviewId,
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/approve/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: get history details
+    * @description: The is used to get the history details like status and description text
+    * @param {Object} arg - arg object.
+    * @param {string} arg.reviewId - review id
+    
+    **/
+  getHistory({ reviewId } = {}) {
+    const { error } = FeedbackValidator.getHistory().validate(
+      {
+        reviewId,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/history/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of templates
+    * @description: Get all templates of application
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {string} [arg.pageSize] - pagination page size
+    
+    **/
+  getApplicationTemplates({ pageId, pageSize } = {}) {
+    const { error } = FeedbackValidator.getApplicationTemplates().validate(
+      {
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+    queryObj["page_id"] = pageId;
+    queryObj["page_size"] = pageSize;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of templates
+    * @description: Get all templates of application
+    * @param {Object} arg - arg object.
+    * @param {string} arg.companyId - company id
+    * @param {string} arg.applicationId - application id
+    * @param {string} [arg.pageSize] - pagination page size
+    
+    **/
+  getApplicationTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getApplicationTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Create a new template
+    * @description: Create a new template for review with following data:
+- Enable media, rating and review
+- Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
+- Review - header, title, description, image and video meta, enable votes
+    * @param {Object} arg - arg object.
+    * @param {TemplateRequestList} arg.body
+    **/
+  createTemplate({ body } = {}) {
+    const { error } = FeedbackValidator.createTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a template by ID
+    * @description: Get the template for product or l3 type by ID
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - template id
+    
+    **/
+  getTemplateById({ id } = {}) {
+    const { error } = FeedbackValidator.getTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update a template's status
+   * @description: Update existing template status, active/archive
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - template id
+   * @param {UpdateTemplateRequest} arg.body
+   **/
+  updateTemplate({ id, body } = {}) {
+    const { error } = FeedbackValidator.updateTemplate().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update a template's status
+   * @description: Update existing template status, active/archive
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - template id
+   * @param {UpdateTemplateStatusRequest} arg.body
+   **/
+  updateTemplateStatus({ id, body } = {}) {
+    const { error } = FeedbackValidator.updateTemplateStatus().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/status`,
+      queryObj,
+      body
+    );
+  }
+}
+
 class Theme {
   constructor(config, applicationId) {
     this.config = config;
@@ -16926,11 +17983,16 @@ class Content {
     * @summary: Get annoucements list
     * @description: Get list of announcements
     * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getAnnouncementsList({} = {}) {
+  getAnnouncementsList({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getAnnouncementsList().validate(
-      {},
+      {
+        pageNo,
+        pageSize,
+      },
       { abortEarly: false }
     );
     if (error) {
@@ -16938,6 +18000,8 @@ class Content {
     }
 
     const queryObj = {};
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -16955,9 +18019,10 @@ class Content {
     * @param {Object} arg - arg object.
     * @param {string} arg.companyId - Company ID
     * @param {string} arg.applicationId - Application ID
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getAnnouncementsListPaginator({ companyId, applicationId } = {}) {
+  getAnnouncementsListPaginator({ companyId, applicationId, pageSize } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -16966,6 +18031,8 @@ class Content {
       const data = await this.getAnnouncementsList({
         companyId: companyId,
         applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -17162,11 +18229,16 @@ class Content {
     * @summary: Get blogs
     * @description: Use this to get blogs.
     * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getBlogs({} = {}) {
+  getBlogs({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getBlogs().validate(
-      {},
+      {
+        pageNo,
+        pageSize,
+      },
       { abortEarly: false }
     );
     if (error) {
@@ -17174,6 +18246,8 @@ class Content {
     }
 
     const queryObj = {};
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -17191,9 +18265,10 @@ class Content {
     * @param {Object} arg - arg object.
     * @param {string} arg.companyId - Company Id
     * @param {string} arg.applicationId - Application Id
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getBlogsPaginator({ companyId, applicationId } = {}) {
+  getBlogsPaginator({ companyId, applicationId, pageSize } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -17202,6 +18277,8 @@ class Content {
       const data = await this.getBlogs({
         companyId: companyId,
         applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -17612,11 +18689,16 @@ class Content {
     * @summary: Get landing-pages
     * @description: Use this to get landing-pages.
     * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getLandingPages({} = {}) {
+  getLandingPages({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getLandingPages().validate(
-      {},
+      {
+        pageNo,
+        pageSize,
+      },
       { abortEarly: false }
     );
     if (error) {
@@ -17624,6 +18706,8 @@ class Content {
     }
 
     const queryObj = {};
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -17641,9 +18725,10 @@ class Content {
     * @param {Object} arg - arg object.
     * @param {string} arg.companyId - Company ID
     * @param {string} arg.applicationId - Application ID
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getLandingPagesPaginator({ companyId, applicationId } = {}) {
+  getLandingPagesPaginator({ companyId, applicationId, pageSize } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -17652,6 +18737,8 @@ class Content {
       const data = await this.getLandingPages({
         companyId: companyId,
         applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -17815,12 +18902,16 @@ class Content {
     * @description: Use this to get navigations.
     * @param {Object} arg - arg object.
     * @param {string} arg.devicePlatform - Device platform
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getNavigations({ devicePlatform } = {}) {
+  getNavigations({ devicePlatform, pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getNavigations().validate(
       {
         devicePlatform,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false }
     );
@@ -17830,6 +18921,8 @@ class Content {
 
     const queryObj = {};
     queryObj["device_platform"] = devicePlatform;
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -17848,9 +18941,15 @@ class Content {
     * @param {string} arg.companyId - Company ID
     * @param {string} arg.applicationId - Application ID
     * @param {string} arg.devicePlatform - Device platform
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getNavigationsPaginator({ companyId, applicationId, devicePlatform } = {}) {
+  getNavigationsPaginator({
+    companyId,
+    applicationId,
+    devicePlatform,
+    pageSize,
+  } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -17860,6 +18959,8 @@ class Content {
         companyId: companyId,
         applicationId: applicationId,
         devicePlatform: devicePlatform,
+        pageNo: pageNo,
+        pageSize: pageSize,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -18109,11 +19210,16 @@ class Content {
     * @summary: Get pages
     * @description: Use this to get pages.
     * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getPages({} = {}) {
+  getPages({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getPages().validate(
-      {},
+      {
+        pageNo,
+        pageSize,
+      },
       { abortEarly: false }
     );
     if (error) {
@@ -18121,6 +19227,8 @@ class Content {
     }
 
     const queryObj = {};
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -18138,9 +19246,10 @@ class Content {
     * @param {Object} arg - arg object.
     * @param {string} arg.companyId - Company Id
     * @param {string} arg.applicationId - Application Id
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getPagesPaginator({ companyId, applicationId } = {}) {
+  getPagesPaginator({ companyId, applicationId, pageSize } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -18149,6 +19258,8 @@ class Content {
       const data = await this.getPages({
         companyId: companyId,
         applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -18373,12 +19484,16 @@ class Content {
     * @description: Use this to get slideshows.
     * @param {Object} arg - arg object.
     * @param {string} arg.devicePlatform - Device platform
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getSlideshows({ devicePlatform } = {}) {
+  getSlideshows({ devicePlatform, pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getSlideshows().validate(
       {
         devicePlatform,
+        pageNo,
+        pageSize,
       },
       { abortEarly: false }
     );
@@ -18388,6 +19503,8 @@ class Content {
 
     const queryObj = {};
     queryObj["device_platform"] = devicePlatform;
+    queryObj["page_no"] = pageNo;
+    queryObj["page_size"] = pageSize;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -18406,9 +19523,15 @@ class Content {
     * @param {string} arg.companyId - Company ID
     * @param {string} arg.applicationId - Application ID
     * @param {string} arg.devicePlatform - Device platform
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getSlideshowsPaginator({ companyId, applicationId, devicePlatform } = {}) {
+  getSlideshowsPaginator({
+    companyId,
+    applicationId,
+    devicePlatform,
+    pageSize,
+  } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -18418,6 +19541,8 @@ class Content {
         companyId: companyId,
         applicationId: applicationId,
         devicePlatform: devicePlatform,
+        pageNo: pageNo,
+        pageSize: pageSize,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -21183,7 +22308,7 @@ class Catalog {
   }
 }
 
-class Assets {
+class FileStorage {
   constructor(config, applicationId) {
     this.config = config;
     this.applicationId = applicationId;
@@ -21216,7 +22341,7 @@ This operation will return the url for the uploaded file.
     * @param {StartRequest} arg.body
     **/
   appStartUpload({ namespace, body } = {}) {
-    const { error } = AssetsValidator.appStartUpload().validate(
+    const { error } = FileStorageValidator.appStartUpload().validate(
       {
         namespace,
         body,
@@ -21265,7 +22390,7 @@ This operation will return the url for the uploaded file.
     * @param {StartResponse} arg.body
     **/
   appCompleteUpload({ namespace, body } = {}) {
-    const { error } = AssetsValidator.appCompleteUpload().validate(
+    const { error } = FileStorageValidator.appCompleteUpload().validate(
       {
         namespace,
         body,
@@ -21296,7 +22421,7 @@ This operation will return the url for the uploaded file.
    * @param {BulkRequest} arg.body
    **/
   appCopyFiles({ body, sync } = {}) {
-    const { error } = AssetsValidator.appCopyFiles().validate(
+    const { error } = FileStorageValidator.appCopyFiles().validate(
       {
         body,
         sync,
@@ -21328,7 +22453,7 @@ This operation will return the url for the uploaded file.
     
     **/
   appBrowse({ namespace } = {}) {
-    const { error } = AssetsValidator.appBrowse().validate(
+    const { error } = FileStorageValidator.appBrowse().validate(
       {
         namespace,
       },

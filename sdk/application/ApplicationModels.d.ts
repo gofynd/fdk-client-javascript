@@ -117,6 +117,11 @@ export class ContentValidator {
     static getSupportInformation(): any;
     static getTags(): any;
 }
+export class CommunicationValidator {
+    static getCommunicationConsent(): any;
+    static upsertCommunicationConsent(): any;
+    static upsertAppPushtoken(): any;
+}
 export class ShareValidator {
     static getApplicationQRCode(): any;
     static getProductQRCodeBySlug(): any;
@@ -234,8 +239,6 @@ export class Validator {
     static ProductSizePriceResponse(): any;
     static ProductSizeSellerFilter(): any;
     static Page(): any;
-    static Page(): any;
-    static Page(): any;
     static ProductSizeSellersResponse(): any;
     static AttributeDetail(): any;
     static ProductsComparisonResponse(): any;
@@ -285,14 +288,13 @@ export class Validator {
     static LatLong(): any;
     static Store1(): any;
     static StoreListingResponse(): any;
-    static CartCurrency(): any;
     static CartProductIdentifer(): any;
     static ProductAvailability(): any;
     static ProductPrice(): any;
     static ProductPriceInfo(): any;
-    static Image(): any;
-    static BaseInfo(): any;
     static CategoryInfo(): any;
+    static BaseInfo(): any;
+    static Image(): any;
     static ActionQuery(): any;
     static ProductAction(): any;
     static Product(): any;
@@ -300,14 +302,15 @@ export class Validator {
     static ArticlePriceInfo(): any;
     static ProductArticle(): any;
     static CartProductInfo(): any;
+    static CouponBreakup(): any;
+    static DisplayBreakup(): any;
+    static RawBreakup(): any;
+    static LoyaltyPoints(): any;
+    static CartBreakup(): any;
     static PromiseFormatted(): any;
     static PromiseTimestamp(): any;
     static ShipmentPromise(): any;
-    static LoyaltyPoints(): any;
-    static DisplayBreakup(): any;
-    static RawBreakup(): any;
-    static CouponBreakup(): any;
-    static CartBreakup(): any;
+    static CartCurrency(): any;
     static CartResponse(): any;
     static AddProductCart(): any;
     static AddCartRequest(): any;
@@ -586,6 +589,15 @@ export class Validator {
     static ContactSchema(): any;
     static TagsSchema(): any;
     static TagSchema(): any;
+    static CommunicationConsentReq(): any;
+    static CommunicationConsentRes(): any;
+    static CommunicationConsentChannelsEmail(): any;
+    static CommunicationConsentChannelsSms(): any;
+    static CommunicationConsentChannelsWhatsapp(): any;
+    static CommunicationConsentChannels(): any;
+    static CommunicationConsent(): any;
+    static PushtokenReq(): any;
+    static PushtokenRes(): any;
     static QRCodeResp(): any;
     static RedirectDevice(): any;
     static WebRedirect(): any;

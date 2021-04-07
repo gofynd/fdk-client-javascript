@@ -7,6 +7,7 @@
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
+* [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Share](#Share) - Short link and QR Code 
 * [FileStorage](#FileStorage) - File Storage 
 * [Configuration](#Configuration) - Application configuration apis 
@@ -150,6 +151,13 @@
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
+    
+
+* [Communication](#Communication)
+  * Methods
+    * [getCommunicationConsent](#getcommunicationconsent)
+    * [upsertCommunicationConsent](#upsertcommunicationconsent)
+    * [upsertAppPushtoken](#upsertapppushtoken)
     
 
 * [Share](#Share)
@@ -9165,14 +9173,16 @@ Get navigation
 
 ```javascript
 // Promise
-const promise = content.getNavigations();
+const promise = content.getNavigations(pageNo,pageSize);
 
 // Async/Await
-const data = await content.getNavigations();
+const data = await content.getNavigations(pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this API to fetch navigations
 
@@ -9697,6 +9707,192 @@ default
   "$ref": "#/components/examples/5XXAPIError"
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Communication
+
+
+#### getCommunicationConsent
+Get communication consent
+
+```javascript
+// Promise
+const promise = communication.getCommunicationConsent();
+
+// Async/Await
+const data = await communication.getCommunicationConsent();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get communication consent
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CommunicationConsent`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CommunicationConsent"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upsertCommunicationConsent
+Upsert communication consent
+
+```javascript
+// Promise
+const promise = communication.upsertCommunicationConsent(body);
+
+// Async/Await
+const data = await communication.upsertCommunicationConsent(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Upsert communication consent
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CommunicationConsentRes`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/CommunicationConsentRes"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upsertAppPushtoken
+Upsert push token of a user
+
+```javascript
+// Promise
+const promise = communication.upsertAppPushtoken(body);
+
+// Async/Await
+const data = await communication.upsertAppPushtoken(body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Upsert push token of a user
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PushtokenRes`
+
+
+*Examples:*
+
+
+create
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseCreate"
+}
+```
+
+update
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseUpdate"
+}
+```
+
+reset
+```json
+{
+  "$ref": "#/components/examples/PushtokenResponseReset"
+}
+```
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `BadRequest`
 
 
 

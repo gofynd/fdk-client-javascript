@@ -2,6 +2,7 @@
 
 
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Feedback](#Feedback) - User Reviews and Rating System 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
@@ -11,7 +12,7 @@
 * [Order](#Order) - Handles Platform websites OMS 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
-* [Assets](#Assets) - File Storage 
+* [FileStorage](#FileStorage) - File Storage 
 * [Share](#Share) - Short link and QR Code 
 * [Configuration](#Configuration) - Application configuration apis 
 * [Cart](#Cart) - Cart APIs 
@@ -45,6 +46,19 @@
     * [getVideoParticipants](#getvideoparticipants)
     * [openVideoRoom](#openvideoroom)
     * [closeVideoRoom](#closevideoroom)
+    
+
+* [Feedback](#Feedback)
+  * Methods
+    * [getAttributes](#getattributes)
+    * [getCustomerReviews](#getcustomerreviews)
+    * [updateApprove](#updateapprove)
+    * [getHistory](#gethistory)
+    * [getApplicationTemplates](#getapplicationtemplates)
+    * [createTemplate](#createtemplate)
+    * [getTemplateById](#gettemplatebyid)
+    * [updateTemplate](#updatetemplate)
+    * [updateTemplateStatus](#updatetemplatestatus)
     
 
 * [Theme](#Theme)
@@ -322,7 +336,7 @@
     * [getLocationDetail](#getlocationdetail)
     
 
-* [Assets](#Assets)
+* [FileStorage](#FileStorage)
   * Methods
     * [startUpload](#startupload)
     * [completeUpload](#completeupload)
@@ -3718,6 +3732,486 @@ Default
 ---
 
 
+## Feedback
+
+
+#### getAttributes
+Get list of attribute data
+
+```javascript
+// Promise
+const promise = feedback.getAttributes(companyId,applicationId);
+
+// Async/Await
+const data = await feedback.getAttributes(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+
+Provides a list of all attribute data.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `Attributes`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCustomerReviews
+Get list of customer reviews [admin]
+
+```javascript
+// Promise
+const promise = feedback.getCustomerReviews(companyId,applicationId,id,entityId,entityType,userId,media,rating,attributeRating,facets,sort,next,start,limit,count);
+
+// Async/Await
+const data = await feedback.getCustomerReviews(companyId,applicationId,id,entityId,entityType,userId,media,rating,attributeRating,facets,sort,next,start,limit,count);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | review id | 
+| entityId | string | entity id | 
+| entityType | string | entity type | 
+| userId | string | user id | 
+| media | string | media type e.g. image | video | video_file | video_link | 
+| rating | array | rating filter, 1-5 | 
+| attributeRating | array | attribute rating filter with ma,e of attribute | 
+| facets | boolean | facets (true|false) | 
+| sort | string | sort by : default | top | recent | 
+| next | string | pagination next | 
+| start | string | pagination start | 
+| limit | string | pagination limit | 
+| count | string | pagination count | 
+
+The endpoint provides a list of customer reviews based on entity and provided filters
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetReviewResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateApprove
+update approve details
+
+```javascript
+// Promise
+const promise = feedback.updateApprove(companyId,applicationId,reviewId,body);
+
+// Async/Await
+const data = await feedback.updateApprove(companyId,applicationId,reviewId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| reviewId | string | review id | 
+
+The is used to update approve details like status and description text
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getHistory
+get history details
+
+```javascript
+// Promise
+const promise = feedback.getHistory(companyId,applicationId,reviewId);
+
+// Async/Await
+const data = await feedback.getHistory(companyId,applicationId,reviewId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| reviewId | string | review id | 
+
+The is used to get the history details like status and description text
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `Array<ActivityDump>`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplicationTemplates
+Get list of templates
+
+```javascript
+// Promise
+const promise = feedback.getApplicationTemplates(companyId,applicationId,pageId,pageSize);
+
+// Async/Await
+const data = await feedback.getApplicationTemplates(companyId,applicationId,pageId,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| pageId | string | pagination page id | 
+| pageSize | string | pagination page size | 
+
+Get all templates of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TemplateGetResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createTemplate
+Create a new template
+
+```javascript
+// Promise
+const promise = feedback.createTemplate(companyId,applicationId,body);
+
+// Async/Await
+const data = await feedback.createTemplate(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+
+Create a new template for review with following data:
+- Enable media, rating and review
+- Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
+- Review - header, title, description, image and video meta, enable votes
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getTemplateById
+Get a template by ID
+
+```javascript
+// Promise
+const promise = feedback.getTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await feedback.getTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Get the template for product or l3 type by ID
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Template`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTemplate
+Update a template's status
+
+```javascript
+// Promise
+const promise = feedback.updateTemplate(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await feedback.updateTemplate(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Update existing template status, active/archive
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTemplateStatus
+Update a template's status
+
+```javascript
+// Promise
+const promise = feedback.updateTemplateStatus(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await feedback.updateTemplateStatus(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Update existing template status, active/archive
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Theme
 
 
@@ -5258,16 +5752,18 @@ Get annoucements list
 
 ```javascript
 // Promise
-const promise = content.getAnnouncementsList(companyId,applicationId);
+const promise = content.getAnnouncementsList(companyId,applicationId,pageNo,pageSize);
 
 // Async/Await
-const data = await content.getAnnouncementsList(companyId,applicationId);
+const data = await content.getAnnouncementsList(companyId,applicationId,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Company ID | 
 | applicationId | string | Application ID | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Get list of announcements
 
@@ -5945,16 +6441,18 @@ Get blogs
 
 ```javascript
 // Promise
-const promise = content.getBlogs(companyId,applicationId);
+const promise = content.getBlogs(companyId,applicationId,pageNo,pageSize);
 
 // Async/Await
-const data = await content.getBlogs(companyId,applicationId);
+const data = await content.getBlogs(companyId,applicationId,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Company Id | 
 | applicationId | string | Application Id | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this to get blogs.
 
@@ -7196,16 +7694,18 @@ Get landing-pages
 
 ```javascript
 // Promise
-const promise = content.getLandingPages(companyId,applicationId);
+const promise = content.getLandingPages(companyId,applicationId,pageNo,pageSize);
 
 // Async/Await
-const data = await content.getLandingPages(companyId,applicationId);
+const data = await content.getLandingPages(companyId,applicationId,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Company ID | 
 | applicationId | string | Application ID | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this to get landing-pages.
 
@@ -7780,10 +8280,10 @@ Get navigations
 
 ```javascript
 // Promise
-const promise = content.getNavigations(companyId,applicationId,devicePlatform);
+const promise = content.getNavigations(companyId,applicationId,devicePlatform,pageNo,pageSize);
 
 // Async/Await
-const data = await content.getNavigations(companyId,applicationId,devicePlatform);
+const data = await content.getNavigations(companyId,applicationId,devicePlatform,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -7791,6 +8291,8 @@ const data = await content.getNavigations(companyId,applicationId,devicePlatform
 | companyId | string | Company ID | 
 | applicationId | string | Application ID | 
 | devicePlatform | string | Device platform | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this to get navigations.
 
@@ -8846,16 +9348,18 @@ Get pages
 
 ```javascript
 // Promise
-const promise = content.getPages(companyId,applicationId);
+const promise = content.getPages(companyId,applicationId,pageNo,pageSize);
 
 // Async/Await
-const data = await content.getPages(companyId,applicationId);
+const data = await content.getPages(companyId,applicationId,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Company Id | 
 | applicationId | string | Application Id | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this to get pages.
 
@@ -9633,10 +10137,10 @@ Get slideshows
 
 ```javascript
 // Promise
-const promise = content.getSlideshows(companyId,applicationId,devicePlatform);
+const promise = content.getSlideshows(companyId,applicationId,devicePlatform,pageNo,pageSize);
 
 // Async/Await
-const data = await content.getSlideshows(companyId,applicationId,devicePlatform);
+const data = await content.getSlideshows(companyId,applicationId,devicePlatform,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -9644,6 +10148,8 @@ const data = await content.getSlideshows(companyId,applicationId,devicePlatform)
 | companyId | string | Company ID | 
 | applicationId | string | Application ID | 
 | devicePlatform | string | Device platform | 
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
 
 Use this to get slideshows.
 
@@ -19531,7 +20037,7 @@ Schema: `ErrorResponse`
 ---
 
 
-## Assets
+## FileStorage
 
 
 #### startUpload
@@ -19539,10 +20045,10 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 ```javascript
 // Promise
-const promise = assets.startUpload(namespace,companyId,body);
+const promise = filestorage.startUpload(namespace,companyId,body);
 
 // Async/Await
-const data = await assets.startUpload(namespace,companyId,body);
+const data = await filestorage.startUpload(namespace,companyId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -19607,10 +20113,10 @@ This will complete the upload process. After successfully uploading file, you ca
 
 ```javascript
 // Promise
-const promise = assets.completeUpload(namespace,companyId,body);
+const promise = filestorage.completeUpload(namespace,companyId,body);
 
 // Async/Await
-const data = await assets.completeUpload(namespace,companyId,body);
+const data = await filestorage.completeUpload(namespace,companyId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -19675,10 +20181,10 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 ```javascript
 // Promise
-const promise = assets.appStartUpload(namespace,companyId,applicationId,body);
+const promise = filestorage.appStartUpload(namespace,companyId,applicationId,body);
 
 // Async/Await
-const data = await assets.appStartUpload(namespace,companyId,applicationId,body);
+const data = await filestorage.appStartUpload(namespace,companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -19744,10 +20250,10 @@ This will complete the upload process. After successfully uploading file, you ca
 
 ```javascript
 // Promise
-const promise = assets.appCompleteUpload(namespace,companyId,applicationId,body);
+const promise = filestorage.appCompleteUpload(namespace,companyId,applicationId,body);
 
 // Async/Await
-const data = await assets.appCompleteUpload(namespace,companyId,applicationId,body);
+const data = await filestorage.appCompleteUpload(namespace,companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -19813,10 +20319,10 @@ Explain here
 
 ```javascript
 // Promise
-const promise = assets.getSignUrls(companyId,body);
+const promise = filestorage.getSignUrls(companyId,body);
 
 // Async/Await
-const data = await assets.getSignUrls(companyId,body);
+const data = await filestorage.getSignUrls(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -19862,10 +20368,10 @@ Copy Files
 
 ```javascript
 // Promise
-const promise = assets.copyFiles(companyId,body,sync);
+const promise = filestorage.copyFiles(companyId,body,sync);
 
 // Async/Await
-const data = await assets.copyFiles(companyId,body,sync);
+const data = await filestorage.copyFiles(companyId,body,sync);
 ```
 
 | Argument  |  Type  | Description |
@@ -19912,10 +20418,10 @@ Copy Files
 
 ```javascript
 // Promise
-const promise = assets.appCopyFiles(companyId,applicationId,body,sync);
+const promise = filestorage.appCopyFiles(companyId,applicationId,body,sync);
 
 // Async/Await
-const data = await assets.appCopyFiles(companyId,applicationId,body,sync);
+const data = await filestorage.appCopyFiles(companyId,applicationId,body,sync);
 ```
 
 | Argument  |  Type  | Description |
@@ -19963,10 +20469,10 @@ Browse Files
 
 ```javascript
 // Promise
-const promise = assets.browse(namespace,companyId);
+const promise = filestorage.browse(namespace,companyId);
 
 // Async/Await
-const data = await assets.browse(namespace,companyId);
+const data = await filestorage.browse(namespace,companyId);
 ```
 
 | Argument  |  Type  | Description |
@@ -20013,10 +20519,10 @@ Browse Files
 
 ```javascript
 // Promise
-const promise = assets.appBrowse(namespace,companyId,applicationId);
+const promise = filestorage.appBrowse(namespace,companyId,applicationId);
 
 // Async/Await
-const data = await assets.appBrowse(namespace,companyId,applicationId);
+const data = await filestorage.appBrowse(namespace,companyId,applicationId);
 ```
 
 | Argument  |  Type  | Description |
@@ -20064,10 +20570,10 @@ Proxy
 
 ```javascript
 // Promise
-const promise = assets.proxy(companyId,url);
+const promise = filestorage.proxy(companyId,url);
 
 // Async/Await
-const data = await assets.proxy(companyId,url);
+const data = await filestorage.proxy(companyId,url);
 ```
 
 | Argument  |  Type  | Description |
