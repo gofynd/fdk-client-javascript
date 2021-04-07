@@ -16472,6 +16472,143 @@ class PlatformApplicationClient {
          
     */
 
+/**
+        @typedef DiscountJob
+        
+        
+        @property { string } id
+        
+        @property { string } name
+        
+        @property { number } companyId
+        
+        @property { boolean } isActive
+        
+        @property { Array<string> } [appIds]
+        
+        @property { string } [jobType]
+        
+        @property { string } [discountType]
+        
+        @property { string } [discountLevel]
+        
+        @property { number } [value]
+        
+        @property { string } [filePath]
+        
+        @property { Array<number> } [brandIds]
+        
+        @property { Array<number> } [storeIds]
+        
+        @property { Validity } validity
+        
+        @property { string } createdOn
+        
+        @property { string } modifiedOn
+        
+        @property { UserDetails } createdBy
+        
+        @property { UserDetails } modifiedBy
+        
+        @property { Object } [meta]
+        
+         
+    */
+
+/**
+        @typedef ListOrCalender
+        
+        
+        @property { Array<DiscountJob> } items
+        
+        @property { Page } page
+        
+         
+    */
+
+/**
+        @typedef CreateUpdateDiscount
+        
+        
+        @property { string } name
+        
+        @property { number } companyId
+        
+        @property { boolean } isActive
+        
+        @property { Array<string> } appIds
+        
+        @property { string } jobType
+        
+        @property { string } discountType
+        
+        @property { string } discountLevel
+        
+        @property { number } [value]
+        
+        @property { string } [filePath]
+        
+        @property { Array<number> } [brandIds]
+        
+        @property { Array<number> } [storeIds]
+        
+        @property { Validity } validity
+        
+         
+    */
+
+/**
+        @typedef FileJobResponse
+        
+        
+        @property { string } stage
+        
+        @property { number } total
+        
+        @property { number } failed
+        
+        @property { number } companyId
+        
+        @property { Object } [body]
+        
+        @property { string } type
+        
+        @property { string } fileType
+        
+         
+    */
+
+/**
+        @typedef DownloadFileJob
+        
+        
+        @property { Array<number> } [brandIds]
+        
+        @property { Array<number> } [storeIds]
+        
+         
+    */
+
+/**
+        @typedef CancelJobResponse
+        
+        
+        @property { boolean } success
+        
+         
+    */
+
+/**
+        @typedef UserDetails
+        
+        
+        @property { string } username
+        
+        @property { string } userId
+        
+         
+    */
+
 class Lead {
   constructor(config, applicationId) {
     this.config = config;
@@ -22575,8 +22712,8 @@ class Share {
     * @summary: Get short links
     * @description: Get short links
     * @param {Object} arg - arg object.
-    * @param {string} [arg.pageNo] - Current page number
-    * @param {string} [arg.pageSize] - Current page size
+    * @param {number} [arg.pageNo] - Current page number
+    * @param {number} [arg.pageSize] - Current page size
     * @param {string} [arg.createdBy] - Short link creator
     * @param {string} [arg.active] - Short link active status
     * @param {string} [arg.q] - Search text for original and short url
@@ -22620,7 +22757,7 @@ class Share {
     * @param {Object} arg - arg object.
     * @param {string} arg.companyId - Company Id
     * @param {string} arg.applicationId - Application Id
-    * @param {string} [arg.pageSize] - Current page size
+    * @param {number} [arg.pageSize] - Current page size
     * @param {string} [arg.createdBy] - Short link creator
     * @param {string} [arg.active] - Short link active status
     * @param {string} [arg.q] - Search text for original and short url

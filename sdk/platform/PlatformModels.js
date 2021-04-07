@@ -13343,6 +13343,122 @@ class Validator {
       page: this.Page(),
     });
   }
+
+  static DiscountJob() {
+    return Joi.object({
+      _id: Joi.string().required(),
+
+      name: Joi.string().required(),
+
+      company_id: Joi.number().required(),
+
+      is_active: Joi.boolean().required(),
+
+      app_ids: Joi.array().items(Joi.string()),
+
+      job_type: Joi.string(),
+
+      discount_type: Joi.string(),
+
+      discount_level: Joi.string(),
+
+      value: Joi.number(),
+
+      file_path: Joi.string(),
+
+      brand_ids: Joi.array().items(Joi.number()),
+
+      store_ids: Joi.array().items(Joi.number()),
+
+      validity: this.Validity().required(),
+
+      created_on: Joi.string().required(),
+
+      modified_on: Joi.string().required(),
+
+      created_by: this.UserDetails().required(),
+
+      modified_by: this.UserDetails().required(),
+
+      meta: Joi.object(),
+    });
+  }
+
+  static ListOrCalender() {
+    return Joi.object({
+      items: Joi.array().items(this.DiscountJob()).required(),
+
+      page: this.Page().required(),
+    });
+  }
+
+  static CreateUpdateDiscount() {
+    return Joi.object({
+      name: Joi.string().required(),
+
+      company_id: Joi.number().required(),
+
+      is_active: Joi.boolean().required(),
+
+      app_ids: Joi.array().items(Joi.string()).required(),
+
+      job_type: Joi.string().required(),
+
+      discount_type: Joi.string().required(),
+
+      discount_level: Joi.string().required(),
+
+      value: Joi.number(),
+
+      file_path: Joi.string(),
+
+      brand_ids: Joi.array().items(Joi.number()),
+
+      store_ids: Joi.array().items(Joi.number()),
+
+      validity: this.Validity().required(),
+    });
+  }
+
+  static FileJobResponse() {
+    return Joi.object({
+      stage: Joi.string().required(),
+
+      total: Joi.number().required(),
+
+      failed: Joi.number().required(),
+
+      company_id: Joi.number().required(),
+
+      body: Joi.object(),
+
+      type: Joi.string().required(),
+
+      file_type: Joi.string().required(),
+    });
+  }
+
+  static DownloadFileJob() {
+    return Joi.object({
+      brand_ids: Joi.array().items(Joi.number()),
+
+      store_ids: Joi.array().items(Joi.number()),
+    });
+  }
+
+  static CancelJobResponse() {
+    return Joi.object({
+      success: Joi.boolean().required(),
+    });
+  }
+
+  static UserDetails() {
+    return Joi.object({
+      username: Joi.string().required(),
+
+      user_id: Joi.string().required(),
+    });
+  }
 }
 
 class LeadValidator {
@@ -14282,6 +14398,79 @@ class AnalyticsValidator {
   }
 }
 
+class DiscountValidator {
+  static getDiscounts() {
+    return Joi.object({
+      view: Joi.string(),
+      q: Joi.string(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      archived: Joi.boolean(),
+      month: Joi.number(),
+      year: Joi.number(),
+      type: Joi.string(),
+      appIds: Joi.array().items(Joi.string()),
+    }).required();
+  }
+
+  static createDiscount() {
+    return Joi.object({
+      body: Validator.CreateUpdateDiscount().required(),
+    }).required();
+  }
+
+  static getDiscount() {
+    return Joi.object({
+      id: Joi.string().required(),
+    }).required();
+  }
+
+  static updateDiscount() {
+    return Joi.object({
+      id: Joi.string().required(),
+      body: Validator.CreateUpdateDiscount().required(),
+    }).required();
+  }
+
+  static validateDiscountFile() {
+    return Joi.object({
+      discount: Joi.string(),
+      body: Validator.DiscountJob().required(),
+    }).required();
+  }
+
+  static downloadDiscountFile() {
+    return Joi.object({
+      type: Joi.string().required(),
+      body: Validator.DownloadFileJob().required(),
+    }).required();
+  }
+
+  static getValidationJob() {
+    return Joi.object({
+      id: Joi.string().required(),
+    }).required();
+  }
+
+  static cancelValidationJob() {
+    return Joi.object({
+      id: Joi.string().required(),
+    }).required();
+  }
+
+  static getDownloadJob() {
+    return Joi.object({
+      id: Joi.string().required(),
+    }).required();
+  }
+
+  static cancelDownloadJob() {
+    return Joi.object({
+      id: Joi.string().required(),
+    }).required();
+  }
+}
+
 module.exports = {
   LeadValidator,
   BillingValidator,
@@ -14294,4 +14483,5 @@ module.exports = {
   ConfigurationValidator,
   MarketplacesValidator,
   AnalyticsValidator,
+  DiscountValidator,
 };

@@ -11,6 +11,7 @@ const {
   ConfigurationValidator,
   PaymentValidator,
   OrderValidator,
+  FeedbackValidator,
   PosCartValidator,
   LogisticValidator,
 } = require("./ApplicationModels");
@@ -32,6 +33,7 @@ class ApplicationClient {
     this.configuration = new Configuration(config);
     this.payment = new Payment(config);
     this.order = new Order(config);
+    this.feedback = new Feedback(config);
     this.posCart = new PosCart(config);
     this.logistic = new Logistic(config);
   }
@@ -5011,6 +5013,1093 @@ class Order {
       `/service/application/order/v1.0/orders/pos-order/${orderId}`,
       query,
       undefined
+    );
+  }
+}
+
+class Feedback {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+   *
+   * @summary: post a new abuse request
+   * @description: Report a new abuse for specific entity with description text.
+   * @param {Object} arg - arg object.
+   * @param {ReportAbuseRequest} arg.body
+   **/
+  createAbuseReport({ body } = {}) {
+    const { error } = FeedbackValidator.createAbuseReport().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/abuse`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update abuse details
+   * @description: Update the abuse details like status and description text.
+   * @param {Object} arg - arg object.
+   * @param {UpdateAbuseStatusRequest} arg.body
+   **/
+  updateAbuseReport({ body } = {}) {
+    const { error } = FeedbackValidator.updateAbuseReport().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/abuse`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of abuse data
+    * @description: Get the list of abuse data from entity type and entity ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityId - entity id
+    * @param {string} arg.entityType - entity type
+    * @param {string} [arg.id] - abuse id
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getAbuseReports({ entityId, entityType, id, pageId, pageSize } = {}) {
+    const { error } = FeedbackValidator.getAbuseReports().validate(
+      { entityId, entityType, id, pageId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+    query["id"] = id;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/abuse/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of abuse data
+    * @description: Get the list of abuse data from entity type and entity ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityId - entity id
+    * @param {string} arg.entityType - entity type
+    * @param {string} [arg.id] - abuse id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getAbuseReportsPaginator({ entityId, entityType, id, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getAbuseReports({
+        entityId: entityId,
+        entityType: entityType,
+        id: id,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get list of attribute data
+    * @description: Provides a list of all attribute data.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAttributes({} = {}) {
+    const { error } = FeedbackValidator.getAttributes().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/attributes`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of attribute data
+    * @description: Provides a list of all attribute data.
+    * @param {Object} arg - arg object.
+    
+    **/
+  getAttributesPaginator({} = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAttributes({});
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+   *
+   * @summary: Add a new attribute request
+   * @description: Add a new attribute with its name, slug and description.
+   * @param {Object} arg - arg object.
+   * @param {SaveAttributeRequest} arg.body
+   **/
+  createAttribute({ body } = {}) {
+    const { error } = FeedbackValidator.createAttribute().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/attributes`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get single attribute data
+    * @description: Get a single attribute data from a given slug.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - Slug of attribute
+    
+    **/
+  getAttribute({ slug } = {}) {
+    const { error } = FeedbackValidator.getAttribute().validate(
+      { slug },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/attributes/${slug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update attribute details
+   * @description: Update the attribute's name and description.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.slug - Slug of attribute
+   * @param {UpdateAttributeRequest} arg.body
+   **/
+  updateAttribute({ slug, body } = {}) {
+    const { error } = FeedbackValidator.updateAttribute().validate(
+      { slug, body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/attributes/${slug}`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: post a new comment
+   * @description: This is used to add a new comment for specific entity.
+   * @param {Object} arg - arg object.
+   * @param {CommentRequest} arg.body
+   **/
+  createComment({ body } = {}) {
+    const { error } = FeedbackValidator.createComment().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/comment`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update comment status
+   * @description: Update the comment status (active/approve) or text.
+   * @param {Object} arg - arg object.
+   * @param {UpdateCommentRequest} arg.body
+   **/
+  updateComment({ body } = {}) {
+    const { error } = FeedbackValidator.updateComment().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/comment`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of comments
+    * @description: Get the list of comments from specific entity type.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} [arg.id] - comment id
+    * @param {string} [arg.entityId] - entity id
+    * @param {string} [arg.userId] - user id - flag/filter to get comments for user
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getComments({ entityType, id, entityId, userId, pageId, pageSize } = {}) {
+    const { error } = FeedbackValidator.getComments().validate(
+      { entityType, id, entityId, userId, pageId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+    query["id"] = id;
+    query["entity_id"] = entityId;
+    query["user_id"] = userId;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/comment/entity/${entityType}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of comments
+    * @description: Get the list of comments from specific entity type.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} [arg.id] - comment id
+    * @param {string} [arg.entityId] - entity id
+    * @param {string} [arg.userId] - user id - flag/filter to get comments for user
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getCommentsPaginator({ entityType, id, entityId, userId, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getComments({
+        entityType: entityType,
+        id: id,
+        entityId: entityId,
+        userId: userId,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Checks eligibility and cloud media config
+    * @description: Checks eligibility to rate and review and cloud media configuration
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    
+    **/
+  checkEligibility({ entityType, entityId } = {}) {
+    const { error } = FeedbackValidator.checkEligibility().validate(
+      { entityType, entityId },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/config/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete Media
+    * @description: Delete Media for the given entity IDs.
+    * @param {Object} arg - arg object.
+    
+    **/
+  deleteMedia({} = {}) {
+    const { error } = FeedbackValidator.deleteMedia().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      `/service/application/feedback/v1.0/media/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Add Media
+   * @description: Add Media list for specific entity.
+   * @param {Object} arg - arg object.
+   * @param {AddMediaListRequest} arg.body
+   **/
+  createMedia({ body } = {}) {
+    const { error } = FeedbackValidator.createMedia().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/media/`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update Media
+   * @description: Update Media (archive/approve) for the given entity.
+   * @param {Object} arg - arg object.
+   * @param {UpdateMediaListRequest} arg.body
+   **/
+  updateMedia({ body } = {}) {
+    const { error } = FeedbackValidator.updateMedia().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/media/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Media
+    * @description: Get Media from the given entity type and entity ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - vote id
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getMedias({ entityType, entityId, id, pageId, pageSize } = {}) {
+    const { error } = FeedbackValidator.getMedias().validate(
+      { entityType, entityId, id, pageId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+    query["id"] = id;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/media/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Media
+    * @description: Get Media from the given entity type and entity ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - vote id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getMediasPaginator({ entityType, entityId, id, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getMedias({
+        entityType: entityType,
+        entityId: entityId,
+        id: id,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get a review summary
+    * @description: Review summary gives ratings and attribute metrics of a review per entity
+It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - review summary identifier
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getReviewSummaries({ entityType, entityId, id, pageId, pageSize } = {}) {
+    const { error } = FeedbackValidator.getReviewSummaries().validate(
+      { entityType, entityId, id, pageId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+    query["id"] = id;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/rating/summary/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a review summary
+    * @description: Review summary gives ratings and attribute metrics of a review per entity
+It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - review summary identifier
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getReviewSummariesPaginator({ entityType, entityId, id, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getReviewSummaries({
+        entityType: entityType,
+        entityId: entityId,
+        id: id,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Add customer reviews
+    * @description: Add customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+    * @param {Object} arg - arg object.
+    * @param {UpdateReviewRequest} arg.body
+    **/
+  createReview({ body } = {}) {
+    const { error } = FeedbackValidator.createReview().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/review/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Update customer reviews
+    * @description: Update customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+    * @param {Object} arg - arg object.
+    * @param {UpdateReviewRequest} arg.body
+    **/
+  updateReview({ body } = {}) {
+    const { error } = FeedbackValidator.updateReview().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/review/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of customer reviews
+    * @description: This is used to get the list of customer reviews based on entity and provided filters.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - review id
+    * @param {string} [arg.userId] - user id
+    * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
+    * @param {Array<number>} [arg.rating] - rating filter, 1-5
+    * @param {Array<string>} [arg.attributeRating] - attribute rating filter
+    * @param {boolean} [arg.facets] - facets (true|false)
+    * @param {string} [arg.sort] - sort by : default | top | recent
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getReviews({
+    entityType,
+    entityId,
+    id,
+    userId,
+    media,
+    rating,
+    attributeRating,
+    facets,
+    sort,
+    pageId,
+    pageSize,
+  } = {}) {
+    const { error } = FeedbackValidator.getReviews().validate(
+      {
+        entityType,
+        entityId,
+        id,
+        userId,
+        media,
+        rating,
+        attributeRating,
+        facets,
+        sort,
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+    query["id"] = id;
+    query["user_id"] = userId;
+    query["media"] = media;
+    query["rating"] = rating;
+    query["attribute_rating"] = attributeRating;
+    query["facets"] = facets;
+    query["sort"] = sort;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/review/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of customer reviews
+    * @description: This is used to get the list of customer reviews based on entity and provided filters.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - review id
+    * @param {string} [arg.userId] - user id
+    * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
+    * @param {Array<number>} [arg.rating] - rating filter, 1-5
+    * @param {Array<string>} [arg.attributeRating] - attribute rating filter
+    * @param {boolean} [arg.facets] - facets (true|false)
+    * @param {string} [arg.sort] - sort by : default | top | recent
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getReviewsPaginator({
+    entityType,
+    entityId,
+    id,
+    userId,
+    media,
+    rating,
+    attributeRating,
+    facets,
+    sort,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getReviews({
+        entityType: entityType,
+        entityId: entityId,
+        id: id,
+        userId: userId,
+        media: media,
+        rating: rating,
+        attributeRating: attributeRating,
+        facets: facets,
+        sort: sort,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get the templates for product or l3 type
+    * @description: This is used to get the templates details.
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.templateId] - template id
+    * @param {string} [arg.entityId] - entity id
+    * @param {string} [arg.entityType] - entity type e.g. product | l3
+    
+    **/
+  getTemplates({ templateId, entityId, entityType } = {}) {
+    const { error } = FeedbackValidator.getTemplates().validate(
+      { templateId, entityId, entityType },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+    query["template_id"] = templateId;
+    query["entity_id"] = entityId;
+    query["entity_type"] = entityType;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/template/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Create a new question
+    * @description: This is used to create a new question with following data:
+tags, text, type, choices for MCQ type questions, maximum length of answer.
+    * @param {Object} arg - arg object.
+    * @param {CreateQNARequest} arg.body
+    **/
+  createQuestion({ body } = {}) {
+    const { error } = FeedbackValidator.createQuestion().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/template/qna/`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update question
+   * @description: This is used to update question's status, tags and choices.
+   * @param {Object} arg - arg object.
+   * @param {UpdateQNARequest} arg.body
+   **/
+  updateQuestion({ body } = {}) {
+    const { error } = FeedbackValidator.updateQuestion().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/template/qna/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a list of QnA
+    * @description: This is used to get a list of questions and its answers.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - qna id
+    * @param {boolean} [arg.showAnswer] - show answer flag
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getQuestionAndAnswers({
+    entityType,
+    entityId,
+    id,
+    showAnswer,
+    pageId,
+    pageSize,
+  } = {}) {
+    const { error } = FeedbackValidator.getQuestionAndAnswers().validate(
+      { entityType, entityId, id, showAnswer, pageId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+    query["id"] = id;
+    query["show_answer"] = showAnswer;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/template/qna/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a list of QnA
+    * @description: This is used to get a list of questions and its answers.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - qna id
+    * @param {boolean} [arg.showAnswer] - show answer flag
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getQuestionAndAnswersPaginator({
+    entityType,
+    entityId,
+    id,
+    showAnswer,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getQuestionAndAnswers({
+        entityType: entityType,
+        entityId: entityId,
+        id: id,
+        showAnswer: showAnswer,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get list of votes
+    * @description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.id] - vote id
+    * @param {string} [arg.refType] - entity type e.g. review | comment
+    
+    **/
+  getVotes({ id, refType } = {}) {
+    const { error } = FeedbackValidator.getVotes().validate(
+      { id, refType },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+    query["id"] = id;
+    query["ref_type"] = refType;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/vote/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of votes
+    * @description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.id] - vote id
+    * @param {string} [arg.refType] - entity type e.g. review | comment
+    
+    **/
+  getVotesPaginator({ id, refType } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getVotes({
+        id: id,
+        refType: refType,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+   *
+   * @summary: Create a new vote
+   * @description: This is used to create a new vote and the actions can be upvote or downvote.
+   * @param {Object} arg - arg object.
+   * @param {VoteRequest} arg.body
+   **/
+  createVote({ body } = {}) {
+    const { error } = FeedbackValidator.createVote().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/vote/`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update vote
+   * @description: This is used to update the vote and the actions can be upvote or downvote.
+   * @param {Object} arg - arg object.
+   * @param {UpdateVoteRequest} arg.body
+   **/
+  updateVote({ body } = {}) {
+    const { error } = FeedbackValidator.updateVote().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/vote/`,
+      query,
+      body
     );
   }
 }
