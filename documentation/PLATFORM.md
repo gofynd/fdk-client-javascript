@@ -12,6 +12,7 @@
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Share](#Share) - Short link and QR Code 
 * [Inventory](#Inventory) -  
+* [Configuration](#Configuration) - Application configuration apis 
 * [Cart](#Cart) - Cart APIs 
 * [Marketplaces](#Marketplaces) - Marketplaces 
 * [Rewards](#Rewards) - Rewards 
@@ -271,8 +272,8 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
     * [getBrand](#getbrand)
     * [editBrand](#editbrand)
@@ -302,6 +303,52 @@
     * [getJobConfigDefaults](#getjobconfigdefaults)
     * [getJobByCode](#getjobbycode)
     * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
+    
+
+* [Configuration](#Configuration)
+  * Methods
+    * [getBuildConfig](#getbuildconfig)
+    * [updateBuildConfig](#updatebuildconfig)
+    * [getPreviousVersions](#getpreviousversions)
+    * [getAppFeatures](#getappfeatures)
+    * [updateAppFeatures](#updateappfeatures)
+    * [getAppBasicDetails](#getappbasicdetails)
+    * [updateAppBasicDetails](#updateappbasicdetails)
+    * [getAppContactInfo](#getappcontactinfo)
+    * [updateAppContactInfo](#updateappcontactinfo)
+    * [getAppApiTokens](#getappapitokens)
+    * [updateAppApiTokens](#updateappapitokens)
+    * [getAppCompanies](#getappcompanies)
+    * [getAppStores](#getappstores)
+    * [getInventoryConfig](#getinventoryconfig)
+    * [updateInventoryConfig](#updateinventoryconfig)
+    * [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
+    * [getAppCurrencyConfig](#getappcurrencyconfig)
+    * [updateAppCurrencyConfig](#updateappcurrencyconfig)
+    * [getOrderingStoresByFilter](#getorderingstoresbyfilter)
+    * [updateOrderingStoreConfig](#updateorderingstoreconfig)
+    * [getDomains](#getdomains)
+    * [addDomain](#adddomain)
+    * [removeDomainById](#removedomainbyid)
+    * [changeDomainType](#changedomaintype)
+    * [getDomainStatus](#getdomainstatus)
+    * [createApplication](#createapplication)
+    * [getApplications](#getapplications)
+    * [getApplicationById](#getapplicationbyid)
+    * [getCurrencies](#getcurrencies)
+    * [getDomainAvailibility](#getdomainavailibility)
+    * [getIntegrationById](#getintegrationbyid)
+    * [getAvailableOptIns](#getavailableoptins)
+    * [getSelectedOptIns](#getselectedoptins)
+    * [getIntegrationLevelConfig](#getintegrationlevelconfig)
+    * [getIntegrationByLevelId](#getintegrationbylevelid)
+    * [getLevelActiveIntegrations](#getlevelactiveintegrations)
+    * [getBrandsByCompany](#getbrandsbycompany)
+    * [getCompanyByBrands](#getcompanybybrands)
+    * [getStoreByBrands](#getstorebybrands)
+    * [getOtherSellerApplications](#getothersellerapplications)
+    * [getOtherSellerApplicationById](#getothersellerapplicationbyid)
+    * [optOutFromApplication](#optoutfromapplication)
     
 
 * [Cart](#Cart)
@@ -17034,55 +17081,6 @@ Schema: `HsnCode`
 ## CompanyProfile
 
 
-#### cbsOnboardGet
-Get company profile
-
-```javascript
-// Promise
-const promise = companyprofile.cbsOnboardGet(companyId);
-
-// Async/Await
-const data = await companyprofile.cbsOnboardGet(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to view the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
-
-
-Schema: `GetCompanyProfileSerializerResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateCompany
 Edit company profile
 
@@ -17108,6 +17106,55 @@ Returns a success message
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cbsOnboardGet
+Get company profile
+
+```javascript
+// Promise
+const promise = companyprofile.cbsOnboardGet(companyId);
+
+// Async/Await
+const data = await companyprofile.cbsOnboardGet(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to view the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+
+
+Schema: `GetCompanyProfileSerializerResponse`
 
 
 
@@ -18314,6 +18361,1866 @@ Internal Server Error
 
 
 Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Configuration
+
+
+#### getBuildConfig
+Get latest build config
+
+```javascript
+// Promise
+const promise = configuration.getBuildConfig(companyId,applicationId,platformType);
+
+// Async/Await
+const data = await configuration.getBuildConfig(companyId,applicationId,platformType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| platformType | string | Current platform name | 
+
+Get latest build config
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MobileAppConfiguration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateBuildConfig
+Update build config for next build
+
+```javascript
+// Promise
+const promise = configuration.updateBuildConfig(companyId,applicationId,platformType,body);
+
+// Async/Await
+const data = await configuration.updateBuildConfig(companyId,applicationId,platformType,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| platformType | string | Current platform name | 
+
+Update build config for next build
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `MobileAppConfiguration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPreviousVersions
+Get previous versions
+
+```javascript
+// Promise
+const promise = configuration.getPreviousVersions(companyId,applicationId,platformType);
+
+// Async/Await
+const data = await configuration.getPreviousVersions(companyId,applicationId,platformType);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| platformType | string | Current platform name | 
+
+Get previous versions
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BuildVersionHistory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppFeatures
+Get features of application
+
+```javascript
+// Promise
+const promise = configuration.getAppFeatures(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppFeatures(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get features of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppFeatureResponse`
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppFeatures
+Update features of application
+
+```javascript
+// Promise
+const promise = configuration.updateAppFeatures(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateAppFeatures(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Update features of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppFeature`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppBasicDetails
+Get basic application details
+
+```javascript
+// Promise
+const promise = configuration.getAppBasicDetails(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppBasicDetails(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get basic application details like name
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationDetail`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppBasicDetails
+Add or update application's basic details
+
+```javascript
+// Promise
+const promise = configuration.updateAppBasicDetails(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateAppBasicDetails(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add or update application's basic details
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationDetail`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppContactInfo
+Get application information
+
+```javascript
+// Promise
+const promise = configuration.getAppContactInfo(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppContactInfo(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInformation`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppContactInfo
+Get application information
+
+```javascript
+// Promise
+const promise = configuration.updateAppContactInfo(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateAppContactInfo(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Save Application Current Information. This includes information about social links, address and contact information of an application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInformation`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppApiTokens
+Get social tokens
+
+```javascript
+// Promise
+const promise = configuration.getAppApiTokens(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppApiTokens(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get social tokens.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TokenResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppApiTokens
+Add social tokens
+
+```javascript
+// Promise
+const promise = configuration.updateAppApiTokens(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateAppApiTokens(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add social tokens.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TokenResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppCompanies
+Application inventory enabled companies
+
+```javascript
+// Promise
+const promise = configuration.getAppCompanies(companyId,applicationId,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getAppCompanies(companyId,applicationId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Application inventory enabled companies.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CompaniesResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppStores
+Application inventory enabled stores
+
+```javascript
+// Promise
+const promise = configuration.getAppStores(companyId,applicationId,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getAppStores(companyId,applicationId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Application inventory enabled stores.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StoresResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInventoryConfig
+Get application configuration
+
+```javascript
+// Promise
+const promise = configuration.getInventoryConfig(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getInventoryConfig(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get application configuration for various features and data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInventory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateInventoryConfig
+Update application configuration
+
+```javascript
+// Promise
+const promise = configuration.updateInventoryConfig(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateInventoryConfig(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Update application configuration for various features and data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInventory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### partiallyUpdateInventoryConfig
+Partially update application configuration
+
+```javascript
+// Promise
+const promise = configuration.partiallyUpdateInventoryConfig(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.partiallyUpdateInventoryConfig(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Partially update application configuration for various features and data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationInventory`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAppCurrencyConfig
+Get application enabled currency list
+
+```javascript
+// Promise
+const promise = configuration.getAppCurrencyConfig(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getAppCurrencyConfig(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get application enabled currency list
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppSupportedCurrency`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppCurrencyConfig
+Add initial application supported currency
+
+```javascript
+// Promise
+const promise = configuration.updateAppCurrencyConfig(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateAppCurrencyConfig(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add initial application supported currency for various features and data. Default INR will be enabled.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AppSupportedCurrency`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOrderingStoresByFilter
+Get ordering store by filter
+
+```javascript
+// Promise
+const promise = configuration.getOrderingStoresByFilter(companyId,applicationId,body,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getOrderingStoresByFilter(companyId,applicationId,body,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get ordering store by filter
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OrderingStores`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateOrderingStoreConfig
+Add/Update ordering store config
+
+```javascript
+// Promise
+const promise = configuration.updateOrderingStoreConfig(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.updateOrderingStoreConfig(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add/Update ordering store config.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DeploymentMeta`
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `InvalidPayloadRequest`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDomains
+Get attached domain list
+
+```javascript
+// Promise
+const promise = configuration.getDomains(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getDomains(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get attached domain list.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addDomain
+Add new domain to application
+
+```javascript
+// Promise
+const promise = configuration.addDomain(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.addDomain(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Add new domain to application.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Domain`
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `InvalidPayloadRequest`
+
+
+*Examples:*
+
+
+Maximum domain limit reached
+```json
+{
+  "value": {
+    "message": "Maximum 4 domains can be added to application. Please remove existing one to add new"
+  }
+}
+```
+
+Failed to verify domain record
+```json
+{
+  "value": {
+    "message": "Failed to verify domain records"
+  }
+}
+```
+
+Domain already registered
+```json
+{
+  "value": {
+    "message": "Domain already linked to application"
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### removeDomainById
+Remove attached domain
+
+```javascript
+// Promise
+const promise = configuration.removeDomainById(companyId,applicationId,id);
+
+// Async/Await
+const data = await configuration.removeDomainById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| id | string | Domain _id | 
+
+Remove attached domain.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SuccessMessageResponse`
+
+
+
+
+
+
+
+
+Invalid request or Missing params
+
+
+Schema: `InvalidPayloadRequest`
+
+
+*Examples:*
+
+
+Primary or Shortlink or Default domain deletiion
+```json
+{
+  "value": {
+    "message": "Primary domain deletion not allowed"
+  }
+}
+```
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### changeDomainType
+Change domain type
+
+```javascript
+// Promise
+const promise = configuration.changeDomainType(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.changeDomainType(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Change a domain to Primary or Shortlink domain
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainsResponse`
+
+
+
+
+
+
+
+
+Invalid/Missing params
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDomainStatus
+Get domain connected status.
+
+```javascript
+// Promise
+const promise = configuration.getDomainStatus(companyId,applicationId,body);
+
+// Async/Await
+const data = await configuration.getDomainStatus(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainStatusResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createApplication
+Create application
+
+```javascript
+// Promise
+const promise = configuration.createApplication(companyId,body);
+
+// Async/Await
+const data = await configuration.createApplication(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Create new application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CreateAppResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplications
+Get list of application under company
+
+```javascript
+// Promise
+const promise = configuration.getApplications(companyId,pageNo,pageSize,q);
+
+// Async/Await
+const data = await configuration.getApplications(companyId,pageNo,pageSize,q);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer |  | 
+| pageSize | integer |  | 
+| q | string | Url encoded object used as mongodb query | 
+
+Get list of application under company
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ApplicationsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplicationById
+Get application data from id
+
+```javascript
+// Promise
+const promise = configuration.getApplicationById(companyId,applicationId);
+
+// Async/Await
+const data = await configuration.getApplicationById(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+
+Get application data from id
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Application`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCurrencies
+Get all currencies
+
+```javascript
+// Promise
+const promise = configuration.getCurrencies(companyId);
+
+// Async/Await
+const data = await configuration.getCurrencies(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Get all currencies
+
+*Success Response:*
+
+
+
+Currencies Success response
+
+
+Schema: `CurrenciesResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDomainAvailibility
+Check domain availibility before linking to application
+
+```javascript
+// Promise
+const promise = configuration.getDomainAvailibility(companyId,body);
+
+// Async/Await
+const data = await configuration.getDomainAvailibility(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+
+Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DomainSuggestionsResponse`
+
+
+*Examples:*
+
+
+Suggestions for fynd domains
+```json
+{
+  "value": {
+    "domains": [
+      {
+        "name": "test.hostx1.de",
+        "is_available": false
+      },
+      {
+        "name": "testhive.hostx1.de",
+        "is_available": true
+      }
+    ]
+  }
+}
+```
+
+Suggestions for custom domains
+```json
+{
+  "value": {
+    "domains": [
+      {
+        "name": "test25.in",
+        "unsupported": false,
+        "is_available": false
+      },
+      {
+        "name": "try25.in",
+        "unsupported": false,
+        "is_available": true,
+        "price": 14.99,
+        "currency": "USD"
+      }
+    ]
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getIntegrationById
+Get integration data
+
+```javascript
+// Promise
+const promise = configuration.getIntegrationById(companyId,id);
+
+// Async/Await
+const data = await configuration.getIntegrationById(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | integer | Integration id | 
+
+Get integration data
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Integration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAvailableOptIns
+Get all available integration opt-ins
+
+```javascript
+// Promise
+const promise = configuration.getAvailableOptIns(companyId,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getAvailableOptIns(companyId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get all available integration opt-ins
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetIntegrationsOptInsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSelectedOptIns
+Get company/store level integration opt-ins
+
+```javascript
+// Promise
+const promise = configuration.getSelectedOptIns(companyId,level,uid,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getSelectedOptIns(companyId,level,uid,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| level | string | Integration level | 
+| uid | integer | Integration level uid | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get company/store level integration opt-ins
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetIntegrationsOptInsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getIntegrationLevelConfig
+Get integration level config
+
+```javascript
+// Promise
+const promise = configuration.getIntegrationLevelConfig(companyId,id,level);
+
+// Async/Await
+const data = await configuration.getIntegrationLevelConfig(companyId,id,level);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Integration id | 
+| level | string | Integration level | 
+
+Get integration level config
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `IntegrationConfigResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getIntegrationByLevelId
+Get level data for integration
+
+```javascript
+// Promise
+const promise = configuration.getIntegrationByLevelId(companyId,id,level,uid);
+
+// Async/Await
+const data = await configuration.getIntegrationByLevelId(companyId,id,level,uid);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Integration id | 
+| level | string | Integration level | 
+| uid | integer | Integration level uid | 
+
+Get level data for integration
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `IntegrationLevel`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLevelActiveIntegrations
+Check store has active integration
+
+```javascript
+// Promise
+const promise = configuration.getLevelActiveIntegrations(companyId,id,level,uid);
+
+// Async/Await
+const data = await configuration.getLevelActiveIntegrations(companyId,id,level,uid);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Integration id | 
+| level | string | Integration level | 
+| uid | integer | Integration level uid | 
+
+API checks if a store is already opted in any other integrations
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OptedStoreIntegration`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBrandsByCompany
+Get brands by company
+
+```javascript
+// Promise
+const promise = configuration.getBrandsByCompany(companyId,q);
+
+// Async/Await
+const data = await configuration.getBrandsByCompany(companyId,q);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| q | string | Search text for brand name | 
+
+Get brands by company
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BrandsByCompanyResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCompanyByBrands
+Get company by brand uids
+
+```javascript
+// Promise
+const promise = configuration.getCompanyByBrands(companyId,body,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getCompanyByBrands(companyId,body,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get company by brand uids
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CompanyByBrandsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getStoreByBrands
+Get stores by brand uids
+
+```javascript
+// Promise
+const promise = configuration.getStoreByBrands(companyId,body,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getStoreByBrands(companyId,body,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get stores by brand uids
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `StoreByBrandsResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOtherSellerApplications
+Get other seller applications
+
+```javascript
+// Promise
+const promise = configuration.getOtherSellerApplications(companyId,pageNo,pageSize);
+
+// Async/Await
+const data = await configuration.getOtherSellerApplications(companyId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| pageNo | integer | Current page no | 
+| pageSize | integer | Current request items count | 
+
+Get other seller applications who has opted current company as inventory
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OtherSellerApplications`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getOtherSellerApplicationById
+Get other seller applications
+
+```javascript
+// Promise
+const promise = configuration.getOtherSellerApplicationById(companyId,id);
+
+// Async/Await
+const data = await configuration.getOtherSellerApplicationById(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Application Id | 
+
+Get other seller application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `OptedApplicationResponse`
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### optOutFromApplication
+Opt out company or store from other seller application
+
+```javascript
+// Promise
+const promise = configuration.optOutFromApplication(companyId,id,body);
+
+// Async/Await
+const data = await configuration.optOutFromApplication(companyId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| id | string | Application Id | 
+
+Opt out company or store from other seller application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SuccessMessageResponse`
+
+
+
+
+
+
+
+
+Invalid params or Not configured inventory
+
+
+Schema: `InvalidPayloadRequest`
+
+
+*Examples:*
+
+
+Missing parameter
+```json
+{
+  "value": {
+    "message": "Invalid opt out request data. Either of `store` and `company` fields are missing"
+  }
+}
+```
+
+Company other than current company sent for opt out
+```json
+{
+  "value": {
+    "message": "Invalid company id"
+  }
+}
+```
+
+Store other than current company sent for opt out
+```json
+{
+  "value": {
+    "message": "Invalid store ids"
+  }
+}
+```
+
+Inventory not configured for sent application id
+```json
+{
+  "value": {
+    "message": "Inventory is not configured"
+  }
+}
+```
+
+
+
+
+
+
+
+
+Not found
+
+
+Schema: `NotFound`
 
 
 
