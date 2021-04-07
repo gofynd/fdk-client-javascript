@@ -2,6 +2,7 @@
 
 
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Feedback](#Feedback) - User Reviews and Rating System 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
@@ -46,6 +47,19 @@
     * [getVideoParticipants](#getvideoparticipants)
     * [openVideoRoom](#openvideoroom)
     * [closeVideoRoom](#closevideoroom)
+    
+
+* [Feedback](#Feedback)
+  * Methods
+    * [getAttributes](#getattributes)
+    * [getCustomerReviews](#getcustomerreviews)
+    * [updateApprove](#updateapprove)
+    * [getHistory](#gethistory)
+    * [getApplicationTemplates](#getapplicationtemplates)
+    * [createTemplate](#createtemplate)
+    * [getTemplateById](#gettemplatebyid)
+    * [updateTemplate](#updatetemplate)
+    * [updateTemplateStatus](#updatetemplatestatus)
     
 
 * [Theme](#Theme)
@@ -3707,6 +3721,490 @@ Default
 ---
 
 
+## Feedback
+
+
+#### getAttributes
+Get list of attribute data
+
+```javascript
+// Promise
+const promise = feedback.getAttributes(companyId,applicationId,pageNo,pageSize);
+
+// Async/Await
+const data = await feedback.getAttributes(companyId,applicationId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| pageNo | integer | pagination page no | 
+| pageSize | integer | pagination page size | 
+
+Provides a list of all attribute data.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `FeedbackAttributes`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCustomerReviews
+Get list of customer reviews [admin]
+
+```javascript
+// Promise
+const promise = feedback.getCustomerReviews(companyId,applicationId,id,entityId,entityType,userId,media,rating,attributeRating,facets,sort,next,start,limit,count,pageId,pageSize);
+
+// Async/Await
+const data = await feedback.getCustomerReviews(companyId,applicationId,id,entityId,entityType,userId,media,rating,attributeRating,facets,sort,next,start,limit,count,pageId,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | review id | 
+| entityId | string | entity id | 
+| entityType | string | entity type | 
+| userId | string | user id | 
+| media | string | media type e.g. image | video | video_file | video_link | 
+| rating | array | rating filter, 1-5 | 
+| attributeRating | array | attribute rating filter with ma,e of attribute | 
+| facets | boolean | facets (true|false) | 
+| sort | string | sort by : default | top | recent | 
+| next | string | pagination next | 
+| start | string | pagination start | 
+| limit | string | pagination limit | 
+| count | string | pagination count | 
+| pageId | string | pagination page id | 
+| pageSize | integer | pagination page size | 
+
+The endpoint provides a list of customer reviews based on entity and provided filters
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetReviewResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateApprove
+update approve details
+
+```javascript
+// Promise
+const promise = feedback.updateApprove(companyId,applicationId,reviewId,body);
+
+// Async/Await
+const data = await feedback.updateApprove(companyId,applicationId,reviewId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| reviewId | string | review id | 
+
+The is used to update approve details like status and description text
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getHistory
+get history details
+
+```javascript
+// Promise
+const promise = feedback.getHistory(companyId,applicationId,reviewId);
+
+// Async/Await
+const data = await feedback.getHistory(companyId,applicationId,reviewId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| reviewId | string | review id | 
+
+The is used to get the history details like status and description text
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `Array<ActivityDump>`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplicationTemplates
+Get list of templates
+
+```javascript
+// Promise
+const promise = feedback.getApplicationTemplates(companyId,applicationId,pageId,pageSize);
+
+// Async/Await
+const data = await feedback.getApplicationTemplates(companyId,applicationId,pageId,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| pageId | string | pagination page id | 
+| pageSize | integer | pagination page size | 
+
+Get all templates of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TemplateGetResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createTemplate
+Create a new template
+
+```javascript
+// Promise
+const promise = feedback.createTemplate(companyId,applicationId,body);
+
+// Async/Await
+const data = await feedback.createTemplate(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+
+Create a new template for review with following data:
+- Enable media, rating and review
+- Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
+- Review - header, title, description, image and video meta, enable votes
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getTemplateById
+Get a template by ID
+
+```javascript
+// Promise
+const promise = feedback.getTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await feedback.getTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Get the template for product or l3 type by ID
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Template`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTemplate
+Update a template's status
+
+```javascript
+// Promise
+const promise = feedback.updateTemplate(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await feedback.updateTemplate(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Update existing template status, active/archive
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTemplateStatus
+Update a template's status
+
+```javascript
+// Promise
+const promise = feedback.updateTemplateStatus(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await feedback.updateTemplateStatus(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Update existing template status, active/archive
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Theme
 
 
@@ -6444,7 +6942,7 @@ Get FAQ category by slug or id
 Get FAQ Categories
 
 
-Schema: `GetFaqCategoryByIdOrSlugSchema`
+Schema: `GetFaqCategoryBySlugSchema`
 
 
 
@@ -20613,7 +21111,7 @@ Get available marketplace channels
 Success
 
 
-Schema: `AllChannels`
+Schema: `Object`
 
 
 
@@ -20664,7 +21162,7 @@ Schema: `Object`
 
 
 #### getChannel
-Get registered marketplace channel for a seller
+Get registered marketplace channel credential configuration for a seller
 
 ```javascript
 // Promise
@@ -20679,7 +21177,7 @@ const data = await marketplaces.getChannel(companyId,channel);
 | companyId | string | Company Id | 
 | channel | string | Name of marketplace channel | 
 
-Get registered marketplace channel for a seller
+Get registered marketplace channel credentials configuration for a seller
 
 *Success Response:*
 
@@ -20688,7 +21186,7 @@ Get registered marketplace channel for a seller
 Success
 
 
-Schema: `MkpResp`
+Schema: `Object`
 
 
 
