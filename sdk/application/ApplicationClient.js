@@ -160,6 +160,40 @@ class Catalog {
 
   /**
     *
+    * @summary: List sellers of a product
+    * @description: A product of a particular size can be sold by multiple sellers. Use this API to fetch the sellers who are selling this product and have the stock of a particular size
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
+    * @param {string} arg.size - The size of the product for which the price needs to be retrieved. You can get the available sizes of a product from **v1.0.0/products/sizes**
+    * @param {string} arg.pincode - The pincode of the product for which the price needs to be retrieved.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
+    
+    **/
+  getProductSellersBySlugPaginator({ slug, size, pincode, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getProductSellersBySlug({
+        slug: slug,
+        size: size,
+        pincode: pincode,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
     * @summary: Compare products
     * @description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
     * @param {Object} arg - arg object.
@@ -369,6 +403,36 @@ class Catalog {
 
   /**
     *
+    * @summary: Get the stock of a product
+    * @description: Retrieve the available stock of the products. You can use this api to get stock status of products whose inventory is updated in given time
+    * @param {Object} arg - arg object.
+    * @param {string} arg.timestamp - timestamp in UTC format (2020-07-23T10:27:50Z)
+    * @param {number} [arg.pageSize] - Limit of number of items for stock status default 12
+    
+    **/
+  getProductStockForTimeByIdsPaginator({ timestamp, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getProductStockForTimeByIds({
+        timestamp: timestamp,
+        pageSize: pageSize,
+        pageId: pageId,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
     * @summary: List the products
     * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
     * @param {Object} arg - arg object.
@@ -490,6 +554,36 @@ class Catalog {
 
   /**
     *
+    * @summary: List all the brands
+    * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
+    
+    **/
+  getBrandsPaginator({ department, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getBrands({
+        department: department,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
     * @summary: Get metadata of a brand
     * @description: Fetch metadata of a brand. If successful, returns a metadata object specified in `BrandDetailResponse`
     * @param {Object} arg - arg object.
@@ -604,6 +698,36 @@ class Catalog {
 
   /**
     *
+    * @summary: List the products
+    * @description: List all the products associated with a brand, collection or category in a random order. If successful, returns a paginated list of products specified in `HomeListingResponse`
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.sortOn] - Each response will contain **sort_on** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
+    
+    **/
+  getHomeProductsPaginator({ sortOn, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getHomeProducts({
+        sortOn: sortOn,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
     * @summary: List all the departments
     * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
     * @param {Object} arg - arg object.
@@ -688,6 +812,34 @@ class Catalog {
 
   /**
     *
+    * @summary: List all the collections
+    * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections`
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
+    
+    **/
+  getCollectionsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getCollections({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
     * @summary: Get the items in a collection
     * @description: Get items in a collection specified by its `slug`.
     * @param {Object} arg - arg object.
@@ -728,6 +880,48 @@ class Catalog {
       query,
       undefined
     );
+  }
+
+  /**
+    *
+    * @summary: Get the items in a collection
+    * @description: Get items in a collection specified by its `slug`.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items
+    * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
+    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
+    * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
+    
+    **/
+  getCollectionItemsBySlugPaginator({
+    slug,
+    f,
+    filters,
+    sortOn,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getCollectionItemsBySlug({
+        slug: slug,
+        f: f,
+        filters: filters,
+        sortOn: sortOn,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
   }
 
   /**
@@ -786,30 +980,29 @@ class Catalog {
 
   /**
     *
-    * @summary: UnFollow a Product
-    * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    * @summary: Get a list of followed Products, Brands, Collections
+    * @description: A User can follow a Product they like. This API retrieves the products the user have followed. If successful, returns a Followed resource in the response body specified in `GetFollowResponseSchema`
     * @param {Object} arg - arg object.
     * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-    * @param {string} arg.collectionId - the `id` of the collection type you want to unfollow
     
     **/
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      throw error;
-    }
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
+  getFollowedListingPaginator({ collectionType } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getFollowedListing({
+        collectionType: collectionType,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
   }
 
   /**
@@ -834,6 +1027,34 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "post",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: UnFollow a Product
+    * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+    * @param {string} arg.collectionId - the `id` of the collection type you want to unfollow
+    
+    **/
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      throw error;
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -932,6 +1153,42 @@ class Catalog {
       query,
       undefined
     );
+  }
+
+  /**
+    *
+    * @summary: List store meta information.
+    * @description: Use this API to get list of stores for specific application. If successful, returns list of stores specified in `StoreListingResponse`
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    * @param {string} [arg.q] - This can be used to search a particulr store by its name or store_code.
+    * @param {number} [arg.range] - This can be used to retrieve store within a particular range. For eg range=10000 (in meters)
+    * @param {number} [arg.latitude] - This should be the latitude of the location from which one needs to retreive the nearest stores.
+    * @param {number} [arg.longitude] - This should be the longitude of the location from which one needs to retreive the nearest stores.
+    
+    **/
+  getStoresPaginator({ pageSize, q, range, latitude, longitude } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getStores({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+        range: range,
+        latitude: latitude,
+        longitude: longitude,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
   }
 }
 
@@ -3227,6 +3484,36 @@ class Configuration {
       query,
       undefined
     );
+  }
+
+  /**
+    *
+    * @summary: Get deployment meta stores
+    * @description: Get deployment meta stores.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Current request items count
+    * @param {string} [arg.q] - Search ordering store by name or store code
+    
+    **/
+  getOrderingStoresPaginator({ pageSize, q } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getOrderingStores({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        q: q,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
   }
 
   /**
