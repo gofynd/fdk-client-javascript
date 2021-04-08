@@ -109,6 +109,44 @@ export class ContentValidator {
     static removeInjectableTag(): any;
     static editInjectableTag(): any;
 }
+export class CommunicationValidator {
+    static getCampaigns(): any;
+    static createCampaign(): any;
+    static getCampaignById(): any;
+    static updateCampaignById(): any;
+    static getStatsOfCampaignById(): any;
+    static getAudiences(): any;
+    static createAudience(): any;
+    static getBigqueryHeaders(): any;
+    static getAudienceById(): any;
+    static updateAudienceById(): any;
+    static getNSampleRecordsFromCsv(): any;
+    static getEmailProviders(): any;
+    static createEmailProvider(): any;
+    static getEmailProviderById(): any;
+    static updateEmailProviderById(): any;
+    static getEmailTemplates(): any;
+    static createEmailTemplate(): any;
+    static getSystemEmailTemplates(): any;
+    static getEmailTemplateById(): any;
+    static updateEmailTemplateById(): any;
+    static deleteEmailTemplateById(): any;
+    static getEventSubscriptions(): any;
+    static getJobs(): any;
+    static triggerCampaignJob(): any;
+    static getJobLogs(): any;
+    static getCommunicationLogs(): any;
+    static getSmsProviders(): any;
+    static createSmsProvider(): any;
+    static getSmsProviderById(): any;
+    static updateSmsProviderById(): any;
+    static getSmsTemplates(): any;
+    static createSmsTemplate(): any;
+    static getSmsTemplateById(): any;
+    static updateSmsTemplateById(): any;
+    static deleteSmsTemplateById(): any;
+    static getSystemSystemTemplates(): any;
+}
 export class PaymentValidator {
     static getBrandPaymentGatewayConfig(): any;
     static saveBrandPaymentGatewayConfig(): any;
@@ -125,26 +163,26 @@ export class CatalogValidator {
     static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
-    static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
+    static getAllSearchKeyword(): any;
     static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
+    static getAutocompleteConfig(): any;
     static getCatalogConfiguration(): any;
-    static getConfigurations(): any;
     static createConfigurationProductListing(): any;
-    static getConfigurationByType(): any;
+    static getConfigurations(): any;
     static createConfigurationByType(): any;
+    static getConfigurationByType(): any;
     static getQueryFilters(): any;
-    static getAllCollections(): any;
     static createCollection(): any;
+    static getAllCollections(): any;
     static getCollectionDetail(): any;
     static deleteCollection(): any;
     static updateCollection(): any;
-    static getCollectionItems(): any;
     static addCollectionItems(): any;
+    static getCollectionItems(): any;
     static getCatalogInsights(): any;
 }
 export class ShareValidator {
