@@ -17791,7 +17791,9 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -17876,7 +17878,9 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -17906,7 +17910,9 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -17937,7 +17943,9 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -17968,7 +17976,9 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -17998,7 +18008,9 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18031,7 +18043,9 @@ class Billing {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18061,7 +18075,9 @@ class Billing {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18088,7 +18104,9 @@ class Billing {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18117,7 +18135,9 @@ class Billing {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18145,7 +18165,9 @@ class Billing {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18172,7 +18194,9 @@ class Billing {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18201,7 +18225,9 @@ class Billing {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18230,7 +18256,9 @@ class Billing {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18270,7 +18298,9 @@ class Communication {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18339,7 +18369,9 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18369,7 +18401,9 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18400,7 +18434,9 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18431,7 +18467,9 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18461,7 +18499,9 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18488,7 +18528,9 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18522,7 +18564,9 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18551,7 +18595,9 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18580,7 +18626,9 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18615,7 +18663,9 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18645,7 +18695,9 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18675,7 +18727,9 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18740,7 +18794,9 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18779,7 +18835,9 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18806,7 +18864,9 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18838,7 +18898,9 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18875,7 +18937,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18905,7 +18969,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18937,7 +19003,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18967,7 +19035,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -18996,7 +19066,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19034,7 +19106,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19070,7 +19144,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19100,7 +19176,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19130,7 +19208,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19161,7 +19241,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19188,7 +19270,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19215,7 +19299,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19253,7 +19339,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19285,7 +19373,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19319,7 +19409,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19354,7 +19446,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19383,7 +19477,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19413,7 +19509,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19443,7 +19541,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19474,7 +19574,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19504,7 +19606,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19534,7 +19638,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19565,7 +19671,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19593,7 +19701,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19622,7 +19732,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19652,7 +19764,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19682,7 +19796,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19714,7 +19830,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19747,7 +19865,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19777,7 +19897,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19806,7 +19928,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19844,7 +19968,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19879,7 +20005,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19910,7 +20038,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19946,7 +20076,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -19976,7 +20108,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20012,7 +20146,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20044,7 +20180,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20076,7 +20214,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20109,7 +20249,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20139,7 +20281,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20166,7 +20310,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20195,7 +20341,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20227,7 +20375,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20261,7 +20411,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20294,7 +20446,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20330,7 +20484,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20364,7 +20520,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20393,7 +20551,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20425,7 +20585,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20456,7 +20618,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20483,7 +20647,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20512,7 +20678,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20539,7 +20707,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20569,7 +20739,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20599,7 +20771,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20633,7 +20807,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20667,7 +20843,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20697,7 +20875,9 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20732,7 +20912,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20759,7 +20941,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20786,7 +20970,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20817,7 +21003,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20847,7 +21035,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20876,7 +21066,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20907,7 +21099,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20934,7 +21128,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -20963,7 +21159,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21001,7 +21199,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21037,7 +21237,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21067,7 +21269,9 @@ class CompanyProfile {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21105,7 +21309,9 @@ class Inventory {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21138,7 +21344,9 @@ class Inventory {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21169,7 +21377,9 @@ class Inventory {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21205,7 +21415,9 @@ class Inventory {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21234,7 +21446,9 @@ class Inventory {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21264,7 +21478,9 @@ class Inventory {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21300,7 +21516,9 @@ class Inventory {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21337,7 +21555,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21371,7 +21591,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21431,7 +21653,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21460,7 +21684,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21490,7 +21716,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21522,7 +21750,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21588,7 +21818,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21656,7 +21888,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21690,7 +21924,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21726,7 +21962,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21756,7 +21994,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21790,7 +22030,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21854,7 +22096,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21919,7 +22163,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -21981,7 +22227,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22012,7 +22260,9 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22045,7 +22295,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22072,7 +22324,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22102,7 +22356,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22131,7 +22387,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22162,7 +22420,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22191,7 +22451,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22222,7 +22484,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22253,7 +22517,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22286,7 +22552,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22317,7 +22585,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22350,7 +22620,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22379,7 +22651,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22410,7 +22684,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22445,7 +22721,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22476,7 +22754,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22509,7 +22789,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22539,7 +22821,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22570,7 +22854,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22605,7 +22891,9 @@ class Marketplaces {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22642,7 +22930,9 @@ class Analytics {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22674,7 +22964,9 @@ class Analytics {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22710,7 +23002,9 @@ class Analytics {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22747,7 +23041,9 @@ class Analytics {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22811,7 +23107,9 @@ class Discount {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22849,7 +23147,9 @@ class Discount {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22879,7 +23179,9 @@ class Discount {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22910,7 +23212,9 @@ class Discount {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22941,7 +23245,9 @@ class Discount {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -22973,7 +23279,9 @@ class Discount {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -23003,7 +23311,9 @@ class Discount {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -23033,7 +23343,9 @@ class Discount {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -23063,7 +23375,9 @@ class Discount {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
@@ -23093,7 +23407,9 @@ class Discount {
       { abortEarly: false }
     );
     if (error) {
-      throw error;
+      return new Promise(() => {
+        throw error;
+      });
     }
 
     const queryObj = {};
