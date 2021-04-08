@@ -162,21 +162,3 @@ export class MarketplacesValidator {
     static updateChannelStatus(): any;
     static triggerChannelInventoryUpdates(): any;
 }
-export class AnalyticsValidator {
-    static createExportJob(): any;
-    static getExportJobStatus(): any;
-    static getLogsList(): any;
-    static searchLogs(): any;
-}
-export class DiscountValidator {
-    static getDiscounts(): any;
-    static createDiscount(): any;
-    static getDiscount(): any;
-    static updateDiscount(): any;
-    static validateDiscountFile(): any;
-    static downloadDiscountFile(): any;
-    static getValidationJob(): any;
-    static cancelValidationJob(): any;
-    static getDownloadJob(): any;
-    static cancelDownloadJob(): any;
-}
