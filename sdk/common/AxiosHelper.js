@@ -22,7 +22,7 @@ function getTransformer(config) {
   );
 }
 
-function requestInterceptorFn(options) {
+function requestInterceptorFn() {
   return (config) => {
     if (!config.url) {
       throw new Error(
@@ -35,47 +35,44 @@ function requestInterceptorFn(options) {
       url = combineURLs(config.baseURL, config.url);
     }
     const { host, pathname, search } = new URL(url);
-    if (pathname.startsWith("/service")) {
-      const { data, headers, method, params } = config;
-      let queryParam = "";
-      if (params && Object.keys(params).length) {
-        if (search && search.trim() !== "") {
-          queryParam = `&${querystring.stringify(params)}`;
-        } else {
-          queryParam = `?${querystring.stringify(params)}`;
-        }
+    const { data, headers, method, params } = config;
+    let queryParam = "";
+    if (params && Object.keys(params).length) {
+      if (search && search.trim() !== "") {
+        queryParam = `&${querystring.stringify(params)}`;
+      } else {
+        queryParam = `?${querystring.stringify(params)}`;
       }
-      let transformedData;
-      if (method != "get") {
-        const transformRequest = getTransformer(config);
-        transformedData = transformRequest(data, headers);
-      }
-
-      // Remove all the default Axios headers
-      const {
-        common,
-        delete: _delete, // 'delete' is a reserved word
-        get,
-        head,
-        post,
-        put,
-        patch,
-        ...headersToSign
-      } = headers;
-
-      const signingOptions = {
-        method: method && method.toUpperCase(),
-        host: host,
-        path: pathname + search + queryParam,
-        body: transformedData,
-        headers: headersToSign,
-      };
-      sign(signingOptions);
-
-      config.headers["x-fp-date"] = signingOptions.headers["x-fp-date"];
-      config.headers["x-fp-signature"] =
-        signingOptions.headers["x-fp-signature"];
     }
+    let transformedData;
+    if (method != "get") {
+      const transformRequest = getTransformer(config);
+      transformedData = transformRequest(data, headers);
+    }
+
+    // Remove all the default Axios headers
+    const {
+      common,
+      delete: _delete, // 'delete' is a reserved word
+      get,
+      head,
+      post,
+      put,
+      patch,
+      ...headersToSign
+    } = headers;
+
+    const signingOptions = {
+      method: method && method.toUpperCase(),
+      host: host,
+      path: pathname + search + queryParam,
+      body: transformedData,
+      headers: headersToSign,
+    };
+    sign(signingOptions);
+
+    config.headers["x-fp-date"] = signingOptions.headers["x-fp-date"];
+    config.headers["x-fp-signature"] = signingOptions.headers["x-fp-signature"];
     return config;
   };
 }
@@ -85,7 +82,7 @@ const fdkAxios = axios.create({
   },
 });
 
-fdkAxios.interceptors.request.use(requestInterceptorFn({}));
+fdkAxios.interceptors.request.use(requestInterceptorFn());
 fdkAxios.interceptors.response.use(
   function (response) {
     return response.data; // IF 2XX then return response.data only

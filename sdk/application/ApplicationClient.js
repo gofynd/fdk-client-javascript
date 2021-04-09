@@ -3318,6 +3318,66 @@ class Content {
 
   /**
     *
+    * @summary: Get blogs
+    * @description: Use this to get blogs.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    
+    **/
+  getBlogs({ pageNo, pageSize } = {}) {
+    const { error } = ContentValidator.getBlogs().validate(
+      { pageNo, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return new Promise(() => {
+        throw error;
+      });
+    }
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/blogs/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get blogs
+    * @description: Use this to get blogs.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    
+    **/
+  getBlogsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getBlogs({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
     * @summary: Get frequently asked questions
     * @description: Get frequently asked questions list. These will be helpful for users to using website.
     * @param {Object} arg - arg object.
@@ -3602,6 +3662,66 @@ class Content {
       query,
       undefined
     );
+  }
+
+  /**
+    *
+    * @summary: Get pages
+    * @description: Use this to get pages.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    
+    **/
+  getPages({ pageNo, pageSize } = {}) {
+    const { error } = ContentValidator.getPages().validate(
+      { pageNo, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return new Promise(() => {
+        throw error;
+      });
+    }
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/pages/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get pages
+    * @description: Use this to get pages.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    
+    **/
+  getPagesPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getPages({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
   }
 
   /**

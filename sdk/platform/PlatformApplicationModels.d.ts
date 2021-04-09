@@ -159,31 +159,11 @@ export class OrderValidator {
     static failedOrders(): any;
     static reprocessOrder(): any;
 }
-export class CatalogValidator {
-    static deleteSearchKeywords(): any;
-    static updateSearchKeywords(): any;
-    static getSearchKeywords(): any;
-    static createCustomKeyword(): any;
-    static getAllSearchKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
-    static updateAutocompleteKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
-    static createCustomAutocompleteRule(): any;
-    static getAutocompleteConfig(): any;
-    static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
-    static getConfigurations(): any;
-    static createConfigurationByType(): any;
-    static getConfigurationByType(): any;
-    static getQueryFilters(): any;
-    static createCollection(): any;
-    static getAllCollections(): any;
-    static getCollectionDetail(): any;
-    static deleteCollection(): any;
-    static updateCollection(): any;
-    static addCollectionItems(): any;
-    static getCollectionItems(): any;
-    static getCatalogInsights(): any;
+export class FileStorageValidator {
+    static appStartUpload(): any;
+    static appCompleteUpload(): any;
+    static appCopyFiles(): any;
+    static appBrowse(): any;
 }
 export class ShareValidator {
     static createShortLink(): any;
@@ -237,4 +217,14 @@ export class RewardsValidator {
     static getUserAvailablePoints(): any;
     static updateUserStatus(): any;
     static getUserPointsHistory(): any;
+}
+export class AnalyticsValidator {
+    static getStatiscticsGroups(): any;
+    static getStatiscticsGroupComponents(): any;
+    static getComponentStatsCSV(): any;
+    static getComponentStatsPDF(): any;
+    static getComponentStats(): any;
+    static getAbandonCartList(): any;
+    static getAbandonCartsCSV(): any;
+    static getAbandonCartDetail(): any;
 }

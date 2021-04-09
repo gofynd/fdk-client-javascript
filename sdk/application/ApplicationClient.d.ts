@@ -1364,6 +1364,30 @@ declare class Content {
     }): any;
     /**
       *
+      * @summary: Get blogs
+      * @description: Use this to get blogs.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+      
+      **/
+    getBlogs({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get blogs
+      * @description: Use this to get blogs.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+      
+      **/
+    getBlogsPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator;
+    /**
+      *
       * @summary: Get frequently asked questions
       * @description: Get frequently asked questions list. These will be helpful for users to using website.
       * @param {Object} arg - arg object.
@@ -1462,6 +1486,30 @@ declare class Content {
     getPage({ slug }?: {
         slug: string;
     }): any;
+    /**
+      *
+      * @summary: Get pages
+      * @description: Use this to get pages.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+      
+      **/
+    getPages({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get pages
+      * @description: Use this to get pages.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+      
+      **/
+    getPagesPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator;
     /**
       *
       * @summary: Get seo of application

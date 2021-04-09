@@ -140,6 +140,7 @@
   * Methods
     * [getAnnouncements](#getannouncements)
     * [getBlog](#getblog)
+    * [getBlogs](#getblogs)
     * [getFaqs](#getfaqs)
     * [getFaqCategories](#getfaqcategories)
     * [getFaqBySlug](#getfaqbyslug)
@@ -149,6 +150,7 @@
     * [getLegalInformation](#getlegalinformation)
     * [getNavigations](#getnavigations)
     * [getPage](#getpage)
+    * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
@@ -8602,6 +8604,101 @@ default
 ---
 
 
+#### getBlogs
+Get blogs
+
+```javascript
+// Promise
+const promise = content.getBlogs(pageNo,pageSize);
+
+// Async/Await
+const data = await content.getBlogs(pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
+
+Use this to get blogs.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `BlogGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/BlogGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getFaqs
 Get frequently asked questions
 
@@ -9341,6 +9438,101 @@ default
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPages
+Get pages
+
+```javascript
+// Promise
+const promise = content.getPages(pageNo,pageSize);
+
+// Async/Await
+const data = await content.getPages(pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
+
+Use this to get pages.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `PageGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/PageGetResponse"
 }
 ```
 
