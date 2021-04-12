@@ -3488,7 +3488,7 @@ Validate coupon for selected payment mode
 Cart Affiliates.
 
 
-Schema: `PaymentUpdate`
+Schema: `PaymentCouponValidate`
 
 
 
@@ -16073,7 +16073,7 @@ Validate coupon for selected payment mode
 Cart Affiliates.
 
 
-Schema: `PaymentUpdate`
+Schema: `PaymentCouponValidate`
 
 
 
