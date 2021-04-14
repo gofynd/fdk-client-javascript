@@ -1,42 +1,37 @@
 'use strict';
 
-const {initExtension} = require('./extension');
+const {extension} = require('./extension');
 const setupRoutes = require("./routes");
 const { setupProxyRoutes } = require("./api_routes");
-const FdkHelper = require("./fdk_helper");
 const Session = require("./session/session");
 const SessionStorage = require("./session/session_storage");
 const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
 
 
 function setupFdk(data) {
-    data.prefix = data.prefix ? data.prefix : "/callback";
-    let extension = initExtension(data);
+    extension.initialize(data);
     let router = setupRoutes(extension);
     let { apiRoutes, applicationProxyRoutes } = setupProxyRoutes();
 
 
-    async function getPlatformClient(cluster, companyId) {
-        let fdkHelper = FdkHelper.getInstance(cluster, extension);
-        let platformConfig = await fdkHelper.getPlatformConfigInstance(companyId);
+    async function getPlatformClient(companyId) {
         let client = null;
         if(!extension.isOnlineAccessMode()) {
             let sid = Session.generateSessionId(false, {
-                cluster: cluster,
+                cluster: extension.cluster,
                 companyId: companyId
             });
             let session = await SessionStorage.getSession(sid);
-            platformConfig.oauthClient.setToken(session);
-            client = new PlatformClient(platformConfig);
+            client = extension.getPlatformClient(companyId, session);
         }
         return client;
     }
 
-    async function getApplicationClient(cluster, applicationId, applicationToken) {
+    async function getApplicationClient(applicationId, applicationToken) {
         let applicationConfig = new ApplicationConfig({
             applicationID: applicationId,
             applicationToken: applicationToken,
-            domain: cluster
+            domain: extension.cluster
         });
         let applicationClient = new ApplicationClient(applicationConfig);
         return applicationClient;

@@ -5,7 +5,6 @@ const { v4 : uuidv4, v4} = require("uuid");
 class Session {
     constructor(id, isNew = true) {
         this.id = id;
-        this.cluster = null;
         this.company_id = null;
         this.state = null;
         this.scope = null;
@@ -34,7 +33,6 @@ class Session {
             access_token: this.access_token,
             current_user: this.current_user,
             refresh_token: this.refresh_token,
-            cluster: this.cluster,
             expires_in: this.expires_in
         };
     }

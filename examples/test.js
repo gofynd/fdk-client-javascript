@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const {
     setupFdk
 } = require("../express");
-const { MemoryStorage, RedisStorage } = require("./../express/storage");
+const { RedisStorage } = require("./../express/storage");
 const extensionHandler = require("./extension.handler");
 const Redis = require("ioredis");
 
@@ -24,18 +24,14 @@ console.log(baseUrl);
 const redis = new Redis();
 
 let FDKExtension = setupFdk({
-    name: "Transformer",
+    api_key: "000001",
+    api_secret: "tetsjskdjalsjdl",
     base_url: baseUrl,
-    logo: {
-        small: `${baseUrl}/icon.png`,
-        large: `${baseUrl}/icon.png`
-    },
     scopes: ["company/products"],
     callbacks: extensionHandler,
-    contact_email: "xyz@gmail.com",
-    developed_by_name: "Fynd",
     storage: new RedisStorage(redis),
-    access_mode: "offline"
+    access_mode: "offline",
+    cluster: "https://api.fyndx0.de" // this is optional by default it points to prod.
 });
 
 app.use(FDKExtension.fdkHandler);
