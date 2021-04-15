@@ -13,7 +13,6 @@ declare class ApplicationClient {
     configuration: Configuration;
     payment: Payment;
     order: Order;
-    rewards: Rewards;
     feedback: Feedback;
     posCart: PosCart;
     logistic: Logistic;
@@ -2190,82 +2189,6 @@ declare class Order {
       **/
     getPosOrderById({ orderId }?: {
         orderId: string;
-    }): any;
-}
-declare class Rewards {
-    constructor(_conf: any);
-    _conf: any;
-    /**
-     *
-     * @summary: Get reward points that could be earned on any catalogue product.
-     * @description: Evaluate the amount of reward points that could be earned on any catalogue product.
-     * @param {Object} arg - arg object.
-     * @param {CatalogueOrderRequest} arg.body
-     **/
-    getPointsOnProduct({ body }?: {
-        body: any;
-    }): any;
-    /**
-     *
-     * @summary: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
-     * @description: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
-     * @param {Object} arg - arg object.
-     * @param {OrderDiscountRequest} arg.body
-     **/
-    getOrderDiscount({ body }?: {
-        body: any;
-    }): any;
-    /**
-      *
-      * @summary: Total available points of a user for current application
-      * @description: Total available points of a user for current application
-      * @param {Object} arg - arg object.
-      
-      **/
-    getUserPoints({}?: any): any;
-    /**
-      *
-      * @summary: Get list of points transactions.
-      * @description: Get list of points transactions.
-  The list of points history is paginated.
-      * @param {Object} arg - arg object.
-      * @param {string} [arg.pageId] - PageID is the ID of the requested page. For first request it should be kept empty.
-      * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
-      
-      **/
-    getUserPointsHistory({ pageId, pageSize }?: {
-        pageId?: string;
-        pageSize?: number;
-    }): any;
-    /**
-      *
-      * @summary: Get list of points transactions.
-      * @description: Get list of points transactions.
-  The list of points history is paginated.
-      * @param {Object} arg - arg object.
-      * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
-      
-      **/
-    getUserPointsHistoryPaginator({ pageSize }?: {
-        pageSize?: number;
-    }): Paginator;
-    /**
-      *
-      * @summary: User's referral details.
-      * @description: User's referral details.
-      * @param {Object} arg - arg object.
-      
-      **/
-    getUserReferralDetails({}?: any): any;
-    /**
-     *
-     * @summary: Redeems referral code and credits points to users points account.
-     * @description: Redeems referral code and credits points to users points account.
-     * @param {Object} arg - arg object.
-     * @param {RedeemReferralCodeRequest} arg.body
-     **/
-    redeemReferralCode({ body }?: {
-        body: any;
     }): any;
 }
 declare class Feedback {
