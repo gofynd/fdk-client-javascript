@@ -13,17 +13,6 @@ export class LeadValidator {
     static openVideoRoom(): any;
     static closeVideoRoom(): any;
 }
-export class FeedbackValidator {
-    static getAttributes(): any;
-    static getCustomerReviews(): any;
-    static updateApprove(): any;
-    static getHistory(): any;
-    static getApplicationTemplates(): any;
-    static createTemplate(): any;
-    static getTemplateById(): any;
-    static updateTemplate(): any;
-    static updateTemplateStatus(): any;
-}
 export class ThemeValidator {
     static getThemeLibrary(): any;
     static addToThemeLibrary(): any;
@@ -160,29 +149,29 @@ export class OrderValidator {
     static reprocessOrder(): any;
 }
 export class CatalogValidator {
+    static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
-    static deleteSearchKeywords(): any;
-    static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
+    static getAllSearchKeyword(): any;
+    static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static deleteAutocompleteKeyword(): any;
-    static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
+    static getAutocompleteConfig(): any;
     static getCatalogConfiguration(): any;
-    static getConfigurations(): any;
     static createConfigurationProductListing(): any;
-    static getConfigurationByType(): any;
+    static getConfigurations(): any;
     static createConfigurationByType(): any;
+    static getConfigurationByType(): any;
     static getQueryFilters(): any;
-    static getAllCollections(): any;
     static createCollection(): any;
+    static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
-    static getCollectionItems(): any;
+    static updateCollection(): any;
     static addCollectionItems(): any;
+    static getCollectionItems(): any;
     static getCatalogInsights(): any;
 }
 export class FileStorageValidator {
@@ -253,8 +242,4 @@ export class AnalyticsValidator {
     static getAbandonCartList(): any;
     static getAbandonCartsCSV(): any;
     static getAbandonCartDetail(): any;
-}
-export class PartnerValidator {
-    static addProxyPath(): any;
-    static removeProxyPath(): any;
 }

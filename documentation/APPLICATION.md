@@ -13,7 +13,7 @@
 * [Configuration](#Configuration) - Application configuration apis 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
-* [Feedback](#Feedback) - User Reviews and Rating System 
+* [Rewards](#Rewards) - Earn and redeem Reward Points 
 * [PosCart](#PosCart) - Cart APIs 
 * [Logistic](#Logistic) - Handles Platform websites OMS 
 
@@ -151,7 +151,6 @@
     * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
-    * [getSlideshows](#getslideshows)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
@@ -231,34 +230,14 @@
     * [getPosOrderById](#getposorderbyid)
     
 
-* [Feedback](#Feedback)
+* [Rewards](#Rewards)
   * Methods
-    * [createAbuseReport](#createabusereport)
-    * [updateAbuseReport](#updateabusereport)
-    * [getAbuseReports](#getabusereports)
-    * [getAttributes](#getattributes)
-    * [createAttribute](#createattribute)
-    * [getAttribute](#getattribute)
-    * [updateAttribute](#updateattribute)
-    * [createComment](#createcomment)
-    * [updateComment](#updatecomment)
-    * [getComments](#getcomments)
-    * [checkEligibility](#checkeligibility)
-    * [deleteMedia](#deletemedia)
-    * [createMedia](#createmedia)
-    * [updateMedia](#updatemedia)
-    * [getMedias](#getmedias)
-    * [getReviewSummaries](#getreviewsummaries)
-    * [createReview](#createreview)
-    * [updateReview](#updatereview)
-    * [getReviews](#getreviews)
-    * [getTemplates](#gettemplates)
-    * [createQuestion](#createquestion)
-    * [updateQuestion](#updatequestion)
-    * [getQuestionAndAnswers](#getquestionandanswers)
-    * [getVotes](#getvotes)
-    * [createVote](#createvote)
-    * [updateVote](#updatevote)
+    * [getPointsOnProduct](#getpointsonproduct)
+    * [getOrderDiscount](#getorderdiscount)
+    * [getUserPoints](#getuserpoints)
+    * [getUserPointsHistory](#getuserpointshistory)
+    * [getUserReferralDetails](#getuserreferraldetails)
+    * [redeemReferralCode](#redeemreferralcode)
     
 
 * [PosCart](#PosCart)
@@ -523,7 +502,7 @@ const data = await catalog.getProductComparisonBySlugs(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | array | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** | 
+| slug | string | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** | 
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
 
@@ -3160,7 +3139,7 @@ const data = await cart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
 | uid | integer |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
-| tags | string |  | 
+| tags | integer |  | 
 | isDefault | boolean |  | 
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -3238,7 +3217,7 @@ const data = await cart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefau
 | uid | integer |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
-| tags | string |  | 
+| tags | integer |  | 
 | isDefault | boolean |  | 
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -9676,101 +9655,6 @@ default
 ---
 
 
-#### getSlideshows
-Get slideshows
-
-```javascript
-// Promise
-const promise = content.getSlideshows(pageNo,pageSize);
-
-// Async/Await
-const data = await content.getSlideshows(pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
-
-Use this to get slideshows.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `SlideshowGetResponse`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/SlideshowGetResponse"
-}
-```
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSlideshow
 Get slideshow by slug
 
@@ -12795,24 +12679,24 @@ Schema: `ApefaceApiError`
 ---
 
 
-## Feedback
+## Rewards
 
 
-#### createAbuseReport
-post a new abuse request
+#### getPointsOnProduct
+Get reward points that could be earned on any catalogue product.
 
 ```javascript
 // Promise
-const promise = feedback.createAbuseReport(body);
+const promise = rewards.getPointsOnProduct(body);
 
 // Async/Await
-const data = await feedback.createAbuseReport(body);
+const data = await rewards.getPointsOnProduct(body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Report a new abuse for specific entity with description text.
+Evaluate the amount of reward points that could be earned on any catalogue product.
 
 *Success Response:*
 
@@ -12821,7 +12705,7 @@ Report a new abuse for specific entity with description text.
 ok
 
 
-Schema: `InsertResponse`
+Schema: `CatalogueOrderResponse`
 
 
 
@@ -12833,7 +12717,7 @@ Schema: `InsertResponse`
 Bad request
 
 
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -12846,21 +12730,21 @@ Schema: `FeedbackError`
 ---
 
 
-#### updateAbuseReport
-Update abuse details
+#### getOrderDiscount
+Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
 
 ```javascript
 // Promise
-const promise = feedback.updateAbuseReport(body);
+const promise = rewards.getOrderDiscount(body);
 
 // Async/Await
-const data = await feedback.updateAbuseReport(body);
+const data = await rewards.getOrderDiscount(body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Update the abuse details like status and description text.
+Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
 
 *Success Response:*
 
@@ -12869,7 +12753,7 @@ Update the abuse details like status and description text.
 ok
 
 
-Schema: `UpdateResponse`
+Schema: `OrderDiscountResponse`
 
 
 
@@ -12881,7 +12765,7 @@ Schema: `UpdateResponse`
 Bad request
 
 
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -12894,26 +12778,21 @@ Schema: `FeedbackError`
 ---
 
 
-#### getAbuseReports
-Get list of abuse data
+#### getUserPoints
+Total available points of a user for current application
 
 ```javascript
 // Promise
-const promise = feedback.getAbuseReports(entityId,entityType,id,pageId,pageSize);
+const promise = rewards.getUserPoints();
 
 // Async/Await
-const data = await feedback.getAbuseReports(entityId,entityType,id,pageId,pageSize);
+const data = await rewards.getUserPoints();
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entityId | string | entity id | 
-| entityType | string | entity type | 
-| id | string | abuse id | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
 
-Get the list of abuse data from entity type and entity ID.
+Total available points of a user for current application
 
 *Success Response:*
 
@@ -12922,7 +12801,7 @@ Get the list of abuse data from entity type and entity ID.
 ok
 
 
-Schema: `ReportAbuseGetResponse`
+Schema: `PointsResponse`
 
 
 
@@ -12934,7 +12813,7 @@ Schema: `ReportAbuseGetResponse`
 Bad request
 
 
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -12947,23 +12826,24 @@ Schema: `FeedbackError`
 ---
 
 
-#### getAttributes
-Get list of attribute data
+#### getUserPointsHistory
+Get list of points transactions.
 
 ```javascript
 // Promise
-const promise = feedback.getAttributes(pageNo,pageSize);
+const promise = rewards.getUserPointsHistory(pageId,pageSize);
 
 // Async/Await
-const data = await feedback.getAttributes(pageNo,pageSize);
+const data = await rewards.getUserPointsHistory(pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | integer | pagination page no | 
-| pageSize | integer | pagination page size | 
+| pageId | string | PageID is the ID of the requested page. For first request it should be kept empty. | 
+| pageSize | integer | PageSize is the number of requested items in response. | 
 
-Provides a list of all attribute data.
+Get list of points transactions.
+The list of points history is paginated.
 
 *Success Response:*
 
@@ -12972,7 +12852,7 @@ Provides a list of all attribute data.
 ok
 
 
-Schema: `AttributeResponse`
+Schema: `PointsHistoryResponse`
 
 
 
@@ -12984,7 +12864,7 @@ Schema: `AttributeResponse`
 Bad request
 
 
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -12997,21 +12877,21 @@ Schema: `FeedbackError`
 ---
 
 
-#### createAttribute
-Add a new attribute request
+#### getUserReferralDetails
+User's referral details.
 
 ```javascript
 // Promise
-const promise = feedback.createAttribute(body);
+const promise = rewards.getUserReferralDetails();
 
 // Async/Await
-const data = await feedback.createAttribute(body);
+const data = await rewards.getUserReferralDetails();
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Add a new attribute with its name, slug and description.
+User's referral details.
 
 *Success Response:*
 
@@ -13020,7 +12900,7 @@ Add a new attribute with its name, slug and description.
 ok
 
 
-Schema: `InsertResponse`
+Schema: `ReferralDetailsResponse`
 
 
 
@@ -13032,7 +12912,7 @@ Schema: `InsertResponse`
 Bad request
 
 
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -13045,22 +12925,21 @@ Schema: `FeedbackError`
 ---
 
 
-#### getAttribute
-Get single attribute data
+#### redeemReferralCode
+Redeems referral code and credits points to users points account.
 
 ```javascript
 // Promise
-const promise = feedback.getAttribute(slug);
+const promise = rewards.redeemReferralCode(body);
 
 // Async/Await
-const data = await feedback.getAttribute(slug);
+const data = await rewards.redeemReferralCode(body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | Slug of attribute | 
 
-Get a single attribute data from a given slug.
+Redeems referral code and credits points to users points account.
 
 *Success Response:*
 
@@ -13069,7 +12948,7 @@ Get a single attribute data from a given slug.
 ok
 
 
-Schema: `Attribute`
+Schema: `RedeemReferralCodeResponse`
 
 
 
@@ -13081,1014 +12960,7 @@ Schema: `Attribute`
 Bad request
 
 
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAttribute
-Update attribute details
-
-```javascript
-// Promise
-const promise = feedback.updateAttribute(slug,body);
-
-// Async/Await
-const data = await feedback.updateAttribute(slug,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | Slug of attribute | 
-
-Update the attribute's name and description.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createComment
-post a new comment
-
-```javascript
-// Promise
-const promise = feedback.createComment(body);
-
-// Async/Await
-const data = await feedback.createComment(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to add a new comment for specific entity.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateComment
-Update comment status
-
-```javascript
-// Promise
-const promise = feedback.updateComment(body);
-
-// Async/Await
-const data = await feedback.updateComment(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Update the comment status (active/approve) or text.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getComments
-Get list of comments
-
-```javascript
-// Promise
-const promise = feedback.getComments(entityType,id,entityId,userId,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getComments(entityType,id,entityId,userId,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| id | string | comment id | 
-| entityId | string | entity id | 
-| userId | string | user id - flag/filter to get comments for user | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
-
-Get the list of comments from specific entity type.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `CommentGetResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### checkEligibility
-Checks eligibility and cloud media config
-
-```javascript
-// Promise
-const promise = feedback.checkEligibility(entityType,entityId);
-
-// Async/Await
-const data = await feedback.checkEligibility(entityType,entityId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-
-Checks eligibility to rate and review and cloud media configuration
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `CheckEligibilityResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteMedia
-Delete Media
-
-```javascript
-// Promise
-const promise = feedback.deleteMedia();
-
-// Async/Await
-const data = await feedback.deleteMedia();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Delete Media for the given entity IDs.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createMedia
-Add Media
-
-```javascript
-// Promise
-const promise = feedback.createMedia(body);
-
-// Async/Await
-const data = await feedback.createMedia(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Add Media list for specific entity.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateMedia
-Update Media
-
-```javascript
-// Promise
-const promise = feedback.updateMedia(body);
-
-// Async/Await
-const data = await feedback.updateMedia(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Update Media (archive/approve) for the given entity.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getMedias
-Get Media
-
-```javascript
-// Promise
-const promise = feedback.getMedias(entityType,entityId,id,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getMedias(entityType,entityId,id,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | vote id | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
-
-Get Media from the given entity type and entity ID.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `MediaGetResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getReviewSummaries
-Get a review summary
-
-```javascript
-// Promise
-const promise = feedback.getReviewSummaries(entityType,entityId,id,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getReviewSummaries(entityType,entityId,id,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | review summary identifier | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
-
-Review summary gives ratings and attribute metrics of a review per entity
-It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
-
-*Success Response:*
-
-
-
-success
-
-
-Schema: `RatingGetResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createReview
-Add customer reviews
-
-```javascript
-// Promise
-const promise = feedback.createReview(body);
-
-// Async/Await
-const data = await feedback.createReview(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Add customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateReview
-Update customer reviews
-
-```javascript
-// Promise
-const promise = feedback.updateReview(body);
-
-// Async/Await
-const data = await feedback.updateReview(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Update customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getReviews
-Get list of customer reviews
-
-```javascript
-// Promise
-const promise = feedback.getReviews(entityType,entityId,id,userId,media,rating,attributeRating,facets,sort,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getReviews(entityType,entityId,id,userId,media,rating,attributeRating,facets,sort,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | review id | 
-| userId | string | user id | 
-| media | string | media type e.g. image | video | video_file | video_link | 
-| rating | array | rating filter, 1-5 | 
-| attributeRating | array | attribute rating filter | 
-| facets | boolean | facets (true|false) | 
-| sort | string | sort by : default | top | recent | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
-
-This is used to get the list of customer reviews based on entity and provided filters.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `ReviewGetResponse`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getTemplates
-Get the templates for product or l3 type
-
-```javascript
-// Promise
-const promise = feedback.getTemplates(templateId,entityId,entityType);
-
-// Async/Await
-const data = await feedback.getTemplates(templateId,entityId,entityType);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| templateId | string | template id | 
-| entityId | string | entity id | 
-| entityType | string | entity type e.g. product | l3 | 
-
-This is used to get the templates details.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `CursorGetResponse`
-
-
-
-
-
-
-
-
-Bad Request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createQuestion
-Create a new question
-
-```javascript
-// Promise
-const promise = feedback.createQuestion(body);
-
-// Async/Await
-const data = await feedback.createQuestion(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to create a new question with following data:
-tags, text, type, choices for MCQ type questions, maximum length of answer.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateQuestion
-Update question
-
-```javascript
-// Promise
-const promise = feedback.updateQuestion(body);
-
-// Async/Await
-const data = await feedback.updateQuestion(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to update question's status, tags and choices.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getQuestionAndAnswers
-Get a list of QnA
-
-```javascript
-// Promise
-const promise = feedback.getQuestionAndAnswers(entityType,entityId,id,showAnswer,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getQuestionAndAnswers(entityType,entityId,id,showAnswer,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | qna id | 
-| showAnswer | boolean | show answer flag | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
-
-This is used to get a list of questions and its answers.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `QNAGetResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getVotes
-Get list of votes
-
-```javascript
-// Promise
-const promise = feedback.getVotes(id,refType,pageNo,pageSize);
-
-// Async/Await
-const data = await feedback.getVotes(id,refType,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | string | vote id | 
-| refType | string | entity type e.g. review | comment | 
-| pageNo | integer | pagination page no | 
-| pageSize | integer | pagination page size | 
-
-This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `VoteResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createVote
-Create a new vote
-
-```javascript
-// Promise
-const promise = feedback.createVote(body);
-
-// Async/Await
-const data = await feedback.createVote(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to create a new vote and the actions can be upvote or downvote.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateVote
-Update vote
-
-```javascript
-// Promise
-const promise = feedback.updateVote(body);
-
-// Async/Await
-const data = await feedback.updateVote(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-This is used to update the vote and the actions can be upvote or downvote.
-
-*Success Response:*
-
-
-
-ok
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request
-
-
-Schema: `FeedbackError`
+Schema: `Error`
 
 
 
@@ -15542,7 +14414,7 @@ const data = await poscart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault
 | uid | integer |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
-| tags | string |  | 
+| tags | integer |  | 
 | isDefault | boolean |  | 
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -15620,7 +14492,7 @@ const data = await poscart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDe
 | uid | integer |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
-| tags | string |  | 
+| tags | integer |  | 
 | isDefault | boolean |  | 
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
