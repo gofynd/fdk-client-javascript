@@ -152,6 +152,7 @@
     * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
+    * [getSlideshows](#getslideshows)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
@@ -3170,7 +3171,7 @@ const data = await cart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault);
 | uid | integer |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
-| tags | integer |  | 
+| tags | string |  | 
 | isDefault | boolean |  | 
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -3248,7 +3249,7 @@ const data = await cart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDefau
 | uid | integer |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
-| tags | integer |  | 
+| tags | string |  | 
 | isDefault | boolean |  | 
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -9686,6 +9687,101 @@ default
 ---
 
 
+#### getSlideshows
+Get slideshows
+
+```javascript
+// Promise
+const promise = content.getSlideshows(pageNo,pageSize);
+
+// Async/Await
+const data = await content.getSlideshows(pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
+
+Use this to get slideshows.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowGetResponse"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getSlideshow
 Get slideshow by slug
 
@@ -15755,7 +15851,7 @@ const data = await poscart.getAddresses(uid,mobileNo,checkoutMode,tags,isDefault
 | uid | integer |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
-| tags | integer |  | 
+| tags | string |  | 
 | isDefault | boolean |  | 
 
 Get all the addresses associated with the account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
@@ -15833,7 +15929,7 @@ const data = await poscart.getAddressById(id,uid,mobileNo,checkoutMode,tags,isDe
 | uid | integer |  | 
 | mobileNo | string |  | 
 | checkoutMode | string |  | 
-| tags | integer |  | 
+| tags | string |  | 
 | isDefault | boolean |  | 
 
 Get a addresses with the given id. If successful, returns a Address resource in the response body specified in `Address`.attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>

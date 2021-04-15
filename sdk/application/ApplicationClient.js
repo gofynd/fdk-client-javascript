@@ -1572,7 +1572,7 @@ class Cart {
     * @param {number} [arg.uid] - 
     * @param {string} [arg.mobileNo] - 
     * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
+    * @param {string} [arg.tags] - 
     * @param {boolean} [arg.isDefault] - 
     
     **/
@@ -1639,7 +1639,7 @@ class Cart {
     * @param {number} [arg.uid] - 
     * @param {string} [arg.mobileNo] - 
     * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
+    * @param {string} [arg.tags] - 
     * @param {boolean} [arg.isDefault] - 
     
     **/
@@ -3751,6 +3751,66 @@ class Content {
       query,
       undefined
     );
+  }
+
+  /**
+    *
+    * @summary: Get slideshows
+    * @description: Use this to get slideshows.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    
+    **/
+  getSlideshows({ pageNo, pageSize } = {}) {
+    const { error } = ContentValidator.getSlideshows().validate(
+      { pageNo, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return new Promise(() => {
+        throw error;
+      });
+    }
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/slideshow/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get slideshows
+    * @description: Use this to get slideshows.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    
+    **/
+  getSlideshowsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSlideshows({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
   }
 
   /**
@@ -7131,7 +7191,7 @@ class PosCart {
     * @param {number} [arg.uid] - 
     * @param {string} [arg.mobileNo] - 
     * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
+    * @param {string} [arg.tags] - 
     * @param {boolean} [arg.isDefault] - 
     
     **/
@@ -7198,7 +7258,7 @@ class PosCart {
     * @param {number} [arg.uid] - 
     * @param {string} [arg.mobileNo] - 
     * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
+    * @param {string} [arg.tags] - 
     * @param {boolean} [arg.isDefault] - 
     
     **/

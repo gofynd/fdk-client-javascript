@@ -686,7 +686,7 @@ declare class Cart {
       * @param {number} [arg.uid] -
       * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
-      * @param {number} [arg.tags] -
+      * @param {string} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
       
       **/
@@ -694,7 +694,7 @@ declare class Cart {
         uid?: number;
         mobileNo?: string;
         checkoutMode?: string;
-        tags?: number;
+        tags?: string;
         isDefault?: boolean;
     }): any;
     /**
@@ -716,7 +716,7 @@ declare class Cart {
       * @param {number} [arg.uid] -
       * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
-      * @param {number} [arg.tags] -
+      * @param {string} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
       
       **/
@@ -725,7 +725,7 @@ declare class Cart {
         uid?: number;
         mobileNo?: string;
         checkoutMode?: string;
-        tags?: number;
+        tags?: string;
         isDefault?: boolean;
     }): any;
     /**
@@ -1518,6 +1518,30 @@ declare class Content {
       
       **/
     getSEOConfiguration({}?: any): any;
+    /**
+      *
+      * @summary: Get slideshows
+      * @description: Use this to get slideshows.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+      
+      **/
+    getSlideshows({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get slideshows
+      * @description: Use this to get slideshows.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+      
+      **/
+    getSlideshowsPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator;
     /**
       *
       * @summary: Get slideshow by slug
@@ -2884,7 +2908,7 @@ declare class PosCart {
       * @param {number} [arg.uid] -
       * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
-      * @param {number} [arg.tags] -
+      * @param {string} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
       
       **/
@@ -2892,7 +2916,7 @@ declare class PosCart {
         uid?: number;
         mobileNo?: string;
         checkoutMode?: string;
-        tags?: number;
+        tags?: string;
         isDefault?: boolean;
     }): any;
     /**
@@ -2914,7 +2938,7 @@ declare class PosCart {
       * @param {number} [arg.uid] -
       * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
-      * @param {number} [arg.tags] -
+      * @param {string} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
       
       **/
@@ -2923,7 +2947,7 @@ declare class PosCart {
         uid?: number;
         mobileNo?: string;
         checkoutMode?: string;
-        tags?: number;
+        tags?: string;
         isDefault?: boolean;
     }): any;
     /**
