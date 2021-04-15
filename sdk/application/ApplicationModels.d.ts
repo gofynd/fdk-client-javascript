@@ -251,18 +251,18 @@ export class LogisticValidator {
     static getPincodeCity(): any;
 }
 export class Validator {
-    static ProductDetailAttribute(): any;
-    static ProductDetailGroupedAttribute(): any;
     static Media(): any;
     static ProductListingActionPage(): any;
     static ProductListingAction(): any;
     static ProductBrand(): any;
+    static ProductDetailAttribute(): any;
+    static ProductDetailGroupedAttribute(): any;
     static ProductDetail(): any;
     static ErrorResponse(): any;
     static ProductSize(): any;
-    static SizeChartValues(): any;
     static ColumnHeader(): any;
     static ColumnHeaders(): any;
+    static SizeChartValues(): any;
     static SizeChart(): any;
     static Price(): any;
     static ProductListingPrice(): any;
@@ -271,8 +271,8 @@ export class Validator {
     static ProductSetDistributionSize(): any;
     static ProductSetDistribution(): any;
     static ProductSet(): any;
-    static Seller(): any;
     static ProductStockPrice(): any;
+    static Seller(): any;
     static ArticleAssignment(): any;
     static Store(): any;
     static ProductSizePriceResponse(): any;
@@ -293,8 +293,8 @@ export class Validator {
     static ProductStockStatusResponse(): any;
     static ProductStockPolling(): any;
     static ProductListingDetail(): any;
-    static ProductFiltersValue(): any;
     static ProductFiltersKey(): any;
+    static ProductFiltersValue(): any;
     static ProductFilters(): any;
     static ProductSortOn(): any;
     static ProductListingResponse(): any;
@@ -302,9 +302,9 @@ export class Validator {
     static BrandItem(): any;
     static BrandListingResponse(): any;
     static BrandDetailResponse(): any;
+    static DepartmentIdentifier(): any;
     static CategoryItems(): any;
     static DepartmentCategoryTree(): any;
-    static DepartmentIdentifier(): any;
     static CategoryListingResponse(): any;
     static CategoryMetaResponse(): any;
     static HomeListingResponse(): any;
@@ -313,8 +313,8 @@ export class Validator {
     static AutocompleteItem(): any;
     static AutoCompleteResponse(): any;
     static GetCollectionDetailNest(): any;
-    static CollectionListingFilterTag(): any;
     static CollectionListingFilterType(): any;
+    static CollectionListingFilterTag(): any;
     static CollectionListingFilter(): any;
     static GetCollectionListingResponse(): any;
     static CollectionDetailResponse(): any;
@@ -870,6 +870,7 @@ export class Validator {
     static Reasons(): any;
     static ShipmentStatus(): any;
     static ShipmentUserInfo(): any;
+    static ShipmentTotalDetails(): any;
     static Track(): any;
     static TrackingDetails(): any;
     static UserInfo(): any;
