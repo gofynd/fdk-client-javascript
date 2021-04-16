@@ -1,3 +1,4 @@
+const axios = require("axios");
 const {
   CatalogValidator,
   CartValidator,
@@ -12,6 +13,7 @@ const {
   PaymentValidator,
   OrderValidator,
   RewardsValidator,
+  FeedbackValidator,
   PosCartValidator,
   LogisticValidator,
 } = require("./ApplicationModels");
@@ -34,6 +36,7 @@ class ApplicationClient {
     this.payment = new Payment(config);
     this.order = new Order(config);
     this.rewards = new Rewards(config);
+    this.feedback = new Feedback(config);
     this.posCart = new PosCart(config);
     this.logistic = new Logistic(config);
   }
@@ -58,9 +61,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -88,9 +89,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["store_id"] = storeId;
@@ -121,9 +120,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["store_id"] = storeId;
@@ -155,9 +152,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -211,7 +206,7 @@ class Catalog {
     * @summary: Compare products
     * @description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/**
+    * @param {Array<string>} arg.slug - The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/**
     
     **/
   getProductComparisonBySlugs({ slug } = {}) {
@@ -220,9 +215,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["slug"] = slug;
@@ -252,9 +245,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -283,9 +274,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -313,9 +302,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -342,9 +329,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -375,9 +360,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["item_id"] = itemId;
@@ -411,9 +394,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["timestamp"] = timestamp;
@@ -489,9 +470,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["q"] = q;
@@ -566,9 +545,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["department"] = department;
@@ -628,9 +605,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -657,9 +632,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["department"] = department;
@@ -687,9 +660,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -718,9 +689,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["sort_on"] = sortOn;
@@ -779,9 +748,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -808,9 +775,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["q"] = q;
@@ -839,9 +804,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -910,9 +873,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["f"] = f;
@@ -986,9 +947,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1017,9 +976,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_id"] = pageId;
@@ -1079,9 +1036,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1109,9 +1064,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1139,9 +1092,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1168,9 +1119,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["collection_type"] = collectionType;
@@ -1203,9 +1152,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -1283,9 +1230,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1316,9 +1261,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1347,9 +1290,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["i"] = i;
@@ -1380,9 +1321,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1412,9 +1351,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1442,9 +1379,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1476,9 +1411,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["i"] = i;
@@ -1509,9 +1442,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1542,9 +1473,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["item_id"] = itemId;
@@ -1569,7 +1498,7 @@ class Cart {
     * @param {number} [arg.uid] - 
     * @param {string} [arg.mobileNo] - 
     * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
+    * @param {string} [arg.tags] - 
     * @param {boolean} [arg.isDefault] - 
     
     **/
@@ -1579,9 +1508,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1612,9 +1539,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1636,7 +1561,7 @@ class Cart {
     * @param {number} [arg.uid] - 
     * @param {string} [arg.mobileNo] - 
     * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
+    * @param {string} [arg.tags] - 
     * @param {boolean} [arg.isDefault] - 
     
     **/
@@ -1646,9 +1571,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1680,9 +1603,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1709,9 +1630,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1740,9 +1659,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1772,9 +1689,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1821,9 +1736,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1859,9 +1772,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["p"] = p;
@@ -1891,9 +1802,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1920,9 +1829,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1949,9 +1856,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1978,9 +1883,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2008,9 +1911,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2043,9 +1944,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2072,9 +1971,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2100,9 +1997,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2129,9 +2024,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2158,9 +2051,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2187,9 +2078,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2216,9 +2105,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2250,9 +2137,7 @@ class Theme {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2279,9 +2164,7 @@ class Theme {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2313,9 +2196,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2341,9 +2222,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2369,9 +2248,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2397,9 +2274,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2426,9 +2301,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2455,9 +2328,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2484,9 +2355,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2513,9 +2382,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2541,9 +2408,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2569,9 +2434,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2598,9 +2461,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2627,9 +2488,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2655,9 +2514,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2683,9 +2540,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2711,9 +2566,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2739,9 +2592,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2768,9 +2619,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2798,9 +2647,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2828,9 +2675,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2858,9 +2703,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2887,9 +2730,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2915,9 +2756,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2944,9 +2783,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["name"] = name;
@@ -2974,9 +2811,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3004,9 +2839,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3046,9 +2879,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3080,9 +2911,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3109,9 +2938,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3139,9 +2966,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3173,9 +2998,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3206,9 +3029,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3235,9 +3056,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3270,9 +3089,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3299,9 +3116,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3329,9 +3144,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -3387,9 +3200,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3415,9 +3226,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3444,9 +3253,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3473,9 +3280,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3502,9 +3307,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3530,9 +3333,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3558,9 +3359,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3588,9 +3387,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -3647,9 +3444,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3677,9 +3472,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -3735,9 +3528,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3748,6 +3539,64 @@ class Content {
       query,
       undefined
     );
+  }
+
+  /**
+    *
+    * @summary: Get slideshows
+    * @description: Use this to get slideshows.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    
+    **/
+  getSlideshows({ pageNo, pageSize } = {}) {
+    const { error } = ContentValidator.getSlideshows().validate(
+      { pageNo, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/slideshow/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get slideshows
+    * @description: Use this to get slideshows.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    
+    **/
+  getSlideshowsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSlideshows({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
   }
 
   /**
@@ -3764,9 +3613,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3792,9 +3639,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3820,9 +3665,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3854,9 +3697,7 @@ class Communication {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3884,9 +3725,7 @@ class Communication {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3912,9 +3751,7 @@ class Communication {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3946,9 +3783,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3975,9 +3810,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4004,9 +3837,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4033,9 +3864,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["url"] = url;
@@ -4062,9 +3891,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4091,9 +3918,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4120,9 +3945,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4173,9 +3996,7 @@ This operation will return the url for the uploaded file.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4220,9 +4041,7 @@ This operation will return the url for the uploaded file.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4254,9 +4073,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4282,9 +4099,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4310,9 +4125,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4338,9 +4151,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4369,9 +4180,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -4430,9 +4239,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4458,9 +4265,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4486,9 +4291,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4515,9 +4318,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4543,9 +4344,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4571,9 +4370,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4601,9 +4398,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4632,9 +4427,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["order_incent"] = orderIncent;
@@ -4671,9 +4464,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["refresh"] = refresh;
@@ -4700,9 +4491,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4729,9 +4518,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["refresh"] = refresh;
@@ -4759,9 +4546,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["force_refresh"] = forceRefresh;
@@ -4788,9 +4573,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4816,9 +4599,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4844,9 +4625,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4872,9 +4651,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4900,9 +4677,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4951,9 +4726,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["amount"] = amount;
@@ -5012,9 +4785,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["amount"] = amount;
@@ -5049,9 +4820,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["order_id"] = orderId;
@@ -5079,9 +4848,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["ifsc_code"] = ifscCode;
@@ -5109,9 +4876,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["order_id"] = orderId;
@@ -5140,9 +4905,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5168,9 +4931,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5198,9 +4959,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5226,9 +4985,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5256,23 +5013,23 @@ class Order {
     * @param {string} [arg.pageSize] - Page limit
     * @param {string} [arg.fromDate] - From Date
     * @param {string} [arg.toDate] - To Date
+    * @param {number} [arg.orderStatus] - Order Status
     
     **/
-  getOrders({ pageNo, pageSize, fromDate, toDate } = {}) {
+  getOrders({ pageNo, pageSize, fromDate, toDate, orderStatus } = {}) {
     const { error } = OrderValidator.getOrders().validate(
-      { pageNo, pageSize, fromDate, toDate },
+      { pageNo, pageSize, fromDate, toDate, orderStatus },
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
     query["page_size"] = pageSize;
     query["from_date"] = fromDate;
     query["to_date"] = toDate;
+    query["order_status"] = orderStatus;
 
     return APIClient.execute(
       this._conf,
@@ -5297,9 +5054,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5326,9 +5081,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5355,9 +5108,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5384,9 +5135,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5413,9 +5162,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5442,9 +5189,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5476,9 +5221,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5504,9 +5247,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5532,9 +5273,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5563,9 +5302,7 @@ The list of points history is paginated.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_id"] = pageId;
@@ -5622,9 +5359,7 @@ The list of points history is paginated.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5650,9 +5385,7 @@ The list of points history is paginated.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5660,6 +5393,1108 @@ The list of points history is paginated.
       this._conf,
       "post",
       `/service/application/rewards/v1.0/user/referral/redeem/`,
+      query,
+      body
+    );
+  }
+}
+
+class Feedback {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+   *
+   * @summary: post a new abuse request
+   * @description: Report a new abuse for specific entity with description text.
+   * @param {Object} arg - arg object.
+   * @param {ReportAbuseRequest} arg.body
+   **/
+  createAbuseReport({ body } = {}) {
+    const { error } = FeedbackValidator.createAbuseReport().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/abuse`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update abuse details
+   * @description: Update the abuse details like status and description text.
+   * @param {Object} arg - arg object.
+   * @param {UpdateAbuseStatusRequest} arg.body
+   **/
+  updateAbuseReport({ body } = {}) {
+    const { error } = FeedbackValidator.updateAbuseReport().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/abuse`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of abuse data
+    * @description: Get the list of abuse data from entity type and entity ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityId - entity id
+    * @param {string} arg.entityType - entity type
+    * @param {string} [arg.id] - abuse id
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getAbuseReports({ entityId, entityType, id, pageId, pageSize } = {}) {
+    const { error } = FeedbackValidator.getAbuseReports().validate(
+      { entityId, entityType, id, pageId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["id"] = id;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/abuse/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of abuse data
+    * @description: Get the list of abuse data from entity type and entity ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityId - entity id
+    * @param {string} arg.entityType - entity type
+    * @param {string} [arg.id] - abuse id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getAbuseReportsPaginator({ entityId, entityType, id, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getAbuseReports({
+        entityId: entityId,
+        entityType: entityType,
+        id: id,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get list of attribute data
+    * @description: Provides a list of all attribute data.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - pagination page no
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getAttributes({ pageNo, pageSize } = {}) {
+    const { error } = FeedbackValidator.getAttributes().validate(
+      { pageNo, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/attributes`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of attribute data
+    * @description: Provides a list of all attribute data.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getAttributesPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAttributes({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+   *
+   * @summary: Add a new attribute request
+   * @description: Add a new attribute with its name, slug and description.
+   * @param {Object} arg - arg object.
+   * @param {SaveAttributeRequest} arg.body
+   **/
+  createAttribute({ body } = {}) {
+    const { error } = FeedbackValidator.createAttribute().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/attributes`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get single attribute data
+    * @description: Get a single attribute data from a given slug.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - Slug of attribute
+    
+    **/
+  getAttribute({ slug } = {}) {
+    const { error } = FeedbackValidator.getAttribute().validate(
+      { slug },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/attributes/${slug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Update attribute details
+   * @description: Update the attribute's name and description.
+   * @param {Object} arg - arg object.
+   * @param {string} arg.slug - Slug of attribute
+   * @param {UpdateAttributeRequest} arg.body
+   **/
+  updateAttribute({ slug, body } = {}) {
+    const { error } = FeedbackValidator.updateAttribute().validate(
+      { slug, body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/attributes/${slug}`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: post a new comment
+   * @description: This is used to add a new comment for specific entity.
+   * @param {Object} arg - arg object.
+   * @param {CommentRequest} arg.body
+   **/
+  createComment({ body } = {}) {
+    const { error } = FeedbackValidator.createComment().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/comment`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update comment status
+   * @description: Update the comment status (active/approve) or text.
+   * @param {Object} arg - arg object.
+   * @param {UpdateCommentRequest} arg.body
+   **/
+  updateComment({ body } = {}) {
+    const { error } = FeedbackValidator.updateComment().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/comment`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of comments
+    * @description: Get the list of comments from specific entity type.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} [arg.id] - comment id
+    * @param {string} [arg.entityId] - entity id
+    * @param {string} [arg.userId] - user id - flag/filter to get comments for user
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getComments({ entityType, id, entityId, userId, pageId, pageSize } = {}) {
+    const { error } = FeedbackValidator.getComments().validate(
+      { entityType, id, entityId, userId, pageId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["id"] = id;
+    query["entity_id"] = entityId;
+    query["user_id"] = userId;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/comment/entity/${entityType}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of comments
+    * @description: Get the list of comments from specific entity type.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} [arg.id] - comment id
+    * @param {string} [arg.entityId] - entity id
+    * @param {string} [arg.userId] - user id - flag/filter to get comments for user
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getCommentsPaginator({ entityType, id, entityId, userId, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getComments({
+        entityType: entityType,
+        id: id,
+        entityId: entityId,
+        userId: userId,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Checks eligibility and cloud media config
+    * @description: Checks eligibility to rate and review and cloud media configuration
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    
+    **/
+  checkEligibility({ entityType, entityId } = {}) {
+    const { error } = FeedbackValidator.checkEligibility().validate(
+      { entityType, entityId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/config/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Delete Media
+    * @description: Delete Media for the given entity IDs.
+    * @param {Object} arg - arg object.
+    
+    **/
+  deleteMedia({} = {}) {
+    const { error } = FeedbackValidator.deleteMedia().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      `/service/application/feedback/v1.0/media/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Add Media
+   * @description: Add Media list for specific entity.
+   * @param {Object} arg - arg object.
+   * @param {AddMediaListRequest} arg.body
+   **/
+  createMedia({ body } = {}) {
+    const { error } = FeedbackValidator.createMedia().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/media/`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update Media
+   * @description: Update Media (archive/approve) for the given entity.
+   * @param {Object} arg - arg object.
+   * @param {UpdateMediaListRequest} arg.body
+   **/
+  updateMedia({ body } = {}) {
+    const { error } = FeedbackValidator.updateMedia().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/media/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Media
+    * @description: Get Media from the given entity type and entity ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - vote id
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getMedias({ entityType, entityId, id, pageId, pageSize } = {}) {
+    const { error } = FeedbackValidator.getMedias().validate(
+      { entityType, entityId, id, pageId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["id"] = id;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/media/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get Media
+    * @description: Get Media from the given entity type and entity ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - vote id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getMediasPaginator({ entityType, entityId, id, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getMedias({
+        entityType: entityType,
+        entityId: entityId,
+        id: id,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get a review summary
+    * @description: Review summary gives ratings and attribute metrics of a review per entity
+It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - review summary identifier
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getReviewSummaries({ entityType, entityId, id, pageId, pageSize } = {}) {
+    const { error } = FeedbackValidator.getReviewSummaries().validate(
+      { entityType, entityId, id, pageId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["id"] = id;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/rating/summary/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a review summary
+    * @description: Review summary gives ratings and attribute metrics of a review per entity
+It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - review summary identifier
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getReviewSummariesPaginator({ entityType, entityId, id, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getReviewSummaries({
+        entityType: entityType,
+        entityId: entityId,
+        id: id,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Add customer reviews
+    * @description: Add customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+    * @param {Object} arg - arg object.
+    * @param {UpdateReviewRequest} arg.body
+    **/
+  createReview({ body } = {}) {
+    const { error } = FeedbackValidator.createReview().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/review/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Update customer reviews
+    * @description: Update customer reviews for specific entity with following data:
+attributes rating, entity rating, title, description, media resources and template id.
+    * @param {Object} arg - arg object.
+    * @param {UpdateReviewRequest} arg.body
+    **/
+  updateReview({ body } = {}) {
+    const { error } = FeedbackValidator.updateReview().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/review/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of customer reviews
+    * @description: This is used to get the list of customer reviews based on entity and provided filters.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - review id
+    * @param {string} [arg.userId] - user id
+    * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
+    * @param {Array<number>} [arg.rating] - rating filter, 1-5
+    * @param {Array<string>} [arg.attributeRating] - attribute rating filter
+    * @param {boolean} [arg.facets] - facets (true|false)
+    * @param {string} [arg.sort] - sort by : default | top | recent
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getReviews({
+    entityType,
+    entityId,
+    id,
+    userId,
+    media,
+    rating,
+    attributeRating,
+    facets,
+    sort,
+    pageId,
+    pageSize,
+  } = {}) {
+    const { error } = FeedbackValidator.getReviews().validate(
+      {
+        entityType,
+        entityId,
+        id,
+        userId,
+        media,
+        rating,
+        attributeRating,
+        facets,
+        sort,
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["id"] = id;
+    query["user_id"] = userId;
+    query["media"] = media;
+    query["rating"] = rating;
+    query["attribute_rating"] = attributeRating;
+    query["facets"] = facets;
+    query["sort"] = sort;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/review/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of customer reviews
+    * @description: This is used to get the list of customer reviews based on entity and provided filters.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - review id
+    * @param {string} [arg.userId] - user id
+    * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
+    * @param {Array<number>} [arg.rating] - rating filter, 1-5
+    * @param {Array<string>} [arg.attributeRating] - attribute rating filter
+    * @param {boolean} [arg.facets] - facets (true|false)
+    * @param {string} [arg.sort] - sort by : default | top | recent
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getReviewsPaginator({
+    entityType,
+    entityId,
+    id,
+    userId,
+    media,
+    rating,
+    attributeRating,
+    facets,
+    sort,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getReviews({
+        entityType: entityType,
+        entityId: entityId,
+        id: id,
+        userId: userId,
+        media: media,
+        rating: rating,
+        attributeRating: attributeRating,
+        facets: facets,
+        sort: sort,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get the templates for product or l3 type
+    * @description: This is used to get the templates details.
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.templateId] - template id
+    * @param {string} [arg.entityId] - entity id
+    * @param {string} [arg.entityType] - entity type e.g. product | l3
+    
+    **/
+  getTemplates({ templateId, entityId, entityType } = {}) {
+    const { error } = FeedbackValidator.getTemplates().validate(
+      { templateId, entityId, entityType },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["template_id"] = templateId;
+    query["entity_id"] = entityId;
+    query["entity_type"] = entityType;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/template/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Create a new question
+    * @description: This is used to create a new question with following data:
+tags, text, type, choices for MCQ type questions, maximum length of answer.
+    * @param {Object} arg - arg object.
+    * @param {CreateQNARequest} arg.body
+    **/
+  createQuestion({ body } = {}) {
+    const { error } = FeedbackValidator.createQuestion().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/template/qna/`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update question
+   * @description: This is used to update question's status, tags and choices.
+   * @param {Object} arg - arg object.
+   * @param {UpdateQNARequest} arg.body
+   **/
+  updateQuestion({ body } = {}) {
+    const { error } = FeedbackValidator.updateQuestion().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/template/qna/`,
+      query,
+      body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a list of QnA
+    * @description: This is used to get a list of questions and its answers.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - qna id
+    * @param {boolean} [arg.showAnswer] - show answer flag
+    * @param {string} [arg.pageId] - pagination page id
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getQuestionAndAnswers({
+    entityType,
+    entityId,
+    id,
+    showAnswer,
+    pageId,
+    pageSize,
+  } = {}) {
+    const { error } = FeedbackValidator.getQuestionAndAnswers().validate(
+      { entityType, entityId, id, showAnswer, pageId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["id"] = id;
+    query["show_answer"] = showAnswer;
+    query["page_id"] = pageId;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/template/qna/entity/${entityType}/entity-id/${entityId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a list of QnA
+    * @description: This is used to get a list of questions and its answers.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - entity type
+    * @param {string} arg.entityId - entity id
+    * @param {string} [arg.id] - qna id
+    * @param {boolean} [arg.showAnswer] - show answer flag
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getQuestionAndAnswersPaginator({
+    entityType,
+    entityId,
+    id,
+    showAnswer,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getQuestionAndAnswers({
+        entityType: entityType,
+        entityId: entityId,
+        id: id,
+        showAnswer: showAnswer,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get list of votes
+    * @description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.id] - vote id
+    * @param {string} [arg.refType] - entity type e.g. review | comment
+    * @param {number} [arg.pageNo] - pagination page no
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getVotes({ id, refType, pageNo, pageSize } = {}) {
+    const { error } = FeedbackValidator.getVotes().validate(
+      { id, refType, pageNo, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["id"] = id;
+    query["ref_type"] = refType;
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/feedback/v1.0/vote/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get list of votes
+    * @description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.id] - vote id
+    * @param {string} [arg.refType] - entity type e.g. review | comment
+    * @param {number} [arg.pageSize] - pagination page size
+    
+    **/
+  getVotesPaginator({ id, refType, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getVotes({
+        id: id,
+        refType: refType,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+   *
+   * @summary: Create a new vote
+   * @description: This is used to create a new vote and the actions can be upvote or downvote.
+   * @param {Object} arg - arg object.
+   * @param {VoteRequest} arg.body
+   **/
+  createVote({ body } = {}) {
+    const { error } = FeedbackValidator.createVote().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/feedback/v1.0/vote/`,
+      query,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update vote
+   * @description: This is used to update the vote and the actions can be upvote or downvote.
+   * @param {Object} arg - arg object.
+   * @param {UpdateVoteRequest} arg.body
+   **/
+  updateVote({ body } = {}) {
+    const { error } = FeedbackValidator.updateVote().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      `/service/application/feedback/v1.0/vote/`,
       query,
       body
     );
@@ -5688,9 +6523,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -5721,9 +6554,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -5752,9 +6583,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["i"] = i;
@@ -5785,9 +6614,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -5817,9 +6644,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -5847,9 +6672,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -5881,9 +6704,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["i"] = i;
@@ -5914,9 +6735,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -5947,9 +6766,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["item_id"] = itemId;
@@ -5974,7 +6791,7 @@ class PosCart {
     * @param {number} [arg.uid] - 
     * @param {string} [arg.mobileNo] - 
     * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
+    * @param {string} [arg.tags] - 
     * @param {boolean} [arg.isDefault] - 
     
     **/
@@ -5984,9 +6801,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -6017,9 +6832,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6041,7 +6854,7 @@ class PosCart {
     * @param {number} [arg.uid] - 
     * @param {string} [arg.mobileNo] - 
     * @param {string} [arg.checkoutMode] - 
-    * @param {number} [arg.tags] - 
+    * @param {string} [arg.tags] - 
     * @param {boolean} [arg.isDefault] - 
     
     **/
@@ -6051,9 +6864,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -6085,9 +6896,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6114,9 +6923,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6145,9 +6952,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -6177,9 +6982,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -6226,9 +7029,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -6283,9 +7084,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["pick_at_store_uid"] = pickAtStoreUid;
@@ -6323,9 +7122,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["i"] = i;
@@ -6357,9 +7154,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -6387,9 +7182,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -6418,9 +7211,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["area_code"] = areaCode;
@@ -6449,9 +7240,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["store_uid"] = storeUid;
@@ -6478,9 +7267,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6507,9 +7294,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6537,9 +7322,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6571,9 +7354,7 @@ class Logistic {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6600,9 +7381,7 @@ class Logistic {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6615,5 +7394,52 @@ class Logistic {
     );
   }
 }
+
+/**
+ * @param  {} data
+ * @param  {string} file_name
+ * @param  {string} content_type
+ * @param  {string} namespace
+ * @param  {number} size
+ * @param  {number} tags
+ */
+FileStorage.prototype.upload = function ({
+  data,
+  file_name,
+  content_type,
+  namespace,
+  size,
+  tags,
+} = {}) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const dataObj = await this.startUpload({
+        namespace,
+        body: {
+          file_name,
+          content_type,
+          size: size,
+          tags: tags,
+        },
+      });
+      if (dataObj.upload && dataObj.upload.url) {
+        await axios.put(dataObj.upload.url, data, {
+          withCredentials: false,
+          headers: { "Content-Type": content_type },
+        });
+      } else {
+        reject({ message: "Failed to upload file" });
+      }
+      delete dataObj.tags;
+      const completeRes = await this.completeUpload({
+        namespace,
+        body: dataObj,
+      });
+      resolve(completeRes);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
 
 module.exports = ApplicationClient;

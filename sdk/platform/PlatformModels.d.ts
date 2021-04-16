@@ -55,6 +55,7 @@ export class CatalogValidator {
     static getCompanyBrandDetail(): any;
     static getCompanyMetrics(): any;
     static getStoreDetail(): any;
+    static getGenderAttribute(): any;
     static listProductTemplateCategories(): any;
     static listDepartmentsData(): any;
     static getDepartmentData(): any;
@@ -105,15 +106,15 @@ export class CompanyProfileValidator {
     static updateCompany(): any;
     static cbsOnboardGet(): any;
     static getCompanyMetrics(): any;
-    static getBrand(): any;
     static editBrand(): any;
+    static getBrand(): any;
     static createBrand(): any;
-    static getBrands(): any;
     static createCompanyBrandMapping(): any;
-    static getLocations(): any;
+    static getBrands(): any;
     static createLocation(): any;
-    static getLocationDetail(): any;
+    static getLocations(): any;
     static updateLocation(): any;
+    static getLocationDetail(): any;
 }
 export class FileStorageValidator {
     static startUpload(): any;
@@ -122,6 +123,15 @@ export class FileStorageValidator {
     static copyFiles(): any;
     static browse(): any;
     static proxy(): any;
+}
+export class InventoryValidator {
+    static getJobsByCompany(): any;
+    static updateJob(): any;
+    static createJob(): any;
+    static getJobByCompanyAndIntegration(): any;
+    static getJobConfigDefaults(): any;
+    static getJobByCode(): any;
+    static getJobCodesByCompanyAndIntegration(): any;
 }
 export class ConfigurationValidator {
     static createApplication(): any;
@@ -167,4 +177,16 @@ export class AnalyticsValidator {
     static getExportJobStatus(): any;
     static getLogsList(): any;
     static searchLogs(): any;
+}
+export class DiscountValidator {
+    static getDiscounts(): any;
+    static createDiscount(): any;
+    static getDiscount(): any;
+    static updateDiscount(): any;
+    static validateDiscountFile(): any;
+    static downloadDiscountFile(): any;
+    static getValidationJob(): any;
+    static cancelValidationJob(): any;
+    static getDownloadJob(): any;
+    static cancelDownloadJob(): any;
 }

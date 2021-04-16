@@ -2,6 +2,7 @@
 
 
 * [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Feedback](#Feedback) - User Reviews and Rating System 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
@@ -13,11 +14,14 @@
 * [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [FileStorage](#FileStorage) - File Storage 
 * [Share](#Share) - Short link and QR Code 
+* [Inventory](#Inventory) -  
 * [Configuration](#Configuration) - Application configuration apis 
 * [Cart](#Cart) - Cart APIs 
 * [Marketplaces](#Marketplaces) - Marketplaces 
 * [Rewards](#Rewards) - Rewards 
 * [Analytics](#Analytics) - Perceptor analytics 
+* [Discount](#Discount) - Discount 
+* [Partner](#Partner) - Partner configuration apis 
 
 ----
 ----
@@ -46,6 +50,19 @@
     * [getVideoParticipants](#getvideoparticipants)
     * [openVideoRoom](#openvideoroom)
     * [closeVideoRoom](#closevideoroom)
+    
+
+* [Feedback](#Feedback)
+  * Methods
+    * [getAttributes](#getattributes)
+    * [getCustomerReviews](#getcustomerreviews)
+    * [updateApprove](#updateapprove)
+    * [getHistory](#gethistory)
+    * [getApplicationTemplates](#getapplicationtemplates)
+    * [createTemplate](#createtemplate)
+    * [getTemplateById](#gettemplatebyid)
+    * [updateTemplate](#updatetemplate)
+    * [updateTemplateStatus](#updatetemplatestatus)
     
 
 * [Theme](#Theme)
@@ -265,6 +282,7 @@
     * [getCompanyBrandDetail](#getcompanybranddetail)
     * [getCompanyMetrics](#getcompanymetrics)
     * [getStoreDetail](#getstoredetail)
+    * [getGenderAttribute](#getgenderattribute)
     * [listProductTemplateCategories](#listproducttemplatecategories)
     * [listDepartmentsData](#listdepartmentsdata)
     * [getDepartmentData](#getdepartmentdata)
@@ -317,15 +335,15 @@
     * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
-    * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
-    * [getLocations](#getlocations)
+    * [getBrands](#getbrands)
     * [createLocation](#createlocation)
-    * [getLocationDetail](#getlocationdetail)
+    * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     
 
 * [FileStorage](#FileStorage)
@@ -348,6 +366,17 @@
     * [getShortLinks](#getshortlinks)
     * [getShortLinkByHash](#getshortlinkbyhash)
     * [updateShortLinkById](#updateshortlinkbyid)
+    
+
+* [Inventory](#Inventory)
+  * Methods
+    * [getJobsByCompany](#getjobsbycompany)
+    * [updateJob](#updatejob)
+    * [createJob](#createjob)
+    * [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
+    * [getJobConfigDefaults](#getjobconfigdefaults)
+    * [getJobByCode](#getjobbycode)
+    * [getJobCodesByCompanyAndIntegration](#getjobcodesbycompanyandintegration)
     
 
 * [Configuration](#Configuration)
@@ -456,6 +485,26 @@
     * [getExportJobStatus](#getexportjobstatus)
     * [getLogsList](#getlogslist)
     * [searchLogs](#searchlogs)
+    
+
+* [Discount](#Discount)
+  * Methods
+    * [getDiscounts](#getdiscounts)
+    * [createDiscount](#creatediscount)
+    * [getDiscount](#getdiscount)
+    * [updateDiscount](#updatediscount)
+    * [validateDiscountFile](#validatediscountfile)
+    * [downloadDiscountFile](#downloaddiscountfile)
+    * [getValidationJob](#getvalidationjob)
+    * [cancelValidationJob](#cancelvalidationjob)
+    * [getDownloadJob](#getdownloadjob)
+    * [cancelDownloadJob](#canceldownloadjob)
+    
+
+* [Partner](#Partner)
+  * Methods
+    * [addProxyPath](#addproxypath)
+    * [removeProxyPath](#removeproxypath)
     
 
 
@@ -3722,6 +3771,490 @@ Default
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Feedback
+
+
+#### getAttributes
+Get list of attribute data
+
+```javascript
+// Promise
+const promise = feedback.getAttributes(companyId,applicationId,pageNo,pageSize);
+
+// Async/Await
+const data = await feedback.getAttributes(companyId,applicationId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| pageNo | integer | pagination page no | 
+| pageSize | integer | pagination page size | 
+
+Provides a list of all attribute data.
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `FeedbackAttributes`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCustomerReviews
+Get list of customer reviews [admin]
+
+```javascript
+// Promise
+const promise = feedback.getCustomerReviews(companyId,applicationId,id,entityId,entityType,userId,media,rating,attributeRating,facets,sort,next,start,limit,count,pageId,pageSize);
+
+// Async/Await
+const data = await feedback.getCustomerReviews(companyId,applicationId,id,entityId,entityType,userId,media,rating,attributeRating,facets,sort,next,start,limit,count,pageId,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | review id | 
+| entityId | string | entity id | 
+| entityType | string | entity type | 
+| userId | string | user id | 
+| media | string | media type e.g. image | video | video_file | video_link | 
+| rating | array | rating filter, 1-5 | 
+| attributeRating | array | attribute rating filter with ma,e of attribute | 
+| facets | boolean | facets (true|false) | 
+| sort | string | sort by : default | top | recent | 
+| next | string | pagination next | 
+| start | string | pagination start | 
+| limit | string | pagination limit | 
+| count | string | pagination count | 
+| pageId | string | pagination page id | 
+| pageSize | integer | pagination page size | 
+
+The endpoint provides a list of customer reviews based on entity and provided filters
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `GetReviewResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateApprove
+update approve details
+
+```javascript
+// Promise
+const promise = feedback.updateApprove(companyId,applicationId,reviewId,body);
+
+// Async/Await
+const data = await feedback.updateApprove(companyId,applicationId,reviewId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| reviewId | string | review id | 
+
+The is used to update approve details like status and description text
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getHistory
+get history details
+
+```javascript
+// Promise
+const promise = feedback.getHistory(companyId,applicationId,reviewId);
+
+// Async/Await
+const data = await feedback.getHistory(companyId,applicationId,reviewId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| reviewId | string | review id | 
+
+The is used to get the history details like status and description text
+
+*Success Response:*
+
+
+
+ok
+
+
+Schema: `Array<ActivityDump>`
+
+
+
+
+
+
+
+
+Bad request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplicationTemplates
+Get list of templates
+
+```javascript
+// Promise
+const promise = feedback.getApplicationTemplates(companyId,applicationId,pageId,pageSize);
+
+// Async/Await
+const data = await feedback.getApplicationTemplates(companyId,applicationId,pageId,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| pageId | string | pagination page id | 
+| pageSize | integer | pagination page size | 
+
+Get all templates of application
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `TemplateGetResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createTemplate
+Create a new template
+
+```javascript
+// Promise
+const promise = feedback.createTemplate(companyId,applicationId,body);
+
+// Async/Await
+const data = await feedback.createTemplate(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+
+Create a new template for review with following data:
+- Enable media, rating and review
+- Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
+- Review - header, title, description, image and video meta, enable votes
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `InsertResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getTemplateById
+Get a template by ID
+
+```javascript
+// Promise
+const promise = feedback.getTemplateById(companyId,applicationId,id);
+
+// Async/Await
+const data = await feedback.getTemplateById(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Get the template for product or l3 type by ID
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Template`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTemplate
+Update a template's status
+
+```javascript
+// Promise
+const promise = feedback.updateTemplate(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await feedback.updateTemplate(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Update existing template status, active/archive
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateTemplateStatus
+Update a template's status
+
+```javascript
+// Promise
+const promise = feedback.updateTemplateStatus(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await feedback.updateTemplateStatus(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+| applicationId | string | application id | 
+| id | string | template id | 
+
+Update existing template status, active/archive
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `UpdateResponse`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `FeedbackError`
 
 
 
@@ -16984,6 +17517,56 @@ Schema: `ErrorResponse`
 ---
 
 
+#### getGenderAttribute
+Get gender attribute details
+
+```javascript
+// Promise
+const promise = catalog.getGenderAttribute(companyId,department);
+
+// Async/Await
+const data = await catalog.getGenderAttribute(companyId,department);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company for which you want to view the genders | 
+| department | string | department for which you want to view the genders | 
+
+This API allows to view the gender attribute details.
+
+*Success Response:*
+
+
+
+Size guide object. See example below or refer `GenderDetailSchema` for details
+
+
+Schema: `GenderDetail`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### listProductTemplateCategories
 List Department specifiec product categories
 
@@ -17040,15 +17623,20 @@ List all Departments
 
 ```javascript
 // Promise
-const promise = catalog.listDepartmentsData(companyId);
+const promise = catalog.listDepartmentsData(companyId,pageNo,pageSize,name,search,isActive);
 
 // Async/Await
-const data = await catalog.listDepartmentsData(companyId);
+const data = await catalog.listDepartmentsData(companyId,pageNo,pageSize,name,search,isActive);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+| name | string | Can search departments by passing name. | 
+| search | string | Can search departments by passing name of the department in search parameter. | 
+| isActive | boolean | Can query for departments based on whether they are active or inactive. | 
 
 Allows you to list all departments, also can search using name and filter active and incative departments, and item type
 
@@ -17056,7 +17644,7 @@ Allows you to list all departments, also can search using name and filter active
 
 
 
-List of custom search keywords. See example below or refer `DepartmentsResponse` for details
+List of departments data. See example below or refer `DepartmentsResponse` for details
 
 
 Schema: `DepartmentsResponse`
@@ -17156,7 +17744,7 @@ Allows you to list all product templates, also can filter by department
 
 
 
-List of custom search keywords. See example below or refer `TemplatesResponse` for details
+List of product templates. See example below or refer `TemplatesResponse` for details
 
 
 Schema: `TemplatesResponse`
@@ -17448,16 +18036,16 @@ const data = await catalog.listProductTemplateExportDetails(companyId);
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 
-Can vies details including trigger data, task id , etc.
+Can view details including trigger data, task id , etc.
 
 *Success Response:*
 
 
 
-List of custom search keywords. See example below or refer `TemplatesResponse` for details
+List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
 
 
-Schema: `TemplatesResponse`
+Schema: `ProductDownloadsResponse`
 
 
 
@@ -17504,10 +18092,10 @@ The filter type query parameter defines what type of data to return. The type of
 
 
 
-List of Templates, Brands or Types. See example below or refer `ProductConfligurationDownloads` for details
+See example below or refer `ProductConfigurationDownloadsSchema` for details
 
 
-Schema: `ProductConfligurationDownloads`
+Schema: `ProductConfigurationDownloads`
 
 
 
@@ -17586,17 +18174,20 @@ Get product categories list
 
 ```javascript
 // Promise
-const promise = catalog.listCategories(companyId,level,q);
+const promise = catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
 
 // Async/Await
-const data = await catalog.listCategories(companyId,level,q);
+const data = await catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | level | string | Get category for multiple levels | 
+| departments | string | Get category for multiple departments filtered | 
 | q | string | Get multiple categories filtered by search string | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
 
 This API gets meta associated to product categories.
 
@@ -17704,10 +18295,10 @@ This API gets meta associated to product categories.
 
 
 
-Category Meta. See example below or refer `CategorySchema` for details
+Get Data for one category. See example below or refer `CategoryResponse` for details
 
 
-Schema: `Category`
+Schema: `SingleCategoryResponse`
 
 
 
@@ -19395,56 +19986,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getBrand
-Get a single brand.
-
-```javascript
-// Promise
-const promise = companyprofile.getBrand(companyId,brandId);
-
-// Async/Await
-const data = await companyprofile.getBrand(companyId,brandId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### editBrand
 Edit a brand.
 
@@ -19495,6 +20036,56 @@ Schema: `ErrorResponse`
 ---
 
 
+#### getBrand
+Get a single brand.
+
+```javascript
+// Promise
+const promise = companyprofile.getBrand(companyId,brandId);
+
+// Async/Await
+const data = await companyprofile.getBrand(companyId,brandId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### createBrand
 Create a Brand.
 
@@ -19511,6 +20102,55 @@ const data = await companyprofile.createBrand(companyId,body);
 | companyId | string | Id of the company. | 
 
 This API allows to create a brand associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createCompanyBrandMapping
+Create a company brand mapping.
+
+```javascript
+// Promise
+const promise = companyprofile.createCompanyBrandMapping(companyId,body);
+
+// Async/Await
+const data = await companyprofile.createCompanyBrandMapping(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the brand is to be mapped. | 
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -19595,22 +20235,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```javascript
 // Promise
-const promise = companyprofile.createCompanyBrandMapping(companyId,body);
+const promise = companyprofile.createLocation(companyId,body);
 
 // Async/Await
-const data = await companyprofile.createCompanyBrandMapping(companyId,body);
+const data = await companyprofile.createLocation(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
+| companyId | string | Id of the company inside which the location is to be created. | 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -19698,22 +20338,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### updateLocation
+Edit a location asscoiated to a company.
 
 ```javascript
 // Promise
-const promise = companyprofile.createLocation(companyId,body);
+const promise = companyprofile.updateLocation(companyId,locationId,body);
 
 // Async/Await
-const data = await companyprofile.createLocation(companyId,body);
+const data = await companyprofile.updateLocation(companyId,locationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
 
-This API allows to create a location associated to a company.
+This API allows to edit a location associated to a company.
 
 *Success Response:*
 
@@ -19773,56 +20414,6 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateLocation
-Edit a location asscoiated to a company.
-
-```javascript
-// Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
-
-// Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -20621,6 +21212,487 @@ Error
 
 
 Schema: `ErrorRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Inventory
+
+
+#### getJobsByCompany
+Get Job Configs For A Company
+
+```javascript
+// Promise
+const promise = inventory.getJobsByCompany(companyId,pageNo,pageSize);
+
+// Async/Await
+const data = await inventory.getJobsByCompany(companyId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| pageNo | integer | Page Number | 
+| pageSize | integer | Page Size | 
+
+REST Endpoint that returns all job configs for a company
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigRawDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateJob
+Updates An Existing Job Config
+
+```javascript
+// Promise
+const promise = inventory.updateJob(companyId,body,xUserData);
+
+// Async/Await
+const data = await inventory.updateJob(companyId,body,xUserData);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| xUserData | string |  | 
+
+REST Endpoint that updates a job config
+
+*Success Response:*
+
+
+
+Job Config Updated Successfully
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Unauthorized
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createJob
+Creates A New Job Config
+
+```javascript
+// Promise
+const promise = inventory.createJob(companyId,body,xUserData);
+
+// Async/Await
+const data = await inventory.createJob(companyId,body,xUserData);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| xUserData | string |  | 
+
+REST Endpoint that creates a new job config
+
+*Success Response:*
+
+
+
+Job Config Created Successfully
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Unauthorized
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Job Config Already Exists
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeString`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobByCompanyAndIntegration
+Get Job Configs By Company And Integration
+
+```javascript
+// Promise
+const promise = inventory.getJobByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+
+// Async/Await
+const data = await inventory.getJobByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| integrationId | string | Integration Id | 
+| pageNo | integer | Page Number | 
+| pageSize | integer | Page Size | 
+
+REST Endpoint that returns all job configs by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobConfigDefaults
+Get Job Configs Defaults
+
+```javascript
+// Promise
+const promise = inventory.getJobConfigDefaults(companyId);
+
+// Async/Await
+const data = await inventory.getJobConfigDefaults(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+
+REST Endpoint that returns default fields job configs by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobByCode
+Get Job Config By Code
+
+```javascript
+// Promise
+const promise = inventory.getJobByCode(companyId,code);
+
+// Async/Await
+const data = await inventory.getJobByCode(companyId,code);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| code | string | Job Code | 
+
+REST Endpoint that returns job config by code
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeJobConfigDTO`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getJobCodesByCompanyAndIntegration
+Get Job Codes By Company And Integration
+
+```javascript
+// Promise
+const promise = inventory.getJobCodesByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+
+// Async/Await
+const data = await inventory.getJobCodesByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| integrationId | string | Integration Id | 
+| pageNo | integer | Page Number | 
+| pageSize | integer | Page Size | 
+
+REST Endpoint that returns all job codes by company And integration
+
+*Success Response:*
+
+
+
+Successful operation
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+
+
+
+Bad Request
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ResponseEnvelopeListJobConfigListDTO`
 
 
 
@@ -22072,10 +23144,10 @@ Get integration level config
 
 ```javascript
 // Promise
-const promise = configuration.getIntegrationLevelConfig(companyId,id,level);
+const promise = configuration.getIntegrationLevelConfig(companyId,id,level,opted,checkPermission);
 
 // Async/Await
-const data = await configuration.getIntegrationLevelConfig(companyId,id,level);
+const data = await configuration.getIntegrationLevelConfig(companyId,id,level,opted,checkPermission);
 ```
 
 | Argument  |  Type  | Description |
@@ -22083,6 +23155,8 @@ const data = await configuration.getIntegrationLevelConfig(companyId,id,level);
 | companyId | string | Current company id | 
 | id | string | Integration id | 
 | level | string | Integration level | 
+| opted | boolean | Filter on opted stores | 
+| checkPermission | boolean | Filter on if permissions are present | 
 
 Get integration level config
 
@@ -22882,18 +23956,6 @@ Schema: `Object`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -22923,18 +23985,6 @@ Success
 
 
 Schema: `Object`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -22981,18 +24031,6 @@ Schema: `Object`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23022,18 +24060,6 @@ Success
 
 
 Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -23079,18 +24105,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23128,18 +24142,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23169,18 +24171,6 @@ Success
 
 
 Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -23227,18 +24217,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23269,18 +24247,6 @@ Success
 
 
 Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -23327,18 +24293,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23369,18 +24323,6 @@ Success
 
 
 Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -23426,18 +24368,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23467,18 +24397,6 @@ Success
 
 
 Schema: `MkpResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -23526,18 +24444,6 @@ Schema: `MkpResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23568,18 +24474,6 @@ Success
 
 
 Schema: `StoreMapping`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -23626,18 +24520,6 @@ Schema: `StoreMapping`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23668,18 +24550,6 @@ Success
 
 
 Schema: `StatusPayload`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -23726,18 +24596,6 @@ Schema: `StatusResp`
 
 
 
-Error
-
-
-Schema: `ErrorRes`
-
-
-
-
-
-
-
-
 
 ---
 
@@ -23769,18 +24627,6 @@ Success
 
 
 Schema: `SyncResp`
-
-
-
-
-
-
-
-
-Error
-
-
-Schema: `ErrorRes`
 
 
 
@@ -24865,6 +25711,630 @@ Success
 
 
 Schema: `SearchLogRes`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Discount
+
+
+#### getDiscounts
+Fetch discount list.
+
+```javascript
+// Promise
+const promise = discount.getDiscounts(companyId,view,q,pageNo,pageSize,archived,month,year,type,appIds);
+
+// Async/Await
+const data = await discount.getDiscounts(companyId,view,q,pageNo,pageSize,archived,month,year,type,appIds);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| view | string | listing or calender.  Default is listing. | 
+| q | string | The search query. This can be a partial or complete name of a discount. | 
+| pageNo | integer | page number. Default is 1. | 
+| pageSize | integer | page size. Default is 12. | 
+| archived | boolean | archived. Default is false. | 
+| month | integer | month. Default is current month. | 
+| year | integer | year. Default is current year. | 
+| type | string | basic or custom. | 
+| appIds | array | application ids. | 
+
+Fetch discount list.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `ListOrCalender`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createDiscount
+Create Discount.
+
+```javascript
+// Promise
+const promise = discount.createDiscount(companyId,body);
+
+// Async/Await
+const data = await discount.createDiscount(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+
+Create Discount.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DiscountJob`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDiscount
+Fetch discount.
+
+```javascript
+// Promise
+const promise = discount.getDiscount(companyId,id);
+
+// Async/Await
+const data = await discount.getDiscount(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | unique id. | 
+
+Fetch discount.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DiscountJob`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateDiscount
+Create Discount.
+
+```javascript
+// Promise
+const promise = discount.updateDiscount(companyId,id,body);
+
+// Async/Await
+const data = await discount.updateDiscount(companyId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | id | 
+
+Create Discount.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `DiscountJob`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### validateDiscountFile
+Validate File.
+
+```javascript
+// Promise
+const promise = discount.validateDiscountFile(companyId,body,discount);
+
+// Async/Await
+const data = await discount.validateDiscountFile(companyId,body,discount);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| discount | string | discount | 
+
+Validate File.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### downloadDiscountFile
+Validate File.
+
+```javascript
+// Promise
+const promise = discount.downloadDiscountFile(companyId,type,body);
+
+// Async/Await
+const data = await discount.downloadDiscountFile(companyId,type,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| type | string | type | 
+
+Validate File.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getValidationJob
+Validate File Job.
+
+```javascript
+// Promise
+const promise = discount.getValidationJob(companyId,id);
+
+// Async/Await
+const data = await discount.getValidationJob(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | id | 
+
+Validate File Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cancelValidationJob
+Cancel Validation Job.
+
+```javascript
+// Promise
+const promise = discount.cancelValidationJob(companyId,id);
+
+// Async/Await
+const data = await discount.cancelValidationJob(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | id | 
+
+Cancel Validation Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CancelJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDownloadJob
+Download File Job.
+
+```javascript
+// Promise
+const promise = discount.getDownloadJob(companyId,id);
+
+// Async/Await
+const data = await discount.getDownloadJob(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | id | 
+
+Download File Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `FileJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cancelDownloadJob
+Cancel Download Job.
+
+```javascript
+// Promise
+const promise = discount.cancelDownloadJob(companyId,id);
+
+// Async/Await
+const data = await discount.cancelDownloadJob(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | company_id | 
+| id | string | id | 
+
+Cancel Download Job.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `CancelJobResponse`
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `BadRequestObject`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Partner
+
+
+#### addProxyPath
+Add proxy path for external url
+
+```javascript
+// Promise
+const promise = partner.addProxyPath(companyId,applicationId,extensionId,body);
+
+// Async/Await
+const data = await partner.addProxyPath(companyId,applicationId,extensionId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| extensionId | string | Extension id | 
+
+Add proxy path for external url
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `AddProxyResponse`
+
+
+
+
+
+
+
+
+Duplicate proxy path
+
+
+Schema: `ApiError`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### removeProxyPath
+Remove proxy path for external url
+
+```javascript
+// Promise
+const promise = partner.removeProxyPath(companyId,applicationId,extensionId,attachedPath);
+
+// Async/Await
+const data = await partner.removeProxyPath(companyId,applicationId,extensionId,attachedPath);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Current company id | 
+| applicationId | string | Current application id | 
+| extensionId | string | Extension id | 
+| attachedPath | string | Attachaed path slug | 
+
+Remove proxy path for external url
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `RemoveProxyResponse`
+
+
+
+
+
+
+
+
+Entry not found attached path
+
+
+Schema: `ApiError`
 
 
 

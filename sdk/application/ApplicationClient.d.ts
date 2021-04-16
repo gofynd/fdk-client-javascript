@@ -14,6 +14,7 @@ declare class ApplicationClient {
     payment: Payment;
     order: Order;
     rewards: Rewards;
+    feedback: Feedback;
     posCart: PosCart;
     logistic: Logistic;
 }
@@ -102,11 +103,11 @@ declare class Catalog {
       * @summary: Compare products
       * @description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
       * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/**
+      * @param {Array<string>} arg.slug - The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/**
       
       **/
     getProductComparisonBySlugs({ slug }?: {
-        slug: string;
+        slug: Array<string>;
     }): any;
     /**
       *
@@ -685,7 +686,7 @@ declare class Cart {
       * @param {number} [arg.uid] -
       * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
-      * @param {number} [arg.tags] -
+      * @param {string} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
       
       **/
@@ -693,7 +694,7 @@ declare class Cart {
         uid?: number;
         mobileNo?: string;
         checkoutMode?: string;
-        tags?: number;
+        tags?: string;
         isDefault?: boolean;
     }): any;
     /**
@@ -715,7 +716,7 @@ declare class Cart {
       * @param {number} [arg.uid] -
       * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
-      * @param {number} [arg.tags] -
+      * @param {string} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
       
       **/
@@ -724,7 +725,7 @@ declare class Cart {
         uid?: number;
         mobileNo?: string;
         checkoutMode?: string;
-        tags?: number;
+        tags?: string;
         isDefault?: boolean;
     }): any;
     /**
@@ -1519,6 +1520,30 @@ declare class Content {
     getSEOConfiguration({}?: any): any;
     /**
       *
+      * @summary: Get slideshows
+      * @description: Use this to get slideshows.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+      
+      **/
+    getSlideshows({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get slideshows
+      * @description: Use this to get slideshows.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+      
+      **/
+    getSlideshowsPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator;
+    /**
+      *
       * @summary: Get slideshow by slug
       * @description: Use this API to fetch a slideshow using `slug`
       * @param {Object} arg - arg object.
@@ -1717,6 +1742,7 @@ declare class FileStorage {
         namespace: string;
         body: any;
     }): any;
+    upload({ data, file_name, content_type, namespace, size, tags, }?: any): Promise<any>;
 }
 declare class Configuration {
     constructor(_conf: any);
@@ -2090,13 +2116,15 @@ declare class Order {
       * @param {string} [arg.pageSize] - Page limit
       * @param {string} [arg.fromDate] - From Date
       * @param {string} [arg.toDate] - To Date
+      * @param {number} [arg.orderStatus] - Order Status
       
       **/
-    getOrders({ pageNo, pageSize, fromDate, toDate }?: {
+    getOrders({ pageNo, pageSize, fromDate, toDate, orderStatus }?: {
         pageNo?: string;
         pageSize?: string;
         fromDate?: string;
         toDate?: string;
+        orderStatus?: number;
     }): any;
     /**
       *
@@ -2242,6 +2270,508 @@ declare class Rewards {
         body: any;
     }): any;
 }
+declare class Feedback {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+     *
+     * @summary: post a new abuse request
+     * @description: Report a new abuse for specific entity with description text.
+     * @param {Object} arg - arg object.
+     * @param {ReportAbuseRequest} arg.body
+     **/
+    createAbuseReport({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Update abuse details
+     * @description: Update the abuse details like status and description text.
+     * @param {Object} arg - arg object.
+     * @param {UpdateAbuseStatusRequest} arg.body
+     **/
+    updateAbuseReport({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get list of abuse data
+      * @description: Get the list of abuse data from entity type and entity ID.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityId - entity id
+      * @param {string} arg.entityType - entity type
+      * @param {string} [arg.id] - abuse id
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getAbuseReports({ entityId, entityType, id, pageId, pageSize }?: {
+        entityId: string;
+        entityType: string;
+        id?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get list of abuse data
+      * @description: Get the list of abuse data from entity type and entity ID.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityId - entity id
+      * @param {string} arg.entityType - entity type
+      * @param {string} [arg.id] - abuse id
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getAbuseReportsPaginator({ entityId, entityType, id, pageSize }?: {
+        entityId: string;
+        entityType: string;
+        id?: string;
+        pageSize?: number;
+    }): Paginator;
+    /**
+      *
+      * @summary: Get list of attribute data
+      * @description: Provides a list of all attribute data.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageNo] - pagination page no
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getAttributes({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get list of attribute data
+      * @description: Provides a list of all attribute data.
+      * @param {Object} arg - arg object.
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getAttributesPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator;
+    /**
+     *
+     * @summary: Add a new attribute request
+     * @description: Add a new attribute with its name, slug and description.
+     * @param {Object} arg - arg object.
+     * @param {SaveAttributeRequest} arg.body
+     **/
+    createAttribute({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get single attribute data
+      * @description: Get a single attribute data from a given slug.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.slug - Slug of attribute
+      
+      **/
+    getAttribute({ slug }?: {
+        slug: string;
+    }): any;
+    /**
+     *
+     * @summary: Update attribute details
+     * @description: Update the attribute's name and description.
+     * @param {Object} arg - arg object.
+     * @param {string} arg.slug - Slug of attribute
+     * @param {UpdateAttributeRequest} arg.body
+     **/
+    updateAttribute({ slug, body }?: {
+        slug: string;
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: post a new comment
+     * @description: This is used to add a new comment for specific entity.
+     * @param {Object} arg - arg object.
+     * @param {CommentRequest} arg.body
+     **/
+    createComment({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Update comment status
+     * @description: Update the comment status (active/approve) or text.
+     * @param {Object} arg - arg object.
+     * @param {UpdateCommentRequest} arg.body
+     **/
+    updateComment({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get list of comments
+      * @description: Get the list of comments from specific entity type.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} [arg.id] - comment id
+      * @param {string} [arg.entityId] - entity id
+      * @param {string} [arg.userId] - user id - flag/filter to get comments for user
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getComments({ entityType, id, entityId, userId, pageId, pageSize }?: {
+        entityType: string;
+        id?: string;
+        entityId?: string;
+        userId?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get list of comments
+      * @description: Get the list of comments from specific entity type.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} [arg.id] - comment id
+      * @param {string} [arg.entityId] - entity id
+      * @param {string} [arg.userId] - user id - flag/filter to get comments for user
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getCommentsPaginator({ entityType, id, entityId, userId, pageSize }?: {
+        entityType: string;
+        id?: string;
+        entityId?: string;
+        userId?: string;
+        pageSize?: number;
+    }): Paginator;
+    /**
+      *
+      * @summary: Checks eligibility and cloud media config
+      * @description: Checks eligibility to rate and review and cloud media configuration
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      
+      **/
+    checkEligibility({ entityType, entityId }?: {
+        entityType: string;
+        entityId: string;
+    }): any;
+    /**
+      *
+      * @summary: Delete Media
+      * @description: Delete Media for the given entity IDs.
+      * @param {Object} arg - arg object.
+      
+      **/
+    deleteMedia({}?: any): any;
+    /**
+     *
+     * @summary: Add Media
+     * @description: Add Media list for specific entity.
+     * @param {Object} arg - arg object.
+     * @param {AddMediaListRequest} arg.body
+     **/
+    createMedia({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Update Media
+     * @description: Update Media (archive/approve) for the given entity.
+     * @param {Object} arg - arg object.
+     * @param {UpdateMediaListRequest} arg.body
+     **/
+    updateMedia({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get Media
+      * @description: Get Media from the given entity type and entity ID.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - vote id
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getMedias({ entityType, entityId, id, pageId, pageSize }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get Media
+      * @description: Get Media from the given entity type and entity ID.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - vote id
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getMediasPaginator({ entityType, entityId, id, pageSize }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        pageSize?: number;
+    }): Paginator;
+    /**
+      *
+      * @summary: Get a review summary
+      * @description: Review summary gives ratings and attribute metrics of a review per entity
+  It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - review summary identifier
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getReviewSummaries({ entityType, entityId, id, pageId, pageSize }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get a review summary
+      * @description: Review summary gives ratings and attribute metrics of a review per entity
+  It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - review summary identifier
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getReviewSummariesPaginator({ entityType, entityId, id, pageSize }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        pageSize?: number;
+    }): Paginator;
+    /**
+      *
+      * @summary: Add customer reviews
+      * @description: Add customer reviews for specific entity with following data:
+  attributes rating, entity rating, title, description, media resources and template id.
+      * @param {Object} arg - arg object.
+      * @param {UpdateReviewRequest} arg.body
+      **/
+    createReview({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Update customer reviews
+      * @description: Update customer reviews for specific entity with following data:
+  attributes rating, entity rating, title, description, media resources and template id.
+      * @param {Object} arg - arg object.
+      * @param {UpdateReviewRequest} arg.body
+      **/
+    updateReview({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get list of customer reviews
+      * @description: This is used to get the list of customer reviews based on entity and provided filters.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - review id
+      * @param {string} [arg.userId] - user id
+      * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
+      * @param {Array<number>} [arg.rating] - rating filter, 1-5
+      * @param {Array<string>} [arg.attributeRating] - attribute rating filter
+      * @param {boolean} [arg.facets] - facets (true|false)
+      * @param {string} [arg.sort] - sort by : default | top | recent
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getReviews({ entityType, entityId, id, userId, media, rating, attributeRating, facets, sort, pageId, pageSize, }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        userId?: string;
+        media?: string;
+        rating?: Array<number>;
+        attributeRating?: Array<string>;
+        facets?: boolean;
+        sort?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get list of customer reviews
+      * @description: This is used to get the list of customer reviews based on entity and provided filters.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - review id
+      * @param {string} [arg.userId] - user id
+      * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
+      * @param {Array<number>} [arg.rating] - rating filter, 1-5
+      * @param {Array<string>} [arg.attributeRating] - attribute rating filter
+      * @param {boolean} [arg.facets] - facets (true|false)
+      * @param {string} [arg.sort] - sort by : default | top | recent
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getReviewsPaginator({ entityType, entityId, id, userId, media, rating, attributeRating, facets, sort, pageSize, }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        userId?: string;
+        media?: string;
+        rating?: Array<number>;
+        attributeRating?: Array<string>;
+        facets?: boolean;
+        sort?: string;
+        pageSize?: number;
+    }): Paginator;
+    /**
+      *
+      * @summary: Get the templates for product or l3 type
+      * @description: This is used to get the templates details.
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.templateId] - template id
+      * @param {string} [arg.entityId] - entity id
+      * @param {string} [arg.entityType] - entity type e.g. product | l3
+      
+      **/
+    getTemplates({ templateId, entityId, entityType }?: {
+        templateId?: string;
+        entityId?: string;
+        entityType?: string;
+    }): any;
+    /**
+      *
+      * @summary: Create a new question
+      * @description: This is used to create a new question with following data:
+  tags, text, type, choices for MCQ type questions, maximum length of answer.
+      * @param {Object} arg - arg object.
+      * @param {CreateQNARequest} arg.body
+      **/
+    createQuestion({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Update question
+     * @description: This is used to update question's status, tags and choices.
+     * @param {Object} arg - arg object.
+     * @param {UpdateQNARequest} arg.body
+     **/
+    updateQuestion({ body }?: {
+        body: any;
+    }): any;
+    /**
+      *
+      * @summary: Get a list of QnA
+      * @description: This is used to get a list of questions and its answers.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - qna id
+      * @param {boolean} [arg.showAnswer] - show answer flag
+      * @param {string} [arg.pageId] - pagination page id
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getQuestionAndAnswers({ entityType, entityId, id, showAnswer, pageId, pageSize, }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        showAnswer?: boolean;
+        pageId?: string;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get a list of QnA
+      * @description: This is used to get a list of questions and its answers.
+      * @param {Object} arg - arg object.
+      * @param {string} arg.entityType - entity type
+      * @param {string} arg.entityId - entity id
+      * @param {string} [arg.id] - qna id
+      * @param {boolean} [arg.showAnswer] - show answer flag
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getQuestionAndAnswersPaginator({ entityType, entityId, id, showAnswer, pageSize, }?: {
+        entityType: string;
+        entityId: string;
+        id?: string;
+        showAnswer?: boolean;
+        pageSize?: number;
+    }): Paginator;
+    /**
+      *
+      * @summary: Get list of votes
+      * @description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.id] - vote id
+      * @param {string} [arg.refType] - entity type e.g. review | comment
+      * @param {number} [arg.pageNo] - pagination page no
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getVotes({ id, refType, pageNo, pageSize }?: {
+        id?: string;
+        refType?: string;
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
+    /**
+      *
+      * @summary: Get list of votes
+      * @description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+      * @param {Object} arg - arg object.
+      * @param {string} [arg.id] - vote id
+      * @param {string} [arg.refType] - entity type e.g. review | comment
+      * @param {number} [arg.pageSize] - pagination page size
+      
+      **/
+    getVotesPaginator({ id, refType, pageSize }?: {
+        id?: string;
+        refType?: string;
+        pageSize?: number;
+    }): Paginator;
+    /**
+     *
+     * @summary: Create a new vote
+     * @description: This is used to create a new vote and the actions can be upvote or downvote.
+     * @param {Object} arg - arg object.
+     * @param {VoteRequest} arg.body
+     **/
+    createVote({ body }?: {
+        body: any;
+    }): any;
+    /**
+     *
+     * @summary: Update vote
+     * @description: This is used to update the vote and the actions can be upvote or downvote.
+     * @param {Object} arg - arg object.
+     * @param {UpdateVoteRequest} arg.body
+     **/
+    updateVote({ body }?: {
+        body: any;
+    }): any;
+}
 declare class PosCart {
     constructor(_conf: any);
     _conf: any;
@@ -2380,7 +2910,7 @@ declare class PosCart {
       * @param {number} [arg.uid] -
       * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
-      * @param {number} [arg.tags] -
+      * @param {string} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
       
       **/
@@ -2388,7 +2918,7 @@ declare class PosCart {
         uid?: number;
         mobileNo?: string;
         checkoutMode?: string;
-        tags?: number;
+        tags?: string;
         isDefault?: boolean;
     }): any;
     /**
@@ -2410,7 +2940,7 @@ declare class PosCart {
       * @param {number} [arg.uid] -
       * @param {string} [arg.mobileNo] -
       * @param {string} [arg.checkoutMode] -
-      * @param {number} [arg.tags] -
+      * @param {string} [arg.tags] -
       * @param {boolean} [arg.isDefault] -
       
       **/
@@ -2419,7 +2949,7 @@ declare class PosCart {
         uid?: number;
         mobileNo?: string;
         checkoutMode?: string;
-        tags?: number;
+        tags?: string;
         isDefault?: boolean;
     }): any;
     /**
