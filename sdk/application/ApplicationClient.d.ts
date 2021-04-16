@@ -103,11 +103,11 @@ declare class Catalog {
       * @summary: Compare products
       * @description: Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
       * @param {Object} arg - arg object.
-      * @param {Array<string>} arg.slug - The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/**
+      * @param {string} arg.slug - The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/**
       
       **/
     getProductComparisonBySlugs({ slug }?: {
-        slug: Array<string>;
+        slug: string;
     }): any;
     /**
       *
@@ -1520,30 +1520,6 @@ declare class Content {
     getSEOConfiguration({}?: any): any;
     /**
       *
-      * @summary: Get slideshows
-      * @description: Use this to get slideshows.
-      * @param {Object} arg - arg object.
-      * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
-      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-      
-      **/
-    getSlideshows({ pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-    }): any;
-    /**
-      *
-      * @summary: Get slideshows
-      * @description: Use this to get slideshows.
-      * @param {Object} arg - arg object.
-      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-      
-      **/
-    getSlideshowsPaginator({ pageSize }?: {
-        pageSize?: number;
-    }): Paginator;
-    /**
-      *
       * @summary: Get slideshow by slug
       * @description: Use this API to fetch a slideshow using `slug`
       * @param {Object} arg - arg object.
@@ -1742,7 +1718,6 @@ declare class FileStorage {
         namespace: string;
         body: any;
     }): any;
-    upload({ data, file_name, content_type, namespace, size, tags, }?: any): Promise<any>;
 }
 declare class Configuration {
     constructor(_conf: any);
@@ -2116,15 +2091,13 @@ declare class Order {
       * @param {string} [arg.pageSize] - Page limit
       * @param {string} [arg.fromDate] - From Date
       * @param {string} [arg.toDate] - To Date
-      * @param {number} [arg.orderStatus] - Order Status
       
       **/
-    getOrders({ pageNo, pageSize, fromDate, toDate, orderStatus }?: {
+    getOrders({ pageNo, pageSize, fromDate, toDate }?: {
         pageNo?: string;
         pageSize?: string;
         fromDate?: string;
         toDate?: string;
-        orderStatus?: number;
     }): any;
     /**
       *

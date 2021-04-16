@@ -55,7 +55,6 @@ export class CatalogValidator {
     static getCompanyBrandDetail(): any;
     static getCompanyMetrics(): any;
     static getStoreDetail(): any;
-    static getGenderAttribute(): any;
     static listProductTemplateCategories(): any;
     static listDepartmentsData(): any;
     static getDepartmentData(): any;
@@ -80,8 +79,8 @@ export class CatalogValidator {
     static getProductSize(): any;
     static updateProductAssetsInBulk(): any;
     static getProductBulkUploadHistory(): any;
-    static deleteProductBulkJob(): any;
     static createProductsInBulk(): any;
+    static deleteProductBulkJob(): any;
     static getCompanyTags(): any;
     static createProductAssetsInBulk(): any;
     static getProductAssetsInBulk(): any;
@@ -91,8 +90,8 @@ export class CatalogValidator {
     static deleteInventory(): any;
     static createBulkInventoryJob(): any;
     static getInventoryBulkUploadHistory(): any;
-    static deleteBulkInventoryJob(): any;
     static createBulkInventory(): any;
+    static deleteBulkInventoryJob(): any;
     static createInventoryExportJob(): any;
     static getInventoryExport(): any;
     static exportInventoryConfig(): any;
@@ -109,10 +108,10 @@ export class CompanyProfileValidator {
     static editBrand(): any;
     static getBrand(): any;
     static createBrand(): any;
-    static createCompanyBrandMapping(): any;
     static getBrands(): any;
-    static createLocation(): any;
+    static createCompanyBrandMapping(): any;
     static getLocations(): any;
+    static createLocation(): any;
     static updateLocation(): any;
     static getLocationDetail(): any;
 }
@@ -177,16 +176,4 @@ export class AnalyticsValidator {
     static getExportJobStatus(): any;
     static getLogsList(): any;
     static searchLogs(): any;
-}
-export class DiscountValidator {
-    static getDiscounts(): any;
-    static createDiscount(): any;
-    static getDiscount(): any;
-    static updateDiscount(): any;
-    static validateDiscountFile(): any;
-    static downloadDiscountFile(): any;
-    static getValidationJob(): any;
-    static cancelValidationJob(): any;
-    static getDownloadJob(): any;
-    static cancelDownloadJob(): any;
 }

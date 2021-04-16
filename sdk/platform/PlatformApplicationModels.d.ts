@@ -254,7 +254,3 @@ export class AnalyticsValidator {
     static getAbandonCartsCSV(): any;
     static getAbandonCartDetail(): any;
 }
-export class PartnerValidator {
-    static addProxyPath(): any;
-    static removeProxyPath(): any;
-}

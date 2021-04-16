@@ -152,7 +152,6 @@
     * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
-    * [getSlideshows](#getslideshows)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
@@ -534,7 +533,7 @@ const data = await catalog.getProductComparisonBySlugs(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | array | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** | 
+| slug | string | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** | 
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
 
@@ -9687,101 +9686,6 @@ default
 ---
 
 
-#### getSlideshows
-Get slideshows
-
-```javascript
-// Promise
-const promise = content.getSlideshows(pageNo,pageSize);
-
-// Async/Await
-const data = await content.getSlideshows(pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
-
-Use this to get slideshows.
-
-*Success Response:*
-
-
-
-Success
-
-
-Schema: `SlideshowGetResponse`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/SlideshowGetResponse"
-}
-```
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSlideshow
 Get slideshow by slug
 
@@ -12377,10 +12281,10 @@ Get Orders for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
+const promise = order.getOrders(pageNo,pageSize,fromDate,toDate);
 
 // Async/Await
-const data = await order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
+const data = await order.getOrders(pageNo,pageSize,fromDate,toDate);
 ```
 
 | Argument  |  Type  | Description |
@@ -12389,7 +12293,6 @@ const data = await order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
 | pageSize | string | Page limit | 
 | fromDate | string | From Date | 
 | toDate | string | To Date | 
-| orderStatus | integer | Order Status | 
 
 Get Orders
 

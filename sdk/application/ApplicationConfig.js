@@ -4,6 +4,9 @@ class CredentialValidationError extends Error {
     this.name = "CredentialValidationError"; // (2)
   }
 }
+
+const MongoIDRegExp = /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i;
+
 class ApplicationConfig {
   /**
    * @param  {object} _conf
@@ -23,6 +26,11 @@ class ApplicationConfig {
     }
     if (!this.applicationToken) {
       throw new CredentialValidationError("No Application Token Present");
+    }
+    if (!MongoIDRegExp.test(this.applicationID)) {
+      throw new CredentialValidationError(
+        "Invalid Application ID. It should be Mongo ID"
+      );
     }
     if (this.applicationToken.length < 5) {
       throw new CredentialValidationError("Invalid Application Token");
