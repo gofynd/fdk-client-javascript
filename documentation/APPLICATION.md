@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -152,6 +152,7 @@
     * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
+    * [getSlideshows](#getslideshows)
     * [getSlideshow](#getslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [getTags](#gettags)
@@ -1476,23 +1477,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collectionType,collectionId);
+const promise = catalog.unfollowById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.followById(collectionType,collectionId);
+const data = await catalog.unfollowById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | string | the `id` of the collection type you want to follow | 
+| collectionId | string | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1526,23 +1527,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collectionType,collectionId);
+const promise = catalog.followById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.unfollowById(collectionType,collectionId);
+const data = await catalog.followById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | string | the `id` of the collection type you want to unfollow | 
+| collectionId | string | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -9626,6 +9627,101 @@ Success
 ```json
 {
   "$ref": "#/components/examples/Seo"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/4XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+Failed
+
+
+Schema: `APIError`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/5XXAPIError"
+}
+```
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSlideshows
+Get slideshows
+
+```javascript
+// Promise
+const promise = content.getSlideshows(pageNo,pageSize);
+
+// Async/Await
+const data = await content.getSlideshows(pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
+| pageSize | integer | Number of items to retrieve in each page. | 
+
+Use this to get slideshows.
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `SlideshowGetResponse`
+
+
+*Examples:*
+
+
+default
+```json
+{
+  "$ref": "#/components/examples/SlideshowGetResponse"
 }
 ```
 

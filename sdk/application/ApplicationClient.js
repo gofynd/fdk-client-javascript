@@ -1,3 +1,4 @@
+const axios = require("axios");
 const {
   CatalogValidator,
   CartValidator,
@@ -60,9 +61,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -90,9 +89,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["store_id"] = storeId;
@@ -123,9 +120,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["store_id"] = storeId;
@@ -157,9 +152,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -222,9 +215,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["slug"] = slug;
@@ -254,9 +245,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -285,9 +274,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -315,9 +302,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -344,9 +329,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -377,9 +360,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["item_id"] = itemId;
@@ -413,9 +394,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["timestamp"] = timestamp;
@@ -491,9 +470,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["q"] = q;
@@ -568,9 +545,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["department"] = department;
@@ -630,9 +605,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -659,9 +632,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["department"] = department;
@@ -689,9 +660,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -720,9 +689,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["sort_on"] = sortOn;
@@ -781,9 +748,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -810,9 +775,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["q"] = q;
@@ -841,9 +804,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -912,9 +873,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["f"] = f;
@@ -988,9 +947,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1019,9 +976,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_id"] = pageId;
@@ -1068,36 +1023,6 @@ class Catalog {
 
   /**
     *
-    * @summary: Follow a particular Product
-    * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-    * @param {string} arg.collectionId - the `id` of the collection type you want to follow
-    
-    **/
-  followById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.followById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return new Promise(() => {
-        throw error;
-      });
-    }
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
     * @summary: UnFollow a Product
     * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
     * @param {Object} arg - arg object.
@@ -1111,15 +1036,41 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
     return APIClient.execute(
       this._conf,
       "delete",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Follow a particular Product
+    * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+    * @param {string} arg.collectionId - the `id` of the collection type you want to follow
+    
+    **/
+  followById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.followById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -1141,9 +1092,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1170,9 +1119,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["collection_type"] = collectionType;
@@ -1205,9 +1152,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -1285,9 +1230,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1318,9 +1261,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1349,9 +1290,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["i"] = i;
@@ -1382,9 +1321,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1414,9 +1351,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1444,9 +1379,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1478,9 +1411,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["i"] = i;
@@ -1511,9 +1442,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1544,9 +1473,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["item_id"] = itemId;
@@ -1581,9 +1508,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1614,9 +1539,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1648,9 +1571,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1682,9 +1603,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1711,9 +1630,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1742,9 +1659,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1774,9 +1689,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1823,9 +1736,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1861,9 +1772,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["p"] = p;
@@ -1893,9 +1802,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1922,9 +1829,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -1951,9 +1856,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -1980,9 +1883,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2010,9 +1911,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2045,9 +1944,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2074,9 +1971,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2102,9 +1997,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2131,9 +2024,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2160,9 +2051,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2189,9 +2078,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2218,9 +2105,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2252,9 +2137,7 @@ class Theme {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2281,9 +2164,7 @@ class Theme {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2315,9 +2196,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2343,9 +2222,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2371,9 +2248,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2399,9 +2274,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2428,9 +2301,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2457,9 +2328,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2486,9 +2355,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2515,9 +2382,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2543,9 +2408,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2571,9 +2434,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2600,9 +2461,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2629,9 +2488,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2657,9 +2514,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2685,9 +2540,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2713,9 +2566,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2741,9 +2592,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2770,9 +2619,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2800,9 +2647,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2830,9 +2675,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2860,9 +2703,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -2889,9 +2730,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2917,9 +2756,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -2946,9 +2783,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["name"] = name;
@@ -2976,9 +2811,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3006,9 +2839,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3048,9 +2879,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3082,9 +2911,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3111,9 +2938,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3141,9 +2966,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3175,9 +2998,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3208,9 +3029,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3237,9 +3056,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["platform"] = platform;
@@ -3272,9 +3089,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3301,9 +3116,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3331,9 +3144,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -3389,9 +3200,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3417,9 +3226,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3446,9 +3253,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3475,9 +3280,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3504,9 +3307,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3532,9 +3333,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3560,9 +3359,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3590,9 +3387,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -3649,9 +3444,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3679,9 +3472,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -3737,9 +3528,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3750,6 +3539,64 @@ class Content {
       query,
       undefined
     );
+  }
+
+  /**
+    *
+    * @summary: Get slideshows
+    * @description: Use this to get slideshows.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    
+    **/
+  getSlideshows({ pageNo, pageSize } = {}) {
+    const { error } = ContentValidator.getSlideshows().validate(
+      { pageNo, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["page_no"] = pageNo;
+    query["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/slideshow/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Get slideshows
+    * @description: Use this to get slideshows.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+    
+    **/
+  getSlideshowsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSlideshows({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
   }
 
   /**
@@ -3766,9 +3613,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3794,9 +3639,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3822,9 +3665,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3856,9 +3697,7 @@ class Communication {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3886,9 +3725,7 @@ class Communication {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3914,9 +3751,7 @@ class Communication {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3948,9 +3783,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -3977,9 +3810,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4006,9 +3837,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4035,9 +3864,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["url"] = url;
@@ -4064,9 +3891,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4093,9 +3918,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4122,9 +3945,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4175,9 +3996,7 @@ This operation will return the url for the uploaded file.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4222,9 +4041,7 @@ This operation will return the url for the uploaded file.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4256,9 +4073,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4284,9 +4099,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4312,9 +4125,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4340,9 +4151,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4371,9 +4180,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -4432,9 +4239,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4460,9 +4265,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4488,9 +4291,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4517,9 +4318,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4545,9 +4344,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4573,9 +4370,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4603,9 +4398,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4634,9 +4427,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["order_incent"] = orderIncent;
@@ -4673,9 +4464,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["refresh"] = refresh;
@@ -4702,9 +4491,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4731,9 +4518,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["refresh"] = refresh;
@@ -4761,9 +4546,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["force_refresh"] = forceRefresh;
@@ -4790,9 +4573,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4818,9 +4599,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4846,9 +4625,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4874,9 +4651,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4902,9 +4677,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -4953,9 +4726,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["amount"] = amount;
@@ -5014,9 +4785,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["amount"] = amount;
@@ -5051,9 +4820,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["order_id"] = orderId;
@@ -5081,9 +4848,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["ifsc_code"] = ifscCode;
@@ -5111,9 +4876,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["order_id"] = orderId;
@@ -5142,9 +4905,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5170,9 +4931,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5200,9 +4959,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5228,9 +4985,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5266,9 +5021,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -5299,9 +5052,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5328,9 +5079,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5357,9 +5106,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5386,9 +5133,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5415,9 +5160,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5444,9 +5187,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5478,9 +5219,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5506,9 +5245,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5534,9 +5271,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5565,9 +5300,7 @@ The list of points history is paginated.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_id"] = pageId;
@@ -5624,9 +5357,7 @@ The list of points history is paginated.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5652,9 +5383,7 @@ The list of points history is paginated.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5686,9 +5415,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5714,9 +5441,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5747,9 +5472,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["id"] = id;
@@ -5814,9 +5537,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -5872,9 +5593,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5901,9 +5620,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5930,9 +5647,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5958,9 +5673,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -5986,9 +5699,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6020,9 +5731,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["id"] = id;
@@ -6091,9 +5800,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6119,9 +5826,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6147,9 +5852,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6175,9 +5878,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6208,9 +5909,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["id"] = id;
@@ -6279,9 +5978,7 @@ It gives following response data: review count, rating average. review metrics /
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["id"] = id;
@@ -6346,9 +6043,7 @@ attributes rating, entity rating, title, description, media resources and templa
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6375,9 +6070,7 @@ attributes rating, entity rating, title, description, media resources and templa
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6438,9 +6131,7 @@ attributes rating, entity rating, title, description, media resources and templa
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["id"] = id;
@@ -6535,9 +6226,7 @@ attributes rating, entity rating, title, description, media resources and templa
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["template_id"] = templateId;
@@ -6567,9 +6256,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6595,9 +6282,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6636,9 +6321,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["id"] = id;
@@ -6714,9 +6397,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["id"] = id;
@@ -6778,9 +6459,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6806,9 +6485,7 @@ tags, text, type, choices for MCQ type questions, maximum length of answer.
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -6844,9 +6521,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -6877,9 +6552,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -6908,9 +6581,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["i"] = i;
@@ -6941,9 +6612,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -6973,9 +6642,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -7003,9 +6670,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -7037,9 +6702,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["i"] = i;
@@ -7070,9 +6733,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -7103,9 +6764,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["item_id"] = itemId;
@@ -7140,9 +6799,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -7173,9 +6830,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -7207,9 +6862,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -7241,9 +6894,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -7270,9 +6921,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -7301,9 +6950,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -7333,9 +6980,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -7382,9 +7027,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -7439,9 +7082,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["pick_at_store_uid"] = pickAtStoreUid;
@@ -7479,9 +7120,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["i"] = i;
@@ -7513,9 +7152,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -7543,9 +7180,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["uid"] = uid;
@@ -7574,9 +7209,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["area_code"] = areaCode;
@@ -7605,9 +7238,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
     query["store_uid"] = storeUid;
@@ -7634,9 +7265,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -7663,9 +7292,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -7693,9 +7320,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -7727,9 +7352,7 @@ class Logistic {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -7756,9 +7379,7 @@ class Logistic {
       { abortEarly: false }
     );
     if (error) {
-      return new Promise(() => {
-        throw error;
-      });
+      return Promise.reject(error);
     }
     const query = {};
 
@@ -7771,5 +7392,52 @@ class Logistic {
     );
   }
 }
+
+/**
+ * @param  {} data
+ * @param  {string} file_name
+ * @param  {string} content_type
+ * @param  {string} namespace
+ * @param  {number} size
+ * @param  {number} tags
+ */
+FileStorage.prototype.upload = function ({
+  data,
+  file_name,
+  content_type,
+  namespace,
+  size,
+  tags,
+} = {}) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const dataObj = await this.startUpload({
+        namespace,
+        body: {
+          file_name,
+          content_type,
+          size: size,
+          tags: tags,
+        },
+      });
+      if (dataObj.upload && dataObj.upload.url) {
+        await axios.put(dataObj.upload.url, data, {
+          withCredentials: false,
+          headers: { "Content-Type": content_type },
+        });
+      } else {
+        reject({ message: "Failed to upload file" });
+      }
+      delete dataObj.tags;
+      const completeRes = await this.completeUpload({
+        namespace,
+        body: dataObj,
+      });
+      resolve(completeRes);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
 
 module.exports = ApplicationClient;

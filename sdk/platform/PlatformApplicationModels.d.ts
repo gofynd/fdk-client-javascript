@@ -160,29 +160,29 @@ export class OrderValidator {
     static reprocessOrder(): any;
 }
 export class CatalogValidator {
+    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
-    static getSearchKeywords(): any;
-    static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
+    static createCustomKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
-    static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
     static deleteCollection(): any;
     static updateCollection(): any;
-    static addCollectionItems(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
 }
 export class FileStorageValidator {
@@ -253,4 +253,8 @@ export class AnalyticsValidator {
     static getAbandonCartList(): any;
     static getAbandonCartsCSV(): any;
     static getAbandonCartDetail(): any;
+}
+export class PartnerValidator {
+    static addProxyPath(): any;
+    static removeProxyPath(): any;
 }
