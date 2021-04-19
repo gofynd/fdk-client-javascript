@@ -2116,13 +2116,15 @@ declare class Order {
       * @param {string} [arg.pageSize] - Page limit
       * @param {string} [arg.fromDate] - From Date
       * @param {string} [arg.toDate] - To Date
+      * @param {number} [arg.orderStatus] - Order Status
       
       **/
-    getOrders({ pageNo, pageSize, fromDate, toDate }?: {
+    getOrders({ pageNo, pageSize, fromDate, toDate, orderStatus }?: {
         pageNo?: string;
         pageSize?: string;
         fromDate?: string;
         toDate?: string;
+        orderStatus?: number;
     }): any;
     /**
       *

@@ -5013,11 +5013,12 @@ class Order {
     * @param {string} [arg.pageSize] - Page limit
     * @param {string} [arg.fromDate] - From Date
     * @param {string} [arg.toDate] - To Date
+    * @param {number} [arg.orderStatus] - Order Status
     
     **/
-  getOrders({ pageNo, pageSize, fromDate, toDate } = {}) {
+  getOrders({ pageNo, pageSize, fromDate, toDate, orderStatus } = {}) {
     const { error } = OrderValidator.getOrders().validate(
-      { pageNo, pageSize, fromDate, toDate },
+      { pageNo, pageSize, fromDate, toDate, orderStatus },
       { abortEarly: false }
     );
     if (error) {
@@ -5028,6 +5029,7 @@ class Order {
     query["page_size"] = pageSize;
     query["from_date"] = fromDate;
     query["to_date"] = toDate;
+    query["order_status"] = orderStatus;
 
     return APIClient.execute(
       this._conf,

@@ -12377,10 +12377,10 @@ Get Orders for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.getOrders(pageNo,pageSize,fromDate,toDate);
+const promise = order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
 
 // Async/Await
-const data = await order.getOrders(pageNo,pageSize,fromDate,toDate);
+const data = await order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
 ```
 
 | Argument  |  Type  | Description |
@@ -12389,6 +12389,7 @@ const data = await order.getOrders(pageNo,pageSize,fromDate,toDate);
 | pageSize | string | Page limit | 
 | fromDate | string | From Date | 
 | toDate | string | To Date | 
+| orderStatus | integer | Order Status | 
 
 Get Orders
 
