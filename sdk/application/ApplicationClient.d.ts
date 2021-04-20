@@ -459,19 +459,6 @@ declare class Catalog {
     }): Paginator;
     /**
       *
-      * @summary: UnFollow a Product
-      * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-      * @param {Object} arg - arg object.
-      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-      * @param {string} arg.collectionId - the `id` of the collection type you want to unfollow
-      
-      **/
-    unfollowById({ collectionType, collectionId }?: {
-        collectionType: string;
-        collectionId: string;
-    }): any;
-    /**
-      *
       * @summary: Follow a particular Product
       * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
       * @param {Object} arg - arg object.
@@ -480,6 +467,19 @@ declare class Catalog {
       
       **/
     followById({ collectionType, collectionId }?: {
+        collectionType: string;
+        collectionId: string;
+    }): any;
+    /**
+      *
+      * @summary: UnFollow a Product
+      * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+      * @param {Object} arg - arg object.
+      * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+      * @param {string} arg.collectionId - the `id` of the collection type you want to unfollow
+      
+      **/
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): any;
@@ -2029,6 +2029,24 @@ declare class Payment {
         assignCardId?: string;
         orderType: string;
         userDetails?: string;
+    }): any;
+    /**
+      *
+      * @summary: List Refund Transfer Mode
+      * @description: Get all active transfer mode for adding beneficiary details
+      * @param {Object} arg - arg object.
+      
+      **/
+    getActiveRefundTransferModes({}?: any): any;
+    /**
+     *
+     * @summary: Enable/Disable Refund Transfer Mode
+     * @description: Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
+     * @param {Object} arg - arg object.
+     * @param {UpdateRefundTransferModeRequest} arg.body
+     **/
+    enableOrDisableRefundTransferMode({ body }?: {
+        body: any;
     }): any;
     /**
       *
