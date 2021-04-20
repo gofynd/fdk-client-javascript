@@ -6,6 +6,7 @@
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
 * [Content](#Content) - Content System 
+* [Assignment](#Assignment) -  
 * [Billing](#Billing) - Handle platform subscription 
 * [Communication](#Communication) - Manages email, sms, push notifications sent to users 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
@@ -156,6 +157,27 @@
     * [editInjectableTag](#editinjectabletag)
     
 
+* [Assignment](#Assignment)
+  * Methods
+    * [createPickupLocation](#createpickuplocation)
+    * [getPickupLocation](#getpickuplocation)
+    * [updatePickupLocation](#updatepickuplocation)
+    * [getPickupLocationById](#getpickuplocationbyid)
+    * [createPickupConfiguration](#createpickupconfiguration)
+    * [getPickupConfiguration](#getpickupconfiguration)
+    * [getAllocationConfiguration](#getallocationconfiguration)
+    * [createAllocationConfiguration](#createallocationconfiguration)
+    * [updateAllocationConfiguration](#updateallocationconfiguration)
+    * [getAllocationLocations](#getallocationlocations)
+    * [getAllocationLocationById](#getallocationlocationbyid)
+    * [updateAllocationLocation](#updateallocationlocation)
+    * [createAllocationLocation](#createallocationlocation)
+    * [getDestinationZones](#getdestinationzones)
+    * [postDestinationZone](#postdestinationzone)
+    * [getDestinationZoneById](#getdestinationzonebyid)
+    * [updateDestinationZone](#updatedestinationzone)
+    
+
 * [Billing](#Billing)
   * Methods
     * [getInvoices](#getinvoices)
@@ -244,13 +266,13 @@
 * [Catalog](#Catalog)
   * Methods
     * [updateSearchKeywords](#updatesearchkeywords)
-    * [deleteSearchKeywords](#deletesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [createCustomKeyword](#createcustomkeyword)
     * [getAllSearchKeyword](#getallsearchkeyword)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getAutocompleteConfig](#getautocompleteconfig)
     * [createProductBundle](#createproductbundle)
@@ -300,8 +322,8 @@
     * [createProduct](#createproduct)
     * [getProducts](#getproducts)
     * [editProduct](#editproduct)
-    * [deleteProduct](#deleteproduct)
     * [getProduct](#getproduct)
+    * [deleteProduct](#deleteproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
@@ -334,15 +356,15 @@
     * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
-    * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getBrands](#getbrands)
-    * [createLocation](#createlocation)
+    * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
-    * [updateLocation](#updatelocation)
+    * [createLocation](#createlocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     
 
 * [FileStorage](#FileStorage)
@@ -11494,6 +11516,920 @@ default
 ---
 
 
+## Assignment
+
+
+#### createPickupLocation
+
+
+```javascript
+// Promise
+const promise = assignment.createPickupLocation(companyId,applicationId,body);
+
+// Async/Await
+const data = await assignment.createPickupLocation(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Create a new Pickup point for an application.
+
+
+*Success Response:*
+
+
+
+Success Response - Store Updated
+
+
+Schema: `Success`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPickupLocation
+
+
+```javascript
+// Promise
+const promise = assignment.getPickupLocation(companyId,applicationId,q,pageNo,pageSize);
+
+// Async/Await
+const data = await assignment.getPickupLocation(companyId,applicationId,q,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| q | string | Search query | 
+| pageNo | integer | Request a page number | 
+| pageSize | integer | Request a page size | 
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Update list of pickup points for an application.
+
+
+*Success Response:*
+
+
+
+Success Response
+
+
+Schema: `PickupPointResponse`
+
+
+
+
+
+
+
+
+Error
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePickupLocation
+
+
+```javascript
+// Promise
+const promise = assignment.updatePickupLocation(id,companyId,applicationId,body);
+
+// Async/Await
+const data = await assignment.updatePickupLocation(id,companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | number | Pickup Point ID | 
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Update Pickup Point for an application. Pickup Point once created
+can be updated using this API. 'x-application-id'm and request body are required to trigger
+a successful update.
+
+
+*Success Response:*
+
+
+
+Success Response - Store Updated
+
+
+Schema: `Success`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPickupLocationById
+
+
+```javascript
+// Promise
+const promise = assignment.getPickupLocationById(id,companyId,applicationId);
+
+// Async/Await
+const data = await assignment.getPickupLocationById(id,companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | number | Pickup Point Id | 
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+This API returns Pickup point data for an id. Returns not found if no data exists for the
+store id passed.
+
+
+*Success Response:*
+
+
+
+Success Response
+
+
+Schema: `PickupPointSchema`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createPickupConfiguration
+
+
+```javascript
+// Promise
+const promise = assignment.createPickupConfiguration(companyId,applicationId,body);
+
+// Async/Await
+const data = await assignment.createPickupConfiguration(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Create a new pickup configuration for an application id. Only one configuration can be
+created per application id.
+
+
+*Success Response:*
+
+
+
+Success Response - Store Updated
+
+
+Schema: `Success`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPickupConfiguration
+
+
+```javascript
+// Promise
+const promise = assignment.getPickupConfiguration(companyId,applicationId);
+
+// Async/Await
+const data = await assignment.getPickupConfiguration(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Let pickup configuration for an application. z-application-id is required in
+the header to fetch the data.
+
+
+*Success Response:*
+
+
+
+Success Response
+
+
+Schema: `PickupResponse`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAllocationConfiguration
+
+
+```javascript
+// Promise
+const promise = assignment.getAllocationConfiguration(companyId,applicationId);
+
+// Async/Await
+const data = await assignment.getAllocationConfiguration(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Get Shipping configuration for an application. Returns the global shipping configuration
+including shipping priority and default strategy, etc. Every application can have one set of
+configuration each. The endpoint requires an application id to get the data.
+
+
+*Success Response:*
+
+
+
+Success Response
+
+
+Schema: `ShippingResponse`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createAllocationConfiguration
+
+
+```javascript
+// Promise
+const promise = assignment.createAllocationConfiguration(companyId,applicationId,body);
+
+// Async/Await
+const data = await assignment.createAllocationConfiguration(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Create a new Shipping configuration for an application The configuration is for
+all the stores under an application. There can be only one configuration for an
+application i.e, for an application configuration can be created only once.
+
+
+*Success Response:*
+
+
+
+Success Response - Store Updated
+
+
+Schema: `Success`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAllocationConfiguration
+
+
+```javascript
+// Promise
+const promise = assignment.updateAllocationConfiguration(companyId,applicationId,body);
+
+// Async/Await
+const data = await assignment.updateAllocationConfiguration(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Update Shipping configuration for an application. Application configuration once created
+can be updated using this API. 'x-application-id'm and request body are required to trigger
+a successful update.
+
+
+*Success Response:*
+
+
+
+Success Response - Store Updated
+
+
+Schema: `Success`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAllocationLocations
+
+
+```javascript
+// Promise
+const promise = assignment.getAllocationLocations(companyId,applicationId,q,pageNo,pageSize,type);
+
+// Async/Await
+const data = await assignment.getAllocationLocations(companyId,applicationId,q,pageNo,pageSize,type);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| q | string | Search query | 
+| pageNo | integer | Request a page number | 
+| pageSize | integer | Request a page size | 
+| type | string | Type can be 'standard' or 'advanced' | 
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+List Stores of an application. Two types of stores are listed,
+some having allocation types as standard and others, advanced.
+API has support for pagination, filter by type and search by name.
+
+
+*Success Response:*
+
+
+
+Success Response
+
+
+Schema: `StoreListResponse`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAllocationLocationById
+
+
+```javascript
+// Promise
+const promise = assignment.getAllocationLocationById(id,companyId,applicationId);
+
+// Async/Await
+const data = await assignment.getAllocationLocationById(id,companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | number | Store Id | 
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+This API returns store data for an id. Returns not found if no data exists for the
+store id passed. The data is returned from sixspeed database which includes only the
+shipping configuration of the stores including store id and app id.
+
+
+*Success Response:*
+
+
+
+Success Response
+
+
+Schema: `StoreResponse`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAllocationLocation
+
+
+```javascript
+// Promise
+const promise = assignment.updateAllocationLocation(id,companyId,applicationId,body);
+
+// Async/Await
+const data = await assignment.updateAllocationLocation(id,companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | number | Store Id | 
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+A store configuration once created can be updated via this API. Store id in request params
+and udpated request body are required to successfully update the store data.
+
+
+*Success Response:*
+
+
+
+Success Response - Store Updated
+
+
+Schema: `Success`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createAllocationLocation
+
+
+```javascript
+// Promise
+const promise = assignment.createAllocationLocation(companyId,applicationId,body);
+
+// Async/Await
+const data = await assignment.createAllocationLocation(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Create a new store shipping configuratiion. The configuration is stored into the
+sixspeed database. One one store data can be created for one store id. Ther can be one
+default configuration and multiple non-default ones. The default is not binded with product
+tags while others are required to be.
+
+
+*Success Response:*
+
+
+
+Success Response - Store Updated
+
+
+Schema: `Success`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDestinationZones
+
+
+```javascript
+// Promise
+const promise = assignment.getDestinationZones(companyId,applicationId,q,pageNo,pageSize);
+
+// Async/Await
+const data = await assignment.getDestinationZones(companyId,applicationId,q,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| q | string | Search query | 
+| pageNo | integer | Request a page number | 
+| pageSize | integer | Request a page size | 
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Get a list of zones created, where every zone has a unique name and id. They can be
+of three different types, radius, pincode and country.
+
+
+*Success Response:*
+
+
+
+Success Response
+
+
+Schema: `ZoneListResponse`
+
+
+
+
+
+
+
+
+Error Response
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### postDestinationZone
+
+
+```javascript
+// Promise
+const promise = assignment.postDestinationZone(companyId,applicationId,body);
+
+// Async/Await
+const data = await assignment.postDestinationZone(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+This API lets you create a zone which can be used further be mapped with store
+configuration rules to defined a shipping rule. Either of the three details need to
+be passed, zone_detail, pincode and region.
+
+
+*Success Response:*
+
+
+
+Success Response - Zone Created
+
+
+Schema: `Success`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDestinationZoneById
+
+
+```javascript
+// Promise
+const promise = assignment.getDestinationZoneById(id,companyId,applicationId);
+
+// Async/Await
+const data = await assignment.getDestinationZoneById(id,companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | number | Store Id | 
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Returns zone data for the specified zone id. Id is the required parameter and returns
+not found if no data is found for the passed zone id.
+
+
+*Success Response:*
+
+
+
+Success Response
+
+
+Schema: `ZoneSchema`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateDestinationZone
+
+
+```javascript
+// Promise
+const promise = assignment.updateDestinationZone(id,companyId,applicationId,body);
+
+// Async/Await
+const data = await assignment.updateDestinationZone(id,companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| id | number | Store Id | 
+| companyId | integer | Company Id | 
+| applicationId | string | Application Id | 
+
+Zone once created can be updated using this API. Zone id and request body are the required
+data to update a zone.
+
+
+*Success Response:*
+
+
+
+Success Response - Zone Updated
+
+
+Schema: `Success`
+
+
+
+
+
+
+
+
+Internal Server Error
+
+
+Schema: `ErrorResponseSchema`
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
 ## Billing
 
 
@@ -15595,57 +16531,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
-
-```javascript
-// Promise
-const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSearchKeywords
 Get a Search Keywords Details
 
@@ -15673,6 +16558,57 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
 
 
 Schema: `GetSearchWordsDetailResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSearchKeywords
+Delete a Search Keywords
+
+```javascript
+// Promise
+const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
 
 
 
@@ -15848,57 +16784,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
-
-```javascript
-// Promise
-const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getAutocompleteKeywordDetail
 Get a Autocomplete Keywords Details
 
@@ -15926,6 +16811,57 @@ The mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 
 
 Schema: `GetAutocompleteWordsResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
+
+```javascript
+// Promise
+const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
 
 
 
@@ -18417,56 +19353,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteProduct
-Delete a product.
-
-```javascript
-// Promise
-const promise = catalog.deleteProduct(companyId,itemId);
-
-// Async/Await
-const data = await catalog.deleteProduct(companyId,itemId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to product that is to be deleted. | 
-| itemId | integer | Id of the product to be updated. | 
-
-This API allows to delete product.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getProduct
 Get a single product.
 
@@ -18496,6 +19382,56 @@ Product object. See example below or refer `product.utils.format_product_respons
 
 
 Schema: `Product`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteProduct
+Delete a product.
+
+```javascript
+// Promise
+const promise = catalog.deleteProduct(companyId,itemId);
+
+// Async/Await
+const data = await catalog.deleteProduct(companyId,itemId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id of the company associated to product that is to be deleted. | 
+| itemId | integer | Id of the product to be updated. | 
+
+This API allows to delete product.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -19927,56 +20863,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(companyId,brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(companyId,brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getBrand
 Get a single brand.
 
@@ -20027,22 +20913,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createBrand
-Create a Brand.
+#### editBrand
+Edit a brand.
 
 ```javascript
 // Promise
-const promise = companyprofile.createBrand(companyId,body);
+const promise = companyprofile.editBrand(companyId,brandId,body);
 
 // Async/Await
-const data = await companyprofile.createBrand(companyId,body);
+const data = await companyprofile.editBrand(companyId,brandId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company. | 
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
 
-This API allows to create a brand associated to a company.
+This API allows to edit meta of a brand.
 
 *Success Response:*
 
@@ -20076,22 +20963,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createBrand
+Create a Brand.
 
 ```javascript
 // Promise
-const promise = companyprofile.createCompanyBrandMapping(companyId,body);
+const promise = companyprofile.createBrand(companyId,body);
 
 // Async/Await
-const data = await companyprofile.createCompanyBrandMapping(companyId,body);
+const data = await companyprofile.createBrand(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
+| companyId | string | Id of the company. | 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a brand associated to a company.
 
 *Success Response:*
 
@@ -20176,22 +21063,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### createCompanyBrandMapping
+Create a company brand mapping.
 
 ```javascript
 // Promise
-const promise = companyprofile.createLocation(companyId,body);
+const promise = companyprofile.createCompanyBrandMapping(companyId,body);
 
 // Async/Await
-const data = await companyprofile.createLocation(companyId,body);
+const data = await companyprofile.createCompanyBrandMapping(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
+| companyId | string | Id of the company inside which the brand is to be mapped. | 
 
-This API allows to create a location associated to a company.
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -20279,23 +21166,22 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```javascript
 // Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
+const promise = companyprofile.createLocation(companyId,body);
 
 // Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
+const data = await companyprofile.createLocation(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
 
-This API allows to edit a location associated to a company.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
@@ -20355,6 +21241,56 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.updateLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 

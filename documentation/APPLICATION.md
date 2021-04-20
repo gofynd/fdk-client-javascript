@@ -534,7 +534,7 @@ const data = await catalog.getProductComparisonBySlugs(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** | 
+| slug | array | The unique identifier `slug` of a products. You can retrieve this from the APIs that list products like **v1.0/products/** | 
 
 Compare between the features of the given set of products Use this API to compare how one product ranks against other products. Note that at least one slug is mandatory in request query.
 
