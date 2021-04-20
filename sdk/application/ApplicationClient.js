@@ -5009,8 +5009,8 @@ class Order {
     * @summary: Get Orders for application based on application Id
     * @description: Get Orders
     * @param {Object} arg - arg object.
-    * @param {string} [arg.pageNo] - Current page number
-    * @param {string} [arg.pageSize] - Page limit
+    * @param {number} [arg.pageNo] - Current page number
+    * @param {number} [arg.pageSize] - Page limit
     * @param {string} [arg.fromDate] - From Date
     * @param {string} [arg.toDate] - To Date
     * @param {number} [arg.orderStatus] - Order Status

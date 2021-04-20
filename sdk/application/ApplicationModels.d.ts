@@ -834,15 +834,8 @@ export class Validator {
     static DeliveryAddress(): any;
     static FulfillingStore(): any;
     static Invoice(): any;
-    static ProductItems(): any;
-    static ProductItemAttributes(): any;
-    static ShipmentMeta(): any;
-    static Timestamp(): any;
-    static DpOptions(): any;
-    static DpOptionId(): any;
-    static Formatted(): any;
-    static DebugInfo(): any;
     static Promise(): any;
+    static Timestamp(): any;
     static Reasons(): any;
     static ShipmentStatus(): any;
     static ShipmentUserInfo(): any;
@@ -942,6 +935,7 @@ export class Validator {
     static LogisticRequestCategory(): any;
     static LogisticPromise(): any;
     static LogisticTimestamp(): any;
+    static Formatted(): any;
     static GetTatProductResponse(): any;
     static LogisticResponseCategory(): any;
 }

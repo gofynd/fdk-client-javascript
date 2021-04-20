@@ -12385,8 +12385,8 @@ const data = await order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | string | Current page number | 
-| pageSize | string | Page limit | 
+| pageNo | integer | Current page number | 
+| pageSize | integer | Page limit | 
 | fromDate | string | From Date | 
 | toDate | string | To Date | 
 | orderStatus | integer | Order Status | 
