@@ -179,29 +179,29 @@ export class OrderValidator {
     static reprocessOrder(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
-    static createCustomKeyword(): any;
+    static getSearchKeywords(): any;
     static getAllSearchKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
+    static createCustomKeyword(): any;
     static updateAutocompleteKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static createCustomAutocompleteRule(): any;
+    static getAutocompleteKeywordDetail(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
     static updateCollection(): any;
     static deleteCollection(): any;
-    static addCollectionItems(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
 }
 export class FileStorageValidator {
