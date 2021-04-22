@@ -178,32 +178,6 @@ export class OrderValidator {
     static failedOrders(): any;
     static reprocessOrder(): any;
 }
-export class CatalogValidator {
-    static getSearchKeywords(): any;
-    static updateSearchKeywords(): any;
-    static deleteSearchKeywords(): any;
-    static getAllSearchKeyword(): any;
-    static createCustomKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
-    static updateAutocompleteKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
-    static getAutocompleteConfig(): any;
-    static createCustomAutocompleteRule(): any;
-    static getCatalogConfiguration(): any;
-    static getConfigurations(): any;
-    static createConfigurationProductListing(): any;
-    static getConfigurationByType(): any;
-    static createConfigurationByType(): any;
-    static getQueryFilters(): any;
-    static getAllCollections(): any;
-    static createCollection(): any;
-    static getCollectionDetail(): any;
-    static updateCollection(): any;
-    static deleteCollection(): any;
-    static getCollectionItems(): any;
-    static addCollectionItems(): any;
-    static getCatalogInsights(): any;
-}
 export class FileStorageValidator {
     static appStartUpload(): any;
     static appCompleteUpload(): any;
@@ -243,13 +217,6 @@ export class ConfigurationValidator {
     static changeDomainType(): any;
     static getDomainStatus(): any;
     static getApplicationById(): any;
-}
-export class CartValidator {
-    static getCoupons(): any;
-    static createCoupon(): any;
-    static getCouponById(): any;
-    static updateCoupon(): any;
-    static updateCouponPartially(): any;
 }
 export class RewardsValidator {
     static getGiveaways(): any;
