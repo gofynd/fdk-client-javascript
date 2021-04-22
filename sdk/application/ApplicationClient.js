@@ -3104,33 +3104,6 @@ class Content {
 
   /**
     *
-    * @summary: Get Blog by slug
-    * @description: Use this API to fetch a blog using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
-    
-    **/
-  getBlog({ slug } = {}) {
-    const { error } = ContentValidator.getBlog().validate(
-      { slug },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/blogs/%s`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
     * @summary: Get blogs
     * @description: Use this to get blogs.
     * @param {Object} arg - arg object.
@@ -3428,33 +3401,6 @@ class Content {
     };
     paginator.setCallback(callback);
     return paginator;
-  }
-
-  /**
-    *
-    * @summary: Get Page by slug
-    * @description: Use this API to fetch a custom page using `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
-    
-    **/
-  getPage({ slug } = {}) {
-    const { error } = ContentValidator.getPage().validate(
-      { slug },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      `/service/application/content/v1.0/pages/%s`,
-      query,
-      undefined
-    );
   }
 
   /**

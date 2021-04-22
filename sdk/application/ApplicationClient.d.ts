@@ -1353,17 +1353,6 @@ declare class Content {
     getAnnouncements({}?: any): any;
     /**
       *
-      * @summary: Get Blog by slug
-      * @description: Use this API to fetch a blog using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
-      
-      **/
-    getBlog({ slug }?: {
-        slug: string;
-    }): any;
-    /**
-      *
       * @summary: Get blogs
       * @description: Use this to get blogs.
       * @param {Object} arg - arg object.
@@ -1475,17 +1464,6 @@ declare class Content {
     getNavigationsPaginator({ pageSize }?: {
         pageSize?: number;
     }): Paginator;
-    /**
-      *
-      * @summary: Get Page by slug
-      * @description: Use this API to fetch a custom page using `slug`
-      * @param {Object} arg - arg object.
-      * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
-      
-      **/
-    getPage({ slug }?: {
-        slug: string;
-    }): any;
     /**
       *
       * @summary: Get pages
