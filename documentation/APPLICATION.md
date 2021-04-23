@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -139,7 +139,6 @@
 * [Content](#Content)
   * Methods
     * [getAnnouncements](#getannouncements)
-    * [getBlog](#getblog)
     * [getBlogs](#getblogs)
     * [getFaqs](#getfaqs)
     * [getFaqCategories](#getfaqcategories)
@@ -149,7 +148,6 @@
     * [getLandingPage](#getlandingpage)
     * [getLegalInformation](#getlegalinformation)
     * [getNavigations](#getnavigations)
-    * [getPage](#getpage)
     * [getPages](#getpages)
     * [getSEOConfiguration](#getseoconfiguration)
     * [getSlideshows](#getslideshows)
@@ -1479,23 +1477,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow a particular Product
+#### unfollowById
+UnFollow a Product
 
 ```javascript
 // Promise
-const promise = catalog.followById(collectionType,collectionId);
+const promise = catalog.unfollowById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.followById(collectionType,collectionId);
+const data = await catalog.unfollowById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | string | the `id` of the collection type you want to follow | 
+| collectionId | string | the `id` of the collection type you want to unfollow | 
 
-Follow a particular Product specified by its uid. Pass the uid of the product in request URL
+You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -1529,23 +1527,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-UnFollow a Product
+#### followById
+Follow a particular Product
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collectionType,collectionId);
+const promise = catalog.followById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.unfollowById(collectionType,collectionId);
+const data = await catalog.followById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | collectionType | string | Type of collection followed. i. e. products, brands, collections | 
-| collectionId | string | the `id` of the collection type you want to unfollow | 
+| collectionId | string | the `id` of the collection type you want to follow | 
 
-You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+Follow a particular Product specified by its uid. Pass the uid of the product in request URL
 
 *Success Response:*
 
@@ -8513,100 +8511,6 @@ default
 ---
 
 
-#### getBlog
-Get Blog by slug
-
-```javascript
-// Promise
-const promise = content.getBlog(slug);
-
-// Async/Await
-const data = await content.getBlog(slug);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
-
-Use this API to fetch a blog using `slug`
-
-*Success Response:*
-
-
-
-A JSON object with blog details
-
-
-Schema: `CustomBlogSchema`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/CustomBlog"
-}
-```
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
 #### getBlogs
 Get blogs
 
@@ -9347,100 +9251,6 @@ default
 ```json
 {
   "$ref": "#/components/examples/NavigationGetResponse"
-}
-```
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPage
-Get Page by slug
-
-```javascript
-// Promise
-const promise = content.getPage(slug);
-
-// Async/Await
-const data = await content.getPage(slug);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
-
-Use this API to fetch a custom page using `slug`
-
-*Success Response:*
-
-
-
-A JSON object with page details
-
-
-Schema: `CustomPageSchema`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/PageResponse"
 }
 ```
 
