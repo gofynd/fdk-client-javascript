@@ -1023,34 +1023,6 @@ class Catalog {
 
   /**
     *
-    * @summary: UnFollow a Product
-    * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
-    * @param {string} arg.collectionId - the `id` of the collection type you want to unfollow
-    
-    **/
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-    *
     * @summary: Follow a particular Product
     * @description: Follow a particular Product specified by its uid. Pass the uid of the product in request URL
     * @param {Object} arg - arg object.
@@ -1071,6 +1043,34 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "post",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: UnFollow a Product
+    * @description: You can undo a followed Product or Brand by its id, we refer this action as _unfollow_. Pass the uid of the product in request URL
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed. i. e. products, brands, collections
+    * @param {string} arg.collectionId - the `id` of the collection type you want to unfollow
+    
+    **/
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -3104,6 +3104,33 @@ class Content {
 
   /**
     *
+    * @summary: Get Blog by slug
+    * @description: Use this API to fetch a blog using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
+    
+    **/
+  getBlog({ slug } = {}) {
+    const { error } = ContentValidator.getBlog().validate(
+      { slug },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/blogs/${slug}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+    *
     * @summary: Get blogs
     * @description: Use this to get blogs.
     * @param {Object} arg - arg object.
@@ -3401,6 +3428,33 @@ class Content {
     };
     paginator.setCallback(callback);
     return paginator;
+  }
+
+  /**
+    *
+    * @summary: Get Page by slug
+    * @description: Use this API to fetch a custom page using `slug`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
+    
+    **/
+  getPage({ slug } = {}) {
+    const { error } = ContentValidator.getPage().validate(
+      { slug },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/content/v1.0/pages/${slug}`,
+      query,
+      undefined
+    );
   }
 
   /**
