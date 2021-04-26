@@ -16,6 +16,9 @@ export class BillingValidator {
     static activateSubscriptionPlan(): any;
     static cancelSubscriptionPlan(): any;
 }
+export class CommunicationValidator {
+    static getSystemNotifications(): any;
+}
 export class PaymentValidator {
     static getAllPayouts(): any;
     static savePayout(): any;
@@ -100,18 +103,18 @@ export class CatalogValidator {
     static bulkHsnCode(): any;
 }
 export class CompanyProfileValidator {
-    static cbsOnboardGet(): any;
     static updateCompany(): any;
+    static cbsOnboardGet(): any;
     static getCompanyMetrics(): any;
-    static getBrand(): any;
     static editBrand(): any;
+    static getBrand(): any;
     static createBrand(): any;
-    static getBrands(): any;
     static createCompanyBrandMapping(): any;
-    static getLocations(): any;
+    static getBrands(): any;
     static createLocation(): any;
-    static getLocationDetail(): any;
+    static getLocations(): any;
     static updateLocation(): any;
+    static getLocationDetail(): any;
 }
 export class FileStorageValidator {
     static startUpload(): any;
