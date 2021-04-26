@@ -44,8 +44,6 @@ class OAuthClient {
       this.retryOAuthTokenTimer = setTimeout(() => {
         this.renewAccessToken();
       }, (expires_in - 60) * 1000);
-    } else {
-      this.renewAccessToken();
     }
   }
 
