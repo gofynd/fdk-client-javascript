@@ -1,11 +1,6 @@
 const {
   LeadValidator,
-  FeedbackValidator,
-  ThemeValidator,
   UserValidator,
-  ContentValidator,
-  AssignmentValidator,
-  CommunicationValidator,
   PaymentValidator,
   OrderValidator,
   CatalogValidator,
@@ -13,9 +8,6 @@ const {
   ShareValidator,
   ConfigurationValidator,
   CartValidator,
-  RewardsValidator,
-  AnalyticsValidator,
-  PartnerValidator,
 } = require("./PlatformApplicationModels");
 const PlatformAPIClient = require("./PlatformAPIClient");
 const Paginator = require("../common/Paginator");
@@ -27,12 +19,7 @@ class PlatformApplicationClient {
     this.applicationId = applicationId;
 
     this.lead = new Lead(config, applicationId);
-    this.feedback = new Feedback(config, applicationId);
-    this.theme = new Theme(config, applicationId);
     this.user = new User(config, applicationId);
-    this.content = new Content(config, applicationId);
-    this.assignment = new Assignment(config, applicationId);
-    this.communication = new Communication(config, applicationId);
     this.payment = new Payment(config, applicationId);
     this.order = new Order(config, applicationId);
     this.catalog = new Catalog(config, applicationId);
@@ -40,9 +27,6 @@ class PlatformApplicationClient {
     this.share = new Share(config, applicationId);
     this.configuration = new Configuration(config, applicationId);
     this.cart = new Cart(config, applicationId);
-    this.rewards = new Rewards(config, applicationId);
-    this.analytics = new Analytics(config, applicationId);
-    this.partner = new Partner(config, applicationId);
   }
 }
 
@@ -574,1313 +558,6 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef Activity
-        
-        
-        @property { Object } [current_state]
-        
-        @property { string } [document_id]
-        
-        @property { Object } [previous_state]
-        
-         
-    */
-
-/**
-        @typedef ActivityDump
-        
-        
-        @property { Activity } [activity]
-        
-        @property { CreatedBy } [created_by]
-        
-        @property { DateMeta } [date_meta]
-        
-        @property { string } [id]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef AddMediaListRequest
-        
-        
-        @property { string } [entity_id]
-        
-        @property { string } [entity_type]
-        
-        @property { Array<AddMediaRequest> } [media_list]
-        
-        @property { string } [ref_id]
-        
-        @property { string } [ref_type]
-        
-         
-    */
-
-/**
-        @typedef AddMediaRequest
-        
-        
-        @property { string } [cloud_id]
-        
-        @property { string } [cloud_name]
-        
-        @property { string } [cloud_provider]
-        
-        @property { string } [entity_id]
-        
-        @property { string } [entity_type]
-        
-        @property { string } [media_url]
-        
-        @property { string } [ref_id]
-        
-        @property { string } [ref_type]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [thumbnail_url]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ApproveRequest
-        
-        
-        @property { boolean } [approve]
-        
-        @property { string } [entity_type]
-        
-        @property { string } id
-        
-        @property { string } [reason]
-        
-         
-    */
-
-/**
-        @typedef Attribute
-        
-        
-        @property { DateMeta } [date_meta]
-        
-        @property { string } [description]
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { Array<TagMeta> } [tags]
-        
-         
-    */
-
-/**
-        @typedef AttributeObject
-        
-        
-        @property { string } [description]
-        
-        @property { string } name
-        
-        @property { string } [slug]
-        
-        @property { string } [title]
-        
-        @property { string } type
-        
-        @property { number } value
-        
-         
-    */
-
-/**
-        @typedef CreatedBy
-        
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-        @property { Array<TagMeta> } [tags]
-        
-         
-    */
-
-/**
-        @typedef CursorGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef DateMeta
-        
-        
-        @property { string } [created_on]
-        
-        @property { string } [modified_on]
-        
-         
-    */
-
-/**
-        @typedef DeviceMeta
-        
-        
-        @property { string } [app_version]
-        
-        @property { string } [platform]
-        
-         
-    */
-
-/**
-        @typedef Entity
-        
-        
-        @property { string } [id]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef EntityRequest
-        
-        
-        @property { string } [entity_id]
-        
-        @property { string } [entity_type]
-        
-         
-    */
-
-/**
-        @typedef FeedbackAttributes
-        
-        
-        @property { Array<Attribute> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef FeedbackError
-        
-        
-        @property { Object } [code]
-        
-        @property { string } [exception]
-        
-        @property { string } [info]
-        
-        @property { string } [message]
-        
-        @property { Object } [meta]
-        
-        @property { string } [request_id]
-        
-        @property { string } [stack_trace]
-        
-        @property { number } [status]
-        
-         
-    */
-
-/**
-        @typedef FeedbackState
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [archive]
-        
-        @property { string } [media]
-        
-        @property { boolean } [qna]
-        
-        @property { boolean } [rating]
-        
-        @property { boolean } [review]
-        
-         
-    */
-
-/**
-        @typedef GetResponse
-        
-        
-        @property { Object } [data]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef GetReviewResponse
-        
-        
-        @property { Array<ReviewFacet> } [facets]
-        
-        @property { Array<Object> } [items]
-        
-        @property { Page } [page]
-        
-        @property { Array<SortMethod> } [sort]
-        
-         
-    */
-
-/**
-        @typedef InsertResponse
-        
-        
-        @property { number } [count]
-        
-         
-    */
-
-/**
-        @typedef MediaMeta
-        
-        
-        @property { number } [max_count]
-        
-        @property { number } [size]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef MediaMetaRequest
-        
-        
-        @property { number } max_count
-        
-        @property { number } size
-        
-         
-    */
-
-/**
-        @typedef NumberGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef PageCursor
-        
-        
-        @property { number } [current]
-        
-        @property { boolean } [has_next]
-        
-        @property { boolean } [has_previous]
-        
-        @property { number } [item_total]
-        
-        @property { string } [next_id]
-        
-        @property { number } size
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef PageNumber
-        
-        
-        @property { number } [current]
-        
-        @property { boolean } [has_next]
-        
-        @property { number } [item_total]
-        
-        @property { number } [size]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Rating
-        
-        
-        @property { Array<Attribute> } [attributes]
-        
-        @property { Array<string> } [attributes_slugs]
-        
-        @property { UI } [ui]
-        
-         
-    */
-
-/**
-        @typedef RatingRequest
-        
-        
-        @property { Array<string> } attributes
-        
-        @property { UI } [ui]
-        
-         
-    */
-
-/**
-        @typedef ReportAbuseRequest
-        
-        
-        @property { string } [description]
-        
-        @property { string } entity_id
-        
-        @property { string } entity_type
-        
-         
-    */
-
-/**
-        @typedef Review
-        
-        
-        @property { string } [description]
-        
-        @property { string } [header]
-        
-        @property { MediaMeta } [image_meta]
-        
-        @property { string } [title]
-        
-        @property { MediaMeta } [video_meta]
-        
-        @property { boolean } [vote_allowed]
-        
-         
-    */
-
-/**
-        @typedef ReviewFacet
-        
-        
-        @property { string } [display]
-        
-        @property { string } [name]
-        
-        @property { boolean } [selected]
-        
-        @property { string } [slug]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ReviewRequest
-        
-        
-        @property { string } description
-        
-        @property { string } header
-        
-        @property { MediaMetaRequest } image_meta
-        
-        @property { boolean } is_vote_allowed
-        
-        @property { string } title
-        
-        @property { MediaMetaRequest } video_meta
-        
-         
-    */
-
-/**
-        @typedef SaveAttributeRequest
-        
-        
-        @property { string } [description]
-        
-        @property { string } name
-        
-        @property { string } slug
-        
-         
-    */
-
-/**
-        @typedef SortMethod
-        
-        
-        @property { string } [name]
-        
-        @property { boolean } [selected]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef TagMeta
-        
-        
-        @property { Array<MediaMeta> } [media]
-        
-        @property { string } [name]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Template
-        
-        
-        @property { DateMeta } [date_meta]
-        
-        @property { Entity } [entity]
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-        @property { Rating } [rating]
-        
-        @property { Review } [review]
-        
-        @property { FeedbackState } [state]
-        
-        @property { Array<TagMeta> } [tags]
-        
-         
-    */
-
-/**
-        @typedef TemplateGetResponse
-        
-        
-        @property { Array<Template> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef TemplateRequest
-        
-        
-        @property { boolean } active
-        
-        @property { string } [enable_media_type]
-        
-        @property { boolean } [enable_qna]
-        
-        @property { boolean } enable_rating
-        
-        @property { boolean } enable_review
-        
-        @property { EntityRequest } entity
-        
-        @property { RatingRequest } rating
-        
-        @property { ReviewRequest } review
-        
-         
-    */
-
-/**
-        @typedef TemplateRequestList
-        
-        
-        @property { Array<TemplateRequest> } template_list
-        
-         
-    */
-
-/**
-        @typedef UI
-        
-        
-        @property { Array<string> } [feedback_question]
-        
-        @property { UIIcon } [icon]
-        
-        @property { Array<string> } [text]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef UIIcon
-        
-        
-        @property { string } [active]
-        
-        @property { string } [inactive]
-        
-        @property { Array<string> } [selected]
-        
-         
-    */
-
-/**
-        @typedef UpdateAttributeRequest
-        
-        
-        @property { string } [description]
-        
-        @property { string } name
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef UpdateResponse
-        
-        
-        @property { number } [count]
-        
-         
-    */
-
-/**
-        @typedef UpdateReviewRequest
-        
-        
-        @property { boolean } [active]
-        
-        @property { string } [application]
-        
-        @property { boolean } [approve]
-        
-        @property { boolean } [archive]
-        
-        @property { Array<AttributeObject> } [attributes_rating]
-        
-        @property { string } [description]
-        
-        @property { DeviceMeta } [device_meta]
-        
-        @property { string } [entity_id]
-        
-        @property { string } [entity_type]
-        
-        @property { Array<MediaMeta> } [media_resource]
-        
-        @property { number } [rating]
-        
-        @property { string } [review_id]
-        
-        @property { string } [template_id]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef UpdateTemplateRequest
-        
-        
-        @property { boolean } active
-        
-        @property { string } [enable_media_type]
-        
-        @property { boolean } [enable_qna]
-        
-        @property { boolean } enable_rating
-        
-        @property { boolean } enable_review
-        
-        @property { EntityRequest } entity
-        
-        @property { RatingRequest } rating
-        
-        @property { ReviewRequest } review
-        
-         
-    */
-
-/**
-        @typedef UpdateTemplateStatusRequest
-        
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [archive]
-        
-         
-    */
-
-/**
-        @typedef PaginationSchema
-        
-        
-        @property { number } [size]
-        
-        @property { number } [item_total]
-        
-        @property { boolean } [has_next]
-        
-        @property { string } [type]
-        
-        @property { number } [current]
-        
-         
-    */
-
-/**
-        @typedef ThemesListingResponseSchema
-        
-        
-        @property { Array<ThemesSchema> } [items]
-        
-        @property { PaginationSchema } [page]
-        
-         
-    */
-
-/**
-        @typedef AddThemeRequestSchema
-        
-        
-        @property { string } [theme_id]
-        
-         
-    */
-
-/**
-        @typedef UpgradableThemeSchema
-        
-        
-        @property { string } [parent_theme]
-        
-        @property { string } [applied_theme]
-        
-        @property { boolean } [upgrade]
-        
-         
-    */
-
-/**
-        @typedef FontsSchema
-        
-        
-        @property { FontsSchemaItems } [items]
-        
-        @property { string } [kind]
-        
-         
-    */
-
-/**
-        @typedef BlitzkriegApiErrorSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef BlitzkriegNotFoundSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef BlitzkriegInternalServerErrorSchema
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef FontsSchemaItems
-        
-        
-        @property { string } [family]
-        
-        @property { Array<string> } [variants]
-        
-        @property { Array<string> } [subsets]
-        
-        @property { string } [version]
-        
-        @property { string } [last_modified]
-        
-        @property { FontsSchemaItemsFiles } [files]
-        
-        @property { string } [category]
-        
-        @property { string } [kind]
-        
-         
-    */
-
-/**
-        @typedef FontsSchemaItemsFiles
-        
-        
-        @property { string } [regular]
-        
-        @property { string } [italic]
-        
-        @property { string } [bold]
-        
-         
-    */
-
-/**
-        @typedef ThemesSchema
-        
-        
-        @property { string } [application]
-        
-        @property { boolean } [applied]
-        
-        @property { boolean } [customized]
-        
-        @property { boolean } [published]
-        
-        @property { boolean } [archived]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [version]
-        
-        @property { string } [parent_theme_version]
-        
-        @property { string } [parent_theme]
-        
-        @property { Information } [information]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Src } [src]
-        
-        @property { AssetsSchema } [assets]
-        
-        @property { AvailablePages } [available_pages]
-        
-        @property { Array<availableSectionSchema> } [available_sections]
-        
-        @property { Array<sectionSchema> } [sections]
-        
-        @property { Object } [constants]
-        
-        @property { Object } [styles]
-        
-        @property { Config } [config]
-        
-        @property { Object } [settings]
-        
-        @property { Font } [font]
-        
-        @property { string } [_id]
-        
-        @property { number } [__v]
-        
-        @property { Colors } [colors]
-        
-         
-    */
-
-/**
-        @typedef pagesSchema
-        
-        
-        @property { string } [text]
-        
-        @property { string } [path]
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-        @property { Sections } [sections]
-        
-         
-    */
-
-/**
-        @typedef availableSectionSchema
-        
-        
-        @property { Blocks } [blocks]
-        
-        @property { string } [name]
-        
-        @property { string } [label]
-        
-        @property { Object } [props]
-        
-         
-    */
-
-/**
-        @typedef sectionSchema
-        
-        
-        @property { string } [page_key]
-        
-        @property { PageSections } [page_sections]
-        
-         
-    */
-
-/**
-        @typedef Information
-        
-        
-        @property { Images } [images]
-        
-        @property { Array<string> } [features]
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-         
-    */
-
-/**
-        @typedef Images
-        
-        
-        @property { Array<string> } [desktop]
-        
-        @property { Array<string> } [android]
-        
-        @property { Array<string> } [ios]
-        
-        @property { Array<string> } [thumbnail]
-        
-         
-    */
-
-/**
-        @typedef Src
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef AssetsSchema
-        
-        
-        @property { UmdJs } [umd_js]
-        
-        @property { CommonJs } [common_js]
-        
-        @property { Css } [css]
-        
-         
-    */
-
-/**
-        @typedef UmdJs
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef CommonJs
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef Css
-        
-        
-        @property { string } [link]
-        
-         
-    */
-
-/**
-        @typedef AvailablePages
-        
-        
-        @property { string } [path]
-        
-        @property { string } [type]
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-        @property { Seo } [seo]
-        
-        @property { Object } [props]
-        
-        @property { Sections } [sections]
-        
-         
-    */
-
-/**
-        @typedef Seo
-        
-        
-        @property { string } [title]
-        
-        @property { string } [description]
-        
-         
-    */
-
-/**
-        @typedef Sections
-        
-        
-        @property { string } [attributes]
-        
-         
-    */
-
-/**
-        @typedef Config
-        
-        
-        @property { Preset } [preset]
-        
-        @property { GlobalSchema } [global_schema]
-        
-        @property { string } [current]
-        
-        @property { ListSchema } [list]
-        
-         
-    */
-
-/**
-        @typedef Preset
-        
-        
-        @property { sectionSchema } [sections]
-        
-         
-    */
-
-/**
-        @typedef GlobalSchema
-        
-        
-        @property { Object } [props]
-        
-         
-    */
-
-/**
-        @typedef ListSchema
-        
-        
-        @property { Object } [global]
-        
-        @property { ConfigPage } [page]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef Colors
-        
-        
-        @property { string } [bg_color]
-        
-        @property { string } [primary_color]
-        
-        @property { string } [secondary_color]
-        
-        @property { string } [accent_color]
-        
-        @property { string } [link_color]
-        
-        @property { string } [button_secondary_color]
-        
-         
-    */
-
-/**
-        @typedef Custom
-        
-        
-        @property { Object } [props]
-        
-         
-    */
-
-/**
-        @typedef ConfigPage
-        
-        
-        @property { Object } [settings]
-        
-        @property { string } [page]
-        
-         
-    */
-
-/**
-        @typedef Font
-        
-        
-        @property { string } [family]
-        
-        @property { Variants } [variants]
-        
-         
-    */
-
-/**
-        @typedef Variants
-        
-        
-        @property { Medium } [medium]
-        
-        @property { SemiBold } [semi_bold]
-        
-        @property { Bold } [bold]
-        
-        @property { Light } [light]
-        
-        @property { Regular } [regular]
-        
-         
-    */
-
-/**
-        @typedef Medium
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef SemiBold
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Bold
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Light
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Regular
-        
-        
-        @property { string } [name]
-        
-        @property { string } [file]
-        
-         
-    */
-
-/**
-        @typedef Blocks
-        
-        
-        @property { string } [type]
-        
-        @property { string } [name]
-        
-        @property { BlocksProps } [props]
-        
-         
-    */
-
-/**
-        @typedef BlocksProps
-        
-        
-        @property { string } [id]
-        
-        @property { string } [label]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef PageSections
-        
-        
-        @property { PageSectionsBlocks } [blocks]
-        
-        @property { string } [name]
-        
-        @property { string } [label]
-        
-        @property { Object } [props]
-        
-        @property { Object } [preset]
-        
-        @property { Predicate } [predicate]
-        
-         
-    */
-
-/**
-        @typedef PageSectionsBlocks
-        
-        
-        @property { string } [type]
-        
-        @property { string } [name]
-        
-        @property { PageSectionsBlocksProps } [props]
-        
-         
-    */
-
-/**
-        @typedef PageSectionsBlocksProps
-        
-        
-        @property { string } [id]
-        
-        @property { string } [label]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Predicate
-        
-        
-        @property { Screen } [screen]
-        
-        @property { PredicateUserSchema } [user]
-        
-        @property { Route } [route]
-        
-         
-    */
-
-/**
-        @typedef Screen
-        
-        
-        @property { boolean } [mobile]
-        
-        @property { boolean } [desktop]
-        
-        @property { boolean } [tablet]
-        
-         
-    */
-
-/**
-        @typedef PredicateUserSchema
-        
-        
-        @property { boolean } [authenticated]
-        
-        @property { boolean } [anonymous]
-        
-         
-    */
-
-/**
-        @typedef Route
-        
-        
-        @property { string } [selected]
-        
-        @property { string } [exact_url]
-        
-        @property { Object } [query]
-        
-         
-    */
-
-/**
         @typedef EditEmailRequestSchema
         
         
@@ -2313,6 +990,23 @@ class PlatformApplicationClient {
     */
 
 /**
+        @typedef PaginationSchema
+        
+        
+        @property { number } [size]
+        
+        @property { number } [item_total]
+        
+        @property { boolean } [has_next]
+        
+        @property { string } [type]
+        
+        @property { number } [current]
+        
+         
+    */
+
+/**
         @typedef UnauthorizedSchema
         
         
@@ -2449,6 +1143,66 @@ class PlatformApplicationClient {
         @property { boolean } [primary]
         
         @property { boolean } [active]
+        
+         
+    */
+
+/**
+        @typedef CreateUserRequestSchema
+        
+        
+        @property { string } phone_number
+        
+        @property { string } [email]
+        
+        @property { string } [first_name]
+        
+        @property { string } [last_name]
+        
+        @property { string } [gender]
+        
+        @property { string } username
+        
+        @property { Object } [meta]
+        
+         
+    */
+
+/**
+        @typedef CreateUserResponseSchema
+        
+        
+        @property { UserSchema } [user]
+        
+         
+    */
+
+/**
+        @typedef CreateUserSessionRequestSchema
+        
+        
+        @property { string } [domain]
+        
+        @property { number } [max_age]
+        
+        @property { string } [user_id]
+        
+         
+    */
+
+/**
+        @typedef CreateUserSessionResponseSchema
+        
+        
+        @property { string } [domain]
+        
+        @property { number } [max_age]
+        
+        @property { boolean } [secure]
+        
+        @property { boolean } [http_only]
+        
+        @property { Object } [cookie]
         
          
     */
@@ -2655,10 +1409,27 @@ class PlatformApplicationClient {
     */
 
 /**
+        @typedef UpdateUserRequestSchema
+        
+        
+        @property { string } [first_name]
+        
+        @property { string } [last_name]
+        
+        @property { string } [gender]
+        
+        @property { Object } [meta]
+        
+         
+    */
+
+/**
         @typedef UserSchema
         
         
         @property { string } [first_name]
+        
+        @property { Object } [meta]
         
         @property { string } [last_name]
         
@@ -2667,6 +1438,8 @@ class PlatformApplicationClient {
         @property { Array<Email> } [emails]
         
         @property { string } [gender]
+        
+        @property { string } [dob]
         
         @property { boolean } [active]
         
@@ -2692,4002 +1465,20 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef ApplicationLegal
-        
-        
-        @property { string } [application]
-        
-        @property { string } [tnc]
-        
-        @property { string } [policy]
-        
-        @property { string } [shipping]
-        
-        @property { Array<ApplicationLegalFAQ> } [faq]
-        
-        @property { string } [_id]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [created_at]
-        
-         
-    */
-
-/**
-        @typedef ApplicationLegalFAQ
-        
-        
-        @property { string } [question]
-        
-        @property { string } [answer]
-        
-         
-    */
-
-/**
-        @typedef SeoComponent
-        
-        
-        @property { SeoSchema } [seo]
-        
-         
-    */
-
-/**
-        @typedef SeoSchema
-        
-        
-        @property { string } [app]
-        
-        @property { string } [_id]
-        
-        @property { string } [robots_txt]
-        
-        @property { boolean } [sitemap_enabled]
-        
-        @property { Array<Object> } [custom_meta_tags]
-        
-        @property { Detail } [details]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-         
-    */
-
-/**
-        @typedef CustomMetaTag
-        
-        
-        @property { string } [name]
-        
-        @property { string } [content]
-        
-        @property { string } [_id]
-        
-         
-    */
-
-/**
-        @typedef Detail
-        
-        
-        @property { string } [title]
-        
-        @property { string } [description]
-        
-         
-    */
-
-/**
-        @typedef StorefrontAnnouncement
-        
-        
-        @property { AnnouncementSchema } [announcements]
-        
-        @property { number } [refresh_rate]
-        
-        @property { Array<string> } [refresh_pages]
-        
-         
-    */
-
-/**
-        @typedef AnnouncementPageSchema
-        
-        
-        @property { string } [page_slug]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef EditorMeta
-        
-        
-        @property { string } [foreground_color]
-        
-        @property { string } [background_color]
-        
-        @property { string } [content_type]
-        
-        @property { string } [content]
-        
-         
-    */
-
-/**
-        @typedef AnnouncementAuthorSchema
-        
-        
-        @property { string } [created_by]
-        
-        @property { string } [modified_by]
-        
-         
-    */
-
-/**
-        @typedef AdminAnnouncementSchema
-        
-        
-        @property { string } [_id]
-        
-        @property { Array<string> } [platforms]
-        
-        @property { string } [title]
-        
-        @property { string } [announcement]
-        
-        @property { Array<AnnouncementPageSchema> } [pages]
-        
-        @property { EditorMeta } [editor_meta]
-        
-        @property { AnnouncementAuthorSchema } [author]
-        
-        @property { string } [created_at]
-        
-        @property { string } [app]
-        
-        @property { string } [modified_at]
-        
-        @property { ScheduleSchema } [_schedule]
-        
-         
-    */
-
-/**
-        @typedef ScheduleSchema
-        
-        
-        @property { string } [cron]
-        
-        @property { string } [start]
-        
-        @property { string } [end]
-        
-        @property { number } [duration]
-        
-        @property { Array<Object> } [next_schedule]
-        
-         
-    */
-
-/**
-        @typedef NextSchedule
-        
-        
-        @property { string } [start]
-        
-        @property { string } [end]
-        
-         
-    */
-
-/**
-        @typedef AnnouncementSchema
-        
-        
-        @property { Array<Object> } [page_slug]
-        
-         
-    */
-
-/**
-        @typedef announcementSchema
-        
-        
-        @property { string } [announcement]
-        
-        @property { scheduleStartSchema } [schedule]
-        
-         
-    */
-
-/**
-        @typedef scheduleStartSchema
-        
-        
-        @property { string } [start]
-        
-         
-    */
-
-/**
-        @typedef BlogGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef ResourceContent
-        
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef Asset
-        
-        
-        @property { string } [aspect_ratio]
-        
-        @property { string } [id]
-        
-        @property { string } [secure_url]
-        
-         
-    */
-
-/**
-        @typedef Author
-        
-        
-        @property { string } [designation]
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef BlogSchema
-        
-        
-        @property { string } [_id]
-        
-        @property { Object } [_custom_json]
-        
-        @property { string } [application]
-        
-        @property { boolean } [archived]
-        
-        @property { Author } [author]
-        
-        @property { Array<ResourceContent> } [content]
-        
-        @property { Asset } [feature_image]
-        
-        @property { boolean } [published]
-        
-        @property { string } [reading_time]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { SEO } [seo]
-        
-        @property { CronSchedule } [_schedule]
-        
-        @property { string } [title]
-        
-        @property { DateMeta } [date_meta]
-        
-         
-    */
-
-/**
-        @typedef SEO
-        
-        
-        @property { string } [description]
-        
-        @property { SEOImage } [image]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef SEOImage
-        
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef BlogRequest
-        
-        
-        @property { string } [application]
-        
-        @property { Object } [_custom_json]
-        
-        @property { Author } [author]
-        
-        @property { Array<ResourceContent> } [content]
-        
-        @property { Asset } [feature_image]
-        
-        @property { boolean } [published]
-        
-        @property { string } [reading_time]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [title]
-        
-        @property { SEO } [seo]
-        
-        @property { CronSchedule } [_schedule]
-        
-         
-    */
-
-/**
-        @typedef GetAnnouncementListSchema
-        
-        
-        @property { Array<AdminAnnouncementSchema> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef CreateAnnouncementSchema
-        
-        
-        @property { string } [message]
-        
-        @property { AdminAnnouncementSchema } [data]
-        
-         
-    */
-
-/**
-        @typedef Navigation
-        
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { string } [orientation]
-        
-        @property { CreatedBySchema } [created_by]
-        
-        @property { DateMeta } [date_meta]
-        
-        @property { string } [_id]
-        
-        @property { string } [position]
-        
-        @property { string } [application]
-        
-        @property { string } [platform]
-        
-        @property { NavigationReference } [navigation]
-        
-         
-    */
-
-/**
-        @typedef LocaleLanguage
-        
-        
-        @property { Language } [hi]
-        
-        @property { Language } [ar]
-        
-        @property { Language } [en_us]
-        
-         
-    */
-
-/**
-        @typedef Language
-        
-        
-        @property { string } [display]
-        
-         
-    */
-
-/**
-        @typedef Action
-        
-        
-        @property { ActionPage } [page]
-        
-        @property { ActionPage } [popup]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ActionPage
-        
-        
-        @property { Object } [params]
-        
-        @property { Object } [query]
-        
-        @property { string } [url]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef NavigationReference
-        
-        
-        @property { Array<string> } [acl]
-        
-        @property { Array<string> } [tags]
-        
-        @property { LocaleLanguage } [_locale_language]
-        
-        @property { string } [image]
-        
-        @property { string } [type]
-        
-        @property { Action } [action]
-        
-        @property { boolean } [active]
-        
-        @property { string } [display]
-        
-        @property { number } [sort_order]
-        
-        @property { NavigationReference } [sub_navigation]
-        
-         
-    */
-
-/**
-        @typedef LandingPage
-        
-        
-        @property { LandingPageSchema } [data]
-        
-        @property { boolean } [success]
-        
-         
-    */
-
-/**
-        @typedef ConfigurationSchema
-        
-        
-        @property { number } [sleep_time]
-        
-        @property { boolean } [start_on_launch]
-        
-        @property { number } [duration]
-        
-        @property { string } [slide_direction]
-        
-         
-    */
-
-/**
-        @typedef SlideshowMedia
-        
-        
-        @property { string } [type]
-        
-        @property { string } [url]
-        
-        @property { string } [bg_color]
-        
-        @property { number } [duration]
-        
-        @property { boolean } [auto_decide_duration]
-        
-        @property { Action } [action]
-        
-         
-    */
-
-/**
-        @typedef Slideshow
-        
-        
-        @property { SlideshowSchema } [data]
-        
-        @property { boolean } [success]
-        
-         
-    */
-
-/**
-        @typedef AnnouncementsResponseSchema
-        
-        
-        @property { Object } [announcements]
-        
-        @property { number } [refresh_rate]
-        
-        @property { Array<string> } [refresh_pages]
-        
-         
-    */
-
-/**
-        @typedef AnnouncementDataSchema
-        
-        
-        @property { string } [page_slug]
-        
-        @property { StorefrontAnnouncement } [announcement]
-        
-         
-    */
-
-/**
-        @typedef FaqResponseSchema
-        
-        
-        @property { Array<FAQ> } [faqs]
-        
-         
-    */
-
-/**
-        @typedef UpdateHandpickedSchema
-        
-        
-        @property { HandpickedTagSchema } [tag]
-        
-         
-    */
-
-/**
-        @typedef HandpickedTagSchema
-        
-        
-        @property { string } [position]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [name]
-        
-        @property { string } [url]
-        
-        @property { string } [type]
-        
-        @property { string } [sub_type]
-        
-        @property { string } [content]
-        
-         
-    */
-
-/**
-        @typedef RemoveHandpickedSchema
-        
-        
-        @property { Array<string> } [tags]
-        
-         
-    */
-
-/**
-        @typedef CreateTagSchema
-        
-        
-        @property { string } [name]
-        
-        @property { string } [sub_type]
-        
-        @property { string } [_id]
-        
-        @property { string } [type]
-        
-        @property { string } [url]
-        
-        @property { string } [position]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [content]
-        
-         
-    */
-
-/**
-        @typedef CreateTagRequestSchema
-        
-        
-        @property { Array<CreateTagSchema> } [tags]
-        
-         
-    */
-
-/**
-        @typedef APIError
-        
-        
-        @property { string } [message]
-        
-        @property { number } [status]
-        
-        @property { string } [code]
-        
-        @property { string } [exception]
-        
-        @property { string } [info]
-        
-        @property { string } [request_id]
-        
-        @property { string } [stack_trace]
-        
-        @property { Object } [meta]
-        
-         
-    */
-
-/**
-        @typedef CategorySchema
-        
-        
-        @property { number } [index]
-        
-        @property { string } [_id]
-        
-        @property { string } [slug]
-        
-        @property { string } [title]
-        
-        @property { string } [application]
-        
-         
-    */
-
-/**
-        @typedef ChildrenSchema
-        
-        
-        @property { string } [question]
-        
-        @property { string } [answer]
-        
-        @property { string } [slug]
-        
-        @property { string } [application]
-        
-        @property { string } [_id]
-        
-         
-    */
-
-/**
-        @typedef CategoryRequestSchema
-        
-        
-        @property { string } [slug]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef FAQCategorySchema
-        
-        
-        @property { number } [index]
-        
-        @property { string } [title]
-        
-        @property { string } [description]
-        
-        @property { ChildrenSchema } [children]
-        
-        @property { string } [_id]
-        
-        @property { string } [slug]
-        
-        @property { string } [application]
-        
-        @property { string } [icon_url]
-        
-        @property { Object } [_custom_json]
-        
-         
-    */
-
-/**
-        @typedef FaqSchema
-        
-        
-        @property { string } [slug]
-        
-        @property { string } [application]
-        
-        @property { string } [_id]
-        
-        @property { string } [question]
-        
-        @property { string } [answer]
-        
-         
-    */
-
-/**
-        @typedef FAQ
-        
-        
-        @property { string } [slug]
-        
-        @property { string } [question]
-        
-        @property { string } [answer]
-        
-         
-    */
-
-/**
-        @typedef CreateFaqResponseSchema
-        
-        
-        @property { FaqSchema } [faq]
-        
-         
-    */
-
-/**
-        @typedef CreateFaqSchema
-        
-        
-        @property { FAQ } [faq]
-        
-         
-    */
-
-/**
-        @typedef GetFaqSchema
-        
-        
-        @property { Array<Object> } [faqs]
-        
-         
-    */
-
-/**
-        @typedef UpdateFaqCategoryRequestSchema
-        
-        
-        @property { CategorySchema } [category]
-        
-         
-    */
-
-/**
-        @typedef CreateFaqCategoryRequestSchema
-        
-        
-        @property { CategoryRequestSchema } [category]
-        
-         
-    */
-
-/**
-        @typedef CreateFaqCategorySchema
-        
-        
-        @property { CategorySchema } [category]
-        
-         
-    */
-
-/**
-        @typedef GetFaqCategoriesSchema
-        
-        
-        @property { Array<CategorySchema> } [categories]
-        
-         
-    */
-
-/**
-        @typedef GetFaqCategoryBySlugSchema
-        
-        
-        @property { FAQCategorySchema } [category]
-        
-         
-    */
-
-/**
-        @typedef LandingPageGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef LandingPageSchema
-        
-        
-        @property { string } [slug]
-        
-        @property { Action } [action]
-        
-        @property { Array<string> } [platform]
-        
-        @property { CreatedBySchema } [created_by]
-        
-        @property { DateMeta } [date_meta]
-        
-        @property { string } [_id]
-        
-        @property { string } [application]
-        
-        @property { boolean } [archived]
-        
-        @property { Object } [_custom_json]
-        
-         
-    */
-
-/**
-        @typedef DefaultNavigationResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-         
-    */
-
-/**
-        @typedef NavigationGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef Orientation
-        
-        
-        @property { Array<string> } [portrait]
-        
-        @property { Array<string> } [landscape]
-        
-         
-    */
-
-/**
-        @typedef NavigationSchema
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [application]
-        
-        @property { boolean } [archived]
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [platform]
-        
-        @property { CreatedBySchema } [created_by]
-        
-        @property { DateMeta } [date_meta]
-        
-        @property { Orientation } [orientation]
-        
-        @property { number } [version]
-        
-        @property { NavigationReference } [navigation]
-        
-         
-    */
-
-/**
-        @typedef NavigationRequest
-        
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [platform]
-        
-        @property { Orientation } [orientation]
-        
-        @property { NavigationReference } [navigation]
-        
-         
-    */
-
-/**
-        @typedef CustomPageSchema
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [platform]
-        
-        @property { string } [title]
-        
-        @property { string } [slug]
-        
-        @property { string } [type]
-        
-        @property { string } [orientation]
-        
-        @property { string } [application]
-        
-        @property { string } [description]
-        
-        @property { boolean } [published]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Array<ContentSchema> } [content]
-        
-        @property { CreatedBySchema } [created_by]
-        
-        @property { DateMeta } [date_meta]
-        
-        @property { ScheduleSchema } [_schedule]
-        
-         
-    */
-
-/**
-        @typedef ContentSchema
-        
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef CustomPage
-        
-        
-        @property { CustomPageSchema } [data]
-        
-         
-    */
-
-/**
-        @typedef CustomBlogSchema
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [title]
-        
-        @property { string } [slug]
-        
-        @property { string } [reading_time]
-        
-        @property { string } [application]
-        
-        @property { string } [description]
-        
-        @property { FeatureImage } [feature_image]
-        
-        @property { boolean } [published]
-        
-        @property { boolean } [archived]
-        
-        @property { Array<string> } [tags]
-        
-        @property { ContentSchema } [content]
-        
-        @property { Author } [author]
-        
-        @property { ScheduleSchema } [_schedule]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { Object } [_custom_json]
-        
-         
-    */
-
-/**
-        @typedef FeatureImage
-        
-        
-        @property { string } [secure_url]
-        
-         
-    */
-
-/**
-        @typedef CustomBlog
-        
-        
-        @property { CustomBlogSchema } [data]
-        
-         
-    */
-
-/**
-        @typedef PageGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef PageSpec
-        
-        
-        @property { Array<Object> } [specifications]
-        
-         
-    */
-
-/**
-        @typedef PageSpecParam
-        
-        
-        @property { string } [key]
-        
-        @property { boolean } [required]
-        
-         
-    */
-
-/**
-        @typedef PageSpecItem
-        
-        
-        @property { string } [page_type]
-        
-        @property { string } [display_name]
-        
-        @property { Array<PageSpecParam> } [params]
-        
-        @property { Array<PageSpecParam> } [query]
-        
-         
-    */
-
-/**
-        @typedef PageSchema
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [application]
-        
-        @property { Array<string> } [component_ids]
-        
-        @property { Array<PageContent> } [content]
-        
-        @property { CreatedBySchema } [created_by]
-        
-        @property { DateMeta } [date_meta]
-        
-        @property { string } [description]
-        
-        @property { Asset } [feature_image]
-        
-        @property { Array<PageMeta> } [page_meta]
-        
-        @property { ScheduleSchema } [_schedule]
-        
-        @property { Object } [_custom_json]
-        
-        @property { string } [orientation]
-        
-        @property { string } [platform]
-        
-        @property { boolean } [published]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [title]
-        
-        @property { string } [type]
-        
-        @property { SEO } [seo]
-        
-        @property { Object } [visibility]
-        
-         
-    */
-
-/**
-        @typedef CreatedBySchema
-        
-        
-        @property { string } [id]
-        
-         
-    */
-
-/**
-        @typedef PageContent
-        
-        
-        @property { string } [type]
-        
-        @property { Object } [value]
-        
-         
-    */
-
-/**
-        @typedef PageMeta
-        
-        
-        @property { string } [key]
-        
-        @property { Object } [value]
-        
-         
-    */
-
-/**
-        @typedef PageRequest
-        
-        
-        @property { CronSchedule } [_schedule]
-        
-        @property { string } [application]
-        
-        @property { Author } [author]
-        
-        @property { Object } [_custom_json]
-        
-        @property { string } [orientation]
-        
-        @property { Array<ResourceContent> } [content]
-        
-        @property { Asset } [feature_image]
-        
-        @property { boolean } [published]
-        
-        @property { string } [reading_time]
-        
-        @property { string } [slug]
-        
-        @property { Array<string> } [tags]
-        
-        @property { SEO } [seo]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef CronSchedule
-        
-        
-        @property { string } [cron]
-        
-        @property { string } [start]
-        
-        @property { string } [end]
-        
-        @property { number } [duration]
-        
-         
-    */
-
-/**
-        @typedef PagePublishRequest
-        
-        
-        @property { boolean } [publish]
-        
-         
-    */
-
-/**
-        @typedef PageMetaSchema
-        
-        
-        @property { Array<Object> } [system_pages]
-        
-        @property { Array<Object> } [custom_pages]
-        
-        @property { string } [application_id]
-        
-         
-    */
-
-/**
-        @typedef SlideshowGetResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef SlideshowSchema
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [slug]
-        
-        @property { DateMeta } [date_meta]
-        
-        @property { string } [application]
-        
-        @property { string } [platform]
-        
-        @property { ConfigurationSchema } [configuration]
-        
-        @property { Array<SlideshowMedia> } [media]
-        
-        @property { boolean } [active]
-        
-        @property { boolean } [archived]
-        
-        @property { Object } [_custom_json]
-        
-         
-    */
-
-/**
-        @typedef SlideshowRequest
-        
-        
-        @property { string } [slug]
-        
-        @property { string } [platform]
-        
-        @property { ConfigurationSchema } [configuration]
-        
-        @property { SlideshowMedia } [media]
-        
-        @property { boolean } [active]
-        
-         
-    */
-
-/**
-        @typedef Support
-        
-        
-        @property { boolean } [created]
-        
-        @property { string } [_id]
-        
-        @property { string } [config_type]
-        
-        @property { string } [application]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { ContactSchema } [contact]
-        
-         
-    */
-
-/**
-        @typedef PhoneProperties
-        
-        
-        @property { string } [key]
-        
-        @property { string } [code]
-        
-        @property { string } [number]
-        
-         
-    */
-
-/**
-        @typedef PhoneSchema
-        
-        
-        @property { boolean } [active]
-        
-        @property { Array<PhoneProperties> } [phone]
-        
-         
-    */
-
-/**
-        @typedef EmailProperties
-        
-        
-        @property { string } [key]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef EmailSchema
-        
-        
-        @property { boolean } [active]
-        
-        @property { Array<EmailProperties> } [email]
-        
-         
-    */
-
-/**
-        @typedef ContactSchema
-        
-        
-        @property { PhoneSchema } [phone]
-        
-        @property { EmailSchema } [email]
-        
-         
-    */
-
-/**
-        @typedef TagsSchema
-        
-        
-        @property { string } [application]
-        
-        @property { string } [_id]
-        
-        @property { Array<TagSchema> } [tags]
-        
-         
-    */
-
-/**
-        @typedef TagSchema
-        
-        
-        @property { string } [name]
-        
-        @property { string } [url]
-        
-        @property { string } [type]
-        
-        @property { string } [sub_type]
-        
-        @property { string } [_id]
-        
-        @property { string } [position]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [content]
-        
-         
-    */
-
-/**
-        @typedef ErrorResponseSchema
-        
-        
-        @property { string } [message]
-        
-        @property { number } [code]
-        
-         
-    */
-
-/**
-        @typedef Success
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef CreatedModifiedByObject
-        
-        
-        @property { string } [username]
-        
-        @property { string } [user_id]
-        
-         
-    */
-
-/**
-        @typedef PickupPointResponse
-        
-        
-        @property { Array<ItemProperties> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef PickupPointSchema
-        
-        
-        @property { Array<string> } [notification_emails]
-        
-        @property { string } [name]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [code]
-        
-        @property { AddressObject } [address]
-        
-        @property { AdditionalContactsObject } [additional_contacts]
-        
-        @property { Array<AdditionalContactsObject> } [timing]
-        
-        @property { CreatedModifiedByObject } [created_by]
-        
-        @property { TimingObject } [modified_by]
-        
-        @property { string } [created_on]
-        
-        @property { string } [modified_on]
-        
-         
-    */
-
-/**
-        @typedef ItemProperties
-        
-        
-        @property { Array<string> } [notification_emails]
-        
-        @property { string } [name]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [code]
-        
-        @property { AddressObject } [address]
-        
-        @property { AdditionalContactsObject } [additional_contacts]
-        
-        @property { Array<AdditionalContactsObject> } [timing]
-        
-        @property { CreatedModifiedByObject } [created_by]
-        
-        @property { TimingObject } [modified_by]
-        
-        @property { string } [created_on]
-        
-        @property { string } [modified_on]
-        
-         
-    */
-
-/**
-        @typedef AddressObject
-        
-        
-        @property { string } [address1]
-        
-        @property { string } [city]
-        
-        @property { string } [state]
-        
-        @property { number } [pincode]
-        
-        @property { string } [country]
-        
-        @property { string } [country_code]
-        
-         
-    */
-
-/**
-        @typedef AdditionalContactsObject
-        
-        
-        @property { number } [number]
-        
-        @property { number } [country_code]
-        
-         
-    */
-
-/**
-        @typedef TimingObject
-        
-        
-        @property { OpeningClosingObject } [opening]
-        
-        @property { OpeningClosingObject } [closing]
-        
-        @property { boolean } [open]
-        
-        @property { string } [weekday]
-        
-         
-    */
-
-/**
-        @typedef OpeningClosingObject
-        
-        
-        @property { string } [hour]
-        
-        @property { string } [minute]
-        
-         
-    */
-
-/**
-        @typedef PickupResponse
-        
-        
-        @property { Array<PickupResponseItems> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef PickupConfiguration
-        
-        
-        @property { boolean } [datetime_check]
-        
-        @property { string } [header]
-        
-        @property { string } [instruction_for_customer]
-        
-         
-    */
-
-/**
-        @typedef PickupResponseItems
-        
-        
-        @property { boolean } [datetime_check]
-        
-        @property { string } [header]
-        
-        @property { string } [instruction_for_customer]
-        
-        @property { string } [app_id]
-        
-         
-    */
-
-/**
-        @typedef ShippingSchema
-        
-        
-        @property { AssignmentSchema } [assignment]
-        
-        @property { string } [_id]
-        
-        @property { string } [app_id]
-        
-         
-    */
-
-/**
-        @typedef ShippingResponse
-        
-        
-        @property { ShippingSchema } [data]
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef AssignmentSchema
-        
-        
-        @property { FulfillmentPriorityObject } [fulfillment_priority]
-        
-        @property { string } [default_sort_strategy]
-        
-         
-    */
-
-/**
-        @typedef FulfillmentPriorityObject
-        
-        
-        @property { string } [priorities]
-        
-        @property { boolean } [enabled]
-        
-         
-    */
-
-/**
-        @typedef StoreSchema
-        
-        
-        @property { StoreAssignmentObject } [assignment]
-        
-        @property { string } [_id]
-        
-         
-    */
-
-/**
-        @typedef StoreResponse
-        
-        
-        @property { StoreSchema } [data]
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef StoreAssignmentObject
-        
-        
-        @property { StrategyObject } [strategy]
-        
-        @property { string } [assignment_type]
-        
-         
-    */
-
-/**
-        @typedef StrategyObject
-        
-        
-        @property { Array<StrategyItems> } [rules]
-        
-         
-    */
-
-/**
-        @typedef StrategyItems
-        
-        
-        @property { Array<string> } [product_tags]
-        
-        @property { string } [zone]
-        
-         
-    */
-
-/**
-        @typedef StoreListResponse
-        
-        
-        @property { Array<Object> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef ZoneSchema
-        
-        
-        @property { ZoneDetailsObject } [zone_detail]
-        
-        @property { string } [_id]
-        
-         
-    */
-
-/**
-        @typedef ZoneListResponse
-        
-        
-        @property { Array<ZoneSchema> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef RegionObject
-        
-        
-        @property { string } [country]
-        
-        @property { string } [state]
-        
-         
-    */
-
-/**
-        @typedef PincodeObject
-        
-        
-        @property { Array<number> } [pincode_list]
-        
-         
-    */
-
-/**
-        @typedef RadiusObject
-        
-        
-        @property { number } [value]
-        
-         
-    */
-
-/**
-        @typedef ZoneDetailsObject
-        
-        
-        @property { RadiusObject } [radius]
-        
-        @property { PincodeObject } [pincode]
-        
-        @property { RegionObject } [region]
-        
-         
-    */
-
-/**
-        @typedef UnauthenticatedUser
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef UnauthenticatedApplication
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef BadRequest
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef ResourceNotFound
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef InternalServerError
-        
-        
-        @property { string } [message]
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef PlanRecurring
-        
-        
-        @property { string } [interval]
-        
-        @property { number } [interval_count]
-        
-         
-    */
-
-/**
-        @typedef Plan
-        
-        
-        @property { PlanRecurring } [recurring]
-        
-        @property { boolean } [is_trial_plan]
-        
-        @property { string } [plan_group]
-        
-        @property { Array<string> } [tag_lines]
-        
-        @property { string } [currency]
-        
-        @property { boolean } [is_active]
-        
-        @property { boolean } [is_visible]
-        
-        @property { number } [trial_period]
-        
-        @property { Array<string> } [addons]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [type]
-        
-        @property { string } [country]
-        
-        @property { string } [_id]
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-        @property { number } [amount]
-        
-        @property { string } [product_suite_id]
-        
-        @property { string } [created_at]
-        
-        @property { string } [modified_at]
-        
-         
-    */
-
-/**
-        @typedef DetailedPlanComponents
-        
-        
-        @property { string } [name]
-        
-        @property { string } [slug]
-        
-        @property { string } [description]
-        
-        @property { string } [group]
-        
-        @property { string } [icon]
-        
-        @property { Object } [links]
-        
-        @property { boolean } [enabled]
-        
-        @property { string } [display_text]
-        
-         
-    */
-
-/**
-        @typedef DetailedPlan
-        
-        
-        @property { PlanRecurring } [recurring]
-        
-        @property { boolean } [is_trial_plan]
-        
-        @property { string } [plan_group]
-        
-        @property { Array<string> } [tag_lines]
-        
-        @property { string } [currency]
-        
-        @property { boolean } [is_active]
-        
-        @property { boolean } [is_visible]
-        
-        @property { number } [trial_period]
-        
-        @property { Array<string> } [addons]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [type]
-        
-        @property { string } [country]
-        
-        @property { string } [_id]
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-        @property { number } [amount]
-        
-        @property { string } [product_suite_id]
-        
-        @property { string } [created_at]
-        
-        @property { string } [modified_at]
-        
-        @property { Array<DetailedPlanComponents> } [components]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsPeriod
-        
-        
-        @property { string } [start]
-        
-        @property { string } [end]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsClient
-        
-        
-        @property { Array<string> } [address_lines]
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-        @property { string } [phone]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsStatusTrail
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [value]
-        
-        @property { string } [timestamp]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsPaymentMethodsDataChecks
-        
-        
-        @property { string } [cvc_check]
-        
-        @property { string } [address_line1_check]
-        
-        @property { string } [address_postal_code_check]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsPaymentMethodsDataNetworks
-        
-        
-        @property { Array<string> } [available]
-        
-        @property { string } [preferred]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsPaymentMethodsDataThreeDSecureUsage
-        
-        
-        @property { boolean } [supported]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsPaymentMethodsData
-        
-        
-        @property { string } [brand]
-        
-        @property { string } [last4]
-        
-        @property { InvoiceDetailsPaymentMethodsDataChecks } [checks]
-        
-        @property { string } [wallet]
-        
-        @property { string } [country]
-        
-        @property { string } [funding]
-        
-        @property { number } [exp_year]
-        
-        @property { InvoiceDetailsPaymentMethodsDataNetworks } [networks]
-        
-        @property { number } [exp_month]
-        
-        @property { string } [fingerprint]
-        
-        @property { string } [generated_from]
-        
-        @property { InvoiceDetailsPaymentMethodsDataThreeDSecureUsage } [three_d_secure_usage]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsPaymentMethods
-        
-        
-        @property { number } [id]
-        
-        @property { string } [type]
-        
-        @property { string } [pg_payment_method_id]
-        
-        @property { InvoiceDetailsPaymentMethodsData } [data]
-        
-        @property { boolean } [is_default]
-        
-         
-    */
-
-/**
-        @typedef InvoicePaymentMethod
-        
-        
-        @property { string } [pg_payment_method_id]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetails
-        
-        
-        @property { InvoiceDetailsPeriod } [period]
-        
-        @property { InvoiceDetailsClient } [client]
-        
-        @property { boolean } [auto_advance]
-        
-        @property { string } [currency]
-        
-        @property { boolean } [paid]
-        
-        @property { number } [attemp]
-        
-        @property { string } [_id]
-        
-        @property { string } [collection_method]
-        
-        @property { string } [subscriber_id]
-        
-        @property { string } [invoice_url]
-        
-        @property { string } [number]
-        
-        @property { Object } [pg_data]
-        
-        @property { string } [receipt_number]
-        
-        @property { string } [statement_descriptor]
-        
-        @property { string } [current_status]
-        
-        @property { Array<InvoiceDetailsStatusTrail> } [status_trail]
-        
-        @property { number } [subtotal]
-        
-        @property { number } [total]
-        
-        @property { string } [subscription]
-        
-        @property { string } [next_action_time]
-        
-        @property { string } [created_at]
-        
-        @property { string } [modified_at]
-        
-        @property { string } [hash_identifier]
-        
-        @property { InvoicePaymentMethod } [payment_method]
-        
-         
-    */
-
-/**
-        @typedef InvoiceItemsPlanRecurring
-        
-        
-        @property { string } [interval]
-        
-        @property { number } [interval_count]
-        
-         
-    */
-
-/**
-        @typedef InvoiceItemsPlan
-        
-        
-        @property { InvoiceItemsPlanRecurring } [recurring]
-        
-        @property { boolean } [is_trial_plan]
-        
-        @property { string } [plan_group]
-        
-        @property { Array<string> } [tag_lines]
-        
-        @property { string } [currency]
-        
-        @property { boolean } [is_active]
-        
-        @property { boolean } [is_visible]
-        
-        @property { number } [trial_period]
-        
-        @property { Array<string> } [addons]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [type]
-        
-        @property { string } [country]
-        
-        @property { string } [_id]
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-        @property { number } [amount]
-        
-        @property { string } [product_suite_id]
-        
-        @property { string } [created_at]
-        
-        @property { string } [modified_at]
-        
-         
-    */
-
-/**
-        @typedef InvoiceItemsPeriod
-        
-        
-        @property { string } [start]
-        
-        @property { string } [end]
-        
-         
-    */
-
-/**
-        @typedef InvoiceItems
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [currency]
-        
-        @property { InvoiceItemsPlan } [plan]
-        
-        @property { string } [name]
-        
-        @property { number } [quantity]
-        
-        @property { string } [description]
-        
-        @property { InvoiceItemsPeriod } [period]
-        
-        @property { number } [unit_amount]
-        
-        @property { number } [amount]
-        
-        @property { string } [type]
-        
-        @property { string } [invoice_id]
-        
-        @property { string } [created_at]
-        
-        @property { string } [modified_at]
-        
-         
-    */
-
-/**
-        @typedef Invoice
-        
-        
-        @property { InvoiceDetails } [invoice]
-        
-        @property { Array<InvoiceItems> } [invoice_items]
-        
-         
-    */
-
-/**
-        @typedef InvoicesDataClient
-        
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-        @property { string } [phone]
-        
-        @property { Array<string> } [address_lines]
-        
-         
-    */
-
-/**
-        @typedef InvoicesDataPeriod
-        
-        
-        @property { string } [start]
-        
-        @property { string } [end]
-        
-         
-    */
-
-/**
-        @typedef InvoicesDataPaymentMethod
-        
-        
-        @property { string } [pg_payment_method_id]
-        
-         
-    */
-
-/**
-        @typedef InvoicesData
-        
-        
-        @property { string } [_id]
-        
-        @property { InvoicesDataClient } [client]
-        
-        @property { boolean } [auto_advance]
-        
-        @property { string } [currency]
-        
-        @property { boolean } [paid]
-        
-        @property { number } [attemp]
-        
-        @property { string } [collection_method]
-        
-        @property { string } [subscriber_id]
-        
-        @property { string } [invoice_url]
-        
-        @property { string } [number]
-        
-        @property { Object } [pg_data]
-        
-        @property { InvoicesDataPeriod } [period]
-        
-        @property { string } [receipt_number]
-        
-        @property { string } [statement_descriptor]
-        
-        @property { string } [current_status]
-        
-        @property { Array<InvoiceDetailsStatusTrail> } [status_trail]
-        
-        @property { number } [subtotal]
-        
-        @property { number } [total]
-        
-        @property { string } [subscription]
-        
-        @property { string } [next_action_time]
-        
-        @property { string } [created_at]
-        
-        @property { string } [modified_at]
-        
-        @property { string } [hash_identifier]
-        
-        @property { InvoicesDataPaymentMethod } [payment_method]
-        
-        @property { Array<InvoiceItems> } [invoice_items]
-        
-         
-    */
-
-/**
-        @typedef Invoices
-        
-        
-        @property { Array<InvoicesData> } [data]
-        
-        @property { number } [start]
-        
-        @property { number } [end]
-        
-        @property { number } [limit]
-        
-        @property { number } [page]
-        
-        @property { number } [total]
-        
-         
-    */
-
-/**
-        @typedef Phone
-        
-        
-        @property { string } [phone_number]
-        
-        @property { string } [phone_country_code]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionBillingAddress
-        
-        
-        @property { string } [country]
-        
-        @property { string } [state]
-        
-        @property { string } [city]
-        
-        @property { string } [line1]
-        
-        @property { string } [line2]
-        
-        @property { string } [postal_code]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionCustomer
-        
-        
-        @property { Phone } [phone]
-        
-        @property { SubscriptionBillingAddress } [billing_address]
-        
-        @property { string } [_id]
-        
-        @property { string } [unique_id]
-        
-        @property { string } [type]
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-        @property { string } [created_at]
-        
-        @property { string } [modified_at]
-        
-        @property { Object } [data]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionCustomerCreate
-        
-        
-        @property { Phone } [phone]
-        
-        @property { SubscriptionBillingAddress } [billing_address]
-        
-        @property { string } [unique_id]
-        
-        @property { string } [type]
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionCurrentPeriod
-        
-        
-        @property { string } [start]
-        
-        @property { string } [end]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionPauseCollection
-        
-        
-        @property { string } [behavior]
-        
-        @property { string } [resume_at]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionTrial
-        
-        
-        @property { string } [start]
-        
-        @property { string } [end]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionInvoiceSettings
-        
-        
-        @property { boolean } [generation]
-        
-        @property { boolean } [charging]
-        
-         
-    */
-
-/**
-        @typedef Subscription
-        
-        
-        @property { SubscriptionCurrentPeriod } [current_period]
-        
-        @property { SubscriptionPauseCollection } [pause_collection]
-        
-        @property { SubscriptionTrial } [trial]
-        
-        @property { SubscriptionInvoiceSettings } [invoice_settings]
-        
-        @property { boolean } [is_active]
-        
-        @property { boolean } [cancel_at_period_end]
-        
-        @property { string } [_id]
-        
-        @property { string } [subscriber_id]
-        
-        @property { string } [plan_id]
-        
-        @property { string } [product_suite_id]
-        
-        @property { Plan } [plan_data]
-        
-        @property { string } [current_status]
-        
-        @property { string } [collection_method]
-        
-        @property { string } [created_at]
-        
-        @property { string } [modified_at]
-        
-        @property { string } [latest_invoice]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionStatus
-        
-        
-        @property { boolean } [is_enabled]
-        
-        @property { Subscription } [subscription]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionLimitApplication
-        
-        
-        @property { boolean } [enabled]
-        
-        @property { number } [hard_limit]
-        
-        @property { number } [soft_limit]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionLimitMarketplace
-        
-        
-        @property { boolean } [enabled]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionLimitOtherPlatform
-        
-        
-        @property { boolean } [enabled]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionLimitTeam
-        
-        
-        @property { number } [limit]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionLimitProducts
-        
-        
-        @property { boolean } [bulk]
-        
-        @property { number } [limit]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionLimitExtensions
-        
-        
-        @property { boolean } [enabled]
-        
-        @property { number } [limit]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionLimitIntegrations
-        
-        
-        @property { boolean } [enabled]
-        
-        @property { number } [limit]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionLimit
-        
-        
-        @property { SubscriptionLimitApplication } [application]
-        
-        @property { SubscriptionLimitMarketplace } [marketplace]
-        
-        @property { SubscriptionLimitOtherPlatform } [other_platform]
-        
-        @property { SubscriptionLimitTeam } [team]
-        
-        @property { SubscriptionLimitProducts } [products]
-        
-        @property { SubscriptionLimitExtensions } [extensions]
-        
-        @property { SubscriptionLimitIntegrations } [integrations]
-        
-        @property { boolean } [is_trial_plan]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionActivateReq
-        
-        
-        @property { string } [unique_id]
-        
-        @property { string } [type]
-        
-        @property { string } [product_suite]
-        
-        @property { string } [plan_id]
-        
-        @property { string } [payment_method]
-        
-         
-    */
-
-/**
-        @typedef SubscriptionActivateRes
-        
-        
-        @property { boolean } [success]
-        
-        @property { Subscription } [data]
-        
-         
-    */
-
-/**
-        @typedef CancelSubscriptionReq
-        
-        
-        @property { string } [unique_id]
-        
-        @property { string } [type]
-        
-        @property { string } [product_suite]
-        
-        @property { string } [subscription_id]
-        
-         
-    */
-
-/**
-        @typedef CancelSubscriptionRes
-        
-        
-        @property { boolean } [success]
-        
-        @property { Subscription } [data]
-        
-         
-    */
-
-/**
-        @typedef StatsImported
-        
-        
-        @property { number } [count]
-        
-         
-    */
-
-/**
-        @typedef StatsProcessedEmail
-        
-        
-        @property { number } [success]
-        
-        @property { number } [failed]
-        
-        @property { number } [suppressed]
-        
-         
-    */
-
-/**
-        @typedef StatsProcessedSms
-        
-        
-        @property { number } [success]
-        
-        @property { number } [failed]
-        
-        @property { number } [suppressed]
-        
-         
-    */
-
-/**
-        @typedef StatsProcessed
-        
-        
-        @property { StatsProcessedEmail } [email]
-        
-        @property { StatsProcessedSms } [sms]
-        
-         
-    */
-
-/**
-        @typedef Stats
-        
-        
-        @property { string } [_id]
-        
-        @property { any } [imported]
-        
-        @property { any } [processed]
-        
-         
-    */
-
-/**
-        @typedef GetStats
-        
-        
-        @property { Array<Stats> } [items]
-        
-         
-    */
-
-/**
-        @typedef CampaignReq
-        
-        
-        @property { string } [description]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Array<string> } [headers]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [name]
-        
-        @property { string } [file_url]
-        
-        @property { string } [type]
-        
-        @property { number } [records_count]
-        
-        @property { string } [application]
-        
-         
-    */
-
-/**
-        @typedef RecipientHeaders
-        
-        
-        @property { string } [email]
-        
-         
-    */
-
-/**
-        @typedef CampaignEmailTemplate
-        
-        
-        @property { string } [key]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef CampignEmailProvider
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [from_name]
-        
-        @property { string } [from_email]
-        
-         
-    */
-
-/**
-        @typedef CampaignEmail
-        
-        
-        @property { CampaignEmailTemplate } [template]
-        
-        @property { CampignEmailProvider } [provider]
-        
-         
-    */
-
-/**
-        @typedef Campaign
-        
-        
-        @property { RecipientHeaders } [recipient_headers]
-        
-        @property { CampaignEmail } [email]
-        
-        @property { string } [description]
-        
-        @property { Array<any> } [tags]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [_id]
-        
-        @property { string } [datasource]
-        
-        @property { string } [type]
-        
-        @property { string } [name]
-        
-        @property { string } [application]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [slug]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef Campaigns
-        
-        
-        @property { Array<Campaign> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef BigqueryHeadersReq
-        
-        
-        @property { string } [query]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef BigqueryHeadersResHeaders
-        
-        
-        @property { string } [name]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef BigqueryHeadersRes
-        
-        
-        @property { Array<BigqueryHeadersResHeaders> } [headers]
-        
-         
-    */
-
-/**
-        @typedef GetNRecordsCsvReq
-        
-        
-        @property { string } [url]
-        
-        @property { boolean } [header]
-        
-        @property { number } [count]
-        
-         
-    */
-
-/**
-        @typedef GetNRecordsCsvResItems
-        
-        
-        @property { string } [phone_number]
-        
-        @property { string } [email]
-        
-        @property { string } [firstname]
-        
-        @property { string } [lastname]
-        
-        @property { string } [orderid]
-        
-         
-    */
-
-/**
-        @typedef GetNRecordsCsvRes
-        
-        
-        @property { Array<GetNRecordsCsvResItems> } [items]
-        
-         
-    */
-
-/**
-        @typedef AudienceReq
-        
-        
-        @property { string } [description]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Array<string> } [headers]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [name]
-        
-        @property { string } [file_url]
-        
-        @property { string } [type]
-        
-        @property { number } [records_count]
-        
-        @property { string } [application]
-        
-         
-    */
-
-/**
-        @typedef Audience
-        
-        
-        @property { string } [description]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Array<string> } [headers]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [_id]
-        
-        @property { string } [name]
-        
-        @property { string } [file_url]
-        
-        @property { string } [type]
-        
-        @property { number } [records_count]
-        
-        @property { string } [application]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [slug]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef Audiences
-        
-        
-        @property { Array<Audience> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef EmailProviderReqFrom
-        
-        
-        @property { string } [name]
-        
-        @property { string } [email]
-        
-        @property { boolean } [is_default]
-        
-         
-    */
-
-/**
-        @typedef EmailProviderReq
-        
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-        @property { string } [api_key]
-        
-        @property { string } [type]
-        
-        @property { string } [provider]
-        
-        @property { Array<EmailProviderReqFrom> } [from]
-        
-         
-    */
-
-/**
-        @typedef EmailProvider
-        
-        
-        @property { string } [type]
-        
-        @property { string } [provider]
-        
-        @property { Array<EmailProviderReqFrom> } [from]
-        
-        @property { string } [_id]
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-        @property { string } [api_key]
-        
-        @property { string } [application]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [slug]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef EmailProviders
-        
-        
-        @property { Array<EmailProvider> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef EmailTemplateDeleteSuccessRes
-        
-        
-        @property { boolean } [success]
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef EmailTemplateDeleteFailureRes
-        
-        
-        @property { boolean } [success]
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef EmailTemplateKeys
-        
-        
-        @property { string } [to]
-        
-        @property { string } [cc]
-        
-        @property { string } [bcc]
-        
-         
-    */
-
-/**
-        @typedef EmailTemplateHeaders
-        
-        
-        @property { string } [key]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef EmailTemplateReq
-        
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-        @property { EmailTemplateKeys } [keys]
-        
-        @property { string } [from]
-        
-        @property { Array<string> } [static_to]
-        
-        @property { Array<string> } [static_cc]
-        
-        @property { Array<string> } [static_bcc]
-        
-        @property { string } [reply_to]
-        
-        @property { Array<EmailTemplateHeaders> } [headers]
-        
-        @property { TemplateAndType } [subject]
-        
-        @property { TemplateAndType } [html]
-        
-        @property { TemplateAndType } [text]
-        
-        @property { Array<any> } [attachments]
-        
-        @property { string } [priority]
-        
-         
-    */
-
-/**
-        @typedef TemplateAndType
-        
-        
-        @property { string } [template_type]
-        
-        @property { string } [template]
-        
-         
-    */
-
-/**
-        @typedef EmailTemplateRes
-        
-        
-        @property { boolean } [is_system]
-        
-        @property { boolean } [is_internal]
-        
-        @property { string } [description]
-        
-        @property { Array<string> } [static_to]
-        
-        @property { Array<string> } [static_cc]
-        
-        @property { Array<string> } [static_bcc]
-        
-        @property { Array<any> } [tags]
-        
-        @property { string } [priority]
-        
-        @property { boolean } [published]
-        
-        @property { string } [_id]
-        
-        @property { string } [name]
-        
-        @property { EmailTemplateKeys } [keys]
-        
-        @property { string } [from]
-        
-        @property { string } [reply_to]
-        
-        @property { Array<EmailTemplateHeaders> } [headers]
-        
-        @property { TemplateAndType } [subject]
-        
-        @property { TemplateAndType } [html]
-        
-        @property { TemplateAndType } [text]
-        
-        @property { Array<any> } [attachments]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [slug]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef EmailTemplate
-        
-        
-        @property { boolean } [is_system]
-        
-        @property { boolean } [is_internal]
-        
-        @property { string } [description]
-        
-        @property { Array<any> } [static_to]
-        
-        @property { Array<any> } [static_cc]
-        
-        @property { Array<any> } [static_bcc]
-        
-        @property { Array<any> } [tags]
-        
-        @property { string } [priority]
-        
-        @property { boolean } [published]
-        
-        @property { string } [_id]
-        
-        @property { string } [slug]
-        
-        @property { string } [name]
-        
-        @property { string } [from]
-        
-        @property { string } [from_name]
-        
-        @property { TemplateAndType } [subject]
-        
-        @property { TemplateAndType } [html]
-        
-        @property { TemplateAndType } [text]
-        
-        @property { Array<any> } [headers]
-        
-        @property { Array<any> } [attachments]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef SystemEmailTemplate
-        
-        
-        @property { boolean } [is_system]
-        
-        @property { boolean } [is_internal]
-        
-        @property { string } [description]
-        
-        @property { Array<any> } [static_to]
-        
-        @property { Array<any> } [static_cc]
-        
-        @property { Array<any> } [static_bcc]
-        
-        @property { Array<any> } [tags]
-        
-        @property { string } [priority]
-        
-        @property { boolean } [published]
-        
-        @property { string } [_id]
-        
-        @property { string } [slug]
-        
-        @property { string } [name]
-        
-        @property { string } [from]
-        
-        @property { string } [from_name]
-        
-        @property { TemplateAndType } [subject]
-        
-        @property { TemplateAndType } [html]
-        
-        @property { TemplateAndType } [text]
-        
-        @property { Array<any> } [headers]
-        
-        @property { Array<any> } [attachments]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef EmailTemplates
-        
-        
-        @property { Array<EmailTemplate> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef SystemEmailTemplates
-        
-        
-        @property { Array<SystemEmailTemplate> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef EventSubscriptionTemplateSms
-        
-        
-        @property { boolean } [subscribed]
-        
-        @property { string } [template]
-        
-         
-    */
-
-/**
-        @typedef EventSubscriptionTemplateEmail
-        
-        
-        @property { boolean } [subscribed]
-        
-        @property { string } [template]
-        
-         
-    */
-
-/**
-        @typedef EventSubscriptionTemplate
-        
-        
-        @property { EventSubscriptionTemplateSms } [sms]
-        
-        @property { EventSubscriptionTemplateEmail } [email]
-        
-         
-    */
-
-/**
-        @typedef EventSubscription
-        
-        
-        @property { EventSubscriptionTemplate } [template]
-        
-        @property { boolean } [is_default]
-        
-        @property { string } [_id]
-        
-        @property { string } [application]
-        
-        @property { string } [event]
-        
-        @property { string } [slug]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef EventSubscriptions
-        
-        
-        @property { Array<EventSubscription> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef TriggerJobResponse
-        
-        
-        @property { number } [status]
-        
-         
-    */
-
-/**
-        @typedef TriggerJobRequest
-        
-        
-        @property { string } [job_id]
-        
-         
-    */
-
-/**
-        @typedef Job
-        
-        
-        @property { boolean } [completed]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [_id]
-        
-        @property { string } [campaign]
-        
-        @property { string } [application]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef Jobs
-        
-        
-        @property { Array<Job> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef JobLog
-        
-        
-        @property { any } [imported]
-        
-        @property { any } [processed]
-        
-        @property { string } [_id]
-        
-        @property { string } [job]
-        
-        @property { string } [campaign]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef JobLogs
-        
-        
-        @property { Array<JobLog> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef LogEmail
-        
-        
-        @property { string } [template]
-        
-         
-    */
-
-/**
-        @typedef LogPushnotification
-        
-        
-        @property { Array<string> } [pushtokens]
-        
-         
-    */
-
-/**
-        @typedef LogMeta
-        
-        
-        @property { string } [type]
-        
-        @property { string } [identifier]
-        
-        @property { string } [key]
-        
-        @property { string } [offset]
-        
-        @property { string } [partition]
-        
-        @property { string } [topic]
-        
-         
-    */
-
-/**
-        @typedef Log
-        
-        
-        @property { LogEmail } [email]
-        
-        @property { LogPushnotification } [pushnotification]
-        
-        @property { LogMeta } [meta]
-        
-        @property { string } [_id]
-        
-        @property { string } [application]
-        
-        @property { string } [service]
-        
-        @property { string } [step]
-        
-        @property { string } [status]
-        
-        @property { any } [data]
-        
-        @property { string } [expire_at]
-        
-        @property { string } [created_at]
-        
-         
-    */
-
-/**
-        @typedef Logs
-        
-        
-        @property { Array<Log> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef PushtokenReq
-        
-        
-        @property { string } [action]
-        
-        @property { string } [bundle_identifier]
-        
-        @property { string } [push_token]
-        
-        @property { string } [unique_device_id]
-        
-         
-    */
-
-/**
-        @typedef PushtokenRes
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [bundle_identifier]
-        
-        @property { string } [push_token]
-        
-        @property { string } [unique_device_id]
-        
-        @property { string } [type]
-        
-        @property { string } [platform]
-        
-        @property { string } [application_id]
-        
-        @property { string } [user_id]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [expired_at]
-        
-         
-    */
-
-/**
-        @typedef SmsProviderReq
-        
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-        @property { string } [sender]
-        
-        @property { string } [username]
-        
-        @property { string } [authkey]
-        
-        @property { string } [type]
-        
-        @property { string } [provider]
-        
-         
-    */
-
-/**
-        @typedef SmsProvider
-        
-        
-        @property { number } [rpt]
-        
-        @property { string } [type]
-        
-        @property { string } [provider]
-        
-        @property { string } [_id]
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-        @property { string } [sender]
-        
-        @property { string } [username]
-        
-        @property { string } [authkey]
-        
-        @property { string } [application]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [slug]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef SmsProviders
-        
-        
-        @property { Array<SmsProvider> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef SmsTemplateDeleteSuccessRes
-        
-        
-        @property { boolean } [success]
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef SmsTemplateDeleteFailureRes
-        
-        
-        @property { boolean } [success]
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef SmsTemplateMessage
-        
-        
-        @property { string } [template_type]
-        
-        @property { string } [template]
-        
-         
-    */
-
-/**
-        @typedef SmsTemplateReq
-        
-        
-        @property { string } [name]
-        
-        @property { string } [description]
-        
-        @property { SmsTemplateMessage } [message]
-        
-        @property { any } [template_variables]
-        
-        @property { Array<any> } [attachments]
-        
-        @property { string } [priority]
-        
-         
-    */
-
-/**
-        @typedef SmsTemplateRes
-        
-        
-        @property { boolean } [is_system]
-        
-        @property { boolean } [is_internal]
-        
-        @property { string } [description]
-        
-        @property { Array<any> } [tags]
-        
-        @property { string } [priority]
-        
-        @property { boolean } [published]
-        
-        @property { string } [_id]
-        
-        @property { string } [name]
-        
-        @property { SmsTemplateMessage } [message]
-        
-        @property { any } [template_variables]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [slug]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef SmsTemplate
-        
-        
-        @property { boolean } [is_system]
-        
-        @property { boolean } [is_internal]
-        
-        @property { string } [description]
-        
-        @property { string } [priority]
-        
-        @property { Array<any> } [tags]
-        
-        @property { boolean } [published]
-        
-        @property { string } [_id]
-        
-        @property { string } [slug]
-        
-        @property { string } [name]
-        
-        @property { SmsTemplateMessage } [message]
-        
-        @property { any } [template_variables]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef SystemSmsTemplate
-        
-        
-        @property { boolean } [is_system]
-        
-        @property { boolean } [is_internal]
-        
-        @property { string } [description]
-        
-        @property { Array<any> } [tags]
-        
-        @property { string } [priority]
-        
-        @property { boolean } [published]
-        
-        @property { string } [_id]
-        
-        @property { string } [slug]
-        
-        @property { string } [name]
-        
-        @property { SmsTemplateMessage } [message]
-        
-        @property { any } [template_variables]
-        
-        @property { string } [created_at]
-        
-        @property { string } [updated_at]
-        
-        @property { number } [__v]
-        
-         
-    */
-
-/**
-        @typedef SmsTemplates
-        
-        
-        @property { Array<SmsTemplate> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef SystemSmsTemplates
-        
-        
-        @property { Array<SystemSmsTemplate> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef Notification
-        
-        
-        @property { string } [title]
-        
-        @property { string } [body]
-        
-        @property { string } [subtitle]
-        
-        @property { string } [icon]
-        
-        @property { string } [deeplink]
-        
-        @property { string } [click_action]
-        
-         
-    */
-
-/**
-        @typedef SystemNotificationUser
-        
-        
-        @property { string } [type]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef SystemNotificationSettings
-        
-        
-        @property { boolean } [sound]
-        
-        @property { string } [priority]
-        
-        @property { string } [time_to_live]
-        
-         
-    */
-
-/**
-        @typedef SystemNotification
-        
-        
-        @property { Notification } [notification]
-        
-        @property { SystemNotificationUser } [user]
-        
-        @property { SystemNotificationUser } [settings]
-        
-        @property { string } [_id]
-        
-        @property { string } [group]
-        
-        @property { string } [created_at]
-        
-         
-    */
-
-/**
-        @typedef SystemNotificationsPage
-        
-        
-        @property { string } [type]
-        
-        @property { number } [current]
-        
-        @property { number } [size]
-        
-        @property { number } [item_total]
-        
-        @property { boolean } [has_next]
-        
-         
-    */
-
-/**
-        @typedef SystemNotifications
-        
-        
-        @property { Array<SystemNotification> } [items]
-        
-        @property { number } [last_read_anchor]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
         @typedef PaymentGatewayConfigResponse
         
         
-        @property { boolean } created
+        @property { boolean } success
         
         @property { Array<string> } excluded_fields
-        
-        @property { Array<string> } display_fields
-        
-        @property { boolean } success
         
         @property { string } app_id
         
         @property { Array<Object> } [aggregators]
+        
+        @property { boolean } created
+        
+        @property { Array<string> } display_fields
         
          
     */
@@ -6696,11 +1487,11 @@ class PlatformApplicationClient {
         @typedef ErrorCodeDescription
         
         
+        @property { string } code
+        
         @property { boolean } success
         
         @property { string } description
-        
-        @property { string } code
         
          
     */
@@ -6713,11 +1504,11 @@ class PlatformApplicationClient {
         
         @property { string } merchant_salt
         
-        @property { string } config_type
+        @property { string } key
         
         @property { string } secret
         
-        @property { string } key
+        @property { string } config_type
         
          
     */
@@ -6728,9 +1519,9 @@ class PlatformApplicationClient {
         
         @property { PaymentGatewayConfig } [aggregator_name]
         
-        @property { boolean } [is_active]
-        
         @property { string } app_id
+        
+        @property { boolean } [is_active]
         
          
     */
@@ -6750,9 +1541,9 @@ class PlatformApplicationClient {
         @typedef ErrorCodeAndDescription
         
         
-        @property { string } description
-        
         @property { string } code
+        
+        @property { string } description
         
          
     */
@@ -6772,9 +1563,9 @@ class PlatformApplicationClient {
         @typedef PaymentModeLogo
         
         
-        @property { string } small
-        
         @property { string } large
+        
+        @property { string } small
         
          
     */
@@ -6783,59 +1574,59 @@ class PlatformApplicationClient {
         @typedef PaymentModeList
         
         
-        @property { string } [merchant_code]
+        @property { string } [name]
         
-        @property { number } [timeout]
+        @property { string } [card_brand]
         
         @property { string } [card_id]
-        
-        @property { string } [card_type]
-        
-        @property { string } aggregator_name
-        
-        @property { string } [card_fingerprint]
-        
-        @property { PaymentModeLogo } [logo_url]
-        
-        @property { string } [display_name]
-        
-        @property { string } [nickname]
-        
-        @property { string } [card_token]
-        
-        @property { string } [card_reference]
-        
-        @property { Array<string> } [intent_app_error_list]
         
         @property { boolean } [expired]
         
         @property { number } [exp_year]
         
-        @property { string } [name]
-        
-        @property { number } [exp_month]
-        
-        @property { string } [card_name]
-        
-        @property { string } [intent_flow]
-        
-        @property { string } [card_number]
-        
-        @property { string } [card_brand_image]
-        
-        @property { string } [card_brand]
-        
         @property { string } [card_isin]
         
         @property { string } [code]
         
-        @property { string } [fynd_vpa]
-        
-        @property { number } [retry_count]
+        @property { string } [merchant_code]
         
         @property { number } [display_priority]
         
+        @property { number } [exp_month]
+        
+        @property { string } [intent_flow]
+        
+        @property { string } [display_name]
+        
+        @property { string } [card_token]
+        
+        @property { string } [fynd_vpa]
+        
+        @property { number } [timeout]
+        
+        @property { string } [card_reference]
+        
+        @property { PaymentModeLogo } [logo_url]
+        
+        @property { string } aggregator_name
+        
+        @property { string } [card_number]
+        
+        @property { string } [card_name]
+        
+        @property { string } [card_fingerprint]
+        
+        @property { Array<string> } [intent_app_error_list]
+        
+        @property { string } [card_brand_image]
+        
+        @property { number } [retry_count]
+        
+        @property { string } [nickname]
+        
         @property { string } [card_issuer]
+        
+        @property { string } [card_type]
         
          
     */
@@ -6844,6 +1635,10 @@ class PlatformApplicationClient {
         @typedef RootPaymentMode
         
         
+        @property { number } display_priority
+        
+        @property { string } name
+        
         @property { Array<PaymentModeList> } [list]
         
         @property { string } display_name
@@ -6851,10 +1646,6 @@ class PlatformApplicationClient {
         @property { string } [aggregator_name]
         
         @property { boolean } [add_card_enabled]
-        
-        @property { string } name
-        
-        @property { number } display_priority
         
         @property { boolean } [anonymous_enable]
         
@@ -6874,9 +1665,9 @@ class PlatformApplicationClient {
         @typedef PaymentOptionsResponse
         
         
-        @property { boolean } success
-        
         @property { PaymentOptions } payment_options
+        
+        @property { boolean } success
         
          
     */
@@ -6885,19 +1676,19 @@ class PlatformApplicationClient {
         @typedef PayoutsResponse
         
         
+        @property { Object } unique_transfer_no
+        
         @property { boolean } is_active
         
-        @property { boolean } is_default
-        
-        @property { Array<Object> } payouts_aggregators
+        @property { string } transfer_type
         
         @property { Object } more_attributes
         
+        @property { Array<Object> } payouts_aggregators
+        
+        @property { boolean } is_default
+        
         @property { Object } customers
-        
-        @property { Object } unique_transfer_no
-        
-        @property { string } transfer_type
         
          
     */
@@ -6906,17 +1697,17 @@ class PlatformApplicationClient {
         @typedef PayoutRequest
         
         
+        @property { Object } bank_details
+        
         @property { boolean } is_active
+        
+        @property { string } transfer_type
         
         @property { Object } users
         
         @property { string } aggregator
         
         @property { string } unique_external_id
-        
-        @property { Object } bank_details
-        
-        @property { string } transfer_type
         
          
     */
@@ -6925,25 +1716,25 @@ class PlatformApplicationClient {
         @typedef PayoutResponse
         
         
-        @property { boolean } is_active
-        
-        @property { Object } users
-        
-        @property { Object } payouts
-        
-        @property { boolean } created
-        
-        @property { string } aggregator
-        
-        @property { string } payment_status
-        
-        @property { string } unique_transfer_no
+        @property { Object } bank_details
         
         @property { boolean } success
         
-        @property { Object } bank_details
+        @property { string } unique_transfer_no
+        
+        @property { Object } payouts
+        
+        @property { boolean } is_active
+        
+        @property { string } payment_status
         
         @property { string } transfer_type
+        
+        @property { Object } users
+        
+        @property { string } aggregator
+        
+        @property { boolean } created
         
          
     */
@@ -6952,9 +1743,9 @@ class PlatformApplicationClient {
         @typedef UpdatePayoutResponse
         
         
-        @property { boolean } is_active
-        
         @property { boolean } success
+        
+        @property { boolean } is_active
         
         @property { boolean } is_default
         
@@ -7007,11 +1798,11 @@ class PlatformApplicationClient {
         @typedef SubscriptionConfigResponse
         
         
+        @property { Object } config
+        
         @property { boolean } success
         
         @property { string } aggregator
-        
-        @property { Object } config
         
          
     */
@@ -9497,46 +4288,10 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef SearchKeywordResult
+        @typedef DeleteResponse
         
         
-        @property { Object } query
-        
-        @property { string } sort_on
-        
-         
-    */
-
-/**
-        @typedef CreateSearchKeyword
-        
-        
-        @property { SearchKeywordResult } result
-        
-        @property { string } [app_id]
-        
-        @property { Array<string> } [words]
-        
-        @property { Object } [_custom_json]
-        
-        @property { boolean } [is_active]
-        
-         
-    */
-
-/**
-        @typedef GetSearchWordsData
-        
-        
-        @property { Object } [result]
-        
-        @property { string } [app_id]
-        
-        @property { Array<string> } [words]
-        
-        @property { Object } [_custom_json]
-        
-        @property { string } [uid]
+        @property { string } [message]
         
          
     */
@@ -9545,22 +4300,30 @@ class PlatformApplicationClient {
         @typedef ErrorResponse
         
         
-        @property { Object } [meta]
+        @property { number } [status]
         
         @property { string } [message]
         
         @property { string } [code]
         
-        @property { number } [status]
+        @property { Object } [meta]
         
          
     */
 
 /**
-        @typedef DeleteResponse
+        @typedef GetSearchWordsData
         
         
-        @property { string } [message]
+        @property { string } [uid]
+        
+        @property { Array<string> } [words]
+        
+        @property { Object } [result]
+        
+        @property { Object } [_custom_json]
+        
+        @property { string } [app_id]
         
          
     */
@@ -9577,6 +4340,34 @@ class PlatformApplicationClient {
     */
 
 /**
+        @typedef SearchKeywordResult
+        
+        
+        @property { Object } query
+        
+        @property { string } sort_on
+        
+         
+    */
+
+/**
+        @typedef CreateSearchKeyword
+        
+        
+        @property { boolean } [is_active]
+        
+        @property { Array<string> } [words]
+        
+        @property { SearchKeywordResult } result
+        
+        @property { Object } [_custom_json]
+        
+        @property { string } [app_id]
+        
+         
+    */
+
+/**
         @typedef GetSearchWordsResponse
         
         
@@ -9588,87 +4379,18 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef Media
-        
-        
-        @property { string } [type]
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef AutocompletePageAction
-        
-        
-        @property { Object } query
-        
-        @property { string } type
-        
-        @property { string } [url]
-        
-        @property { Object } [params]
-        
-         
-    */
-
-/**
-        @typedef AutocompleteAction
-        
-        
-        @property { AutocompletePageAction } [page]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef AutocompleteResult
-        
-        
-        @property { Object } [_custom_json]
-        
-        @property { Media } [logo]
-        
-        @property { string } [display]
-        
-        @property { AutocompleteAction } [action]
-        
-         
-    */
-
-/**
-        @typedef CreateAutocompleteKeyword
-        
-        
-        @property { Array<AutocompleteResult> } [results]
-        
-        @property { string } [app_id]
-        
-        @property { Array<string> } [words]
-        
-        @property { Object } [_custom_json]
-        
-        @property { boolean } [is_active]
-        
-         
-    */
-
-/**
         @typedef GetAutocompleteWordsData
         
         
-        @property { Array<Object> } [results]
-        
-        @property { string } [app_id]
+        @property { string } [uid]
         
         @property { Array<string> } [words]
         
+        @property { Array<Object> } [results]
+        
         @property { Object } [_custom_json]
         
-        @property { string } [uid]
+        @property { string } [app_id]
         
          
     */
@@ -9685,14 +4407,83 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef CreateAutocompleteWordsResponse
+        @typedef AutocompletePageAction
         
+        
+        @property { Object } query
+        
+        @property { string } type
+        
+        @property { Object } [params]
+        
+        @property { string } [url]
+        
+         
+    */
+
+/**
+        @typedef AutocompleteAction
+        
+        
+        @property { string } [type]
+        
+        @property { AutocompletePageAction } [page]
+        
+         
+    */
+
+/**
+        @typedef Media
+        
+        
+        @property { string } [type]
+        
+        @property { string } [url]
+        
+         
+    */
+
+/**
+        @typedef AutocompleteResult
+        
+        
+        @property { Object } [_custom_json]
+        
+        @property { string } [display]
+        
+        @property { AutocompleteAction } [action]
+        
+        @property { Media } [logo]
+        
+         
+    */
+
+/**
+        @typedef CreateAutocompleteKeyword
+        
+        
+        @property { boolean } [is_active]
+        
+        @property { Array<string> } [words]
+        
+        @property { Array<AutocompleteResult> } [results]
+        
+        @property { Object } [_custom_json]
         
         @property { string } [app_id]
+        
+         
+    */
+
+/**
+        @typedef CreateAutocompleteWordsResponse
+        
         
         @property { Array<string> } [words]
         
         @property { Object } [_custom_json]
+        
+        @property { string } [app_id]
         
         @property { Array<Object> } [results]
         
@@ -9703,7 +4494,7 @@ class PlatformApplicationClient {
         @typedef ProductBundleItem
         
         
-        @property { number } min_quantity
+        @property { boolean } [auto_add_to_cart]
         
         @property { boolean } [allow_remove]
         
@@ -9711,9 +4502,9 @@ class PlatformApplicationClient {
         
         @property { boolean } [auto_select]
         
-        @property { boolean } [auto_add_to_cart]
-        
         @property { number } max_quantity
+        
+        @property { number } min_quantity
         
          
     */
@@ -9722,35 +4513,35 @@ class PlatformApplicationClient {
         @typedef GetProductBundleCreateResponse
         
         
-        @property { Array<ProductBundleItem> } products
-        
         @property { string } choice
         
-        @property { string } [modified_on]
-        
-        @property { Array<string> } [page_visibility]
-        
-        @property { string } [id]
-        
-        @property { string } name
-        
-        @property { Object } [created_by]
-        
-        @property { string } [created_on]
-        
-        @property { Object } [modified_by]
+        @property { string } slug
         
         @property { Object } [meta]
         
         @property { string } [logo]
         
-        @property { string } slug
+        @property { boolean } [same_store_assignment]
+        
+        @property { Object } [created_by]
+        
+        @property { string } name
+        
+        @property { Object } [modified_by]
+        
+        @property { boolean } is_active
+        
+        @property { string } [id]
+        
+        @property { Array<string> } [page_visibility]
+        
+        @property { Array<ProductBundleItem> } products
         
         @property { number } [company_id]
         
-        @property { boolean } [same_store_assignment]
+        @property { string } [modified_on]
         
-        @property { boolean } is_active
+        @property { string } [created_on]
         
          
     */
@@ -9770,60 +4561,31 @@ class PlatformApplicationClient {
         @typedef ProductBundleRequest
         
         
-        @property { Array<ProductBundleItem> } products
-        
         @property { string } choice
         
-        @property { string } [modified_on]
+        @property { string } slug
         
-        @property { Array<string> } [page_visibility]
+        @property { Object } [meta]
         
-        @property { string } name
+        @property { string } [logo]
+        
+        @property { boolean } [same_store_assignment]
         
         @property { Object } [created_by]
         
-        @property { string } [created_on]
-        
-        @property { Object } [modified_by]
-        
-        @property { Object } [meta]
-        
-        @property { string } [logo]
-        
-        @property { string } slug
-        
-        @property { boolean } [same_store_assignment]
-        
-        @property { boolean } is_active
-        
-         
-    */
-
-/**
-        @typedef ProductBundleUpdateRequest
-        
-        
-        @property { Array<ProductBundleItem> } products
-        
-        @property { string } choice
-        
-        @property { string } [modified_on]
-        
-        @property { Array<string> } [page_visibility]
-        
         @property { string } name
         
         @property { Object } [modified_by]
         
-        @property { Object } [meta]
-        
-        @property { string } [logo]
-        
-        @property { string } slug
-        
-        @property { boolean } [same_store_assignment]
-        
         @property { boolean } is_active
+        
+        @property { Array<string> } [page_visibility]
+        
+        @property { Array<ProductBundleItem> } products
+        
+        @property { string } [modified_on]
+        
+        @property { string } [created_on]
         
          
     */
@@ -9832,30 +4594,13 @@ class PlatformApplicationClient {
         @typedef Size
         
         
-        @property { string } [value]
-        
         @property { number } [quantity]
-        
-        @property { boolean } [is_available]
         
         @property { string } [display]
         
-         
-    */
-
-/**
-        @typedef Price
+        @property { boolean } [is_available]
         
-        
-        @property { string } [currency]
-        
-        @property { number } [max_marked]
-        
-        @property { number } [max_effective]
-        
-        @property { number } [min_effective]
-        
-        @property { number } [min_marked]
+        @property { string } [value]
         
          
     */
@@ -9864,9 +4609,15 @@ class PlatformApplicationClient {
         @typedef LimitedProductData
         
         
+        @property { Object } [attributes]
+        
+        @property { number } [uid]
+        
         @property { Array<string> } [sizes]
         
-        @property { Array<string> } [images]
+        @property { string } [slug]
+        
+        @property { Object } [identifier]
         
         @property { number } [quantity]
         
@@ -9876,17 +4627,28 @@ class PlatformApplicationClient {
         
         @property { string } [country_of_origin]
         
-        @property { Object } [identifier]
+        @property { string } [item_code]
+        
+        @property { Array<string> } [images]
         
         @property { Object } [price]
         
-        @property { number } [uid]
+         
+    */
+
+/**
+        @typedef Price
         
-        @property { Object } [attributes]
         
-        @property { string } [slug]
+        @property { number } [max_effective]
         
-        @property { string } [item_code]
+        @property { number } [min_marked]
+        
+        @property { number } [min_effective]
+        
+        @property { string } [currency]
+        
+        @property { number } [max_marked]
         
          
     */
@@ -9897,21 +4659,21 @@ class PlatformApplicationClient {
         
         @property { Array<Size> } [sizes]
         
+        @property { boolean } [allow_remove]
+        
+        @property { boolean } [auto_add_to_cart]
+        
+        @property { number } [product_uid]
+        
+        @property { LimitedProductData } [product_details]
+        
+        @property { boolean } [auto_select]
+        
         @property { number } [max_quantity]
         
         @property { number } [min_quantity]
         
-        @property { number } [product_uid]
-        
-        @property { boolean } [auto_select]
-        
         @property { Price } [price]
-        
-        @property { boolean } [auto_add_to_cart]
-        
-        @property { boolean } [allow_remove]
-        
-        @property { LimitedProductData } [product_details]
         
          
     */
@@ -9920,25 +4682,54 @@ class PlatformApplicationClient {
         @typedef GetProductBundleResponse
         
         
-        @property { Array<GetProducts> } [products]
-        
         @property { string } [choice]
         
-        @property { string } [name]
+        @property { string } [slug]
         
         @property { Object } [meta]
         
         @property { string } [logo]
         
+        @property { boolean } [same_store_assignment]
+        
+        @property { string } [name]
+        
         @property { boolean } [is_active]
         
-        @property { string } [slug]
+        @property { Array<string> } [page_visibility]
+        
+        @property { Array<GetProducts> } [products]
         
         @property { number } [company_id]
         
+         
+    */
+
+/**
+        @typedef ProductBundleUpdateRequest
+        
+        
+        @property { string } choice
+        
+        @property { string } slug
+        
+        @property { Object } [meta]
+        
+        @property { string } [logo]
+        
         @property { boolean } [same_store_assignment]
         
+        @property { string } name
+        
+        @property { Object } [modified_by]
+        
+        @property { boolean } is_active
+        
         @property { Array<string> } [page_visibility]
+        
+        @property { Array<ProductBundleItem> } products
+        
+        @property { string } [modified_on]
         
          
     */
@@ -9958,11 +4749,11 @@ class PlatformApplicationClient {
         @typedef Meta
         
         
-        @property { Object } [headers]
+        @property { string } [unit]
         
         @property { Array<Object> } [values]
         
-        @property { string } [unit]
+        @property { Object } [headers]
         
          
     */
@@ -9982,31 +4773,31 @@ class PlatformApplicationClient {
         
         @property { string } [id]
         
-        @property { number } [brand_id]
-        
-        @property { boolean } [active]
+        @property { string } name
         
         @property { string } [subtitle]
         
-        @property { string } [modified_on]
-        
-        @property { string } name
-        
-        @property { Object } [created_by]
-        
-        @property { string } [created_on]
-        
-        @property { string } [tag]
-        
         @property { Object } [modified_by]
-        
-        @property { Guide } [guide]
-        
-        @property { string } [description]
         
         @property { string } title
         
+        @property { boolean } [active]
+        
+        @property { string } [description]
+        
+        @property { number } [brand_id]
+        
+        @property { string } [modified_on]
+        
         @property { number } [company_id]
+        
+        @property { Object } [created_by]
+        
+        @property { string } [tag]
+        
+        @property { string } [created_on]
+        
+        @property { Guide } [guide]
         
         @property { string } [image]
         
@@ -10017,9 +4808,9 @@ class PlatformApplicationClient {
         @typedef SuccessResponse
         
         
-        @property { boolean } [success]
-        
         @property { number } [uid]
+        
+        @property { boolean } [success]
         
          
     */
@@ -10028,51 +4819,31 @@ class PlatformApplicationClient {
         @typedef SizeGuideResponse
         
         
-        @property { string } [id]
-        
-        @property { number } [brand_id]
-        
-        @property { boolean } [active]
-        
-        @property { string } [modified_on]
-        
-        @property { string } [subtitle]
-        
         @property { Object } [created_by]
         
-        @property { string } [created_on]
-        
-        @property { string } [name]
+        @property { string } [id]
         
         @property { Object } [modified_by]
         
-        @property { string } [tag]
+        @property { string } [name]
         
-        @property { Object } [guide]
+        @property { string } [subtitle]
         
         @property { string } [title]
         
+        @property { boolean } [active]
+        
+        @property { number } [brand_id]
+        
         @property { number } [company_id]
         
-         
-    */
-
-/**
-        @typedef MetaDataListingSortMetaResponse
+        @property { string } [modified_on]
         
+        @property { string } [tag]
         
-        @property { string } [key]
+        @property { string } [created_on]
         
-        @property { string } [display]
-        
-         
-    */
-
-/**
-        @typedef MetaDataListingSortResponse
-        
-        
-        @property { Array<MetaDataListingSortMetaResponse> } [data]
+        @property { Object } [guide]
         
          
     */
@@ -10081,11 +4852,11 @@ class PlatformApplicationClient {
         @typedef MetaDataListingFilterMetaResponse
         
         
-        @property { Array<string> } [filter_types]
+        @property { string } [display]
         
         @property { string } [key]
         
-        @property { string } [display]
+        @property { Array<string> } [filter_types]
         
         @property { Array<Object> } [units]
         
@@ -10102,12 +4873,32 @@ class PlatformApplicationClient {
     */
 
 /**
+        @typedef MetaDataListingSortMetaResponse
+        
+        
+        @property { string } [display]
+        
+        @property { string } [key]
+        
+         
+    */
+
+/**
+        @typedef MetaDataListingSortResponse
+        
+        
+        @property { Array<MetaDataListingSortMetaResponse> } [data]
+        
+         
+    */
+
+/**
         @typedef MetaDataListingResponse
         
         
-        @property { MetaDataListingSortResponse } sort
-        
         @property { MetaDataListingFilterResponse } filter
+        
+        @property { MetaDataListingSortResponse } sort
         
          
     */
@@ -10116,13 +4907,13 @@ class PlatformApplicationClient {
         @typedef GetCatalogConfigurationDetailsProduct
         
         
-        @property { Object } [similar]
-        
-        @property { Object } [detail]
+        @property { Object } [variant]
         
         @property { Object } [compare]
         
-        @property { Object } [variant]
+        @property { Object } [similar]
+        
+        @property { Object } [detail]
         
          
     */
@@ -10139,18 +4930,160 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef ConfigurationListingSortConfig
+        @typedef ProductSize
         
         
-        @property { number } priority
+        @property { number } min
         
-        @property { string } [name]
+        @property { number } max
         
-        @property { string } key
+         
+    */
+
+/**
+        @typedef ConfigurationProductVariantConfig
+        
         
         @property { string } [logo]
         
+        @property { string } name
+        
         @property { boolean } is_active
+        
+        @property { string } key
+        
+        @property { ProductSize } size
+        
+        @property { number } priority
+        
+        @property { string } display_type
+        
+         
+    */
+
+/**
+        @typedef ConfigurationProductVariant
+        
+        
+        @property { Array<ConfigurationProductVariantConfig> } [config]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationProductConfig
+        
+        
+        @property { string } [logo]
+        
+        @property { string } [subtitle]
+        
+        @property { boolean } is_active
+        
+        @property { string } key
+        
+        @property { string } [title]
+        
+        @property { ProductSize } [size]
+        
+        @property { number } priority
+        
+         
+    */
+
+/**
+        @typedef ConfigurationProductSimilar
+        
+        
+        @property { Array<ConfigurationProductConfig> } [config]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationProduct
+        
+        
+        @property { ConfigurationProductVariant } variant
+        
+        @property { ConfigurationProductSimilar } similar
+        
+         
+    */
+
+/**
+        @typedef ConfigurationBucketPoints
+        
+        
+        @property { number } [end]
+        
+        @property { number } [start]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationListingFilterValue
+        
+        
+        @property { Object } [map]
+        
+        @property { string } [sort]
+        
+        @property { Array<ConfigurationBucketPoints> } [bucket_points]
+        
+        @property { string } [value]
+        
+        @property { string } [condition]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationListingFilterConfig
+        
+        
+        @property { string } type
+        
+        @property { string } [logo]
+        
+        @property { string } [name]
+        
+        @property { boolean } is_active
+        
+        @property { string } key
+        
+        @property { number } priority
+        
+        @property { ConfigurationListingFilterValue } [value_config]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationListingFilter
+        
+        
+        @property { boolean } allow_single
+        
+        @property { Array<ConfigurationListingFilterConfig> } [attribute_config]
+        
+         
+    */
+
+/**
+        @typedef ConfigurationListingSortConfig
+        
+        
+        @property { string } [logo]
+        
+        @property { string } [name]
+        
+        @property { boolean } is_active
+        
+        @property { string } key
+        
+        @property { number } priority
         
          
     */
@@ -10167,154 +5100,12 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef ConfigurationBucketPoints
-        
-        
-        @property { number } [start]
-        
-        @property { number } [end]
-        
-         
-    */
-
-/**
-        @typedef ConfigurationListingFilterValue
-        
-        
-        @property { string } [sort]
-        
-        @property { Object } [map]
-        
-        @property { string } [value]
-        
-        @property { Array<ConfigurationBucketPoints> } [bucket_points]
-        
-        @property { string } [condition]
-        
-         
-    */
-
-/**
-        @typedef ConfigurationListingFilterConfig
-        
-        
-        @property { ConfigurationListingFilterValue } [value_config]
-        
-        @property { number } priority
-        
-        @property { string } [name]
-        
-        @property { string } type
-        
-        @property { string } key
-        
-        @property { string } [logo]
-        
-        @property { boolean } is_active
-        
-         
-    */
-
-/**
-        @typedef ConfigurationListingFilter
-        
-        
-        @property { Array<ConfigurationListingFilterConfig> } [attribute_config]
-        
-        @property { boolean } allow_single
-        
-         
-    */
-
-/**
         @typedef ConfigurationListing
         
         
-        @property { ConfigurationListingSort } sort
-        
         @property { ConfigurationListingFilter } filter
         
-         
-    */
-
-/**
-        @typedef ProductSize
-        
-        
-        @property { number } max
-        
-        @property { number } min
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProductConfig
-        
-        
-        @property { ProductSize } [size]
-        
-        @property { string } [subtitle]
-        
-        @property { number } priority
-        
-        @property { string } key
-        
-        @property { string } [logo]
-        
-        @property { string } [title]
-        
-        @property { boolean } is_active
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProductSimilar
-        
-        
-        @property { Array<ConfigurationProductConfig> } [config]
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProductVariantConfig
-        
-        
-        @property { ProductSize } size
-        
-        @property { number } priority
-        
-        @property { string } name
-        
-        @property { string } display_type
-        
-        @property { string } key
-        
-        @property { string } [logo]
-        
-        @property { boolean } is_active
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProductVariant
-        
-        
-        @property { Array<ConfigurationProductVariantConfig> } [config]
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProduct
-        
-        
-        @property { ConfigurationProductSimilar } similar
-        
-        @property { ConfigurationProductVariant } variant
+        @property { ConfigurationListingSort } sort
         
          
     */
@@ -10323,17 +5114,17 @@ class PlatformApplicationClient {
         @typedef AppCatalogConfiguration
         
         
-        @property { ConfigurationListing } [listing]
-        
-        @property { string } [id]
-        
-        @property { string } app_id
-        
         @property { string } [config_id]
         
         @property { string } config_type
         
+        @property { string } [id]
+        
         @property { ConfigurationProduct } [product]
+        
+        @property { ConfigurationListing } [listing]
+        
+        @property { string } app_id
         
          
     */
@@ -10353,15 +5144,15 @@ class PlatformApplicationClient {
         @typedef AppConfiguration
         
         
-        @property { ConfigurationListing } [listing]
-        
-        @property { string } app_id
-        
         @property { string } [config_id]
         
         @property { string } config_type
         
         @property { ConfigurationProduct } [product]
+        
+        @property { ConfigurationListing } [listing]
+        
+        @property { string } app_id
         
          
     */
@@ -10370,9 +5161,9 @@ class PlatformApplicationClient {
         @typedef GetCatalogConfigurationDetailsSchemaListing
         
         
-        @property { Object } [sort]
-        
         @property { Object } [filter]
+        
+        @property { Object } [sort]
         
          
     */
@@ -10381,17 +5172,17 @@ class PlatformApplicationClient {
         @typedef EntityConfiguration
         
         
-        @property { GetCatalogConfigurationDetailsSchemaListing } [listing]
-        
-        @property { string } [id]
-        
-        @property { string } app_id
-        
         @property { string } [config_id]
         
         @property { string } config_type
         
+        @property { string } [id]
+        
         @property { GetCatalogConfigurationDetailsProduct } [product]
+        
+        @property { GetCatalogConfigurationDetailsSchemaListing } [listing]
+        
+        @property { string } app_id
         
          
     */
@@ -10408,32 +5199,14 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef ProductFiltersValue
+        @typedef ProductSortOn
         
         
-        @property { number } [max]
+        @property { string } [name]
         
-        @property { string } display
+        @property { boolean } [is_selected]
         
-        @property { string } value
-        
-        @property { string } [display_format]
-        
-        @property { number } [selected_min]
-        
-        @property { number } [selected_max]
-        
-        @property { number } [count]
-        
-        @property { string } [query_format]
-        
-        @property { string } [currency_code]
-        
-        @property { number } [min]
-        
-        @property { boolean } is_selected
-        
-        @property { string } [currency_symbol]
+        @property { string } [value]
         
          
     */
@@ -10444,11 +5217,42 @@ class PlatformApplicationClient {
         
         @property { string } name
         
-        @property { string } [kind]
+        @property { string } display
         
         @property { string } [logo]
         
+        @property { string } [kind]
+        
+         
+    */
+
+/**
+        @typedef ProductFiltersValue
+        
+        
+        @property { number } [count]
+        
         @property { string } display
+        
+        @property { number } [min]
+        
+        @property { string } [display_format]
+        
+        @property { string } [currency_symbol]
+        
+        @property { string } [currency_code]
+        
+        @property { number } [selected_max]
+        
+        @property { boolean } is_selected
+        
+        @property { string } [query_format]
+        
+        @property { string } value
+        
+        @property { number } [selected_min]
+        
+        @property { number } [max]
         
          
     */
@@ -10457,22 +5261,9 @@ class PlatformApplicationClient {
         @typedef ProductFilters
         
         
-        @property { Array<ProductFiltersValue> } values
-        
         @property { ProductFiltersKey } key
         
-         
-    */
-
-/**
-        @typedef ProductSortOn
-        
-        
-        @property { string } [name]
-        
-        @property { string } [value]
-        
-        @property { boolean } [is_selected]
+        @property { Array<ProductFiltersValue> } values
         
          
     */
@@ -10481,46 +5272,9 @@ class PlatformApplicationClient {
         @typedef GetCollectionQueryOptionResponse
         
         
-        @property { Array<ProductFilters> } [filters]
-        
         @property { Array<ProductSortOn> } [sort_on]
         
-         
-    */
-
-/**
-        @typedef CollectionListingFilterTag
-        
-        
-        @property { string } [name]
-        
-        @property { boolean } [is_selected]
-        
-        @property { string } [display]
-        
-         
-    */
-
-/**
-        @typedef CollectionListingFilterType
-        
-        
-        @property { string } [name]
-        
-        @property { boolean } [is_selected]
-        
-        @property { string } [display]
-        
-         
-    */
-
-/**
-        @typedef CollectionListingFilter
-        
-        
-        @property { Array<CollectionListingFilterTag> } [tags]
-        
-        @property { Array<CollectionListingFilterType> } [type]
+        @property { Array<ProductFilters> } [filters]
         
          
     */
@@ -10562,9 +5316,9 @@ class PlatformApplicationClient {
         @typedef ProductListingAction
         
         
-        @property { ProductListingActionPage } [page]
-        
         @property { string } [type]
+        
+        @property { ProductListingActionPage } [page]
         
          
     */
@@ -10573,9 +5327,9 @@ class PlatformApplicationClient {
         @typedef Media1
         
         
-        @property { Object } [meta]
-        
         @property { string } [type]
+        
+        @property { Object } [meta]
         
         @property { string } url
         
@@ -10586,43 +5340,80 @@ class PlatformApplicationClient {
         @typedef GetCollectionDetailNest
         
         
-        @property { Array<string> } [visible_facets_keys]
-        
         @property { Object } [meta]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { boolean } [allow_sort]
-        
-        @property { boolean } [allow_facets]
         
         @property { Object } [cron]
         
-        @property { string } [app_id]
+        @property { boolean } [is_active]
         
-        @property { string } [type]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { Object } [_schedule]
-        
-        @property { string } [uid]
-        
-        @property { Object } [query]
+        @property { ImageUrls } [banners]
         
         @property { string } [name]
         
+        @property { Array<string> } [visible_facets_keys]
+        
+        @property { Object } [_schedule]
+        
         @property { string } [description]
         
-        @property { Media1 } [logo]
+        @property { ProductListingAction } [action]
         
-        @property { Array<string> } [tag]
+        @property { string } [type]
         
-        @property { string } [slug]
+        @property { boolean } [allow_sort]
         
         @property { Object } [badge]
         
-        @property { boolean } [is_active]
+        @property { Array<string> } [tag]
+        
+        @property { string } [app_id]
+        
+        @property { string } [uid]
+        
+        @property { string } [slug]
+        
+        @property { Media1 } [logo]
+        
+        @property { Object } [query]
+        
+        @property { boolean } [allow_facets]
+        
+         
+    */
+
+/**
+        @typedef CollectionListingFilterType
+        
+        
+        @property { string } [name]
+        
+        @property { string } [display]
+        
+        @property { boolean } [is_selected]
+        
+         
+    */
+
+/**
+        @typedef CollectionListingFilterTag
+        
+        
+        @property { string } [name]
+        
+        @property { string } [display]
+        
+        @property { boolean } [is_selected]
+        
+         
+    */
+
+/**
+        @typedef CollectionListingFilter
+        
+        
+        @property { Array<CollectionListingFilterType> } [type]
+        
+        @property { Array<CollectionListingFilterTag> } [tags]
         
          
     */
@@ -10631,26 +5422,11 @@ class PlatformApplicationClient {
         @typedef GetCollectionListingResponse
         
         
-        @property { CollectionListingFilter } [filters]
-        
         @property { Page } [page]
         
         @property { Array<GetCollectionDetailNest> } [items]
         
-         
-    */
-
-/**
-        @typedef UserInfo
-        
-        
-        @property { string } [username]
-        
-        @property { string } [user_id]
-        
-        @property { string } [uid]
-        
-        @property { string } [email]
+        @property { CollectionListingFilter } [filters]
         
          
     */
@@ -10678,14 +5454,25 @@ class PlatformApplicationClient {
     */
 
 /**
+        @typedef SeoDetail
+        
+        
+        @property { string } [description]
+        
+        @property { string } [title]
+        
+         
+    */
+
+/**
         @typedef Schedule
         
         
         @property { string } [cron]
         
-        @property { string } [start]
-        
         @property { number } [duration]
+        
+        @property { string } [start]
         
         @property { string } [end]
         
@@ -10693,12 +5480,16 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef SeoDetail
+        @typedef UserInfo
         
         
-        @property { string } [title]
+        @property { string } [username]
         
-        @property { string } [description]
+        @property { string } [uid]
+        
+        @property { string } [user_id]
+        
+        @property { string } [email]
         
          
     */
@@ -10707,9 +5498,9 @@ class PlatformApplicationClient {
         @typedef CollectionBadge
         
         
-        @property { string } [color]
-        
         @property { string } [text]
+        
+        @property { string } [color]
         
          
     */
@@ -10718,51 +5509,51 @@ class PlatformApplicationClient {
         @typedef CreateCollection
         
         
-        @property { Array<string> } [visible_facets_keys]
-        
-        @property { UserInfo } [modified_by]
-        
         @property { Object } [meta]
-        
-        @property { CollectionBanner } banners
-        
-        @property { boolean } [allow_sort]
-        
-        @property { boolean } [allow_facets]
-        
-        @property { string } type
-        
-        @property { string } app_id
-        
-        @property { boolean } [published]
-        
-        @property { Schedule } [_schedule]
-        
-        @property { string } [sort_on]
-        
-        @property { Object } [query]
-        
-        @property { string } name
         
         @property { Array<string> } [tags]
         
-        @property { CollectionImage } logo
+        @property { boolean } [is_active]
         
-        @property { string } [description]
-        
-        @property { Object } [_custom_json]
+        @property { CollectionBanner } banners
         
         @property { SeoDetail } [seo]
         
-        @property { Object } [_locale_language]
+        @property { string } name
+        
+        @property { Array<string> } [visible_facets_keys]
+        
+        @property { Schedule } [_schedule]
+        
+        @property { string } [description]
+        
+        @property { string } [sort_on]
+        
+        @property { Object } [_custom_json]
+        
+        @property { boolean } [published]
+        
+        @property { string } type
+        
+        @property { boolean } [allow_sort]
         
         @property { UserInfo } [created_by]
         
-        @property { string } slug
-        
         @property { CollectionBadge } [badge]
         
-        @property { boolean } [is_active]
+        @property { Object } [_locale_language]
+        
+        @property { string } app_id
+        
+        @property { string } slug
+        
+        @property { CollectionImage } logo
+        
+        @property { UserInfo } [modified_by]
+        
+        @property { Object } [query]
+        
+        @property { boolean } [allow_facets]
         
          
     */
@@ -10771,39 +5562,39 @@ class PlatformApplicationClient {
         @typedef CollectionCreateResponse
         
         
-        @property { Array<string> } [visible_facets_keys]
-        
-        @property { string } [name]
-        
-        @property { Object } [cron]
-        
         @property { string } [app_id]
-        
-        @property { Array<string> } [tag]
         
         @property { string } [type]
         
-        @property { Object } [meta]
-        
         @property { string } [slug]
         
-        @property { ImageUrls } [banners]
-        
-        @property { string } [description]
+        @property { Object } [meta]
         
         @property { BannerImage } [logo]
         
+        @property { Object } [cron]
+        
+        @property { string } [name]
+        
         @property { boolean } [allow_sort]
         
-        @property { Object } [_schedule]
+        @property { boolean } [is_active]
         
-        @property { Object } [query]
-        
-        @property { boolean } [allow_facets]
+        @property { Array<string> } [visible_facets_keys]
         
         @property { Object } [badge]
         
-        @property { boolean } [is_active]
+        @property { Object } [query]
+        
+        @property { Object } [_schedule]
+        
+        @property { boolean } [allow_facets]
+        
+        @property { string } [description]
+        
+        @property { Array<string> } [tag]
+        
+        @property { ImageUrls } [banners]
         
          
     */
@@ -10812,78 +5603,39 @@ class PlatformApplicationClient {
         @typedef CollectionDetailResponse
         
         
-        @property { Array<string> } [visible_facets_keys]
-        
-        @property { string } [name]
-        
-        @property { Object } [cron]
-        
         @property { string } [app_id]
         
-        @property { Array<string> } [tag]
-        
         @property { string } [type]
-        
-        @property { Object } [meta]
         
         @property { string } [slug]
         
-        @property { ImageUrls } [banners]
-        
-        @property { string } [description]
+        @property { Object } [meta]
         
         @property { Media1 } [logo]
         
-        @property { boolean } [allow_sort]
-        
-        @property { Object } [_schedule]
-        
-        @property { Object } [query]
-        
-        @property { boolean } [allow_facets]
-        
-        @property { Object } [badge]
-        
-        @property { boolean } [is_active]
-        
-         
-    */
-
-/**
-        @typedef ProductBrand
-        
+        @property { Object } [cron]
         
         @property { string } [name]
         
-        @property { ProductListingAction } [action]
+        @property { boolean } [allow_sort]
         
-        @property { Media1 } [logo]
+        @property { boolean } [is_active]
         
-        @property { number } [uid]
+        @property { Array<string> } [visible_facets_keys]
         
-         
-    */
-
-/**
-        @typedef ProductDetailAttribute
+        @property { Object } [badge]
         
+        @property { Object } [query]
         
-        @property { string } [value]
+        @property { Object } [_schedule]
         
-        @property { string } [type]
+        @property { boolean } [allow_facets]
         
-        @property { string } [key]
+        @property { string } [description]
         
-         
-    */
-
-/**
-        @typedef ProductDetailGroupedAttribute
+        @property { Array<string> } [tag]
         
-        
-        @property { string } [title]
-        
-        @property { Array<ProductDetailAttribute> } [details]
+        @property { ImageUrls } [banners]
         
          
     */
@@ -10892,13 +5644,13 @@ class PlatformApplicationClient {
         @typedef Price1
         
         
-        @property { number } [max]
+        @property { string } [currency_symbol]
         
         @property { number } [min]
         
         @property { string } [currency_code]
         
-        @property { string } [currency_symbol]
+        @property { number } [max]
         
          
     */
@@ -10907,9 +5659,9 @@ class PlatformApplicationClient {
         @typedef ProductListingPrice
         
         
-        @property { Price1 } [marked]
-        
         @property { Price1 } [effective]
+        
+        @property { Price1 } [marked]
         
          
     */
@@ -10918,57 +5670,51 @@ class PlatformApplicationClient {
         @typedef ProductListingDetail
         
         
-        @property { ProductBrand } [brand]
-        
-        @property { string } [item_code]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [type]
-        
-        @property { Array<Media1> } [medias]
-        
-        @property { string } [item_type]
-        
-        @property { string } [discount]
-        
-        @property { string } [image_nature]
-        
-        @property { number } [rating_count]
-        
-        @property { number } [uid]
-        
-        @property { string } [product_online_date]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [grouped_attributes]
-        
-        @property { string } [name]
+        @property { Object } [attributes]
         
         @property { Array<string> } [tryouts]
         
-        @property { Object } [promo_meta]
+        @property { number } [rating_count]
         
-        @property { string } [description]
+        @property { string } [image_nature]
         
         @property { ProductListingPrice } [price]
         
-        @property { Object } [attributes]
+        @property { boolean } [sellable]
         
-        @property { Object } [teaser_tag]
+        @property { string } [name]
         
-        @property { Array<string> } [highlights]
+        @property { Object } [promo_meta]
+        
+        @property { string } [short_description]
+        
+        @property { string } [description]
         
         @property { number } [rating]
         
         @property { boolean } [has_variant]
         
+        @property { string } [type]
+        
+        @property { Array<Media1> } [medias]
+        
+        @property { string } [discount]
+        
+        @property { string } [product_online_date]
+        
         @property { string } [color]
         
-        @property { boolean } [sellable]
+        @property { Array<string> } [similars]
+        
+        @property { number } [uid]
         
         @property { string } slug
         
-        @property { string } [short_description]
+        @property { Object } [teaser_tag]
+        
+        @property { string } [item_type]
+        
+        @property { Array<string> } [highlights]
         
          
     */
@@ -10977,13 +5723,13 @@ class PlatformApplicationClient {
         @typedef GetCollectionItemsResponse
         
         
-        @property { Array<ProductFilters> } [filters]
+        @property { Array<ProductSortOn> } [sort_on]
         
         @property { Page } [page]
         
         @property { Array<ProductListingDetail> } [items]
         
-        @property { Array<ProductSortOn> } [sort_on]
+        @property { Array<ProductFilters> } [filters]
         
          
     */
@@ -10992,9 +5738,9 @@ class PlatformApplicationClient {
         @typedef CollectionItemRequest
         
         
-        @property { number } page_no
-        
         @property { number } page_size
+        
+        @property { number } page_no
         
          
     */
@@ -11009,33 +5755,33 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef CatalogInsightBrand
-        
-        
-        @property { number } [article_freshness]
-        
-        @property { number } [total_sizes]
-        
-        @property { string } [name]
-        
-        @property { number } [available_articles]
-        
-        @property { number } [available_sizes]
-        
-        @property { number } [total_articles]
-        
-         
-    */
-
-/**
         @typedef CatalogInsightItem
         
+        
+        @property { number } [sellable_count]
         
         @property { number } [count]
         
         @property { number } [out_of_stock_count]
         
-        @property { number } [sellable_count]
+         
+    */
+
+/**
+        @typedef CatalogInsightBrand
+        
+        
+        @property { number } [available_sizes]
+        
+        @property { string } [name]
+        
+        @property { number } [total_articles]
+        
+        @property { number } [article_freshness]
+        
+        @property { number } [total_sizes]
+        
+        @property { number } [available_articles]
         
          
     */
@@ -11044,9 +5790,9 @@ class PlatformApplicationClient {
         @typedef CatalogInsightResponse
         
         
-        @property { CatalogInsightBrand } [brand_distribution]
-        
         @property { CatalogInsightItem } [item]
+        
+        @property { CatalogInsightBrand } [brand_distribution]
         
          
     */
@@ -11077,13 +5823,13 @@ class PlatformApplicationClient {
         @typedef OptInPostRequest
         
         
+        @property { boolean } [enabled]
+        
         @property { Array<number> } [brand_ids]
         
         @property { string } opt_level
         
         @property { Array<number> } [store_ids]
-        
-        @property { boolean } [enabled]
         
          
     */
@@ -11094,23 +5840,23 @@ class PlatformApplicationClient {
         
         @property { Array<number> } store_ids
         
-        @property { number } modified_on
-        
         @property { Object } [created_by]
         
-        @property { number } created_on
-        
         @property { Object } [modified_by]
+        
+        @property { number } created_on
         
         @property { string } platform
         
         @property { boolean } enabled
         
+        @property { number } company_id
+        
+        @property { number } modified_on
+        
         @property { Array<number> } brand_ids
         
         @property { string } opt_level
-        
-        @property { number } company_id
         
          
     */
@@ -11130,13 +5876,13 @@ class PlatformApplicationClient {
         @typedef OptinCompanyDetail
         
         
-        @property { string } [name]
+        @property { number } [uid]
         
         @property { string } [company_type]
         
         @property { string } [business_type]
         
-        @property { number } [uid]
+        @property { string } [name]
         
          
     */
@@ -11145,13 +5891,13 @@ class PlatformApplicationClient {
         @typedef CompanyBrandDetail
         
         
-        @property { number } [total_article]
-        
-        @property { string } [brand_name]
-        
         @property { number } [company_id]
         
         @property { number } [brand_id]
+        
+        @property { number } [total_article]
+        
+        @property { string } [brand_name]
         
          
     */
@@ -11171,11 +5917,11 @@ class PlatformApplicationClient {
         @typedef OptinCompanyMetrics
         
         
-        @property { number } [brand]
-        
         @property { string } [company]
         
         @property { number } [store]
+        
+        @property { number } [brand]
         
          
     */
@@ -11184,27 +5930,27 @@ class PlatformApplicationClient {
         @typedef StoreDetail
         
         
-        @property { string } [store_type]
-        
-        @property { string } [modified_on]
+        @property { number } [uid]
         
         @property { string } [name]
         
-        @property { string } [created_on]
-        
         @property { Array<Object> } [additional_contacts]
         
-        @property { string } [display_name]
+        @property { Array<Object> } [documents]
         
-        @property { Object } [timing]
-        
-        @property { number } [uid]
+        @property { string } [store_type]
         
         @property { string } [store_code]
         
+        @property { string } [display_name]
+        
         @property { number } [company_id]
         
-        @property { Array<Object> } [documents]
+        @property { string } [modified_on]
+        
+        @property { string } [created_on]
+        
+        @property { Object } [timing]
         
          
     */
@@ -11221,104 +5967,31 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef AttributeMasterFilter
+        @typedef BasePage
         
         
-        @property { Array<string> } [depends_on]
+        @property { string } [type]
         
-        @property { boolean } indexing
+        @property { string } [next_id]
         
-        @property { number } [priority]
+        @property { number } [item_total]
         
-         
-    */
-
-/**
-        @typedef AttributeSchemaRange
+        @property { boolean } [has_next]
         
+        @property { boolean } [has_previous]
         
-        @property { number } [max]
+        @property { number } [size]
         
-        @property { number } [min]
+        @property { number } [current]
         
          
     */
 
 /**
-        @typedef AttributeMaster
+        @typedef MultipleCommon
         
         
-        @property { AttributeSchemaRange } [range]
-        
-        @property { string } type
-        
-        @property { boolean } [multi]
-        
-        @property { Array<string> } [allowed_values]
-        
-        @property { string } [format]
-        
-        @property { boolean } [mandatory]
-        
-         
-    */
-
-/**
-        @typedef AttributeMasterMandatoryDetails
-        
-        
-        @property { Array<string> } [l3_keys]
-        
-         
-    */
-
-/**
-        @typedef AttributeMasterMeta
-        
-        
-        @property { boolean } [enriched]
-        
-        @property { AttributeMasterMandatoryDetails } mandatory_details
-        
-         
-    */
-
-/**
-        @typedef AttributeMasterDetails
-        
-        
-        @property { string } display_type
-        
-         
-    */
-
-/**
-        @typedef GenderDetail
-        
-        
-        @property { AttributeMasterFilter } [filters]
-        
-        @property { string } [id]
-        
-        @property { AttributeMaster } [schema]
-        
-        @property { string } [name]
-        
-        @property { boolean } [enabled_for_end_consumer]
-        
-        @property { AttributeMasterMeta } [meta]
-        
-        @property { boolean } [is_nested]
-        
-        @property { Array<string> } [departments]
-        
-        @property { string } [description]
-        
-        @property { string } [logo]
-        
-        @property { string } [slug]
-        
-        @property { AttributeMasterDetails } [details]
+        @property { string } [uid]
         
          
     */
@@ -11327,9 +6000,9 @@ class PlatformApplicationClient {
         @typedef ProdcutTemplateCategoriesResponse
         
         
-        @property { Page } [page]
+        @property { BasePage } [page]
         
-        @property { Array<Object> } [items]
+        @property { MultipleCommon } [items]
         
          
     */
@@ -11338,15 +6011,36 @@ class PlatformApplicationClient {
         @typedef PTErrorResponse
         
         
-        @property { Object } [errors]
-        
-        @property { string } [message]
+        @property { Object } [meta]
         
         @property { string } [code]
         
-        @property { Object } [meta]
-        
         @property { number } [status]
+        
+        @property { string } [message]
+        
+        @property { Object } [errors]
+        
+         
+    */
+
+/**
+        @typedef BasePage1
+        
+        
+        @property { string } [type]
+        
+        @property { string } [next_id]
+        
+        @property { number } [item_total]
+        
+        @property { boolean } [has_next]
+        
+        @property { boolean } [has_previous]
+        
+        @property { number } [size]
+        
+        @property { number } [current]
         
          
     */
@@ -11357,9 +6051,9 @@ class PlatformApplicationClient {
         
         @property { string } [contact]
         
-        @property { string } [username]
-        
         @property { string } [user_id]
+        
+        @property { string } [username]
         
          
     */
@@ -11368,35 +6062,35 @@ class PlatformApplicationClient {
         @typedef GetDepartment
         
         
-        @property { number } [page_size]
-        
-        @property { string } [modified_on]
-        
-        @property { string } [name]
-        
-        @property { string } [created_on]
-        
-        @property { UserSerializer } [created_by]
-        
-        @property { number } [page_no]
-        
-        @property { UserSerializer } [modified_by]
-        
-        @property { number } [priority_order]
-        
-        @property { string } [item_type]
-        
-        @property { string } [search]
-        
-        @property { string } [logo]
-        
-        @property { Array<string> } [synonyms]
-        
         @property { number } [uid]
         
         @property { string } [slug]
         
+        @property { Array<string> } [synonyms]
+        
+        @property { string } [logo]
+        
+        @property { UserSerializer } [created_by]
+        
+        @property { string } [name]
+        
+        @property { UserSerializer } [modified_by]
+        
         @property { boolean } [is_active]
+        
+        @property { string } [item_type]
+        
+        @property { string } [created_on]
+        
+        @property { string } [modified_on]
+        
+        @property { number } [page_size]
+        
+        @property { string } [search]
+        
+        @property { number } [priority_order]
+        
+        @property { number } [page_no]
         
          
     */
@@ -11405,7 +6099,7 @@ class PlatformApplicationClient {
         @typedef DepartmentsResponse
         
         
-        @property { Page } [page]
+        @property { BasePage1 } [page]
         
         @property { Array<GetDepartment> } [items]
         
@@ -11416,15 +6110,15 @@ class PlatformApplicationClient {
         @typedef DepartmentErrorResponse
         
         
-        @property { Object } [errors]
-        
-        @property { string } [message]
+        @property { Object } [meta]
         
         @property { string } [code]
         
-        @property { Object } [meta]
-        
         @property { number } [status]
+        
+        @property { string } [message]
+        
+        @property { Object } [errors]
         
          
     */
@@ -11433,35 +6127,35 @@ class PlatformApplicationClient {
         @typedef ProductTemplate
         
         
-        @property { boolean } [is_archived]
-        
-        @property { Array<string> } [categories]
-        
-        @property { string } [modified_on]
-        
-        @property { string } [name]
-        
-        @property { Object } [created_by]
-        
-        @property { string } [created_on]
-        
-        @property { string } [tag]
-        
-        @property { Object } [modified_by]
+        @property { Array<string> } [attributes]
         
         @property { boolean } is_physical
         
-        @property { Array<string> } [departments]
+        @property { string } slug
         
-        @property { string } [description]
+        @property { Array<string> } [departments]
         
         @property { string } [logo]
         
-        @property { Array<string> } [attributes]
+        @property { string } [name]
         
-        @property { string } slug
+        @property { Object } [modified_by]
         
         @property { boolean } [is_active]
+        
+        @property { boolean } [is_archived]
+        
+        @property { string } [description]
+        
+        @property { string } [modified_on]
+        
+        @property { Array<string> } [categories]
+        
+        @property { Object } [created_by]
+        
+        @property { string } [tag]
+        
+        @property { string } [created_on]
         
          
     */
@@ -11470,18 +6164,9 @@ class PlatformApplicationClient {
         @typedef TemplatesResponse
         
         
-        @property { Page } [page]
+        @property { BasePage } [page]
         
         @property { ProductTemplate } [items]
-        
-         
-    */
-
-/**
-        @typedef MultipleCommon
-        
-        
-        @property { string } [uid]
         
          
     */
@@ -11554,24 +6239,11 @@ class PlatformApplicationClient {
         @typedef CategoryMapping
         
         
+        @property { CategoryMappingValues } [facebook]
+        
         @property { CategoryMappingValues } [google]
         
         @property { CategoryMappingValues } [ajio]
-        
-        @property { CategoryMappingValues } [facebook]
-        
-         
-    */
-
-/**
-        @typedef Hierarchy
-        
-        
-        @property { number } l2
-        
-        @property { number } department
-        
-        @property { number } l1
         
          
     */
@@ -11590,42 +6262,55 @@ class PlatformApplicationClient {
     */
 
 /**
+        @typedef Hierarchy
+        
+        
+        @property { number } l2
+        
+        @property { number } department
+        
+        @property { number } l1
+        
+         
+    */
+
+/**
         @typedef Category
         
         
-        @property { CategoryMapping } [marketplaces]
-        
-        @property { string } [modified_on]
-        
-        @property { number } [priority]
-        
-        @property { string } name
+        @property { number } [uid]
         
         @property { Array<string> } [tryouts]
         
-        @property { Array<Hierarchy> } [hierarchy]
-        
-        @property { Object } [created_by]
-        
-        @property { string } [created_on]
-        
-        @property { Object } [modified_by]
-        
-        @property { number } level
-        
-        @property { string } [_id]
-        
         @property { Array<number> } departments
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { number } [uid]
         
         @property { string } [slug]
         
-        @property { Media2 } [media]
+        @property { Array<string> } [synonyms]
+        
+        @property { string } name
+        
+        @property { CategoryMapping } [marketplaces]
         
         @property { boolean } is_active
+        
+        @property { Object } [modified_by]
+        
+        @property { Media2 } [media]
+        
+        @property { string } [created_on]
+        
+        @property { number } [priority]
+        
+        @property { number } level
+        
+        @property { string } [modified_on]
+        
+        @property { Object } [created_by]
+        
+        @property { string } [_id]
+        
+        @property { Array<Hierarchy> } [hierarchy]
         
          
     */
@@ -11634,7 +6319,7 @@ class PlatformApplicationClient {
         @typedef CategoryResponse
         
         
-        @property { Page } [page]
+        @property { BasePage1 } [page]
         
         @property { Array<Category> } [items]
         
@@ -11645,27 +6330,27 @@ class PlatformApplicationClient {
         @typedef CategoryRequestBody
         
         
-        @property { CategoryMapping } [marketplaces]
-        
-        @property { number } [priority]
-        
-        @property { string } name
-        
         @property { Array<string> } [tryouts]
-        
-        @property { Array<Hierarchy> } [hierarchy]
-        
-        @property { number } level
         
         @property { Array<number> } departments
         
+        @property { string } [slug]
+        
         @property { Array<string> } [synonyms]
         
-        @property { string } [slug]
+        @property { string } name
+        
+        @property { CategoryMapping } [marketplaces]
+        
+        @property { boolean } is_active
         
         @property { Media2 } [media]
         
-        @property { boolean } is_active
+        @property { number } [priority]
+        
+        @property { number } level
+        
+        @property { Array<Hierarchy> } [hierarchy]
         
          
     */
@@ -11674,9 +6359,9 @@ class PlatformApplicationClient {
         @typedef CategoryCreateResponse
         
         
-        @property { string } [message]
-        
         @property { number } [uid]
+        
+        @property { string } [message]
         
          
     */
@@ -11696,15 +6381,88 @@ class PlatformApplicationClient {
         @typedef PageData
         
         
-        @property { number } [size]
-        
         @property { boolean } [has_previous]
-        
-        @property { string } [current]
         
         @property { boolean } [has_next]
         
         @property { number } [item_total]
+        
+        @property { number } [size]
+        
+        @property { string } [current]
+        
+         
+    */
+
+/**
+        @typedef UserCommon
+        
+        
+        @property { number } [company_id]
+        
+        @property { string } [user_id]
+        
+        @property { string } [username]
+        
+         
+    */
+
+/**
+        @typedef VerifiedBy
+        
+        
+        @property { string } [user_id]
+        
+        @property { string } [username]
+        
+         
+    */
+
+/**
+        @typedef Attributes
+        
+        
+        @property { Array<string> } [l3_mapping]
+        
+        @property { string } [material]
+        
+        @property { string } [meta_nature]
+        
+        @property { string } [verified_on]
+        
+        @property { string } [image_nature]
+        
+        @property { string } [product_fit]
+        
+        @property { string } [stage]
+        
+        @property { Array<string> } [gender]
+        
+        @property { string } [sleeve_length]
+        
+        @property { string } [modified_on]
+        
+        @property { string } [neck_type]
+        
+        @property { string } [color]
+        
+        @property { boolean } [is_image_less_product]
+        
+        @property { UserCommon } [created_by]
+        
+        @property { string } [created_on]
+        
+        @property { string } [pattern]
+        
+        @property { string } [essential]
+        
+        @property { string } [primary_color]
+        
+        @property { UserCommon } [modified_by]
+        
+        @property { string } [primary_material]
+        
+        @property { VerifiedBy } [verified_by]
         
          
     */
@@ -11713,13 +6471,13 @@ class PlatformApplicationClient {
         @typedef Logo
         
         
-        @property { string } [secure_url]
-        
         @property { string } [aspect_ratio]
         
-        @property { string } [url]
+        @property { string } [secure_url]
         
         @property { number } [aspect_ratio_f]
+        
+        @property { string } [url]
         
          
     */
@@ -11730,9 +6488,9 @@ class PlatformApplicationClient {
         
         @property { string } [name]
         
-        @property { Logo } [logo]
-        
         @property { number } [uid]
+        
+        @property { Logo } [logo]
         
          
     */
@@ -11749,135 +6507,62 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef UserCommon
-        
-        
-        @property { number } [company_id]
-        
-        @property { string } [username]
-        
-        @property { string } [user_id]
-        
-         
-    */
-
-/**
-        @typedef VerifiedBy
-        
-        
-        @property { string } [username]
-        
-        @property { string } [user_id]
-        
-         
-    */
-
-/**
-        @typedef Attributes
-        
-        
-        @property { string } [pattern]
-        
-        @property { string } [modified_on]
-        
-        @property { string } [created_on]
-        
-        @property { UserCommon } [modified_by]
-        
-        @property { string } [meta_nature]
-        
-        @property { boolean } [is_image_less_product]
-        
-        @property { VerifiedBy } [verified_by]
-        
-        @property { string } [sleeve_length]
-        
-        @property { string } [image_nature]
-        
-        @property { string } [primary_material]
-        
-        @property { string } [verified_on]
-        
-        @property { string } [product_fit]
-        
-        @property { string } [neck_type]
-        
-        @property { string } [stage]
-        
-        @property { UserCommon } [created_by]
-        
-        @property { Array<string> } [gender]
-        
-        @property { Array<string> } [l3_mapping]
-        
-        @property { string } [material]
-        
-        @property { string } [color]
-        
-        @property { string } [primary_color]
-        
-        @property { string } [essential]
-        
-         
-    */
-
-/**
         @typedef Product
         
         
-        @property { Array<Object> } [sizes]
-        
-        @property { Brand } [brand]
-        
-        @property { string } [template_tag]
-        
-        @property { string } [country_of_origin]
+        @property { Attributes } [attributes]
         
         @property { Array<number> } [departments]
         
-        @property { boolean } [is_set]
-        
-        @property { Array<string> } [all_sizes]
-        
-        @property { string } [size_guide]
-        
-        @property { string } [item_code]
-        
-        @property { Array<string> } [images]
-        
-        @property { boolean } [multi_size]
-        
-        @property { ProductPublished } [product_publish]
-        
-        @property { string } [item_type]
-        
-        @property { number } [uid]
-        
-        @property { string } [id]
-        
-        @property { string } [name]
-        
-        @property { boolean } [is_dependent]
-        
-        @property { string } [description]
-        
-        @property { Attributes } [attributes]
+        @property { boolean } [is_active]
         
         @property { number } [company_id]
         
+        @property { string } [item_code]
+        
+        @property { string } [size_guide]
+        
+        @property { boolean } [multi_size]
+        
+        @property { Brand } [brand]
+        
+        @property { Array<string> } [images]
+        
+        @property { string } [name]
+        
         @property { Array<string> } [media]
-        
-        @property { string } [highlights]
-        
-        @property { string } [currency]
-        
-        @property { string } [hsn_code]
         
         @property { string } [category_slug]
         
+        @property { string } [description]
+        
+        @property { string } [currency]
+        
+        @property { string } [template_tag]
+        
+        @property { boolean } [is_set]
+        
+        @property { ProductPublished } [product_publish]
+        
+        @property { string } [hsn_code]
+        
+        @property { number } [uid]
+        
+        @property { Array<Object> } [sizes]
+        
         @property { string } [slug]
         
-        @property { boolean } [is_active]
+        @property { string } [id]
+        
+        @property { string } [item_type]
+        
+        @property { Array<string> } [all_sizes]
+        
+        @property { string } [highlights]
+        
+        @property { string } [country_of_origin]
+        
+        @property { boolean } [is_dependent]
         
          
     */
@@ -11889,6 +6574,19 @@ class PlatformApplicationClient {
         @property { PageData } [page]
         
         @property { Array<Product> } [items]
+        
+         
+    */
+
+/**
+        @typedef ReturnConfig
+        
+        
+        @property { boolean } [returnable]
+        
+        @property { string } [unit]
+        
+        @property { number } [time]
         
          
     */
@@ -11907,14 +6605,14 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef ReturnConfig
+        @typedef OrderQuantity
         
         
-        @property { string } [unit]
+        @property { number } [maximum]
         
-        @property { boolean } [returnable]
+        @property { number } [minimum]
         
-        @property { number } [time]
+        @property { boolean } [is_set]
         
          
     */
@@ -11924,19 +6622,6 @@ class PlatformApplicationClient {
         
         
         @property { string } [product_online_date]
-        
-        @property { boolean } [is_set]
-        
-         
-    */
-
-/**
-        @typedef OrderQuantity
-        
-        
-        @property { number } [maximum]
-        
-        @property { number } [minimum]
         
         @property { boolean } [is_set]
         
@@ -11969,79 +6654,79 @@ class PlatformApplicationClient {
         @typedef ProductCreateUpdate
         
         
+        @property { string } [requester]
+        
+        @property { Array<number> } departments
+        
+        @property { string } [change_request_id]
+        
+        @property { Array<string> } [tags]
+        
+        @property { Object } [variants]
+        
+        @property { ReturnConfig } [return_config]
+        
+        @property { boolean } [is_active]
+        
+        @property { Array<string> } [product_group_tag]
+        
+        @property { number } company_id
+        
+        @property { string } item_code
+        
+        @property { string } [size_guide]
+        
+        @property { CustomOrder } [custom_order]
+        
+        @property { boolean } [multi_size]
+        
+        @property { string } name
+        
+        @property { string } [short_description]
+        
+        @property { Array<Media1> } [media]
+        
+        @property { string } category_slug
+        
+        @property { string } [description]
+        
+        @property { string } currency
+        
+        @property { Object } [_custom_json]
+        
         @property { string } template_tag
+        
+        @property { number } brand_uid
+        
+        @property { OrderQuantity } [moq]
+        
+        @property { boolean } [is_set]
+        
+        @property { ProductPublish } [product_publish]
+        
+        @property { string } hsn_code
+        
+        @property { Trader } [trader]
+        
+        @property { boolean } [is_image_less_product]
+        
+        @property { number } [uid]
+        
+        @property { string } slug
+        
+        @property { TeaserTag } [teaser_tag]
+        
+        @property { string } item_type
+        
+        @property { Array<string> } [highlights]
         
         @property { string } [trader_type]
         
         @property { string } country_of_origin
         
-        @property { CustomOrder } [custom_order]
-        
-        @property { ReturnConfig } [return_config]
-        
-        @property { Array<number> } departments
-        
-        @property { boolean } [is_set]
-        
-        @property { string } [size_guide]
-        
-        @property { boolean } [is_image_less_product]
-        
-        @property { string } item_code
-        
-        @property { boolean } [multi_size]
-        
-        @property { ProductPublish } [product_publish]
-        
-        @property { OrderQuantity } [moq]
-        
-        @property { string } item_type
-        
-        @property { number } [uid]
-        
-        @property { number } brand_uid
-        
-        @property { string } [change_request_id]
-        
-        @property { Array<string> } [product_group_tag]
-        
-        @property { string } [requester]
-        
-        @property { string } name
-        
-        @property { Array<string> } [tags]
-        
         @property { boolean } [is_dependent]
         
-        @property { Trader } [trader]
-        
-        @property { string } [description]
-        
-        @property { Object } [_custom_json]
-        
-        @property { number } company_id
-        
-        @property { TeaserTag } [teaser_tag]
-        
         @property { number } [no_of_boxes]
-        
-        @property { Array<Media1> } [media]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { string } currency
-        
-        @property { string } category_slug
-        
-        @property { string } hsn_code
-        
-        @property { string } slug
-        
-        @property { Object } [variants]
-        
-        @property { string } [short_description]
-        
-        @property { boolean } [is_active]
         
          
     */
@@ -12061,9 +6746,9 @@ class PlatformApplicationClient {
         
         @property { string } [full_name]
         
-        @property { string } [username]
-        
         @property { string } [user_id]
+        
+        @property { string } [username]
         
          
     */
@@ -12072,37 +6757,37 @@ class PlatformApplicationClient {
         @typedef ProductBulkRequest
         
         
-        @property { Array<string> } [failed_records]
+        @property { string } [stage]
+        
+        @property { number } [total]
+        
+        @property { UserDetail } [created_by]
+        
+        @property { ProductTemplate } [template]
         
         @property { string } [file_path]
         
         @property { number } [cancelled]
         
-        @property { ProductTemplate } [template]
-        
-        @property { string } [modified_on]
-        
-        @property { string } [template_tag]
-        
-        @property { string } [created_on]
-        
-        @property { UserDetail } [created_by]
-        
         @property { UserDetail } [modified_by]
+        
+        @property { boolean } [is_active]
         
         @property { number } [succeed]
         
-        @property { string } [stage]
-        
         @property { Array<string> } [cancelled_records]
         
-        @property { number } [failed]
+        @property { Array<string> } [failed_records]
         
-        @property { number } [total]
+        @property { string } [modified_on]
         
         @property { number } [company_id]
         
-        @property { boolean } [is_active]
+        @property { number } [failed]
+        
+        @property { string } [created_on]
+        
+        @property { string } [template_tag]
         
          
     */
@@ -12124,9 +6809,9 @@ class PlatformApplicationClient {
         
         @property { string } [username]
         
-        @property { string } [user_id]
-        
         @property { string } [uid]
+        
+        @property { string } [user_id]
         
         @property { string } [email]
         
@@ -12137,39 +6822,39 @@ class PlatformApplicationClient {
         @typedef BulkJob
         
         
-        @property { Array<Object> } [failed_records]
+        @property { string } [stage]
         
-        @property { number } [cancelled]
+        @property { number } total
+        
+        @property { string } [custom_template_tag]
         
         @property { string } [file_path]
         
-        @property { string } [modified_on]
+        @property { UserInfo1 } [modified_by]
+        
+        @property { number } [cancelled]
+        
+        @property { boolean } [is_active]
         
         @property { number } [failed]
+        
+        @property { string } [tracking_url]
+        
+        @property { number } [succeed]
+        
+        @property { Array<Object> } [cancelled_records]
+        
+        @property { Array<Object> } [failed_records]
+        
+        @property { string } [modified_on]
+        
+        @property { number } company_id
         
         @property { UserInfo1 } [created_by]
         
         @property { string } created_on
         
         @property { string } [template_tag]
-        
-        @property { UserInfo1 } [modified_by]
-        
-        @property { number } [succeed]
-        
-        @property { string } [tracking_url]
-        
-        @property { string } [stage]
-        
-        @property { Array<Object> } [cancelled_records]
-        
-        @property { string } [custom_template_tag]
-        
-        @property { number } total
-        
-        @property { number } company_id
-        
-        @property { boolean } [is_active]
         
          
     */
@@ -12178,13 +6863,13 @@ class PlatformApplicationClient {
         @typedef BulkProductRequest
         
         
-        @property { string } template_tag
-        
         @property { number } company_id
+        
+        @property { string } batch_id
         
         @property { Array<Object> } data
         
-        @property { string } batch_id
+        @property { string } template_tag
         
          
     */
@@ -12211,39 +6896,39 @@ class PlatformApplicationClient {
         @typedef Items
         
         
-        @property { Array<string> } [failed_records]
-        
-        @property { string } [file_path]
-        
-        @property { number } [cancelled]
-        
-        @property { string } [id]
-        
-        @property { string } [modified_on]
-        
-        @property { UserCommon } [created_by]
-        
-        @property { string } [created_on]
-        
-        @property { number } [retry]
-        
-        @property { UserCommon } [modified_by]
-        
-        @property { number } [succeed]
-        
-        @property { string } [tracking_url]
-        
         @property { string } [stage]
-        
-        @property { Array<string> } [cancelled_records]
-        
-        @property { number } [failed]
         
         @property { number } [total]
         
-        @property { number } [company_id]
+        @property { string } [id]
+        
+        @property { string } [file_path]
+        
+        @property { UserCommon } [modified_by]
+        
+        @property { number } [cancelled]
+        
+        @property { number } [failed]
         
         @property { boolean } [is_active]
+        
+        @property { string } [tracking_url]
+        
+        @property { number } [succeed]
+        
+        @property { Array<string> } [cancelled_records]
+        
+        @property { Array<string> } [failed_records]
+        
+        @property { string } [modified_on]
+        
+        @property { number } [company_id]
+        
+        @property { UserCommon } [created_by]
+        
+        @property { number } [retry]
+        
+        @property { string } [created_on]
         
          
     */
@@ -12265,9 +6950,9 @@ class PlatformApplicationClient {
         
         @property { number } [company_id]
         
-        @property { string } url
-        
         @property { Object } user
+        
+        @property { string } url
         
          
     */
@@ -12276,15 +6961,28 @@ class PlatformApplicationClient {
         @typedef InventoryRequest
         
         
+        @property { number } [total]
+        
         @property { string } [size]
         
         @property { number } [page_size]
         
-        @property { number } [page_no]
-        
         @property { string } [search]
         
-        @property { number } [total]
+        @property { number } [page_no]
+        
+         
+    */
+
+/**
+        @typedef ItemQuery
+        
+        
+        @property { string } [item_code]
+        
+        @property { number } [uid]
+        
+        @property { number } [brand_uid]
         
          
     */
@@ -12293,9 +6991,9 @@ class PlatformApplicationClient {
         @typedef SetSize
         
         
-        @property { string } size
-        
         @property { number } pieces
+        
+        @property { string } size
         
          
     */
@@ -12324,9 +7022,9 @@ class PlatformApplicationClient {
         @typedef GTIN
         
         
-        @property { string } gtin_value
-        
         @property { boolean } [primary]
+        
+        @property { string } gtin_value
         
         @property { string } gtin_type
         
@@ -12337,50 +7035,37 @@ class PlatformApplicationClient {
         @typedef InvSize
         
         
-        @property { string } size
-        
-        @property { number } quantity
-        
-        @property { string } currency
-        
-        @property { InventorySet } [set]
-        
         @property { number } [price_transfer]
-        
-        @property { Array<GTIN> } identifiers
-        
-        @property { string } store_code
-        
-        @property { number } price_effective
-        
-        @property { number } [item_weight]
         
         @property { string } [item_weight_unit_of_measure]
         
-        @property { string } [item_dimensions_unit_of_measure]
+        @property { number } [item_width]
         
         @property { boolean } [is_set]
+        
+        @property { string } [item_dimensions_unit_of_measure]
+        
+        @property { number } quantity
+        
+        @property { InventorySet } [set]
+        
+        @property { string } size
+        
+        @property { string } store_code
+        
+        @property { number } [item_weight]
+        
+        @property { number } price_effective
+        
+        @property { string } currency
+        
+        @property { Array<GTIN> } identifiers
+        
+        @property { number } [item_length]
         
         @property { number } [item_height]
         
         @property { number } price
-        
-        @property { number } [item_width]
-        
-        @property { number } [item_length]
-        
-         
-    */
-
-/**
-        @typedef ItemQuery
-        
-        
-        @property { number } [brand_uid]
-        
-        @property { string } [item_code]
-        
-        @property { number } [uid]
         
          
     */
@@ -12389,11 +7074,11 @@ class PlatformApplicationClient {
         @typedef InventoryRequest1
         
         
-        @property { Array<InvSize> } sizes
-        
         @property { number } company_id
         
         @property { ItemQuery } item
+        
+        @property { Array<InvSize> } sizes
         
          
     */
@@ -12402,23 +7087,23 @@ class PlatformApplicationClient {
         @typedef BulkRequestGet
         
         
-        @property { number } [page_size]
-        
-        @property { string } [template_tag]
-        
-        @property { number } [page_no]
-        
-        @property { string } [search]
-        
         @property { string } [stage]
+        
+        @property { string } [start_date]
         
         @property { number } [total]
         
         @property { string } [custom_template_tag]
         
-        @property { string } [start_date]
-        
         @property { string } [end_date]
+        
+        @property { number } [page_size]
+        
+        @property { string } [search]
+        
+        @property { number } [page_no]
+        
+        @property { string } [template_tag]
         
          
     */
@@ -12436,39 +7121,39 @@ class PlatformApplicationClient {
         @typedef Size1
         
         
-        @property { string } [size]
+        @property { number } [price_transfer]
+        
+        @property { string } [item_weight_unit_of_measure]
+        
+        @property { number } [item_width]
+        
+        @property { boolean } [is_set]
+        
+        @property { string } [item_dimensions_unit_of_measure]
         
         @property { number } quantity
-        
-        @property { string } currency
         
         @property { string } seller_identifier
         
         @property { InventorySet } [set]
         
-        @property { number } [price_transfer]
-        
-        @property { Array<Object> } [identifiers]
+        @property { string } [size]
         
         @property { string } store_code
         
-        @property { number } price_effective
-        
         @property { number } [item_weight]
         
-        @property { string } [item_weight_unit_of_measure]
+        @property { number } price_effective
         
-        @property { string } [item_dimensions_unit_of_measure]
+        @property { string } currency
         
-        @property { boolean } [is_set]
+        @property { Array<Object> } [identifiers]
+        
+        @property { number } [item_length]
         
         @property { number } [item_height]
         
         @property { number } price
-        
-        @property { number } [item_width]
-        
-        @property { number } [item_length]
         
          
     */
@@ -12477,11 +7162,11 @@ class PlatformApplicationClient {
         @typedef InventoryBulkRequest
         
         
-        @property { Array<Size1> } sizes
-        
         @property { number } company_id
         
         @property { Object } [user]
+        
+        @property { Array<Size1> } sizes
         
         @property { string } batch_id
         
@@ -12492,19 +7177,19 @@ class PlatformApplicationClient {
         @typedef InventoryExportJob
         
         
-        @property { string } [trigger_on]
+        @property { string } task_id
+        
+        @property { string } [completed_on]
         
         @property { number } seller_id
         
         @property { string } [url]
         
-        @property { string } [completed_on]
+        @property { Object } [request_params]
+        
+        @property { string } [trigger_on]
         
         @property { string } [status]
-        
-        @property { string } task_id
-        
-        @property { Object } [request_params]
         
          
     */
@@ -12513,11 +7198,11 @@ class PlatformApplicationClient {
         @typedef InventoryExportRequest
         
         
-        @property { Array<number> } [brand]
-        
         @property { string } [type]
         
         @property { Array<number> } [store]
+        
+        @property { Array<number> } [brand]
         
          
     */
@@ -12526,9 +7211,9 @@ class PlatformApplicationClient {
         @typedef FilerList
         
         
-        @property { string } [value]
-        
         @property { string } [display]
+        
+        @property { string } [value]
         
          
     */
@@ -12540,958 +7225,6 @@ class PlatformApplicationClient {
         @property { boolean } [multivalues]
         
         @property { Array<FilerList> } [data]
-        
-         
-    */
-
-/**
-        @typedef PageResponse
-        
-        
-        @property { number } [size]
-        
-        @property { boolean } [has_previous]
-        
-        @property { string } [current]
-        
-        @property { boolean } [has_next]
-        
-        @property { number } [item_total]
-        
-         
-    */
-
-/**
-        @typedef HsnCodesObject
-        
-        
-        @property { boolean } [tax_on_mrp]
-        
-        @property { number } [threshold1]
-        
-        @property { string } [hsn_code]
-        
-        @property { number } [tax2]
-        
-        @property { string } [hs2_code]
-        
-        @property { boolean } [tax_on_esp]
-        
-        @property { number } [tax1]
-        
-        @property { number } [company_id]
-        
-        @property { number } [threshold2]
-        
-        @property { number } [uid]
-        
-        @property { boolean } [is_active]
-        
-         
-    */
-
-/**
-        @typedef HsnCodesListingResponse
-        
-        
-        @property { PageResponse } [page]
-        
-        @property { Array<HsnCodesObject> } [items]
-        
-         
-    */
-
-/**
-        @typedef HsnUpsert
-        
-        
-        @property { boolean } tax_on_mrp
-        
-        @property { number } threshold1
-        
-        @property { string } hsn_code
-        
-        @property { number } [tax2]
-        
-        @property { string } hs2_code
-        
-        @property { boolean } [tax_on_esp]
-        
-        @property { number } tax1
-        
-        @property { number } company_id
-        
-        @property { number } [threshold2]
-        
-        @property { number } [uid]
-        
-        @property { boolean } is_active
-        
-         
-    */
-
-/**
-        @typedef HsnCode
-        
-        
-        @property { HsnCodesObject } [data]
-        
-         
-    */
-
-/**
-        @typedef BulkHsnUpsert
-        
-        
-        @property { Array<HsnUpsert> } data
-        
-         
-    */
-
-/**
-        @typedef BulkHsnResponse
-        
-        
-        @property { boolean } [success]
-        
-         
-    */
-
-/**
-        @typedef BrandItem
-        
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { string } [discount]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { Array<string> } [departments]
-        
-        @property { Media } [logo]
-        
-        @property { number } [uid]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef BrandListingResponse
-        
-        
-        @property { Page } page
-        
-        @property { Array<BrandItem> } [items]
-        
-         
-    */
-
-/**
-        @typedef Department
-        
-        
-        @property { string } [name]
-        
-        @property { number } [priority_order]
-        
-        @property { Media } [logo]
-        
-        @property { number } [uid]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef DepartmentResponse
-        
-        
-        @property { Array<Department> } [items]
-        
-         
-    */
-
-/**
-        @typedef DepartmentIdentifier
-        
-        
-        @property { string } [slug]
-        
-        @property { number } [uid]
-        
-         
-    */
-
-/**
-        @typedef CategoryItems
-        
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { number } [uid]
-        
-        @property { Array<Object> } [childs]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef DepartmentCategoryTree
-        
-        
-        @property { string } [department]
-        
-        @property { Array<CategoryItems> } [items]
-        
-         
-    */
-
-/**
-        @typedef CategoryListingResponse
-        
-        
-        @property { Array<DepartmentIdentifier> } [departments]
-        
-        @property { Array<DepartmentCategoryTree> } [data]
-        
-         
-    */
-
-/**
-        @typedef ApplicationProductListingResponse
-        
-        
-        @property { Array<ProductFilters> } [filters]
-        
-        @property { Page } page
-        
-        @property { Array<ProductListingDetail> } [items]
-        
-        @property { Array<ProductSortOn> } [sort_on]
-        
-         
-    */
-
-/**
-        @typedef ProductDetail
-        
-        
-        @property { ProductBrand } [brand]
-        
-        @property { string } [item_code]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [type]
-        
-        @property { Array<Media1> } [medias]
-        
-        @property { string } [item_type]
-        
-        @property { string } [image_nature]
-        
-        @property { number } [rating_count]
-        
-        @property { number } [uid]
-        
-        @property { string } [product_online_date]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [grouped_attributes]
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { Object } [promo_meta]
-        
-        @property { string } [description]
-        
-        @property { Object } [attributes]
-        
-        @property { Object } [teaser_tag]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { number } [rating]
-        
-        @property { boolean } [has_variant]
-        
-        @property { string } [color]
-        
-        @property { string } slug
-        
-        @property { string } [short_description]
-        
-         
-    */
-
-/**
-        @typedef BusinessCountryInfo
-        
-        
-        @property { string } [country_code]
-        
-        @property { string } [country]
-        
-         
-    */
-
-/**
-        @typedef CompanyAddress
-        
-        
-        @property { number } longitude
-        
-        @property { string } [address2]
-        
-        @property { string } country
-        
-        @property { number } pincode
-        
-        @property { string } city
-        
-        @property { string } state
-        
-        @property { string } [country_code]
-        
-        @property { string } address1
-        
-        @property { number } latitude
-        
-        @property { string } [landmark]
-        
-         
-    */
-
-/**
-        @typedef Document
-        
-        
-        @property { string } [url]
-        
-        @property { boolean } [verified]
-        
-        @property { string } type
-        
-        @property { string } legal_name
-        
-        @property { string } value
-        
-         
-    */
-
-/**
-        @typedef ReferralInfo
-        
-        
-        @property { string } [referral_code]
-        
-         
-    */
-
-/**
-        @typedef CompanyStoreSerializerRequest
-        
-        
-        @property { BusinessCountryInfo } business_country_info
-        
-        @property { Array<number> } brands
-        
-        @property { Array<string> } [notification_emails]
-        
-        @property { CompanyAddress } address
-        
-        @property { boolean } [franchise_enabled]
-        
-        @property { Object } [warnings]
-        
-        @property { number } [uid]
-        
-        @property { Document } document
-        
-        @property { ReferralInfo } [referral_info]
-        
-        @property { string } [business_info]
-        
-        @property { string } business_type
-        
-        @property { string } name
-        
-         
-    */
-
-/**
-        @typedef Website
-        
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef BusinessDetails
-        
-        
-        @property { Website } [website]
-        
-         
-    */
-
-/**
-        @typedef SellerPhoneNumber
-        
-        
-        @property { number } country_code
-        
-        @property { string } number
-        
-         
-    */
-
-/**
-        @typedef ContactDetails
-        
-        
-        @property { Array<SellerPhoneNumber> } [phone]
-        
-        @property { Array<string> } [emails]
-        
-         
-    */
-
-/**
-        @typedef BusinessCountryInfo1
-        
-        
-        @property { string } [country_code]
-        
-        @property { string } [country]
-        
-         
-    */
-
-/**
-        @typedef GetAddressSerializer
-        
-        
-        @property { number } [longitude]
-        
-        @property { string } [address2]
-        
-        @property { string } [country]
-        
-        @property { string } [address_type]
-        
-        @property { number } [pincode]
-        
-        @property { string } [city]
-        
-        @property { string } [state]
-        
-        @property { string } [country_code]
-        
-        @property { string } [address1]
-        
-        @property { number } [latitude]
-        
-        @property { string } [landmark]
-        
-         
-    */
-
-/**
-        @typedef GetCompanyProfileSerializerResponse
-        
-        
-        @property { Array<string> } [notification_emails]
-        
-        @property { boolean } [franchise_enabled]
-        
-        @property { BusinessDetails } [business_details]
-        
-        @property { string } business_type
-        
-        @property { string } [business_info]
-        
-        @property { string } [stage]
-        
-        @property { UserSerializer } [created_by]
-        
-        @property { Object } [warnings]
-        
-        @property { ContactDetails } [contact_details]
-        
-        @property { string } [created_on]
-        
-        @property { string } company_type
-        
-        @property { BusinessCountryInfo1 } [business_country_info]
-        
-        @property { string } [modified_on]
-        
-        @property { UserSerializer } [modified_by]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { number } uid
-        
-        @property { UserSerializer } [verified_by]
-        
-        @property { string } [verified_on]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef DocumentsObj
-        
-        
-        @property { number } [verified]
-        
-        @property { number } [pending]
-        
-         
-    */
-
-/**
-        @typedef MetricsSerializer
-        
-        
-        @property { DocumentsObj } [store_documents]
-        
-        @property { DocumentsObj } [store]
-        
-        @property { string } [stage]
-        
-        @property { DocumentsObj } [brand]
-        
-        @property { number } [uid]
-        
-        @property { DocumentsObj } [product]
-        
-        @property { DocumentsObj } [company_documents]
-        
-         
-    */
-
-/**
-        @typedef BrandBannerSerializer
-        
-        
-        @property { string } [portrait]
-        
-        @property { string } [landscape]
-        
-         
-    */
-
-/**
-        @typedef CreateUpdateBrandRequestSerializer
-        
-        
-        @property { Object } [_custom_json]
-        
-        @property { number } [company_id]
-        
-        @property { string } logo
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { number } [uid]
-        
-        @property { BrandBannerSerializer } [banner]
-        
-        @property { Object } [_locale_language]
-        
-        @property { string } [description]
-        
-        @property { string } [brand_tier]
-        
-        @property { string } name
-        
-         
-    */
-
-/**
-        @typedef UserSerializer1
-        
-        
-        @property { string } [contact]
-        
-        @property { string } [username]
-        
-        @property { string } [user_id]
-        
-         
-    */
-
-/**
-        @typedef GetBrandResponseSerializer
-        
-        
-        @property { Object } [_custom_json]
-        
-        @property { string } [stage]
-        
-        @property { string } name
-        
-        @property { string } [modified_on]
-        
-        @property { string } [logo]
-        
-        @property { string } [reject_reason]
-        
-        @property { string } [slug_key]
-        
-        @property { UserSerializer1 } [created_by]
-        
-        @property { BrandBannerSerializer } [banner]
-        
-        @property { number } [uid]
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { Object } [warnings]
-        
-        @property { Object } [_locale_language]
-        
-        @property { UserSerializer1 } [verified_by]
-        
-        @property { string } [description]
-        
-        @property { string } [verified_on]
-        
-        @property { string } [created_on]
-        
-        @property { UserSerializer1 } [modified_by]
-        
-         
-    */
-
-/**
-        @typedef GetCompanySerializer
-        
-        
-        @property { string } [stage]
-        
-        @property { string } [name]
-        
-        @property { string } [modified_on]
-        
-        @property { string } [reject_reason]
-        
-        @property { UserSerializer } [created_by]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { number } [uid]
-        
-        @property { string } [company_type]
-        
-        @property { UserSerializer } [verified_by]
-        
-        @property { string } [verified_on]
-        
-        @property { string } [business_type]
-        
-        @property { string } [created_on]
-        
-        @property { UserSerializer } [modified_by]
-        
-         
-    */
-
-/**
-        @typedef CompanyBrandSerializer
-        
-        
-        @property { string } [stage]
-        
-        @property { string } [reject_reason]
-        
-        @property { string } [modified_on]
-        
-        @property { GetBrandResponseSerializer } [brand]
-        
-        @property { UserSerializer1 } [created_by]
-        
-        @property { GetCompanySerializer } [company]
-        
-        @property { number } [uid]
-        
-        @property { Object } [warnings]
-        
-        @property { UserSerializer1 } [verified_by]
-        
-        @property { string } [verified_on]
-        
-        @property { string } [created_on]
-        
-        @property { UserSerializer1 } [modified_by]
-        
-         
-    */
-
-/**
-        @typedef CompanyBrandListSerializer
-        
-        
-        @property { Page } [page]
-        
-        @property { Array<CompanyBrandSerializer> } [items]
-        
-         
-    */
-
-/**
-        @typedef CompanyBrandPostRequestSerializer
-        
-        
-        @property { number } [uid]
-        
-        @property { Array<number> } brands
-        
-        @property { number } company
-        
-         
-    */
-
-/**
-        @typedef LocationManagerSerializer
-        
-        
-        @property { SellerPhoneNumber } mobile_no
-        
-        @property { string } [email]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
-        @typedef ProductReturnConfigSerializer
-        
-        
-        @property { number } [store_uid]
-        
-        @property { boolean } [on_same_store]
-        
-         
-    */
-
-/**
-        @typedef InvoiceCredSerializer
-        
-        
-        @property { string } [password]
-        
-        @property { boolean } [enabled]
-        
-        @property { string } [username]
-        
-         
-    */
-
-/**
-        @typedef InvoiceDetailsSerializer
-        
-        
-        @property { InvoiceCredSerializer } [e_invoice]
-        
-        @property { InvoiceCredSerializer } [e_waybill]
-        
-         
-    */
-
-/**
-        @typedef LocationIntegrationType
-        
-        
-        @property { string } [order]
-        
-        @property { string } [inventory]
-        
-         
-    */
-
-/**
-        @typedef LocationTimingSerializer
-        
-        
-        @property { number } [hour]
-        
-        @property { number } [minute]
-        
-         
-    */
-
-/**
-        @typedef LocationDayWiseSerializer
-        
-        
-        @property { LocationTimingSerializer } [opening]
-        
-        @property { string } weekday
-        
-        @property { LocationTimingSerializer } [closing]
-        
-        @property { boolean } open
-        
-         
-    */
-
-/**
-        @typedef GetLocationSerializer
-        
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { Array<string> } [notification_emails]
-        
-        @property { string } display_name
-        
-        @property { ProductReturnConfigSerializer } [product_return_config]
-        
-        @property { InvoiceDetailsSerializer } [gst_credentials]
-        
-        @property { LocationIntegrationType } [integration_type]
-        
-        @property { string } phone_number
-        
-        @property { string } [stage]
-        
-        @property { UserSerializer1 } [created_by]
-        
-        @property { GetCompanySerializer } [company]
-        
-        @property { Object } [warnings]
-        
-        @property { string } [created_on]
-        
-        @property { Object } [_custom_json]
-        
-        @property { string } [modified_on]
-        
-        @property { GetAddressSerializer } address
-        
-        @property { Array<SellerPhoneNumber> } [contact_numbers]
-        
-        @property { string } [store_type]
-        
-        @property { UserSerializer1 } [modified_by]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { number } [uid]
-        
-        @property { UserSerializer1 } [verified_by]
-        
-        @property { string } code
-        
-        @property { string } [verified_on]
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { string } name
-        
-         
-    */
-
-/**
-        @typedef LocationListSerializer
-        
-        
-        @property { Page } [page]
-        
-        @property { Array<GetLocationSerializer> } [items]
-        
-         
-    */
-
-/**
-        @typedef GetAddressSerializer1
-        
-        
-        @property { number } [longitude]
-        
-        @property { string } [address2]
-        
-        @property { string } [country]
-        
-        @property { string } [address_type]
-        
-        @property { number } [pincode]
-        
-        @property { string } [city]
-        
-        @property { string } [state]
-        
-        @property { string } [country_code]
-        
-        @property { string } [address1]
-        
-        @property { number } [latitude]
-        
-        @property { string } [landmark]
-        
-         
-    */
-
-/**
-        @typedef LocationSerializer
-        
-        
-        @property { string } [store_type]
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { Array<string> } [notification_emails]
-        
-        @property { string } [stage]
-        
-        @property { Object } [_custom_json]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { GetAddressSerializer1 } address
-        
-        @property { string } display_name
-        
-        @property { ProductReturnConfigSerializer } [product_return_config]
-        
-        @property { InvoiceDetailsSerializer } [gst_credentials]
-        
-        @property { number } company
-        
-        @property { Object } [warnings]
-        
-        @property { number } [uid]
-        
-        @property { Array<SellerPhoneNumber> } [contact_numbers]
-        
-        @property { string } code
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { string } name
         
          
     */
@@ -13938,993 +7671,6 @@ class PlatformApplicationClient {
         
         
         @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef DataTresholdDTO
-        
-        
-        @property { number } [min_price]
-        
-        @property { number } [safe_stock]
-        
-        @property { number } [period_threshold]
-        
-        @property { string } [period_threshold_type]
-        
-        @property { Array<GenericDTO> } [period_type_list]
-        
-         
-    */
-
-/**
-        @typedef GenericDTO
-        
-        
-        @property { string } [text]
-        
-        @property { Object } [value]
-        
-         
-    */
-
-/**
-        @typedef JobConfigDTO
-        
-        
-        @property { string } integration
-        
-        @property { Object } [integration_data]
-        
-        @property { string } [company_name]
-        
-        @property { number } company_id
-        
-        @property { TaskDTO } [task_details]
-        
-        @property { DataTresholdDTO } [threshold_details]
-        
-        @property { string } [job_code]
-        
-        @property { string } [alias]
-        
-         
-    */
-
-/**
-        @typedef TaskDTO
-        
-        
-        @property { number } [type]
-        
-        @property { Array<GenericDTO> } [group_list]
-        
-         
-    */
-
-/**
-        @typedef ResponseEnvelopeString
-        
-        
-        @property { string } [timestamp]
-        
-        @property { number } [status]
-        
-        @property { string } [error]
-        
-        @property { string } [exception]
-        
-        @property { string } [message]
-        
-        @property { number } [total_time_taken_in_millis]
-        
-        @property { string } [http_status]
-        
-        @property { string } [items]
-        
-        @property { string } [payload]
-        
-        @property { string } [trace_id]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef AWSS3config
-        
-        
-        @property { string } [bucket]
-        
-        @property { string } [region]
-        
-        @property { string } [dir]
-        
-        @property { string } [access_key]
-        
-        @property { string } [secret_key]
-        
-        @property { string } [local_file_path]
-        
-        @property { string } [archive_path]
-        
-        @property { boolean } [archive]
-        
-        @property { boolean } [delete]
-        
-        @property { boolean } [unzip]
-        
-        @property { string } [zip_format]
-        
-        @property { string } [file_regex]
-        
-        @property { ArchiveConfig } [archive_config]
-        
-         
-    */
-
-/**
-        @typedef ArchiveConfig
-        
-        
-        @property { boolean } [delete]
-        
-        @property { boolean } [archive]
-        
-        @property { string } [archive_dir]
-        
-         
-    */
-
-/**
-        @typedef Audit
-        
-        
-        @property { string } [created_by]
-        
-        @property { string } [modified_by]
-        
-        @property { string } [created_on]
-        
-        @property { string } [modified_on]
-        
-         
-    */
-
-/**
-        @typedef CatalogMasterConfig
-        
-        
-        @property { string } [source_slug]
-        
-         
-    */
-
-/**
-        @typedef CompanyConfig
-        
-        
-        @property { number } [company_id]
-        
-        @property { Array<number> } [exclude_steps]
-        
-        @property { Array<string> } [hidden_closet_keys]
-        
-        @property { Object } [open_tags]
-        
-        @property { Array<string> } [tax_identifiers]
-        
-        @property { number } [delete_quantity_threshold]
-        
-         
-    */
-
-/**
-        @typedef DBConfig
-        
-        
-        @property { string } [vendor]
-        
-        @property { string } [host]
-        
-        @property { number } [port]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { string } [dbname]
-        
-        @property { string } [query]
-        
-        @property { boolean } [procedure]
-        
-        @property { string } [driver_class]
-        
-        @property { string } [jdbc_url]
-        
-        @property { Object } [optional_properties]
-        
-         
-    */
-
-/**
-        @typedef DBConnectionProfile
-        
-        
-        @property { string } [inventory]
-        
-         
-    */
-
-/**
-        @typedef DBParamConfig
-        
-        
-        @property { Object } [params]
-        
-         
-    */
-
-/**
-        @typedef DefaultHeadersDTO
-        
-        
-        @property { PropBeanDTO } [store]
-        
-        @property { PropBeanDTO } [intf_article_id]
-        
-        @property { PropBeanDTO } [price_effective]
-        
-        @property { PropBeanDTO } [quantity]
-        
-         
-    */
-
-/**
-        @typedef DocMappingConfig
-        
-        
-        @property { Object } [properties]
-        
-        @property { number } [junk_data_threshold_count]
-        
-        @property { Array<PropBeanConfig> } [prop_bean_configs]
-        
-        @property { string } [unwind_field]
-        
-        @property { DefaultHeadersDTO } [default_headers]
-        
-         
-    */
-
-/**
-        @typedef EmailConfig
-        
-        
-        @property { string } [recepient]
-        
-        @property { string } [host]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { boolean } [unzip]
-        
-        @property { boolean } [read_from_content]
-        
-        @property { boolean } [filter_based_on_recepients]
-        
-        @property { string } [pcol]
-        
-        @property { string } [subject_line_regex]
-        
-        @property { string } [sender_address]
-        
-        @property { string } [local_dir]
-        
-        @property { Array<string> } [folder_name_hierarchies]
-        
-        @property { string } [attachment_regex]
-        
-        @property { string } [body_content_regex]
-        
-        @property { boolean } [password_protected]
-        
-        @property { string } [zip_format]
-        
-        @property { boolean } [attachment_mandate]
-        
-        @property { boolean } [filter_files_after_extraction]
-        
-        @property { ArchiveConfig } [archive_config]
-        
-        @property { boolean } [read_all_unread_mails]
-        
-        @property { string } [content_type]
-        
-        @property { boolean } [downloadable_link]
-        
-        @property { Object } [properties]
-        
-         
-    */
-
-/**
-        @typedef FTPConfig
-        
-        
-        @property { string } [host]
-        
-        @property { number } [port]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { boolean } [unzip]
-        
-        @property { number } [retries]
-        
-        @property { number } [interval]
-        
-        @property { string } [local_dir]
-        
-        @property { string } [remote_dir]
-        
-        @property { string } [zip_file_regex]
-        
-        @property { ArchiveConfig } [archive_config]
-        
-        @property { string } [file_regex]
-        
-        @property { string } [zip_format]
-        
-        @property { boolean } [read_all_files]
-        
-         
-    */
-
-/**
-        @typedef FileConfig
-        
-        
-        @property { string } [delimiter]
-        
-        @property { string } [charset]
-        
-        @property { Object } [properties]
-        
-        @property { boolean } [file_has_header]
-        
-        @property { number } [header_index]
-        
-        @property { Array<string> } [header_array]
-        
-        @property { number } [data_start_index]
-        
-        @property { Array<PropBeanConfig> } [prop_bean_configs]
-        
-        @property { number } [junk_data_threshold_count]
-        
-        @property { string } [file_type]
-        
-        @property { boolean } [line_validity_check]
-        
-        @property { Array<string> } [sheet_names]
-        
-        @property { boolean } [read_all_sheets]
-        
-        @property { string } [quote_char]
-        
-        @property { string } [escape_char]
-        
-        @property { DefaultHeadersDTO } [default_headers]
-        
-         
-    */
-
-/**
-        @typedef GoogleSpreadSheetConfig
-        
-        
-        @property { string } [range]
-        
-        @property { string } [sheet_id]
-        
-        @property { string } [client_secret_location]
-        
-        @property { string } [cred_storage_directory]
-        
-        @property { string } [local_dir]
-        
-        @property { ArchiveConfig } [archive_config]
-        
-         
-    */
-
-/**
-        @typedef HttpConfig
-        
-        
-        @property { string } [hosturl]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { Object } [request_params]
-        
-        @property { string } [http_method]
-        
-        @property { string } [request_payload]
-        
-        @property { string } [local_path]
-        
-        @property { ArchiveConfig } [archive_config]
-        
-         
-    */
-
-/**
-        @typedef JobConfig
-        
-        
-        @property { number } [_id]
-        
-        @property { string } [job_code]
-        
-        @property { string } [task_type]
-        
-        @property { number } [sync_delay]
-        
-        @property { string } [cron_expression]
-        
-        @property { StoreFilter } [store_filter]
-        
-        @property { ProcessConfig } [process_config]
-        
-        @property { Array<StoreConfig> } [store_config]
-        
-        @property { Object } [properties]
-        
-        @property { boolean } [immediate_first_run]
-        
-        @property { boolean } [disable]
-        
-        @property { Array<string> } [dependent_job_codes]
-        
-        @property { Array<CompanyConfig> } [company_config]
-        
-        @property { Array<number> } [company_ids]
-        
-        @property { Array<string> } [tax_identifiers]
-        
-        @property { string } [priority]
-        
-        @property { number } [period_threshold]
-        
-        @property { string } [period_threshold_type]
-        
-        @property { DBConnectionProfile } [db_connection_profile]
-        
-        @property { Object } [params]
-        
-        @property { Object } [open_tags]
-        
-        @property { number } [delete_quantity_threshold]
-        
-        @property { CatalogMasterConfig } [catalog_master_config]
-        
-        @property { Array<string> } [aggregator_types]
-        
-        @property { string } [integration_type]
-        
-        @property { number } [min_price]
-        
-        @property { Audit } [audit]
-        
-        @property { number } [version]
-        
-        @property { string } [alias]
-        
-         
-    */
-
-/**
-        @typedef JobConfigRawDTO
-        
-        
-        @property { string } integration
-        
-        @property { string } company_name
-        
-        @property { number } company_id
-        
-        @property { JobConfig } [data]
-        
-         
-    */
-
-/**
-        @typedef JsonDocConfig
-        
-        
-        @property { Array<PropBeanConfig> } [prop_bean_configs]
-        
-         
-    */
-
-/**
-        @typedef LocalFileConfig
-        
-        
-        @property { number } [retries]
-        
-        @property { number } [interval]
-        
-        @property { string } [local_dir]
-        
-        @property { string } [working_dir]
-        
-        @property { boolean } [unzip]
-        
-        @property { string } [zip_file_regex]
-        
-        @property { string } [file_regex]
-        
-        @property { string } [zip_format]
-        
-        @property { ArchiveConfig } [archive_config]
-        
-        @property { boolean } [read_all_files]
-        
-         
-    */
-
-/**
-        @typedef MongoDocConfig
-        
-        
-        @property { string } [collection_name]
-        
-        @property { Object } [find_query]
-        
-        @property { Object } [projection_query]
-        
-        @property { Array<PropBeanConfig> } [prop_bean_configs]
-        
-        @property { Array<Object> } [aggregate_pipeline]
-        
-        @property { boolean } [skip_save]
-        
-         
-    */
-
-/**
-        @typedef OAuthConfig
-        
-        
-        @property { number } [limit]
-        
-        @property { number } [pages]
-        
-        @property { number } [interval]
-        
-        @property { string } [consumer_key]
-        
-        @property { string } [consumer_secret]
-        
-        @property { string } [token]
-        
-        @property { string } [token_secret]
-        
-        @property { string } [rest_url]
-        
-        @property { string } [rest_base_url]
-        
-        @property { string } [function_name]
-        
-         
-    */
-
-/**
-        @typedef ProcessConfig
-        
-        
-        @property { DBConfig } [db_config]
-        
-        @property { DBParamConfig } [db_param_config]
-        
-        @property { SFTPConfig } [sftp_config]
-        
-        @property { AWSS3config } [aws_s3_config]
-        
-        @property { MongoDocConfig } [mongo_doc_config]
-        
-        @property { FTPConfig } [ftp_config]
-        
-        @property { EmailConfig } [email_config]
-        
-        @property { FileConfig } [file_config]
-        
-        @property { JsonDocConfig } [json_doc_config]
-        
-        @property { DocMappingConfig } [doc_mapping_config]
-        
-        @property { TaskStepConfig } [task_step_config]
-        
-        @property { HttpConfig } [http_config]
-        
-        @property { LocalFileConfig } [local_file_config]
-        
-        @property { OAuthConfig } [oauth_config]
-        
-        @property { GoogleSpreadSheetConfig } [google_spreadsheet_config]
-        
-         
-    */
-
-/**
-        @typedef PropBeanConfig
-        
-        
-        @property { boolean } [required]
-        
-        @property { Object } [mapping]
-        
-        @property { boolean } [optional]
-        
-        @property { Send } [send]
-        
-        @property { Array<Object> } [validations]
-        
-        @property { Array<string> } [values]
-        
-        @property { boolean } [include]
-        
-        @property { string } [source_field]
-        
-        @property { Array<string> } [source_fields]
-        
-        @property { string } [destination_field]
-        
-        @property { string } [data_type]
-        
-        @property { Object } [default_value]
-        
-        @property { Object } [const_value]
-        
-        @property { string } [concat_str]
-        
-        @property { string } [function_name]
-        
-        @property { string } [transformer_name]
-        
-        @property { string } [all_param_function_name]
-        
-        @property { string } [sub_separator]
-        
-        @property { string } [index_field]
-        
-        @property { boolean } [ignore_if_not_exists]
-        
-        @property { string } [identifier_type]
-        
-        @property { Object } [projection_query]
-        
-        @property { boolean } [enrich_from_master]
-        
-         
-    */
-
-/**
-        @typedef PropBeanDTO
-        
-        
-        @property { boolean } [required]
-        
-        @property { boolean } [optional]
-        
-        @property { boolean } [include]
-        
-        @property { string } [source_field]
-        
-        @property { Array<string> } [source_fields]
-        
-        @property { string } [destination_field]
-        
-        @property { string } [data_type]
-        
-        @property { Object } [default_value]
-        
-        @property { Object } [const_value]
-        
-        @property { string } [concat_str]
-        
-        @property { string } [function_name]
-        
-        @property { string } [transformer_name]
-        
-        @property { string } [all_param_function_name]
-        
-        @property { string } [sub_separator]
-        
-        @property { string } [index_field]
-        
-        @property { boolean } [ignore_if_not_exists]
-        
-        @property { string } [identifier_type]
-        
-        @property { Object } [projection_query]
-        
-        @property { boolean } [enrich_from_master]
-        
-         
-    */
-
-/**
-        @typedef ResponseEnvelopeListJobConfigRawDTO
-        
-        
-        @property { string } [timestamp]
-        
-        @property { number } [status]
-        
-        @property { string } [error]
-        
-        @property { string } [exception]
-        
-        @property { string } [message]
-        
-        @property { number } [total_time_taken_in_millis]
-        
-        @property { string } [http_status]
-        
-        @property { Array<JobConfigRawDTO> } [items]
-        
-        @property { Array<JobConfigRawDTO> } [payload]
-        
-        @property { string } [trace_id]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef SFTPConfig
-        
-        
-        @property { string } [host]
-        
-        @property { number } [port]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { boolean } [unzip]
-        
-        @property { number } [retries]
-        
-        @property { number } [interval]
-        
-        @property { string } [private_key_path]
-        
-        @property { boolean } [strict_host_key_checking]
-        
-        @property { string } [local_dir]
-        
-        @property { string } [remote_dir]
-        
-        @property { boolean } [password_protected]
-        
-        @property { string } [zip_file_regex]
-        
-        @property { string } [file_regex]
-        
-        @property { string } [zip_format]
-        
-        @property { ArchiveConfig } [archive_config]
-        
-        @property { boolean } [read_all_files]
-        
-         
-    */
-
-/**
-        @typedef Send
-        
-        
-        @property { boolean } [raw]
-        
-        @property { boolean } [processed]
-        
-         
-    */
-
-/**
-        @typedef StoreConfig
-        
-        
-        @property { string } [job_code]
-        
-        @property { string } [storeid]
-        
-        @property { string } [store_alias]
-        
-        @property { string } [store_file_regex]
-        
-        @property { string } [store_file_name]
-        
-        @property { ProcessConfig } [process_config]
-        
-        @property { Object } [properties]
-        
-         
-    */
-
-/**
-        @typedef StoreFilter
-        
-        
-        @property { Array<string> } [include_tags]
-        
-        @property { Array<string> } [exclude_tags]
-        
-        @property { Object } [query]
-        
-         
-    */
-
-/**
-        @typedef TaskConfig
-        
-        
-        @property { string } [name]
-        
-        @property { number } [task_config_id]
-        
-        @property { Array<TaskParam> } [task_params]
-        
-         
-    */
-
-/**
-        @typedef TaskParam
-        
-        
-        @property { string } [name]
-        
-        @property { Object } [value]
-        
-         
-    */
-
-/**
-        @typedef TaskStepConfig
-        
-        
-        @property { Array<TaskConfig> } [task_configs]
-        
-        @property { Array<number> } [task_config_ids]
-        
-        @property { Array<number> } [task_config_group_ids]
-        
-         
-    */
-
-/**
-        @typedef ResponseEnvelopeListJobConfigDTO
-        
-        
-        @property { string } [timestamp]
-        
-        @property { number } [status]
-        
-        @property { string } [error]
-        
-        @property { string } [exception]
-        
-        @property { string } [message]
-        
-        @property { number } [total_time_taken_in_millis]
-        
-        @property { string } [http_status]
-        
-        @property { Array<JobConfigDTO> } [items]
-        
-        @property { Array<JobConfigDTO> } [payload]
-        
-        @property { string } [trace_id]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef ResponseEnvelopeJobConfigDTO
-        
-        
-        @property { string } [timestamp]
-        
-        @property { number } [status]
-        
-        @property { string } [error]
-        
-        @property { string } [exception]
-        
-        @property { string } [message]
-        
-        @property { number } [total_time_taken_in_millis]
-        
-        @property { string } [http_status]
-        
-        @property { JobConfigDTO } [items]
-        
-        @property { JobConfigDTO } [payload]
-        
-        @property { string } [trace_id]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef JobConfigListDTO
-        
-        
-        @property { string } [code]
-        
-        @property { string } [alias]
-        
-        @property { string } [modified_by]
-        
-        @property { string } [created_by]
-        
-        @property { string } [modified_on]
-        
-        @property { string } [created_on]
-        
-        @property { boolean } [active]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ResponseEnvelopeListJobConfigListDTO
-        
-        
-        @property { string } [timestamp]
-        
-        @property { number } [status]
-        
-        @property { string } [error]
-        
-        @property { string } [exception]
-        
-        @property { string } [message]
-        
-        @property { number } [total_time_taken_in_millis]
-        
-        @property { string } [http_status]
-        
-        @property { Array<JobConfigListDTO> } [items]
-        
-        @property { Array<JobConfigListDTO> } [payload]
-        
-        @property { string } [trace_id]
-        
-        @property { Page } [page]
         
          
     */
@@ -16331,9 +9077,9 @@ class PlatformApplicationClient {
         
         @property { string } [page_type]
         
-        @property { Object } [params]
+        @property { string } [params]
         
-        @property { Object } [query]
+        @property { string } [query]
         
          
     */
@@ -17497,55 +10243,23 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef BulkBundleRestriction
+        @typedef Ownership
         
         
-        @property { boolean } multi_store_allowed
+        @property { string } payable_by
+        
+        @property { string } payable_category
         
          
     */
 
 /**
-        @typedef PaymentAllowValue
+        @typedef PriceRange
         
         
         @property { number } [max]
         
-         
-    */
-
-/**
-        @typedef PaymentModes
-        
-        
-        @property { PaymentAllowValue } [uses]
-        
-        @property { Array<string> } [networks]
-        
-        @property { Array<string> } [types]
-        
-        @property { Array<string> } [codes]
-        
-         
-    */
-
-/**
-        @typedef PaymentCodes
-        
-        
-        @property { PaymentModes } [wl]
-        
-        @property { PaymentModes } [nb]
-        
-        @property { PaymentModes } [ps]
-        
-        @property { PaymentModes } [qr]
-        
-        @property { PaymentModes } [pl]
-        
-        @property { PaymentModes } [card]
-        
-        @property { PaymentModes } [upi]
+        @property { number } [min]
         
          
     */
@@ -17554,9 +10268,18 @@ class PlatformApplicationClient {
         @typedef PostOrder
         
         
+        @property { boolean } [return_allowed]
+        
         @property { boolean } [cancellation_allowed]
         
-        @property { boolean } [return_allowed]
+         
+    */
+
+/**
+        @typedef BulkBundleRestriction
+        
+        
+        @property { boolean } multi_store_allowed
         
          
     */
@@ -17586,12 +10309,46 @@ class PlatformApplicationClient {
     */
 
 /**
-        @typedef PriceRange
+        @typedef PaymentAllowValue
         
         
         @property { number } [max]
         
-        @property { number } [min]
+         
+    */
+
+/**
+        @typedef PaymentModes
+        
+        
+        @property { Array<string> } [codes]
+        
+        @property { Array<string> } [networks]
+        
+        @property { Array<string> } [types]
+        
+        @property { PaymentAllowValue } [uses]
+        
+         
+    */
+
+/**
+        @typedef PaymentCodes
+        
+        
+        @property { PaymentModes } [pl]
+        
+        @property { PaymentModes } [card]
+        
+        @property { PaymentModes } [wl]
+        
+        @property { PaymentModes } [ps]
+        
+        @property { PaymentModes } [qr]
+        
+        @property { PaymentModes } [upi]
+        
+        @property { PaymentModes } [nb]
         
          
     */
@@ -17600,177 +10357,21 @@ class PlatformApplicationClient {
         @typedef Restrictions
         
         
-        @property { BulkBundleRestriction } [bulk_bundle]
-        
-        @property { PaymentCodes } [payments]
-        
-        @property { Array<number> } [ordering_stores]
-        
-        @property { Array<string> } [platforms]
-        
-        @property { PostOrder } [post_order]
-        
-        @property { UsesRestriction } [uses]
-        
         @property { boolean } [coupon_allowed]
         
         @property { PriceRange } [price_range]
         
-         
-    */
-
-/**
-        @typedef Rule
+        @property { Array<number> } [ordering_stores]
         
+        @property { PostOrder } [post_order]
         
-        @property { number } [discount_qty]
+        @property { BulkBundleRestriction } [bulk_bundle]
         
-        @property { number } [value]
+        @property { Array<string> } [platforms]
         
-        @property { number } [min]
+        @property { UsesRestriction } [uses]
         
-        @property { number } [key]
-        
-        @property { number } [max]
-        
-         
-    */
-
-/**
-        @typedef RuleDefinition
-        
-        
-        @property { Array<string> } [scope]
-        
-        @property { boolean } [auto_apply]
-        
-        @property { string } calculate_on
-        
-        @property { string } [currency_code]
-        
-        @property { boolean } [is_exact]
-        
-        @property { string } applicable_on
-        
-        @property { string } value_type
-        
-        @property { string } type
-        
-         
-    */
-
-/**
-        @typedef Ownership
-        
-        
-        @property { string } payable_category
-        
-        @property { string } payable_by
-        
-         
-    */
-
-/**
-        @typedef Identifier
-        
-        
-        @property { Array<string> } [article_id]
-        
-        @property { Array<number> } [brand_id]
-        
-        @property { Array<number> } [category_id]
-        
-        @property { Array<string> } [collection_id]
-        
-        @property { Array<number> } [company_id]
-        
-        @property { Array<number> } [store_id]
-        
-        @property { Array<number> } [item_id]
-        
-        @property { Array<string> } [user_id]
-        
-         
-    */
-
-/**
-        @typedef CouponAuthor
-        
-        
-        @property { string } [modified_by]
-        
-        @property { string } [created_by]
-        
-         
-    */
-
-/**
-        @typedef Validation
-        
-        
-        @property { boolean } [anonymous]
-        
-        @property { Array<string> } [app_id]
-        
-        @property { string } [user_registered_after]
-        
-         
-    */
-
-/**
-        @typedef DisplayMetaDict
-        
-        
-        @property { string } [title]
-        
-        @property { string } [subtitle]
-        
-         
-    */
-
-/**
-        @typedef DisplayMeta
-        
-        
-        @property { string } [title]
-        
-        @property { DisplayMetaDict } [apply]
-        
-        @property { string } [subtitle]
-        
-        @property { DisplayMetaDict } [auto]
-        
-        @property { DisplayMetaDict } [remove]
-        
-        @property { string } [description]
-        
-         
-    */
-
-/**
-        @typedef CouponAction
-        
-        
-        @property { string } [action_date]
-        
-        @property { string } [txn_mode]
-        
-         
-    */
-
-/**
-        @typedef CouponSchedule
-        
-        
-        @property { string } [cron]
-        
-        @property { string } [end]
-        
-        @property { Array<Object> } [next_schedule]
-        
-        @property { number } [duration]
-        
-        @property { string } [start]
+        @property { PaymentCodes } [payments]
         
          
     */
@@ -17780,19 +10381,6 @@ class PlatformApplicationClient {
         
         
         @property { number } [priority]
-        
-         
-    */
-
-/**
-        @typedef State
-        
-        
-        @property { boolean } [is_display]
-        
-        @property { boolean } [is_archived]
-        
-        @property { boolean } [is_public]
         
          
     */
@@ -17809,40 +10397,198 @@ class PlatformApplicationClient {
     */
 
 /**
+        @typedef CouponAction
+        
+        
+        @property { string } [txn_mode]
+        
+        @property { string } [action_date]
+        
+         
+    */
+
+/**
+        @typedef CouponAuthor
+        
+        
+        @property { string } [modified_by]
+        
+        @property { string } [created_by]
+        
+         
+    */
+
+/**
+        @typedef Rule
+        
+        
+        @property { number } [discount_qty]
+        
+        @property { number } [max]
+        
+        @property { number } [min]
+        
+        @property { number } [key]
+        
+        @property { number } [value]
+        
+         
+    */
+
+/**
+        @typedef CouponSchedule
+        
+        
+        @property { number } [duration]
+        
+        @property { Array<Object> } [next_schedule]
+        
+        @property { string } [end]
+        
+        @property { string } [cron]
+        
+        @property { string } [start]
+        
+         
+    */
+
+/**
+        @typedef RuleDefinition
+        
+        
+        @property { string } applicable_on
+        
+        @property { Array<string> } [scope]
+        
+        @property { string } type
+        
+        @property { boolean } [auto_apply]
+        
+        @property { string } calculate_on
+        
+        @property { string } [currency_code]
+        
+        @property { boolean } [is_exact]
+        
+        @property { string } value_type
+        
+         
+    */
+
+/**
+        @typedef Identifier
+        
+        
+        @property { Array<number> } [item_id]
+        
+        @property { Array<string> } [collection_id]
+        
+        @property { Array<number> } [category_id]
+        
+        @property { Array<string> } [article_id]
+        
+        @property { Array<number> } [company_id]
+        
+        @property { Array<number> } [brand_id]
+        
+        @property { Array<number> } [store_id]
+        
+        @property { Array<string> } [user_id]
+        
+         
+    */
+
+/**
+        @typedef State
+        
+        
+        @property { boolean } [is_public]
+        
+        @property { boolean } [is_display]
+        
+        @property { boolean } [is_archived]
+        
+         
+    */
+
+/**
+        @typedef Validation
+        
+        
+        @property { Array<string> } [app_id]
+        
+        @property { boolean } [anonymous]
+        
+        @property { string } [user_registered_after]
+        
+         
+    */
+
+/**
+        @typedef DisplayMetaDict
+        
+        
+        @property { string } [subtitle]
+        
+        @property { string } [title]
+        
+         
+    */
+
+/**
+        @typedef DisplayMeta
+        
+        
+        @property { DisplayMetaDict } [remove]
+        
+        @property { string } [title]
+        
+        @property { DisplayMetaDict } [apply]
+        
+        @property { string } [subtitle]
+        
+        @property { DisplayMetaDict } [auto]
+        
+        @property { string } [description]
+        
+         
+    */
+
+/**
         @typedef CouponAdd
         
         
-        @property { Restrictions } [restrictions]
-        
-        @property { Array<Rule> } rule
-        
         @property { string } code
-        
-        @property { RuleDefinition } rule_definition
         
         @property { Ownership } ownership
         
-        @property { Identifier } identifiers
+        @property { Restrictions } [restrictions]
         
-        @property { CouponAuthor } [author]
+        @property { Validity } validity
         
-        @property { Validation } [validation]
-        
-        @property { DisplayMeta } display_meta
+        @property { CouponDateMeta } [date_meta]
         
         @property { CouponAction } [action]
         
         @property { Array<string> } [tags]
         
+        @property { CouponAuthor } [author]
+        
+        @property { Array<Rule> } rule
+        
         @property { CouponSchedule } [_schedule]
         
-        @property { string } type_slug
+        @property { RuleDefinition } rule_definition
         
-        @property { Validity } validity
+        @property { Identifier } identifiers
         
         @property { State } [state]
         
-        @property { CouponDateMeta } [date_meta]
+        @property { Validation } [validation]
+        
+        @property { string } type_slug
+        
+        @property { DisplayMeta } display_meta
         
          
     */
@@ -17851,9 +10597,9 @@ class PlatformApplicationClient {
         @typedef CouponsResponse
         
         
-        @property { CouponAdd } [items]
-        
         @property { Page } [page]
+        
+        @property { CouponAdd } [items]
         
          
     */
@@ -17862,9 +10608,9 @@ class PlatformApplicationClient {
         @typedef SuccessMessage
         
         
-        @property { string } [message]
-        
         @property { boolean } [success]
+        
+        @property { string } [message]
         
          
     */
@@ -17873,9 +10619,9 @@ class PlatformApplicationClient {
         @typedef OperationErrorResponse
         
         
-        @property { string } [message]
-        
         @property { boolean } [success]
+        
+        @property { string } [message]
         
          
     */
@@ -17884,37 +10630,37 @@ class PlatformApplicationClient {
         @typedef CouponUpdate
         
         
-        @property { Restrictions } [restrictions]
-        
-        @property { Array<Rule> } rule
-        
         @property { string } code
-        
-        @property { RuleDefinition } rule_definition
         
         @property { Ownership } ownership
         
-        @property { Identifier } identifiers
+        @property { Restrictions } [restrictions]
         
-        @property { CouponAuthor } [author]
+        @property { Validity } validity
         
-        @property { Validation } [validation]
-        
-        @property { DisplayMeta } display_meta
+        @property { CouponDateMeta } [date_meta]
         
         @property { CouponAction } [action]
         
         @property { Array<string> } [tags]
         
+        @property { CouponAuthor } [author]
+        
+        @property { Array<Rule> } rule
+        
         @property { CouponSchedule } [_schedule]
         
-        @property { string } type_slug
+        @property { RuleDefinition } rule_definition
         
-        @property { Validity } validity
+        @property { Identifier } identifiers
         
         @property { State } [state]
         
-        @property { CouponDateMeta } [date_meta]
+        @property { Validation } [validation]
+        
+        @property { string } type_slug
+        
+        @property { DisplayMeta } display_meta
         
          
     */
@@ -17923,1062 +10669,9 @@ class PlatformApplicationClient {
         @typedef CouponPartialUpdate
         
         
-        @property { CouponSchedule } [schedule]
-        
         @property { boolean } [archive]
         
-         
-    */
-
-/**
-        @typedef StoreMapping
-        
-        
-        @property { string } [enabled]
-        
-        @property { string } [marketplace_store_id]
-        
-        @property { number } [store_id]
-        
-        @property { Object } [meta]
-        
-         
-    */
-
-/**
-        @typedef AllChannels
-        
-        
-        @property { boolean } [mkp_name]
-        
-         
-    */
-
-/**
-        @typedef MyntraPayload
-        
-        
-        @property { string } [merchant_id]
-        
-        @property { string } [secret_key]
-        
-         
-    */
-
-/**
-        @typedef AmazonPayload
-        
-        
-        @property { string } [seller_id]
-        
-        @property { string } [mws_auth_token]
-        
-         
-    */
-
-/**
-        @typedef FlipkartPayload
-        
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef TatacliqPayload
-        
-        
-        @property { string } [user_name]
-        
-        @property { string } [password]
-        
-        @property { string } [merchant_id]
-        
-         
-    */
-
-/**
-        @typedef AjioPayload
-        
-        
-        @property { string } [username]
-        
-        @property { string } [password]
-        
-        @property { string } [client_ip]
-        
-         
-    */
-
-/**
-        @typedef InventorySyncConfig
-        
-        
-        @property { boolean } [inventory]
-        
-        @property { boolean } [price]
-        
-         
-    */
-
-/**
-        @typedef StoreMappingPayload
-        
-        
-        @property { boolean } [store_mapping_enabled]
-        
-        @property { Array<StoreMapping> } [store_mapping]
-        
-         
-    */
-
-/**
-        @typedef StatusPayload
-        
-        
-        @property { boolean } [is_active]
-        
-         
-    */
-
-/**
-        @typedef StatusResp
-        
-        
-        @property { boolean } [is_active]
-        
-         
-    */
-
-/**
-        @typedef SyncPayload
-        
-        
-        @property { string } [modified_since]
-        
-         
-    */
-
-/**
-        @typedef SyncResp
-        
-        
-        @property { string } [message]
-        
-         
-    */
-
-/**
-        @typedef MkpResp
-        
-        
-        @property { string } [marketplace]
-        
-        @property { number } [worker]
-        
-        @property { string } [worker_assigned]
-        
-        @property { boolean } [is_active]
-        
-        @property { boolean } [store_mapping_enabled]
-        
-        @property { number } [company_id]
-        
-        @property { Object } [configuration]
-        
-        @property { Array<StoreMapping> } [store_mapping]
-        
-         
-    */
-
-/**
-        @typedef AppUser
-        
-        
-        @property { string } [_id]
-        
-        @property { boolean } [active]
-        
-        @property { string } [application_id]
-        
-        @property { string } [block_reason]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [updated_by]
-        
-        @property { string } [user_id]
-        
-         
-    */
-
-/**
-        @typedef E
-        
-        
-        @property { Object } [code]
-        
-        @property { string } [exception]
-        
-        @property { string } [info]
-        
-        @property { string } [message]
-        
-        @property { string } [request_id]
-        
-        @property { string } [stack_trace]
-        
-        @property { number } [status]
-        
-         
-    */
-
-/**
-        @typedef Giveaway
-        
-        
-        @property { string } [_id]
-        
-        @property { Schedule } [_schedule]
-        
-        @property { boolean } [active]
-        
-        @property { string } [application_id]
-        
-        @property { RewardsAudience } [audience]
-        
-        @property { Asset } [banner_image]
-        
-        @property { string } [created_at]
-        
-        @property { string } [description]
-        
-        @property { RewardsRule } [rule]
-        
-        @property { string } [title]
-        
-        @property { string } [updated_at]
-        
-         
-    */
-
-/**
-        @typedef GiveawayResponse
-        
-        
-        @property { Array<Giveaway> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef HistoryPretty
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [application_id]
-        
-        @property { boolean } [claimed]
-        
-        @property { string } [created_at]
-        
-        @property { string } [expires_on]
-        
-        @property { number } [points]
-        
-        @property { number } [remaining_points]
-        
-        @property { string } [text_1]
-        
-        @property { string } [text_2]
-        
-        @property { string } [text_3]
-        
-        @property { string } [txn_name]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [user_id]
-        
-         
-    */
-
-/**
-        @typedef HistoryRes
-        
-        
-        @property { Array<HistoryPretty> } [items]
-        
-        @property { Page } [page]
-        
-        @property { number } [points]
-        
-         
-    */
-
-/**
-        @typedef Offer
-        
-        
-        @property { Schedule } [_schedule]
-        
-        @property { boolean } [active]
-        
-        @property { string } [application_id]
-        
-        @property { Asset } [banner_image]
-        
-        @property { string } [created_at]
-        
-        @property { string } [name]
-        
-        @property { Object } [rule]
-        
-        @property { ShareMessages } [share]
-        
-        @property { string } [sub_text]
-        
-        @property { string } [text]
-        
-        @property { string } [type]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [updated_by]
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef Points
-        
-        
-        @property { number } [available]
-        
-         
-    */
-
-/**
-        @typedef Referral
-        
-        
-        @property { string } [code]
-        
-         
-    */
-
-/**
-        @typedef RewardUser
-        
-        
-        @property { string } [_id]
-        
-        @property { boolean } [active]
-        
-        @property { string } [created_at]
-        
-        @property { Referral } [referral]
-        
-        @property { number } [uid]
-        
-        @property { string } [updated_at]
-        
-        @property { string } [user_block_reason]
-        
-        @property { string } [user_id]
-        
-         
-    */
-
-/**
-        @typedef RewardsAudience
-        
-        
-        @property { string } [header_user_id]
-        
-        @property { string } [id]
-        
-         
-    */
-
-/**
-        @typedef RewardsRule
-        
-        
-        @property { number } [amount]
-        
-         
-    */
-
-/**
-        @typedef ShareMessages
-        
-        
-        @property { string } [email]
-        
-        @property { string } [facebook]
-        
-        @property { string } [fallback]
-        
-        @property { string } [message]
-        
-        @property { string } [messenger]
-        
-        @property { string } [sms]
-        
-        @property { string } [text]
-        
-        @property { string } [twitter]
-        
-        @property { string } [whatsapp]
-        
-         
-    */
-
-/**
-        @typedef UserRes
-        
-        
-        @property { Points } [points]
-        
-        @property { RewardUser } [user]
-        
-         
-    */
-
-/**
-        @typedef StatGroup
-        
-        
-        @property { string } [key]
-        
-        @property { string } [url]
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef StatsGroups
-        
-        
-        @property { Array<StatGroup> } [groups]
-        
-         
-    */
-
-/**
-        @typedef StatsGroupComponent
-        
-        
-        @property { string } [key]
-        
-        @property { string } [url]
-        
-        @property { string } [title]
-        
-        @property { string } [type]
-        
-        @property { Object } [filters]
-        
-         
-    */
-
-/**
-        @typedef StatsGroupComponents
-        
-        
-        @property { string } [title]
-        
-        @property { Array<StatsGroupComponent> } [components]
-        
-         
-    */
-
-/**
-        @typedef StatsRes
-        
-        
-        @property { string } [key]
-        
-        @property { string } [title]
-        
-        @property { string } [type]
-        
-        @property { Object } [data]
-        
-         
-    */
-
-/**
-        @typedef ReceivedAt
-        
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef AbandonCartsDetail
-        
-        
-        @property { string } [properties_cart_id]
-        
-        @property { string } [context_traits_first_name]
-        
-        @property { string } [context_traits_last_name]
-        
-        @property { string } [context_traits_phone_number]
-        
-        @property { string } [context_traits_email]
-        
-        @property { string } [context_app_application_id]
-        
-        @property { string } [properties_breakup_values_raw_total]
-        
-        @property { ReceivedAt } [received_at]
-        
-         
-    */
-
-/**
-        @typedef AbandonCartsList
-        
-        
-        @property { Array<AbandonCartsDetail> } [items]
-        
-        @property { string } [cart_total]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef AbandonCartDetail
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [user_id]
-        
-        @property { string } [cart_value]
-        
-        @property { Array<Object> } [articles]
-        
-        @property { Object } [breakup]
-        
-        @property { Object } [address]
-        
-         
-    */
-
-/**
-        @typedef ExportJobReq
-        
-        
-        @property { string } [marketplace_name]
-        
-        @property { string } [start_time]
-        
-        @property { string } [end_time]
-        
-        @property { string } [event_type]
-        
-        @property { string } [trace_id]
-        
-         
-    */
-
-/**
-        @typedef ExportJobRes
-        
-        
-        @property { string } [status]
-        
-        @property { string } [job_id]
-        
-         
-    */
-
-/**
-        @typedef ExportJobStatusRes
-        
-        
-        @property { string } [status]
-        
-        @property { string } [job_id]
-        
-        @property { string } [download_url]
-        
-         
-    */
-
-/**
-        @typedef GetLogsListReq
-        
-        
-        @property { string } [marketplace_name]
-        
-        @property { string } [start_date]
-        
-        @property { string } [company_id]
-        
-        @property { string } [end_date]
-        
-         
-    */
-
-/**
-        @typedef MkpLogsResp
-        
-        
-        @property { string } [start_time_iso]
-        
-        @property { string } [end_time_iso]
-        
-        @property { string } [event_type]
-        
-        @property { string } [trace_id]
-        
-        @property { string } [count]
-        
-        @property { string } [status]
-        
-         
-    */
-
-/**
-        @typedef GetLogsListRes
-        
-        
-        @property { Array<MkpLogsResp> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef SearchLogReq
-        
-        
-        @property { string } [marketplace_name]
-        
-        @property { string } [start_date]
-        
-        @property { string } [company_id]
-        
-        @property { string } [end_date]
-        
-        @property { string } [identifier]
-        
-        @property { string } [identifier_value]
-        
-         
-    */
-
-/**
-        @typedef LogInfo
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [status]
-        
-        @property { string } [event_type]
-        
-        @property { string } [marketplace_name]
-        
-        @property { string } [event]
-        
-        @property { string } [trace_id]
-        
-        @property { number } [company_id]
-        
-        @property { number } [brand_id]
-        
-        @property { string } [store_code]
-        
-        @property { number } [store_id]
-        
-        @property { number } [item_id]
-        
-        @property { string } [article_id]
-        
-        @property { string } [seller_identifier]
-        
-         
-    */
-
-/**
-        @typedef SearchLogRes
-        
-        
-        @property { Array<LogInfo> } [items]
-        
-        @property { Page } [page]
-        
-         
-    */
-
-/**
-        @typedef ValidityObject
-        
-        
-        @property { string } start
-        
-        @property { string } end
-        
-         
-    */
-
-/**
-        @typedef CreateUpdateDiscount
-        
-        
-        @property { string } name
-        
-        @property { number } company_id
-        
-        @property { boolean } is_active
-        
-        @property { Array<string> } app_ids
-        
-        @property { string } job_type
-        
-        @property { string } discount_type
-        
-        @property { string } discount_level
-        
-        @property { number } [value]
-        
-        @property { string } [file_path]
-        
-        @property { Array<number> } [brand_ids]
-        
-        @property { Array<number> } [store_ids]
-        
-        @property { ValidityObject } validity
-        
-         
-    */
-
-/**
-        @typedef DiscountJob
-        
-        
-        @property { string } _id
-        
-        @property { string } name
-        
-        @property { number } company_id
-        
-        @property { boolean } is_active
-        
-        @property { Array<string> } [app_ids]
-        
-        @property { string } [job_type]
-        
-        @property { string } [discount_type]
-        
-        @property { string } [discount_level]
-        
-        @property { number } [value]
-        
-        @property { string } [file_path]
-        
-        @property { Array<number> } [brand_ids]
-        
-        @property { Array<number> } [store_ids]
-        
-        @property { ValidityObject } validity
-        
-        @property { string } created_on
-        
-        @property { string } modified_on
-        
-        @property { UserDetails } created_by
-        
-        @property { UserDetails } modified_by
-        
-        @property { Object } [meta]
-        
-         
-    */
-
-/**
-        @typedef ListOrCalender
-        
-        
-        @property { Array<DiscountJob> } items
-        
-        @property { Page } page
-        
-         
-    */
-
-/**
-        @typedef FileJobResponse
-        
-        
-        @property { string } stage
-        
-        @property { number } total
-        
-        @property { number } failed
-        
-        @property { number } company_id
-        
-        @property { Object } [body]
-        
-        @property { string } type
-        
-        @property { string } file_type
-        
-         
-    */
-
-/**
-        @typedef DownloadFileJob
-        
-        
-        @property { Array<number> } [brand_ids]
-        
-        @property { Array<number> } [store_ids]
-        
-         
-    */
-
-/**
-        @typedef CancelJobResponse
-        
-        
-        @property { boolean } success
-        
-         
-    */
-
-/**
-        @typedef UserDetails
-        
-        
-        @property { string } username
-        
-        @property { string } user_id
-        
-         
-    */
-
-/**
-        @typedef BadRequestObject
-        
-        
-        @property { string } message
-        
-         
-    */
-
-/**
-        @typedef AddProxyReq
-        
-        
-        @property { string } [attached_path]
-        
-        @property { string } [proxy_url]
-        
-         
-    */
-
-/**
-        @typedef AddProxyResponse
-        
-        
-        @property { string } [_id]
-        
-        @property { string } [attached_path]
-        
-        @property { string } [proxy_url]
-        
-        @property { string } [company_id]
-        
-        @property { string } [application_id]
-        
-        @property { string } [extension_id]
-        
-        @property { string } [created_at]
-        
-        @property { string } [modified_at]
-        
-         
-    */
-
-/**
-        @typedef ApiError
-        
-        
-        @property { string } [code]
-        
-        @property { string } [message]
-        
-        @property { Object } [meta]
-        
-         
-    */
-
-/**
-        @typedef RemoveProxyResponse
-        
-        
-        @property { string } [message]
-        
-        @property { Object } [data]
-        
-         
-    */
-
-/**
-        @typedef EventConfig
-        
-        
-        @property { number } [id]
-        
-        @property { string } [event_name]
-        
-        @property { string } [event_type]
-        
-        @property { string } [version]
-        
-        @property { string } [display_name]
-        
-        @property { string } [description]
-        
-        @property { string } [created_on]
-        
-         
-    */
-
-/**
-        @typedef EventConfigList
-        
-        
-        @property { Array<EventConfig> } [items]
-        
-         
-    */
-
-/**
-        @typedef SubscriberConfigList
-        
-        
-        @property { Array<SubscriberConfig> } [subscribers]
-        
-         
-    */
-
-/**
-        @typedef EventProcessedStatus
-        
-        
-        @property { number } [id]
-        
-        @property { string } [subscriber_id]
-        
-        @property { number } [attempt]
-        
-        @property { string } [response_code]
-        
-        @property { string } [response_message]
-        
-        @property { string } [created_on]
-        
-        @property { string } [processed_on]
-        
-        @property { boolean } [status]
-        
-         
-    */
-
-/**
-        @typedef EventPayload
-        
-        
-        @property { number } [id]
-        
-        @property { string } [event_trace_id]
-        
-        @property { number } [event_company_id]
-        
-        @property { string } [event_application_id]
-        
-        @property { string } [event_extension_id]
-        
-        @property { string } [event_name]
-        
-        @property { boolean } [status]
-        
-         
-    */
-
-/**
-        @typedef SubscriberConfig
-        
-        
-        @property { number } [id]
-        
-        @property { string } [webhook_url]
-        
-        @property { number } [company_id]
-        
-        @property { string } [application_id]
-        
-        @property { string } [extension_id]
-        
-        @property { string } [status]
-        
-        @property { Object } [auth_meta]
-        
-        @property { string } [created_on]
-        
-        @property { string } [updated_on]
-        
-        @property { Object } [subscriber_event_mapping]
-        
-         
-    */
-
-/**
-        @typedef SubscriberEvent
-        
-        
-        @property { number } [id]
-        
-        @property { number } [subscriber_id]
-        
-        @property { number } [event_id]
-        
-        @property { string } [created_date]
-        
-         
-    */
-
-/**
-        @typedef AuthMeta
-        
-        
-        @property { string } [type]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
+        @property { CouponSchedule } [schedule]
         
          
     */
@@ -19394,1015 +11087,6 @@ class Lead {
   }
 }
 
-class Feedback {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-    *
-    * @summary: Get list of attribute data
-    * @description: Provides a list of all attribute data.
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - pagination page no
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getAttributes({ pageNo, pageSize } = {}) {
-    const { error } = FeedbackValidator.getAttributes().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/attributes/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of attribute data
-    * @description: Provides a list of all attribute data.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - company id
-    * @param {string} arg.applicationId - application id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getAttributesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAttributes({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: Get list of customer reviews [admin]
-    * @description: The endpoint provides a list of customer reviews based on entity and provided filters
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.id] - review id
-    * @param {string} [arg.entityId] - entity id
-    * @param {string} [arg.entityType] - entity type
-    * @param {string} [arg.userId] - user id
-    * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
-    * @param {Array<number>} [arg.rating] - rating filter, 1-5
-    * @param {Array<string>} [arg.attributeRating] - attribute rating filter with ma,e of attribute
-    * @param {boolean} [arg.facets] - facets (true|false)
-    * @param {string} [arg.sort] - sort by : default | top | recent
-    * @param {string} [arg.next] - pagination next
-    * @param {string} [arg.start] - pagination start
-    * @param {string} [arg.limit] - pagination limit
-    * @param {string} [arg.count] - pagination count
-    * @param {string} [arg.pageId] - pagination page id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getCustomerReviews({
-    id,
-    entityId,
-    entityType,
-    userId,
-    media,
-    rating,
-    attributeRating,
-    facets,
-    sort,
-    next,
-    start,
-    limit,
-    count,
-    pageId,
-    pageSize,
-  } = {}) {
-    const { error } = FeedbackValidator.getCustomerReviews().validate(
-      {
-        id,
-        entityId,
-        entityType,
-        userId,
-        media,
-        rating,
-        attributeRating,
-        facets,
-        sort,
-        next,
-        start,
-        limit,
-        count,
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["id"] = id;
-    queryObj["entity_id"] = entityId;
-    queryObj["entity_type"] = entityType;
-    queryObj["user_id"] = userId;
-    queryObj["media"] = media;
-    queryObj["rating"] = rating;
-    queryObj["attribute_rating"] = attributeRating;
-    queryObj["facets"] = facets;
-    queryObj["sort"] = sort;
-    queryObj["next"] = next;
-    queryObj["start"] = start;
-    queryObj["limit"] = limit;
-    queryObj["count"] = count;
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of customer reviews [admin]
-    * @description: The endpoint provides a list of customer reviews based on entity and provided filters
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - company id
-    * @param {string} arg.applicationId - application id
-    * @param {string} [arg.id] - review id
-    * @param {string} [arg.entityId] - entity id
-    * @param {string} [arg.entityType] - entity type
-    * @param {string} [arg.userId] - user id
-    * @param {string} [arg.media] - media type e.g. image | video | video_file | video_link
-    * @param {Array<number>} [arg.rating] - rating filter, 1-5
-    * @param {Array<string>} [arg.attributeRating] - attribute rating filter with ma,e of attribute
-    * @param {boolean} [arg.facets] - facets (true|false)
-    * @param {string} [arg.sort] - sort by : default | top | recent
-    * @param {string} [arg.next] - pagination next
-    * @param {string} [arg.start] - pagination start
-    * @param {string} [arg.limit] - pagination limit
-    * @param {string} [arg.count] - pagination count
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getCustomerReviewsPaginator({
-    companyId,
-    applicationId,
-    id,
-    entityId,
-    entityType,
-    userId,
-    media,
-    rating,
-    attributeRating,
-    facets,
-    sort,
-    next,
-    start,
-    limit,
-    count,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getCustomerReviews({
-        companyId: companyId,
-        applicationId: applicationId,
-        id: id,
-        entityId: entityId,
-        entityType: entityType,
-        userId: userId,
-        media: media,
-        rating: rating,
-        attributeRating: attributeRating,
-        facets: facets,
-        sort: sort,
-        next: next,
-        start: start,
-        limit: limit,
-        count: count,
-        pageId: pageId,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: update approve details
-   * @description: The is used to update approve details like status and description text
-   * @param {Object} arg - arg object.
-   * @param {string} arg.reviewId - review id
-   * @param {ApproveRequest} arg.body
-   **/
-  updateApprove({ reviewId, body } = {}) {
-    const { error } = FeedbackValidator.updateApprove().validate(
-      {
-        reviewId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/approve/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: get history details
-    * @description: The is used to get the history details like status and description text
-    * @param {Object} arg - arg object.
-    * @param {string} arg.reviewId - review id
-    
-    **/
-  getHistory({ reviewId } = {}) {
-    const { error } = FeedbackValidator.getHistory().validate(
-      {
-        reviewId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/history/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of templates
-    * @description: Get all templates of application
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.pageId] - pagination page id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getApplicationTemplates({ pageId, pageSize } = {}) {
-    const { error } = FeedbackValidator.getApplicationTemplates().validate(
-      {
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of templates
-    * @description: Get all templates of application
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - company id
-    * @param {string} arg.applicationId - application id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getApplicationTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getApplicationTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageId: pageId,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: Create a new template
-    * @description: Create a new template for review with following data:
-- Enable media, rating and review
-- Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
-- Review - header, title, description, image and video meta, enable votes
-    * @param {Object} arg - arg object.
-    * @param {TemplateRequestList} arg.body
-    **/
-  createTemplate({ body } = {}) {
-    const { error } = FeedbackValidator.createTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get a template by ID
-    * @description: Get the template for product or l3 type by ID
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - template id
-    
-    **/
-  getTemplateById({ id } = {}) {
-    const { error } = FeedbackValidator.getTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update a template's status
-   * @description: Update existing template status, active/archive
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - template id
-   * @param {UpdateTemplateRequest} arg.body
-   **/
-  updateTemplate({ id, body } = {}) {
-    const { error } = FeedbackValidator.updateTemplate().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update a template's status
-   * @description: Update existing template status, active/archive
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - template id
-   * @param {UpdateTemplateStatusRequest} arg.body
-   **/
-  updateTemplateStatus({ id, body } = {}) {
-    const { error } = FeedbackValidator.updateTemplateStatus().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/status`,
-      queryObj,
-      body
-    );
-  }
-}
-
-class Theme {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-    *
-    * @summary: Gets list of themes in theme library
-    * @description: Gets list of themes in theme library
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 10.
-    * @param {number} [arg.pageNo] - Page number. Default is 1.
-    
-    **/
-  getThemeLibrary({ pageSize, pageNo } = {}) {
-    const { error } = ThemeValidator.getThemeLibrary().validate(
-      {
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_size"] = pageSize;
-    queryObj["page_no"] = pageNo;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Add theme to theme library
-   * @description: Add theme to theme library
-   * @param {Object} arg - arg object.
-   * @param {AddThemeRequestSchema} arg.body
-   **/
-  addToThemeLibrary({ body } = {}) {
-    const { error } = ThemeValidator.addToThemeLibrary().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Apply theme
-   * @description: Apply theme
-   * @param {Object} arg - arg object.
-   * @param {AddThemeRequestSchema} arg.body
-   **/
-  applyTheme({ body } = {}) {
-    const { error } = ThemeValidator.applyTheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/apply`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Checks if theme is upgradable
-    * @description: Checks if theme is upgradable
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - Theme ID
-    
-    **/
-  isUpgradable({ themeId } = {}) {
-    const { error } = ThemeValidator.isUpgradable().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgradable`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Upgrades theme
-    * @description: Upgrades theme
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - Theme ID
-    
-    **/
-  upgradeTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.upgradeTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgrade`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Gets public themes
-    * @description: Gets public themes
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 10.
-    * @param {number} [arg.pageNo] - Page number. Default is 1.
-    
-    **/
-  getPublicThemes({ pageSize, pageNo } = {}) {
-    const { error } = ThemeValidator.getPublicThemes().validate(
-      {
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_size"] = pageSize;
-    queryObj["page_no"] = pageNo;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/public/library`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create new theme
-   * @description: Create new theme
-   * @param {Object} arg - arg object.
-   * @param {ThemesSchema} arg.body
-   **/
-  createTheme({ body } = {}) {
-    const { error } = ThemeValidator.createTheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get applied theme
-    * @description: Get applied theme
-    * @param {Object} arg - arg object.
-    
-    **/
-  getAppliedTheme({} = {}) {
-    const { error } = ThemeValidator.getAppliedTheme().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Gets fonts
-    * @description: Gets fonts
-    * @param {Object} arg - arg object.
-    
-    **/
-  getFonts({} = {}) {
-    const { error } = ThemeValidator.getFonts().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/fonts`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Gets theme by id
-    * @description: Gets theme by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - Theme ID
-    
-    **/
-  getThemeById({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeById().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update theme
-   * @description: Update theme
-   * @param {Object} arg - arg object.
-   * @param {string} arg.themeId - Theme ID
-   * @param {ThemesSchema} arg.body
-   **/
-  updateTheme({ themeId, body } = {}) {
-    const { error } = ThemeValidator.updateTheme().validate(
-      {
-        themeId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete theme
-    * @description: Delete theme
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - Theme ID
-    
-    **/
-  deleteTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.deleteTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Gets theme for preview
-    * @description: Gets theme for preview
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - Theme ID
-    
-    **/
-  getThemeForPreview({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeForPreview().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/preview`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Publish theme
-    * @description: Publish theme
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - Theme ID
-    
-    **/
-  publishTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.publishTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/publish`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Unpublish theme
-    * @description: Unpublish theme
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - Theme ID
-    
-    **/
-  unpublishTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.unpublishTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unpublish`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Archive theme
-    * @description: Archive theme
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - Theme ID
-    
-    **/
-  archiveTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.archiveTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/archive`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Unarchive theme
-    * @description: Unarchive theme
-    * @param {Object} arg - arg object.
-    * @param {string} arg.themeId - Theme ID
-    
-    **/
-  unarchiveTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.unarchiveTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unarchive`,
-      queryObj,
-      undefined
-    );
-  }
-}
-
 class User {
   constructor(config, applicationId) {
     this.config = config;
@@ -20478,6 +11162,95 @@ class User {
   }
 
   /**
+   *
+   * @summary: Create user
+   * @description: Create user
+   * @param {Object} arg - arg object.
+   * @param {CreateUserRequestSchema} arg.body
+   **/
+  createUser({ body } = {}) {
+    const { error } = UserValidator.createUser().validate(
+      {
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Update user
+   * @description: Update user
+   * @param {Object} arg - arg object.
+   * @param {string} arg.userId - User ID
+   * @param {UpdateUserRequestSchema} arg.body
+   **/
+  updateUser({ userId, body } = {}) {
+    const { error } = UserValidator.updateUser().validate(
+      {
+        userId,
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/${userId}`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
+   *
+   * @summary: Create user session
+   * @description: Create user session
+   * @param {Object} arg - arg object.
+   * @param {CreateUserSessionRequestSchema} arg.body
+   **/
+  createUserSession({ body } = {}) {
+    const { error } = UserValidator.createUserSession().validate(
+      {
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/session`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
     *
     * @summary: Get platform config
     * @description: Used to get platform config
@@ -20531,4278 +11304,6 @@ class User {
       queryObj,
       body
     );
-  }
-}
-
-class Content {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-    *
-    * @summary: Get annoucements list
-    * @description: Get list of announcements
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getAnnouncementsList({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getAnnouncementsList().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get annoucements list
-    * @description: Get list of announcements
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company ID
-    * @param {string} arg.applicationId - Application ID
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getAnnouncementsListPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAnnouncementsList({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create an annoucement
-   * @description: Create an announcement
-   * @param {Object} arg - arg object.
-   * @param {AdminAnnouncementSchema} arg.body
-   **/
-  createAnnouncement({ body } = {}) {
-    const { error } = ContentValidator.createAnnouncement().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get annoucement by id
-    * @description: Get announcement by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.announcementId - Announcement ID
-    
-    **/
-  getAnnouncementById({ announcementId } = {}) {
-    const { error } = ContentValidator.getAnnouncementById().validate(
-      {
-        announcementId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update an annoucement
-   * @description: Update an announcement
-   * @param {Object} arg - arg object.
-   * @param {string} arg.announcementId - Announcement ID
-   * @param {AdminAnnouncementSchema} arg.body
-   **/
-  updateAnnouncement({ announcementId, body } = {}) {
-    const { error } = ContentValidator.updateAnnouncement().validate(
-      {
-        announcementId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update schedule or published status of an annoucement
-   * @description: Update schedule or published status of an announcement
-   * @param {Object} arg - arg object.
-   * @param {string} arg.announcementId - Announcement ID
-   * @param {ScheduleSchema} arg.body
-   **/
-  updateAnnouncementSchedule({ announcementId, body } = {}) {
-    const { error } = ContentValidator.updateAnnouncementSchedule().validate(
-      {
-        announcementId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete annoucement by id
-    * @description: Delete announcement by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.announcementId - Announcement ID
-    
-    **/
-  deleteAnnouncement({ announcementId } = {}) {
-    const { error } = ContentValidator.deleteAnnouncement().validate(
-      {
-        announcementId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create blog
-   * @description: Use this to create a blog.
-   * @param {Object} arg - arg object.
-   * @param {BlogRequest} arg.body
-   **/
-  createBlog({ body } = {}) {
-    const { error } = ContentValidator.createBlog().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get blogs
-    * @description: Use this to get blogs.
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getBlogs({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getBlogs().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get blogs
-    * @description: Use this to get blogs.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company Id
-    * @param {string} arg.applicationId - Application Id
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getBlogsPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getBlogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Update blog
-   * @description: Use this to update blog.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Blog Id
-   * @param {BlogRequest} arg.body
-   **/
-  updateBlog({ id, body } = {}) {
-    const { error } = ContentValidator.updateBlog().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete blogs
-    * @description: Use this to delete blogs.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Blog Id
-    
-    **/
-  deleteBlog({ id } = {}) {
-    const { error } = ContentValidator.deleteBlog().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get components by component Id
-    * @description: The endpoint fetches the component by component Id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - slug of page to be fetched
-    
-    **/
-  getComponentById({ slug } = {}) {
-    const { error } = ContentValidator.getComponentById().validate(
-      {
-        slug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQ categories list
-    * @description: Get list of FAQ categories
-    * @param {Object} arg - arg object.
-    
-    **/
-  getFaqCategories({} = {}) {
-    const { error } = ContentValidator.getFaqCategories().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/categories`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQ category by slug or id
-    * @description: Get FAQ category by slug or id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
-    
-    **/
-  getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
-    const { error } = ContentValidator.getFaqCategoryBySlugOrId().validate(
-      {
-        idOrSlug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Creates a FAQ category
-   * @description: Add Faq Category
-   * @param {Object} arg - arg object.
-   * @param {CreateFaqCategoryRequestSchema} arg.body
-   **/
-  createFaqCategory({ body } = {}) {
-    const { error } = ContentValidator.createFaqCategory().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Updates a FAQ category
-   * @description: Update Faq Category
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Faq category ID
-   * @param {UpdateFaqCategoryRequestSchema} arg.body
-   **/
-  updateFaqCategory({ id, body } = {}) {
-    const { error } = ContentValidator.updateFaqCategory().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Deletes a FAQ category
-    * @description: Delete Faq Category
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Faq category ID
-    
-    **/
-  deleteFaqCategory({ id } = {}) {
-    const { error } = ContentValidator.deleteFaqCategory().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get FAQs of a Faq Category id or slug
-    * @description: Get FAQs of a Faq Category `id` or `slug`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Faq category ID or slug
-    
-    **/
-  getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
-    const { error } = ContentValidator.getFaqsByCategoryIdOrSlug().validate(
-      {
-        idOrSlug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}/faqs`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Creates FAQs for category whose `id` is specified
-   * @description: Creates FAQs for category whose `id` is specified
-   * @param {Object} arg - arg object.
-   * @param {string} arg.categoryId - Faq category ID
-   * @param {CreateFaqSchema} arg.body
-   **/
-  addFaq({ categoryId, body } = {}) {
-    const { error } = ContentValidator.addFaq().validate(
-      {
-        categoryId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faqs`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Updates FAQ
-   * @description: Updates FAQ
-   * @param {Object} arg - arg object.
-   * @param {string} arg.categoryId - Faq category ID
-   * @param {string} arg.faqId - Faq ID
-   * @param {CreateFaqSchema} arg.body
-   **/
-  updateFaq({ categoryId, faqId, body } = {}) {
-    const { error } = ContentValidator.updateFaq().validate(
-      {
-        categoryId,
-        faqId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete FAQ
-    * @description: Delete FAQ
-    * @param {Object} arg - arg object.
-    * @param {string} arg.categoryId - Faq category ID
-    * @param {string} arg.faqId - Faq ID
-    
-    **/
-  deleteFaq({ categoryId, faqId } = {}) {
-    const { error } = ContentValidator.deleteFaq().validate(
-      {
-        categoryId,
-        faqId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get frequently asked question
-    * @description: Get frequently asked questions list. These will be helpful for users to using website.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.idOrSlug - Slug or Id of FAQ
-    
-    **/
-  getFaqByIdOrSlug({ idOrSlug } = {}) {
-    const { error } = ContentValidator.getFaqByIdOrSlug().validate(
-      {
-        idOrSlug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/${idOrSlug}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get landing-pages
-    * @description: Use this to get landing-pages.
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getLandingPages({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getLandingPages().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get landing-pages
-    * @description: Use this to get landing-pages.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company ID
-    * @param {string} arg.applicationId - Application ID
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getLandingPagesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getLandingPages({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create landing-page
-   * @description: Use this to create landing-page.
-   * @param {Object} arg - arg object.
-   * @param {LandingPageSchema} arg.body
-   **/
-  createLandingPage({ body } = {}) {
-    const { error } = ContentValidator.createLandingPage().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update landing-page
-   * @description: Use this to update landing-page.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Landing page ID
-   * @param {LandingPageSchema} arg.body
-   **/
-  updateLandingPage({ id, body } = {}) {
-    const { error } = ContentValidator.updateLandingPage().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete landing-page
-    * @description: Use this to delete landing-page.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Landing page ID
-    
-    **/
-  deleteLandingPage({ id } = {}) {
-    const { error } = ContentValidator.deleteLandingPage().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get legal information
-    * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getLegalInformation({} = {}) {
-    const { error } = ContentValidator.getLegalInformation().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Save legal information
-   * @description: Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
-   * @param {Object} arg - arg object.
-   * @param {ApplicationLegal} arg.body
-   **/
-  updateLegalInformation({ body } = {}) {
-    const { error } = ContentValidator.updateLegalInformation().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get navigations
-    * @description: Use this to get navigations.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.devicePlatform - Device platform
-    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getNavigations({ devicePlatform, pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getNavigations().validate(
-      {
-        devicePlatform,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["device_platform"] = devicePlatform;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get navigations
-    * @description: Use this to get navigations.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company ID
-    * @param {string} arg.applicationId - Application ID
-    * @param {string} arg.devicePlatform - Device platform
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getNavigationsPaginator({
-    companyId,
-    applicationId,
-    devicePlatform,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getNavigations({
-        companyId: companyId,
-        applicationId: applicationId,
-        devicePlatform: devicePlatform,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create navigation
-   * @description: Use this to create navigation.
-   * @param {Object} arg - arg object.
-   * @param {NavigationRequest} arg.body
-   **/
-  createNavigation({ body } = {}) {
-    const { error } = ContentValidator.createNavigation().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get default navigations
-    * @description: Use this to get default navigations.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getDefaultNavigations({} = {}) {
-    const { error } = ContentValidator.getDefaultNavigations().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/default`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get navigation by slug
-    * @description: Use this to get navigation by slug.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - Slug
-    * @param {string} arg.devicePlatform - Device platform
-    
-    **/
-  getNavigationBySlug({ slug, devicePlatform } = {}) {
-    const { error } = ContentValidator.getNavigationBySlug().validate(
-      {
-        slug,
-        devicePlatform,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["device_platform"] = devicePlatform;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${slug}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update navigation
-   * @description: Use this to update navigation.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Navigation ID
-   * @param {NavigationRequest} arg.body
-   **/
-  updateNavigation({ id, body } = {}) {
-    const { error } = ContentValidator.updateNavigation().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete navigation
-    * @description: Use this to delete navigation.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Navigation ID
-    
-    **/
-  deleteNavigation({ id } = {}) {
-    const { error } = ContentValidator.deleteNavigation().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get page meta
-    * @description: Use this to get Page Meta.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getPageMeta({} = {}) {
-    const { error } = ContentValidator.getPageMeta().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/meta`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get page spec
-    * @description: Use this to get page spec.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getPageSpec({} = {}) {
-    const { error } = ContentValidator.getPageSpec().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/spec`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Create page
-   * @description: Use this to create a page.
-   * @param {Object} arg - arg object.
-   * @param {PageRequest} arg.body
-   **/
-  createPage({ body } = {}) {
-    const { error } = ContentValidator.createPage().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get pages
-    * @description: Use this to get pages.
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getPages({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getPages().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get pages
-    * @description: Use this to get pages.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company Id
-    * @param {string} arg.applicationId - Application Id
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getPagesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getPages({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create page preview
-   * @description: Use this to create a page preview.
-   * @param {Object} arg - arg object.
-   * @param {PageRequest} arg.body
-   **/
-  createPagePreview({ body } = {}) {
-    const { error } = ContentValidator.createPagePreview().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update page
-   * @description: Use this to update page.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.slug - Page publish slug
-   * @param {PagePublishRequest} arg.body
-   **/
-  updatePagePreview({ slug, body } = {}) {
-    const { error } = ContentValidator.updatePagePreview().validate(
-      {
-        slug,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/publish/${slug}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update page
-   * @description: Use this to update page.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Page Id
-   * @param {PageSchema} arg.body
-   **/
-  updatePage({ id, body } = {}) {
-    const { error } = ContentValidator.updatePage().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete page
-    * @description: Use this to delete page.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Page Id
-    
-    **/
-  deletePage({ id } = {}) {
-    const { error } = ContentValidator.deletePage().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get pages by component Id
-    * @description: The endpoint fetches the component by component Id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - Slug of page to be fetched
-    
-    **/
-  getPageBySlug({ slug } = {}) {
-    const { error } = ContentValidator.getPageBySlug().validate(
-      {
-        slug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${slug}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get seo of application
-    * @description: Get seo of application
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSEOConfiguration({} = {}) {
-    const { error } = ContentValidator.getSEOConfiguration().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update seo of application
-   * @description: Update seo of application
-   * @param {Object} arg - arg object.
-   * @param {SeoComponent} arg.body
-   **/
-  updateSEOConfiguration({ body } = {}) {
-    const { error } = ContentValidator.updateSEOConfiguration().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get slideshows
-    * @description: Use this to get slideshows.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.devicePlatform - Device platform
-    * @param {number} [arg.pageNo] - Each response will contain **page_no** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getSlideshows({ devicePlatform, pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getSlideshows().validate(
-      {
-        devicePlatform,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["device_platform"] = devicePlatform;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get slideshows
-    * @description: Use this to get slideshows.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company ID
-    * @param {string} arg.applicationId - Application ID
-    * @param {string} arg.devicePlatform - Device platform
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-    
-    **/
-  getSlideshowsPaginator({
-    companyId,
-    applicationId,
-    devicePlatform,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSlideshows({
-        companyId: companyId,
-        applicationId: applicationId,
-        devicePlatform: devicePlatform,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create slideshow
-   * @description: Use this to create slideshow.
-   * @param {Object} arg - arg object.
-   * @param {SlideshowRequest} arg.body
-   **/
-  createSlideshow({ body } = {}) {
-    const { error } = ContentValidator.createSlideshow().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get slideshow by slug
-    * @description: Use this to get slideshow by slug.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - Slug
-    * @param {string} arg.devicePlatform - Device platform
-    
-    **/
-  getSlideshowBySlug({ slug, devicePlatform } = {}) {
-    const { error } = ContentValidator.getSlideshowBySlug().validate(
-      {
-        slug,
-        devicePlatform,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["device_platform"] = devicePlatform;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${slug}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update slideshow
-   * @description: Use this to update slideshow.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Slideshow ID
-   * @param {SlideshowRequest} arg.body
-   **/
-  updateSlideshow({ id, body } = {}) {
-    const { error } = ContentValidator.updateSlideshow().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete slideshow
-    * @description: Use this to delete slideshow.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Slideshow ID
-    
-    **/
-  deleteSlideshow({ id } = {}) {
-    const { error } = ContentValidator.deleteSlideshow().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get support information
-    * @description: Get contact details for customer support. Including emails and phone numbers
-    * @param {Object} arg - arg object.
-    
-    **/
-  getSupportInformation({} = {}) {
-    const { error } = ContentValidator.getSupportInformation().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update support data of application
-   * @description: Update support data of application
-   * @param {Object} arg - arg object.
-   * @param {Support} arg.body
-   **/
-  updateSupportInformation({ body } = {}) {
-    const { error } = ContentValidator.updateSupportInformation().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Creates Tag
-   * @description: Create tags
-   * @param {Object} arg - arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   **/
-  createInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.createInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Updates a Tag
-   * @description: Update tag
-   * @param {Object} arg - arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   **/
-  updateInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.updateInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete tags for application
-    * @description: Delete tags for application
-    * @param {Object} arg - arg object.
-    
-    **/
-  deleteAllInjectableTags({} = {}) {
-    const { error } = ContentValidator.deleteAllInjectableTags().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get tags for application
-    * @description: Get tags for application
-    * @param {Object} arg - arg object.
-    
-    **/
-  getInjectableTags({} = {}) {
-    const { error } = ContentValidator.getInjectableTags().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Adds a Tag
-   * @description: Add tag
-   * @param {Object} arg - arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   **/
-  addInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.addInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/add`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Removes a Tag
-   * @description: Remove a particular tag
-   * @param {Object} arg - arg object.
-   * @param {RemoveHandpickedSchema} arg.body
-   **/
-  removeInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.removeInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Edits a Tag by Id
-   * @description: Edits a particular tag
-   * @param {Object} arg - arg object.
-   * @param {string} arg.tagId - Tag ID
-   * @param {UpdateHandpickedSchema} arg.body
-   **/
-  editInjectableTag({ tagId, body } = {}) {
-    const { error } = ContentValidator.editInjectableTag().validate(
-      {
-        tagId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/edit/handpicked/${tagId}`,
-      queryObj,
-      body
-    );
-  }
-}
-
-class Assignment {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Create a new Pickup point for an application.
-
-    * @param {Object} arg - arg object.
-    * @param {PickupPointSchema} arg.body
-    **/
-  createPickupLocation({ body } = {}) {
-    const { error } = AssignmentValidator.createPickupLocation().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Update list of pickup points for an application.
-
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.q] - Search query
-    * @param {number} [arg.pageNo] - Request a page number
-    * @param {number} [arg.pageSize] - Request a page size
-    
-    **/
-  getPickupLocation({ q, pageNo, pageSize } = {}) {
-    const { error } = AssignmentValidator.getPickupLocation().validate(
-      {
-        q,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["q"] = q;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Update list of pickup points for an application.
-
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.q] - Search query
-    * @param {number} [arg.pageSize] - Request a page size
-    * @param {number} arg.companyId - Company Id
-    * @param {string} arg.applicationId - Application Id
-    
-    **/
-  getPickupLocationPaginator({ q, pageSize, companyId, applicationId } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getPickupLocation({
-        companyId: companyId,
-        applicationId: applicationId,
-        q: q,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Update Pickup Point for an application. Pickup Point once created
-can be updated using this API. 'x-application-id'm and request body are required to trigger
-a successful update.
-
-    * @param {Object} arg - arg object.
-    * @param {number} arg.id - Pickup Point ID
-    * @param {PickupPointSchema} arg.body
-    **/
-  updatePickupLocation({ id, body } = {}) {
-    const { error } = AssignmentValidator.updatePickupLocation().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: This API returns Pickup point data for an id. Returns not found if no data exists for the
-store id passed.
-
-    * @param {Object} arg - arg object.
-    * @param {number} arg.id - Pickup Point Id
-    
-    **/
-  getPickupLocationById({ id } = {}) {
-    const { error } = AssignmentValidator.getPickupLocationById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Create a new pickup configuration for an application id. Only one configuration can be
-created per application id.
-
-    * @param {Object} arg - arg object.
-    * @param {PickupConfiguration} arg.body
-    **/
-  createPickupConfiguration({ body } = {}) {
-    const { error } = AssignmentValidator.createPickupConfiguration().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/configurations`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Let pickup configuration for an application. z-application-id is required in
-the header to fetch the data.
-
-    * @param {Object} arg - arg object.
-    
-    **/
-  getPickupConfiguration({} = {}) {
-    const { error } = AssignmentValidator.getPickupConfiguration().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/configurations`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Get Shipping configuration for an application. Returns the global shipping configuration
-including shipping priority and default strategy, etc. Every application can have one set of
-configuration each. The endpoint requires an application id to get the data.
-
-    * @param {Object} arg - arg object.
-    
-    **/
-  getAllocationConfiguration({} = {}) {
-    const { error } = AssignmentValidator.getAllocationConfiguration().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/configurations`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Create a new Shipping configuration for an application The configuration is for
-all the stores under an application. There can be only one configuration for an
-application i.e, for an application configuration can be created only once.
-
-    * @param {Object} arg - arg object.
-    * @param {ShippingSchema} arg.body
-    **/
-  createAllocationConfiguration({ body } = {}) {
-    const {
-      error,
-    } = AssignmentValidator.createAllocationConfiguration().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/configurations`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Update Shipping configuration for an application. Application configuration once created
-can be updated using this API. 'x-application-id'm and request body are required to trigger
-a successful update.
-
-    * @param {Object} arg - arg object.
-    * @param {ShippingSchema} arg.body
-    **/
-  updateAllocationConfiguration({ body } = {}) {
-    const {
-      error,
-    } = AssignmentValidator.updateAllocationConfiguration().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/configurations`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: List Stores of an application. Two types of stores are listed,
-some having allocation types as standard and others, advanced.
-API has support for pagination, filter by type and search by name.
-
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.q] - Search query
-    * @param {number} [arg.pageNo] - Request a page number
-    * @param {number} [arg.pageSize] - Request a page size
-    * @param {string} [arg.type] - Type can be 'standard' or 'advanced'
-    
-    **/
-  getAllocationLocations({ q, pageNo, pageSize, type } = {}) {
-    const { error } = AssignmentValidator.getAllocationLocations().validate(
-      {
-        q,
-        pageNo,
-        pageSize,
-        type,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["q"] = q;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["type"] = type;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: List Stores of an application. Two types of stores are listed,
-some having allocation types as standard and others, advanced.
-API has support for pagination, filter by type and search by name.
-
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.q] - Search query
-    * @param {number} [arg.pageSize] - Request a page size
-    * @param {string} [arg.type] - Type can be 'standard' or 'advanced'
-    * @param {number} arg.companyId - Company Id
-    * @param {string} arg.applicationId - Application Id
-    
-    **/
-  getAllocationLocationsPaginator({
-    q,
-    pageSize,
-    type,
-    companyId,
-    applicationId,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAllocationLocations({
-        companyId: companyId,
-        applicationId: applicationId,
-        q: q,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        type: type,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: This API returns store data for an id. Returns not found if no data exists for the
-store id passed. The data is returned from sixspeed database which includes only the
-shipping configuration of the stores including store id and app id.
-
-    * @param {Object} arg - arg object.
-    * @param {number} arg.id - Store Id
-    
-    **/
-  getAllocationLocationById({ id } = {}) {
-    const { error } = AssignmentValidator.getAllocationLocationById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: A store configuration once created can be updated via this API. Store id in request params
-and udpated request body are required to successfully update the store data.
-
-    * @param {Object} arg - arg object.
-    * @param {number} arg.id - Store Id
-    * @param {StoreSchema} arg.body
-    **/
-  updateAllocationLocation({ id, body } = {}) {
-    const { error } = AssignmentValidator.updateAllocationLocation().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Create a new store shipping configuratiion. The configuration is stored into the
-sixspeed database. One one store data can be created for one store id. Ther can be one
-default configuration and multiple non-default ones. The default is not binded with product
-tags while others are required to be.
-
-    * @param {Object} arg - arg object.
-    * @param {StoreSchema} arg.body
-    **/
-  createAllocationLocation({ body } = {}) {
-    const { error } = AssignmentValidator.createAllocationLocation().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Get a list of zones created, where every zone has a unique name and id. They can be
-of three different types, radius, pincode and country.
-
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.q] - Search query
-    * @param {number} [arg.pageNo] - Request a page number
-    * @param {number} [arg.pageSize] - Request a page size
-    
-    **/
-  getDestinationZones({ q, pageNo, pageSize } = {}) {
-    const { error } = AssignmentValidator.getDestinationZones().validate(
-      {
-        q,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["q"] = q;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Get a list of zones created, where every zone has a unique name and id. They can be
-of three different types, radius, pincode and country.
-
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.q] - Search query
-    * @param {number} [arg.pageSize] - Request a page size
-    * @param {number} arg.companyId - Company Id
-    * @param {string} arg.applicationId - Application Id
-    
-    **/
-  getDestinationZonesPaginator({ q, pageSize, companyId, applicationId } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getDestinationZones({
-        companyId: companyId,
-        applicationId: applicationId,
-        q: q,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: This API lets you create a zone which can be used further be mapped with store
-configuration rules to defined a shipping rule. Either of the three details need to
-be passed, zone_detail, pincode and region.
-
-    * @param {Object} arg - arg object.
-    * @param {ZoneSchema} arg.body
-    **/
-  postDestinationZone({ body } = {}) {
-    const { error } = AssignmentValidator.postDestinationZone().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Returns zone data for the specified zone id. Id is the required parameter and returns
-not found if no data is found for the passed zone id.
-
-    * @param {Object} arg - arg object.
-    * @param {number} arg.id - Store Id
-    
-    **/
-  getDestinationZoneById({ id } = {}) {
-    const { error } = AssignmentValidator.getDestinationZoneById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: 
-    * @description: Zone once created can be updated using this API. Zone id and request body are the required
-data to update a zone.
-
-    * @param {Object} arg - arg object.
-    * @param {number} arg.id - Store Id
-    * @param {ZoneSchema} arg.body
-    **/
-  updateDestinationZone({ id, body } = {}) {
-    const { error } = AssignmentValidator.updateDestinationZone().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones/${id}`,
-      queryObj,
-      body
-    );
-  }
-}
-
-class Communication {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-    *
-    * @summary: Get campaigns
-    * @description: Get campaigns
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getCampaigns({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getCampaigns().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get campaigns
-    * @description: Get campaigns
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getCampaignsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getCampaigns({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create campaign
-   * @description: Create campaign
-   * @param {Object} arg - arg object.
-   * @param {CampaignReq} arg.body
-   **/
-  createCampaign({ body } = {}) {
-    const { error } = CommunicationValidator.createCampaign().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get campaign by id
-    * @description: Get campaign by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Campaign id
-    
-    **/
-  getCampaignById({ id } = {}) {
-    const { error } = CommunicationValidator.getCampaignById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update campaign by id
-   * @description: Update campaign by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Campaign id
-   * @param {CampaignReq} arg.body
-   **/
-  updateCampaignById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateCampaignById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get stats of campaign by id
-    * @description: Get stats of campaign by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Campaign id
-    
-    **/
-  getStatsOfCampaignById({ id } = {}) {
-    const { error } = CommunicationValidator.getStatsOfCampaignById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get audiences
-    * @description: Get audiences
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getAudiences({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getAudiences().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get audiences
-    * @description: Get audiences
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getAudiencesPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAudiences({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create audience
-   * @description: Create audience
-   * @param {Object} arg - arg object.
-   * @param {AudienceReq} arg.body
-   **/
-  createAudience({ body } = {}) {
-    const { error } = CommunicationValidator.createAudience().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Get bigquery headers
-   * @description: Get bigquery headers
-   * @param {Object} arg - arg object.
-   * @param {BigqueryHeadersReq} arg.body
-   **/
-  getBigqueryHeaders({ body } = {}) {
-    const { error } = CommunicationValidator.getBigqueryHeaders().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get audience by id
-    * @description: Get audience by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Audience id
-    
-    **/
-  getAudienceById({ id } = {}) {
-    const { error } = CommunicationValidator.getAudienceById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update audience by id
-   * @description: Update audience by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Audience id
-   * @param {AudienceReq} arg.body
-   **/
-  updateAudienceById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateAudienceById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Get n sample records from csv
-   * @description: Get n sample records from csv
-   * @param {Object} arg - arg object.
-   * @param {GetNRecordsCsvReq} arg.body
-   **/
-  getNSampleRecordsFromCsv({ body } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get email providers
-    * @description: Get email providers
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getEmailProviders({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getEmailProviders().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get email providers
-    * @description: Get email providers
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getEmailProvidersPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEmailProviders({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create email provider
-   * @description: Create email provider
-   * @param {Object} arg - arg object.
-   * @param {EmailProviderReq} arg.body
-   **/
-  createEmailProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createEmailProvider().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get email provider by id
-    * @description: Get email provider by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Email provider id
-    
-    **/
-  getEmailProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getEmailProviderById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update email provider by id
-   * @description: Update email provider by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Email provider id
-   * @param {EmailProviderReq} arg.body
-   **/
-  updateEmailProviderById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateEmailProviderById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get email templates
-    * @description: Get email templates
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getEmailTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get email templates
-    * @description: Get email templates
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getEmailTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEmailTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create email template
-   * @description: Create email template
-   * @param {Object} arg - arg object.
-   * @param {EmailTemplateReq} arg.body
-   **/
-  createEmailTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createEmailTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get system email templates
-    * @description: Get system email templates
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getSystemEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSystemEmailTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get system email templates
-    * @description: Get system email templates
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getSystemEmailTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemEmailTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: Get email template by id
-    * @description: Get email template by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Email template id
-    
-    **/
-  getEmailTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getEmailTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update email template by id
-   * @description: Update email template by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Email template id
-   * @param {EmailTemplateReq} arg.body
-   **/
-  updateEmailTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateEmailTemplateById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete email template by id
-    * @description: Delete email template by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Email template id
-    
-    **/
-  deleteEmailTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteEmailTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get event subscriptions
-    * @description: Get event subscriptions
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {string} [arg.populate] - populate fields
-    
-    **/
-  getEventSubscriptions({ pageNo, pageSize, populate } = {}) {
-    const { error } = CommunicationValidator.getEventSubscriptions().validate(
-      {
-        pageNo,
-        pageSize,
-        populate,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["populate"] = populate;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get event subscriptions
-    * @description: Get event subscriptions
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {string} [arg.populate] - populate fields
-    
-    **/
-  getEventSubscriptionsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    populate,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEventSubscriptions({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        populate: populate,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: Get jobs
-    * @description: Get jobs
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getJobs({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getJobs().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get jobs
-    * @description: Get jobs
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getJobsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getJobs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Trigger campaign job
-   * @description: Trigger campaign job
-   * @param {Object} arg - arg object.
-   * @param {TriggerJobRequest} arg.body
-   **/
-  triggerCampaignJob({ body } = {}) {
-    const { error } = CommunicationValidator.triggerCampaignJob().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get job logs
-    * @description: Get job logs
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getJobLogs({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getJobLogs().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get job logs
-    * @description: Get job logs
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getJobLogsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getJobLogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: Get communication logs
-    * @description: Get communication logs
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.pageId] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on _id
-    * @param {Object} [arg.query] - 
-    
-    **/
-  getCommunicationLogs({ pageId, pageSize, sort, query } = {}) {
-    const { error } = CommunicationValidator.getCommunicationLogs().validate(
-      {
-        pageId,
-        pageSize,
-        sort,
-        query,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-    queryObj["query"] = query;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/log`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get communication logs
-    * @description: Get communication logs
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on _id
-    * @param {Object} [arg.query] - 
-    
-    **/
-  getCommunicationLogsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-    query,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getCommunicationLogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageId: pageId,
-        pageSize: pageSize,
-        sort: sort,
-        query: query,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: Get sms providers
-    * @description: Get sms providers
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getSmsProviders({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSmsProviders().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get sms providers
-    * @description: Get sms providers
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getSmsProvidersPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSmsProviders({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create sms provider
-   * @description: Create sms provider
-   * @param {Object} arg - arg object.
-   * @param {SmsProviderReq} arg.body
-   **/
-  createSmsProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createSmsProvider().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get sms provider by id
-    * @description: Get sms provider by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Sms provider id
-    
-    **/
-  getSmsProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getSmsProviderById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update sms provider by id
-   * @description: Update sms provider by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Sms provider id
-   * @param {SmsProviderReq} arg.body
-   **/
-  updateSmsProviderById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateSmsProviderById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get sms templates
-    * @description: Get sms templates
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getSmsTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSmsTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get sms templates
-    * @description: Get sms templates
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getSmsTemplatesPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSmsTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Create sms template
-   * @description: Create sms template
-   * @param {Object} arg - arg object.
-   * @param {SmsTemplateReq} arg.body
-   **/
-  createSmsTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createSmsTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get sms template by id
-    * @description: Get sms template by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Sms template id
-    
-    **/
-  getSmsTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getSmsTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update sms template by id
-   * @description: Update sms template by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Sms template id
-   * @param {SmsTemplateReq} arg.body
-   **/
-  updateSmsTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateSmsTemplateById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Delete sms template by id
-    * @description: Delete sms template by id
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Sms template id
-    
-    **/
-  deleteSmsTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteSmsTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get system sms templates
-    * @description: Get system sms templates
-    * @param {Object} arg - arg object.
-    * @param {number} [arg.pageNo] - Current page no
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getSystemSystemTemplates({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.getSystemSystemTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/system-templates`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get system sms templates
-    * @description: Get system sms templates
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company id
-    * @param {string} arg.applicationId - Application id
-    * @param {number} [arg.pageSize] - Current request items count
-    * @param {Object} [arg.sort] - To sort based on created_at
-    
-    **/
-  getSystemSystemTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemSystemTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
   }
 }
 
@@ -25065,37 +11566,6 @@ class Catalog {
   }
 
   /**
-   *
-   * @summary: Update Search Keyword
-   * @description: Update Search Keyword by its id. On successful request, returns the updated collection
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
-   * @param {CreateSearchKeyword} arg.body
-   **/
-  updateSearchKeywords({ id, body } = {}) {
-    const { error } = CatalogValidator.updateSearchKeywords().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
     *
     * @summary: Delete a Search Keywords
     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
@@ -25156,6 +11626,37 @@ class Catalog {
   }
 
   /**
+   *
+   * @summary: Update Search Keyword
+   * @description: Update Search Keyword by its id. On successful request, returns the updated collection
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
+   * @param {CreateSearchKeyword} arg.body
+   **/
+  updateSearchKeywords({ id, body } = {}) {
+    const { error } = CatalogValidator.updateSearchKeywords().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
+      queryObj,
+      body
+    );
+  }
+
+  /**
     *
     * @summary: List all Search Custom Keyword Listing
     * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
@@ -25206,37 +11707,6 @@ class Catalog {
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Create & Update Autocomplete Keyword
-   * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
-   * @param {CreateAutocompleteKeyword} arg.body
-   **/
-  updateAutocompleteKeyword({ id, body } = {}) {
-    const { error } = CatalogValidator.updateAutocompleteKeyword().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
       queryObj,
       body
     );
@@ -25299,6 +11769,37 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
       queryObj,
       undefined
+    );
+  }
+
+  /**
+   *
+   * @summary: Create & Update Autocomplete Keyword
+   * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+   * @param {Object} arg - arg object.
+   * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
+   * @param {CreateAutocompleteKeyword} arg.body
+   **/
+  updateAutocompleteKeyword({ id, body } = {}) {
+    const { error } = CatalogValidator.updateAutocompleteKeyword().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
+      queryObj,
+      body
     );
   }
 
@@ -25619,36 +12120,6 @@ class Catalog {
 
   /**
     *
-    * @summary: Update a collection
-    * @description: Update a collection by it's id. On successful request, returns the updated collection
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - A `id` is a unique identifier of a collection.
-    
-    **/
-  updateCollection({ id } = {}) {
-    const { error } = CatalogValidator.updateCollection().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
     * @summary: Delete a Collection
     * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
     * @param {Object} arg - arg object.
@@ -25671,6 +12142,36 @@ class Catalog {
     return PlatformAPIClient.execute(
       this.config,
       "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
+      queryObj,
+      undefined
+    );
+  }
+
+  /**
+    *
+    * @summary: Update a collection
+    * @description: Update a collection by it's id. On successful request, returns the updated collection
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - A `id` is a unique identifier of a collection.
+    
+    **/
+  updateCollection({ id } = {}) {
+    const { error } = CatalogValidator.updateCollection().validate(
+      {
+        id,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
       queryObj,
       undefined
@@ -25773,281 +12274,6 @@ class Catalog {
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/analytics/insights/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List all the brands
-    * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
-    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getApplicationBrands({ department, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getApplicationBrands().validate(
-      {
-        department,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["department"] = department;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/brands`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List all the brands
-    * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - A `company_id` is a unique identifier for a particular seller account.
-    * @param {string} arg.applicationId - A `application_id` is a unique identifier for a particular sale channel.
-    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getApplicationBrandsPaginator({
-    companyId,
-    applicationId,
-    department,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getApplicationBrands({
-        companyId: companyId,
-        applicationId: applicationId,
-        department: department,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: List all the departments
-    * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
-    * @param {Object} arg - arg object.
-    
-    **/
-  getDepartments({} = {}) {
-    const { error } = CatalogValidator.getDepartments().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/departments`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List all the categories
-    * @description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
-    
-    **/
-  getCategories({ department } = {}) {
-    const { error } = CatalogValidator.getCategories().validate(
-      {
-        department,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["department"] = department;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/categories`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List the products
-    * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
-    * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
-    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
-    * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-    * @param {string} [arg.pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    * @param {number} [arg.pageNo] - If page_type is number then pass it to fetch page items. Default is 1.
-    * @param {string} [arg.pageType] - For pagination type should be cursor or number. Default is cursor.
-    
-    **/
-  getAppicationProducts({
-    q,
-    f,
-    filters,
-    sortOn,
-    pageId,
-    pageSize,
-    pageNo,
-    pageType,
-  } = {}) {
-    const { error } = CatalogValidator.getAppicationProducts().validate(
-      {
-        q,
-        f,
-        filters,
-        sortOn,
-        pageId,
-        pageSize,
-        pageNo,
-        pageType,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["q"] = q;
-    queryObj["f"] = f;
-    queryObj["filters"] = filters;
-    queryObj["sort_on"] = sortOn;
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_type"] = pageType;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List the products
-    * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - A `company_id` is a unique identifier for a particular seller account.
-    * @param {string} arg.applicationId - A `application_id` is a unique identifier for a particular sale channel.
-    * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
-    * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
-    * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
-    * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
-    * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
-    
-    **/
-  getAppicationProductsPaginator({
-    companyId,
-    applicationId,
-    q,
-    f,
-    filters,
-    sortOn,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getAppicationProducts({
-        companyId: companyId,
-        applicationId: applicationId,
-        q: q,
-        f: f,
-        filters: filters,
-        sortOn: sortOn,
-        pageId: pageId,
-        pageSize: pageSize,
-        pageNo: pageNo,
-        pageType: pageType,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: Get a product
-    * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
-    
-    **/
-  getProductDetailBySlug({ slug } = {}) {
-    const { error } = CatalogValidator.getProductDetailBySlug().validate(
-      {
-        slug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products/${slug}`,
       queryObj,
       undefined
     );
@@ -27554,769 +13780,6 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
       queryObj,
       body
-    );
-  }
-}
-
-class Rewards {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-    *
-    * @summary: List of giveaways of the current application.
-    * @description: List of giveaways of the current application.
-    * @param {Object} arg - arg object.
-    * @param {string} [arg.pageId] - pagination page id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getGiveaways({ pageId, pageSize } = {}) {
-    const { error } = RewardsValidator.getGiveaways().validate(
-      {
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: List of giveaways of the current application.
-    * @description: List of giveaways of the current application.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - company id
-    * @param {string} arg.applicationId - application id
-    * @param {number} [arg.pageSize] - pagination page size
-    
-    **/
-  getGiveawaysPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getGiveaways({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageId: pageId,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Adds a new giveaway.
-   * @description: Adds a new giveaway.
-   * @param {Object} arg - arg object.
-   * @param {Giveaway} arg.body
-   **/
-  createGiveaway({ body } = {}) {
-    const { error } = RewardsValidator.createGiveaway().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get giveaway by ID.
-    * @description: Get giveaway by ID.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Giveaway ID
-    
-    **/
-  getGiveawayByID({ id } = {}) {
-    const { error } = RewardsValidator.getGiveawayByID().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Updates the giveaway by it's ID.
-   * @description: Updates the giveaway by it's ID.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Giveaway ID
-   * @param {Giveaway} arg.body
-   **/
-  updateGiveaway({ id, body } = {}) {
-    const { error } = RewardsValidator.updateGiveaway().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/${id}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: List of offer of the current application.
-    * @description: List of offer of the current application.
-    * @param {Object} arg - arg object.
-    
-    **/
-  getOffers({} = {}) {
-    const { error } = RewardsValidator.getOffers().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get offer by name.
-    * @description: Get offer by name.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.cookie - User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation.
-    * @param {string} arg.name - Offer name
-    
-    **/
-  getOfferByName({ cookie, name } = {}) {
-    const { error } = RewardsValidator.getOfferByName().validate(
-      {
-        cookie,
-        name,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${name}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Updates the offer by name.
-   * @description: Updates the offer by name.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.name - Offer name
-   * @param {Offer} arg.body
-   **/
-  updateOfferByName({ name, body } = {}) {
-    const { error } = RewardsValidator.updateOfferByName().validate(
-      {
-        name,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${name}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: User's reward details.
-    * @description: User's reward details.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.userId - user id
-    
-    **/
-  getUserAvailablePoints({ userId } = {}) {
-    const { error } = RewardsValidator.getUserAvailablePoints().validate(
-      {
-        userId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Update User status
-   * @description: Update user status, active/archive
-   * @param {Object} arg - arg object.
-   * @param {string} arg.userId - user id
-   * @param {AppUser} arg.body
-   **/
-  updateUserStatus({ userId, body } = {}) {
-    const { error } = RewardsValidator.updateUserStatus().validate(
-      {
-        userId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of points transactions.
-    * @description: Get list of points transactions.
-The list of points history is paginated.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.userId - user id
-    * @param {string} [arg.pageId] - PageID is the ID of the requested page. For first request it should be kept empty.
-    * @param {number} [arg.pageLimit] - PageLimit is the number of requested items in response.
-    * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
-    
-    **/
-  getUserPointsHistory({ userId, pageId, pageLimit, pageSize } = {}) {
-    const { error } = RewardsValidator.getUserPointsHistory().validate(
-      {
-        userId,
-        pageId,
-        pageLimit,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_id"] = pageId;
-    queryObj["page_limit"] = pageLimit;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/points/history/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get list of points transactions.
-    * @description: Get list of points transactions.
-The list of points history is paginated.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - company id
-    * @param {string} arg.applicationId - application id
-    * @param {string} arg.userId - user id
-    * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
-    
-    **/
-  getUserPointsHistoryPaginator({
-    companyId,
-    applicationId,
-    userId,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getUserPointsHistory({
-        companyId: companyId,
-        applicationId: applicationId,
-        userId: userId,
-        pageId: pageId,
-        pageLimit: pageLimit,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-}
-
-class Analytics {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-    *
-    * @summary: Get statistics groups
-    * @description: Get statistics groups
-    * @param {Object} arg - arg object.
-    
-    **/
-  getStatiscticsGroups({} = {}) {
-    const { error } = AnalyticsValidator.getStatiscticsGroups().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/group`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get statistics group components
-    * @description: Get statistics group components
-    * @param {Object} arg - arg object.
-    * @param {string} arg.groupName - Group name
-    
-    **/
-  getStatiscticsGroupComponents({ groupName } = {}) {
-    const {
-      error,
-    } = AnalyticsValidator.getStatiscticsGroupComponents().validate(
-      {
-        groupName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/group/${groupName}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get component statistics csv
-    * @description: Get component statistics csv
-    * @param {Object} arg - arg object.
-    * @param {string} arg.componentName - Component name
-    
-    **/
-  getComponentStatsCSV({ componentName } = {}) {
-    const { error } = AnalyticsValidator.getComponentStatsCSV().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/{component_name}.csv`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get component statistics pdf
-    * @description: Get component statistics pdf
-    * @param {Object} arg - arg object.
-    * @param {string} arg.componentName - Component name
-    
-    **/
-  getComponentStatsPDF({ componentName } = {}) {
-    const { error } = AnalyticsValidator.getComponentStatsPDF().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/{component_name}.pdf`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get component statistics
-    * @description: Get component statistics
-    * @param {Object} arg - arg object.
-    * @param {string} arg.componentName - Component name
-    
-    **/
-  getComponentStats({ componentName } = {}) {
-    const { error } = AnalyticsValidator.getComponentStats().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/${componentName}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get abandon carts list
-    * @description: Get abandon carts list
-    * @param {Object} arg - arg object.
-    * @param {string} arg.fromDate - From date
-    * @param {string} arg.toDate - To date
-    * @param {number} [arg.pageNo] - Current page number
-    * @param {number} [arg.pageSize] - Current page size
-    
-    **/
-  getAbandonCartList({ fromDate, toDate, pageNo, pageSize } = {}) {
-    const { error } = AnalyticsValidator.getAbandonCartList().validate(
-      {
-        fromDate,
-        toDate,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/from/${fromDate}/to/${toDate}/abandon-cart/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get abandon carts list
-    * @description: Get abandon carts list
-    * @param {Object} arg - arg object.
-    * @param {string} arg.companyId - Company Id
-    * @param {string} arg.applicationId - Application Id
-    * @param {string} arg.fromDate - From date
-    * @param {string} arg.toDate - To date
-    * @param {number} [arg.pageSize] - Current page size
-    
-    **/
-  getAbandonCartListPaginator({
-    companyId,
-    applicationId,
-    fromDate,
-    toDate,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAbandonCartList({
-        companyId: companyId,
-        applicationId: applicationId,
-        fromDate: fromDate,
-        toDate: toDate,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-    *
-    * @summary: Get abandon carts csv
-    * @description: Get abandon carts csv
-    * @param {Object} arg - arg object.
-    * @param {string} arg.fromDate - From date
-    * @param {string} arg.toDate - To date
-    
-    **/
-  getAbandonCartsCSV({ fromDate, toDate } = {}) {
-    const { error } = AnalyticsValidator.getAbandonCartsCSV().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/${fromDate}/to/${toDate}/abandon-cart.csv`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-    *
-    * @summary: Get abandon carts details
-    * @description: Get abandon cart details
-    * @param {Object} arg - arg object.
-    * @param {string} arg.cartId - Cart Id
-    
-    **/
-  getAbandonCartDetail({ cartId } = {}) {
-    const { error } = AnalyticsValidator.getAbandonCartDetail().validate(
-      {
-        cartId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/abandon-cart/${cartId}`,
-      queryObj,
-      undefined
-    );
-  }
-}
-
-class Partner {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   *
-   * @summary: Add proxy path for external url
-   * @description: Add proxy path for external url
-   * @param {Object} arg - arg object.
-   * @param {string} arg.extensionId - Extension id
-   * @param {AddProxyReq} arg.body
-   **/
-  addProxyPath({ extensionId, body } = {}) {
-    const { error } = PartnerValidator.addProxyPath().validate(
-      {
-        extensionId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Remove proxy path for external url
-    * @description: Remove proxy path for external url
-    * @param {Object} arg - arg object.
-    * @param {string} arg.extensionId - Extension id
-    * @param {string} arg.attachedPath - Attachaed path slug
-    
-    **/
-  removeProxyPath({ extensionId, attachedPath } = {}) {
-    const { error } = PartnerValidator.removeProxyPath().validate(
-      {
-        extensionId,
-        attachedPath,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}/${attachedPath}`,
-      queryObj,
-      undefined
     );
   }
 }
