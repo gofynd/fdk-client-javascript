@@ -254,29 +254,29 @@ export class LogisticValidator {
 }
 export class Validator {
     static Media(): any;
+    static ProductDetailAttribute(): any;
+    static ProductDetailGroupedAttribute(): any;
     static ProductListingActionPage(): any;
     static ProductListingAction(): any;
     static ProductBrand(): any;
-    static ProductDetailAttribute(): any;
-    static ProductDetailGroupedAttribute(): any;
     static ProductDetail(): any;
     static ErrorResponse(): any;
-    static ProductSize(): any;
-    static SizeChartValues(): any;
+    static ProductSizeStores(): any;
     static ColumnHeader(): any;
     static ColumnHeaders(): any;
+    static SizeChartValues(): any;
     static SizeChart(): any;
+    static ProductSize(): any;
     static Price(): any;
     static ProductListingPrice(): any;
-    static ProductSizeStores(): any;
     static ProductSizes(): any;
+    static ArticleAssignment(): any;
     static Seller(): any;
+    static Store(): any;
     static ProductSetDistributionSize(): any;
     static ProductSetDistribution(): any;
     static ProductSet(): any;
     static ProductStockPrice(): any;
-    static Store(): any;
-    static ArticleAssignment(): any;
     static ProductSizePriceResponse(): any;
     static ProductSizeSellerFilter(): any;
     static ProductSizeSellersResponse(): any;
@@ -294,10 +294,10 @@ export class Validator {
     static ProductStockStatusItem(): any;
     static ProductStockStatusResponse(): any;
     static ProductStockPolling(): any;
-    static ProductSortOn(): any;
     static ProductFiltersKey(): any;
     static ProductFiltersValue(): any;
     static ProductFilters(): any;
+    static ProductSortOn(): any;
     static ProductListingDetail(): any;
     static ProductListingResponse(): any;
     static ImageUrls(): any;
