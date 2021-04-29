@@ -35,13 +35,13 @@ export class OrderValidator {
     static reprocessOrder(): any;
 }
 export class CatalogValidator {
-    static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
+    static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
+    static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
@@ -59,6 +59,11 @@ export class CatalogValidator {
     static getCollectionItems(): any;
     static addCollectionItems(): any;
     static getCatalogInsights(): any;
+    static getApplicationBrands(): any;
+    static getDepartments(): any;
+    static getCategories(): any;
+    static getAppicationProducts(): any;
+    static getProductDetailBySlug(): any;
 }
 export class FileStorageValidator {
     static appStartUpload(): any;
