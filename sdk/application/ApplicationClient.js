@@ -56,7 +56,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/products/%s/`,
+      `/service/application/catalog/v1.0/products/${slug}/`,
       query,
       undefined
     );
@@ -85,7 +85,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/products/%s/sizes/`,
+      `/service/application/catalog/v1.0/products/${slug}/sizes/`,
       query,
       undefined
     );
@@ -116,7 +116,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/products/%s/sizes/%s/pincode/%s/price/`,
+      `/service/application/catalog/v1.0/products/${slug}/sizes/${size}/pincode/${pincode}/price/`,
       query,
       undefined
     );
@@ -149,7 +149,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/products/%s/sizes/%s/pincode/%s/sellers/`,
+      `/service/application/catalog/v1.0/products/${slug}/sizes/${size}/pincode/${pincode}/sellers/`,
       query,
       undefined
     );
@@ -240,7 +240,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/products/%s/similar/compare/`,
+      `/service/application/catalog/v1.0/products/${slug}/similar/compare/`,
       query,
       undefined
     );
@@ -269,7 +269,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/products/%s/similar/compared-frequently/`,
+      `/service/application/catalog/v1.0/products/${slug}/similar/compared-frequently/`,
       query,
       undefined
     );
@@ -297,7 +297,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/products/%s/similar/%s/`,
+      `/service/application/catalog/v1.0/products/${slug}/similar/${similarType}/`,
       query,
       undefined
     );
@@ -324,7 +324,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/products/%s/variants/`,
+      `/service/application/catalog/v1.0/products/${slug}/variants/`,
       query,
       undefined
     );
@@ -600,7 +600,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/brands/%s/`,
+      `/service/application/catalog/v1.0/brands/${slug}/`,
       query,
       undefined
     );
@@ -655,7 +655,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/categories/%s/`,
+      `/service/application/catalog/v1.0/categories/${slug}/`,
       query,
       undefined
     );
@@ -873,7 +873,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/collections/%s/items/`,
+      `/service/application/catalog/v1.0/collections/${slug}/items/`,
       query,
       undefined
     );
@@ -942,7 +942,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/collections/%s/`,
+      `/service/application/catalog/v1.0/collections/${slug}/`,
       query,
       undefined
     );
@@ -973,7 +973,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/follow/%s/`,
+      `/service/application/catalog/v1.0/follow/${collectionType}/`,
       query,
       undefined
     );
@@ -1031,7 +1031,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/catalog/v1.0/follow/%s/%s/`,
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
     );
@@ -1059,7 +1059,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "delete",
-      `/service/application/catalog/v1.0/follow/%s/%s/`,
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
     );
@@ -1087,7 +1087,7 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/catalog/v1.0/follow/%s/%s/count/`,
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/count/`,
       query,
       undefined
     );
@@ -1571,7 +1571,7 @@ class Cart {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/cart/v1.0/address/%d`,
+      `/service/application/cart/v1.0/address/${id}`,
       query,
       undefined
     );
@@ -1598,7 +1598,7 @@ class Cart {
     return APIClient.execute(
       this._conf,
       "put",
-      `/service/application/cart/v1.0/address/%d`,
+      `/service/application/cart/v1.0/address/${id}`,
       query,
       body
     );
@@ -1625,7 +1625,7 @@ class Cart {
     return APIClient.execute(
       this._conf,
       "delete",
-      `/service/application/cart/v1.0/address/%d`,
+      `/service/application/cart/v1.0/address/${id}`,
       query,
       undefined
     );
@@ -1878,7 +1878,7 @@ class Cart {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/cart/v1.0/share-cart/%s`,
+      `/service/application/cart/v1.0/share-cart/${token}`,
       query,
       undefined
     );
@@ -1906,7 +1906,7 @@ class Cart {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/cart/v1.0/share-cart/%s/%s`,
+      `/service/application/cart/v1.0/share-cart/${token}/${action}`,
       query,
       undefined
     );
@@ -1939,7 +1939,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/lead/v1.0/ticket/%s`,
+      `/service/application/lead/v1.0/ticket/${id}`,
       query,
       undefined
     );
@@ -1966,7 +1966,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/lead/v1.0/ticket/%s/history`,
+      `/service/application/lead/v1.0/ticket/${ticketId}/history`,
       query,
       body
     );
@@ -2019,7 +2019,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/lead/v1.0/form/%s`,
+      `/service/application/lead/v1.0/form/${slug}`,
       query,
       undefined
     );
@@ -2046,7 +2046,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/lead/v1.0/form/%s/submit`,
+      `/service/application/lead/v1.0/form/${slug}/submit`,
       query,
       body
     );
@@ -2073,7 +2073,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/lead/v1.0/video/room/%s/participants`,
+      `/service/application/lead/v1.0/video/room/${uniqueName}/participants`,
       query,
       undefined
     );
@@ -2100,7 +2100,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/lead/v1.0/video/room/%s/token`,
+      `/service/application/lead/v1.0/video/room/${uniqueName}/token`,
       query,
       undefined
     );
@@ -3138,7 +3138,7 @@ class Share {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/share/v1.0/qr/products/%s/`,
+      `/service/application/share/v1.0/qr/products/${slug}/`,
       query,
       undefined
     );
@@ -3165,7 +3165,7 @@ class Share {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/share/v1.0/qr/collection/%s/`,
+      `/service/application/share/v1.0/qr/collection/${slug}/`,
       query,
       undefined
     );
@@ -3246,7 +3246,7 @@ class Share {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/share/v1.0/links/short-link/%s/`,
+      `/service/application/share/v1.0/links/short-link/${hash}/`,
       query,
       undefined
     );
@@ -3273,7 +3273,7 @@ class Share {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/share/v1.0/links/short-link/%s/original/`,
+      `/service/application/share/v1.0/links/short-link/${hash}/original/`,
       query,
       undefined
     );
@@ -3550,7 +3550,7 @@ class Configuration {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/configuration/v1.0/currency/%s`,
+      `/service/application/configuration/v1.0/currency/${id}`,
       query,
       undefined
     );
@@ -4599,7 +4599,7 @@ class PosCart {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/pos/cart/v1.0/address/%d`,
+      `/service/application/pos/cart/v1.0/address/${id}`,
       query,
       undefined
     );
@@ -4626,7 +4626,7 @@ class PosCart {
     return APIClient.execute(
       this._conf,
       "put",
-      `/service/application/pos/cart/v1.0/address/%d`,
+      `/service/application/pos/cart/v1.0/address/${id}`,
       query,
       body
     );
@@ -4653,7 +4653,7 @@ class PosCart {
     return APIClient.execute(
       this._conf,
       "delete",
-      `/service/application/pos/cart/v1.0/address/%d`,
+      `/service/application/pos/cart/v1.0/address/${id}`,
       query,
       undefined
     );
@@ -5024,7 +5024,7 @@ class PosCart {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/pos/cart/v1.0/share-cart/%s`,
+      `/service/application/pos/cart/v1.0/share-cart/${token}`,
       query,
       undefined
     );
@@ -5052,7 +5052,7 @@ class PosCart {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/pos/cart/v1.0/share-cart/%s/%s`,
+      `/service/application/pos/cart/v1.0/share-cart/${token}/${action}`,
       query,
       undefined
     );
@@ -5111,7 +5111,7 @@ class Logistic {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/logistics/v1.0/pincode/%s`,
+      `/service/application/logistics/v1.0/pincode/${pincode}`,
       query,
       undefined
     );
