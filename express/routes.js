@@ -188,6 +188,7 @@ function setupRoutes(ext) {
                 });
                 let session = await SessionStorage.getSession(sid);
                 platformConfig.oauthClient.setToken(session);
+                await platformConfig.oauthClient.renewAccessToken();
                 const client = new PlatformClient(platformConfig);
                 req.platformClient = client;
             }

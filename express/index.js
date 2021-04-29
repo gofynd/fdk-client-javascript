@@ -27,6 +27,7 @@ function setupFdk(data) {
             });
             let session = await SessionStorage.getSession(sid);
             platformConfig.oauthClient.setToken(session);
+            await platformConfig.oauthClient.renewAccessToken();
             client = new PlatformClient(platformConfig);
         }
         return client;

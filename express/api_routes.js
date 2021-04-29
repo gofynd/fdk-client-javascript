@@ -35,6 +35,7 @@ function setupProxyRoutes() {
             let fdkHelper = FdkHelper.getInstance(req.fdkSession.cluster, extension);
             let platformConfig = await fdkHelper.getPlatformConfigInstance(req.fdkSession.company_id);
             platformConfig.oauthClient.setToken(req.fdkSession);
+            await platformConfig.oauthClient.renewAccessToken();
             const client = new PlatformClient(platformConfig);
             req.platformClient = client;
             req.extension = extension;
