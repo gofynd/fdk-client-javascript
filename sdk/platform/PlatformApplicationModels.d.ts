@@ -179,13 +179,13 @@ export class OrderValidator {
     static reprocessOrder(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
@@ -198,8 +198,8 @@ export class CatalogValidator {
     static getAllCollections(): any;
     static createCollection(): any;
     static getCollectionDetail(): any;
-    static deleteCollection(): any;
     static updateCollection(): any;
+    static deleteCollection(): any;
     static getCollectionItems(): any;
     static addCollectionItems(): any;
     static getCatalogInsights(): any;
