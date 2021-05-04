@@ -22,8 +22,8 @@ export class CatalogValidator {
     static getCollectionItemsBySlug(): any;
     static getCollectionDetailBySlug(): any;
     static getFollowedListing(): any;
-    static followById(): any;
     static unfollowById(): any;
+    static followById(): any;
     static getFollowerCountById(): any;
     static getFollowIds(): any;
     static getStores(): any;
@@ -186,6 +186,7 @@ export class OrderValidator {
 }
 export class RewardsValidator {
     static getPointsOnProduct(): any;
+    static getOfferByName(): any;
     static getOrderDiscount(): any;
     static getUserPoints(): any;
     static getUserPointsHistory(): any;
@@ -255,28 +256,28 @@ export class LogisticValidator {
 export class Validator {
     static ProductDetailAttribute(): any;
     static ProductDetailGroupedAttribute(): any;
+    static Media(): any;
     static ProductListingActionPage(): any;
     static ProductListingAction(): any;
-    static Media(): any;
     static ProductBrand(): any;
     static ProductDetail(): any;
     static ErrorResponse(): any;
-    static ProductSize(): any;
-    static ProductSizeStores(): any;
-    static Price(): any;
-    static ProductListingPrice(): any;
-    static SizeChartValues(): any;
     static ColumnHeader(): any;
     static ColumnHeaders(): any;
+    static SizeChartValues(): any;
     static SizeChart(): any;
+    static Price(): any;
+    static ProductListingPrice(): any;
+    static ProductSize(): any;
+    static ProductSizeStores(): any;
     static ProductSizes(): any;
+    static Store(): any;
     static ProductSetDistributionSize(): any;
     static ProductSetDistribution(): any;
     static ProductSet(): any;
-    static Store(): any;
     static ArticleAssignment(): any;
-    static ProductStockPrice(): any;
     static Seller(): any;
+    static ProductStockPrice(): any;
     static ProductSizePriceResponse(): any;
     static ProductSizeSellerFilter(): any;
     static ProductSizeSellersResponse(): any;
@@ -294,11 +295,11 @@ export class Validator {
     static ProductStockStatusItem(): any;
     static ProductStockStatusResponse(): any;
     static ProductStockPolling(): any;
-    static ProductFiltersValue(): any;
-    static ProductFiltersKey(): any;
-    static ProductFilters(): any;
     static ProductSortOn(): any;
     static ProductListingDetail(): any;
+    static ProductFiltersKey(): any;
+    static ProductFiltersValue(): any;
+    static ProductFilters(): any;
     static ProductListingResponse(): any;
     static ImageUrls(): any;
     static BrandItem(): any;
@@ -317,10 +318,10 @@ export class Validator {
     static DepartmentResponse(): any;
     static AutocompleteItem(): any;
     static AutoCompleteResponse(): any;
+    static GetCollectionDetailNest(): any;
     static CollectionListingFilterType(): any;
     static CollectionListingFilterTag(): any;
     static CollectionListingFilter(): any;
-    static GetCollectionDetailNest(): any;
     static GetCollectionListingResponse(): any;
     static CollectionDetailResponse(): any;
     static GetFollowListingResponse(): any;
