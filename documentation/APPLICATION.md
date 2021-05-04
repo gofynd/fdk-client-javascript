@@ -887,7 +887,7 @@ const data = await catalog.getProducts(q,f,filters,sortOn,pageId,pageSize,pageNo
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
-| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
+| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts** | 
 | filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
 | sortOn | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
 | pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
@@ -1339,7 +1339,7 @@ const data = await catalog.getCollectionItemsBySlug(slug,f,filters,sortOn,pageId
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items | 
-| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts** | 
+| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts** | 
 | filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
 | sortOn | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
 | pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
@@ -7589,7 +7589,7 @@ Used to get logged in user details
 
 
 
-Schema: `UserSchema`
+Schema: `UserObjectSchema`
 
 
 *Examples:*
@@ -7598,7 +7598,7 @@ Schema: `UserSchema`
 default
 ```json
 {
-  "$ref": "#/components/examples/UserExample"
+  "$ref": "#/components/examples/UserExampleObject"
 }
 ```
 

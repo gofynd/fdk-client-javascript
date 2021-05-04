@@ -208,7 +208,7 @@ declare class Catalog {
       * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
       * @param {Object} arg - arg object.
       * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
-      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
+      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
       * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
       * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
       * @param {string} [arg.pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
@@ -233,7 +233,7 @@ declare class Catalog {
       * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ProductListingResponse`
       * @param {Object} arg - arg object.
       * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
-      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
+      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
       * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
       * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
       * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
@@ -384,7 +384,7 @@ declare class Catalog {
       * @description: Get items in a collection specified by its `slug`.
       * @param {Object} arg - arg object.
       * @param {string} arg.slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items
-      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
+      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
       * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
       * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
       * @param {string} [arg.pageId] - Each response will contain **page_id** param, which should be sent back to make pagination work.
@@ -405,7 +405,7 @@ declare class Catalog {
       * @description: Get items in a collection specified by its `slug`.
       * @param {Object} arg - arg object.
       * @param {string} arg.slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection for which you want to fetch the items
-      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::l3_categories:t-shirts||shirts**
+      * @param {string} [arg.f] - The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
       * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters
       * @param {string} [arg.sortOn] - The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below.
       * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
@@ -1186,7 +1186,7 @@ declare class User {
      * @description: Used to verify otp sent to email
      * @param {Object} arg - arg object.
      * @param {string} [arg.platform] - Platform
-     * @param {VerifyOtpRequestSchema} arg.body
+     * @param {VerifyEmailOtpRequestSchema} arg.body
      **/
     verifyEmailOTP({ body, platform }?: {
         platform?: string;
