@@ -51,7 +51,7 @@ FDK Extension Helper Library
         contact_email: "xyz@gmail.com",
         developed_by_name: "Fynd",
         webhooks: [],
-        storage: new RedisStorage(redis)
+        storage: new RedisStorage(redis, "prefix-key") // use prefix key when using shared redis to avoid conflicts
     });
     app.use(FDKClient.fdkHandler);
 
