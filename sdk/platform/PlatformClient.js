@@ -9569,18 +9569,12 @@ class PlatformClient {
     */
 
 /**
-        @typedef Document
+        @typedef BusinessCountryInfo
         
         
-        @property { string } value
+        @property { string } [country_code]
         
-        @property { string } type
-        
-        @property { string } [url]
-        
-        @property { boolean } [verified]
-        
-        @property { string } legal_name
+        @property { string } [country]
         
          
     */
@@ -9589,25 +9583,42 @@ class PlatformClient {
         @typedef CompanyAddress
         
         
+        @property { number } latitude
+        
+        @property { string } address1
+        
         @property { string } [landmark]
         
         @property { string } [country_code]
         
+        @property { string } [address2]
+        
         @property { string } country
         
-        @property { number } longitude
+        @property { number } pincode
         
         @property { string } state
         
         @property { string } city
         
-        @property { number } latitude
+        @property { number } longitude
         
-        @property { number } pincode
+         
+    */
+
+/**
+        @typedef Document
         
-        @property { string } address1
         
-        @property { string } [address2]
+        @property { string } [url]
+        
+        @property { string } value
+        
+        @property { boolean } [verified]
+        
+        @property { string } legal_name
+        
+        @property { string } type
         
          
     */
@@ -9622,41 +9633,30 @@ class PlatformClient {
     */
 
 /**
-        @typedef BusinessCountryInfo
-        
-        
-        @property { string } [country_code]
-        
-        @property { string } [country]
-        
-         
-    */
-
-/**
         @typedef CompanyStoreSerializerRequest
         
         
-        @property { string } [business_info]
-        
-        @property { Array<number> } brands
-        
-        @property { Document } document
-        
-        @property { CompanyAddress } address
+        @property { BusinessCountryInfo } business_country_info
         
         @property { number } [uid]
         
-        @property { boolean } [franchise_enabled]
+        @property { Array<string> } [notification_emails]
         
-        @property { ReferralInfo } [referral_info]
+        @property { CompanyAddress } address
         
-        @property { string } business_type
+        @property { Document } document
         
-        @property { BusinessCountryInfo } business_country_info
+        @property { string } [business_info]
         
         @property { Object } [warnings]
         
-        @property { Array<string> } [notification_emails]
+        @property { string } business_type
+        
+        @property { ReferralInfo } [referral_info]
+        
+        @property { boolean } [franchise_enabled]
+        
+        @property { Array<number> } brands
         
         @property { string } name
         
@@ -9667,9 +9667,9 @@ class PlatformClient {
         @typedef SuccessResponse
         
         
-        @property { number } [uid]
-        
         @property { boolean } [success]
+        
+        @property { number } [uid]
         
          
     */
@@ -9678,11 +9678,11 @@ class PlatformClient {
         @typedef ErrorResponse
         
         
-        @property { string } [code]
-        
         @property { Object } [meta]
         
         @property { string } [message]
+        
+        @property { string } [code]
         
         @property { number } [status]
         
@@ -9690,30 +9690,12 @@ class PlatformClient {
     */
 
 /**
-        @typedef GetAddressSerializer
+        @typedef BusinessCountryInfo1
         
-        
-        @property { string } [landmark]
         
         @property { string } [country_code]
         
         @property { string } [country]
-        
-        @property { number } [longitude]
-        
-        @property { string } [state]
-        
-        @property { string } [city]
-        
-        @property { number } [latitude]
-        
-        @property { string } [address_type]
-        
-        @property { number } [pincode]
-        
-        @property { string } [address1]
-        
-        @property { string } [address2]
         
          
     */
@@ -9735,9 +9717,9 @@ class PlatformClient {
         @typedef SellerPhoneNumber
         
         
-        @property { string } number
-        
         @property { number } country_code
+        
+        @property { string } number
         
          
     */
@@ -9772,12 +9754,30 @@ class PlatformClient {
     */
 
 /**
-        @typedef BusinessCountryInfo1
+        @typedef GetAddressSerializer
         
+        
+        @property { number } [latitude]
+        
+        @property { string } [address1]
+        
+        @property { string } [state]
+        
+        @property { string } [landmark]
         
         @property { string } [country_code]
         
+        @property { string } [address2]
+        
         @property { string } [country]
+        
+        @property { number } [pincode]
+        
+        @property { string } [address_type]
+        
+        @property { string } [city]
+        
+        @property { number } [longitude]
         
          
     */
@@ -9786,45 +9786,45 @@ class PlatformClient {
         @typedef GetCompanyProfileSerializerResponse
         
         
+        @property { BusinessCountryInfo1 } [business_country_info]
+        
         @property { number } uid
         
-        @property { Object } [warnings]
+        @property { string } [stage]
         
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { UserSerializer } [verified_by]
-        
-        @property { string } [verified_on]
-        
-        @property { string } [name]
-        
-        @property { string } [business_info]
-        
-        @property { boolean } [franchise_enabled]
+        @property { string } [created_on]
         
         @property { UserSerializer } [modified_by]
         
         @property { Array<Document> } [documents]
         
-        @property { string } [created_on]
-        
-        @property { string } company_type
-        
         @property { ContactDetails } [contact_details]
+        
+        @property { UserSerializer } [verified_by]
         
         @property { BusinessDetails } [business_details]
         
-        @property { BusinessCountryInfo1 } [business_country_info]
-        
-        @property { Array<string> } [notification_emails]
-        
-        @property { string } [stage]
+        @property { Object } [warnings]
         
         @property { string } business_type
         
-        @property { string } [modified_on]
+        @property { boolean } [franchise_enabled]
+        
+        @property { string } [name]
         
         @property { UserSerializer } [created_by]
+        
+        @property { Array<string> } [notification_emails]
+        
+        @property { string } [business_info]
+        
+        @property { string } [verified_on]
+        
+        @property { string } company_type
+        
+        @property { string } [modified_on]
+        
+        @property { Array<GetAddressSerializer> } [addresses]
         
          
     */
@@ -9833,9 +9833,9 @@ class PlatformClient {
         @typedef DocumentsObj
         
         
-        @property { number } [pending]
-        
         @property { number } [verified]
+        
+        @property { number } [pending]
         
          
     */
@@ -9844,19 +9844,57 @@ class PlatformClient {
         @typedef MetricsSerializer
         
         
-        @property { DocumentsObj } [company_documents]
+        @property { number } [uid]
         
         @property { string } [stage]
         
-        @property { number } [uid]
-        
-        @property { DocumentsObj } [product]
-        
         @property { DocumentsObj } [store_documents]
+        
+        @property { DocumentsObj } [company_documents]
         
         @property { DocumentsObj } [brand]
         
         @property { DocumentsObj } [store]
+        
+        @property { DocumentsObj } [product]
+        
+         
+    */
+
+/**
+        @typedef BrandBannerSerializer
+        
+        
+        @property { string } [portrait]
+        
+        @property { string } [landscape]
+        
+         
+    */
+
+/**
+        @typedef CreateUpdateBrandRequestSerializer
+        
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { Object } [_locale_language]
+        
+        @property { number } [company_id]
+        
+        @property { number } [uid]
+        
+        @property { Object } [_custom_json]
+        
+        @property { string } [brand_tier]
+        
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { string } logo
+        
+        @property { string } [description]
+        
+        @property { string } name
         
          
     */
@@ -9875,82 +9913,44 @@ class PlatformClient {
     */
 
 /**
-        @typedef BrandBannerSerializer
-        
-        
-        @property { string } [portrait]
-        
-        @property { string } [landscape]
-        
-         
-    */
-
-/**
         @typedef GetBrandResponseSerializer
         
         
-        @property { string } [created_on]
-        
-        @property { string } [logo]
-        
-        @property { string } [stage]
-        
-        @property { Object } [warnings]
+        @property { Array<string> } [synonyms]
         
         @property { Object } [_locale_language]
-        
-        @property { number } [uid]
-        
-        @property { Array<string> } [synonyms]
         
         @property { UserSerializer1 } [created_by]
         
-        @property { BrandBannerSerializer } [banner]
+        @property { number } [uid]
+        
+        @property { Object } [_custom_json]
+        
+        @property { string } [stage]
         
         @property { string } [reject_reason]
         
-        @property { Object } [_custom_json]
-        
         @property { string } [modified_on]
         
-        @property { string } [slug_key]
-        
-        @property { UserSerializer1 } [verified_by]
-        
-        @property { string } [description]
-        
-        @property { UserSerializer1 } [modified_by]
+        @property { Object } [warnings]
         
         @property { string } [verified_on]
         
-        @property { string } name
+        @property { string } [created_on]
         
-         
-    */
-
-/**
-        @typedef CreateUpdateBrandRequestSerializer
+        @property { UserSerializer1 } [modified_by]
         
-        
-        @property { string } logo
-        
-        @property { number } [uid]
-        
-        @property { string } [brand_tier]
-        
-        @property { Array<string> } [synonyms]
+        @property { string } [logo]
         
         @property { BrandBannerSerializer } [banner]
         
-        @property { Object } [_custom_json]
-        
-        @property { number } [company_id]
+        @property { string } [slug_key]
         
         @property { string } [description]
         
-        @property { Object } [_locale_language]
-        
         @property { string } name
+        
+        @property { UserSerializer1 } [verified_by]
         
          
     */
@@ -9959,11 +9959,11 @@ class PlatformClient {
         @typedef CompanyBrandPostRequestSerializer
         
         
-        @property { number } [uid]
-        
         @property { number } company
         
         @property { Array<number> } brands
+        
+        @property { number } [uid]
         
          
     */
@@ -9972,31 +9972,31 @@ class PlatformClient {
         @typedef GetCompanySerializer
         
         
-        @property { string } [created_on]
-        
-        @property { string } [stage]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
-        @property { number } [uid]
-        
         @property { string } [company_type]
         
         @property { UserSerializer } [created_by]
         
-        @property { string } [business_type]
+        @property { number } [uid]
+        
+        @property { string } [stage]
         
         @property { string } [reject_reason]
         
         @property { string } [modified_on]
         
-        @property { UserSerializer } [verified_by]
+        @property { string } [verified_on]
+        
+        @property { Array<GetAddressSerializer> } [addresses]
+        
+        @property { string } [created_on]
         
         @property { UserSerializer } [modified_by]
         
-        @property { string } [verified_on]
+        @property { string } [business_type]
         
         @property { string } [name]
+        
+        @property { UserSerializer } [verified_by]
         
          
     */
@@ -10005,15 +10005,13 @@ class PlatformClient {
         @typedef CompanyBrandSerializer
         
         
-        @property { string } [created_on]
-        
-        @property { string } [stage]
-        
-        @property { number } [uid]
-        
         @property { GetCompanySerializer } [company]
         
         @property { UserSerializer1 } [created_by]
+        
+        @property { number } [uid]
+        
+        @property { string } [stage]
         
         @property { string } [reject_reason]
         
@@ -10021,13 +10019,15 @@ class PlatformClient {
         
         @property { Object } [warnings]
         
-        @property { UserSerializer1 } [verified_by]
+        @property { string } [verified_on]
         
-        @property { GetBrandResponseSerializer } [brand]
+        @property { string } [created_on]
         
         @property { UserSerializer1 } [modified_by]
         
-        @property { string } [verified_on]
+        @property { GetBrandResponseSerializer } [brand]
+        
+        @property { UserSerializer1 } [verified_by]
         
          
     */
@@ -10044,43 +10044,25 @@ class PlatformClient {
     */
 
 /**
-        @typedef GetAddressSerializer1
+        @typedef InvoiceCredSerializer
         
         
-        @property { string } [landmark]
+        @property { string } [username]
         
-        @property { string } [country_code]
+        @property { boolean } [enabled]
         
-        @property { string } [country]
-        
-        @property { number } [longitude]
-        
-        @property { string } [state]
-        
-        @property { string } [city]
-        
-        @property { number } [latitude]
-        
-        @property { string } [address_type]
-        
-        @property { number } [pincode]
-        
-        @property { string } [address1]
-        
-        @property { string } [address2]
+        @property { string } [password]
         
          
     */
 
 /**
-        @typedef LocationManagerSerializer
+        @typedef InvoiceDetailsSerializer
         
         
-        @property { string } [email]
+        @property { InvoiceCredSerializer } [e_waybill]
         
-        @property { SellerPhoneNumber } mobile_no
-        
-        @property { string } [name]
+        @property { InvoiceCredSerializer } [e_invoice]
         
          
     */
@@ -10100,13 +10082,42 @@ class PlatformClient {
         @typedef LocationDayWiseSerializer
         
         
+        @property { string } weekday
+        
+        @property { LocationTimingSerializer } [closing]
+        
         @property { LocationTimingSerializer } [opening]
         
         @property { boolean } open
         
-        @property { LocationTimingSerializer } [closing]
+         
+    */
+
+/**
+        @typedef GetAddressSerializer1
         
-        @property { string } weekday
+        
+        @property { number } [latitude]
+        
+        @property { string } [address1]
+        
+        @property { string } [state]
+        
+        @property { string } [landmark]
+        
+        @property { string } [country_code]
+        
+        @property { string } [address2]
+        
+        @property { string } [country]
+        
+        @property { number } [pincode]
+        
+        @property { string } [address_type]
+        
+        @property { string } [city]
+        
+        @property { number } [longitude]
         
          
     */
@@ -10115,33 +10126,22 @@ class PlatformClient {
         @typedef ProductReturnConfigSerializer
         
         
-        @property { number } [store_uid]
-        
         @property { boolean } [on_same_store]
         
-         
-    */
-
-/**
-        @typedef InvoiceCredSerializer
-        
-        
-        @property { boolean } [enabled]
-        
-        @property { string } [username]
-        
-        @property { string } [password]
+        @property { number } [store_uid]
         
          
     */
 
 /**
-        @typedef InvoiceDetailsSerializer
+        @typedef LocationManagerSerializer
         
         
-        @property { InvoiceCredSerializer } [e_invoice]
+        @property { string } [email]
         
-        @property { InvoiceCredSerializer } [e_waybill]
+        @property { SellerPhoneNumber } mobile_no
+        
+        @property { string } [name]
         
          
     */
@@ -10150,37 +10150,37 @@ class PlatformClient {
         @typedef LocationSerializer
         
         
-        @property { Array<Document> } [documents]
-        
-        @property { string } [stage]
-        
-        @property { string } code
-        
-        @property { Array<SellerPhoneNumber> } [contact_numbers]
-        
-        @property { GetAddressSerializer1 } address
+        @property { number } company
         
         @property { number } [uid]
         
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { string } [store_type]
-        
-        @property { number } company
+        @property { InvoiceDetailsSerializer } [gst_credentials]
         
         @property { Array<LocationDayWiseSerializer> } [timing]
         
+        @property { GetAddressSerializer1 } address
+        
+        @property { Array<string> } [notification_emails]
+        
         @property { ProductReturnConfigSerializer } [product_return_config]
         
-        @property { Object } [_custom_json]
+        @property { string } [store_type]
         
-        @property { InvoiceDetailsSerializer } [gst_credentials]
+        @property { string } [stage]
         
         @property { Object } [warnings]
         
         @property { string } display_name
         
-        @property { Array<string> } [notification_emails]
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { Array<SellerPhoneNumber> } [contact_numbers]
+        
+        @property { string } code
+        
+        @property { Object } [_custom_json]
+        
+        @property { Array<Document> } [documents]
         
         @property { string } name
         
@@ -10191,9 +10191,9 @@ class PlatformClient {
         @typedef LocationIntegrationType
         
         
-        @property { string } [inventory]
-        
         @property { string } [order]
+        
+        @property { string } [inventory]
         
          
     */
@@ -10202,55 +10202,55 @@ class PlatformClient {
         @typedef GetLocationSerializer
         
         
-        @property { string } code
-        
-        @property { GetAddressSerializer } address
-        
         @property { number } [uid]
-        
-        @property { string } [store_type]
-        
-        @property { Object } [_custom_json]
-        
-        @property { InvoiceDetailsSerializer } [gst_credentials]
-        
-        @property { Object } [warnings]
-        
-        @property { UserSerializer1 } [verified_by]
-        
-        @property { string } [verified_on]
-        
-        @property { string } name
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { GetCompanySerializer } [company]
-        
-        @property { LocationIntegrationType } [integration_type]
-        
-        @property { UserSerializer1 } [modified_by]
-        
-        @property { Array<SellerPhoneNumber> } [contact_numbers]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { string } [created_on]
-        
-        @property { ProductReturnConfigSerializer } [product_return_config]
-        
-        @property { string } display_name
-        
-        @property { Array<string> } [notification_emails]
         
         @property { string } [stage]
         
-        @property { Array<LocationDayWiseSerializer> } [timing]
+        @property { string } [created_on]
+        
+        @property { UserSerializer1 } [modified_by]
+        
+        @property { Array<Document> } [documents]
+        
+        @property { UserSerializer1 } [verified_by]
+        
+        @property { string } [store_type]
+        
+        @property { Object } [warnings]
+        
+        @property { Array<SellerPhoneNumber> } [contact_numbers]
+        
+        @property { string } code
+        
+        @property { string } name
+        
+        @property { GetCompanySerializer } [company]
+        
+        @property { UserSerializer1 } [created_by]
         
         @property { string } phone_number
         
+        @property { Array<string> } [notification_emails]
+        
+        @property { ProductReturnConfigSerializer } [product_return_config]
+        
+        @property { string } [verified_on]
+        
+        @property { Object } [_custom_json]
+        
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
+        @property { GetAddressSerializer } address
+        
         @property { string } [modified_on]
         
-        @property { UserSerializer1 } [created_by]
+        @property { LocationIntegrationType } [integration_type]
+        
+        @property { string } display_name
+        
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { InvoiceDetailsSerializer } [gst_credentials]
         
          
     */
@@ -16960,36 +16960,6 @@ class CompanyProfile {
   }
 
   /**
-    *
-    * @summary: Get a single brand.
-    * @description: This API helps to get data associated to a particular brand.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.brandId - Id of the brand to be viewed.
-    
-    **/
-  getBrand({ brandId } = {}) {
-    const { error } = CompanyProfileValidator.getBrand().validate(
-      {
-        brandId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
    *
    * @summary: Edit a brand.
    * @description: This API allows to edit meta of a brand.
@@ -17017,6 +16987,36 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       queryObj,
       body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get a single brand.
+    * @description: This API helps to get data associated to a particular brand.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.brandId - Id of the brand to be viewed.
+    
+    **/
+  getBrand({ brandId } = {}) {
+    const { error } = CompanyProfileValidator.getBrand().validate(
+      {
+        brandId,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+      queryObj,
+      undefined
     );
   }
 
@@ -17249,36 +17249,6 @@ class CompanyProfile {
   }
 
   /**
-    *
-    * @summary: Get details of a specific location.
-    * @description: This API helps to get data associated to a specific location.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.locationId - Id of the location which you want to view.
-    
-    **/
-  getLocationDetail({ locationId } = {}) {
-    const { error } = CompanyProfileValidator.getLocationDetail().validate(
-      {
-        locationId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
    *
    * @summary: Edit a location asscoiated to a company.
    * @description: This API allows to edit a location associated to a company.
@@ -17306,6 +17276,36 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       queryObj,
       body
+    );
+  }
+
+  /**
+    *
+    * @summary: Get details of a specific location.
+    * @description: This API helps to get data associated to a specific location.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.locationId - Id of the location which you want to view.
+    
+    **/
+  getLocationDetail({ locationId } = {}) {
+    const { error } = CompanyProfileValidator.getLocationDetail().validate(
+      {
+        locationId,
+      },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+
+    const queryObj = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      queryObj,
+      undefined
     );
   }
 }
