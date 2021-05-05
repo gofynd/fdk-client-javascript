@@ -22,7 +22,7 @@ declare class PlatformApplicationClient {
     partner: Partner;
 }
 declare namespace PlatformApplicationClient {
-    export { TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, Filter, TicketHistoryPayload, CustomFormSubmissionPayload, KeyValue, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, PhoneNumber, Email, Debug, SubmitCustomFormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketCategory, TicketSubCategory, SubmitButton, PollForAssignment, CustomForm, TicketHistory, Ticket, Activity, ActivityDump, AddMediaListRequest, AddMediaRequest, ApproveRequest, Attribute, AttributeObject, CreatedBy, CursorGetResponse, DateMeta, DeviceMeta, Entity, EntityRequest, FeedbackAttributes, FeedbackError, FeedbackState, GetResponse, GetReviewResponse, InsertResponse, MediaMeta, MediaMetaRequest, NumberGetResponse, PageCursor, PageNumber, Rating, RatingRequest, ReportAbuseRequest, Review, ReviewFacet, ReviewRequest, SaveAttributeRequest, SortMethod, TagMeta, Template, TemplateGetResponse, TemplateRequest, TemplateRequestList, UI, UIIcon, UpdateAttributeRequest, UpdateResponse, UpdateReviewRequest, UpdateTemplateRequest, UpdateTemplateStatusRequest, PaginationSchema, ThemesListingResponseSchema, AddThemeRequestSchema, UpgradableThemeSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegNotFoundSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, pagesSchema, availableSectionSchema, sectionSchema, Information, Images, Src, AssetsSchema, UmdJs, CommonJs, Css, AvailablePages, Seo, Sections, Config, Preset, GlobalSchema, ListSchema, Colors, Custom, ConfigPage, Font, Variants, Medium, SemiBold, Bold, Light, Regular, Blocks, BlocksProps, PageSections, PageSectionsBlocks, PageSectionsBlocksProps, Predicate, Screen, PredicateUserSchema, Route, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, SendEmailOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyOtpRequestSchema, SendMobileOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, UserObjectSchema, AuthSuccess, SendOtpResponse, LoginSuccess, VerifyOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, UserSearchResponseSchema, CustomerListResponseSchema, UnauthorizedSchema, UnauthenticatedSchema, NotFoundSchema, AuthenticationApiErrorSchema, ProfileEditSuccessSchema, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, AuthSuccessUser, AuthSuccessUserDebug, AuthSuccessUserEmails, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, Mobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, Facebook, Accountkit, Google, UserSchema, ApplicationLegal, ApplicationLegalFAQ, SeoComponent, SeoSchema, CustomMetaTag, Detail, StorefrontAnnouncement, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, ScheduleSchema, NextSchedule, AnnouncementSchema, announcementSchema, scheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, Navigation, LocaleLanguage, Language, Action, ActionPage, NavigationReference, LandingPage, ConfigurationSchema, SlideshowMedia, Slideshow, AnnouncementsResponseSchema, AnnouncementDataSchema, FaqResponseSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, APIError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, CustomPageSchema, ContentSchema, CustomPage, CustomBlogSchema, FeatureImage, CustomBlog, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PageContent, PageMeta, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, ErrorResponseSchema, Success, CreatedModifiedByObject, PickupPointResponse, PickupPointSchema, ItemProperties, AddressObject, AdditionalContactsObject, TimingObject, OpeningClosingObject, PickupResponse, PickupConfiguration, PickupResponseItems, ShippingSchema, ShippingResponse, AssignmentSchema, FulfillmentPriorityObject, StoreSchema, StoreResponse, StoreAssignmentObject, StrategyObject, StrategyItems, StoreListResponse, ZoneSchema, ZoneListResponse, RegionObject, PincodeObject, RadiusObject, ZoneDetailsObject, UnauthenticatedUser, UnauthenticatedApplication, BadRequest, ResourceNotFound, InternalServerError, PlanRecurring, Plan, DetailedPlanComponents, DetailedPlan, InvoiceDetailsPeriod, InvoiceDetailsClient, InvoiceDetailsStatusTrail, InvoiceDetailsPaymentMethodsDataChecks, InvoiceDetailsPaymentMethodsDataNetworks, InvoiceDetailsPaymentMethodsDataThreeDSecureUsage, InvoiceDetailsPaymentMethodsData, InvoiceDetailsPaymentMethods, InvoicePaymentMethod, InvoiceDetails, InvoiceItemsPlanRecurring, InvoiceItemsPlan, InvoiceItemsPeriod, InvoiceItems, Invoice, InvoicesDataClient, InvoicesDataPeriod, InvoicesDataPaymentMethod, InvoicesData, Invoices, Phone, SubscriptionBillingAddress, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionCurrentPeriod, SubscriptionPauseCollection, SubscriptionTrial, SubscriptionInvoiceSettings, Subscription, SubscriptionStatus, SubscriptionLimitApplication, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitTeam, SubscriptionLimitProducts, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimit, SubscriptionActivateReq, SubscriptionActivateRes, CancelSubscriptionReq, CancelSubscriptionRes, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BigqueryHeadersReq, BigqueryHeadersResHeaders, BigqueryHeadersRes, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, AudienceReq, Audience, Audiences, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateDeleteSuccessRes, EmailTemplateDeleteFailureRes, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplateRes, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptions, TriggerJobResponse, TriggerJobRequest, Job, Jobs, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, PushtokenReq, PushtokenRes, SmsProviderReq, SmsProvider, SmsProviders, SmsTemplateDeleteSuccessRes, SmsTemplateDeleteFailureRes, SmsTemplateMessage, SmsTemplateReq, SmsTemplateRes, SmsTemplate, SystemSmsTemplate, SmsTemplates, SystemSmsTemplates, Notification, SystemNotificationUser, SystemNotificationSettings, SystemNotification, SystemNotificationsPage, SystemNotifications, PaymentGatewayConfigResponse, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorCodeAndResponse, PaymentModeLogo, PaymentModeList, RootPaymentMode, PaymentOptions, PaymentOptionsResponse, PayoutsResponse, PayoutRequest, PayoutResponse, UpdatePayoutResponse, UpdatePayoutRequest, DeletePayoutResponse, SubscriptionPaymentMethodResponse, DeleteSubscriptionPaymentMethodResponse, SubscriptionConfigResponse, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, GetActivityStatus, ActivityHistory, FailedOrders, FailOrder, MarketplaceOrder, TotalDiscountsSet, PresentmentMoney, ShopMoney, TotalPriceSet, TotalPriceSetShopMoney, TotalPriceSetPresentmentMoney, TotalTaxSet, TotalTaxSetShopMoney, TotalTaxSetPresentmentMoney, SubtotalPriceSet, SubtotalPriceSetShopMoney, SubtotalPriceSetPresentmentMoney, LineItems, LineItemsArticle, Quantities, NotAvailable, Sellable, OrderCommitted, Damaged, Manufacturer, ArticlePrice, Company, FailOrderDateMeta, MarketplaceIdentifiers, TatacliqLuxury, Dimension, Weight, Store, ArticleMeta, ArticleBrand, LineItemsArticleIdentifier, PriceSet, PriceSetShopMoney, PriceSetPresentmentMoney, TaxLines, TaxLinesPriceSet, TaxLinesPriceSetShopMoney, TaxLinesPriceSetPresentmentMoney, TotalDiscountSet, TotalDiscountSetPresentmentMoney, TotalDiscountSetShopMoney, BillingAddress, TotalShippingPriceSet, TotalShippingPriceSetShopMoney, TotalShippingPriceSetPresentmentMoney, Customer, DefaultAddress, TotalLineItemsPriceSet, TotalLineItemsPriceSetShopMoney, TotalLineItemsPriceSetPresentmentMoney, ShippingAddress, OrderListing, OrderItems, PlatformOrderUserInfo, PlatformDeliveryAddress, Channel, PlatformBreakupValues, PlatformApplication, ArticleAssignment, PlatformShipment, PlatformShipmentStatus, Bags, BagFinancialBreakup, Identifiers, BagCurrStatus, BagItem, BagItemAttributes, BagArticle, ArticleIdentifiers, Set, SetSizeDistribution, Sizes, BagArticleReturnConfig, ShipmentPrices, GstDetails, BagBreakupValues, BagCurrentStatus, BagStateMapper, BagStatus, BagStatusBagStateMapper, BagPrices, ShipmentBreakupValues, DpDetails, ShipmentInvoice, RtoAddress, StoreAddressJson, PlatformFulfillingStore, FulfillingStoreMeta, AdditionalContactDetails, Documents, Gst, ProductReturnConfig, Timing, Opening, Closing, FulfillingStoreStoreAddressJson, Payments, ShipmentGst, PlatformShipmentBrand, Promise, Timestamp, ShipmentTrackingDetails, ShipmentUser, ItemsPayments, Filters, Stages, StagesFilters, Options, NextOrderStatus, BagConfirmed, DpAssigned, ReturnBagDelivered, Placed, DeliveryDone, Pending, BagPacked, PlatformOrderPage, ItemTotal, AppliedFilters, UpdateOrderReprocessResponse, PlatformOrderTrack, GetPingResponse, UpdateShipmentStatusResponse, UpdateShipmentStatusBody, PlatformShipmentTrack, Results, UpdateProcessShipmenstRequestBody, UpdateProcessShipmenstRequestResponse, GetVoiceCallbackResponse, GetClickToCallResponse, ApefaceApiError, ReferralInfo, Document, CompanyAddress, BusinessCountryInfo, CompanyStoreSerializerRequest, SuccessResponse, ErrorResponse, UserSerializer, SellerPhoneNumber, ContactDetails, BusinessCountryInfo1, GetAddressSerializer, Website, BusinessDetails, GetCompanyProfileSerializerResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, CreateUpdateBrandRequestSerializer, UserSerializer1, GetBrandResponseSerializer, CompanyBrandPostRequestSerializer, GetCompanySerializer, CompanyBrandSerializer, CompanyBrandListSerializer, LocationTimingSerializer, LocationDayWiseSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, ProductReturnConfigSerializer, LocationManagerSerializer, GetAddressSerializer1, LocationSerializer, LocationIntegrationType, GetLocationSerializer, LocationListSerializer, FailedResponse, CDN, Upload, StartResponse, StartRequest, CompleteResponse, Opts, CopyFileTask, BulkResponse, ReqConfiguration, Destination, BulkRequest, Urls, SignUrlResponse, SignUrlRequest, DbRecord, BrowseResponse, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, ShortLinkList, ErrorRes, DataTresholdDTO, GenericDTO, JobConfigDTO, TaskDTO, ResponseEnvelopeString, AWSS3config, ArchiveConfig, Audit, CatalogMasterConfig, CompanyConfig, DBConfig, DBConnectionProfile, DBParamConfig, DefaultHeadersDTO, DocMappingConfig, EmailConfig, FTPConfig, FileConfig, GoogleSpreadSheetConfig, HttpConfig, JobConfig, JobConfigRawDTO, JsonDocConfig, LocalFileConfig, MongoDocConfig, OAuthConfig, ProcessConfig, PropBeanConfig, PropBeanDTO, ResponseEnvelopeListJobConfigRawDTO, SFTPConfig, Send, StoreConfig, StoreFilter, TaskConfig, TaskParam, TaskStepConfig, ResponseEnvelopeListJobConfigDTO, ResponseEnvelopeJobConfigDTO, JobConfigListDTO, ResponseEnvelopeListJobConfigListDTO, ApplicationInventory, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, RewardPointsConfig, Credit, Debit, AppCartConfig, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPoints, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, CurrencyConfig, DomainAdd, DomainAddRequest, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequest, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, UnhandledError, InvalidPayloadRequest, SuccessMessageResponse, InventoryBrandRule, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, CompanyAboutAddress, UserEmail, UserPhoneNumber, ApplicationInformation, InformationAddress, InformationPhone, InformationSupport, SocialLinks, Instagram, Twitter, Pinterest, GooglePlus, Youtube, LinkedIn, Vimeo, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, Auth, GoogleMap, GoogleMapCredentials, Rule, DisplayMetaDict, DisplayMeta, Identifier, RuleDefinition, Validity, CouponAction, CouponSchedule, Validation, State, PriceRange, PaymentAllowValue, PaymentModes, PaymentCodes, BulkBundleRestriction, UsesRemaining, UsesRestriction, PostOrder, Restrictions, CouponDateMeta, CouponAuthor, Ownership, CouponAdd, CouponsResponse, SuccessMessage, OperationErrorResponse, CouponUpdate, CouponPartialUpdate, StoreMapping, AllChannels, MyntraPayload, AmazonPayload, FlipkartPayload, TatacliqPayload, AjioPayload, InventorySyncConfig, StoreMappingPayload, StatusPayload, StatusResp, SyncPayload, SyncResp, MkpResp, AppUser, E, Giveaway, GiveawayResponse, HistoryPretty, HistoryRes, Offer, Points, Referral, RewardUser, RewardsAudience, RewardsRule, Schedule, ShareMessages, UserRes, StatGroup, StatsGroups, StatsGroupComponent, StatsGroupComponents, StatsRes, ReceivedAt, AbandonCartsDetail, AbandonCartsList, AbandonCartDetail, ExportJobReq, ExportJobRes, ExportJobStatusRes, GetLogsListReq, MkpLogsResp, GetLogsListRes, SearchLogReq, LogInfo, SearchLogRes, ValidityObject, CreateUpdateDiscount, DiscountJob, ListOrCalender, FileJobResponse, DownloadFileJob, CancelJobResponse, UserDetails, BadRequestObject, AddProxyReq, AddProxyResponse, ApiError, RemoveProxyResponse, EventConfig, EventConfigList, SubscriberConfigList, EventProcessedStatus, EventPayload, SubscriberConfig, SubscriberEvent, AuthMeta };
+    export { TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, Filter, TicketHistoryPayload, CustomFormSubmissionPayload, KeyValue, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, PhoneNumber, Email, Debug, SubmitCustomFormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketCategory, TicketSubCategory, SubmitButton, PollForAssignment, CustomForm, TicketHistory, Ticket, Activity, ActivityDump, AddMediaListRequest, AddMediaRequest, ApproveRequest, Attribute, AttributeObject, CreatedBy, CursorGetResponse, DateMeta, DeviceMeta, Entity, EntityRequest, FeedbackAttributes, FeedbackError, FeedbackState, GetResponse, GetReviewResponse, InsertResponse, MediaMeta, MediaMetaRequest, NumberGetResponse, PageCursor, PageNumber, Rating, RatingRequest, ReportAbuseRequest, Review, ReviewFacet, ReviewRequest, SaveAttributeRequest, SortMethod, TagMeta, Template, TemplateGetResponse, TemplateRequest, TemplateRequestList, UI, UIIcon, UpdateAttributeRequest, UpdateResponse, UpdateReviewRequest, UpdateTemplateRequest, UpdateTemplateStatusRequest, PaginationSchema, ThemesListingResponseSchema, AddThemeRequestSchema, UpgradableThemeSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegNotFoundSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, pagesSchema, availableSectionSchema, sectionSchema, Information, Images, Src, AssetsSchema, UmdJs, CommonJs, Css, AvailablePages, Seo, Sections, Config, Preset, GlobalSchema, ListSchema, Colors, Custom, ConfigPage, Font, Variants, Medium, SemiBold, Bold, Light, Regular, Blocks, BlocksProps, PageSections, PageSectionsBlocks, PageSectionsBlocksProps, Predicate, Screen, PredicateUserSchema, Route, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, SendEmailOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyOtpRequestSchema, SendMobileOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, UserObjectSchema, AuthSuccess, SendOtpResponse, LoginSuccess, VerifyOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, UserSearchResponseSchema, CustomerListResponseSchema, UnauthorizedSchema, UnauthenticatedSchema, NotFoundSchema, AuthenticationApiErrorSchema, ProfileEditSuccessSchema, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, AuthSuccessUser, AuthSuccessUserDebug, AuthSuccessUserEmails, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, Mobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, Facebook, Accountkit, Google, UserSchema, ApplicationLegal, ApplicationLegalFAQ, SeoComponent, SeoSchema, CustomMetaTag, Detail, StorefrontAnnouncement, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, ScheduleSchema, NextSchedule, AnnouncementSchema, announcementSchema, scheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, Navigation, LocaleLanguage, Language, Action, ActionPage, NavigationReference, LandingPage, ConfigurationSchema, SlideshowMedia, Slideshow, AnnouncementsResponseSchema, AnnouncementDataSchema, FaqResponseSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, APIError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, CustomPageSchema, ContentSchema, CustomPage, CustomBlogSchema, FeatureImage, CustomBlog, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PageContent, PageMeta, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, ErrorResponseSchema, Success, CreatedModifiedByObject, PickupPointResponse, PickupPointSchema, ItemProperties, AddressObject, AdditionalContactsObject, TimingObject, OpeningClosingObject, PickupResponse, PickupConfiguration, PickupResponseItems, ShippingSchema, ShippingResponse, AssignmentSchema, FulfillmentPriorityObject, StoreSchema, StoreResponse, StoreAssignmentObject, StrategyObject, StrategyItems, StoreListResponse, ZoneSchema, ZoneListResponse, RegionObject, PincodeObject, RadiusObject, ZoneDetailsObject, UnauthenticatedUser, UnauthenticatedApplication, BadRequest, ResourceNotFound, InternalServerError, PlanRecurring, Plan, DetailedPlanComponents, DetailedPlan, InvoiceDetailsPeriod, InvoiceDetailsClient, InvoiceDetailsStatusTrail, InvoiceDetailsPaymentMethodsDataChecks, InvoiceDetailsPaymentMethodsDataNetworks, InvoiceDetailsPaymentMethodsDataThreeDSecureUsage, InvoiceDetailsPaymentMethodsData, InvoiceDetailsPaymentMethods, InvoicePaymentMethod, InvoiceDetails, InvoiceItemsPlanRecurring, InvoiceItemsPlan, InvoiceItemsPeriod, InvoiceItems, Invoice, InvoicesDataClient, InvoicesDataPeriod, InvoicesDataPaymentMethod, InvoicesData, Invoices, Phone, SubscriptionBillingAddress, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionCurrentPeriod, SubscriptionPauseCollection, SubscriptionTrial, SubscriptionInvoiceSettings, Subscription, SubscriptionStatus, SubscriptionLimitApplication, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitTeam, SubscriptionLimitProducts, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimit, SubscriptionActivateReq, SubscriptionActivateRes, CancelSubscriptionReq, CancelSubscriptionRes, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BigqueryHeadersReq, BigqueryHeadersResHeaders, BigqueryHeadersRes, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, AudienceReq, Audience, Audiences, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateDeleteSuccessRes, EmailTemplateDeleteFailureRes, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplateRes, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptions, TriggerJobResponse, TriggerJobRequest, Job, Jobs, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, PushtokenReq, PushtokenRes, SmsProviderReq, SmsProvider, SmsProviders, SmsTemplateDeleteSuccessRes, SmsTemplateDeleteFailureRes, SmsTemplateMessage, SmsTemplateReq, SmsTemplateRes, SmsTemplate, SystemSmsTemplate, SmsTemplates, SystemSmsTemplates, Notification, SystemNotificationUser, SystemNotificationSettings, SystemNotification, SystemNotificationsPage, SystemNotifications, PaymentGatewayConfigResponse, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorCodeAndResponse, PaymentModeLogo, PaymentModeList, RootPaymentMode, PaymentOptions, PaymentOptionsResponse, PayoutsResponse, PayoutRequest, PayoutResponse, UpdatePayoutResponse, UpdatePayoutRequest, DeletePayoutResponse, SubscriptionPaymentMethodResponse, DeleteSubscriptionPaymentMethodResponse, SubscriptionConfigResponse, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, GetActivityStatus, ActivityHistory, FailedOrders, FailOrder, MarketplaceOrder, TotalDiscountsSet, PresentmentMoney, ShopMoney, TotalPriceSet, TotalPriceSetShopMoney, TotalPriceSetPresentmentMoney, TotalTaxSet, TotalTaxSetShopMoney, TotalTaxSetPresentmentMoney, SubtotalPriceSet, SubtotalPriceSetShopMoney, SubtotalPriceSetPresentmentMoney, LineItems, LineItemsArticle, Quantities, NotAvailable, Sellable, OrderCommitted, Damaged, Manufacturer, ArticlePrice, Company, FailOrderDateMeta, MarketplaceIdentifiers, TatacliqLuxury, Dimension, Weight, Store, ArticleMeta, ArticleBrand, LineItemsArticleIdentifier, PriceSet, PriceSetShopMoney, PriceSetPresentmentMoney, TaxLines, TaxLinesPriceSet, TaxLinesPriceSetShopMoney, TaxLinesPriceSetPresentmentMoney, TotalDiscountSet, TotalDiscountSetPresentmentMoney, TotalDiscountSetShopMoney, BillingAddress, TotalShippingPriceSet, TotalShippingPriceSetShopMoney, TotalShippingPriceSetPresentmentMoney, Customer, DefaultAddress, TotalLineItemsPriceSet, TotalLineItemsPriceSetShopMoney, TotalLineItemsPriceSetPresentmentMoney, ShippingAddress, OrderListing, OrderItems, PlatformOrderUserInfo, PlatformDeliveryAddress, Channel, PlatformBreakupValues, PlatformApplication, ArticleAssignment, PlatformShipment, PlatformShipmentStatus, Bags, BagFinancialBreakup, Identifiers, BagCurrStatus, BagItem, BagItemAttributes, BagArticle, ArticleIdentifiers, Set, SetSizeDistribution, Sizes, BagArticleReturnConfig, ShipmentPrices, GstDetails, BagBreakupValues, BagCurrentStatus, BagStateMapper, BagStatus, BagStatusBagStateMapper, BagPrices, ShipmentBreakupValues, DpDetails, ShipmentInvoice, RtoAddress, StoreAddressJson, PlatformFulfillingStore, FulfillingStoreMeta, AdditionalContactDetails, Documents, Gst, ProductReturnConfig, Timing, Opening, Closing, FulfillingStoreStoreAddressJson, Payments, ShipmentGst, PlatformShipmentBrand, Promise, Timestamp, ShipmentTrackingDetails, ShipmentUser, ItemsPayments, Filters, Stages, StagesFilters, Options, NextOrderStatus, BagConfirmed, DpAssigned, ReturnBagDelivered, Placed, DeliveryDone, Pending, BagPacked, PlatformOrderPage, ItemTotal, AppliedFilters, UpdateOrderReprocessResponse, PlatformOrderTrack, GetPingResponse, UpdateShipmentStatusResponse, UpdateShipmentStatusBody, PlatformShipmentTrack, Results, UpdateProcessShipmenstRequestBody, UpdateProcessShipmenstRequestResponse, GetVoiceCallbackResponse, GetClickToCallResponse, ApefaceApiError, Document, CompanyAddress, ReferralInfo, BusinessCountryInfo, CompanyStoreSerializerRequest, SuccessResponse, ErrorResponse, GetAddressSerializer, UserSerializer, SellerPhoneNumber, ContactDetails, Website, BusinessDetails, BusinessCountryInfo1, GetCompanyProfileSerializerResponse, DocumentsObj, MetricsSerializer, UserSerializer1, BrandBannerSerializer, GetBrandResponseSerializer, CreateUpdateBrandRequestSerializer, CompanyBrandPostRequestSerializer, GetCompanySerializer, CompanyBrandSerializer, CompanyBrandListSerializer, GetAddressSerializer1, LocationManagerSerializer, LocationTimingSerializer, LocationDayWiseSerializer, ProductReturnConfigSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, LocationSerializer, LocationIntegrationType, GetLocationSerializer, LocationListSerializer, FailedResponse, CDN, Upload, StartResponse, StartRequest, CompleteResponse, Opts, CopyFileTask, BulkResponse, ReqConfiguration, Destination, BulkRequest, Urls, SignUrlResponse, SignUrlRequest, DbRecord, BrowseResponse, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, ShortLinkList, ErrorRes, DataTresholdDTO, GenericDTO, JobConfigDTO, TaskDTO, ResponseEnvelopeString, AWSS3config, ArchiveConfig, Audit, CatalogMasterConfig, CompanyConfig, DBConfig, DBConnectionProfile, DBParamConfig, DefaultHeadersDTO, DocMappingConfig, EmailConfig, FTPConfig, FileConfig, GoogleSpreadSheetConfig, HttpConfig, JobConfig, JobConfigRawDTO, JsonDocConfig, LocalFileConfig, MongoDocConfig, OAuthConfig, ProcessConfig, PropBeanConfig, PropBeanDTO, ResponseEnvelopeListJobConfigRawDTO, SFTPConfig, Send, StoreConfig, StoreFilter, TaskConfig, TaskParam, TaskStepConfig, ResponseEnvelopeListJobConfigDTO, ResponseEnvelopeJobConfigDTO, JobConfigListDTO, ResponseEnvelopeListJobConfigListDTO, ApplicationInventory, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, RewardPointsConfig, Credit, Debit, AppCartConfig, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPoints, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, CurrencyConfig, DomainAdd, DomainAddRequest, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, ListingPageFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequest, AppFeatureResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, UnhandledError, InvalidPayloadRequest, SuccessMessageResponse, InventoryBrandRule, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, CompanyAboutAddress, UserEmail, UserPhoneNumber, ApplicationInformation, InformationAddress, InformationPhone, InformationSupport, SocialLinks, Instagram, Twitter, Pinterest, GooglePlus, Youtube, LinkedIn, Vimeo, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, Auth, GoogleMap, GoogleMapCredentials, Rule, DisplayMetaDict, DisplayMeta, Identifier, RuleDefinition, Validity, CouponAction, CouponSchedule, Validation, State, PriceRange, PaymentAllowValue, PaymentModes, PaymentCodes, BulkBundleRestriction, UsesRemaining, UsesRestriction, PostOrder, Restrictions, CouponDateMeta, CouponAuthor, Ownership, CouponAdd, CouponsResponse, SuccessMessage, OperationErrorResponse, CouponUpdate, CouponPartialUpdate, StoreMapping, AllChannels, MyntraPayload, AmazonPayload, FlipkartPayload, TatacliqPayload, AjioPayload, InventorySyncConfig, StoreMappingPayload, StatusPayload, StatusResp, SyncPayload, SyncResp, MkpResp, AppUser, E, Giveaway, GiveawayResponse, HistoryPretty, HistoryRes, Offer, Points, Referral, RewardUser, RewardsAudience, RewardsRule, Schedule, ShareMessages, UserRes, StatGroup, StatsGroups, StatsGroupComponent, StatsGroupComponents, StatsRes, ReceivedAt, AbandonCartsDetail, AbandonCartsList, AbandonCartDetail, ExportJobReq, ExportJobRes, ExportJobStatusRes, GetLogsListReq, MkpLogsResp, GetLogsListRes, SearchLogReq, LogInfo, SearchLogRes, ValidityObject, CreateUpdateDiscount, DiscountJob, ListOrCalender, FileJobResponse, DownloadFileJob, CancelJobResponse, UserDetails, BadRequestObject, AddProxyReq, AddProxyResponse, ApiError, RemoveProxyResponse, EventConfig, EventConfigList, SubscriberConfigList, EventProcessedStatus, EventPayload, SubscriberConfig, SubscriberEvent, AuthMeta };
 }
 /**
         @typedef TicketList
@@ -8957,26 +8957,18 @@ declare namespace PlatformApplicationClient {
          
     */
 /**
-        @typedef ReferralInfo
-        
-        
-        @property { string } [referral_code]
-        
-         
-    */
-/**
         @typedef Document
         
         
-        @property { string } legal_name
+        @property { string } value
         
         @property { string } type
         
-        @property { string } value
+        @property { string } [url]
         
         @property { boolean } [verified]
         
-        @property { string } [url]
+        @property { string } legal_name
         
          
     */
@@ -8984,25 +8976,33 @@ declare namespace PlatformApplicationClient {
         @typedef CompanyAddress
         
         
-        @property { string } state
-        
         @property { string } [landmark]
-        
-        @property { string } address1
-        
-        @property { string } country
-        
-        @property { number } latitude
-        
-        @property { string } city
-        
-        @property { string } [address2]
         
         @property { string } [country_code]
         
-        @property { number } pincode
+        @property { string } country
         
         @property { number } longitude
+        
+        @property { string } state
+        
+        @property { string } city
+        
+        @property { number } latitude
+        
+        @property { number } pincode
+        
+        @property { string } address1
+        
+        @property { string } [address2]
+        
+         
+    */
+/**
+        @typedef ReferralInfo
+        
+        
+        @property { string } [referral_code]
         
          
     */
@@ -9020,27 +9020,27 @@ declare namespace PlatformApplicationClient {
         @typedef CompanyStoreSerializerRequest
         
         
-        @property { Array<string> } [notification_emails]
-        
-        @property { boolean } [franchise_enabled]
-        
-        @property { ReferralInfo } [referral_info]
-        
         @property { string } [business_info]
         
-        @property { string } business_type
+        @property { Array<number> } brands
         
         @property { Document } document
-        
-        @property { Array<number> } brands
         
         @property { CompanyAddress } address
         
         @property { number } [uid]
         
-        @property { Object } [warnings]
+        @property { boolean } [franchise_enabled]
+        
+        @property { ReferralInfo } [referral_info]
+        
+        @property { string } business_type
         
         @property { BusinessCountryInfo } business_country_info
+        
+        @property { Object } [warnings]
+        
+        @property { Array<string> } [notification_emails]
         
         @property { string } name
         
@@ -9062,53 +9062,11 @@ declare namespace PlatformApplicationClient {
         
         @property { string } [code]
         
+        @property { Object } [meta]
+        
         @property { string } [message]
         
         @property { number } [status]
-        
-        @property { Object } [meta]
-        
-         
-    */
-/**
-        @typedef UserSerializer
-        
-        
-        @property { string } [user_id]
-        
-        @property { string } [username]
-        
-        @property { string } [contact]
-        
-         
-    */
-/**
-        @typedef SellerPhoneNumber
-        
-        
-        @property { number } country_code
-        
-        @property { string } number
-        
-         
-    */
-/**
-        @typedef ContactDetails
-        
-        
-        @property { Array<string> } [emails]
-        
-        @property { Array<SellerPhoneNumber> } [phone]
-        
-         
-    */
-/**
-        @typedef BusinessCountryInfo1
-        
-        
-        @property { string } [country_code]
-        
-        @property { string } [country]
         
          
     */
@@ -9116,27 +9074,59 @@ declare namespace PlatformApplicationClient {
         @typedef GetAddressSerializer
         
         
-        @property { string } [address_type]
-        
-        @property { string } [state]
-        
         @property { string } [landmark]
-        
-        @property { string } [address1]
-        
-        @property { string } [country]
-        
-        @property { number } [latitude]
-        
-        @property { string } [address2]
-        
-        @property { string } [city]
         
         @property { string } [country_code]
         
-        @property { number } [pincode]
+        @property { string } [country]
         
         @property { number } [longitude]
+        
+        @property { string } [state]
+        
+        @property { string } [city]
+        
+        @property { number } [latitude]
+        
+        @property { string } [address_type]
+        
+        @property { number } [pincode]
+        
+        @property { string } [address1]
+        
+        @property { string } [address2]
+        
+         
+    */
+/**
+        @typedef UserSerializer
+        
+        
+        @property { string } [contact]
+        
+        @property { string } [user_id]
+        
+        @property { string } [username]
+        
+         
+    */
+/**
+        @typedef SellerPhoneNumber
+        
+        
+        @property { string } number
+        
+        @property { number } country_code
+        
+         
+    */
+/**
+        @typedef ContactDetails
+        
+        
+        @property { Array<SellerPhoneNumber> } [phone]
+        
+        @property { Array<string> } [emails]
         
          
     */
@@ -9157,48 +9147,58 @@ declare namespace PlatformApplicationClient {
          
     */
 /**
+        @typedef BusinessCountryInfo1
+        
+        
+        @property { string } [country_code]
+        
+        @property { string } [country]
+        
+         
+    */
+/**
         @typedef GetCompanyProfileSerializerResponse
         
         
-        @property { string } company_type
-        
-        @property { UserSerializer } [created_by]
-        
-        @property { UserSerializer } [modified_by]
-        
-        @property { string } [stage]
-        
-        @property { string } [name]
-        
-        @property { boolean } [franchise_enabled]
-        
-        @property { string } business_type
-        
-        @property { string } [verified_on]
-        
-        @property { Array<string> } [notification_emails]
-        
-        @property { ContactDetails } [contact_details]
-        
-        @property { string } [business_info]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { BusinessCountryInfo1 } [business_country_info]
+        @property { number } uid
         
         @property { Object } [warnings]
-        
-        @property { string } [created_on]
         
         @property { Array<GetAddressSerializer> } [addresses]
         
         @property { UserSerializer } [verified_by]
         
-        @property { string } [modified_on]
+        @property { string } [verified_on]
+        
+        @property { string } [name]
+        
+        @property { string } [business_info]
+        
+        @property { boolean } [franchise_enabled]
+        
+        @property { UserSerializer } [modified_by]
+        
+        @property { Array<Document> } [documents]
+        
+        @property { string } [created_on]
+        
+        @property { string } company_type
+        
+        @property { ContactDetails } [contact_details]
         
         @property { BusinessDetails } [business_details]
         
-        @property { number } uid
+        @property { BusinessCountryInfo1 } [business_country_info]
+        
+        @property { Array<string> } [notification_emails]
+        
+        @property { string } [stage]
+        
+        @property { string } business_type
+        
+        @property { string } [modified_on]
+        
+        @property { UserSerializer } [created_by]
         
          
     */
@@ -9216,19 +9216,31 @@ declare namespace PlatformApplicationClient {
         @typedef MetricsSerializer
         
         
-        @property { DocumentsObj } [brand]
-        
-        @property { DocumentsObj } [store_documents]
-        
         @property { DocumentsObj } [company_documents]
+        
+        @property { string } [stage]
         
         @property { number } [uid]
         
         @property { DocumentsObj } [product]
         
+        @property { DocumentsObj } [store_documents]
+        
+        @property { DocumentsObj } [brand]
+        
         @property { DocumentsObj } [store]
         
-        @property { string } [stage]
+         
+    */
+/**
+        @typedef UserSerializer1
+        
+        
+        @property { string } [contact]
+        
+        @property { string } [user_id]
+        
+        @property { string } [username]
         
          
     */
@@ -9243,82 +9255,70 @@ declare namespace PlatformApplicationClient {
          
     */
 /**
-        @typedef CreateUpdateBrandRequestSerializer
-        
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { string } name
-        
-        @property { string } [description]
-        
-        @property { number } [company_id]
-        
-        @property { number } [uid]
-        
-        @property { BrandBannerSerializer } [banner]
-        
-        @property { string } [brand_tier]
-        
-        @property { Object } [_locale_language]
-        
-        @property { string } logo
-        
-        @property { Object } [_custom_json]
-        
-         
-    */
-/**
-        @typedef UserSerializer1
-        
-        
-        @property { string } [user_id]
-        
-        @property { string } [username]
-        
-        @property { string } [contact]
-        
-         
-    */
-/**
         @typedef GetBrandResponseSerializer
         
         
-        @property { string } [modified_on]
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { string } [stage]
-        
-        @property { string } [description]
-        
-        @property { Object } [_custom_json]
+        @property { string } [created_on]
         
         @property { string } [logo]
         
-        @property { UserSerializer1 } [created_by]
-        
-        @property { number } [uid]
-        
-        @property { BrandBannerSerializer } [banner]
-        
-        @property { string } [slug_key]
-        
-        @property { string } [reject_reason]
-        
-        @property { Object } [_locale_language]
-        
-        @property { UserSerializer1 } [modified_by]
+        @property { string } [stage]
         
         @property { Object } [warnings]
         
-        @property { string } [created_on]
+        @property { Object } [_locale_language]
         
-        @property { string } name
+        @property { number } [uid]
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { UserSerializer1 } [created_by]
+        
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { string } [reject_reason]
+        
+        @property { Object } [_custom_json]
+        
+        @property { string } [modified_on]
+        
+        @property { string } [slug_key]
+        
+        @property { UserSerializer1 } [verified_by]
+        
+        @property { string } [description]
+        
+        @property { UserSerializer1 } [modified_by]
         
         @property { string } [verified_on]
         
-        @property { UserSerializer1 } [verified_by]
+        @property { string } name
+        
+         
+    */
+/**
+        @typedef CreateUpdateBrandRequestSerializer
+        
+        
+        @property { string } logo
+        
+        @property { number } [uid]
+        
+        @property { string } [brand_tier]
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { Object } [_custom_json]
+        
+        @property { number } [company_id]
+        
+        @property { string } [description]
+        
+        @property { Object } [_locale_language]
+        
+        @property { string } name
         
          
     */
@@ -9338,31 +9338,31 @@ declare namespace PlatformApplicationClient {
         @typedef GetCompanySerializer
         
         
-        @property { string } [modified_on]
-        
-        @property { string } [company_type]
+        @property { string } [created_on]
         
         @property { string } [stage]
         
-        @property { string } [business_type]
-        
-        @property { UserSerializer } [created_by]
+        @property { Array<GetAddressSerializer> } [addresses]
         
         @property { number } [uid]
         
+        @property { string } [company_type]
+        
+        @property { UserSerializer } [created_by]
+        
+        @property { string } [business_type]
+        
         @property { string } [reject_reason]
         
-        @property { Array<GetAddressSerializer> } [addresses]
+        @property { string } [modified_on]
+        
+        @property { UserSerializer } [verified_by]
         
         @property { UserSerializer } [modified_by]
         
-        @property { string } [created_on]
-        
-        @property { string } [name]
-        
         @property { string } [verified_on]
         
-        @property { UserSerializer } [verified_by]
+        @property { string } [name]
         
          
     */
@@ -9370,29 +9370,29 @@ declare namespace PlatformApplicationClient {
         @typedef CompanyBrandSerializer
         
         
-        @property { string } [modified_on]
+        @property { string } [created_on]
         
-        @property { GetBrandResponseSerializer } [brand]
+        @property { string } [stage]
+        
+        @property { number } [uid]
         
         @property { GetCompanySerializer } [company]
         
         @property { UserSerializer1 } [created_by]
         
-        @property { number } [uid]
-        
         @property { string } [reject_reason]
         
-        @property { UserSerializer1 } [modified_by]
+        @property { string } [modified_on]
         
         @property { Object } [warnings]
         
-        @property { string } [created_on]
+        @property { UserSerializer1 } [verified_by]
         
-        @property { string } [stage]
+        @property { GetBrandResponseSerializer } [brand]
+        
+        @property { UserSerializer1 } [modified_by]
         
         @property { string } [verified_on]
-        
-        @property { UserSerializer1 } [verified_by]
         
          
     */
@@ -9400,9 +9400,49 @@ declare namespace PlatformApplicationClient {
         @typedef CompanyBrandListSerializer
         
         
+        @property { Page } [page]
+        
         @property { Array<CompanyBrandSerializer> } [items]
         
-        @property { Page } [page]
+         
+    */
+/**
+        @typedef GetAddressSerializer1
+        
+        
+        @property { string } [landmark]
+        
+        @property { string } [country_code]
+        
+        @property { string } [country]
+        
+        @property { number } [longitude]
+        
+        @property { string } [state]
+        
+        @property { string } [city]
+        
+        @property { number } [latitude]
+        
+        @property { string } [address_type]
+        
+        @property { number } [pincode]
+        
+        @property { string } [address1]
+        
+        @property { string } [address2]
+        
+         
+    */
+/**
+        @typedef LocationManagerSerializer
+        
+        
+        @property { string } [email]
+        
+        @property { SellerPhoneNumber } mobile_no
+        
+        @property { string } [name]
         
          
     */
@@ -9420,13 +9460,23 @@ declare namespace PlatformApplicationClient {
         @typedef LocationDayWiseSerializer
         
         
-        @property { string } weekday
+        @property { LocationTimingSerializer } [opening]
         
         @property { boolean } open
         
         @property { LocationTimingSerializer } [closing]
         
-        @property { LocationTimingSerializer } [opening]
+        @property { string } weekday
+        
+         
+    */
+/**
+        @typedef ProductReturnConfigSerializer
+        
+        
+        @property { number } [store_uid]
+        
+        @property { boolean } [on_same_store]
         
          
     */
@@ -9436,9 +9486,9 @@ declare namespace PlatformApplicationClient {
         
         @property { boolean } [enabled]
         
-        @property { string } [password]
-        
         @property { string } [username]
+        
+        @property { string } [password]
         
          
     */
@@ -9453,92 +9503,42 @@ declare namespace PlatformApplicationClient {
          
     */
 /**
-        @typedef ProductReturnConfigSerializer
-        
-        
-        @property { boolean } [on_same_store]
-        
-        @property { number } [store_uid]
-        
-         
-    */
-/**
-        @typedef LocationManagerSerializer
-        
-        
-        @property { string } [email]
-        
-        @property { string } [name]
-        
-        @property { SellerPhoneNumber } mobile_no
-        
-         
-    */
-/**
-        @typedef GetAddressSerializer1
-        
-        
-        @property { string } [address_type]
-        
-        @property { string } [state]
-        
-        @property { string } [landmark]
-        
-        @property { string } [address1]
-        
-        @property { string } [country]
-        
-        @property { number } [latitude]
-        
-        @property { string } [address2]
-        
-        @property { string } [city]
-        
-        @property { string } [country_code]
-        
-        @property { number } [pincode]
-        
-        @property { number } [longitude]
-        
-         
-    */
-/**
         @typedef LocationSerializer
         
         
-        @property { string } code
-        
-        @property { Array<string> } [notification_emails]
-        
-        @property { string } [store_type]
-        
-        @property { Object } [_custom_json]
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { InvoiceDetailsSerializer } [gst_credentials]
-        
-        @property { string } display_name
-        
-        @property { ProductReturnConfigSerializer } [product_return_config]
-        
-        @property { LocationManagerSerializer } [manager]
-        
         @property { Array<Document> } [documents]
-        
-        @property { number } [uid]
-        
-        @property { GetAddressSerializer1 } address
-        
-        @property { Object } [warnings]
         
         @property { string } [stage]
         
-        @property { string } name
+        @property { string } code
+        
+        @property { Array<SellerPhoneNumber> } [contact_numbers]
+        
+        @property { GetAddressSerializer1 } address
+        
+        @property { number } [uid]
+        
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { string } [store_type]
         
         @property { number } company
         
-        @property { Array<SellerPhoneNumber> } [contact_numbers]
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
+        @property { ProductReturnConfigSerializer } [product_return_config]
+        
+        @property { Object } [_custom_json]
+        
+        @property { InvoiceDetailsSerializer } [gst_credentials]
+        
+        @property { Object } [warnings]
+        
+        @property { string } display_name
+        
+        @property { Array<string> } [notification_emails]
+        
+        @property { string } name
         
          
     */
@@ -9546,9 +9546,9 @@ declare namespace PlatformApplicationClient {
         @typedef LocationIntegrationType
         
         
-        @property { string } [order]
-        
         @property { string } [inventory]
+        
+        @property { string } [order]
         
          
     */
@@ -9556,55 +9556,55 @@ declare namespace PlatformApplicationClient {
         @typedef GetLocationSerializer
         
         
-        @property { InvoiceDetailsSerializer } [gst_credentials]
-        
-        @property { Object } [_custom_json]
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { ProductReturnConfigSerializer } [product_return_config]
-        
-        @property { UserSerializer1 } [created_by]
+        @property { string } code
         
         @property { GetAddressSerializer } address
         
-        @property { UserSerializer1 } [modified_by]
-        
-        @property { string } [stage]
-        
-        @property { string } name
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { string } phone_number
-        
-        @property { string } [verified_on]
-        
-        @property { Array<SellerPhoneNumber> } [contact_numbers]
-        
-        @property { string } code
-        
-        @property { Array<string> } [notification_emails]
+        @property { number } [uid]
         
         @property { string } [store_type]
         
-        @property { string } display_name
+        @property { Object } [_custom_json]
         
-        @property { Array<Document> } [documents]
-        
-        @property { string } [created_on]
+        @property { InvoiceDetailsSerializer } [gst_credentials]
         
         @property { Object } [warnings]
         
         @property { UserSerializer1 } [verified_by]
         
-        @property { string } [modified_on]
+        @property { string } [verified_on]
+        
+        @property { string } name
+        
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { GetCompanySerializer } [company]
         
         @property { LocationIntegrationType } [integration_type]
         
-        @property { number } [uid]
+        @property { UserSerializer1 } [modified_by]
         
-        @property { GetCompanySerializer } [company]
+        @property { Array<SellerPhoneNumber> } [contact_numbers]
+        
+        @property { Array<Document> } [documents]
+        
+        @property { string } [created_on]
+        
+        @property { ProductReturnConfigSerializer } [product_return_config]
+        
+        @property { string } display_name
+        
+        @property { Array<string> } [notification_emails]
+        
+        @property { string } [stage]
+        
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
+        @property { string } phone_number
+        
+        @property { string } [modified_on]
+        
+        @property { UserSerializer1 } [created_by]
         
          
     */
@@ -9612,9 +9612,9 @@ declare namespace PlatformApplicationClient {
         @typedef LocationListSerializer
         
         
-        @property { Array<GetLocationSerializer> } [items]
-        
         @property { Page } [page]
+        
+        @property { Array<GetLocationSerializer> } [items]
         
          
     */
@@ -21924,44 +21924,44 @@ type GetClickToCallResponse = {
 type ApefaceApiError = {
     message?: string;
 };
-type ReferralInfo = {
-    referral_code?: string;
-};
 type Document = {
-    legal_name: string;
-    type: string;
     value: string;
-    verified?: boolean;
+    type: string;
     url?: string;
+    verified?: boolean;
+    legal_name: string;
 };
 type CompanyAddress = {
-    state: string;
     landmark?: string;
-    address1: string;
-    country: string;
-    latitude: number;
-    city: string;
-    address2?: string;
     country_code?: string;
-    pincode: number;
+    country: string;
     longitude: number;
+    state: string;
+    city: string;
+    latitude: number;
+    pincode: number;
+    address1: string;
+    address2?: string;
+};
+type ReferralInfo = {
+    referral_code?: string;
 };
 type BusinessCountryInfo = {
     country_code?: string;
     country?: string;
 };
 type CompanyStoreSerializerRequest = {
-    notification_emails?: Array<string>;
-    franchise_enabled?: boolean;
-    referral_info?: ReferralInfo;
     business_info?: string;
-    business_type: string;
-    document: Document;
     brands: Array<number>;
+    document: Document;
     address: CompanyAddress;
     uid?: number;
-    warnings?: any;
+    franchise_enabled?: boolean;
+    referral_info?: ReferralInfo;
+    business_type: string;
     business_country_info: BusinessCountryInfo;
+    warnings?: any;
+    notification_emails?: Array<string>;
     name: string;
 };
 type SuccessResponse = {
@@ -21970,39 +21970,35 @@ type SuccessResponse = {
 };
 type ErrorResponse = {
     code?: string;
+    meta?: any;
     message?: string;
     status?: number;
-    meta?: any;
-};
-type UserSerializer = {
-    user_id?: string;
-    username?: string;
-    contact?: string;
-};
-type SellerPhoneNumber = {
-    country_code: number;
-    number: string;
-};
-type ContactDetails = {
-    emails?: Array<string>;
-    phone?: Array<SellerPhoneNumber>;
-};
-type BusinessCountryInfo1 = {
-    country_code?: string;
-    country?: string;
 };
 type GetAddressSerializer = {
-    address_type?: string;
-    state?: string;
     landmark?: string;
-    address1?: string;
-    country?: string;
-    latitude?: number;
-    address2?: string;
-    city?: string;
     country_code?: string;
-    pincode?: number;
+    country?: string;
     longitude?: number;
+    state?: string;
+    city?: string;
+    latitude?: number;
+    address_type?: string;
+    pincode?: number;
+    address1?: string;
+    address2?: string;
+};
+type UserSerializer = {
+    contact?: string;
+    user_id?: string;
+    username?: string;
+};
+type SellerPhoneNumber = {
+    number: string;
+    country_code: number;
+};
+type ContactDetails = {
+    phone?: Array<SellerPhoneNumber>;
+    emails?: Array<string>;
 };
 type Website = {
     url?: string;
@@ -22010,81 +22006,85 @@ type Website = {
 type BusinessDetails = {
     website?: Website;
 };
+type BusinessCountryInfo1 = {
+    country_code?: string;
+    country?: string;
+};
 type GetCompanyProfileSerializerResponse = {
-    company_type: string;
-    created_by?: UserSerializer;
-    modified_by?: UserSerializer;
-    stage?: string;
-    name?: string;
-    franchise_enabled?: boolean;
-    business_type: string;
-    verified_on?: string;
-    notification_emails?: Array<string>;
-    contact_details?: ContactDetails;
-    business_info?: string;
-    documents?: Array<Document>;
-    business_country_info?: BusinessCountryInfo1;
+    uid: number;
     warnings?: any;
-    created_on?: string;
     addresses?: Array<GetAddressSerializer>;
     verified_by?: UserSerializer;
-    modified_on?: string;
+    verified_on?: string;
+    name?: string;
+    business_info?: string;
+    franchise_enabled?: boolean;
+    modified_by?: UserSerializer;
+    documents?: Array<Document>;
+    created_on?: string;
+    company_type: string;
+    contact_details?: ContactDetails;
     business_details?: BusinessDetails;
-    uid: number;
+    business_country_info?: BusinessCountryInfo1;
+    notification_emails?: Array<string>;
+    stage?: string;
+    business_type: string;
+    modified_on?: string;
+    created_by?: UserSerializer;
 };
 type DocumentsObj = {
     pending?: number;
     verified?: number;
 };
 type MetricsSerializer = {
-    brand?: DocumentsObj;
-    store_documents?: DocumentsObj;
     company_documents?: DocumentsObj;
+    stage?: string;
     uid?: number;
     product?: DocumentsObj;
+    store_documents?: DocumentsObj;
+    brand?: DocumentsObj;
     store?: DocumentsObj;
-    stage?: string;
+};
+type UserSerializer1 = {
+    contact?: string;
+    user_id?: string;
+    username?: string;
 };
 type BrandBannerSerializer = {
     portrait?: string;
     landscape?: string;
 };
-type CreateUpdateBrandRequestSerializer = {
-    synonyms?: Array<string>;
-    name: string;
-    description?: string;
-    company_id?: number;
-    uid?: number;
-    banner?: BrandBannerSerializer;
-    brand_tier?: string;
-    _locale_language?: any;
-    logo: string;
-    _custom_json?: any;
-};
-type UserSerializer1 = {
-    user_id?: string;
-    username?: string;
-    contact?: string;
-};
 type GetBrandResponseSerializer = {
-    modified_on?: string;
-    synonyms?: Array<string>;
-    stage?: string;
-    description?: string;
-    _custom_json?: any;
-    logo?: string;
-    created_by?: UserSerializer1;
-    uid?: number;
-    banner?: BrandBannerSerializer;
-    slug_key?: string;
-    reject_reason?: string;
-    _locale_language?: any;
-    modified_by?: UserSerializer1;
-    warnings?: any;
     created_on?: string;
-    name: string;
-    verified_on?: string;
+    logo?: string;
+    stage?: string;
+    warnings?: any;
+    _locale_language?: any;
+    uid?: number;
+    synonyms?: Array<string>;
+    created_by?: UserSerializer1;
+    banner?: BrandBannerSerializer;
+    reject_reason?: string;
+    _custom_json?: any;
+    modified_on?: string;
+    slug_key?: string;
     verified_by?: UserSerializer1;
+    description?: string;
+    modified_by?: UserSerializer1;
+    verified_on?: string;
+    name: string;
+};
+type CreateUpdateBrandRequestSerializer = {
+    logo: string;
+    uid?: number;
+    brand_tier?: string;
+    synonyms?: Array<string>;
+    banner?: BrandBannerSerializer;
+    _custom_json?: any;
+    company_id?: number;
+    description?: string;
+    _locale_language?: any;
+    name: string;
 };
 type CompanyBrandPostRequestSerializer = {
     uid?: number;
@@ -22092,132 +22092,132 @@ type CompanyBrandPostRequestSerializer = {
     brands: Array<number>;
 };
 type GetCompanySerializer = {
-    modified_on?: string;
-    company_type?: string;
-    stage?: string;
-    business_type?: string;
-    created_by?: UserSerializer;
-    uid?: number;
-    reject_reason?: string;
-    addresses?: Array<GetAddressSerializer>;
-    modified_by?: UserSerializer;
     created_on?: string;
-    name?: string;
-    verified_on?: string;
+    stage?: string;
+    addresses?: Array<GetAddressSerializer>;
+    uid?: number;
+    company_type?: string;
+    created_by?: UserSerializer;
+    business_type?: string;
+    reject_reason?: string;
+    modified_on?: string;
     verified_by?: UserSerializer;
+    modified_by?: UserSerializer;
+    verified_on?: string;
+    name?: string;
 };
 type CompanyBrandSerializer = {
-    modified_on?: string;
-    brand?: GetBrandResponseSerializer;
-    company?: GetCompanySerializer;
-    created_by?: UserSerializer1;
-    uid?: number;
-    reject_reason?: string;
-    modified_by?: UserSerializer1;
-    warnings?: any;
     created_on?: string;
     stage?: string;
-    verified_on?: string;
+    uid?: number;
+    company?: GetCompanySerializer;
+    created_by?: UserSerializer1;
+    reject_reason?: string;
+    modified_on?: string;
+    warnings?: any;
     verified_by?: UserSerializer1;
+    brand?: GetBrandResponseSerializer;
+    modified_by?: UserSerializer1;
+    verified_on?: string;
 };
 type CompanyBrandListSerializer = {
-    items?: Array<CompanyBrandSerializer>;
     page?: Page;
+    items?: Array<CompanyBrandSerializer>;
+};
+type GetAddressSerializer1 = {
+    landmark?: string;
+    country_code?: string;
+    country?: string;
+    longitude?: number;
+    state?: string;
+    city?: string;
+    latitude?: number;
+    address_type?: string;
+    pincode?: number;
+    address1?: string;
+    address2?: string;
+};
+type LocationManagerSerializer = {
+    email?: string;
+    mobile_no: SellerPhoneNumber;
+    name?: string;
 };
 type LocationTimingSerializer = {
     minute?: number;
     hour?: number;
 };
 type LocationDayWiseSerializer = {
-    weekday: string;
+    opening?: LocationTimingSerializer;
     open: boolean;
     closing?: LocationTimingSerializer;
-    opening?: LocationTimingSerializer;
+    weekday: string;
+};
+type ProductReturnConfigSerializer = {
+    store_uid?: number;
+    on_same_store?: boolean;
 };
 type InvoiceCredSerializer = {
     enabled?: boolean;
-    password?: string;
     username?: string;
+    password?: string;
 };
 type InvoiceDetailsSerializer = {
     e_invoice?: InvoiceCredSerializer;
     e_waybill?: InvoiceCredSerializer;
 };
-type ProductReturnConfigSerializer = {
-    on_same_store?: boolean;
-    store_uid?: number;
-};
-type LocationManagerSerializer = {
-    email?: string;
-    name?: string;
-    mobile_no: SellerPhoneNumber;
-};
-type GetAddressSerializer1 = {
-    address_type?: string;
-    state?: string;
-    landmark?: string;
-    address1?: string;
-    country?: string;
-    latitude?: number;
-    address2?: string;
-    city?: string;
-    country_code?: string;
-    pincode?: number;
-    longitude?: number;
-};
 type LocationSerializer = {
-    code: string;
-    notification_emails?: Array<string>;
-    store_type?: string;
-    _custom_json?: any;
-    timing?: Array<LocationDayWiseSerializer>;
-    gst_credentials?: InvoiceDetailsSerializer;
-    display_name: string;
-    product_return_config?: ProductReturnConfigSerializer;
-    manager?: LocationManagerSerializer;
     documents?: Array<Document>;
-    uid?: number;
-    address: GetAddressSerializer1;
-    warnings?: any;
     stage?: string;
-    name: string;
-    company: number;
+    code: string;
     contact_numbers?: Array<SellerPhoneNumber>;
+    address: GetAddressSerializer1;
+    uid?: number;
+    manager?: LocationManagerSerializer;
+    store_type?: string;
+    company: number;
+    timing?: Array<LocationDayWiseSerializer>;
+    product_return_config?: ProductReturnConfigSerializer;
+    _custom_json?: any;
+    gst_credentials?: InvoiceDetailsSerializer;
+    warnings?: any;
+    display_name: string;
+    notification_emails?: Array<string>;
+    name: string;
 };
 type LocationIntegrationType = {
-    order?: string;
     inventory?: string;
+    order?: string;
 };
 type GetLocationSerializer = {
-    gst_credentials?: InvoiceDetailsSerializer;
-    _custom_json?: any;
-    timing?: Array<LocationDayWiseSerializer>;
-    product_return_config?: ProductReturnConfigSerializer;
-    created_by?: UserSerializer1;
-    address: GetAddressSerializer;
-    modified_by?: UserSerializer1;
-    stage?: string;
-    name: string;
-    manager?: LocationManagerSerializer;
-    phone_number: string;
-    verified_on?: string;
-    contact_numbers?: Array<SellerPhoneNumber>;
     code: string;
-    notification_emails?: Array<string>;
+    address: GetAddressSerializer;
+    uid?: number;
     store_type?: string;
-    display_name: string;
-    documents?: Array<Document>;
-    created_on?: string;
+    _custom_json?: any;
+    gst_credentials?: InvoiceDetailsSerializer;
     warnings?: any;
     verified_by?: UserSerializer1;
-    modified_on?: string;
-    integration_type?: LocationIntegrationType;
-    uid?: number;
+    verified_on?: string;
+    name: string;
+    manager?: LocationManagerSerializer;
     company?: GetCompanySerializer;
+    integration_type?: LocationIntegrationType;
+    modified_by?: UserSerializer1;
+    contact_numbers?: Array<SellerPhoneNumber>;
+    documents?: Array<Document>;
+    created_on?: string;
+    product_return_config?: ProductReturnConfigSerializer;
+    display_name: string;
+    notification_emails?: Array<string>;
+    stage?: string;
+    timing?: Array<LocationDayWiseSerializer>;
+    phone_number: string;
+    modified_on?: string;
+    created_by?: UserSerializer1;
 };
 type LocationListSerializer = {
-    items?: Array<GetLocationSerializer>;
     page?: Page;
+    items?: Array<GetLocationSerializer>;
 };
 type FailedResponse = {
     message: string;
