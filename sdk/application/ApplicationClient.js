@@ -3108,17 +3108,19 @@ class Content {
     * @description: Use this API to fetch a blog using `slug`
     * @param {Object} arg - arg object.
     * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
+    * @param {string} [arg.rootId] - 
     
     **/
-  getBlog({ slug } = {}) {
+  getBlog({ slug, rootId } = {}) {
     const { error } = ContentValidator.getBlog().validate(
-      { slug },
+      { slug, rootId },
       { abortEarly: false }
     );
     if (error) {
       return Promise.reject(error);
     }
     const query = {};
+    query["root_id"] = rootId;
 
     return APIClient.execute(
       this._conf,
@@ -3436,17 +3438,19 @@ class Content {
     * @description: Use this API to fetch a custom page using `slug`
     * @param {Object} arg - arg object.
     * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
+    * @param {string} [arg.rootId] - 
     
     **/
-  getPage({ slug } = {}) {
+  getPage({ slug, rootId } = {}) {
     const { error } = ContentValidator.getPage().validate(
-      { slug },
+      { slug, rootId },
       { abortEarly: false }
     );
     if (error) {
       return Promise.reject(error);
     }
     const query = {};
+    query["root_id"] = rootId;
 
     return APIClient.execute(
       this._conf,

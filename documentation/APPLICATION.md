@@ -8519,15 +8519,16 @@ Get Blog by slug
 
 ```javascript
 // Promise
-const promise = content.getBlog(slug);
+const promise = content.getBlog(slug,rootId);
 
 // Async/Await
-const data = await content.getBlog(slug);
+const data = await content.getBlog(slug,rootId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
+| rootId | string |  | 
 
 Use this API to fetch a blog using `slug`
 
@@ -9413,15 +9414,16 @@ Get Page by slug
 
 ```javascript
 // Promise
-const promise = content.getPage(slug);
+const promise = content.getPage(slug,rootId);
 
 // Async/Await
-const data = await content.getPage(slug);
+const data = await content.getPage(slug,rootId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
+| rootId | string |  | 
 
 Use this API to fetch a custom page using `slug`
 

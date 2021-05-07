@@ -1357,10 +1357,12 @@ declare class Content {
       * @description: Use this API to fetch a blog using `slug`
       * @param {Object} arg - arg object.
       * @param {string} arg.slug - The `slug` of a blog. Use this parameter to retrieve a particular blog
+      * @param {string} [arg.rootId] -
       
       **/
-    getBlog({ slug }?: {
+    getBlog({ slug, rootId }?: {
         slug: string;
+        rootId?: string;
     }): any;
     /**
       *
@@ -1481,10 +1483,12 @@ declare class Content {
       * @description: Use this API to fetch a custom page using `slug`
       * @param {Object} arg - arg object.
       * @param {string} arg.slug - The `slug` of a page. Use this parameter to retrieve a particular page
+      * @param {string} [arg.rootId] -
       
       **/
-    getPage({ slug }?: {
+    getPage({ slug, rootId }?: {
         slug: string;
+        rootId?: string;
     }): any;
     /**
       *
