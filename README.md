@@ -3,6 +3,7 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/gofynd/fdk-client-javascript?style=plastic)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/gofynd/fdk-client-javascript/Node.js%20CI?style=plastic)
 ![GitHub](https://img.shields.io/github/license/gofynd/fdk-client-javascript?style=plastic)
+[![Coverage Status](https://coveralls.io/repos/github/gofynd/fdk-client-javascript/badge.svg?branch=main)](https://coveralls.io/github/gofynd/fdk-client-javascript?branch=main)
 
 FDK client for Javascript
 
