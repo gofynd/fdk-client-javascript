@@ -13,7 +13,7 @@
 * [Configuration](#Configuration) - Application configuration apis 
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
-* [Rewards](#Rewards) - Earn and redeem Reward Points 
+* [Rewards](#Rewards) - Earn and redeem reward points 
 * [Feedback](#Feedback) - User Reviews and Rating System 
 * [PosCart](#PosCart) - Cart APIs 
 * [Logistic](#Logistic) - Handles Platform websites OMS 
@@ -12912,7 +12912,7 @@ Schema: `ApefaceApiError`
 
 
 #### getPointsOnProduct
-Get reward points that could be earned on any catalogue product.
+Get the eligibility of reward points on a product
 
 ```javascript
 // Promise
@@ -12925,13 +12925,13 @@ const data = await rewards.getPointsOnProduct(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Evaluate the amount of reward points that could be earned on any catalogue product.
+Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
 
 *Success Response:*
 
 
 
-ok
+Success. Check example below or refer `CatalogueOrderRequest` for more details.
 
 
 Schema: `CatalogueOrderResponse`
@@ -12943,7 +12943,7 @@ Schema: `CatalogueOrderResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `Error`
@@ -12960,7 +12960,7 @@ Schema: `Error`
 
 
 #### getOfferByName
-Get offer by name.
+Get offer by name
 
 ```javascript
 // Promise
@@ -12972,15 +12972,15 @@ const data = await rewards.getOfferByName(name);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| name | string | Offer name | 
+| name | string | The name given to the offer. | 
 
-Get offer by name.
+Use this API to get the offer details and configuration by entering the name of the offer.
 
 *Success Response:*
 
 
 
-ok
+Success. Check example below or refer `Offer` for more details.
 
 
 Schema: `Offer`
@@ -12992,7 +12992,7 @@ Schema: `Offer`
 
 
 
-Bad request
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `Error`
@@ -13009,7 +13009,7 @@ Schema: `Error`
 
 
 #### getOrderDiscount
-Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+Calculates the discount on order-amount
 
 ```javascript
 // Promise
@@ -13022,13 +13022,13 @@ const data = await rewards.getOrderDiscount(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
 
 *Success Response:*
 
 
 
-ok
+Success. Check example below or refer `OrderDiscountResponse` for more details.
 
 
 Schema: `OrderDiscountResponse`
@@ -13040,7 +13040,7 @@ Schema: `OrderDiscountResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `Error`
@@ -13057,7 +13057,7 @@ Schema: `Error`
 
 
 #### getUserPoints
-Total available points of a user for current application
+Get reward points available with a user
 
 ```javascript
 // Promise
@@ -13070,13 +13070,13 @@ const data = await rewards.getUserPoints();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Total available points of a user for current application
+Use this API to retrieve total available points of a user for current application
 
 *Success Response:*
 
 
 
-ok
+Success. Check example below or refer `PointsResponse` for more details.
 
 
 Schema: `PointsResponse`
@@ -13088,7 +13088,7 @@ Schema: `PointsResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `Error`
@@ -13105,7 +13105,7 @@ Schema: `Error`
 
 
 #### getUserPointsHistory
-Get list of points transactions.
+Get all transactions of reward points
 
 ```javascript
 // Promise
@@ -13118,16 +13118,15 @@ const data = await rewards.getUserPointsHistory(pageId,pageSize);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | pageId | string | PageID is the ID of the requested page. For first request it should be kept empty. | 
-| pageSize | integer | PageSize is the number of requested items in response. | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-Get list of points transactions.
-The list of points history is paginated.
+Use this API to get a list of points transactions. The list of points history is paginated.
 
 *Success Response:*
 
 
 
-ok
+Success. Check example below or refer `PointsHistoryResponse` for more details.
 
 
 Schema: `PointsHistoryResponse`
@@ -13139,7 +13138,7 @@ Schema: `PointsHistoryResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `Error`
@@ -13156,7 +13155,7 @@ Schema: `Error`
 
 
 #### getUserReferralDetails
-User's referral details.
+Get referral details of a user
 
 ```javascript
 // Promise
@@ -13169,13 +13168,13 @@ const data = await rewards.getUserReferralDetails();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-User's referral details.
+Use this API to retrieve the referral details a user has configured in the application.
 
 *Success Response:*
 
 
 
-ok
+Success. Check example below or refer `ReferralDetailsResponse` for more details.
 
 
 Schema: `ReferralDetailsResponse`
@@ -13187,7 +13186,7 @@ Schema: `ReferralDetailsResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `Error`
@@ -13204,7 +13203,7 @@ Schema: `Error`
 
 
 #### redeemReferralCode
-Redeems referral code and credits points to users points account.
+Redeems a referral code and credits reward points to users
 
 ```javascript
 // Promise
@@ -13217,13 +13216,13 @@ const data = await rewards.redeemReferralCode(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Redeems referral code and credits points to users points account.
+Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
 
 *Success Response:*
 
 
 
-ok
+Success. Check example below or refer `RedeemReferralCodeResponse` for more details.
 
 
 Schema: `RedeemReferralCodeResponse`
@@ -13235,7 +13234,7 @@ Schema: `RedeemReferralCodeResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `Error`

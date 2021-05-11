@@ -2221,8 +2221,8 @@ declare class Rewards {
     _conf: any;
     /**
      *
-     * @summary: Get reward points that could be earned on any catalogue product.
-     * @description: Evaluate the amount of reward points that could be earned on any catalogue product.
+     * @summary: Get the eligibility of reward points on a product
+     * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
      * @param {Object} arg - arg object.
      * @param {CatalogueOrderRequest} arg.body
      **/
@@ -2231,10 +2231,10 @@ declare class Rewards {
     }): any;
     /**
       *
-      * @summary: Get offer by name.
-      * @description: Get offer by name.
+      * @summary: Get offer by name
+      * @description: Use this API to get the offer details and configuration by entering the name of the offer.
       * @param {Object} arg - arg object.
-      * @param {string} arg.name - Offer name
+      * @param {string} arg.name - The name given to the offer.
       
       **/
     getOfferByName({ name }?: {
@@ -2242,8 +2242,8 @@ declare class Rewards {
     }): any;
     /**
      *
-     * @summary: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
-     * @description: Calculates the discount on order-amount based on amount ranges configured in order_discount reward.
+     * @summary: Calculates the discount on order-amount
+     * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
      * @param {Object} arg - arg object.
      * @param {OrderDiscountRequest} arg.body
      **/
@@ -2252,20 +2252,19 @@ declare class Rewards {
     }): any;
     /**
       *
-      * @summary: Total available points of a user for current application
-      * @description: Total available points of a user for current application
+      * @summary: Get reward points available with a user
+      * @description: Use this API to retrieve total available points of a user for current application
       * @param {Object} arg - arg object.
       
       **/
     getUserPoints({}?: any): any;
     /**
       *
-      * @summary: Get list of points transactions.
-      * @description: Get list of points transactions.
-  The list of points history is paginated.
+      * @summary: Get all transactions of reward points
+      * @description: Use this API to get a list of points transactions. The list of points history is paginated.
       * @param {Object} arg - arg object.
       * @param {string} [arg.pageId] - PageID is the ID of the requested page. For first request it should be kept empty.
-      * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
+      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
       
       **/
     getUserPointsHistory({ pageId, pageSize }?: {
@@ -2274,11 +2273,10 @@ declare class Rewards {
     }): any;
     /**
       *
-      * @summary: Get list of points transactions.
-      * @description: Get list of points transactions.
-  The list of points history is paginated.
+      * @summary: Get all transactions of reward points
+      * @description: Use this API to get a list of points transactions. The list of points history is paginated.
       * @param {Object} arg - arg object.
-      * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
+      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
       
       **/
     getUserPointsHistoryPaginator({ pageSize }?: {
@@ -2286,16 +2284,16 @@ declare class Rewards {
     }): Paginator;
     /**
       *
-      * @summary: User's referral details.
-      * @description: User's referral details.
+      * @summary: Get referral details of a user
+      * @description: Use this API to retrieve the referral details a user has configured in the application.
       * @param {Object} arg - arg object.
       
       **/
     getUserReferralDetails({}?: any): any;
     /**
      *
-     * @summary: Redeems referral code and credits points to users points account.
-     * @description: Redeems referral code and credits points to users points account.
+     * @summary: Redeems a referral code and credits reward points to users
+     * @description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
      * @param {Object} arg - arg object.
      * @param {RedeemReferralCodeRequest} arg.body
      **/
