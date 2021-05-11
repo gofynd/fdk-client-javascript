@@ -266,13 +266,13 @@
 
 * [Catalog](#Catalog)
   * Methods
-    * [updateSearchKeywords](#updatesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
+    * [updateSearchKeywords](#updatesearchkeywords)
     * [deleteSearchKeywords](#deletesearchkeywords)
     * [getAllSearchKeyword](#getallsearchkeyword)
     * [createCustomKeyword](#createcustomkeyword)
-    * [updateAutocompleteKeyword](#updateautocompletekeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
+    * [updateAutocompleteKeyword](#updateautocompletekeyword)
     * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteConfig](#getautocompleteconfig)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
@@ -323,8 +323,8 @@
     * [getCategoryData](#getcategorydata)
     * [getProducts](#getproducts)
     * [createProduct](#createproduct)
-    * [editProduct](#editproduct)
     * [getProduct](#getproduct)
+    * [editProduct](#editproduct)
     * [deleteProduct](#deleteproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
@@ -360,18 +360,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
+    * [updateCompany](#updatecompany)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getBrands](#getbrands)
     * [createLocation](#createlocation)
     * [getLocations](#getlocations)
-    * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     
 
 * [FileStorage](#FileStorage)
@@ -16494,57 +16494,6 @@ Schema: `ApefaceApiError`
 ## Catalog
 
 
-#### updateSearchKeywords
-Update Search Keyword
-
-```javascript
-// Promise
-const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
-
-// Async/Await
-const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Update Search Keyword by its id. On successful request, returns the updated collection
-
-*Success Response:*
-
-
-
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
-
-
-Schema: `GetSearchWordsData`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSearchKeywords
 Get a Search Keywords Details
 
@@ -16572,6 +16521,57 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
 
 
 Schema: `GetSearchWordsDetailResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateSearchKeywords
+Update Search Keyword
+
+```javascript
+// Promise
+const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+Update Search Keyword by its id. On successful request, returns the updated collection
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+
+
+Schema: `GetSearchWordsData`
 
 
 
@@ -16747,30 +16747,30 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
+#### getAutocompleteKeywordDetail
+Get a Autocomplete Keywords Details
 
 ```javascript
 // Promise
-const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const promise = catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
 
 // Async/Await
-const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const data = await catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
 
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
 
 *Success Response:*
 
 
 
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
 
 
 Schema: `GetAutocompleteWordsResponse`
@@ -16798,30 +16798,30 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getAutocompleteKeywordDetail
-Get a Autocomplete Keywords Details
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
 
 ```javascript
 // Promise
-const promise = catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
+const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
+const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
 
 *Success Response:*
 
 
 
-The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
 Schema: `GetAutocompleteWordsResponse`
@@ -19375,56 +19375,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editProduct
-Edit a product.
-
-```javascript
-// Promise
-const promise = catalog.editProduct(companyId,itemId,body);
-
-// Async/Await
-const data = await catalog.editProduct(companyId,itemId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | integer | Id of the product to be updated. | 
-
-This API allows to edit product.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getProduct
 Get a single product.
 
@@ -19454,6 +19404,56 @@ Product object. See example below or refer `product.utils.format_product_respons
 
 
 Schema: `Product`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editProduct
+Edit a product.
+
+```javascript
+// Promise
+const promise = catalog.editProduct(companyId,itemId,body);
+
+// Async/Await
+const data = await catalog.editProduct(companyId,itemId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to product that is to be viewed. | 
+| itemId | integer | Id of the product to be updated. | 
+
+This API allows to edit product.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -21051,55 +21051,6 @@ Schema: `ErrorResponse`
 ## CompanyProfile
 
 
-#### updateCompany
-Edit company profile
-
-```javascript
-// Promise
-const promise = companyprofile.updateCompany(companyId,body);
-
-// Async/Await
-const data = await companyprofile.updateCompany(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to edit the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Returns a success message
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### cbsOnboardGet
 Get company profile
 
@@ -21125,6 +21076,55 @@ Company profile object. See example below or refer `GetCompanyProfileSerializerR
 
 
 Schema: `GetCompanyProfileSerializerResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCompany
+Edit company profile
+
+```javascript
+// Promise
+const promise = companyprofile.updateCompany(companyId,body);
+
+// Async/Await
+const data = await companyprofile.updateCompany(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to edit the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Returns a success message
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -21198,56 +21198,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(companyId,brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(companyId,brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getBrand
 Get a single brand.
 
@@ -21274,6 +21224,56 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 
 
 Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editBrand
+Edit a brand.
+
+```javascript
+// Promise
+const promise = companyprofile.editBrand(companyId,brandId,body);
+
+// Async/Await
+const data = await companyprofile.editBrand(companyId,brandId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API allows to edit meta of a brand.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -21550,56 +21550,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
-
-```javascript
-// Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
-
-// Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getLocationDetail
 Get details of a specific location.
 
@@ -21626,6 +21576,56 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.updateLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
