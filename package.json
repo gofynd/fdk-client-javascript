@@ -6,6 +6,15 @@
   "scripts": {
     "test": "jest --coverage"
   },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 0,
+        "lines": 0
+      }
+    }
+  },
   "author": "Jigar Dafda<jigar.dafda@gmail.com>",
   "license": "ISC",
   "dependencies": {
