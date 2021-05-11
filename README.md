@@ -1,5 +1,9 @@
 # FDK Javascript
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/gofynd/fdk-client-javascript?style=plastic)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/gofynd/fdk-client-javascript/Node.js%20CI?style=plastic)
+![GitHub](https://img.shields.io/github/license/gofynd/fdk-client-javascript?style=plastic)
+
 FDK client for Javascript
 
 ## Getting Started
