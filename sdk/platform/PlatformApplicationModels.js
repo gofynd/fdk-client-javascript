@@ -14795,20 +14795,60 @@ class Validator{
 
 
     
+        static CompanyAddress(){
+
+            return Joi.object({
+                
+                    
+                    city: Joi.string().allow('').required(),
+                    
+                    longitude: Joi.number().required(),
+                    
+                    country: Joi.string().allow('').required(),
+                    
+                    landmark: Joi.string().allow(''),
+                    
+                    state: Joi.string().allow('').required(),
+                    
+                    latitude: Joi.number().required(),
+                    
+                    address1: Joi.string().allow('').required(),
+                    
+                    country_code: Joi.string().allow(''),
+                    
+                    address2: Joi.string().allow(''),
+                    
+                    pincode: Joi.number().required(),
+                    
+                 
+            })
+        }
+
+        static ReferralInfo(){
+
+            return Joi.object({
+                
+                    
+                    referral_code: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+
         static Document(){
 
             return Joi.object({
                 
                     
-                    value: Joi.string().allow('').required(),
+                    verified: Joi.boolean(),
+                    
+                    legal_name: Joi.string().allow('').required(),
                     
                     type: Joi.string().allow('').required(),
                     
-                    verified: Joi.boolean(),
-                    
                     url: Joi.string().allow(''),
                     
-                    legal_name: Joi.string().allow('').required(),
+                    value: Joi.string().allow('').required(),
                     
                  
             })
@@ -14819,9 +14859,42 @@ class Validator{
             return Joi.object({
                 
                     
+                    country_code: Joi.string().allow(''),
+                    
                     country: Joi.string().allow(''),
                     
-                    country_code: Joi.string().allow(''),
+                 
+            })
+        }
+
+        static CompanyStoreSerializerRequest(){
+
+            return Joi.object({
+                
+                    
+                    brands: Joi.array().items(Joi.number()).required(),
+                    
+                    address: this.CompanyAddress().required(),
+                    
+                    business_type: Joi.string().allow('').required(),
+                    
+                    franchise_enabled: Joi.boolean(),
+                    
+                    referral_info: this.ReferralInfo(),
+                    
+                    name: Joi.string().allow('').required(),
+                    
+                    uid: Joi.number(),
+                    
+                    document: this.Document().required(),
+                    
+                    business_country_info: this.BusinessCountryInfo().required(),
+                    
+                    notification_emails: Joi.array().items(Joi.string().allow('')),
+                    
+                    business_info: Joi.string().allow(''),
+                    
+                    warnings: Joi.object(),
                     
                  
             })
@@ -14849,45 +14922,14 @@ class Validator{
             })
         }
 
-        static GetAddressSerializer(){
-
-            return Joi.object({
-                
-                    
-                    address_type: Joi.string().allow(''),
-                    
-                    city: Joi.string().allow(''),
-                    
-                    longitude: Joi.number(),
-                    
-                    state: Joi.string().allow(''),
-                    
-                    pincode: Joi.number(),
-                    
-                    country: Joi.string().allow(''),
-                    
-                    address1: Joi.string().allow(''),
-                    
-                    landmark: Joi.string().allow(''),
-                    
-                    address2: Joi.string().allow(''),
-                    
-                    country_code: Joi.string().allow(''),
-                    
-                    latitude: Joi.number(),
-                    
-                 
-            })
-        }
-
         static SellerPhoneNumber(){
 
             return Joi.object({
                 
                     
-                    number: Joi.string().allow('').required(),
-                    
                     country_code: Joi.number().required(),
+                    
+                    number: Joi.string().allow('').required(),
                     
                  
             })
@@ -14906,136 +14948,94 @@ class Validator{
             })
         }
 
-        static GetCompanyProfileSerializerResponse(){
-
-            return Joi.object({
-                
-                    
-                    stage: Joi.string().allow(''),
-                    
-                    created_by: this.UserSerializer(),
-                    
-                    business_info: Joi.string().allow(''),
-                    
-                    warnings: Joi.object(),
-                    
-                    documents: Joi.array().items(this.Document()),
-                    
-                    modified_by: this.UserSerializer(),
-                    
-                    business_country_info: this.BusinessCountryInfo(),
-                    
-                    modified_on: Joi.string().allow(''),
-                    
-                    business_details: this.BusinessDetails(),
-                    
-                    notification_emails: Joi.array().items(Joi.string().allow('')),
-                    
-                    uid: Joi.number().required(),
-                    
-                    created_on: Joi.string().allow(''),
-                    
-                    addresses: Joi.array().items(this.GetAddressSerializer()),
-                    
-                    verified_on: Joi.string().allow(''),
-                    
-                    franchise_enabled: Joi.boolean(),
-                    
-                    contact_details: this.ContactDetails(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    business_type: Joi.string().allow('').required(),
-                    
-                    verified_by: this.UserSerializer(),
-                    
-                    company_type: Joi.string().allow('').required(),
-                    
-                 
-            })
-        }
-
         static BusinessCountryInfo1(){
 
             return Joi.object({
                 
                     
-                    country: Joi.string().allow(''),
-                    
                     country_code: Joi.string().allow(''),
                     
-                 
-            })
-        }
-
-        static ReferralInfo(){
-
-            return Joi.object({
-                
-                    
-                    referral_code: Joi.string().allow(''),
+                    country: Joi.string().allow(''),
                     
                  
             })
         }
 
-        static CompanyAddress(){
+        static GetAddressSerializer(){
 
             return Joi.object({
                 
                     
-                    city: Joi.string().allow('').required(),
+                    city: Joi.string().allow(''),
                     
-                    longitude: Joi.number().required(),
+                    longitude: Joi.number(),
                     
-                    state: Joi.string().allow('').required(),
+                    country: Joi.string().allow(''),
                     
-                    pincode: Joi.number().required(),
-                    
-                    country: Joi.string().allow('').required(),
-                    
-                    address1: Joi.string().allow('').required(),
+                    address_type: Joi.string().allow(''),
                     
                     landmark: Joi.string().allow(''),
                     
-                    address2: Joi.string().allow(''),
+                    state: Joi.string().allow(''),
+                    
+                    latitude: Joi.number(),
+                    
+                    address1: Joi.string().allow(''),
                     
                     country_code: Joi.string().allow(''),
                     
-                    latitude: Joi.number().required(),
+                    address2: Joi.string().allow(''),
+                    
+                    pincode: Joi.number(),
                     
                  
             })
         }
 
-        static CompanyStoreSerializerRequest(){
+        static GetCompanyProfileSerializerResponse(){
 
             return Joi.object({
                 
                     
-                    franchise_enabled: Joi.boolean(),
+                    company_type: Joi.string().allow('').required(),
                     
-                    business_country_info: this.BusinessCountryInfo1().required(),
+                    modified_on: Joi.string().allow(''),
                     
-                    business_info: Joi.string().allow(''),
+                    business_details: this.BusinessDetails(),
                     
-                    name: Joi.string().allow('').required(),
+                    documents: Joi.array().items(this.Document()),
                     
                     warnings: Joi.object(),
                     
-                    notification_emails: Joi.array().items(Joi.string().allow('')),
+                    created_by: this.UserSerializer(),
                     
-                    referral_info: this.ReferralInfo(),
+                    uid: Joi.number().required(),
+                    
+                    business_info: Joi.string().allow(''),
+                    
+                    modified_by: this.UserSerializer(),
+                    
+                    contact_details: this.ContactDetails(),
+                    
+                    verified_on: Joi.string().allow(''),
+                    
+                    franchise_enabled: Joi.boolean(),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    business_country_info: this.BusinessCountryInfo1(),
+                    
+                    addresses: Joi.array().items(this.GetAddressSerializer()),
+                    
+                    created_on: Joi.string().allow(''),
                     
                     business_type: Joi.string().allow('').required(),
                     
-                    uid: Joi.number(),
+                    verified_by: this.UserSerializer(),
                     
-                    address: this.CompanyAddress().required(),
-                    
-                    brands: Joi.array().items(Joi.number()).required(),
-                    
-                    document: this.Document().required(),
+                    notification_emails: Joi.array().items(Joi.string().allow('')),
                     
                  
             })
@@ -15046,9 +15046,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    verified: Joi.number(),
-                    
                     pending: Joi.number(),
+                    
+                    verified: Joi.number(),
                     
                  
             })
@@ -15059,19 +15059,61 @@ class Validator{
             return Joi.object({
                 
                     
+                    store_documents: this.DocumentsObj(),
+                    
+                    product: this.DocumentsObj(),
+                    
+                    company_documents: this.DocumentsObj(),
+                    
+                    brand: this.DocumentsObj(),
+                    
                     store: this.DocumentsObj(),
                     
                     stage: Joi.string().allow(''),
                     
-                    product: this.DocumentsObj(),
-                    
-                    store_documents: this.DocumentsObj(),
-                    
-                    company_documents: this.DocumentsObj(),
-                    
                     uid: Joi.number(),
                     
-                    brand: this.DocumentsObj(),
+                 
+            })
+        }
+
+        static BrandBannerSerializer(){
+
+            return Joi.object({
+                
+                    
+                    landscape: Joi.string().allow(''),
+                    
+                    portrait: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+
+        static CreateUpdateBrandRequestSerializer(){
+
+            return Joi.object({
+                
+                    
+                    _custom_json: Joi.object(),
+                    
+                    description: Joi.string().allow(''),
+                    
+                    company_id: Joi.number(),
+                    
+                    logo: Joi.string().allow('').required(),
+                    
+                    banner: this.BrandBannerSerializer(),
+                    
+                    _locale_language: Joi.object(),
+                    
+                    brand_tier: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow('').required(),
+                    
+                    synonyms: Joi.array().items(Joi.string().allow('')),
+                    
+                    uid: Joi.number(),
                     
                  
             })
@@ -15092,88 +15134,46 @@ class Validator{
             })
         }
 
-        static BrandBannerSerializer(){
-
-            return Joi.object({
-                
-                    
-                    landscape: Joi.string().allow(''),
-                    
-                    portrait: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-
         static GetBrandResponseSerializer(){
 
             return Joi.object({
                 
                     
-                    verified_on: Joi.string().allow(''),
-                    
-                    verified_by: this.UserSerializer1(),
-                    
-                    banner: this.BrandBannerSerializer(),
-                    
-                    stage: Joi.string().allow(''),
-                    
-                    created_by: this.UserSerializer1(),
-                    
-                    modified_on: Joi.string().allow(''),
-                    
-                    reject_reason: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow('').required(),
-                    
                     _custom_json: Joi.object(),
                     
-                    warnings: Joi.object(),
+                    modified_on: Joi.string().allow(''),
                     
                     slug_key: Joi.string().allow(''),
                     
                     description: Joi.string().allow(''),
                     
-                    logo: Joi.string().allow(''),
-                    
-                    synonyms: Joi.array().items(Joi.string().allow('')),
-                    
-                    uid: Joi.number(),
-                    
-                    modified_by: this.UserSerializer1(),
+                    verified_on: Joi.string().allow(''),
                     
                     created_on: Joi.string().allow(''),
                     
-                    _locale_language: Joi.object(),
-                    
-                 
-            })
-        }
-
-        static CreateUpdateBrandRequestSerializer(){
-
-            return Joi.object({
-                
+                    logo: Joi.string().allow(''),
                     
                     banner: this.BrandBannerSerializer(),
                     
-                    _custom_json: Joi.object(),
+                    stage: Joi.string().allow(''),
+                    
+                    _locale_language: Joi.object(),
+                    
+                    created_by: this.UserSerializer1(),
+                    
+                    verified_by: this.UserSerializer1(),
                     
                     name: Joi.string().allow('').required(),
-                    
-                    brand_tier: Joi.string().allow(''),
-                    
-                    description: Joi.string().allow(''),
-                    
-                    logo: Joi.string().allow('').required(),
                     
                     synonyms: Joi.array().items(Joi.string().allow('')),
                     
                     uid: Joi.number(),
                     
-                    _locale_language: Joi.object(),
+                    warnings: Joi.object(),
                     
-                    company_id: Joi.number(),
+                    reject_reason: Joi.string().allow(''),
+                    
+                    modified_by: this.UserSerializer1(),
                     
                  
             })
@@ -15184,11 +15184,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    company: Joi.number().required(),
+                    brands: Joi.array().items(Joi.number()).required(),
                     
                     uid: Joi.number(),
                     
-                    brands: Joi.array().items(Joi.number()).required(),
+                    company: Joi.number().required(),
                     
                  
             })
@@ -15199,31 +15199,31 @@ class Validator{
             return Joi.object({
                 
                     
+                    company_type: Joi.string().allow(''),
+                    
+                    modified_on: Joi.string().allow(''),
+                    
                     verified_on: Joi.string().allow(''),
                     
-                    verified_by: this.UserSerializer(),
+                    addresses: Joi.array().items(this.GetAddressSerializer()),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    business_type: Joi.string().allow(''),
                     
                     stage: Joi.string().allow(''),
                     
                     created_by: this.UserSerializer(),
                     
-                    modified_on: Joi.string().allow(''),
-                    
-                    reject_reason: Joi.string().allow(''),
+                    verified_by: this.UserSerializer(),
                     
                     name: Joi.string().allow(''),
                     
-                    business_type: Joi.string().allow(''),
-                    
                     uid: Joi.number(),
                     
+                    reject_reason: Joi.string().allow(''),
+                    
                     modified_by: this.UserSerializer(),
-                    
-                    created_on: Joi.string().allow(''),
-                    
-                    addresses: Joi.array().items(this.GetAddressSerializer()),
-                    
-                    company_type: Joi.string().allow(''),
                     
                  
             })
@@ -15234,29 +15234,29 @@ class Validator{
             return Joi.object({
                 
                     
+                    modified_on: Joi.string().allow(''),
+                    
+                    brand: this.GetBrandResponseSerializer(),
+                    
                     verified_on: Joi.string().allow(''),
                     
-                    verified_by: this.UserSerializer1(),
+                    created_on: Joi.string().allow(''),
+                    
+                    company: this.GetCompanySerializer(),
                     
                     stage: Joi.string().allow(''),
                     
                     created_by: this.UserSerializer1(),
                     
-                    modified_on: Joi.string().allow(''),
-                    
-                    reject_reason: Joi.string().allow(''),
-                    
-                    warnings: Joi.object(),
-                    
-                    company: this.GetCompanySerializer(),
+                    verified_by: this.UserSerializer1(),
                     
                     uid: Joi.number(),
                     
+                    warnings: Joi.object(),
+                    
+                    reject_reason: Joi.string().allow(''),
+                    
                     modified_by: this.UserSerializer1(),
-                    
-                    created_on: Joi.string().allow(''),
-                    
-                    brand: this.GetBrandResponseSerializer(),
                     
                  
             })
@@ -15267,9 +15267,55 @@ class Validator{
             return Joi.object({
                 
                     
+                    page: this.Page(),
+                    
                     items: Joi.array().items(this.CompanyBrandSerializer()),
                     
-                    page: this.Page(),
+                 
+            })
+        }
+
+        static GetAddressSerializer1(){
+
+            return Joi.object({
+                
+                    
+                    city: Joi.string().allow(''),
+                    
+                    longitude: Joi.number(),
+                    
+                    country: Joi.string().allow(''),
+                    
+                    address_type: Joi.string().allow(''),
+                    
+                    landmark: Joi.string().allow(''),
+                    
+                    state: Joi.string().allow(''),
+                    
+                    latitude: Joi.number(),
+                    
+                    address1: Joi.string().allow(''),
+                    
+                    country_code: Joi.string().allow(''),
+                    
+                    address2: Joi.string().allow(''),
+                    
+                    pincode: Joi.number(),
+                    
+                 
+            })
+        }
+
+        static LocationManagerSerializer(){
+
+            return Joi.object({
+                
+                    
+                    name: Joi.string().allow(''),
+                    
+                    mobile_no: this.SellerPhoneNumber().required(),
+                    
+                    email: Joi.string().allow(''),
                     
                  
             })
@@ -15283,67 +15329,6 @@ class Validator{
                     store_uid: Joi.number(),
                     
                     on_same_store: Joi.boolean(),
-                    
-                 
-            })
-        }
-
-        static LocationTimingSerializer(){
-
-            return Joi.object({
-                
-                    
-                    minute: Joi.number(),
-                    
-                    hour: Joi.number(),
-                    
-                 
-            })
-        }
-
-        static LocationDayWiseSerializer(){
-
-            return Joi.object({
-                
-                    
-                    weekday: Joi.string().allow('').required(),
-                    
-                    opening: this.LocationTimingSerializer(),
-                    
-                    open: Joi.boolean().required(),
-                    
-                    closing: this.LocationTimingSerializer(),
-                    
-                 
-            })
-        }
-
-        static GetAddressSerializer1(){
-
-            return Joi.object({
-                
-                    
-                    address_type: Joi.string().allow(''),
-                    
-                    city: Joi.string().allow(''),
-                    
-                    longitude: Joi.number(),
-                    
-                    state: Joi.string().allow(''),
-                    
-                    pincode: Joi.number(),
-                    
-                    country: Joi.string().allow(''),
-                    
-                    address1: Joi.string().allow(''),
-                    
-                    landmark: Joi.string().allow(''),
-                    
-                    address2: Joi.string().allow(''),
-                    
-                    country_code: Joi.string().allow(''),
-                    
-                    latitude: Joi.number(),
                     
                  
             })
@@ -15377,16 +15362,31 @@ class Validator{
             })
         }
 
-        static LocationManagerSerializer(){
+        static LocationTimingSerializer(){
 
             return Joi.object({
                 
                     
-                    name: Joi.string().allow(''),
+                    minute: Joi.number(),
                     
-                    email: Joi.string().allow(''),
+                    hour: Joi.number(),
                     
-                    mobile_no: this.SellerPhoneNumber().required(),
+                 
+            })
+        }
+
+        static LocationDayWiseSerializer(){
+
+            return Joi.object({
+                
+                    
+                    open: Joi.boolean().required(),
+                    
+                    opening: this.LocationTimingSerializer(),
+                    
+                    weekday: Joi.string().allow('').required(),
+                    
+                    closing: this.LocationTimingSerializer(),
                     
                  
             })
@@ -15397,39 +15397,39 @@ class Validator{
             return Joi.object({
                 
                     
-                    product_return_config: this.ProductReturnConfigSerializer(),
-                    
-                    contact_numbers: Joi.array().items(this.SellerPhoneNumber()),
-                    
-                    stage: Joi.string().allow(''),
-                    
                     _custom_json: Joi.object(),
                     
-                    name: Joi.string().allow('').required(),
+                    address: this.GetAddressSerializer1().required(),
                     
-                    warnings: Joi.object(),
+                    display_name: Joi.string().allow('').required(),
                     
                     company: Joi.number().required(),
-                    
-                    notification_emails: Joi.array().items(Joi.string().allow('')),
                     
                     code: Joi.string().allow('').required(),
                     
                     documents: Joi.array().items(this.Document()),
                     
-                    timing: Joi.array().items(this.LocationDayWiseSerializer()),
+                    manager: this.LocationManagerSerializer(),
                     
-                    uid: Joi.number(),
+                    stage: Joi.string().allow(''),
                     
-                    address: this.GetAddressSerializer1().required(),
+                    product_return_config: this.ProductReturnConfigSerializer(),
                     
-                    store_type: Joi.string().allow(''),
+                    name: Joi.string().allow('').required(),
                     
                     gst_credentials: this.InvoiceDetailsSerializer(),
                     
-                    display_name: Joi.string().allow('').required(),
+                    timing: Joi.array().items(this.LocationDayWiseSerializer()),
                     
-                    manager: this.LocationManagerSerializer(),
+                    contact_numbers: Joi.array().items(this.SellerPhoneNumber()),
+                    
+                    uid: Joi.number(),
+                    
+                    warnings: Joi.object(),
+                    
+                    notification_emails: Joi.array().items(Joi.string().allow('')),
+                    
+                    store_type: Joi.string().allow(''),
                     
                  
             })
@@ -15453,55 +15453,55 @@ class Validator{
             return Joi.object({
                 
                     
-                    product_return_config: this.ProductReturnConfigSerializer(),
-                    
-                    stage: Joi.string().allow(''),
-                    
-                    created_by: this.UserSerializer1(),
-                    
                     _custom_json: Joi.object(),
-                    
-                    warnings: Joi.object(),
-                    
-                    documents: Joi.array().items(this.Document()),
-                    
-                    modified_by: this.UserSerializer1(),
-                    
-                    contact_numbers: Joi.array().items(this.SellerPhoneNumber()),
-                    
-                    phone_number: Joi.string().allow('').required(),
                     
                     modified_on: Joi.string().allow(''),
                     
-                    notification_emails: Joi.array().items(Joi.string().allow('')),
-                    
                     integration_type: this.LocationIntegrationType(),
-                    
-                    uid: Joi.number(),
-                    
-                    store_type: Joi.string().allow(''),
-                    
-                    created_on: Joi.string().allow(''),
-                    
-                    manager: this.LocationManagerSerializer(),
-                    
-                    verified_on: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow('').required(),
-                    
-                    company: this.GetCompanySerializer(),
                     
                     code: Joi.string().allow('').required(),
                     
-                    timing: Joi.array().items(this.LocationDayWiseSerializer()),
-                    
                     gst_credentials: this.InvoiceDetailsSerializer(),
+                    
+                    documents: Joi.array().items(this.Document()),
+                    
+                    store_type: Joi.string().allow(''),
+                    
+                    warnings: Joi.object(),
                     
                     display_name: Joi.string().allow('').required(),
                     
-                    verified_by: this.UserSerializer1(),
+                    phone_number: Joi.string().allow('').required(),
+                    
+                    manager: this.LocationManagerSerializer(),
+                    
+                    created_by: this.UserSerializer1(),
+                    
+                    uid: Joi.number(),
+                    
+                    modified_by: this.UserSerializer1(),
+                    
+                    verified_on: Joi.string().allow(''),
+                    
+                    company: this.GetCompanySerializer(),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    product_return_config: this.ProductReturnConfigSerializer(),
+                    
+                    name: Joi.string().allow('').required(),
                     
                     address: this.GetAddressSerializer().required(),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    verified_by: this.UserSerializer1(),
+                    
+                    timing: Joi.array().items(this.LocationDayWiseSerializer()),
+                    
+                    contact_numbers: Joi.array().items(this.SellerPhoneNumber()),
+                    
+                    notification_emails: Joi.array().items(Joi.string().allow('')),
                     
                  
             })
@@ -15512,9 +15512,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    items: Joi.array().items(this.GetLocationSerializer()),
-                    
                     page: this.Page(),
+                    
+                    items: Joi.array().items(this.GetLocationSerializer()),
                     
                  
             })
