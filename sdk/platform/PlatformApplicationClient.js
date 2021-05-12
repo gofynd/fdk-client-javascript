@@ -1,52 +1,58 @@
+
 const {
-  LeadValidator,
-  FeedbackValidator,
-  ThemeValidator,
-  UserValidator,
-  ContentValidator,
-  AssignmentValidator,
-  CommunicationValidator,
-  PaymentValidator,
-  OrderValidator,
-  CatalogValidator,
-  FileStorageValidator,
-  ShareValidator,
-  ConfigurationValidator,
-  CartValidator,
-  RewardsValidator,
-  AnalyticsValidator,
-  PartnerValidator,
-} = require("./PlatformApplicationModels");
-const PlatformAPIClient = require("./PlatformAPIClient");
-const Paginator = require("../common/Paginator");
+    LeadValidator,
+    FeedbackValidator,
+    ThemeValidator,
+    UserValidator,
+    ContentValidator,
+    AssignmentValidator,
+    CommunicationValidator,
+    PaymentValidator,
+    OrderValidator,
+    CatalogValidator,
+    FileStorageValidator,
+    ShareValidator,
+    ConfigurationValidator,
+    CartValidator,
+    RewardsValidator,
+    AnalyticsValidator,
+    PartnerValidator,
+    
+        } = require('./PlatformApplicationModels');
+        const PlatformAPIClient = require("./PlatformAPIClient");
+        const Paginator = require("../common/Paginator");
+    
+    class PlatformApplicationClient {
+        
+        constructor(applicationId, config) {
+            this.config = config
+            this.companyId = config.companyId
+            this.applicationId = applicationId
 
-class PlatformApplicationClient {
-  constructor(applicationId, config) {
-    this.config = config;
-    this.companyId = config.companyId;
-    this.applicationId = applicationId;
+        this.lead = new Lead(config, applicationId);
+        this.feedback = new Feedback(config, applicationId);
+        this.theme = new Theme(config, applicationId);
+        this.user = new User(config, applicationId);
+        this.content = new Content(config, applicationId);
+        this.assignment = new Assignment(config, applicationId);
+        this.communication = new Communication(config, applicationId);
+        this.payment = new Payment(config, applicationId);
+        this.order = new Order(config, applicationId);
+        this.catalog = new Catalog(config, applicationId);
+        this.fileStorage = new FileStorage(config, applicationId);
+        this.share = new Share(config, applicationId);
+        this.configuration = new Configuration(config, applicationId);
+        this.cart = new Cart(config, applicationId);
+        this.rewards = new Rewards(config, applicationId);
+        this.analytics = new Analytics(config, applicationId);
+        this.partner = new Partner(config, applicationId);
+        
+        }
+    }
 
-    this.lead = new Lead(config, applicationId);
-    this.feedback = new Feedback(config, applicationId);
-    this.theme = new Theme(config, applicationId);
-    this.user = new User(config, applicationId);
-    this.content = new Content(config, applicationId);
-    this.assignment = new Assignment(config, applicationId);
-    this.communication = new Communication(config, applicationId);
-    this.payment = new Payment(config, applicationId);
-    this.order = new Order(config, applicationId);
-    this.catalog = new Catalog(config, applicationId);
-    this.fileStorage = new FileStorage(config, applicationId);
-    this.share = new Share(config, applicationId);
-    this.configuration = new Configuration(config, applicationId);
-    this.cart = new Cart(config, applicationId);
-    this.rewards = new Rewards(config, applicationId);
-    this.analytics = new Analytics(config, applicationId);
-    this.partner = new Partner(config, applicationId);
-  }
-}
-
-/**
+    
+    
+    /**
         @typedef TicketList
         
         
@@ -59,7 +65,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Page
         
         
@@ -80,7 +86,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TicketHistoryList
         
         
@@ -97,7 +103,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CustomFormList
         
         
@@ -114,7 +120,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateCustomFormPayload
         
         
@@ -137,7 +143,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EditCustomFormPayload
         
         
@@ -160,7 +166,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EditTicketPayload
         
         
@@ -183,7 +189,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AgentChangePayload
         
         
@@ -192,7 +198,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateVideoRoomResponse
         
         
@@ -201,7 +207,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CloseVideoRoomResponse
         
         
@@ -210,7 +216,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateVideoRoomPayload
         
         
@@ -221,7 +227,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Filter
         
         
@@ -236,7 +242,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TicketHistoryPayload
         
         
@@ -247,7 +253,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CustomFormSubmissionPayload
         
         
@@ -256,7 +262,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef KeyValue
         
         
@@ -267,7 +273,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetTokenForVideoRoomResponse
         
         
@@ -276,7 +282,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetParticipantsInsideVideoRoomResponse
         
         
@@ -285,7 +291,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Participant
         
         
@@ -298,7 +304,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PhoneNumber
         
         
@@ -315,7 +321,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Email
         
         
@@ -330,7 +336,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Debug
         
         
@@ -341,7 +347,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubmitCustomFormResponse
         
         
@@ -350,7 +356,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TicketContext
         
         
@@ -361,7 +367,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreatedOn
         
         
@@ -370,7 +376,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TicketAsset
         
         
@@ -383,7 +389,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TicketContent
         
         
@@ -396,7 +402,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AddTicketPayload
         
         
@@ -413,7 +419,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Priority
         
         
@@ -426,7 +432,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Status
         
         
@@ -439,7 +445,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TicketCategory
         
         
@@ -454,7 +460,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TicketSubCategory
         
         
@@ -465,7 +471,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubmitButton
         
         
@@ -478,7 +484,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PollForAssignment
         
         
@@ -493,7 +499,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CustomForm
         
         
@@ -528,7 +534,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TicketHistory
         
         
@@ -551,7 +557,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Ticket
         
         
@@ -592,7 +598,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef Activity
         
         
@@ -605,7 +613,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ActivityDump
         
         
@@ -622,7 +630,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AddMediaListRequest
         
         
@@ -639,7 +647,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AddMediaRequest
         
         
@@ -668,7 +676,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApproveRequest
         
         
@@ -683,7 +691,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Attribute
         
         
@@ -702,7 +710,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AttributeObject
         
         
@@ -721,7 +729,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreatedBy
         
         
@@ -734,7 +742,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CursorGetResponse
         
         
@@ -745,7 +753,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DateMeta
         
         
@@ -756,7 +764,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DeviceMeta
         
         
@@ -767,7 +775,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Entity
         
         
@@ -778,7 +786,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EntityRequest
         
         
@@ -789,7 +797,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FeedbackAttributes
         
         
@@ -800,7 +808,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FeedbackError
         
         
@@ -823,7 +831,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FeedbackState
         
         
@@ -842,7 +850,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetResponse
         
         
@@ -853,7 +861,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetReviewResponse
         
         
@@ -868,7 +876,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InsertResponse
         
         
@@ -877,7 +885,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MediaMeta
         
         
@@ -890,7 +898,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MediaMetaRequest
         
         
@@ -901,7 +909,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef NumberGetResponse
         
         
@@ -912,7 +920,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageCursor
         
         
@@ -933,7 +941,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageNumber
         
         
@@ -950,7 +958,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Rating
         
         
@@ -963,7 +971,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RatingRequest
         
         
@@ -974,7 +982,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ReportAbuseRequest
         
         
@@ -987,7 +995,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Review
         
         
@@ -1006,7 +1014,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ReviewFacet
         
         
@@ -1023,7 +1031,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ReviewRequest
         
         
@@ -1042,7 +1050,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SaveAttributeRequest
         
         
@@ -1055,7 +1063,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SortMethod
         
         
@@ -1068,7 +1076,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TagMeta
         
         
@@ -1081,7 +1089,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Template
         
         
@@ -1104,7 +1112,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TemplateGetResponse
         
         
@@ -1115,7 +1123,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TemplateRequest
         
         
@@ -1138,7 +1146,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TemplateRequestList
         
         
@@ -1147,7 +1155,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UI
         
         
@@ -1162,7 +1170,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UIIcon
         
         
@@ -1175,7 +1183,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateAttributeRequest
         
         
@@ -1188,7 +1196,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateResponse
         
         
@@ -1197,7 +1205,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateReviewRequest
         
         
@@ -1232,7 +1240,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateTemplateRequest
         
         
@@ -1255,7 +1263,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateTemplateStatusRequest
         
         
@@ -1266,7 +1274,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef PaginationSchema
         
         
@@ -1283,7 +1293,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ThemesListingResponseSchema
         
         
@@ -1294,7 +1304,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AddThemeRequestSchema
         
         
@@ -1303,7 +1313,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpgradableThemeSchema
         
         
@@ -1316,7 +1326,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FontsSchema
         
         
@@ -1327,7 +1337,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BlitzkriegApiErrorSchema
         
         
@@ -1336,7 +1346,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BlitzkriegNotFoundSchema
         
         
@@ -1345,7 +1355,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BlitzkriegInternalServerErrorSchema
         
         
@@ -1354,7 +1364,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FontsSchemaItems
         
         
@@ -1377,7 +1387,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FontsSchemaItemsFiles
         
         
@@ -1390,7 +1400,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ThemesSchema
         
         
@@ -1447,7 +1457,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef pagesSchema
         
         
@@ -1464,7 +1474,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef availableSectionSchema
         
         
@@ -1479,7 +1489,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef sectionSchema
         
         
@@ -1490,7 +1500,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Information
         
         
@@ -1505,7 +1515,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Images
         
         
@@ -1520,7 +1530,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Src
         
         
@@ -1529,7 +1539,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AssetsSchema
         
         
@@ -1542,7 +1552,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UmdJs
         
         
@@ -1551,7 +1561,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CommonJs
         
         
@@ -1560,7 +1570,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Css
         
         
@@ -1569,7 +1579,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AvailablePages
         
         
@@ -1590,7 +1600,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Seo
         
         
@@ -1601,7 +1611,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Sections
         
         
@@ -1610,7 +1620,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Config
         
         
@@ -1625,7 +1635,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Preset
         
         
@@ -1634,7 +1644,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GlobalSchema
         
         
@@ -1643,7 +1653,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ListSchema
         
         
@@ -1656,7 +1666,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Colors
         
         
@@ -1675,7 +1685,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Custom
         
         
@@ -1684,7 +1694,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ConfigPage
         
         
@@ -1695,7 +1705,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Font
         
         
@@ -1706,7 +1716,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Variants
         
         
@@ -1723,7 +1733,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Medium
         
         
@@ -1734,7 +1744,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SemiBold
         
         
@@ -1745,7 +1755,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Bold
         
         
@@ -1756,7 +1766,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Light
         
         
@@ -1767,7 +1777,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Regular
         
         
@@ -1778,7 +1788,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Blocks
         
         
@@ -1791,7 +1801,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BlocksProps
         
         
@@ -1804,7 +1814,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageSections
         
         
@@ -1823,7 +1833,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageSectionsBlocks
         
         
@@ -1836,7 +1846,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageSectionsBlocksProps
         
         
@@ -1849,7 +1859,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Predicate
         
         
@@ -1862,7 +1872,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Screen
         
         
@@ -1875,7 +1885,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PredicateUserSchema
         
         
@@ -1886,7 +1896,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Route
         
         
@@ -1899,7 +1909,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef EditEmailRequestSchema
         
         
@@ -1908,7 +1920,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SendVerificationLinkMobileRequestSchema
         
         
@@ -1925,7 +1937,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EditMobileRequestSchema
         
         
@@ -1936,7 +1948,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EditProfileRequestSchema
         
         
@@ -1965,7 +1977,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EditProfileMobileSchema
         
         
@@ -1976,7 +1988,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SendEmailOtpRequestSchema
         
         
@@ -1991,7 +2003,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef VerifyEmailOtpRequestSchema
         
         
@@ -2006,7 +2018,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef VerifyOtpRequestSchema
         
         
@@ -2019,7 +2031,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SendMobileOtpRequestSchema
         
         
@@ -2040,7 +2052,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdatePasswordRequestSchema
         
         
@@ -2051,7 +2063,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FormRegisterRequestSchema
         
         
@@ -2072,7 +2084,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TokenRequestBodySchema
         
         
@@ -2081,7 +2093,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ForgotPasswordRequestSchema
         
         
@@ -2092,7 +2104,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CodeRequestBodySchema
         
         
@@ -2101,7 +2113,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SendResetPasswordEmailRequestSchema
         
         
@@ -2112,7 +2124,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PasswordLoginRequestSchema
         
         
@@ -2125,7 +2137,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SendOtpRequestSchema
         
         
@@ -2138,7 +2150,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OAuthRequestSchema
         
         
@@ -2151,7 +2163,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UserObjectSchema
         
         
@@ -2160,7 +2172,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AuthSuccess
         
         
@@ -2173,7 +2185,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SendOtpResponse
         
         
@@ -2206,7 +2218,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ProfileEditSuccess
         
         
@@ -2227,7 +2239,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LoginSuccess
         
         
@@ -2240,7 +2252,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef VerifyOtpSuccess
         
         
@@ -2253,7 +2265,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ResetPasswordSuccess
         
         
@@ -2262,7 +2274,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RegisterFormSuccess
         
         
@@ -2295,7 +2307,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef VerifyEmailSuccess
         
         
@@ -2304,7 +2316,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef HasPasswordSuccess
         
         
@@ -2313,7 +2325,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LogoutSuccess
         
         
@@ -2322,7 +2334,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OtpSuccess
         
         
@@ -2345,7 +2357,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailOtpSuccess
         
         
@@ -2354,7 +2366,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SessionListSuccess
         
         
@@ -2363,7 +2375,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef VerifyMobileOTPSuccess
         
         
@@ -2374,7 +2386,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef VerifyEmailOTPSuccess
         
         
@@ -2385,7 +2397,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SendMobileVerifyLinkSuccess
         
         
@@ -2394,7 +2406,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SendEmailVerifyLinkSuccess
         
         
@@ -2403,7 +2415,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UserSearchResponseSchema
         
         
@@ -2412,7 +2424,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CustomerListResponseSchema
         
         
@@ -2423,7 +2435,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UnauthorizedSchema
         
         
@@ -2432,7 +2444,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UnauthenticatedSchema
         
         
@@ -2441,7 +2453,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef NotFoundSchema
         
         
@@ -2450,7 +2462,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AuthenticationInternalServerErrorSchema
         
         
@@ -2459,7 +2471,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AuthenticationApiErrorSchema
         
         
@@ -2468,7 +2480,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ProfileEditSuccessSchema
         
         
@@ -2489,7 +2501,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FormRegisterRequestSchemaPhone
         
         
@@ -2500,7 +2512,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OAuthRequestSchemaOauth2
         
         
@@ -2513,7 +2525,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OAuthRequestSchemaProfile
         
         
@@ -2532,7 +2544,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AuthSuccessUser
         
         
@@ -2549,7 +2561,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AuthSuccessUserDebug
         
         
@@ -2558,7 +2570,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AuthSuccessUserEmails
         
         
@@ -2573,7 +2585,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PlatformSchema
         
         
@@ -2622,7 +2634,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LookAndFeel
         
         
@@ -2633,7 +2645,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Login
         
         
@@ -2644,7 +2656,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MetaSchema
         
         
@@ -2653,7 +2665,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Social
         
         
@@ -2666,7 +2678,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RequiredFields
         
         
@@ -2677,7 +2689,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PlatformEmail
         
         
@@ -2688,7 +2700,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PlatformMobile
         
         
@@ -2699,7 +2711,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RegisterRequiredFields
         
         
@@ -2710,7 +2722,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RegisterRequiredFieldsEmail
         
         
@@ -2721,7 +2733,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RegisterRequiredFieldsMobile
         
         
@@ -2732,7 +2744,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FlashCard
         
         
@@ -2745,7 +2757,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SocialTokens
         
         
@@ -2758,7 +2770,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Facebook
         
         
@@ -2767,7 +2779,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Accountkit
         
         
@@ -2776,7 +2788,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Google
         
         
@@ -2785,7 +2797,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UserSchema
         
         
@@ -2824,7 +2836,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef ApplicationLegal
         
         
@@ -2847,7 +2861,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApplicationLegalFAQ
         
         
@@ -2858,7 +2872,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SeoComponent
         
         
@@ -2867,7 +2881,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SeoSchema
         
         
@@ -2890,7 +2904,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CustomMetaTag
         
         
@@ -2903,7 +2917,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Detail
         
         
@@ -2914,7 +2928,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AnnouncementPageSchema
         
         
@@ -2925,7 +2939,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EditorMeta
         
         
@@ -2940,7 +2954,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AnnouncementAuthorSchema
         
         
@@ -2951,7 +2965,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AdminAnnouncementSchema
         
         
@@ -2980,7 +2994,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ScheduleSchema
         
         
@@ -2997,7 +3011,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef NextSchedule
         
         
@@ -3008,7 +3022,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AnnouncementSchema
         
         
@@ -3019,7 +3033,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef scheduleStartSchema
         
         
@@ -3028,7 +3042,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BlogGetResponse
         
         
@@ -3039,7 +3053,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ResourceContent
         
         
@@ -3050,7 +3064,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Asset
         
         
@@ -3063,7 +3077,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Author
         
         
@@ -3076,7 +3090,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BlogSchema
         
         
@@ -3113,7 +3127,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SEO
         
         
@@ -3126,7 +3140,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SEOImage
         
         
@@ -3135,7 +3149,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BlogRequest
         
         
@@ -3166,7 +3180,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetAnnouncementListSchema
         
         
@@ -3177,7 +3191,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateAnnouncementSchema
         
         
@@ -3188,7 +3202,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Navigation
         
         
@@ -3215,7 +3229,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LocaleLanguage
         
         
@@ -3228,7 +3242,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Language
         
         
@@ -3237,7 +3251,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Action
         
         
@@ -3250,7 +3264,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ActionPage
         
         
@@ -3265,7 +3279,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef NavigationReference
         
         
@@ -3292,7 +3306,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LandingPage
         
         
@@ -3303,7 +3317,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ConfigurationSchema
         
         
@@ -3318,7 +3332,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SlideshowMedia
         
         
@@ -3337,7 +3351,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Slideshow
         
         
@@ -3348,7 +3362,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AnnouncementsResponseSchema
         
         
@@ -3361,7 +3375,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FaqResponseSchema
         
         
@@ -3370,7 +3384,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateHandpickedSchema
         
         
@@ -3379,7 +3393,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef HandpickedTagSchema
         
         
@@ -3400,7 +3414,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RemoveHandpickedSchema
         
         
@@ -3409,7 +3423,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateTagSchema
         
         
@@ -3432,7 +3446,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateTagRequestSchema
         
         
@@ -3441,7 +3455,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef APIError
         
         
@@ -3464,7 +3478,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CategorySchema
         
         
@@ -3481,7 +3495,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ChildrenSchema
         
         
@@ -3498,7 +3512,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CategoryRequestSchema
         
         
@@ -3509,7 +3523,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FAQCategorySchema
         
         
@@ -3534,7 +3548,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FaqSchema
         
         
@@ -3551,7 +3565,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FAQ
         
         
@@ -3564,7 +3578,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateFaqResponseSchema
         
         
@@ -3573,7 +3587,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateFaqSchema
         
         
@@ -3582,7 +3596,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetFaqSchema
         
         
@@ -3591,7 +3605,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateFaqCategoryRequestSchema
         
         
@@ -3600,7 +3614,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateFaqCategoryRequestSchema
         
         
@@ -3609,7 +3623,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateFaqCategorySchema
         
         
@@ -3618,7 +3632,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetFaqCategoriesSchema
         
         
@@ -3627,7 +3641,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetFaqCategoryBySlugSchema
         
         
@@ -3636,7 +3650,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LandingPageGetResponse
         
         
@@ -3647,7 +3661,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LandingPageSchema
         
         
@@ -3672,7 +3686,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DefaultNavigationResponse
         
         
@@ -3681,7 +3695,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef NavigationGetResponse
         
         
@@ -3692,7 +3706,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Orientation
         
         
@@ -3703,7 +3717,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef NavigationSchema
         
         
@@ -3732,7 +3746,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef NavigationRequest
         
         
@@ -3749,7 +3763,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CustomPageSchema
         
         
@@ -3784,7 +3798,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ContentSchema
         
         
@@ -3795,7 +3809,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CustomPage
         
         
@@ -3804,7 +3818,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CustomBlogSchema
         
         
@@ -3843,7 +3857,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FeatureImage
         
         
@@ -3852,7 +3866,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CustomBlog
         
         
@@ -3861,7 +3875,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageGetResponse
         
         
@@ -3872,7 +3886,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageSpec
         
         
@@ -3881,7 +3895,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageSpecParam
         
         
@@ -3892,7 +3906,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageSpecItem
         
         
@@ -3907,7 +3921,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageSchema
         
         
@@ -3954,7 +3968,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreatedBySchema
         
         
@@ -3963,7 +3977,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageContent
         
         
@@ -3974,7 +3988,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageMeta
         
         
@@ -3985,7 +3999,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageRequest
         
         
@@ -4018,7 +4032,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CronSchedule
         
         
@@ -4033,7 +4047,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PagePublishRequest
         
         
@@ -4042,7 +4056,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PageMetaSchema
         
         
@@ -4055,7 +4069,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SlideshowGetResponse
         
         
@@ -4066,7 +4080,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SlideshowSchema
         
         
@@ -4093,7 +4107,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SlideshowRequest
         
         
@@ -4110,7 +4124,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Support
         
         
@@ -4131,7 +4145,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PhoneProperties
         
         
@@ -4144,7 +4158,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PhoneSchema
         
         
@@ -4155,7 +4169,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailProperties
         
         
@@ -4166,7 +4180,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailSchema
         
         
@@ -4177,7 +4191,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ContactSchema
         
         
@@ -4188,7 +4202,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TagsSchema
         
         
@@ -4201,7 +4215,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TagSchema
         
         
@@ -4224,7 +4238,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef ErrorResponseSchema
         
         
@@ -4235,7 +4251,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Success
         
         
@@ -4244,7 +4260,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreatedModifiedByObject
         
         
@@ -4255,7 +4271,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PickupPointResponse
         
         
@@ -4266,7 +4282,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PickupPointSchema
         
         
@@ -4295,7 +4311,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ItemProperties
         
         
@@ -4324,7 +4340,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AddressObject
         
         
@@ -4343,7 +4359,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AdditionalContactsObject
         
         
@@ -4354,7 +4370,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TimingObject
         
         
@@ -4369,7 +4385,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OpeningClosingObject
         
         
@@ -4380,7 +4396,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PickupResponse
         
         
@@ -4391,7 +4407,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PickupConfiguration
         
         
@@ -4404,7 +4420,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PickupResponseItems
         
         
@@ -4419,7 +4435,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShippingSchema
         
         
@@ -4432,7 +4448,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShippingResponse
         
         
@@ -4443,7 +4459,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AssignmentSchema
         
         
@@ -4454,7 +4470,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FulfillmentPriorityObject
         
         
@@ -4465,7 +4481,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreSchema
         
         
@@ -4476,7 +4492,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreResponse
         
         
@@ -4487,7 +4503,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreAssignmentObject
         
         
@@ -4498,7 +4514,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StrategyObject
         
         
@@ -4507,7 +4523,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StrategyItems
         
         
@@ -4518,7 +4534,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreListResponse
         
         
@@ -4529,7 +4545,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ZoneSchema
         
         
@@ -4540,7 +4556,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ZoneListResponse
         
         
@@ -4551,7 +4567,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RegionObject
         
         
@@ -4562,7 +4578,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PincodeObject
         
         
@@ -4571,7 +4587,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RadiusObject
         
         
@@ -4580,7 +4596,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ZoneDetailsObject
         
         
@@ -4593,7 +4609,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef UnauthenticatedUser
         
         
@@ -4602,7 +4620,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UnauthenticatedApplication
         
         
@@ -4611,7 +4629,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BadRequest
         
         
@@ -4620,7 +4638,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ResourceNotFound
         
         
@@ -4629,7 +4647,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InternalServerError
         
         
@@ -4640,7 +4658,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PlanRecurring
         
         
@@ -4651,7 +4669,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Plan
         
         
@@ -4696,7 +4714,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DetailedPlanComponents
         
         
@@ -4719,7 +4737,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DetailedPlan
         
         
@@ -4766,7 +4784,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceDetailsPeriod
         
         
@@ -4777,7 +4795,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceDetailsClient
         
         
@@ -4792,7 +4810,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceDetailsStatusTrail
         
         
@@ -4805,7 +4823,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceDetailsPaymentMethodsDataChecks
         
         
@@ -4818,7 +4836,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceDetailsPaymentMethodsDataNetworks
         
         
@@ -4829,7 +4847,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceDetailsPaymentMethodsDataThreeDSecureUsage
         
         
@@ -4838,7 +4856,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceDetailsPaymentMethodsData
         
         
@@ -4869,7 +4887,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceDetailsPaymentMethods
         
         
@@ -4886,7 +4904,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoicePaymentMethod
         
         
@@ -4895,7 +4913,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceDetails
         
         
@@ -4950,7 +4968,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceItemsPlanRecurring
         
         
@@ -4961,7 +4979,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceItemsPlan
         
         
@@ -5006,7 +5024,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceItemsPeriod
         
         
@@ -5017,7 +5035,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceItems
         
         
@@ -5050,7 +5068,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Invoice
         
         
@@ -5061,7 +5079,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoicesDataClient
         
         
@@ -5076,7 +5094,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoicesDataPeriod
         
         
@@ -5087,7 +5105,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoicesDataPaymentMethod
         
         
@@ -5096,7 +5114,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoicesData
         
         
@@ -5153,7 +5171,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Invoices
         
         
@@ -5172,7 +5190,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Phone
         
         
@@ -5183,7 +5201,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionBillingAddress
         
         
@@ -5202,7 +5220,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionCustomer
         
         
@@ -5229,7 +5247,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionCustomerCreate
         
         
@@ -5248,7 +5266,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionCurrentPeriod
         
         
@@ -5259,7 +5277,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionPauseCollection
         
         
@@ -5270,7 +5288,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionTrial
         
         
@@ -5281,7 +5299,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionInvoiceSettings
         
         
@@ -5292,7 +5310,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Subscription
         
         
@@ -5331,7 +5349,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionStatus
         
         
@@ -5342,7 +5360,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionLimitApplication
         
         
@@ -5355,7 +5373,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionLimitMarketplace
         
         
@@ -5364,7 +5382,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionLimitOtherPlatform
         
         
@@ -5373,7 +5391,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionLimitTeam
         
         
@@ -5382,7 +5400,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionLimitProducts
         
         
@@ -5393,7 +5411,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionLimitExtensions
         
         
@@ -5404,7 +5422,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionLimitIntegrations
         
         
@@ -5415,7 +5433,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionLimit
         
         
@@ -5438,7 +5456,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionActivateReq
         
         
@@ -5455,7 +5473,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionActivateRes
         
         
@@ -5466,7 +5484,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CancelSubscriptionReq
         
         
@@ -5481,7 +5499,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CancelSubscriptionRes
         
         
@@ -5492,7 +5510,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef StatsImported
         
         
@@ -5501,7 +5521,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StatsProcessedEmail
         
         
@@ -5514,7 +5534,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StatsProcessedSms
         
         
@@ -5527,7 +5547,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StatsProcessed
         
         
@@ -5538,7 +5558,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Stats
         
         
@@ -5551,7 +5571,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetStats
         
         
@@ -5560,7 +5580,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CampaignReq
         
         
@@ -5585,7 +5605,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RecipientHeaders
         
         
@@ -5594,7 +5614,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CampaignEmailTemplate
         
         
@@ -5605,7 +5625,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CampignEmailProvider
         
         
@@ -5618,7 +5638,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CampaignEmail
         
         
@@ -5629,7 +5649,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Campaign
         
         
@@ -5664,7 +5684,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Campaigns
         
         
@@ -5675,7 +5695,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BigqueryHeadersReq
         
         
@@ -5686,7 +5706,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BigqueryHeadersResHeaders
         
         
@@ -5697,7 +5717,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BigqueryHeadersRes
         
         
@@ -5706,7 +5726,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetNRecordsCsvReq
         
         
@@ -5719,7 +5739,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetNRecordsCsvResItems
         
         
@@ -5736,7 +5756,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetNRecordsCsvRes
         
         
@@ -5745,7 +5765,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AudienceReq
         
         
@@ -5770,7 +5790,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Audience
         
         
@@ -5805,7 +5825,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Audiences
         
         
@@ -5816,7 +5836,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailProviderReqFrom
         
         
@@ -5829,7 +5849,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailProviderReq
         
         
@@ -5848,7 +5868,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailProvider
         
         
@@ -5879,7 +5899,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailProviders
         
         
@@ -5890,7 +5910,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailTemplateDeleteSuccessRes
         
         
@@ -5901,7 +5921,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailTemplateDeleteFailureRes
         
         
@@ -5912,7 +5932,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailTemplateKeys
         
         
@@ -5925,7 +5945,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailTemplateHeaders
         
         
@@ -5936,7 +5956,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailTemplateReq
         
         
@@ -5971,7 +5991,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TemplateAndType
         
         
@@ -5982,7 +6002,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailTemplateRes
         
         
@@ -6035,7 +6055,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailTemplate
         
         
@@ -6086,7 +6106,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SystemEmailTemplate
         
         
@@ -6137,7 +6157,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailTemplates
         
         
@@ -6148,7 +6168,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SystemEmailTemplates
         
         
@@ -6159,7 +6179,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EventSubscriptionTemplateSms
         
         
@@ -6170,7 +6190,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EventSubscriptionTemplateEmail
         
         
@@ -6181,7 +6201,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EventSubscriptionTemplate
         
         
@@ -6192,7 +6212,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EventSubscription
         
         
@@ -6217,7 +6237,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EventSubscriptions
         
         
@@ -6228,7 +6248,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TriggerJobResponse
         
         
@@ -6237,7 +6257,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TriggerJobRequest
         
         
@@ -6246,7 +6266,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Job
         
         
@@ -6269,7 +6289,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Jobs
         
         
@@ -6280,7 +6300,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef JobLog
         
         
@@ -6303,7 +6323,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef JobLogs
         
         
@@ -6314,7 +6334,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LogEmail
         
         
@@ -6323,7 +6343,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LogPushnotification
         
         
@@ -6332,7 +6352,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LogMeta
         
         
@@ -6351,7 +6371,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Log
         
         
@@ -6380,7 +6400,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Logs
         
         
@@ -6391,7 +6411,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PushtokenReq
         
         
@@ -6406,7 +6426,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PushtokenRes
         
         
@@ -6435,7 +6455,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SmsProviderReq
         
         
@@ -6456,7 +6476,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SmsProvider
         
         
@@ -6491,7 +6511,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SmsProviders
         
         
@@ -6502,7 +6522,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SmsTemplateDeleteSuccessRes
         
         
@@ -6513,7 +6533,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SmsTemplateDeleteFailureRes
         
         
@@ -6524,7 +6544,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SmsTemplateMessage
         
         
@@ -6535,7 +6555,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SmsTemplateReq
         
         
@@ -6554,7 +6574,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SmsTemplateRes
         
         
@@ -6589,7 +6609,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SmsTemplate
         
         
@@ -6624,7 +6644,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SystemSmsTemplate
         
         
@@ -6659,7 +6679,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SmsTemplates
         
         
@@ -6670,7 +6690,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SystemSmsTemplates
         
         
@@ -6681,7 +6701,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Notification
         
         
@@ -6700,7 +6720,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SystemNotificationUser
         
         
@@ -6711,7 +6731,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SystemNotificationSettings
         
         
@@ -6724,7 +6744,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SystemNotification
         
         
@@ -6743,7 +6763,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SystemNotificationsPage
         
         
@@ -6760,7 +6780,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SystemNotifications
         
         
@@ -6773,7 +6793,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef PaymentGatewayConfigResponse
         
         
@@ -6792,7 +6814,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ErrorCodeDescription
         
         
@@ -6805,7 +6827,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentGatewayConfig
         
         
@@ -6822,7 +6844,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentGatewayConfigRequest
         
         
@@ -6835,7 +6857,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentGatewayToBeReviewed
         
         
@@ -6846,7 +6868,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ErrorCodeAndDescription
         
         
@@ -6857,7 +6879,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef HttpErrorCodeAndResponse
         
         
@@ -6868,7 +6890,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentModeLogo
         
         
@@ -6879,7 +6901,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentModeList
         
         
@@ -6940,7 +6962,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RootPaymentMode
         
         
@@ -6961,7 +6983,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentOptions
         
         
@@ -6970,7 +6992,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentOptionsResponse
         
         
@@ -6981,7 +7003,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PayoutsResponse
         
         
@@ -7002,7 +7024,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PayoutRequest
         
         
@@ -7021,7 +7043,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PayoutResponse
         
         
@@ -7048,7 +7070,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdatePayoutResponse
         
         
@@ -7061,7 +7083,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdatePayoutRequest
         
         
@@ -7074,7 +7096,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DeletePayoutResponse
         
         
@@ -7083,7 +7105,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionPaymentMethodResponse
         
         
@@ -7094,7 +7116,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DeleteSubscriptionPaymentMethodResponse
         
         
@@ -7103,7 +7125,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriptionConfigResponse
         
         
@@ -7116,7 +7138,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SaveSubscriptionSetupIntentRequest
         
         
@@ -7125,7 +7147,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SaveSubscriptionSetupIntentResponse
         
         
@@ -7136,7 +7158,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef GetActivityStatus
         
         
@@ -7145,7 +7169,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ActivityHistory
         
         
@@ -7160,7 +7184,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FailedOrders
         
         
@@ -7169,7 +7193,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FailOrder
         
         
@@ -7194,7 +7218,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MarketplaceOrder
         
         
@@ -7291,7 +7315,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalDiscountsSet
         
         
@@ -7302,7 +7326,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PresentmentMoney
         
         
@@ -7313,7 +7337,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShopMoney
         
         
@@ -7324,7 +7348,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalPriceSet
         
         
@@ -7335,7 +7359,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalPriceSetShopMoney
         
         
@@ -7346,7 +7370,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalPriceSetPresentmentMoney
         
         
@@ -7357,7 +7381,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalTaxSet
         
         
@@ -7368,7 +7392,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalTaxSetShopMoney
         
         
@@ -7379,7 +7403,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalTaxSetPresentmentMoney
         
         
@@ -7390,7 +7414,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubtotalPriceSet
         
         
@@ -7401,7 +7425,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubtotalPriceSetShopMoney
         
         
@@ -7412,7 +7436,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubtotalPriceSetPresentmentMoney
         
         
@@ -7423,7 +7447,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LineItems
         
         
@@ -7478,7 +7502,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LineItemsArticle
         
         
@@ -7537,7 +7561,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Quantities
         
         
@@ -7552,7 +7576,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef NotAvailable
         
         
@@ -7563,7 +7587,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Sellable
         
         
@@ -7574,7 +7598,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OrderCommitted
         
         
@@ -7585,7 +7609,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Damaged
         
         
@@ -7596,7 +7620,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Manufacturer
         
         
@@ -7609,7 +7633,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ArticlePrice
         
         
@@ -7624,7 +7648,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Company
         
         
@@ -7661,7 +7685,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FailOrderDateMeta
         
         
@@ -7676,7 +7700,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MarketplaceIdentifiers
         
         
@@ -7685,7 +7709,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TatacliqLuxury
         
         
@@ -7694,7 +7718,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Dimension
         
         
@@ -7711,7 +7735,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Weight
         
         
@@ -7724,7 +7748,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Store
         
         
@@ -7733,7 +7757,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ArticleMeta
         
         
@@ -7742,7 +7766,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ArticleBrand
         
         
@@ -7753,7 +7777,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LineItemsArticleIdentifier
         
         
@@ -7762,7 +7786,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PriceSet
         
         
@@ -7773,7 +7797,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PriceSetShopMoney
         
         
@@ -7784,7 +7808,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PriceSetPresentmentMoney
         
         
@@ -7795,7 +7819,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TaxLines
         
         
@@ -7810,7 +7834,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TaxLinesPriceSet
         
         
@@ -7821,7 +7845,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TaxLinesPriceSetShopMoney
         
         
@@ -7832,7 +7856,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TaxLinesPriceSetPresentmentMoney
         
         
@@ -7843,7 +7867,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalDiscountSet
         
         
@@ -7854,7 +7878,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalDiscountSetPresentmentMoney
         
         
@@ -7865,7 +7889,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalDiscountSetShopMoney
         
         
@@ -7876,7 +7900,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BillingAddress
         
         
@@ -7913,7 +7937,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalShippingPriceSet
         
         
@@ -7924,7 +7948,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalShippingPriceSetShopMoney
         
         
@@ -7935,7 +7959,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalShippingPriceSetPresentmentMoney
         
         
@@ -7946,7 +7970,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Customer
         
         
@@ -7995,7 +8019,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DefaultAddress
         
         
@@ -8036,7 +8060,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalLineItemsPriceSet
         
         
@@ -8047,7 +8071,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalLineItemsPriceSetShopMoney
         
         
@@ -8058,7 +8082,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TotalLineItemsPriceSetPresentmentMoney
         
         
@@ -8069,7 +8093,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShippingAddress
         
         
@@ -8106,7 +8130,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OrderListing
         
         
@@ -8114,7 +8138,7 @@ class PlatformApplicationClient {
         
         @property { Filters } filters
         
-        @property { NextOrderStatus } next_order_status
+        @property { Object } next_order_status
         
         @property { PlatformOrderPage } page
         
@@ -8123,7 +8147,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OrderItems
         
         
@@ -8132,8 +8156,6 @@ class PlatformApplicationClient {
         @property { PlatformDeliveryAddress } [delivery_address]
         
         @property { Channel } [channel]
-        
-        @property { PlatformBreakupValues } [breakup_values]
         
         @property { string } [id]
         
@@ -8145,12 +8167,10 @@ class PlatformApplicationClient {
         
         @property { number } [total_shipments_in_order]
         
-        @property { ItemsPayments } [payments]
-        
          
     */
 
-/**
+    /**
         @typedef PlatformOrderUserInfo
         
         
@@ -8173,7 +8193,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PlatformDeliveryAddress
         
         
@@ -8220,7 +8240,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Channel
         
         
@@ -8231,58 +8251,16 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef PlatformBreakupValues
-        
-        
-        @property { string } [display]
-        
-        @property { number } [value]
-        
-        @property { string } [name]
-        
-         
-    */
-
-/**
+    /**
         @typedef PlatformApplication
         
         
-        @property { string } [name]
-        
-        @property { string } [owner]
-        
-        @property { boolean } [post_order_reassignment]
-        
         @property { string } [id]
         
-        @property { string } [description]
-        
-        @property { boolean } [dp_assignment]
-        
-        @property { ArticleAssignment } [article_assignment]
-        
-        @property { boolean } [force_reassignment]
-        
-        @property { string } [token]
-        
-        @property { string } [secret]
-        
          
     */
 
-/**
-        @typedef ArticleAssignment
-        
-        
-        @property { string } [strategy]
-        
-        @property { string } [level]
-        
-         
-    */
-
-/**
+    /**
         @typedef PlatformShipment
         
         
@@ -8292,46 +8270,16 @@ class PlatformApplicationClient {
         
         @property { ShipmentPrices } [prices]
         
-        @property { ShipmentBreakupValues } [breakup_values]
-        
         @property { string } [id]
-        
-        @property { DpDetails } [dp_details]
-        
-        @property { ShipmentInvoice } [invoice]
-        
-        @property { PlatformFulfillingStore } [fulfilling_store]
-        
-        @property { Payments } [payments]
         
         @property { ShipmentGst } [gst]
         
-        @property { Company } [company]
-        
-        @property { PlatformShipmentBrand } [brand]
-        
-        @property { Object } [coupon]
-        
-        @property { string } [order_source]
-        
-        @property { boolean } [is_not_fynd_source]
-        
-        @property { string } [comment]
-        
-        @property { Promise } [promise]
-        
-        @property { ShipmentTrackingDetails } [tracking_details]
-        
-        @property { boolean } [is_fynd_coupon]
-        
-        @property { string } [order_type]
-        
-        @property { ShipmentUser } [user]
+        @property { number } [total_shipment_bags]
         
          
     */
 
-/**
+    /**
         @typedef PlatformShipmentStatus
         
         
@@ -8356,8 +8304,470 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Bags
+        
+        
+        @property { BagItem } [item]
+        
+        @property { BagArticle } [article]
+        
+        @property { number } [id]
+        
+         
+    */
+
+    /**
+        @typedef BagItem
+        
+        
+        @property { number } [id]
+        
+        @property { string } [size]
+        
+        @property { string } [slug_key]
+        
+        @property { boolean } [can_return]
+        
+        @property { number } [brand_id]
+        
+        @property { Array<string> } [l2_category]
+        
+        @property { string } [name]
+        
+        @property { string } [code]
+        
+        @property { boolean } [can_cancel]
+        
+        @property { BagItemAttributes } [attributes]
+        
+        @property { string } [l3_category_name]
+        
+        @property { number } [l3_category]
+        
+        @property { Array<string> } [l1_category]
+        
+        @property { Array<string> } [image]
+        
+        @property { string } [brand]
+        
+        @property { string } [last_updated_at]
+        
+         
+    */
+
+    /**
+        @typedef BagItemAttributes
+        
+        
+        @property { string } [item_code]
+        
+        @property { string } [brand_name]
+        
+        @property { string } [country_of_origin]
+        
+         
+    */
+
+    /**
+        @typedef BagArticle
+        
+        
+        @property { ArticleIdentifiers } [identifiers]
+        
+        @property { boolean } [esp_modified]
+        
+        @property { boolean } [is_set]
+        
+        @property { string } [size]
+        
+        @property { string } [code]
+        
+        @property { Set } [set]
+        
+        @property { string } [seller_identifier]
+        
+        @property { BagArticleReturnConfig } [return_config]
+        
+        @property { string } [_id]
+        
+        @property { string } [uid]
+        
+        @property { Object } [child_details]
+        
+         
+    */
+
+    /**
+        @typedef ArticleIdentifiers
+        
+        
+        @property { string } [ean]
+        
+         
+    */
+
+    /**
+        @typedef Set
+        
+        
+        @property { number } [quantity]
+        
+        @property { SetSizeDistribution } [size_distribution]
+        
+         
+    */
+
+    /**
+        @typedef SetSizeDistribution
+        
+        
+        @property { Sizes } [sizes]
+        
+         
+    */
+
+    /**
+        @typedef Sizes
+        
+        
+        @property { string } [size]
+        
+        @property { number } [pieces]
+        
+         
+    */
+
+    /**
+        @typedef BagArticleReturnConfig
+        
+        
+        @property { number } [time]
+        
+        @property { string } [unit]
+        
+        @property { boolean } [returnable]
+        
+         
+    */
+
+    /**
+        @typedef ShipmentPrices
+        
+        
+        @property { number } [refund_amount]
+        
+        @property { number } [cashback_applied]
+        
+        @property { number } [transfer_price]
+        
+        @property { number } [coupon_value]
+        
+        @property { number } [amount_paid]
+        
+        @property { number } [delivery_charge]
+        
+        @property { number } [coupon_effective_discount]
+        
+        @property { number } [cod_charges]
+        
+        @property { number } [refund_credit]
+        
+        @property { boolean } [added_to_fynd_cash]
+        
+        @property { number } [gst_tax_percentage]
+        
+        @property { number } [price_marked]
+        
+        @property { number } [price_effective]
+        
+        @property { number } [discount]
+        
+        @property { number } [promotion_effective_discount]
+        
+        @property { number } [amount_paid_roundoff]
+        
+        @property { number } [fynd_credits]
+        
+        @property { number } [brand_calculated_amount]
+        
+        @property { number } [cashback]
+        
+        @property { number } [value_of_good]
+        
+         
+    */
+
+    /**
+        @typedef Payments
+        
+        
+        @property { boolean } [is_active]
+        
+        @property { string } [display_name]
+        
+        @property { string } [logo]
+        
+        @property { string } [source]
+        
+        @property { string } [source_nickname]
+        
+        @property { number } [display_priority]
+        
+        @property { number } [id]
+        
+        @property { string } [mode]
+        
+        @property { string } [payment_identifier]
+        
+         
+    */
+
+    /**
+        @typedef Filters
+        
+        
+        @property { Stages } [stages]
+        
+         
+    */
+
+    /**
+        @typedef Stages
+        
+        
+        @property { string } [text]
+        
+        @property { string } [value]
+        
+        @property { boolean } [is_default]
+        
+        @property { StagesFilters } [filters]
+        
+         
+    */
+
+    /**
+        @typedef StagesFilters
+        
+        
+        @property { string } [text]
+        
+        @property { string } [value]
+        
+        @property { string } [type]
+        
+        @property { Options } [options]
+        
+         
+    */
+
+    /**
+        @typedef Options
+        
+        
+        @property { string } [text]
+        
+        @property { string } [value]
+        
+         
+    */
+
+    /**
+        @typedef PlatformOrderPage
+        
+        
+        @property { string } [next]
+        
+        @property { string } [previous]
+        
+        @property { string } [type]
+        
+        @property { number } [size]
+        
+        @property { number } [current]
+        
+        @property { boolean } [has_next]
+        
+        @property { ItemTotal } [item_total]
+        
+         
+    */
+
+    /**
+        @typedef ItemTotal
+        
+        
+        @property { number } [new]
+        
+        @property { number } [processing]
+        
+        @property { number } [returns]
+        
+        @property { number } [all]
+        
+         
+    */
+
+    /**
+        @typedef AppliedFilters
+        
+        
+        @property { string } [stage]
+        
+        @property { Array<string> } [stores]
+        
+        @property { string } [from_date]
+        
+        @property { string } [to_date]
+        
+         
+    */
+
+    /**
+        @typedef OrderDetails
+        
+        
+        @property { Array<OrderPicklistListing> } items
+        
+        @property { PlatformOrderPage } page
+        
+        @property { Filters } filters
+        
+        @property { Object } next_order_status
+        
+        @property { AppliedFilters } applied_filters
+        
+         
+    */
+
+    /**
+        @typedef OrderDetailsItem
+        
+        
+        @property { PlatformOrderUserInfo } [user]
+        
+        @property { PlatformDeliveryAddress } [delivery_address]
+        
+        @property { Channel } [channel]
+        
+        @property { PlatformBreakupValues } [breakup_values]
+        
+        @property { string } [id]
+        
+        @property { PlatformApplication } [application]
+        
+        @property { PlatformShipmentDetails } [shipments]
+        
+        @property { string } [created_at]
+        
+        @property { number } [total_shipments_in_order]
+        
+        @property { ItemsPayments } [payments]
+        
+         
+    */
+
+    /**
+        @typedef PlatformBreakupValues
+        
+        
+        @property { string } [display]
+        
+        @property { number } [value]
+        
+        @property { string } [name]
+        
+         
+    */
+
+    /**
+        @typedef ArticleAssignment
+        
+        
+        @property { string } [strategy]
+        
+        @property { string } [level]
+        
+         
+    */
+
+    /**
+        @typedef PlatformShipmentDetails
+        
+        
+        @property { PlatformShipmentDetailsStatus } [status]
+        
+        @property { BagsDetails } [bags]
+        
+        @property { ShipmentPrices } [prices]
+        
+        @property { ShipmentBreakupValues } [breakup_values]
+        
+        @property { string } [id]
+        
+        @property { DpDetails } [dp_details]
+        
+        @property { ShipmentInvoice } [invoice]
+        
+        @property { PlatformFulfillingStore } [fulfilling_store]
+        
+        @property { Payments } [payments]
+        
+        @property { ShipmentGst } [gst]
+        
+        @property { Company } [company]
+        
+        @property { PlatformShipmentDetailsBrand } [brand]
+        
+        @property { Object } [coupon]
+        
+        @property { string } [order_source]
+        
+        @property { boolean } [is_not_fynd_source]
+        
+        @property { string } [comment]
+        
+        @property { Promise } [promise]
+        
+        @property { ShipmentTrackingDetails } [tracking_details]
+        
+        @property { boolean } [is_fynd_coupon]
+        
+        @property { string } [order_type]
+        
+        @property { number } [total_shipment_bags]
+        
+         
+    */
+
+    /**
+        @typedef PlatformShipmentDetailsStatus
+        
+        
+        @property { number } [id]
+        
+        @property { Array<number> } [bag_list]
+        
+        @property { string } [created_at]
+        
+        @property { string } [status]
+        
+        @property { string } [name]
+        
+        @property { number } [progress]
+        
+        @property { string } [shipment_id]
+        
+        @property { string } [current_shipment_status]
+        
+        @property { string } [color_code]
+        
+         
+    */
+
+    /**
+        @typedef BagsDetails
         
         
         @property { Array<BagFinancialBreakup> } [financial_breakup]
@@ -8385,7 +8795,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BagFinancialBreakup
         
         
@@ -8446,7 +8856,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Identifiers
         
         
@@ -8455,7 +8865,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BagCurrStatus
         
         
@@ -8472,188 +8882,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef BagItem
-        
-        
-        @property { number } [id]
-        
-        @property { string } [size]
-        
-        @property { string } [slug_key]
-        
-        @property { boolean } [can_return]
-        
-        @property { number } [brand_id]
-        
-        @property { Array<string> } [l2_category]
-        
-        @property { string } [name]
-        
-        @property { string } [code]
-        
-        @property { boolean } [can_cancel]
-        
-        @property { BagItemAttributes } [attributes]
-        
-        @property { string } [l3_category_name]
-        
-        @property { number } [l3_category]
-        
-        @property { Array<string> } [l1_category]
-        
-        @property { Array<string> } [image]
-        
-        @property { string } [brand]
-        
-        @property { string } [last_updated_at]
-        
-         
-    */
-
-/**
-        @typedef BagItemAttributes
-        
-        
-        @property { string } [item_code]
-        
-        @property { string } [brand_name]
-        
-        @property { string } [country_of_origin]
-        
-         
-    */
-
-/**
-        @typedef BagArticle
-        
-        
-        @property { ArticleIdentifiers } [identifiers]
-        
-        @property { boolean } [esp_modified]
-        
-        @property { boolean } [is_set]
-        
-        @property { string } [size]
-        
-        @property { string } [code]
-        
-        @property { Set } [set]
-        
-        @property { string } [seller_identifier]
-        
-        @property { BagArticleReturnConfig } [return_config]
-        
-        @property { string } [_id]
-        
-        @property { string } [uid]
-        
-        @property { Object } [child_details]
-        
-         
-    */
-
-/**
-        @typedef ArticleIdentifiers
-        
-        
-        @property { string } [ean]
-        
-         
-    */
-
-/**
-        @typedef Set
-        
-        
-        @property { number } [quantity]
-        
-        @property { SetSizeDistribution } [size_distribution]
-        
-         
-    */
-
-/**
-        @typedef SetSizeDistribution
-        
-        
-        @property { Sizes } [sizes]
-        
-         
-    */
-
-/**
-        @typedef Sizes
-        
-        
-        @property { string } [size]
-        
-        @property { number } [pieces]
-        
-         
-    */
-
-/**
-        @typedef BagArticleReturnConfig
-        
-        
-        @property { number } [time]
-        
-        @property { string } [unit]
-        
-        @property { boolean } [returnable]
-        
-         
-    */
-
-/**
-        @typedef ShipmentPrices
-        
-        
-        @property { number } [refund_amount]
-        
-        @property { number } [cashback_applied]
-        
-        @property { number } [transfer_price]
-        
-        @property { number } [coupon_value]
-        
-        @property { number } [amount_paid]
-        
-        @property { number } [delivery_charge]
-        
-        @property { number } [coupon_effective_discount]
-        
-        @property { number } [cod_charges]
-        
-        @property { number } [refund_credit]
-        
-        @property { boolean } [added_to_fynd_cash]
-        
-        @property { number } [gst_tax_percentage]
-        
-        @property { number } [price_marked]
-        
-        @property { number } [price_effective]
-        
-        @property { number } [discount]
-        
-        @property { number } [promotion_effective_discount]
-        
-        @property { number } [amount_paid_roundoff]
-        
-        @property { number } [fynd_credits]
-        
-        @property { number } [brand_calculated_amount]
-        
-        @property { number } [cashback]
-        
-        @property { number } [value_of_good]
-        
-         
-    */
-
-/**
+    /**
         @typedef GstDetails
         
         
@@ -8674,7 +8903,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BagBreakupValues
         
         
@@ -8687,7 +8916,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BagCurrentStatus
         
         
@@ -8702,7 +8931,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BagStateMapper
         
         
@@ -8719,7 +8948,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BagStatus
         
         
@@ -8734,7 +8963,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BagStatusBagStateMapper
         
         
@@ -8751,7 +8980,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BagPrices
         
         
@@ -8786,7 +9015,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShipmentBreakupValues
         
         
@@ -8799,7 +9028,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DpDetails
         
         
@@ -8808,7 +9037,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShipmentInvoice
         
         
@@ -8829,7 +9058,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RtoAddress
         
         
@@ -8866,7 +9095,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreAddressJson
         
         
@@ -8909,7 +9138,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PlatformFulfillingStore
         
         
@@ -8966,7 +9195,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FulfillingStoreMeta
         
         
@@ -8989,7 +9218,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AdditionalContactDetails
         
         
@@ -8998,7 +9227,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Documents
         
         
@@ -9007,7 +9236,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Gst
         
         
@@ -9022,7 +9251,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ProductReturnConfig
         
         
@@ -9031,7 +9260,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Timing
         
         
@@ -9046,7 +9275,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Opening
         
         
@@ -9057,7 +9286,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Closing
         
         
@@ -9068,7 +9297,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FulfillingStoreStoreAddressJson
         
         
@@ -9111,32 +9340,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef Payments
-        
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [display_name]
-        
-        @property { string } [logo]
-        
-        @property { string } [source]
-        
-        @property { string } [source_nickname]
-        
-        @property { number } [display_priority]
-        
-        @property { number } [id]
-        
-        @property { string } [mode]
-        
-        @property { string } [payment_identifier]
-        
-         
-    */
-
-/**
+    /**
         @typedef ShipmentGst
         
         
@@ -9149,8 +9353,8 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef PlatformShipmentBrand
+    /**
+        @typedef PlatformShipmentDetailsBrand
         
         
         @property { boolean } [credit_note_allowed]
@@ -9170,7 +9374,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Promise
         
         
@@ -9179,7 +9383,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Timestamp
         
         
@@ -9190,7 +9394,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShipmentTrackingDetails
         
         
@@ -9205,30 +9409,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef ShipmentUser
-        
-        
-        @property { string } [email]
-        
-        @property { number } [id]
-        
-        @property { string } [first_name]
-        
-        @property { string } [mobile]
-        
-        @property { string } [gender]
-        
-        @property { string } [last_name]
-        
-        @property { boolean } [is_anonymous_user]
-        
-        @property { string } [mongo_user_id]
-        
-         
-    */
-
-/**
+    /**
         @typedef ItemsPayments
         
         
@@ -9253,206 +9434,18 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef Filters
-        
-        
-        @property { Stages } [stages]
-        
-         
-    */
-
-/**
-        @typedef Stages
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-        @property { boolean } [is_default]
-        
-        @property { StagesFilters } [filters]
-        
-         
-    */
-
-/**
-        @typedef StagesFilters
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-        @property { string } [type]
-        
-        @property { Options } [options]
-        
-         
-    */
-
-/**
-        @typedef Options
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef NextOrderStatus
-        
-        
-        @property { BagConfirmed } [bag_confirmed]
-        
-        @property { DpAssigned } [dp_assigned]
-        
-        @property { ReturnBagDelivered } [return_bag_delivered]
-        
-        @property { Placed } [placed]
-        
-        @property { DeliveryDone } [delivery_done]
-        
-        @property { Pending } [pending]
-        
-        @property { BagPacked } [bag_packed]
-        
-         
-    */
-
-/**
-        @typedef BagConfirmed
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef DpAssigned
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef ReturnBagDelivered
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef Placed
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef DeliveryDone
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef Pending
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef BagPacked
-        
-        
-        @property { string } [text]
-        
-        @property { string } [value]
-        
-         
-    */
-
-/**
-        @typedef PlatformOrderPage
+    /**
+        @typedef PlatformOrderDetailsPage
         
         
         @property { string } [next]
         
         @property { string } [previous]
         
-        @property { string } [type]
-        
-        @property { number } [size]
-        
-        @property { number } [current]
-        
-        @property { boolean } [has_next]
-        
-        @property { ItemTotal } [item_total]
-        
          
     */
 
-/**
-        @typedef ItemTotal
-        
-        
-        @property { number } [new]
-        
-        @property { number } [processing]
-        
-        @property { number } [returns]
-        
-        @property { number } [all]
-        
-         
-    */
-
-/**
-        @typedef AppliedFilters
-        
-        
-        @property { string } [stage]
-        
-        @property { Array<string> } [stores]
-        
-        @property { string } [from_date]
-        
-        @property { string } [to_date]
-        
-         
-    */
-
-/**
+    /**
         @typedef UpdateOrderReprocessResponse
         
         
@@ -9461,7 +9454,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PlatformOrderTrack
         
         
@@ -9482,7 +9475,34 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
+        @typedef OrderPicklistListing
+        
+        
+        @property { PlatformOrderUserInfo } [user]
+        
+        @property { PlatformDeliveryAddress } [delivery_address]
+        
+        @property { Channel } [channel]
+        
+        @property { PlatformBreakupValues } [breakup_values]
+        
+        @property { string } [id]
+        
+        @property { PlatformApplication } [application]
+        
+        @property { PlatformShipmentDetails } [shipments]
+        
+        @property { string } [created_at]
+        
+        @property { number } [total_shipments_in_order]
+        
+        @property { ItemsPayments } [payments]
+        
+         
+    */
+
+    /**
         @typedef GetPingResponse
         
         
@@ -9491,7 +9511,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateShipmentStatusResponse
         
         
@@ -9502,7 +9522,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateShipmentStatusBody
         
         
@@ -9515,7 +9535,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PlatformShipmentTrack
         
         
@@ -9524,7 +9544,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Results
         
         
@@ -9547,7 +9567,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateProcessShipmenstRequestBody
         
         
@@ -9558,7 +9578,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateProcessShipmenstRequestResponse
         
         
@@ -9569,7 +9589,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetVoiceCallbackResponse
         
         
@@ -9578,7 +9598,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetClickToCallResponse
         
         
@@ -9587,7 +9607,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApefaceApiError
         
         
@@ -9596,7 +9616,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef SearchKeywordResult
         
         
@@ -9607,67 +9629,56 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateSearchKeyword
         
         
-        @property { Array<string> } [words]
-        
         @property { Object } [_custom_json]
         
-        @property { boolean } [is_active]
+        @property { SearchKeywordResult } result
         
         @property { string } [app_id]
         
-        @property { SearchKeywordResult } result
+        @property { Array<string> } [words]
+        
+        @property { boolean } [is_active]
         
          
     */
 
-/**
+    /**
         @typedef GetSearchWordsData
         
         
-        @property { Array<string> } [words]
-        
         @property { Object } [_custom_json]
+        
+        @property { Object } [result]
         
         @property { string } [app_id]
         
-        @property { Object } [result]
+        @property { Array<string> } [words]
         
         @property { string } [uid]
         
          
     */
 
-/**
+    /**
         @typedef ErrorResponse
         
-        
-        @property { string } [message]
-        
-        @property { string } [code]
         
         @property { Object } [meta]
         
         @property { number } [status]
         
-         
-    */
-
-/**
-        @typedef GetSearchWordsDetailResponse
+        @property { string } [code]
         
-        
-        @property { Page } [page]
-        
-        @property { GetSearchWordsData } [items]
+        @property { string } [message]
         
          
     */
 
-/**
+    /**
         @typedef DeleteResponse
         
         
@@ -9676,55 +9687,66 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef GetSearchWordsResponse
+    /**
+        @typedef GetSearchWordsDetailResponse
         
+        
+        @property { GetSearchWordsData } [items]
         
         @property { Page } [page]
         
+         
+    */
+
+    /**
+        @typedef GetSearchWordsResponse
+        
+        
         @property { Array<GetSearchWordsData> } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
         @typedef AutocompletePageAction
         
         
-        @property { Object } [params]
+        @property { string } type
         
         @property { Object } query
         
-        @property { string } type
-        
         @property { string } [url]
+        
+        @property { Object } [params]
         
          
     */
 
-/**
+    /**
         @typedef AutocompleteAction
         
         
-        @property { AutocompletePageAction } [page]
-        
         @property { string } [type]
+        
+        @property { AutocompletePageAction } [page]
         
          
     */
 
-/**
+    /**
         @typedef Media
         
         
-        @property { string } [type]
-        
         @property { string } [url]
+        
+        @property { string } [type]
         
          
     */
 
-/**
+    /**
         @typedef AutocompleteResult
         
         
@@ -9732,59 +9754,59 @@ class PlatformApplicationClient {
         
         @property { AutocompleteAction } [action]
         
-        @property { Media } [logo]
-        
         @property { string } [display]
+        
+        @property { Media } [logo]
         
          
     */
 
-/**
+    /**
         @typedef CreateAutocompleteKeyword
         
         
         @property { Array<AutocompleteResult> } [results]
         
-        @property { Array<string> } [words]
-        
         @property { Object } [_custom_json]
         
-        @property { boolean } [is_active]
-        
         @property { string } [app_id]
+        
+        @property { Array<string> } [words]
+        
+        @property { boolean } [is_active]
         
          
     */
 
-/**
+    /**
         @typedef GetAutocompleteWordsData
         
         
         @property { Array<Object> } [results]
         
-        @property { Array<string> } [words]
-        
         @property { Object } [_custom_json]
         
         @property { string } [app_id]
+        
+        @property { Array<string> } [words]
         
         @property { string } [uid]
         
          
     */
 
-/**
+    /**
         @typedef GetAutocompleteWordsResponse
         
         
-        @property { Page } [page]
-        
         @property { Array<GetAutocompleteWordsData> } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
         @typedef CreateAutocompleteWordsResponse
         
         
@@ -9799,136 +9821,136 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ProductBundleItem
         
         
-        @property { number } min_quantity
+        @property { boolean } [auto_add_to_cart]
         
         @property { number } product_uid
         
-        @property { boolean } [auto_add_to_cart]
+        @property { boolean } [auto_select]
+        
+        @property { number } min_quantity
         
         @property { boolean } [allow_remove]
         
         @property { number } max_quantity
         
-        @property { boolean } [auto_select]
-        
          
     */
 
-/**
+    /**
         @typedef GetProductBundleCreateResponse
         
         
-        @property { string } name
-        
-        @property { Array<string> } [page_visibility]
-        
-        @property { string } [id]
-        
-        @property { string } choice
-        
-        @property { Object } [created_by]
-        
         @property { string } [created_on]
+        
+        @property { string } [logo]
         
         @property { number } [company_id]
         
-        @property { boolean } [same_store_assignment]
-        
-        @property { Object } [modified_by]
-        
-        @property { string } [logo]
-        
-        @property { boolean } is_active
-        
         @property { Array<ProductBundleItem> } products
-        
-        @property { string } [modified_on]
-        
-        @property { Object } [meta]
-        
-        @property { string } slug
-        
-         
-    */
-
-/**
-        @typedef GetProductBundleListingResponse
-        
-        
-        @property { Page } [page]
-        
-        @property { Array<GetProductBundleCreateResponse> } [items]
-        
-         
-    */
-
-/**
-        @typedef ProductBundleRequest
-        
-        
-        @property { string } name
         
         @property { Array<string> } [page_visibility]
         
-        @property { string } choice
+        @property { boolean } [same_store_assignment]
+        
+        @property { string } name
+        
+        @property { string } [modified_on]
+        
+        @property { boolean } is_active
         
         @property { Object } [created_by]
         
-        @property { string } [created_on]
-        
-        @property { boolean } [same_store_assignment]
-        
         @property { Object } [modified_by]
-        
-        @property { string } [logo]
-        
-        @property { boolean } is_active
-        
-        @property { Array<ProductBundleItem> } products
-        
-        @property { string } [modified_on]
-        
-        @property { Object } [meta]
         
         @property { string } slug
         
-         
-    */
-
-/**
-        @typedef ProductBundleUpdateRequest
-        
-        
-        @property { string } name
-        
-        @property { Array<string> } [page_visibility]
+        @property { Object } [meta]
         
         @property { string } choice
         
-        @property { boolean } [same_store_assignment]
-        
-        @property { Object } [modified_by]
-        
-        @property { string } [logo]
-        
-        @property { boolean } is_active
-        
-        @property { Array<ProductBundleItem> } products
-        
-        @property { string } [modified_on]
-        
-        @property { Object } [meta]
-        
-        @property { string } slug
+        @property { string } [id]
         
          
     */
 
-/**
+    /**
+        @typedef GetProductBundleListingResponse
+        
+        
+        @property { Array<GetProductBundleCreateResponse> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+    /**
+        @typedef ProductBundleRequest
+        
+        
+        @property { string } [created_on]
+        
+        @property { string } [logo]
+        
+        @property { Array<ProductBundleItem> } products
+        
+        @property { Array<string> } [page_visibility]
+        
+        @property { boolean } [same_store_assignment]
+        
+        @property { string } name
+        
+        @property { string } [modified_on]
+        
+        @property { boolean } is_active
+        
+        @property { Object } [created_by]
+        
+        @property { Object } [modified_by]
+        
+        @property { string } slug
+        
+        @property { Object } [meta]
+        
+        @property { string } choice
+        
+         
+    */
+
+    /**
+        @typedef ProductBundleUpdateRequest
+        
+        
+        @property { string } [logo]
+        
+        @property { Array<ProductBundleItem> } products
+        
+        @property { Array<string> } [page_visibility]
+        
+        @property { boolean } [same_store_assignment]
+        
+        @property { string } name
+        
+        @property { string } [modified_on]
+        
+        @property { boolean } is_active
+        
+        @property { Object } [modified_by]
+        
+        @property { string } slug
+        
+        @property { Object } [meta]
+        
+        @property { string } choice
+        
+         
+    */
+
+    /**
         @typedef Size
         
         
@@ -9936,138 +9958,138 @@ class PlatformApplicationClient {
         
         @property { boolean } [is_available]
         
-        @property { string } [value]
-        
         @property { string } [display]
+        
+        @property { string } [value]
         
          
     */
 
-/**
+    /**
         @typedef Price
         
+        
+        @property { number } [max_marked]
+        
+        @property { number } [max_effective]
+        
+        @property { number } [min_effective]
         
         @property { number } [min_marked]
         
         @property { string } [currency]
         
-        @property { number } [min_effective]
-        
-        @property { number } [max_effective]
-        
-        @property { number } [max_marked]
-        
          
     */
 
-/**
+    /**
         @typedef LimitedProductData
         
         
-        @property { string } [name]
+        @property { string } [item_code]
         
         @property { string } [short_description]
         
-        @property { Array<string> } [images]
-        
-        @property { Array<string> } [sizes]
-        
-        @property { Object } [attributes]
-        
-        @property { Object } [price]
+        @property { string } [country_of_origin]
         
         @property { number } [quantity]
         
-        @property { string } [country_of_origin]
+        @property { Array<string> } [sizes]
         
-        @property { Object } [identifier]
+        @property { Array<string> } [images]
         
-        @property { string } [item_code]
+        @property { Object } [price]
         
         @property { number } [uid]
+        
+        @property { string } [name]
+        
+        @property { Object } [attributes]
+        
+        @property { Object } [identifier]
         
         @property { string } [slug]
         
          
     */
 
-/**
+    /**
         @typedef GetProducts
         
         
-        @property { number } [min_quantity]
-        
-        @property { Array<Size> } [sizes]
+        @property { number } [product_uid]
         
         @property { boolean } [auto_add_to_cart]
         
-        @property { number } [product_uid]
+        @property { Array<Size> } [sizes]
+        
+        @property { boolean } [auto_select]
+        
+        @property { number } [min_quantity]
         
         @property { Price } [price]
+        
+        @property { LimitedProductData } [product_details]
         
         @property { boolean } [allow_remove]
         
         @property { number } [max_quantity]
         
-        @property { LimitedProductData } [product_details]
-        
-        @property { boolean } [auto_select]
-        
          
     */
 
-/**
+    /**
         @typedef GetProductBundleResponse
         
         
-        @property { string } [name]
-        
-        @property { Array<string> } [page_visibility]
-        
-        @property { string } [choice]
+        @property { string } [logo]
         
         @property { number } [company_id]
         
+        @property { Array<GetProducts> } [products]
+        
+        @property { Array<string> } [page_visibility]
+        
         @property { boolean } [same_store_assignment]
         
-        @property { string } [logo]
+        @property { string } [name]
         
         @property { boolean } [is_active]
         
-        @property { Array<GetProducts> } [products]
+        @property { string } [slug]
         
         @property { Object } [meta]
         
-        @property { string } [slug]
+        @property { string } [choice]
         
          
     */
 
-/**
+    /**
         @typedef ListSizeGuide
         
         
-        @property { Object } [page]
-        
         @property { Array<Object> } [items]
+        
+        @property { Object } [page]
         
          
     */
 
-/**
+    /**
         @typedef Meta
         
-        
-        @property { Object } [headers]
         
         @property { Array<Object> } [values]
         
         @property { string } [unit]
         
+        @property { Object } [headers]
+        
          
     */
 
-/**
+    /**
         @typedef Guide
         
         
@@ -10076,88 +10098,88 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ValidateSizeGuide
         
         
-        @property { string } name
-        
-        @property { string } [id]
-        
-        @property { string } [image]
-        
-        @property { string } [tag]
-        
-        @property { string } [subtitle]
-        
-        @property { number } [brand_id]
-        
-        @property { Guide } [guide]
-        
-        @property { Object } [created_by]
-        
         @property { string } [created_on]
-        
-        @property { number } [company_id]
-        
-        @property { Object } [modified_by]
-        
-        @property { boolean } [active]
-        
-        @property { string } [modified_on]
         
         @property { string } title
         
+        @property { number } [company_id]
+        
         @property { string } [description]
         
-         
-    */
-
-/**
-        @typedef SuccessResponse
+        @property { Guide } [guide]
         
+        @property { boolean } [active]
         
-        @property { boolean } [success]
-        
-        @property { number } [uid]
-        
-         
-    */
-
-/**
-        @typedef SizeGuideResponse
-        
-        
-        @property { string } [name]
-        
-        @property { string } [id]
-        
-        @property { Object } [created_by]
-        
-        @property { number } [brand_id]
-        
-        @property { Object } [guide]
-        
-        @property { string } [tag]
+        @property { string } name
         
         @property { string } [subtitle]
         
-        @property { string } [created_on]
+        @property { string } [tag]
         
-        @property { number } [company_id]
+        @property { string } [image]
+        
+        @property { number } [brand_id]
+        
+        @property { Object } [created_by]
+        
+        @property { string } [modified_on]
         
         @property { Object } [modified_by]
+        
+        @property { string } [id]
+        
+         
+    */
+
+    /**
+        @typedef SuccessResponse
+        
+        
+        @property { number } [uid]
+        
+        @property { boolean } [success]
+        
+         
+    */
+
+    /**
+        @typedef SizeGuideResponse
+        
+        
+        @property { string } [created_on]
+        
+        @property { string } [title]
+        
+        @property { number } [company_id]
         
         @property { boolean } [active]
         
         @property { string } [modified_on]
         
-        @property { string } [title]
+        @property { string } [name]
+        
+        @property { string } [tag]
+        
+        @property { Object } [guide]
+        
+        @property { number } [brand_id]
+        
+        @property { Object } [created_by]
+        
+        @property { string } [subtitle]
+        
+        @property { Object } [modified_by]
+        
+        @property { string } [id]
         
          
     */
 
-/**
+    /**
         @typedef MetaDataListingSortMetaResponse
         
         
@@ -10168,7 +10190,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MetaDataListingSortResponse
         
         
@@ -10177,11 +10199,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MetaDataListingFilterMetaResponse
         
-        
-        @property { Array<Object> } [units]
         
         @property { string } [key]
         
@@ -10189,10 +10209,12 @@ class PlatformApplicationClient {
         
         @property { Array<string> } [filter_types]
         
+        @property { Array<Object> } [units]
+        
          
     */
 
-/**
+    /**
         @typedef MetaDataListingFilterResponse
         
         
@@ -10201,7 +10223,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MetaDataListingResponse
         
         
@@ -10212,7 +10234,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetCatalogConfigurationDetailsProduct
         
         
@@ -10227,7 +10249,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetCatalogConfigurationMetaData
         
         
@@ -10238,75 +10260,75 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ConfigurationListingSortConfig
         
         
-        @property { string } [name]
-        
-        @property { string } key
+        @property { string } [logo]
         
         @property { number } priority
         
-        @property { string } [logo]
+        @property { string } key
+        
+        @property { string } [name]
         
         @property { boolean } is_active
         
          
     */
 
-/**
+    /**
         @typedef ConfigurationListingSort
         
         
-        @property { string } default_key
-        
         @property { Array<ConfigurationListingSortConfig> } [config]
+        
+        @property { string } default_key
         
          
     */
 
-/**
+    /**
         @typedef ConfigurationBucketPoints
         
         
-        @property { number } [end]
-        
         @property { number } [start]
+        
+        @property { number } [end]
         
          
     */
 
-/**
+    /**
         @typedef ConfigurationListingFilterValue
         
         
-        @property { string } [value]
+        @property { Object } [map]
         
         @property { string } [condition]
         
         @property { string } [sort]
         
-        @property { Object } [map]
-        
         @property { Array<ConfigurationBucketPoints> } [bucket_points]
+        
+        @property { string } [value]
         
          
     */
 
-/**
+    /**
         @typedef ConfigurationListingFilterConfig
         
         
+        @property { string } [logo]
+        
         @property { ConfigurationListingFilterValue } [value_config]
-        
-        @property { string } [name]
-        
-        @property { string } key
         
         @property { number } priority
         
-        @property { string } [logo]
+        @property { string } key
+        
+        @property { string } [name]
         
         @property { boolean } is_active
         
@@ -10315,18 +10337,18 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ConfigurationListingFilter
         
         
-        @property { Array<ConfigurationListingFilterConfig> } [attribute_config]
-        
         @property { boolean } allow_single
+        
+        @property { Array<ConfigurationListingFilterConfig> } [attribute_config]
         
          
     */
 
-/**
+    /**
         @typedef ConfigurationListing
         
         
@@ -10337,7 +10359,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ProductSize
         
         
@@ -10348,58 +10370,28 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef ConfigurationProductConfig
-        
-        
-        @property { ProductSize } [size]
-        
-        @property { string } key
-        
-        @property { number } priority
-        
-        @property { string } [subtitle]
-        
-        @property { string } [logo]
-        
-        @property { boolean } is_active
-        
-        @property { string } [title]
-        
-         
-    */
-
-/**
-        @typedef ConfigurationProductSimilar
-        
-        
-        @property { Array<ConfigurationProductConfig> } [config]
-        
-         
-    */
-
-/**
+    /**
         @typedef ConfigurationProductVariantConfig
         
         
-        @property { string } name
-        
-        @property { ProductSize } size
-        
-        @property { string } key
+        @property { string } [logo]
         
         @property { number } priority
         
-        @property { string } [logo]
+        @property { string } key
+        
+        @property { string } name
         
         @property { boolean } is_active
+        
+        @property { ProductSize } size
         
         @property { string } display_type
         
          
     */
 
-/**
+    /**
         @typedef ConfigurationProductVariant
         
         
@@ -10408,26 +10400,52 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef ConfigurationProduct
+    /**
+        @typedef ConfigurationProductConfig
         
         
-        @property { ConfigurationProductSimilar } similar
+        @property { string } [title]
         
-        @property { ConfigurationProductVariant } variant
+        @property { string } [logo]
+        
+        @property { number } priority
+        
+        @property { string } key
+        
+        @property { string } [subtitle]
+        
+        @property { boolean } is_active
+        
+        @property { ProductSize } [size]
         
          
     */
 
-/**
+    /**
+        @typedef ConfigurationProductSimilar
+        
+        
+        @property { Array<ConfigurationProductConfig> } [config]
+        
+         
+    */
+
+    /**
+        @typedef ConfigurationProduct
+        
+        
+        @property { ConfigurationProductVariant } variant
+        
+        @property { ConfigurationProductSimilar } similar
+        
+         
+    */
+
+    /**
         @typedef AppCatalogConfiguration
         
         
-        @property { string } [id]
-        
         @property { ConfigurationListing } [listing]
-        
-        @property { string } [config_id]
         
         @property { string } config_type
         
@@ -10435,10 +10453,14 @@ class PlatformApplicationClient {
         
         @property { ConfigurationProduct } [product]
         
+        @property { string } [config_id]
+        
+        @property { string } [id]
+        
          
     */
 
-/**
+    /**
         @typedef GetAppCatalogConfiguration
         
         
@@ -10449,13 +10471,11 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppConfiguration
         
         
         @property { ConfigurationListing } [listing]
-        
-        @property { string } [config_id]
         
         @property { string } config_type
         
@@ -10463,10 +10483,12 @@ class PlatformApplicationClient {
         
         @property { ConfigurationProduct } [product]
         
+        @property { string } [config_id]
+        
          
     */
 
-/**
+    /**
         @typedef GetCatalogConfigurationDetailsSchemaListing
         
         
@@ -10477,15 +10499,11 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EntityConfiguration
         
         
-        @property { string } [id]
-        
         @property { GetCatalogConfigurationDetailsSchemaListing } [listing]
-        
-        @property { string } [config_id]
         
         @property { string } config_type
         
@@ -10493,10 +10511,14 @@ class PlatformApplicationClient {
         
         @property { GetCatalogConfigurationDetailsProduct } [product]
         
+        @property { string } [config_id]
+        
+        @property { string } [id]
+        
          
     */
 
-/**
+    /**
         @typedef GetAppCatalogEntityConfiguration
         
         
@@ -10507,66 +10529,53 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef ProductSortOn
-        
-        
-        @property { string } [name]
-        
-        @property { string } [value]
-        
-        @property { boolean } [is_selected]
-        
-         
-    */
-
-/**
+    /**
         @typedef ProductFiltersKey
         
         
-        @property { string } [kind]
-        
         @property { string } name
+        
+        @property { string } display
         
         @property { string } [logo]
         
-        @property { string } display
+        @property { string } [kind]
         
          
     */
 
-/**
+    /**
         @typedef ProductFiltersValue
         
         
-        @property { number } [min]
+        @property { number } [selected_max]
         
-        @property { string } [currency_symbol]
+        @property { boolean } is_selected
+        
+        @property { number } [count]
         
         @property { string } [currency_code]
         
         @property { string } [display_format]
         
-        @property { number } [selected_max]
+        @property { string } [currency_symbol]
         
         @property { number } [max]
         
-        @property { string } value
-        
         @property { number } [selected_min]
+        
+        @property { number } [min]
         
         @property { string } [query_format]
         
-        @property { number } [count]
-        
         @property { string } display
         
-        @property { boolean } is_selected
+        @property { string } value
         
          
     */
 
-/**
+    /**
         @typedef ProductFilters
         
         
@@ -10577,31 +10586,133 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef GetCollectionQueryOptionResponse
-        
-        
-        @property { Array<ProductSortOn> } [sort_on]
-        
-        @property { Array<ProductFilters> } [filters]
-        
-         
-    */
-
-/**
-        @typedef CollectionListingFilterTag
+    /**
+        @typedef ProductSortOn
         
         
         @property { string } [name]
         
-        @property { string } [display]
-        
         @property { boolean } [is_selected]
+        
+        @property { string } [value]
         
          
     */
 
-/**
+    /**
+        @typedef GetCollectionQueryOptionResponse
+        
+        
+        @property { Array<ProductFilters> } [filters]
+        
+        @property { Array<ProductSortOn> } [sort_on]
+        
+         
+    */
+
+    /**
+        @typedef BannerImage
+        
+        
+        @property { string } [aspect_ratio]
+        
+        @property { string } [url]
+        
+         
+    */
+
+    /**
+        @typedef ImageUrls
+        
+        
+        @property { BannerImage } [landscape]
+        
+        @property { BannerImage } [portrait]
+        
+         
+    */
+
+    /**
+        @typedef Media1
+        
+        
+        @property { string } [type]
+        
+        @property { string } url
+        
+        @property { Object } [meta]
+        
+         
+    */
+
+    /**
+        @typedef ProductListingActionPage
+        
+        
+        @property { Object } [query]
+        
+        @property { string } [type]
+        
+         
+    */
+
+    /**
+        @typedef ProductListingAction
+        
+        
+        @property { string } [type]
+        
+        @property { ProductListingActionPage } [page]
+        
+         
+    */
+
+    /**
+        @typedef GetCollectionDetailNest
+        
+        
+        @property { Object } [badge]
+        
+        @property { Object } [query]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { Media1 } [logo]
+        
+        @property { string } [uid]
+        
+        @property { string } [name]
+        
+        @property { boolean } [is_active]
+        
+        @property { Array<string> } [tag]
+        
+        @property { Object } [_schedule]
+        
+        @property { string } [slug]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { Array<string> } [visible_facets_keys]
+        
+        @property { Object } [cron]
+        
+        @property { string } [description]
+        
+        @property { boolean } [allow_sort]
+        
+        @property { string } [app_id]
+        
+        @property { boolean } [allow_facets]
+        
+        @property { string } [type]
+        
+        @property { Object } [meta]
+        
+         
+    */
+
+    /**
         @typedef CollectionListingFilterType
         
         
@@ -10614,174 +10725,55 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef CollectionListingFilter
+    /**
+        @typedef CollectionListingFilterTag
         
-        
-        @property { Array<CollectionListingFilterTag> } [tags]
-        
-        @property { Array<CollectionListingFilterType> } [type]
-        
-         
-    */
-
-/**
-        @typedef BannerImage
-        
-        
-        @property { string } [aspect_ratio]
-        
-        @property { string } [url]
-        
-         
-    */
-
-/**
-        @typedef ImageUrls
-        
-        
-        @property { BannerImage } [portrait]
-        
-        @property { BannerImage } [landscape]
-        
-         
-    */
-
-/**
-        @typedef ProductListingActionPage
-        
-        
-        @property { Object } [query]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef ProductListingAction
-        
-        
-        @property { ProductListingActionPage } [page]
-        
-        @property { string } [type]
-        
-         
-    */
-
-/**
-        @typedef Media1
-        
-        
-        @property { string } [type]
-        
-        @property { Object } [meta]
-        
-        @property { string } url
-        
-         
-    */
-
-/**
-        @typedef GetCollectionDetailNest
-        
-        
-        @property { Object } [query]
-        
-        @property { boolean } [is_active]
-        
-        @property { boolean } [allow_sort]
-        
-        @property { Object } [badge]
-        
-        @property { Object } [meta]
         
         @property { string } [name]
         
-        @property { Object } [_schedule]
+        @property { string } [display]
         
-        @property { string } [type]
-        
-        @property { string } [description]
-        
-        @property { boolean } [allow_facets]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { Object } [cron]
-        
-        @property { Array<string> } [tag]
-        
-        @property { string } [app_id]
-        
-        @property { string } [uid]
-        
-        @property { Array<string> } [visible_facets_keys]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { Media1 } [logo]
-        
-        @property { string } [slug]
+        @property { boolean } [is_selected]
         
          
     */
 
-/**
+    /**
+        @typedef CollectionListingFilter
+        
+        
+        @property { Array<CollectionListingFilterType> } [type]
+        
+        @property { Array<CollectionListingFilterTag> } [tags]
+        
+         
+    */
+
+    /**
         @typedef GetCollectionListingResponse
         
+        
+        @property { Array<GetCollectionDetailNest> } [items]
         
         @property { CollectionListingFilter } [filters]
         
         @property { Page } [page]
         
-        @property { Array<GetCollectionDetailNest> } [items]
-        
          
     */
 
-/**
-        @typedef UserInfo
-        
-        
-        @property { string } [user_id]
-        
-        @property { string } [email]
-        
-        @property { string } [username]
-        
-        @property { string } [uid]
-        
-         
-    */
-
-/**
+    /**
         @typedef CollectionBadge
         
         
-        @property { string } [color]
-        
         @property { string } [text]
         
-         
-    */
-
-/**
-        @typedef Schedule
-        
-        
-        @property { string } [start]
-        
-        @property { string } [end]
-        
-        @property { number } [duration]
-        
-        @property { string } [cron]
+        @property { string } [color]
         
          
     */
 
-/**
+    /**
         @typedef CollectionImage
         
         
@@ -10792,179 +10784,220 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CollectionBanner
         
         
-        @property { CollectionImage } portrait
-        
         @property { CollectionImage } landscape
+        
+        @property { CollectionImage } portrait
         
          
     */
 
-/**
+    /**
         @typedef SeoDetail
         
         
-        @property { string } [title]
-        
         @property { string } [description]
+        
+        @property { string } [title]
         
          
     */
 
-/**
+    /**
+        @typedef Schedule
+        
+        
+        @property { number } [duration]
+        
+        @property { string } [end]
+        
+        @property { string } [start]
+        
+        @property { string } [cron]
+        
+         
+    */
+
+    /**
+        @typedef UserInfo
+        
+        
+        @property { string } [uid]
+        
+        @property { string } [username]
+        
+        @property { string } [email]
+        
+        @property { string } [user_id]
+        
+         
+    */
+
+    /**
         @typedef CreateCollection
         
         
-        @property { UserInfo } [created_by]
-        
-        @property { Object } [query]
-        
-        @property { boolean } [is_active]
-        
-        @property { boolean } [allow_sort]
-        
-        @property { boolean } [published]
-        
-        @property { CollectionBadge } [badge]
-        
-        @property { Object } [meta]
-        
-        @property { string } name
-        
         @property { Object } [_locale_language]
-        
-        @property { Schedule } [_schedule]
         
         @property { string } [sort_on]
         
-        @property { UserInfo } [modified_by]
+        @property { CollectionBadge } [badge]
         
-        @property { string } type
+        @property { Object } [query]
         
-        @property { string } [description]
-        
-        @property { boolean } [allow_facets]
+        @property { boolean } [published]
         
         @property { CollectionBanner } banners
         
-        @property { string } app_id
-        
-        @property { SeoDetail } [seo]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Array<string> } [visible_facets_keys]
+        @property { Object } [_custom_json]
         
         @property { CollectionImage } logo
         
-        @property { Object } [_custom_json]
+        @property { string } name
+        
+        @property { boolean } [is_active]
+        
+        @property { SeoDetail } [seo]
+        
+        @property { Schedule } [_schedule]
         
         @property { string } slug
         
+        @property { Array<string> } [visible_facets_keys]
+        
+        @property { UserInfo } [created_by]
+        
+        @property { UserInfo } [modified_by]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } [description]
+        
+        @property { boolean } [allow_sort]
+        
+        @property { string } app_id
+        
+        @property { boolean } [allow_facets]
+        
+        @property { string } type
+        
+        @property { Object } [meta]
+        
          
     */
 
-/**
+    /**
         @typedef CollectionCreateResponse
         
         
-        @property { string } [name]
+        @property { string } [type]
         
         @property { Object } [_schedule]
-        
-        @property { Array<string> } [visible_facets_keys]
-        
-        @property { Array<string> } [tag]
-        
-        @property { Object } [query]
-        
-        @property { boolean } [allow_facets]
         
         @property { BannerImage } [logo]
         
-        @property { boolean } [is_active]
-        
-        @property { Object } [cron]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [app_id]
-        
-        @property { string } [type]
-        
-        @property { boolean } [allow_sort]
-        
-        @property { Object } [badge]
+        @property { string } [slug]
         
         @property { string } [description]
         
-        @property { Object } [meta]
+        @property { boolean } [allow_sort]
         
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef CollectionDetailResponse
-        
-        
-        @property { string } [name]
-        
-        @property { Object } [_schedule]
-        
-        @property { Array<string> } [visible_facets_keys]
-        
-        @property { Array<string> } [tag]
-        
-        @property { Object } [query]
+        @property { string } [app_id]
         
         @property { boolean } [allow_facets]
         
-        @property { Media1 } [logo]
-        
-        @property { boolean } [is_active]
-        
-        @property { Object } [cron]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [app_id]
-        
-        @property { string } [type]
-        
-        @property { boolean } [allow_sort]
-        
         @property { Object } [badge]
         
-        @property { string } [description]
-        
-        @property { Object } [meta]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef ProductBrand
-        
+        @property { Object } [query]
         
         @property { string } [name]
         
-        @property { ProductListingAction } [action]
+        @property { boolean } [is_active]
         
-        @property { Media1 } [logo]
+        @property { Array<string> } [tag]
         
-        @property { number } [uid]
+        @property { Array<string> } [visible_facets_keys]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { Object } [meta]
+        
+        @property { Object } [cron]
         
          
     */
 
-/**
+    /**
+        @typedef CollectionDetailResponse
+        
+        
+        @property { string } [type]
+        
+        @property { Object } [_schedule]
+        
+        @property { Media1 } [logo]
+        
+        @property { string } [slug]
+        
+        @property { string } [description]
+        
+        @property { boolean } [allow_sort]
+        
+        @property { string } [app_id]
+        
+        @property { boolean } [allow_facets]
+        
+        @property { Object } [badge]
+        
+        @property { Object } [query]
+        
+        @property { string } [name]
+        
+        @property { boolean } [is_active]
+        
+        @property { Array<string> } [tag]
+        
+        @property { Array<string> } [visible_facets_keys]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { Object } [meta]
+        
+        @property { Object } [cron]
+        
+         
+    */
+
+    /**
+        @typedef Price1
+        
+        
+        @property { number } [min]
+        
+        @property { string } [currency_symbol]
+        
+        @property { number } [max]
+        
+        @property { string } [currency_code]
+        
+         
+    */
+
+    /**
+        @typedef ProductListingPrice
+        
+        
+        @property { Price1 } [effective]
+        
+        @property { Price1 } [marked]
+        
+         
+    */
+
+    /**
         @typedef ProductDetailAttribute
         
         
@@ -10977,7 +11010,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ProductDetailGroupedAttribute
         
         
@@ -10988,118 +11021,107 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef Price1
+    /**
+        @typedef ProductBrand
         
-        
-        @property { number } [min]
-        
-        @property { number } [max]
-        
-        @property { string } [currency_symbol]
-        
-        @property { string } [currency_code]
-        
-         
-    */
-
-/**
-        @typedef ProductListingPrice
-        
-        
-        @property { Price1 } [effective]
-        
-        @property { Price1 } [marked]
-        
-         
-    */
-
-/**
-        @typedef ProductListingDetail
-        
-        
-        @property { ProductBrand } [brand]
-        
-        @property { number } [rating_count]
-        
-        @property { Object } [promo_meta]
-        
-        @property { string } [color]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { boolean } [sellable]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { string } [name]
-        
-        @property { Object } [teaser_tag]
-        
-        @property { string } [item_type]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [grouped_attributes]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [image_nature]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [type]
-        
-        @property { Array<Media1> } [medias]
-        
-        @property { string } [description]
-        
-        @property { string } [product_online_date]
-        
-        @property { number } [rating]
-        
-        @property { string } [short_description]
-        
-        @property { string } [discount]
         
         @property { number } [uid]
         
-        @property { boolean } [has_variant]
+        @property { ProductListingAction } [action]
+        
+        @property { string } [name]
+        
+        @property { Media1 } [logo]
+        
+         
+    */
+
+    /**
+        @typedef ProductListingDetail
+        
+        
+        @property { Object } [teaser_tag]
+        
+        @property { string } [discount]
         
         @property { ProductListingPrice } [price]
         
+        @property { Object } [promo_meta]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [grouped_attributes]
+        
+        @property { Array<string> } [similars]
+        
+        @property { string } [short_description]
+        
+        @property { string } [image_nature]
+        
+        @property { string } [color]
+        
+        @property { number } [uid]
+        
+        @property { string } [name]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { Array<Media1> } [medias]
+        
+        @property { string } [item_type]
+        
+        @property { boolean } [sellable]
+        
+        @property { string } [type]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { boolean } [has_variant]
+        
+        @property { number } [rating_count]
+        
+        @property { string } [product_online_date]
+        
         @property { string } [item_code]
+        
+        @property { string } [description]
+        
+        @property { number } [rating]
+        
+        @property { Object } [attributes]
         
         @property { string } slug
         
          
     */
 
-/**
+    /**
         @typedef GetCollectionItemsResponse
         
         
-        @property { Array<ProductSortOn> } [sort_on]
-        
         @property { Array<ProductFilters> } [filters]
-        
-        @property { Page } [page]
         
         @property { Array<ProductListingDetail> } [items]
         
+        @property { Page } [page]
+        
+        @property { Array<ProductSortOn> } [sort_on]
+        
          
     */
 
-/**
+    /**
         @typedef CollectionItemRequest
         
         
-        @property { number } page_no
-        
         @property { number } page_size
+        
+        @property { number } page_no
         
          
     */
 
-/**
+    /**
         @typedef UpdatedResponse
         
         
@@ -11108,50 +11130,50 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
+        @typedef CatalogInsightItem
+        
+        
+        @property { number } [out_of_stock_count]
+        
+        @property { number } [count]
+        
+        @property { number } [sellable_count]
+        
+         
+    */
+
+    /**
         @typedef CatalogInsightBrand
         
         
-        @property { string } [name]
+        @property { number } [article_freshness]
         
         @property { number } [available_sizes]
         
         @property { number } [total_articles]
         
-        @property { number } [article_freshness]
-        
         @property { number } [available_articles]
+        
+        @property { string } [name]
         
         @property { number } [total_sizes]
         
          
     */
 
-/**
-        @typedef CatalogInsightItem
-        
-        
-        @property { number } [sellable_count]
-        
-        @property { number } [out_of_stock_count]
-        
-        @property { number } [count]
-        
-         
-    */
-
-/**
+    /**
         @typedef CatalogInsightResponse
         
         
-        @property { CatalogInsightBrand } [brand_distribution]
-        
         @property { CatalogInsightItem } [item]
+        
+        @property { CatalogInsightBrand } [brand_distribution]
         
          
     */
 
-/**
+    /**
         @typedef CrossSellingData
         
         
@@ -11162,22 +11184,20 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CrossSellingResponse
         
         
-        @property { CatalogInsightBrand } [brand_distribution]
-        
         @property { CrossSellingData } [data]
+        
+        @property { CatalogInsightBrand } [brand_distribution]
         
          
     */
 
-/**
+    /**
         @typedef OptInPostRequest
         
-        
-        @property { Array<number> } [brand_ids]
         
         @property { boolean } [enabled]
         
@@ -11185,67 +11205,67 @@ class PlatformApplicationClient {
         
         @property { Array<number> } [store_ids]
         
+        @property { Array<number> } [brand_ids]
+        
          
     */
 
-/**
+    /**
         @typedef CompanyOptIn
         
         
-        @property { Array<number> } brand_ids
+        @property { number } created_on
         
         @property { boolean } enabled
         
-        @property { Object } [created_by]
-        
-        @property { number } created_on
-        
         @property { number } company_id
         
-        @property { Object } [modified_by]
+        @property { Array<number> } brand_ids
+        
+        @property { string } opt_level
         
         @property { number } modified_on
         
         @property { string } platform
         
-        @property { string } opt_level
+        @property { Object } [created_by]
+        
+        @property { Object } [modified_by]
         
         @property { Array<number> } store_ids
         
          
     */
 
-/**
+    /**
         @typedef GetOptInPlatform
         
         
-        @property { Page } page
-        
         @property { Array<CompanyOptIn> } items
+        
+        @property { Page } page
         
          
     */
 
-/**
+    /**
         @typedef OptinCompanyDetail
         
+        
+        @property { string } [company_type]
+        
+        @property { number } [uid]
         
         @property { string } [name]
         
         @property { string } [business_type]
         
-        @property { number } [uid]
-        
-        @property { string } [company_type]
-        
          
     */
 
-/**
+    /**
         @typedef CompanyBrandDetail
         
-        
-        @property { number } [company_id]
         
         @property { number } [brand_id]
         
@@ -11253,74 +11273,76 @@ class PlatformApplicationClient {
         
         @property { number } [total_article]
         
+        @property { number } [company_id]
+        
          
     */
 
-/**
+    /**
         @typedef OptinCompanyBrandDetailsView
         
         
-        @property { Page } [page]
-        
         @property { Array<CompanyBrandDetail> } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
         @typedef OptinCompanyMetrics
         
         
-        @property { number } [brand]
-        
         @property { number } [store]
+        
+        @property { number } [brand]
         
         @property { string } [company]
         
          
     */
 
-/**
+    /**
         @typedef StoreDetail
         
         
-        @property { string } [name]
-        
-        @property { string } [store_code]
-        
-        @property { Array<Object> } [additional_contacts]
-        
         @property { string } [created_on]
-        
-        @property { number } [company_id]
         
         @property { Array<Object> } [documents]
         
+        @property { number } [company_id]
+        
+        @property { Array<Object> } [additional_contacts]
+        
         @property { string } [display_name]
+        
+        @property { string } [store_code]
         
         @property { Object } [timing]
         
-        @property { string } [store_type]
+        @property { number } [uid]
+        
+        @property { string } [name]
         
         @property { string } [modified_on]
         
-        @property { number } [uid]
+        @property { string } [store_type]
         
          
     */
 
-/**
+    /**
         @typedef OptinStoreDetails
         
         
-        @property { Page } [page]
-        
         @property { Array<StoreDetail> } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
         @typedef AttributeMasterDetails
         
         
@@ -11329,7 +11351,20 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
+        @typedef AttributeMasterFilter
+        
+        
+        @property { Array<string> } [depends_on]
+        
+        @property { boolean } indexing
+        
+        @property { number } [priority]
+        
+         
+    */
+
+    /**
         @typedef AttributeSchemaRange
         
         
@@ -11340,39 +11375,26 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AttributeMaster
         
         
-        @property { boolean } [multi]
+        @property { string } type
         
         @property { boolean } [mandatory]
         
-        @property { Array<string> } [allowed_values]
-        
-        @property { string } type
+        @property { boolean } [multi]
         
         @property { string } [format]
         
         @property { AttributeSchemaRange } [range]
         
-         
-    */
-
-/**
-        @typedef AttributeMasterFilter
-        
-        
-        @property { number } [priority]
-        
-        @property { boolean } indexing
-        
-        @property { Array<string> } [depends_on]
+        @property { Array<string> } [allowed_values]
         
          
     */
 
-/**
+    /**
         @typedef AttributeMasterMandatoryDetails
         
         
@@ -11381,7 +11403,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AttributeMasterMeta
         
         
@@ -11392,172 +11414,172 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GenderDetail
         
         
-        @property { string } [name]
+        @property { Array<string> } [departments]
         
         @property { boolean } [is_nested]
         
-        @property { string } [id]
-        
-        @property { boolean } [enabled_for_end_consumer]
+        @property { string } [logo]
         
         @property { AttributeMasterDetails } [details]
         
-        @property { string } [logo]
-        
-        @property { AttributeMaster } [schema]
+        @property { string } [description]
         
         @property { AttributeMasterFilter } [filters]
         
-        @property { string } [description]
+        @property { string } [name]
         
-        @property { Array<string> } [departments]
+        @property { boolean } [enabled_for_end_consumer]
         
-        @property { AttributeMasterMeta } [meta]
+        @property { AttributeMaster } [schema]
         
         @property { string } [slug]
         
+        @property { AttributeMasterMeta } [meta]
+        
+        @property { string } [id]
+        
          
     */
 
-/**
+    /**
         @typedef ProdcutTemplateCategoriesResponse
         
         
-        @property { Page } [page]
-        
         @property { Array<Object> } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
         @typedef PTErrorResponse
         
         
-        @property { Object } [errors]
-        
-        @property { string } [message]
+        @property { string } [code]
         
         @property { number } [status]
         
-        @property { string } [code]
+        @property { string } [message]
+        
+        @property { Object } [errors]
         
         @property { Object } [meta]
         
          
     */
 
-/**
+    /**
         @typedef UserSerializer
         
         
         @property { string } [contact]
         
-        @property { string } [user_id]
-        
         @property { string } [username]
+        
+        @property { string } [user_id]
         
          
     */
 
-/**
+    /**
         @typedef GetDepartment
         
-        
-        @property { string } [name]
-        
-        @property { number } [priority_order]
-        
-        @property { number } [page_size]
-        
-        @property { string } [item_type]
-        
-        @property { UserSerializer } [created_by]
         
         @property { string } [created_on]
         
         @property { number } [page_no]
         
-        @property { UserSerializer } [modified_by]
-        
         @property { string } [logo]
-        
-        @property { boolean } [is_active]
         
         @property { Array<string> } [synonyms]
         
-        @property { string } [search]
+        @property { number } [uid]
+        
+        @property { string } [name]
         
         @property { string } [modified_on]
         
-        @property { number } [uid]
+        @property { boolean } [is_active]
+        
+        @property { number } [priority_order]
+        
+        @property { UserSerializer } [created_by]
+        
+        @property { number } [page_size]
+        
+        @property { UserSerializer } [modified_by]
         
         @property { string } [slug]
         
+        @property { string } [item_type]
+        
+        @property { string } [search]
+        
          
     */
 
-/**
+    /**
         @typedef DepartmentsResponse
         
         
-        @property { Page } [page]
-        
         @property { Array<GetDepartment> } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
         @typedef DepartmentErrorResponse
         
         
-        @property { Object } [errors]
-        
-        @property { string } [message]
+        @property { string } [code]
         
         @property { number } [status]
         
-        @property { string } [code]
+        @property { string } [message]
+        
+        @property { Object } [errors]
         
         @property { Object } [meta]
         
          
     */
 
-/**
+    /**
         @typedef ProductTemplate
         
+        
+        @property { string } [created_on]
+        
+        @property { Array<string> } [departments]
+        
+        @property { string } [logo]
+        
+        @property { string } [description]
+        
+        @property { Object } [modified_by]
+        
+        @property { Array<string> } [categories]
         
         @property { boolean } is_physical
         
         @property { string } [name]
         
-        @property { Array<string> } [categories]
-        
-        @property { Object } [created_by]
-        
-        @property { Array<string> } [attributes]
-        
-        @property { string } [created_on]
-        
-        @property { Object } [modified_by]
-        
-        @property { string } [logo]
-        
-        @property { boolean } [is_active]
+        @property { string } [modified_on]
         
         @property { string } [tag]
         
-        @property { string } [modified_on]
+        @property { boolean } [is_active]
         
-        @property { string } [description]
+        @property { Array<string> } [attributes]
         
-        @property { Array<string> } [departments]
+        @property { Object } [created_by]
         
         @property { boolean } [is_archived]
         
@@ -11566,252 +11588,252 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TemplatesResponse
         
         
-        @property { Page } [page]
-        
         @property { ProductTemplate } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
+        @typedef TemplateDetails
+        
+        
+        @property { Array<string> } [departments]
+        
+        @property { string } [logo]
+        
+        @property { string } [description]
+        
+        @property { Array<string> } [categories]
+        
+        @property { boolean } is_physical
+        
+        @property { string } [name]
+        
+        @property { string } [tag]
+        
+        @property { boolean } [is_active]
+        
+        @property { Array<string> } [attributes]
+        
+        @property { boolean } [is_archived]
+        
+        @property { string } slug
+        
+        @property { string } [id]
+        
+         
+    */
+
+    /**
         @typedef Properties
         
         
-        @property { Object } [currency]
+        @property { Object } [teaser_tag]
         
-        @property { Object } [product_publish]
+        @property { Object } [custom_order]
         
-        @property { Object } [is_active]
-        
-        @property { Object } [category_slug]
+        @property { Object } [hsn_code]
         
         @property { Object } [highlights]
         
+        @property { Object } [moq]
+        
+        @property { Object } [short_description]
+        
+        @property { Object } [multi_size]
+        
+        @property { Object } [country_of_origin]
+        
+        @property { Object } [brand_uid]
+        
         @property { Object } [name]
         
-        @property { Object } [is_dependent]
+        @property { Object } [is_active]
         
-        @property { Object } [teaser_tag]
+        @property { Object } [command]
+        
+        @property { Object } [trader]
         
         @property { Object } [trader_type]
         
         @property { Object } [item_type]
         
-        @property { Object } [brand_uid]
+        @property { Object } [product_group_tag]
+        
+        @property { Object } [product_publish]
+        
+        @property { Object } [size_guide]
         
         @property { Object } [sizes]
         
-        @property { Object } [trader]
-        
-        @property { Object } [hsn_code]
-        
-        @property { Object } [custom_order]
-        
-        @property { Object } [description]
-        
-        @property { Object } [short_description]
-        
-        @property { Object } [command]
-        
-        @property { Object } [multi_size]
-        
-        @property { Object } [media]
-        
-        @property { Object } [moq]
-        
         @property { Object } [tags]
         
-        @property { Object } [no_of_boxes]
+        @property { Object } [currency]
         
-        @property { Object } [country_of_origin]
-        
-        @property { Object } [size_guide]
+        @property { Object } [is_dependent]
         
         @property { Object } [item_code]
         
         @property { Object } [return_config]
         
-        @property { Object } [product_group_tag]
+        @property { Object } [category_slug]
+        
+        @property { Object } [description]
         
         @property { Object } [variants]
         
+        @property { Object } [media]
+        
         @property { Object } [slug]
+        
+        @property { Object } [no_of_boxes]
         
          
     */
 
-/**
+    /**
         @typedef GlobalValidation
         
         
-        @property { Object } [definitions]
+        @property { string } [title]
+        
+        @property { string } [description]
         
         @property { Properties } [properties]
         
         @property { string } [type]
         
-        @property { string } [title]
-        
-        @property { string } [description]
+        @property { Object } [definitions]
         
         @property { Array<string> } [required]
         
          
     */
 
-/**
+    /**
         @typedef TemplateValidationData
         
         
-        @property { GlobalValidation } [global_validation]
-        
         @property { Object } [template_validation]
         
-         
-    */
-
-/**
-        @typedef TemplateDetails
-        
-        
-        @property { boolean } is_physical
-        
-        @property { string } [name]
-        
-        @property { string } [id]
-        
-        @property { Array<string> } [categories]
-        
-        @property { Array<string> } [attributes]
-        
-        @property { string } [logo]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [tag]
-        
-        @property { string } [description]
-        
-        @property { Array<string> } [departments]
-        
-        @property { boolean } [is_archived]
-        
-        @property { string } slug
+        @property { GlobalValidation } [global_validation]
         
          
     */
 
-/**
+    /**
         @typedef TemplatesValidationResponse
         
         
-        @property { TemplateValidationData } [data]
-        
         @property { TemplateDetails } [template_details]
+        
+        @property { TemplateValidationData } [data]
         
          
     */
 
-/**
+    /**
         @typedef InventoryValidationResponse
         
         
-        @property { string } [message]
-        
         @property { Object } [data]
+        
+        @property { string } [message]
         
          
     */
 
-/**
+    /**
         @typedef HSNData
         
         
-        @property { Array<string> } [country_of_origin]
-        
         @property { Array<string> } [hsn_code]
+        
+        @property { Array<string> } [country_of_origin]
         
          
     */
 
-/**
+    /**
         @typedef HSNCodesResponse
         
         
-        @property { string } [message]
-        
         @property { HSNData } [data]
+        
+        @property { string } [message]
         
          
     */
 
-/**
+    /**
         @typedef ProductDownloadItemsData
         
         
         @property { Array<string> } [templates]
         
-        @property { Array<string> } [brand]
-        
         @property { string } [type]
+        
+        @property { Array<string> } [brand]
         
          
     */
 
-/**
+    /**
         @typedef VerifiedBy
         
         
-        @property { string } [user_id]
-        
         @property { string } [username]
+        
+        @property { string } [user_id]
         
          
     */
 
-/**
+    /**
         @typedef ProductDownloadsItems
         
         
-        @property { Object } [template_tags]
-        
         @property { ProductDownloadItemsData } [data]
         
-        @property { string } [id]
-        
-        @property { string } [status]
-        
-        @property { VerifiedBy } [created_by]
-        
-        @property { number } [seller_id]
+        @property { string } [url]
         
         @property { string } [task_id]
         
         @property { string } [trigger_on]
         
+        @property { string } [status]
+        
+        @property { number } [seller_id]
+        
+        @property { Object } [template_tags]
+        
         @property { string } [completed_on]
         
-        @property { string } [url]
+        @property { VerifiedBy } [created_by]
+        
+        @property { string } [id]
         
          
     */
 
-/**
+    /**
         @typedef ProductDownloadsResponse
         
         
-        @property { Page } [page]
-        
         @property { ProductDownloadsItems } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
         @typedef ProductConfigurationDownloads
         
         
@@ -11822,44 +11844,20 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef CategoryMappingValues
-        
-        
-        @property { string } name
-        
-        @property { number } [catalog_id]
-        
-         
-    */
-
-/**
-        @typedef CategoryMapping
-        
-        
-        @property { CategoryMappingValues } [google]
-        
-        @property { CategoryMappingValues } [ajio]
-        
-        @property { CategoryMappingValues } [facebook]
-        
-         
-    */
-
-/**
+    /**
         @typedef Hierarchy
         
+        
+        @property { number } l1
         
         @property { number } department
         
         @property { number } l2
         
-        @property { number } l1
-        
          
     */
 
-/**
+    /**
         @typedef Media2
         
         
@@ -11872,110 +11870,134 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
+        @typedef CategoryMappingValues
+        
+        
+        @property { number } [catalog_id]
+        
+        @property { string } name
+        
+         
+    */
+
+    /**
+        @typedef CategoryMapping
+        
+        
+        @property { CategoryMappingValues } [google]
+        
+        @property { CategoryMappingValues } [facebook]
+        
+        @property { CategoryMappingValues } [ajio]
+        
+         
+    */
+
+    /**
         @typedef Category
         
         
-        @property { string } name
+        @property { string } [created_on]
+        
+        @property { Array<number> } departments
+        
+        @property { Array<Hierarchy> } [hierarchy]
+        
+        @property { string } [slug]
         
         @property { string } [_id]
         
-        @property { CategoryMapping } [marketplaces]
-        
         @property { number } [priority]
         
-        @property { Object } [created_by]
-        
-        @property { Array<Hierarchy> } [hierarchy]
-        
-        @property { Array<number> } departments
-        
-        @property { string } [created_on]
-        
-        @property { number } level
-        
-        @property { string } [slug]
-        
-        @property { Object } [modified_by]
-        
-        @property { boolean } is_active
-        
         @property { Array<string> } [synonyms]
-        
-        @property { string } [modified_on]
-        
-        @property { Array<string> } [tryouts]
         
         @property { number } [uid]
         
         @property { Media2 } [media]
-        
-         
-    */
-
-/**
-        @typedef CategoryResponse
-        
-        
-        @property { Page } [page]
-        
-        @property { Array<Category> } [items]
-        
-         
-    */
-
-/**
-        @typedef CategoryRequestBody
-        
         
         @property { string } name
         
         @property { CategoryMapping } [marketplaces]
         
-        @property { number } [priority]
-        
-        @property { Array<Hierarchy> } [hierarchy]
-        
-        @property { number } level
-        
-        @property { string } [slug]
+        @property { Array<string> } [tryouts]
         
         @property { boolean } is_active
         
-        @property { Array<string> } [synonyms]
+        @property { string } [modified_on]
         
-        @property { Array<string> } [tryouts]
+        @property { Object } [created_by]
+        
+        @property { Object } [modified_by]
+        
+        @property { number } level
+        
+         
+    */
+
+    /**
+        @typedef CategoryResponse
+        
+        
+        @property { Array<Category> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+    /**
+        @typedef CategoryRequestBody
+        
+        
+        @property { Array<Hierarchy> } [hierarchy]
         
         @property { Array<number> } departments
         
+        @property { string } [slug]
+        
+        @property { number } [priority]
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { CategoryMapping } [marketplaces]
+        
         @property { Media2 } [media]
+        
+        @property { string } name
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { boolean } is_active
+        
+        @property { number } level
         
          
     */
 
-/**
+    /**
         @typedef CategoryCreateResponse
         
         
-        @property { string } [message]
-        
         @property { number } [uid]
+        
+        @property { string } [message]
         
          
     */
 
-/**
+    /**
         @typedef CategoryUpdateResponse
         
         
-        @property { string } [message]
-        
         @property { boolean } [success]
+        
+        @property { string } [message]
         
          
     */
 
-/**
+    /**
         @typedef SingleCategoryResponse
         
         
@@ -11984,206 +12006,195 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef Logo
+    /**
+        @typedef Image
         
-        
-        @property { string } [secure_url]
-        
-        @property { number } [aspect_ratio_f]
         
         @property { string } [aspect_ratio]
         
+        @property { number } [aspect_ratio_f]
+        
         @property { string } [url]
+        
+        @property { string } [secure_url]
         
          
     */
 
-/**
+    /**
+        @typedef Logo
+        
+        
+        @property { string } [aspect_ratio]
+        
+        @property { number } [aspect_ratio_f]
+        
+        @property { string } [url]
+        
+        @property { string } [secure_url]
+        
+         
+    */
+
+    /**
         @typedef Brand
         
+        
+        @property { number } [uid]
         
         @property { string } [name]
         
         @property { Logo } [logo]
         
-        @property { number } [uid]
-        
          
     */
 
-/**
+    /**
         @typedef ProductPublished
         
         
-        @property { number } [product_online_date]
-        
         @property { boolean } [is_set]
         
-         
-    */
-
-/**
-        @typedef Image
-        
-        
-        @property { string } [secure_url]
-        
-        @property { number } [aspect_ratio_f]
-        
-        @property { string } [aspect_ratio]
-        
-        @property { string } [url]
+        @property { number } [product_online_date]
         
          
     */
 
-/**
+    /**
         @typedef UserCommon
         
+        
+        @property { string } [username]
         
         @property { number } [company_id]
         
         @property { string } [user_id]
         
-        @property { string } [username]
-        
          
     */
 
-/**
+    /**
         @typedef Attributes
         
         
-        @property { string } [neck_type]
-        
-        @property { string } [material]
-        
-        @property { string } [verified_on]
-        
-        @property { UserCommon } [created_by]
-        
-        @property { string } [stage]
-        
-        @property { string } [modified_on]
-        
-        @property { string } [color]
-        
-        @property { VerifiedBy } [verified_by]
-        
-        @property { string } [image_nature]
-        
-        @property { string } [pattern]
+        @property { string } [created_on]
         
         @property { Array<string> } [gender]
         
-        @property { string } [primary_color]
+        @property { string } [product_fit]
         
-        @property { boolean } [is_image_less_product]
-        
-        @property { UserCommon } [modified_by]
-        
-        @property { string } [primary_material]
-        
-        @property { string } [meta_nature]
-        
-        @property { Array<string> } [l3_mapping]
+        @property { string } [neck_type]
         
         @property { string } [sleeve_length]
         
-        @property { string } [created_on]
+        @property { string } [modified_on]
+        
+        @property { string } [pattern]
+        
+        @property { string } [meta_nature]
         
         @property { string } [essential]
         
-        @property { string } [product_fit]
+        @property { string } [image_nature]
+        
+        @property { string } [color]
+        
+        @property { string } [primary_material]
+        
+        @property { string } [verified_on]
+        
+        @property { string } [stage]
+        
+        @property { string } [primary_color]
+        
+        @property { UserCommon } [created_by]
+        
+        @property { UserCommon } [modified_by]
+        
+        @property { VerifiedBy } [verified_by]
+        
+        @property { Array<string> } [l3_mapping]
+        
+        @property { boolean } [is_image_less_product]
+        
+        @property { string } [material]
         
          
     */
 
-/**
+    /**
         @typedef Product
         
         
-        @property { string } [currency]
-        
-        @property { Brand } [brand]
-        
-        @property { ProductPublished } [product_publish]
-        
-        @property { boolean } [is_active]
-        
         @property { Array<number> } [departments]
-        
-        @property { string } [highlights]
-        
-        @property { string } [name]
-        
-        @property { boolean } [is_dependent]
-        
-        @property { string } [id]
         
         @property { Array<Image> } [images]
         
-        @property { string } [item_type]
-        
-        @property { Array<Object> } [sizes]
-        
-        @property { Attributes } [attributes]
-        
         @property { string } [hsn_code]
         
-        @property { Array<string> } [all_sizes]
-        
-        @property { string } [description]
-        
-        @property { number } [company_id]
-        
-        @property { boolean } [multi_size]
-        
-        @property { number } [uid]
-        
-        @property { Array<Media1> } [media]
+        @property { string } [highlights]
         
         @property { string } [template_tag]
         
-        @property { string } [size_guide]
-        
-        @property { string } [slug]
-        
-        @property { string } [item_code]
-        
-        @property { boolean } [is_set]
+        @property { boolean } [multi_size]
         
         @property { string } [country_of_origin]
         
+        @property { number } [uid]
+        
+        @property { string } [name]
+        
+        @property { boolean } [is_active]
+        
+        @property { Brand } [brand]
+        
+        @property { string } [item_type]
+        
+        @property { ProductPublished } [product_publish]
+        
+        @property { string } [size_guide]
+        
+        @property { Array<Object> } [sizes]
+        
+        @property { string } [currency]
+        
         @property { string } [category_slug]
         
-         
-    */
-
-/**
-        @typedef ProductListingResponse
+        @property { string } [item_code]
         
+        @property { boolean } [is_dependent]
         
-        @property { Page } [page]
+        @property { number } [company_id]
         
-        @property { Array<Product> } [items]
-        
-         
-    */
-
-/**
-        @typedef ProductPublish
-        
-        
-        @property { string } [product_online_date]
+        @property { string } [description]
         
         @property { boolean } [is_set]
         
+        @property { Array<Media1> } [media]
+        
+        @property { Array<string> } [all_sizes]
+        
+        @property { Attributes } [attributes]
+        
+        @property { string } [slug]
+        
+        @property { string } [id]
+        
          
     */
 
-/**
+    /**
+        @typedef ProductListingResponse
+        
+        
+        @property { Array<Product> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+    /**
         @typedef TeaserTag
         
         
@@ -12194,31 +12205,20 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef Trader
-        
-        
-        @property { string } address
-        
-        @property { string } name
-        
-         
-    */
-
-/**
+    /**
         @typedef CustomOrder
         
-        
-        @property { string } [manufacturing_time_unit]
         
         @property { boolean } [is_custom_order]
         
         @property { number } [manufacturing_time]
         
+        @property { string } [manufacturing_time_unit]
+        
          
     */
 
-/**
+    /**
         @typedef OrderQuantity
         
         
@@ -12231,101 +12231,123 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
+        @typedef Trader
+        
+        
+        @property { string } address
+        
+        @property { string } name
+        
+         
+    */
+
+    /**
+        @typedef ProductPublish
+        
+        
+        @property { boolean } [is_set]
+        
+        @property { string } [product_online_date]
+        
+         
+    */
+
+    /**
         @typedef ReturnConfig
         
         
         @property { string } [unit]
         
-        @property { number } [time]
-        
         @property { boolean } [returnable]
+        
+        @property { number } [time]
         
          
     */
 
-/**
+    /**
         @typedef ProductCreateUpdate
         
         
-        @property { string } currency
-        
-        @property { ProductPublish } [product_publish]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } category_slug
-        
         @property { Array<number> } departments
-        
-        @property { Array<string> } [highlights]
-        
-        @property { string } name
-        
-        @property { boolean } [is_dependent]
-        
-        @property { number } brand_uid
-        
-        @property { string } [trader_type]
         
         @property { TeaserTag } [teaser_tag]
         
-        @property { string } item_type
-        
-        @property { boolean } [is_image_less_product]
-        
-        @property { Trader } [trader]
+        @property { CustomOrder } [custom_order]
         
         @property { string } hsn_code
         
-        @property { CustomOrder } [custom_order]
+        @property { string } [requester]
         
-        @property { string } [description]
-        
-        @property { string } [short_description]
-        
-        @property { number } company_id
-        
-        @property { boolean } [multi_size]
-        
-        @property { Object } [variants]
-        
-        @property { number } [uid]
-        
-        @property { Array<Media1> } [media]
+        @property { Array<string> } [highlights]
         
         @property { OrderQuantity } [moq]
         
-        @property { Array<string> } [product_group_tag]
-        
-        @property { Array<string> } [tags]
-        
         @property { string } template_tag
         
-        @property { number } [no_of_boxes]
-        
-        @property { string } [requester]
-        
-        @property { string } [size_guide]
-        
-        @property { string } item_code
+        @property { string } [short_description]
         
         @property { Object } [_custom_json]
         
-        @property { ReturnConfig } [return_config]
-        
-        @property { string } [change_request_id]
-        
-        @property { boolean } [is_set]
+        @property { boolean } [multi_size]
         
         @property { string } country_of_origin
         
+        @property { number } brand_uid
+        
+        @property { number } [uid]
+        
+        @property { string } name
+        
+        @property { boolean } [is_active]
+        
+        @property { Trader } [trader]
+        
+        @property { string } [trader_type]
+        
+        @property { string } item_type
+        
+        @property { Array<string> } [product_group_tag]
+        
+        @property { ProductPublish } [product_publish]
+        
+        @property { string } [size_guide]
+        
+        @property { string } [change_request_id]
+        
+        @property { Array<string> } [tags]
+        
+        @property { string } currency
+        
+        @property { string } category_slug
+        
+        @property { string } item_code
+        
+        @property { boolean } [is_dependent]
+        
+        @property { ReturnConfig } [return_config]
+        
+        @property { number } company_id
+        
+        @property { boolean } [is_image_less_product]
+        
+        @property { string } [description]
+        
+        @property { Object } [variants]
+        
+        @property { boolean } [is_set]
+        
+        @property { Array<Media1> } [media]
+        
         @property { string } slug
+        
+        @property { number } [no_of_boxes]
         
          
     */
 
-/**
+    /**
         @typedef ValidateProduct
         
         
@@ -12334,141 +12356,141 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UserDetail
         
-        
-        @property { string } [user_id]
         
         @property { string } [username]
         
         @property { string } [full_name]
         
+        @property { string } [user_id]
+        
          
     */
 
-/**
+    /**
         @typedef ProductBulkRequest
         
         
-        @property { number } [succeed]
-        
-        @property { string } [template_tag]
-        
-        @property { ProductTemplate } [template]
-        
-        @property { number } [total]
-        
-        @property { UserDetail } [created_by]
+        @property { number } [failed]
         
         @property { string } [created_on]
         
+        @property { number } [succeed]
+        
+        @property { ProductTemplate } [template]
+        
         @property { number } [company_id]
-        
-        @property { Array<string> } [cancelled_records]
-        
-        @property { Array<string> } [failed_records]
-        
-        @property { UserDetail } [modified_by]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [stage]
-        
-        @property { number } [failed]
-        
-        @property { number } [cancelled]
         
         @property { string } [file_path]
         
+        @property { number } [total]
+        
+        @property { Array<string> } [cancelled_records]
+        
+        @property { UserDetail } [modified_by]
+        
+        @property { string } [stage]
+        
+        @property { Array<string> } [failed_records]
+        
         @property { string } [modified_on]
+        
+        @property { boolean } [is_active]
+        
+        @property { UserDetail } [created_by]
+        
+        @property { number } [cancelled]
+        
+        @property { string } [template_tag]
         
          
     */
 
-/**
+    /**
         @typedef ProductBulkRequestList
         
         
-        @property { Page } [page]
-        
         @property { ProductBulkRequest } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
         @typedef UserInfo1
         
         
-        @property { string } [user_id]
-        
-        @property { string } [email]
+        @property { string } [uid]
         
         @property { string } [username]
         
-        @property { string } [uid]
+        @property { string } [email]
+        
+        @property { string } [user_id]
         
          
     */
 
-/**
+    /**
         @typedef BulkJob
         
         
         @property { number } [succeed]
         
-        @property { string } [template_tag]
-        
-        @property { number } total
-        
-        @property { UserInfo1 } [created_by]
-        
-        @property { string } [tracking_url]
-        
         @property { string } created_on
-        
-        @property { number } company_id
-        
-        @property { string } [custom_template_tag]
-        
-        @property { Array<Object> } [cancelled_records]
-        
-        @property { UserInfo1 } [modified_by]
-        
-        @property { Array<Object> } [failed_records]
-        
-        @property { boolean } [is_active]
-        
-        @property { number } [cancelled]
         
         @property { number } [failed]
         
-        @property { string } [stage]
-        
-        @property { string } [file_path]
-        
-        @property { string } [modified_on]
-        
-         
-    */
-
-/**
-        @typedef BulkProductRequest
-        
+        @property { string } [tracking_url]
         
         @property { number } company_id
         
-        @property { Array<Object> } data
+        @property { string } [file_path]
         
-        @property { string } batch_id
+        @property { string } [custom_template_tag]
         
-        @property { string } template_tag
+        @property { number } total
+        
+        @property { Array<Object> } [cancelled_records]
+        
+        @property { string } [stage]
+        
+        @property { Array<Object> } [failed_records]
+        
+        @property { string } [modified_on]
+        
+        @property { boolean } [is_active]
+        
+        @property { UserInfo1 } [created_by]
+        
+        @property { UserInfo1 } [modified_by]
+        
+        @property { string } [template_tag]
+        
+        @property { number } [cancelled]
         
          
     */
 
-/**
+    /**
+        @typedef BulkProductRequest
+        
+        
+        @property { string } batch_id
+        
+        @property { Array<Object> } data
+        
+        @property { string } template_tag
+        
+        @property { number } company_id
+        
+         
+    */
+
+    /**
         @typedef NestedTags
         
         
@@ -12477,7 +12499,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ProductTagsViewResponse
         
         
@@ -12486,142 +12508,116 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Items
         
         
         @property { number } [succeed]
         
-        @property { number } [retry]
-        
-        @property { string } [id]
-        
-        @property { number } [total]
-        
-        @property { UserCommon } [created_by]
-        
-        @property { string } [tracking_url]
-        
         @property { string } [created_on]
-        
-        @property { number } [company_id]
-        
-        @property { Array<string> } [cancelled_records]
-        
-        @property { UserCommon } [modified_by]
-        
-        @property { Array<string> } [failed_records]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [stage]
         
         @property { number } [failed]
         
-        @property { number } [cancelled]
+        @property { string } [tracking_url]
+        
+        @property { number } [company_id]
         
         @property { string } [file_path]
         
+        @property { number } [total]
+        
+        @property { Array<string> } [cancelled_records]
+        
+        @property { string } [stage]
+        
+        @property { Array<string> } [failed_records]
+        
         @property { string } [modified_on]
+        
+        @property { number } [retry]
+        
+        @property { boolean } [is_active]
+        
+        @property { UserCommon } [created_by]
+        
+        @property { UserCommon } [modified_by]
+        
+        @property { number } [cancelled]
+        
+        @property { string } [id]
         
          
     */
 
-/**
+    /**
         @typedef BulkAssetResponse
         
         
-        @property { Page } [page]
-        
         @property { Array<Items> } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
         @typedef ProductBulkAssets
         
-        
-        @property { number } [company_id]
         
         @property { Object } user
         
         @property { string } url
         
+        @property { number } [company_id]
+        
          
     */
 
-/**
+    /**
         @typedef InventoryResponse
         
         
-        @property { string } [size]
+        @property { number } [item_id]
         
         @property { number } [price_effective]
         
-        @property { number } [price_transfer]
+        @property { number } [quantity]
         
         @property { Object } [store]
+        
+        @property { string } [inventory_updated_on]
+        
+        @property { number } [price_transfer]
+        
+        @property { number } [price]
+        
+        @property { number } [sellable_quantity]
+        
+        @property { number } [seller_identifier]
+        
+        @property { string } [uid]
+        
+        @property { string } [size]
         
         @property { Object } [identifiers]
         
         @property { string } [currency]
         
-        @property { number } [price]
-        
-        @property { number } [quantity]
-        
-        @property { number } [seller_identifier]
-        
-        @property { number } [sellable_quantity]
-        
-        @property { string } [inventory_updated_on]
-        
-        @property { string } [uid]
-        
-        @property { number } [item_id]
-        
          
     */
 
-/**
-        @typedef ItemQuery
-        
-        
-        @property { string } [item_code]
-        
-        @property { number } [uid]
-        
-        @property { number } [brand_uid]
-        
-         
-    */
-
-/**
-        @typedef GTIN
-        
-        
-        @property { boolean } [primary]
-        
-        @property { string } gtin_value
-        
-        @property { string } gtin_type
-        
-         
-    */
-
-/**
+    /**
         @typedef SetSize
         
         
-        @property { string } size
-        
         @property { number } pieces
+        
+        @property { string } size
         
          
     */
 
-/**
+    /**
         @typedef SizeDistribution
         
         
@@ -12630,7 +12626,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventorySet
         
         
@@ -12641,107 +12637,133 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
+        @typedef GTIN
+        
+        
+        @property { string } gtin_value
+        
+        @property { boolean } [primary]
+        
+        @property { string } gtin_type
+        
+         
+    */
+
+    /**
         @typedef InvSize
         
         
-        @property { number } [item_width]
-        
-        @property { string } size
-        
         @property { number } price_effective
-        
-        @property { number } [price_transfer]
-        
-        @property { string } [item_dimensions_unit_of_measure]
-        
-        @property { Array<GTIN> } identifiers
-        
-        @property { string } store_code
-        
-        @property { string } [item_weight_unit_of_measure]
-        
-        @property { string } currency
-        
-        @property { number } price
         
         @property { number } quantity
         
         @property { InventorySet } [set]
         
+        @property { number } [price_transfer]
+        
+        @property { number } [item_width]
+        
+        @property { number } price
+        
         @property { number } [item_length]
-        
-        @property { number } [item_weight]
-        
-        @property { number } [item_height]
         
         @property { boolean } [is_set]
         
+        @property { number } [item_height]
+        
+        @property { string } [item_dimensions_unit_of_measure]
+        
+        @property { string } store_code
+        
+        @property { string } size
+        
+        @property { number } [item_weight]
+        
+        @property { string } [item_weight_unit_of_measure]
+        
+        @property { Array<GTIN> } identifiers
+        
+        @property { string } currency
+        
          
     */
 
-/**
+    /**
+        @typedef ItemQuery
+        
+        
+        @property { number } [brand_uid]
+        
+        @property { number } [uid]
+        
+        @property { string } [item_code]
+        
+         
+    */
+
+    /**
         @typedef InventoryRequest
         
         
-        @property { number } company_id
+        @property { Array<InvSize> } sizes
         
         @property { ItemQuery } item
         
-        @property { Array<InvSize> } sizes
+        @property { number } company_id
         
          
     */
 
-/**
+    /**
         @typedef BulkInventoryGetItems
         
         
-        @property { number } [succeed]
-        
-        @property { string } [id]
-        
-        @property { number } [total]
-        
-        @property { Object } [created_by]
+        @property { number } [failed]
         
         @property { string } [created_on]
         
+        @property { number } [succeed]
+        
         @property { number } [company_id]
-        
-        @property { Array<string> } [cancelled_records]
-        
-        @property { Array<string> } [failed_records]
-        
-        @property { Object } [modified_by]
-        
-        @property { number } [cancelled]
-        
-        @property { boolean } [is_active]
-        
-        @property { number } [failed]
-        
-        @property { string } [stage]
         
         @property { string } [file_path]
         
+        @property { number } [total]
+        
+        @property { Array<string> } [cancelled_records]
+        
+        @property { Object } [modified_by]
+        
+        @property { string } [stage]
+        
+        @property { Array<string> } [failed_records]
+        
         @property { string } [modified_on]
+        
+        @property { boolean } [is_active]
+        
+        @property { Object } [created_by]
+        
+        @property { number } [cancelled]
+        
+        @property { string } [id]
         
          
     */
 
-/**
+    /**
         @typedef BulkInventoryGet
         
         
-        @property { Page } [page]
-        
         @property { Array<BulkInventoryGetItems> } [items]
+        
+        @property { Page } [page]
         
          
     */
 
-/**
+    /**
         @typedef CommonResponse
         
         
@@ -12750,108 +12772,108 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Size1
         
         
-        @property { number } [item_width]
-        
-        @property { string } [size]
-        
         @property { number } price_effective
-        
-        @property { number } [price_transfer]
-        
-        @property { string } [item_dimensions_unit_of_measure]
-        
-        @property { Array<Object> } [identifiers]
-        
-        @property { string } store_code
-        
-        @property { string } [item_weight_unit_of_measure]
-        
-        @property { string } currency
-        
-        @property { number } price
         
         @property { number } quantity
         
-        @property { string } seller_identifier
-        
         @property { InventorySet } [set]
+        
+        @property { number } [price_transfer]
+        
+        @property { number } [item_width]
+        
+        @property { number } price
         
         @property { number } [item_length]
         
-        @property { number } [item_weight]
+        @property { boolean } [is_set]
         
         @property { number } [item_height]
         
-        @property { boolean } [is_set]
+        @property { string } [item_dimensions_unit_of_measure]
+        
+        @property { string } store_code
+        
+        @property { string } [size]
+        
+        @property { string } seller_identifier
+        
+        @property { number } [item_weight]
+        
+        @property { string } [item_weight_unit_of_measure]
+        
+        @property { Array<Object> } [identifiers]
+        
+        @property { string } currency
         
          
     */
 
-/**
+    /**
         @typedef InventoryBulkRequest
         
         
-        @property { number } company_id
-        
-        @property { Object } [user]
+        @property { Array<Size1> } sizes
         
         @property { string } batch_id
         
-        @property { Array<Size1> } sizes
+        @property { Object } [user]
+        
+        @property { number } company_id
         
          
     */
 
-/**
+    /**
         @typedef InventoryExportJob
         
         
-        @property { string } [status]
-        
-        @property { number } seller_id
-        
         @property { Object } [request_params]
+        
+        @property { string } [url]
         
         @property { string } task_id
         
         @property { string } [trigger_on]
         
-        @property { string } [completed_on]
+        @property { string } [status]
         
-        @property { string } [url]
+        @property { number } seller_id
+        
+        @property { string } [completed_on]
         
          
     */
 
-/**
+    /**
         @typedef InventoryExportRequest
         
-        
-        @property { Array<number> } [brand]
         
         @property { Array<number> } [store]
         
         @property { string } [type]
         
+        @property { Array<number> } [brand]
+        
          
     */
 
-/**
+    /**
         @typedef FilerList
         
         
-        @property { string } [value]
-        
         @property { string } [display]
+        
+        @property { string } [value]
         
          
     */
 
-/**
+    /**
         @typedef InventoryConfig
         
         
@@ -12862,91 +12884,91 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
+        @typedef HsnCodesObject
+        
+        
+        @property { number } [tax2]
+        
+        @property { number } [company_id]
+        
+        @property { string } [hs2_code]
+        
+        @property { boolean } [tax_on_esp]
+        
+        @property { string } [hsn_code]
+        
+        @property { number } [threshold1]
+        
+        @property { string } [modified_on]
+        
+        @property { boolean } [tax_on_mrp]
+        
+        @property { number } [tax1]
+        
+        @property { number } [threshold2]
+        
+        @property { string } [id]
+        
+         
+    */
+
+    /**
         @typedef PageResponse
         
         
-        @property { number } [size]
-        
         @property { string } [current]
+        
+        @property { boolean } [has_previous]
+        
+        @property { number } [size]
         
         @property { number } [item_total]
         
         @property { boolean } [has_next]
         
-        @property { boolean } [has_previous]
-        
          
     */
 
-/**
-        @typedef HsnCodesObject
-        
-        
-        @property { string } [id]
-        
-        @property { number } [threshold2]
-        
-        @property { number } [tax1]
-        
-        @property { boolean } [tax_on_mrp]
-        
-        @property { number } [threshold1]
-        
-        @property { string } [hs2_code]
-        
-        @property { number } [company_id]
-        
-        @property { string } [hsn_code]
-        
-        @property { number } [tax2]
-        
-        @property { boolean } [tax_on_esp]
-        
-        @property { string } [modified_on]
-        
-         
-    */
-
-/**
+    /**
         @typedef HsnCodesListingResponse
         
         
-        @property { PageResponse } [page]
-        
         @property { Array<HsnCodesObject> } [items]
+        
+        @property { PageResponse } [page]
         
          
     */
 
-/**
+    /**
         @typedef HsnUpsert
         
         
-        @property { number } [threshold2]
-        
-        @property { number } tax1
-        
-        @property { boolean } tax_on_mrp
-        
-        @property { number } threshold1
-        
-        @property { string } hs2_code
+        @property { number } [tax2]
         
         @property { number } company_id
         
-        @property { string } hsn_code
-        
-        @property { number } [tax2]
+        @property { string } hs2_code
         
         @property { boolean } [tax_on_esp]
         
         @property { number } [uid]
         
+        @property { string } hsn_code
+        
+        @property { number } threshold1
+        
+        @property { boolean } tax_on_mrp
+        
+        @property { number } tax1
+        
+        @property { number } [threshold2]
+        
          
     */
 
-/**
+    /**
         @typedef HsnCode
         
         
@@ -12955,7 +12977,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BulkHsnUpsert
         
         
@@ -12964,7 +12986,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BulkHsnResponse
         
         
@@ -12973,58 +12995,58 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BrandItem
         
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
         
         @property { Array<string> } [departments]
         
         @property { Media } [logo]
         
-        @property { ImageUrls } [banners]
+        @property { string } [slug]
+        
+        @property { ProductListingAction } [action]
         
         @property { string } [discount]
         
         @property { number } [uid]
         
-        @property { string } [slug]
+        @property { string } [name]
+        
+        @property { ImageUrls } [banners]
         
          
     */
 
-/**
+    /**
         @typedef BrandListingResponse
         
         
-        @property { Page } page
-        
         @property { Array<BrandItem> } [items]
+        
+        @property { Page } page
         
          
     */
 
-/**
+    /**
         @typedef Department
         
-        
-        @property { string } [name]
-        
-        @property { number } [priority_order]
         
         @property { Media } [logo]
         
         @property { number } [uid]
         
+        @property { string } [name]
+        
+        @property { number } [priority_order]
+        
         @property { string } [slug]
         
          
     */
 
-/**
+    /**
         @typedef DepartmentResponse
         
         
@@ -13033,100 +13055,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef ThirdLevelChild
-        
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { Array<Object> } [childs]
-        
-        @property { Object } [_custom_json]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { number } [uid]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef SecondLevelChild
-        
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { Array<ThirdLevelChild> } [childs]
-        
-        @property { Object } [_custom_json]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { number } [uid]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef Child
-        
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { Array<SecondLevelChild> } [childs]
-        
-        @property { Object } [_custom_json]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { number } [uid]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef CategoryItems
-        
-        
-        @property { string } [name]
-        
-        @property { ProductListingAction } [action]
-        
-        @property { Array<Child> } [childs]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { number } [uid]
-        
-        @property { string } [slug]
-        
-         
-    */
-
-/**
-        @typedef DepartmentCategoryTree
-        
-        
-        @property { string } [department]
-        
-        @property { Array<CategoryItems> } [items]
-        
-         
-    */
-
-/**
+    /**
         @typedef DepartmentIdentifier
         
         
@@ -13137,86 +13066,181 @@ class PlatformApplicationClient {
          
     */
 
-/**
-        @typedef CategoryListingResponse
+    /**
+        @typedef ThirdLevelChild
         
         
-        @property { Array<DepartmentCategoryTree> } [data]
+        @property { Object } [_custom_json]
         
-        @property { Array<DepartmentIdentifier> } [departments]
+        @property { Array<Object> } [childs]
         
-         
-    */
-
-/**
-        @typedef ApplicationProductListingResponse
-        
-        
-        @property { Array<ProductSortOn> } [sort_on]
-        
-        @property { Array<ProductFilters> } [filters]
-        
-        @property { Page } page
-        
-        @property { Array<ProductListingDetail> } [items]
-        
-         
-    */
-
-/**
-        @typedef ProductDetail
-        
-        
-        @property { ProductBrand } [brand]
-        
-        @property { number } [rating_count]
-        
-        @property { Object } [promo_meta]
-        
-        @property { string } [color]
-        
-        @property { Array<string> } [tryouts]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { string } [name]
-        
-        @property { Object } [teaser_tag]
-        
-        @property { string } [item_type]
-        
-        @property { Array<ProductDetailGroupedAttribute> } [grouped_attributes]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [image_nature]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [type]
-        
-        @property { Array<Media1> } [medias]
-        
-        @property { string } [description]
-        
-        @property { string } [product_online_date]
-        
-        @property { number } [rating]
-        
-        @property { string } [short_description]
+        @property { ProductListingAction } [action]
         
         @property { number } [uid]
         
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { ImageUrls } [banners]
+        
+         
+    */
+
+    /**
+        @typedef SecondLevelChild
+        
+        
+        @property { Object } [_custom_json]
+        
+        @property { Array<ThirdLevelChild> } [childs]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { number } [uid]
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { ImageUrls } [banners]
+        
+         
+    */
+
+    /**
+        @typedef Child
+        
+        
+        @property { Object } [_custom_json]
+        
+        @property { Array<SecondLevelChild> } [childs]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { number } [uid]
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { ImageUrls } [banners]
+        
+         
+    */
+
+    /**
+        @typedef CategoryItems
+        
+        
+        @property { Array<Child> } [childs]
+        
+        @property { ProductListingAction } [action]
+        
+        @property { number } [uid]
+        
+        @property { string } [name]
+        
+        @property { string } [slug]
+        
+        @property { ImageUrls } [banners]
+        
+         
+    */
+
+    /**
+        @typedef DepartmentCategoryTree
+        
+        
+        @property { Array<CategoryItems> } [items]
+        
+        @property { string } [department]
+        
+         
+    */
+
+    /**
+        @typedef CategoryListingResponse
+        
+        
+        @property { Array<DepartmentIdentifier> } [departments]
+        
+        @property { Array<DepartmentCategoryTree> } [data]
+        
+         
+    */
+
+    /**
+        @typedef ApplicationProductListingResponse
+        
+        
+        @property { Array<ProductFilters> } [filters]
+        
+        @property { Array<ProductListingDetail> } [items]
+        
+        @property { Page } page
+        
+        @property { Array<ProductSortOn> } [sort_on]
+        
+         
+    */
+
+    /**
+        @typedef ProductDetail
+        
+        
+        @property { Object } [teaser_tag]
+        
+        @property { Object } [promo_meta]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { Array<ProductDetailGroupedAttribute> } [grouped_attributes]
+        
+        @property { Array<string> } [similars]
+        
+        @property { string } [short_description]
+        
+        @property { string } [image_nature]
+        
+        @property { string } [color]
+        
+        @property { number } [uid]
+        
+        @property { string } [name]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { Array<Media1> } [medias]
+        
+        @property { string } [item_type]
+        
+        @property { string } [type]
+        
+        @property { Array<string> } [tryouts]
+        
         @property { boolean } [has_variant]
         
+        @property { number } [rating_count]
+        
+        @property { string } [product_online_date]
+        
         @property { string } [item_code]
+        
+        @property { string } [description]
+        
+        @property { number } [rating]
+        
+        @property { Object } [attributes]
         
         @property { string } slug
         
          
     */
 
-/**
+
+    
+    /**
         @typedef Document
         
         
@@ -13233,7 +13257,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BusinessCountryInfo
         
         
@@ -13244,7 +13268,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Website
         
         
@@ -13253,7 +13277,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BusinessDetails
         
         
@@ -13262,7 +13286,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetAddressSerializer
         
         
@@ -13291,7 +13315,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SellerPhoneNumber
         
         
@@ -13302,7 +13326,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ContactDetails
         
         
@@ -13313,7 +13337,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetCompanyProfileSerializerResponse
         
         
@@ -13360,7 +13384,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BusinessCountryInfo1
         
         
@@ -13371,7 +13395,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ReferralInfo
         
         
@@ -13380,7 +13404,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyAddress
         
         
@@ -13407,7 +13431,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyStoreSerializerRequest
         
         
@@ -13438,7 +13462,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DocumentsObj
         
         
@@ -13449,7 +13473,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MetricsSerializer
         
         
@@ -13470,7 +13494,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UserSerializer1
         
         
@@ -13483,7 +13507,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BrandBannerSerializer
         
         
@@ -13494,7 +13518,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetBrandResponseSerializer
         
         
@@ -13537,7 +13561,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateUpdateBrandRequestSerializer
         
         
@@ -13564,7 +13588,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyBrandPostRequestSerializer
         
         
@@ -13577,7 +13601,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetCompanySerializer
         
         
@@ -13610,7 +13634,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyBrandSerializer
         
         
@@ -13641,7 +13665,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyBrandListSerializer
         
         
@@ -13652,7 +13676,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ProductReturnConfigSerializer
         
         
@@ -13663,7 +13687,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LocationTimingSerializer
         
         
@@ -13674,7 +13698,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LocationDayWiseSerializer
         
         
@@ -13689,7 +13713,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetAddressSerializer1
         
         
@@ -13718,7 +13742,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceCredSerializer
         
         
@@ -13731,7 +13755,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvoiceDetailsSerializer
         
         
@@ -13742,7 +13766,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LocationManagerSerializer
         
         
@@ -13755,7 +13779,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LocationSerializer
         
         
@@ -13796,7 +13820,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LocationIntegrationType
         
         
@@ -13807,7 +13831,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetLocationSerializer
         
         
@@ -13864,7 +13888,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LocationListSerializer
         
         
@@ -13875,7 +13899,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef FailedResponse
         
         
@@ -13884,7 +13910,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CDN
         
         
@@ -13893,7 +13919,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Upload
         
         
@@ -13904,7 +13930,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StartResponse
         
         
@@ -13929,7 +13955,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StartRequest
         
         
@@ -13944,7 +13970,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompleteResponse
         
         
@@ -13979,7 +14005,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Opts
         
         
@@ -13992,7 +14018,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CopyFileTask
         
         
@@ -14021,7 +14047,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BulkResponse
         
         
@@ -14032,7 +14058,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ReqConfiguration
         
         
@@ -14041,7 +14067,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Destination
         
         
@@ -14054,7 +14080,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BulkRequest
         
         
@@ -14067,7 +14093,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Urls
         
         
@@ -14080,7 +14106,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SignUrlResponse
         
         
@@ -14089,7 +14115,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SignUrlRequest
         
         
@@ -14100,7 +14126,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DbRecord
         
         
@@ -14131,7 +14157,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BrowseResponse
         
         
@@ -14142,7 +14168,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef RedirectDevice
         
         
@@ -14153,7 +14181,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef WebRedirect
         
         
@@ -14164,7 +14192,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Redirects
         
         
@@ -14179,7 +14207,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CampaignShortLink
         
         
@@ -14190,7 +14218,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Attribution
         
         
@@ -14199,7 +14227,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SocialMediaTags
         
         
@@ -14212,7 +14240,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShortLinkReq
         
         
@@ -14243,7 +14271,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UrlInfo
         
         
@@ -14256,7 +14284,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShortLinkRes
         
         
@@ -14301,7 +14329,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShortLinkList
         
         
@@ -14312,7 +14340,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ErrorRes
         
         
@@ -14321,7 +14349,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef DataTresholdDTO
         
         
@@ -14338,7 +14368,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GenericDTO
         
         
@@ -14349,7 +14379,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef JobConfigDTO
         
         
@@ -14372,7 +14402,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TaskDTO
         
         
@@ -14383,7 +14413,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ResponseEnvelopeString
         
         
@@ -14412,7 +14442,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AWSS3config
         
         
@@ -14445,7 +14475,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ArchiveConfig
         
         
@@ -14458,7 +14488,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Audit
         
         
@@ -14473,7 +14503,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CatalogMasterConfig
         
         
@@ -14482,7 +14512,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyConfig
         
         
@@ -14501,7 +14531,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DBConfig
         
         
@@ -14530,7 +14560,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DBConnectionProfile
         
         
@@ -14539,7 +14569,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DBParamConfig
         
         
@@ -14548,7 +14578,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DefaultHeadersDTO
         
         
@@ -14563,7 +14593,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DocMappingConfig
         
         
@@ -14580,7 +14610,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EmailConfig
         
         
@@ -14633,7 +14663,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FTPConfig
         
         
@@ -14668,7 +14698,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FileConfig
         
         
@@ -14707,7 +14737,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GoogleSpreadSheetConfig
         
         
@@ -14726,7 +14756,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef HttpConfig
         
         
@@ -14749,7 +14779,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef JobConfig
         
         
@@ -14814,7 +14844,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef JobConfigRawDTO
         
         
@@ -14829,7 +14859,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef JsonDocConfig
         
         
@@ -14838,7 +14868,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LocalFileConfig
         
         
@@ -14865,7 +14895,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MongoDocConfig
         
         
@@ -14884,7 +14914,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OAuthConfig
         
         
@@ -14911,7 +14941,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ProcessConfig
         
         
@@ -14948,7 +14978,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PropBeanConfig
         
         
@@ -15001,7 +15031,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PropBeanDTO
         
         
@@ -15046,7 +15076,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ResponseEnvelopeListJobConfigRawDTO
         
         
@@ -15075,7 +15105,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SFTPConfig
         
         
@@ -15116,7 +15146,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Send
         
         
@@ -15127,7 +15157,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreConfig
         
         
@@ -15148,7 +15178,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreFilter
         
         
@@ -15161,7 +15191,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TaskConfig
         
         
@@ -15174,7 +15204,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TaskParam
         
         
@@ -15185,7 +15215,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TaskStepConfig
         
         
@@ -15198,7 +15228,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ResponseEnvelopeListJobConfigDTO
         
         
@@ -15227,7 +15257,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ResponseEnvelopeJobConfigDTO
         
         
@@ -15256,7 +15286,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef JobConfigListDTO
         
         
@@ -15279,7 +15309,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ResponseEnvelopeListJobConfigListDTO
         
         
@@ -15308,7 +15338,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef ApplicationInventory
         
         
@@ -15349,7 +15381,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppInventoryConfig
         
         
@@ -15376,7 +15408,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventoryBrand
         
         
@@ -15387,7 +15419,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventoryStore
         
         
@@ -15400,7 +15432,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppStoreRules
         
         
@@ -15411,7 +15443,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventoryCategory
         
         
@@ -15422,7 +15454,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventoryPrice
         
         
@@ -15433,7 +15465,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventoryDiscount
         
         
@@ -15444,7 +15476,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AuthenticationConfig
         
         
@@ -15455,7 +15487,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ArticleAssignmentConfig
         
         
@@ -15468,7 +15500,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ArticleAssignmentRules
         
         
@@ -15477,7 +15509,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StorePriority
         
         
@@ -15488,7 +15520,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RewardPointsConfig
         
         
@@ -15499,7 +15531,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Credit
         
         
@@ -15508,7 +15540,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Debit
         
         
@@ -15521,7 +15553,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppCartConfig
         
         
@@ -15538,7 +15570,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DeliveryCharges
         
         
@@ -15549,7 +15581,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Charges
         
         
@@ -15560,7 +15592,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppPaymentConfig
         
         
@@ -15583,7 +15615,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CallbackUrl
         
         
@@ -15594,7 +15626,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Methods
         
         
@@ -15639,7 +15671,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentModeConfig
         
         
@@ -15648,7 +15680,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentSelectionLock
         
         
@@ -15661,7 +15693,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppOrderConfig
         
         
@@ -15672,7 +15704,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppLogisticsConfig
         
         
@@ -15687,7 +15719,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LoyaltyPoints
         
         
@@ -15698,7 +15730,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppInventoryPartialUpdate
         
         
@@ -15715,7 +15747,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BrandCompanyInfo
         
         
@@ -15726,7 +15758,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyByBrandsRequest
         
         
@@ -15737,7 +15769,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyByBrandsResponse
         
         
@@ -15748,7 +15780,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreByBrandsRequest
         
         
@@ -15761,7 +15793,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreByBrandsResponse
         
         
@@ -15772,7 +15804,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BrandStoreInfo
         
         
@@ -15791,7 +15823,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyBrandInfo
         
         
@@ -15808,7 +15840,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BrandsByCompanyResponse
         
         
@@ -15817,7 +15849,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateApplicationRequest
         
         
@@ -15830,7 +15862,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateAppResponse
         
         
@@ -15841,7 +15873,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApplicationsResponse
         
         
@@ -15852,7 +15884,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MobileAppConfiguration
         
         
@@ -15881,7 +15913,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LandingImage
         
         
@@ -15892,7 +15924,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SplashImage
         
         
@@ -15903,7 +15935,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MobileAppConfigRequest
         
         
@@ -15918,7 +15950,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BuildVersionHistory
         
         
@@ -15929,7 +15961,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BuildVersion
         
         
@@ -15954,7 +15986,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppSupportedCurrency
         
         
@@ -15973,7 +16005,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DefaultCurrency
         
         
@@ -15984,7 +16016,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CurrencyConfig
         
         
@@ -16007,7 +16039,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DomainAdd
         
         
@@ -16016,7 +16048,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DomainAddRequest
         
         
@@ -16025,7 +16057,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DomainsResponse
         
         
@@ -16034,7 +16066,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateDomain
         
         
@@ -16043,7 +16075,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UpdateDomainTypeRequest
         
         
@@ -16054,7 +16086,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DomainStatusRequest
         
         
@@ -16063,7 +16095,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DomainStatus
         
         
@@ -16074,7 +16106,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DomainStatusResponse
         
         
@@ -16085,7 +16117,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DomainSuggestionsRequest
         
         
@@ -16096,7 +16128,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DomainSuggestion
         
         
@@ -16113,7 +16145,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DomainSuggestionsResponse
         
         
@@ -16122,7 +16154,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetIntegrationsOptInsResponse
         
         
@@ -16133,7 +16165,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef IntegrationOptIn
         
         
@@ -16172,7 +16204,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Validators
         
         
@@ -16187,7 +16219,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyValidator
         
         
@@ -16198,7 +16230,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef JsonSchema
         
         
@@ -16213,7 +16245,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreValidator
         
         
@@ -16224,7 +16256,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventoryValidator
         
         
@@ -16235,7 +16267,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OrderValidator
         
         
@@ -16246,7 +16278,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef IntegrationMeta
         
         
@@ -16261,7 +16293,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Integration
         
         
@@ -16300,7 +16332,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef IntegrationConfigResponse
         
         
@@ -16309,7 +16341,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef IntegrationLevel
         
         
@@ -16342,7 +16374,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OptedStoreIntegration
         
         
@@ -16355,7 +16387,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OtherEntity
         
         
@@ -16388,7 +16420,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LastPatch
         
         
@@ -16401,7 +16433,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OtherEntityData
         
         
@@ -16410,7 +16442,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef App
         
         
@@ -16427,7 +16459,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppInventory
         
         
@@ -16448,7 +16480,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppDomain
         
         
@@ -16457,7 +16489,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompaniesResponse
         
         
@@ -16468,7 +16500,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppInventoryCompanies
         
         
@@ -16481,7 +16513,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoresResponse
         
         
@@ -16492,7 +16524,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppInventoryStores
         
         
@@ -16515,7 +16547,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FilterOrderingStoreRequest
         
         
@@ -16528,7 +16560,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DeploymentMeta
         
         
@@ -16549,7 +16581,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OrderingStoreConfig
         
         
@@ -16558,7 +16590,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OtherSellerCompany
         
         
@@ -16569,7 +16601,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OtherSellerApplication
         
         
@@ -16588,7 +16620,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OtherSellerApplications
         
         
@@ -16599,7 +16631,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OptedApplicationResponse
         
         
@@ -16620,7 +16652,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OptedCompany
         
         
@@ -16631,7 +16663,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OptedInventory
         
         
@@ -16642,7 +16674,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OptType
         
         
@@ -16653,7 +16685,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OptedStore
         
         
@@ -16678,7 +16710,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OptOutInventory
         
         
@@ -16689,7 +16721,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ProductDetailFeature
         
         
@@ -16704,7 +16736,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LaunchPage
         
         
@@ -16717,7 +16749,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LandingPageFeature
         
         
@@ -16734,7 +16766,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RegistrationPageFeature
         
         
@@ -16743,7 +16775,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppFeature
         
         
@@ -16778,7 +16810,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef HomePageFeature
         
         
@@ -16787,7 +16819,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CommonFeature
         
         
@@ -16810,7 +16842,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CommunicationOptinDialogFeature
         
         
@@ -16819,7 +16851,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DeploymentStoreSelectionFeature
         
         
@@ -16830,7 +16862,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ListingPriceFeature
         
         
@@ -16841,7 +16873,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ListingPageFeature
         
         
@@ -16850,7 +16882,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CurrencyFeature
         
         
@@ -16863,7 +16895,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RevenueEngineFeature
         
         
@@ -16872,7 +16904,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FeedbackFeature
         
         
@@ -16881,7 +16913,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompareProductsFeature
         
         
@@ -16890,7 +16922,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CartFeature
         
         
@@ -16905,7 +16937,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef QrFeature
         
         
@@ -16918,7 +16950,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PcrFeature
         
         
@@ -16927,7 +16959,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OrderFeature
         
         
@@ -16936,7 +16968,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppFeatureRequest
         
         
@@ -16945,7 +16977,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AppFeatureResponse
         
         
@@ -16954,7 +16986,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Currency
         
         
@@ -16977,7 +17009,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Domain
         
         
@@ -16996,7 +17028,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApplicationWebsite
         
         
@@ -17007,7 +17039,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApplicationCors
         
         
@@ -17016,7 +17048,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApplicationAuth
         
         
@@ -17025,7 +17057,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApplicationRedirections
         
         
@@ -17038,7 +17070,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApplicationMeta
         
         
@@ -17049,7 +17081,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SecureUrl
         
         
@@ -17058,7 +17090,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Application
         
         
@@ -17115,7 +17147,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef NotFound
         
         
@@ -17124,7 +17156,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UnhandledError
         
         
@@ -17133,7 +17165,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InvalidPayloadRequest
         
         
@@ -17142,7 +17174,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SuccessMessageResponse
         
         
@@ -17151,7 +17183,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventoryBrandRule
         
         
@@ -17162,7 +17194,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreCriteriaRule
         
         
@@ -17173,7 +17205,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventoryStoreRule
         
         
@@ -17186,7 +17218,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventoryPaymentConfig
         
         
@@ -17197,7 +17229,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StorePriorityRule
         
         
@@ -17208,7 +17240,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ArticleAssignmentRule
         
         
@@ -17217,7 +17249,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventoryArticleAssignment
         
         
@@ -17230,7 +17262,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CompanyAboutAddress
         
         
@@ -17251,7 +17283,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UserEmail
         
         
@@ -17266,7 +17298,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UserPhoneNumber
         
         
@@ -17283,7 +17315,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApplicationInformation
         
         
@@ -17312,7 +17344,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InformationAddress
         
         
@@ -17331,7 +17363,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InformationPhone
         
         
@@ -17342,7 +17374,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InformationSupport
         
         
@@ -17355,7 +17387,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SocialLinks
         
         
@@ -17380,7 +17412,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Instagram
         
         
@@ -17393,7 +17425,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Twitter
         
         
@@ -17406,7 +17438,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Pinterest
         
         
@@ -17419,7 +17451,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GooglePlus
         
         
@@ -17432,7 +17464,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Youtube
         
         
@@ -17445,7 +17477,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LinkedIn
         
         
@@ -17458,7 +17490,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Vimeo
         
         
@@ -17471,7 +17503,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BlogLink
         
         
@@ -17484,7 +17516,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Links
         
         
@@ -17495,7 +17527,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BusinessHighlights
         
         
@@ -17510,7 +17542,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApplicationDetail
         
         
@@ -17535,7 +17567,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CurrenciesResponse
         
         
@@ -17544,7 +17576,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreLatLong
         
         
@@ -17555,7 +17587,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OptedStoreAddress
         
         
@@ -17576,7 +17608,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OrderingStore
         
         
@@ -17601,7 +17633,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OrderingStores
         
         
@@ -17626,7 +17658,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TokenResponse
         
         
@@ -17645,7 +17677,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Tokens
         
         
@@ -17670,7 +17702,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Firebase
         
         
@@ -17681,7 +17713,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Credentials
         
         
@@ -17700,7 +17732,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Ios
         
         
@@ -17711,7 +17743,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Android
         
         
@@ -17722,7 +17754,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Moengage
         
         
@@ -17733,7 +17765,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MoengageCredentials
         
         
@@ -17742,7 +17774,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Segment
         
         
@@ -17753,7 +17785,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SegmentCredentials
         
         
@@ -17762,7 +17794,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Gtm
         
         
@@ -17773,7 +17805,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GtmCredentials
         
         
@@ -17782,7 +17814,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Freshchat
         
         
@@ -17793,7 +17825,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FreshchatCredentials
         
         
@@ -17806,7 +17838,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Safetynet
         
         
@@ -17817,7 +17849,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SafetynetCredentials
         
         
@@ -17826,7 +17858,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FyndRewards
         
         
@@ -17835,7 +17867,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FyndRewardsCredentials
         
         
@@ -17844,7 +17876,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Auth
         
         
@@ -17857,7 +17889,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GoogleMap
         
         
@@ -17866,7 +17898,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GoogleMapCredentials
         
         
@@ -17875,7 +17907,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef CouponDateMeta
         
         
@@ -17886,7 +17920,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Rule
         
         
@@ -17903,7 +17937,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RuleDefinition
         
         
@@ -17926,7 +17960,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CouponSchedule
         
         
@@ -17943,7 +17977,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Validity
         
         
@@ -17952,7 +17986,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Validation
         
         
@@ -17965,7 +17999,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DisplayMetaDict
         
         
@@ -17976,7 +18010,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DisplayMeta
         
         
@@ -17995,7 +18029,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef State
         
         
@@ -18008,7 +18042,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CouponAction
         
         
@@ -18019,7 +18053,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentAllowValue
         
         
@@ -18028,7 +18062,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentModes
         
         
@@ -18043,7 +18077,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PaymentCodes
         
         
@@ -18064,7 +18098,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UsesRemaining
         
         
@@ -18077,7 +18111,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UsesRestriction
         
         
@@ -18088,7 +18122,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PostOrder
         
         
@@ -18099,7 +18133,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef PriceRange
         
         
@@ -18110,7 +18144,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BulkBundleRestriction
         
         
@@ -18119,7 +18153,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Restrictions
         
         
@@ -18142,7 +18176,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CouponAuthor
         
         
@@ -18153,7 +18187,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Ownership
         
         
@@ -18164,7 +18198,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Identifier
         
         
@@ -18187,7 +18221,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CouponAdd
         
         
@@ -18226,7 +18260,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CouponsResponse
         
         
@@ -18237,7 +18271,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SuccessMessage
         
         
@@ -18248,7 +18282,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef OperationErrorResponse
         
         
@@ -18259,7 +18293,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CouponUpdate
         
         
@@ -18298,7 +18332,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CouponPartialUpdate
         
         
@@ -18309,7 +18343,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef StoreMapping
         
         
@@ -18324,7 +18360,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AllChannels
         
         
@@ -18333,7 +18369,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MyntraPayload
         
         
@@ -18344,7 +18380,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AmazonPayload
         
         
@@ -18355,7 +18391,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FlipkartPayload
         
         
@@ -18364,7 +18400,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef TatacliqPayload
         
         
@@ -18377,7 +18413,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AjioPayload
         
         
@@ -18390,7 +18426,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef InventorySyncConfig
         
         
@@ -18401,7 +18437,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StoreMappingPayload
         
         
@@ -18412,7 +18448,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StatusPayload
         
         
@@ -18421,7 +18457,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StatusResp
         
         
@@ -18430,7 +18466,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SyncPayload
         
         
@@ -18439,7 +18475,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SyncResp
         
         
@@ -18448,7 +18484,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MkpResp
         
         
@@ -18471,7 +18507,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef AppUser
         
         
@@ -18492,7 +18530,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef E
         
         
@@ -18513,7 +18551,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Giveaway
         
         
@@ -18542,7 +18580,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GiveawayResponse
         
         
@@ -18553,7 +18591,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef HistoryPretty
         
         
@@ -18586,7 +18624,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef HistoryRes
         
         
@@ -18599,7 +18637,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Offer
         
         
@@ -18634,7 +18672,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Points
         
         
@@ -18643,7 +18681,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef Referral
         
         
@@ -18652,7 +18690,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RewardUser
         
         
@@ -18675,7 +18713,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RewardsAudience
         
         
@@ -18686,7 +18724,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RewardsRule
         
         
@@ -18695,7 +18733,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ShareMessages
         
         
@@ -18720,7 +18758,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UserRes
         
         
@@ -18731,7 +18769,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef StatGroup
         
         
@@ -18744,7 +18784,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StatsGroups
         
         
@@ -18753,7 +18793,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StatsGroupComponent
         
         
@@ -18770,7 +18810,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StatsGroupComponents
         
         
@@ -18781,7 +18821,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef StatsRes
         
         
@@ -18796,7 +18836,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ReceivedAt
         
         
@@ -18805,7 +18845,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AbandonCartsDetail
         
         
@@ -18828,7 +18868,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AbandonCartsList
         
         
@@ -18841,7 +18881,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AbandonCartDetail
         
         
@@ -18860,7 +18900,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ExportJobReq
         
         
@@ -18877,7 +18917,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ExportJobRes
         
         
@@ -18888,7 +18928,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ExportJobStatusRes
         
         
@@ -18901,7 +18941,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetLogsListReq
         
         
@@ -18916,7 +18956,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef MkpLogsResp
         
         
@@ -18935,7 +18975,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef GetLogsListRes
         
         
@@ -18946,7 +18986,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SearchLogReq
         
         
@@ -18965,7 +19005,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef LogInfo
         
         
@@ -18998,7 +19038,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SearchLogRes
         
         
@@ -19009,7 +19049,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef ValidityObject
         
         
@@ -19020,7 +19062,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CreateUpdateDiscount
         
         
@@ -19051,7 +19093,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DiscountJob
         
         
@@ -19094,7 +19136,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ListOrCalender
         
         
@@ -19105,7 +19147,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef FileJobResponse
         
         
@@ -19126,7 +19168,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef DownloadFileJob
         
         
@@ -19137,7 +19179,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef CancelJobResponse
         
         
@@ -19146,7 +19188,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef UserDetails
         
         
@@ -19157,7 +19199,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef BadRequestObject
         
         
@@ -19166,7 +19208,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef AddProxyReq
         
         
@@ -19177,7 +19221,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AddProxyResponse
         
         
@@ -19200,7 +19244,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef ApiError
         
         
@@ -19213,7 +19257,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef RemoveProxyResponse
         
         
@@ -19224,7 +19268,9 @@ class PlatformApplicationClient {
          
     */
 
-/**
+
+    
+    /**
         @typedef EventConfig
         
         
@@ -19245,7 +19291,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EventConfigList
         
         
@@ -19254,7 +19300,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriberConfigList
         
         
@@ -19263,7 +19309,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EventProcessedStatus
         
         
@@ -19286,7 +19332,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef EventPayload
         
         
@@ -19307,7 +19353,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriberConfig
         
         
@@ -19334,7 +19380,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef SubscriberEvent
         
         
@@ -19349,7 +19395,7 @@ class PlatformApplicationClient {
          
     */
 
-/**
+    /**
         @typedef AuthMeta
         
         
@@ -19362,13 +19408,18 @@ class PlatformApplicationClient {
          
     */
 
-class Lead {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+
+
+class Lead {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
     * @description: Gets the list of Application level Tickets and/or ticket filters
@@ -19381,40 +19432,49 @@ class Lead {
     * @param {string} [arg.category] - Filter tickets on category
     
     **/
-  getTickets({ items, filters, q, status, priority, category } = {}) {
-    const { error } = LeadValidator.getTickets().validate(
-      {
-        items,
-        filters,
-        q,
-        status,
-        priority,
-        category,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getTickets({
+            items,
+            filters,
+            q,
+            status,
+            priority,
+            category
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["items"] = items;
-    queryObj["filters"] = filters;
-    queryObj["q"] = q;
-    queryObj["status"] = status;
-    queryObj["priority"] = priority;
-    queryObj["category"] = category;
+            const { error } = LeadValidator.getTickets().validate({
+                items,
+            filters,
+            q,
+            status,
+            priority,
+            category
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['items'] = items;
+            queryObj['filters'] = filters;
+            queryObj['q'] = q;
+            queryObj['status'] = status;
+            queryObj['priority'] = priority;
+            queryObj['category'] = category;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Retreives ticket details of a application level ticket
     * @description: Retreives ticket details of a application level ticket with ticket ID
@@ -19422,91 +19482,105 @@ class Lead {
     * @param {string} arg.ticketId - Tiket ID of the ticket to be fetched
     
     **/
-  getTicket({ ticketId } = {}) {
-    const { error } = LeadValidator.getTicket().validate(
-      {
-        ticketId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getTicket({
+            ticketId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = LeadValidator.getTicket().validate({
+                ticketId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Edits ticket details of a application level ticket
+    * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
+    * @param {Object} arg - arg object.
+    * @param {string} arg.ticketId - Ticket ID of ticket to be edited
+    * @param {EditTicketPayload} arg.body
+    **/
+        editTicket({
+            ticketId,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Edits ticket details of a application level ticket
-   * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
-   * @param {Object} arg - arg object.
-   * @param {string} arg.ticketId - Ticket ID of ticket to be edited
-   * @param {EditTicketPayload} arg.body
-   **/
-  editTicket({ ticketId, body } = {}) {
-    const { error } = LeadValidator.editTicket().validate(
-      {
-        ticketId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = LeadValidator.editTicket().validate({
+                ticketId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Create history for specific application level ticket
+    * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.ticketId - Ticket ID for which history is created
+    * @param {TicketHistoryPayload} arg.body
+    **/
+        createHistory({
+            ticketId,
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = LeadValidator.createHistory().validate({
+                ticketId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Create history for specific application level ticket
-   * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.ticketId - Ticket ID for which history is created
-   * @param {TicketHistoryPayload} arg.body
-   **/
-  createHistory({ ticketId, body } = {}) {
-    const { error } = LeadValidator.createHistory().validate(
-      {
-        ticketId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}/history`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}/history`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Gets history list for specific application level ticket
     * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
@@ -19514,29 +19588,33 @@ class Lead {
     * @param {string} arg.ticketId - Ticket ID for which history is to be fetched
     
     **/
-  getTicketHistory({ ticketId } = {}) {
-    const { error } = LeadValidator.getTicketHistory().validate(
-      {
-        ticketId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getTicketHistory({
+            ticketId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = LeadValidator.getTicketHistory().validate({
+                ticketId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}/history`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${ticketId}/history`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get specific custom form using it's slug
     * @description: Get specific custom form using it's slug, this is used to view the form.
@@ -19544,116 +19622,133 @@ class Lead {
     * @param {string} arg.slug - Slug of form whose response is getting submitted
     
     **/
-  getCustomForm({ slug } = {}) {
-    const { error } = LeadValidator.getCustomForm().validate(
-      {
-        slug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCustomForm({
+            slug
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = LeadValidator.getCustomForm().validate({
+                slug
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form/${slug}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form/${slug}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Edit the given custom form
+    * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - Slug of form whose response is getting submitted
+    * @param {EditCustomFormPayload} arg.body
+    **/
+        editCustomForm({
+            slug,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Edit the given custom form
-   * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.slug - Slug of form whose response is getting submitted
-   * @param {EditCustomFormPayload} arg.body
-   **/
-  editCustomForm({ slug, body } = {}) {
-    const { error } = LeadValidator.editCustomForm().validate(
-      {
-        slug,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = LeadValidator.editCustomForm().validate({
+                slug,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form/${slug}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form/${slug}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get list of custom form
     * @description: Get list of custom form for given application
     * @param {Object} arg - arg object.
     
     **/
-  getCustomForms({} = {}) {
-    const { error } = LeadValidator.getCustomForms().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCustomForms({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = LeadValidator.getCustomForms().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Creates a new custom form
+    * @description: Creates a new custom form for given application
+    * @param {Object} arg - arg object.
+    * @param {CreateCustomFormPayload} arg.body
+    **/
+        createCustomForm({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Creates a new custom form
-   * @description: Creates a new custom form for given application
-   * @param {Object} arg - arg object.
-   * @param {CreateCustomFormPayload} arg.body
-   **/
-  createCustomForm({ body } = {}) {
-    const { error } = LeadValidator.createCustomForm().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = LeadValidator.createCustomForm().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get Token to join a specific Video Room using it's unqiue name
     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
@@ -19661,29 +19756,33 @@ class Lead {
     * @param {string} arg.uniqueName - Unique name of video room
     
     **/
-  getTokenForVideoRoom({ uniqueName } = {}) {
-    const { error } = LeadValidator.getTokenForVideoRoom().validate(
-      {
-        uniqueName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getTokenForVideoRoom({
+            uniqueName
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = LeadValidator.getTokenForVideoRoom().validate({
+                uniqueName
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}/token`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}/token`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get participants of a specific Video Room using it's unique name
     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
@@ -19691,58 +19790,66 @@ class Lead {
     * @param {string} arg.uniqueName - Unique name of Video Room
     
     **/
-  getVideoParticipants({ uniqueName } = {}) {
-    const { error } = LeadValidator.getVideoParticipants().validate(
-      {
-        uniqueName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getVideoParticipants({
+            uniqueName
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = LeadValidator.getVideoParticipants().validate({
+                uniqueName
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}/participants`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}/participants`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Open a video room.
+    * @description: Open a video room.
+    * @param {Object} arg - arg object.
+    * @param {CreateVideoRoomPayload} arg.body
+    **/
+        openVideoRoom({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Open a video room.
-   * @description: Open a video room.
-   * @param {Object} arg - arg object.
-   * @param {CreateVideoRoomPayload} arg.body
-   **/
-  openVideoRoom({ body } = {}) {
-    const { error } = LeadValidator.openVideoRoom().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = LeadValidator.openVideoRoom().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Close the video room and force all participants to leave.
     * @description: Close the video room and force all participants to leave.
@@ -19750,36 +19857,44 @@ class Lead {
     * @param {string} arg.uniqueName - Unique name of Video Room
     
     **/
-  closeVideoRoom({ uniqueName } = {}) {
-    const { error } = LeadValidator.closeVideoRoom().validate(
-      {
-        uniqueName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        closeVideoRoom({
+            uniqueName
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = LeadValidator.closeVideoRoom().validate({
+                uniqueName
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
 }
 
-class Feedback {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+class Feedback {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Get list of attribute data
     * @description: Provides a list of all attribute data.
@@ -19788,32 +19903,58 @@ class Feedback {
     * @param {number} [arg.pageSize] - pagination page size
     
     **/
-  getAttributes({ pageNo, pageSize } = {}) {
-    const { error } = FeedbackValidator.getAttributes().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAttributes({
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = FeedbackValidator.getAttributes().validate({
+                pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/attributes/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/attributes/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get list of attribute data
     * @description: Provides a list of all attribute data.
@@ -19823,29 +19964,31 @@ class Feedback {
     * @param {number} [arg.pageSize] - pagination page size
     
     **/
-  getAttributesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAttributes({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getAttributesPaginator( { companyId, applicationId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getAttributes({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Get list of customer reviews [admin]
     * @description: The endpoint provides a list of customer reviews based on entity and provided filters
@@ -19867,74 +20010,164 @@ class Feedback {
     * @param {number} [arg.pageSize] - pagination page size
     
     **/
-  getCustomerReviews({
-    id,
-    entityId,
-    entityType,
-    userId,
-    media,
-    rating,
-    attributeRating,
-    facets,
-    sort,
-    next,
-    start,
-    limit,
-    count,
-    pageId,
-    pageSize,
-  } = {}) {
-    const { error } = FeedbackValidator.getCustomerReviews().validate(
-      {
-        id,
-        entityId,
-        entityType,
-        userId,
-        media,
-        rating,
-        attributeRating,
-        facets,
-        sort,
-        next,
-        start,
-        limit,
-        count,
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCustomerReviews({
+            id,
+            entityId,
+            entityType,
+            userId,
+            media,
+            rating,
+            attributeRating,
+            facets,
+            sort,
+            next,
+            start,
+            limit,
+            count,
+            pageId,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["id"] = id;
-    queryObj["entity_id"] = entityId;
-    queryObj["entity_type"] = entityType;
-    queryObj["user_id"] = userId;
-    queryObj["media"] = media;
-    queryObj["rating"] = rating;
-    queryObj["attribute_rating"] = attributeRating;
-    queryObj["facets"] = facets;
-    queryObj["sort"] = sort;
-    queryObj["next"] = next;
-    queryObj["start"] = start;
-    queryObj["limit"] = limit;
-    queryObj["count"] = count;
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
+            const { error } = FeedbackValidator.getCustomerReviews().validate({
+                id,
+            entityId,
+            entityType,
+            userId,
+            media,
+            rating,
+            attributeRating,
+            facets,
+            sort,
+            next,
+            start,
+            limit,
+            count,
+            pageId,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['id'] = id;
+            queryObj['entity_id'] = entityId;
+            queryObj['entity_type'] = entityType;
+            queryObj['user_id'] = userId;
+            queryObj['media'] = media;
+            queryObj['rating'] = rating;
+            queryObj['attribute_rating'] = attributeRating;
+            queryObj['facets'] = facets;
+            queryObj['sort'] = sort;
+            queryObj['next'] = next;
+            queryObj['start'] = start;
+            queryObj['limit'] = limit;
+            queryObj['count'] = count;
+            queryObj['page_id'] = pageId;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get list of customer reviews [admin]
     * @description: The endpoint provides a list of customer reviews based on entity and provided filters
@@ -19957,90 +20190,80 @@ class Feedback {
     * @param {number} [arg.pageSize] - pagination page size
     
     **/
-  getCustomerReviewsPaginator({
-    companyId,
-    applicationId,
-    id,
-    entityId,
-    entityType,
-    userId,
-    media,
-    rating,
-    attributeRating,
-    facets,
-    sort,
-    next,
-    start,
-    limit,
-    count,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getCustomerReviews({
-        companyId: companyId,
-        applicationId: applicationId,
-        id: id,
-        entityId: entityId,
-        entityType: entityType,
-        userId: userId,
-        media: media,
-        rating: rating,
-        attributeRating: attributeRating,
-        facets: facets,
-        sort: sort,
-        next: next,
-        start: start,
-        limit: limit,
-        count: count,
-        pageId: pageId,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getCustomerReviewsPaginator( { companyId, applicationId, id, entityId, entityType, userId, media, rating, attributeRating, facets, sort, next, start, limit, count, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getCustomerReviews({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        id:id ,
+                        entityId:entityId ,
+                        entityType:entityType ,
+                        userId:userId ,
+                        media:media ,
+                        rating:rating ,
+                        attributeRating:attributeRating ,
+                        facets:facets ,
+                        sort:sort ,
+                        next:next ,
+                        start:start ,
+                        limit:limit ,
+                        count:count ,
+                        pageId:pageId ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: update approve details
+    * @description: The is used to update approve details like status and description text
+    * @param {Object} arg - arg object.
+    * @param {string} arg.reviewId - review id
+    * @param {ApproveRequest} arg.body
+    **/
+        updateApprove({
+            reviewId,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: update approve details
-   * @description: The is used to update approve details like status and description text
-   * @param {Object} arg - arg object.
-   * @param {string} arg.reviewId - review id
-   * @param {ApproveRequest} arg.body
-   **/
-  updateApprove({ reviewId, body } = {}) {
-    const { error } = FeedbackValidator.updateApprove().validate(
-      {
-        reviewId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = FeedbackValidator.updateApprove().validate({
+                reviewId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/approve/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/approve/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: get history details
     * @description: The is used to get the history details like status and description text
@@ -20048,29 +20271,33 @@ class Feedback {
     * @param {string} arg.reviewId - review id
     
     **/
-  getHistory({ reviewId } = {}) {
-    const { error } = FeedbackValidator.getHistory().validate(
-      {
-        reviewId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getHistory({
+            reviewId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = FeedbackValidator.getHistory().validate({
+                reviewId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/history/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/history/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get list of templates
     * @description: Get all templates of application
@@ -20079,32 +20306,60 @@ class Feedback {
     * @param {number} [arg.pageSize] - pagination page size
     
     **/
-  getApplicationTemplates({ pageId, pageSize } = {}) {
-    const { error } = FeedbackValidator.getApplicationTemplates().validate(
-      {
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getApplicationTemplates({
+            pageId,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
+            const { error } = FeedbackValidator.getApplicationTemplates().validate({
+                pageId,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_id'] = pageId;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get list of templates
     * @description: Get all templates of application
@@ -20114,33 +20369,31 @@ class Feedback {
     * @param {number} [arg.pageSize] - pagination page size
     
     **/
-  getApplicationTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getApplicationTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageId: pageId,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getApplicationTemplatesPaginator( { companyId, applicationId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getApplicationTemplates({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageId:pageId ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Create a new template
     * @description: Create a new template for review with following data:
@@ -20150,29 +20403,33 @@ class Feedback {
     * @param {Object} arg - arg object.
     * @param {TemplateRequestList} arg.body
     **/
-  createTemplate({ body } = {}) {
-    const { error } = FeedbackValidator.createTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        createTemplate({
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = FeedbackValidator.createTemplate().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get a template by ID
     * @description: Get the template for product or l3 type by ID
@@ -20180,98 +20437,116 @@ class Feedback {
     * @param {string} arg.id - template id
     
     **/
-  getTemplateById({ id } = {}) {
-    const { error } = FeedbackValidator.getTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getTemplateById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = FeedbackValidator.getTemplateById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update a template's status
+    * @description: Update existing template status, active/archive
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - template id
+    * @param {UpdateTemplateRequest} arg.body
+    **/
+        updateTemplate({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update a template's status
-   * @description: Update existing template status, active/archive
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - template id
-   * @param {UpdateTemplateRequest} arg.body
-   **/
-  updateTemplate({ id, body } = {}) {
-    const { error } = FeedbackValidator.updateTemplate().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = FeedbackValidator.updateTemplate().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update a template's status
+    * @description: Update existing template status, active/archive
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - template id
+    * @param {UpdateTemplateStatusRequest} arg.body
+    **/
+        updateTemplateStatus({
+            id,
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = FeedbackValidator.updateTemplateStatus().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Update a template's status
-   * @description: Update existing template status, active/archive
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - template id
-   * @param {UpdateTemplateStatusRequest} arg.body
-   **/
-  updateTemplateStatus({ id, body } = {}) {
-    const { error } = FeedbackValidator.updateTemplateStatus().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/status`,
-      queryObj,
-      body
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "patch",
+                    `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/status`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
 }
 
-class Theme {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+class Theme {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Gets list of themes in theme library
     * @description: Gets list of themes in theme library
@@ -20280,90 +20555,103 @@ class Theme {
     * @param {number} [arg.pageNo] - Page number. Default is 1.
     
     **/
-  getThemeLibrary({ pageSize, pageNo } = {}) {
-    const { error } = ThemeValidator.getThemeLibrary().validate(
-      {
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getThemeLibrary({
+            pageSize,
+            pageNo
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_size"] = pageSize;
-    queryObj["page_no"] = pageNo;
+            const { error } = ThemeValidator.getThemeLibrary().validate({
+                pageSize,
+            pageNo
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_size'] = pageSize;
+            queryObj['page_no'] = pageNo;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add theme to theme library
+    * @description: Add theme to theme library
+    * @param {Object} arg - arg object.
+    * @param {AddThemeRequestSchema} arg.body
+    **/
+        addToThemeLibrary({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Add theme to theme library
-   * @description: Add theme to theme library
-   * @param {Object} arg - arg object.
-   * @param {AddThemeRequestSchema} arg.body
-   **/
-  addToThemeLibrary({ body } = {}) {
-    const { error } = ThemeValidator.addToThemeLibrary().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ThemeValidator.addToThemeLibrary().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Apply theme
+    * @description: Apply theme
+    * @param {Object} arg - arg object.
+    * @param {AddThemeRequestSchema} arg.body
+    **/
+        applyTheme({
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ThemeValidator.applyTheme().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Apply theme
-   * @description: Apply theme
-   * @param {Object} arg - arg object.
-   * @param {AddThemeRequestSchema} arg.body
-   **/
-  applyTheme({ body } = {}) {
-    const { error } = ThemeValidator.applyTheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/apply`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/apply`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Checks if theme is upgradable
     * @description: Checks if theme is upgradable
@@ -20371,29 +20659,33 @@ class Theme {
     * @param {string} arg.themeId - Theme ID
     
     **/
-  isUpgradable({ themeId } = {}) {
-    const { error } = ThemeValidator.isUpgradable().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        isUpgradable({
+            themeId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.isUpgradable().validate({
+                themeId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgradable`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgradable`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Upgrades theme
     * @description: Upgrades theme
@@ -20401,29 +20693,33 @@ class Theme {
     * @param {string} arg.themeId - Theme ID
     
     **/
-  upgradeTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.upgradeTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        upgradeTheme({
+            themeId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.upgradeTheme().validate({
+                themeId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgrade`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgrade`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Gets public themes
     * @description: Gets public themes
@@ -20432,115 +20728,132 @@ class Theme {
     * @param {number} [arg.pageNo] - Page number. Default is 1.
     
     **/
-  getPublicThemes({ pageSize, pageNo } = {}) {
-    const { error } = ThemeValidator.getPublicThemes().validate(
-      {
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPublicThemes({
+            pageSize,
+            pageNo
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_size"] = pageSize;
-    queryObj["page_no"] = pageNo;
+            const { error } = ThemeValidator.getPublicThemes().validate({
+                pageSize,
+            pageNo
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_size'] = pageSize;
+            queryObj['page_no'] = pageNo;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/public/library`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/public/library`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Create new theme
+    * @description: Create new theme
+    * @param {Object} arg - arg object.
+    * @param {ThemesSchema} arg.body
+    **/
+        createTheme({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create new theme
-   * @description: Create new theme
-   * @param {Object} arg - arg object.
-   * @param {ThemesSchema} arg.body
-   **/
-  createTheme({ body } = {}) {
-    const { error } = ThemeValidator.createTheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ThemeValidator.createTheme().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get applied theme
     * @description: Get applied theme
     * @param {Object} arg - arg object.
     
     **/
-  getAppliedTheme({} = {}) {
-    const { error } = ThemeValidator.getAppliedTheme().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAppliedTheme({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.getAppliedTheme().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Gets fonts
     * @description: Gets fonts
     * @param {Object} arg - arg object.
     
     **/
-  getFonts({} = {}) {
-    const { error } = ThemeValidator.getFonts().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getFonts({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.getFonts().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/fonts`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/fonts`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Gets theme by id
     * @description: Gets theme by id
@@ -20548,60 +20861,69 @@ class Theme {
     * @param {string} arg.themeId - Theme ID
     
     **/
-  getThemeById({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeById().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getThemeById({
+            themeId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.getThemeById().validate({
+                themeId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update theme
+    * @description: Update theme
+    * @param {Object} arg - arg object.
+    * @param {string} arg.themeId - Theme ID
+    * @param {ThemesSchema} arg.body
+    **/
+        updateTheme({
+            themeId,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update theme
-   * @description: Update theme
-   * @param {Object} arg - arg object.
-   * @param {string} arg.themeId - Theme ID
-   * @param {ThemesSchema} arg.body
-   **/
-  updateTheme({ themeId, body } = {}) {
-    const { error } = ThemeValidator.updateTheme().validate(
-      {
-        themeId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ThemeValidator.updateTheme().validate({
+                themeId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete theme
     * @description: Delete theme
@@ -20609,29 +20931,33 @@ class Theme {
     * @param {string} arg.themeId - Theme ID
     
     **/
-  deleteTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.deleteTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteTheme({
+            themeId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.deleteTheme().validate({
+                themeId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Gets theme for preview
     * @description: Gets theme for preview
@@ -20639,29 +20965,33 @@ class Theme {
     * @param {string} arg.themeId - Theme ID
     
     **/
-  getThemeForPreview({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeForPreview().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getThemeForPreview({
+            themeId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.getThemeForPreview().validate({
+                themeId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/preview`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/preview`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Publish theme
     * @description: Publish theme
@@ -20669,29 +20999,33 @@ class Theme {
     * @param {string} arg.themeId - Theme ID
     
     **/
-  publishTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.publishTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        publishTheme({
+            themeId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.publishTheme().validate({
+                themeId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/publish`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/publish`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Unpublish theme
     * @description: Unpublish theme
@@ -20699,29 +21033,33 @@ class Theme {
     * @param {string} arg.themeId - Theme ID
     
     **/
-  unpublishTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.unpublishTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        unpublishTheme({
+            themeId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.unpublishTheme().validate({
+                themeId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unpublish`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unpublish`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Archive theme
     * @description: Archive theme
@@ -20729,29 +21067,33 @@ class Theme {
     * @param {string} arg.themeId - Theme ID
     
     **/
-  archiveTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.archiveTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        archiveTheme({
+            themeId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.archiveTheme().validate({
+                themeId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/archive`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/archive`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Unarchive theme
     * @description: Unarchive theme
@@ -20759,36 +21101,44 @@ class Theme {
     * @param {string} arg.themeId - Theme ID
     
     **/
-  unarchiveTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.unarchiveTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        unarchiveTheme({
+            themeId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ThemeValidator.unarchiveTheme().validate({
+                themeId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unarchive`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unarchive`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
 }
 
-class User {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+class User {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Gets list of customers
     * @description: Used to get application customers list
@@ -20798,34 +21148,40 @@ class User {
     * @param {number} [arg.pageNo] - Page number. Default is 1.
     
     **/
-  getCustomers({ q, pageSize, pageNo } = {}) {
-    const { error } = UserValidator.getCustomers().validate(
-      {
-        q,
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCustomers({
+            q,
+            pageSize,
+            pageNo
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["q"] = q;
-    queryObj["page_size"] = pageSize;
-    queryObj["page_no"] = pageNo;
+            const { error } = UserValidator.getCustomers().validate({
+                q,
+            pageSize,
+            pageNo
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['q'] = q;
+            queryObj['page_size'] = pageSize;
+            queryObj['page_no'] = pageNo;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/list`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/list`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Search users
     * @description: Search users
@@ -20833,93 +21189,109 @@ class User {
     * @param {string} [arg.q] - The search query. This can be a partial or complete name of a either a product, brand or category
     
     **/
-  searchUsers({ q } = {}) {
-    const { error } = UserValidator.searchUsers().validate(
-      {
-        q,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        searchUsers({
+            q
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["q"] = q;
+            const { error } = UserValidator.searchUsers().validate({
+                q
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['q'] = q;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/search`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/search`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get platform config
     * @description: Used to get platform config
     * @param {Object} arg - arg object.
     
     **/
-  getPlatformConfig({} = {}) {
-    const { error } = UserValidator.getPlatformConfig().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPlatformConfig({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = UserValidator.getPlatformConfig().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update platform config
+    * @description: Used to update platform config
+    * @param {Object} arg - arg object.
+    * @param {PlatformSchema} arg.body
+    **/
+        updatePlatformConfig({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update platform config
-   * @description: Used to update platform config
-   * @param {Object} arg - arg object.
-   * @param {PlatformSchema} arg.body
-   **/
-  updatePlatformConfig({ body } = {}) {
-    const { error } = UserValidator.updatePlatformConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = UserValidator.updatePlatformConfig().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
-      queryObj,
-      body
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
 }
 
-class Content {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+class Content {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Get annoucements list
     * @description: Get list of announcements
@@ -20928,32 +21300,58 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getAnnouncementsList({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getAnnouncementsList().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAnnouncementsList({
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = ContentValidator.getAnnouncementsList().validate({
+                pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get annoucements list
     * @description: Get list of announcements
@@ -20963,58 +21361,64 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getAnnouncementsListPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAnnouncementsList({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getAnnouncementsListPaginator( { companyId, applicationId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getAnnouncementsList({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create an annoucement
+    * @description: Create an announcement
+    * @param {Object} arg - arg object.
+    * @param {AdminAnnouncementSchema} arg.body
+    **/
+        createAnnouncement({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create an annoucement
-   * @description: Create an announcement
-   * @param {Object} arg - arg object.
-   * @param {AdminAnnouncementSchema} arg.body
-   **/
-  createAnnouncement({ body } = {}) {
-    const { error } = ContentValidator.createAnnouncement().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.createAnnouncement().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get annoucement by id
     * @description: Get announcement by id
@@ -21022,91 +21426,105 @@ class Content {
     * @param {string} arg.announcementId - Announcement ID
     
     **/
-  getAnnouncementById({ announcementId } = {}) {
-    const { error } = ContentValidator.getAnnouncementById().validate(
-      {
-        announcementId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAnnouncementById({
+            announcementId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getAnnouncementById().validate({
+                announcementId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update an annoucement
+    * @description: Update an announcement
+    * @param {Object} arg - arg object.
+    * @param {string} arg.announcementId - Announcement ID
+    * @param {AdminAnnouncementSchema} arg.body
+    **/
+        updateAnnouncement({
+            announcementId,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update an annoucement
-   * @description: Update an announcement
-   * @param {Object} arg - arg object.
-   * @param {string} arg.announcementId - Announcement ID
-   * @param {AdminAnnouncementSchema} arg.body
-   **/
-  updateAnnouncement({ announcementId, body } = {}) {
-    const { error } = ContentValidator.updateAnnouncement().validate(
-      {
-        announcementId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.updateAnnouncement().validate({
+                announcementId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update schedule or published status of an annoucement
+    * @description: Update schedule or published status of an announcement
+    * @param {Object} arg - arg object.
+    * @param {string} arg.announcementId - Announcement ID
+    * @param {ScheduleSchema} arg.body
+    **/
+        updateAnnouncementSchedule({
+            announcementId,
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ContentValidator.updateAnnouncementSchedule().validate({
+                announcementId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Update schedule or published status of an annoucement
-   * @description: Update schedule or published status of an announcement
-   * @param {Object} arg - arg object.
-   * @param {string} arg.announcementId - Announcement ID
-   * @param {ScheduleSchema} arg.body
-   **/
-  updateAnnouncementSchedule({ announcementId, body } = {}) {
-    const { error } = ContentValidator.updateAnnouncementSchedule().validate(
-      {
-        announcementId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "patch",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete annoucement by id
     * @description: Delete announcement by id
@@ -21114,58 +21532,66 @@ class Content {
     * @param {string} arg.announcementId - Announcement ID
     
     **/
-  deleteAnnouncement({ announcementId } = {}) {
-    const { error } = ContentValidator.deleteAnnouncement().validate(
-      {
-        announcementId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteAnnouncement({
+            announcementId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.deleteAnnouncement().validate({
+                announcementId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Create blog
+    * @description: Use this to create a blog.
+    * @param {Object} arg - arg object.
+    * @param {BlogRequest} arg.body
+    **/
+        createBlog({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create blog
-   * @description: Use this to create a blog.
-   * @param {Object} arg - arg object.
-   * @param {BlogRequest} arg.body
-   **/
-  createBlog({ body } = {}) {
-    const { error } = ContentValidator.createBlog().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.createBlog().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get blogs
     * @description: Use this to get blogs.
@@ -21174,32 +21600,58 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getBlogs({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getBlogs().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getBlogs({
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = ContentValidator.getBlogs().validate({
+                pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get blogs
     * @description: Use this to get blogs.
@@ -21209,60 +21661,67 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getBlogsPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getBlogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getBlogsPaginator( { companyId, applicationId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getBlogs({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Update blog
+    * @description: Use this to update blog.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Blog Id
+    * @param {BlogRequest} arg.body
+    **/
+        updateBlog({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update blog
-   * @description: Use this to update blog.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Blog Id
-   * @param {BlogRequest} arg.body
-   **/
-  updateBlog({ id, body } = {}) {
-    const { error } = ContentValidator.updateBlog().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.updateBlog().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete blogs
     * @description: Use this to delete blogs.
@@ -21270,29 +21729,33 @@ class Content {
     * @param {string} arg.id - Blog Id
     
     **/
-  deleteBlog({ id } = {}) {
-    const { error } = ContentValidator.deleteBlog().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteBlog({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.deleteBlog().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get components by component Id
     * @description: The endpoint fetches the component by component Id
@@ -21300,56 +21763,64 @@ class Content {
     * @param {string} arg.slug - slug of page to be fetched
     
     **/
-  getComponentById({ slug } = {}) {
-    const { error } = ContentValidator.getComponentById().validate(
-      {
-        slug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getComponentById({
+            slug
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getComponentById().validate({
+                slug
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get FAQ categories list
     * @description: Get list of FAQ categories
     * @param {Object} arg - arg object.
     
     **/
-  getFaqCategories({} = {}) {
-    const { error } = ContentValidator.getFaqCategories().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getFaqCategories({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getFaqCategories().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/categories`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/categories`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get FAQ category by slug or id
     * @description: Get FAQ category by slug or id
@@ -21357,89 +21828,102 @@ class Content {
     * @param {string} arg.idOrSlug - Slug or Id of FAQ Category
     
     **/
-  getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
-    const { error } = ContentValidator.getFaqCategoryBySlugOrId().validate(
-      {
-        idOrSlug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getFaqCategoryBySlugOrId({
+            idOrSlug
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getFaqCategoryBySlugOrId().validate({
+                idOrSlug
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Creates a FAQ category
+    * @description: Add Faq Category
+    * @param {Object} arg - arg object.
+    * @param {CreateFaqCategoryRequestSchema} arg.body
+    **/
+        createFaqCategory({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Creates a FAQ category
-   * @description: Add Faq Category
-   * @param {Object} arg - arg object.
-   * @param {CreateFaqCategoryRequestSchema} arg.body
-   **/
-  createFaqCategory({ body } = {}) {
-    const { error } = ContentValidator.createFaqCategory().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.createFaqCategory().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Updates a FAQ category
+    * @description: Update Faq Category
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Faq category ID
+    * @param {UpdateFaqCategoryRequestSchema} arg.body
+    **/
+        updateFaqCategory({
+            id,
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ContentValidator.updateFaqCategory().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Updates a FAQ category
-   * @description: Update Faq Category
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Faq category ID
-   * @param {UpdateFaqCategoryRequestSchema} arg.body
-   **/
-  updateFaqCategory({ id, body } = {}) {
-    const { error } = ContentValidator.updateFaqCategory().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Deletes a FAQ category
     * @description: Delete Faq Category
@@ -21447,29 +21931,33 @@ class Content {
     * @param {string} arg.id - Faq category ID
     
     **/
-  deleteFaqCategory({ id } = {}) {
-    const { error } = ContentValidator.deleteFaqCategory().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteFaqCategory({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.deleteFaqCategory().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get FAQs of a Faq Category id or slug
     * @description: Get FAQs of a Faq Category `id` or `slug`
@@ -21477,93 +21965,108 @@ class Content {
     * @param {string} arg.idOrSlug - Faq category ID or slug
     
     **/
-  getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
-    const { error } = ContentValidator.getFaqsByCategoryIdOrSlug().validate(
-      {
-        idOrSlug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getFaqsByCategoryIdOrSlug({
+            idOrSlug
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getFaqsByCategoryIdOrSlug().validate({
+                idOrSlug
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}/faqs`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}/faqs`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Creates FAQs for category whose `id` is specified
+    * @description: Creates FAQs for category whose `id` is specified
+    * @param {Object} arg - arg object.
+    * @param {string} arg.categoryId - Faq category ID
+    * @param {CreateFaqSchema} arg.body
+    **/
+        addFaq({
+            categoryId,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Creates FAQs for category whose `id` is specified
-   * @description: Creates FAQs for category whose `id` is specified
-   * @param {Object} arg - arg object.
-   * @param {string} arg.categoryId - Faq category ID
-   * @param {CreateFaqSchema} arg.body
-   **/
-  addFaq({ categoryId, body } = {}) {
-    const { error } = ContentValidator.addFaq().validate(
-      {
-        categoryId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.addFaq().validate({
+                categoryId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faqs`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Updates FAQ
+    * @description: Updates FAQ
+    * @param {Object} arg - arg object.
+    * @param {string} arg.categoryId - Faq category ID
+    * @param {string} arg.faqId - Faq ID
+    * @param {CreateFaqSchema} arg.body
+    **/
+        updateFaq({
+            categoryId,
+            faqId,
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faqs`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ContentValidator.updateFaq().validate({
+                categoryId,
+            faqId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Updates FAQ
-   * @description: Updates FAQ
-   * @param {Object} arg - arg object.
-   * @param {string} arg.categoryId - Faq category ID
-   * @param {string} arg.faqId - Faq ID
-   * @param {CreateFaqSchema} arg.body
-   **/
-  updateFaq({ categoryId, faqId, body } = {}) {
-    const { error } = ContentValidator.updateFaq().validate(
-      {
-        categoryId,
-        faqId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete FAQ
     * @description: Delete FAQ
@@ -21572,30 +22075,35 @@ class Content {
     * @param {string} arg.faqId - Faq ID
     
     **/
-  deleteFaq({ categoryId, faqId } = {}) {
-    const { error } = ContentValidator.deleteFaq().validate(
-      {
-        categoryId,
-        faqId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteFaq({
+            categoryId,
+            faqId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.deleteFaq().validate({
+                categoryId,
+            faqId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get frequently asked question
     * @description: Get frequently asked questions list. These will be helpful for users to using website.
@@ -21603,29 +22111,33 @@ class Content {
     * @param {string} arg.idOrSlug - Slug or Id of FAQ
     
     **/
-  getFaqByIdOrSlug({ idOrSlug } = {}) {
-    const { error } = ContentValidator.getFaqByIdOrSlug().validate(
-      {
-        idOrSlug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getFaqByIdOrSlug({
+            idOrSlug
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getFaqByIdOrSlug().validate({
+                idOrSlug
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/${idOrSlug}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/${idOrSlug}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get landing-pages
     * @description: Use this to get landing-pages.
@@ -21634,32 +22146,58 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getLandingPages({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getLandingPages().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getLandingPages({
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = ContentValidator.getLandingPages().validate({
+                pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get landing-pages
     * @description: Use this to get landing-pages.
@@ -21669,89 +22207,100 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getLandingPagesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getLandingPages({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getLandingPagesPaginator( { companyId, applicationId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getLandingPages({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create landing-page
+    * @description: Use this to create landing-page.
+    * @param {Object} arg - arg object.
+    * @param {LandingPageSchema} arg.body
+    **/
+        createLandingPage({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create landing-page
-   * @description: Use this to create landing-page.
-   * @param {Object} arg - arg object.
-   * @param {LandingPageSchema} arg.body
-   **/
-  createLandingPage({ body } = {}) {
-    const { error } = ContentValidator.createLandingPage().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.createLandingPage().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update landing-page
+    * @description: Use this to update landing-page.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Landing page ID
+    * @param {LandingPageSchema} arg.body
+    **/
+        updateLandingPage({
+            id,
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ContentValidator.updateLandingPage().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Update landing-page
-   * @description: Use this to update landing-page.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Landing page ID
-   * @param {LandingPageSchema} arg.body
-   **/
-  updateLandingPage({ id, body } = {}) {
-    const { error } = ContentValidator.updateLandingPage().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete landing-page
     * @description: Use this to delete landing-page.
@@ -21759,85 +22308,97 @@ class Content {
     * @param {string} arg.id - Landing page ID
     
     **/
-  deleteLandingPage({ id } = {}) {
-    const { error } = ContentValidator.deleteLandingPage().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteLandingPage({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.deleteLandingPage().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get legal information
     * @description: Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
     * @param {Object} arg - arg object.
     
     **/
-  getLegalInformation({} = {}) {
-    const { error } = ContentValidator.getLegalInformation().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getLegalInformation({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getLegalInformation().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Save legal information
+    * @description: Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+    * @param {Object} arg - arg object.
+    * @param {ApplicationLegal} arg.body
+    **/
+        updateLegalInformation({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Save legal information
-   * @description: Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
-   * @param {Object} arg - arg object.
-   * @param {ApplicationLegal} arg.body
-   **/
-  updateLegalInformation({ body } = {}) {
-    const { error } = ContentValidator.updateLegalInformation().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.updateLegalInformation().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get navigations
     * @description: Use this to get navigations.
@@ -21847,34 +22408,66 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getNavigations({ devicePlatform, pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getNavigations().validate(
-      {
-        devicePlatform,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getNavigations({
+            devicePlatform,
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["device_platform"] = devicePlatform;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = ContentValidator.getNavigations().validate({
+                devicePlatform,
+            pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['device_platform'] = devicePlatform;
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get navigations
     * @description: Use this to get navigations.
@@ -21885,91 +22478,96 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getNavigationsPaginator({
-    companyId,
-    applicationId,
-    devicePlatform,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getNavigations({
-        companyId: companyId,
-        applicationId: applicationId,
-        devicePlatform: devicePlatform,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getNavigationsPaginator( { companyId, applicationId, devicePlatform, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getNavigations({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        devicePlatform:devicePlatform ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create navigation
+    * @description: Use this to create navigation.
+    * @param {Object} arg - arg object.
+    * @param {NavigationRequest} arg.body
+    **/
+        createNavigation({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create navigation
-   * @description: Use this to create navigation.
-   * @param {Object} arg - arg object.
-   * @param {NavigationRequest} arg.body
-   **/
-  createNavigation({ body } = {}) {
-    const { error } = ContentValidator.createNavigation().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.createNavigation().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get default navigations
     * @description: Use this to get default navigations.
     * @param {Object} arg - arg object.
     
     **/
-  getDefaultNavigations({} = {}) {
-    const { error } = ContentValidator.getDefaultNavigations().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getDefaultNavigations({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getDefaultNavigations().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/default`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/default`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get navigation by slug
     * @description: Use this to get navigation by slug.
@@ -21978,62 +22576,72 @@ class Content {
     * @param {string} arg.devicePlatform - Device platform
     
     **/
-  getNavigationBySlug({ slug, devicePlatform } = {}) {
-    const { error } = ContentValidator.getNavigationBySlug().validate(
-      {
-        slug,
-        devicePlatform,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getNavigationBySlug({
+            slug,
+            devicePlatform
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["device_platform"] = devicePlatform;
+            const { error } = ContentValidator.getNavigationBySlug().validate({
+                slug,
+            devicePlatform
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['device_platform'] = devicePlatform;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${slug}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${slug}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update navigation
+    * @description: Use this to update navigation.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Navigation ID
+    * @param {NavigationRequest} arg.body
+    **/
+        updateNavigation({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update navigation
-   * @description: Use this to update navigation.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Navigation ID
-   * @param {NavigationRequest} arg.body
-   **/
-  updateNavigation({ id, body } = {}) {
-    const { error } = ContentValidator.updateNavigation().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.updateNavigation().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete navigation
     * @description: Use this to delete navigation.
@@ -22041,112 +22649,128 @@ class Content {
     * @param {string} arg.id - Navigation ID
     
     **/
-  deleteNavigation({ id } = {}) {
-    const { error } = ContentValidator.deleteNavigation().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteNavigation({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.deleteNavigation().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get page meta
     * @description: Use this to get Page Meta.
     * @param {Object} arg - arg object.
     
     **/
-  getPageMeta({} = {}) {
-    const { error } = ContentValidator.getPageMeta().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPageMeta({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getPageMeta().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/meta`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/meta`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get page spec
     * @description: Use this to get page spec.
     * @param {Object} arg - arg object.
     
     **/
-  getPageSpec({} = {}) {
-    const { error } = ContentValidator.getPageSpec().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPageSpec({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getPageSpec().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/spec`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/spec`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Create page
+    * @description: Use this to create a page.
+    * @param {Object} arg - arg object.
+    * @param {PageRequest} arg.body
+    **/
+        createPage({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create page
-   * @description: Use this to create a page.
-   * @param {Object} arg - arg object.
-   * @param {PageRequest} arg.body
-   **/
-  createPage({ body } = {}) {
-    const { error } = ContentValidator.createPage().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.createPage().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get pages
     * @description: Use this to get pages.
@@ -22155,32 +22779,58 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getPages({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getPages().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPages({
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = ContentValidator.getPages().validate({
+                pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get pages
     * @description: Use this to get pages.
@@ -22190,120 +22840,136 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getPagesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getPages({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getPagesPaginator( { companyId, applicationId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getPages({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create page preview
+    * @description: Use this to create a page preview.
+    * @param {Object} arg - arg object.
+    * @param {PageRequest} arg.body
+    **/
+        createPagePreview({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create page preview
-   * @description: Use this to create a page preview.
-   * @param {Object} arg - arg object.
-   * @param {PageRequest} arg.body
-   **/
-  createPagePreview({ body } = {}) {
-    const { error } = ContentValidator.createPagePreview().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.createPagePreview().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update page
+    * @description: Use this to update page.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - Page publish slug
+    * @param {PagePublishRequest} arg.body
+    **/
+        updatePagePreview({
+            slug,
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview/`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ContentValidator.updatePagePreview().validate({
+                slug,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Update page
-   * @description: Use this to update page.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.slug - Page publish slug
-   * @param {PagePublishRequest} arg.body
-   **/
-  updatePagePreview({ slug, body } = {}) {
-    const { error } = ContentValidator.updatePagePreview().validate(
-      {
-        slug,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/publish/${slug}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update page
+    * @description: Use this to update page.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Page Id
+    * @param {PageSchema} arg.body
+    **/
+        updatePage({
+            id,
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.updatePage().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/publish/${slug}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Update page
-   * @description: Use this to update page.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Page Id
-   * @param {PageSchema} arg.body
-   **/
-  updatePage({ id, body } = {}) {
-    const { error } = ContentValidator.updatePage().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete page
     * @description: Use this to delete page.
@@ -22311,29 +22977,33 @@ class Content {
     * @param {string} arg.id - Page Id
     
     **/
-  deletePage({ id } = {}) {
-    const { error } = ContentValidator.deletePage().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deletePage({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.deletePage().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get pages by component Id
     * @description: The endpoint fetches the component by component Id
@@ -22341,85 +23011,97 @@ class Content {
     * @param {string} arg.slug - Slug of page to be fetched
     
     **/
-  getPageBySlug({ slug } = {}) {
-    const { error } = ContentValidator.getPageBySlug().validate(
-      {
-        slug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPageBySlug({
+            slug
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getPageBySlug().validate({
+                slug
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${slug}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${slug}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get seo of application
     * @description: Get seo of application
     * @param {Object} arg - arg object.
     
     **/
-  getSEOConfiguration({} = {}) {
-    const { error } = ContentValidator.getSEOConfiguration().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getSEOConfiguration({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getSEOConfiguration().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update seo of application
+    * @description: Update seo of application
+    * @param {Object} arg - arg object.
+    * @param {SeoComponent} arg.body
+    **/
+        updateSEOConfiguration({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update seo of application
-   * @description: Update seo of application
-   * @param {Object} arg - arg object.
-   * @param {SeoComponent} arg.body
-   **/
-  updateSEOConfiguration({ body } = {}) {
-    const { error } = ContentValidator.updateSEOConfiguration().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.updateSEOConfiguration().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get slideshows
     * @description: Use this to get slideshows.
@@ -22429,34 +23111,66 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getSlideshows({ devicePlatform, pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getSlideshows().validate(
-      {
-        devicePlatform,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getSlideshows({
+            devicePlatform,
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["device_platform"] = devicePlatform;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = ContentValidator.getSlideshows().validate({
+                devicePlatform,
+            pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['device_platform'] = devicePlatform;
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get slideshows
     * @description: Use this to get slideshows.
@@ -22467,64 +23181,65 @@ class Content {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
     
     **/
-  getSlideshowsPaginator({
-    companyId,
-    applicationId,
-    devicePlatform,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSlideshows({
-        companyId: companyId,
-        applicationId: applicationId,
-        devicePlatform: devicePlatform,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getSlideshowsPaginator( { companyId, applicationId, devicePlatform, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getSlideshows({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        devicePlatform:devicePlatform ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create slideshow
+    * @description: Use this to create slideshow.
+    * @param {Object} arg - arg object.
+    * @param {SlideshowRequest} arg.body
+    **/
+        createSlideshow({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create slideshow
-   * @description: Use this to create slideshow.
-   * @param {Object} arg - arg object.
-   * @param {SlideshowRequest} arg.body
-   **/
-  createSlideshow({ body } = {}) {
-    const { error } = ContentValidator.createSlideshow().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.createSlideshow().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get slideshow by slug
     * @description: Use this to get slideshow by slug.
@@ -22533,62 +23248,72 @@ class Content {
     * @param {string} arg.devicePlatform - Device platform
     
     **/
-  getSlideshowBySlug({ slug, devicePlatform } = {}) {
-    const { error } = ContentValidator.getSlideshowBySlug().validate(
-      {
-        slug,
-        devicePlatform,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getSlideshowBySlug({
+            slug,
+            devicePlatform
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["device_platform"] = devicePlatform;
+            const { error } = ContentValidator.getSlideshowBySlug().validate({
+                slug,
+            devicePlatform
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['device_platform'] = devicePlatform;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${slug}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${slug}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update slideshow
+    * @description: Use this to update slideshow.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Slideshow ID
+    * @param {SlideshowRequest} arg.body
+    **/
+        updateSlideshow({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update slideshow
-   * @description: Use this to update slideshow.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Slideshow ID
-   * @param {SlideshowRequest} arg.body
-   **/
-  updateSlideshow({ id, body } = {}) {
-    const { error } = ContentValidator.updateSlideshow().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.updateSlideshow().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete slideshow
     * @description: Use this to delete slideshow.
@@ -22596,293 +23321,338 @@ class Content {
     * @param {string} arg.id - Slideshow ID
     
     **/
-  deleteSlideshow({ id } = {}) {
-    const { error } = ContentValidator.deleteSlideshow().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteSlideshow({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.deleteSlideshow().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get support information
     * @description: Get contact details for customer support. Including emails and phone numbers
     * @param {Object} arg - arg object.
     
     **/
-  getSupportInformation({} = {}) {
-    const { error } = ContentValidator.getSupportInformation().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getSupportInformation({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getSupportInformation().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update support data of application
+    * @description: Update support data of application
+    * @param {Object} arg - arg object.
+    * @param {Support} arg.body
+    **/
+        updateSupportInformation({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update support data of application
-   * @description: Update support data of application
-   * @param {Object} arg - arg object.
-   * @param {Support} arg.body
-   **/
-  updateSupportInformation({ body } = {}) {
-    const { error } = ContentValidator.updateSupportInformation().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.updateSupportInformation().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Creates Tag
+    * @description: Create tags
+    * @param {Object} arg - arg object.
+    * @param {CreateTagRequestSchema} arg.body
+    **/
+        createInjectableTag({
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ContentValidator.createInjectableTag().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Creates Tag
-   * @description: Create tags
-   * @param {Object} arg - arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   **/
-  createInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.createInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Updates a Tag
+    * @description: Update tag
+    * @param {Object} arg - arg object.
+    * @param {CreateTagRequestSchema} arg.body
+    **/
+        updateInjectableTag({
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.updateInjectableTag().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Updates a Tag
-   * @description: Update tag
-   * @param {Object} arg - arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   **/
-  updateInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.updateInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete tags for application
     * @description: Delete tags for application
     * @param {Object} arg - arg object.
     
     **/
-  deleteAllInjectableTags({} = {}) {
-    const { error } = ContentValidator.deleteAllInjectableTags().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteAllInjectableTags({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.deleteAllInjectableTags().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get tags for application
     * @description: Get tags for application
     * @param {Object} arg - arg object.
     
     **/
-  getInjectableTags({} = {}) {
-    const { error } = ContentValidator.getInjectableTags().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getInjectableTags({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.getInjectableTags().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Adds a Tag
+    * @description: Add tag
+    * @param {Object} arg - arg object.
+    * @param {CreateTagRequestSchema} arg.body
+    **/
+        addInjectableTag({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Adds a Tag
-   * @description: Add tag
-   * @param {Object} arg - arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   **/
-  addInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.addInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ContentValidator.addInjectableTag().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/add`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Removes a Tag
+    * @description: Remove a particular tag
+    * @param {Object} arg - arg object.
+    * @param {RemoveHandpickedSchema} arg.body
+    **/
+        removeInjectableTag({
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/add`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ContentValidator.removeInjectableTag().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Removes a Tag
-   * @description: Remove a particular tag
-   * @param {Object} arg - arg object.
-   * @param {RemoveHandpickedSchema} arg.body
-   **/
-  removeInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.removeInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Edits a Tag by Id
+    * @description: Edits a particular tag
+    * @param {Object} arg - arg object.
+    * @param {string} arg.tagId - Tag ID
+    * @param {UpdateHandpickedSchema} arg.body
+    **/
+        editInjectableTag({
+            tagId,
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ContentValidator.editInjectableTag().validate({
+                tagId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Edits a Tag by Id
-   * @description: Edits a particular tag
-   * @param {Object} arg - arg object.
-   * @param {string} arg.tagId - Tag ID
-   * @param {UpdateHandpickedSchema} arg.body
-   **/
-  editInjectableTag({ tagId, body } = {}) {
-    const { error } = ContentValidator.editInjectableTag().validate(
-      {
-        tagId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/edit/handpicked/${tagId}`,
-      queryObj,
-      body
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/edit/handpicked/${tagId}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
 }
 
-class Assignment {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+class Assignment {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: 
     * @description: Create a new Pickup point for an application.
@@ -22890,29 +23660,33 @@ class Assignment {
     * @param {Object} arg - arg object.
     * @param {PickupPointSchema} arg.body
     **/
-  createPickupLocation({ body } = {}) {
-    const { error } = AssignmentValidator.createPickupLocation().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        createPickupLocation({
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.createPickupLocation().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Update list of pickup points for an application.
@@ -22923,34 +23697,66 @@ class Assignment {
     * @param {number} [arg.pageSize] - Request a page size
     
     **/
-  getPickupLocation({ q, pageNo, pageSize } = {}) {
-    const { error } = AssignmentValidator.getPickupLocation().validate(
-      {
-        q,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPickupLocation({
+            q,
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["q"] = q;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = AssignmentValidator.getPickupLocation().validate({
+                q,
+            pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['q'] = q;
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: 
     * @description: Update list of pickup points for an application.
@@ -22962,30 +23768,32 @@ class Assignment {
     * @param {string} arg.applicationId - Application Id
     
     **/
-  getPickupLocationPaginator({ q, pageSize, companyId, applicationId } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getPickupLocation({
-        companyId: companyId,
-        applicationId: applicationId,
-        q: q,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getPickupLocationPaginator( { q, pageSize, companyId, applicationId
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getPickupLocation({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        q:q ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Update Pickup Point for an application. Pickup Point once created
@@ -22996,30 +23804,35 @@ a successful update.
     * @param {number} arg.id - Pickup Point ID
     * @param {PickupPointSchema} arg.body
     **/
-  updatePickupLocation({ id, body } = {}) {
-    const { error } = AssignmentValidator.updatePickupLocation().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        updatePickupLocation({
+            id,
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.updatePickupLocation().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: This API returns Pickup point data for an id. Returns not found if no data exists for the
@@ -23029,29 +23842,33 @@ store id passed.
     * @param {number} arg.id - Pickup Point Id
     
     **/
-  getPickupLocationById({ id } = {}) {
-    const { error } = AssignmentValidator.getPickupLocationById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPickupLocationById({
+            id,
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.getPickupLocationById().validate({
+                id,
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/locations/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Create a new pickup configuration for an application id. Only one configuration can be
@@ -23060,29 +23877,33 @@ created per application id.
     * @param {Object} arg - arg object.
     * @param {PickupConfiguration} arg.body
     **/
-  createPickupConfiguration({ body } = {}) {
-    const { error } = AssignmentValidator.createPickupConfiguration().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        createPickupConfiguration({
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.createPickupConfiguration().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/configurations`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/configurations`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Let pickup configuration for an application. z-application-id is required in
@@ -23091,27 +23912,31 @@ the header to fetch the data.
     * @param {Object} arg - arg object.
     
     **/
-  getPickupConfiguration({} = {}) {
-    const { error } = AssignmentValidator.getPickupConfiguration().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPickupConfiguration({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.getPickupConfiguration().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/configurations`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pickup/configurations`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Get Shipping configuration for an application. Returns the global shipping configuration
@@ -23121,27 +23946,31 @@ configuration each. The endpoint requires an application id to get the data.
     * @param {Object} arg - arg object.
     
     **/
-  getAllocationConfiguration({} = {}) {
-    const { error } = AssignmentValidator.getAllocationConfiguration().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAllocationConfiguration({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.getAllocationConfiguration().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/configurations`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/configurations`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Create a new Shipping configuration for an application The configuration is for
@@ -23151,31 +23980,33 @@ application i.e, for an application configuration can be created only once.
     * @param {Object} arg - arg object.
     * @param {ShippingSchema} arg.body
     **/
-  createAllocationConfiguration({ body } = {}) {
-    const {
-      error,
-    } = AssignmentValidator.createAllocationConfiguration().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        createAllocationConfiguration({
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.createAllocationConfiguration().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/configurations`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/configurations`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Update Shipping configuration for an application. Application configuration once created
@@ -23185,31 +24016,33 @@ a successful update.
     * @param {Object} arg - arg object.
     * @param {ShippingSchema} arg.body
     **/
-  updateAllocationConfiguration({ body } = {}) {
-    const {
-      error,
-    } = AssignmentValidator.updateAllocationConfiguration().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        updateAllocationConfiguration({
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.updateAllocationConfiguration().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/configurations`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/configurations`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: List Stores of an application. Two types of stores are listed,
@@ -23223,36 +24056,74 @@ API has support for pagination, filter by type and search by name.
     * @param {string} [arg.type] - Type can be 'standard' or 'advanced'
     
     **/
-  getAllocationLocations({ q, pageNo, pageSize, type } = {}) {
-    const { error } = AssignmentValidator.getAllocationLocations().validate(
-      {
-        q,
-        pageNo,
-        pageSize,
-        type,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAllocationLocations({
+            q,
+            pageNo,
+            pageSize,
+            type
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["q"] = q;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["type"] = type;
+            const { error } = AssignmentValidator.getAllocationLocations().validate({
+                q,
+            pageNo,
+            pageSize,
+            type
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['q'] = q;
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['type'] = type;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: 
     * @description: List Stores of an application. Two types of stores are listed,
@@ -23267,37 +24138,33 @@ API has support for pagination, filter by type and search by name.
     * @param {string} arg.applicationId - Application Id
     
     **/
-  getAllocationLocationsPaginator({
-    q,
-    pageSize,
-    type,
-    companyId,
-    applicationId,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAllocationLocations({
-        companyId: companyId,
-        applicationId: applicationId,
-        q: q,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        type: type,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getAllocationLocationsPaginator( { q, pageSize, type, companyId, applicationId
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getAllocationLocations({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        q:q ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        type:type 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: 
     * @description: This API returns store data for an id. Returns not found if no data exists for the
@@ -23308,29 +24175,33 @@ shipping configuration of the stores including store id and app id.
     * @param {number} arg.id - Store Id
     
     **/
-  getAllocationLocationById({ id } = {}) {
-    const { error } = AssignmentValidator.getAllocationLocationById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAllocationLocationById({
+            id,
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.getAllocationLocationById().validate({
+                id,
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: A store configuration once created can be updated via this API. Store id in request params
@@ -23340,30 +24211,35 @@ and udpated request body are required to successfully update the store data.
     * @param {number} arg.id - Store Id
     * @param {StoreSchema} arg.body
     **/
-  updateAllocationLocation({ id, body } = {}) {
-    const { error } = AssignmentValidator.updateAllocationLocation().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        updateAllocationLocation({
+            id,
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.updateAllocationLocation().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Create a new store shipping configuratiion. The configuration is stored into the
@@ -23374,29 +24250,33 @@ tags while others are required to be.
     * @param {Object} arg - arg object.
     * @param {StoreSchema} arg.body
     **/
-  createAllocationLocation({ body } = {}) {
-    const { error } = AssignmentValidator.createAllocationLocation().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        createAllocationLocation({
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.createAllocationLocation().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/allocate/locations`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Get a list of zones created, where every zone has a unique name and id. They can be
@@ -23408,34 +24288,66 @@ of three different types, radius, pincode and country.
     * @param {number} [arg.pageSize] - Request a page size
     
     **/
-  getDestinationZones({ q, pageNo, pageSize } = {}) {
-    const { error } = AssignmentValidator.getDestinationZones().validate(
-      {
-        q,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getDestinationZones({
+            q,
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["q"] = q;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = AssignmentValidator.getDestinationZones().validate({
+                q,
+            pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['q'] = q;
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: 
     * @description: Get a list of zones created, where every zone has a unique name and id. They can be
@@ -23448,30 +24360,32 @@ of three different types, radius, pincode and country.
     * @param {string} arg.applicationId - Application Id
     
     **/
-  getDestinationZonesPaginator({ q, pageSize, companyId, applicationId } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getDestinationZones({
-        companyId: companyId,
-        applicationId: applicationId,
-        q: q,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getDestinationZonesPaginator( { q, pageSize, companyId, applicationId
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getDestinationZones({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        q:q ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: 
     * @description: This API lets you create a zone which can be used further be mapped with store
@@ -23481,29 +24395,33 @@ be passed, zone_detail, pincode and region.
     * @param {Object} arg - arg object.
     * @param {ZoneSchema} arg.body
     **/
-  postDestinationZone({ body } = {}) {
-    const { error } = AssignmentValidator.postDestinationZone().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        postDestinationZone({
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.postDestinationZone().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Returns zone data for the specified zone id. Id is the required parameter and returns
@@ -23513,29 +24431,33 @@ not found if no data is found for the passed zone id.
     * @param {number} arg.id - Store Id
     
     **/
-  getDestinationZoneById({ id } = {}) {
-    const { error } = AssignmentValidator.getDestinationZoneById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getDestinationZoneById({
+            id,
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.getDestinationZoneById().validate({
+                id,
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: 
     * @description: Zone once created can be updated using this API. Zone id and request body are the required
@@ -23545,37 +24467,48 @@ data to update a zone.
     * @param {number} arg.id - Store Id
     * @param {ZoneSchema} arg.body
     **/
-  updateDestinationZone({ id, body } = {}) {
-    const { error } = AssignmentValidator.updateDestinationZone().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        updateDestinationZone({
+            id,
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AssignmentValidator.updateDestinationZone().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones/${id}`,
-      queryObj,
-      body
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/assignment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/destination-zones/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
 }
 
-class Communication {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+
+
+class Communication {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Get campaigns
     * @description: Get campaigns
@@ -23585,34 +24518,66 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getCampaigns({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getCampaigns().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCampaigns({
+            pageNo,
+            pageSize,
+            sort
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
+            const { error } = CommunicationValidator.getCampaigns().validate({
+                pageNo,
+            pageSize,
+            sort
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get campaigns
     * @description: Get campaigns
@@ -23623,59 +24588,65 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getCampaignsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getCampaigns({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getCampaignsPaginator( { companyId, applicationId, pageSize, sort
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getCampaigns({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        sort:sort 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create campaign
+    * @description: Create campaign
+    * @param {Object} arg - arg object.
+    * @param {CampaignReq} arg.body
+    **/
+        createCampaign({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create campaign
-   * @description: Create campaign
-   * @param {Object} arg - arg object.
-   * @param {CampaignReq} arg.body
-   **/
-  createCampaign({ body } = {}) {
-    const { error } = CommunicationValidator.createCampaign().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.createCampaign().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get campaign by id
     * @description: Get campaign by id
@@ -23683,60 +24654,69 @@ class Communication {
     * @param {string} arg.id - Campaign id
     
     **/
-  getCampaignById({ id } = {}) {
-    const { error } = CommunicationValidator.getCampaignById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCampaignById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CommunicationValidator.getCampaignById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update campaign by id
+    * @description: Update campaign by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Campaign id
+    * @param {CampaignReq} arg.body
+    **/
+        updateCampaignById({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update campaign by id
-   * @description: Update campaign by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Campaign id
-   * @param {CampaignReq} arg.body
-   **/
-  updateCampaignById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateCampaignById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.updateCampaignById().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get stats of campaign by id
     * @description: Get stats of campaign by id
@@ -23744,29 +24724,33 @@ class Communication {
     * @param {string} arg.id - Campaign id
     
     **/
-  getStatsOfCampaignById({ id } = {}) {
-    const { error } = CommunicationValidator.getStatsOfCampaignById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getStatsOfCampaignById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CommunicationValidator.getStatsOfCampaignById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get audiences
     * @description: Get audiences
@@ -23776,34 +24760,66 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getAudiences({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getAudiences().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAudiences({
+            pageNo,
+            pageSize,
+            sort
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
+            const { error } = CommunicationValidator.getAudiences().validate({
+                pageNo,
+            pageSize,
+            sort
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get audiences
     * @description: Get audiences
@@ -23814,88 +24830,98 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getAudiencesPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAudiences({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getAudiencesPaginator( { companyId, applicationId, pageSize, sort
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getAudiences({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        sort:sort 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create audience
+    * @description: Create audience
+    * @param {Object} arg - arg object.
+    * @param {AudienceReq} arg.body
+    **/
+        createAudience({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create audience
-   * @description: Create audience
-   * @param {Object} arg - arg object.
-   * @param {AudienceReq} arg.body
-   **/
-  createAudience({ body } = {}) {
-    const { error } = CommunicationValidator.createAudience().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.createAudience().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get bigquery headers
+    * @description: Get bigquery headers
+    * @param {Object} arg - arg object.
+    * @param {BigqueryHeadersReq} arg.body
+    **/
+        getBigqueryHeaders({
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = CommunicationValidator.getBigqueryHeaders().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Get bigquery headers
-   * @description: Get bigquery headers
-   * @param {Object} arg - arg object.
-   * @param {BigqueryHeadersReq} arg.body
-   **/
-  getBigqueryHeaders({ body } = {}) {
-    const { error } = CommunicationValidator.getBigqueryHeaders().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get audience by id
     * @description: Get audience by id
@@ -23903,91 +24929,102 @@ class Communication {
     * @param {string} arg.id - Audience id
     
     **/
-  getAudienceById({ id } = {}) {
-    const { error } = CommunicationValidator.getAudienceById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAudienceById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CommunicationValidator.getAudienceById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update audience by id
+    * @description: Update audience by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Audience id
+    * @param {AudienceReq} arg.body
+    **/
+        updateAudienceById({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update audience by id
-   * @description: Update audience by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Audience id
-   * @param {AudienceReq} arg.body
-   **/
-  updateAudienceById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateAudienceById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.updateAudienceById().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get n sample records from csv
+    * @description: Get n sample records from csv
+    * @param {Object} arg - arg object.
+    * @param {GetNRecordsCsvReq} arg.body
+    **/
+        getNSampleRecordsFromCsv({
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = CommunicationValidator.getNSampleRecordsFromCsv().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Get n sample records from csv
-   * @description: Get n sample records from csv
-   * @param {Object} arg - arg object.
-   * @param {GetNRecordsCsvReq} arg.body
-   **/
-  getNSampleRecordsFromCsv({ body } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get email providers
     * @description: Get email providers
@@ -23997,34 +25034,66 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getEmailProviders({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getEmailProviders().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getEmailProviders({
+            pageNo,
+            pageSize,
+            sort
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
+            const { error } = CommunicationValidator.getEmailProviders().validate({
+                pageNo,
+            pageSize,
+            sort
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get email providers
     * @description: Get email providers
@@ -24035,64 +25104,65 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getEmailProvidersPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEmailProviders({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getEmailProvidersPaginator( { companyId, applicationId, pageSize, sort
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getEmailProviders({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        sort:sort 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create email provider
+    * @description: Create email provider
+    * @param {Object} arg - arg object.
+    * @param {EmailProviderReq} arg.body
+    **/
+        createEmailProvider({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create email provider
-   * @description: Create email provider
-   * @param {Object} arg - arg object.
-   * @param {EmailProviderReq} arg.body
-   **/
-  createEmailProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createEmailProvider().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.createEmailProvider().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get email provider by id
     * @description: Get email provider by id
@@ -24100,60 +25170,69 @@ class Communication {
     * @param {string} arg.id - Email provider id
     
     **/
-  getEmailProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getEmailProviderById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getEmailProviderById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CommunicationValidator.getEmailProviderById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update email provider by id
+    * @description: Update email provider by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Email provider id
+    * @param {EmailProviderReq} arg.body
+    **/
+        updateEmailProviderById({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update email provider by id
-   * @description: Update email provider by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Email provider id
-   * @param {EmailProviderReq} arg.body
-   **/
-  updateEmailProviderById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateEmailProviderById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.updateEmailProviderById().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get email templates
     * @description: Get email templates
@@ -24163,34 +25242,66 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getEmailTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getEmailTemplates({
+            pageNo,
+            pageSize,
+            sort
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
+            const { error } = CommunicationValidator.getEmailTemplates().validate({
+                pageNo,
+            pageSize,
+            sort
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get email templates
     * @description: Get email templates
@@ -24201,64 +25312,65 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getEmailTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEmailTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getEmailTemplatesPaginator( { companyId, applicationId, pageSize, sort
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getEmailTemplates({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        sort:sort 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create email template
+    * @description: Create email template
+    * @param {Object} arg - arg object.
+    * @param {EmailTemplateReq} arg.body
+    **/
+        createEmailTemplate({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create email template
-   * @description: Create email template
-   * @param {Object} arg - arg object.
-   * @param {EmailTemplateReq} arg.body
-   **/
-  createEmailTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createEmailTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.createEmailTemplate().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get system email templates
     * @description: Get system email templates
@@ -24268,34 +25380,66 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getSystemEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSystemEmailTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getSystemEmailTemplates({
+            pageNo,
+            pageSize,
+            sort
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
+            const { error } = CommunicationValidator.getSystemEmailTemplates().validate({
+                pageNo,
+            pageSize,
+            sort
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get system email templates
     * @description: Get system email templates
@@ -24306,35 +25450,32 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getSystemEmailTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemEmailTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getSystemEmailTemplatesPaginator( { companyId, applicationId, pageSize, sort
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getSystemEmailTemplates({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        sort:sort 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Get email template by id
     * @description: Get email template by id
@@ -24342,60 +25483,69 @@ class Communication {
     * @param {string} arg.id - Email template id
     
     **/
-  getEmailTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getEmailTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getEmailTemplateById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CommunicationValidator.getEmailTemplateById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update email template by id
+    * @description: Update email template by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Email template id
+    * @param {EmailTemplateReq} arg.body
+    **/
+        updateEmailTemplateById({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update email template by id
-   * @description: Update email template by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Email template id
-   * @param {EmailTemplateReq} arg.body
-   **/
-  updateEmailTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateEmailTemplateById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.updateEmailTemplateById().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete email template by id
     * @description: Delete email template by id
@@ -24403,29 +25553,33 @@ class Communication {
     * @param {string} arg.id - Email template id
     
     **/
-  deleteEmailTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteEmailTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteEmailTemplateById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CommunicationValidator.deleteEmailTemplateById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get event subscriptions
     * @description: Get event subscriptions
@@ -24435,34 +25589,66 @@ class Communication {
     * @param {string} [arg.populate] - populate fields
     
     **/
-  getEventSubscriptions({ pageNo, pageSize, populate } = {}) {
-    const { error } = CommunicationValidator.getEventSubscriptions().validate(
-      {
-        pageNo,
-        pageSize,
-        populate,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getEventSubscriptions({
+            pageNo,
+            pageSize,
+            populate
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["populate"] = populate;
+            const { error } = CommunicationValidator.getEventSubscriptions().validate({
+                pageNo,
+            pageSize,
+            populate
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['populate'] = populate;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get event subscriptions
     * @description: Get event subscriptions
@@ -24473,35 +25659,32 @@ class Communication {
     * @param {string} [arg.populate] - populate fields
     
     **/
-  getEventSubscriptionsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    populate,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEventSubscriptions({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        populate: populate,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getEventSubscriptionsPaginator( { companyId, applicationId, pageSize, populate
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getEventSubscriptions({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        populate:populate 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Get jobs
     * @description: Get jobs
@@ -24511,34 +25694,66 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getJobs({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getJobs().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getJobs({
+            pageNo,
+            pageSize,
+            sort
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
+            const { error } = CommunicationValidator.getJobs().validate({
+                pageNo,
+            pageSize,
+            sort
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get jobs
     * @description: Get jobs
@@ -24549,59 +25764,65 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getJobsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getJobs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getJobsPaginator( { companyId, applicationId, pageSize, sort
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getJobs({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        sort:sort 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Trigger campaign job
+    * @description: Trigger campaign job
+    * @param {Object} arg - arg object.
+    * @param {TriggerJobRequest} arg.body
+    **/
+        triggerCampaignJob({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Trigger campaign job
-   * @description: Trigger campaign job
-   * @param {Object} arg - arg object.
-   * @param {TriggerJobRequest} arg.body
-   **/
-  triggerCampaignJob({ body } = {}) {
-    const { error } = CommunicationValidator.triggerCampaignJob().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.triggerCampaignJob().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get job logs
     * @description: Get job logs
@@ -24611,34 +25832,66 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getJobLogs({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getJobLogs().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getJobLogs({
+            pageNo,
+            pageSize,
+            sort
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
+            const { error } = CommunicationValidator.getJobLogs().validate({
+                pageNo,
+            pageSize,
+            sort
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get job logs
     * @description: Get job logs
@@ -24649,30 +25902,32 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getJobLogsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getJobLogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getJobLogsPaginator( { companyId, applicationId, pageSize, sort
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getJobLogs({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        sort:sort 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Get communication logs
     * @description: Get communication logs
@@ -24683,36 +25938,76 @@ class Communication {
     * @param {Object} [arg.query] - 
     
     **/
-  getCommunicationLogs({ pageId, pageSize, sort, query } = {}) {
-    const { error } = CommunicationValidator.getCommunicationLogs().validate(
-      {
-        pageId,
-        pageSize,
-        sort,
-        query,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCommunicationLogs({
+            pageId,
+            pageSize,
+            sort,
+            query
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
-    queryObj["query"] = query;
+            const { error } = CommunicationValidator.getCommunicationLogs().validate({
+                pageId,
+            pageSize,
+            sort,
+            query
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_id'] = pageId;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            queryObj['query'] = query;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/log`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/log`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get communication logs
     * @description: Get communication logs
@@ -24724,37 +26019,33 @@ class Communication {
     * @param {Object} [arg.query] - 
     
     **/
-  getCommunicationLogsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-    query,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getCommunicationLogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageId: pageId,
-        pageSize: pageSize,
-        sort: sort,
-        query: query,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getCommunicationLogsPaginator( { companyId, applicationId, pageSize, sort, query
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getCommunicationLogs({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageId:pageId ,
+                        pageSize:pageSize ,
+                        sort:sort ,
+                        query:query 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Get sms providers
     * @description: Get sms providers
@@ -24764,34 +26055,66 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getSmsProviders({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSmsProviders().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getSmsProviders({
+            pageNo,
+            pageSize,
+            sort
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
+            const { error } = CommunicationValidator.getSmsProviders().validate({
+                pageNo,
+            pageSize,
+            sort
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get sms providers
     * @description: Get sms providers
@@ -24802,59 +26125,65 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getSmsProvidersPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSmsProviders({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getSmsProvidersPaginator( { companyId, applicationId, pageSize, sort
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getSmsProviders({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        sort:sort 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create sms provider
+    * @description: Create sms provider
+    * @param {Object} arg - arg object.
+    * @param {SmsProviderReq} arg.body
+    **/
+        createSmsProvider({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create sms provider
-   * @description: Create sms provider
-   * @param {Object} arg - arg object.
-   * @param {SmsProviderReq} arg.body
-   **/
-  createSmsProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createSmsProvider().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.createSmsProvider().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get sms provider by id
     * @description: Get sms provider by id
@@ -24862,60 +26191,69 @@ class Communication {
     * @param {string} arg.id - Sms provider id
     
     **/
-  getSmsProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getSmsProviderById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getSmsProviderById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CommunicationValidator.getSmsProviderById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update sms provider by id
+    * @description: Update sms provider by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Sms provider id
+    * @param {SmsProviderReq} arg.body
+    **/
+        updateSmsProviderById({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update sms provider by id
-   * @description: Update sms provider by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Sms provider id
-   * @param {SmsProviderReq} arg.body
-   **/
-  updateSmsProviderById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateSmsProviderById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.updateSmsProviderById().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get sms templates
     * @description: Get sms templates
@@ -24925,34 +26263,66 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getSmsTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSmsTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getSmsTemplates({
+            pageNo,
+            pageSize,
+            sort
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
+            const { error } = CommunicationValidator.getSmsTemplates().validate({
+                pageNo,
+            pageSize,
+            sort
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get sms templates
     * @description: Get sms templates
@@ -24963,59 +26333,65 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getSmsTemplatesPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSmsTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getSmsTemplatesPaginator( { companyId, applicationId, pageSize, sort
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getSmsTemplates({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        sort:sort 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create sms template
+    * @description: Create sms template
+    * @param {Object} arg - arg object.
+    * @param {SmsTemplateReq} arg.body
+    **/
+        createSmsTemplate({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create sms template
-   * @description: Create sms template
-   * @param {Object} arg - arg object.
-   * @param {SmsTemplateReq} arg.body
-   **/
-  createSmsTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createSmsTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.createSmsTemplate().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get sms template by id
     * @description: Get sms template by id
@@ -25023,60 +26399,69 @@ class Communication {
     * @param {string} arg.id - Sms template id
     
     **/
-  getSmsTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getSmsTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getSmsTemplateById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CommunicationValidator.getSmsTemplateById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update sms template by id
+    * @description: Update sms template by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Sms template id
+    * @param {SmsTemplateReq} arg.body
+    **/
+        updateSmsTemplateById({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update sms template by id
-   * @description: Update sms template by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Sms template id
-   * @param {SmsTemplateReq} arg.body
-   **/
-  updateSmsTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateSmsTemplateById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CommunicationValidator.updateSmsTemplateById().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete sms template by id
     * @description: Delete sms template by id
@@ -25084,29 +26469,33 @@ class Communication {
     * @param {string} arg.id - Sms template id
     
     **/
-  deleteSmsTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteSmsTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteSmsTemplateById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CommunicationValidator.deleteSmsTemplateById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get system sms templates
     * @description: Get system sms templates
@@ -25116,36 +26505,66 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getSystemSystemTemplates({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.getSystemSystemTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getSystemSystemTemplates({
+            pageNo,
+            pageSize,
+            sort
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["sort"] = sort;
+            const { error } = CommunicationValidator.getSystemSystemTemplates().validate({
+                pageNo,
+            pageSize,
+            sort
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['sort'] = sort;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/system-templates`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/system-templates`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get system sms templates
     * @description: Get system sms templates
@@ -25156,129 +26575,140 @@ class Communication {
     * @param {Object} [arg.sort] - To sort based on created_at
     
     **/
-  getSystemSystemTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemSystemTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getSystemSystemTemplatesPaginator( { companyId, applicationId, pageSize, sort
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getSystemSystemTemplates({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        sort:sort 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
 }
 
-class Payment {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+class Payment {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Get All Brand Payment Gateway Config Secret
     * @description: Get All Brand Payment Gateway Config Secret
     * @param {Object} arg - arg object.
     
     **/
-  getBrandPaymentGatewayConfig({} = {}) {
-    const { error } = PaymentValidator.getBrandPaymentGatewayConfig().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getBrandPaymentGatewayConfig({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = PaymentValidator.getBrandPaymentGatewayConfig().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Save Config Secret For Brand Payment Gateway
+    * @description: Save Config Secret For Brand Payment Gateway
+    * @param {Object} arg - arg object.
+    * @param {PaymentGatewayConfigRequest} arg.body
+    **/
+        saveBrandPaymentGatewayConfig({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Save Config Secret For Brand Payment Gateway
-   * @description: Save Config Secret For Brand Payment Gateway
-   * @param {Object} arg - arg object.
-   * @param {PaymentGatewayConfigRequest} arg.body
-   **/
-  saveBrandPaymentGatewayConfig({ body } = {}) {
-    const { error } = PaymentValidator.saveBrandPaymentGatewayConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = PaymentValidator.saveBrandPaymentGatewayConfig().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Save Config Secret For Brand Payment Gateway
+    * @description: Save Config Secret For Brand Payment Gateway
+    * @param {Object} arg - arg object.
+    * @param {PaymentGatewayConfigRequest} arg.body
+    **/
+        updateBrandPaymentGatewayConfig({
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = PaymentValidator.updateBrandPaymentGatewayConfig().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Save Config Secret For Brand Payment Gateway
-   * @description: Save Config Secret For Brand Payment Gateway
-   * @param {Object} arg - arg object.
-   * @param {PaymentGatewayConfigRequest} arg.body
-   **/
-  updateBrandPaymentGatewayConfig({ body } = {}) {
-    const {
-      error,
-    } = PaymentValidator.updateBrandPaymentGatewayConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get All Valid Payment Options
     * @description: Use this API to get Get All Valid Payment Options for making payment
@@ -25287,39 +26717,48 @@ class Payment {
     * @param {string} arg.requestType - 
     
     **/
-  getPaymentModeRoutes({ refresh, requestType } = {}) {
-    const { error } = PaymentValidator.getPaymentModeRoutes().validate(
-      {
-        refresh,
-        requestType,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPaymentModeRoutes({
+            refresh,
+            requestType
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["refresh"] = refresh;
-    queryObj["request_type"] = requestType;
+            const { error } = PaymentValidator.getPaymentModeRoutes().validate({
+                refresh,
+            requestType
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['refresh'] = refresh;
+            queryObj['request_type'] = requestType;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
 }
 
-class Order {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+class Order {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Track Shipment by shipment id, for application based on application Id
     * @description: Shipment Track
@@ -25327,29 +26766,33 @@ class Order {
     * @param {string} arg.shipmentId - Shipment Id
     
     **/
-  trackShipmentPlatform({ shipmentId } = {}) {
-    const { error } = OrderValidator.trackShipmentPlatform().validate(
-      {
-        shipmentId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        trackShipmentPlatform({
+            shipmentId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = OrderValidator.trackShipmentPlatform().validate({
+                shipmentId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/shipments/${shipmentId}/track`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/shipments/${shipmentId}/track`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Track Order by order id, for application based on application Id
     * @description: Order Track
@@ -25357,56 +26800,64 @@ class Order {
     * @param {string} arg.orderId - Order Id
     
     **/
-  trackOrder({ orderId } = {}) {
-    const { error } = OrderValidator.trackOrder().validate(
-      {
-        orderId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        trackOrder({
+            orderId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = OrderValidator.trackOrder().validate({
+                orderId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/${orderId}/track`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/${orderId}/track`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get all failed orders application wise
     * @description: Failed Orders
     * @param {Object} arg - arg object.
     
     **/
-  failedOrders({} = {}) {
-    const { error } = OrderValidator.failedOrders().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        failedOrders({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = OrderValidator.failedOrders().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/failed`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/failed`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Reprocess order by order id
     * @description: Order Reprocess
@@ -25414,97 +26865,80 @@ class Order {
     * @param {string} arg.orderId - Order Id
     
     **/
-  reprocessOrder({ orderId } = {}) {
-    const { error } = OrderValidator.reprocessOrder().validate(
-      {
-        orderId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        reprocessOrder({
+            orderId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = OrderValidator.reprocessOrder().validate({
+                orderId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/${orderId}/reprocess`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/${orderId}/reprocess`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
 }
 
+
+
 class Catalog {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   *
-   * @summary: Update Search Keyword
-   * @description: Update Search Keyword by its id. On successful request, returns the updated collection
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
-   * @param {CreateSearchKeyword} arg.body
-   **/
-  updateSearchKeywords({ id, body } = {}) {
-    const { error } = CatalogValidator.updateSearchKeywords().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
     }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get a Search Keywords Details
-    * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve.
     
+    /**
+    *
+    * @summary: Update Search Keyword
+    * @description: Update Search Keyword by its id. On successful request, returns the updated collection
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
+    * @param {CreateSearchKeyword} arg.body
     **/
-  getSearchKeywords({ id } = {}) {
-    const { error } = CatalogValidator.getSearchKeywords().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        updateSearchKeywords({
+            id,
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.updateSearchKeywords().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete a Search Keywords
     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
@@ -25512,146 +26946,167 @@ class Catalog {
     * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
     
     **/
-  deleteSearchKeywords({ id } = {}) {
-    const { error } = CatalogValidator.deleteSearchKeywords().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteSearchKeywords({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.deleteSearchKeywords().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get a Search Keywords Details
+    * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve.
+    
+    **/
+        getSearchKeywords({
+            id
+            
+        } = {}) {
 
-  /**
+            const { error } = CatalogValidator.getSearchKeywords().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
+
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: List all Search Custom Keyword Listing
     * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
     * @param {Object} arg - arg object.
     
     **/
-  getAllSearchKeyword({} = {}) {
-    const { error } = CatalogValidator.getAllSearchKeyword().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAllSearchKeyword({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.getAllSearchKeyword().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
-   *
-   * @summary: Add a Custom Search Keywords
-   * @description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
-   * @param {Object} arg - arg object.
-   * @param {CreateSearchKeyword} arg.body
-   **/
-  createCustomKeyword({ body } = {}) {
-    const { error } = CatalogValidator.createCustomKeyword().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-   *
-   * @summary: Create & Update Autocomplete Keyword
-   * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
-   * @param {CreateAutocompleteKeyword} arg.body
-   **/
-  updateAutocompleteKeyword({ id, body } = {}) {
-    const { error } = CatalogValidator.updateAutocompleteKeyword().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
-    *
-    * @summary: Get a Autocomplete Keywords Details
-    * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve.
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
     
+    /**
+    *
+    * @summary: Add a Custom Search Keywords
+    * @description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
+    * @param {Object} arg - arg object.
+    * @param {CreateSearchKeyword} arg.body
     **/
-  getAutocompleteKeywordDetail({ id } = {}) {
-    const { error } = CatalogValidator.getAutocompleteKeywordDetail().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        createCustomKeyword({
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.createCustomKeyword().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Create & Update Autocomplete Keyword
+    * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
+    * @param {CreateAutocompleteKeyword} arg.body
+    **/
+        updateAutocompleteKeyword({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
+            const { error } = CatalogValidator.updateAutocompleteKeyword().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
+
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete a Autocomplete Keywords
     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
@@ -25659,170 +27114,226 @@ class Catalog {
     * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete.
     
     **/
-  deleteAutocompleteKeyword({ id } = {}) {
-    const { error } = CatalogValidator.deleteAutocompleteKeyword().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteAutocompleteKeyword({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.deleteAutocompleteKeyword().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get a Autocomplete Keywords Details
+    * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve.
+    
+    **/
+        getAutocompleteKeywordDetail({
+            id
+            
+        } = {}) {
 
-  /**
+            const { error } = CatalogValidator.getAutocompleteKeywordDetail().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
+
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: List all Autocomplete Keyword Listing
     * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
     * @param {Object} arg - arg object.
     
     **/
-  getAutocompleteConfig({} = {}) {
-    const { error } = CatalogValidator.getAutocompleteConfig().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAutocompleteConfig({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.getAutocompleteConfig().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add a Custom Autocomplete Keywords
+    * @description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+    * @param {Object} arg - arg object.
+    * @param {CreateAutocompleteKeyword} arg.body
+    **/
+        createCustomAutocompleteRule({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Add a Custom Autocomplete Keywords
-   * @description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
-   * @param {Object} arg - arg object.
-   * @param {CreateAutocompleteKeyword} arg.body
-   **/
-  createCustomAutocompleteRule({ body } = {}) {
-    const { error } = CatalogValidator.createCustomAutocompleteRule().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CatalogValidator.createCustomAutocompleteRule().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get configuration meta  details for catalog for admin panel
     * @description: configuration meta  details for catalog.
     * @param {Object} arg - arg object.
     
     **/
-  getCatalogConfiguration({} = {}) {
-    const { error } = CatalogValidator.getCatalogConfiguration().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCatalogConfiguration({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.getCatalogConfiguration().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/metadata/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/metadata/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get configured details for catalog
     * @description: configured details for catalog.
     * @param {Object} arg - arg object.
     
     **/
-  getConfigurations({} = {}) {
-    const { error } = CatalogValidator.getConfigurations().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getConfigurations({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.getConfigurations().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add configuration for products & listings
+    * @description: Add configuration for products & listing.
+    * @param {Object} arg - arg object.
+    * @param {AppConfiguration} arg.body
+    **/
+        createConfigurationProductListing({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Add configuration for products & listings
-   * @description: Add configuration for products & listing.
-   * @param {Object} arg - arg object.
-   * @param {AppConfiguration} arg.body
-   **/
-  createConfigurationProductListing({ body } = {}) {
-    const {
-      error,
-    } = CatalogValidator.createConfigurationProductListing().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CatalogValidator.createConfigurationProductListing().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get configured details for catalog
     * @description: configured details for catalog.
@@ -25830,143 +27341,164 @@ class Catalog {
     * @param {string} arg.type - type can be brands, categories etc.
     
     **/
-  getConfigurationByType({ type } = {}) {
-    const { error } = CatalogValidator.getConfigurationByType().validate(
-      {
-        type,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getConfigurationByType({
+            type
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.getConfigurationByType().validate({
+                type
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add configuration for categories and brands
+    * @description: Add configuration for categories & brands.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.type - type can be brands, categories etc.
+    * @param {AppConfiguration} arg.body
+    **/
+        createConfigurationByType({
+            type,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Add configuration for categories and brands
-   * @description: Add configuration for categories & brands.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.type - type can be brands, categories etc.
-   * @param {AppConfiguration} arg.body
-   **/
-  createConfigurationByType({ type, body } = {}) {
-    const { error } = CatalogValidator.createConfigurationByType().validate(
-      {
-        type,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CatalogValidator.createConfigurationByType().validate({
+                type,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get query filters to configure a collection
     * @description: Get query filters to configure a collection
     * @param {Object} arg - arg object.
     
     **/
-  getQueryFilters({} = {}) {
-    const { error } = CatalogValidator.getQueryFilters().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getQueryFilters({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.getQueryFilters().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/query-options/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/query-options/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: List all the collections
     * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
     * @param {Object} arg - arg object.
     
     **/
-  getAllCollections({} = {}) {
-    const { error } = CatalogValidator.getAllCollections().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAllCollections({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.getAllCollections().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add a Collection
+    * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
+    * @param {Object} arg - arg object.
+    * @param {CreateCollection} arg.body
+    **/
+        createCollection({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Add a Collection
-   * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
-   * @param {Object} arg - arg object.
-   * @param {CreateCollection} arg.body
-   **/
-  createCollection({ body } = {}) {
-    const { error } = CatalogValidator.createCollection().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CatalogValidator.createCollection().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get a particular collection
     * @description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
@@ -25974,29 +27506,33 @@ class Catalog {
     * @param {string} arg.slug - A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve.
     
     **/
-  getCollectionDetail({ slug } = {}) {
-    const { error } = CatalogValidator.getCollectionDetail().validate(
-      {
-        slug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCollectionDetail({
+            slug
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.getCollectionDetail().validate({
+                slug
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${slug}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${slug}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Update a collection
     * @description: Update a collection by it's id. On successful request, returns the updated collection
@@ -26004,29 +27540,33 @@ class Catalog {
     * @param {string} arg.id - A `id` is a unique identifier of a collection.
     
     **/
-  updateCollection({ id } = {}) {
-    const { error } = CatalogValidator.updateCollection().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        updateCollection({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.updateCollection().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Delete a Collection
     * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
@@ -26034,29 +27574,33 @@ class Catalog {
     * @param {string} arg.id - A `id` is a unique identifier of a collection.
     
     **/
-  deleteCollection({ id } = {}) {
-    const { error } = CatalogValidator.deleteCollection().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        deleteCollection({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.deleteCollection().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get the items for a collection
     * @description: Get items from a collection specified by its `id`.
@@ -26067,66 +27611,78 @@ class Catalog {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
     
     **/
-  getCollectionItems({ id, sortOn, pageId, pageSize } = {}) {
-    const { error } = CatalogValidator.getCollectionItems().validate(
-      {
-        id,
-        sortOn,
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCollectionItems({
+            id,
+            sortOn,
+            pageId,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["sort_on"] = sortOn;
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
+            const { error } = CatalogValidator.getCollectionItems().validate({
+                id,
+            sortOn,
+            pageId,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['sort_on'] = sortOn;
+            queryObj['page_id'] = pageId;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add items to a collection
+    * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - A `id` is a unique identifier of a collection.
+    * @param {CollectionItemRequest} arg.body
+    **/
+        addCollectionItems({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Add items to a collection
-   * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
-   * @param {CollectionItemRequest} arg.body
-   **/
-  addCollectionItems({ id, body } = {}) {
-    const { error } = CatalogValidator.addCollectionItems().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CatalogValidator.addCollectionItems().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Analytics data of catalog and inventory.
     * @description: Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
@@ -26134,30 +27690,34 @@ class Catalog {
     * @param {string} [arg.brand] - Brand slug
     
     **/
-  getCatalogInsights({ brand } = {}) {
-    const { error } = CatalogValidator.getCatalogInsights().validate(
-      {
-        brand,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCatalogInsights({
+            brand
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["brand"] = brand;
+            const { error } = CatalogValidator.getCatalogInsights().validate({
+                brand
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['brand'] = brand;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/analytics/insights/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/analytics/insights/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: List all the brands
     * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
@@ -26167,34 +27727,66 @@ class Catalog {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
     
     **/
-  getApplicationBrands({ department, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getApplicationBrands().validate(
-      {
-        department,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getApplicationBrands({
+            department,
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["department"] = department;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = CatalogValidator.getApplicationBrands().validate({
+                department,
+            pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['department'] = department;
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/brands`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/brands`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: List all the brands
     * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
@@ -26205,62 +27797,63 @@ class Catalog {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
     
     **/
-  getApplicationBrandsPaginator({
-    companyId,
-    applicationId,
-    department,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getApplicationBrands({
-        companyId: companyId,
-        applicationId: applicationId,
-        department: department,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getApplicationBrandsPaginator( { companyId, applicationId, department, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getApplicationBrands({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        department:department ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: List all the departments
     * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
     * @param {Object} arg - arg object.
     
     **/
-  getDepartments({} = {}) {
-    const { error } = CatalogValidator.getDepartments().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getDepartments({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.getDepartments().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/departments`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/departments`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: List all the categories
     * @description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
@@ -26268,30 +27861,34 @@ class Catalog {
     * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API
     
     **/
-  getCategories({ department } = {}) {
-    const { error } = CatalogValidator.getCategories().validate(
-      {
-        department,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCategories({
+            department
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["department"] = department;
+            const { error } = CatalogValidator.getCategories().validate({
+                department
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['department'] = department;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/categories`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/categories`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: List the products
     * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
@@ -26306,53 +27903,104 @@ class Catalog {
     * @param {string} [arg.pageType] - For pagination type should be cursor or number. Default is cursor.
     
     **/
-  getAppicationProducts({
-    q,
-    f,
-    filters,
-    sortOn,
-    pageId,
-    pageSize,
-    pageNo,
-    pageType,
-  } = {}) {
-    const { error } = CatalogValidator.getAppicationProducts().validate(
-      {
-        q,
-        f,
-        filters,
-        sortOn,
-        pageId,
-        pageSize,
-        pageNo,
-        pageType,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAppicationProducts({
+            q,
+            f,
+            filters,
+            sortOn,
+            pageId,
+            pageSize,
+            pageNo,
+            pageType
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["q"] = q;
-    queryObj["f"] = f;
-    queryObj["filters"] = filters;
-    queryObj["sort_on"] = sortOn;
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
-    queryObj["page_no"] = pageNo;
-    queryObj["page_type"] = pageType;
+            const { error } = CatalogValidator.getAppicationProducts().validate({
+                q,
+            f,
+            filters,
+            sortOn,
+            pageId,
+            pageSize,
+            pageNo,
+            pageType
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['q'] = q;
+            queryObj['f'] = f;
+            queryObj['filters'] = filters;
+            queryObj['sort_on'] = sortOn;
+            queryObj['page_id'] = pageId;
+            queryObj['page_size'] = pageSize;
+            queryObj['page_no'] = pageNo;
+            queryObj['page_type'] = pageType;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: List the products
     * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
@@ -26366,43 +28014,37 @@ class Catalog {
     * @param {number} [arg.pageSize] - Number of items to retrieve in each page. Default is 12.
     
     **/
-  getAppicationProductsPaginator({
-    companyId,
-    applicationId,
-    q,
-    f,
-    filters,
-    sortOn,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getAppicationProducts({
-        companyId: companyId,
-        applicationId: applicationId,
-        q: q,
-        f: f,
-        filters: filters,
-        sortOn: sortOn,
-        pageId: pageId,
-        pageSize: pageSize,
-        pageNo: pageNo,
-        pageType: pageType,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getAppicationProductsPaginator( { companyId, applicationId, q, f, filters, sortOn, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getAppicationProducts({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        q:q ,
+                        f:f ,
+                        filters:filters ,
+                        sortOn:sortOn ,
+                        pageId:pageId ,
+                        pageSize:pageSize ,
+                        pageNo:pageNo ,
+                        pageType:pageType 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Get a product
     * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
@@ -26410,36 +28052,46 @@ class Catalog {
     * @param {string} arg.slug - The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/**
     
     **/
-  getProductDetailBySlug({ slug } = {}) {
-    const { error } = CatalogValidator.getProductDetailBySlug().validate(
-      {
-        slug,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getProductDetailBySlug({
+            slug
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CatalogValidator.getProductDetailBySlug().validate({
+                slug
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products/${slug}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products/${slug}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
 }
 
-class FileStorage {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+
+
+class FileStorage {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
     * @description: Uploads an arbitrarily sized buffer or blob.
@@ -26465,30 +28117,35 @@ This operation will return the url for the uploaded file.
     * @param {string} arg.namespace - bucket name
     * @param {StartRequest} arg.body
     **/
-  appStartUpload({ namespace, body } = {}) {
-    const { error } = FileStorageValidator.appStartUpload().validate(
-      {
-        namespace,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        appStartUpload({
+            namespace,
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = FileStorageValidator.appStartUpload().validate({
+                namespace,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
     * @description: Uploads an arbitrarily sized buffer or blob.
@@ -26514,62 +28171,72 @@ This operation will return the url for the uploaded file.
     * @param {string} arg.namespace - bucket name
     * @param {StartResponse} arg.body
     **/
-  appCompleteUpload({ namespace, body } = {}) {
-    const { error } = FileStorageValidator.appCompleteUpload().validate(
-      {
-        namespace,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        appCompleteUpload({
+            namespace,
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = FileStorageValidator.appCompleteUpload().validate({
+                namespace,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete/`,
-      queryObj,
-      body
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Copy Files
+    * @description: Copy Files
+    * @param {Object} arg - arg object.
+    * @param {boolean} [arg.sync] - sync
+    * @param {BulkRequest} arg.body
+    **/
+        appCopyFiles({
+            body,
+            sync
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Copy Files
-   * @description: Copy Files
-   * @param {Object} arg - arg object.
-   * @param {boolean} [arg.sync] - sync
-   * @param {BulkRequest} arg.body
-   **/
-  appCopyFiles({ body, sync } = {}) {
-    const { error } = FileStorageValidator.appCopyFiles().validate(
-      {
-        body,
-        sync,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = FileStorageValidator.appCopyFiles().validate({
+                body,
+            sync
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['sync'] = sync;
+            
 
-    const queryObj = {};
-    queryObj["sync"] = sync;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/uploads/copy/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/uploads/copy/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Browse Files
     * @description: Browse Files
@@ -26578,31 +28245,57 @@ This operation will return the url for the uploaded file.
     * @param {number} [arg.pageNo] - page no
     
     **/
-  appBrowse({ namespace, pageNo } = {}) {
-    const { error } = FileStorageValidator.appBrowse().validate(
-      {
-        namespace,
-        pageNo,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        appBrowse({
+            namespace,
+            pageNo
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
+            const { error } = FileStorageValidator.appBrowse().validate({
+                namespace,
+            pageNo
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Browse Files
     * @description: Browse Files
@@ -26612,65 +28305,75 @@ This operation will return the url for the uploaded file.
     * @param {number} arg.applicationId - application_id
     
     **/
-  appBrowsePaginator({ namespace, companyId, applicationId } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.appBrowse({
-        namespace: namespace,
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                appBrowsePaginator( { namespace, companyId, applicationId
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.appBrowse({
+                        namespace:namespace ,
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
 }
 
+
+
 class Share {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   *
-   * @summary: Create short link
-   * @description: Create short link
-   * @param {Object} arg - arg object.
-   * @param {ShortLinkReq} arg.body
-   **/
-  createShortLink({ body } = {}) {
-    const { error } = ShareValidator.createShortLink().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
     }
+    
+    /**
+    *
+    * @summary: Create short link
+    * @description: Create short link
+    * @param {Object} arg - arg object.
+    * @param {ShortLinkReq} arg.body
+    **/
+        createShortLink({
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ShareValidator.createShortLink().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get short links
     * @description: Get short links
@@ -26682,38 +28385,82 @@ class Share {
     * @param {string} [arg.q] - Search text for original and short url
     
     **/
-  getShortLinks({ pageNo, pageSize, createdBy, active, q } = {}) {
-    const { error } = ShareValidator.getShortLinks().validate(
-      {
-        pageNo,
-        pageSize,
-        createdBy,
-        active,
-        q,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getShortLinks({
+            pageNo,
+            pageSize,
+            createdBy,
+            active,
+            q
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["created_by"] = createdBy;
-    queryObj["active"] = active;
-    queryObj["q"] = q;
+            const { error } = ShareValidator.getShortLinks().validate({
+                pageNo,
+            pageSize,
+            createdBy,
+            active,
+            q
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['created_by'] = createdBy;
+            queryObj['active'] = active;
+            queryObj['q'] = q;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get short links
     * @description: Get short links
@@ -26726,39 +28473,34 @@ class Share {
     * @param {string} [arg.q] - Search text for original and short url
     
     **/
-  getShortLinksPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    createdBy,
-    active,
-    q,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getShortLinks({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        createdBy: createdBy,
-        active: active,
-        q: q,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getShortLinksPaginator( { companyId, applicationId, pageSize, createdBy, active, q
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getShortLinks({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        createdBy:createdBy ,
+                        active:active ,
+                        q:q 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Get short link by hash
     * @description: Get short link by hash
@@ -26766,67 +28508,82 @@ class Share {
     * @param {string} arg.hash - Hash of short url
     
     **/
-  getShortLinkByHash({ hash } = {}) {
-    const { error } = ShareValidator.getShortLinkByHash().validate(
-      {
-        hash,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getShortLinkByHash({
+            hash
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ShareValidator.getShortLinkByHash().validate({
+                hash
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${hash}/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${hash}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update short link by id
+    * @description: Update short link by id
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Short link document identifier
+    * @param {ShortLinkReq} arg.body
+    **/
+        updateShortLinkById({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update short link by id
-   * @description: Update short link by id
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Short link document identifier
-   * @param {ShortLinkReq} arg.body
-   **/
-  updateShortLinkById({ id, body } = {}) {
-    const { error } = ShareValidator.updateShortLinkById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ShareValidator.updateShortLinkById().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${id}/`,
-      queryObj,
-      body
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "patch",
+                    `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${id}/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
 }
 
-class Configuration {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+
+
+class Configuration {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Get latest build config
     * @description: Get latest build config
@@ -26834,60 +28591,69 @@ class Configuration {
     * @param {string} arg.platformType - Current platform name
     
     **/
-  getBuildConfig({ platformType } = {}) {
-    const { error } = ConfigurationValidator.getBuildConfig().validate(
-      {
-        platformType,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getBuildConfig({
+            platformType
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.getBuildConfig().validate({
+                platformType
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update build config for next build
+    * @description: Update build config for next build
+    * @param {Object} arg - arg object.
+    * @param {string} arg.platformType - Current platform name
+    * @param {MobileAppConfigRequest} arg.body
+    **/
+        updateBuildConfig({
+            platformType,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update build config for next build
-   * @description: Update build config for next build
-   * @param {Object} arg - arg object.
-   * @param {string} arg.platformType - Current platform name
-   * @param {MobileAppConfigRequest} arg.body
-   **/
-  updateBuildConfig({ platformType, body } = {}) {
-    const { error } = ConfigurationValidator.updateBuildConfig().validate(
-      {
-        platformType,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ConfigurationValidator.updateBuildConfig().validate({
+                platformType,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get previous versions
     * @description: Get previous versions
@@ -26895,253 +28661,289 @@ class Configuration {
     * @param {string} arg.platformType - Current platform name
     
     **/
-  getPreviousVersions({ platformType } = {}) {
-    const { error } = ConfigurationValidator.getPreviousVersions().validate(
-      {
-        platformType,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getPreviousVersions({
+            platformType
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.getPreviousVersions().validate({
+                platformType
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/versions`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/versions`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get features of application
     * @description: Get features of application
     * @param {Object} arg - arg object.
     
     **/
-  getAppFeatures({} = {}) {
-    const { error } = ConfigurationValidator.getAppFeatures().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAppFeatures({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.getAppFeatures().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update features of application
+    * @description: Update features of application
+    * @param {Object} arg - arg object.
+    * @param {AppFeatureRequest} arg.body
+    **/
+        updateAppFeatures({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update features of application
-   * @description: Update features of application
-   * @param {Object} arg - arg object.
-   * @param {AppFeatureRequest} arg.body
-   **/
-  updateAppFeatures({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppFeatures().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ConfigurationValidator.updateAppFeatures().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get basic application details
     * @description: Get basic application details like name
     * @param {Object} arg - arg object.
     
     **/
-  getAppBasicDetails({} = {}) {
-    const { error } = ConfigurationValidator.getAppBasicDetails().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAppBasicDetails({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.getAppBasicDetails().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add or update application's basic details
+    * @description: Add or update application's basic details
+    * @param {Object} arg - arg object.
+    * @param {ApplicationDetail} arg.body
+    **/
+        updateAppBasicDetails({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Add or update application's basic details
-   * @description: Add or update application's basic details
-   * @param {Object} arg - arg object.
-   * @param {ApplicationDetail} arg.body
-   **/
-  updateAppBasicDetails({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppBasicDetails().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ConfigurationValidator.updateAppBasicDetails().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get application information
     * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
     * @param {Object} arg - arg object.
     
     **/
-  getAppContactInfo({} = {}) {
-    const { error } = ConfigurationValidator.getAppContactInfo().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAppContactInfo({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.getAppContactInfo().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get application information
+    * @description: Save Application Current Information. This includes information about social links, address and contact information of an application.
+    * @param {Object} arg - arg object.
+    * @param {ApplicationInformation} arg.body
+    **/
+        updateAppContactInfo({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Get application information
-   * @description: Save Application Current Information. This includes information about social links, address and contact information of an application.
-   * @param {Object} arg - arg object.
-   * @param {ApplicationInformation} arg.body
-   **/
-  updateAppContactInfo({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppContactInfo().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ConfigurationValidator.updateAppContactInfo().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get social tokens
     * @description: Get social tokens.
     * @param {Object} arg - arg object.
     
     **/
-  getAppApiTokens({} = {}) {
-    const { error } = ConfigurationValidator.getAppApiTokens().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAppApiTokens({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.getAppApiTokens().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add social tokens
+    * @description: Add social tokens.
+    * @param {Object} arg - arg object.
+    * @param {TokenResponse} arg.body
+    **/
+        updateAppApiTokens({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Add social tokens
-   * @description: Add social tokens.
-   * @param {Object} arg - arg object.
-   * @param {TokenResponse} arg.body
-   **/
-  updateAppApiTokens({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppApiTokens().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ConfigurationValidator.updateAppApiTokens().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Application inventory enabled companies
     * @description: Application inventory enabled companies.
@@ -27150,32 +28952,58 @@ class Configuration {
     * @param {number} [arg.pageSize] - Current request items count
     
     **/
-  getAppCompanies({ pageNo, pageSize } = {}) {
-    const { error } = ConfigurationValidator.getAppCompanies().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAppCompanies({
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = ConfigurationValidator.getAppCompanies().validate({
+                pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/companies`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/companies`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Application inventory enabled companies
     * @description: Application inventory enabled companies.
@@ -27185,29 +29013,31 @@ class Configuration {
     * @param {number} [arg.pageSize] - Current request items count
     
     **/
-  getAppCompaniesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAppCompanies({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getAppCompaniesPaginator( { companyId, applicationId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getAppCompanies({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Application inventory enabled stores
     * @description: Application inventory enabled stores.
@@ -27216,32 +29046,58 @@ class Configuration {
     * @param {number} [arg.pageSize] - Current request items count
     
     **/
-  getAppStores({ pageNo, pageSize } = {}) {
-    const { error } = ConfigurationValidator.getAppStores().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAppStores({
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = ConfigurationValidator.getAppStores().validate({
+                pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stores`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stores`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Application inventory enabled stores
     * @description: Application inventory enabled stores.
@@ -27251,334 +29107,386 @@ class Configuration {
     * @param {number} [arg.pageSize] - Current request items count
     
     **/
-  getAppStoresPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAppStores({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getAppStoresPaginator( { companyId, applicationId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getAppStores({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Get application configuration
     * @description: Get application configuration for various features and data
     * @param {Object} arg - arg object.
     
     **/
-  getInventoryConfig({} = {}) {
-    const { error } = ConfigurationValidator.getInventoryConfig().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getInventoryConfig({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.getInventoryConfig().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update application configuration
+    * @description: Update application configuration for various features and data
+    * @param {Object} arg - arg object.
+    * @param {ApplicationInventory} arg.body
+    **/
+        updateInventoryConfig({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update application configuration
-   * @description: Update application configuration for various features and data
-   * @param {Object} arg - arg object.
-   * @param {ApplicationInventory} arg.body
-   **/
-  updateInventoryConfig({ body } = {}) {
-    const { error } = ConfigurationValidator.updateInventoryConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ConfigurationValidator.updateInventoryConfig().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Partially update application configuration
+    * @description: Partially update application configuration for various features and data
+    * @param {Object} arg - arg object.
+    * @param {AppInventoryPartialUpdate} arg.body
+    **/
+        partiallyUpdateInventoryConfig({
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ConfigurationValidator.partiallyUpdateInventoryConfig().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Partially update application configuration
-   * @description: Partially update application configuration for various features and data
-   * @param {Object} arg - arg object.
-   * @param {AppInventoryPartialUpdate} arg.body
-   **/
-  partiallyUpdateInventoryConfig({ body } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.partiallyUpdateInventoryConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "patch",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get application enabled currency list
     * @description: Get application enabled currency list
     * @param {Object} arg - arg object.
     
     **/
-  getAppCurrencyConfig({} = {}) {
-    const { error } = ConfigurationValidator.getAppCurrencyConfig().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAppCurrencyConfig({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.getAppCurrencyConfig().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add initial application supported currency
+    * @description: Add initial application supported currency for various features and data. Default INR will be enabled.
+    * @param {Object} arg - arg object.
+    * @param {AppSupportedCurrency} arg.body
+    **/
+        updateAppCurrencyConfig({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Add initial application supported currency
-   * @description: Add initial application supported currency for various features and data. Default INR will be enabled.
-   * @param {Object} arg - arg object.
-   * @param {AppSupportedCurrency} arg.body
-   **/
-  updateAppCurrencyConfig({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppCurrencyConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ConfigurationValidator.updateAppCurrencyConfig().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get ordering store by filter
+    * @description: Get ordering store by filter
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - Current page no
+    * @param {number} [arg.pageSize] - Current request items count
+    * @param {FilterOrderingStoreRequest} arg.body
+    **/
+        getOrderingStoresByFilter({
+            body,
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ConfigurationValidator.getOrderingStoresByFilter().validate({
+                body,
+            pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-  /**
-   *
-   * @summary: Get ordering store by filter
-   * @description: Get ordering store by filter
-   * @param {Object} arg - arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {FilterOrderingStoreRequest} arg.body
-   **/
-  getOrderingStoresByFilter({ body, pageNo, pageSize } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.getOrderingStoresByFilter().validate(
-      {
-        body,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores/filter`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+    /**
+    *
+    * @summary: Get ordering store by filter
+    * @description: Get ordering store by filter
+    * @param {Object} arg - arg object.
+    * @param {string} arg.companyId - Current company id
+    * @param {string} arg.applicationId - Current application id
+    * @param {number} [arg.pageSize] - Current request items count
+    * @param {FilterOrderingStoreRequest} arg.body
+    **/
+                getOrderingStoresByFilterPaginator( { companyId, applicationId, pageSize,
+                body} = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getOrderingStoresByFilter({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        body:body ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Add/Update ordering store config
+    * @description: Add/Update ordering store config.
+    * @param {Object} arg - arg object.
+    * @param {OrderingStoreConfig} arg.body
+    **/
+        updateOrderingStoreConfig({
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores/filter`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ConfigurationValidator.updateOrderingStoreConfig().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Get ordering store by filter
-   * @description: Get ordering store by filter
-   * @param {Object} arg - arg object.
-   * @param {string} arg.companyId - Current company id
-   * @param {string} arg.applicationId - Current application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {FilterOrderingStoreRequest} arg.body
-   **/
-  getOrderingStoresByFilterPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    body,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getOrderingStoresByFilter({
-        companyId: companyId,
-        applicationId: applicationId,
-        body: body,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   *
-   * @summary: Add/Update ordering store config
-   * @description: Add/Update ordering store config.
-   * @param {Object} arg - arg object.
-   * @param {OrderingStoreConfig} arg.body
-   **/
-  updateOrderingStoreConfig({ body } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.updateOrderingStoreConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get attached domain list
     * @description: Get attached domain list.
     * @param {Object} arg - arg object.
     
     **/
-  getDomains({} = {}) {
-    const { error } = ConfigurationValidator.getDomains().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getDomains({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.getDomains().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add new domain to application
+    * @description: Add new domain to application.
+    * @param {Object} arg - arg object.
+    * @param {DomainAddRequest} arg.body
+    **/
+        addDomain({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Add new domain to application
-   * @description: Add new domain to application.
-   * @param {Object} arg - arg object.
-   * @param {DomainAddRequest} arg.body
-   **/
-  addDomain({ body } = {}) {
-    const { error } = ConfigurationValidator.addDomain().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ConfigurationValidator.addDomain().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Remove attached domain
     * @description: Remove attached domain.
@@ -27586,121 +29494,141 @@ class Configuration {
     * @param {string} arg.id - Domain _id
     
     **/
-  removeDomainById({ id } = {}) {
-    const { error } = ConfigurationValidator.removeDomainById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        removeDomainById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.removeDomainById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/${id}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Change domain type
+    * @description: Change a domain to Primary or Shortlink domain
+    * @param {Object} arg - arg object.
+    * @param {UpdateDomainTypeRequest} arg.body
+    **/
+        changeDomainType({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Change domain type
-   * @description: Change a domain to Primary or Shortlink domain
-   * @param {Object} arg - arg object.
-   * @param {UpdateDomainTypeRequest} arg.body
-   **/
-  changeDomainType({ body } = {}) {
-    const { error } = ConfigurationValidator.changeDomainType().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = ConfigurationValidator.changeDomainType().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/set-domain`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get domain connected status.
+    * @description: Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
+    * @param {Object} arg - arg object.
+    * @param {DomainStatusRequest} arg.body
+    **/
+        getDomainStatus({
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/set-domain`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = ConfigurationValidator.getDomainStatus().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Get domain connected status.
-   * @description: Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
-   * @param {Object} arg - arg object.
-   * @param {DomainStatusRequest} arg.body
-   **/
-  getDomainStatus({ body } = {}) {
-    const { error } = ConfigurationValidator.getDomainStatus().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/domain-status`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/domain-status`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get application data from id
     * @description: Get application data from id
     * @param {Object} arg - arg object.
     
     **/
-  getApplicationById({} = {}) {
-    const { error } = ConfigurationValidator.getApplicationById().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getApplicationById({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = ConfigurationValidator.getApplicationById().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
 }
 
-class Cart {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+class Cart {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Get with single coupon details or coupon list
     * @description: Get coupon list with pagination
@@ -27715,53 +29643,106 @@ class Cart {
     * @param {string} [arg.code] - 
     
     **/
-  getCoupons({
-    pageNo,
-    pageSize,
-    isArchived,
-    title,
-    isPublic,
-    isDisplay,
-    typeSlug,
-    code,
-  } = {}) {
-    const { error } = CartValidator.getCoupons().validate(
-      {
-        pageNo,
-        pageSize,
-        isArchived,
-        title,
-        isPublic,
-        isDisplay,
-        typeSlug,
-        code,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCoupons({
+            pageNo,
+            pageSize,
+            isArchived,
+            title,
+            isPublic,
+            isDisplay,
+            typeSlug,
+            code
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
-    queryObj["is_archived"] = isArchived;
-    queryObj["title"] = title;
-    queryObj["is_public"] = isPublic;
-    queryObj["is_display"] = isDisplay;
-    queryObj["type_slug"] = typeSlug;
-    queryObj["code"] = code;
+            const { error } = CartValidator.getCoupons().validate({
+                pageNo,
+            pageSize,
+            isArchived,
+            title,
+            isPublic,
+            isDisplay,
+            typeSlug,
+            code
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            queryObj['is_archived'] = isArchived;
+            queryObj['title'] = title;
+            queryObj['is_public'] = isPublic;
+            queryObj['is_display'] = isDisplay;
+            queryObj['type_slug'] = typeSlug;
+            queryObj['code'] = code;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get with single coupon details or coupon list
     * @description: Get coupon list with pagination
@@ -27777,74 +29758,70 @@ class Cart {
     * @param {string} [arg.code] - 
     
     **/
-  getCouponsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    isArchived,
-    title,
-    isPublic,
-    isDisplay,
-    typeSlug,
-    code,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getCoupons({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        isArchived: isArchived,
-        title: title,
-        isPublic: isPublic,
-        isDisplay: isDisplay,
-        typeSlug: typeSlug,
-        code: code,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getCouponsPaginator( { companyId, applicationId, pageSize, isArchived, title, isPublic, isDisplay, typeSlug, code
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getCoupons({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize ,
+                        isArchived:isArchived ,
+                        title:title ,
+                        isPublic:isPublic ,
+                        isDisplay:isDisplay ,
+                        typeSlug:typeSlug ,
+                        code:code 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create new coupon
+    * @description: Create new coupon
+    * @param {Object} arg - arg object.
+    * @param {CouponAdd} arg.body
+    **/
+        createCoupon({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Create new coupon
-   * @description: Create new coupon
-   * @param {Object} arg - arg object.
-   * @param {CouponAdd} arg.body
-   **/
-  createCoupon({ body } = {}) {
-    const { error } = CartValidator.createCoupon().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CartValidator.createCoupon().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get with single coupon details or coupon list
     * @description: Get single coupon details with `id` in path param
@@ -27852,98 +29829,118 @@ class Cart {
     * @param {string} arg.id - 
     
     **/
-  getCouponById({ id } = {}) {
-    const { error } = CartValidator.getCouponById().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getCouponById({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = CartValidator.getCouponById().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update existing coupon configuration
+    * @description: Update coupon with id sent in `id`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - 
+    * @param {CouponUpdate} arg.body
+    **/
+        updateCoupon({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update existing coupon configuration
-   * @description: Update coupon with id sent in `id`
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id -
-   * @param {CouponUpdate} arg.body
-   **/
-  updateCoupon({ id, body } = {}) {
-    const { error } = CartValidator.updateCoupon().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = CartValidator.updateCoupon().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update coupon archive state and schedule
+    * @description: Update archive/unarchive and change schedule for coupon
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - 
+    * @param {CouponPartialUpdate} arg.body
+    **/
+        updateCouponPartially({
+            id,
+            body
+            
+        } = {}) {
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
-      queryObj,
-      body
-    );
-  }
+            const { error } = CartValidator.updateCouponPartially().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-  /**
-   *
-   * @summary: Update coupon archive state and schedule
-   * @description: Update archive/unarchive and change schedule for coupon
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id -
-   * @param {CouponPartialUpdate} arg.body
-   **/
-  updateCouponPartially({ id, body } = {}) {
-    const { error } = CartValidator.updateCouponPartially().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
-      queryObj,
-      body
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "patch",
+                    `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
 }
 
-class Rewards {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+
+
+class Rewards {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: List of giveaways of the current application.
     * @description: List of giveaways of the current application.
@@ -27952,32 +29949,60 @@ class Rewards {
     * @param {number} [arg.pageSize] - pagination page size
     
     **/
-  getGiveaways({ pageId, pageSize } = {}) {
-    const { error } = RewardsValidator.getGiveaways().validate(
-      {
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getGiveaways({
+            pageId,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_id"] = pageId;
-    queryObj["page_size"] = pageSize;
+            const { error } = RewardsValidator.getGiveaways().validate({
+                pageId,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_id'] = pageId;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: List of giveaways of the current application.
     * @description: List of giveaways of the current application.
@@ -27987,58 +30012,64 @@ class Rewards {
     * @param {number} [arg.pageSize] - pagination page size
     
     **/
-  getGiveawaysPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getGiveaways({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageId: pageId,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getGiveawaysPaginator( { companyId, applicationId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getGiveaways({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        pageId:pageId ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Adds a new giveaway.
+    * @description: Adds a new giveaway.
+    * @param {Object} arg - arg object.
+    * @param {Giveaway} arg.body
+    **/
+        createGiveaway({
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Adds a new giveaway.
-   * @description: Adds a new giveaway.
-   * @param {Object} arg - arg object.
-   * @param {Giveaway} arg.body
-   **/
-  createGiveaway({ body } = {}) {
-    const { error } = RewardsValidator.createGiveaway().validate(
-      {
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = RewardsValidator.createGiveaway().validate({
+                body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get giveaway by ID.
     * @description: Get giveaway by ID.
@@ -28046,87 +30077,100 @@ class Rewards {
     * @param {string} arg.id - Giveaway ID
     
     **/
-  getGiveawayByID({ id } = {}) {
-    const { error } = RewardsValidator.getGiveawayByID().validate(
-      {
-        id,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getGiveawayByID({
+            id
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = RewardsValidator.getGiveawayByID().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/${id}/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/${id}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Updates the giveaway by it's ID.
+    * @description: Updates the giveaway by it's ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Giveaway ID
+    * @param {Giveaway} arg.body
+    **/
+        updateGiveaway({
+            id,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Updates the giveaway by it's ID.
-   * @description: Updates the giveaway by it's ID.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.id - Giveaway ID
-   * @param {Giveaway} arg.body
-   **/
-  updateGiveaway({ id, body } = {}) {
-    const { error } = RewardsValidator.updateGiveaway().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = RewardsValidator.updateGiveaway().validate({
+                id,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/${id}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/${id}/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: List of offer of the current application.
     * @description: List of offer of the current application.
     * @param {Object} arg - arg object.
     
     **/
-  getOffers({} = {}) {
-    const { error } = RewardsValidator.getOffers().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getOffers({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = RewardsValidator.getOffers().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get offer by name.
     * @description: Get offer by name.
@@ -28135,61 +30179,71 @@ class Rewards {
     * @param {string} arg.name - Offer name
     
     **/
-  getOfferByName({ cookie, name } = {}) {
-    const { error } = RewardsValidator.getOfferByName().validate(
-      {
-        cookie,
-        name,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getOfferByName({
+            cookie,
+            name
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = RewardsValidator.getOfferByName().validate({
+                cookie,
+            name
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${name}/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${name}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Updates the offer by name.
+    * @description: Updates the offer by name.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.name - Offer name
+    * @param {Offer} arg.body
+    **/
+        updateOfferByName({
+            name,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Updates the offer by name.
-   * @description: Updates the offer by name.
-   * @param {Object} arg - arg object.
-   * @param {string} arg.name - Offer name
-   * @param {Offer} arg.body
-   **/
-  updateOfferByName({ name, body } = {}) {
-    const { error } = RewardsValidator.updateOfferByName().validate(
-      {
-        name,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = RewardsValidator.updateOfferByName().validate({
+                name,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${name}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${name}/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: User's reward details.
     * @description: User's reward details.
@@ -28197,60 +30251,69 @@ class Rewards {
     * @param {string} arg.userId - user id
     
     **/
-  getUserAvailablePoints({ userId } = {}) {
-    const { error } = RewardsValidator.getUserAvailablePoints().validate(
-      {
-        userId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getUserAvailablePoints({
+            userId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = RewardsValidator.getUserAvailablePoints().validate({
+                userId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update User status
+    * @description: Update user status, active/archive
+    * @param {Object} arg - arg object.
+    * @param {string} arg.userId - user id
+    * @param {AppUser} arg.body
+    **/
+        updateUserStatus({
+            userId,
+            body
+            
+        } = {}) {
 
-  /**
-   *
-   * @summary: Update User status
-   * @description: Update user status, active/archive
-   * @param {Object} arg - arg object.
-   * @param {string} arg.userId - user id
-   * @param {AppUser} arg.body
-   **/
-  updateUserStatus({ userId, body } = {}) {
-    const { error } = RewardsValidator.updateUserStatus().validate(
-      {
-        userId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+            const { error } = RewardsValidator.updateUserStatus().validate({
+                userId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    const queryObj = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "patch",
+                    `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get list of points transactions.
     * @description: Get list of points transactions.
@@ -28262,35 +30325,73 @@ The list of points history is paginated.
     * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
     
     **/
-  getUserPointsHistory({ userId, pageId, pageLimit, pageSize } = {}) {
-    const { error } = RewardsValidator.getUserPointsHistory().validate(
-      {
-        userId,
-        pageId,
-        pageLimit,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getUserPointsHistory({
+            userId,
+            pageId,
+            pageLimit,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_id"] = pageId;
-    queryObj["page_limit"] = pageLimit;
-    queryObj["page_size"] = pageSize;
+            const { error } = RewardsValidator.getUserPointsHistory().validate({
+                userId,
+            pageId,
+            pageLimit,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_id'] = pageId;
+            queryObj['page_limit'] = pageLimit;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/points/history/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/points/history/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get list of points transactions.
     * @description: Get list of points transactions.
@@ -28302,70 +30403,75 @@ The list of points history is paginated.
     * @param {number} [arg.pageSize] - PageSize is the number of requested items in response.
     
     **/
-  getUserPointsHistoryPaginator({
-    companyId,
-    applicationId,
-    userId,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getUserPointsHistory({
-        companyId: companyId,
-        applicationId: applicationId,
-        userId: userId,
-        pageId: pageId,
-        pageLimit: pageLimit,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
+                getUserPointsHistoryPaginator( { companyId, applicationId, userId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getUserPointsHistory({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        userId:userId ,
+                        pageId:pageId ,
+                        pageLimit:pageLimit ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
 }
 
-class Analytics {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
 
-  /**
+
+class Analytics {
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
+    }
+    
+    /**
     *
     * @summary: Get statistics groups
     * @description: Get statistics groups
     * @param {Object} arg - arg object.
     
     **/
-  getStatiscticsGroups({} = {}) {
-    const { error } = AnalyticsValidator.getStatiscticsGroups().validate(
-      {},
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getStatiscticsGroups({
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AnalyticsValidator.getStatiscticsGroups().validate({
+                
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/group`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/group`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get statistics group components
     * @description: Get statistics group components
@@ -28373,31 +30479,33 @@ class Analytics {
     * @param {string} arg.groupName - Group name
     
     **/
-  getStatiscticsGroupComponents({ groupName } = {}) {
-    const {
-      error,
-    } = AnalyticsValidator.getStatiscticsGroupComponents().validate(
-      {
-        groupName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getStatiscticsGroupComponents({
+            groupName
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AnalyticsValidator.getStatiscticsGroupComponents().validate({
+                groupName
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/group/${groupName}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/group/${groupName}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get component statistics csv
     * @description: Get component statistics csv
@@ -28405,29 +30513,33 @@ class Analytics {
     * @param {string} arg.componentName - Component name
     
     **/
-  getComponentStatsCSV({ componentName } = {}) {
-    const { error } = AnalyticsValidator.getComponentStatsCSV().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getComponentStatsCSV({
+            componentName
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AnalyticsValidator.getComponentStatsCSV().validate({
+                componentName
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/{component_name}.csv`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/{component_name}.csv`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get component statistics pdf
     * @description: Get component statistics pdf
@@ -28435,29 +30547,33 @@ class Analytics {
     * @param {string} arg.componentName - Component name
     
     **/
-  getComponentStatsPDF({ componentName } = {}) {
-    const { error } = AnalyticsValidator.getComponentStatsPDF().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getComponentStatsPDF({
+            componentName
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AnalyticsValidator.getComponentStatsPDF().validate({
+                componentName
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/{component_name}.pdf`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/{component_name}.pdf`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get component statistics
     * @description: Get component statistics
@@ -28465,29 +30581,33 @@ class Analytics {
     * @param {string} arg.componentName - Component name
     
     **/
-  getComponentStats({ componentName } = {}) {
-    const { error } = AnalyticsValidator.getComponentStats().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getComponentStats({
+            componentName
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AnalyticsValidator.getComponentStats().validate({
+                componentName
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/${componentName}`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/${componentName}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get abandon carts list
     * @description: Get abandon carts list
@@ -28498,34 +30618,72 @@ class Analytics {
     * @param {number} [arg.pageSize] - Current page size
     
     **/
-  getAbandonCartList({ fromDate, toDate, pageNo, pageSize } = {}) {
-    const { error } = AnalyticsValidator.getAbandonCartList().validate(
-      {
-        fromDate,
-        toDate,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAbandonCartList({
+            fromDate,
+            toDate,
+            pageNo,
+            pageSize
+            
+        } = {}) {
 
-    const queryObj = {};
-    queryObj["page_no"] = pageNo;
-    queryObj["page_size"] = pageSize;
+            const { error } = AnalyticsValidator.getAbandonCartList().validate({
+                fromDate,
+            toDate,
+            pageNo,
+            pageSize
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            queryObj['page_no'] = pageNo;
+            queryObj['page_size'] = pageSize;
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/from/${fromDate}/to/${toDate}/abandon-cart/`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/from/${fromDate}/to/${toDate}/abandon-cart/`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
 
-  /**
+    /**
     *
     * @summary: Get abandon carts list
     * @description: Get abandon carts list
@@ -28537,37 +30695,33 @@ class Analytics {
     * @param {number} [arg.pageSize] - Current page size
     
     **/
-  getAbandonCartListPaginator({
-    companyId,
-    applicationId,
-    fromDate,
-    toDate,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAbandonCartList({
-        companyId: companyId,
-        applicationId: applicationId,
-        fromDate: fromDate,
-        toDate: toDate,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
+                getAbandonCartListPaginator( { companyId, applicationId, fromDate, toDate, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getAbandonCartList({
+                        companyId:companyId ,
+                        applicationId:applicationId ,
+                        fromDate:fromDate ,
+                        toDate:toDate ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback.bind(this));
+                return paginator;
+            }
+        
+    
+    /**
     *
     * @summary: Get abandon carts csv
     * @description: Get abandon carts csv
@@ -28576,30 +30730,35 @@ class Analytics {
     * @param {string} arg.toDate - To date
     
     **/
-  getAbandonCartsCSV({ fromDate, toDate } = {}) {
-    const { error } = AnalyticsValidator.getAbandonCartsCSV().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAbandonCartsCSV({
+            fromDate,
+            toDate
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AnalyticsValidator.getAbandonCartsCSV().validate({
+                fromDate,
+            toDate
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/${fromDate}/to/${toDate}/abandon-cart.csv`,
-      queryObj,
-      undefined
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/${fromDate}/to/${toDate}/abandon-cart.csv`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Get abandon carts details
     * @description: Get abandon cart details
@@ -28607,67 +30766,82 @@ class Analytics {
     * @param {string} arg.cartId - Cart Id
     
     **/
-  getAbandonCartDetail({ cartId } = {}) {
-    const { error } = AnalyticsValidator.getAbandonCartDetail().validate(
-      {
-        cartId,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        getAbandonCartDetail({
+            cartId
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = AnalyticsValidator.getAbandonCartDetail().validate({
+                cartId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/abandon-cart/${cartId}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/abandon-cart/${cartId}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
 }
 
+
+
+
+
 class Partner {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   *
-   * @summary: Add proxy path for external url
-   * @description: Add proxy path for external url
-   * @param {Object} arg - arg object.
-   * @param {string} arg.extensionId - Extension id
-   * @param {AddProxyReq} arg.body
-   **/
-  addProxyPath({ extensionId, body } = {}) {
-    const { error } = PartnerValidator.addProxyPath().validate(
-      {
-        extensionId,
-        body,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
+    constructor(config,applicationId) {
+        
+        this.config = config;
+        this.applicationId = applicationId;
     }
+    
+    /**
+    *
+    * @summary: Add proxy path for external url
+    * @description: Add proxy path for external url
+    * @param {Object} arg - arg object.
+    * @param {string} arg.extensionId - Extension id
+    * @param {AddProxyReq} arg.body
+    **/
+        addProxyPath({
+            extensionId,
+            body
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = PartnerValidator.addProxyPath().validate({
+                extensionId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}`,
-      queryObj,
-      body
-    );
-  }
-
-  /**
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "post",
+                    `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}`,
+                    queryObj,
+                    body,
+            );
+        }
+        
+    
+    /**
     *
     * @summary: Remove proxy path for external url
     * @description: Remove proxy path for external url
@@ -28676,28 +30850,38 @@ class Partner {
     * @param {string} arg.attachedPath - Attachaed path slug
     
     **/
-  removeProxyPath({ extensionId, attachedPath } = {}) {
-    const { error } = PartnerValidator.removeProxyPath().validate(
-      {
-        extensionId,
-        attachedPath,
-      },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
+        removeProxyPath({
+            extensionId,
+            attachedPath
+            
+        } = {}) {
 
-    const queryObj = {};
+            const { error } = PartnerValidator.removeProxyPath().validate({
+                extensionId,
+            attachedPath
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            
+            const queryObj = {};
+            
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}/${attachedPath}`,
-      queryObj,
-      undefined
-    );
-  }
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "delete",
+                    `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}/${attachedPath}`,
+                    queryObj,
+                     undefined ,
+            );
+        }
+        
+    
 }
+
+
+
+
 
 module.exports = PlatformApplicationClient;

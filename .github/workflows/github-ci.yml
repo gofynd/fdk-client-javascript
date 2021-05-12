@@ -32,3 +32,8 @@ jobs:
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Run Prettier & Generate Typings
+      run: |
+        npm run prettier
+        npm run typings
