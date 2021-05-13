@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "prettier": "npx prettier -w ./sdk ./tests",
-    "typings": "npx tsc"
+    "prettier": "npx prettier -w ./sdk ./tests && npx tsc"
   },
   "jest": {
     "coverageThreshold": {

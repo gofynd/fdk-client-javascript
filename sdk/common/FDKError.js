@@ -1,9 +1,9 @@
 class FDKError extends Error {
   /**
-   * @param {string} message
-   * @param {string} stackTrace
-   * @param {string} [status]
-   * @param {string} [code]
+   * @param  {string} message
+   * @param  {string} stackTrace
+   * @param  {string} [status]
+   * @param  {string} [code]
    */
   constructor(message, stackTrace, status = null, code = null) {
     super(message);
