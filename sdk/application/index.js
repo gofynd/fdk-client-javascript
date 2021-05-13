@@ -1,4 +1,4 @@
 module.exports = {
-    ApplicationConfig: require("./ApplicationConfig"),
-    ApplicationClient: require("./ApplicationClient")
+  ApplicationConfig: require("./ApplicationConfig"),
+  ApplicationClient: require("./ApplicationClient"),
 };

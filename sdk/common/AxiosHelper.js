@@ -85,7 +85,7 @@ const fdkAxios = axios.create({
 fdkAxios.interceptors.request.use(requestInterceptorFn());
 fdkAxios.interceptors.response.use(
   function (response) {
-    if(response.config.method == 'head'){
+    if (response.config.method == "head") {
       return response.headers;
     }
     return response.data; // IF 2XX then return response.data only
