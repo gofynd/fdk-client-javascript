@@ -58,7 +58,7 @@ class Catalog {
     * @summary: Get a product
     * @description: Use this API to retrieve a product by its slug value.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/**
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
     
     * @return {Promise<ProductDetail>} - success response
     **/
@@ -89,7 +89,7 @@ class Catalog {
     * @summary: Get the sizes of a product
     * @description: A product can have multiple sizes. Use this API to fetch all the available sizes of a product.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/*** @param {number} [arg.storeId] - The ID of the store that is selling the product, e.g. 1,2,3.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/* @param {number} [arg.storeId] - The ID of the store that is selling the product, e.g. 1,2,3.
     
     * @return {Promise<ProductSizes>} - success response
     **/
@@ -123,7 +123,7 @@ class Catalog {
     * @summary: Get the price of a product size at a PIN Code
     * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/*** @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/sizes*** @param {string} arg.pincode - The PIN Code of the area near which the selling locations should be searched, e.g. 400059* @param {string} [arg.storeId] - The ID of the store that is selling the product, e.g. 1,2,3.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/* @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes* @param {string} arg.pincode - The PIN Code of the area near which the selling locations should be searched, e.g. 400059* @param {string} [arg.storeId] - The ID of the store that is selling the product, e.g. 1,2,3.
     
     * @return {Promise<ProductSizePriceResponse>} - success response
     **/
@@ -161,7 +161,7 @@ class Catalog {
     * @summary: Get the sellers of a product size at a PIN Code
     * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/*** @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/sizes*** @param {string} arg.pincode - The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059* @param {number} [arg.pageNo] - The page number to navigate through the given set of results.* @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/* @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes* @param {string} arg.pincode - The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059* @param {number} [arg.pageNo] - The page number to navigate through the given set of results.* @param {number} [arg.pageSize] - The number of items to retrieve in each page.
     
     * @return {Promise<ProductSizeSellersResponse>} - success response
     **/
@@ -228,8 +228,8 @@ class Catalog {
     * @summary: Get the sellers of a product size at a PIN Code
     * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/**
-    * @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/sizes**
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
+    * @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes
     * @param {string} arg.pincode - The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059
     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
     
@@ -264,7 +264,7 @@ class Catalog {
     * @summary: Compare products
     * @description: Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
     * @param {Object} arg - arg object.
-    * @param {Array<string>} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/**.
+    * @param {Array<string>} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/.
     
     * @return {Promise<ProductsComparisonResponse>} - success response
     **/
@@ -296,7 +296,7 @@ class Catalog {
     * @summary: Get comparison between similar products
     * @description: Use this API to compare a given product automatically with similar products. Only one slug is needed.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/**
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
     
     * @return {Promise<ProductCompareResponse>} - success response
     **/
@@ -327,7 +327,7 @@ class Catalog {
     * @summary: Get comparison between frequently compared products with the given product
     * @description: Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/**
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
     
     * @return {Promise<ProductFrequentlyComparedSimilarResponse>} - success response
     **/
@@ -358,7 +358,7 @@ class Catalog {
     * @summary: Get similar products
     * @description: Use this API to retrieve products similar to the one specified by its slug. You can search not only similar looking products, but also those that are sold by same seller, or those that belong to the same category, price, specifications, etc.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/*** @param {string} arg.similarType - Similarity criteria such as basic, visual, price, seller, category and spec. Visual - Products having similar patterns, Price - Products in similar price range, Seller - Products sold by the same seller, Category - Products belonging to the same category, e.g. sports shoes, Spec - Products having similar specifications, e.g. phones with same memory.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/* @param {string} arg.similarType - Similarity criteria such as basic, visual, price, seller, category and spec. Visual - Products having similar patterns, Price - Products in similar price range, Seller - Products sold by the same seller, Category - Products belonging to the same category, e.g. sports shoes, Spec - Products having similar specifications, e.g. phones with same memory.
     
     * @return {Promise<SimilarProductByTypeResponse>} - success response
     **/
@@ -391,7 +391,7 @@ class Catalog {
     * @summary: Get variant of a particular product
     * @description: A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/**
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
     
     * @return {Promise<ProductVariantsResponse>} - success response
     **/
@@ -554,7 +554,7 @@ class Catalog {
     * @summary: Get all the products
     * @description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
     * @param {Object} arg - arg object.
-    * @param {string} [arg.q] - The search query for entering partial or full name of product, brand, category, or collection.* @param {string} [arg.f] - The search filter parameters. Filter parameters will be passed in **f** parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition.* @param {boolean} [arg.filters] - This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters.* @param {string} [arg.sortOn] - The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below.* @param {string} [arg.pageId] - Page ID to retrieve next set of results.* @param {number} [arg.pageSize] - The number of items to retrieve in each page.* @param {number} [arg.pageNo] - The page number to navigate through the given set of results.* @param {string} [arg.pageType] - Available pagination types are cursor or number.
+    * @param {string} [arg.q] - The search query for entering partial or full name of product, brand, category, or collection.* @param {string} [arg.f] - The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition.* @param {boolean} [arg.filters] - This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters.* @param {string} [arg.sortOn] - The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below.* @param {string} [arg.pageId] - Page ID to retrieve next set of results.* @param {number} [arg.pageSize] - The number of items to retrieve in each page.* @param {number} [arg.pageNo] - The page number to navigate through the given set of results.* @param {string} [arg.pageType] - Available pagination types are cursor or number.
     
     * @return {Promise<ProductListingResponse>} - success response
     **/
@@ -647,7 +647,7 @@ class Catalog {
     * @description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
     * @param {Object} arg - arg object.
     * @param {string} [arg.q] - The search query for entering partial or full name of product, brand, category, or collection.
-    * @param {string} [arg.f] - The search filter parameters. Filter parameters will be passed in **f** parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition.
+    * @param {string} [arg.f] - The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition.
     * @param {boolean} [arg.filters] - This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters.
     * @param {string} [arg.sortOn] - The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below.
     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -686,7 +686,7 @@ class Catalog {
     * @summary: Get all the brands
     * @description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
     * @param {Object} arg - arg object.
-    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint **/service/application/catalog/v1.0/departments/*** @param {number} [arg.pageNo] - The page number to navigate through the given set of results.* @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/* @param {number} [arg.pageNo] - The page number to navigate through the given set of results.* @param {number} [arg.pageSize] - The number of items to retrieve in each page.
     
     * @return {Promise<BrandListingResponse>} - success response
     **/
@@ -740,7 +740,7 @@ class Catalog {
     * @summary: Get all the brands
     * @description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
     * @param {Object} arg - arg object.
-    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint **/service/application/catalog/v1.0/departments/**
+    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/
     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
     
     **/
@@ -772,7 +772,7 @@ class Catalog {
     * @summary: Get metadata of a brand
     * @description: Fetch metadata of a brand such as name, information, logo, banner, etc.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint **/service/application/catalog/v1.0/brands/**.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/.
     
     * @return {Promise<BrandDetailResponse>} - success response
     **/
@@ -803,7 +803,7 @@ class Catalog {
     * @summary: List all the categories
     * @description: Use this API to list all the categories. You can also filter the categories by department.
     * @param {Object} arg - arg object.
-    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint **/service/application/catalog/v1.0/departments/**
+    * @param {string} [arg.department] - The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/
     
     * @return {Promise<CategoryListingResponse>} - success response
     **/
@@ -835,7 +835,7 @@ class Catalog {
     * @summary: Get metadata of a category
     * @description: Fetch metadata of a category such as name, information, logo, banner, etc.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint **/service/application/catalog/v1.0/brands/**.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/.
     
     * @return {Promise<CategoryMetaResponse>} - success response
     **/
@@ -1091,7 +1091,7 @@ class Catalog {
     * @summary: Get the items in a collection
     * @description: Get items in a collection specified by its `slug`.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint **/service/application/catalog/v1.0/collections/**.* @param {string} [arg.f] - The search filter parameters. Filter parameters will be passed in **f** parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition.* @param {boolean} [arg.filters] - This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters.* @param {string} [arg.sortOn] - The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below.* @param {string} [arg.pageId] - Page ID to retrieve next set of results.* @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/.* @param {string} [arg.f] - The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition.* @param {boolean} [arg.filters] - This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters.* @param {string} [arg.sortOn] - The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below.* @param {string} [arg.pageId] - Page ID to retrieve next set of results.* @param {number} [arg.pageSize] - The number of items to retrieve in each page.
     
     * @return {Promise<ProductListingResponse>} - success response
     **/
@@ -1170,8 +1170,8 @@ class Catalog {
     * @summary: Get the items in a collection
     * @description: Get items in a collection specified by its `slug`.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint **/service/application/catalog/v1.0/collections/**.
-    * @param {string} [arg.f] - The search filter parameters. Filter parameters will be passed in **f** parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/.
+    * @param {string} [arg.f] - The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition.
     * @param {boolean} [arg.filters] - This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters.
     * @param {string} [arg.sortOn] - The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below.
     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -1208,7 +1208,7 @@ class Catalog {
     * @summary: Get a particular collection
     * @description: Get the details of a collection by its `slug`.
     * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint **/service/application/catalog/v1.0/collections/**.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/.
     
     * @return {Promise<CollectionDetailResponse>} - success response
     **/
@@ -1323,39 +1323,6 @@ class Catalog {
     
     /**
     *
-    * @summary: Follow an entity (product/brand/collection)
-    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed, i.e. products, brands, or collections.* @param {string} arg.collectionId - The ID of the collection type.
-    
-    * @return {Promise<FollowPostResponse>} - success response
-    **/
-        followById({
-            collectionType,
-            collectionId
-            
-        } = {}) {
-            const { error } = CatalogValidator.followById().validate({ collectionType,
-            collectionId
-             },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(error);
-            }
-            const query = {};
-            
-
-            return APIClient.execute(
-                    this._conf,
-                    "post",
-                    `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-                    query,
-                     undefined ,
-            );
-        }
-        
-    
-    /**
-    *
     * @summary: Unfollow an entity (product/brand/collection)
     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
     * @param {Object} arg - arg object.
@@ -1380,6 +1347,39 @@ class Catalog {
             return APIClient.execute(
                     this._conf,
                     "delete",
+                    `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+                    query,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Follow an entity (product/brand/collection)
+    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed, i.e. products, brands, or collections.* @param {string} arg.collectionId - The ID of the collection type.
+    
+    * @return {Promise<FollowPostResponse>} - success response
+    **/
+        followById({
+            collectionType,
+            collectionId
+            
+        } = {}) {
+            const { error } = CatalogValidator.followById().validate({ collectionType,
+            collectionId
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            const query = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "post",
                     `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
                     query,
                      undefined ,

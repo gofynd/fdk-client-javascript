@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -333,7 +333,7 @@ const data = await catalog.getProductDetailBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** | 
+| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ | 
 
 Use this API to retrieve a product by its slug value.
 
@@ -382,7 +382,7 @@ const data = await catalog.getProductSizesBySlug(slug,storeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** | 
+| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ | 
 | storeId | integer | The ID of the store that is selling the product, e.g. 1,2,3. | 
 
 A product can have multiple sizes. Use this API to fetch all the available sizes of a product.
@@ -432,8 +432,8 @@ const data = await catalog.getProductPriceBySlug(slug,size,pincode,storeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** | 
-| size | string | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/sizes** | 
+| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ | 
+| size | string | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes | 
 | pincode | string | The PIN Code of the area near which the selling locations should be searched, e.g. 400059 | 
 | storeId | string | The ID of the store that is selling the product, e.g. 1,2,3. | 
 
@@ -484,8 +484,8 @@ const data = await catalog.getProductSellersBySlug(slug,size,pincode,pageNo,page
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** | 
-| size | string | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/sizes** | 
+| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ | 
+| size | string | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes | 
 | pincode | string | The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059 | 
 | pageNo | integer | The page number to navigate through the given set of results. | 
 | pageSize | integer | The number of items to retrieve in each page. | 
@@ -537,7 +537,7 @@ const data = await catalog.getProductComparisonBySlugs(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | array | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/**. | 
+| slug | array | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/. | 
 
 Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
 
@@ -586,7 +586,7 @@ const data = await catalog.getSimilarComparisonProductBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** | 
+| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ | 
 
 Use this API to compare a given product automatically with similar products. Only one slug is needed.
 
@@ -635,7 +635,7 @@ const data = await catalog.getComparedFrequentlyProductBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** | 
+| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ | 
 
 Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed.
 
@@ -684,7 +684,7 @@ const data = await catalog.getProductSimilarByIdentifier(slug,similarType);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** | 
+| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ | 
 | similarType | string | Similarity criteria such as basic, visual, price, seller, category and spec. Visual - Products having similar patterns, Price - Products in similar price range, Seller - Products sold by the same seller, Category - Products belonging to the same category, e.g. sports shoes, Spec - Products having similar specifications, e.g. phones with same memory. | 
 
 Use this API to retrieve products similar to the one specified by its slug. You can search not only similar looking products, but also those that are sold by same seller, or those that belong to the same category, price, specifications, etc.
@@ -734,7 +734,7 @@ const data = await catalog.getProductVariantsBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint **/service/application/catalog/v1.0/products/** | 
+| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ | 
 
 A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug.
 
@@ -888,7 +888,7 @@ const data = await catalog.getProducts(q,f,filters,sortOn,pageId,pageSize,pageNo
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | q | string | The search query for entering partial or full name of product, brand, category, or collection. | 
-| f | string | The search filter parameters. Filter parameters will be passed in **f** parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. | 
+| f | string | The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. | 
 | filters | boolean | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. | 
 | sortOn | string | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. | 
 | pageId | string | Page ID to retrieve next set of results. | 
@@ -943,7 +943,7 @@ const data = await catalog.getBrands(department,pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| department | string | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint **/service/application/catalog/v1.0/departments/** | 
+| department | string | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/ | 
 | pageNo | integer | The page number to navigate through the given set of results. | 
 | pageSize | integer | The number of items to retrieve in each page. | 
 
@@ -994,7 +994,7 @@ const data = await catalog.getBrandDetailBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint **/service/application/catalog/v1.0/brands/**. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/. | 
 
 Fetch metadata of a brand such as name, information, logo, banner, etc.
 
@@ -1043,7 +1043,7 @@ const data = await catalog.getCategories(department);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| department | string | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint **/service/application/catalog/v1.0/departments/** | 
+| department | string | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/ | 
 
 Use this API to list all the categories. You can also filter the categories by department.
 
@@ -1092,7 +1092,7 @@ const data = await catalog.getCategoryDetailBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint **/service/application/catalog/v1.0/brands/**. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/. | 
 
 Fetch metadata of a category such as name, information, logo, banner, etc.
 
@@ -1339,8 +1339,8 @@ const data = await catalog.getCollectionItemsBySlug(slug,f,filters,sortOn,pageId
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint **/service/application/catalog/v1.0/collections/**. | 
-| f | string | The search filter parameters. Filter parameters will be passed in **f** parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. | 
+| f | string | The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. | 
 | filters | boolean | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. | 
 | sortOn | string | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. | 
 | pageId | string | Page ID to retrieve next set of results. | 
@@ -1393,7 +1393,7 @@ const data = await catalog.getCollectionDetailBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint **/service/application/catalog/v1.0/collections/**. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. | 
 
 Get the details of a collection by its `slug`.
 
@@ -1480,15 +1480,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow an entity (product/brand/collection)
+#### unfollowById
+Unfollow an entity (product/brand/collection)
 
 ```javascript
 // Promise
-const promise = catalog.followById(collectionType,collectionId);
+const promise = catalog.unfollowById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.followById(collectionType,collectionId);
+const data = await catalog.unfollowById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1496,7 +1496,7 @@ const data = await catalog.followById(collectionType,collectionId);
 | collectionType | string | Type of collection followed, i.e. products, brands, or collections. | 
 | collectionId | string | The ID of the collection type. | 
 
-Follow a particular entity such as product, brand, collection specified by its ID.
+You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
 
 *Success Response:*
 
@@ -1530,15 +1530,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-Unfollow an entity (product/brand/collection)
+#### followById
+Follow an entity (product/brand/collection)
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collectionType,collectionId);
+const promise = catalog.followById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.unfollowById(collectionType,collectionId);
+const data = await catalog.followById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1546,7 +1546,7 @@ const data = await catalog.unfollowById(collectionType,collectionId);
 | collectionType | string | Type of collection followed, i.e. products, brands, or collections. | 
 | collectionId | string | The ID of the collection type. | 
 
-You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+Follow a particular entity such as product, brand, collection specified by its ID.
 
 *Success Response:*
 
