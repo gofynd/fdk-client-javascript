@@ -1323,39 +1323,6 @@ class Catalog {
     
     /**
     *
-    * @summary: Unfollow an entity (product/brand/collection)
-    * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed, i.e. products, brands, or collections.* @param {string} arg.collectionId - The ID of the collection type.
-    
-    * @return {Promise<FollowPostResponse>} - success response
-    **/
-        unfollowById({
-            collectionType,
-            collectionId
-            
-        } = {}) {
-            const { error } = CatalogValidator.unfollowById().validate({ collectionType,
-            collectionId
-             },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(error);
-            }
-            const query = {};
-            
-
-            return APIClient.execute(
-                    this._conf,
-                    "delete",
-                    `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-                    query,
-                     undefined ,
-            );
-        }
-        
-    
-    /**
-    *
     * @summary: Follow an entity (product/brand/collection)
     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
     * @param {Object} arg - arg object.
@@ -1380,6 +1347,39 @@ class Catalog {
             return APIClient.execute(
                     this._conf,
                     "post",
+                    `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+                    query,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Unfollow an entity (product/brand/collection)
+    * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed, i.e. products, brands, or collections.* @param {string} arg.collectionId - The ID of the collection type.
+    
+    * @return {Promise<FollowPostResponse>} - success response
+    **/
+        unfollowById({
+            collectionType,
+            collectionId
+            
+        } = {}) {
+            const { error } = CatalogValidator.unfollowById().validate({ collectionType,
+            collectionId
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(error);
+            }
+            const query = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "delete",
                     `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
                     query,
                      undefined ,
