@@ -22,7 +22,7 @@ class OAuthClient {
     this.token_expires_in = null;
   }
 
-  getAccessToken(){
+  getAccessToken() {
     return this.token;
   }
 
