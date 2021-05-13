@@ -36,7 +36,6 @@ jobs:
     - name: Run Prettier & Generate Typings
       run: |
         npm run prettier
-        npm run typings
 
     - name: Commit files
       run: |

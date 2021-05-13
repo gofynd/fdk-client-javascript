@@ -164,13 +164,13 @@ afterAll(() => {
           expect(true).toBeTruthy();
         })
       
-        it("followById testing", async() => {
+        it("unfollowById testing", async() => {
           
           
           expect(true).toBeTruthy();
         })
       
-        it("unfollowById testing", async() => {
+        it("followById testing", async() => {
           
           
           expect(true).toBeTruthy();
