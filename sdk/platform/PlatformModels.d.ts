@@ -45,12 +45,12 @@ export class OrderValidator {
 export class CatalogValidator {
     static getProductBundle(): any;
     static createProductBundle(): any;
-    static getProductBundleDetail(): any;
     static updateProductBundle(): any;
+    static getProductBundleDetail(): any;
     static getSizeGuides(): any;
     static createSizeGuide(): any;
-    static getSizeGuide(): any;
     static updateSizeGuide(): any;
+    static getSizeGuide(): any;
     static getSellerInsights(): any;
     static createMarketplaceOptin(): any;
     static getMarketplaceOptinDetail(): any;
@@ -72,13 +72,13 @@ export class CatalogValidator {
     static listTemplateBrandTypeValues(): any;
     static listCategories(): any;
     static createCategories(): any;
-    static getCategoryData(): any;
     static updateCategory(): any;
+    static getCategoryData(): any;
     static getProducts(): any;
     static createProduct(): any;
     static deleteProduct(): any;
-    static getProduct(): any;
     static editProduct(): any;
+    static getProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static getProductBulkUploadHistory(): any;
@@ -101,8 +101,8 @@ export class CatalogValidator {
     static exportInventoryConfig(): any;
     static getAllHsnCodes(): any;
     static createHsnCode(): any;
-    static getHsnCode(): any;
     static updateHsnCode(): any;
+    static getHsnCode(): any;
     static bulkHsnCode(): any;
 }
 export class CompanyProfileValidator {
