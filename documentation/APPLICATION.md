@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -1480,15 +1480,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow an entity (product/brand/collection)
+#### unfollowById
+Unfollow an entity (product/brand/collection)
 
 ```javascript
 // Promise
-const promise = catalog.followById(collectionType,collectionId);
+const promise = catalog.unfollowById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.followById(collectionType,collectionId);
+const data = await catalog.unfollowById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1496,7 +1496,7 @@ const data = await catalog.followById(collectionType,collectionId);
 | collectionType | string | Type of collection followed, i.e. products, brands, or collections. | 
 | collectionId | string | The ID of the collection type. | 
 
-Follow a particular entity such as product, brand, collection specified by its ID.
+You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
 
 *Success Response:*
 
@@ -1530,15 +1530,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-Unfollow an entity (product/brand/collection)
+#### followById
+Follow an entity (product/brand/collection)
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collectionType,collectionId);
+const promise = catalog.followById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.unfollowById(collectionType,collectionId);
+const data = await catalog.followById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1546,7 +1546,7 @@ const data = await catalog.unfollowById(collectionType,collectionId);
 | collectionType | string | Type of collection followed, i.e. products, brands, or collections. | 
 | collectionId | string | The ID of the collection type. | 
 
-You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+Follow a particular entity such as product, brand, collection specified by its ID.
 
 *Success Response:*
 
@@ -10250,7 +10250,7 @@ Schema: `BadRequest`
 
 
 #### getApplicationQRCode
-Create application QR Code
+Create QR Code of an app
 
 ```javascript
 // Promise
@@ -10263,13 +10263,13 @@ const data = await share.getApplicationQRCode();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Create application QR Code
+Use this API to create a QR code of an app for sharing it with users who want to use the app.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 Schema: `QRCodeResp`
@@ -10286,7 +10286,7 @@ Schema: `QRCodeResp`
 
 
 #### getProductQRCodeBySlug
-Create product QR Code
+Create QR Code of a product
 
 ```javascript
 // Promise
@@ -10298,15 +10298,15 @@ const data = await share.getProductQRCodeBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | The unique identifier of a product | 
+| slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint. | 
 
-Create product QR Code
+Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 Schema: `QRCodeResp`
@@ -10335,7 +10335,7 @@ Schema: `ErrorRes`
 
 
 #### getCollectionQRCodeBySlug
-Create collection QR Code
+Create QR Code of a collection
 
 ```javascript
 // Promise
@@ -10347,15 +10347,15 @@ const data = await share.getCollectionQRCodeBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | The unique identifier of a collection | 
+| slug | string | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint. | 
 
-Create collection QR Code
+Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 Schema: `QRCodeResp`
@@ -10384,7 +10384,7 @@ Schema: `ErrorRes`
 
 
 #### getUrlQRCode
-Create url QR Code
+Create QR Code of a URL
 
 ```javascript
 // Promise
@@ -10396,15 +10396,15 @@ const data = await share.getUrlQRCode(url);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| url | string | Url | 
+| url | string | A link or a web address | 
 
-Create url QR Code
+Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 Schema: `QRCodeResp`
@@ -10433,7 +10433,7 @@ Schema: `ErrorRes`
 
 
 #### createShortLink
-Create short link
+Create a short link
 
 ```javascript
 // Promise
@@ -10446,13 +10446,13 @@ const data = await share.createShortLink(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Create short link
+Use this API to create a short link that is easy to write/share/read as compared to long URLs.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ShortLinkRes` for more details.
 
 
 Schema: `ShortLinkRes`
@@ -10493,15 +10493,15 @@ const data = await share.getShortLinkByHash(hash);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| hash | string | Hash of short link | 
+| hash | string | A string value used for converting long URL to short URL and vice-versa. | 
 
-Get short link by hash
+Use this API to get a short link by using a hash value.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ShortLinkRes` for more details.
 
 
 Schema: `ShortLinkRes`
@@ -10542,15 +10542,15 @@ const data = await share.getOriginalShortLinkByHash(hash);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| hash | string | Hash of short link | 
+| hash | string | A string value used for converting long URL to short URL and vice-versa. | 
 
-Get original link by hash
+Use this API to retrieve the original link from a short-link by using a hash value.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ShortLinkRes` for more details.
 
 
 Schema: `ShortLinkRes`
@@ -13258,7 +13258,7 @@ Schema: `Error`
 
 
 #### createAbuseReport
-post a new abuse request
+Post a new abuse request
 
 ```javascript
 // Promise
@@ -13271,13 +13271,13 @@ const data = await feedback.createAbuseReport(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Report a new abuse for specific entity with description text.
+Use this API to report a specific entity (question/review/comment) for abuse.
 
 *Success Response:*
 
 
 
-ok
+Success. Returns an abuse ID.
 
 
 Schema: `InsertResponse`
@@ -13289,7 +13289,7 @@ Schema: `InsertResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13319,13 +13319,13 @@ const data = await feedback.updateAbuseReport(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Update the abuse details like status and description text.
+Use this API to update the abuse details, i.e. status and description.
 
 *Success Response:*
 
 
 
-ok
+Success.
 
 
 Schema: `UpdateResponse`
@@ -13337,7 +13337,7 @@ Schema: `UpdateResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13354,7 +13354,7 @@ Schema: `FeedbackError`
 
 
 #### getAbuseReports
-Get list of abuse data
+Get a list of abuse data
 
 ```javascript
 // Promise
@@ -13366,19 +13366,19 @@ const data = await feedback.getAbuseReports(entityId,entityType,id,pageId,pageSi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entityId | string | entity id | 
-| entityType | string | entity type | 
+| entityId | string | ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID). | 
+| entityType | string | Type of entity, e.g. question, review or comment. | 
 | id | string | abuse id | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
+| pageId | string | Pagination page ID to retrieve next set of results. | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-Get the list of abuse data from entity type and entity ID.
+Use this API to retrieve a list of abuse data from entity type and entity ID.
 
 *Success Response:*
 
 
 
-ok
+Success. Check the example shown below or refer `ReportAbuseGetResponse` for more details.
 
 
 Schema: `ReportAbuseGetResponse`
@@ -13390,7 +13390,7 @@ Schema: `ReportAbuseGetResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13407,7 +13407,7 @@ Schema: `FeedbackError`
 
 
 #### getAttributes
-Get list of attribute data
+Get a list of attribute data
 
 ```javascript
 // Promise
@@ -13419,16 +13419,16 @@ const data = await feedback.getAttributes(pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | integer | pagination page no | 
-| pageSize | integer | pagination page size | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-Provides a list of all attribute data.
+Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
 
 *Success Response:*
 
 
 
-ok
+Success. Check the example shown below or refer `AttributeResponse` for more details.
 
 
 Schema: `AttributeResponse`
@@ -13440,7 +13440,7 @@ Schema: `AttributeResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13470,13 +13470,13 @@ const data = await feedback.createAttribute(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Add a new attribute with its name, slug and description.
+Use this API to add a new attribute (e.g. product quality/material/value for money) with its name, slug and description.
 
 *Success Response:*
 
 
 
-ok
+Success. Returns an attribute ID.
 
 
 Schema: `InsertResponse`
@@ -13488,7 +13488,7 @@ Schema: `InsertResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13505,7 +13505,7 @@ Schema: `FeedbackError`
 
 
 #### getAttribute
-Get single attribute data
+Get data of a single attribute
 
 ```javascript
 // Promise
@@ -13517,15 +13517,15 @@ const data = await feedback.getAttribute(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | Slug of attribute | 
+| slug | string | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. | 
 
-Get a single attribute data from a given slug.
+Use this API to retrieve a single attribute data from a given slug.
 
 *Success Response:*
 
 
 
-ok
+Success. Check the example shown below or refer `Attribute` for more details.
 
 
 Schema: `Attribute`
@@ -13537,7 +13537,7 @@ Schema: `Attribute`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13554,7 +13554,7 @@ Schema: `FeedbackError`
 
 
 #### updateAttribute
-Update attribute details
+Update details of an attribute 
 
 ```javascript
 // Promise
@@ -13566,15 +13566,15 @@ const data = await feedback.updateAttribute(slug,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | Slug of attribute | 
+| slug | string | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. | 
 
-Update the attribute's name and description.
+Use this API update the attribute's name and description.
 
 *Success Response:*
 
 
 
-ok
+Success.
 
 
 Schema: `UpdateResponse`
@@ -13586,7 +13586,7 @@ Schema: `UpdateResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13603,7 +13603,7 @@ Schema: `FeedbackError`
 
 
 #### createComment
-post a new comment
+Post a new comment
 
 ```javascript
 // Promise
@@ -13616,13 +13616,13 @@ const data = await feedback.createComment(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-This is used to add a new comment for specific entity.
+Use this API to add a new comment for a specific entity.
 
 *Success Response:*
 
 
 
-ok
+Success. Returns a comment ID.
 
 
 Schema: `InsertResponse`
@@ -13634,7 +13634,7 @@ Schema: `InsertResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13651,7 +13651,7 @@ Schema: `FeedbackError`
 
 
 #### updateComment
-Update comment status
+Update the status of a comment
 
 ```javascript
 // Promise
@@ -13664,13 +13664,13 @@ const data = await feedback.updateComment(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Update the comment status (active/approve) or text.
+Use this API to update the comment status (active or approve) along with new comment if any.
 
 *Success Response:*
 
 
 
-ok
+Success.
 
 
 Schema: `UpdateResponse`
@@ -13682,7 +13682,7 @@ Schema: `UpdateResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13699,7 +13699,7 @@ Schema: `FeedbackError`
 
 
 #### getComments
-Get list of comments
+Get a list of comments
 
 ```javascript
 // Promise
@@ -13711,20 +13711,20 @@ const data = await feedback.getComments(entityType,id,entityId,userId,pageId,pag
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entityType | string | entity type | 
-| id | string | comment id | 
-| entityId | string | entity id | 
-| userId | string | user id - flag/filter to get comments for user | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
+| entityType | string | Type of entity, e.g. question, review or comment. | 
+| id | string | Comment ID | 
+| entityId | string | ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID). | 
+| userId | string | User ID - a flag/filter to get comments for a user. | 
+| pageId | string | Pagination page ID to retrieve next set of results. | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-Get the list of comments from specific entity type.
+Use this API to retrieve a list of comments for a specific entity type, e.g. products.
 
 *Success Response:*
 
 
 
-ok
+Success. Check the example shown below or refer `CommentGetResponse` for more details.
 
 
 Schema: `CommentGetResponse`
@@ -13736,7 +13736,7 @@ Schema: `CommentGetResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13753,7 +13753,7 @@ Schema: `FeedbackError`
 
 
 #### checkEligibility
-Checks eligibility and cloud media config
+Checks eligibility to rate and review, and shows the cloud media configuration
 
 ```javascript
 // Promise
@@ -13765,16 +13765,16 @@ const data = await feedback.checkEligibility(entityType,entityId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
+| entityType | string | Type of entity, e.g. question, rate, review, answer, or comment. | 
+| entityId | string | ID of the eligible entity as specified in the entity type. | 
 
-Checks eligibility to rate and review and cloud media configuration
+Use this API to check whether an entity is eligible to be rated and reviewed. Moreover, it shows the cloud media configuration too.
 
 *Success Response:*
 
 
 
-ok
+Success. Returns a Product object. Check the example shown below or refer `CheckEligibilityResponse` for more details.
 
 
 Schema: `CheckEligibilityResponse`
@@ -13786,7 +13786,7 @@ Schema: `CheckEligibilityResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13816,13 +13816,13 @@ const data = await feedback.deleteMedia();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Delete Media for the given entity IDs.
+Use this API to delete media for an entity ID.
 
 *Success Response:*
 
 
 
-ok
+Success.
 
 
 Schema: `UpdateResponse`
@@ -13834,7 +13834,7 @@ Schema: `UpdateResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13864,13 +13864,13 @@ const data = await feedback.createMedia(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Add Media list for specific entity.
+Use this API to add media to an entity, e.g. review.
 
 *Success Response:*
 
 
 
-ok
+Success. Returns media IDs.
 
 
 Schema: `InsertResponse`
@@ -13882,7 +13882,7 @@ Schema: `InsertResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13912,13 +13912,13 @@ const data = await feedback.updateMedia(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Update Media (archive/approve) for the given entity.
+Use this API to update media (archive/approve) for an entity.
 
 *Success Response:*
 
 
 
-ok
+Success.
 
 
 Schema: `UpdateResponse`
@@ -13930,7 +13930,7 @@ Schema: `UpdateResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -13959,19 +13959,19 @@ const data = await feedback.getMedias(entityType,entityId,id,pageId,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | vote id | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
+| entityType | string | Type of entity, e.g. question or product. | 
+| entityId | string | ID of the eligible entity as specified in the entity type(question ID/product ID). | 
+| id | string | ID of the media. | 
+| pageId | string | Pagination page ID to retrieve next set of results. | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-Get Media from the given entity type and entity ID.
+Use this API to retrieve all media from an entity.
 
 *Success Response:*
 
 
 
-ok
+Success. Check the example shown below or refer `MediaGetResponse` for more details.
 
 
 Schema: `MediaGetResponse`
@@ -13983,7 +13983,7 @@ Schema: `MediaGetResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14012,32 +14012,31 @@ const data = await feedback.getReviewSummaries(entityType,entityId,id,pageId,pag
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | review summary identifier | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
+| entityType | string | Type of entity, e.g. product, delivery, seller, order placed, order delivered, application, or template. | 
+| entityId | string | ID of the eligible entity as specified in the entity type. | 
+| id | string | Review summary identifier. | 
+| pageId | string | Pagination page ID to retrieve next set of results. | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-Review summary gives ratings and attribute metrics of a review per entity
-It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
 
 *Success Response:*
 
 
 
-success
+Success. Check the example shown below or refer `ReviewMetricGetResponse` for more details.
 
 
-Schema: `RatingGetResponse`
-
-
-
+Schema: `ReviewMetricGetResponse`
 
 
 
 
 
-Bad request
+
+
+
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14067,14 +14066,13 @@ const data = await feedback.createReview(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Add customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
+Use this API to add customer reviews for a specific entity along with the following data: attributes rating, entity rating, title, description, media resources and template ID.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns a review ID.
 
 
 Schema: `UpdateResponse`
@@ -14086,7 +14084,7 @@ Schema: `UpdateResponse`
 
 
 
-Bad Request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14116,14 +14114,13 @@ const data = await feedback.updateReview(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Update customer reviews for specific entity with following data:
-attributes rating, entity rating, title, description, media resources and template id.
+Use this API to update customer reviews for a specific entity along with following data: attributes rating, entity rating, title, description, media resources and template ID.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `UpdateResponse`
@@ -14135,7 +14132,7 @@ Schema: `UpdateResponse`
 
 
 
-Bad Request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14164,25 +14161,25 @@ const data = await feedback.getReviews(entityType,entityId,id,userId,media,ratin
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | review id | 
-| userId | string | user id | 
-| media | string | media type e.g. image | video | video_file | video_link | 
-| rating | array | rating filter, 1-5 | 
-| attributeRating | array | attribute rating filter | 
-| facets | boolean | facets (true|false) | 
-| sort | string | sort by : default | top | recent | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
+| entityType | string | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, application, or template. | 
+| entityId | string | ID of the eligible entity as specified in the entity type. | 
+| id | string | ID of the review. | 
+| userId | string | ID of the user. | 
+| media | string | media type, e.g. image | video | video_file | video_link | 
+| rating | array | rating filter, e.g. 1-5 | 
+| attributeRating | array | Filter for attribute rating. | 
+| facets | boolean | This is a boolean value for enabling metadata (facets). Selecting *true* will enable facets. | 
+| sort | string | Sort by: default | top | recent | 
+| pageId | string | Pagination page ID to retrieve next set of results. | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-This is used to get the list of customer reviews based on entity and provided filters.
+Use this API to retrieve a list of customer reviews based on entity and filters provided.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ReviewGetResponse` for more details.
 
 
 Schema: `ReviewGetResponse`
@@ -14194,7 +14191,7 @@ Schema: `ReviewGetResponse`
 
 
 
-Bad Request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14211,7 +14208,7 @@ Schema: `FeedbackError`
 
 
 #### getTemplates
-Get the templates for product or l3 type
+Get the feedback templates for a product or l3
 
 ```javascript
 // Promise
@@ -14223,29 +14220,29 @@ const data = await feedback.getTemplates(templateId,entityId,entityType);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| templateId | string | template id | 
-| entityId | string | entity id | 
-| entityType | string | entity type e.g. product | l3 | 
+| templateId | string | ID of the feedback template. | 
+| entityId | string | ID of the eligible entity as specified in the entity type. | 
+| entityType | string | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, or application. | 
 
-This is used to get the templates details.
+Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `TemplateGetResponse` for more details.
 
 
-Schema: `CursorGetResponse`
-
-
-
+Schema: `TemplateGetResponse`
 
 
 
 
 
-Bad Request
+
+
+
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14275,14 +14272,13 @@ const data = await feedback.createQuestion(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-This is used to create a new question with following data:
-tags, text, type, choices for MCQ type questions, maximum length of answer.
+Use this API to create a new question with following data- tags, text, type, choices for MCQ type questions, maximum length of answer.
 
 *Success Response:*
 
 
 
-ok
+Success. Returns a qna ID.
 
 
 Schema: `InsertResponse`
@@ -14294,7 +14290,7 @@ Schema: `InsertResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14311,7 +14307,7 @@ Schema: `FeedbackError`
 
 
 #### updateQuestion
-Update question
+Update a question
 
 ```javascript
 // Promise
@@ -14324,13 +14320,13 @@ const data = await feedback.updateQuestion(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-This is used to update question's status, tags and choices.
+Use this API to update the status of a question, its tags and its choices.
 
 *Success Response:*
 
 
 
-ok
+Success.
 
 
 Schema: `UpdateResponse`
@@ -14342,7 +14338,7 @@ Schema: `UpdateResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14371,20 +14367,20 @@ const data = await feedback.getQuestionAndAnswers(entityType,entityId,id,showAns
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| entityType | string | entity type | 
-| entityId | string | entity id | 
-| id | string | qna id | 
-| showAnswer | boolean | show answer flag | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
+| entityType | string | Type of entity, e.g. product, l3, etc. | 
+| entityId | string | ID of the eligible entity as specified in the entity type. | 
+| id | string | QNA ID | 
+| showAnswer | boolean | This is a boolean value. Select *true* to display answers given. | 
+| pageId | string | Pagination page ID to retrieve next set of results. | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-This is used to get a list of questions and its answers.
+Use this API to retrieve a list of questions and answers for a given entity.
 
 *Success Response:*
 
 
 
-ok
+Success. Check the example shown below or refer `QNAGetResponse` for more details.
 
 
 Schema: `QNAGetResponse`
@@ -14396,7 +14392,7 @@ Schema: `QNAGetResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14413,7 +14409,7 @@ Schema: `FeedbackError`
 
 
 #### getVotes
-Get list of votes
+Get a list of votes
 
 ```javascript
 // Promise
@@ -14425,18 +14421,18 @@ const data = await feedback.getVotes(id,refType,pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string | vote id | 
-| refType | string | entity type e.g. review | comment | 
-| pageNo | integer | pagination page no | 
-| pageSize | integer | pagination page size | 
+| id | string | vote ID | 
+| refType | string | Entity type, e.g. review | comment. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
 
 *Success Response:*
 
 
 
-ok
+Success. Check the example shown below or refer `VoteResponse` for more details.
 
 
 Schema: `VoteResponse`
@@ -14448,7 +14444,7 @@ Schema: `VoteResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14478,13 +14474,13 @@ const data = await feedback.createVote(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-This is used to create a new vote and the actions can be upvote or downvote.
+Use this API to create a new vote, where the action could be an upvote or a downvote. This is useful when you want to give a vote (say upvote) to a review (ref_type) of a product (entity_type).
 
 *Success Response:*
 
 
 
-ok
+Success. Returns a vote ID.
 
 
 Schema: `InsertResponse`
@@ -14496,7 +14492,7 @@ Schema: `InsertResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`
@@ -14513,7 +14509,7 @@ Schema: `FeedbackError`
 
 
 #### updateVote
-Update vote
+Update a vote
 
 ```javascript
 // Promise
@@ -14526,13 +14522,13 @@ const data = await feedback.updateVote(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-This is used to update the vote and the actions can be upvote or downvote.
+Use this API to update a vote with a new action, i.e. either an upvote or a downvote.
 
 *Success Response:*
 
 
 
-ok
+Success.
 
 
 Schema: `UpdateResponse`
@@ -14544,7 +14540,7 @@ Schema: `UpdateResponse`
 
 
 
-Bad request
+Bad request. See the error object in the response body for specific reason.
 
 
 Schema: `FeedbackError`

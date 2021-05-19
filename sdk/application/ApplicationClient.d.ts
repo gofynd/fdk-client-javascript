@@ -509,10 +509,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -522,10 +522,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -1576,36 +1576,38 @@ declare class Share {
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<QRCodeResp>} - Success response
-     * @summary: Create application QR Code
-     * @description: Create application QR Code
+     * @summary: Create QR Code of an app
+     * @description: Use this API to create a QR code of an app for sharing it with users who want to use the app.
      */
     getApplicationQRCode({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - The unique identifier of a product
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a product. You can get slug value from the endpoint.
      * @returns {Promise<QRCodeResp>} - Success response
-     * @summary: Create product QR Code
-     * @description: Create product QR Code
+     * @summary: Create QR Code of a product
+     * @description: Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
      */
     getProductQRCodeBySlug({ slug }?: {
         slug: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - The unique identifier of a collection
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a collection. You can get slug value from the endpoint.
      * @returns {Promise<QRCodeResp>} - Success response
-     * @summary: Create collection QR Code
-     * @description: Create collection QR Code
+     * @summary: Create QR Code of a collection
+     * @description: Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
      */
     getCollectionQRCodeBySlug({ slug }?: {
         slug: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.url - Url
+     * @param {string} arg.url - A link or a web address
      * @returns {Promise<QRCodeResp>} - Success response
-     * @summary: Create url QR Code
-     * @description: Create url QR Code
+     * @summary: Create QR Code of a URL
+     * @description: Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
      */
     getUrlQRCode({ url }?: {
         url: string;
@@ -1614,28 +1616,30 @@ declare class Share {
      * @param {Object} arg - Arg object.
      * @param {ShortLinkReq} arg.body
      * @returns {Promise<ShortLinkRes>} - Success response
-     * @summary: Create short link
-     * @description: Create short link
+     * @summary: Create a short link
+     * @description: Use this API to create a short link that is easy to write/share/read as compared to long URLs.
      */
     createShortLink({ body }?: {
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.hash - Hash of short link
+     * @param {string} arg.hash - A string value used for converting long URL to
+     *   short URL and vice-versa.
      * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Get short link by hash
-     * @description: Get short link by hash
+     * @description: Use this API to get a short link by using a hash value.
      */
     getShortLinkByHash({ hash }?: {
         hash: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.hash - Hash of short link
+     * @param {string} arg.hash - A string value used for converting long URL to
+     *   short URL and vice-versa.
      * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Get original link by hash
-     * @description: Get original link by hash
+     * @description: Use this API to retrieve the original link from a short-link by using a hash value.
      */
     getOriginalShortLinkByHash({ hash }?: {
         hash: string;
@@ -2234,8 +2238,8 @@ declare class Feedback {
      * @param {Object} arg - Arg object.
      * @param {ReportAbuseRequest} arg.body
      * @returns {Promise<InsertResponse>} - Success response
-     * @summary: post a new abuse request
-     * @description: Report a new abuse for specific entity with description text.
+     * @summary: Post a new abuse request
+     * @description: Use this API to report a specific entity (question/review/comment) for abuse.
      */
     createAbuseReport({ body }?: {
         body: any;
@@ -2245,20 +2249,22 @@ declare class Feedback {
      * @param {UpdateAbuseStatusRequest} arg.body
      * @returns {Promise<UpdateResponse>} - Success response
      * @summary: Update abuse details
-     * @description: Update the abuse details like status and description text.
+     * @description: Use this API to update the abuse details, i.e. status and description.
      */
     updateAbuseReport({ body }?: {
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityId - Entity id* @param {string} arg.entityType
-     *   - entity type* @param {string} [arg.id] - abuse id* @param {string}
-     *   [arg.pageId] - pagination page id* @param {number} [arg.pageSize] -
-     *   pagination page size
+     * @param {string} arg.entityId - ID of the eligible entity as specified in
+     *   the entity type (question ID/review ID/comment ID).* @param {string}
+     *   arg.entityType - Type of entity, e.g. question, review or comment.*
+     *   @param {string} [arg.id] - abuse id* @param {string} [arg.pageId] -
+     *   Pagination page ID to retrieve next set of results.* @param {number}
+     *   [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Promise<ReportAbuseGetResponse>} - Success response
-     * @summary: Get list of abuse data
-     * @description: Get the list of abuse data from entity type and entity ID.
+     * @summary: Get a list of abuse data
+     * @description: Use this API to retrieve a list of abuse data from entity type and entity ID.
      */
     getAbuseReports({ entityId, entityType, id, pageId, pageSize }?: {
         entityId: string;
@@ -2269,12 +2275,13 @@ declare class Feedback {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityId - Entity id
-     * @param {string} arg.entityType - Entity type
+     * @param {string} arg.entityId - ID of the eligible entity as specified in
+     *   the entity type (question ID/review ID/comment ID).
+     * @param {string} arg.entityType - Type of entity, e.g. question, review or comment.
      * @param {string} [arg.id] - Abuse id
-     * @param {number} [arg.pageSize] - Pagination page size
-     * @summary: Get list of abuse data
-     * @description: Get the list of abuse data from entity type and entity ID.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @summary: Get a list of abuse data
+     * @description: Use this API to retrieve a list of abuse data from entity type and entity ID.
      */
     getAbuseReportsPaginator({ entityId, entityType, id, pageSize }?: {
         entityId: string;
@@ -2284,11 +2291,12 @@ declare class Feedback {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Pagination page no* @param {number}
-     *   [arg.pageSize] - pagination page size
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1. * @param {number}
+     *   [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Promise<AttributeResponse>} - Success response
-     * @summary: Get list of attribute data
-     * @description: Provides a list of all attribute data.
+     * @summary: Get a list of attribute data
+     * @description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
      */
     getAttributes({ pageNo, pageSize }?: {
         pageNo?: number;
@@ -2296,9 +2304,9 @@ declare class Feedback {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - Pagination page size
-     * @summary: Get list of attribute data
-     * @description: Provides a list of all attribute data.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @summary: Get a list of attribute data
+     * @description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
      */
     getAttributesPaginator({ pageSize }?: {
         pageSize?: number;
@@ -2308,28 +2316,32 @@ declare class Feedback {
      * @param {SaveAttributeRequest} arg.body
      * @returns {Promise<InsertResponse>} - Success response
      * @summary: Add a new attribute request
-     * @description: Add a new attribute with its name, slug and description.
+     * @description: Use this API to add a new attribute (e.g. product quality/material/value for money) with its name, slug and description.
      */
     createAttribute({ body }?: {
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of attribute
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of an attribute. You can get slug value from the endpoint
+     *   'service/application/feedback/v1.0/attributes'.
      * @returns {Promise<Attribute>} - Success response
-     * @summary: Get single attribute data
-     * @description: Get a single attribute data from a given slug.
+     * @summary: Get data of a single attribute
+     * @description: Use this API to retrieve a single attribute data from a given slug.
      */
     getAttribute({ slug }?: {
         slug: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of attribute
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of an attribute. You can get slug value from the endpoint
+     *   'service/application/feedback/v1.0/attributes'.
      * @param {UpdateAttributeRequest} arg.body
      * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update attribute details
-     * @description: Update the attribute's name and description.
+     * @summary: Update details of an attribute
+     * @description: Use this API update the attribute's name and description.
      */
     updateAttribute({ slug, body }?: {
         slug: string;
@@ -2339,8 +2351,8 @@ declare class Feedback {
      * @param {Object} arg - Arg object.
      * @param {CommentRequest} arg.body
      * @returns {Promise<InsertResponse>} - Success response
-     * @summary: post a new comment
-     * @description: This is used to add a new comment for specific entity.
+     * @summary: Post a new comment
+     * @description: Use this API to add a new comment for a specific entity.
      */
     createComment({ body }?: {
         body: any;
@@ -2349,38 +2361,43 @@ declare class Feedback {
      * @param {Object} arg - Arg object.
      * @param {UpdateCommentRequest} arg.body
      * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update comment status
-     * @description: Update the comment status (active/approve) or text.
+     * @summary: Update the status of a comment
+     * @description: Use this API to update the comment status (active or approve) along with new comment if any.
      */
     updateComment({ body }?: {
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type* @param {string} [arg.id] -
-     *   comment id* @param {string} [arg.entityId] - entity id* @param {string}
-     *   [arg.userId] - user id - flag/filter to get comments for user* @param
-     *   {string} [arg.pageId] - pagination page id* @param {number}
-     *   [arg.pageSize] - pagination page size
+     * @param {string} arg.entityType - Type of entity, e.g. question, review or
+     *   comment.* @param {string} [arg.id] - Comment ID* @param {string}
+     *   [arg.entityId] - ID of the eligible entity as specified in the entity
+     *   type (question ID/review ID/comment ID).* @param {string} [arg.userId]
+     *   - User ID - a flag/filter to get comments for a user.* @param {string}
+     *   [arg.pageId] - Pagination page ID to retrieve next set of results.*
+     *   @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Promise<CommentGetResponse>} - Success response
-     * @summary: Get list of comments
-     * @description: Get the list of comments from specific entity type.
+     * @summary: Get a list of comments
+     * @description: Use this API to retrieve a list of comments for a specific entity type, e.g. products.
      */
     getComments({ entityType, id, entityId, userId, pageId, pageSize }?: {
         entityType: string;
         id?: string;
         entityId?: string;
         userId?: string;
+        pageId?: string;
+        pageSize?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type
-     * @param {string} [arg.id] - Comment id
-     * @param {string} [arg.entityId] - Entity id
-     * @param {string} [arg.userId] - User id - flag/filter to get comments for user
-     * @param {number} [arg.pageSize] - Pagination page size
-     * @summary: Get list of comments
-     * @description: Get the list of comments from specific entity type.
+     * @param {string} arg.entityType - Type of entity, e.g. question, review or comment.
+     * @param {string} [arg.id] - Comment ID
+     * @param {string} [arg.entityId] - ID of the eligible entity as specified
+     *   in the entity type (question ID/review ID/comment ID).
+     * @param {string} [arg.userId] - User ID - a flag/filter to get comments for a user.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @summary: Get a list of comments
+     * @description: Use this API to retrieve a list of comments for a specific entity type, e.g. products.
      */
     getCommentsPaginator({ entityType, id, entityId, userId, pageSize }?: {
         entityType: string;
@@ -2391,11 +2408,12 @@ declare class Feedback {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type* @param {string}
-     *   arg.entityId - entity id
+     * @param {string} arg.entityType - Type of entity, e.g. question, rate,
+     *   review, answer, or comment.* @param {string} arg.entityId - ID of the
+     *   eligible entity as specified in the entity type.
      * @returns {Promise<CheckEligibilityResponse>} - Success response
-     * @summary: Checks eligibility and cloud media config
-     * @description: Checks eligibility to rate and review and cloud media configuration
+     * @summary: Checks eligibility to rate and review, and shows the cloud media configuration
+     * @description: Use this API to check whether an entity is eligible to be rated and reviewed. Moreover, it shows the cloud media configuration too.
      */
     checkEligibility({ entityType, entityId }?: {
         entityType: string;
@@ -2405,7 +2423,7 @@ declare class Feedback {
      * @param {Object} arg - Arg object.
      * @returns {Promise<UpdateResponse>} - Success response
      * @summary: Delete Media
-     * @description: Delete Media for the given entity IDs.
+     * @description: Use this API to delete media for an entity ID.
      */
     deleteMedia({}?: any): Promise<any>;
     /**
@@ -2413,7 +2431,7 @@ declare class Feedback {
      * @param {AddMediaListRequest} arg.body
      * @returns {Promise<InsertResponse>} - Success response
      * @summary: Add Media
-     * @description: Add Media list for specific entity.
+     * @description: Use this API to add media to an entity, e.g. review.
      */
     createMedia({ body }?: {
         body: any;
@@ -2423,34 +2441,39 @@ declare class Feedback {
      * @param {UpdateMediaListRequest} arg.body
      * @returns {Promise<UpdateResponse>} - Success response
      * @summary: Update Media
-     * @description: Update Media (archive/approve) for the given entity.
+     * @description: Use this API to update media (archive/approve) for an entity.
      */
     updateMedia({ body }?: {
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type* @param {string}
-     *   arg.entityId - entity id* @param {string} [arg.id] - vote id* @param
-     *   {string} [arg.pageId] - pagination page id* @param {number}
-     *   [arg.pageSize] - pagination page size
+     * @param {string} arg.entityType - Type of entity, e.g. question or
+     *   product.* @param {string} arg.entityId - ID of the eligible entity as
+     *   specified in the entity type(question ID/product ID).* @param {string}
+     *   [arg.id] - ID of the media.* @param {string} [arg.pageId] - Pagination
+     *   page ID to retrieve next set of results.* @param {number}
+     *   [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Promise<MediaGetResponse>} - Success response
      * @summary: Get Media
-     * @description: Get Media from the given entity type and entity ID.
+     * @description: Use this API to retrieve all media from an entity.
      */
     getMedias({ entityType, entityId, id, pageId, pageSize }?: {
         entityType: string;
         entityId: string;
         id?: string;
+        pageId?: string;
+        pageSize?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type
-     * @param {string} arg.entityId - Entity id
-     * @param {string} [arg.id] - Vote id
-     * @param {number} [arg.pageSize] - Pagination page size
+     * @param {string} arg.entityType - Type of entity, e.g. question or product.
+     * @param {string} arg.entityId - ID of the eligible entity as specified in
+     *   the entity type(question ID/product ID).
+     * @param {string} [arg.id] - ID of the media.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @summary: Get Media
-     * @description: Get Media from the given entity type and entity ID.
+     * @description: Use this API to retrieve all media from an entity.
      */
     getMediasPaginator({ entityType, entityId, id, pageSize }?: {
         entityType: string;
@@ -2460,30 +2483,34 @@ declare class Feedback {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type* @param {string}
-     *   arg.entityId - entity id* @param {string} [arg.id] - review summary
-     *   identifier* @param {string} [arg.pageId] - pagination page id* @param
-     *   {number} [arg.pageSize] - pagination page size
-     * @returns {Promise<RatingGetResponse>} - Success response
+     * @param {string} arg.entityType - Type of entity, e.g. product, delivery,
+     *   seller, order placed, order delivered, application, or template.*
+     *   @param {string} arg.entityId - ID of the eligible entity as specified
+     *   in the entity type.* @param {string} [arg.id] - Review summary
+     *   identifier.* @param {string} [arg.pageId] - Pagination page ID to
+     *   retrieve next set of results.* @param {number} [arg.pageSize] - The
+     *   number of items to retrieve in each page.
+     * @returns {Promise<ReviewMetricGetResponse>} - Success response
      * @summary: Get a review summary
-     * @description: Review summary gives ratings and attribute metrics of a review per entity
-     * It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+     * @description: Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
      */
     getReviewSummaries({ entityType, entityId, id, pageId, pageSize }?: {
         entityType: string;
         entityId: string;
         id?: string;
         pageId?: string;
+        pageSize?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type
-     * @param {string} arg.entityId - Entity id
-     * @param {string} [arg.id] - Review summary identifier
-     * @param {number} [arg.pageSize] - Pagination page size
+     * @param {string} arg.entityType - Type of entity, e.g. product, delivery,
+     *   seller, order placed, order delivered, application, or template.
+     * @param {string} arg.entityId - ID of the eligible entity as specified in
+     *   the entity type.
+     * @param {string} [arg.id] - Review summary identifier.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @summary: Get a review summary
-     * @description: Review summary gives ratings and attribute metrics of a review per entity
-     * It gives following response data: review count, rating average. review metrics / attribute rating metrics which contains name, type, average and count.
+     * @description: Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
      */
     getReviewSummariesPaginator({ entityType, entityId, id, pageSize }?: {
         entityType: string;
@@ -2496,8 +2523,7 @@ declare class Feedback {
      * @param {UpdateReviewRequest} arg.body
      * @returns {Promise<UpdateResponse>} - Success response
      * @summary: Add customer reviews
-     * @description: Add customer reviews for specific entity with following data:
-     * attributes rating, entity rating, title, description, media resources and template id.
+     * @description: Use this API to add customer reviews for a specific entity along with the following data: attributes rating, entity rating, title, description, media resources and template ID.
      */
     createReview({ body }?: {
         body: any;
@@ -2507,48 +2533,56 @@ declare class Feedback {
      * @param {UpdateReviewRequest} arg.body
      * @returns {Promise<UpdateResponse>} - Success response
      * @summary: Update customer reviews
-     * @description: Update customer reviews for specific entity with following data:
-     * attributes rating, entity rating, title, description, media resources and template id.
+     * @description: Use this API to update customer reviews for a specific entity along with following data: attributes rating, entity rating, title, description, media resources and template ID.
      */
     updateReview({ body }?: {
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type* @param {string}
-     *   arg.entityId - entity id* @param {string} [arg.id] - review id* @param
-     *   {string} [arg.userId] - user id* @param {string} [arg.media] - media
-     *   type e.g. image | video | video_file | video_link* @param
-     *   {Array<number>} [arg.rating] - rating filter, 1-5* @param
-     *   {Array<string>} [arg.attributeRating] - attribute rating filter* @param
-     *   {boolean} [arg.facets] - facets (true|false)* @param {string}
-     *   [arg.sort] - sort by : default | top | recent* @param {string}
-     *   [arg.pageId] - pagination page id* @param {number} [arg.pageSize] -
-     *   pagination page size
+     * @param {string} arg.entityType - Type of entity, e.g. product, delivery,
+     *   seller, l3, order placed, order delivered, application, or template.*
+     *   @param {string} arg.entityId - ID of the eligible entity as specified
+     *   in the entity type.* @param {string} [arg.id] - ID of the review.*
+     *   @param {string} [arg.userId] - ID of the user.* @param {string}
+     *   [arg.media] - media type, e.g. image | video | video_file | video_link*
+     *   @param {Array<number>} [arg.rating] - rating filter, e.g. 1-5* @param
+     *   {Array<string>} [arg.attributeRating] - Filter for attribute rating.*
+     *   @param {boolean} [arg.facets] - This is a boolean value for enabling
+     *   metadata (facets). Selecting *true* will enable facets.* @param
+     *   {string} [arg.sort] - Sort by: default | top | recent* @param {string}
+     *   [arg.pageId] - Pagination page ID to retrieve next set of results.*
+     *   @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Promise<ReviewGetResponse>} - Success response
      * @summary: Get list of customer reviews
-     * @description: This is used to get the list of customer reviews based on entity and provided filters.
+     * @description: Use this API to retrieve a list of customer reviews based on entity and filters provided.
      */
     getReviews({ entityType, entityId, id, userId, media, rating, attributeRating, facets, sort, pageId, pageSize, }?: {
         entityType: string;
         entityId: string;
         id?: string;
+        userId?: string;
+        media?: string;
+        rating?: Array<number>;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type
-     * @param {string} arg.entityId - Entity id
-     * @param {string} [arg.id] - Review id
-     * @param {string} [arg.userId] - User id
-     * @param {string} [arg.media] - Media type e.g. image | video | video_file
+     * @param {string} arg.entityType - Type of entity, e.g. product, delivery,
+     *   seller, l3, order placed, order delivered, application, or template.
+     * @param {string} arg.entityId - ID of the eligible entity as specified in
+     *   the entity type.
+     * @param {string} [arg.id] - ID of the review.
+     * @param {string} [arg.userId] - ID of the user.
+     * @param {string} [arg.media] - Media type, e.g. image | video | video_file
      *   | video_link
-     * @param {number[]} [arg.rating] - Rating filter, 1-5
-     * @param {string[]} [arg.attributeRating] - Attribute rating filter
-     * @param {boolean} [arg.facets] - Facets (true|false)
-     * @param {string} [arg.sort] - Sort by : default | top | recent
-     * @param {number} [arg.pageSize] - Pagination page size
+     * @param {number[]} [arg.rating] - Rating filter, e.g. 1-5
+     * @param {string[]} [arg.attributeRating] - Filter for attribute rating.
+     * @param {boolean} [arg.facets] - This is a boolean value for enabling
+     *   metadata (facets). Selecting *true* will enable facets.
+     * @param {string} [arg.sort] - Sort by: default | top | recent
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @summary: Get list of customer reviews
-     * @description: This is used to get the list of customer reviews based on entity and provided filters.
+     * @description: Use this API to retrieve a list of customer reviews based on entity and filters provided.
      */
     getReviewsPaginator({ entityType, entityId, id, userId, media, rating, attributeRating, facets, sort, pageSize, }?: {
         entityType: string;
@@ -2564,25 +2598,23 @@ declare class Feedback {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.templateId] - Template id* @param {string}
-     *   [arg.entityId] - entity id* @param {string} [arg.entityType] - entity
-     *   type e.g. product | l3
-     * @returns {Promise<CursorGetResponse>} - Success response
-     * @summary: Get the templates for product or l3 type
-     * @description: This is used to get the templates details.
+     * @param {string} [arg.templateId] - ID of the feedback template.* @param
+     *   {string} [arg.entityId] - ID of the eligible entity as specified in the
+     *   entity type.* @param {string} [arg.entityType] - Type of entity, e.g.
+     *   product, delivery, seller, l3, order placed, order delivered, or application.
+     * @returns {Promise<TemplateGetResponse>} - Success response
+     * @summary: Get the feedback templates for a product or l3
+     * @description: Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
      */
     getTemplates({ templateId, entityId, entityType }?: {
         templateId?: string;
-        entityId?: string;
-        entityType?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CreateQNARequest} arg.body
      * @returns {Promise<InsertResponse>} - Success response
      * @summary: Create a new question
-     * @description: This is used to create a new question with following data:
-     * tags, text, type, choices for MCQ type questions, maximum length of answer.
+     * @description: Use this API to create a new question with following data- tags, text, type, choices for MCQ type questions, maximum length of answer.
      */
     createQuestion({ body }?: {
         body: any;
@@ -2591,22 +2623,24 @@ declare class Feedback {
      * @param {Object} arg - Arg object.
      * @param {UpdateQNARequest} arg.body
      * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update question
-     * @description: This is used to update question's status, tags and choices.
+     * @summary: Update a question
+     * @description: Use this API to update the status of a question, its tags and its choices.
      */
     updateQuestion({ body }?: {
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type* @param {string}
-     *   arg.entityId - entity id* @param {string} [arg.id] - qna id* @param
-     *   {boolean} [arg.showAnswer] - show answer flag* @param {string}
-     *   [arg.pageId] - pagination page id* @param {number} [arg.pageSize] -
-     *   pagination page size
+     * @param {string} arg.entityType - Type of entity, e.g. product, l3, etc.*
+     *   @param {string} arg.entityId - ID of the eligible entity as specified
+     *   in the entity type.* @param {string} [arg.id] - QNA ID* @param
+     *   {boolean} [arg.showAnswer] - This is a boolean value. Select *true* to
+     *   display answers given.* @param {string} [arg.pageId] - Pagination page
+     *   ID to retrieve next set of results.* @param {number} [arg.pageSize] -
+     *   The number of items to retrieve in each page.
      * @returns {Promise<QNAGetResponse>} - Success response
      * @summary: Get a list of QnA
-     * @description: This is used to get a list of questions and its answers.
+     * @description: Use this API to retrieve a list of questions and answers for a given entity.
      */
     getQuestionAndAnswers({ entityType, entityId, id, showAnswer, pageId, pageSize, }?: {
         entityType: string;
@@ -2615,13 +2649,15 @@ declare class Feedback {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Entity type
-     * @param {string} arg.entityId - Entity id
-     * @param {string} [arg.id] - Qna id
-     * @param {boolean} [arg.showAnswer] - Show answer flag
-     * @param {number} [arg.pageSize] - Pagination page size
+     * @param {string} arg.entityType - Type of entity, e.g. product, l3, etc.
+     * @param {string} arg.entityId - ID of the eligible entity as specified in
+     *   the entity type.
+     * @param {string} [arg.id] - QNA ID
+     * @param {boolean} [arg.showAnswer] - This is a boolean value. Select
+     *   *true* to display answers given.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @summary: Get a list of QnA
-     * @description: This is used to get a list of questions and its answers.
+     * @description: Use this API to retrieve a list of questions and answers for a given entity.
      */
     getQuestionAndAnswersPaginator({ entityType, entityId, id, showAnswer, pageSize, }?: {
         entityType: string;
@@ -2632,12 +2668,14 @@ declare class Feedback {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] - Vote id* @param {string} [arg.refType] -
-     *   entity type e.g. review | comment* @param {number} [arg.pageNo] -
-     *   pagination page no* @param {number} [arg.pageSize] - pagination page size
+     * @param {string} [arg.id] - Vote ID* @param {string} [arg.refType] -
+     *   Entity type, e.g. review | comment.* @param {number} [arg.pageNo] - The
+     *   page number to navigate through the given set of results. Default value
+     *   is 1.* @param {number} [arg.pageSize] - The number of items to retrieve
+     *   in each page.
      * @returns {Promise<VoteResponse>} - Success response
-     * @summary: Get list of votes
-     * @description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+     * @summary: Get a list of votes
+     * @description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
      */
     getVotes({ id, refType, pageNo, pageSize }?: {
         id?: string;
@@ -2647,11 +2685,11 @@ declare class Feedback {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] - Vote id
-     * @param {string} [arg.refType] - Entity type e.g. review | comment
-     * @param {number} [arg.pageSize] - Pagination page size
-     * @summary: Get list of votes
-     * @description: This is used to get the list of votes of a current logged in user. Votes can be filtered using `ref_type` i.e. review | comment.
+     * @param {string} [arg.id] - Vote ID
+     * @param {string} [arg.refType] - Entity type, e.g. review | comment.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @summary: Get a list of votes
+     * @description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
      */
     getVotesPaginator({ id, refType, pageSize }?: {
         id?: string;
@@ -2663,7 +2701,7 @@ declare class Feedback {
      * @param {VoteRequest} arg.body
      * @returns {Promise<InsertResponse>} - Success response
      * @summary: Create a new vote
-     * @description: This is used to create a new vote and the actions can be upvote or downvote.
+     * @description: Use this API to create a new vote, where the action could be an upvote or a downvote. This is useful when you want to give a vote (say upvote) to a review (ref_type) of a product (entity_type).
      */
     createVote({ body }?: {
         body: any;
@@ -2672,8 +2710,8 @@ declare class Feedback {
      * @param {Object} arg - Arg object.
      * @param {UpdateVoteRequest} arg.body
      * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update vote
-     * @description: This is used to update the vote and the actions can be upvote or downvote.
+     * @summary: Update a vote
+     * @description: Use this API to update a vote with a new action, i.e. either an upvote or a downvote.
      */
     updateVote({ body }?: {
         body: any;
