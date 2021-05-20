@@ -1988,15 +1988,15 @@ class Lead {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.ticketId - Ticket ID for which history is created
+   * @param {string} arg.id - Ticket ID for which history is created
    * @param {TicketHistoryPayload} arg.body
    * @returns {Promise<TicketHistory>} - Success response
    * @summary: Create history for specific Ticket
    * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
    */
-  createHistory({ ticketId, body } = {}) {
+  createHistory({ id, body } = {}) {
     const { error } = LeadValidator.createHistory().validate(
-      { ticketId, body },
+      { id, body },
       { abortEarly: false }
     );
     if (error) {
@@ -2007,7 +2007,7 @@ class Lead {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/lead/v1.0/ticket/${ticketId}/history`,
+      `/service/application/lead/v1.0/ticket/${id}/history`,
       query,
       body
     );

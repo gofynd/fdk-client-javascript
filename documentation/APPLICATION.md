@@ -5333,15 +5333,15 @@ Create history for specific Ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistory(ticketId,body);
+const promise = lead.createHistory(id,body);
 
 // Async/Await
-const data = await lead.createHistory(ticketId,body);
+const data = await lead.createHistory(id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| ticketId | string | Ticket ID for which history is created | 
+| id | string | Ticket ID for which history is created | 
 
 Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
@@ -5363,7 +5363,7 @@ Default
 {
   "value": {
     "_id": "601a9d52c26687d086c499ef",
-    "ticket_id": "6012f38557751ee8fc162cf7",
+    "ticket_id": "41",
     "type": "comment",
     "value": {
       "text": "d",

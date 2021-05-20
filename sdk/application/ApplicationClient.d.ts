@@ -891,14 +891,14 @@ declare class Lead {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.ticketId - Ticket ID for which history is created
+     * @param {string} arg.id - Ticket ID for which history is created
      * @param {TicketHistoryPayload} arg.body
      * @returns {Promise<TicketHistory>} - Success response
      * @summary: Create history for specific Ticket
      * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
      */
-    createHistory({ ticketId, body }?: {
-        ticketId: string;
+    createHistory({ id, body }?: {
+        id: string;
         body: any;
     }): Promise<any>;
     /**
