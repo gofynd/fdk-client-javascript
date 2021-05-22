@@ -14,7 +14,6 @@
 * [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](#Order) - Handles Platform websites OMS 
 * [Rewards](#Rewards) - Earn and redeem reward points 
-* [Feedback](#Feedback) - User Reviews and Rating System 
 * [PosCart](#PosCart) - Cart APIs 
 * [Logistic](#Logistic) - Handles Platform websites OMS 
 
@@ -243,36 +242,6 @@
     * [getUserPointsHistory](#getuserpointshistory)
     * [getUserReferralDetails](#getuserreferraldetails)
     * [redeemReferralCode](#redeemreferralcode)
-    
-
-* [Feedback](#Feedback)
-  * Methods
-    * [createAbuseReport](#createabusereport)
-    * [updateAbuseReport](#updateabusereport)
-    * [getAbuseReports](#getabusereports)
-    * [getAttributes](#getattributes)
-    * [createAttribute](#createattribute)
-    * [getAttribute](#getattribute)
-    * [updateAttribute](#updateattribute)
-    * [createComment](#createcomment)
-    * [updateComment](#updatecomment)
-    * [getComments](#getcomments)
-    * [checkEligibility](#checkeligibility)
-    * [deleteMedia](#deletemedia)
-    * [createMedia](#createmedia)
-    * [updateMedia](#updatemedia)
-    * [getMedias](#getmedias)
-    * [getReviewSummaries](#getreviewsummaries)
-    * [createReview](#createreview)
-    * [updateReview](#updatereview)
-    * [getReviews](#getreviews)
-    * [getTemplates](#gettemplates)
-    * [createQuestion](#createquestion)
-    * [updateQuestion](#updatequestion)
-    * [getQuestionAndAnswers](#getquestionandanswers)
-    * [getVotes](#getvotes)
-    * [createVote](#createvote)
-    * [updateVote](#updatevote)
     
 
 * [PosCart](#PosCart)
@@ -8424,13 +8393,13 @@ const data = await content.getAnnouncements();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get live announcements for each or all pages with page slug of page and end date schedule.
+Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
 
 *Success Response:*
 
 
 
-Announcement api response. announcements object contains page slug name as propery with list of announcements enabled for that page. `$all` is special page slug to indicate show announcemnt on all pages.
+Success. Returns a JSON object with the details of the announcement shown on an individual page. `$all` is a special slug to indicate that an announcement is being shown on all the pages. Check the example shown below or refer `AnnouncementsResponseSchema` for more details.
 
 
 Schema: `AnnouncementsResponseSchema`
@@ -8464,7 +8433,7 @@ No Announcement enabled
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8487,7 +8456,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8515,7 +8484,7 @@ default
 
 
 #### getBlog
-Get Blog by slug
+Get a blog
 
 ```javascript
 // Promise
@@ -8527,16 +8496,16 @@ const data = await content.getBlog(slug,rootId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | The `slug` of a blog. Use this parameter to retrieve a particular blog | 
-| rootId | string |  | 
+| slug | string | A short, human-readable, URL-friendly identifier of a blog. You can get slug value from the endpoint /service/application/content/v1.0/blogs/. | 
+| rootId | string | ID given to the HTML element | 
 
-Use this API to fetch a blog using `slug`
+Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
 
 *Success Response:*
 
 
 
-A JSON object with blog details
+Success. Returns a JSON object with blog details. Check the example shown below or refer `CustomBlogSchema` for more details.
 
 
 Schema: `CustomBlogSchema`
@@ -8559,7 +8528,7 @@ default
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8582,7 +8551,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8610,7 +8579,7 @@ default
 
 
 #### getBlogs
-Get blogs
+Get a list of blogs
 
 ```javascript
 // Promise
@@ -8622,16 +8591,16 @@ const data = await content.getBlogs(pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-Use this to get blogs.
+Use this API to get all the blogs.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `BlogGetResponse` for more details.
 
 
 Schema: `BlogGetResponse`
@@ -8654,7 +8623,7 @@ default
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8677,7 +8646,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8705,7 +8674,7 @@ default
 
 
 #### getFaqs
-Get frequently asked questions
+Get a list of FAQs
 
 ```javascript
 // Promise
@@ -8718,13 +8687,13 @@ const data = await content.getFaqs();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get frequently asked questions list. These will be helpful for users to using website.
+Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns a JSON object with question and answers. Check the example shown below or refer `FaqResponseSchema` for more details.
 
 
 Schema: `FaqResponseSchema`
@@ -8747,7 +8716,7 @@ default
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8770,7 +8739,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8798,7 +8767,7 @@ default
 
 
 #### getFaqCategories
-Get FAQ categories list
+Get a list of FAQ categories
 
 ```javascript
 // Promise
@@ -8811,13 +8780,13 @@ const data = await content.getFaqCategories();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get list of FAQ categories
+FAQs can be divided into categories. Use this API to get a list of FAQ categories.
 
 *Success Response:*
 
 
 
-Get FAQ Categories
+Success. Returns a JSON object with categories of FAQ. Check the example shown below or refer `GetFaqCategoriesSchema` for more details.
 
 
 Schema: `GetFaqCategoriesSchema`
@@ -8829,7 +8798,7 @@ Schema: `GetFaqCategoriesSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8852,7 +8821,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8880,7 +8849,7 @@ default
 
 
 #### getFaqBySlug
-Get frequently asked question
+Get an FAQ
 
 ```javascript
 // Promise
@@ -8892,15 +8861,15 @@ const data = await content.getFaqBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | Slug of FAQ | 
+| slug | string | A short, human-readable, URL-friendly identifier of an FAQ. You can get slug value from the endpoint /service/application/content/v1.0/faq. | 
 
-Get frequently asked questions list. These will be helpful for users to using website.
+Use this API to get a particular FAQ by its slug.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns a question and answer by its slug. Check the example shown below or refer `FaqSchema` for more details.
 
 
 Schema: `FaqSchema`
@@ -8912,7 +8881,7 @@ Schema: `FaqSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8935,7 +8904,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8963,7 +8932,7 @@ default
 
 
 #### getFaqCategoryBySlug
-Get FAQ category by slug
+Get the FAQ category
 
 ```javascript
 // Promise
@@ -8975,15 +8944,15 @@ const data = await content.getFaqCategoryBySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | Slug of FAQ Category | 
+| slug | string | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. | 
 
-Get FAQ category by slug
+FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
 
 *Success Response:*
 
 
 
-Get FAQ Categories
+Success. Returns a FAQ category with its slug. Check the example shown below or refer `GetFaqCategoryBySlugSchema` for more details.
 
 
 Schema: `GetFaqCategoryBySlugSchema`
@@ -8995,7 +8964,7 @@ Schema: `GetFaqCategoryBySlugSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9018,7 +8987,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9046,7 +9015,7 @@ default
 
 
 #### getFaqsByCategorySlug
-Get FAQs of a Faq Category slug
+Get FAQs using the slug of FAQ category
 
 ```javascript
 // Promise
@@ -9058,15 +9027,15 @@ const data = await content.getFaqsByCategorySlug(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | Faq category slug | 
+| slug | string | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. | 
 
-Get FAQs of a Faq Category `slug`
+FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
 
 *Success Response:*
 
 
 
-Get FAQs by slug of FAQ Category
+Success. Returns a categorized list of question and answers using its slug. Check the example shown below or refer `GetFaqSchema` for more details.
 
 
 Schema: `GetFaqSchema`
@@ -9078,7 +9047,7 @@ Schema: `GetFaqSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9101,7 +9070,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9129,7 +9098,7 @@ default
 
 
 #### getLandingPage
-Get landing page
+Get the landing page
 
 ```javascript
 // Promise
@@ -9142,13 +9111,13 @@ const data = await content.getLandingPage();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Use this API to fetch a landing page
+Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
 
 *Success Response:*
 
 
 
-A JSON object with landing details
+Success. Returns the landing page details. Check the example shown below or refer `LandingPageSchema` for more details.
 
 
 Schema: `LandingPageSchema`
@@ -9171,7 +9140,7 @@ default
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9194,7 +9163,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9235,13 +9204,13 @@ const data = await content.getLegalInformation();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns the T&C, Shipping Policy, Privacy Policy and Return Policy. Check the example shown below or refer `ApplicationLegal` for more details.
 
 
 Schema: `ApplicationLegal`
@@ -9264,7 +9233,7 @@ Success
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9287,7 +9256,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9315,7 +9284,7 @@ default
 
 
 #### getNavigations
-Get navigation
+Get the navigation
 
 ```javascript
 // Promise
@@ -9327,16 +9296,16 @@ const data = await content.getNavigations(pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-Use this API to fetch navigations
+Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
 
 *Success Response:*
 
 
 
-A JSON object with navigation details
+Success. Returns a JSON object with navigation details. Check the example shown below or refer `NavigationGetResponse` for more details.
 
 
 Schema: `NavigationGetResponse`
@@ -9359,7 +9328,7 @@ default
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9382,7 +9351,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9410,7 +9379,7 @@ default
 
 
 #### getPage
-Get Page by slug
+Get a page
 
 ```javascript
 // Promise
@@ -9422,16 +9391,16 @@ const data = await content.getPage(slug,rootId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | The `slug` of a page. Use this parameter to retrieve a particular page | 
-| rootId | string |  | 
+| slug | string | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v1.0/pages/. | 
+| rootId | string | ID given to the HTML element | 
 
-Use this API to fetch a custom page using `slug`
+Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
 
 *Success Response:*
 
 
 
-A JSON object with page details
+Success. Returns a JSON object with page details. Check the example shown below or refer `CustomPageSchema` for more details.
 
 
 Schema: `CustomPageSchema`
@@ -9454,7 +9423,7 @@ default
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9477,7 +9446,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9505,7 +9474,7 @@ default
 
 
 #### getPages
-Get pages
+Get all pages
 
 ```javascript
 // Promise
@@ -9517,16 +9486,16 @@ const data = await content.getPages(pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-Use this to get pages.
+Use this API to get a list of pages.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns a list of pages along with their details. Check the example shown below or refer `PageGetResponse` for more details.
 
 
 Schema: `PageGetResponse`
@@ -9549,7 +9518,7 @@ default
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9572,7 +9541,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9600,7 +9569,7 @@ default
 
 
 #### getSEOConfiguration
-Get seo of application
+Get the SEO of an application
 
 ```javascript
 // Promise
@@ -9613,13 +9582,13 @@ const data = await content.getSEOConfiguration();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get seo of application
+Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and sitemap. Check the example shown below or refer `SeoComponent` for more details.
 
 
 Schema: `SeoComponent`
@@ -9642,7 +9611,7 @@ Success
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9665,7 +9634,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9693,7 +9662,7 @@ default
 
 
 #### getSlideshows
-Get slideshows
+Get the slideshows
 
 ```javascript
 // Promise
@@ -9705,16 +9674,16 @@ const data = await content.getSlideshows(pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
+| pageSize | integer | The number of items to retrieve in each page. | 
 
-Use this to get slideshows.
+Use this API to get a list of slideshows along with their details.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `SlideshowGetResponse` for more details.
 
 
 Schema: `SlideshowGetResponse`
@@ -9737,7 +9706,7 @@ default
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9760,7 +9729,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9788,7 +9757,7 @@ default
 
 
 #### getSlideshow
-Get slideshow by slug
+Get a slideshow
 
 ```javascript
 // Promise
@@ -9800,15 +9769,15 @@ const data = await content.getSlideshow(slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| slug | string | The `slug` of a slideshow. Use this parameter to retrieve a particular slideshow | 
+| slug | string | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value from the endpoint /service/application/content/v1.0/slideshow/. | 
 
-Use this API to fetch a slideshow using `slug`
+A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
 
 *Success Response:*
 
 
 
-A JSON object with slideshow details
+Success. Returns the details of how a slideshow is configured. Check the example shown below or refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -9831,7 +9800,7 @@ default
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9854,7 +9823,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9882,7 +9851,7 @@ default
 
 
 #### getSupportInformation
-Get support information
+Get the support information
 
 ```javascript
 // Promise
@@ -9895,13 +9864,13 @@ const data = await content.getSupportInformation();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get contact details for customer support. Including emails and phone numbers
+Use this API to get contact details for customer support including emails and phone numbers.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns all support information including email and phone number. Check the example shown below or refer `Support` for more details.
 
 
 Schema: `Support`
@@ -9924,7 +9893,7 @@ default
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9947,7 +9916,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9975,7 +9944,7 @@ default
 
 
 #### getTags
-Get Tags for application
+Get the tags associated with an application
 
 ```javascript
 // Promise
@@ -9988,13 +9957,13 @@ const data = await content.getTags();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-
+Use this API to get all the CSS and JS injected in the application in the form of tags.
 
 *Success Response:*
 
 
 
-A JSON object of tags
+Success. Returns a JSON object containing all the tags injected in the application. Check the example shown below or refer `TagsSchema` for more details.
 
 
 Schema: `TagsSchema`
@@ -10006,7 +9975,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10029,7 +9998,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -13238,1312 +13207,6 @@ Bad request. See the error object in the response body to know the exact reason.
 
 
 Schema: `Error`
-
-
-
-
-
-
-
-
-
----
-
-
-
----
-
-
-## Feedback
-
-
-#### createAbuseReport
-Post a new abuse request
-
-```javascript
-// Promise
-const promise = feedback.createAbuseReport(body);
-
-// Async/Await
-const data = await feedback.createAbuseReport(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to report a specific entity (question/review/comment) for abuse.
-
-*Success Response:*
-
-
-
-Success. Returns an abuse ID.
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAbuseReport
-Update abuse details
-
-```javascript
-// Promise
-const promise = feedback.updateAbuseReport(body);
-
-// Async/Await
-const data = await feedback.updateAbuseReport(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to update the abuse details, i.e. status and description.
-
-*Success Response:*
-
-
-
-Success.
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAbuseReports
-Get a list of abuse data
-
-```javascript
-// Promise
-const promise = feedback.getAbuseReports(entityId,entityType,id,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getAbuseReports(entityId,entityType,id,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityId | string | ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID). | 
-| entityType | string | Type of entity, e.g. question, review or comment. | 
-| id | string | abuse id | 
-| pageId | string | Pagination page ID to retrieve next set of results. | 
-| pageSize | integer | The number of items to retrieve in each page. | 
-
-Use this API to retrieve a list of abuse data from entity type and entity ID.
-
-*Success Response:*
-
-
-
-Success. Check the example shown below or refer `ReportAbuseGetResponse` for more details.
-
-
-Schema: `ReportAbuseGetResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAttributes
-Get a list of attribute data
-
-```javascript
-// Promise
-const promise = feedback.getAttributes(pageNo,pageSize);
-
-// Async/Await
-const data = await feedback.getAttributes(pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
-| pageSize | integer | The number of items to retrieve in each page. | 
-
-Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
-
-*Success Response:*
-
-
-
-Success. Check the example shown below or refer `AttributeResponse` for more details.
-
-
-Schema: `AttributeResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createAttribute
-Add a new attribute request
-
-```javascript
-// Promise
-const promise = feedback.createAttribute(body);
-
-// Async/Await
-const data = await feedback.createAttribute(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to add a new attribute (e.g. product quality/material/value for money) with its name, slug and description.
-
-*Success Response:*
-
-
-
-Success. Returns an attribute ID.
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAttribute
-Get data of a single attribute
-
-```javascript
-// Promise
-const promise = feedback.getAttribute(slug);
-
-// Async/Await
-const data = await feedback.getAttribute(slug);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. | 
-
-Use this API to retrieve a single attribute data from a given slug.
-
-*Success Response:*
-
-
-
-Success. Check the example shown below or refer `Attribute` for more details.
-
-
-Schema: `Attribute`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAttribute
-Update details of an attribute 
-
-```javascript
-// Promise
-const promise = feedback.updateAttribute(slug,body);
-
-// Async/Await
-const data = await feedback.updateAttribute(slug,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| slug | string | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. | 
-
-Use this API update the attribute's name and description.
-
-*Success Response:*
-
-
-
-Success.
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createComment
-Post a new comment
-
-```javascript
-// Promise
-const promise = feedback.createComment(body);
-
-// Async/Await
-const data = await feedback.createComment(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to add a new comment for a specific entity.
-
-*Success Response:*
-
-
-
-Success. Returns a comment ID.
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateComment
-Update the status of a comment
-
-```javascript
-// Promise
-const promise = feedback.updateComment(body);
-
-// Async/Await
-const data = await feedback.updateComment(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to update the comment status (active or approve) along with new comment if any.
-
-*Success Response:*
-
-
-
-Success.
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getComments
-Get a list of comments
-
-```javascript
-// Promise
-const promise = feedback.getComments(entityType,id,entityId,userId,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getComments(entityType,id,entityId,userId,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | Type of entity, e.g. question, review or comment. | 
-| id | string | Comment ID | 
-| entityId | string | ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID). | 
-| userId | string | User ID - a flag/filter to get comments for a user. | 
-| pageId | string | Pagination page ID to retrieve next set of results. | 
-| pageSize | integer | The number of items to retrieve in each page. | 
-
-Use this API to retrieve a list of comments for a specific entity type, e.g. products.
-
-*Success Response:*
-
-
-
-Success. Check the example shown below or refer `CommentGetResponse` for more details.
-
-
-Schema: `CommentGetResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### checkEligibility
-Checks eligibility to rate and review, and shows the cloud media configuration
-
-```javascript
-// Promise
-const promise = feedback.checkEligibility(entityType,entityId);
-
-// Async/Await
-const data = await feedback.checkEligibility(entityType,entityId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | Type of entity, e.g. question, rate, review, answer, or comment. | 
-| entityId | string | ID of the eligible entity as specified in the entity type. | 
-
-Use this API to check whether an entity is eligible to be rated and reviewed. Moreover, it shows the cloud media configuration too.
-
-*Success Response:*
-
-
-
-Success. Returns a Product object. Check the example shown below or refer `CheckEligibilityResponse` for more details.
-
-
-Schema: `CheckEligibilityResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteMedia
-Delete Media
-
-```javascript
-// Promise
-const promise = feedback.deleteMedia();
-
-// Async/Await
-const data = await feedback.deleteMedia();
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to delete media for an entity ID.
-
-*Success Response:*
-
-
-
-Success.
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createMedia
-Add Media
-
-```javascript
-// Promise
-const promise = feedback.createMedia(body);
-
-// Async/Await
-const data = await feedback.createMedia(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to add media to an entity, e.g. review.
-
-*Success Response:*
-
-
-
-Success. Returns media IDs.
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateMedia
-Update Media
-
-```javascript
-// Promise
-const promise = feedback.updateMedia(body);
-
-// Async/Await
-const data = await feedback.updateMedia(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to update media (archive/approve) for an entity.
-
-*Success Response:*
-
-
-
-Success.
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getMedias
-Get Media
-
-```javascript
-// Promise
-const promise = feedback.getMedias(entityType,entityId,id,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getMedias(entityType,entityId,id,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | Type of entity, e.g. question or product. | 
-| entityId | string | ID of the eligible entity as specified in the entity type(question ID/product ID). | 
-| id | string | ID of the media. | 
-| pageId | string | Pagination page ID to retrieve next set of results. | 
-| pageSize | integer | The number of items to retrieve in each page. | 
-
-Use this API to retrieve all media from an entity.
-
-*Success Response:*
-
-
-
-Success. Check the example shown below or refer `MediaGetResponse` for more details.
-
-
-Schema: `MediaGetResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getReviewSummaries
-Get a review summary
-
-```javascript
-// Promise
-const promise = feedback.getReviewSummaries(entityType,entityId,id,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getReviewSummaries(entityType,entityId,id,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | Type of entity, e.g. product, delivery, seller, order placed, order delivered, application, or template. | 
-| entityId | string | ID of the eligible entity as specified in the entity type. | 
-| id | string | Review summary identifier. | 
-| pageId | string | Pagination page ID to retrieve next set of results. | 
-| pageSize | integer | The number of items to retrieve in each page. | 
-
-Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
-
-*Success Response:*
-
-
-
-Success. Check the example shown below or refer `ReviewMetricGetResponse` for more details.
-
-
-Schema: `ReviewMetricGetResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createReview
-Add customer reviews
-
-```javascript
-// Promise
-const promise = feedback.createReview(body);
-
-// Async/Await
-const data = await feedback.createReview(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to add customer reviews for a specific entity along with the following data: attributes rating, entity rating, title, description, media resources and template ID.
-
-*Success Response:*
-
-
-
-Success. Returns a review ID.
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateReview
-Update customer reviews
-
-```javascript
-// Promise
-const promise = feedback.updateReview(body);
-
-// Async/Await
-const data = await feedback.updateReview(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to update customer reviews for a specific entity along with following data: attributes rating, entity rating, title, description, media resources and template ID.
-
-*Success Response:*
-
-
-
-Success.
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getReviews
-Get list of customer reviews
-
-```javascript
-// Promise
-const promise = feedback.getReviews(entityType,entityId,id,userId,media,rating,attributeRating,facets,sort,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getReviews(entityType,entityId,id,userId,media,rating,attributeRating,facets,sort,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, application, or template. | 
-| entityId | string | ID of the eligible entity as specified in the entity type. | 
-| id | string | ID of the review. | 
-| userId | string | ID of the user. | 
-| media | string | media type, e.g. image | video | video_file | video_link | 
-| rating | array | rating filter, e.g. 1-5 | 
-| attributeRating | array | Filter for attribute rating. | 
-| facets | boolean | This is a boolean value for enabling metadata (facets). Selecting *true* will enable facets. | 
-| sort | string | Sort by: default | top | recent | 
-| pageId | string | Pagination page ID to retrieve next set of results. | 
-| pageSize | integer | The number of items to retrieve in each page. | 
-
-Use this API to retrieve a list of customer reviews based on entity and filters provided.
-
-*Success Response:*
-
-
-
-Success. Check the example shown below or refer `ReviewGetResponse` for more details.
-
-
-Schema: `ReviewGetResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getTemplates
-Get the feedback templates for a product or l3
-
-```javascript
-// Promise
-const promise = feedback.getTemplates(templateId,entityId,entityType);
-
-// Async/Await
-const data = await feedback.getTemplates(templateId,entityId,entityType);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| templateId | string | ID of the feedback template. | 
-| entityId | string | ID of the eligible entity as specified in the entity type. | 
-| entityType | string | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, or application. | 
-
-Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
-
-*Success Response:*
-
-
-
-Success. Check the example shown below or refer `TemplateGetResponse` for more details.
-
-
-Schema: `TemplateGetResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createQuestion
-Create a new question
-
-```javascript
-// Promise
-const promise = feedback.createQuestion(body);
-
-// Async/Await
-const data = await feedback.createQuestion(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to create a new question with following data- tags, text, type, choices for MCQ type questions, maximum length of answer.
-
-*Success Response:*
-
-
-
-Success. Returns a qna ID.
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateQuestion
-Update a question
-
-```javascript
-// Promise
-const promise = feedback.updateQuestion(body);
-
-// Async/Await
-const data = await feedback.updateQuestion(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to update the status of a question, its tags and its choices.
-
-*Success Response:*
-
-
-
-Success.
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getQuestionAndAnswers
-Get a list of QnA
-
-```javascript
-// Promise
-const promise = feedback.getQuestionAndAnswers(entityType,entityId,id,showAnswer,pageId,pageSize);
-
-// Async/Await
-const data = await feedback.getQuestionAndAnswers(entityType,entityId,id,showAnswer,pageId,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| entityType | string | Type of entity, e.g. product, l3, etc. | 
-| entityId | string | ID of the eligible entity as specified in the entity type. | 
-| id | string | QNA ID | 
-| showAnswer | boolean | This is a boolean value. Select *true* to display answers given. | 
-| pageId | string | Pagination page ID to retrieve next set of results. | 
-| pageSize | integer | The number of items to retrieve in each page. | 
-
-Use this API to retrieve a list of questions and answers for a given entity.
-
-*Success Response:*
-
-
-
-Success. Check the example shown below or refer `QNAGetResponse` for more details.
-
-
-Schema: `QNAGetResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getVotes
-Get a list of votes
-
-```javascript
-// Promise
-const promise = feedback.getVotes(id,refType,pageNo,pageSize);
-
-// Async/Await
-const data = await feedback.getVotes(id,refType,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | string | vote ID | 
-| refType | string | Entity type, e.g. review | comment. | 
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
-| pageSize | integer | The number of items to retrieve in each page. | 
-
-Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
-
-*Success Response:*
-
-
-
-Success. Check the example shown below or refer `VoteResponse` for more details.
-
-
-Schema: `VoteResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createVote
-Create a new vote
-
-```javascript
-// Promise
-const promise = feedback.createVote(body);
-
-// Async/Await
-const data = await feedback.createVote(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to create a new vote, where the action could be an upvote or a downvote. This is useful when you want to give a vote (say upvote) to a review (ref_type) of a product (entity_type).
-
-*Success Response:*
-
-
-
-Success. Returns a vote ID.
-
-
-Schema: `InsertResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateVote
-Update a vote
-
-```javascript
-// Promise
-const promise = feedback.updateVote(body);
-
-// Async/Await
-const data = await feedback.updateVote(body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-
-Use this API to update a vote with a new action, i.e. either an upvote or a downvote.
-
-*Success Response:*
-
-
-
-Success.
-
-
-Schema: `UpdateResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason.
-
-
-Schema: `FeedbackError`
 
 
 
