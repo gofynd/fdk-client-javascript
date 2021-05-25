@@ -31,7 +31,7 @@ function setupProxyRoutes() {
     
     apiRoutes.use(sessionMiddleware(true), async (req, res, next) => {
         try {
-            const client = extension.getPlatformClient(req.fdkSession.company_id, req.fdkSession);
+            const client = await extension.getPlatformClient(req.fdkSession.company_id, req.fdkSession);
             req.platformClient = client;
             req.extension = extension;
             next();

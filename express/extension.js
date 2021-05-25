@@ -75,9 +75,10 @@ class Extension {
         return platformConfig;
     }
 
-    getPlatformClient(companyId, session) {
+    async getPlatformClient(companyId, session) {
         let platformConfig =  this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
+        await platformConfig.oauthClient.renewAccessToken();
         return new PlatformClient(platformConfig);
     }
 }

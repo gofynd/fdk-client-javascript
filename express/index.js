@@ -22,7 +22,7 @@ function setupFdk(data) {
                 companyId: companyId
             });
             let session = await SessionStorage.getSession(sid);
-            client = extension.getPlatformClient(companyId, session);
+            client = await extension.getPlatformClient(companyId, session);
         }
         return client;
     }

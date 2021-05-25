@@ -155,7 +155,7 @@ function setupRoutes(ext) {
                     companyId: company_id
                 });
                 let session = await SessionStorage.getSession(sid);
-                const client = ext.getPlatformClient(company_id, session);
+                const client = await ext.getPlatformClient(company_id, session);
                 req.platformClient = client;
             }
             req.extension = ext;
