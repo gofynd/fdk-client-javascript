@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [unfollowById](#unfollowbyid)
     * [followById](#followbyid)
+    * [unfollowById](#unfollowbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -212,6 +212,7 @@
     * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
     * [getPaymentModeRoutes](#getpaymentmoderoutes)
     * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
+    * [getRupifiBannerDetails](#getrupifibannerdetails)
     * [getActiveRefundTransferModes](#getactiverefundtransfermodes)
     * [enableOrDisableRefundTransferMode](#enableordisablerefundtransfermode)
     * [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
@@ -1480,15 +1481,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-Unfollow an entity (product/brand/collection)
+#### followById
+Follow an entity (product/brand/collection)
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collectionType,collectionId);
+const promise = catalog.followById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.unfollowById(collectionType,collectionId);
+const data = await catalog.followById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1496,7 +1497,7 @@ const data = await catalog.unfollowById(collectionType,collectionId);
 | collectionType | string | Type of collection followed, i.e. products, brands, or collections. | 
 | collectionId | string | The ID of the collection type. | 
 
-You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+Follow a particular entity such as product, brand, collection specified by its ID.
 
 *Success Response:*
 
@@ -1530,15 +1531,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow an entity (product/brand/collection)
+#### unfollowById
+Unfollow an entity (product/brand/collection)
 
 ```javascript
 // Promise
-const promise = catalog.followById(collectionType,collectionId);
+const promise = catalog.unfollowById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.followById(collectionType,collectionId);
+const data = await catalog.unfollowById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1546,7 +1547,7 @@ const data = await catalog.followById(collectionType,collectionId);
 | collectionType | string | Type of collection followed, i.e. products, brands, or collections. | 
 | collectionId | string | The ID of the collection type. | 
 
-Follow a particular entity such as product, brand, collection specified by its ID.
+You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
 
 *Success Response:*
 
@@ -10077,13 +10078,13 @@ const data = await communication.getCommunicationConsent();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get communication consent
+Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns all available communication opt-ins along with the consent details. Check the example shown below or refer `CommunicationConsent` for more details.
 
 
 Schema: `CommunicationConsent`
@@ -10124,13 +10125,13 @@ const data = await communication.upsertCommunicationConsent(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Upsert communication consent
+Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
 
 *Success Response:*
 
 
 
-Success
+Success. Updates the channels for which user has consented. Check the example shown below or refer `CommunicationConsentRes` for more details.
 
 
 Schema: `CommunicationConsentRes`
@@ -10183,13 +10184,13 @@ const data = await communication.upsertAppPushtoken(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Upsert push token of a user
+Use this API to update and insert the push token of the user.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `PushtokenRes` for more details.
 
 
 Schema: `PushtokenRes`
@@ -11947,6 +11948,42 @@ Schema: `HttpErrorCodeAndResponse`
 ---
 
 
+#### getRupifiBannerDetails
+Get CreditLine Offer
+
+```javascript
+// Promise
+const promise = payment.getRupifiBannerDetails();
+
+// Async/Await
+const data = await payment.getRupifiBannerDetails();
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+
+Get CreditLine Offer if user is tentatively approved by rupifi
+
+*Success Response:*
+
+
+
+Get CreditLine Offer
+
+
+Schema: `RupifiBannerResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getActiveRefundTransferModes
 List Refund Transfer Mode
 
@@ -12474,7 +12511,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### getOrders
-Get Orders for application based on application Id
+Use this API to retrieve all the orders.
 
 ```javascript
 // Promise
@@ -12486,19 +12523,19 @@ const data = await order.getOrders(pageNo,pageSize,fromDate,toDate,orderStatus);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | integer | Current page number | 
-| pageSize | integer | Page limit | 
-| fromDate | string | From Date | 
-| toDate | string | To Date | 
-| orderStatus | integer | Order Status | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
+| fromDate | string | The date from which the orders should be retrieved. | 
+| toDate | string | The date till which the orders should be retrieved. | 
+| orderStatus | integer | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. | 
 
-Get Orders
+Get all orders
 
 *Success Response:*
 
 
 
-Success
+Success. Returns all the orders. Check the example shown below or refer `OrderList` for more details.
 
 
 Schema: `OrderList`
@@ -12510,7 +12547,7 @@ Schema: `OrderList`
 
 
 
-API Error
+API Error. See the error object in the response body to know the exact reason.. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12522,7 +12559,7 @@ Schema: `ApefaceApiError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12539,7 +12576,7 @@ Schema: `ApefaceApiError`
 
 
 #### getOrderById
-Get Order by order id for application based on application Id
+Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
 
 ```javascript
 // Promise
@@ -12551,15 +12588,15 @@ const data = await order.getOrderById(orderId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| orderId | string | Order Id | 
+| orderId | string | A unique number used for identifying and tracking your orders. | 
 
-Get Order By Fynd Order Id
+Get details of an order
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `OrderById` for more details.
 
 
 Schema: `OrderById`
@@ -12571,7 +12608,7 @@ Schema: `OrderById`
 
 
 
-API Error
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12583,7 +12620,7 @@ Schema: `ApefaceApiError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12600,7 +12637,7 @@ Schema: `ApefaceApiError`
 
 
 #### getShipmentById
-Get Shipment by shipment id and order id for application based on application Id
+Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
 
 ```javascript
 // Promise
@@ -12612,15 +12649,15 @@ const data = await order.getShipmentById(shipmentId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipmentId | string | Shipment Id | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
 
-Get Shipment
+Get details of a shipment
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ShipmentById` for more details.
 
 
 Schema: `ShipmentById`
@@ -12632,7 +12669,7 @@ Schema: `ShipmentById`
 
 
 
-API Error
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12644,7 +12681,7 @@ Schema: `ApefaceApiError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12661,7 +12698,7 @@ Schema: `ApefaceApiError`
 
 
 #### getShipmentReasons
-Get Shipment reasons by shipment id and order id for application based on application Id
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
 
 ```javascript
 // Promise
@@ -12673,15 +12710,15 @@ const data = await order.getShipmentReasons(shipmentId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipmentId | string | Shipment Id | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
 
-Get Shipment Reasons
+Get reasons behind full or partial cancellation of a shipment
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ShipmentReasons` for more details.
 
 
 Schema: `ShipmentReasons`
@@ -12693,7 +12730,7 @@ Schema: `ShipmentReasons`
 
 
 
-API Error
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12705,7 +12742,7 @@ Schema: `ApefaceApiError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12722,7 +12759,7 @@ Schema: `ApefaceApiError`
 
 
 #### updateShipmentStatus
-Update Shipment status by shipment id and order id for application based on application Id
+Use this API to update the status of a shipment using its shipment ID.
 
 ```javascript
 // Promise
@@ -12734,15 +12771,15 @@ const data = await order.updateShipmentStatus(shipmentId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipmentId | string | Shipment Id | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
 
-Update Shipment Status
+Update the shipment status
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ShipmentStatusUpdateBody` for more details.
 
 
 Schema: `ShipmentStatusUpdate`
@@ -12754,7 +12791,7 @@ Schema: `ShipmentStatusUpdate`
 
 
 
-API Error
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12766,7 +12803,7 @@ Schema: `ApefaceApiError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12783,7 +12820,7 @@ Schema: `ApefaceApiError`
 
 
 #### trackShipment
-Track Shipment by shipment id and order id for application based on application Id
+Use this API to track a shipment using its shipment ID.
 
 ```javascript
 // Promise
@@ -12795,15 +12832,15 @@ const data = await order.trackShipment(shipmentId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| shipmentId | string | Shipment Id | 
+| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
 
-Shipment Track
+Track shipment
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ShipmentTrack` for more details.
 
 
 Schema: `ShipmentTrack`
@@ -12815,7 +12852,7 @@ Schema: `ShipmentTrack`
 
 
 
-API Error
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12827,7 +12864,7 @@ Schema: `ApefaceApiError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12844,7 +12881,7 @@ Schema: `ApefaceApiError`
 
 
 #### getPosOrderById
-Get POS Order by order id for application based on application Id
+Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
 
 ```javascript
 // Promise
@@ -12856,15 +12893,15 @@ const data = await order.getPosOrderById(orderId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| orderId | string | Order Id | 
+| orderId | string | A unique number used for identifying and tracking your orders. | 
 
-Get Order By Fynd Order Id
+Get POS Order
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `PosOrderById` for more details.
 
 
 Schema: `PosOrderById`
@@ -12876,7 +12913,7 @@ Schema: `PosOrderById`
 
 
 
-API Error
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -12888,7 +12925,7 @@ Schema: `ApefaceApiError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -18689,7 +18726,7 @@ Cart Merged/Replaced
 
 
 #### getTatProduct
-Get Tat Product
+Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
 
 ```javascript
 // Promise
@@ -18702,13 +18739,13 @@ const data = await logistic.getTatProduct(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get Tat Product
+Get TAT of a product
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `GetTatProductResponse` for more details.
 
 
 Schema: `GetTatProductResponse`
@@ -18720,7 +18757,7 @@ Schema: `GetTatProductResponse`
 
 
 
-API Error
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -18732,7 +18769,7 @@ Schema: `ApefaceApiError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -18749,7 +18786,7 @@ Schema: `ApefaceApiError`
 
 
 #### getPincodeCity
-Get City from Pincode
+Use this API to retrieve a city by its PIN Code.
 
 ```javascript
 // Promise
@@ -18761,15 +18798,15 @@ const data = await logistic.getPincodeCity(pincode);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pincode | string | Pincode | 
+| pincode | string | The PIN Code of the area, e.g. 400059 | 
 
-Get City from Pincode
+Get city from PIN Code
 
 *Success Response:*
 
 
 
-Success
+Success. Returns a JSON object containing the city name, state and country identified by its PIN Code. Check the example shown below or refer `GetPincodeCityResponse` for more details.
 
 
 Schema: `GetPincodeCityResponse`
@@ -18781,7 +18818,7 @@ Schema: `GetPincodeCityResponse`
 
 
 
-API Error
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`
@@ -18793,7 +18830,7 @@ Schema: `ApefaceApiError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ApefaceApiError`

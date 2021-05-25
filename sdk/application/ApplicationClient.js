@@ -1083,34 +1083,6 @@ class Catalog {
    *   products, brands, or collections.* @param {string} arg.collectionId -
    *   The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Unfollow an entity (product/brand/collection)
-   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
-   */
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.* @param {string} arg.collectionId -
-   *   The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Follow an entity (product/brand/collection)
    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
    */
@@ -1127,6 +1099,34 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "post",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.* @param {string} arg.collectionId -
+   *   The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Unfollow an entity (product/brand/collection)
+   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+   */
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -3707,7 +3707,7 @@ class Communication {
    * @param {Object} arg - Arg object.
    * @returns {Promise<CommunicationConsent>} - Success response
    * @summary: Get communication consent
-   * @description: Get communication consent
+   * @description: Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
    */
   getCommunicationConsent({} = {}) {
     const { error } = CommunicationValidator.getCommunicationConsent().validate(
@@ -3733,7 +3733,7 @@ class Communication {
    * @param {CommunicationConsentReq} arg.body
    * @returns {Promise<CommunicationConsentRes>} - Success response
    * @summary: Upsert communication consent
-   * @description: Upsert communication consent
+   * @description: Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
    */
   upsertCommunicationConsent({ body } = {}) {
     const {
@@ -3761,7 +3761,7 @@ class Communication {
    * @param {PushtokenReq} arg.body
    * @returns {Promise<PushtokenRes>} - Success response
    * @summary: Upsert push token of a user
-   * @description: Upsert push token of a user
+   * @description: Use this API to update and insert the push token of the user.
    */
   upsertAppPushtoken({ body } = {}) {
     const { error } = CommunicationValidator.upsertAppPushtoken().validate(
@@ -4801,6 +4801,31 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<RupifiBannerResponse>} - Success response
+   * @summary: Get CreditLine Offer
+   * @description: Get CreditLine Offer if user is tentatively approved by rupifi
+   */
+  getRupifiBannerDetails({} = {}) {
+    const { error } = PaymentValidator.getRupifiBannerDetails().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/payment/v1.0/rupifi/banner`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<TransferModeResponse>} - Success response
    * @summary: List Refund Transfer Mode
    * @description: Get all active transfer mode for adding beneficiary details
@@ -5049,13 +5074,17 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page number* @param {number}
-   *   [arg.pageSize] - Page limit* @param {string} [arg.fromDate] - From
-   *   Date* @param {string} [arg.toDate] - To Date* @param {number}
-   *   [arg.orderStatus] - Order Status
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.* @param {number}
+   *   [arg.pageSize] - The number of items to retrieve in each page. Default
+   *   value is 10.* @param {string} [arg.fromDate] - The date from which the
+   *   orders should be retrieved.* @param {string} [arg.toDate] - The date
+   *   till which the orders should be retrieved.* @param {number}
+   *   [arg.orderStatus] - A filter to retrieve orders by their current status
+   *   such as *placed*, *delivered*, etc.
    * @returns {Promise<OrderList>} - Success response
-   * @summary: Get Orders for application based on application Id
-   * @description: Get Orders
+   * @summary: Use this API to retrieve all the orders.
+   * @description: Get all orders
    */
   getOrders({ pageNo, pageSize, fromDate, toDate, orderStatus } = {}) {
     const { error } = OrderValidator.getOrders().validate(
@@ -5083,10 +5112,11 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId - Order Id
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.
    * @returns {Promise<OrderById>} - Success response
-   * @summary: Get Order by order id for application based on application Id
-   * @description: Get Order By Fynd Order Id
+   * @summary: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+   * @description: Get details of an order
    */
   getOrderById({ orderId } = {}) {
     const { error } = OrderValidator.getOrderById().validate(
@@ -5109,10 +5139,12 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - Shipment Id
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
    * @returns {Promise<ShipmentById>} - Success response
-   * @summary: Get Shipment by shipment id and order id for application based on application Id
-   * @description: Get Shipment
+   * @summary: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+   * @description: Get details of a shipment
    */
   getShipmentById({ shipmentId } = {}) {
     const { error } = OrderValidator.getShipmentById().validate(
@@ -5135,10 +5167,12 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - Shipment Id
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
    * @returns {Promise<ShipmentReasons>} - Success response
-   * @summary: Get Shipment reasons by shipment id and order id for application based on application Id
-   * @description: Get Shipment Reasons
+   * @summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+   * @description: Get reasons behind full or partial cancellation of a shipment
    */
   getShipmentReasons({ shipmentId } = {}) {
     const { error } = OrderValidator.getShipmentReasons().validate(
@@ -5161,11 +5195,13 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - Shipment Id
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
    * @param {ShipmentStatusUpdateBody} arg.body
    * @returns {Promise<ShipmentStatusUpdate>} - Success response
-   * @summary: Update Shipment status by shipment id and order id for application based on application Id
-   * @description: Update Shipment Status
+   * @summary: Use this API to update the status of a shipment using its shipment ID.
+   * @description: Update the shipment status
    */
   updateShipmentStatus({ shipmentId, body } = {}) {
     const { error } = OrderValidator.updateShipmentStatus().validate(
@@ -5188,10 +5224,12 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - Shipment Id
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
    * @returns {Promise<ShipmentTrack>} - Success response
-   * @summary: Track Shipment by shipment id and order id for application based on application Id
-   * @description: Shipment Track
+   * @summary: Use this API to track a shipment using its shipment ID.
+   * @description: Track shipment
    */
   trackShipment({ shipmentId } = {}) {
     const { error } = OrderValidator.trackShipment().validate(
@@ -5214,10 +5252,11 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId - Order Id
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.
    * @returns {Promise<PosOrderById>} - Success response
-   * @summary: Get POS Order by order id for application based on application Id
-   * @description: Get Order By Fynd Order Id
+   * @summary: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
+   * @description: Get POS Order
    */
   getPosOrderById({ orderId } = {}) {
     const { error } = OrderValidator.getPosOrderById().validate(
@@ -7380,8 +7419,8 @@ class Logistic {
    * @param {Object} arg - Arg object.
    * @param {GetTatProductReqBody} arg.body
    * @returns {Promise<GetTatProductResponse>} - Success response
-   * @summary: Get Tat Product
-   * @description: Get Tat Product
+   * @summary: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
+   * @description: Get TAT of a product
    */
   getTatProduct({ body } = {}) {
     const { error } = LogisticValidator.getTatProduct().validate(
@@ -7404,10 +7443,10 @@ class Logistic {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.pincode - Pincode
+   * @param {string} arg.pincode - The PIN Code of the area, e.g. 400059
    * @returns {Promise<GetPincodeCityResponse>} - Success response
-   * @summary: Get City from Pincode
-   * @description: Get City from Pincode
+   * @summary: Use this API to retrieve a city by its PIN Code.
+   * @description: Get city from PIN Code
    */
   getPincodeCity({ pincode } = {}) {
     const { error } = LogisticValidator.getPincodeCity().validate(
