@@ -4453,8 +4453,8 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.xApiToken - Api token* @param {boolean} [arg.refresh]
-   *   - refresh cache
+   * @param {string} [arg.xApiToken] - Api token* @param {boolean}
+   *   [arg.refresh] - refresh cache
    * @returns {Promise<AggregatorsConfigDetailResponse>} - Success response
    * @summary: Get payment gateway keys
    * @description: Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
