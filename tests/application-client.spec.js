@@ -170,6 +170,10 @@ describe("Cart test cases", () => {
     expect(true).toBeTruthy();
   });
 
+  it("applyRewardPoints testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
   it("getAddresses testing", async () => {
     expect(true).toBeTruthy();
   });
@@ -865,6 +869,10 @@ describe("PosCart test cases", () => {
   });
 
   it("getBulkDiscountOffers testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
+  it("applyRewardPoints testing", async () => {
     expect(true).toBeTruthy();
   });
 

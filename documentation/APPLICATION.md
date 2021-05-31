@@ -67,6 +67,7 @@
     * [applyCoupon](#applycoupon)
     * [removeCoupon](#removecoupon)
     * [getBulkDiscountOffers](#getbulkdiscountoffers)
+    * [applyRewardPoints](#applyrewardpoints)
     * [getAddresses](#getaddresses)
     * [addAddress](#addaddress)
     * [getAddressById](#getaddressbyid)
@@ -287,6 +288,7 @@
     * [applyCoupon](#applycoupon)
     * [removeCoupon](#removecoupon)
     * [getBulkDiscountOffers](#getbulkdiscountoffers)
+    * [applyRewardPoints](#applyrewardpoints)
     * [getAddresses](#getaddresses)
     * [addAddress](#addaddress)
     * [getAddressById](#getaddressbyid)
@@ -477,10 +479,10 @@ Get the sellers of a product size at a PIN Code
 
 ```javascript
 // Promise
-const promise = catalog.getProductSellersBySlug(slug,size,pincode,pageNo,pageSize);
+const promise = catalog.getProductSellersBySlug(slug,size,pincode,strategy,pageNo,pageSize);
 
 // Async/Await
-const data = await catalog.getProductSellersBySlug(slug,size,pincode,pageNo,pageSize);
+const data = await catalog.getProductSellersBySlug(slug,size,pincode,strategy,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -488,6 +490,7 @@ const data = await catalog.getProductSellersBySlug(slug,size,pincode,pageNo,page
 | slug | string | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ | 
 | size | string | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes | 
 | pincode | string | The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059 | 
+| strategy | string | Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal. | 
 | pageNo | integer | The page number to navigate through the given set of results. | 
 | pageSize | integer | The number of items to retrieve in each page. | 
 
@@ -3147,6 +3150,45 @@ Unhandled api error
 
 
 Schema: `Object`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### applyRewardPoints
+Fetch all Items Added to  Cart
+
+```javascript
+// Promise
+const promise = cart.applyRewardPoints(uid,i,b);
+
+// Async/Await
+const data = await cart.applyRewardPoints(uid,i,b);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| uid | integer |  | 
+| i | boolean |  | 
+| b | boolean |  | 
+
+Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+
+*Success Response:*
+
+
+
+The Cart object. See example below or refer CartResponse for details
+
+
+Schema: `CartResponse`
 
 
 
@@ -8537,10 +8579,10 @@ Use this API to get the details of a blog using its slug. Details include the ti
 
 
 
-Success. Returns a JSON object with blog details. Check the example shown below or refer `CustomBlogSchema` for more details.
+Success. Returns a JSON object with blog details. Check the example shown below or refer `BlogSchema` for more details.
 
 
-Schema: `CustomBlogSchema`
+Schema: `BlogSchema`
 
 
 *Examples:*
@@ -8549,7 +8591,7 @@ Schema: `CustomBlogSchema`
 default
 ```json
 {
-  "$ref": "#/components/examples/CustomBlog"
+  "$ref": "#/components/examples/BlogResponse"
 }
 ```
 
@@ -10741,13 +10783,13 @@ const data = await configuration.getApplication();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get current application details.
+Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `Application` for more details.
 
 
 Schema: `Application`
@@ -10789,13 +10831,13 @@ const data = await configuration.getOwnerInfo();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get application information with owner and seller basic details
+Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ApplicationAboutResponse` for more details.
 
 
 Schema: `ApplicationAboutResponse`
@@ -10825,13 +10867,13 @@ const data = await configuration.getBasicDetails();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get basic application details like name
+Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ApplicationDetail` for more details.
 
 
 Schema: `ApplicationDetail`
@@ -10861,13 +10903,13 @@ const data = await configuration.getIntegrationTokens();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `TokenResponse` for more details.
 
 
 Schema: `TokenResponse`
@@ -10884,7 +10926,7 @@ Schema: `TokenResponse`
 
 
 #### getOrderingStores
-Get deployment meta stores
+Get deployment stores
 
 ```javascript
 // Promise
@@ -10896,17 +10938,17 @@ const data = await configuration.getOrderingStores(pageNo,pageSize,q);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| q | string | Search ordering store by name or store code | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
+| q | string | Store code or name of the ordering store. | 
 
-Get deployment meta stores.
+Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `OrderingStores` for more details.
 
 
 Schema: `OrderingStores`
@@ -10948,13 +10990,13 @@ const data = await configuration.getFeatures();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get features of application
+Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `AppFeatureResponse` for more details.
 
 
 Schema: `AppFeatureResponse`
@@ -10996,13 +11038,13 @@ const data = await configuration.getContactInfo();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `ApplicationAboutResponse` for more details.
 
 
 Schema: `ApplicationInformation`
@@ -11019,7 +11061,7 @@ Schema: `ApplicationInformation`
 
 
 #### getCurrencies
-Get application enabled currencies
+Get currencies enabled in the application
 
 ```javascript
 // Promise
@@ -11032,13 +11074,13 @@ const data = await configuration.getCurrencies();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get currency list for allowed currencies under current application
+Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
 
 *Success Response:*
 
 
 
-Currencies Success response
+Success. Check the example shown below or refer `CurrenciesResponse` for more details.
 
 
 Schema: `CurrenciesResponse`
@@ -11055,7 +11097,7 @@ Schema: `CurrenciesResponse`
 
 
 #### getCurrencyById
-Get currency by id
+Get currency by its ID
 
 ```javascript
 // Promise
@@ -11067,15 +11109,15 @@ const data = await configuration.getCurrencyById(id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| id | string | Currency object id | 
+| id | string | Object ID assigned to the currency | 
 
-Get currency object with symbol and name information by id.
+Use this API to retrieve a currency using its ID.
 
 *Success Response:*
 
 
 
-Success response
+Success. Check the example shown below or refer `Currency` for more details.
 
 
 Schema: `Currency`
@@ -11105,13 +11147,13 @@ const data = await configuration.getLanguages();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get list of supported languages under application.
+Use this API to get a list of languages supported in the application.
 
 *Success Response:*
 
 
 
-Success response
+Success. Check the example shown below or refer `LanguageResponse` for more details.
 
 
 Schema: `LanguageResponse`
@@ -11128,7 +11170,7 @@ Schema: `LanguageResponse`
 
 
 #### getOrderingStoreCookie
-Get ordering store signed cookie on selection of ordering store. This will be used by cart service to verify coupon against selected ordering store in cart.
+Get an Ordering Store signed cookie on selection of ordering store.
 
 ```javascript
 // Promise
@@ -11141,7 +11183,7 @@ const data = await configuration.getOrderingStoreCookie(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get ordering store signed cookie on selection of ordering store.
+Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
 
 *Success Response:*
 
@@ -11159,7 +11201,7 @@ Schema: `SuccessMessageResponse`
 
 
 
-Success
+API Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `NotFound`
@@ -11176,7 +11218,7 @@ Schema: `NotFound`
 
 
 #### removeOrderingStoreCookie
-Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
+Unset the Ordering Store signed cookie.
 
 ```javascript
 // Promise
@@ -11189,7 +11231,7 @@ const data = await configuration.removeOrderingStoreCookie();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Unset ordering store cookie.
+Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
 
 *Success Response:*
 
@@ -11212,7 +11254,7 @@ Schema: `SuccessMessageResponse`
 
 
 #### getAppStaffs
-Get Staff List.
+Get a list of staff.
 
 ```javascript
 // Promise
@@ -11224,17 +11266,17 @@ const data = await configuration.getAppStaffs(orderIncent,orderingStore,user);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| orderIncent | boolean | This is to check which staff members are applicable for order incentives. | 
-| orderingStore | integer | This is to filter staff members from only selected ordering store. | 
-| user | string | Get single staff member details using staff user mongo id | 
+| orderIncent | boolean | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. | 
+| orderingStore | integer | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. | 
+| user | string | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. | 
 
-Get a staff list based on the user's session token passed in the header.
+Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `AppStaffResponse` for more details.
 
 
 Schema: `AppStaffResponse`
@@ -11246,7 +11288,7 @@ Schema: `AppStaffResponse`
 
 
 
-Request failed with internal server error.
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `UnhandledError`
@@ -11282,16 +11324,16 @@ const data = await payment.getAggregatorsConfig(xApiToken,refresh);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| xApiToken | string | api token | 
-| refresh | boolean | refresh cache | 
+| xApiToken | string | Used for basic authentication. | 
+| refresh | boolean | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. | 
 
-Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
+Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
 
 *Success Response:*
 
 
 
-Keys of all payment gateway
+Success. Returns the keys of all payment gateways. Check the example shown below or refer `AggregatorsConfigDetailResponse` for more details.
 
 
 Schema: `AggregatorsConfigDetailResponse`
@@ -11303,7 +11345,7 @@ Schema: `AggregatorsConfigDetailResponse`
 
 
 
-Bad Request Error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11315,7 +11357,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11345,13 +11387,13 @@ const data = await payment.attachCardToCustomer(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
+Use this API to attach a customer's saved card at the payment gateway, such as Stripe.
 
 *Success Response:*
 
 
 
-List of cards objects
+Success. Check the example shown below or refer `AttachCardsResponse` for more details.
 
 
 Schema: `AttachCardsResponse`
@@ -11363,7 +11405,7 @@ Schema: `AttachCardsResponse`
 
 
 
-Bad request error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `any`
@@ -11375,7 +11417,7 @@ Schema: `any`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `any`
@@ -11392,7 +11434,7 @@ Schema: `any`
 
 
 #### getActiveCardAggregator
-Fetch active payment gateway for card
+Fetch active payment gateway for card payments
 
 ```javascript
 // Promise
@@ -11406,13 +11448,13 @@ const data = await payment.getActiveCardAggregator(refresh);
 | --------- | ----  | --- |
 | refresh | boolean |  | 
 
-Fetch active payment gateway along with customer id for cards payments.
+Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only.
 
 *Success Response:*
 
 
 
-Object of payment gateway and customer id
+Success. Returns an active payment gateway. Check the example shown below or refer `ActiveCardPaymentGatewayResponse` for more details.
 
 
 Schema: `ActiveCardPaymentGatewayResponse`
@@ -11424,7 +11466,7 @@ Schema: `ActiveCardPaymentGatewayResponse`
 
 
 
-Bad request error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11436,7 +11478,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11453,7 +11495,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### getActiveUserCards
-Fetch the list of saved cards of user.
+Fetch the list of cards saved by the user
 
 ```javascript
 // Promise
@@ -11467,13 +11509,13 @@ const data = await payment.getActiveUserCards(forceRefresh);
 | --------- | ----  | --- |
 | forceRefresh | boolean |  | 
 
-Fetch the list of saved cards of user from active payment gateway.
+Use this API to retrieve a list of cards stored by user from an active payment gateway.
 
 *Success Response:*
 
 
 
-List of cards objects
+Success. Returns a list of cards saved by the user. Check the example shown below or refer `ListCardsResponse` for more details.
 
 
 Schema: `ListCardsResponse`
@@ -11485,7 +11527,7 @@ Schema: `ListCardsResponse`
 
 
 
-Bad request error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11497,7 +11539,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11514,7 +11556,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### deleteUserCard
-Delete an user card.
+Delete a card
 
 ```javascript
 // Promise
@@ -11527,13 +11569,13 @@ const data = await payment.deleteUserCard(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Delete an added user card on payment gateway and remove from cache.
+Use this API to delete a card added by a user on the payment gateway and clear the cache.
 
 *Success Response:*
 
 
 
-List of cards objects
+Success. Returns a success message if card is deleted.
 
 
 Schema: `DeleteCardsResponse`
@@ -11545,7 +11587,7 @@ Schema: `DeleteCardsResponse`
 
 
 
-Bad request error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11557,7 +11599,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11574,7 +11616,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### verifyCustomerForPayment
-Validate customer for payment.
+Validate customer for payment
 
 ```javascript
 // Promise
@@ -11587,13 +11629,13 @@ const data = await payment.verifyCustomerForPayment(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Validate customer for payment i.e Simpl paylater, Rupifi loan.
+Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
 
 *Success Response:*
 
 
 
-List of cards objects
+Success. Check the example shown below or refer `ValidateCustomerResponse` for more details.
 
 
 Schema: `ValidateCustomerResponse`
@@ -11605,7 +11647,7 @@ Schema: `ValidateCustomerResponse`
 
 
 
-Bad request error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11617,7 +11659,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11647,13 +11689,13 @@ const data = await payment.verifyAndChargePayment(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Verify and charge payment server to server for Simpl & Mswipe.
+Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
 
 *Success Response:*
 
 
 
-List of cards objects
+Success. Check the example shown below or refer `ChargeCustomerResponse` for more details.
 
 
 Schema: `ChargeCustomerResponse`
@@ -11665,7 +11707,7 @@ Schema: `ChargeCustomerResponse`
 
 
 
-Bad request error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11677,7 +11719,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11694,7 +11736,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### initialisePayment
-Payment Initialisation server to server for UPI and BharatQR.
+Initialize a payment (server-to-server) for UPI and BharatQR
 
 ```javascript
 // Promise
@@ -11707,13 +11749,13 @@ const data = await payment.initialisePayment(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
+PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
 
 *Success Response:*
 
 
 
-List of cards objects
+Success. Check the example shown below or refer `PaymentInitializationResponse` for more details.
 
 
 Schema: `PaymentInitializationResponse`
@@ -11725,7 +11767,7 @@ Schema: `PaymentInitializationResponse`
 
 
 
-Bad request error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11737,7 +11779,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11754,7 +11796,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### checkAndUpdatePaymentStatus
-Continous polling to check status of payment on server.
+Performs continuous polling to check status of payment on the server
 
 ```javascript
 // Promise
@@ -11767,13 +11809,13 @@ const data = await payment.checkAndUpdatePaymentStatus(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Continous polling on interval to check status of payment untill timeout.
+Use this API to perform continuous polling at intervals to check the status of payment until timeout.
 
 *Success Response:*
 
 
 
-List of cards objects
+Success. Returns the status of payment. Check the example shown below or refer `PaymentStatusUpdateResponse` for more details.
 
 
 Schema: `PaymentStatusUpdateResponse`
@@ -11785,7 +11827,7 @@ Schema: `PaymentStatusUpdateResponse`
 
 
 
-Bad request error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11797,7 +11839,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11814,7 +11856,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### getPaymentModeRoutes
-Get All Valid Payment Options
+Get applicable payment options
 
 ```javascript
 // Promise
@@ -11826,21 +11868,21 @@ const data = await payment.getPaymentModeRoutes(amount,cartId,pincode,checkoutMo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| amount | integer | Payment amount | 
-| cartId | string | Cart id | 
-| pincode | string | Pincode | 
-| checkoutMode | string | Checkout mode | 
-| refresh | boolean |  | 
-| assignCardId | string | selected card id | 
-| userDetails | string | URIencoded json annonymous user | 
+| amount | integer | Payable amount. | 
+| cartId | string | Identifier of the cart. | 
+| pincode | string | The PIN Code of the destination address, e.g. 400059 | 
+| checkoutMode | string | Option to checkout for self or for others. | 
+| refresh | boolean | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. | 
+| assignCardId | string | Token of user's debit or credit card. | 
+| userDetails | string | URIencoded JSON containing details of an anonymous user. | 
 
-Use this API to get Get All Valid Payment Options for making payment
+Use this API to get all valid payment options for doing a payment.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns all available options for payment. Check the example shown below or refer `PaymentModeRouteResponse` for more details.
 
 
 Schema: `PaymentModeRouteResponse`
@@ -11852,7 +11894,7 @@ Schema: `PaymentModeRouteResponse`
 
 
 
-Bad Request Error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11864,7 +11906,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11881,7 +11923,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### getPosPaymentModeRoutes
-Get All Valid Payment Options for POS
+Get applicable payment options for Point-of-Sale (POS)
 
 ```javascript
 // Promise
@@ -11893,22 +11935,22 @@ const data = await payment.getPosPaymentModeRoutes(amount,cartId,pincode,checkou
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| amount | integer | Payment amount | 
-| cartId | string | Cart id | 
-| pincode | string | Pincode | 
-| checkoutMode | string | Checkout mode | 
-| refresh | boolean |  | 
-| assignCardId | string | selected card id | 
-| orderType | string | Order type | 
-| userDetails | string | URIencoded json annonymous user | 
+| amount | integer | Payable amount. | 
+| cartId | string | Identifier of the cart. | 
+| pincode | string | The PIN Code of the destination address, e.g. 400059 | 
+| checkoutMode | string | Option to checkout for self or for others. | 
+| refresh | boolean | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. | 
+| assignCardId | string | Token of user's debit or credit card. | 
+| orderType | string | The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself. | 
+| userDetails | string | URIencoded JSON containing details of an anonymous user. | 
 
-Use this API to get Get All Valid Payment Options for making payment
+Use this API to get all valid payment options for doing a payment in POS.
 
 *Success Response:*
 
 
 
-Success
+Success. Returns all available options for payment. Check the example shown below or refer `PaymentModeRouteResponse` for more details.
 
 
 Schema: `PaymentModeRouteResponse`
@@ -11920,7 +11962,7 @@ Schema: `PaymentModeRouteResponse`
 
 
 
-Bad Request Error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11932,7 +11974,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -11968,10 +12010,34 @@ Get CreditLine Offer if user is tentatively approved by rupifi
 
 
 
-Get CreditLine Offer
+Success. Return CreditLine Offer detail. Check the example shown below or refer `RupifiBannerResponseSchema` for more details.
 
 
 Schema: `RupifiBannerResponse`
+
+
+
+
+
+
+
+
+Bad Request. See the error object in the response body to know the exact reason.
+
+
+Schema: `HttpErrorCodeAndResponse`
+
+
+
+
+
+
+
+
+Internal Server Error. See the error object in the response body to know the exact reason.
+
+
+Schema: `HttpErrorCodeAndResponse`
 
 
 
@@ -11985,7 +12051,7 @@ Schema: `RupifiBannerResponse`
 
 
 #### getActiveRefundTransferModes
-List Refund Transfer Mode
+Lists the mode of refund
 
 ```javascript
 // Promise
@@ -11998,13 +12064,13 @@ const data = await payment.getActiveRefundTransferModes();
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get all active transfer mode for adding beneficiary details
+Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
 
 *Success Response:*
 
 
 
-Refund Transfer Mode
+Success. Shows the available refund mode to choose, e.g. Netbanking. Check the example shown below or refer `TransferModeResponse` for more details.
 
 
 Schema: `TransferModeResponse`
@@ -12016,7 +12082,7 @@ Schema: `TransferModeResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -12033,7 +12099,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### enableOrDisableRefundTransferMode
-Enable/Disable Refund Transfer Mode
+Enable/Disable a mode for transferring a refund
 
 ```javascript
 // Promise
@@ -12052,7 +12118,7 @@ Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
 
 
 
-Update Refund Transfer Mode.
+Success. Shows whether the refund mode was successfully enabled or disabled.
 
 
 Schema: `UpdateRefundTransferModeResponse`
@@ -12064,7 +12130,7 @@ Schema: `UpdateRefundTransferModeResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -12081,7 +12147,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### getUserBeneficiariesDetail
-List User Beneficiary
+Lists the beneficiary of a refund
 
 ```javascript
 // Promise
@@ -12093,15 +12159,15 @@ const data = await payment.getUserBeneficiariesDetail(orderId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| orderId | string |  | 
+| orderId | string | A unique number used for identifying and tracking your orders. | 
 
-Get all active  beneficiary details added by the user for refund
+Use this API to get the details of all active beneficiary added by a user for refund.
 
 *Success Response:*
 
 
 
-List User Beneficiary
+Success. Returns the details of the beneficiary getting a refund. Check the example shown below or refer `OrderBeneficiaryResponse` for more details.
 
 
 Schema: `OrderBeneficiaryResponse`
@@ -12113,7 +12179,7 @@ Schema: `OrderBeneficiaryResponse`
 
 
 
-Bad Request Error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `NotFoundResourceError`
@@ -12125,7 +12191,7 @@ Schema: `NotFoundResourceError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -12142,7 +12208,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### verifyIfscCode
-Ifsc Code Verification
+Verify IFSC Code
 
 ```javascript
 // Promise
@@ -12154,15 +12220,15 @@ const data = await payment.verifyIfscCode(ifscCode);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| ifscCode | string |  | 
+| ifscCode | string | A 11-digit alphanumeric code that uniquely identifies a bank branch. | 
 
-Get True/False for correct IFSC Code for adding bank details for refund
+Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
 
 *Success Response:*
 
 
 
-Bank details on correct Ifsc Code
+Success. Shows whether the IFSC code is valid, and returns the bank details. Check the example shown below or refer `IfscCodeResponse` for more details.
 
 
 Schema: `IfscCodeResponse`
@@ -12174,7 +12240,7 @@ Schema: `IfscCodeResponse`
 
 
 
-Bad Request Error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `NotFoundResourceError`
@@ -12186,7 +12252,7 @@ Schema: `NotFoundResourceError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `ErrorCodeDescription`
@@ -12203,7 +12269,7 @@ Schema: `ErrorCodeDescription`
 
 
 #### getOrderBeneficiariesDetail
-List Order Beneficiary
+Lists the beneficiary of a refund
 
 ```javascript
 // Promise
@@ -12215,15 +12281,15 @@ const data = await payment.getOrderBeneficiariesDetail(orderId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| orderId | string |  | 
+| orderId | string | A unique number used for identifying and tracking your orders. | 
 
-Get all active  beneficiary details added by the user for refund
+Use this API to get the details of all active beneficiary added by a user for refund.
 
 *Success Response:*
 
 
 
-List Order Beneficiary
+Success. Returns the details of the beneficiary getting a refund. Check the example shown below or refer `OrderBeneficiaryResponse` for more details.
 
 
 Schema: `OrderBeneficiaryResponse`
@@ -12235,7 +12301,7 @@ Schema: `OrderBeneficiaryResponse`
 
 
 
-Bad Request Error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `NotFoundResourceError`
@@ -12247,7 +12313,7 @@ Schema: `NotFoundResourceError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -12264,7 +12330,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### verifyOtpAndAddBeneficiaryForBank
-Save Beneficiary details on otp validation.
+Verify the beneficiary details using OTP
 
 ```javascript
 // Promise
@@ -12277,13 +12343,13 @@ const data = await payment.verifyOtpAndAddBeneficiaryForBank(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Save Beneficiary details on otp validation.
+Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
 
 *Success Response:*
 
 
 
-Success
+Success. Check the example shown below or refer `AddBeneficiaryViaOtpVerificationRequest` for more details.
 
 
 Schema: `AddBeneficiaryViaOtpVerificationResponse`
@@ -12295,7 +12361,7 @@ Schema: `AddBeneficiaryViaOtpVerificationResponse`
 
 
 
-Bad Request Error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `WrongOtpError`
@@ -12307,7 +12373,7 @@ Schema: `WrongOtpError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -12337,13 +12403,13 @@ const data = await payment.addBeneficiaryDetails(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Use this API to save bank details for returned/cancelled order to refund amount in his account.
+Use this API to save the bank details for a returned or cancelled order to refund the amount.
 
 *Success Response:*
 
 
 
-Success
+Success. Shows whether the beneficiary details were saved to a returned/cancelled order or not.
 
 
 Schema: `RefundAccountResponse`
@@ -12355,7 +12421,7 @@ Schema: `RefundAccountResponse`
 
 
 
-Bad Request Error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `NotFoundResourceError`
@@ -12367,7 +12433,7 @@ Schema: `NotFoundResourceError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -12384,7 +12450,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### verifyOtpAndAddBeneficiaryForWallet
-Send Otp on Adding wallet beneficiary
+Send OTP on adding a wallet beneficiary
 
 ```javascript
 // Promise
@@ -12397,13 +12463,13 @@ const data = await payment.verifyOtpAndAddBeneficiaryForWallet(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Send Otp on Adding wallet beneficiary for user mobile verification
+Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
 
 *Success Response:*
 
 
 
-WalletOtp
+Success. Sends the OTP to the given mobile number. Check the example shown below or refer `WalletOtpResponse` for more details.
 
 
 Schema: `WalletOtpResponse`
@@ -12415,7 +12481,7 @@ Schema: `WalletOtpResponse`
 
 
 
-Bad Request Error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `NotFoundResourceError`
@@ -12427,7 +12493,7 @@ Schema: `NotFoundResourceError`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -12444,7 +12510,7 @@ Schema: `HttpErrorCodeAndResponse`
 
 
 #### updateDefaultBeneficiary
-Mark Default Beneficiary For Refund
+Set a default beneficiary for a refund
 
 ```javascript
 // Promise
@@ -12457,13 +12523,13 @@ const data = await payment.updateDefaultBeneficiary(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Mark Default Beneficiary ot of all Beneficiary Details for Refund
+Use this API to set a default beneficiary for getting a refund.
 
 *Success Response:*
 
 
 
-Set Default Beneficiary Response.
+Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` for more details.
 
 
 Schema: `SetDefaultBeneficiaryResponse`
@@ -12475,7 +12541,7 @@ Schema: `SetDefaultBeneficiaryResponse`
 
 
 
-Bad Request Error
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `SetDefaultBeneficiaryResponse`
@@ -12487,7 +12553,7 @@ Schema: `SetDefaultBeneficiaryResponse`
 
 
 
-Internal Server Error
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `HttpErrorCodeAndResponse`
@@ -16009,6 +16075,45 @@ Unhandled api error
 
 
 Schema: `Object`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### applyRewardPoints
+Fetch all Items Added to  Cart
+
+```javascript
+// Promise
+const promise = poscart.applyRewardPoints(uid,i,b);
+
+// Async/Await
+const data = await poscart.applyRewardPoints(uid,i,b);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| uid | integer |  | 
+| i | boolean |  | 
+| b | boolean |  | 
+
+Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+
+*Success Response:*
+
+
+
+The Cart object. See example below or refer CartResponse for details
+
+
+Schema: `CartResponse`
 
 
 

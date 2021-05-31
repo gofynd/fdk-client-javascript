@@ -149,22 +149,32 @@ class Catalog {
    *   slug value from the endpoint
    *   /service/application/catalog/v1.0/products/sizes* @param {string}
    *   arg.pincode - The 6-digit PIN Code of the area near which the selling
-   *   locations should be searched, e.g. 400059* @param {number} [arg.pageNo]
-   *   - The page number to navigate through the given set of results.* @param
+   *   locations should be searched, e.g. 400059* @param {string}
+   *   [arg.strategy] - Sort stores on the basis of strategy. eg,
+   *   fast-delivery, low-price, optimal.* @param {number} [arg.pageNo] - The
+   *   page number to navigate through the given set of results.* @param
    *   {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Promise<ProductSizeSellersResponse>} - Success response
    * @summary: Get the sellers of a product size at a PIN Code
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
    */
-  getProductSellersBySlug({ slug, size, pincode, pageNo, pageSize } = {}) {
+  getProductSellersBySlug({
+    slug,
+    size,
+    pincode,
+    strategy,
+    pageNo,
+    pageSize,
+  } = {}) {
     const { error } = CatalogValidator.getProductSellersBySlug().validate(
-      { slug, size, pincode, pageNo, pageSize },
+      { slug, size, pincode, strategy, pageNo, pageSize },
       { abortEarly: false }
     );
     if (error) {
       return Promise.reject(error);
     }
     const query = {};
+    query["strategy"] = strategy;
     query["page_no"] = pageNo;
     query["page_size"] = pageSize;
 
@@ -187,11 +197,19 @@ class Catalog {
    *   /service/application/catalog/v1.0/products/sizes
    * @param {string} arg.pincode - The 6-digit PIN Code of the area near which
    *   the selling locations should be searched, e.g. 400059
+   * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
+   *   eg, fast-delivery, low-price, optimal.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @summary: Get the sellers of a product size at a PIN Code
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
    */
-  getProductSellersBySlugPaginator({ slug, size, pincode, pageSize } = {}) {
+  getProductSellersBySlugPaginator({
+    slug,
+    size,
+    pincode,
+    strategy,
+    pageSize,
+  } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -201,6 +219,7 @@ class Catalog {
         slug: slug,
         size: size,
         pincode: pincode,
+        strategy: strategy,
         pageNo: pageNo,
         pageSize: pageSize,
       });
@@ -1531,6 +1550,36 @@ class Cart {
       this._conf,
       "get",
       `/service/application/cart/v1.0/bulk-price`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.uid] - * @param {boolean} [arg.i] - * @param
+   *   {boolean} [arg.b] -
+   * @returns {Promise<CartResponse>} - Success response
+   * @summary: Fetch all Items Added to  Cart
+   * @description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+   */
+  applyRewardPoints({ uid, i, b } = {}) {
+    const { error } = CartValidator.applyRewardPoints().validate(
+      { uid, i, b },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["uid"] = uid;
+    query["i"] = i;
+    query["b"] = b;
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/cart/v1.0/redeem/points/`,
       query,
       undefined
     );
@@ -3132,7 +3181,7 @@ class Content {
    *   identifier of a blog. You can get slug value from the endpoint
    *   /service/application/content/v1.0/blogs/.* @param {string} [arg.rootId]
    *   - ID given to the HTML element
-   * @returns {Promise<CustomBlogSchema>} - Success response
+   * @returns {Promise<BlogSchema>} - Success response
    * @summary: Get a blog
    * @description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
    */
@@ -4078,7 +4127,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @returns {Promise<Application>} - Success response
    * @summary: Get current application details
-   * @description: Get current application details.
+   * @description: Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
    */
   getApplication({} = {}) {
     const { error } = ConfigurationValidator.getApplication().validate(
@@ -4103,7 +4152,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @returns {Promise<ApplicationAboutResponse>} - Success response
    * @summary: Get application, owner and seller information
-   * @description: Get application information with owner and seller basic details
+   * @description: Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
    */
   getOwnerInfo({} = {}) {
     const { error } = ConfigurationValidator.getOwnerInfo().validate(
@@ -4128,7 +4177,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @returns {Promise<ApplicationDetail>} - Success response
    * @summary: Get basic application details
-   * @description: Get basic application details like name
+   * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
    */
   getBasicDetails({} = {}) {
     const { error } = ConfigurationValidator.getBasicDetails().validate(
@@ -4153,7 +4202,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @returns {Promise<TokenResponse>} - Success response
    * @summary: Get integration tokens
-   * @description: Get tokens for multiple integrations like Facebook, Googlemaps, Segment, Firebase, etc. Note: token values are encrypted with AES encryption using secret key. Kindly reach to developers for secret key.
+   * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
    */
   getIntegrationTokens({} = {}) {
     const { error } = ConfigurationValidator.getIntegrationTokens().validate(
@@ -4176,12 +4225,14 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no* @param {number}
-   *   [arg.pageSize] - Current request items count* @param {string} [arg.q] -
-   *   Search ordering store by name or store code
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.* @param {number}
+   *   [arg.pageSize] - The number of items to retrieve in each page. Default
+   *   value is 10.* @param {string} [arg.q] - Store code or name of the
+   *   ordering store.
    * @returns {Promise<OrderingStores>} - Success response
-   * @summary: Get deployment meta stores
-   * @description: Get deployment meta stores.
+   * @summary: Get deployment stores
+   * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
    */
   getOrderingStores({ pageNo, pageSize, q } = {}) {
     const { error } = ConfigurationValidator.getOrderingStores().validate(
@@ -4207,10 +4258,11 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {string} [arg.q] - Search ordering store by name or store code
-   * @summary: Get deployment meta stores
-   * @description: Get deployment meta stores.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {string} [arg.q] - Store code or name of the ordering store.
+   * @summary: Get deployment stores
+   * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
    */
   getOrderingStoresPaginator({ pageSize, q } = {}) {
     const paginator = new Paginator();
@@ -4237,7 +4289,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @returns {Promise<AppFeatureResponse>} - Success response
    * @summary: Get features of application
-   * @description: Get features of application
+   * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
    */
   getFeatures({} = {}) {
     const { error } = ConfigurationValidator.getFeatures().validate(
@@ -4262,7 +4314,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @returns {Promise<ApplicationInformation>} - Success response
    * @summary: Get application information
-   * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+   * @description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
    */
   getContactInfo({} = {}) {
     const { error } = ConfigurationValidator.getContactInfo().validate(
@@ -4286,8 +4338,8 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<CurrenciesResponse>} - Success response
-   * @summary: Get application enabled currencies
-   * @description: Get currency list for allowed currencies under current application
+   * @summary: Get currencies enabled in the application
+   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
    */
   getCurrencies({} = {}) {
     const { error } = ConfigurationValidator.getCurrencies().validate(
@@ -4310,10 +4362,10 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Currency object id
+   * @param {string} arg.id - Object ID assigned to the currency
    * @returns {Promise<Currency>} - Success response
-   * @summary: Get currency by id
-   * @description: Get currency object with symbol and name information by id.
+   * @summary: Get currency by its ID
+   * @description: Use this API to retrieve a currency using its ID.
    */
   getCurrencyById({ id } = {}) {
     const { error } = ConfigurationValidator.getCurrencyById().validate(
@@ -4338,7 +4390,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @returns {Promise<LanguageResponse>} - Success response
    * @summary: Get list of languages
-   * @description: Get list of supported languages under application.
+   * @description: Use this API to get a list of languages supported in the application.
    */
   getLanguages({} = {}) {
     const { error } = ConfigurationValidator.getLanguages().validate(
@@ -4363,8 +4415,8 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {OrderingStoreSelectRequest} arg.body
    * @returns {Promise<SuccessMessageResponse>} - Success response
-   * @summary: Get ordering store signed cookie on selection of ordering store. This will be used by cart service to verify coupon against selected ordering store in cart.
-   * @description: Get ordering store signed cookie on selection of ordering store.
+   * @summary: Get an Ordering Store signed cookie on selection of ordering store.
+   * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
    */
   getOrderingStoreCookie({ body } = {}) {
     const { error } = ConfigurationValidator.getOrderingStoreCookie().validate(
@@ -4388,8 +4440,8 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<SuccessMessageResponse>} - Success response
-   * @summary: Unset ordering store signed cookie on change of sales channel selection via domain in universal fynd store app.
-   * @description: Unset ordering store cookie.
+   * @summary: Unset the Ordering Store signed cookie.
+   * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
    */
   removeOrderingStoreCookie({} = {}) {
     const {
@@ -4414,14 +4466,15 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.orderIncent] - This is to check which staff members
-   *   are applicable for order incentives.* @param {number}
-   *   [arg.orderingStore] - This is to filter staff members from only
-   *   selected ordering store.* @param {string} [arg.user] - Get single staff
-   *   member details using staff user mongo id
+   * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+   *   `true` to retrieve the staff members eligible for getting incentives on
+   *   orders.* @param {number} [arg.orderingStore] - ID of the ordering
+   *   store. Helps in retrieving staff members working at a particular
+   *   ordering store.* @param {string} [arg.user] - Mongo ID of the staff.
+   *   Helps in retrieving the details of a particular staff member.
    * @returns {Promise<AppStaffResponse>} - Success response
-   * @summary: Get Staff List.
-   * @description: Get a staff list based on the user's session token passed in the header.
+   * @summary: Get a list of staff.
+   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
    */
   getAppStaffs({ orderIncent, orderingStore, user } = {}) {
     const { error } = ConfigurationValidator.getAppStaffs().validate(
@@ -4453,11 +4506,12 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.xApiToken] - Api token* @param {boolean}
-   *   [arg.refresh] - refresh cache
+   * @param {string} [arg.xApiToken] - Used for basic authentication.* @param
+   *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
+   *   remove temporary cache files on payment gateway and replace with the latest one.
    * @returns {Promise<AggregatorsConfigDetailResponse>} - Success response
    * @summary: Get payment gateway keys
-   * @description: Get payment gateway (key, secrets, merchant, sdk/api detail) to complete payment at front-end.
+   * @description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
    */
   getAggregatorsConfig({ xApiToken, refresh } = {}) {
     const { error } = PaymentValidator.getAggregatorsConfig().validate(
@@ -4484,7 +4538,7 @@ class Payment {
    * @param {AttachCardRequest} arg.body
    * @returns {Promise<AttachCardsResponse>} - Success response
    * @summary: Attach a saved card to customer.
-   * @description: Attach a saved card to customer at payment gateway i.e stripe and refresh card cache.
+   * @description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe.
    */
   attachCardToCustomer({ body } = {}) {
     const { error } = PaymentValidator.attachCardToCustomer().validate(
@@ -4509,8 +4563,8 @@ class Payment {
    * @param {Object} arg - Arg object.
    * @param {boolean} [arg.refresh] -
    * @returns {Promise<ActiveCardPaymentGatewayResponse>} - Success response
-   * @summary: Fetch active payment gateway for card
-   * @description: Fetch active payment gateway along with customer id for cards payments.
+   * @summary: Fetch active payment gateway for card payments
+   * @description: Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only.
    */
   getActiveCardAggregator({ refresh } = {}) {
     const { error } = PaymentValidator.getActiveCardAggregator().validate(
@@ -4536,8 +4590,8 @@ class Payment {
    * @param {Object} arg - Arg object.
    * @param {boolean} [arg.forceRefresh] -
    * @returns {Promise<ListCardsResponse>} - Success response
-   * @summary: Fetch the list of saved cards of user.
-   * @description: Fetch the list of saved cards of user from active payment gateway.
+   * @summary: Fetch the list of cards saved by the user
+   * @description: Use this API to retrieve a list of cards stored by user from an active payment gateway.
    */
   getActiveUserCards({ forceRefresh } = {}) {
     const { error } = PaymentValidator.getActiveUserCards().validate(
@@ -4563,8 +4617,8 @@ class Payment {
    * @param {Object} arg - Arg object.
    * @param {DeletehCardRequest} arg.body
    * @returns {Promise<DeleteCardsResponse>} - Success response
-   * @summary: Delete an user card.
-   * @description: Delete an added user card on payment gateway and remove from cache.
+   * @summary: Delete a card
+   * @description: Use this API to delete a card added by a user on the payment gateway and clear the cache.
    */
   deleteUserCard({ body } = {}) {
     const { error } = PaymentValidator.deleteUserCard().validate(
@@ -4589,8 +4643,8 @@ class Payment {
    * @param {Object} arg - Arg object.
    * @param {ValidateCustomerRequest} arg.body
    * @returns {Promise<ValidateCustomerResponse>} - Success response
-   * @summary: Validate customer for payment.
-   * @description: Validate customer for payment i.e Simpl paylater, Rupifi loan.
+   * @summary: Validate customer for payment
+   * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
    */
   verifyCustomerForPayment({ body } = {}) {
     const { error } = PaymentValidator.verifyCustomerForPayment().validate(
@@ -4616,7 +4670,7 @@ class Payment {
    * @param {ChargeCustomerRequest} arg.body
    * @returns {Promise<ChargeCustomerResponse>} - Success response
    * @summary: Verify and charge payment
-   * @description: Verify and charge payment server to server for Simpl & Mswipe.
+   * @description: Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
    */
   verifyAndChargePayment({ body } = {}) {
     const { error } = PaymentValidator.verifyAndChargePayment().validate(
@@ -4641,8 +4695,8 @@ class Payment {
    * @param {Object} arg - Arg object.
    * @param {PaymentInitializationRequest} arg.body
    * @returns {Promise<PaymentInitializationResponse>} - Success response
-   * @summary: Payment Initialisation server to server for UPI and BharatQR.
-   * @description: Payment Initialisation for UPI & BharatQR code, UPI requests to app and QR code to be displayed on screen.
+   * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
+   * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
    */
   initialisePayment({ body } = {}) {
     const { error } = PaymentValidator.initialisePayment().validate(
@@ -4667,8 +4721,8 @@ class Payment {
    * @param {Object} arg - Arg object.
    * @param {PaymentStatusUpdateRequest} arg.body
    * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
-   * @summary: Continous polling to check status of payment on server.
-   * @description: Continous polling on interval to check status of payment untill timeout.
+   * @summary: Performs continuous polling to check status of payment on the server
+   * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
    */
   checkAndUpdatePaymentStatus({ body } = {}) {
     const { error } = PaymentValidator.checkAndUpdatePaymentStatus().validate(
@@ -4691,14 +4745,18 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.amount - Payment amount* @param {string} arg.cartId -
-   *   Cart id* @param {string} arg.pincode - Pincode* @param {string}
-   *   arg.checkoutMode - Checkout mode* @param {boolean} [arg.refresh] - *
-   *   @param {string} [arg.assignCardId] - selected card id* @param {string}
-   *   [arg.userDetails] - URIencoded json annonymous user
+   * @param {number} arg.amount - Payable amount.* @param {string} arg.cartId
+   *   - Identifier of the cart.* @param {string} arg.pincode - The PIN Code
+   *   of the destination address, e.g. 400059* @param {string}
+   *   arg.checkoutMode - Option to checkout for self or for others.* @param
+   *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
+   *   remove temporary cache files on payment gateway and replace with the
+   *   latest one.* @param {string} [arg.assignCardId] - Token of user's debit
+   *   or credit card.* @param {string} [arg.userDetails] - URIencoded JSON
+   *   containing details of an anonymous user.
    * @returns {Promise<PaymentModeRouteResponse>} - Success response
-   * @summary: Get All Valid Payment Options
-   * @description: Use this API to get Get All Valid Payment Options for making payment
+   * @summary: Get applicable payment options
+   * @description: Use this API to get all valid payment options for doing a payment.
    */
   getPaymentModeRoutes({
     amount,
@@ -4744,15 +4802,21 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.amount - Payment amount* @param {string} arg.cartId -
-   *   Cart id* @param {string} arg.pincode - Pincode* @param {string}
-   *   arg.checkoutMode - Checkout mode* @param {boolean} [arg.refresh] - *
-   *   @param {string} [arg.assignCardId] - selected card id* @param {string}
-   *   arg.orderType - Order type* @param {string} [arg.userDetails] -
-   *   URIencoded json annonymous user
+   * @param {number} arg.amount - Payable amount.* @param {string} arg.cartId
+   *   - Identifier of the cart.* @param {string} arg.pincode - The PIN Code
+   *   of the destination address, e.g. 400059* @param {string}
+   *   arg.checkoutMode - Option to checkout for self or for others.* @param
+   *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
+   *   remove temporary cache files on payment gateway and replace with the
+   *   latest one.* @param {string} [arg.assignCardId] - Token of user's debit
+   *   or credit card.* @param {string} arg.orderType - The order type of
+   *   shipment * HomeDelivery - If the customer wants the order
+   *   home-delivered * PickAtStore - If the customer wants the handover of an
+   *   order at the store itself.* @param {string} [arg.userDetails] -
+   *   URIencoded JSON containing details of an anonymous user.
    * @returns {Promise<PaymentModeRouteResponse>} - Success response
-   * @summary: Get All Valid Payment Options for POS
-   * @description: Use this API to get Get All Valid Payment Options for making payment
+   * @summary: Get applicable payment options for Point-of-Sale (POS)
+   * @description: Use this API to get all valid payment options for doing a payment in POS.
    */
   getPosPaymentModeRoutes({
     amount,
@@ -4827,8 +4891,8 @@ class Payment {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<TransferModeResponse>} - Success response
-   * @summary: List Refund Transfer Mode
-   * @description: Get all active transfer mode for adding beneficiary details
+   * @summary: Lists the mode of refund
+   * @description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
    */
   getActiveRefundTransferModes({} = {}) {
     const { error } = PaymentValidator.getActiveRefundTransferModes().validate(
@@ -4853,7 +4917,7 @@ class Payment {
    * @param {Object} arg - Arg object.
    * @param {UpdateRefundTransferModeRequest} arg.body
    * @returns {Promise<UpdateRefundTransferModeResponse>} - Success response
-   * @summary: Enable/Disable Refund Transfer Mode
+   * @summary: Enable/Disable a mode for transferring a refund
    * @description: Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
    */
   enableOrDisableRefundTransferMode({ body } = {}) {
@@ -4879,10 +4943,11 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.
    * @returns {Promise<OrderBeneficiaryResponse>} - Success response
-   * @summary: List User Beneficiary
-   * @description: Get all active  beneficiary details added by the user for refund
+   * @summary: Lists the beneficiary of a refund
+   * @description: Use this API to get the details of all active beneficiary added by a user for refund.
    */
   getUserBeneficiariesDetail({ orderId } = {}) {
     const { error } = PaymentValidator.getUserBeneficiariesDetail().validate(
@@ -4906,10 +4971,11 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.ifscCode] -
+   * @param {string} [arg.ifscCode] - A 11-digit alphanumeric code that
+   *   uniquely identifies a bank branch.
    * @returns {Promise<IfscCodeResponse>} - Success response
-   * @summary: Ifsc Code Verification
-   * @description: Get True/False for correct IFSC Code for adding bank details for refund
+   * @summary: Verify IFSC Code
+   * @description: Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
    */
   verifyIfscCode({ ifscCode } = {}) {
     const { error } = PaymentValidator.verifyIfscCode().validate(
@@ -4933,10 +4999,11 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.
    * @returns {Promise<OrderBeneficiaryResponse>} - Success response
-   * @summary: List Order Beneficiary
-   * @description: Get all active  beneficiary details added by the user for refund
+   * @summary: Lists the beneficiary of a refund
+   * @description: Use this API to get the details of all active beneficiary added by a user for refund.
    */
   getOrderBeneficiariesDetail({ orderId } = {}) {
     const { error } = PaymentValidator.getOrderBeneficiariesDetail().validate(
@@ -4962,8 +5029,8 @@ class Payment {
    * @param {Object} arg - Arg object.
    * @param {AddBeneficiaryViaOtpVerificationRequest} arg.body
    * @returns {Promise<AddBeneficiaryViaOtpVerificationResponse>} - Success response
-   * @summary: Save Beneficiary details on otp validation.
-   * @description: Save Beneficiary details on otp validation.
+   * @summary: Verify the beneficiary details using OTP
+   * @description: Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
    */
   verifyOtpAndAddBeneficiaryForBank({ body } = {}) {
     const {
@@ -4991,7 +5058,7 @@ class Payment {
    * @param {AddBeneficiaryDetailsRequest} arg.body
    * @returns {Promise<RefundAccountResponse>} - Success response
    * @summary: Save bank details for cancelled/returned order
-   * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
+   * @description: Use this API to save the bank details for a returned or cancelled order to refund the amount.
    */
   addBeneficiaryDetails({ body } = {}) {
     const { error } = PaymentValidator.addBeneficiaryDetails().validate(
@@ -5016,8 +5083,8 @@ class Payment {
    * @param {Object} arg - Arg object.
    * @param {WalletOtpRequest} arg.body
    * @returns {Promise<WalletOtpResponse>} - Success response
-   * @summary: Send Otp on Adding wallet beneficiary
-   * @description: Send Otp on Adding wallet beneficiary for user mobile verification
+   * @summary: Send OTP on adding a wallet beneficiary
+   * @description: Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
    */
   verifyOtpAndAddBeneficiaryForWallet({ body } = {}) {
     const {
@@ -5044,8 +5111,8 @@ class Payment {
    * @param {Object} arg - Arg object.
    * @param {SetDefaultBeneficiaryRequest} arg.body
    * @returns {Promise<SetDefaultBeneficiaryResponse>} - Success response
-   * @summary: Mark Default Beneficiary For Refund
-   * @description: Mark Default Beneficiary ot of all Beneficiary Details for Refund
+   * @summary: Set a default beneficiary for a refund
+   * @description: Use this API to set a default beneficiary for getting a refund.
    */
   updateDefaultBeneficiary({ body } = {}) {
     const { error } = PaymentValidator.updateDefaultBeneficiary().validate(
@@ -6873,6 +6940,36 @@ class PosCart {
       this._conf,
       "get",
       `/service/application/pos/cart/v1.0/bulk-price`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.uid] - * @param {boolean} [arg.i] - * @param
+   *   {boolean} [arg.b] -
+   * @returns {Promise<CartResponse>} - Success response
+   * @summary: Fetch all Items Added to  Cart
+   * @description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
+   */
+  applyRewardPoints({ uid, i, b } = {}) {
+    const { error } = PosCartValidator.applyRewardPoints().validate(
+      { uid, i, b },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+    query["uid"] = uid;
+    query["i"] = i;
+    query["b"] = b;
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/pos/cart/v1.0/redeem/points/`,
       query,
       undefined
     );

@@ -149,7 +149,6 @@
     * [deleteSlideshow](#deleteslideshow)
     * [getSupportInformation](#getsupportinformation)
     * [updateSupportInformation](#updatesupportinformation)
-    * [createInjectableTag](#createinjectabletag)
     * [updateInjectableTag](#updateinjectabletag)
     * [deleteAllInjectableTags](#deleteallinjectabletags)
     * [getInjectableTags](#getinjectabletags)
@@ -367,18 +366,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
+    * [updateCompany](#updatecompany)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
     * [createLocation](#createlocation)
-    * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -10945,90 +10944,6 @@ default
 ---
 
 
-#### createInjectableTag
-Creates Tag
-
-```javascript
-// Promise
-const promise = content.createInjectableTag(companyId,applicationId,body);
-
-// Async/Await
-const data = await content.createInjectableTag(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-
-Create tags
-
-*Success Response:*
-
-
-
-Tags Array
-
-
-Schema: `TagsSchema`
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/4XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-Failed
-
-
-Schema: `APIError`
-
-
-*Examples:*
-
-
-default
-```json
-{
-  "$ref": "#/components/examples/5XXAPIError"
-}
-```
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateInjectableTag
 Updates a Tag
 
@@ -21508,55 +21423,6 @@ Schema: `ErrorResponse`
 ## CompanyProfile
 
 
-#### updateCompany
-Edit company profile
-
-```javascript
-// Promise
-const promise = companyprofile.updateCompany(companyId,body);
-
-// Async/Await
-const data = await companyprofile.updateCompany(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to edit the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Returns a success message
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### cbsOnboardGet
 Get company profile
 
@@ -21582,6 +21448,55 @@ Company profile object. See example below or refer `GetCompanyProfileSerializerR
 
 
 Schema: `GetCompanyProfileSerializerResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCompany
+Edit company profile
+
+```javascript
+// Promise
+const promise = companyprofile.updateCompany(companyId,body);
+
+// Async/Await
+const data = await companyprofile.updateCompany(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to edit the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Returns a success message
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -21655,56 +21570,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(companyId,brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(companyId,brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getBrand
 Get a single brand.
 
@@ -21731,6 +21596,56 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 
 
 Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editBrand
+Edit a brand.
+
+```javascript
+// Promise
+const promise = companyprofile.editBrand(companyId,brandId,body);
+
+// Async/Await
+const data = await companyprofile.editBrand(companyId,brandId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API allows to edit meta of a brand.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -22007,56 +21922,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
-
-```javascript
-// Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
-
-// Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getLocationDetail
 Get details of a specific location.
 
@@ -22083,6 +21948,56 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.updateLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -23509,7 +23424,7 @@ Schema: `MobileAppConfiguration`
 
 
 #### getPreviousVersions
-Get previous versions
+Get previous build versions
 
 ```javascript
 // Promise
@@ -23525,7 +23440,7 @@ const data = await configuration.getPreviousVersions(companyId,applicationId,pla
 | applicationId | string | Current application id | 
 | platformType | string | Current platform name | 
 
-Get previous versions
+Get previous build versions
 
 *Success Response:*
 

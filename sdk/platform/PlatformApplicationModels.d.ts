@@ -101,7 +101,6 @@ export class ContentValidator {
     static deleteSlideshow(): any;
     static getSupportInformation(): any;
     static updateSupportInformation(): any;
-    static createInjectableTag(): any;
     static updateInjectableTag(): any;
     static deleteAllInjectableTags(): any;
     static getInjectableTags(): any;
