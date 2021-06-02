@@ -5042,6 +5042,8 @@ class Validator {
       upload: this.Upload().required(),
 
       cdn: this.CDN().required(),
+
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -5054,6 +5056,8 @@ class Validator {
       size: Joi.number().required(),
 
       tags: Joi.array().items(Joi.string().allow("")),
+
+      params: Joi.any(),
     });
   }
 
