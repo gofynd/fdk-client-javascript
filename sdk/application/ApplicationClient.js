@@ -1559,13 +1559,14 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.uid] - * @param {boolean} [arg.i] - * @param
    *   {boolean} [arg.b] -
+   * @param {RewardPointRequest} arg.body
    * @returns {Promise<CartResponse>} - Success response
    * @summary: Fetch all Items Added to  Cart
    * @description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
    */
-  applyRewardPoints({ uid, i, b } = {}) {
+  applyRewardPoints({ body, uid, i, b } = {}) {
     const { error } = CartValidator.applyRewardPoints().validate(
-      { uid, i, b },
+      { body, uid, i, b },
       { abortEarly: false }
     );
     if (error) {
@@ -1581,7 +1582,7 @@ class Cart {
       "post",
       `/service/application/cart/v1.0/redeem/points/`,
       query,
-      undefined
+      body
     );
   }
 
@@ -6949,13 +6950,14 @@ class PosCart {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.uid] - * @param {boolean} [arg.i] - * @param
    *   {boolean} [arg.b] -
+   * @param {RewardPointRequest} arg.body
    * @returns {Promise<CartResponse>} - Success response
    * @summary: Fetch all Items Added to  Cart
    * @description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
    */
-  applyRewardPoints({ uid, i, b } = {}) {
+  applyRewardPoints({ body, uid, i, b } = {}) {
     const { error } = PosCartValidator.applyRewardPoints().validate(
-      { uid, i, b },
+      { body, uid, i, b },
       { abortEarly: false }
     );
     if (error) {
@@ -6971,7 +6973,7 @@ class PosCart {
       "post",
       `/service/application/pos/cart/v1.0/redeem/points/`,
       query,
-      undefined
+      body
     );
   }
 

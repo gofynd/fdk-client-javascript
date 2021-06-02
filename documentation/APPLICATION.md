@@ -3167,10 +3167,10 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = cart.applyRewardPoints(uid,i,b);
+const promise = cart.applyRewardPoints(body,uid,i,b);
 
 // Async/Await
-const data = await cart.applyRewardPoints(uid,i,b);
+const data = await cart.applyRewardPoints(body,uid,i,b);
 ```
 
 | Argument  |  Type  | Description |
@@ -16092,10 +16092,10 @@ Fetch all Items Added to  Cart
 
 ```javascript
 // Promise
-const promise = poscart.applyRewardPoints(uid,i,b);
+const promise = poscart.applyRewardPoints(body,uid,i,b);
 
 // Async/Await
-const data = await poscart.applyRewardPoints(uid,i,b);
+const data = await poscart.applyRewardPoints(body,uid,i,b);
 ```
 
 | Argument  |  Type  | Description |

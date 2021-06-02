@@ -717,11 +717,12 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.uid] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] -
+     * @param {RewardPointRequest} arg.body
      * @returns {Promise<CartResponse>} - Success response
      * @summary: Fetch all Items Added to  Cart
      * @description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
      */
-    applyRewardPoints({ uid, i, b }?: {
+    applyRewardPoints({ body, uid, i, b }?: {
         uid?: number;
         i?: boolean;
     }): Promise<any>;
@@ -2907,11 +2908,12 @@ declare class PosCart {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.uid] - * @param {boolean} [arg.i] - * @param
      *   {boolean} [arg.b] -
+     * @param {RewardPointRequest} arg.body
      * @returns {Promise<CartResponse>} - Success response
      * @summary: Fetch all Items Added to  Cart
      * @description: Get all the details of a items added to cart  by uid. If successful, returns a Cart resource in the response body specified in CartResponse
      */
-    applyRewardPoints({ uid, i, b }?: {
+    applyRewardPoints({ body, uid, i, b }?: {
         uid?: number;
         i?: boolean;
     }): Promise<any>;
