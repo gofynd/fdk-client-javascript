@@ -5,6 +5,8 @@ export class LeadValidator {
     static editTicket(): any;
     static createHistory(): any;
     static getTicketHistory(): any;
+    static getTokenForVideoRoom(): any;
+    static getVideoParticipants(): any;
 }
 export class BillingValidator {
     static getInvoices(): any;
@@ -77,15 +79,15 @@ export class CatalogValidator {
     static updateCategory(): any;
     static getProducts(): any;
     static createProduct(): any;
-    static getProduct(): any;
     static deleteProduct(): any;
+    static getProduct(): any;
     static editProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static getProductBulkUploadHistory(): any;
     static updateProductAssetsInBulk(): any;
-    static createProductsInBulk(): any;
     static deleteProductBulkJob(): any;
+    static createProductsInBulk(): any;
     static getCompanyTags(): any;
     static getProductAssetsInBulk(): any;
     static createProductAssetsInBulk(): any;
@@ -95,8 +97,8 @@ export class CatalogValidator {
     static deleteInventory(): any;
     static getInventoryBulkUploadHistory(): any;
     static createBulkInventoryJob(): any;
-    static createBulkInventory(): any;
     static deleteBulkInventoryJob(): any;
+    static createBulkInventory(): any;
     static getInventoryExport(): any;
     static createInventoryExportJob(): any;
     static exportInventoryConfig(): any;
@@ -107,16 +109,16 @@ export class CatalogValidator {
     static bulkHsnCode(): any;
 }
 export class CompanyProfileValidator {
-    static cbsOnboardGet(): any;
     static updateCompany(): any;
+    static cbsOnboardGet(): any;
     static getCompanyMetrics(): any;
     static getBrand(): any;
     static editBrand(): any;
     static createBrand(): any;
-    static getBrands(): any;
     static createCompanyBrandMapping(): any;
-    static getLocations(): any;
+    static getBrands(): any;
     static createLocation(): any;
+    static getLocations(): any;
     static getLocationDetail(): any;
     static updateLocation(): any;
     static createLocationBulk(): any;
