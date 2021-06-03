@@ -17,10 +17,6 @@ FDK Extension Helper Library
     const redis = new Redis();
 
     let extensionHandler = {
-        setup: async function(data) {
-            console.log("called setup callback");
-        },
-
         install: async function(data) {
             console.log("called install callback");
         },
@@ -37,22 +33,17 @@ FDK Extension Helper Library
     let baseUrl = "https://test.extension.com";
     
 
-    let FDKClient = setupFdk({
-        name: "Transformer",
+    let fdkClient = setupFdk({
+        api_key: "<API_KEY>",
+        api_secret: "<API_SECRET>",
         base_url: baseUrl,
-        logo : {
-            small: `${baseUrl}\icon.png`,
-            large: `${baseUrl}\icon.png`,
-        },
         scopes: ["company/products"],
-        prefix_path: "/callback",
         callbacks: extensionHandler,
-        contact_email: "xyz@gmail.com",
-        developed_by_name: "Fynd",
-        webhooks: [],
-        storage: new RedisStorage(redis)
+        storage: new RedisStorage(redis),
+        access_mode: "offline",
+        cluster: "https://api.fyndx0.de" // this is optional by default it points to prod.
     });
-    app.use(FDKClient.fdkHandler);
+    app.use(fdkClient.fdkHandler);
 
     app.listen(8080);
 ```
