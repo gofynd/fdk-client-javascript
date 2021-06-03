@@ -42,6 +42,8 @@ function setupRoutes(ext) {
                 session = await SessionStorage.getSession(sid);
                 if(!session) {
                     session = new Session(sid);
+                } else if(session.extension_id !== ext.api_key) {
+                    session = new Session(sid);
                 }
             }
 
@@ -52,6 +54,7 @@ function setupRoutes(ext) {
                 session.scope = ext.scopes;
                 session.expires = sessionExpires;
                 session.access_mode = ext.access_mode;
+                session.extension_id = ext.api_key;
             } else {
                 if(session.expires) {
                     session.expires = new Date(session.expires);
@@ -71,29 +74,14 @@ function setupRoutes(ext) {
             
             let redirectUrl;
 
-            if(process.env.NODE_ENV === "production") {
-                if(!session.access_token) {
-                    session.state = uuidv4();
-                    // start authorization flow
-                    redirectUrl = platformConfig.oauthClient.startAuthorization({
-                        scope: session.scope,
-                        redirectUri: ext.getAuthCallback(),
-                        state: session.state,
-                        access_mode: ext.access_mode
-                    });
-                } else {
-                    redirectUrl = await ext.callbacks.install(req);
-                }
-            } else {
-                session.state = uuidv4();
-                // start authorization flow
-                redirectUrl = platformConfig.oauthClient.startAuthorization({
-                    scope: session.scope,
-                    redirectUri: ext.getAuthCallback(),
-                    state: session.state,
-                    access_mode: ext.access_mode
-                });
-            }
+            session.state = uuidv4();
+            // start authorization flow
+            redirectUrl = platformConfig.oauthClient.startAuthorization({
+                scope: session.scope,
+                redirectUri: ext.getAuthCallback(),
+                state: session.state,
+                access_mode: ext.access_mode
+            });
             await SessionStorage.saveSession(session);
             res.redirect(redirectUrl);
         } catch (error) {
@@ -126,6 +114,7 @@ function setupRoutes(ext) {
 
             req.fdkSession.access_token = token.access_token;
             req.fdkSession.expires_in = token.expires_in;
+            req.fdkSession.access_token_validity = sessionExpires.getTime();
             req.fdkSession.current_user = token.current_user;
             req.fdkSession.refresh_token = token.refresh_token;
             await SessionStorage.saveSession(req.fdkSession);

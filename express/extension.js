@@ -78,7 +78,12 @@ class Extension {
     async getPlatformClient(companyId, session) {
         let platformConfig =  this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
-        await platformConfig.oauthClient.renewAccessToken();
+        if(session.access_token_validity) {
+            let ac_nr_expired = ((session.access_token_validity - new Date().getTime())/ 1000) <= 120;
+            if(ac_nr_expired) {
+                await platformConfig.oauthClient.renewAccessToken();
+            }
+        }
         return new PlatformClient(platformConfig);
     }
 }

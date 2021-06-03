@@ -24,10 +24,10 @@ console.log(baseUrl);
 const redis = new Redis();
 
 let fdkExtension = setupFdk({
-    api_key: "000001",
-    api_secret: "tetsjskdjalsjdl",
+    api_key: "60b85632a11966719e7d9aed",
+    api_secret: "aE7lauU_LxM1tJD",
     base_url: baseUrl,
-    scopes: ["company/products"],
+    scopes: ["company/product"],
     callbacks: extensionHandler,
     storage: new RedisStorage(redis),
     access_mode: "offline",
@@ -63,20 +63,24 @@ fdkExtension.applicationProxyRoutes.get("/1234", async (req, res, next) => {
    
 });
 
-app.use(fdkExtension.applicationProxyRoutes);
-app.use(fdkExtension.apiRoutes);
-
 // sample webhook endpoint
 const webhookRouter = express.Router({  mergeParams: true });
 webhookRouter.get("/webhook", async (req, res, next) => {
-    // fetch company id from query params
-    let companyId = req.query.companyId;
-    let cluster = "https://api.fyndx0.de"; // either take it from some  env variables like "https://api.fyndx0.de"
-    let  client = await fdkExtension.getPlatformClient(cluster, companyId);
-    res.json({"success": true});
+    try {
+            // fetch company id from query params
+        let companyId = req.query.companyId;
+        let cluster = "https://api.fyndx0.de"; // either take it from some  env variables like "https://api.fyndx0.de"
+        let  client = await fdkExtension.getPlatformClient(companyId);
+        res.json({"success": true});
+    } catch (err) {
+        console.error(err);
+        res.status(404).json({"success": false});
+    }
 });
 
 app.use(webhookRouter);
+app.use(fdkExtension.applicationProxyRoutes);
+app.use(fdkExtension.apiRoutes);
 
 app.use("*", async (req, res, next) => {
     res.json({"success": true});

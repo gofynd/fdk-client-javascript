@@ -10,11 +10,13 @@ class Session {
         this.scope = null;
         this.expires = null;
         this.expires_in = null;
+        this.access_token_validity = null;
         this.access_mode = 'online';
         this.access_token = null;
         this.current_user = null;
         this.refresh_token = null;
         this.isNew = isNew;
+        this.extension_id = null;
     }
 
     static cloneSession(id, session, isNew=true) {
@@ -33,7 +35,9 @@ class Session {
             access_token: this.access_token,
             current_user: this.current_user,
             refresh_token: this.refresh_token,
-            expires_in: this.expires_in
+            expires_in: this.expires_in,
+            extension_id: this.extension_id,
+            access_token_validity: this.access_token_validity
         };
     }
 
