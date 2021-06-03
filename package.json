@@ -1,20 +1,10 @@
 {
   "name": "fdk-client-javascript",
-  "version": "0.0.653",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
-    "prettier": "npx prettier -w ./sdk ./tests && npx tsc"
-  },
-  "jest": {
-    "coverageThreshold": {
-      "global": {
-        "branches": 0,
-        "functions": 0,
-        "lines": 0
-      }
-    }
+    "test": "jest"
   },
   "author": "Jigar Dafda<jigar.dafda@gmail.com>",
   "license": "ISC",
@@ -26,7 +16,6 @@
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.19.0",
-    "coveralls": "^3.1.0",
     "jest": "^26.6.3"
   }
 }

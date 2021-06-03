@@ -274,14 +274,14 @@
 
 * [Catalog](#Catalog)
   * Methods
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [updateSearchKeywords](#updatesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
-    * [deleteSearchKeywords](#deletesearchkeywords)
     * [createCustomKeyword](#createcustomkeyword)
     * [getAllSearchKeyword](#getallsearchkeyword)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getAutocompleteConfig](#getautocompleteconfig)
     * [createProductBundle](#createproductbundle)
@@ -301,8 +301,8 @@
     * [createCollection](#createcollection)
     * [getAllCollections](#getallcollections)
     * [getCollectionDetail](#getcollectiondetail)
-    * [updateCollection](#updatecollection)
     * [deleteCollection](#deletecollection)
+    * [updateCollection](#updatecollection)
     * [addCollectionItems](#addcollectionitems)
     * [getCollectionItems](#getcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
@@ -331,9 +331,9 @@
     * [getCategoryData](#getcategorydata)
     * [createProduct](#createproduct)
     * [getProducts](#getproducts)
+    * [deleteProduct](#deleteproduct)
     * [editProduct](#editproduct)
     * [getProduct](#getproduct)
-    * [deleteProduct](#deleteproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
@@ -371,15 +371,15 @@
     * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getBrands](#getbrands)
     * [createLocation](#createlocation)
     * [getLocations](#getlocations)
-    * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -393,7 +393,7 @@
     * [copyFiles](#copyfiles)
     * [appCopyFiles](#appcopyfiles)
     * [browse](#browse)
-    * [appBrowse](#appbrowse)
+    * [browse](#browse)
     * [proxy](#proxy)
     
 
@@ -16970,6 +16970,57 @@ Schema: `ApefaceApiError`
 ## Catalog
 
 
+#### deleteSearchKeywords
+Delete a Search Keywords
+
+```javascript
+// Promise
+const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### updateSearchKeywords
 Update Search Keyword
 
@@ -17048,57 +17099,6 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
 
 
 Schema: `GetSearchWordsDetailResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteSearchKeywords
-Delete a Search Keywords
-
-```javascript
-// Promise
-const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
 
 
 
@@ -17223,6 +17223,57 @@ Schema: `ErrorResponse`
 ---
 
 
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
+
+```javascript
+// Promise
+const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### updateAutocompleteKeyword
 Create & Update Autocomplete Keyword
 
@@ -17301,57 +17352,6 @@ The mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 
 
 Schema: `GetAutocompleteWordsResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
-
-```javascript
-// Promise
-const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
 
 
 
@@ -18331,57 +18331,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateCollection
-Update a collection
-
-```javascript
-// Promise
-const promise = catalog.updateCollection(companyId,applicationId,id,body);
-
-// Async/Await
-const data = await catalog.updateCollection(companyId,applicationId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
-
-Update a collection by it's id. On successful request, returns the updated collection
-
-*Success Response:*
-
-
-
-The Collection object. See example below or refer `UpdateCollectionSchema` for details.
-
-
-Schema: `UpdateCollection`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### deleteCollection
 Delete a Collection
 
@@ -18409,6 +18358,57 @@ Status object. Tells whether the operation was successful. See example below or 
 
 
 Schema: `DeleteResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCollection
+Update a collection
+
+```javascript
+// Promise
+const promise = catalog.updateCollection(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await catalog.updateCollection(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier of a collection. | 
+
+Update a collection by it's id. On successful request, returns the updated collection
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `UpdateCollectionSchema` for details.
+
+
+Schema: `UpdateCollection`
 
 
 
@@ -19851,6 +19851,56 @@ Schema: `ErrorResponse`
 ---
 
 
+#### deleteProduct
+Delete a product.
+
+```javascript
+// Promise
+const promise = catalog.deleteProduct(companyId,itemId);
+
+// Async/Await
+const data = await catalog.deleteProduct(companyId,itemId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Company Id of the company associated to product that is to be deleted. | 
+| itemId | integer | Id of the product to be updated. | 
+
+This API allows to delete product.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### editProduct
 Edit a product.
 
@@ -19930,56 +19980,6 @@ Product object. See example below or refer `product.utils.format_product_respons
 
 
 Schema: `Product`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteProduct
-Delete a product.
-
-```javascript
-// Promise
-const promise = catalog.deleteProduct(companyId,itemId);
-
-// Async/Await
-const data = await catalog.deleteProduct(companyId,itemId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to product that is to be deleted. | 
-| itemId | integer | Id of the product to be updated. | 
-
-This API allows to delete product.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -21674,56 +21674,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(companyId,brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(companyId,brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getBrand
 Get a single brand.
 
@@ -21750,6 +21700,56 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 
 
 Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editBrand
+Edit a brand.
+
+```javascript
+// Promise
+const promise = companyprofile.editBrand(companyId,brandId,body);
+
+// Async/Await
+const data = await companyprofile.editBrand(companyId,brandId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API allows to edit meta of a brand.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -22026,56 +22026,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
-
-```javascript
-// Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
-
-// Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getLocationDetail
 Get details of a specific location.
 
@@ -22102,6 +22052,56 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 Schema: `GetLocationSerializer`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation(companyId,locationId,body);
+
+// Async/Await
+const data = await companyprofile.updateLocation(companyId,locationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location is to be created. | 
+| locationId | string | Id of the location which you want to edit. | 
+
+This API allows to edit a location associated to a company.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -22657,15 +22657,15 @@ Schema: `FailedResponse`
 ---
 
 
-#### appBrowse
+#### browse
 Browse Files
 
 ```javascript
 // Promise
-const promise = filestorage.appBrowse(namespace,companyId,applicationId,pageNo);
+const promise = filestorage.browse(namespace,companyId,applicationId,pageNo);
 
 // Async/Await
-const data = await filestorage.appBrowse(namespace,companyId,applicationId,pageNo);
+const data = await filestorage.browse(namespace,companyId,applicationId,pageNo);
 ```
 
 | Argument  |  Type  | Description |

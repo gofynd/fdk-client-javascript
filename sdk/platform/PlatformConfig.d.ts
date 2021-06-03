@@ -1,11 +1,11 @@
 export = PlatformConfig;
 declare class PlatformConfig {
     /**
-     * @param {Object} config
-     * @param {string} config.companyId
-     * @param {string} config.domain
-     * @param {string} config.apiKey
-     * @param {string} config.apiSecret
+     * @param  {Object} config
+     * @param  {string} config.companyId
+     * @param  {string} config.domain
+     * @param  {string} config.apiKey
+     * @param  {string} config.apiSecret
      */
     constructor(config: {
         companyId: string;

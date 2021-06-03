@@ -6,8 +6,8 @@ class CredentialValidationError extends Error {
 }
 class ApplicationConfig {
   /**
-   * @param {object} _conf
-   * @param {object} [_opts]
+   * @param  {object} _conf
+   * @param  {object} [_opts]
    */
   constructor(_conf, _opts) {
     this.applicationID = _conf.applicationID || "";
