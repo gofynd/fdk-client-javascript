@@ -17,10 +17,6 @@ FDK Extension Helper Library
     const redis = new Redis();
 
     let extensionHandler = {
-        install: async function(data) {
-            console.log("called install callback");
-        },
-
         auth: async function(data) {
             console.log("called auth callback");
         },

@@ -1,21 +1,5 @@
 'use strict';
 
-async function setup(data) {
-    /**
-     * {
-            "client_id": "5f0dd8939d35180069468a70",
-            "secret": ["jjdlajdkjaksjdlkaslkdkalsdj"],
-            "cluster": "https://api.fynd.com"
-        }
-     */
-    // write your code here to process this data
-}
-
-async function install(req) {
-    // Writee you code here to return initial launch url
-   return req.extension.base_url;
-}
-
 async function auth(req) {
     // Writee you code here to return initial launch url
    return req.extension.base_url;
@@ -27,8 +11,6 @@ async function uninstall(req) {
 }
 
 module.exports = {
-    setup: setup,
-    install: install,
     auth: auth,
     uninstall: uninstall
 };

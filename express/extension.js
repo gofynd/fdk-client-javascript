@@ -35,8 +35,8 @@ class Extension {
         this.base_url = data.base_url;
         this.scopes = this.verifyScopes(data.scopes);
 
-        if(!data.callbacks || ( data.callbacks && (!data.callbacks.setup || !data.callbacks.auth || !data.callbacks.install || !data.callbacks.uninstall))) {
-            throw new FdkInvalidExtensionJson("Missing some of callbacks. Please add all  `setup`, `auth`, `install` and `uninstall` callbacks.");
+        if(!data.callbacks || ( data.callbacks && ( !data.callbacks.auth || !data.callbacks.uninstall))) {
+            throw new FdkInvalidExtensionJson("Missing some of callbacks. Please add all `auth` and `uninstall` callbacks.");
         }
 
         this.callbacks = data.callbacks;
