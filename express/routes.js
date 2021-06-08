@@ -1,87 +1,68 @@
 'use strict';
 const express = require('express');
 const { v4 : uuidv4} = require("uuid");
-const FdkHelper = require("./fdk_helper");
 const Session = require("./session/session");
 const SessionStorage = require("./session/session_storage");
 const { FdkSessionNotFoundError, FdkInvalidOAuthError } = require("./error_code");
 const { SESSION_COOKIE_NAME } = require('./constants');
 const { sessionMiddleware } = require('./middleware/session_middleware');
-const { extension } = require('./extension');
 const FdkRoutes = express.Router();
+const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
+const sha256 = require('crypto-js/sha256');
 
-// FdkRoutes.use(async (req, res, next) => {
-//     req.query.cluster = "https://api.fyndx0.de";
-//     next();
-// });
 
 function setupRoutes(ext) {
 
     let storage = ext.storage;
     let callbacks = ext.callbacks;
 
-    FdkRoutes.get(`/extension.json`, async (req, res) => {
-        let data = ext.toJson();
-        res.json(data);
-    });
-
-    FdkRoutes.post(`${ext.prefix_path}/setup`, async (req, res, next) => {
-        /**
-         *  {
-                "client_id": "5f0dd8939d35180069468a70",
-                "secret": ["jjdlajdkjaksjdlkaslkdkalsdj"],
-                "cluster": "https://api.fynd.com"
-            }
-         */
+    // setup call is deperected
+    FdkRoutes.post("/fp/setup", async (req, res, next) => {
         try {
-            let cluster = req.body.cluster;
-            let fpHelper = await FdkHelper.getInstance(cluster, ext);
-            await fpHelper.setClusterMeta(req.body);
-            await callbacks.setup(req.body);
-            res.json({sucess: true});
+            res.json({sucess: true, meessage: "This is deprected call"});
         } catch (error) {
             console.error(error);
             res.status(500, { message: error.message});
         }
     });
 
-    FdkRoutes.get(`${ext.prefix_path}/install`, async (req, res, next) => {
-        // ?company_id=1&cluster=https://api.fynd.com&client_id=123313112122
+    FdkRoutes.get("/fp/install", async (req, res, next) => {
+        // ?company_id=1&client_id=123313112122
         try {
-            let cluster = req.query.cluster || req.query.cluster_url;
             let companyId = parseInt(req.query.company_id);
-
-            if(!cluster) {
-                res.status(400).json({"message": "cluster not found"});
-            }
-
-            let fdkHelper = FdkHelper.getInstance(cluster, ext);
-            let platformConfig = await fdkHelper.getPlatformConfigInstance(companyId);
-
+            let platformConfig = ext.getPlatformConfig(companyId);
             let session;
             if(ext.isOnlineAccessMode()) {
                 session = new Session(Session.generateSessionId(true));
             } else {
                 let sid = Session.generateSessionId(false, {
-                    cluster: cluster,
+                    cluster: ext.cluster,
                     companyId: companyId
                 });
                 session = await SessionStorage.getSession(sid);
                 if(!session) {
                     session = new Session(sid);
+                } else if(session.extension_id !== ext.api_key) {
+                    session = new Session(sid);
                 }
             }
 
+            let sessionExpires = new Date(Date.now() + 900000);
+
             if(session.isNew) {
-                session.cluster = cluster;
                 session.company_id = companyId;
                 session.scope = ext.scopes;
-                session.expires = new Date(Date.now() + 900000);
-                session.access_mode = extension.access_mode;
+                session.expires = sessionExpires;
+                session.access_mode = ext.access_mode;
+                session.extension_id = ext.api_key;
+            } else {
+                if(session.expires) {
+                    session.expires = new Date(session.expires);
+                }
             }
 
             req.fdkSession = session;
-            req.extension = extension;
+            req.extension = ext;
 
             res.cookie(SESSION_COOKIE_NAME, session.id, { 
                 secure: true,
@@ -92,18 +73,15 @@ function setupRoutes(ext) {
             });
             
             let redirectUrl;
-            if(!session.accessToken) {
-                session.state = uuidv4();
-                // start authorization flow
-                redirectUrl = platformConfig.oauthClient.startAuthorization({
-                    scope: session.scope,
-                    redirectUri: ext.getAuthCallback(),
-                    state: session.state,
-                    access_mode: ext.access_mode
-                });
-            } else {
-                redirectUrl = await ext.callbacks.install(req);
-            }
+
+            session.state = uuidv4();
+            // start authorization flow
+            redirectUrl = platformConfig.oauthClient.startAuthorization({
+                scope: session.scope,
+                redirectUri: ext.getAuthCallback(),
+                state: session.state,
+                access_mode: ext.access_mode
+            });
             await SessionStorage.saveSession(session);
             res.redirect(redirectUrl);
         } catch (error) {
@@ -111,8 +89,8 @@ function setupRoutes(ext) {
         }
     });
 
-    FdkRoutes.get(`${ext.prefix_path}/auth`, sessionMiddleware(false), async (req, res, next) => {
-        // ?code=ddjfhdsjfsfh&client_id=jsfnsajfhkasf&company_id=1&cluster=https://api.fynd.com&state=jashoh
+    FdkRoutes.get("/fp/auth", sessionMiddleware(false), async (req, res, next) => {
+        // ?code=ddjfhdsjfsfh&client_id=jsfnsajfhkasf&company_id=1&state=jashoh
         try {
             if(!req.fdkSession) {
                 throw new FdkSessionNotFoundError("Can not complete oauth process as session not found");
@@ -122,13 +100,21 @@ function setupRoutes(ext) {
                 throw new FdkInvalidOAuthError("Invalid oauth call");
             }
 
-            let fdkHelper = FdkHelper.getInstance(req.fdkSession.cluster, ext);
-            let platformConfig = await fdkHelper.getPlatformConfigInstance(req.fdkSession.company_id);
+            let platformConfig = ext.getPlatformConfig(req.fdkSession.company_id);
             await platformConfig.oauthClient.verifyCallback(req.query);
             let token = platformConfig.oauthClient.raw_token;
 
-            req.fdkSession.expires = new Date(Date.now() + token.expires_in * 1000);
+            let sessionExpires = new Date(Date.now() + token.expires_in * 1000);
+            
+            if(ext.isOnlineAccessMode()) {
+                req.fdkSession.expires = sessionExpires;
+            } else {
+                req.fdkSession.expires = null;
+            }
+
             req.fdkSession.access_token = token.access_token;
+            req.fdkSession.expires_in = token.expires_in;
+            req.fdkSession.access_token_validity = sessionExpires.getTime();
             req.fdkSession.current_user = token.current_user;
             req.fdkSession.refresh_token = token.refresh_token;
             await SessionStorage.saveSession(req.fdkSession);
@@ -136,12 +122,12 @@ function setupRoutes(ext) {
             res.cookie(SESSION_COOKIE_NAME, req.fdkSession.id, { 
                 secure: true,
                 httpOnly: true,
-                expires: req.fdkSession.expires,
+                expires: sessionExpires,
                 signed: true,
                 sameSite: "None"
             });
 
-            req.extension = extension;
+            req.extension = ext;
             let redirectUrl = await ext.callbacks.auth(req);
             res.redirect(redirectUrl);
         } catch (error) {
@@ -149,8 +135,19 @@ function setupRoutes(ext) {
         }
     });
 
-    FdkRoutes.post(`${ext.prefix_path}/uninstall`, async (req, res, next) => {
+    FdkRoutes.post("/fp/uninstall", async (req, res, next) => {
         try {
+            let {client_id, company_id} = req.body;
+            if(!ext.isOnlineAccessMode()) {
+                let sid = Session.generateSessionId(false, {
+                    cluster: ext.cluster,
+                    companyId: company_id
+                });
+                let session = await SessionStorage.getSession(sid);
+                const client = await ext.getPlatformClient(company_id, session);
+                req.platformClient = client;
+            }
+            req.extension = ext;
             await ext.callbacks.uninstall(req);
             res.json({success: true});
         } catch (error) {

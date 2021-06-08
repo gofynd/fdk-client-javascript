@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const {
     setupFdk
 } = require("../express");
-const { MemoryStorage, RedisStorage } = require("./../express/storage");
+const { RedisStorage } = require("./../express/storage");
 const extensionHandler = require("./extension.handler");
 const Redis = require("ioredis");
 
@@ -23,29 +23,25 @@ console.log(baseUrl);
 
 const redis = new Redis();
 
-let FDKExtension = setupFdk({
-    name: "Transformer",
+let fdkExtension = setupFdk({
+    api_key: "60b85632a11966719e7d9aed",
+    api_secret: "aE7lauU_LxM1tJD",
     base_url: baseUrl,
-    logo: {
-        small: `${baseUrl}/icon.png`,
-        large: `${baseUrl}/icon.png`
-    },
-    scopes: ["company/products"],
+    scopes: ["company/product"],
     callbacks: extensionHandler,
-    contact_email: "xyz@gmail.com",
-    developed_by_name: "Fynd",
     storage: new RedisStorage(redis),
-    access_mode: "online"
+    access_mode: "offline",
+    cluster: "https://api.fyndx0.de" // this is optional by default it points to prod.
 });
 
-app.use(FDKExtension.fdkHandler);
+app.use(fdkExtension.fdkHandler);
 app.use('/_healthz', (req, res, next) => {
     res.json({
         "ok": "ok"
     });
 });
 
-FDKExtension.apiRoutes.get("/test/routes", async (req, res, next) => {
+fdkExtension.apiRoutes.get("/test/routes", async (req, res, next) => {
     try {
         let data = await req.platformClient.lead.getTickets();
         res.json(data);
@@ -56,7 +52,36 @@ FDKExtension.apiRoutes.get("/test/routes", async (req, res, next) => {
    
 });
 
-app.use(FDKExtension.apiRoutes);
+fdkExtension.applicationProxyRoutes.get("/1234", async (req, res, next) => {
+    try {
+        let data = await req.platformClient.lead.getTickets();
+        res.json(data);
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+   
+});
+
+// sample webhook endpoint
+const webhookRouter = express.Router({  mergeParams: true });
+webhookRouter.get("/webhook", async (req, res, next) => {
+    try {
+            // fetch company id from query params
+        let companyId = req.query.companyId;
+        let cluster = "https://api.fyndx0.de"; // either take it from some  env variables like "https://api.fyndx0.de"
+        let  client = await fdkExtension.getPlatformClient(companyId);
+        res.json({"success": true});
+    } catch (err) {
+        console.error(err);
+        res.status(404).json({"success": false});
+    }
+});
+
+app.use(webhookRouter);
+app.use(fdkExtension.applicationProxyRoutes);
+app.use(fdkExtension.apiRoutes);
+
 app.use("*", async (req, res, next) => {
     res.json({"success": true});
 });
