@@ -9,6 +9,9 @@ export class LeadValidator {
     static getVideoParticipants(): any;
 }
 export class BillingValidator {
+    static createSubscriptionCharge(): any;
+    static getSubscriptionCharge(): any;
+    static cancelSubscriptionCharge(): any;
     static getInvoices(): any;
     static getInvoiceById(): any;
     static getCustomerDetail(): any;
@@ -32,6 +35,20 @@ export class PaymentValidator {
     static getSubscriptionConfig(): any;
     static saveSubscriptionSetupIntent(): any;
     static verifyIfscCode(): any;
+}
+export class OrderValidator {
+    static shipmentStatusUpdate(): any;
+    static activityStatus(): any;
+    static storeProcessShipmentUpdate(): any;
+    static checkRefund(): any;
+    static getOrdersByCompanyId(): any;
+    static getOrderDetails(): any;
+    static getPicklistOrdersByCompanyId(): any;
+    static getShipmentAddress(): any;
+    static updateShipmentAddress(): any;
+    static getPing(): any;
+    static voiceCallback(): any;
+    static voiceClickToCall(): any;
 }
 export class CatalogValidator {
     static createProductBundle(): any;
@@ -74,8 +91,8 @@ export class CatalogValidator {
     static getProductSize(): any;
     static updateProductAssetsInBulk(): any;
     static getProductBulkUploadHistory(): any;
-    static deleteProductBulkJob(): any;
     static createProductsInBulk(): any;
+    static deleteProductBulkJob(): any;
     static getCompanyTags(): any;
     static createProductAssetsInBulk(): any;
     static getProductAssetsInBulk(): any;
@@ -85,8 +102,8 @@ export class CatalogValidator {
     static deleteInventory(): any;
     static createBulkInventoryJob(): any;
     static getInventoryBulkUploadHistory(): any;
-    static deleteBulkInventoryJob(): any;
     static createBulkInventory(): any;
+    static deleteBulkInventoryJob(): any;
     static createInventoryExportJob(): any;
     static getInventoryExport(): any;
     static exportInventoryConfig(): any;
