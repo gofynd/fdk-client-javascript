@@ -1102,34 +1102,6 @@ class Catalog {
    *   products, brands, or collections.* @param {string} arg.collectionId -
    *   The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Follow an entity (product/brand/collection)
-   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
-   */
-  followById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.followById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(error);
-    }
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.* @param {string} arg.collectionId -
-   *   The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Unfollow an entity (product/brand/collection)
    * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
    */
@@ -1146,6 +1118,34 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "delete",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.* @param {string} arg.collectionId -
+   *   The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Follow an entity (product/brand/collection)
+   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+   */
+  followById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.followById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -2202,6 +2202,59 @@ class Lead {
 class Theme {
   constructor(_conf) {
     this._conf = _conf;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.themeId - ID of the theme to be retrieved
+   * @returns {Promise<AllAvailablePageSchema>} - Success response
+   * @summary: Get all pages of a theme
+   * @description: Use this API to retrieve all the available pages of a theme by its ID.
+   */
+  getAllPages({ themeId } = {}) {
+    const { error } = ThemeValidator.getAllPages().validate(
+      { themeId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/theme/v1.0/${themeId}/page`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.themeId - ID of the theme to be retrieved* @param
+   *   {string} arg.pageValue - Value of the page to be retrieved
+   * @returns {Promise<AvailablePageSchema>} - Success response
+   * @summary: Get page of a theme
+   * @description: Use this API to retrieve a page of a theme.
+   */
+  getPage({ themeId, pageValue } = {}) {
+    const { error } = ThemeValidator.getPage().validate(
+      { themeId, pageValue },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(error);
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/theme/v1.0/${themeId}/${pageValue}`,
+      query,
+      undefined
+    );
   }
 
   /**
@@ -4205,7 +4258,7 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<TokenResponse>} - Success response
+   * @returns {Promise<AppTokenResponse>} - Success response
    * @summary: Get integration tokens
    * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
    */

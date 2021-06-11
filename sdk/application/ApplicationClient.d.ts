@@ -515,10 +515,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -528,10 +528,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -976,6 +976,27 @@ declare class Lead {
 declare class Theme {
     constructor(_conf: any);
     _conf: any;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - ID of the theme to be retrieved
+     * @returns {Promise<AllAvailablePageSchema>} - Success response
+     * @summary: Get all pages of a theme
+     * @description: Use this API to retrieve all the available pages of a theme by its ID.
+     */
+    getAllPages({ themeId }?: {
+        themeId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - ID of the theme to be retrieved* @param
+     *   {string} arg.pageValue - Value of the page to be retrieved
+     * @returns {Promise<AvailablePageSchema>} - Success response
+     * @summary: Get page of a theme
+     * @description: Use this API to retrieve a page of a theme.
+     */
+    getPage({ themeId, pageValue }?: {
+        themeId: string;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ThemesSchema>} - Success response
@@ -1775,7 +1796,7 @@ declare class Configuration {
     getBasicDetails({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<TokenResponse>} - Success response
+     * @returns {Promise<AppTokenResponse>} - Success response
      * @summary: Get integration tokens
      * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
      */
