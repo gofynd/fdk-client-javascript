@@ -1922,7 +1922,7 @@ declare class Payment {
      * @param {AttachCardRequest} arg.body
      * @returns {Promise<AttachCardsResponse>} - Success response
      * @summary: Attach a saved card to customer.
-     * @description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe.
+     * @description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe, Juspay.
      */
     attachCardToCustomer({ body }?: {
         body: any;
@@ -2154,8 +2154,8 @@ declare class Order {
      *   [arg.orderStatus] - A filter to retrieve orders by their current status
      *   such as *placed*, *delivered*, etc.
      * @returns {Promise<OrderList>} - Success response
-     * @summary: Use this API to retrieve all the orders.
-     * @description: Get all orders
+     * @summary: Get all orders
+     * @description: Use this API to retrieve all the orders.
      */
     getOrders({ pageNo, pageSize, fromDate, toDate, orderStatus }?: {
         pageNo?: number;
@@ -2169,8 +2169,8 @@ declare class Order {
      * @param {string} arg.orderId - A unique number used for identifying and
      *   tracking your orders.
      * @returns {Promise<OrderById>} - Success response
-     * @summary: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
-     * @description: Get details of an order
+     * @summary: Get details of an order
+     * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
      */
     getOrderById({ orderId }?: {
         orderId: string;
@@ -2181,8 +2181,8 @@ declare class Order {
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
      * @returns {Promise<ShipmentById>} - Success response
-     * @summary: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
-     * @description: Get details of a shipment
+     * @summary: Get details of a shipment
+     * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
      */
     getShipmentById({ shipmentId }?: {
         shipmentId: string;
@@ -2193,8 +2193,8 @@ declare class Order {
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
      * @returns {Promise<ShipmentReasons>} - Success response
-     * @summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-     * @description: Get reasons behind full or partial cancellation of a shipment
+     * @summary: Get reasons behind full or partial cancellation of a shipment
+     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
     getShipmentReasons({ shipmentId }?: {
         shipmentId: string;
@@ -2206,8 +2206,8 @@ declare class Order {
      *   having its own ID.
      * @param {ShipmentStatusUpdateBody} arg.body
      * @returns {Promise<ShipmentStatusUpdate>} - Success response
-     * @summary: Use this API to update the status of a shipment using its shipment ID.
-     * @description: Update the shipment status
+     * @summary: Update the shipment status
+     * @description: Use this API to update the status of a shipment using its shipment ID.
      */
     updateShipmentStatus({ shipmentId, body }?: {
         shipmentId: string;
@@ -2219,8 +2219,8 @@ declare class Order {
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
      * @returns {Promise<ShipmentTrack>} - Success response
-     * @summary: Use this API to track a shipment using its shipment ID.
-     * @description: Track shipment
+     * @summary: Track shipment
+     * @description: Use this API to track a shipment using its shipment ID.
      */
     trackShipment({ shipmentId }?: {
         shipmentId: string;
@@ -2230,8 +2230,8 @@ declare class Order {
      * @param {string} arg.orderId - A unique number used for identifying and
      *   tracking your orders.
      * @returns {Promise<PosOrderById>} - Success response
-     * @summary: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
-     * @description: Get POS Order
+     * @summary: Get POS Order
+     * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
      */
     getPosOrderById({ orderId }?: {
         orderId: string;
