@@ -1,17 +1,7 @@
 const querystring = require("query-string");
 const { fdkAxios } = require("../common/AxiosHelper");
 const { sign } = require("../common/RequestSigner");
-
-class FdkTokenIssueError extends Error {
-  constructor(message) {
-    super(message);
-  }
-}
-class FdkOAuthCodeError extends Error {
-  constructor(message) {
-    super(message);
-  }
-}
+const { FDKTokenIssueError, FDKOAuthCodeError } = require("../common/FDKError");
 class OAuthClient {
   constructor(config) {
     this.config = config;
@@ -74,7 +64,7 @@ class OAuthClient {
 
   async verifyCallback(query) {
     if (query.error) {
-      throw new FdkOAuthCodeError(query.error_description, {
+      throw new FDKOAuthCodeError(query.error_description, {
         error: query.error,
       });
     }
@@ -102,7 +92,7 @@ class OAuthClient {
       this.setToken(res);
     } catch (error) {
       if (error.isAxiosError) {
-        throw new FdkTokenIssueError(error.message);
+        throw new FDKTokenIssueError(error.message);
       }
       throw error;
     }
@@ -131,7 +121,7 @@ class OAuthClient {
       this.setToken(res);
     } catch (error) {
       if (error.isAxiosError) {
-        throw new FdkTokenIssueError(error.message);
+        throw new FDKTokenIssueError(error.message);
       }
       throw error;
     }

@@ -515,10 +515,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -528,10 +528,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -2537,17 +2537,19 @@ declare class Feedback {
      * @param {string} arg.entityType - Type of entity, e.g. question or
      *   product.* @param {string} arg.entityId - ID of the eligible entity as
      *   specified in the entity type(question ID/product ID).* @param {string}
-     *   [arg.id] - ID of the media.* @param {string} [arg.pageId] - Pagination
-     *   page ID to retrieve next set of results.* @param {number}
-     *   [arg.pageSize] - The number of items to retrieve in each page.
+     *   [arg.id] - ID of the media.* @param {string} [arg.type] - Media type.*
+     *   @param {string} [arg.pageId] - Pagination page ID to retrieve next set
+     *   of results.* @param {number} [arg.pageSize] - The number of items to
+     *   retrieve in each page.
      * @returns {Promise<MediaGetResponse>} - Success response
      * @summary: Get Media
      * @description: Use this API to retrieve all media from an entity.
      */
-    getMedias({ entityType, entityId, id, pageId, pageSize }?: {
+    getMedias({ entityType, entityId, id, type, pageId, pageSize }?: {
         entityType: string;
         entityId: string;
         id?: string;
+        type?: string;
         pageId?: string;
         pageSize?: number;
     }): Promise<any>;
@@ -2557,14 +2559,16 @@ declare class Feedback {
      * @param {string} arg.entityId - ID of the eligible entity as specified in
      *   the entity type(question ID/product ID).
      * @param {string} [arg.id] - ID of the media.
+     * @param {string} [arg.type] - Media type.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @summary: Get Media
      * @description: Use this API to retrieve all media from an entity.
      */
-    getMediasPaginator({ entityType, entityId, id, pageSize }?: {
+    getMediasPaginator({ entityType, entityId, id, type, pageSize }?: {
         entityType: string;
         entityId: string;
         id?: string;
+        type?: string;
         pageSize?: number;
     }): Paginator;
     /**
@@ -3165,8 +3169,8 @@ declare class Logistic {
      * @param {Object} arg - Arg object.
      * @param {GetTatProductReqBody} arg.body
      * @returns {Promise<GetTatProductResponse>} - Success response
-     * @summary: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
-     * @description: Get TAT of a product
+     * @summary: Get TAT of a product
+     * @description: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
      */
     getTatProduct({ body }?: {
         body: any;
@@ -3175,8 +3179,8 @@ declare class Logistic {
      * @param {Object} arg - Arg object.
      * @param {string} arg.pincode - The PIN Code of the area, e.g. 400059
      * @returns {Promise<GetPincodeCityResponse>} - Success response
-     * @summary: Use this API to retrieve a city by its PIN Code.
-     * @description: Get city from PIN Code
+     * @summary: Get city from PIN Code
+     * @description: Use this API to retrieve a city by its PIN Code.
      */
     getPincodeCity({ pincode }?: {
         pincode: string;

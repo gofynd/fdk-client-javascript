@@ -3,7 +3,7 @@ const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
 const axios = require("axios");
 const querystring = require("query-string");
 const { sign } = require("./RequestSigner");
-const FDKError = require("./FDKError");
+const { FDKServerResponseError } = require("./FDKError");
 axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
@@ -93,18 +93,24 @@ fdkAxios.interceptors.response.use(
   function (error) {
     if (error.response) {
       // Request made and server responded
-      throw new FDKError(
+      throw new FDKServerResponseError(
         error.response.data.message || error.message,
         error.response.data.stack || error.stack,
         error.response.statusText,
-        error.response.status
+        error.response.status,
+        error.response.data
       );
     } else if (error.request) {
       // The request was made but no error.response was received
-      throw new FDKError(error.message, error.stack, error.code, error.code);
+      throw new FDKServerResponseError(
+        error.message,
+        error.stack,
+        error.code,
+        error.code
+      );
     } else {
       // Something happened in setting up the request that triggered an Error
-      throw new FDKError(error.message, error.stack);
+      throw new FDKServerResponseError(error.message, error.stack);
     }
   }
 );

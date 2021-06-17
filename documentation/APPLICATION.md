@@ -49,8 +49,8 @@
     * [getCollectionItemsBySlug](#getcollectionitemsbyslug)
     * [getCollectionDetailBySlug](#getcollectiondetailbyslug)
     * [getFollowedListing](#getfollowedlisting)
-    * [followById](#followbyid)
     * [unfollowById](#unfollowbyid)
+    * [followById](#followbyid)
     * [getFollowerCountById](#getfollowercountbyid)
     * [getFollowIds](#getfollowids)
     * [getStores](#getstores)
@@ -1486,15 +1486,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### followById
-Follow an entity (product/brand/collection)
+#### unfollowById
+Unfollow an entity (product/brand/collection)
 
 ```javascript
 // Promise
-const promise = catalog.followById(collectionType,collectionId);
+const promise = catalog.unfollowById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.followById(collectionType,collectionId);
+const data = await catalog.unfollowById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1502,7 +1502,7 @@ const data = await catalog.followById(collectionType,collectionId);
 | collectionType | string | Type of collection followed, i.e. products, brands, or collections. | 
 | collectionId | string | The ID of the collection type. | 
 
-Follow a particular entity such as product, brand, collection specified by its ID.
+You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
 
 *Success Response:*
 
@@ -1536,15 +1536,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### unfollowById
-Unfollow an entity (product/brand/collection)
+#### followById
+Follow an entity (product/brand/collection)
 
 ```javascript
 // Promise
-const promise = catalog.unfollowById(collectionType,collectionId);
+const promise = catalog.followById(collectionType,collectionId);
 
 // Async/Await
-const data = await catalog.unfollowById(collectionType,collectionId);
+const data = await catalog.followById(collectionType,collectionId);
 ```
 
 | Argument  |  Type  | Description |
@@ -1552,7 +1552,7 @@ const data = await catalog.unfollowById(collectionType,collectionId);
 | collectionType | string | Type of collection followed, i.e. products, brands, or collections. | 
 | collectionId | string | The ID of the collection type. | 
 
-You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+Follow a particular entity such as product, brand, collection specified by its ID.
 
 *Success Response:*
 
@@ -14200,10 +14200,10 @@ Get Media
 
 ```javascript
 // Promise
-const promise = feedback.getMedias(entityType,entityId,id,pageId,pageSize);
+const promise = feedback.getMedias(entityType,entityId,id,type,pageId,pageSize);
 
 // Async/Await
-const data = await feedback.getMedias(entityType,entityId,id,pageId,pageSize);
+const data = await feedback.getMedias(entityType,entityId,id,type,pageId,pageSize);
 ```
 
 | Argument  |  Type  | Description |
@@ -14211,6 +14211,7 @@ const data = await feedback.getMedias(entityType,entityId,id,pageId,pageSize);
 | entityType | string | Type of entity, e.g. question or product. | 
 | entityId | string | ID of the eligible entity as specified in the entity type(question ID/product ID). | 
 | id | string | ID of the media. | 
+| type | string | Media type. | 
 | pageId | string | Pagination page ID to retrieve next set of results. | 
 | pageSize | integer | The number of items to retrieve in each page. | 
 
@@ -18976,7 +18977,7 @@ Cart Merged/Replaced
 
 
 #### getTatProduct
-Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
+Get TAT of a product
 
 ```javascript
 // Promise
@@ -18989,7 +18990,7 @@ const data = await logistic.getTatProduct(body);
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 
-Get TAT of a product
+Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
 
 *Success Response:*
 
@@ -19036,7 +19037,7 @@ Schema: `ApefaceApiError`
 
 
 #### getPincodeCity
-Use this API to retrieve a city by its PIN Code.
+Get city from PIN Code
 
 ```javascript
 // Promise
@@ -19050,7 +19051,7 @@ const data = await logistic.getPincodeCity(pincode);
 | --------- | ----  | --- |
 | pincode | string | The PIN Code of the area, e.g. 400059 | 
 
-Get city from PIN Code
+Use this API to retrieve a city by its PIN Code.
 
 *Success Response:*
 

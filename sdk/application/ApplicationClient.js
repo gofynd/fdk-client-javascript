@@ -20,6 +20,7 @@ const {
 
 const APIClient = require("./ApplicationAPIClient");
 const Paginator = require("../common/Paginator");
+const { FDKClientValidationError } = require("../common/FDKError");
 
 class ApplicationClient {
   constructor(config) {
@@ -62,7 +63,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -91,7 +92,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["store_id"] = storeId;
@@ -126,7 +127,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["store_id"] = storeId;
@@ -171,7 +172,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["strategy"] = strategy;
@@ -248,7 +249,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["slug"] = slug;
@@ -279,7 +280,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -309,7 +310,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -343,7 +344,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -371,7 +372,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -404,7 +405,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["item_id"] = itemId;
@@ -438,7 +439,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["timestamp"] = timestamp;
@@ -519,7 +520,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["q"] = q;
@@ -602,7 +603,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["department"] = department;
@@ -664,7 +665,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -693,7 +694,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["department"] = department;
@@ -722,7 +723,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -752,7 +753,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["sort_on"] = sortOn;
@@ -810,7 +811,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -839,7 +840,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["q"] = q;
@@ -868,7 +869,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -942,7 +943,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["f"] = f;
@@ -1023,7 +1024,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -1052,7 +1053,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_id"] = pageId;
@@ -1102,22 +1103,22 @@ class Catalog {
    *   products, brands, or collections.* @param {string} arg.collectionId -
    *   The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Follow an entity (product/brand/collection)
-   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+   * @summary: Unfollow an entity (product/brand/collection)
+   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
    */
-  followById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.followById().validate(
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
       { collectionType, collectionId },
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
     return APIClient.execute(
       this._conf,
-      "post",
+      "delete",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -1130,22 +1131,22 @@ class Catalog {
    *   products, brands, or collections.* @param {string} arg.collectionId -
    *   The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Unfollow an entity (product/brand/collection)
-   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+   * @summary: Follow an entity (product/brand/collection)
+   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
    */
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
+  followById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.followById().validate(
       { collectionType, collectionId },
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
     return APIClient.execute(
       this._conf,
-      "delete",
+      "post",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -1167,7 +1168,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -1194,7 +1195,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["collection_type"] = collectionType;
@@ -1229,7 +1230,7 @@ class Catalog {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -1305,7 +1306,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1335,7 +1336,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1363,7 +1364,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["i"] = i;
@@ -1393,7 +1394,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1422,7 +1423,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1449,7 +1450,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1478,7 +1479,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["i"] = i;
@@ -1508,7 +1509,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1539,7 +1540,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["item_id"] = itemId;
@@ -1571,7 +1572,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1602,7 +1603,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1633,7 +1634,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -1661,7 +1662,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1693,7 +1694,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -1719,7 +1720,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -1747,7 +1748,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1777,7 +1778,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1821,7 +1822,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1857,7 +1858,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["p"] = p;
@@ -1887,7 +1888,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -1914,7 +1915,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -1941,7 +1942,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -1967,7 +1968,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -1995,7 +1996,7 @@ class Cart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2027,7 +2028,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2054,7 +2055,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2080,7 +2081,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2106,7 +2107,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2133,7 +2134,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2159,7 +2160,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2185,7 +2186,7 @@ class Lead {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2217,7 +2218,7 @@ class Theme {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2244,7 +2245,7 @@ class Theme {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2269,7 +2270,7 @@ class Theme {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2295,7 +2296,7 @@ class Theme {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2327,7 +2328,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2353,7 +2354,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2379,7 +2380,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2405,7 +2406,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2432,7 +2433,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -2459,7 +2460,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2486,7 +2487,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -2513,7 +2514,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2539,7 +2540,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2565,7 +2566,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2592,7 +2593,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -2619,7 +2620,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2645,7 +2646,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2670,7 +2671,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2696,7 +2697,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2721,7 +2722,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2748,7 +2749,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -2776,7 +2777,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -2804,7 +2805,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -2832,7 +2833,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -2858,7 +2859,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2883,7 +2884,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -2909,7 +2910,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["name"] = name;
@@ -2937,7 +2938,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -2965,7 +2966,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -3008,7 +3009,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -3040,7 +3041,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3067,7 +3068,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -3095,7 +3096,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -3130,7 +3131,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -3161,7 +3162,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3188,7 +3189,7 @@ class User {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["platform"] = platform;
@@ -3220,7 +3221,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3249,7 +3250,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["root_id"] = rootId;
@@ -3278,7 +3279,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -3331,7 +3332,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3356,7 +3357,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3384,7 +3385,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3412,7 +3413,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3440,7 +3441,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3465,7 +3466,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3490,7 +3491,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3518,7 +3519,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -3575,7 +3576,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["root_id"] = rootId;
@@ -3604,7 +3605,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -3657,7 +3658,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3685,7 +3686,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -3741,7 +3742,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3766,7 +3767,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3791,7 +3792,7 @@ class Content {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3822,7 +3823,7 @@ class Communication {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3850,7 +3851,7 @@ class Communication {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3876,7 +3877,7 @@ class Communication {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3907,7 +3908,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3934,7 +3935,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3961,7 +3962,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -3987,7 +3988,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["url"] = url;
@@ -4014,7 +4015,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4041,7 +4042,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4068,7 +4069,7 @@ class Share {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4118,7 +4119,7 @@ class FileStorage {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4162,7 +4163,7 @@ class FileStorage {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4193,7 +4194,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4218,7 +4219,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4243,7 +4244,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4268,7 +4269,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4298,7 +4299,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -4355,7 +4356,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4380,7 +4381,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4405,7 +4406,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4431,7 +4432,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4456,7 +4457,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4482,7 +4483,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4509,7 +4510,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4540,7 +4541,7 @@ class Configuration {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["order_incent"] = orderIncent;
@@ -4577,7 +4578,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["refresh"] = refresh;
@@ -4604,7 +4605,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4630,7 +4631,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["refresh"] = refresh;
@@ -4657,7 +4658,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["force_refresh"] = forceRefresh;
@@ -4684,7 +4685,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4710,7 +4711,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4736,7 +4737,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4762,7 +4763,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4788,7 +4789,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4838,7 +4839,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["amount"] = amount;
@@ -4900,7 +4901,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["amount"] = amount;
@@ -4933,7 +4934,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4958,7 +4959,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -4986,7 +4987,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5013,7 +5014,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["order_id"] = orderId;
@@ -5041,7 +5042,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["ifsc_code"] = ifscCode;
@@ -5069,7 +5070,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["order_id"] = orderId;
@@ -5098,7 +5099,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5124,7 +5125,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5152,7 +5153,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5178,7 +5179,7 @@ class Payment {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5217,7 +5218,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -5249,7 +5250,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5277,7 +5278,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5305,7 +5306,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5334,7 +5335,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5362,7 +5363,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5389,7 +5390,7 @@ class Order {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5421,7 +5422,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5447,7 +5448,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5473,7 +5474,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5498,7 +5499,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5526,7 +5527,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_id"] = pageId;
@@ -5579,7 +5580,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5605,7 +5606,7 @@ class Rewards {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5637,7 +5638,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5663,7 +5664,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5694,7 +5695,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["id"] = id;
@@ -5758,7 +5759,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["page_no"] = pageNo;
@@ -5812,7 +5813,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5840,7 +5841,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5869,7 +5870,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5895,7 +5896,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5921,7 +5922,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -5953,7 +5954,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["id"] = id;
@@ -6021,7 +6022,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -6046,7 +6047,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -6072,7 +6073,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -6098,7 +6099,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -6116,23 +6117,25 @@ class Feedback {
    * @param {string} arg.entityType - Type of entity, e.g. question or
    *   product.* @param {string} arg.entityId - ID of the eligible entity as
    *   specified in the entity type(question ID/product ID).* @param {string}
-   *   [arg.id] - ID of the media.* @param {string} [arg.pageId] - Pagination
-   *   page ID to retrieve next set of results.* @param {number}
-   *   [arg.pageSize] - The number of items to retrieve in each page.
+   *   [arg.id] - ID of the media.* @param {string} [arg.type] - Media type.*
+   *   @param {string} [arg.pageId] - Pagination page ID to retrieve next set
+   *   of results.* @param {number} [arg.pageSize] - The number of items to
+   *   retrieve in each page.
    * @returns {Promise<MediaGetResponse>} - Success response
    * @summary: Get Media
    * @description: Use this API to retrieve all media from an entity.
    */
-  getMedias({ entityType, entityId, id, pageId, pageSize } = {}) {
+  getMedias({ entityType, entityId, id, type, pageId, pageSize } = {}) {
     const { error } = FeedbackValidator.getMedias().validate(
-      { entityType, entityId, id, pageId, pageSize },
+      { entityType, entityId, id, type, pageId, pageSize },
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["id"] = id;
+    query["type"] = type;
     query["page_id"] = pageId;
     query["page_size"] = pageSize;
 
@@ -6151,11 +6154,12 @@ class Feedback {
    * @param {string} arg.entityId - ID of the eligible entity as specified in
    *   the entity type(question ID/product ID).
    * @param {string} [arg.id] - ID of the media.
+   * @param {string} [arg.type] - Media type.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @summary: Get Media
    * @description: Use this API to retrieve all media from an entity.
    */
-  getMediasPaginator({ entityType, entityId, id, pageSize } = {}) {
+  getMediasPaginator({ entityType, entityId, id, type, pageSize } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -6165,6 +6169,7 @@ class Feedback {
         entityType: entityType,
         entityId: entityId,
         id: id,
+        type: type,
         pageId: pageId,
         pageSize: pageSize,
       });
@@ -6197,7 +6202,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["id"] = id;
@@ -6260,7 +6265,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -6286,7 +6291,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -6354,7 +6359,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["id"] = id;
@@ -6459,7 +6464,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["template_id"] = templateId;
@@ -6488,7 +6493,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -6514,7 +6519,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -6554,7 +6559,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["id"] = id;
@@ -6634,7 +6639,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["id"] = id;
@@ -6694,7 +6699,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -6720,7 +6725,7 @@ class Feedback {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -6753,7 +6758,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -6783,7 +6788,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -6811,7 +6816,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["i"] = i;
@@ -6841,7 +6846,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -6870,7 +6875,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -6897,7 +6902,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -6926,7 +6931,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["i"] = i;
@@ -6956,7 +6961,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -6987,7 +6992,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["item_id"] = itemId;
@@ -7019,7 +7024,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -7050,7 +7055,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -7081,7 +7086,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -7109,7 +7114,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -7141,7 +7146,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -7167,7 +7172,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -7195,7 +7200,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -7225,7 +7230,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -7269,7 +7274,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -7326,7 +7331,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["pick_at_store_uid"] = pickAtStoreUid;
@@ -7368,7 +7373,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["i"] = i;
@@ -7400,7 +7405,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -7428,7 +7433,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["uid"] = uid;
@@ -7455,7 +7460,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["area_code"] = areaCode;
@@ -7483,7 +7488,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
     query["store_uid"] = storeUid;
@@ -7510,7 +7515,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -7536,7 +7541,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -7564,7 +7569,7 @@ class PosCart {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -7587,8 +7592,8 @@ class Logistic {
    * @param {Object} arg - Arg object.
    * @param {GetTatProductReqBody} arg.body
    * @returns {Promise<GetTatProductResponse>} - Success response
-   * @summary: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
-   * @description: Get TAT of a product
+   * @summary: Get TAT of a product
+   * @description: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
    */
   getTatProduct({ body } = {}) {
     const { error } = LogisticValidator.getTatProduct().validate(
@@ -7596,7 +7601,7 @@ class Logistic {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
@@ -7613,8 +7618,8 @@ class Logistic {
    * @param {Object} arg - Arg object.
    * @param {string} arg.pincode - The PIN Code of the area, e.g. 400059
    * @returns {Promise<GetPincodeCityResponse>} - Success response
-   * @summary: Use this API to retrieve a city by its PIN Code.
-   * @description: Get city from PIN Code
+   * @summary: Get city from PIN Code
+   * @description: Use this API to retrieve a city by its PIN Code.
    */
   getPincodeCity({ pincode } = {}) {
     const { error } = LogisticValidator.getPincodeCity().validate(
@@ -7622,7 +7627,7 @@ class Logistic {
       { abortEarly: false }
     );
     if (error) {
-      return Promise.reject(error);
+      return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
 
