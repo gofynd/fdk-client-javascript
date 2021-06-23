@@ -56,7 +56,7 @@ declare class Catalog {
      *   slug value from the endpoint
      *   /service/application/catalog/v1.0/products/sizes* @param {string}
      *   arg.pincode - The PIN Code of the area near which the selling locations
-     *   should be searched, e.g. 400059* @param {string} [arg.storeId] - The ID
+     *   should be searched, e.g. 400059* @param {number} [arg.storeId] - The ID
      *   of the store that is selling the product, e.g. 1,2,3.
      * @returns {Promise<ProductSizePriceResponse>} - Success response
      * @summary: Get the price of a product size at a PIN Code
@@ -66,7 +66,7 @@ declare class Catalog {
         slug: string;
         size: string;
         pincode: string;
-        storeId?: string;
+        storeId?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -515,10 +515,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -528,10 +528,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
