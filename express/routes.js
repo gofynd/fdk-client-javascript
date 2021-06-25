@@ -16,16 +16,6 @@ function setupRoutes(ext) {
     let storage = ext.storage;
     let callbacks = ext.callbacks;
 
-    // setup call is deperected
-    FdkRoutes.post("/fp/setup", async (req, res, next) => {
-        try {
-            res.json({sucess: true, meessage: "This is deprected call"});
-        } catch (error) {
-            console.error(error);
-            res.status(500, { message: error.message});
-        }
-    });
-
     FdkRoutes.get("/fp/install", async (req, res, next) => {
         // ?company_id=1&client_id=123313112122
         try {
