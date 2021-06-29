@@ -7,6 +7,7 @@ class FDKServerResponseError extends Error {
    */
   constructor(message, stackTrace, status = null, code = null, details = null) {
     super(message);
+    this.name = "FDKServerResponseError";
     this.stackTrace = stackTrace;
     this.status = status;
     this.code = code;
@@ -31,11 +32,13 @@ class FDKInvalidCredentialError extends Error {
 class FDKTokenIssueError extends Error {
   constructor(message) {
     super(message);
+    this.name = "FDKTokenIssueError";
   }
 }
 class FDKOAuthCodeError extends Error {
   constructor(message) {
     super(message);
+    this.name = "FDKOAuthCodeError";
   }
 }
 

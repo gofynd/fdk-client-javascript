@@ -858,14 +858,15 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results.* @param {number} [arg.pageSize] - The number of
-   *   items to retrieve in each page.
+   *   items to retrieve in each page.* @param {string} [arg.tag] - List of
+   *   tags to filter collections
    * @returns {Promise<GetCollectionListingResponse>} - Success response
    * @summary: List all the collections
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
    */
-  getCollections({ pageNo, pageSize } = {}) {
+  getCollections({ pageNo, pageSize, tag } = {}) {
     const { error } = CatalogValidator.getCollections().validate(
-      { pageNo, pageSize },
+      { pageNo, pageSize, tag },
       { abortEarly: false }
     );
     if (error) {
@@ -874,6 +875,7 @@ class Catalog {
     const query = {};
     query["page_no"] = pageNo;
     query["page_size"] = pageSize;
+    query["tag"] = tag;
 
     return APIClient.execute(
       this._conf,
@@ -887,10 +889,11 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @param {string} [arg.tag] - List of tags to filter collections
    * @summary: List all the collections
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
    */
-  getCollectionsPaginator({ pageSize } = {}) {
+  getCollectionsPaginator({ pageSize, tag } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -899,6 +902,7 @@ class Catalog {
       const data = await this.getCollections({
         pageNo: pageNo,
         pageSize: pageSize,
+        tag: tag,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -1103,34 +1107,6 @@ class Catalog {
    *   products, brands, or collections.* @param {string} arg.collectionId -
    *   The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Unfollow an entity (product/brand/collection)
-   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
-   */
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.* @param {string} arg.collectionId -
-   *   The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Follow an entity (product/brand/collection)
    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
    */
@@ -1147,6 +1123,34 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "post",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.* @param {string} arg.collectionId -
+   *   The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Unfollow an entity (product/brand/collection)
+   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+   */
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -5645,7 +5649,7 @@ class Feedback {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/feedback/v1.0/abuse`,
+      `/service/application/feedback/v1.0/abuse/`,
       query,
       body
     );
@@ -5671,7 +5675,7 @@ class Feedback {
     return APIClient.execute(
       this._conf,
       "put",
-      `/service/application/feedback/v1.0/abuse`,
+      `/service/application/feedback/v1.0/abuse/`,
       query,
       body
     );
@@ -5768,7 +5772,7 @@ class Feedback {
     return APIClient.execute(
       this._conf,
       "get",
-      `/service/application/feedback/v1.0/attributes`,
+      `/service/application/feedback/v1.0/attributes/`,
       query,
       undefined
     );
@@ -5820,7 +5824,7 @@ class Feedback {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/feedback/v1.0/attributes`,
+      `/service/application/feedback/v1.0/attributes/`,
       query,
       body
     );
@@ -5903,7 +5907,7 @@ class Feedback {
     return APIClient.execute(
       this._conf,
       "post",
-      `/service/application/feedback/v1.0/comment`,
+      `/service/application/feedback/v1.0/comment/`,
       query,
       body
     );
@@ -5929,7 +5933,7 @@ class Feedback {
     return APIClient.execute(
       this._conf,
       "put",
-      `/service/application/feedback/v1.0/comment`,
+      `/service/application/feedback/v1.0/comment/`,
       query,
       body
     );

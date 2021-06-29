@@ -402,23 +402,27 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.* @param {number} [arg.pageSize] - The number of
-     *   items to retrieve in each page.
+     *   items to retrieve in each page.* @param {string} [arg.tag] - List of
+     *   tags to filter collections
      * @returns {Promise<GetCollectionListingResponse>} - Success response
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
-    getCollections({ pageNo, pageSize }?: {
+    getCollections({ pageNo, pageSize, tag }?: {
         pageNo?: number;
         pageSize?: number;
+        tag?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string} [arg.tag] - List of tags to filter collections
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
-    getCollectionsPaginator({ pageSize }?: {
+    getCollectionsPaginator({ pageSize, tag }?: {
         pageSize?: number;
+        tag?: string;
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
@@ -515,10 +519,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -528,10 +532,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;

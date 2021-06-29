@@ -287,24 +287,24 @@
 
 * [Catalog](#Catalog)
   * Methods
-    * [deleteSearchKeywords](#deletesearchkeywords)
-    * [getSearchKeywords](#getsearchkeywords)
     * [updateSearchKeywords](#updatesearchkeywords)
+    * [getSearchKeywords](#getsearchkeywords)
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [getAllSearchKeyword](#getallsearchkeyword)
     * [createCustomKeyword](#createcustomkeyword)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
-    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteConfig](#getautocompleteconfig)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getProductBundle](#getproductbundle)
     * [createProductBundle](#createproductbundle)
-    * [getProductBundleDetail](#getproductbundledetail)
     * [updateProductBundle](#updateproductbundle)
+    * [getProductBundleDetail](#getproductbundledetail)
     * [getSizeGuides](#getsizeguides)
     * [createSizeGuide](#createsizeguide)
-    * [getSizeGuide](#getsizeguide)
     * [updateSizeGuide](#updatesizeguide)
+    * [getSizeGuide](#getsizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
     * [getConfigurations](#getconfigurations)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
@@ -314,8 +314,8 @@
     * [getAllCollections](#getallcollections)
     * [createCollection](#createcollection)
     * [getCollectionDetail](#getcollectiondetail)
-    * [deleteCollection](#deletecollection)
     * [updateCollection](#updatecollection)
+    * [deleteCollection](#deletecollection)
     * [getCollectionItems](#getcollectionitems)
     * [addCollectionItems](#addcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
@@ -340,13 +340,13 @@
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
     * [listCategories](#listcategories)
     * [createCategories](#createcategories)
-    * [getCategoryData](#getcategorydata)
     * [updateCategory](#updatecategory)
+    * [getCategoryData](#getcategorydata)
     * [getProducts](#getproducts)
     * [createProduct](#createproduct)
-    * [deleteProduct](#deleteproduct)
-    * [getProduct](#getproduct)
     * [editProduct](#editproduct)
+    * [getProduct](#getproduct)
+    * [deleteProduct](#deleteproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
     * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
@@ -369,8 +369,8 @@
     * [exportInventoryConfig](#exportinventoryconfig)
     * [getAllHsnCodes](#getallhsncodes)
     * [createHsnCode](#createhsncode)
-    * [getHsnCode](#gethsncode)
     * [updateHsnCode](#updatehsncode)
+    * [getHsnCode](#gethsncode)
     * [bulkHsnCode](#bulkhsncode)
     * [getApplicationBrands](#getapplicationbrands)
     * [getDepartments](#getdepartments)
@@ -381,18 +381,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
     * [createLocation](#createlocation)
-    * [getLocationDetail](#getlocationdetail)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -4858,7 +4858,7 @@ Schema: `BlitzkriegInternalServerError`
 
 
 #### getThemeLibrary
-Gets list of themes in theme library
+Get a list of themes from the theme library
 
 ```javascript
 // Promise
@@ -4870,18 +4870,18 @@ const data = await theme.getThemeLibrary(companyId,applicationId,pageSize,pageNo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-| pageNo | integer | Page number. Default is 1. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10.  | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
 
-Gets list of themes in theme library
+Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details. 
 
 *Success Response:*
 
 
 
-Themes list
+Success. Refer `ThemesListingResponseSchema` for more details.
 
 
 Schema: `ThemesListingResponseSchema`
@@ -4933,7 +4933,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### addToThemeLibrary
-Add theme to theme library
+Add a theme to the theme library
 
 ```javascript
 // Promise
@@ -4945,16 +4945,16 @@ const data = await theme.addToThemeLibrary(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Add theme to theme library
+Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5006,7 +5006,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### applyTheme
-Apply theme
+Apply a theme
 
 ```javascript
 // Promise
@@ -5018,16 +5018,16 @@ const data = await theme.applyTheme(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Apply theme
+Use this API to apply a theme to the website.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5091,17 +5091,17 @@ const data = await theme.isUpgradable(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 | themeId | string | Theme ID | 
 
-Checks if theme is upgradable
+There's always a possibility that new features get added to a theme. Use this API to check if the applied theme has an upgrade available.
 
 *Success Response:*
 
 
 
-Upgradable Theme
+Success. If the boolean value of `upgrade` returns **true**, the theme can be upgraded. Refer `UpgradableThemeSchema` for more details.
 
 
 Schema: `UpgradableThemeSchema`
@@ -5153,7 +5153,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### upgradeTheme
-Upgrades theme
+Upgrade a theme
 
 ```javascript
 // Promise
@@ -5165,17 +5165,17 @@ const data = await theme.upgradeTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Upgrades theme
+Use this API to upgrade the current theme to its latest version.
 
 *Success Response:*
 
 
 
-Upgrades Theme
+Success. Upgrades the theme and shares the details of the new version in the response. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5227,7 +5227,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getPublicThemes
-Gets public themes
+Get all public themes
 
 ```javascript
 // Promise
@@ -5239,18 +5239,18 @@ const data = await theme.getPublicThemes(companyId,applicationId,pageSize,pageNo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-| pageNo | integer | Page number. Default is 1. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10.  | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
 
-Gets public themes
+Use this API to get a list of free themes that you can apply to your website.
 
 *Success Response:*
 
 
 
-Themes list
+Success. Refer `ThemesListingResponseSchema` for more details.
 
 
 Schema: `ThemesListingResponseSchema`
@@ -5302,7 +5302,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### createTheme
-Create new theme
+Create a new theme
 
 ```javascript
 // Promise
@@ -5314,10 +5314,10 @@ const data = await theme.createTheme(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Create new theme
+Themes improve the look and appearance of a website. Use this API to create a theme.
 
 *Success Response:*
 
@@ -5375,7 +5375,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getAppliedTheme
-Get applied theme
+Get the applied theme
 
 ```javascript
 // Promise
@@ -5387,16 +5387,16 @@ const data = await theme.getAppliedTheme(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Get applied theme
+Use this API to retrieve the theme that is currently applied to the website along with its details.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5448,7 +5448,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getFonts
-Gets fonts
+Get all the supported fonts in a theme
 
 ```javascript
 // Promise
@@ -5460,16 +5460,16 @@ const data = await theme.getFonts(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Gets fonts
+Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
 
 *Success Response:*
 
 
 
-Fonts list
+Success. Refer `FontsSchema` for more details.
 
 
 Schema: `FontsSchema`
@@ -5533,17 +5533,17 @@ const data = await theme.getThemeById(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Gets theme by id
+Use this API to retrieve the details of a specific theme by using its ID.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5595,7 +5595,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### updateTheme
-Update theme
+Update a theme
 
 ```javascript
 // Promise
@@ -5607,17 +5607,17 @@ const data = await theme.updateTheme(companyId,applicationId,themeId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Update theme
+Use this API to edit an existing theme. You can customize the website font, sections, images, styles, and many more.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5669,7 +5669,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### deleteTheme
-Delete theme
+Delete a theme
 
 ```javascript
 // Promise
@@ -5681,17 +5681,17 @@ const data = await theme.deleteTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Delete theme
+Use this API to delete a theme from the theme library.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5743,7 +5743,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getThemeForPreview
-Gets theme for preview
+Get a theme preview
 
 ```javascript
 // Promise
@@ -5755,17 +5755,17 @@ const data = await theme.getThemeForPreview(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Gets theme for preview
+A theme can be previewed before applying it. Use this API to retrieve the theme preview by using its ID.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5817,7 +5817,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### publishTheme
-Publish theme
+Publish a theme
 
 ```javascript
 // Promise
@@ -5829,17 +5829,17 @@ const data = await theme.publishTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Publish theme
+Use this API to publish a theme that is either newly created or edited.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5891,7 +5891,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### unpublishTheme
-Unpublish theme
+Unpublish a theme
 
 ```javascript
 // Promise
@@ -5903,17 +5903,17 @@ const data = await theme.unpublishTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Unpublish theme
+Use this API to remove an existing theme from the list of available themes.
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -5965,7 +5965,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### archiveTheme
-Archive theme
+Archive a theme
 
 ```javascript
 // Promise
@@ -5977,17 +5977,17 @@ const data = await theme.archiveTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Archive theme
+Use this API to store an existing theme but not delete it so that it can be used in future if required. 
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -6039,7 +6039,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### unarchiveTheme
-Unarchive theme
+Unarchive a theme
 
 ```javascript
 // Promise
@@ -6051,17 +6051,17 @@ const data = await theme.unarchiveTheme(companyId,applicationId,themeId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | Theme ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| themeId | string | ID allotted to the theme. | 
 
-Unarchive theme
+Use this API to restore an archived theme and bring it back for editing or publishing. 
 
 *Success Response:*
 
 
 
-Theme
+Success. Refer `ThemesSchema` for more details.
 
 
 Schema: `ThemesSchema`
@@ -6120,7 +6120,7 @@ Schema: `BlitzkriegApiError`
 
 
 #### getCustomers
-Gets list of customers
+Get a list of customers
 
 ```javascript
 // Promise
@@ -6132,19 +6132,19 @@ const data = await user.getCustomers(companyId,applicationId,q,pageSize,pageNo);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-| pageNo | integer | Page number. Default is 1. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| q | string | The search query. Mobile number or email ID of a customer. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
 
-Used to get application customers list
+Use this API to retrieve a list of customers who have registered in the application.
 
 *Success Response:*
 
 
 
-Customer list
+Success. Refer `CustomerListResponseSchema` for more details.
 
 
 Schema: `CustomerListResponseSchema`
@@ -6196,7 +6196,7 @@ Schema: `AuthenticationApiError`
 
 
 #### searchUsers
-Search users
+Search an existing user.
 
 ```javascript
 // Promise
@@ -6208,17 +6208,17 @@ const data = await user.searchUsers(companyId,applicationId,q);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| q | string | The search query. Mobile number or email ID of a customer. | 
 
-Search users
+Use this API to retrieve an existing user from a list.
 
 *Success Response:*
 
 
 
-User list
+Success. Returns first name, last name, emails, phone number and gender of the user. Refer `UserSearchResponseSchema` for more details.
 
 
 Schema: `UserSearchResponseSchema`
@@ -6259,7 +6259,7 @@ Schema: `AuthenticationApiError`
 
 
 #### getPlatformConfig
-Get platform config
+Get platform configurations
 
 ```javascript
 // Promise
@@ -6271,16 +6271,16 @@ const data = await user.getPlatformConfig(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Used to get platform config
+Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
 
 *Success Response:*
 
 
 
-Platform Config
+Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
 
 
 Schema: `PlatformSchema`
@@ -6321,7 +6321,7 @@ Schema: `AuthenticationApiError`
 
 
 #### updatePlatformConfig
-Update platform config
+Update platform configurations
 
 ```javascript
 // Promise
@@ -6333,16 +6333,16 @@ const data = await user.updatePlatformConfig(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Used to update platform config
+Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
 
 *Success Response:*
 
 
 
-Platform Config
+Success. Returns a JSON object with the updated platform configurations. Refer `PlatformSchema` for more details.
 
 
 Schema: `PlatformSchema`
@@ -6390,7 +6390,7 @@ Schema: `AuthenticationApiError`
 
 
 #### getAnnouncementsList
-Get annoucements list
+Get a list of announcements
 
 ```javascript
 // Promise
@@ -6402,18 +6402,18 @@ const data = await content.getAnnouncementsList(companyId,applicationId,pageNo,p
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Get list of announcements
+Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `GetAnnouncementListSchema` for more details.
 
 
 Schema: `GetAnnouncementListSchema`
@@ -6436,7 +6436,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6459,7 +6459,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6487,7 +6487,7 @@ default
 
 
 #### createAnnouncement
-Create an annoucement
+Create an announcement
 
 ```javascript
 // Promise
@@ -6499,16 +6499,16 @@ const data = await content.createAnnouncement(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Create an announcement
+Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -6531,7 +6531,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6554,7 +6554,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6582,7 +6582,7 @@ default
 
 
 #### getAnnouncementById
-Get annoucement by id
+Get announcement by ID
 
 ```javascript
 // Promise
@@ -6594,17 +6594,17 @@ const data = await content.getAnnouncementById(companyId,applicationId,announcem
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| announcementId | string | ID allotted to the announcement. | 
 
-Get announcement by id
+Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `AdminAnnouncementSchema` for more details.
 
 
 Schema: `AdminAnnouncementSchema`
@@ -6627,7 +6627,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6650,7 +6650,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6678,7 +6678,7 @@ default
 
 
 #### updateAnnouncement
-Update an annoucement
+Update an announcement
 
 ```javascript
 // Promise
@@ -6690,17 +6690,17 @@ const data = await content.updateAnnouncement(companyId,applicationId,announceme
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| announcementId | string | ID allotted to the announcement. | 
 
-Update an announcement
+Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -6723,7 +6723,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6746,7 +6746,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6774,7 +6774,7 @@ default
 
 
 #### updateAnnouncementSchedule
-Update schedule or published status of an annoucement
+Update the schedule and the publish status of an announcement
 
 ```javascript
 // Promise
@@ -6786,17 +6786,17 @@ const data = await content.updateAnnouncementSchedule(companyId,applicationId,an
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| announcementId | string | ID allotted to the announcement. | 
 
-Update schedule or published status of an announcement
+Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -6819,7 +6819,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6842,7 +6842,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6870,7 +6870,7 @@ default
 
 
 #### deleteAnnouncement
-Delete annoucement by id
+Delete announcement by id
 
 ```javascript
 // Promise
@@ -6882,17 +6882,17 @@ const data = await content.deleteAnnouncement(companyId,applicationId,announceme
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| announcementId | string | Announcement ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| announcementId | string | ID allotted to the announcement. | 
 
-Delete announcement by id
+Use this API to delete an existing announcement.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `CreateAnnouncementSchema`
@@ -6915,7 +6915,7 @@ success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6938,7 +6938,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -6966,7 +6966,7 @@ default
 
 
 #### createBlog
-Create blog
+Create a blog
 
 ```javascript
 // Promise
@@ -6978,16 +6978,16 @@ const data = await content.createBlog(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create a blog.
+Use this API to create a blog.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `BlogSchema` for more details.
 
 
 Schema: `BlogSchema`
@@ -7010,7 +7010,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7042,7 +7042,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7091,18 +7091,18 @@ const data = await content.getBlogs(companyId,applicationId,pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Use this to get blogs.
+Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `BlogGetResponse` for more details.
 
 
 Schema: `BlogGetResponse`
@@ -7125,7 +7125,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7148,7 +7148,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7176,7 +7176,7 @@ default
 
 
 #### updateBlog
-Update blog
+Update a blog
 
 ```javascript
 // Promise
@@ -7188,17 +7188,17 @@ const data = await content.updateBlog(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| id | string | Blog Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the blog. | 
 
-Use this to update blog.
+Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `BlogSchema`
@@ -7221,7 +7221,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7253,7 +7253,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7302,17 +7302,17 @@ const data = await content.deleteBlog(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| id | string | Blog Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the blog. | 
 
-Use this to delete blogs.
+Use this API to delete a blog.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `BlogSchema`
@@ -7335,7 +7335,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7358,7 +7358,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7386,7 +7386,7 @@ default
 
 
 #### getComponentById
-Get components by component Id
+Get components of a blog
 
 ```javascript
 // Promise
@@ -7398,17 +7398,17 @@ const data = await content.getComponentById(companyId,applicationId,slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| slug | string | slug of page to be fetched | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. | 
 
-The endpoint fetches the component by component Id
+Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
 
 *Success Response:*
 
 
 
-A JSON object with components
+Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
 
 
 Schema: `BlogSchema`
@@ -7431,7 +7431,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7454,7 +7454,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7482,7 +7482,7 @@ default
 
 
 #### getFaqCategories
-Get FAQ categories list
+Get a list of FAQ categories
 
 ```javascript
 // Promise
@@ -7494,16 +7494,16 @@ const data = await content.getFaqCategories(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Get list of FAQ categories
+FAQs can be divided into categories. Use this API to get a list of FAQ categories.
 
 *Success Response:*
 
 
 
-Get FAQ Categories
+Success. Refer `GetFaqCategoriesSchema` for more details.
 
 
 Schema: `GetFaqCategoriesSchema`
@@ -7515,7 +7515,7 @@ Schema: `GetFaqCategoriesSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7538,7 +7538,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7566,7 +7566,7 @@ default
 
 
 #### getFaqCategoryBySlugOrId
-Get FAQ category by slug or id
+Get an FAQ category by slug or id
 
 ```javascript
 // Promise
@@ -7578,17 +7578,17 @@ const data = await content.getFaqCategoryBySlugOrId(companyId,applicationId,idOr
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| idOrSlug | string | Slug or Id of FAQ Category | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| idOrSlug | string | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. | 
 
-Get FAQ category by slug or id
+FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
 
 *Success Response:*
 
 
 
-Get FAQ Categories
+Success. Refer `GetFaqCategoryBySlugSchema` for more details.
 
 
 Schema: `GetFaqCategoryBySlugSchema`
@@ -7600,7 +7600,7 @@ Schema: `GetFaqCategoryBySlugSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7623,7 +7623,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7651,7 +7651,7 @@ default
 
 
 #### createFaqCategory
-Creates a FAQ category
+Create an FAQ category
 
 ```javascript
 // Promise
@@ -7663,16 +7663,16 @@ const data = await content.createFaqCategory(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Add Faq Category
+FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
 
 *Success Response:*
 
 
 
-Create a FAQ Category
+Success.
 
 
 Schema: `CreateFaqCategorySchema`
@@ -7684,7 +7684,7 @@ Schema: `CreateFaqCategorySchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7707,7 +7707,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7735,7 +7735,7 @@ default
 
 
 #### updateFaqCategory
-Updates a FAQ category
+Update an FAQ category
 
 ```javascript
 // Promise
@@ -7747,17 +7747,17 @@ const data = await content.updateFaqCategory(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Faq category ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to an FAQ category. | 
 
-Update Faq Category
+Use this API to edit an existing FAQ category.
 
 *Success Response:*
 
 
 
-Update a FAQ Category
+Success.
 
 
 Schema: `CreateFaqCategorySchema`
@@ -7769,7 +7769,7 @@ Schema: `CreateFaqCategorySchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7792,7 +7792,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7820,7 +7820,7 @@ default
 
 
 #### deleteFaqCategory
-Deletes a FAQ category
+Delete an FAQ category
 
 ```javascript
 // Promise
@@ -7832,17 +7832,17 @@ const data = await content.deleteFaqCategory(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Faq category ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to an FAQ category. | 
 
-Delete Faq Category
+Use this API to delete an FAQ category.
 
 *Success Response:*
 
 
 
-Delete a FAQ Category
+Success.
 
 
 Schema: `FaqSchema`
@@ -7854,7 +7854,7 @@ Schema: `FaqSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7877,7 +7877,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7905,7 +7905,7 @@ default
 
 
 #### getFaqsByCategoryIdOrSlug
-Get FAQs of a Faq Category id or slug
+Get question and answers within an FAQ category
 
 ```javascript
 // Promise
@@ -7917,17 +7917,17 @@ const data = await content.getFaqsByCategoryIdOrSlug(companyId,applicationId,idO
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| idOrSlug | string | Faq category ID or slug | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| idOrSlug | string | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. | 
 
-Get FAQs of a Faq Category `id` or `slug`
+Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
 
 *Success Response:*
 
 
 
-Get FAQs by slug/id of FAQ Category
+Success. Refer `GetFaqSchema` for more details.
 
 
 Schema: `GetFaqSchema`
@@ -7939,7 +7939,7 @@ Schema: `GetFaqSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7962,7 +7962,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -7990,7 +7990,7 @@ default
 
 
 #### addFaq
-Creates FAQs for category whose `id` is specified
+Create an FAQ
 
 ```javascript
 // Promise
@@ -8002,17 +8002,17 @@ const data = await content.addFaq(companyId,applicationId,categoryId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| categoryId | string | ID allotted to an FAQ category. | 
 
-Creates FAQs for category whose `id` is specified
+FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
 
 *Success Response:*
 
 
 
-Create a FAQ for FAQ Category
+Success.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -8024,7 +8024,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8047,7 +8047,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8075,7 +8075,7 @@ default
 
 
 #### updateFaq
-Updates FAQ
+Update an FAQ
 
 ```javascript
 // Promise
@@ -8087,18 +8087,18 @@ const data = await content.updateFaq(companyId,applicationId,categoryId,faqId,bo
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
-| faqId | string | Faq ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| categoryId | string | ID allotted to an FAQ category. | 
+| faqId | string | ID allotted to an FAQ. | 
 
-Updates FAQ
+Use this API to edit an existing FAQ.
 
 *Success Response:*
 
 
 
-Update FAQ by id
+Success.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -8110,7 +8110,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8133,7 +8133,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8161,7 +8161,7 @@ default
 
 
 #### deleteFaq
-Delete FAQ
+Delete an FAQ
 
 ```javascript
 // Promise
@@ -8173,18 +8173,18 @@ const data = await content.deleteFaq(companyId,applicationId,categoryId,faqId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| categoryId | string | Faq category ID | 
-| faqId | string | Faq ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| categoryId | string | ID allotted to an FAQ category. | 
+| faqId | string | ID allotted to an FAQ. | 
 
-Delete FAQ
+Use this API to delete an existing FAQ.
 
 *Success Response:*
 
 
 
-Delete FAQ by id
+Success.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -8196,7 +8196,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8219,7 +8219,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8247,7 +8247,7 @@ default
 
 
 #### getFaqByIdOrSlug
-Get frequently asked question
+Get an FAQ
 
 ```javascript
 // Promise
@@ -8259,17 +8259,17 @@ const data = await content.getFaqByIdOrSlug(companyId,applicationId,idOrSlug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| idOrSlug | string | Slug or Id of FAQ | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| idOrSlug | string | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. | 
 
-Get frequently asked questions list. These will be helpful for users to using website.
+Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `CreateFaqResponseSchema` for more details.
 
 
 Schema: `CreateFaqResponseSchema`
@@ -8281,7 +8281,7 @@ Schema: `CreateFaqResponseSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8304,7 +8304,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8332,7 +8332,7 @@ default
 
 
 #### getLandingPages
-Get landing-pages
+Get landing pages
 
 ```javascript
 // Promise
@@ -8344,18 +8344,18 @@ const data = await content.getLandingPages(companyId,applicationId,pageNo,pageSi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Use this to get landing-pages.
+Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `LandingPageGetResponse` for more details.
 
 
 Schema: `LandingPageGetResponse`
@@ -8378,7 +8378,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8401,7 +8401,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8429,7 +8429,7 @@ default
 
 
 #### createLandingPage
-Create landing-page
+Create a landing page
 
 ```javascript
 // Promise
@@ -8441,16 +8441,16 @@ const data = await content.createLandingPage(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create landing-page.
+Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `LandingPageSchema`
@@ -8473,7 +8473,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8496,7 +8496,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8524,7 +8524,7 @@ default
 
 
 #### updateLandingPage
-Update landing-page
+Update a landing page
 
 ```javascript
 // Promise
@@ -8536,17 +8536,17 @@ const data = await content.updateLandingPage(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Landing page ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to a landing page. | 
 
-Use this to update landing-page.
+Use this API to edit the details of an existing landing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `LandingPageSchema`
@@ -8569,7 +8569,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8592,7 +8592,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8620,7 +8620,7 @@ default
 
 
 #### deleteLandingPage
-Delete landing-page
+Delete a landing page
 
 ```javascript
 // Promise
@@ -8632,17 +8632,17 @@ const data = await content.deleteLandingPage(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Landing page ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to a landing page. | 
 
-Use this to delete landing-page.
+Use this API to delete an existing landing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `LandingPageSchema`
@@ -8688,7 +8688,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8711,7 +8711,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8751,16 +8751,16 @@ const data = await content.getLegalInformation(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Get legal information of application, which includes policy, Terms and Conditions, and FAQ information of application.
+Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `ApplicationLegal` for more details.
 
 
 Schema: `ApplicationLegal`
@@ -8783,7 +8783,7 @@ Success
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8806,7 +8806,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8846,16 +8846,16 @@ const data = await content.updateLegalInformation(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Save legal information of application, which includes Policy, Terms and Conditions, and FAQ information of application.
+Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `ApplicationLegal` for more details.
 
 
 Schema: `ApplicationLegal`
@@ -8867,7 +8867,7 @@ Schema: `ApplicationLegal`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8890,7 +8890,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8930,19 +8930,19 @@ const data = await content.getNavigations(companyId,applicationId,devicePlatform
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| devicePlatform | string | Device platform | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| devicePlatform | string | Filter navigations by platform. Acceptable values are: web, android, ios, all | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Use this to get navigations.
+Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `NavigationGetResponse` for more details.
 
 
 Schema: `NavigationGetResponse`
@@ -8965,7 +8965,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -8988,7 +8988,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9016,7 +9016,7 @@ default
 
 
 #### createNavigation
-Create navigation
+Create a navigation
 
 ```javascript
 // Promise
@@ -9028,16 +9028,16 @@ const data = await content.createNavigation(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create navigation.
+Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `NavigationSchema`
@@ -9060,7 +9060,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9083,7 +9083,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9123,16 +9123,16 @@ const data = await content.getDefaultNavigations(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to get default navigations.
+On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `DefaultNavigationResponse` for more details.
 
 
 Schema: `DefaultNavigationResponse`
@@ -9155,7 +9155,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9178,7 +9178,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9206,7 +9206,7 @@ default
 
 
 #### getNavigationBySlug
-Get navigation by slug
+Get a navigation by slug
 
 ```javascript
 // Promise
@@ -9218,18 +9218,18 @@ const data = await content.getNavigationBySlug(companyId,applicationId,slug,devi
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| slug | string | Slug | 
-| devicePlatform | string | Device platform | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a navigation. You can get slug value of a navigation from `getNavigations` API. | 
+| devicePlatform | string | Filter navigations by platform. Acceptable values are: web, android, ios, all | 
 
-Use this to get navigation by slug.
+Use this API to retrieve a navigation by its slug.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `NavigationSchema` for more details.
 
 
 Schema: `NavigationSchema`
@@ -9252,7 +9252,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9275,7 +9275,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9303,7 +9303,7 @@ default
 
 
 #### updateNavigation
-Update navigation
+Update a navigation
 
 ```javascript
 // Promise
@@ -9315,17 +9315,17 @@ const data = await content.updateNavigation(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Navigation ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the navigation. | 
 
-Use this to update navigation.
+Use this API to edit the details of an existing navigation.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `NavigationSchema`
@@ -9348,7 +9348,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9371,7 +9371,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9399,7 +9399,7 @@ default
 
 
 #### deleteNavigation
-Delete navigation
+Delete a navigation
 
 ```javascript
 // Promise
@@ -9411,17 +9411,17 @@ const data = await content.deleteNavigation(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Navigation ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the navigation. | 
 
-Use this to delete navigation.
+Use this API to delete an existing navigation.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `NavigationSchema`
@@ -9624,7 +9624,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9647,7 +9647,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9687,16 +9687,16 @@ const data = await content.getPageMeta(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to get Page Meta.
+Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageMetaSchema` for more details.
 
 
 Schema: `PageMetaSchema`
@@ -9719,7 +9719,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9742,7 +9742,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9782,16 +9782,16 @@ const data = await content.getPageSpec(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to get page spec.
+Use this API to get the specifications of a page, such as page type, display name, params and query.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSpec` for more details.
 
 
 Schema: `PageSpec`
@@ -9840,7 +9840,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9863,7 +9863,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9891,7 +9891,7 @@ default
 
 
 #### createPage
-Create page
+Create a page
 
 ```javascript
 // Promise
@@ -9903,16 +9903,16 @@ const data = await content.createPage(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create a page.
+Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -9935,7 +9935,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9958,7 +9958,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -9986,7 +9986,7 @@ default
 
 
 #### getPages
-Get pages
+Get a list of pages
 
 ```javascript
 // Promise
@@ -9998,18 +9998,18 @@ const data = await content.getPages(companyId,applicationId,pageNo,pageSize);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Use this to get pages.
+Use this API to retrieve a list of pages.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageGetResponse` for more details.
 
 
 Schema: `PageGetResponse`
@@ -10032,7 +10032,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10055,7 +10055,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10083,7 +10083,7 @@ default
 
 
 #### createPagePreview
-Create page preview
+Create a page preview
 
 ```javascript
 // Promise
@@ -10095,16 +10095,16 @@ const data = await content.createPagePreview(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create a page preview.
+Use this API to create a page preview to check the appearance of a custom page.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -10127,7 +10127,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10150,7 +10150,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10178,7 +10178,7 @@ default
 
 
 #### updatePagePreview
-Update page
+Change the publish status of a page
 
 ```javascript
 // Promise
@@ -10190,17 +10190,17 @@ const data = await content.updatePagePreview(companyId,applicationId,slug,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| slug | string | Page publish slug | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. | 
 
-Use this to update page.
+Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `PageSchema`
@@ -10223,7 +10223,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10246,7 +10246,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10274,7 +10274,7 @@ default
 
 
 #### updatePage
-Update page
+Update a page
 
 ```javascript
 // Promise
@@ -10286,17 +10286,17 @@ const data = await content.updatePage(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| id | string | Page Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the page. | 
 
-Use this to update page.
+Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -10319,7 +10319,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10342,7 +10342,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10370,7 +10370,7 @@ default
 
 
 #### deletePage
-Delete page
+Delete a page
 
 ```javascript
 // Promise
@@ -10382,17 +10382,17 @@ const data = await content.deletePage(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| id | string | Page Id | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the page. | 
 
-Use this to delete page.
+Use this API to delete an existing page.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `PageSchema`
@@ -10415,7 +10415,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10438,7 +10438,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10478,17 +10478,17 @@ const data = await content.getPageBySlug(companyId,applicationId,slug);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| slug | string | Slug of page to be fetched | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. | 
 
-The endpoint fetches the component by component Id
+Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
 
 *Success Response:*
 
 
 
-A JSON object with page
+Success. Returns a JSON object of components. Refer `PageSchema` for more details.
 
 
 Schema: `PageSchema`
@@ -10511,7 +10511,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10534,7 +10534,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10562,7 +10562,7 @@ default
 
 
 #### getSEOConfiguration
-Get seo of application
+Get SEO configuration of an application
 
 ```javascript
 // Promise
@@ -10574,16 +10574,16 @@ const data = await content.getSEOConfiguration(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Get seo of application
+Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SeoComponent` for more details.
 
 
 Schema: `SeoComponent`
@@ -10606,7 +10606,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10629,7 +10629,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10657,7 +10657,7 @@ default
 
 
 #### updateSEOConfiguration
-Update seo of application
+Update SEO of application
 
 ```javascript
 // Promise
@@ -10669,16 +10669,16 @@ const data = await content.updateSEOConfiguration(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Update seo of application
+Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SeoSchema` for more details.
 
 
 Schema: `SeoSchema`
@@ -10724,7 +10724,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10747,7 +10747,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10787,19 +10787,19 @@ const data = await content.getSlideshows(companyId,applicationId,devicePlatform,
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| devicePlatform | string | Device platform | 
-| pageNo | integer | Each response will contain **page_no** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| devicePlatform | string | Filter slideshows by platform. Acceptable values are: web, android, ios and all | 
+| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
 
-Use this to get slideshows.
+A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowGetResponse` for more details.
 
 
 Schema: `SlideshowGetResponse`
@@ -10822,7 +10822,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10845,7 +10845,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10873,7 +10873,7 @@ default
 
 
 #### createSlideshow
-Create slideshow
+Create a slideshow
 
 ```javascript
 // Promise
@@ -10885,16 +10885,16 @@ const data = await content.createSlideshow(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
 
-Use this to create slideshow.
+A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -10917,7 +10917,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10940,7 +10940,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -10980,18 +10980,18 @@ const data = await content.getSlideshowBySlug(companyId,applicationId,slug,devic
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| slug | string | Slug | 
-| devicePlatform | string | Device platform | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| slug | string | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value of a page from `getSlideshows` API. | 
+| devicePlatform | string | Filter slideshows by platform. Acceptable values are: web, android, ios and all | 
 
-Use this to get slideshow by slug.
+Use this API to retrieve the details of a slideshow by its slug.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -11014,7 +11014,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11037,7 +11037,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11065,7 +11065,7 @@ default
 
 
 #### updateSlideshow
-Update slideshow
+Update a slideshow
 
 ```javascript
 // Promise
@@ -11077,17 +11077,17 @@ const data = await content.updateSlideshow(companyId,applicationId,id,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Slideshow ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the slideshow. | 
 
-Use this to update slideshow.
+Use this API to edit the details of an existing slideshow.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `SlideshowSchema` for more details.
 
 
 Schema: `SlideshowSchema`
@@ -11110,7 +11110,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11133,7 +11133,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11161,7 +11161,7 @@ default
 
 
 #### deleteSlideshow
-Delete slideshow
+Delete a slideshow
 
 ```javascript
 // Promise
@@ -11173,17 +11173,17 @@ const data = await content.deleteSlideshow(companyId,applicationId,id);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| id | string | Slideshow ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
+| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+| id | string | ID allotted to the slideshow. | 
 
-Use this to delete slideshow.
+Use this API to delete an existing slideshow.
 
 *Success Response:*
 
 
 
-Success
+Success.
 
 
 Schema: `SlideshowSchema`
@@ -11245,7 +11245,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11268,7 +11268,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11308,16 +11308,16 @@ const data = await content.getSupportInformation(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Get contact details for customer support. Including emails and phone numbers
+Use this API to get the contact details for customer support, including emails and phone numbers.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `Support` for more details.
 
 
 Schema: `Support`
@@ -11340,7 +11340,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11363,7 +11363,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11391,7 +11391,7 @@ default
 
 
 #### updateSupportInformation
-Update support data of application
+Update the support data of an application
 
 ```javascript
 // Promise
@@ -11403,16 +11403,16 @@ const data = await content.updateSupportInformation(companyId,applicationId,body
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Update support data of application
+Use this API to edit the existing contact details for customer support, including emails and phone numbers.
 
 *Success Response:*
 
 
 
-Success
+Success. Refer `Support` for more details.
 
 
 Schema: `Support`
@@ -11435,7 +11435,7 @@ default
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11458,7 +11458,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11486,7 +11486,7 @@ default
 
 
 #### updateInjectableTag
-Updates a Tag
+Update a tag
 
 ```javascript
 // Promise
@@ -11498,16 +11498,16 @@ const data = await content.updateInjectableTag(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Update tag
+Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -11519,7 +11519,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11542,7 +11542,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11570,7 +11570,7 @@ default
 
 
 #### deleteAllInjectableTags
-Delete tags for application
+Delete tags in application
 
 ```javascript
 // Promise
@@ -11582,16 +11582,16 @@ const data = await content.deleteAllInjectableTags(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Delete tags for application
+Use this API to delete all the existing tags at once.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -11603,7 +11603,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11626,7 +11626,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11654,7 +11654,7 @@ default
 
 
 #### getInjectableTags
-Get tags for application
+Get all the tags in an application
 
 ```javascript
 // Promise
@@ -11666,16 +11666,16 @@ const data = await content.getInjectableTags(companyId,applicationId);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Get tags for application
+Use this API to get all the CSS and JS injected in the application in the form of tags.
 
 *Success Response:*
 
 
 
-Tags Array
+Success. Refer `TagsSchema` for more details.
 
 
 Schema: `TagsSchema`
@@ -11687,7 +11687,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11710,7 +11710,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11738,7 +11738,7 @@ default
 
 
 #### addInjectableTag
-Adds a Tag
+Add a tag
 
 ```javascript
 // Promise
@@ -11750,16 +11750,16 @@ const data = await content.addInjectableTag(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Add tag
+CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -11771,7 +11771,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11794,7 +11794,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11822,7 +11822,7 @@ default
 
 
 #### removeInjectableTag
-Removes a Tag
+Remove a tag
 
 ```javascript
 // Promise
@@ -11834,16 +11834,16 @@ const data = await content.removeInjectableTag(companyId,applicationId,body);
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
 
-Remove a particular tag
+Use this API to delete an existing tag.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -11855,7 +11855,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11878,7 +11878,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11906,7 +11906,7 @@ default
 
 
 #### editInjectableTag
-Edits a Tag by Id
+Edit a tag by id
 
 ```javascript
 // Promise
@@ -11918,17 +11918,17 @@ const data = await content.editInjectableTag(companyId,applicationId,tagId,body)
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| tagId | string | Tag ID | 
+| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
+| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+| tagId | string | ID allotted to the tag. | 
 
-Edits a particular tag
+Use this API to edit the details of an existing tag by its ID.
 
 *Success Response:*
 
 
 
-Tags Array
+Success.
 
 
 Schema: `TagsSchema`
@@ -11940,7 +11940,7 @@ Schema: `TagsSchema`
 
 
 
-Failed
+Bad Request. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -11963,7 +11963,7 @@ default
 
 
 
-Failed
+Internal Server Error. See the error object in the response body to know the exact reason.
 
 
 Schema: `APIError`
@@ -17908,15 +17908,15 @@ Schema: `ApefaceApiError`
 ## Catalog
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
+#### updateSearchKeywords
+Update Search Keyword
 
 ```javascript
 // Promise
-const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
+const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
+const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -17925,16 +17925,16 @@ const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
 | id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Update Search Keyword by its id. On successful request, returns the updated collection
 
 *Success Response:*
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
 
 
-Schema: `DeleteResponse`
+Schema: `GetSearchWordsData`
 
 
 
@@ -18010,15 +18010,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateSearchKeywords
-Update Search Keyword
+#### deleteSearchKeywords
+Delete a Search Keywords
 
 ```javascript
 // Promise
-const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
+const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
 
 // Async/Await
-const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
+const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
@@ -18027,16 +18027,16 @@ const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body)
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
 | id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Update Search Keyword by its id. On successful request, returns the updated collection
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
-Schema: `GetSearchWordsData`
+Schema: `DeleteResponse`
 
 
 
@@ -18161,15 +18161,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
 
 ```javascript
 // Promise
-const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -18178,16 +18178,16 @@ const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id)
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
 | id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
 
 *Success Response:*
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
-Schema: `DeleteResponse`
+Schema: `GetAutocompleteWordsResponse`
 
 
 
@@ -18263,15 +18263,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
 
 ```javascript
 // Promise
-const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
 
 // Async/Await
-const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
 ```
 
 | Argument  |  Type  | Description |
@@ -18280,16 +18280,16 @@ const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
 | id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
 *Success Response:*
 
 
 
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
-Schema: `GetAutocompleteWordsResponse`
+Schema: `DeleteResponse`
 
 
 
@@ -18513,56 +18513,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getProductBundleDetail
-Get a particular Product Bundle details
-
-```javascript
-// Promise
-const promise = catalog.getProductBundleDetail(companyId,id);
-
-// Async/Await
-const data = await catalog.getProductBundleDetail(companyId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
-
-Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-
-*Success Response:*
-
-
-
-The Collection object. See example below or refer `GetProductBundleResponse` for details
-
-
-Schema: `GetProductBundleResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateProductBundle
 Update a Product Bundle
 
@@ -18589,6 +18539,56 @@ The Collection object. See example below or refer `GetProductBundleCreateRespons
 
 
 Schema: `GetProductBundleCreateResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getProductBundleDetail
+Get a particular Product Bundle details
+
+```javascript
+// Promise
+const promise = catalog.getProductBundleDetail(companyId,id);
+
+// Async/Await
+const data = await catalog.getProductBundleDetail(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
+
+Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `GetProductBundleResponse` for details
+
+
+Schema: `GetProductBundleResponse`
 
 
 
@@ -18716,56 +18716,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getSizeGuide
-Get a single size guide.
-
-```javascript
-// Promise
-const promise = catalog.getSizeGuide(companyId,id);
-
-// Async/Await
-const data = await catalog.getSizeGuide(companyId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to size guide. | 
-| id | string | Id of the size guide to be viewed. | 
-
-This API helps to get data associated to a size guide.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `SizeGuideResponseSchema` for details
-
-
-Schema: `SizeGuideResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateSizeGuide
 Edit a size guide.
 
@@ -18792,6 +18742,56 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSizeGuide
+Get a single size guide.
+
+```javascript
+// Promise
+const promise = catalog.getSizeGuide(companyId,id);
+
+// Async/Await
+const data = await catalog.getSizeGuide(companyId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to size guide. | 
+| id | string | Id of the size guide to be viewed. | 
+
+This API helps to get data associated to a size guide.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `SizeGuideResponseSchema` for details
+
+
+Schema: `SizeGuideResponse`
 
 
 
@@ -19269,57 +19269,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteCollection
-Delete a Collection
-
-```javascript
-// Promise
-const promise = catalog.deleteCollection(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.deleteCollection(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
-
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateCollection
 Update a collection
 
@@ -19347,6 +19296,57 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 
 
 Schema: `UpdateCollection`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteCollection
+Delete a Collection
+
+```javascript
+// Promise
+const promise = catalog.deleteCollection(companyId,applicationId,id);
+
+// Async/Await
+const data = await catalog.deleteCollection(companyId,applicationId,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier of a collection. | 
+
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+
+*Success Response:*
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+Schema: `DeleteResponse`
 
 
 
@@ -20586,56 +20586,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getCategoryData
-Get product category by uid
-
-```javascript
-// Promise
-const promise = catalog.getCategoryData(companyId,uid);
-
-// Async/Await
-const data = await catalog.getCategoryData(companyId,uid);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| uid | string | Category unique id | 
-
-This API gets meta associated to product categories.
-
-*Success Response:*
-
-
-
-Get Data for one category. See example below or refer `CategoryResponse` for details
-
-
-Schema: `SingleCategoryResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateCategory
 Update product categories
 
@@ -20662,6 +20612,56 @@ Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
 Schema: `CategoryUpdateResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCategoryData
+Get product category by uid
+
+```javascript
+// Promise
+const promise = catalog.getCategoryData(companyId,uid);
+
+// Async/Await
+const data = await catalog.getCategoryData(companyId,uid);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| uid | string | Category unique id | 
+
+This API gets meta associated to product categories.
+
+*Success Response:*
+
+
+
+Get Data for one category. See example below or refer `CategoryResponse` for details
+
+
+Schema: `SingleCategoryResponse`
 
 
 
@@ -20789,23 +20789,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### deleteProduct
-Delete a product.
+#### editProduct
+Edit a product.
 
 ```javascript
 // Promise
-const promise = catalog.deleteProduct(companyId,itemId);
+const promise = catalog.editProduct(companyId,itemId,body);
 
 // Async/Await
-const data = await catalog.deleteProduct(companyId,itemId);
+const data = await catalog.editProduct(companyId,itemId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to product that is to be deleted. | 
+| companyId | string | Id of the company associated to product that is to be viewed. | 
 | itemId | integer | Id of the product to be updated. | 
 
-This API allows to delete product.
+This API allows to edit product.
 
 *Success Response:*
 
@@ -20892,23 +20892,23 @@ Schema: `ErrorResponse`
 ---
 
 
-#### editProduct
-Edit a product.
+#### deleteProduct
+Delete a product.
 
 ```javascript
 // Promise
-const promise = catalog.editProduct(companyId,itemId,body);
+const promise = catalog.deleteProduct(companyId,itemId);
 
 // Async/Await
-const data = await catalog.editProduct(companyId,itemId,body);
+const data = await catalog.deleteProduct(companyId,itemId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
+| companyId | string | Company Id of the company associated to product that is to be deleted. | 
 | itemId | integer | Id of the product to be updated. | 
 
-This API allows to edit product.
+This API allows to delete product.
 
 *Success Response:*
 
@@ -22046,15 +22046,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getHsnCode
-Fetch Hsn Code.
+#### updateHsnCode
+Update Hsn Code.
 
 ```javascript
 // Promise
-const promise = catalog.getHsnCode(companyId,id);
+const promise = catalog.updateHsnCode(companyId,id,body);
 
 // Async/Await
-const data = await catalog.getHsnCode(companyId,id);
+const data = await catalog.updateHsnCode(companyId,id,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -22062,13 +22062,13 @@ const data = await catalog.getHsnCode(companyId,id);
 | companyId | string | company id | 
 | id | string | Unique id | 
 
-Fetch Hsn Code.
+Update Hsn Code.
 
 *Success Response:*
 
 
 
-See example below details
+See example below for details
 
 
 Schema: `HsnCode`
@@ -22096,15 +22096,15 @@ Schema: `ErrorResponse`
 ---
 
 
-#### updateHsnCode
-Update Hsn Code.
+#### getHsnCode
+Fetch Hsn Code.
 
 ```javascript
 // Promise
-const promise = catalog.updateHsnCode(companyId,id,body);
+const promise = catalog.getHsnCode(companyId,id);
 
 // Async/Await
-const data = await catalog.updateHsnCode(companyId,id,body);
+const data = await catalog.getHsnCode(companyId,id);
 ```
 
 | Argument  |  Type  | Description |
@@ -22112,13 +22112,13 @@ const data = await catalog.updateHsnCode(companyId,id,body);
 | companyId | string | company id | 
 | id | string | Unique id | 
 
-Update Hsn Code.
+Fetch Hsn Code.
 
 *Success Response:*
 
 
 
-See example below for details
+See example below details
 
 
 Schema: `HsnCode`
@@ -22465,55 +22465,6 @@ Schema: `ErrorResponse`
 ## CompanyProfile
 
 
-#### cbsOnboardGet
-Get company profile
-
-```javascript
-// Promise
-const promise = companyprofile.cbsOnboardGet(companyId);
-
-// Async/Await
-const data = await companyprofile.cbsOnboardGet(companyId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to view the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
-
-
-Schema: `GetCompanyProfileSerializerResponse`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateCompany
 Edit company profile
 
@@ -22539,6 +22490,55 @@ Returns a success message
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cbsOnboardGet
+Get company profile
+
+```javascript
+// Promise
+const promise = companyprofile.cbsOnboardGet(companyId);
+
+// Async/Await
+const data = await companyprofile.cbsOnboardGet(companyId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+This API allows to view the company profile of the seller account.
+
+*Success Response:*
+
+
+
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+
+
+Schema: `GetCompanyProfileSerializerResponse`
 
 
 
@@ -22612,56 +22612,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getBrand
-Get a single brand.
-
-```javascript
-// Promise
-const promise = companyprofile.getBrand(companyId,brandId);
-
-// Async/Await
-const data = await companyprofile.getBrand(companyId,brandId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### editBrand
 Edit a brand.
 
@@ -22688,6 +22638,56 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getBrand
+Get a single brand.
+
+```javascript
+// Promise
+const promise = companyprofile.getBrand(companyId,brandId);
+
+// Async/Await
+const data = await companyprofile.getBrand(companyId,brandId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
 
 
 
@@ -22964,56 +22964,6 @@ Schema: `ErrorResponse`
 ---
 
 
-#### getLocationDetail
-Get details of a specific location.
-
-```javascript
-// Promise
-const promise = companyprofile.getLocationDetail(companyId,locationId);
-
-// Async/Await
-const data = await companyprofile.getLocationDetail(companyId,locationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location lies. | 
-| locationId | string | Id of the location which you want to view. | 
-
-This API helps to get data associated to a specific location.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetLocationSerializer` for details
-
-
-Schema: `GetLocationSerializer`
-
-
-
-
-
-
-
-
-Bad request. See the error object in the response body for specific reason
-
-
-Schema: `ErrorResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateLocation
 Edit a location asscoiated to a company.
 
@@ -23040,6 +22990,56 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+Bad request. See the error object in the response body for specific reason
+
+
+Schema: `ErrorResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLocationDetail
+Get details of a specific location.
+
+```javascript
+// Promise
+const promise = companyprofile.getLocationDetail(companyId,locationId);
+
+// Async/Await
+const data = await companyprofile.getLocationDetail(companyId,locationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location lies. | 
+| locationId | string | Id of the location which you want to view. | 
+
+This API helps to get data associated to a specific location.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+Schema: `GetLocationSerializer`
 
 
 
