@@ -2,6 +2,7 @@ const axios = require("axios");
 const {
   CatalogValidator,
   CartValidator,
+  CommonValidator,
   LeadValidator,
   ThemeValidator,
   UserValidator,
@@ -26,6 +27,7 @@ class ApplicationClient {
   constructor(config) {
     this.catalog = new Catalog(config);
     this.cart = new Cart(config);
+    this.common = new Common(config);
     this.lead = new Lead(config);
     this.theme = new Theme(config);
     this.user = new User(config);
@@ -858,8 +860,8 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results.* @param {number} [arg.pageSize] - The number of
-   *   items to retrieve in each page.* @param {string} [arg.tag] - List of
-   *   tags to filter collections
+   *   items to retrieve in each page.* @param {Array<string>} [arg.tag] -
+   *   List of tags to filter collections
    * @returns {Promise<GetCollectionListingResponse>} - Success response
    * @summary: List all the collections
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
@@ -889,7 +891,7 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @param {string} [arg.tag] - List of tags to filter collections
+   * @param {string[]} [arg.tag] - List of tags to filter collections
    * @summary: List all the collections
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
    */
@@ -2008,6 +2010,43 @@ class Cart {
       this._conf,
       "post",
       `/service/application/cart/v1.0/share-cart/${token}/${action}`,
+      query,
+      undefined
+    );
+  }
+}
+
+class Common {
+  constructor(_conf) {
+    this._conf = _conf;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.locationType] - Provide location type to query on*
+   *   @param {string} [arg.id] - Field is optional when location_type is
+   *   country. If querying for state, provide id of country. If querying for
+   *   city, provide id of state.
+   * @returns {Promise<Locations>} - Success response
+   * @summary: Get countries, states, cities
+   * @description:
+   */
+  getLocations({ locationType, id } = {}) {
+    const { error } = CommonValidator.getLocations().validate(
+      { locationType, id },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+    query["location_type"] = locationType;
+    query["id"] = id;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/common/configuration/v1.0/location`,
       query,
       undefined
     );
@@ -6041,19 +6080,21 @@ class Feedback {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string[]} arg.ids - List of media ID
    * @returns {Promise<UpdateResponse>} - Success response
    * @summary: Delete Media
    * @description: Use this API to delete media for an entity ID.
    */
-  deleteMedia({} = {}) {
+  deleteMedia({ ids } = {}) {
     const { error } = FeedbackValidator.deleteMedia().validate(
-      {},
+      { ids },
       { abortEarly: false }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
+    query["ids"] = ids;
 
     return APIClient.execute(
       this._conf,

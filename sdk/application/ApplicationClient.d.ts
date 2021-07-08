@@ -3,6 +3,7 @@ declare class ApplicationClient {
     constructor(config: any);
     catalog: Catalog;
     cart: Cart;
+    common: Common;
     lead: Lead;
     theme: Theme;
     user: User;
@@ -402,8 +403,8 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.* @param {number} [arg.pageSize] - The number of
-     *   items to retrieve in each page.* @param {string} [arg.tag] - List of
-     *   tags to filter collections
+     *   items to retrieve in each page.* @param {Array<string>} [arg.tag] -
+     *   List of tags to filter collections
      * @returns {Promise<GetCollectionListingResponse>} - Success response
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
@@ -411,18 +412,18 @@ declare class Catalog {
     getCollections({ pageNo, pageSize, tag }?: {
         pageNo?: number;
         pageSize?: number;
-        tag?: string;
+        tag?: Array<string>;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @param {string} [arg.tag] - List of tags to filter collections
+     * @param {string[]} [arg.tag] - List of tags to filter collections
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
     getCollectionsPaginator({ pageSize, tag }?: {
         pageSize?: number;
-        tag?: string;
+        tag?: string[];
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
@@ -897,6 +898,24 @@ declare class Cart {
      */
     updateCartWithSharedItems({ token, action }?: {
         token: string;
+    }): Promise<any>;
+}
+declare class Common {
+    constructor(_conf: any);
+    _conf: any;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.locationType] - Provide location type to query on*
+     *   @param {string} [arg.id] - Field is optional when location_type is
+     *   country. If querying for state, provide id of country. If querying for
+     *   city, provide id of state.
+     * @returns {Promise<Locations>} - Success response
+     * @summary: Get countries, states, cities
+     * @description:
+     */
+    getLocations({ locationType, id }?: {
+        locationType?: string;
+        id?: string;
     }): Promise<any>;
 }
 declare class Lead {
@@ -2511,11 +2530,14 @@ declare class Feedback {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string[]} arg.ids - List of media ID
      * @returns {Promise<UpdateResponse>} - Success response
      * @summary: Delete Media
      * @description: Use this API to delete media for an entity ID.
      */
-    deleteMedia({}?: any): Promise<any>;
+    deleteMedia({ ids }?: {
+        ids: string[];
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {AddMediaListRequest} arg.body

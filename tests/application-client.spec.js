@@ -231,6 +231,12 @@ describe("Cart test cases", () => {
   });
 });
 
+describe("Common test cases", () => {
+  it("getLocations testing", async () => {
+    expect(true).toBeTruthy();
+  });
+});
+
 describe("Lead test cases", () => {
   it("getTicket testing", async () => {
     expect(true).toBeTruthy();

@@ -54,6 +54,9 @@ export class CartValidator {
     static getCartSharedItems(): any;
     static updateCartWithSharedItems(): any;
 }
+export class CommonValidator {
+    static getLocations(): any;
+}
 export class LeadValidator {
     static getTicket(): any;
     static createHistory(): any;
@@ -261,33 +264,33 @@ export class LogisticValidator {
 export class Validator {
     static Meta(): any;
     static Media(): any;
-    static ProductDetailAttribute(): any;
-    static ProductDetailGroupedAttribute(): any;
     static ProductListingActionPage(): any;
     static ProductListingAction(): any;
-    static ProductBrand(): any;
     static Price(): any;
     static ProductListingPrice(): any;
+    static ProductBrand(): any;
+    static ProductDetailAttribute(): any;
+    static ProductDetailGroupedAttribute(): any;
     static ProductDetail(): any;
     static ErrorResponse(): any;
-    static ProductSize(): any;
     static ProductSizeStores(): any;
-    static SizeChartValues(): any;
     static ColumnHeader(): any;
     static ColumnHeaders(): any;
+    static SizeChartValues(): any;
     static SizeChart(): any;
+    static ProductSize(): any;
     static ProductSizes(): any;
+    static Store(): any;
     static StrategyWiseListing(): any;
+    static Seller(): any;
     static ArticleAssignment(): any;
+    static Details(): any;
+    static MarketPlaceSttributes(): any;
     static ProductStockPrice(): any;
     static ProductSetDistributionSize(): any;
     static ProductSetDistribution(): any;
     static ProductSet(): any;
-    static Store(): any;
-    static Seller(): any;
     static ReturnConfig(): any;
-    static Details(): any;
-    static MarketPlaceSttributes(): any;
     static ProductSizePriceResponse(): any;
     static ProductSizeSellerFilter(): any;
     static ProductSizeSellersResponse(): any;
@@ -301,27 +304,27 @@ export class Validator {
     static ProductVariantItemResponse(): any;
     static ProductVariantResponse(): any;
     static ProductVariantsResponse(): any;
-    static CompanyDetail(): any;
     static StoreDetail(): any;
+    static CompanyDetail(): any;
     static ProductStockStatusItem(): any;
     static ProductStockStatusResponse(): any;
     static ProductStockPolling(): any;
     static ProductListingDetail(): any;
-    static ProductSortOn(): any;
-    static ProductFiltersValue(): any;
     static ProductFiltersKey(): any;
+    static ProductFiltersValue(): any;
     static ProductFilters(): any;
+    static ProductSortOn(): any;
     static ProductListingResponse(): any;
     static ImageUrls(): any;
     static BrandItem(): any;
     static BrandListingResponse(): any;
     static BrandDetailResponse(): any;
+    static DepartmentIdentifier(): any;
     static ThirdLevelChild(): any;
     static SecondLevelChild(): any;
     static Child(): any;
     static CategoryItems(): any;
     static DepartmentCategoryTree(): any;
-    static DepartmentIdentifier(): any;
     static CategoryListingResponse(): any;
     static CategoryMetaResponse(): any;
     static HomeListingResponse(): any;
@@ -409,6 +412,10 @@ export class Validator {
     static SharedCartDetails(): any;
     static SharedCart(): any;
     static SharedCartResponse(): any;
+    static LocationDefaultLanguage(): any;
+    static LocationDefaultCurrency(): any;
+    static LocationCountry(): any;
+    static Locations(): any;
     static TicketList(): any;
     static Page(): any;
     static TicketHistoryList(): any;
@@ -809,11 +816,11 @@ export class Validator {
     static PaymentInitializationResponse(): any;
     static PaymentStatusUpdateRequest(): any;
     static PaymentStatusUpdateResponse(): any;
+    static AggregatorRoute(): any;
+    static PaymentFlow(): any;
     static PaymentModeLogo(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
-    static AggregatorRoute(): any;
-    static PaymentFlow(): any;
     static PaymentOptionAndFlow(): any;
     static PaymentModeRouteResponse(): any;
     static RupifiBannerData(): any;
@@ -831,7 +838,7 @@ export class Validator {
     static AddBeneficiaryViaOtpVerificationRequest(): any;
     static AddBeneficiaryViaOtpVerificationResponse(): any;
     static WrongOtpError(): any;
-    static BankDetails(): any;
+    static BeneficiaryModeDetails(): any;
     static AddBeneficiaryDetailsRequest(): any;
     static RefundAccountResponse(): any;
     static WalletOtpRequest(): any;
@@ -894,6 +901,7 @@ export class Validator {
     static ReferralDetailsResponse(): any;
     static ReferralDetailsUser(): any;
     static RewardsArticle(): any;
+    static Schedule(): any;
     static ShareMessages(): any;
     static AbuseReport(): any;
     static Access(): any;

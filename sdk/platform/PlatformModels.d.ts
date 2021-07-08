@@ -1,3 +1,6 @@
+export class CommonValidator {
+    static getLocations(): any;
+}
 export class LeadValidator {
     static getTickets(): any;
     static createTicket(): any;
@@ -85,8 +88,8 @@ export class CatalogValidator {
     static getProducts(): any;
     static createProduct(): any;
     static editProduct(): any;
-    static getProduct(): any;
     static deleteProduct(): any;
+    static getProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static getProductBulkUploadHistory(): any;
@@ -114,18 +117,18 @@ export class CatalogValidator {
     static bulkHsnCode(): any;
 }
 export class CompanyProfileValidator {
-    static updateCompany(): any;
     static cbsOnboardGet(): any;
+    static updateCompany(): any;
     static getCompanyMetrics(): any;
-    static editBrand(): any;
     static getBrand(): any;
+    static editBrand(): any;
     static createBrand(): any;
     static getBrands(): any;
     static createCompanyBrandMapping(): any;
     static getLocations(): any;
     static createLocation(): any;
-    static updateLocation(): any;
     static getLocationDetail(): any;
+    static updateLocation(): any;
     static createLocationBulk(): any;
 }
 export class FileStorageValidator {

@@ -3,6 +3,7 @@
 
 * [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Cart](#Cart) - Cart APIs 
+* [Common](#Common) - Application configuration apis 
 * [Lead](#Lead) - Handles communication between Staff and Users 
 * [Theme](#Theme) - Responsible for themes 
 * [User](#User) - Authentication Service 
@@ -82,6 +83,11 @@
     * [getCartShareLink](#getcartsharelink)
     * [getCartSharedItems](#getcartshareditems)
     * [updateCartWithSharedItems](#updatecartwithshareditems)
+    
+
+* [Common](#Common)
+  * Methods
+    * [getLocations](#getlocations)
     
 
 * [Lead](#Lead)
@@ -1297,7 +1303,7 @@ const data = await catalog.getCollections(pageNo,pageSize,tag);
 | --------- | ----  | --- |
 | pageNo | integer | The page number to navigate through the given set of results. | 
 | pageSize | integer | The number of items to retrieve in each page. | 
-| tag | string | List of tags  to filter collections | 
+| tag | array | List of tags  to filter collections | 
 
 Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
 
@@ -5115,6 +5121,51 @@ Cart Merged/Replaced
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+---
+
+
+
+---
+
+
+## Common
+
+
+#### getLocations
+Get countries, states, cities
+
+```javascript
+// Promise
+const promise = common.getLocations(locationType,id);
+
+// Async/Await
+const data = await common.getLocations(locationType,id);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| locationType | string | Provide location type to query on | 
+| id | string | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. | 
+
+
+
+*Success Response:*
+
+
+
+Success
+
+
+Schema: `Locations`
 
 
 
@@ -14057,14 +14108,15 @@ Delete Media
 
 ```javascript
 // Promise
-const promise = feedback.deleteMedia();
+const promise = feedback.deleteMedia(ids);
 
 // Async/Await
-const data = await feedback.deleteMedia();
+const data = await feedback.deleteMedia(ids);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
+| ids | array | List of media ID | 
 
 Use this API to delete media for an entity ID.
 
