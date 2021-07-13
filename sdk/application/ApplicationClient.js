@@ -1475,7 +1475,7 @@ class Cart {
    * @param {boolean} [arg.i] - * @param {boolean} [arg.b] - * @param
    *   {boolean} [arg.p] - * @param {number} [arg.uid] -
    * @param {ApplyCouponRequest} arg.body
-   * @returns {Promise<CartResponse>} - Success response
+   * @returns {Promise<any>} - Success response
    * @summary: Apply Coupon
    * @description: Use this API to apply coupons on items in the cart.
    */
@@ -1690,7 +1690,7 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {number} arg.id - ID allotted to the selected address
    * @param {Address} arg.body
-   * @returns {Promise<UpdateAddressResponse>} - Success response
+   * @returns {Promise<any>} - Success response
    * @summary: Update address added to an account
    * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
    */
@@ -1716,7 +1716,7 @@ class Cart {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} arg.id - ID allotted to the selected address
-   * @returns {Promise<DeleteAddressResponse>} - Success response
+   * @returns {Promise<any>} - Success response
    * @summary: Remove address associated with an account
    * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
    */
@@ -1744,7 +1744,7 @@ class Cart {
    * @param {number} [arg.uid] - * @param {boolean} [arg.i] - * @param
    *   {boolean} [arg.b] -
    * @param {SelectCartAddressRequest} arg.body
-   * @returns {Promise<CartResponse>} - Success response
+   * @returns {Promise<any>} - Success response
    * @summary: Select an address from available addresses
    * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
    */
@@ -6966,7 +6966,7 @@ class PosCart {
    * @param {boolean} [arg.i] - * @param {boolean} [arg.b] - * @param
    *   {boolean} [arg.p] - * @param {number} [arg.uid] -
    * @param {ApplyCouponRequest} arg.body
-   * @returns {Promise<CartResponse>} - Success response
+   * @returns {Promise<any>} - Success response
    * @summary: Apply Coupon
    * @description: Use this API to apply coupons on items in the cart.
    */
@@ -7181,7 +7181,7 @@ class PosCart {
    * @param {Object} arg - Arg object.
    * @param {number} arg.id - ID allotted to the selected address
    * @param {Address} arg.body
-   * @returns {Promise<UpdateAddressResponse>} - Success response
+   * @returns {Promise<any>} - Success response
    * @summary: Update address added to an account
    * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
    */
@@ -7207,7 +7207,7 @@ class PosCart {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} arg.id - ID allotted to the selected address
-   * @returns {Promise<DeleteAddressResponse>} - Success response
+   * @returns {Promise<any>} - Success response
    * @summary: Remove address associated with an account
    * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
    */
@@ -7235,7 +7235,7 @@ class PosCart {
    * @param {number} [arg.uid] - * @param {boolean} [arg.i] - * @param
    *   {boolean} [arg.b] -
    * @param {SelectCartAddressRequest} arg.body
-   * @returns {Promise<CartResponse>} - Success response
+   * @returns {Promise<any>} - Success response
    * @summary: Select an address from available addresses
    * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
    */
