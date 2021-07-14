@@ -212,8 +212,8 @@ export class CatalogValidator {
     static getAllCollections(): any;
     static createCollection(): any;
     static getCollectionDetail(): any;
-    static deleteCollection(): any;
     static updateCollection(): any;
+    static deleteCollection(): any;
     static getCollectionItems(): any;
     static addCollectionItems(): any;
     static getCatalogInsights(): any;
