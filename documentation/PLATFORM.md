@@ -298,37 +298,37 @@
 
 * [Catalog](#Catalog)
   * Methods
+    * [updateSearchKeywords](#updatesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
     * [deleteSearchKeywords](#deletesearchkeywords)
-    * [updateSearchKeywords](#updatesearchkeywords)
-    * [getAllSearchKeyword](#getallsearchkeyword)
     * [createCustomKeyword](#createcustomkeyword)
+    * [getAllSearchKeyword](#getallsearchkeyword)
+    * [updateAutocompleteKeyword](#updateautocompletekeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
     * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
-    * [updateAutocompleteKeyword](#updateautocompletekeyword)
-    * [getAutocompleteConfig](#getautocompleteconfig)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
-    * [getProductBundle](#getproductbundle)
+    * [getAutocompleteConfig](#getautocompleteconfig)
     * [createProductBundle](#createproductbundle)
-    * [getProductBundleDetail](#getproductbundledetail)
+    * [getProductBundle](#getproductbundle)
     * [updateProductBundle](#updateproductbundle)
-    * [getSizeGuides](#getsizeguides)
+    * [getProductBundleDetail](#getproductbundledetail)
     * [createSizeGuide](#createsizeguide)
-    * [getSizeGuide](#getsizeguide)
+    * [getSizeGuides](#getsizeguides)
     * [updateSizeGuide](#updatesizeguide)
+    * [getSizeGuide](#getsizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
-    * [getConfigurations](#getconfigurations)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
-    * [getConfigurationByType](#getconfigurationbytype)
+    * [getConfigurations](#getconfigurations)
     * [createConfigurationByType](#createconfigurationbytype)
+    * [getConfigurationByType](#getconfigurationbytype)
     * [getQueryFilters](#getqueryfilters)
-    * [getAllCollections](#getallcollections)
     * [createCollection](#createcollection)
+    * [getAllCollections](#getallcollections)
     * [getCollectionDetail](#getcollectiondetail)
-    * [deleteCollection](#deletecollection)
     * [updateCollection](#updatecollection)
-    * [getCollectionItems](#getcollectionitems)
+    * [deleteCollection](#deletecollection)
     * [addCollectionItems](#addcollectionitems)
+    * [getCollectionItems](#getcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
     * [getSellerInsights](#getsellerinsights)
     * [createMarketplaceOptin](#createmarketplaceoptin)
@@ -349,39 +349,40 @@
     * [listHSNCodes](#listhsncodes)
     * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
-    * [listCategories](#listcategories)
     * [createCategories](#createcategories)
-    * [getCategoryData](#getcategorydata)
+    * [listCategories](#listcategories)
     * [updateCategory](#updatecategory)
-    * [getProducts](#getproducts)
+    * [getCategoryData](#getcategorydata)
     * [createProduct](#createproduct)
+    * [getProducts](#getproducts)
+    * [editProduct](#editproduct)
     * [getProduct](#getproduct)
     * [deleteProduct](#deleteproduct)
-    * [editProduct](#editproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
-    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
-    * [deleteProductBulkJob](#deleteproductbulkjob)
+    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [createProductsInBulk](#createproductsinbulk)
+    * [deleteProductBulkJob](#deleteproductbulkjob)
     * [getCompanyTags](#getcompanytags)
-    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [createProductAssetsInBulk](#createproductassetsinbulk)
+    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [deleteSize](#deletesize)
-    * [getInventory](#getinventory)
     * [addInventory](#addinventory)
+    * [getInventoryBySize](#getinventorybysize)
+    * [getInventoryBySizeIdentifier](#getinventorybysizeidentifier)
     * [deleteInventory](#deleteinventory)
-    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [createBulkInventoryJob](#createbulkinventoryjob)
-    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
+    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [createBulkInventory](#createbulkinventory)
-    * [getInventoryExport](#getinventoryexport)
+    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
     * [createInventoryExportJob](#createinventoryexportjob)
+    * [getInventoryExport](#getinventoryexport)
     * [exportInventoryConfig](#exportinventoryconfig)
-    * [getAllHsnCodes](#getallhsncodes)
     * [createHsnCode](#createhsncode)
-    * [getHsnCode](#gethsncode)
+    * [getAllHsnCodes](#getallhsncodes)
     * [updateHsnCode](#updatehsncode)
+    * [getHsnCode](#gethsncode)
     * [bulkHsnCode](#bulkhsncode)
     * [getApplicationBrands](#getapplicationbrands)
     * [getDepartments](#getdepartments)
@@ -395,15 +396,15 @@
     * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
-    * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getBrands](#getbrands)
-    * [createLocation](#createlocation)
+    * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
-    * [getLocationDetail](#getlocationdetail)
+    * [createLocation](#createlocation)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -13403,6 +13404,45 @@ Schema: `GetClickToCallResponse`
 ## Catalog
 
 
+#### updateSearchKeywords
+Update Search Keyword
+
+```javascript
+// Promise
+const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+Update Search Keyword by its id. On successful request, returns the updated collection
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+
+
+Schema: `GetSearchWordsData`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getSearchKeywords
 Get a Search Keywords Details
 
@@ -13481,30 +13521,29 @@ Schema: `DeleteResponse`
 ---
 
 
-#### updateSearchKeywords
-Update Search Keyword
+#### createCustomKeyword
+Add a Custom Search Keywords
 
 ```javascript
 // Promise
-const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
+const promise = catalog.createCustomKeyword(companyId,applicationId,body);
 
 // Async/Await
-const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
+const data = await catalog.createCustomKeyword(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Update Search Keyword by its id. On successful request, returns the updated collection
+Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
 
 
 Schema: `GetSearchWordsData`
@@ -13558,32 +13597,33 @@ Schema: `GetSearchWordsResponse`
 ---
 
 
-#### createCustomKeyword
-Add a Custom Search Keywords
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
 
 ```javascript
 // Promise
-const promise = catalog.createCustomKeyword(companyId,applicationId,body);
+const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.createCustomKeyword(companyId,applicationId,body);
+const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
 
 *Success Response:*
 
 
 
-Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
-Schema: `GetSearchWordsData`
+Schema: `GetAutocompleteWordsResponse`
 
 
 
@@ -13674,33 +13714,32 @@ Schema: `DeleteResponse`
 ---
 
 
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
+#### createCustomAutocompleteRule
+Add a Custom Autocomplete Keywords
 
 ```javascript
 // Promise
-const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const promise = catalog.createCustomAutocompleteRule(companyId,applicationId,body);
 
 // Async/Await
-const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const data = await catalog.createCustomAutocompleteRule(companyId,applicationId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
 
 *Success Response:*
 
 
 
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
 
 
-Schema: `GetAutocompleteWordsResponse`
+Schema: `CreateAutocompleteWordsResponse`
 
 
 
@@ -13751,32 +13790,31 @@ Schema: `GetAutocompleteWordsResponse`
 ---
 
 
-#### createCustomAutocompleteRule
-Add a Custom Autocomplete Keywords
+#### createProductBundle
+Create Product Bundle
 
 ```javascript
 // Promise
-const promise = catalog.createCustomAutocompleteRule(companyId,applicationId,body);
+const promise = catalog.createProductBundle(companyId,body);
 
 // Async/Await
-const data = await catalog.createCustomAutocompleteRule(companyId,applicationId,body);
+const data = await catalog.createProductBundle(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
 
-Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
 
 *Success Response:*
 
 
 
-List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
 
 
-Schema: `CreateAutocompleteWordsResponse`
+Schema: `GetProductBundleCreateResponse`
 
 
 
@@ -13827,28 +13865,29 @@ Schema: `GetProductBundleListingResponse`
 ---
 
 
-#### createProductBundle
-Create Product Bundle
+#### updateProductBundle
+Update a Product Bundle
 
 ```javascript
 // Promise
-const promise = catalog.createProductBundle(companyId,body);
+const promise = catalog.updateProductBundle(companyId,id,body);
 
 // Async/Await
-const data = await catalog.createProductBundle(companyId,body);
+const data = await catalog.updateProductBundle(companyId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+Update a Product Bundle by its id. On successful request, returns the updated product bundle
 
 *Success Response:*
 
 
 
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
 
 
 Schema: `GetProductBundleCreateResponse`
@@ -13902,32 +13941,31 @@ Schema: `GetProductBundleResponse`
 ---
 
 
-#### updateProductBundle
-Update a Product Bundle
+#### createSizeGuide
+Create a size guide.
 
 ```javascript
 // Promise
-const promise = catalog.updateProductBundle(companyId,id,body);
+const promise = catalog.createSizeGuide(companyId,body);
 
 // Async/Await
-const data = await catalog.updateProductBundle(companyId,id,body);
+const data = await catalog.createSizeGuide(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+| companyId | string | Id of the company inside which the size guide is to be created. | 
 
-Update a Product Bundle by its id. On successful request, returns the updated product bundle
+This API allows to create a size guide associated to a brand.
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
+Returns a success response
 
 
-Schema: `GetProductBundleCreateResponse`
+Schema: `SuccessResponse`
 
 
 
@@ -13982,22 +14020,23 @@ Schema: `ListSizeGuide`
 ---
 
 
-#### createSizeGuide
-Create a size guide.
+#### updateSizeGuide
+Edit a size guide.
 
 ```javascript
 // Promise
-const promise = catalog.createSizeGuide(companyId,body);
+const promise = catalog.updateSizeGuide(companyId,id,body);
 
 // Async/Await
-const data = await catalog.createSizeGuide(companyId,body);
+const data = await catalog.updateSizeGuide(companyId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the size guide is to be created. | 
+| companyId | string | Id of the company. | 
+| id | string | Mongo id of the size guide to be edited | 
 
-This API allows to create a size guide associated to a brand.
+This API allows to edit a size guide.
 
 *Success Response:*
 
@@ -14057,44 +14096,6 @@ Schema: `SizeGuideResponse`
 ---
 
 
-#### updateSizeGuide
-Edit a size guide.
-
-```javascript
-// Promise
-const promise = catalog.updateSizeGuide(companyId,id,body);
-
-// Async/Await
-const data = await catalog.updateSizeGuide(companyId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company. | 
-| id | string | Mongo id of the size guide to be edited | 
-
-This API allows to edit a size guide.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCatalogConfiguration
 Get configuration meta  details for catalog for admin panel
 
@@ -14121,6 +14122,44 @@ configuration details for catalog. See example below or refer `GetCatalogConfigu
 
 
 Schema: `GetCatalogConfigurationMetaData`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createConfigurationProductListing
+Add configuration for products & listings
+
+```javascript
+// Promise
+const promise = catalog.createConfigurationProductListing(companyId,applicationId,body);
+
+// Async/Await
+const data = await catalog.createConfigurationProductListing(companyId,applicationId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+Add configuration for products & listing.
+
+*Success Response:*
+
+
+
+success flag will tell whether the operation was successful.
+
+
+Schema: `GetAppCatalogConfiguration`
 
 
 
@@ -14171,23 +14210,24 @@ Schema: `GetAppCatalogConfiguration`
 ---
 
 
-#### createConfigurationProductListing
-Add configuration for products & listings
+#### createConfigurationByType
+Add configuration for categories and brands
 
 ```javascript
 // Promise
-const promise = catalog.createConfigurationProductListing(companyId,applicationId,body);
+const promise = catalog.createConfigurationByType(companyId,applicationId,type,body);
 
 // Async/Await
-const data = await catalog.createConfigurationProductListing(companyId,applicationId,body);
+const data = await catalog.createConfigurationByType(companyId,applicationId,type,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| type | string | type can be brands, categories etc. | 
 
-Add configuration for products & listing.
+Add configuration for categories & brands.
 
 *Success Response:*
 
@@ -14248,45 +14288,6 @@ Schema: `GetAppCatalogEntityConfiguration`
 ---
 
 
-#### createConfigurationByType
-Add configuration for categories and brands
-
-```javascript
-// Promise
-const promise = catalog.createConfigurationByType(companyId,applicationId,type,body);
-
-// Async/Await
-const data = await catalog.createConfigurationByType(companyId,applicationId,type,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| type | string | type can be brands, categories etc. | 
-
-Add configuration for categories & brands.
-
-*Success Response:*
-
-
-
-success flag will tell whether the operation was successful.
-
-
-Schema: `GetAppCatalogConfiguration`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getQueryFilters
 Get query filters to configure a collection
 
@@ -14325,44 +14326,6 @@ Schema: `GetCollectionQueryOptionResponse`
 ---
 
 
-#### getAllCollections
-List all the collections
-
-```javascript
-// Promise
-const promise = catalog.getAllCollections(companyId,applicationId);
-
-// Async/Await
-const data = await catalog.getAllCollections(companyId,applicationId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
-
-*Success Response:*
-
-
-
-List of collections. See example below or refer `GetCollectionListingResponse` for details
-
-
-Schema: `GetCollectionListingResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### createCollection
 Add a Collection
 
@@ -14389,6 +14352,44 @@ List of all the collections including the one you added. See example below or re
 
 
 Schema: `CollectionCreateResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAllCollections
+List all the collections
+
+```javascript
+// Promise
+const promise = catalog.getAllCollections(companyId,applicationId);
+
+// Async/Await
+const data = await catalog.getAllCollections(companyId,applicationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
+
+*Success Response:*
+
+
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+Schema: `GetCollectionListingResponse`
 
 
 
@@ -14440,6 +14441,45 @@ Schema: `CollectionDetailResponse`
 ---
 
 
+#### updateCollection
+Update a collection
+
+```javascript
+// Promise
+const promise = catalog.updateCollection(companyId,applicationId,id,body);
+
+// Async/Await
+const data = await catalog.updateCollection(companyId,applicationId,id,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+| id | string | A `id` is a unique identifier of a collection. | 
+
+Update a collection by it's id. On successful request, returns the updated collection
+
+*Success Response:*
+
+
+
+The Collection object. See example below or refer `UpdateCollectionSchema` for details.
+
+
+Schema: `UpdateCollection`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### deleteCollection
 Delete a Collection
 
@@ -14479,15 +14519,15 @@ Schema: `DeleteResponse`
 ---
 
 
-#### updateCollection
-Update a collection
+#### addCollectionItems
+Add items to a collection
 
 ```javascript
 // Promise
-const promise = catalog.updateCollection(companyId,applicationId,id,body);
+const promise = catalog.addCollectionItems(companyId,applicationId,id,body);
 
 // Async/Await
-const data = await catalog.updateCollection(companyId,applicationId,id,body);
+const data = await catalog.addCollectionItems(companyId,applicationId,id,body);
 ```
 
 | Argument  |  Type  | Description |
@@ -14496,16 +14536,16 @@ const data = await catalog.updateCollection(companyId,applicationId,id,body);
 | applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
 | id | string | A `id` is a unique identifier of a collection. | 
 
-Update a collection by it's id. On successful request, returns the updated collection
+Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
 
 *Success Response:*
 
 
 
-The Collection object. See example below or refer `UpdateCollectionSchema` for details.
+Status object. Tells whether the operation was successful.
 
 
-Schema: `UpdateCollection`
+Schema: `UpdatedResponse`
 
 
 
@@ -14548,45 +14588,6 @@ The attached items of an collection. See example below or refer `GetCollectionIt
 
 
 Schema: `GetCollectionItemsResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addCollectionItems
-Add items to a collection
-
-```javascript
-// Promise
-const promise = catalog.addCollectionItems(companyId,applicationId,id,body);
-
-// Async/Await
-const data = await catalog.addCollectionItems(companyId,applicationId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
-
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful.
-
-
-Schema: `UpdatedResponse`
 
 
 
@@ -15366,48 +15367,6 @@ Schema: `ProductConfigurationDownloads`
 ---
 
 
-#### listCategories
-Get product categories list
-
-```javascript
-// Promise
-const promise = catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
-
-// Async/Await
-const data = await catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| level | string | Get category for multiple levels | 
-| departments | string | Get category for multiple departments filtered | 
-| q | string | Get multiple categories filtered by search string | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-
-This API gets meta associated to product categories.
-
-*Success Response:*
-
-
-
-Category Meta. See example below or refer `CategoryResponse` for details
-
-
-Schema: `CategoryResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### createCategories
 Create product categories
 
@@ -15445,21 +15404,25 @@ Schema: `CategoryCreateResponse`
 ---
 
 
-#### getCategoryData
-Get product category by uid
+#### listCategories
+Get product categories list
 
 ```javascript
 // Promise
-const promise = catalog.getCategoryData(companyId,uid);
+const promise = catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
 
 // Async/Await
-const data = await catalog.getCategoryData(companyId,uid);
+const data = await catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| uid | string | Category unique id | 
+| level | string | Get category for multiple levels | 
+| departments | string | Get category for multiple departments filtered | 
+| q | string | Get multiple categories filtered by search string | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
 
 This API gets meta associated to product categories.
 
@@ -15467,10 +15430,10 @@ This API gets meta associated to product categories.
 
 
 
-Get Data for one category. See example below or refer `CategoryResponse` for details
+Category Meta. See example below or refer `CategoryResponse` for details
 
 
-Schema: `SingleCategoryResponse`
+Schema: `CategoryResponse`
 
 
 
@@ -15521,36 +15484,32 @@ Schema: `CategoryUpdateResponse`
 ---
 
 
-#### getProducts
-Get product list
+#### getCategoryData
+Get product category by uid
 
 ```javascript
 // Promise
-const promise = catalog.getProducts(companyId,brandIds,categoryIds,q,pageNo,pageSize);
+const promise = catalog.getCategoryData(companyId,uid);
 
 // Async/Await
-const data = await catalog.getProducts(companyId,brandIds,categoryIds,q,pageNo,pageSize);
+const data = await catalog.getCategoryData(companyId,uid);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | number | Get list of products filtered by company Id | 
-| brandIds | number | Get multiple products filtered by brand Ids | 
-| categoryIds | number | Get multiple products filtered by category Ids | 
-| q | string | Get multiple products filtered by q string | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+| uid | string | Category unique id | 
 
-This API gets meta associated to products.
+This API gets meta associated to product categories.
 
 *Success Response:*
 
 
 
-Product Meta. See example below for details
+Get Data for one category. See example below or refer `CategoryResponse` for details
 
 
-Schema: `ProductListingResponse`
+Schema: `SingleCategoryResponse`
 
 
 
@@ -15579,6 +15538,87 @@ const data = await catalog.createProduct(companyId,body);
 | companyId | string | Id of the company associated to product that is to be viewed. | 
 
 This API allows to create product.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getProducts
+Get product list
+
+```javascript
+// Promise
+const promise = catalog.getProducts(companyId,brandIds,categoryIds,departmentIds,q,pageNo,pageSize);
+
+// Async/Await
+const data = await catalog.getProducts(companyId,brandIds,categoryIds,departmentIds,q,pageNo,pageSize);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | number | Get list of products filtered by company Id | 
+| brandIds | array | Get multiple products filtered by Brand Ids | 
+| categoryIds | array | Get multiple products filtered by Category Ids | 
+| departmentIds | array | Get multiple products filtered by Department Ids | 
+| q | string | Get multiple products filtered by q string | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+
+This API gets meta associated to products.
+
+*Success Response:*
+
+
+
+Product Meta. See example below for details
+
+
+Schema: `ProductListingResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editProduct
+Edit a product.
+
+```javascript
+// Promise
+const promise = catalog.editProduct(companyId,itemId,body);
+
+// Async/Await
+const data = await catalog.editProduct(companyId,itemId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to product that is to be viewed. | 
+| itemId | integer | Id of the product to be updated. | 
+
+This API allows to edit product.
 
 *Success Response:*
 
@@ -15679,44 +15719,6 @@ Schema: `SuccessResponse`
 ---
 
 
-#### editProduct
-Edit a product.
-
-```javascript
-// Promise
-const promise = catalog.editProduct(companyId,itemId,body);
-
-// Async/Await
-const data = await catalog.editProduct(companyId,itemId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | integer | Id of the product to be updated. | 
-
-This API allows to edit product.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getProductValidation
 Validate product/size data
 
@@ -15795,6 +15797,43 @@ Schema: `ProductListingResponse`
 ---
 
 
+#### updateProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+```javascript
+// Promise
+const promise = catalog.updateProductAssetsInBulk(companyId,body);
+
+// Async/Await
+const data = await catalog.updateProductAssetsInBulk(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which assets to be uploaded. | 
+
+This API helps to create a bulk asset upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getProductBulkUploadHistory
 Get a list of all bulk product upload jobs.
 
@@ -15834,22 +15873,23 @@ Schema: `ProductBulkRequestList`
 ---
 
 
-#### updateProductAssetsInBulk
-Create a Bulk asset upload Job.
+#### createProductsInBulk
+Create products in bulk associated with given batch Id.
 
 ```javascript
 // Promise
-const promise = catalog.updateProductAssetsInBulk(companyId,body);
+const promise = catalog.createProductsInBulk(companyId,batchId,body);
 
 // Async/Await
-const data = await catalog.updateProductAssetsInBulk(companyId,body);
+const data = await catalog.createProductsInBulk(companyId,batchId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | integer | Company Id in which assets to be uploaded. | 
+| batchId | string | Batch Id in which assets to be uploaded. | 
 
-This API helps to create a bulk asset upload job.
+This API helps to create products in bulk push to kafka for approval/creation.
 
 *Success Response:*
 
@@ -15909,44 +15949,6 @@ Schema: `SuccessResponse`
 ---
 
 
-#### createProductsInBulk
-Create products in bulk associated with given batch Id.
-
-```javascript
-// Promise
-const promise = catalog.createProductsInBulk(companyId,batchId,body);
-
-// Async/Await
-const data = await catalog.createProductsInBulk(companyId,batchId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-| batchId | string | Batch Id in which assets to be uploaded. | 
-
-This API helps to create products in bulk push to kafka for approval/creation.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCompanyTags
 Get a list of all tags associated with company.
 
@@ -15972,6 +15974,43 @@ Tag List. See example below for details
 
 
 Schema: `ProductTagsViewResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+```javascript
+// Promise
+const promise = catalog.createProductAssetsInBulk(companyId,body);
+
+// Async/Await
+const data = await catalog.createProductAssetsInBulk(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which assets to be uploaded. | 
+
+This API helps to create a bulk asset upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `SuccessResponse`
 
 
 
@@ -16023,43 +16062,6 @@ Schema: `BulkAssetResponse`
 ---
 
 
-#### createProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-```javascript
-// Promise
-const promise = catalog.createProductAssetsInBulk(companyId,body);
-
-// Async/Await
-const data = await catalog.createProductAssetsInBulk(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to create a bulk asset upload job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### deleteSize
 Delete a Size associated with product.
 
@@ -16087,47 +16089,6 @@ Returns a success response
 
 
 Schema: `ProductSizeDeleteResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getInventory
-Get Inventory for company
-
-```javascript
-// Promise
-const promise = catalog.getInventory(companyId,itemId,size,pageNo,pageSize);
-
-// Async/Await
-const data = await catalog.getInventory(companyId,itemId,size,pageNo,pageSize);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | string | Item code of the product of which size is to be get. | 
-| size | string | Size of which inventory is to get. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-
-This API allows get Inventory data for particular company grouped by size and store.
-
-*Success Response:*
-
-
-
-returns a list of all inventory grouped by size and store
-
-
-Schema: `InventoryResponse`
 
 
 
@@ -16179,20 +16140,106 @@ Schema: `SuccessResponse`
 ---
 
 
+#### getInventoryBySize
+Get Inventory for company
+
+```javascript
+// Promise
+const promise = catalog.getInventoryBySize(companyId,itemId,size,pageNo,pageSize,q);
+
+// Async/Await
+const data = await catalog.getInventoryBySize(companyId,itemId,size,pageNo,pageSize,q);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to product that is to be viewed. | 
+| itemId | string | Item code of the product of which size is to be get. | 
+| size | string | Size of which inventory is to get. | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
+| q | string | Search with help of store code. | 
+
+This API allows get Inventory data for particular company grouped by size and store.
+
+*Success Response:*
+
+
+
+returns a list of all inventory grouped by size and store
+
+
+Schema: `InventoryResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInventoryBySizeIdentifier
+Get Inventory for company
+
+```javascript
+// Promise
+const promise = catalog.getInventoryBySizeIdentifier(companyId,itemId,sizeIdentifier,pageNo,pageSize,q,locationIds);
+
+// Async/Await
+const data = await catalog.getInventoryBySizeIdentifier(companyId,itemId,sizeIdentifier,pageNo,pageSize,q,locationIds);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to product that is to be viewed. | 
+| itemId | string | Item code of the product of which size is to be get. | 
+| sizeIdentifier | string | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. | 
+| pageNo | integer | The page number to navigate through the given set of results | 
+| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
+| q | string | Search with help of store code. | 
+| locationIds | array | Search by store ids. | 
+
+This API allows get Inventory data for particular company grouped by size and store.
+
+*Success Response:*
+
+
+
+returns a list of all inventory grouped by size and store
+
+
+Schema: `InventoryResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### deleteInventory
 Delete a Inventory.
 
 ```javascript
 // Promise
-const promise = catalog.deleteInventory(companyId,itemId,locationId);
+const promise = catalog.deleteInventory(companyId,size,itemId,locationId);
 
 // Async/Await
-const data = await catalog.deleteInventory(companyId,itemId,locationId);
+const data = await catalog.deleteInventory(companyId,size,itemId,locationId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Company Id of the company associated with Inventory that is to be deleted. | 
+| size | string | size that is to be deleted. | 
 | itemId | integer | Id of the product associated with Inventory to be deleted. | 
 | locationId | number | Location ID of store of which inventory is to be deleted. | 
 
@@ -16206,6 +16253,43 @@ Returns a success response
 
 
 Schema: `InventoryDelete`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createBulkInventoryJob
+Create a Bulk Inventory upload Job.
+
+```javascript
+// Promise
+const promise = catalog.createBulkInventoryJob(companyId,body);
+
+// Async/Await
+const data = await catalog.createBulkInventoryJob(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | integer | Company Id in which Inventory to be uploaded. | 
+
+This API helps to create a bulk Inventory upload job.
+
+*Success Response:*
+
+
+
+Returns a success response
+
+
+Schema: `CommonResponse`
 
 
 
@@ -16257,22 +16341,23 @@ Schema: `BulkInventoryGet`
 ---
 
 
-#### createBulkInventoryJob
-Create a Bulk Inventory upload Job.
+#### createBulkInventory
+Create products in bulk associated with given batch Id.
 
 ```javascript
 // Promise
-const promise = catalog.createBulkInventoryJob(companyId,body);
+const promise = catalog.createBulkInventory(companyId,batchId,body);
 
 // Async/Await
-const data = await catalog.createBulkInventoryJob(companyId,body);
+const data = await catalog.createBulkInventory(companyId,batchId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | integer | Company Id in which Inventory to be uploaded. | 
+| companyId | integer | Company Id in which Inventory is to be uploaded. | 
+| batchId | string | Batch Id of the bulk create job. | 
 
-This API helps to create a bulk Inventory upload job.
+This API helps to create products in bulk push to kafka for approval/creation.
 
 *Success Response:*
 
@@ -16281,7 +16366,7 @@ This API helps to create a bulk Inventory upload job.
 Returns a success response
 
 
-Schema: `CommonResponse`
+Schema: `SuccessResponse`
 
 
 
@@ -16299,15 +16384,16 @@ Delete Bulk Inventory job.
 
 ```javascript
 // Promise
-const promise = catalog.deleteBulkInventoryJob(companyId);
+const promise = catalog.deleteBulkInventoryJob(companyId,batchId);
 
 // Async/Await
-const data = await catalog.deleteBulkInventoryJob(companyId);
+const data = await catalog.deleteBulkInventoryJob(companyId,batchId);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | Company Id of the company of which bulk Inventory job is to be deleted. | 
+| batchId | string | Batch Id of the bulk delete job. | 
 
 This API allows to delete bulk Inventory job associated with company.
 
@@ -16331,22 +16417,22 @@ Schema: `SuccessResponse`
 ---
 
 
-#### createBulkInventory
-Create products in bulk associated with given batch Id.
+#### createInventoryExportJob
+Create a Inventory export Job.
 
 ```javascript
 // Promise
-const promise = catalog.createBulkInventory(companyId,body);
+const promise = catalog.createInventoryExportJob(companyId,body);
 
 // Async/Await
-const data = await catalog.createBulkInventory(companyId,body);
+const data = await catalog.createInventoryExportJob(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | integer | Company Id in which Inventory is to be uploaded. | 
+| companyId | integer | Company Id in which assets to be uploaded. | 
 
-This API helps to create products in bulk push to kafka for approval/creation.
+This API helps to create a Inventory export job.
 
 *Success Response:*
 
@@ -16405,43 +16491,6 @@ Schema: `InventoryExportJob`
 ---
 
 
-#### createInventoryExportJob
-Create a Inventory export Job.
-
-```javascript
-// Promise
-const promise = catalog.createInventoryExportJob(companyId,body);
-
-// Async/Await
-const data = await catalog.createInventoryExportJob(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to create a Inventory export job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### exportInventoryConfig
 Get List of different filters for inventory export
 
@@ -16468,6 +16517,43 @@ returns filters configuration for inventory export
 
 
 Schema: `InventoryConfig`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createHsnCode
+Create Hsn Code.
+
+```javascript
+// Promise
+const promise = catalog.createHsnCode(companyId,body);
+
+// Async/Await
+const data = await catalog.createHsnCode(companyId,body);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | company id | 
+
+Create Hsn Code.
+
+*Success Response:*
+
+
+
+See example below for details
+
+
+Schema: `HsnCode`
 
 
 
@@ -16520,22 +16606,23 @@ Schema: `HsnCodesListingResponse`
 ---
 
 
-#### createHsnCode
-Create Hsn Code.
+#### updateHsnCode
+Update Hsn Code.
 
 ```javascript
 // Promise
-const promise = catalog.createHsnCode(companyId,body);
+const promise = catalog.updateHsnCode(companyId,id,body);
 
 // Async/Await
-const data = await catalog.createHsnCode(companyId,body);
+const data = await catalog.updateHsnCode(companyId,id,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
 | companyId | string | company id | 
+| id | string | Unique id | 
 
-Create Hsn Code.
+Update Hsn Code.
 
 *Success Response:*
 
@@ -16580,44 +16667,6 @@ Fetch Hsn Code.
 
 
 See example below details
-
-
-Schema: `HsnCode`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateHsnCode
-Update Hsn Code.
-
-```javascript
-// Promise
-const promise = catalog.updateHsnCode(companyId,id,body);
-
-// Async/Await
-const data = await catalog.updateHsnCode(companyId,id,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| id | string | Unique id | 
-
-Update Hsn Code.
-
-*Success Response:*
-
-
-
-See example below for details
 
 
 Schema: `HsnCode`
@@ -16991,44 +17040,6 @@ Schema: `MetricsSerializer`
 ---
 
 
-#### getBrand
-Get a single brand.
-
-```javascript
-// Promise
-const promise = companyprofile.getBrand(companyId,brandId);
-
-// Async/Await
-const data = await companyprofile.getBrand(companyId,brandId);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API helps to get data associated to a particular brand.
-
-*Success Response:*
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-Schema: `GetBrandResponseSerializer`
-
-
-
-
-
-
-
-
-
----
-
-
 #### editBrand
 Edit a brand.
 
@@ -17067,6 +17078,44 @@ Schema: `SuccessResponse`
 ---
 
 
+#### getBrand
+Get a single brand.
+
+```javascript
+// Promise
+const promise = companyprofile.getBrand(companyId,brandId);
+
+// Async/Await
+const data = await companyprofile.getBrand(companyId,brandId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company associated to brand that is to be viewed. | 
+| brandId | string | Id of the brand to be viewed. | 
+
+This API helps to get data associated to a particular brand.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+Schema: `GetBrandResponseSerializer`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### createBrand
 Create a Brand.
 
@@ -17083,43 +17132,6 @@ const data = await companyprofile.createBrand(companyId,body);
 | companyId | string | Id of the company. | 
 
 This API allows to create a brand associated to a company.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createCompanyBrandMapping
-Create a company brand mapping.
-
-```javascript
-// Promise
-const promise = companyprofile.createCompanyBrandMapping(companyId,body);
-
-// Async/Await
-const data = await companyprofile.createCompanyBrandMapping(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
-
-This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -17180,22 +17192,22 @@ Schema: `CompanyBrandListSerializer`
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### createCompanyBrandMapping
+Create a company brand mapping.
 
 ```javascript
 // Promise
-const promise = companyprofile.createLocation(companyId,body);
+const promise = companyprofile.createCompanyBrandMapping(companyId,body);
 
 // Async/Await
-const data = await companyprofile.createLocation(companyId,body);
+const data = await companyprofile.createCompanyBrandMapping(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
+| companyId | string | Id of the company inside which the brand is to be mapped. | 
 
-This API allows to create a location associated to a company.
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Success Response:*
 
@@ -17259,32 +17271,31 @@ Schema: `LocationListSerializer`
 ---
 
 
-#### getLocationDetail
-Get details of a specific location.
+#### createLocation
+Create a location asscoiated to a company.
 
 ```javascript
 // Promise
-const promise = companyprofile.getLocationDetail(companyId,locationId);
+const promise = companyprofile.createLocation(companyId,body);
 
 // Async/Await
-const data = await companyprofile.getLocationDetail(companyId,locationId);
+const data = await companyprofile.createLocation(companyId,body);
 ```
 
 | Argument  |  Type  | Description |
 | --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location lies. | 
-| locationId | string | Id of the location which you want to view. | 
+| companyId | string | Id of the company inside which the location is to be created. | 
 
-This API helps to get data associated to a specific location.
+This API allows to create a location associated to a company.
 
 *Success Response:*
 
 
 
-Brand object. See example below or refer `GetLocationSerializer` for details
+Returns a success response
 
 
-Schema: `GetLocationSerializer`
+Schema: `SuccessResponse`
 
 
 
@@ -17323,6 +17334,44 @@ Returns a success response
 
 
 Schema: `SuccessResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLocationDetail
+Get details of a specific location.
+
+```javascript
+// Promise
+const promise = companyprofile.getLocationDetail(companyId,locationId);
+
+// Async/Await
+const data = await companyprofile.getLocationDetail(companyId,locationId);
+```
+
+| Argument  |  Type  | Description |
+| --------- | ----  | --- |
+| companyId | string | Id of the company inside which the location lies. | 
+| locationId | string | Id of the location which you want to view. | 
+
+This API helps to get data associated to a specific location.
+
+*Success Response:*
+
+
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+Schema: `GetLocationSerializer`
 
 
 
