@@ -58,12 +58,12 @@ export class OrderValidator {
 export class CatalogValidator {
     static createProductBundle(): any;
     static getProductBundle(): any;
-    static getProductBundleDetail(): any;
     static updateProductBundle(): any;
+    static getProductBundleDetail(): any;
     static createSizeGuide(): any;
     static getSizeGuides(): any;
-    static getSizeGuide(): any;
     static updateSizeGuide(): any;
+    static getSizeGuide(): any;
     static getSellerInsights(): any;
     static createMarketplaceOptin(): any;
     static getMarketplaceOptinDetail(): any;
@@ -85,13 +85,13 @@ export class CatalogValidator {
     static listTemplateBrandTypeValues(): any;
     static createCategories(): any;
     static listCategories(): any;
-    static getCategoryData(): any;
     static updateCategory(): any;
+    static getCategoryData(): any;
     static createProduct(): any;
     static getProducts(): any;
-    static deleteProduct(): any;
-    static getProduct(): any;
     static editProduct(): any;
+    static getProduct(): any;
+    static deleteProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static updateProductAssetsInBulk(): any;
@@ -115,8 +115,8 @@ export class CatalogValidator {
     static exportInventoryConfig(): any;
     static createHsnCode(): any;
     static getAllHsnCodes(): any;
-    static getHsnCode(): any;
     static updateHsnCode(): any;
+    static getHsnCode(): any;
     static bulkHsnCode(): any;
 }
 export class CompanyProfileValidator {
@@ -126,10 +126,10 @@ export class CompanyProfileValidator {
     static getBrand(): any;
     static editBrand(): any;
     static createBrand(): any;
-    static createCompanyBrandMapping(): any;
     static getBrands(): any;
-    static createLocation(): any;
+    static createCompanyBrandMapping(): any;
     static getLocations(): any;
+    static createLocation(): any;
     static getLocationDetail(): any;
     static updateLocation(): any;
     static createLocationBulk(): any;
