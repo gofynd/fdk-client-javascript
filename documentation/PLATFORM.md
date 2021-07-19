@@ -1,29 +1,31 @@
+
+
 # FDK Platform Front API Documentaion
 
 
-* [Common](#Common) - Application configuration apis 
-* [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
-* [Feedback](#Feedback) - User Reviews and Rating System 
-* [Theme](#Theme) - Responsible for themes 
-* [User](#User) - Authentication Service 
-* [Content](#Content) - Content System 
-* [Assignment](#Assignment) -  
-* [Billing](#Billing) - Handle platform subscription 
-* [Communication](#Communication) - Manages email, sms, push notifications sent to users 
-* [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
-* [Order](#Order) - Handles Platform websites OMS 
-* [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
-* [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
-* [FileStorage](#FileStorage) - File Storage 
-* [Share](#Share) - Short link and QR Code 
-* [Inventory](#Inventory) -  
-* [Configuration](#Configuration) - Application configuration apis 
-* [Cart](#Cart) - Cart APIs 
-* [Rewards](#Rewards) - Rewards 
-* [Analytics](#Analytics) - Perceptor analytics 
-* [Discount](#Discount) - Discount 
-* [Partner](#Partner) - Partner configuration apis 
-* [Webhook](#Webhook) - Webhook dispatcher with retry and one event to many subscriber vice versa 
+* ## [Common](#Common) - Application configuration apis 
+* ## [Lead](#Lead) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* ## [Feedback](#Feedback) - User Reviews and Rating System 
+* ## [Theme](#Theme) - Responsible for themes 
+* ## [User](#User) - Authentication Service 
+* ## [Content](#Content) - Content System 
+* ## [Assignment](#Assignment) -  
+* ## [Billing](#Billing) - Handle platform subscription 
+* ## [Communication](#Communication) - Manages email, sms, push notifications sent to users 
+* ## [Payment](#Payment) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
+* ## [Order](#Order) - Handles Platform websites OMS 
+* ## [Catalog](#Catalog) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
+* ## [CompanyProfile](#CompanyProfile) - Company Profile API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
+* ## [FileStorage](#FileStorage) - File Storage 
+* ## [Share](#Share) - Short link and QR Code 
+* ## [Inventory](#Inventory) -  
+* ## [Configuration](#Configuration) - Application configuration apis 
+* ## [Cart](#Cart) - Cart APIs 
+* ## [Rewards](#Rewards) - Rewards 
+* ## [Analytics](#Analytics) - Perceptor analytics 
+* ## [Discount](#Discount) - Discount 
+* ## [Partner](#Partner) - Partner configuration apis 
+* ## [Webhook](#Webhook) - Webhook dispatcher with retry and one event to many subscriber vice versa 
 
 ----
 ----
@@ -298,37 +300,37 @@
 
 * [Catalog](#Catalog)
   * Methods
-    * [deleteSearchKeywords](#deletesearchkeywords)
-    * [getSearchKeywords](#getsearchkeywords)
     * [updateSearchKeywords](#updatesearchkeywords)
-    * [createCustomKeyword](#createcustomkeyword)
+    * [getSearchKeywords](#getsearchkeywords)
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [getAllSearchKeyword](#getallsearchkeyword)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
-    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
+    * [createCustomKeyword](#createcustomkeyword)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
-    * [createCustomAutocompleteRule](#createcustomautocompleterule)
+    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteConfig](#getautocompleteconfig)
-    * [createProductBundle](#createproductbundle)
+    * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getProductBundle](#getproductbundle)
-    * [getProductBundleDetail](#getproductbundledetail)
+    * [createProductBundle](#createproductbundle)
     * [updateProductBundle](#updateproductbundle)
-    * [createSizeGuide](#createsizeguide)
+    * [getProductBundleDetail](#getproductbundledetail)
     * [getSizeGuides](#getsizeguides)
-    * [getSizeGuide](#getsizeguide)
+    * [createSizeGuide](#createsizeguide)
     * [updateSizeGuide](#updatesizeguide)
+    * [getSizeGuide](#getsizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
-    * [createConfigurationProductListing](#createconfigurationproductlisting)
     * [getConfigurations](#getconfigurations)
-    * [createConfigurationByType](#createconfigurationbytype)
+    * [createConfigurationProductListing](#createconfigurationproductlisting)
     * [getConfigurationByType](#getconfigurationbytype)
+    * [createConfigurationByType](#createconfigurationbytype)
     * [getQueryFilters](#getqueryfilters)
-    * [createCollection](#createcollection)
     * [getAllCollections](#getallcollections)
+    * [createCollection](#createcollection)
     * [getCollectionDetail](#getcollectiondetail)
-    * [deleteCollection](#deletecollection)
     * [updateCollection](#updatecollection)
-    * [addCollectionItems](#addcollectionitems)
+    * [deleteCollection](#deletecollection)
     * [getCollectionItems](#getcollectionitems)
+    * [addCollectionItems](#addcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
     * [getSellerInsights](#getsellerinsights)
     * [createMarketplaceOptin](#createmarketplaceoptin)
@@ -349,40 +351,40 @@
     * [listHSNCodes](#listhsncodes)
     * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
-    * [createCategories](#createcategories)
     * [listCategories](#listcategories)
-    * [getCategoryData](#getcategorydata)
+    * [createCategories](#createcategories)
     * [updateCategory](#updatecategory)
-    * [createProduct](#createproduct)
+    * [getCategoryData](#getcategorydata)
     * [getProducts](#getproducts)
-    * [deleteProduct](#deleteproduct)
-    * [getProduct](#getproduct)
+    * [createProduct](#createproduct)
     * [editProduct](#editproduct)
+    * [getProduct](#getproduct)
+    * [deleteProduct](#deleteproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
-    * [updateProductAssetsInBulk](#updateproductassetsinbulk)
     * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
-    * [createProductsInBulk](#createproductsinbulk)
+    * [updateProductAssetsInBulk](#updateproductassetsinbulk)
     * [deleteProductBulkJob](#deleteproductbulkjob)
+    * [createProductsInBulk](#createproductsinbulk)
     * [getCompanyTags](#getcompanytags)
-    * [createProductAssetsInBulk](#createproductassetsinbulk)
     * [getProductAssetsInBulk](#getproductassetsinbulk)
+    * [createProductAssetsInBulk](#createproductassetsinbulk)
     * [deleteSize](#deletesize)
-    * [addInventory](#addinventory)
     * [getInventoryBySize](#getinventorybysize)
+    * [addInventory](#addinventory)
     * [getInventoryBySizeIdentifier](#getinventorybysizeidentifier)
     * [deleteInventory](#deleteinventory)
-    * [createBulkInventoryJob](#createbulkinventoryjob)
     * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
-    * [createBulkInventory](#createbulkinventory)
+    * [createBulkInventoryJob](#createbulkinventoryjob)
     * [deleteBulkInventoryJob](#deletebulkinventoryjob)
-    * [createInventoryExportJob](#createinventoryexportjob)
+    * [createBulkInventory](#createbulkinventory)
     * [getInventoryExport](#getinventoryexport)
+    * [createInventoryExportJob](#createinventoryexportjob)
     * [exportInventoryConfig](#exportinventoryconfig)
-    * [createHsnCode](#createhsncode)
     * [getAllHsnCodes](#getallhsncodes)
-    * [getHsnCode](#gethsncode)
+    * [createHsnCode](#createhsncode)
     * [updateHsnCode](#updatehsncode)
+    * [getHsnCode](#gethsncode)
     * [bulkHsnCode](#bulkhsncode)
     * [getApplicationBrands](#getapplicationbrands)
     * [getDepartments](#getdepartments)
@@ -393,18 +395,18 @@
 
 * [CompanyProfile](#CompanyProfile)
   * Methods
-    * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
+    * [updateCompany](#updatecompany)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
     * [createLocation](#createlocation)
-    * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -566,29 +568,40 @@
 #### getLocations
 Get countries, states, cities
 
+
+
 ```javascript
 // Promise
-const promise = common.getLocations(locationType,id);
+const promise = common.getLocations( {  locationType : value,
+ id : value });
 
 // Async/Await
-const data = await common.getLocations(locationType,id);
+const data = await common.getLocations( {  locationType : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| locationType | string | Provide location type to query on | 
-| id | string | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| locationType | string? | no | Provide location type to query on |    
+| id | string? | no | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. |  
 
 
 
-*Success Response:*
+
+
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Locations`
+[Locations](#Locations)
+
+Success
 
 
 
@@ -602,7 +615,6 @@ Schema: `Locations`
 
 
 
----
 
 
 ## Lead
@@ -611,36 +623,61 @@ Schema: `Locations`
 #### getTickets
 Gets the list of company level tickets and/or ticket filters depending on query params
 
+
+
 ```javascript
 // Promise
-const promise = lead.getTickets(companyId,items,filters,q,status,priority,category,pageNo,pageSize);
+const promise = lead.getTickets( {  companyId : value,
+ items : value,
+ filters : value,
+ q : value,
+ status : value,
+ priority : value,
+ category : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await lead.getTickets(companyId,items,filters,q,status,priority,category,pageNo,pageSize);
+const data = await lead.getTickets( {  companyId : value,
+ items : value,
+ filters : value,
+ q : value,
+ status : value,
+ priority : value,
+ category : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID for which the data will be returned | 
-| items | boolean | Decides that the reponse will contain the list of tickets | 
-| filters | boolean | Decides that the reponse will contain the ticket filters | 
-| q | string | Search through ticket titles and description | 
-| status | string | Filter tickets on status | 
-| priority |  | Filter tickets on priority | 
-| category | string | Filter tickets on category | 
-| pageNo | integer | The page number to navigate through the given set of results. | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID for which the data will be returned |    
+| items | boolean? | no | Decides that the reponse will contain the list of tickets |    
+| filters | boolean? | no | Decides that the reponse will contain the ticket filters |    
+| q | string? | no | Search through ticket titles and description |    
+| status | string? | no | Filter tickets on status |    
+| priority | PriorityEnum? | no | Filter tickets on priority |    
+| category | string? | no | Filter tickets on category |    
+| pageNo | number? | no | The page number to navigate through the given set of results. |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 12. |  
+
+
 
 Gets the list of company level tickets and/or ticket filters
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TicketList`
+[TicketList](#TicketList)
+
+Success
 
 
 *Examples:*
@@ -1030,28 +1067,39 @@ With items
 #### createTicket
 Creates a company level ticket
 
+
+
 ```javascript
 // Promise
-const promise = lead.createTicket(companyId,body);
+const promise = lead.createTicket( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await lead.createTicket(companyId,body);
+const data = await lead.createTicket( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID for which the data will be returned | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID for which the data will be returned |  
+| body | [AddTicketPayload](#AddTicketPayload) | no | Request body |
+
 
 Creates a company level ticket
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Ticket`
+[Ticket](#Ticket)
+
+Success
 
 
 *Examples:*
@@ -1268,35 +1316,58 @@ Default
 #### getTickets
 Gets the list of Application level Tickets and/or ticket filters depending on query params
 
+
+
 ```javascript
 // Promise
-const promise = lead.getTickets(companyId,applicationId,items,filters,q,status,priority,category);
+const promise = lead.getTickets( {  companyId : value,
+ applicationId : value,
+ items : value,
+ filters : value,
+ q : value,
+ status : value,
+ priority : value,
+ category : value });
 
 // Async/Await
-const data = await lead.getTickets(companyId,applicationId,items,filters,q,status,priority,category);
+const data = await lead.getTickets( {  companyId : value,
+ applicationId : value,
+ items : value,
+ filters : value,
+ q : value,
+ status : value,
+ priority : value,
+ category : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for which the data will be returned | 
-| items | boolean | Decides that the reponse will contain the list of tickets | 
-| filters | boolean | Decides that the reponse will contain the ticket filters | 
-| q | string | Search through ticket titles and description | 
-| status | string | Filter tickets on status | 
-| priority |  | Filter tickets on priority | 
-| category | string | Filter tickets on category | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for which the data will be returned |    
+| items | boolean? | no | Decides that the reponse will contain the list of tickets |    
+| filters | boolean? | no | Decides that the reponse will contain the ticket filters |    
+| q | string? | no | Search through ticket titles and description |    
+| status | string? | no | Filter tickets on status |    
+| priority | PriorityEnum? | no | Filter tickets on priority |    
+| category | string? | no | Filter tickets on category |  
+
+
 
 Gets the list of Application level Tickets and/or ticket filters
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TicketList`
+[TicketList](#TicketList)
+
+Success
 
 
 *Examples:*
@@ -1686,29 +1757,40 @@ With items
 #### getTicket
 Retreives ticket details of a company level ticket with ticket ID
 
+
+
 ```javascript
 // Promise
-const promise = lead.getTicket(companyId,id);
+const promise = lead.getTicket( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await lead.getTicket(companyId,id);
+const data = await lead.getTicket( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID for which the data will be returned | 
-| id | string | Tiket ID of the ticket to be fetched | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID for which the data will be returned |    
+| id | string? | no | Tiket ID of the ticket to be fetched |  
+
+
 
 Retreives ticket details of a company level ticket
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Ticket`
+[Ticket](#Ticket)
+
+Success
 
 
 *Examples:*
@@ -1925,29 +2007,42 @@ Default
 #### editTicket
 Edits ticket details of a company level ticket
 
+
+
 ```javascript
 // Promise
-const promise = lead.editTicket(companyId,id,body);
+const promise = lead.editTicket( {  companyId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await lead.editTicket(companyId,id,body);
+const data = await lead.editTicket( {  companyId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID for ticket | 
-| id | string | Ticket ID of ticket to be edited | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID for ticket |    
+| id | string? | no | Ticket ID of ticket to be edited |  
+| body | [EditTicketPayload](#EditTicketPayload) | no | Request body |
+
 
 Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Ticket`
+[Ticket](#Ticket)
+
+Success
 
 
 *Examples:*
@@ -2164,30 +2259,43 @@ Default
 #### getTicket
 Retreives ticket details of a application level ticket
 
+
+
 ```javascript
 // Promise
-const promise = lead.getTicket(companyId,applicationId,id);
+const promise = lead.getTicket( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await lead.getTicket(companyId,applicationId,id);
+const data = await lead.getTicket( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for which the data will be returned | 
-| id | string | Tiket ID of the ticket to be fetched | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for which the data will be returned |    
+| id | string? | no | Tiket ID of the ticket to be fetched |  
+
+
 
 Retreives ticket details of a application level ticket with ticket ID
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Ticket`
+[Ticket](#Ticket)
+
+Success
 
 
 *Examples:*
@@ -2405,30 +2513,45 @@ Default
 #### editTicket
 Edits ticket details of a application level ticket
 
+
+
 ```javascript
 // Promise
-const promise = lead.editTicket(companyId,applicationId,id,body);
+const promise = lead.editTicket( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await lead.editTicket(companyId,applicationId,id,body);
+const data = await lead.editTicket( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for ticket | 
-| id | string | Ticket ID of ticket to be edited | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for ticket |    
+| id | string? | no | Ticket ID of ticket to be edited |  
+| body | [EditTicketPayload](#EditTicketPayload) | no | Request body |
+
 
 Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Ticket`
+[Ticket](#Ticket)
+
+Success
 
 
 *Examples:*
@@ -2646,29 +2769,42 @@ Default
 #### createHistory
 Create history for specific company level ticket
 
+
+
 ```javascript
 // Promise
-const promise = lead.createHistory(companyId,id,body);
+const promise = lead.createHistory( {  companyId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await lead.createHistory(companyId,id,body);
+const data = await lead.createHistory( {  companyId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID for ticket | 
-| id | string | Ticket ID for which history is created | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID for ticket |    
+| id | string? | no | Ticket ID for which history is created |  
+| body | [TicketHistoryPayload](#TicketHistoryPayload) | no | Request body |
+
 
 Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TicketHistory`
+[TicketHistory](#TicketHistory)
+
+Success
 
 
 *Examples:*
@@ -2729,29 +2865,40 @@ Default
 #### getTicketHistory
 Gets history list for specific company level ticket
 
+
+
 ```javascript
 // Promise
-const promise = lead.getTicketHistory(companyId,id);
+const promise = lead.getTicketHistory( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await lead.getTicketHistory(companyId,id);
+const data = await lead.getTicketHistory( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID for ticket | 
-| id | string | Ticket ID for which history is to be fetched | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID for ticket |    
+| id | string? | no | Ticket ID for which history is to be fetched |  
+
+
 
 Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TicketHistoryList`
+[TicketHistoryList](#TicketHistoryList)
+
+Success
 
 
 *Examples:*
@@ -2916,29 +3063,40 @@ Default
 #### getFeedbacks
 Gets a list of feedback submitted against that ticket
 
+
+
 ```javascript
 // Promise
-const promise = lead.getFeedbacks(companyId,id);
+const promise = lead.getFeedbacks( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await lead.getFeedbacks(companyId,id);
+const data = await lead.getFeedbacks( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID for ticket | 
-| id | string | Ticket ID for which feedbacks are to be fetched | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID for ticket |    
+| id | string? | no | Ticket ID for which feedbacks are to be fetched |  
+
+
 
 Gets a list of feedback submitted against that ticket
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TicketFeedbackList`
+[TicketFeedbackList](#TicketFeedbackList)
+
+Success
 
 
 *Examples:*
@@ -2986,29 +3144,42 @@ Default
 #### submitFeedback
 Submit a response for feeback form against that ticket
 
+
+
 ```javascript
 // Promise
-const promise = lead.submitFeedback(companyId,id,body);
+const promise = lead.submitFeedback( {  companyId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await lead.submitFeedback(companyId,id,body);
+const data = await lead.submitFeedback( {  companyId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID for ticket | 
-| id | string | Ticket ID for which feedback is to be submitted | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID for ticket |    
+| id | string? | no | Ticket ID for which feedback is to be submitted |  
+| body | [TicketFeedbackPayload](#TicketFeedbackPayload) | no | Request body |
+
 
 Submit a response for feeback form against that ticket
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TicketFeedback`
+[TicketFeedback](#TicketFeedback)
+
+Success
 
 
 *Examples:*
@@ -3052,30 +3223,45 @@ Default
 #### createHistory
 Create history for specific application level ticket
 
+
+
 ```javascript
 // Promise
-const promise = lead.createHistory(companyId,applicationId,id,body);
+const promise = lead.createHistory( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await lead.createHistory(companyId,applicationId,id,body);
+const data = await lead.createHistory( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for ticket | 
-| id | string | Ticket ID for which history is created | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for ticket |    
+| id | string? | no | Ticket ID for which history is created |  
+| body | [TicketHistoryPayload](#TicketHistoryPayload) | no | Request body |
+
 
 Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TicketHistory`
+[TicketHistory](#TicketHistory)
+
+Success
 
 
 *Examples:*
@@ -3136,30 +3322,43 @@ Default
 #### getTicketHistory
 Gets history list for specific application level ticket
 
+
+
 ```javascript
 // Promise
-const promise = lead.getTicketHistory(companyId,applicationId,id);
+const promise = lead.getTicketHistory( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await lead.getTicketHistory(companyId,applicationId,id);
+const data = await lead.getTicketHistory( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of application | 
-| applicationId | string | Application ID for ticket | 
-| id | string | Ticket ID for which history is to be fetched | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of application |    
+| applicationId | string? | no | Application ID for ticket |    
+| id | string? | no | Ticket ID for which history is to be fetched |  
+
+
 
 Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TicketHistoryList`
+[TicketHistoryList](#TicketHistoryList)
+
+Success
 
 
 *Examples:*
@@ -3324,30 +3523,43 @@ Default
 #### getCustomForm
 Get specific custom form using it's slug
 
+
+
 ```javascript
 // Promise
-const promise = lead.getCustomForm(companyId,applicationId,slug);
+const promise = lead.getCustomForm( {  companyId : value,
+ applicationId : value,
+ slug : value });
 
 // Async/Await
-const data = await lead.getCustomForm(companyId,applicationId,slug);
+const data = await lead.getCustomForm( {  companyId : value,
+ applicationId : value,
+ slug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for the form | 
-| slug | string | Slug of form whose response is getting submitted | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for the form |    
+| slug | string? | no | Slug of form whose response is getting submitted |  
+
+
 
 Get specific custom form using it's slug, this is used to view the form.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CustomForm`
+[CustomForm](#CustomForm)
+
+Success
 
 
 *Examples:*
@@ -3418,30 +3630,45 @@ Default
 #### editCustomForm
 Edit the given custom form
 
+
+
 ```javascript
 // Promise
-const promise = lead.editCustomForm(companyId,applicationId,slug,body);
+const promise = lead.editCustomForm( {  companyId : value,
+ applicationId : value,
+ slug : value,
+ body : value });
 
 // Async/Await
-const data = await lead.editCustomForm(companyId,applicationId,slug,body);
+const data = await lead.editCustomForm( {  companyId : value,
+ applicationId : value,
+ slug : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for the form | 
-| slug | string | Slug of form whose response is getting submitted | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for the form |    
+| slug | string? | no | Slug of form whose response is getting submitted |  
+| body | [EditCustomFormPayload](#EditCustomFormPayload) | no | Request body |
+
 
 Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CustomForm`
+[CustomForm](#CustomForm)
+
+Success
 
 
 *Examples:*
@@ -3522,29 +3749,40 @@ Default
 #### getCustomForms
 Get list of custom form
 
+
+
 ```javascript
 // Promise
-const promise = lead.getCustomForms(companyId,applicationId);
+const promise = lead.getCustomForms( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await lead.getCustomForms(companyId,applicationId);
+const data = await lead.getCustomForms( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for the form | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for the form |  
+
+
 
 Get list of custom form for given application
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CustomFormList`
+[CustomFormList](#CustomFormList)
+
+Success
 
 
 *Examples:*
@@ -3704,29 +3942,42 @@ Default
 #### createCustomForm
 Creates a new custom form
 
+
+
 ```javascript
 // Promise
-const promise = lead.createCustomForm(companyId,applicationId,body);
+const promise = lead.createCustomForm( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await lead.createCustomForm(companyId,applicationId,body);
+const data = await lead.createCustomForm( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for the form | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for the form |  
+| body | [CreateCustomFormPayload](#CreateCustomFormPayload) | no | Request body |
+
 
 Creates a new custom form for given application
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CustomForm`
+[CustomForm](#CustomForm)
+
+Success
 
 
 *Examples:*
@@ -3807,29 +4058,40 @@ Default
 #### getTokenForVideoRoom
 Get Token to join a specific Video Room using it's unqiue name
 
+
+
 ```javascript
 // Promise
-const promise = lead.getTokenForVideoRoom(companyId,uniqueName);
+const promise = lead.getTokenForVideoRoom( {  companyId : value,
+ uniqueName : value });
 
 // Async/Await
-const data = await lead.getTokenForVideoRoom(companyId,uniqueName);
+const data = await lead.getTokenForVideoRoom( {  companyId : value,
+ uniqueName : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id for video room | 
-| uniqueName | string | Unique name of video room | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id for video room |    
+| uniqueName | string? | no | Unique name of video room |  
+
+
 
 Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetTokenForVideoRoomResponse`
+[GetTokenForVideoRoomResponse](#GetTokenForVideoRoomResponse)
+
+Success
 
 
 *Examples:*
@@ -3858,30 +4120,43 @@ Default
 #### getTokenForVideoRoom
 Get Token to join a specific Video Room using it's unqiue name
 
+
+
 ```javascript
 // Promise
-const promise = lead.getTokenForVideoRoom(companyId,applicationId,uniqueName);
+const promise = lead.getTokenForVideoRoom( {  companyId : value,
+ applicationId : value,
+ uniqueName : value });
 
 // Async/Await
-const data = await lead.getTokenForVideoRoom(companyId,applicationId,uniqueName);
+const data = await lead.getTokenForVideoRoom( {  companyId : value,
+ applicationId : value,
+ uniqueName : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for video room | 
-| uniqueName | string | Unique name of video room | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for video room |    
+| uniqueName | string? | no | Unique name of video room |  
+
+
 
 Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetTokenForVideoRoomResponse`
+[GetTokenForVideoRoomResponse](#GetTokenForVideoRoomResponse)
+
+Success
 
 
 *Examples:*
@@ -3910,29 +4185,40 @@ Default
 #### getVideoParticipants
 Get participants of a specific Video Room using it's unique name
 
+
+
 ```javascript
 // Promise
-const promise = lead.getVideoParticipants(companyId,uniqueName);
+const promise = lead.getVideoParticipants( {  companyId : value,
+ uniqueName : value });
 
 // Async/Await
-const data = await lead.getVideoParticipants(companyId,uniqueName);
+const data = await lead.getVideoParticipants( {  companyId : value,
+ uniqueName : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id for video room | 
-| uniqueName | string | Unique name of Video Room | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id for video room |    
+| uniqueName | string? | no | Unique name of Video Room |  
+
+
 
 Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetParticipantsInsideVideoRoomResponse`
+[GetParticipantsInsideVideoRoomResponse](#GetParticipantsInsideVideoRoomResponse)
+
+Success
 
 
 *Examples:*
@@ -3961,30 +4247,43 @@ Default
 #### getVideoParticipants
 Get participants of a specific Video Room using it's unique name
 
+
+
 ```javascript
 // Promise
-const promise = lead.getVideoParticipants(companyId,applicationId,uniqueName);
+const promise = lead.getVideoParticipants( {  companyId : value,
+ applicationId : value,
+ uniqueName : value });
 
 // Async/Await
-const data = await lead.getVideoParticipants(companyId,applicationId,uniqueName);
+const data = await lead.getVideoParticipants( {  companyId : value,
+ applicationId : value,
+ uniqueName : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for video room | 
-| uniqueName | string | Unique name of Video Room | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for video room |    
+| uniqueName | string? | no | Unique name of Video Room |  
+
+
 
 Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetParticipantsInsideVideoRoomResponse`
+[GetParticipantsInsideVideoRoomResponse](#GetParticipantsInsideVideoRoomResponse)
+
+Success
 
 
 *Examples:*
@@ -4013,29 +4312,42 @@ Default
 #### openVideoRoom
 Open a video room.
 
+
+
 ```javascript
 // Promise
-const promise = lead.openVideoRoom(companyId,applicationId,body);
+const promise = lead.openVideoRoom( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await lead.openVideoRoom(companyId,applicationId,body);
+const data = await lead.openVideoRoom( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for video room | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for video room |  
+| body | [CreateVideoRoomPayload](#CreateVideoRoomPayload) | no | Request body |
+
 
 Open a video room.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CreateVideoRoomResponse`
+[CreateVideoRoomResponse](#CreateVideoRoomResponse)
+
+Success
 
 
 *Examples:*
@@ -4064,30 +4376,43 @@ Default
 #### closeVideoRoom
 Close the video room and force all participants to leave.
 
+
+
 ```javascript
 // Promise
-const promise = lead.closeVideoRoom(companyId,applicationId,uniqueName);
+const promise = lead.closeVideoRoom( {  companyId : value,
+ applicationId : value,
+ uniqueName : value });
 
 // Async/Await
-const data = await lead.closeVideoRoom(companyId,applicationId,uniqueName);
+const data = await lead.closeVideoRoom( {  companyId : value,
+ applicationId : value,
+ uniqueName : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
-| applicationId | string | Application ID for video room | 
-| uniqueName | string | Unique name of Video Room | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |    
+| applicationId | string? | no | Application ID for video room |    
+| uniqueName | string? | no | Unique name of Video Room |  
+
+
 
 Close the video room and force all participants to leave.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CloseVideoRoomResponse`
+[CloseVideoRoomResponse](#CloseVideoRoomResponse)
+
+Success
 
 
 *Examples:*
@@ -4114,7 +4439,6 @@ Default
 
 
 
----
 
 
 ## Feedback
@@ -4123,31 +4447,46 @@ Default
 #### getAttributes
 Get list of attribute data
 
+
+
 ```javascript
 // Promise
-const promise = feedback.getAttributes(companyId,applicationId,pageNo,pageSize);
+const promise = feedback.getAttributes( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await feedback.getAttributes(companyId,applicationId,pageNo,pageSize);
+const data = await feedback.getAttributes( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| pageNo | integer | pagination page no | 
-| pageSize | integer | pagination page size | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| pageNo | number? | no | pagination page no |    
+| pageSize | number? | no | pagination page size |  
+
+
 
 Provides a list of all attribute data.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `FeedbackAttributes`
+[FeedbackAttributes](#FeedbackAttributes)
+
+ok
 
 
 
@@ -4163,44 +4502,85 @@ Schema: `FeedbackAttributes`
 #### getCustomerReviews
 Get list of customer reviews [admin]
 
+
+
 ```javascript
 // Promise
-const promise = feedback.getCustomerReviews(companyId,applicationId,id,entityId,entityType,userId,media,rating,attributeRating,facets,sort,next,start,limit,count,pageId,pageSize);
+const promise = feedback.getCustomerReviews( {  companyId : value,
+ applicationId : value,
+ id : value,
+ entityId : value,
+ entityType : value,
+ userId : value,
+ media : value,
+ rating : value,
+ attributeRating : value,
+ facets : value,
+ sort : value,
+ next : value,
+ start : value,
+ limit : value,
+ count : value,
+ pageId : value,
+ pageSize : value });
 
 // Async/Await
-const data = await feedback.getCustomerReviews(companyId,applicationId,id,entityId,entityType,userId,media,rating,attributeRating,facets,sort,next,start,limit,count,pageId,pageSize);
+const data = await feedback.getCustomerReviews( {  companyId : value,
+ applicationId : value,
+ id : value,
+ entityId : value,
+ entityType : value,
+ userId : value,
+ media : value,
+ rating : value,
+ attributeRating : value,
+ facets : value,
+ sort : value,
+ next : value,
+ start : value,
+ limit : value,
+ count : value,
+ pageId : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| id | string | review id | 
-| entityId | string | entity id | 
-| entityType | string | entity type | 
-| userId | string | user id | 
-| media | string | media type e.g. image | video | video_file | video_link | 
-| rating | array | rating filter, 1-5 | 
-| attributeRating | array | attribute rating filter with ma,e of attribute | 
-| facets | boolean | facets (true|false) | 
-| sort | string | sort by : default | top | recent | 
-| next | string | pagination next | 
-| start | string | pagination start | 
-| limit | string | pagination limit | 
-| count | string | pagination count | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| id | string? | no | review id |    
+| entityId | string? | no | entity id |    
+| entityType | string? | no | entity type |    
+| userId | string? | no | user id |    
+| media | string? | no | media type e.g. image | video | video_file | video_link |    
+| rating | Array<number>? | no | rating filter, 1-5 |    
+| attributeRating | Array<string>? | no | attribute rating filter with ma,e of attribute |    
+| facets | boolean? | no | facets (true|false) |    
+| sort | string? | no | sort by : default | top | recent |    
+| next | string? | no | pagination next |    
+| start | string? | no | pagination start |    
+| limit | string? | no | pagination limit |    
+| count | string? | no | pagination count |    
+| pageId | string? | no | pagination page id |    
+| pageSize | number? | no | pagination page size |  
+
+
 
 The endpoint provides a list of customer reviews based on entity and provided filters
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetReviewResponse`
+[GetReviewResponse](#GetReviewResponse)
+
+Success
 
 
 
@@ -4216,30 +4596,45 @@ Schema: `GetReviewResponse`
 #### updateApprove
 update approve details
 
+
+
 ```javascript
 // Promise
-const promise = feedback.updateApprove(companyId,applicationId,reviewId,body);
+const promise = feedback.updateApprove( {  companyId : value,
+ applicationId : value,
+ reviewId : value,
+ body : value });
 
 // Async/Await
-const data = await feedback.updateApprove(companyId,applicationId,reviewId,body);
+const data = await feedback.updateApprove( {  companyId : value,
+ applicationId : value,
+ reviewId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| reviewId | string | review id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| reviewId | string? | no | review id |  
+| body | [ApproveRequest](#ApproveRequest) | yes | Request body |
+
 
 The is used to update approve details like status and description text
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `UpdateResponse`
+[UpdateResponse](#UpdateResponse)
+
+ok
 
 
 
@@ -4255,30 +4650,43 @@ Schema: `UpdateResponse`
 #### getHistory
 get history details
 
+
+
 ```javascript
 // Promise
-const promise = feedback.getHistory(companyId,applicationId,reviewId);
+const promise = feedback.getHistory( {  companyId : value,
+ applicationId : value,
+ reviewId : value });
 
 // Async/Await
-const data = await feedback.getHistory(companyId,applicationId,reviewId);
+const data = await feedback.getHistory( {  companyId : value,
+ applicationId : value,
+ reviewId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| reviewId | string | review id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| reviewId | string? | no | review id |  
+
+
 
 The is used to get the history details like status and description text
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `Array<ActivityDump>`
+[Array<ActivityDump>](#Array<ActivityDump>)
+
+ok
 
 
 
@@ -4294,31 +4702,46 @@ Schema: `Array<ActivityDump>`
 #### getApplicationTemplates
 Get list of templates
 
+
+
 ```javascript
 // Promise
-const promise = feedback.getApplicationTemplates(companyId,applicationId,pageId,pageSize);
+const promise = feedback.getApplicationTemplates( {  companyId : value,
+ applicationId : value,
+ pageId : value,
+ pageSize : value });
 
 // Async/Await
-const data = await feedback.getApplicationTemplates(companyId,applicationId,pageId,pageSize);
+const data = await feedback.getApplicationTemplates( {  companyId : value,
+ applicationId : value,
+ pageId : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| pageId | string? | no | pagination page id |    
+| pageSize | number? | no | pagination page size |  
+
+
 
 Get all templates of application
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TemplateGetResponse`
+[TemplateGetResponse](#TemplateGetResponse)
+
+Success
 
 
 
@@ -4334,32 +4757,45 @@ Schema: `TemplateGetResponse`
 #### createTemplate
 Create a new template
 
+
+
 ```javascript
 // Promise
-const promise = feedback.createTemplate(companyId,applicationId,body);
+const promise = feedback.createTemplate( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await feedback.createTemplate(companyId,applicationId,body);
+const data = await feedback.createTemplate( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |  
+| body | [TemplateRequestList](#TemplateRequestList) | yes | Request body |
+
 
 Create a new template for review with following data:
 - Enable media, rating and review
 - Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
 - Review - header, title, description, image and video meta, enable votes
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `InsertResponse`
+[InsertResponse](#InsertResponse)
+
+Success
 
 
 
@@ -4375,30 +4811,43 @@ Schema: `InsertResponse`
 #### getTemplateById
 Get a template by ID
 
+
+
 ```javascript
 // Promise
-const promise = feedback.getTemplateById(companyId,applicationId,id);
+const promise = feedback.getTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await feedback.getTemplateById(companyId,applicationId,id);
+const data = await feedback.getTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| id | string | template id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| id | string? | no | template id |  
+
+
 
 Get the template for product or l3 type by ID
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Template`
+[Template](#Template)
+
+Success
 
 
 
@@ -4414,30 +4863,45 @@ Schema: `Template`
 #### updateTemplate
 Update a template's status
 
+
+
 ```javascript
 // Promise
-const promise = feedback.updateTemplate(companyId,applicationId,id,body);
+const promise = feedback.updateTemplate( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await feedback.updateTemplate(companyId,applicationId,id,body);
+const data = await feedback.updateTemplate( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| id | string | template id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| id | string? | no | template id |  
+| body | [UpdateTemplateRequest](#UpdateTemplateRequest) | yes | Request body |
+
 
 Update existing template status, active/archive
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `UpdateResponse`
+[UpdateResponse](#UpdateResponse)
+
+Success
 
 
 
@@ -4453,30 +4917,45 @@ Schema: `UpdateResponse`
 #### updateTemplateStatus
 Update a template's status
 
+
+
 ```javascript
 // Promise
-const promise = feedback.updateTemplateStatus(companyId,applicationId,id,body);
+const promise = feedback.updateTemplateStatus( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await feedback.updateTemplateStatus(companyId,applicationId,id,body);
+const data = await feedback.updateTemplateStatus( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| id | string | template id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| id | string? | no | template id |  
+| body | [UpdateTemplateStatusRequest](#UpdateTemplateStatusRequest) | yes | Request body |
+
 
 Update existing template status, active/archive
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `UpdateResponse`
+[UpdateResponse](#UpdateResponse)
+
+Success
 
 
 
@@ -4490,7 +4969,6 @@ Schema: `UpdateResponse`
 
 
 
----
 
 
 ## Theme
@@ -4499,30 +4977,43 @@ Schema: `UpdateResponse`
 #### getAllPages
 Get all pages of a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.getAllPages(companyId,applicationId,themeId);
+const promise = theme.getAllPages( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 
 // Async/Await
-const data = await theme.getAllPages(companyId,applicationId,themeId);
+const data = await theme.getAllPages( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | ID of the theme to be retrieved | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID |    
+| applicationId | string? | no | Application ID |    
+| themeId | string? | no | ID of the theme to be retrieved |  
+
+
 
 Use this API to retrieve all the available pages of a theme by its ID.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
 
 
-Schema: `AllAvailablePageSchema`
+[AllAvailablePageSchema](#AllAvailablePageSchema)
+
+Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
 
 
 *Examples:*
@@ -4549,30 +5040,45 @@ All pages
 #### createPage
 Create a page 
 
+
+
 ```javascript
 // Promise
-const promise = theme.createPage(companyId,applicationId,themeId,body);
+const promise = theme.createPage( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ body : value });
 
 // Async/Await
-const data = await theme.createPage(companyId,applicationId,themeId,body);
+const data = await theme.createPage( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | ID of the theme | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID |    
+| applicationId | string? | no | Application ID |    
+| themeId | string? | no | ID of the theme |  
+| body | [AvailablePageSchema](#AvailablePageSchema) | no | Request body |
+
 
 Use this API to create a page for a theme by its ID.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns the page of the theme. Refer `AvailablePageSchema` for more details.
 
 
-Schema: `AvailablePageSchema`
+[AvailablePageSchema](#AvailablePageSchema)
+
+Success. Returns the page of the theme. Refer `AvailablePageSchema` for more details.
 
 
 *Examples:*
@@ -4599,30 +5105,45 @@ page
 #### updateMultiplePages
 Update multiple pages of a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.updateMultiplePages(companyId,applicationId,themeId,body);
+const promise = theme.updateMultiplePages( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ body : value });
 
 // Async/Await
-const data = await theme.updateMultiplePages(companyId,applicationId,themeId,body);
+const data = await theme.updateMultiplePages( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | ID of the theme to be retrieved | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID |    
+| applicationId | string? | no | Application ID |    
+| themeId | string? | no | ID of the theme to be retrieved |  
+| body | [AllAvailablePageSchema](#AllAvailablePageSchema) | no | Request body |
+
 
 Use this API to update multiple pages of a theme by its ID.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
 
 
-Schema: `AllAvailablePageSchema`
+[AllAvailablePageSchema](#AllAvailablePageSchema)
+
+Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
 
 
 *Examples:*
@@ -4649,31 +5170,46 @@ All pages
 #### getPage
 Get page of a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.getPage(companyId,applicationId,themeId,pageValue);
+const promise = theme.getPage( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ pageValue : value });
 
 // Async/Await
-const data = await theme.getPage(companyId,applicationId,themeId,pageValue);
+const data = await theme.getPage( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ pageValue : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | ID of the theme to be retrieved | 
-| pageValue | string | Value of the page to be retrieved | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID |    
+| applicationId | string? | no | Application ID |    
+| themeId | string? | no | ID of the theme to be retrieved |    
+| pageValue | string? | no | Value of the page to be retrieved |  
+
+
 
 Use this API to retrieve a page of a theme.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns an object of the page.  Refer `AvailablePageSchema` for more details.
 
 
-Schema: `AvailablePageSchema`
+[AvailablePageSchema](#AvailablePageSchema)
+
+Success. Returns an object of the page.  Refer `AvailablePageSchema` for more details.
 
 
 *Examples:*
@@ -4700,31 +5236,48 @@ Home page
 #### updatePage
 Updates a page 
 
+
+
 ```javascript
 // Promise
-const promise = theme.updatePage(companyId,applicationId,themeId,pageValue,body);
+const promise = theme.updatePage( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ pageValue : value,
+ body : value });
 
 // Async/Await
-const data = await theme.updatePage(companyId,applicationId,themeId,pageValue,body);
+const data = await theme.updatePage( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ pageValue : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | ID of the theme | 
-| pageValue | string | Value of the page to be updated | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID |    
+| applicationId | string? | no | Application ID |    
+| themeId | string? | no | ID of the theme |    
+| pageValue | string? | no | Value of the page to be updated |  
+| body | [AvailablePageSchema](#AvailablePageSchema) | no | Request body |
+
 
 Use this API to update a page for a theme by its ID.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more details.
 
 
-Schema: `AvailablePageSchema`
+[AvailablePageSchema](#AvailablePageSchema)
+
+Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more details.
 
 
 *Examples:*
@@ -4751,31 +5304,46 @@ page
 #### deletePage
 Deletes a page 
 
+
+
 ```javascript
 // Promise
-const promise = theme.deletePage(companyId,applicationId,themeId,pageValue);
+const promise = theme.deletePage( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ pageValue : value });
 
 // Async/Await
-const data = await theme.deletePage(companyId,applicationId,themeId,pageValue);
+const data = await theme.deletePage( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ pageValue : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| themeId | string | ID of the theme | 
-| pageValue | string | Value of the page to be updated | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID |    
+| applicationId | string? | no | Application ID |    
+| themeId | string? | no | ID of the theme |    
+| pageValue | string? | no | Value of the page to be updated |  
+
+
 
 Use this API to delete a page for a theme by its ID and page_value.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more details.
 
 
-Schema: `AvailablePageSchema`
+[AvailablePageSchema](#AvailablePageSchema)
+
+Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more details.
 
 
 *Examples:*
@@ -4802,31 +5370,46 @@ page
 #### getThemeLibrary
 Get a list of themes from the theme library
 
+
+
 ```javascript
 // Promise
-const promise = theme.getThemeLibrary(companyId,applicationId,pageSize,pageNo);
+const promise = theme.getThemeLibrary( {  companyId : value,
+ applicationId : value,
+ pageSize : value,
+ pageNo : value });
 
 // Async/Await
-const data = await theme.getThemeLibrary(companyId,applicationId,pageSize,pageNo);
+const data = await theme.getThemeLibrary( {  companyId : value,
+ applicationId : value,
+ pageSize : value,
+ pageNo : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| pageSize | integer | The number of items to retrieve in each page. Default value is 10.  | 
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10.  |    
+| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1. |  
+
+
 
 Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details. 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesListingResponseSchema` for more details.
 
 
-Schema: `ThemesListingResponseSchema`
+[ThemesListingResponseSchema](#ThemesListingResponseSchema)
+
+Success. Refer `ThemesListingResponseSchema` for more details.
 
 
 *Examples:*
@@ -4853,29 +5436,42 @@ Success
 #### addToThemeLibrary
 Add a theme to the theme library
 
+
+
 ```javascript
 // Promise
-const promise = theme.addToThemeLibrary(companyId,applicationId,body);
+const promise = theme.addToThemeLibrary( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await theme.addToThemeLibrary(companyId,applicationId,body);
+const data = await theme.addToThemeLibrary( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+| body | [AddThemeRequestSchema](#AddThemeRequestSchema) | no | Request body |
+
 
 Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -4902,29 +5498,42 @@ Success
 #### applyTheme
 Apply a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.applyTheme(companyId,applicationId,body);
+const promise = theme.applyTheme( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await theme.applyTheme(companyId,applicationId,body);
+const data = await theme.applyTheme( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+| body | [AddThemeRequestSchema](#AddThemeRequestSchema) | no | Request body |
+
 
 Use this API to apply a theme to the website.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -4951,30 +5560,43 @@ Success
 #### isUpgradable
 Checks if theme is upgradable
 
+
+
 ```javascript
 // Promise
-const promise = theme.isUpgradable(companyId,applicationId,themeId);
+const promise = theme.isUpgradable( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 
 // Async/Await
-const data = await theme.isUpgradable(companyId,applicationId,themeId);
+const data = await theme.isUpgradable( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| themeId | string | Theme ID | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| themeId | string? | no | Theme ID |  
+
+
 
 There's always a possibility that new features get added to a theme. Use this API to check if the applied theme has an upgrade available.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. If the boolean value of `upgrade` returns **true**, the theme can be upgraded. Refer `UpgradableThemeSchema` for more details.
 
 
-Schema: `UpgradableThemeSchema`
+[UpgradableThemeSchema](#UpgradableThemeSchema)
+
+Success. If the boolean value of `upgrade` returns **true**, the theme can be upgraded. Refer `UpgradableThemeSchema` for more details.
 
 
 *Examples:*
@@ -5001,30 +5623,43 @@ Success
 #### upgradeTheme
 Upgrade a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.upgradeTheme(companyId,applicationId,themeId);
+const promise = theme.upgradeTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 
 // Async/Await
-const data = await theme.upgradeTheme(companyId,applicationId,themeId);
+const data = await theme.upgradeTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| themeId | string | ID allotted to the theme. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| themeId | string? | no | ID allotted to the theme. |  
+
+
 
 Use this API to upgrade the current theme to its latest version.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Upgrades the theme and shares the details of the new version in the response. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Upgrades the theme and shares the details of the new version in the response. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -5051,31 +5686,46 @@ Success
 #### getPublicThemes
 Get all public themes
 
+
+
 ```javascript
 // Promise
-const promise = theme.getPublicThemes(companyId,applicationId,pageSize,pageNo);
+const promise = theme.getPublicThemes( {  companyId : value,
+ applicationId : value,
+ pageSize : value,
+ pageNo : value });
 
 // Async/Await
-const data = await theme.getPublicThemes(companyId,applicationId,pageSize,pageNo);
+const data = await theme.getPublicThemes( {  companyId : value,
+ applicationId : value,
+ pageSize : value,
+ pageNo : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| pageSize | integer | The number of items to retrieve in each page. Default value is 10.  | 
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10.  |    
+| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1.  |  
+
+
 
 Use this API to get a list of free themes that you can apply to your website.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesListingResponseSchema` for more details.
 
 
-Schema: `ThemesListingResponseSchema`
+[ThemesListingResponseSchema](#ThemesListingResponseSchema)
+
+Success. Refer `ThemesListingResponseSchema` for more details.
 
 
 *Examples:*
@@ -5102,29 +5752,42 @@ Success
 #### createTheme
 Create a new theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.createTheme(companyId,applicationId,body);
+const promise = theme.createTheme( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await theme.createTheme(companyId,applicationId,body);
+const data = await theme.createTheme( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+| body | [ThemesSchema](#ThemesSchema) | no | Request body |
+
 
 Themes improve the look and appearance of a website. Use this API to create a theme.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Theme
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Theme
 
 
 *Examples:*
@@ -5151,29 +5814,40 @@ Success
 #### getAppliedTheme
 Get the applied theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.getAppliedTheme(companyId,applicationId);
+const promise = theme.getAppliedTheme( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await theme.getAppliedTheme(companyId,applicationId);
+const data = await theme.getAppliedTheme( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+
+
 
 Use this API to retrieve the theme that is currently applied to the website along with its details.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -5200,29 +5874,40 @@ Success
 #### getFonts
 Get all the supported fonts in a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.getFonts(companyId,applicationId);
+const promise = theme.getFonts( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await theme.getFonts(companyId,applicationId);
+const data = await theme.getFonts( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+
+
 
 Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `FontsSchema` for more details.
 
 
-Schema: `FontsSchema`
+[FontsSchema](#FontsSchema)
+
+Success. Refer `FontsSchema` for more details.
 
 
 *Examples:*
@@ -5249,30 +5934,43 @@ Success
 #### getThemeById
 Gets theme by id
 
+
+
 ```javascript
 // Promise
-const promise = theme.getThemeById(companyId,applicationId,themeId);
+const promise = theme.getThemeById( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 
 // Async/Await
-const data = await theme.getThemeById(companyId,applicationId,themeId);
+const data = await theme.getThemeById( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| themeId | string | ID allotted to the theme. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| themeId | string? | no | ID allotted to the theme. |  
+
+
 
 Use this API to retrieve the details of a specific theme by using its ID.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -5299,30 +5997,45 @@ Success
 #### updateTheme
 Update a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.updateTheme(companyId,applicationId,themeId,body);
+const promise = theme.updateTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ body : value });
 
 // Async/Await
-const data = await theme.updateTheme(companyId,applicationId,themeId,body);
+const data = await theme.updateTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| themeId | string | ID allotted to the theme. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| themeId | string? | no | ID allotted to the theme. |  
+| body | [ThemesSchema](#ThemesSchema) | no | Request body |
+
 
 Use this API to edit an existing theme. You can customize the website font, sections, images, styles, and many more.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -5349,30 +6062,43 @@ Success
 #### deleteTheme
 Delete a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.deleteTheme(companyId,applicationId,themeId);
+const promise = theme.deleteTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 
 // Async/Await
-const data = await theme.deleteTheme(companyId,applicationId,themeId);
+const data = await theme.deleteTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| themeId | string | ID allotted to the theme. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| themeId | string? | no | ID allotted to the theme. |  
+
+
 
 Use this API to delete a theme from the theme library.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -5399,30 +6125,43 @@ Success
 #### getThemeForPreview
 Get a theme preview
 
+
+
 ```javascript
 // Promise
-const promise = theme.getThemeForPreview(companyId,applicationId,themeId);
+const promise = theme.getThemeForPreview( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 
 // Async/Await
-const data = await theme.getThemeForPreview(companyId,applicationId,themeId);
+const data = await theme.getThemeForPreview( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| themeId | string | ID allotted to the theme. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| themeId | string? | no | ID allotted to the theme. |  
+
+
 
 A theme can be previewed before applying it. Use this API to retrieve the theme preview by using its ID.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -5449,30 +6188,43 @@ Success
 #### publishTheme
 Publish a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.publishTheme(companyId,applicationId,themeId);
+const promise = theme.publishTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 
 // Async/Await
-const data = await theme.publishTheme(companyId,applicationId,themeId);
+const data = await theme.publishTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| themeId | string | ID allotted to the theme. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| themeId | string? | no | ID allotted to the theme. |  
+
+
 
 Use this API to publish a theme that is either newly created or edited.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -5499,30 +6251,43 @@ Success
 #### unpublishTheme
 Unpublish a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.unpublishTheme(companyId,applicationId,themeId);
+const promise = theme.unpublishTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 
 // Async/Await
-const data = await theme.unpublishTheme(companyId,applicationId,themeId);
+const data = await theme.unpublishTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| themeId | string | ID allotted to the theme. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| themeId | string? | no | ID allotted to the theme. |  
+
+
 
 Use this API to remove an existing theme from the list of available themes.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -5549,30 +6314,43 @@ Success
 #### archiveTheme
 Archive a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.archiveTheme(companyId,applicationId,themeId);
+const promise = theme.archiveTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 
 // Async/Await
-const data = await theme.archiveTheme(companyId,applicationId,themeId);
+const data = await theme.archiveTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| themeId | string | ID allotted to the theme. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| themeId | string? | no | ID allotted to the theme. |  
+
+
 
 Use this API to store an existing theme but not delete it so that it can be used in future if required. 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -5599,30 +6377,43 @@ Success
 #### unarchiveTheme
 Unarchive a theme
 
+
+
 ```javascript
 // Promise
-const promise = theme.unarchiveTheme(companyId,applicationId,themeId);
+const promise = theme.unarchiveTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 
 // Async/Await
-const data = await theme.unarchiveTheme(companyId,applicationId,themeId);
+const data = await theme.unarchiveTheme( {  companyId : value,
+ applicationId : value,
+ themeId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| themeId | string | ID allotted to the theme. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| themeId | string? | no | ID allotted to the theme. |  
+
+
 
 Use this API to restore an archived theme and bring it back for editing or publishing. 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ThemesSchema` for more details.
 
 
-Schema: `ThemesSchema`
+[ThemesSchema](#ThemesSchema)
+
+Success. Refer `ThemesSchema` for more details.
 
 
 *Examples:*
@@ -5647,7 +6438,6 @@ Success
 
 
 
----
 
 
 ## User
@@ -5656,32 +6446,49 @@ Success
 #### getCustomers
 Get a list of customers
 
+
+
 ```javascript
 // Promise
-const promise = user.getCustomers(companyId,applicationId,q,pageSize,pageNo);
+const promise = user.getCustomers( {  companyId : value,
+ applicationId : value,
+ q : value,
+ pageSize : value,
+ pageNo : value });
 
 // Async/Await
-const data = await user.getCustomers(companyId,applicationId,q,pageSize,pageNo);
+const data = await user.getCustomers( {  companyId : value,
+ applicationId : value,
+ q : value,
+ pageSize : value,
+ pageNo : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| q | string | The search query. Mobile number or email ID of a customer. | 
-| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1.  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| q | string? | no | The search query. Mobile number or email ID of a customer. |    
+| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10. |    
+| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1.  |  
+
+
 
 Use this API to retrieve a list of customers who have registered in the application.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `CustomerListResponseSchema` for more details.
 
 
-Schema: `CustomerListResponseSchema`
+[CustomerListResponseSchema](#CustomerListResponseSchema)
+
+Success. Refer `CustomerListResponseSchema` for more details.
 
 
 *Examples:*
@@ -5708,30 +6515,43 @@ Success
 #### searchUsers
 Search an existing user.
 
+
+
 ```javascript
 // Promise
-const promise = user.searchUsers(companyId,applicationId,q);
+const promise = user.searchUsers( {  companyId : value,
+ applicationId : value,
+ q : value });
 
 // Async/Await
-const data = await user.searchUsers(companyId,applicationId,q);
+const data = await user.searchUsers( {  companyId : value,
+ applicationId : value,
+ q : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| q | string | The search query. Mobile number or email ID of a customer. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| q | string? | no | The search query. Mobile number or email ID of a customer. |  
+
+
 
 Use this API to retrieve an existing user from a list.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns first name, last name, emails, phone number and gender of the user. Refer `UserSearchResponseSchema` for more details.
 
 
-Schema: `UserSearchResponseSchema`
+[UserSearchResponseSchema](#UserSearchResponseSchema)
+
+Success. Returns first name, last name, emails, phone number and gender of the user. Refer `UserSearchResponseSchema` for more details.
 
 
 
@@ -5747,29 +6567,42 @@ Schema: `UserSearchResponseSchema`
 #### createUser
 Create user
 
+
+
 ```javascript
 // Promise
-const promise = user.createUser(companyId,applicationId,body);
+const promise = user.createUser( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await user.createUser(companyId,applicationId,body);
+const data = await user.createUser( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID |    
+| applicationId | string? | no | Application ID |  
+| body | [CreateUserRequestSchema](#CreateUserRequestSchema) | yes | Request body |
+
 
 Create user
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 User create
 
 
-Schema: `CreateUserResponseSchema`
+[CreateUserResponseSchema](#CreateUserResponseSchema)
+
+User create
 
 
 
@@ -5785,30 +6618,45 @@ Schema: `CreateUserResponseSchema`
 #### updateUser
 Update user
 
+
+
 ```javascript
 // Promise
-const promise = user.updateUser(companyId,applicationId,userId,body);
+const promise = user.updateUser( {  companyId : value,
+ applicationId : value,
+ userId : value,
+ body : value });
 
 // Async/Await
-const data = await user.updateUser(companyId,applicationId,userId,body);
+const data = await user.updateUser( {  companyId : value,
+ applicationId : value,
+ userId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
-| userId | string | User ID | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID |    
+| applicationId | string? | no | Application ID |    
+| userId | string? | no | User ID |  
+| body | [UpdateUserRequestSchema](#UpdateUserRequestSchema) | yes | Request body |
+
 
 Update user
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 User update
 
 
-Schema: `CreateUserResponseSchema`
+[CreateUserResponseSchema](#CreateUserResponseSchema)
+
+User update
 
 
 
@@ -5824,29 +6672,42 @@ Schema: `CreateUserResponseSchema`
 #### createUserSession
 Create user session
 
+
+
 ```javascript
 // Promise
-const promise = user.createUserSession(companyId,applicationId,body);
+const promise = user.createUserSession( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await user.createUserSession(companyId,applicationId,body);
+const data = await user.createUserSession( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID | 
-| applicationId | string | Application ID | 
 
-Create user session
 
-*Success Response:*
-
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID |    
+| applicationId | string? | no | Application ID |  
+| body | [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema) | yes | Request body |
 
 
 Create user session
 
+*Returned Response:*
 
-Schema: `CreateUserSessionResponseSchema`
+
+
+
+Create user session
+
+
+[CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
+
+Create user session
 
 
 
@@ -5862,29 +6723,40 @@ Schema: `CreateUserSessionResponseSchema`
 #### getPlatformConfig
 Get platform configurations
 
+
+
 ```javascript
 // Promise
-const promise = user.getPlatformConfig(companyId,applicationId);
+const promise = user.getPlatformConfig( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await user.getPlatformConfig(companyId,applicationId);
+const data = await user.getPlatformConfig( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+
+
 
 Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
 
 
-Schema: `PlatformSchema`
+[PlatformSchema](#PlatformSchema)
+
+Success. Returns a JSON object containing the all the platform configurations. Refer `PlatformSchema` for more details.
 
 
 
@@ -5900,29 +6772,42 @@ Schema: `PlatformSchema`
 #### updatePlatformConfig
 Update platform configurations
 
+
+
 ```javascript
 // Promise
-const promise = user.updatePlatformConfig(companyId,applicationId,body);
+const promise = user.updatePlatformConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await user.updatePlatformConfig(companyId,applicationId,body);
+const data = await user.updatePlatformConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+| body | [PlatformSchema](#PlatformSchema) | yes | Request body |
+
 
 Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns a JSON object with the updated platform configurations. Refer `PlatformSchema` for more details.
 
 
-Schema: `PlatformSchema`
+[PlatformSchema](#PlatformSchema)
+
+Success. Returns a JSON object with the updated platform configurations. Refer `PlatformSchema` for more details.
 
 
 
@@ -5936,7 +6821,6 @@ Schema: `PlatformSchema`
 
 
 
----
 
 
 ## Content
@@ -5945,31 +6829,46 @@ Schema: `PlatformSchema`
 #### getAnnouncementsList
 Get a list of announcements
 
+
+
 ```javascript
 // Promise
-const promise = content.getAnnouncementsList(companyId,applicationId,pageNo,pageSize);
+const promise = content.getAnnouncementsList( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await content.getAnnouncementsList(companyId,applicationId,pageNo,pageSize);
+const data = await content.getAnnouncementsList( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
-| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
 
 Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `GetAnnouncementListSchema` for more details.
 
 
-Schema: `GetAnnouncementListSchema`
+[GetAnnouncementListSchema](#GetAnnouncementListSchema)
+
+Success. Refer `GetAnnouncementListSchema` for more details.
 
 
 *Examples:*
@@ -5996,29 +6895,42 @@ success
 #### createAnnouncement
 Create an announcement
 
+
+
 ```javascript
 // Promise
-const promise = content.createAnnouncement(companyId,applicationId,body);
+const promise = content.createAnnouncement( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.createAnnouncement(companyId,applicationId,body);
+const data = await content.createAnnouncement( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+| body | [AdminAnnouncementSchema](#AdminAnnouncementSchema) | yes | Request body |
+
 
 Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `CreateAnnouncementSchema` for more details.
 
 
-Schema: `CreateAnnouncementSchema`
+[CreateAnnouncementSchema](#CreateAnnouncementSchema)
+
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 *Examples:*
@@ -6045,30 +6957,43 @@ success
 #### getAnnouncementById
 Get announcement by ID
 
+
+
 ```javascript
 // Promise
-const promise = content.getAnnouncementById(companyId,applicationId,announcementId);
+const promise = content.getAnnouncementById( {  companyId : value,
+ applicationId : value,
+ announcementId : value });
 
 // Async/Await
-const data = await content.getAnnouncementById(companyId,applicationId,announcementId);
+const data = await content.getAnnouncementById( {  companyId : value,
+ applicationId : value,
+ announcementId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| announcementId | string | ID allotted to the announcement. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| announcementId | string? | no | ID allotted to the announcement. |  
+
+
 
 Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `AdminAnnouncementSchema` for more details.
 
 
-Schema: `AdminAnnouncementSchema`
+[AdminAnnouncementSchema](#AdminAnnouncementSchema)
+
+Success. Refer `AdminAnnouncementSchema` for more details.
 
 
 *Examples:*
@@ -6095,30 +7020,45 @@ success
 #### updateAnnouncement
 Update an announcement
 
+
+
 ```javascript
 // Promise
-const promise = content.updateAnnouncement(companyId,applicationId,announcementId,body);
+const promise = content.updateAnnouncement( {  companyId : value,
+ applicationId : value,
+ announcementId : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateAnnouncement(companyId,applicationId,announcementId,body);
+const data = await content.updateAnnouncement( {  companyId : value,
+ applicationId : value,
+ announcementId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| announcementId | string | ID allotted to the announcement. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| announcementId | string? | no | ID allotted to the announcement. |  
+| body | [AdminAnnouncementSchema](#AdminAnnouncementSchema) | yes | Request body |
+
 
 Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `CreateAnnouncementSchema` for more details.
 
 
-Schema: `CreateAnnouncementSchema`
+[CreateAnnouncementSchema](#CreateAnnouncementSchema)
+
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 *Examples:*
@@ -6145,30 +7085,45 @@ success
 #### updateAnnouncementSchedule
 Update the schedule and the publish status of an announcement
 
+
+
 ```javascript
 // Promise
-const promise = content.updateAnnouncementSchedule(companyId,applicationId,announcementId,body);
+const promise = content.updateAnnouncementSchedule( {  companyId : value,
+ applicationId : value,
+ announcementId : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateAnnouncementSchedule(companyId,applicationId,announcementId,body);
+const data = await content.updateAnnouncementSchedule( {  companyId : value,
+ applicationId : value,
+ announcementId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| announcementId | string | ID allotted to the announcement. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| announcementId | string? | no | ID allotted to the announcement. |  
+| body | [ScheduleSchema](#ScheduleSchema) | yes | Request body |
+
 
 Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `CreateAnnouncementSchema` for more details.
 
 
-Schema: `CreateAnnouncementSchema`
+[CreateAnnouncementSchema](#CreateAnnouncementSchema)
+
+Success. Refer `CreateAnnouncementSchema` for more details.
 
 
 *Examples:*
@@ -6195,30 +7150,43 @@ success
 #### deleteAnnouncement
 Delete announcement by id
 
+
+
 ```javascript
 // Promise
-const promise = content.deleteAnnouncement(companyId,applicationId,announcementId);
+const promise = content.deleteAnnouncement( {  companyId : value,
+ applicationId : value,
+ announcementId : value });
 
 // Async/Await
-const data = await content.deleteAnnouncement(companyId,applicationId,announcementId);
+const data = await content.deleteAnnouncement( {  companyId : value,
+ applicationId : value,
+ announcementId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| announcementId | string | ID allotted to the announcement. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| announcementId | string? | no | ID allotted to the announcement. |  
+
+
 
 Use this API to delete an existing announcement.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `CreateAnnouncementSchema`
+[CreateAnnouncementSchema](#CreateAnnouncementSchema)
+
+Success.
 
 
 *Examples:*
@@ -6245,29 +7213,42 @@ success
 #### createBlog
 Create a blog
 
+
+
 ```javascript
 // Promise
-const promise = content.createBlog(companyId,applicationId,body);
+const promise = content.createBlog( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.createBlog(companyId,applicationId,body);
+const data = await content.createBlog( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+| body | [BlogRequest](#BlogRequest) | yes | Request body |
+
 
 Use this API to create a blog.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `BlogSchema` for more details.
 
 
-Schema: `BlogSchema`
+[BlogSchema](#BlogSchema)
+
+Success. Refer `BlogSchema` for more details.
 
 
 *Examples:*
@@ -6294,31 +7275,46 @@ default
 #### getBlogs
 Get blogs
 
+
+
 ```javascript
 // Promise
-const promise = content.getBlogs(companyId,applicationId,pageNo,pageSize);
+const promise = content.getBlogs( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await content.getBlogs(companyId,applicationId,pageNo,pageSize);
+const data = await content.getBlogs( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
-| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
 
 Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `BlogGetResponse` for more details.
 
 
-Schema: `BlogGetResponse`
+[BlogGetResponse](#BlogGetResponse)
+
+Success. Refer `BlogGetResponse` for more details.
 
 
 *Examples:*
@@ -6345,30 +7341,45 @@ default
 #### updateBlog
 Update a blog
 
+
+
 ```javascript
 // Promise
-const promise = content.updateBlog(companyId,applicationId,id,body);
+const promise = content.updateBlog( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateBlog(companyId,applicationId,id,body);
+const data = await content.updateBlog( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to the blog. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to the blog. |  
+| body | [BlogRequest](#BlogRequest) | yes | Request body |
+
 
 Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `BlogSchema`
+[BlogSchema](#BlogSchema)
+
+Success.
 
 
 *Examples:*
@@ -6395,30 +7406,43 @@ default
 #### deleteBlog
 Delete blogs
 
+
+
 ```javascript
 // Promise
-const promise = content.deleteBlog(companyId,applicationId,id);
+const promise = content.deleteBlog( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await content.deleteBlog(companyId,applicationId,id);
+const data = await content.deleteBlog( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to the blog. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to the blog. |  
+
+
 
 Use this API to delete a blog.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `BlogSchema`
+[BlogSchema](#BlogSchema)
+
+Success.
 
 
 *Examples:*
@@ -6445,30 +7469,43 @@ default
 #### getComponentById
 Get components of a blog
 
+
+
 ```javascript
 // Promise
-const promise = content.getComponentById(companyId,applicationId,slug);
+const promise = content.getComponentById( {  companyId : value,
+ applicationId : value,
+ slug : value });
 
 // Async/Await
-const data = await content.getComponentById(companyId,applicationId,slug);
+const data = await content.getComponentById( {  companyId : value,
+ applicationId : value,
+ slug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| slug | string | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| slug | string? | no | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. |  
+
+
 
 Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
 
 
-Schema: `BlogSchema`
+[BlogSchema](#BlogSchema)
+
+Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
 
 
 *Examples:*
@@ -6495,29 +7532,40 @@ default
 #### getFaqCategories
 Get a list of FAQ categories
 
+
+
 ```javascript
 // Promise
-const promise = content.getFaqCategories(companyId,applicationId);
+const promise = content.getFaqCategories( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await content.getFaqCategories(companyId,applicationId);
+const data = await content.getFaqCategories( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+
+
 
 FAQs can be divided into categories. Use this API to get a list of FAQ categories.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `GetFaqCategoriesSchema` for more details.
 
 
-Schema: `GetFaqCategoriesSchema`
+[GetFaqCategoriesSchema](#GetFaqCategoriesSchema)
+
+Success. Refer `GetFaqCategoriesSchema` for more details.
 
 
 
@@ -6533,30 +7581,43 @@ Schema: `GetFaqCategoriesSchema`
 #### getFaqCategoryBySlugOrId
 Get an FAQ category by slug or id
 
+
+
 ```javascript
 // Promise
-const promise = content.getFaqCategoryBySlugOrId(companyId,applicationId,idOrSlug);
+const promise = content.getFaqCategoryBySlugOrId( {  companyId : value,
+ applicationId : value,
+ idOrSlug : value });
 
 // Async/Await
-const data = await content.getFaqCategoryBySlugOrId(companyId,applicationId,idOrSlug);
+const data = await content.getFaqCategoryBySlugOrId( {  companyId : value,
+ applicationId : value,
+ idOrSlug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| idOrSlug | string | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| idOrSlug | string? | no | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
+
+
 
 FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `GetFaqCategoryBySlugSchema` for more details.
 
 
-Schema: `GetFaqCategoryBySlugSchema`
+[GetFaqCategoryBySlugSchema](#GetFaqCategoryBySlugSchema)
+
+Success. Refer `GetFaqCategoryBySlugSchema` for more details.
 
 
 
@@ -6572,29 +7633,42 @@ Schema: `GetFaqCategoryBySlugSchema`
 #### createFaqCategory
 Create an FAQ category
 
+
+
 ```javascript
 // Promise
-const promise = content.createFaqCategory(companyId,applicationId,body);
+const promise = content.createFaqCategory( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.createFaqCategory(companyId,applicationId,body);
+const data = await content.createFaqCategory( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+| body | [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema) | no | Request body |
+
 
 FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `CreateFaqCategorySchema`
+[CreateFaqCategorySchema](#CreateFaqCategorySchema)
+
+Success.
 
 
 
@@ -6610,30 +7684,45 @@ Schema: `CreateFaqCategorySchema`
 #### updateFaqCategory
 Update an FAQ category
 
+
+
 ```javascript
 // Promise
-const promise = content.updateFaqCategory(companyId,applicationId,id,body);
+const promise = content.updateFaqCategory( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateFaqCategory(companyId,applicationId,id,body);
+const data = await content.updateFaqCategory( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to an FAQ category. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to an FAQ category. |  
+| body | [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema) | no | Request body |
+
 
 Use this API to edit an existing FAQ category.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `CreateFaqCategorySchema`
+[CreateFaqCategorySchema](#CreateFaqCategorySchema)
+
+Success.
 
 
 
@@ -6649,30 +7738,43 @@ Schema: `CreateFaqCategorySchema`
 #### deleteFaqCategory
 Delete an FAQ category
 
+
+
 ```javascript
 // Promise
-const promise = content.deleteFaqCategory(companyId,applicationId,id);
+const promise = content.deleteFaqCategory( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await content.deleteFaqCategory(companyId,applicationId,id);
+const data = await content.deleteFaqCategory( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to an FAQ category. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to an FAQ category. |  
+
+
 
 Use this API to delete an FAQ category.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `FaqSchema`
+[FaqSchema](#FaqSchema)
+
+Success.
 
 
 
@@ -6688,30 +7790,43 @@ Schema: `FaqSchema`
 #### getFaqsByCategoryIdOrSlug
 Get question and answers within an FAQ category
 
+
+
 ```javascript
 // Promise
-const promise = content.getFaqsByCategoryIdOrSlug(companyId,applicationId,idOrSlug);
+const promise = content.getFaqsByCategoryIdOrSlug( {  companyId : value,
+ applicationId : value,
+ idOrSlug : value });
 
 // Async/Await
-const data = await content.getFaqsByCategoryIdOrSlug(companyId,applicationId,idOrSlug);
+const data = await content.getFaqsByCategoryIdOrSlug( {  companyId : value,
+ applicationId : value,
+ idOrSlug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| idOrSlug | string | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| idOrSlug | string? | no | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
+
+
 
 Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `GetFaqSchema` for more details.
 
 
-Schema: `GetFaqSchema`
+[GetFaqSchema](#GetFaqSchema)
+
+Success. Refer `GetFaqSchema` for more details.
 
 
 
@@ -6727,30 +7842,45 @@ Schema: `GetFaqSchema`
 #### addFaq
 Create an FAQ
 
+
+
 ```javascript
 // Promise
-const promise = content.addFaq(companyId,applicationId,categoryId,body);
+const promise = content.addFaq( {  companyId : value,
+ applicationId : value,
+ categoryId : value,
+ body : value });
 
 // Async/Await
-const data = await content.addFaq(companyId,applicationId,categoryId,body);
+const data = await content.addFaq( {  companyId : value,
+ applicationId : value,
+ categoryId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| categoryId | string | ID allotted to an FAQ category. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| categoryId | string? | no | ID allotted to an FAQ category. |  
+| body | [CreateFaqSchema](#CreateFaqSchema) | no | Request body |
+
 
 FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `CreateFaqResponseSchema`
+[CreateFaqResponseSchema](#CreateFaqResponseSchema)
+
+Success.
 
 
 
@@ -6766,31 +7896,48 @@ Schema: `CreateFaqResponseSchema`
 #### updateFaq
 Update an FAQ
 
+
+
 ```javascript
 // Promise
-const promise = content.updateFaq(companyId,applicationId,categoryId,faqId,body);
+const promise = content.updateFaq( {  companyId : value,
+ applicationId : value,
+ categoryId : value,
+ faqId : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateFaq(companyId,applicationId,categoryId,faqId,body);
+const data = await content.updateFaq( {  companyId : value,
+ applicationId : value,
+ categoryId : value,
+ faqId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| categoryId | string | ID allotted to an FAQ category. | 
-| faqId | string | ID allotted to an FAQ. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| categoryId | string? | no | ID allotted to an FAQ category. |    
+| faqId | string? | no | ID allotted to an FAQ. |  
+| body | [CreateFaqSchema](#CreateFaqSchema) | no | Request body |
+
 
 Use this API to edit an existing FAQ.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `CreateFaqResponseSchema`
+[CreateFaqResponseSchema](#CreateFaqResponseSchema)
+
+Success.
 
 
 
@@ -6806,31 +7953,46 @@ Schema: `CreateFaqResponseSchema`
 #### deleteFaq
 Delete an FAQ
 
+
+
 ```javascript
 // Promise
-const promise = content.deleteFaq(companyId,applicationId,categoryId,faqId);
+const promise = content.deleteFaq( {  companyId : value,
+ applicationId : value,
+ categoryId : value,
+ faqId : value });
 
 // Async/Await
-const data = await content.deleteFaq(companyId,applicationId,categoryId,faqId);
+const data = await content.deleteFaq( {  companyId : value,
+ applicationId : value,
+ categoryId : value,
+ faqId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| categoryId | string | ID allotted to an FAQ category. | 
-| faqId | string | ID allotted to an FAQ. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| categoryId | string? | no | ID allotted to an FAQ category. |    
+| faqId | string? | no | ID allotted to an FAQ. |  
+
+
 
 Use this API to delete an existing FAQ.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `CreateFaqResponseSchema`
+[CreateFaqResponseSchema](#CreateFaqResponseSchema)
+
+Success.
 
 
 
@@ -6846,30 +8008,43 @@ Schema: `CreateFaqResponseSchema`
 #### getFaqByIdOrSlug
 Get an FAQ
 
+
+
 ```javascript
 // Promise
-const promise = content.getFaqByIdOrSlug(companyId,applicationId,idOrSlug);
+const promise = content.getFaqByIdOrSlug( {  companyId : value,
+ applicationId : value,
+ idOrSlug : value });
 
 // Async/Await
-const data = await content.getFaqByIdOrSlug(companyId,applicationId,idOrSlug);
+const data = await content.getFaqByIdOrSlug( {  companyId : value,
+ applicationId : value,
+ idOrSlug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| idOrSlug | string | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| idOrSlug | string? | no | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
+
+
 
 Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `CreateFaqResponseSchema` for more details.
 
 
-Schema: `CreateFaqResponseSchema`
+[CreateFaqResponseSchema](#CreateFaqResponseSchema)
+
+Success. Refer `CreateFaqResponseSchema` for more details.
 
 
 
@@ -6885,31 +8060,46 @@ Schema: `CreateFaqResponseSchema`
 #### getLandingPages
 Get landing pages
 
+
+
 ```javascript
 // Promise
-const promise = content.getLandingPages(companyId,applicationId,pageNo,pageSize);
+const promise = content.getLandingPages( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await content.getLandingPages(companyId,applicationId,pageNo,pageSize);
+const data = await content.getLandingPages( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
-| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
 
 Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `LandingPageGetResponse` for more details.
 
 
-Schema: `LandingPageGetResponse`
+[LandingPageGetResponse](#LandingPageGetResponse)
+
+Success. Refer `LandingPageGetResponse` for more details.
 
 
 *Examples:*
@@ -6936,29 +8126,42 @@ default
 #### createLandingPage
 Create a landing page
 
+
+
 ```javascript
 // Promise
-const promise = content.createLandingPage(companyId,applicationId,body);
+const promise = content.createLandingPage( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.createLandingPage(companyId,applicationId,body);
+const data = await content.createLandingPage( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+| body | [LandingPageSchema](#LandingPageSchema) | yes | Request body |
+
 
 Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `LandingPageSchema`
+[LandingPageSchema](#LandingPageSchema)
+
+Success.
 
 
 *Examples:*
@@ -6985,30 +8188,45 @@ default
 #### updateLandingPage
 Update a landing page
 
+
+
 ```javascript
 // Promise
-const promise = content.updateLandingPage(companyId,applicationId,id,body);
+const promise = content.updateLandingPage( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateLandingPage(companyId,applicationId,id,body);
+const data = await content.updateLandingPage( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to a landing page. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to a landing page. |  
+| body | [LandingPageSchema](#LandingPageSchema) | yes | Request body |
+
 
 Use this API to edit the details of an existing landing page.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `LandingPageSchema`
+[LandingPageSchema](#LandingPageSchema)
+
+Success.
 
 
 *Examples:*
@@ -7035,30 +8253,43 @@ default
 #### deleteLandingPage
 Delete a landing page
 
+
+
 ```javascript
 // Promise
-const promise = content.deleteLandingPage(companyId,applicationId,id);
+const promise = content.deleteLandingPage( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await content.deleteLandingPage(companyId,applicationId,id);
+const data = await content.deleteLandingPage( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to a landing page. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to a landing page. |  
+
+
 
 Use this API to delete an existing landing page.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `LandingPageSchema`
+[LandingPageSchema](#LandingPageSchema)
+
+Success.
 
 
 *Examples:*
@@ -7108,29 +8339,40 @@ default
 #### getLegalInformation
 Get legal information
 
+
+
 ```javascript
 // Promise
-const promise = content.getLegalInformation(companyId,applicationId);
+const promise = content.getLegalInformation( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await content.getLegalInformation(companyId,applicationId);
+const data = await content.getLegalInformation( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+
+
 
 Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ApplicationLegal` for more details.
 
 
-Schema: `ApplicationLegal`
+[ApplicationLegal](#ApplicationLegal)
+
+Success. Refer `ApplicationLegal` for more details.
 
 
 *Examples:*
@@ -7157,29 +8399,42 @@ Success
 #### updateLegalInformation
 Save legal information
 
+
+
 ```javascript
 // Promise
-const promise = content.updateLegalInformation(companyId,applicationId,body);
+const promise = content.updateLegalInformation( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateLegalInformation(companyId,applicationId,body);
+const data = await content.updateLegalInformation( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+| body | [ApplicationLegal](#ApplicationLegal) | yes | Request body |
+
 
 Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `ApplicationLegal` for more details.
 
 
-Schema: `ApplicationLegal`
+[ApplicationLegal](#ApplicationLegal)
+
+Success. Refer `ApplicationLegal` for more details.
 
 
 
@@ -7195,32 +8450,49 @@ Schema: `ApplicationLegal`
 #### getNavigations
 Get navigations
 
+
+
 ```javascript
 // Promise
-const promise = content.getNavigations(companyId,applicationId,devicePlatform,pageNo,pageSize);
+const promise = content.getNavigations( {  companyId : value,
+ applicationId : value,
+ devicePlatform : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await content.getNavigations(companyId,applicationId,devicePlatform,pageNo,pageSize);
+const data = await content.getNavigations( {  companyId : value,
+ applicationId : value,
+ devicePlatform : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| devicePlatform | string | Filter navigations by platform. Acceptable values are: web, android, ios, all | 
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
-| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| devicePlatform | string? | no | Filter navigations by platform. Acceptable values are: web, android, ios, all |    
+| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
 
 Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `NavigationGetResponse` for more details.
 
 
-Schema: `NavigationGetResponse`
+[NavigationGetResponse](#NavigationGetResponse)
+
+Success. Refer `NavigationGetResponse` for more details.
 
 
 *Examples:*
@@ -7247,29 +8519,42 @@ default
 #### createNavigation
 Create a navigation
 
+
+
 ```javascript
 // Promise
-const promise = content.createNavigation(companyId,applicationId,body);
+const promise = content.createNavigation( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.createNavigation(companyId,applicationId,body);
+const data = await content.createNavigation( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+| body | [NavigationRequest](#NavigationRequest) | yes | Request body |
+
 
 Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `NavigationSchema`
+[NavigationSchema](#NavigationSchema)
+
+Success.
 
 
 *Examples:*
@@ -7296,29 +8581,40 @@ default
 #### getDefaultNavigations
 Get default navigations
 
+
+
 ```javascript
 // Promise
-const promise = content.getDefaultNavigations(companyId,applicationId);
+const promise = content.getDefaultNavigations( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await content.getDefaultNavigations(companyId,applicationId);
+const data = await content.getDefaultNavigations( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+
+
 
 On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `DefaultNavigationResponse` for more details.
 
 
-Schema: `DefaultNavigationResponse`
+[DefaultNavigationResponse](#DefaultNavigationResponse)
+
+Success. Refer `DefaultNavigationResponse` for more details.
 
 
 *Examples:*
@@ -7345,31 +8641,46 @@ default
 #### getNavigationBySlug
 Get a navigation by slug
 
+
+
 ```javascript
 // Promise
-const promise = content.getNavigationBySlug(companyId,applicationId,slug,devicePlatform);
+const promise = content.getNavigationBySlug( {  companyId : value,
+ applicationId : value,
+ slug : value,
+ devicePlatform : value });
 
 // Async/Await
-const data = await content.getNavigationBySlug(companyId,applicationId,slug,devicePlatform);
+const data = await content.getNavigationBySlug( {  companyId : value,
+ applicationId : value,
+ slug : value,
+ devicePlatform : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| slug | string | A short, human-readable, URL-friendly identifier of a navigation. You can get slug value of a navigation from `getNavigations` API. | 
-| devicePlatform | string | Filter navigations by platform. Acceptable values are: web, android, ios, all | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| slug | string? | no | A short, human-readable, URL-friendly identifier of a navigation. You can get slug value of a navigation from `getNavigations` API. |    
+| devicePlatform | string? | no | Filter navigations by platform. Acceptable values are: web, android, ios, all |  
+
+
 
 Use this API to retrieve a navigation by its slug.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `NavigationSchema` for more details.
 
 
-Schema: `NavigationSchema`
+[NavigationSchema](#NavigationSchema)
+
+Success. Refer `NavigationSchema` for more details.
 
 
 *Examples:*
@@ -7396,30 +8707,45 @@ default
 #### updateNavigation
 Update a navigation
 
+
+
 ```javascript
 // Promise
-const promise = content.updateNavigation(companyId,applicationId,id,body);
+const promise = content.updateNavigation( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateNavigation(companyId,applicationId,id,body);
+const data = await content.updateNavigation( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to the navigation. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to the navigation. |  
+| body | [NavigationRequest](#NavigationRequest) | yes | Request body |
+
 
 Use this API to edit the details of an existing navigation.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `NavigationSchema`
+[NavigationSchema](#NavigationSchema)
+
+Success.
 
 
 *Examples:*
@@ -7446,30 +8772,43 @@ default
 #### deleteNavigation
 Delete a navigation
 
+
+
 ```javascript
 // Promise
-const promise = content.deleteNavigation(companyId,applicationId,id);
+const promise = content.deleteNavigation( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await content.deleteNavigation(companyId,applicationId,id);
+const data = await content.deleteNavigation( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to the navigation. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to the navigation. |  
+
+
 
 Use this API to delete an existing navigation.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `NavigationSchema`
+[NavigationSchema](#NavigationSchema)
+
+Success.
 
 
 *Examples:*
@@ -7676,29 +9015,40 @@ default
 #### getPageMeta
 Get page meta
 
+
+
 ```javascript
 // Promise
-const promise = content.getPageMeta(companyId,applicationId);
+const promise = content.getPageMeta( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await content.getPageMeta(companyId,applicationId);
+const data = await content.getPageMeta( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+
+
 
 Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `PageMetaSchema` for more details.
 
 
-Schema: `PageMetaSchema`
+[PageMetaSchema](#PageMetaSchema)
+
+Success. Refer `PageMetaSchema` for more details.
 
 
 *Examples:*
@@ -7725,29 +9075,40 @@ default
 #### getPageSpec
 Get page spec
 
+
+
 ```javascript
 // Promise
-const promise = content.getPageSpec(companyId,applicationId);
+const promise = content.getPageSpec( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await content.getPageSpec(companyId,applicationId);
+const data = await content.getPageSpec( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+
+
 
 Use this API to get the specifications of a page, such as page type, display name, params and query.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `PageSpec` for more details.
 
 
-Schema: `PageSpec`
+[PageSpec](#PageSpec)
+
+Success. Refer `PageSpec` for more details.
 
 
 *Examples:*
@@ -7800,29 +9161,42 @@ default
 #### createPage
 Create a page
 
+
+
 ```javascript
 // Promise
-const promise = content.createPage(companyId,applicationId,body);
+const promise = content.createPage( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.createPage(companyId,applicationId,body);
+const data = await content.createPage( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+| body | [PageRequest](#PageRequest) | yes | Request body |
+
 
 Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `PageSchema` for more details.
 
 
-Schema: `PageSchema`
+[PageSchema](#PageSchema)
+
+Success. Refer `PageSchema` for more details.
 
 
 *Examples:*
@@ -7849,31 +9223,46 @@ default
 #### getPages
 Get a list of pages
 
+
+
 ```javascript
 // Promise
-const promise = content.getPages(companyId,applicationId,pageNo,pageSize);
+const promise = content.getPages( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await content.getPages(companyId,applicationId,pageNo,pageSize);
+const data = await content.getPages( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
-| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
 
 Use this API to retrieve a list of pages.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `PageGetResponse` for more details.
 
 
-Schema: `PageGetResponse`
+[PageGetResponse](#PageGetResponse)
+
+Success. Refer `PageGetResponse` for more details.
 
 
 *Examples:*
@@ -7900,29 +9289,42 @@ default
 #### createPagePreview
 Create a page preview
 
+
+
 ```javascript
 // Promise
-const promise = content.createPagePreview(companyId,applicationId,body);
+const promise = content.createPagePreview( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.createPagePreview(companyId,applicationId,body);
+const data = await content.createPagePreview( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+| body | [PageRequest](#PageRequest) | yes | Request body |
+
 
 Use this API to create a page preview to check the appearance of a custom page.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `PageSchema` for more details.
 
 
-Schema: `PageSchema`
+[PageSchema](#PageSchema)
+
+Success. Refer `PageSchema` for more details.
 
 
 *Examples:*
@@ -7949,30 +9351,45 @@ default
 #### updatePagePreview
 Change the publish status of a page
 
+
+
 ```javascript
 // Promise
-const promise = content.updatePagePreview(companyId,applicationId,slug,body);
+const promise = content.updatePagePreview( {  companyId : value,
+ applicationId : value,
+ slug : value,
+ body : value });
 
 // Async/Await
-const data = await content.updatePagePreview(companyId,applicationId,slug,body);
+const data = await content.updatePagePreview( {  companyId : value,
+ applicationId : value,
+ slug : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| slug | string | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| slug | string? | no | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
+| body | [PagePublishRequest](#PagePublishRequest) | yes | Request body |
+
 
 Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `PageSchema`
+[PageSchema](#PageSchema)
+
+Success.
 
 
 *Examples:*
@@ -7999,30 +9416,45 @@ default
 #### updatePage
 Update a page
 
+
+
 ```javascript
 // Promise
-const promise = content.updatePage(companyId,applicationId,id,body);
+const promise = content.updatePage( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await content.updatePage(companyId,applicationId,id,body);
+const data = await content.updatePage( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to the page. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to the page. |  
+| body | [PageSchema](#PageSchema) | yes | Request body |
+
 
 Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `PageSchema` for more details.
 
 
-Schema: `PageSchema`
+[PageSchema](#PageSchema)
+
+Success. Refer `PageSchema` for more details.
 
 
 *Examples:*
@@ -8049,30 +9481,43 @@ default
 #### deletePage
 Delete a page
 
+
+
 ```javascript
 // Promise
-const promise = content.deletePage(companyId,applicationId,id);
+const promise = content.deletePage( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await content.deletePage(companyId,applicationId,id);
+const data = await content.deletePage( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to the page. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to the page. |  
+
+
 
 Use this API to delete an existing page.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `PageSchema`
+[PageSchema](#PageSchema)
+
+Success.
 
 
 *Examples:*
@@ -8099,30 +9544,43 @@ default
 #### getPageBySlug
 Get pages by component Id
 
+
+
 ```javascript
 // Promise
-const promise = content.getPageBySlug(companyId,applicationId,slug);
+const promise = content.getPageBySlug( {  companyId : value,
+ applicationId : value,
+ slug : value });
 
 // Async/Await
-const data = await content.getPageBySlug(companyId,applicationId,slug);
+const data = await content.getPageBySlug( {  companyId : value,
+ applicationId : value,
+ slug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| slug | string | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| slug | string? | no | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
+
+
 
 Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Returns a JSON object of components. Refer `PageSchema` for more details.
 
 
-Schema: `PageSchema`
+[PageSchema](#PageSchema)
+
+Success. Returns a JSON object of components. Refer `PageSchema` for more details.
 
 
 *Examples:*
@@ -8149,29 +9607,40 @@ default
 #### getSEOConfiguration
 Get SEO configuration of an application
 
+
+
 ```javascript
 // Promise
-const promise = content.getSEOConfiguration(companyId,applicationId);
+const promise = content.getSEOConfiguration( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await content.getSEOConfiguration(companyId,applicationId);
+const data = await content.getSEOConfiguration( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+
+
 
 Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `SeoComponent` for more details.
 
 
-Schema: `SeoComponent`
+[SeoComponent](#SeoComponent)
+
+Success. Refer `SeoComponent` for more details.
 
 
 *Examples:*
@@ -8198,29 +9667,42 @@ default
 #### updateSEOConfiguration
 Update SEO of application
 
+
+
 ```javascript
 // Promise
-const promise = content.updateSEOConfiguration(companyId,applicationId,body);
+const promise = content.updateSEOConfiguration( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateSEOConfiguration(companyId,applicationId,body);
+const data = await content.updateSEOConfiguration( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+| body | [SeoComponent](#SeoComponent) | yes | Request body |
+
 
 Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `SeoSchema` for more details.
 
 
-Schema: `SeoSchema`
+[SeoSchema](#SeoSchema)
+
+Success. Refer `SeoSchema` for more details.
 
 
 *Examples:*
@@ -8270,32 +9752,49 @@ default
 #### getSlideshows
 Get slideshows
 
+
+
 ```javascript
 // Promise
-const promise = content.getSlideshows(companyId,applicationId,devicePlatform,pageNo,pageSize);
+const promise = content.getSlideshows( {  companyId : value,
+ applicationId : value,
+ devicePlatform : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await content.getSlideshows(companyId,applicationId,devicePlatform,pageNo,pageSize);
+const data = await content.getSlideshows( {  companyId : value,
+ applicationId : value,
+ devicePlatform : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| devicePlatform | string | Filter slideshows by platform. Acceptable values are: web, android, ios and all | 
-| pageNo | integer | The page number to navigate through the given set of results. Default value is 1. | 
-| pageSize | integer | The number of items to retrieve in each page. Default value is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| devicePlatform | string? | no | Filter slideshows by platform. Acceptable values are: web, android, ios and all |    
+| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
 
 A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `SlideshowGetResponse` for more details.
 
 
-Schema: `SlideshowGetResponse`
+[SlideshowGetResponse](#SlideshowGetResponse)
+
+Success. Refer `SlideshowGetResponse` for more details.
 
 
 *Examples:*
@@ -8322,29 +9821,42 @@ default
 #### createSlideshow
 Create a slideshow
 
+
+
 ```javascript
 // Promise
-const promise = content.createSlideshow(companyId,applicationId,body);
+const promise = content.createSlideshow( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.createSlideshow(companyId,applicationId,body);
+const data = await content.createSlideshow( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |  
+| body | [SlideshowRequest](#SlideshowRequest) | yes | Request body |
+
 
 A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `SlideshowSchema` for more details.
 
 
-Schema: `SlideshowSchema`
+[SlideshowSchema](#SlideshowSchema)
+
+Success. Refer `SlideshowSchema` for more details.
 
 
 *Examples:*
@@ -8371,31 +9883,46 @@ default
 #### getSlideshowBySlug
 Get slideshow by slug
 
+
+
 ```javascript
 // Promise
-const promise = content.getSlideshowBySlug(companyId,applicationId,slug,devicePlatform);
+const promise = content.getSlideshowBySlug( {  companyId : value,
+ applicationId : value,
+ slug : value,
+ devicePlatform : value });
 
 // Async/Await
-const data = await content.getSlideshowBySlug(companyId,applicationId,slug,devicePlatform);
+const data = await content.getSlideshowBySlug( {  companyId : value,
+ applicationId : value,
+ slug : value,
+ devicePlatform : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| slug | string | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value of a page from `getSlideshows` API. | 
-| devicePlatform | string | Filter slideshows by platform. Acceptable values are: web, android, ios and all | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| slug | string? | no | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value of a page from `getSlideshows` API. |    
+| devicePlatform | string? | no | Filter slideshows by platform. Acceptable values are: web, android, ios and all |  
+
+
 
 Use this API to retrieve the details of a slideshow by its slug.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `SlideshowSchema` for more details.
 
 
-Schema: `SlideshowSchema`
+[SlideshowSchema](#SlideshowSchema)
+
+Success. Refer `SlideshowSchema` for more details.
 
 
 *Examples:*
@@ -8422,30 +9949,45 @@ default
 #### updateSlideshow
 Update a slideshow
 
+
+
 ```javascript
 // Promise
-const promise = content.updateSlideshow(companyId,applicationId,id,body);
+const promise = content.updateSlideshow( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateSlideshow(companyId,applicationId,id,body);
+const data = await content.updateSlideshow( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to the slideshow. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to the slideshow. |  
+| body | [SlideshowRequest](#SlideshowRequest) | yes | Request body |
+
 
 Use this API to edit the details of an existing slideshow.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `SlideshowSchema` for more details.
 
 
-Schema: `SlideshowSchema`
+[SlideshowSchema](#SlideshowSchema)
+
+Success. Refer `SlideshowSchema` for more details.
 
 
 *Examples:*
@@ -8472,30 +10014,43 @@ default
 #### deleteSlideshow
 Delete a slideshow
 
+
+
 ```javascript
 // Promise
-const promise = content.deleteSlideshow(companyId,applicationId,id);
+const promise = content.deleteSlideshow( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await content.deleteSlideshow(companyId,applicationId,id);
+const data = await content.deleteSlideshow( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform | 
-| applicationId | string | Numeric ID allotted to an application created within a business account. | 
-| id | string | ID allotted to the slideshow. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform |    
+| applicationId | string? | no | Numeric ID allotted to an application created within a business account. |    
+| id | string? | no | ID allotted to the slideshow. |  
+
+
 
 Use this API to delete an existing slideshow.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `SlideshowSchema`
+[SlideshowSchema](#SlideshowSchema)
+
+Success.
 
 
 *Examples:*
@@ -8561,29 +10116,40 @@ default
 #### getSupportInformation
 Get support information
 
+
+
 ```javascript
 // Promise
-const promise = content.getSupportInformation(companyId,applicationId);
+const promise = content.getSupportInformation( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await content.getSupportInformation(companyId,applicationId);
+const data = await content.getSupportInformation( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+
+
 
 Use this API to get the contact details for customer support, including emails and phone numbers.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `Support` for more details.
 
 
-Schema: `Support`
+[Support](#Support)
+
+Success. Refer `Support` for more details.
 
 
 *Examples:*
@@ -8610,29 +10176,42 @@ default
 #### updateSupportInformation
 Update the support data of an application
 
+
+
 ```javascript
 // Promise
-const promise = content.updateSupportInformation(companyId,applicationId,body);
+const promise = content.updateSupportInformation( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateSupportInformation(companyId,applicationId,body);
+const data = await content.updateSupportInformation( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+| body | [Support](#Support) | yes | Request body |
+
 
 Use this API to edit the existing contact details for customer support, including emails and phone numbers.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `Support` for more details.
 
 
-Schema: `Support`
+[Support](#Support)
+
+Success. Refer `Support` for more details.
 
 
 *Examples:*
@@ -8659,29 +10238,42 @@ default
 #### updateInjectableTag
 Update a tag
 
+
+
 ```javascript
 // Promise
-const promise = content.updateInjectableTag(companyId,applicationId,body);
+const promise = content.updateInjectableTag( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.updateInjectableTag(companyId,applicationId,body);
+const data = await content.updateInjectableTag( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+| body | [CreateTagRequestSchema](#CreateTagRequestSchema) | no | Request body |
+
 
 Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `TagsSchema`
+[TagsSchema](#TagsSchema)
+
+Success.
 
 
 
@@ -8697,29 +10289,40 @@ Schema: `TagsSchema`
 #### deleteAllInjectableTags
 Delete tags in application
 
+
+
 ```javascript
 // Promise
-const promise = content.deleteAllInjectableTags(companyId,applicationId);
+const promise = content.deleteAllInjectableTags( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await content.deleteAllInjectableTags(companyId,applicationId);
+const data = await content.deleteAllInjectableTags( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+
+
 
 Use this API to delete all the existing tags at once.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `TagsSchema`
+[TagsSchema](#TagsSchema)
+
+Success.
 
 
 
@@ -8735,29 +10338,40 @@ Schema: `TagsSchema`
 #### getInjectableTags
 Get all the tags in an application
 
+
+
 ```javascript
 // Promise
-const promise = content.getInjectableTags(companyId,applicationId);
+const promise = content.getInjectableTags( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await content.getInjectableTags(companyId,applicationId);
+const data = await content.getInjectableTags( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+
+
 
 Use this API to get all the CSS and JS injected in the application in the form of tags.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Refer `TagsSchema` for more details.
 
 
-Schema: `TagsSchema`
+[TagsSchema](#TagsSchema)
+
+Success. Refer `TagsSchema` for more details.
 
 
 
@@ -8773,29 +10387,42 @@ Schema: `TagsSchema`
 #### addInjectableTag
 Add a tag
 
+
+
 ```javascript
 // Promise
-const promise = content.addInjectableTag(companyId,applicationId,body);
+const promise = content.addInjectableTag( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.addInjectableTag(companyId,applicationId,body);
+const data = await content.addInjectableTag( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+| body | [CreateTagRequestSchema](#CreateTagRequestSchema) | no | Request body |
+
 
 CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `TagsSchema`
+[TagsSchema](#TagsSchema)
+
+Success.
 
 
 
@@ -8811,29 +10438,42 @@ Schema: `TagsSchema`
 #### removeInjectableTag
 Remove a tag
 
+
+
 ```javascript
 // Promise
-const promise = content.removeInjectableTag(companyId,applicationId,body);
+const promise = content.removeInjectableTag( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await content.removeInjectableTag(companyId,applicationId,body);
+const data = await content.removeInjectableTag( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |  
+| body | [RemoveHandpickedSchema](#RemoveHandpickedSchema) | no | Request body |
+
 
 Use this API to delete an existing tag.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `TagsSchema`
+[TagsSchema](#TagsSchema)
+
+Success.
 
 
 
@@ -8849,30 +10489,45 @@ Schema: `TagsSchema`
 #### editInjectableTag
 Edit a tag by id
 
+
+
 ```javascript
 // Promise
-const promise = content.editInjectableTag(companyId,applicationId,tagId,body);
+const promise = content.editInjectableTag( {  companyId : value,
+ applicationId : value,
+ tagId : value,
+ body : value });
 
 // Async/Await
-const data = await content.editInjectableTag(companyId,applicationId,tagId,body);
+const data = await content.editInjectableTag( {  companyId : value,
+ applicationId : value,
+ tagId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Numeric ID allotted to a business account on Fynd Platform. | 
-| applicationId | string | Alphanumeric ID allotted to an application created within a business account. | 
-| tagId | string | ID allotted to the tag. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Numeric ID allotted to a business account on Fynd Platform. |    
+| applicationId | string? | no | Alphanumeric ID allotted to an application created within a business account. |    
+| tagId | string? | no | ID allotted to the tag. |  
+| body | [UpdateHandpickedSchema](#UpdateHandpickedSchema) | no | Request body |
+
 
 Use this API to edit the details of an existing tag by its ID.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success.
 
 
-Schema: `TagsSchema`
+[TagsSchema](#TagsSchema)
+
+Success.
 
 
 
@@ -8886,7 +10541,6 @@ Schema: `TagsSchema`
 
 
 
----
 
 
 ## Assignment
@@ -8895,30 +10549,43 @@ Schema: `TagsSchema`
 #### createPickupLocation
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.createPickupLocation(companyId,applicationId,body);
+const promise = assignment.createPickupLocation( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await assignment.createPickupLocation(companyId,applicationId,body);
+const data = await assignment.createPickupLocation( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+| body | [PickupPointSchema](#PickupPointSchema) | no | Request body |
+
 
 Create a new Pickup point for an application.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response - Store Updated
 
 
-Schema: `Success`
+[Success](#Success)
+
+Success Response - Store Updated
 
 
 
@@ -8934,33 +10601,50 @@ Schema: `Success`
 #### getPickupLocation
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.getPickupLocation(companyId,applicationId,q,pageNo,pageSize);
+const promise = assignment.getPickupLocation( {  companyId : value,
+ applicationId : value,
+ q : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await assignment.getPickupLocation(companyId,applicationId,q,pageNo,pageSize);
+const data = await assignment.getPickupLocation( {  companyId : value,
+ applicationId : value,
+ q : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| q | string | Search query | 
-| pageNo | integer | Request a page number | 
-| pageSize | integer | Request a page size | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| q | string? | no | Search query |    
+| pageNo | number? | no | Request a page number |    
+| pageSize | number? | no | Request a page size |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+
+
 
 Update list of pickup points for an application.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response
 
 
-Schema: `PickupPointResponse`
+[PickupPointResponse](#PickupPointResponse)
+
+Success Response
 
 
 
@@ -8976,33 +10660,48 @@ Schema: `PickupPointResponse`
 #### updatePickupLocation
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.updatePickupLocation(id,companyId,applicationId,body);
+const promise = assignment.updatePickupLocation( {  id : value,
+ companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await assignment.updatePickupLocation(id,companyId,applicationId,body);
+const data = await assignment.updatePickupLocation( {  id : value,
+ companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | number | Pickup Point ID | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | number? | no | Pickup Point ID |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+| body | [PickupPointSchema](#PickupPointSchema) | no | Request body |
+
 
 Update Pickup Point for an application. Pickup Point once created
 can be updated using this API. 'x-application-id'm and request body are required to trigger
 a successful update.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response - Store Updated
 
 
-Schema: `Success`
+[Success](#Success)
+
+Success Response - Store Updated
 
 
 
@@ -9018,32 +10717,45 @@ Schema: `Success`
 #### getPickupLocationById
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.getPickupLocationById(id,companyId,applicationId);
+const promise = assignment.getPickupLocationById( {  id : value,
+ companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await assignment.getPickupLocationById(id,companyId,applicationId);
+const data = await assignment.getPickupLocationById( {  id : value,
+ companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | number | Pickup Point Id | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | number? | no | Pickup Point Id |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+
+
 
 This API returns Pickup point data for an id. Returns not found if no data exists for the
 store id passed.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response
 
 
-Schema: `PickupPointSchema`
+[PickupPointSchema](#PickupPointSchema)
+
+Success Response
 
 
 
@@ -9059,31 +10771,44 @@ Schema: `PickupPointSchema`
 #### createPickupConfiguration
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.createPickupConfiguration(companyId,applicationId,body);
+const promise = assignment.createPickupConfiguration( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await assignment.createPickupConfiguration(companyId,applicationId,body);
+const data = await assignment.createPickupConfiguration( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+| body | [PickupConfiguration](#PickupConfiguration) | no | Request body |
+
 
 Create a new pickup configuration for an application id. Only one configuration can be
 created per application id.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response - Store Updated
 
 
-Schema: `Success`
+[Success](#Success)
+
+Success Response - Store Updated
 
 
 
@@ -9099,31 +10824,42 @@ Schema: `Success`
 #### getPickupConfiguration
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.getPickupConfiguration(companyId,applicationId);
+const promise = assignment.getPickupConfiguration( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await assignment.getPickupConfiguration(companyId,applicationId);
+const data = await assignment.getPickupConfiguration( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+
+
 
 Let pickup configuration for an application. z-application-id is required in
 the header to fetch the data.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response
 
 
-Schema: `PickupResponse`
+[PickupResponse](#PickupResponse)
+
+Success Response
 
 
 
@@ -9139,32 +10875,43 @@ Schema: `PickupResponse`
 #### getAllocationConfiguration
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.getAllocationConfiguration(companyId,applicationId);
+const promise = assignment.getAllocationConfiguration( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await assignment.getAllocationConfiguration(companyId,applicationId);
+const data = await assignment.getAllocationConfiguration( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+
+
 
 Get Shipping configuration for an application. Returns the global shipping configuration
 including shipping priority and default strategy, etc. Every application can have one set of
 configuration each. The endpoint requires an application id to get the data.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response
 
 
-Schema: `ShippingResponse`
+[ShippingResponse](#ShippingResponse)
+
+Success Response
 
 
 
@@ -9180,32 +10927,45 @@ Schema: `ShippingResponse`
 #### createAllocationConfiguration
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.createAllocationConfiguration(companyId,applicationId,body);
+const promise = assignment.createAllocationConfiguration( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await assignment.createAllocationConfiguration(companyId,applicationId,body);
+const data = await assignment.createAllocationConfiguration( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+| body | [ShippingSchema](#ShippingSchema) | no | Request body |
+
 
 Create a new Shipping configuration for an application The configuration is for
 all the stores under an application. There can be only one configuration for an
 application i.e, for an application configuration can be created only once.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response - Store Updated
 
 
-Schema: `Success`
+[Success](#Success)
+
+Success Response - Store Updated
 
 
 
@@ -9221,32 +10981,45 @@ Schema: `Success`
 #### updateAllocationConfiguration
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.updateAllocationConfiguration(companyId,applicationId,body);
+const promise = assignment.updateAllocationConfiguration( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await assignment.updateAllocationConfiguration(companyId,applicationId,body);
+const data = await assignment.updateAllocationConfiguration( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+| body | [ShippingSchema](#ShippingSchema) | no | Request body |
+
 
 Update Shipping configuration for an application. Application configuration once created
 can be updated using this API. 'x-application-id'm and request body are required to trigger
 a successful update.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response - Store Updated
 
 
-Schema: `Success`
+[Success](#Success)
+
+Success Response - Store Updated
 
 
 
@@ -9262,36 +11035,55 @@ Schema: `Success`
 #### getAllocationLocations
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.getAllocationLocations(companyId,applicationId,q,pageNo,pageSize,type);
+const promise = assignment.getAllocationLocations( {  companyId : value,
+ applicationId : value,
+ q : value,
+ pageNo : value,
+ pageSize : value,
+ type : value });
 
 // Async/Await
-const data = await assignment.getAllocationLocations(companyId,applicationId,q,pageNo,pageSize,type);
+const data = await assignment.getAllocationLocations( {  companyId : value,
+ applicationId : value,
+ q : value,
+ pageNo : value,
+ pageSize : value,
+ type : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| q | string | Search query | 
-| pageNo | integer | Request a page number | 
-| pageSize | integer | Request a page size | 
-| type | string | Type can be 'standard' or 'advanced' | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| q | string? | no | Search query |    
+| pageNo | number? | no | Request a page number |    
+| pageSize | number? | no | Request a page size |    
+| type | string? | no | Type can be 'standard' or 'advanced' |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+
+
 
 List Stores of an application. Two types of stores are listed,
 some having allocation types as standard and others, advanced.
 API has support for pagination, filter by type and search by name.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response
 
 
-Schema: `StoreListResponse`
+[StoreListResponse](#StoreListResponse)
+
+Success Response
 
 
 
@@ -9307,33 +11099,46 @@ Schema: `StoreListResponse`
 #### getAllocationLocationById
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.getAllocationLocationById(id,companyId,applicationId);
+const promise = assignment.getAllocationLocationById( {  id : value,
+ companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await assignment.getAllocationLocationById(id,companyId,applicationId);
+const data = await assignment.getAllocationLocationById( {  id : value,
+ companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | number | Store Id | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | number? | no | Store Id |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+
+
 
 This API returns store data for an id. Returns not found if no data exists for the
 store id passed. The data is returned from sixspeed database which includes only the
 shipping configuration of the stores including store id and app id.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response
 
 
-Schema: `StoreResponse`
+[StoreResponse](#StoreResponse)
+
+Success Response
 
 
 
@@ -9349,32 +11154,47 @@ Schema: `StoreResponse`
 #### updateAllocationLocation
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.updateAllocationLocation(id,companyId,applicationId,body);
+const promise = assignment.updateAllocationLocation( {  id : value,
+ companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await assignment.updateAllocationLocation(id,companyId,applicationId,body);
+const data = await assignment.updateAllocationLocation( {  id : value,
+ companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | number | Store Id | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | number? | no | Store Id |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+| body | [StoreSchema](#StoreSchema) | no | Request body |
+
 
 A store configuration once created can be updated via this API. Store id in request params
 and udpated request body are required to successfully update the store data.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response - Store Updated
 
 
-Schema: `Success`
+[Success](#Success)
+
+Success Response - Store Updated
 
 
 
@@ -9390,18 +11210,28 @@ Schema: `Success`
 #### createAllocationLocation
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.createAllocationLocation(companyId,applicationId,body);
+const promise = assignment.createAllocationLocation( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await assignment.createAllocationLocation(companyId,applicationId,body);
+const data = await assignment.createAllocationLocation( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+| body | [StoreSchema](#StoreSchema) | no | Request body |
+
 
 Create a new store shipping configuratiion. The configuration is stored into the
 sixspeed database. One one store data can be created for one store id. Ther can be one
@@ -9409,14 +11239,17 @@ default configuration and multiple non-default ones. The default is not binded w
 tags while others are required to be.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response - Store Updated
 
 
-Schema: `Success`
+[Success](#Success)
+
+Success Response - Store Updated
 
 
 
@@ -9432,34 +11265,51 @@ Schema: `Success`
 #### getDestinationZones
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.getDestinationZones(companyId,applicationId,q,pageNo,pageSize);
+const promise = assignment.getDestinationZones( {  companyId : value,
+ applicationId : value,
+ q : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await assignment.getDestinationZones(companyId,applicationId,q,pageNo,pageSize);
+const data = await assignment.getDestinationZones( {  companyId : value,
+ applicationId : value,
+ q : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| q | string | Search query | 
-| pageNo | integer | Request a page number | 
-| pageSize | integer | Request a page size | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| q | string? | no | Search query |    
+| pageNo | number? | no | Request a page number |    
+| pageSize | number? | no | Request a page size |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+
+
 
 Get a list of zones created, where every zone has a unique name and id. They can be
 of three different types, radius, pincode and country.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response
 
 
-Schema: `ZoneListResponse`
+[ZoneListResponse](#ZoneListResponse)
+
+Success Response
 
 
 
@@ -9475,32 +11325,45 @@ Schema: `ZoneListResponse`
 #### postDestinationZone
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.postDestinationZone(companyId,applicationId,body);
+const promise = assignment.postDestinationZone( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await assignment.postDestinationZone(companyId,applicationId,body);
+const data = await assignment.postDestinationZone( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+| body | [ZoneSchema](#ZoneSchema) | no | Request body |
+
 
 This API lets you create a zone which can be used further be mapped with store
 configuration rules to defined a shipping rule. Either of the three details need to
 be passed, zone_detail, pincode and region.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response - Zone Created
 
 
-Schema: `Success`
+[Success](#Success)
+
+Success Response - Zone Created
 
 
 
@@ -9516,32 +11379,45 @@ Schema: `Success`
 #### getDestinationZoneById
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.getDestinationZoneById(id,companyId,applicationId);
+const promise = assignment.getDestinationZoneById( {  id : value,
+ companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await assignment.getDestinationZoneById(id,companyId,applicationId);
+const data = await assignment.getDestinationZoneById( {  id : value,
+ companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | number | Store Id | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | number? | no | Store Id |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+
+
 
 Returns zone data for the specified zone id. Id is the required parameter and returns
 not found if no data is found for the passed zone id.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response
 
 
-Schema: `ZoneSchema`
+[ZoneSchema](#ZoneSchema)
+
+Success Response
 
 
 
@@ -9557,32 +11433,47 @@ Schema: `ZoneSchema`
 #### updateDestinationZone
 
 
+
+
 ```javascript
 // Promise
-const promise = assignment.updateDestinationZone(id,companyId,applicationId,body);
+const promise = assignment.updateDestinationZone( {  id : value,
+ companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await assignment.updateDestinationZone(id,companyId,applicationId,body);
+const data = await assignment.updateDestinationZone( {  id : value,
+ companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| id | number | Store Id | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | number? | no | Store Id |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+| body | [ZoneSchema](#ZoneSchema) | no | Request body |
+
 
 Zone once created can be updated using this API. Zone id and request body are the required
 data to update a zone.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success Response - Zone Updated
 
 
-Schema: `Success`
+[Success](#Success)
+
+Success Response - Zone Updated
 
 
 
@@ -9596,7 +11487,6 @@ Schema: `Success`
 
 
 
----
 
 
 ## Billing
@@ -9605,29 +11495,42 @@ Schema: `Success`
 #### createSubscriptionCharge
 Create subscription charge
 
+
+
 ```javascript
 // Promise
-const promise = billing.createSubscriptionCharge(companyId,extensionId,body);
+const promise = billing.createSubscriptionCharge( {  companyId : value,
+ extensionId : value,
+ body : value });
 
 // Async/Await
-const data = await billing.createSubscriptionCharge(companyId,extensionId,body);
+const data = await billing.createSubscriptionCharge( {  companyId : value,
+ extensionId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
-| extensionId | string | Extension _id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |    
+| extensionId | string? | no | Extension _id |  
+| body | [CreateSubscriptionCharge](#CreateSubscriptionCharge) | no | Request body |
+
 
 Register subscription charge for a seller of your extension.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CreateSubscriptionResponse`
+[CreateSubscriptionResponse](#CreateSubscriptionResponse)
+
+Success
 
 
 
@@ -9643,30 +11546,43 @@ Schema: `CreateSubscriptionResponse`
 #### getSubscriptionCharge
 Get subscription charge details
 
+
+
 ```javascript
 // Promise
-const promise = billing.getSubscriptionCharge(companyId,extensionId,subscriptionId);
+const promise = billing.getSubscriptionCharge( {  companyId : value,
+ extensionId : value,
+ subscriptionId : value });
 
 // Async/Await
-const data = await billing.getSubscriptionCharge(companyId,extensionId,subscriptionId);
+const data = await billing.getSubscriptionCharge( {  companyId : value,
+ extensionId : value,
+ subscriptionId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
-| extensionId | string | Extension _id | 
-| subscriptionId | string | Subscription charge _id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |    
+| extensionId | string? | no | Extension _id |    
+| subscriptionId | string? | no | Subscription charge _id |  
+
+
 
 Get created subscription charge details
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EntitySubscription`
+[EntitySubscription](#EntitySubscription)
+
+Success
 
 
 
@@ -9682,30 +11598,43 @@ Schema: `EntitySubscription`
 #### cancelSubscriptionCharge
 Cancel subscription charge
 
+
+
 ```javascript
 // Promise
-const promise = billing.cancelSubscriptionCharge(companyId,extensionId,subscriptionId);
+const promise = billing.cancelSubscriptionCharge( {  companyId : value,
+ extensionId : value,
+ subscriptionId : value });
 
 // Async/Await
-const data = await billing.cancelSubscriptionCharge(companyId,extensionId,subscriptionId);
+const data = await billing.cancelSubscriptionCharge( {  companyId : value,
+ extensionId : value,
+ subscriptionId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
-| extensionId | string | Extension _id | 
-| subscriptionId | string | Subscription charge _id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |    
+| extensionId | string? | no | Extension _id |    
+| subscriptionId | string? | no | Subscription charge _id |  
+
+
 
 Cancel subscription and attached charges.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EntitySubscription`
+[EntitySubscription](#EntitySubscription)
+
+Success
 
 
 
@@ -9721,28 +11650,37 @@ Schema: `EntitySubscription`
 #### getInvoices
 Get invoices
 
+
+
 ```javascript
 // Promise
-const promise = billing.getInvoices(companyId);
+const promise = billing.getInvoices( {  companyId : value });
 
 // Async/Await
-const data = await billing.getInvoices(companyId);
+const data = await billing.getInvoices( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |  
+
+
 
 Get invoices.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Invoices`
+[Invoices](#Invoices)
+
+Success
 
 
 *Examples:*
@@ -9769,29 +11707,40 @@ default
 #### getInvoiceById
 Get invoice by id
 
+
+
 ```javascript
 // Promise
-const promise = billing.getInvoiceById(companyId,invoiceId);
+const promise = billing.getInvoiceById( {  companyId : value,
+ invoiceId : value });
 
 // Async/Await
-const data = await billing.getInvoiceById(companyId,invoiceId);
+const data = await billing.getInvoiceById( {  companyId : value,
+ invoiceId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
-| invoiceId | string | Invoice id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |    
+| invoiceId | string? | no | Invoice id |  
+
+
 
 Get invoice by id.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Invoice`
+[Invoice](#Invoice)
+
+Success
 
 
 *Examples:*
@@ -9818,28 +11767,37 @@ default
 #### getCustomerDetail
 Get subscription customer detail
 
+
+
 ```javascript
 // Promise
-const promise = billing.getCustomerDetail(companyId);
+const promise = billing.getCustomerDetail( {  companyId : value });
 
 // Async/Await
-const data = await billing.getCustomerDetail(companyId);
+const data = await billing.getCustomerDetail( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |  
+
+
 
 Get subscription customer detail.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SubscriptionCustomer`
+[SubscriptionCustomer](#SubscriptionCustomer)
+
+Success
 
 
 *Examples:*
@@ -9866,28 +11824,39 @@ default
 #### upsertCustomerDetail
 Upsert subscription customer detail
 
+
+
 ```javascript
 // Promise
-const promise = billing.upsertCustomerDetail(companyId,body);
+const promise = billing.upsertCustomerDetail( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await billing.upsertCustomerDetail(companyId,body);
+const data = await billing.upsertCustomerDetail( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |  
+| body | [SubscriptionCustomerCreate](#SubscriptionCustomerCreate) | yes | Request body |
+
 
 Upsert subscription customer detail.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SubscriptionCustomer`
+[SubscriptionCustomer](#SubscriptionCustomer)
+
+Success
 
 
 *Examples:*
@@ -9914,29 +11883,38 @@ default
 #### getSubscription
 Get current subscription detail
 
+
+
 ```javascript
 // Promise
-const promise = billing.getSubscription(companyId);
+const promise = billing.getSubscription( {  companyId : value });
 
 // Async/Await
-const data = await billing.getSubscription(companyId);
+const data = await billing.getSubscription( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |  
+
+
 
 If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SubscriptionStatus`
+[SubscriptionStatus](#SubscriptionStatus)
+
+Success
 
 
 *Examples:*
@@ -9970,28 +11948,37 @@ Inactive subscription
 #### getFeatureLimitConfig
 Get subscription subscription limits
 
+
+
 ```javascript
 // Promise
-const promise = billing.getFeatureLimitConfig(companyId);
+const promise = billing.getFeatureLimitConfig( {  companyId : value });
 
 // Async/Await
-const data = await billing.getFeatureLimitConfig(companyId);
+const data = await billing.getFeatureLimitConfig( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |  
+
+
 
 Get subscription subscription limits.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SubscriptionLimit`
+[SubscriptionLimit](#SubscriptionLimit)
+
+Success
 
 
 *Examples:*
@@ -10018,28 +12005,39 @@ default
 #### activateSubscriptionPlan
 Activate subscription
 
+
+
 ```javascript
 // Promise
-const promise = billing.activateSubscriptionPlan(companyId,body);
+const promise = billing.activateSubscriptionPlan( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await billing.activateSubscriptionPlan(companyId,body);
+const data = await billing.activateSubscriptionPlan( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |  
+| body | [SubscriptionActivateReq](#SubscriptionActivateReq) | yes | Request body |
+
 
 It will activate subscription plan for customer
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SubscriptionActivateRes`
+[SubscriptionActivateRes](#SubscriptionActivateRes)
+
+Success
 
 
 *Examples:*
@@ -10066,28 +12064,39 @@ default
 #### cancelSubscriptionPlan
 Cancel subscription
 
+
+
 ```javascript
 // Promise
-const promise = billing.cancelSubscriptionPlan(companyId,body);
+const promise = billing.cancelSubscriptionPlan( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await billing.cancelSubscriptionPlan(companyId,body);
+const data = await billing.cancelSubscriptionPlan( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Customer unique id. In case of company it will be company id. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Customer unique id. In case of company it will be company id. |  
+| body | [CancelSubscriptionReq](#CancelSubscriptionReq) | yes | Request body |
+
 
 It will cancel current active subscription.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CancelSubscriptionRes`
+[CancelSubscriptionRes](#CancelSubscriptionRes)
+
+Success
 
 
 *Examples:*
@@ -10112,7 +12121,6 @@ default
 
 
 
----
 
 
 ## Communication
@@ -10121,32 +12129,49 @@ default
 #### getCampaigns
 Get campaigns
 
+
+
 ```javascript
 // Promise
-const promise = communication.getCampaigns(companyId,applicationId,pageNo,pageSize,sort);
+const promise = communication.getCampaigns( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 
 // Async/Await
-const data = await communication.getCampaigns(companyId,applicationId,pageNo,pageSize,sort);
+const data = await communication.getCampaigns( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on created_at | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on created_at |  
+
+
 
 Get campaigns
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Campaigns`
+[Campaigns](#Campaigns)
+
+Success
 
 
 *Examples:*
@@ -10173,29 +12198,42 @@ default
 #### createCampaign
 Create campaign
 
+
+
 ```javascript
 // Promise
-const promise = communication.createCampaign(companyId,applicationId,body);
+const promise = communication.createCampaign( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await communication.createCampaign(companyId,applicationId,body);
+const data = await communication.createCampaign( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |  
+| body | [CampaignReq](#CampaignReq) | yes | Request body |
+
 
 Create campaign
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Campaign`
+[Campaign](#Campaign)
+
+Success
 
 
 *Examples:*
@@ -10222,30 +12260,43 @@ default
 #### getCampaignById
 Get campaign by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.getCampaignById(companyId,applicationId,id);
+const promise = communication.getCampaignById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await communication.getCampaignById(companyId,applicationId,id);
+const data = await communication.getCampaignById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Campaign id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Campaign id |  
+
+
 
 Get campaign by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Campaign`
+[Campaign](#Campaign)
+
+Success
 
 
 *Examples:*
@@ -10272,30 +12323,45 @@ default
 #### updateCampaignById
 Update campaign by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.updateCampaignById(companyId,applicationId,id,body);
+const promise = communication.updateCampaignById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await communication.updateCampaignById(companyId,applicationId,id,body);
+const data = await communication.updateCampaignById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Campaign id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Campaign id |  
+| body | [CampaignReq](#CampaignReq) | yes | Request body |
+
 
 Update campaign by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Campaign`
+[Campaign](#Campaign)
+
+Success
 
 
 *Examples:*
@@ -10322,30 +12388,43 @@ default
 #### getStatsOfCampaignById
 Get stats of campaign by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.getStatsOfCampaignById(companyId,applicationId,id);
+const promise = communication.getStatsOfCampaignById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await communication.getStatsOfCampaignById(companyId,applicationId,id);
+const data = await communication.getStatsOfCampaignById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Campaign id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Campaign id |  
+
+
 
 Get stats of campaign by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetStats`
+[GetStats](#GetStats)
+
+Success
 
 
 *Examples:*
@@ -10372,32 +12451,49 @@ default
 #### getAudiences
 Get audiences
 
+
+
 ```javascript
 // Promise
-const promise = communication.getAudiences(companyId,applicationId,pageNo,pageSize,sort);
+const promise = communication.getAudiences( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 
 // Async/Await
-const data = await communication.getAudiences(companyId,applicationId,pageNo,pageSize,sort);
+const data = await communication.getAudiences( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on created_at | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on created_at |  
+
+
 
 Get audiences
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Audiences`
+[Audiences](#Audiences)
+
+Success
 
 
 *Examples:*
@@ -10424,29 +12520,42 @@ default
 #### createAudience
 Create audience
 
+
+
 ```javascript
 // Promise
-const promise = communication.createAudience(companyId,applicationId,body);
+const promise = communication.createAudience( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await communication.createAudience(companyId,applicationId,body);
+const data = await communication.createAudience( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |  
+| body | [AudienceReq](#AudienceReq) | yes | Request body |
+
 
 Create audience
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Audience`
+[Audience](#Audience)
+
+Success
 
 
 *Examples:*
@@ -10473,29 +12582,42 @@ default
 #### getBigqueryHeaders
 Get bigquery headers
 
+
+
 ```javascript
 // Promise
-const promise = communication.getBigqueryHeaders(companyId,applicationId,body);
+const promise = communication.getBigqueryHeaders( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await communication.getBigqueryHeaders(companyId,applicationId,body);
+const data = await communication.getBigqueryHeaders( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |  
+| body | [BigqueryHeadersReq](#BigqueryHeadersReq) | yes | Request body |
+
 
 Get bigquery headers
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `BigqueryHeadersRes`
+[BigqueryHeadersRes](#BigqueryHeadersRes)
+
+Success
 
 
 *Examples:*
@@ -10522,30 +12644,43 @@ default
 #### getAudienceById
 Get audience by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.getAudienceById(companyId,applicationId,id);
+const promise = communication.getAudienceById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await communication.getAudienceById(companyId,applicationId,id);
+const data = await communication.getAudienceById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Audience id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Audience id |  
+
+
 
 Get audience by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Audience`
+[Audience](#Audience)
+
+Success
 
 
 *Examples:*
@@ -10572,30 +12707,45 @@ default
 #### updateAudienceById
 Update audience by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.updateAudienceById(companyId,applicationId,id,body);
+const promise = communication.updateAudienceById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await communication.updateAudienceById(companyId,applicationId,id,body);
+const data = await communication.updateAudienceById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Audience id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Audience id |  
+| body | [AudienceReq](#AudienceReq) | yes | Request body |
+
 
 Update audience by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Audience`
+[Audience](#Audience)
+
+Success
 
 
 *Examples:*
@@ -10622,29 +12772,42 @@ default
 #### getNSampleRecordsFromCsv
 Get n sample records from csv
 
+
+
 ```javascript
 // Promise
-const promise = communication.getNSampleRecordsFromCsv(companyId,applicationId,body);
+const promise = communication.getNSampleRecordsFromCsv( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await communication.getNSampleRecordsFromCsv(companyId,applicationId,body);
+const data = await communication.getNSampleRecordsFromCsv( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |  
+| body | [GetNRecordsCsvReq](#GetNRecordsCsvReq) | yes | Request body |
+
 
 Get n sample records from csv
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetNRecordsCsvRes`
+[GetNRecordsCsvRes](#GetNRecordsCsvRes)
+
+Success
 
 
 *Examples:*
@@ -10671,32 +12834,49 @@ default
 #### getEmailProviders
 Get email providers
 
+
+
 ```javascript
 // Promise
-const promise = communication.getEmailProviders(companyId,applicationId,pageNo,pageSize,sort);
+const promise = communication.getEmailProviders( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 
 // Async/Await
-const data = await communication.getEmailProviders(companyId,applicationId,pageNo,pageSize,sort);
+const data = await communication.getEmailProviders( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on created_at | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on created_at |  
+
+
 
 Get email providers
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EmailProviders`
+[EmailProviders](#EmailProviders)
+
+Success
 
 
 *Examples:*
@@ -10723,29 +12903,42 @@ default
 #### createEmailProvider
 Create email provider
 
+
+
 ```javascript
 // Promise
-const promise = communication.createEmailProvider(companyId,applicationId,body);
+const promise = communication.createEmailProvider( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await communication.createEmailProvider(companyId,applicationId,body);
+const data = await communication.createEmailProvider( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |  
+| body | [EmailProviderReq](#EmailProviderReq) | yes | Request body |
+
 
 Create email provider
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EmailProvider`
+[EmailProvider](#EmailProvider)
+
+Success
 
 
 *Examples:*
@@ -10772,30 +12965,43 @@ default
 #### getEmailProviderById
 Get email provider by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.getEmailProviderById(companyId,applicationId,id);
+const promise = communication.getEmailProviderById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await communication.getEmailProviderById(companyId,applicationId,id);
+const data = await communication.getEmailProviderById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Email provider id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Email provider id |  
+
+
 
 Get email provider by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EmailProvider`
+[EmailProvider](#EmailProvider)
+
+Success
 
 
 *Examples:*
@@ -10822,30 +13028,45 @@ default
 #### updateEmailProviderById
 Update email provider by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.updateEmailProviderById(companyId,applicationId,id,body);
+const promise = communication.updateEmailProviderById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await communication.updateEmailProviderById(companyId,applicationId,id,body);
+const data = await communication.updateEmailProviderById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Email provider id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Email provider id |  
+| body | [EmailProviderReq](#EmailProviderReq) | yes | Request body |
+
 
 Update email provider by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EmailProvider`
+[EmailProvider](#EmailProvider)
+
+Success
 
 
 *Examples:*
@@ -10872,32 +13093,49 @@ default
 #### getEmailTemplates
 Get email templates
 
+
+
 ```javascript
 // Promise
-const promise = communication.getEmailTemplates(companyId,applicationId,pageNo,pageSize,sort);
+const promise = communication.getEmailTemplates( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 
 // Async/Await
-const data = await communication.getEmailTemplates(companyId,applicationId,pageNo,pageSize,sort);
+const data = await communication.getEmailTemplates( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on created_at | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on created_at |  
+
+
 
 Get email templates
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EmailTemplates`
+[EmailTemplates](#EmailTemplates)
+
+Success
 
 
 *Examples:*
@@ -10924,29 +13162,42 @@ default
 #### createEmailTemplate
 Create email template
 
+
+
 ```javascript
 // Promise
-const promise = communication.createEmailTemplate(companyId,applicationId,body);
+const promise = communication.createEmailTemplate( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await communication.createEmailTemplate(companyId,applicationId,body);
+const data = await communication.createEmailTemplate( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |  
+| body | [EmailTemplateReq](#EmailTemplateReq) | yes | Request body |
+
 
 Create email template
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EmailTemplateRes`
+[EmailTemplateRes](#EmailTemplateRes)
+
+Success
 
 
 *Examples:*
@@ -10973,32 +13224,49 @@ default
 #### getSystemEmailTemplates
 Get system email templates
 
+
+
 ```javascript
 // Promise
-const promise = communication.getSystemEmailTemplates(companyId,applicationId,pageNo,pageSize,sort);
+const promise = communication.getSystemEmailTemplates( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 
 // Async/Await
-const data = await communication.getSystemEmailTemplates(companyId,applicationId,pageNo,pageSize,sort);
+const data = await communication.getSystemEmailTemplates( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on created_at | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on created_at |  
+
+
 
 Get system email templates
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SystemEmailTemplates`
+[SystemEmailTemplates](#SystemEmailTemplates)
+
+Success
 
 
 *Examples:*
@@ -11025,30 +13293,43 @@ default
 #### getEmailTemplateById
 Get email template by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.getEmailTemplateById(companyId,applicationId,id);
+const promise = communication.getEmailTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await communication.getEmailTemplateById(companyId,applicationId,id);
+const data = await communication.getEmailTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Email template id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Email template id |  
+
+
 
 Get email template by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EmailTemplate`
+[EmailTemplate](#EmailTemplate)
+
+Success
 
 
 *Examples:*
@@ -11075,30 +13356,45 @@ default
 #### updateEmailTemplateById
 Update email template by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.updateEmailTemplateById(companyId,applicationId,id,body);
+const promise = communication.updateEmailTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await communication.updateEmailTemplateById(companyId,applicationId,id,body);
+const data = await communication.updateEmailTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Email template id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Email template id |  
+| body | [EmailTemplateReq](#EmailTemplateReq) | yes | Request body |
+
 
 Update email template by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EmailTemplateRes`
+[EmailTemplateRes](#EmailTemplateRes)
+
+Success
 
 
 *Examples:*
@@ -11125,30 +13421,43 @@ default
 #### deleteEmailTemplateById
 Delete email template by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.deleteEmailTemplateById(companyId,applicationId,id);
+const promise = communication.deleteEmailTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await communication.deleteEmailTemplateById(companyId,applicationId,id);
+const data = await communication.deleteEmailTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Email template id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Email template id |  
+
+
 
 Delete email template by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EmailTemplateDeleteSuccessRes`
+[EmailTemplateDeleteSuccessRes](#EmailTemplateDeleteSuccessRes)
+
+Success
 
 
 *Examples:*
@@ -11175,32 +13484,49 @@ default
 #### getEventSubscriptions
 Get event subscriptions
 
+
+
 ```javascript
 // Promise
-const promise = communication.getEventSubscriptions(companyId,applicationId,pageNo,pageSize,populate);
+const promise = communication.getEventSubscriptions( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ populate : value });
 
 // Async/Await
-const data = await communication.getEventSubscriptions(companyId,applicationId,pageNo,pageSize,populate);
+const data = await communication.getEventSubscriptions( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ populate : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| populate | string | populate fields | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| populate | string? | no | populate fields |  
+
+
 
 Get event subscriptions
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `EventSubscriptions`
+[EventSubscriptions](#EventSubscriptions)
+
+Success
 
 
 *Examples:*
@@ -11227,32 +13553,49 @@ default
 #### getJobs
 Get jobs
 
+
+
 ```javascript
 // Promise
-const promise = communication.getJobs(companyId,applicationId,pageNo,pageSize,sort);
+const promise = communication.getJobs( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 
 // Async/Await
-const data = await communication.getJobs(companyId,applicationId,pageNo,pageSize,sort);
+const data = await communication.getJobs( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on created_at | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on created_at |  
+
+
 
 Get jobs
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Jobs`
+[Jobs](#Jobs)
+
+Success
 
 
 *Examples:*
@@ -11279,29 +13622,42 @@ default
 #### triggerCampaignJob
 Trigger campaign job
 
+
+
 ```javascript
 // Promise
-const promise = communication.triggerCampaignJob(companyId,applicationId,body);
+const promise = communication.triggerCampaignJob( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await communication.triggerCampaignJob(companyId,applicationId,body);
+const data = await communication.triggerCampaignJob( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |  
+| body | [TriggerJobRequest](#TriggerJobRequest) | yes | Request body |
+
 
 Trigger campaign job
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TriggerJobResponse`
+[TriggerJobResponse](#TriggerJobResponse)
+
+Success
 
 
 *Examples:*
@@ -11328,32 +13684,49 @@ default
 #### getJobLogs
 Get job logs
 
+
+
 ```javascript
 // Promise
-const promise = communication.getJobLogs(companyId,applicationId,pageNo,pageSize,sort);
+const promise = communication.getJobLogs( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 
 // Async/Await
-const data = await communication.getJobLogs(companyId,applicationId,pageNo,pageSize,sort);
+const data = await communication.getJobLogs( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on created_at | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on created_at |  
+
+
 
 Get job logs
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `JobLogs`
+[JobLogs](#JobLogs)
+
+Success
 
 
 *Examples:*
@@ -11380,33 +13753,52 @@ default
 #### getCommunicationLogs
 Get communication logs
 
+
+
 ```javascript
 // Promise
-const promise = communication.getCommunicationLogs(companyId,applicationId,pageId,pageSize,sort,query);
+const promise = communication.getCommunicationLogs( {  companyId : value,
+ applicationId : value,
+ pageId : value,
+ pageSize : value,
+ sort : value,
+ query : value });
 
 // Async/Await
-const data = await communication.getCommunicationLogs(companyId,applicationId,pageId,pageSize,sort,query);
+const data = await communication.getCommunicationLogs( {  companyId : value,
+ applicationId : value,
+ pageId : value,
+ pageSize : value,
+ sort : value,
+ query : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageId | string | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on _id | 
-| query | object |  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageId | string? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on _id |    
+| query | Object? | no |  |  
+
+
 
 Get communication logs
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Logs`
+[Logs](#Logs)
+
+Success
 
 
 *Examples:*
@@ -11433,30 +13825,43 @@ default
 #### getSystemNotifications
 Get system notifications
 
+
+
 ```javascript
 // Promise
-const promise = communication.getSystemNotifications(companyId,pageNo,pageSize);
+const promise = communication.getSystemNotifications( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await communication.getSystemNotifications(companyId,pageNo,pageSize);
+const data = await communication.getSystemNotifications( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| pageNo | integer |  | 
-| pageSize | integer |  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| pageNo | number? | no |  |    
+| pageSize | number? | no |  |  
+
+
 
 Get system notifications
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SystemNotifications`
+[SystemNotifications](#SystemNotifications)
+
+Success
 
 
 *Examples:*
@@ -11483,32 +13888,49 @@ default
 #### getSmsProviders
 Get sms providers
 
+
+
 ```javascript
 // Promise
-const promise = communication.getSmsProviders(companyId,applicationId,pageNo,pageSize,sort);
+const promise = communication.getSmsProviders( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 
 // Async/Await
-const data = await communication.getSmsProviders(companyId,applicationId,pageNo,pageSize,sort);
+const data = await communication.getSmsProviders( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on created_at | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on created_at |  
+
+
 
 Get sms providers
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SmsProviders`
+[SmsProviders](#SmsProviders)
+
+Success
 
 
 *Examples:*
@@ -11535,29 +13957,42 @@ default
 #### createSmsProvider
 Create sms provider
 
+
+
 ```javascript
 // Promise
-const promise = communication.createSmsProvider(companyId,applicationId,body);
+const promise = communication.createSmsProvider( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await communication.createSmsProvider(companyId,applicationId,body);
+const data = await communication.createSmsProvider( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |  
+| body | [SmsProviderReq](#SmsProviderReq) | yes | Request body |
+
 
 Create sms provider
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SmsProvider`
+[SmsProvider](#SmsProvider)
+
+Success
 
 
 *Examples:*
@@ -11584,30 +14019,43 @@ default
 #### getSmsProviderById
 Get sms provider by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.getSmsProviderById(companyId,applicationId,id);
+const promise = communication.getSmsProviderById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await communication.getSmsProviderById(companyId,applicationId,id);
+const data = await communication.getSmsProviderById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Sms provider id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Sms provider id |  
+
+
 
 Get sms provider by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SmsProvider`
+[SmsProvider](#SmsProvider)
+
+Success
 
 
 *Examples:*
@@ -11634,30 +14082,45 @@ default
 #### updateSmsProviderById
 Update sms provider by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.updateSmsProviderById(companyId,applicationId,id,body);
+const promise = communication.updateSmsProviderById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await communication.updateSmsProviderById(companyId,applicationId,id,body);
+const data = await communication.updateSmsProviderById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Sms provider id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Sms provider id |  
+| body | [SmsProviderReq](#SmsProviderReq) | yes | Request body |
+
 
 Update sms provider by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SmsProvider`
+[SmsProvider](#SmsProvider)
+
+Success
 
 
 *Examples:*
@@ -11684,32 +14147,49 @@ default
 #### getSmsTemplates
 Get sms templates
 
+
+
 ```javascript
 // Promise
-const promise = communication.getSmsTemplates(companyId,applicationId,pageNo,pageSize,sort);
+const promise = communication.getSmsTemplates( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 
 // Async/Await
-const data = await communication.getSmsTemplates(companyId,applicationId,pageNo,pageSize,sort);
+const data = await communication.getSmsTemplates( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on created_at | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on created_at |  
+
+
 
 Get sms templates
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SmsTemplates`
+[SmsTemplates](#SmsTemplates)
+
+Success
 
 
 *Examples:*
@@ -11736,29 +14216,42 @@ default
 #### createSmsTemplate
 Create sms template
 
+
+
 ```javascript
 // Promise
-const promise = communication.createSmsTemplate(companyId,applicationId,body);
+const promise = communication.createSmsTemplate( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await communication.createSmsTemplate(companyId,applicationId,body);
+const data = await communication.createSmsTemplate( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |  
+| body | [SmsTemplateReq](#SmsTemplateReq) | yes | Request body |
+
 
 Create sms template
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SmsTemplateRes`
+[SmsTemplateRes](#SmsTemplateRes)
+
+Success
 
 
 *Examples:*
@@ -11785,30 +14278,43 @@ default
 #### getSmsTemplateById
 Get sms template by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.getSmsTemplateById(companyId,applicationId,id);
+const promise = communication.getSmsTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await communication.getSmsTemplateById(companyId,applicationId,id);
+const data = await communication.getSmsTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Sms template id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Sms template id |  
+
+
 
 Get sms template by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SmsTemplate`
+[SmsTemplate](#SmsTemplate)
+
+Success
 
 
 *Examples:*
@@ -11835,30 +14341,45 @@ default
 #### updateSmsTemplateById
 Update sms template by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.updateSmsTemplateById(companyId,applicationId,id,body);
+const promise = communication.updateSmsTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await communication.updateSmsTemplateById(companyId,applicationId,id,body);
+const data = await communication.updateSmsTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Sms template id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Sms template id |  
+| body | [SmsTemplateReq](#SmsTemplateReq) | yes | Request body |
+
 
 Update sms template by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SmsTemplateRes`
+[SmsTemplateRes](#SmsTemplateRes)
+
+Success
 
 
 *Examples:*
@@ -11885,30 +14406,43 @@ default
 #### deleteSmsTemplateById
 Delete sms template by id
 
+
+
 ```javascript
 // Promise
-const promise = communication.deleteSmsTemplateById(companyId,applicationId,id);
+const promise = communication.deleteSmsTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await communication.deleteSmsTemplateById(companyId,applicationId,id);
+const data = await communication.deleteSmsTemplateById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| id | string | Sms template id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| id | string? | no | Sms template id |  
+
+
 
 Delete sms template by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SmsTemplateDeleteSuccessRes`
+[SmsTemplateDeleteSuccessRes](#SmsTemplateDeleteSuccessRes)
+
+Success
 
 
 *Examples:*
@@ -11935,32 +14469,49 @@ default
 #### getSystemSystemTemplates
 Get system sms templates
 
+
+
 ```javascript
 // Promise
-const promise = communication.getSystemSystemTemplates(companyId,applicationId,pageNo,pageSize,sort);
+const promise = communication.getSystemSystemTemplates( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 
 // Async/Await
-const data = await communication.getSystemSystemTemplates(companyId,applicationId,pageNo,pageSize,sort);
+const data = await communication.getSystemSystemTemplates( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ sort : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company id | 
-| applicationId | string | Application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
-| sort | object | To sort based on created_at | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company id |    
+| applicationId | string? | no | Application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |    
+| sort | Object? | no | To sort based on created_at |  
+
+
 
 Get system sms templates
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SystemSmsTemplates`
+[SystemSmsTemplates](#SystemSmsTemplates)
+
+Success
 
 
 *Examples:*
@@ -11985,7 +14536,6 @@ default
 
 
 
----
 
 
 ## Payment
@@ -11994,29 +14544,40 @@ default
 #### getBrandPaymentGatewayConfig
 Get All Brand Payment Gateway Config Secret
 
+
+
 ```javascript
 // Promise
-const promise = payment.getBrandPaymentGatewayConfig(companyId,applicationId);
+const promise = payment.getBrandPaymentGatewayConfig( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await payment.getBrandPaymentGatewayConfig(companyId,applicationId);
+const data = await payment.getBrandPaymentGatewayConfig( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application id |  
+
+
 
 Get All Brand Payment Gateway Config Secret
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Refund Transfer Mode
 
 
-Schema: `PaymentGatewayConfigResponse`
+[PaymentGatewayConfigResponse](#PaymentGatewayConfigResponse)
+
+Refund Transfer Mode
 
 
 
@@ -12032,29 +14593,42 @@ Schema: `PaymentGatewayConfigResponse`
 #### saveBrandPaymentGatewayConfig
 Save Config Secret For Brand Payment Gateway
 
+
+
 ```javascript
 // Promise
-const promise = payment.saveBrandPaymentGatewayConfig(companyId,applicationId,body);
+const promise = payment.saveBrandPaymentGatewayConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await payment.saveBrandPaymentGatewayConfig(companyId,applicationId,body);
+const data = await payment.saveBrandPaymentGatewayConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application id |  
+| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | no | Request body |
+
 
 Save Config Secret For Brand Payment Gateway
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Save Config Secret For Brand Payment Gateway Success Response.
 
 
-Schema: `PaymentGatewayToBeReviewed`
+[PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
+
+Save Config Secret For Brand Payment Gateway Success Response.
 
 
 
@@ -12070,29 +14644,42 @@ Schema: `PaymentGatewayToBeReviewed`
 #### updateBrandPaymentGatewayConfig
 Save Config Secret For Brand Payment Gateway
 
+
+
 ```javascript
 // Promise
-const promise = payment.updateBrandPaymentGatewayConfig(companyId,applicationId,body);
+const promise = payment.updateBrandPaymentGatewayConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await payment.updateBrandPaymentGatewayConfig(companyId,applicationId,body);
+const data = await payment.updateBrandPaymentGatewayConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application id |  
+| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | no | Request body |
+
 
 Save Config Secret For Brand Payment Gateway
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Save Config Secret For Brand Payment Gateway Success Response.
 
 
-Schema: `PaymentGatewayToBeReviewed`
+[PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
+
+Save Config Secret For Brand Payment Gateway Success Response.
 
 
 
@@ -12108,31 +14695,46 @@ Schema: `PaymentGatewayToBeReviewed`
 #### getPaymentModeRoutes
 Get All Valid Payment Options
 
+
+
 ```javascript
 // Promise
-const promise = payment.getPaymentModeRoutes(companyId,applicationId,refresh,requestType);
+const promise = payment.getPaymentModeRoutes( {  companyId : value,
+ applicationId : value,
+ refresh : value,
+ requestType : value });
 
 // Async/Await
-const data = await payment.getPaymentModeRoutes(companyId,applicationId,refresh,requestType);
+const data = await payment.getPaymentModeRoutes( {  companyId : value,
+ applicationId : value,
+ refresh : value,
+ requestType : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application id | 
-| refresh | boolean |  | 
-| requestType | string |  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application id |    
+| refresh | boolean? | no |  |    
+| requestType | string? | no |  |  
+
+
 
 Use this API to get Get All Valid Payment Options for making payment
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `PaymentOptionsResponse`
+[PaymentOptionsResponse](#PaymentOptionsResponse)
+
+Success
 
 
 
@@ -12148,29 +14750,40 @@ Schema: `PaymentOptionsResponse`
 #### getAllPayouts
 Get All Payouts
 
+
+
 ```javascript
 // Promise
-const promise = payment.getAllPayouts(companyId,uniqueExternalId);
+const promise = payment.getAllPayouts( {  companyId : value,
+ uniqueExternalId : value });
 
 // Async/Await
-const data = await payment.getAllPayouts(companyId,uniqueExternalId);
+const data = await payment.getAllPayouts( {  companyId : value,
+ uniqueExternalId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| uniqueExternalId | string | Fetch payouts using unique external id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| uniqueExternalId | string? | no | Fetch payouts using unique external id |  
+
+
 
 Get All Payouts
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 payouts response object
 
 
-Schema: `PayoutsResponse`
+[PayoutsResponse](#PayoutsResponse)
+
+payouts response object
 
 
 
@@ -12186,28 +14799,39 @@ Schema: `PayoutsResponse`
 #### savePayout
 Save Payout
 
+
+
 ```javascript
 // Promise
-const promise = payment.savePayout(companyId,body);
+const promise = payment.savePayout( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await payment.savePayout(companyId,body);
+const data = await payment.savePayout( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |  
+| body | [PayoutRequest](#PayoutRequest) | no | Request body |
+
 
 Save Payout
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 save payout response object
 
 
-Schema: `PayoutResponse`
+[PayoutResponse](#PayoutResponse)
+
+save payout response object
 
 
 
@@ -12223,29 +14847,42 @@ Schema: `PayoutResponse`
 #### updatePayout
 Update Payout
 
+
+
 ```javascript
 // Promise
-const promise = payment.updatePayout(companyId,uniqueTransferNo,body);
+const promise = payment.updatePayout( {  companyId : value,
+ uniqueTransferNo : value,
+ body : value });
 
 // Async/Await
-const data = await payment.updatePayout(companyId,uniqueTransferNo,body);
+const data = await payment.updatePayout( {  companyId : value,
+ uniqueTransferNo : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| uniqueTransferNo | string | Unique transfer id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| uniqueTransferNo | string? | no | Unique transfer id |  
+| body | [PayoutRequest](#PayoutRequest) | no | Request body |
+
 
 Update Payout
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 save payout response object
 
 
-Schema: `UpdatePayoutResponse`
+[UpdatePayoutResponse](#UpdatePayoutResponse)
+
+save payout response object
 
 
 
@@ -12261,29 +14898,42 @@ Schema: `UpdatePayoutResponse`
 #### activateAndDectivatePayout
 Partial Update Payout
 
+
+
 ```javascript
 // Promise
-const promise = payment.activateAndDectivatePayout(companyId,uniqueTransferNo,body);
+const promise = payment.activateAndDectivatePayout( {  companyId : value,
+ uniqueTransferNo : value,
+ body : value });
 
 // Async/Await
-const data = await payment.activateAndDectivatePayout(companyId,uniqueTransferNo,body);
+const data = await payment.activateAndDectivatePayout( {  companyId : value,
+ uniqueTransferNo : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| uniqueTransferNo | string | Unique transfer id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| uniqueTransferNo | string? | no | Unique transfer id |  
+| body | [UpdatePayoutRequest](#UpdatePayoutRequest) | no | Request body |
+
 
 Partial Update Payout
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 save payout response object
 
 
-Schema: `UpdatePayoutResponse`
+[UpdatePayoutResponse](#UpdatePayoutResponse)
+
+save payout response object
 
 
 
@@ -12299,29 +14949,40 @@ Schema: `UpdatePayoutResponse`
 #### deletePayout
 Delete Payout
 
+
+
 ```javascript
 // Promise
-const promise = payment.deletePayout(companyId,uniqueTransferNo);
+const promise = payment.deletePayout( {  companyId : value,
+ uniqueTransferNo : value });
 
 // Async/Await
-const data = await payment.deletePayout(companyId,uniqueTransferNo);
+const data = await payment.deletePayout( {  companyId : value,
+ uniqueTransferNo : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| uniqueTransferNo | string | Unique transfer id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| uniqueTransferNo | string? | no | Unique transfer id |  
+
+
 
 Delete Payout
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 delete payout response object
 
 
-Schema: `DeletePayoutResponse`
+[DeletePayoutResponse](#DeletePayoutResponse)
+
+delete payout response object
 
 
 
@@ -12337,28 +14998,37 @@ Schema: `DeletePayoutResponse`
 #### getSubscriptionPaymentMethod
 List Subscription Payment Method
 
+
+
 ```javascript
 // Promise
-const promise = payment.getSubscriptionPaymentMethod(companyId);
+const promise = payment.getSubscriptionPaymentMethod( {  companyId : value });
 
 // Async/Await
-const data = await payment.getSubscriptionPaymentMethod(companyId);
+const data = await payment.getSubscriptionPaymentMethod( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |  
+
+
 
 Get all  Subscription  Payment Method
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List Subscription Payment Method Response
 
 
-Schema: `SubscriptionPaymentMethodResponse`
+[SubscriptionPaymentMethodResponse](#SubscriptionPaymentMethodResponse)
+
+List Subscription Payment Method Response
 
 
 
@@ -12374,30 +15044,43 @@ Schema: `SubscriptionPaymentMethodResponse`
 #### deleteSubscriptionPaymentMethod
 Delete Subscription Payment Method
 
+
+
 ```javascript
 // Promise
-const promise = payment.deleteSubscriptionPaymentMethod(companyId,uniqueExternalId,paymentMethodId);
+const promise = payment.deleteSubscriptionPaymentMethod( {  companyId : value,
+ uniqueExternalId : value,
+ paymentMethodId : value });
 
 // Async/Await
-const data = await payment.deleteSubscriptionPaymentMethod(companyId,uniqueExternalId,paymentMethodId);
+const data = await payment.deleteSubscriptionPaymentMethod( {  companyId : value,
+ uniqueExternalId : value,
+ paymentMethodId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| uniqueExternalId | string |  | 
-| paymentMethodId | string |  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| uniqueExternalId | string? | no |  |    
+| paymentMethodId | string? | no |  |  
+
+
 
 Uses this api to Delete Subscription Payment Method
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Delete Subscription Payment Method Response.
 
 
-Schema: `DeleteSubscriptionPaymentMethodResponse`
+[DeleteSubscriptionPaymentMethodResponse](#DeleteSubscriptionPaymentMethodResponse)
+
+Delete Subscription Payment Method Response.
 
 
 
@@ -12413,28 +15096,37 @@ Schema: `DeleteSubscriptionPaymentMethodResponse`
 #### getSubscriptionConfig
 List Subscription Config
 
+
+
 ```javascript
 // Promise
-const promise = payment.getSubscriptionConfig(companyId);
+const promise = payment.getSubscriptionConfig( {  companyId : value });
 
 // Async/Await
-const data = await payment.getSubscriptionConfig(companyId);
+const data = await payment.getSubscriptionConfig( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |  
+
+
 
 Get all  Subscription Config details
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List Subscription Config Response
 
 
-Schema: `SubscriptionConfigResponse`
+[SubscriptionConfigResponse](#SubscriptionConfigResponse)
+
+List Subscription Config Response
 
 
 
@@ -12450,28 +15142,39 @@ Schema: `SubscriptionConfigResponse`
 #### saveSubscriptionSetupIntent
 Save Subscription Setup Intent
 
+
+
 ```javascript
 // Promise
-const promise = payment.saveSubscriptionSetupIntent(companyId,body);
+const promise = payment.saveSubscriptionSetupIntent( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await payment.saveSubscriptionSetupIntent(companyId,body);
+const data = await payment.saveSubscriptionSetupIntent( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |  
+| body | [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest) | no | Request body |
+
 
 Uses this api to Save Subscription Setup Intent
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Save Subscription Setup Intent Response.
 
 
-Schema: `SaveSubscriptionSetupIntentResponse`
+[SaveSubscriptionSetupIntentResponse](#SaveSubscriptionSetupIntentResponse)
+
+Save Subscription Setup Intent Response.
 
 
 
@@ -12487,29 +15190,42 @@ Schema: `SaveSubscriptionSetupIntentResponse`
 #### addBeneficiaryDetails
 Save bank details for cancelled/returned order
 
+
+
 ```javascript
 // Promise
-const promise = payment.addBeneficiaryDetails(companyId,applicationId,body);
+const promise = payment.addBeneficiaryDetails( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await payment.addBeneficiaryDetails(companyId,applicationId,body);
+const data = await payment.addBeneficiaryDetails( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application id |  
+| body | [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest) | no | Request body |
+
 
 Use this API to save bank details for returned/cancelled order to refund amount in his account.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `RefundAccountResponse`
+[RefundAccountResponse](#RefundAccountResponse)
+
+Success
 
 
 
@@ -12525,29 +15241,40 @@ Schema: `RefundAccountResponse`
 #### verifyIfscCode
 Ifsc Code Verification
 
+
+
 ```javascript
 // Promise
-const promise = payment.verifyIfscCode(companyId,ifscCode);
+const promise = payment.verifyIfscCode( {  companyId : value,
+ ifscCode : value });
 
 // Async/Await
-const data = await payment.verifyIfscCode(companyId,ifscCode);
+const data = await payment.verifyIfscCode( {  companyId : value,
+ ifscCode : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| ifscCode | string |  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| ifscCode | string? | no |  |  
+
+
 
 Get True/False for correct IFSC Code for adding bank details for refund
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Bank details on correct Ifsc Code
 
 
-Schema: `IfscCodeResponse`
+[IfscCodeResponse](#IfscCodeResponse)
+
+Bank details on correct Ifsc Code
 
 
 
@@ -12563,30 +15290,43 @@ Schema: `IfscCodeResponse`
 #### getUserOrderBeneficiaries
 List Order Beneficiary
 
+
+
 ```javascript
 // Promise
-const promise = payment.getUserOrderBeneficiaries(orderId,companyId,applicationId);
+const promise = payment.getUserOrderBeneficiaries( {  orderId : value,
+ companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await payment.getUserOrderBeneficiaries(orderId,companyId,applicationId);
+const data = await payment.getUserOrderBeneficiaries( {  orderId : value,
+ companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| orderId | string |  | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| orderId | string? | no |  |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application id |  
+
+
 
 Get all active  beneficiary details added by the user for refund
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List Order Beneficiary
 
 
-Schema: `OrderBeneficiaryResponse`
+[OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
+
+List Order Beneficiary
 
 
 
@@ -12602,30 +15342,43 @@ Schema: `OrderBeneficiaryResponse`
 #### getUserBeneficiaries
 List User Beneficiary
 
+
+
 ```javascript
 // Promise
-const promise = payment.getUserBeneficiaries(orderId,companyId,applicationId);
+const promise = payment.getUserBeneficiaries( {  orderId : value,
+ companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await payment.getUserBeneficiaries(orderId,companyId,applicationId);
+const data = await payment.getUserBeneficiaries( {  orderId : value,
+ companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| orderId | string |  | 
-| companyId | integer | Company Id | 
-| applicationId | string | Application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| orderId | string? | no |  |    
+| companyId | number? | no | Company Id |    
+| applicationId | string? | no | Application id |  
+
+
 
 Get all active  beneficiary details added by the user for refund
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List User Beneficiary
 
 
-Schema: `OrderBeneficiaryResponse`
+[OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
+
+List User Beneficiary
 
 
 
@@ -12639,7 +15392,6 @@ Schema: `OrderBeneficiaryResponse`
 
 
 
----
 
 
 ## Order
@@ -12648,28 +15400,39 @@ Schema: `OrderBeneficiaryResponse`
 #### shipmentStatusUpdate
 Update status of Shipment
 
+
+
 ```javascript
 // Promise
-const promise = order.shipmentStatusUpdate(companyId,body);
+const promise = order.shipmentStatusUpdate( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await order.shipmentStatusUpdate(companyId,body);
+const data = await order.shipmentStatusUpdate( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |  
+| body | [UpdateShipmentStatusBody](#UpdateShipmentStatusBody) | yes | Request body |
+
 
 Update Shipment Status
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `UpdateShipmentStatusResponse`
+[UpdateShipmentStatusResponse](#UpdateShipmentStatusResponse)
+
+Success
 
 
 
@@ -12685,29 +15448,40 @@ Schema: `UpdateShipmentStatusResponse`
 #### activityStatus
 Get Activity Status
 
+
+
 ```javascript
 // Promise
-const promise = order.activityStatus(companyId,bagId);
+const promise = order.activityStatus( {  companyId : value,
+ bagId : value });
 
 // Async/Await
-const data = await order.activityStatus(companyId,bagId);
+const data = await order.activityStatus( {  companyId : value,
+ bagId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| bagId | string | Bag Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| bagId | string? | no | Bag Id |  
+
+
 
 Get Activity Status
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetActivityStatus`
+[GetActivityStatus](#GetActivityStatus)
+
+Success
 
 
 
@@ -12723,28 +15497,39 @@ Schema: `GetActivityStatus`
 #### storeProcessShipmentUpdate
 Update Store Process-Shipment
 
+
+
 ```javascript
 // Promise
-const promise = order.storeProcessShipmentUpdate(companyId,body);
+const promise = order.storeProcessShipmentUpdate( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await order.storeProcessShipmentUpdate(companyId,body);
+const data = await order.storeProcessShipmentUpdate( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |  
+| body | [UpdateProcessShipmenstRequestBody](#UpdateProcessShipmenstRequestBody) | yes | Request body |
+
 
 Update Store Process-Shipment
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `UpdateProcessShipmenstRequestResponse`
+[UpdateProcessShipmenstRequestResponse](#UpdateProcessShipmenstRequestResponse)
+
+Success
 
 
 
@@ -12760,29 +15545,40 @@ Schema: `UpdateProcessShipmenstRequestResponse`
 #### checkRefund
 Check Refund is available or not
 
+
+
 ```javascript
 // Promise
-const promise = order.checkRefund(companyId,shipmentId);
+const promise = order.checkRefund( {  companyId : value,
+ shipmentId : value });
 
 // Async/Await
-const data = await order.checkRefund(companyId,shipmentId);
+const data = await order.checkRefund( {  companyId : value,
+ shipmentId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| shipmentId | string | Shipment Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| shipmentId | string? | no | Shipment Id |  
+
+
 
 Check Refund is available or not
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Object`
+[Object](#Object)
+
+Success
 
 
 
@@ -12798,40 +15594,73 @@ Schema: `Object`
 #### getOrdersByCompanyId
 Get Orders for company based on Company Id
 
+
+
 ```javascript
 // Promise
-const promise = order.getOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+const promise = order.getOrdersByCompanyId( {  companyId : value,
+ pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ q : value,
+ stage : value,
+ salesChannels : value,
+ orderId : value,
+ stores : value,
+ status : value,
+ shortenUrls : value,
+ filterType : value });
 
 // Async/Await
-const data = await order.getOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+const data = await order.getOrdersByCompanyId( {  companyId : value,
+ pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ q : value,
+ stage : value,
+ salesChannels : value,
+ orderId : value,
+ stores : value,
+ status : value,
+ shortenUrls : value,
+ filterType : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| pageNo | string | Current page number | 
-| pageSize | string | Page limit | 
-| fromDate | string | From Date | 
-| toDate | string | To Date | 
-| q | string | Keyword for Search | 
-| stage | string | Specefic Order Stage | 
-| salesChannels | string | Selected Sales Channel | 
-| orderId | string | Order Id | 
-| stores | string | Selected Stores | 
-| status | string | Status of order | 
-| shortenUrls | boolean | Shorten URL option | 
-| filterType | string | Filters | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| pageNo | string? | no | Current page number |    
+| pageSize | string? | no | Page limit |    
+| fromDate | string? | no | From Date |    
+| toDate | string? | no | To Date |    
+| q | string? | no | Keyword for Search |    
+| stage | string? | no | Specefic Order Stage |    
+| salesChannels | string? | no | Selected Sales Channel |    
+| orderId | string? | no | Order Id |    
+| stores | string? | no | Selected Stores |    
+| status | string? | no | Status of order |    
+| shortenUrls | boolean? | no | Shorten URL option |    
+| filterType | string? | no | Filters |  
+
+
 
 Get Orders
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `OrderListing`
+[OrderListing](#OrderListing)
+
+Success
 
 
 
@@ -12847,31 +15676,46 @@ Schema: `OrderListing`
 #### getOrderDetails
 Get Order Details for company based on Company Id and Order Id
 
+
+
 ```javascript
 // Promise
-const promise = order.getOrderDetails(companyId,orderId,next,previous);
+const promise = order.getOrderDetails( {  companyId : value,
+ orderId : value,
+ next : value,
+ previous : value });
 
 // Async/Await
-const data = await order.getOrderDetails(companyId,orderId,next,previous);
+const data = await order.getOrderDetails( {  companyId : value,
+ orderId : value,
+ next : value,
+ previous : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| orderId | string | Order Id | 
-| next | string | Next | 
-| previous | string | Previous | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| orderId | string? | no | Order Id |    
+| next | string? | no | Next |    
+| previous | string? | no | Previous |  
+
+
 
 Get Orders
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `OrderDetails`
+[OrderDetails](#OrderDetails)
+
+Success
 
 
 
@@ -12887,40 +15731,73 @@ Schema: `OrderDetails`
 #### getPicklistOrdersByCompanyId
 Get Orders for company based on Company Id
 
+
+
 ```javascript
 // Promise
-const promise = order.getPicklistOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+const promise = order.getPicklistOrdersByCompanyId( {  companyId : value,
+ pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ q : value,
+ stage : value,
+ salesChannels : value,
+ orderId : value,
+ stores : value,
+ status : value,
+ shortenUrls : value,
+ filterType : value });
 
 // Async/Await
-const data = await order.getPicklistOrdersByCompanyId(companyId,pageNo,pageSize,fromDate,toDate,q,stage,salesChannels,orderId,stores,status,shortenUrls,filterType);
+const data = await order.getPicklistOrdersByCompanyId( {  companyId : value,
+ pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ q : value,
+ stage : value,
+ salesChannels : value,
+ orderId : value,
+ stores : value,
+ status : value,
+ shortenUrls : value,
+ filterType : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| pageNo | string | Current page number | 
-| pageSize | string | Page limit | 
-| fromDate | string | From Date | 
-| toDate | string | To Date | 
-| q | string | Keyword for Search | 
-| stage | string | Specefic Order Stage | 
-| salesChannels | string | Selected Sales Channel | 
-| orderId | string | Order Id | 
-| stores | string | Selected Stores | 
-| status | string | Status of order | 
-| shortenUrls | boolean | Shorten URL option | 
-| filterType | string | Filters | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| pageNo | string? | no | Current page number |    
+| pageSize | string? | no | Page limit |    
+| fromDate | string? | no | From Date |    
+| toDate | string? | no | To Date |    
+| q | string? | no | Keyword for Search |    
+| stage | string? | no | Specefic Order Stage |    
+| salesChannels | string? | no | Selected Sales Channel |    
+| orderId | string? | no | Order Id |    
+| stores | string? | no | Selected Stores |    
+| status | string? | no | Status of order |    
+| shortenUrls | boolean? | no | Shorten URL option |    
+| filterType | string? | no | Filters |  
+
+
 
 Get Orders
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `OrderPicklistListing`
+[OrderPicklistListing](#OrderPicklistListing)
+
+Success
 
 
 
@@ -12936,30 +15813,43 @@ Schema: `OrderPicklistListing`
 #### trackShipmentPlatform
 Track Shipment by shipment id, for application based on application Id
 
+
+
 ```javascript
 // Promise
-const promise = order.trackShipmentPlatform(companyId,applicationId,shipmentId);
+const promise = order.trackShipmentPlatform( {  companyId : value,
+ applicationId : value,
+ shipmentId : value });
 
 // Async/Await
-const data = await order.trackShipmentPlatform(companyId,applicationId,shipmentId);
+const data = await order.trackShipmentPlatform( {  companyId : value,
+ applicationId : value,
+ shipmentId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| shipmentId | string | Shipment Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| shipmentId | string? | no | Shipment Id |  
+
+
 
 Shipment Track
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `PlatformShipmentTrack`
+[PlatformShipmentTrack](#PlatformShipmentTrack)
+
+Success
 
 
 
@@ -12975,30 +15865,43 @@ Schema: `PlatformShipmentTrack`
 #### trackOrder
 Track Order by order id, for application based on application Id
 
+
+
 ```javascript
 // Promise
-const promise = order.trackOrder(companyId,applicationId,orderId);
+const promise = order.trackOrder( {  companyId : value,
+ applicationId : value,
+ orderId : value });
 
 // Async/Await
-const data = await order.trackOrder(companyId,applicationId,orderId);
+const data = await order.trackOrder( {  companyId : value,
+ applicationId : value,
+ orderId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| orderId | string | Order Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| orderId | string? | no | Order Id |  
+
+
 
 Order Track
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `PlatformOrderTrack`
+[PlatformOrderTrack](#PlatformOrderTrack)
+
+Success
 
 
 
@@ -13014,29 +15917,40 @@ Schema: `PlatformOrderTrack`
 #### failedOrders
 Get all failed orders application wise
 
+
+
 ```javascript
 // Promise
-const promise = order.failedOrders(companyId,applicationId);
+const promise = order.failedOrders( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await order.failedOrders(companyId,applicationId);
+const data = await order.failedOrders( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+
+
 
 Failed Orders
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `FailedOrders`
+[FailedOrders](#FailedOrders)
+
+Success
 
 
 
@@ -13052,30 +15966,43 @@ Schema: `FailedOrders`
 #### reprocessOrder
 Reprocess order by order id
 
+
+
 ```javascript
 // Promise
-const promise = order.reprocessOrder(companyId,applicationId,orderId);
+const promise = order.reprocessOrder( {  companyId : value,
+ applicationId : value,
+ orderId : value });
 
 // Async/Await
-const data = await order.reprocessOrder(companyId,applicationId,orderId);
+const data = await order.reprocessOrder( {  companyId : value,
+ applicationId : value,
+ orderId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| orderId | string | Order Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| orderId | string? | no | Order Id |  
+
+
 
 Order Reprocess
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `UpdateOrderReprocessResponse`
+[UpdateOrderReprocessResponse](#UpdateOrderReprocessResponse)
+
+Success
 
 
 
@@ -13091,30 +16018,45 @@ Schema: `UpdateOrderReprocessResponse`
 #### updateShipment
 Use this API to update the shipment using its shipment ID.
 
+
+
 ```javascript
 // Promise
-const promise = order.updateShipment(companyId,applicationId,shipmentId,body);
+const promise = order.updateShipment( {  companyId : value,
+ applicationId : value,
+ shipmentId : value,
+ body : value });
 
 // Async/Await
-const data = await order.updateShipment(companyId,applicationId,shipmentId,body);
+const data = await order.updateShipment( {  companyId : value,
+ applicationId : value,
+ shipmentId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| shipmentId | string? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| body | [ShipmentUpdateRequest](#ShipmentUpdateRequest) | yes | Request body |
+
 
 Update the shipment
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Check the example shown below or refer `ShipmentUpdateRequest` for more details.
 
 
-Schema: `ShipmentUpdateResponse`
+[ShipmentUpdateResponse](#ShipmentUpdateResponse)
+
+Success. Check the example shown below or refer `ShipmentUpdateRequest` for more details.
 
 
 
@@ -13130,30 +16072,43 @@ Schema: `ShipmentUpdateResponse`
 #### getPlatformShipmentReasons
 Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
 
+
+
 ```javascript
 // Promise
-const promise = order.getPlatformShipmentReasons(companyId,applicationId,action);
+const promise = order.getPlatformShipmentReasons( {  companyId : value,
+ applicationId : value,
+ action : value });
 
 // Async/Await
-const data = await order.getPlatformShipmentReasons(companyId,applicationId,action);
+const data = await order.getPlatformShipmentReasons( {  companyId : value,
+ applicationId : value,
+ action : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| action | string | Action | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| action | string? | no | Action |  
+
+
 
 Get reasons behind full or partial cancellation of a shipment
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Check the example shown below or refer `ShipmentReasonsResponse` for more details.
 
 
-Schema: `ShipmentReasonsResponse`
+[ShipmentReasonsResponse](#ShipmentReasonsResponse)
+
+Success. Check the example shown below or refer `ShipmentReasonsResponse` for more details.
 
 
 
@@ -13169,31 +16124,46 @@ Schema: `ShipmentReasonsResponse`
 #### getShipmentTrackDetails
 Use this API to track a shipment using its shipment ID.
 
+
+
 ```javascript
 // Promise
-const promise = order.getShipmentTrackDetails(companyId,applicationId,orderId,shipmentId);
+const promise = order.getShipmentTrackDetails( {  companyId : value,
+ applicationId : value,
+ orderId : value,
+ shipmentId : value });
 
 // Async/Await
-const data = await order.getShipmentTrackDetails(companyId,applicationId,orderId,shipmentId);
+const data = await order.getShipmentTrackDetails( {  companyId : value,
+ applicationId : value,
+ orderId : value,
+ shipmentId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| orderId | string | ID of the order. | 
-| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| orderId | string? | no | ID of the order. |    
+| shipmentId | string? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
 
 Track shipment
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Check the example shown below or refer `ShipmentTrackResponse` for more details.
 
 
-Schema: `ShipmentTrackResponse`
+[ShipmentTrackResponse](#ShipmentTrackResponse)
+
+Success. Check the example shown below or refer `ShipmentTrackResponse` for more details.
 
 
 
@@ -13209,30 +16179,43 @@ Schema: `ShipmentTrackResponse`
 #### getShipmentAddress
 Use this API to get address of a shipment using its shipment ID and Address Category.
 
+
+
 ```javascript
 // Promise
-const promise = order.getShipmentAddress(companyId,shipmentId,addressCategory);
+const promise = order.getShipmentAddress( {  companyId : value,
+ shipmentId : value,
+ addressCategory : value });
 
 // Async/Await
-const data = await order.getShipmentAddress(companyId,shipmentId,addressCategory);
+const data = await order.getShipmentAddress( {  companyId : value,
+ shipmentId : value,
+ addressCategory : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
-| addressCategory | string | Category of the address it falls into(billing or delivery). | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| shipmentId | string? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |    
+| addressCategory | string? | no | Category of the address it falls into(billing or delivery). |  
+
+
 
 Get Shipment Address
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Check the example shown below or refer `GetShipmentAddressResponse` for more details.
 
 
-Schema: `GetShipmentAddressResponse`
+[GetShipmentAddressResponse](#GetShipmentAddressResponse)
+
+Success. Check the example shown below or refer `GetShipmentAddressResponse` for more details.
 
 
 
@@ -13248,30 +16231,45 @@ Schema: `GetShipmentAddressResponse`
 #### updateShipmentAddress
 Use this API to update address of a shipment using its shipment ID and Address Category.
 
+
+
 ```javascript
 // Promise
-const promise = order.updateShipmentAddress(companyId,shipmentId,addressCategory,body);
+const promise = order.updateShipmentAddress( {  companyId : value,
+ shipmentId : value,
+ addressCategory : value,
+ body : value });
 
 // Async/Await
-const data = await order.updateShipmentAddress(companyId,shipmentId,addressCategory,body);
+const data = await order.updateShipmentAddress( {  companyId : value,
+ shipmentId : value,
+ addressCategory : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| shipmentId | string | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. | 
-| addressCategory | string | Category of the address it falls into(billing or delivery). | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| shipmentId | string? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |    
+| addressCategory | string? | no | Category of the address it falls into(billing or delivery). |  
+| body | [UpdateShipmentAddressRequest](#UpdateShipmentAddressRequest) | yes | Request body |
+
 
 Update Shipment Address
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success. Check the example shown below or refer `UpdateShipmentAddressResponse` for more details.
 
 
-Schema: `UpdateShipmentAddressResponse`
+[UpdateShipmentAddressResponse](#UpdateShipmentAddressResponse)
+
+Success. Check the example shown below or refer `UpdateShipmentAddressResponse` for more details.
 
 
 
@@ -13287,28 +16285,37 @@ Schema: `UpdateShipmentAddressResponse`
 #### getPing
 Get Ping
 
+
+
 ```javascript
 // Promise
-const promise = order.getPing(companyId);
+const promise = order.getPing( {  companyId : value });
 
 // Async/Await
-const data = await order.getPing(companyId);
+const data = await order.getPing( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |  
+
+
 
 Get Ping
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetPingResponse`
+[GetPingResponse](#GetPingResponse)
+
+Success
 
 
 
@@ -13324,28 +16331,37 @@ Schema: `GetPingResponse`
 #### voiceCallback
 Get Voice Callback
 
+
+
 ```javascript
 // Promise
-const promise = order.voiceCallback(companyId);
+const promise = order.voiceCallback( {  companyId : value });
 
 // Async/Await
-const data = await order.voiceCallback(companyId);
+const data = await order.voiceCallback( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |  
+
+
 
 Voice Callback
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetVoiceCallbackResponse`
+[GetVoiceCallbackResponse](#GetVoiceCallbackResponse)
+
+Success
 
 
 
@@ -13361,30 +16377,43 @@ Schema: `GetVoiceCallbackResponse`
 #### voiceClickToCall
 Get Voice Click to Call
 
+
+
 ```javascript
 // Promise
-const promise = order.voiceClickToCall(companyId,caller,receiver);
+const promise = order.voiceClickToCall( {  companyId : value,
+ caller : value,
+ receiver : value });
 
 // Async/Await
-const data = await order.voiceClickToCall(companyId,caller,receiver);
+const data = await order.voiceClickToCall( {  companyId : value,
+ caller : value,
+ receiver : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| caller | string | Caller contact number | 
-| receiver | string | Receiver contact number | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| caller | string? | no | Caller contact number |    
+| receiver | string? | no | Receiver contact number |  
+
+
 
 Voice Click to Call
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetClickToCallResponse`
+[GetClickToCallResponse](#GetClickToCallResponse)
+
+Success
 
 
 
@@ -13398,39 +16427,53 @@ Schema: `GetClickToCallResponse`
 
 
 
----
 
 
 ## Catalog
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
+#### updateSearchKeywords
+Update Search Keyword
+
+
 
 ```javascript
 // Promise
-const promise = catalog.deleteSearchKeywords(companyId,applicationId,id);
+const promise = catalog.updateSearchKeywords( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.deleteSearchKeywords(companyId,applicationId,id);
+const data = await catalog.updateSearchKeywords( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Success Response:*
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string? | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+Update Search Keyword by its id. On successful request, returns the updated collection
+
+*Returned Response:*
 
 
-Schema: `DeleteResponse`
+
+
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+
+
+[GetSearchWordsData](#GetSearchWordsData)
+
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
 
 
 
@@ -13446,30 +16489,43 @@ Schema: `DeleteResponse`
 #### getSearchKeywords
 Get a Search Keywords Details
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getSearchKeywords(companyId,applicationId,id);
+const promise = catalog.getSearchKeywords( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await catalog.getSearchKeywords(companyId,applicationId,id);
+const data = await catalog.getSearchKeywords( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string? | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+
+
 
 Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
 
 
-Schema: `GetSearchWordsDetailResponse`
+[GetSearchWordsDetailResponse](#GetSearchWordsDetailResponse)
+
+The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
 
 
 
@@ -13482,71 +16538,46 @@ Schema: `GetSearchWordsDetailResponse`
 ---
 
 
-#### updateSearchKeywords
-Update Search Keyword
+#### deleteSearchKeywords
+Delete a Search Keywords
+
+
 
 ```javascript
 // Promise
-const promise = catalog.updateSearchKeywords(companyId,applicationId,id,body);
+const promise = catalog.deleteSearchKeywords( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await catalog.updateSearchKeywords(companyId,applicationId,id,body);
+const data = await catalog.deleteSearchKeywords( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
 
-Update Search Keyword by its id. On successful request, returns the updated collection
 
-*Success Response:*
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string? | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
 
 
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
-
-Schema: `GetSearchWordsData`
+*Returned Response:*
 
 
 
 
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
+[DeleteResponse](#DeleteResponse)
 
-
-
----
-
-
-#### createCustomKeyword
-Add a Custom Search Keywords
-
-```javascript
-// Promise
-const promise = catalog.createCustomKeyword(companyId,applicationId,body);
-
-// Async/Await
-const data = await catalog.createCustomKeyword(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
-
-*Success Response:*
-
-
-
-Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
-
-
-Schema: `GetSearchWordsData`
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
 
@@ -13562,29 +16593,40 @@ Schema: `GetSearchWordsData`
 #### getAllSearchKeyword
 List all Search Custom Keyword Listing
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getAllSearchKeyword(companyId,applicationId);
+const promise = catalog.getAllSearchKeyword( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await catalog.getAllSearchKeyword(companyId,applicationId);
+const data = await catalog.getAllSearchKeyword( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+
+
 
 Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
 
 
-Schema: `GetSearchWordsResponse`
+[GetSearchWordsResponse](#GetSearchWordsResponse)
+
+List of custom search keywords. See example below or refer `GetSearchWordsResponseSchema` for details
 
 
 
@@ -13597,72 +16639,45 @@ Schema: `GetSearchWordsResponse`
 ---
 
 
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
+#### createCustomKeyword
+Add a Custom Search Keywords
+
+
 
 ```javascript
 // Promise
-const promise = catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+const promise = catalog.createCustomKeyword( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.deleteAutocompleteKeyword(companyId,applicationId,id);
+const data = await catalog.createCustomKeyword( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Success Response:*
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
+Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
 
-Schema: `DeleteResponse`
+*Returned Response:*
 
 
 
 
+Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
 
 
+[GetSearchWordsData](#GetSearchWordsData)
 
-
-
----
-
-
-#### getAutocompleteKeywordDetail
-Get a Autocomplete Keywords Details
-
-```javascript
-// Promise
-const promise = catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.getAutocompleteKeywordDetail(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
-
-Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
-
-*Success Response:*
-
-
-
-The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
-
-
-Schema: `GetAutocompleteWordsResponse`
+Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
 
 
 
@@ -13678,30 +16693,45 @@ Schema: `GetAutocompleteWordsResponse`
 #### updateAutocompleteKeyword
 Create & Update Autocomplete Keyword
 
+
+
 ```javascript
 // Promise
-const promise = catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const promise = catalog.updateAutocompleteKeyword( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.updateAutocompleteKeyword(companyId,applicationId,id,body);
+const data = await catalog.updateAutocompleteKeyword( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string? | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
+
 
 Update a mapping by it's id. On successful request, returns the updated Keyword mapping
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
-Schema: `GetAutocompleteWordsResponse`
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
 
@@ -13714,32 +16744,98 @@ Schema: `GetAutocompleteWordsResponse`
 ---
 
 
-#### createCustomAutocompleteRule
-Add a Custom Autocomplete Keywords
+#### getAutocompleteKeywordDetail
+Get a Autocomplete Keywords Details
+
+
 
 ```javascript
 // Promise
-const promise = catalog.createCustomAutocompleteRule(companyId,applicationId,body);
+const promise = catalog.getAutocompleteKeywordDetail( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await catalog.createCustomAutocompleteRule(companyId,applicationId,body);
+const data = await catalog.getAutocompleteKeywordDetail( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
-
-*Success Response:*
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string? | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
 
-List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
 
 
-Schema: `CreateAutocompleteWordsResponse`
+Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+
+*Returned Response:*
+
+
+
+
+The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+
+
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
+
+
+
+```javascript
+// Promise
+const promise = catalog.deleteAutocompleteKeyword( {  companyId : value,
+ applicationId : value,
+ id : value });
+
+// Async/Await
+const data = await catalog.deleteAutocompleteKeyword( {  companyId : value,
+ applicationId : value,
+ id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string? | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Returned Response:*
+
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
 
@@ -13755,29 +16851,40 @@ Schema: `CreateAutocompleteWordsResponse`
 #### getAutocompleteConfig
 List all Autocomplete Keyword Listing
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getAutocompleteConfig(companyId,applicationId);
+const promise = catalog.getAutocompleteConfig( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await catalog.getAutocompleteConfig(companyId,applicationId);
+const data = await catalog.getAutocompleteConfig( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+
+
 
 Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
 
 
-Schema: `GetAutocompleteWordsResponse`
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
 
 
 
@@ -13790,31 +16897,45 @@ Schema: `GetAutocompleteWordsResponse`
 ---
 
 
-#### createProductBundle
-Create Product Bundle
+#### createCustomAutocompleteRule
+Add a Custom Autocomplete Keywords
+
+
 
 ```javascript
 // Promise
-const promise = catalog.createProductBundle(companyId,body);
+const promise = catalog.createCustomAutocompleteRule( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.createProductBundle(companyId,body);
+const data = await catalog.createCustomAutocompleteRule( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
-
-*Success Response:*
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
 
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+
+Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+
+*Returned Response:*
 
 
-Schema: `GetProductBundleCreateResponse`
+
+
+List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
+
+
+[CreateAutocompleteWordsResponse](#CreateAutocompleteWordsResponse)
+
+List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
 
 
 
@@ -13830,29 +16951,40 @@ Schema: `GetProductBundleCreateResponse`
 #### getProductBundle
 List all Product Bundles
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getProductBundle(companyId,q);
+const promise = catalog.getProductBundle( {  companyId : value,
+ q : value });
 
 // Async/Await
-const data = await catalog.getProductBundle(companyId,q);
+const data = await catalog.getProductBundle( {  companyId : value,
+ q : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| q | string | A search string that is searched with product bundle name. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| q | string? | no | A search string that is searched with product bundle name. |  
+
+
 
 Get all product bundles for a particular company
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of bundle configured for a company. See example below or refer `GetProductBundleListingResponse` for details
 
 
-Schema: `GetProductBundleListingResponse`
+[GetProductBundleListingResponse](#GetProductBundleListingResponse)
+
+List of bundle configured for a company. See example below or refer `GetProductBundleListingResponse` for details
 
 
 
@@ -13865,32 +16997,42 @@ Schema: `GetProductBundleListingResponse`
 ---
 
 
-#### getProductBundleDetail
-Get a particular Product Bundle details
+#### createProductBundle
+Create Product Bundle
+
+
 
 ```javascript
 // Promise
-const promise = catalog.getProductBundleDetail(companyId,id);
+const promise = catalog.createProductBundle( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.getProductBundleDetail(companyId,id);
+const data = await catalog.createProductBundle( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. | 
-
-Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-
-*Success Response:*
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |  
+| body | [ProductBundleRequest](#ProductBundleRequest) | yes | Request body |
 
-The Collection object. See example below or refer `GetProductBundleResponse` for details
+
+Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+
+*Returned Response:*
 
 
-Schema: `GetProductBundleResponse`
+
+
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+
+
+[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
+
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
 
 
 
@@ -13906,29 +17048,42 @@ Schema: `GetProductBundleResponse`
 #### updateProductBundle
 Update a Product Bundle
 
+
+
 ```javascript
 // Promise
-const promise = catalog.updateProductBundle(companyId,id,body);
+const promise = catalog.updateProductBundle( {  companyId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.updateProductBundle(companyId,id,body);
+const data = await catalog.updateProductBundle( {  companyId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| id | string | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| id | string? | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | [ProductBundleUpdateRequest](#ProductBundleUpdateRequest) | yes | Request body |
+
 
 Update a Product Bundle by its id. On successful request, returns the updated product bundle
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
 
 
-Schema: `GetProductBundleCreateResponse`
+[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
+
+The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
 
 
 
@@ -13941,31 +17096,43 @@ Schema: `GetProductBundleCreateResponse`
 ---
 
 
-#### createSizeGuide
-Create a size guide.
+#### getProductBundleDetail
+Get a particular Product Bundle details
+
+
 
 ```javascript
 // Promise
-const promise = catalog.createSizeGuide(companyId,body);
+const promise = catalog.getProductBundleDetail( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await catalog.createSizeGuide(companyId,body);
+const data = await catalog.getProductBundleDetail( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the size guide is to be created. | 
-
-This API allows to create a size guide associated to a brand.
-
-*Success Response:*
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| id | string? | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
 
-Returns a success response
 
 
-Schema: `SuccessResponse`
+Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+
+*Returned Response:*
+
+
+
+
+The Collection object. See example below or refer `GetProductBundleResponse` for details
+
+
+[GetProductBundleResponse](#GetProductBundleResponse)
+
+The Collection object. See example below or refer `GetProductBundleResponse` for details
 
 
 
@@ -13981,33 +17148,52 @@ Schema: `SuccessResponse`
 #### getSizeGuides
 Get list of size guides
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getSizeGuides(companyId,active,q,tag,pageNo,pageSize);
+const promise = catalog.getSizeGuides( {  companyId : value,
+ active : value,
+ q : value,
+ tag : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await catalog.getSizeGuides(companyId,active,q,tag,pageNo,pageSize);
+const data = await catalog.getSizeGuides( {  companyId : value,
+ active : value,
+ q : value,
+ tag : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company for which the size guides are to be fetched. | 
-| active | boolean | filter size guide on basis of active, in-active | 
-| q | string | Query that is to be searched. | 
-| tag | string | to filter size guide on basis of tag. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company for which the size guides are to be fetched. |    
+| active | boolean? | no | filter size guide on basis of active, in-active |    
+| q | string? | no | Query that is to be searched. |    
+| tag | string? | no | to filter size guide on basis of tag. |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 10. |  
+
+
 
 This API allows to view all the size guides associated to the seller.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Size guide object. See example below or refer `ListSizeGuide` for details
 
 
-Schema: `ListSizeGuide`
+[ListSizeGuide](#ListSizeGuide)
+
+Size guide object. See example below or refer `ListSizeGuide` for details
 
 
 
@@ -14020,32 +17206,42 @@ Schema: `ListSizeGuide`
 ---
 
 
-#### getSizeGuide
-Get a single size guide.
+#### createSizeGuide
+Create a size guide.
+
+
 
 ```javascript
 // Promise
-const promise = catalog.getSizeGuide(companyId,id);
+const promise = catalog.createSizeGuide( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.getSizeGuide(companyId,id);
+const data = await catalog.createSizeGuide( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to size guide. | 
-| id | string | Id of the size guide to be viewed. | 
-
-This API helps to get data associated to a size guide.
-
-*Success Response:*
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company inside which the size guide is to be created. |  
+| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
 
-Brand object. See example below or refer `SizeGuideResponseSchema` for details
+
+This API allows to create a size guide associated to a brand.
+
+*Returned Response:*
 
 
-Schema: `SizeGuideResponse`
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -14061,29 +17257,91 @@ Schema: `SizeGuideResponse`
 #### updateSizeGuide
 Edit a size guide.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.updateSizeGuide(companyId,id,body);
+const promise = catalog.updateSizeGuide( {  companyId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.updateSizeGuide(companyId,id,body);
+const data = await catalog.updateSizeGuide( {  companyId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company. | 
-| id | string | Mongo id of the size guide to be edited | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company. |    
+| id | string? | no | Mongo id of the size guide to be edited |  
+| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
+
 
 This API allows to edit a size guide.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSizeGuide
+Get a single size guide.
+
+
+
+```javascript
+// Promise
+const promise = catalog.getSizeGuide( {  companyId : value,
+ id : value });
+
+// Async/Await
+const data = await catalog.getSizeGuide( {  companyId : value,
+ id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company associated to size guide. |    
+| id | string? | no | Id of the size guide to be viewed. |  
+
+
+
+This API helps to get data associated to a size guide.
+
+*Returned Response:*
+
+
+
+
+Brand object. See example below or refer `SizeGuideResponseSchema` for details
+
+
+[SizeGuideResponse](#SizeGuideResponse)
+
+Brand object. See example below or refer `SizeGuideResponseSchema` for details
 
 
 
@@ -14099,67 +17357,40 @@ Schema: `SuccessResponse`
 #### getCatalogConfiguration
 Get configuration meta  details for catalog for admin panel
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getCatalogConfiguration(companyId,applicationId);
+const promise = catalog.getCatalogConfiguration( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await catalog.getCatalogConfiguration(companyId,applicationId);
+const data = await catalog.getCatalogConfiguration( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+
+
 
 configuration meta  details for catalog.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 configuration details for catalog. See example below or refer `GetCatalogConfigurationMetaDataSchema` for details
 
 
-Schema: `GetCatalogConfigurationMetaData`
+[GetCatalogConfigurationMetaData](#GetCatalogConfigurationMetaData)
 
-
-
-
-
-
-
-
-
----
-
-
-#### createConfigurationProductListing
-Add configuration for products & listings
-
-```javascript
-// Promise
-const promise = catalog.createConfigurationProductListing(companyId,applicationId,body);
-
-// Async/Await
-const data = await catalog.createConfigurationProductListing(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-Add configuration for products & listing.
-
-*Success Response:*
-
-
-
-success flag will tell whether the operation was successful.
-
-
-Schema: `GetAppCatalogConfiguration`
+configuration details for catalog. See example below or refer `GetCatalogConfigurationMetaDataSchema` for details
 
 
 
@@ -14175,29 +17406,40 @@ Schema: `GetAppCatalogConfiguration`
 #### getConfigurations
 Get configured details for catalog
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getConfigurations(companyId,applicationId);
+const promise = catalog.getConfigurations( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await catalog.getConfigurations(companyId,applicationId);
+const data = await catalog.getConfigurations( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+
+
 
 configured details for catalog.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Get application level configured catalog details. See example below or refer `GetAppCatalogConfigurationSchema` for details
 
 
-Schema: `GetAppCatalogConfiguration`
+[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
+
+Get application level configured catalog details. See example below or refer `GetAppCatalogConfigurationSchema` for details
 
 
 
@@ -14210,33 +17452,45 @@ Schema: `GetAppCatalogConfiguration`
 ---
 
 
-#### createConfigurationByType
-Add configuration for categories and brands
+#### createConfigurationProductListing
+Add configuration for products & listings
+
+
 
 ```javascript
 // Promise
-const promise = catalog.createConfigurationByType(companyId,applicationId,type,body);
+const promise = catalog.createConfigurationProductListing( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.createConfigurationByType(companyId,applicationId,type,body);
+const data = await catalog.createConfigurationProductListing( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| type | string | type can be brands, categories etc. | 
 
-Add configuration for categories & brands.
 
-*Success Response:*
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | [AppConfiguration](#AppConfiguration) | yes | Request body |
+
+
+Add configuration for products & listing.
+
+*Returned Response:*
+
 
 
 
 success flag will tell whether the operation was successful.
 
 
-Schema: `GetAppCatalogConfiguration`
+[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
+
+success flag will tell whether the operation was successful.
 
 
 
@@ -14252,30 +17506,97 @@ Schema: `GetAppCatalogConfiguration`
 #### getConfigurationByType
 Get configured details for catalog
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getConfigurationByType(companyId,applicationId,type);
+const promise = catalog.getConfigurationByType( {  companyId : value,
+ applicationId : value,
+ type : value });
 
 // Async/Await
-const data = await catalog.getConfigurationByType(companyId,applicationId,type);
+const data = await catalog.getConfigurationByType( {  companyId : value,
+ applicationId : value,
+ type : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| type | string | type can be brands, categories etc. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| type | string? | no | type can be brands, categories etc. |  
+
+
 
 configured details for catalog.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
 
 
-Schema: `GetAppCatalogEntityConfiguration`
+[GetAppCatalogEntityConfiguration](#GetAppCatalogEntityConfiguration)
+
+Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createConfigurationByType
+Add configuration for categories and brands
+
+
+
+```javascript
+// Promise
+const promise = catalog.createConfigurationByType( {  companyId : value,
+ applicationId : value,
+ type : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createConfigurationByType( {  companyId : value,
+ applicationId : value,
+ type : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| type | string? | no | type can be brands, categories etc. |  
+| body | [AppConfiguration](#AppConfiguration) | yes | Request body |
+
+
+Add configuration for categories & brands.
+
+*Returned Response:*
+
+
+
+
+success flag will tell whether the operation was successful.
+
+
+[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
+
+success flag will tell whether the operation was successful.
 
 
 
@@ -14291,67 +17612,40 @@ Schema: `GetAppCatalogEntityConfiguration`
 #### getQueryFilters
 Get query filters to configure a collection
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getQueryFilters(companyId,applicationId);
+const promise = catalog.getQueryFilters( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await catalog.getQueryFilters(companyId,applicationId);
+const data = await catalog.getQueryFilters( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+
+
 
 Get query filters to configure a collection
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 The attached items of an collection. See example below or refer `GetCollectionQueryOptionResponse` for details
 
 
-Schema: `GetCollectionQueryOptionResponse`
+[GetCollectionQueryOptionResponse](#GetCollectionQueryOptionResponse)
 
-
-
-
-
-
-
-
-
----
-
-
-#### createCollection
-Add a Collection
-
-```javascript
-// Promise
-const promise = catalog.createCollection(companyId,applicationId,body);
-
-// Async/Await
-const data = await catalog.createCollection(companyId,applicationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-
-Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
-
-*Success Response:*
-
-
-
-List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
-
-
-Schema: `CollectionCreateResponse`
+The attached items of an collection. See example below or refer `GetCollectionQueryOptionResponse` for details
 
 
 
@@ -14367,29 +17661,91 @@ Schema: `CollectionCreateResponse`
 #### getAllCollections
 List all the collections
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getAllCollections(companyId,applicationId);
+const promise = catalog.getAllCollections( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await catalog.getAllCollections(companyId,applicationId);
+const data = await catalog.getAllCollections( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+
+
 
 A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of collections. See example below or refer `GetCollectionListingResponse` for details
 
 
-Schema: `GetCollectionListingResponse`
+[GetCollectionListingResponse](#GetCollectionListingResponse)
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createCollection
+Add a Collection
+
+
+
+```javascript
+// Promise
+const promise = catalog.createCollection( {  companyId : value,
+ applicationId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createCollection( {  companyId : value,
+ applicationId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | [CreateCollection](#CreateCollection) | yes | Request body |
+
+
+Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
+
+*Returned Response:*
+
+
+
+
+List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
+
+
+[CollectionCreateResponse](#CollectionCreateResponse)
+
+List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
 
 
 
@@ -14405,69 +17761,43 @@ Schema: `GetCollectionListingResponse`
 #### getCollectionDetail
 Get a particular collection
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getCollectionDetail(companyId,applicationId,slug);
+const promise = catalog.getCollectionDetail( {  companyId : value,
+ applicationId : value,
+ slug : value });
 
 // Async/Await
-const data = await catalog.getCollectionDetail(companyId,applicationId,slug);
+const data = await catalog.getCollectionDetail( {  companyId : value,
+ applicationId : value,
+ slug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| slug | string | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| slug | string? | no | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. |  
+
+
 
 Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 The Collection object. See example below or refer `CollectionDetailResponse` for details
 
 
-Schema: `CollectionDetailResponse`
+[CollectionDetailResponse](#CollectionDetailResponse)
 
-
-
-
-
-
-
-
-
----
-
-
-#### deleteCollection
-Delete a Collection
-
-```javascript
-// Promise
-const promise = catalog.deleteCollection(companyId,applicationId,id);
-
-// Async/Await
-const data = await catalog.deleteCollection(companyId,applicationId,id);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
-
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-
-*Success Response:*
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-Schema: `DeleteResponse`
+The Collection object. See example below or refer `CollectionDetailResponse` for details
 
 
 
@@ -14483,30 +17813,45 @@ Schema: `DeleteResponse`
 #### updateCollection
 Update a collection
 
+
+
 ```javascript
 // Promise
-const promise = catalog.updateCollection(companyId,applicationId,id,body);
+const promise = catalog.updateCollection( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.updateCollection(companyId,applicationId,id,body);
+const data = await catalog.updateCollection( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string? | no | A `id` is a unique identifier of a collection. |  
+| body | [UpdateCollection](#UpdateCollection) | yes | Request body |
+
 
 Update a collection by it's id. On successful request, returns the updated collection
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 The Collection object. See example below or refer `UpdateCollectionSchema` for details.
 
 
-Schema: `UpdateCollection`
+[UpdateCollection](#UpdateCollection)
+
+The Collection object. See example below or refer `UpdateCollectionSchema` for details.
 
 
 
@@ -14519,33 +17864,46 @@ Schema: `UpdateCollection`
 ---
 
 
-#### addCollectionItems
-Add items to a collection
+#### deleteCollection
+Delete a Collection
+
+
 
 ```javascript
 // Promise
-const promise = catalog.addCollectionItems(companyId,applicationId,id,body);
+const promise = catalog.deleteCollection( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await catalog.addCollectionItems(companyId,applicationId,id,body);
+const data = await catalog.deleteCollection( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
 
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
 
-*Success Response:*
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string? | no | A `id` is a unique identifier of a collection. |  
 
 
 
-Status object. Tells whether the operation was successful.
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+
+*Returned Response:*
 
 
-Schema: `UpdatedResponse`
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
 
@@ -14561,33 +17919,106 @@ Schema: `UpdatedResponse`
 #### getCollectionItems
 Get the items for a collection
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getCollectionItems(companyId,applicationId,id,sortOn,pageId,pageSize);
+const promise = catalog.getCollectionItems( {  companyId : value,
+ applicationId : value,
+ id : value,
+ sortOn : value,
+ pageId : value,
+ pageSize : value });
 
 // Async/Await
-const data = await catalog.getCollectionItems(companyId,applicationId,id,sortOn,pageId,pageSize);
+const data = await catalog.getCollectionItems( {  companyId : value,
+ applicationId : value,
+ id : value,
+ sortOn : value,
+ pageId : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| id | string | A `id` is a unique identifier of a collection. | 
-| sortOn | string | Each response will contain sort_on param, which should be sent back to make pagination work. | 
-| pageId | string | Each response will contain next_id param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string? | no | A `id` is a unique identifier of a collection. |    
+| sortOn | string? | no | Each response will contain sort_on param, which should be sent back to make pagination work. |    
+| pageId | string? | no | Each response will contain next_id param, which should be sent back to make pagination work. |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 12. |  
+
+
 
 Get items from a collection specified by its `id`.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 The attached items of an collection. See example below or refer `GetCollectionItemsResponseSchema` for details
 
 
-Schema: `GetCollectionItemsResponse`
+[GetCollectionItemsResponse](#GetCollectionItemsResponse)
+
+The attached items of an collection. See example below or refer `GetCollectionItemsResponseSchema` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addCollectionItems
+Add items to a collection
+
+
+
+```javascript
+// Promise
+const promise = catalog.addCollectionItems( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.addCollectionItems( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string? | no | A `id` is a unique identifier of a collection. |  
+| body | [CollectionItemRequest](#CollectionItemRequest) | yes | Request body |
+
+
+Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+
+*Returned Response:*
+
+
+
+
+Status object. Tells whether the operation was successful.
+
+
+[UpdatedResponse](#UpdatedResponse)
+
+Status object. Tells whether the operation was successful.
 
 
 
@@ -14603,30 +18034,43 @@ Schema: `GetCollectionItemsResponse`
 #### getCatalogInsights
 Analytics data of catalog and inventory.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getCatalogInsights(companyId,applicationId,brand);
+const promise = catalog.getCatalogInsights( {  companyId : value,
+ applicationId : value,
+ brand : value });
 
 // Async/Await
-const data = await catalog.getCatalogInsights(companyId,applicationId,brand);
+const data = await catalog.getCatalogInsights( {  companyId : value,
+ applicationId : value,
+ brand : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| brand | string | Brand slug | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| brand | string? | no | Brand slug |  
+
+
 
 Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Response Data
 
 
-Schema: `CatalogInsightResponse`
+[CatalogInsightResponse](#CatalogInsightResponse)
+
+Response Data
 
 
 
@@ -14642,29 +18086,40 @@ Schema: `CatalogInsightResponse`
 #### getSellerInsights
 Analytics data of catalog and inventory that are being cross-selled.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getSellerInsights(companyId,sellerAppId);
+const promise = catalog.getSellerInsights( {  companyId : value,
+ sellerAppId : value });
 
 // Async/Await
-const data = await catalog.getSellerInsights(companyId,sellerAppId);
+const data = await catalog.getSellerInsights( {  companyId : value,
+ sellerAppId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| sellerAppId | string | Id of the seller application which is serving the invetory/catalog of the company | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| sellerAppId | string? | no | Id of the seller application which is serving the invetory/catalog of the company |  
+
+
 
 Analytics data of catalog and inventory that are being cross-selled.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Response Data
 
 
-Schema: `CrossSellingResponse`
+[CrossSellingResponse](#CrossSellingResponse)
+
+Response Data
 
 
 
@@ -14680,29 +18135,42 @@ Schema: `CrossSellingResponse`
 #### createMarketplaceOptin
 Create/Update opt-in infomation.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.createMarketplaceOptin(companyId,marketplace,body);
+const promise = catalog.createMarketplaceOptin( {  companyId : value,
+ marketplace : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.createMarketplaceOptin(companyId,marketplace,body);
+const data = await catalog.createMarketplaceOptin( {  companyId : value,
+ marketplace : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | The company id for which the detail needs to be retrieved. | 
-| marketplace | string | The marketplace for which the detail needs to be retrieved. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | The company id for which the detail needs to be retrieved. |    
+| marketplace | string? | no | The marketplace for which the detail needs to be retrieved. |  
+| body | [OptInPostRequest](#OptInPostRequest) | yes | Request body |
+
 
 Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 See example below or refer `UpdatedResponse` for details.
 
 
-Schema: `UpdatedResponse`
+[UpdatedResponse](#UpdatedResponse)
+
+See example below or refer `UpdatedResponse` for details.
 
 
 
@@ -14718,28 +18186,37 @@ Schema: `UpdatedResponse`
 #### getMarketplaceOptinDetail
 Get opt-in infomation.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getMarketplaceOptinDetail(companyId);
+const promise = catalog.getMarketplaceOptinDetail( {  companyId : value });
 
 // Async/Await
-const data = await catalog.getMarketplaceOptinDetail(companyId);
+const data = await catalog.getMarketplaceOptinDetail( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer |  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no |  |  
+
+
 
 Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 See example below or refer `GetOptInPlatformSchema` for details.
 
 
-Schema: `GetOptInPlatform`
+[GetOptInPlatform](#GetOptInPlatform)
+
+See example below or refer `GetOptInPlatformSchema` for details.
 
 
 
@@ -14755,28 +18232,37 @@ Schema: `GetOptInPlatform`
 #### getCompanyDetail
 Get the Company details.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getCompanyDetail(companyId);
+const promise = catalog.getCompanyDetail( {  companyId : value });
 
 // Async/Await
-const data = await catalog.getCompanyDetail(companyId);
+const data = await catalog.getCompanyDetail( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | The company id for which the detail needs to be retrieved. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | The company id for which the detail needs to be retrieved. |  
+
+
 
 Get the details of the company associated with the given company_id passed.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 See example below or refer `OptinCompanyDetailSchema` for details
 
 
-Schema: `OptinCompanyDetail`
+[OptinCompanyDetail](#OptinCompanyDetail)
+
+See example below or refer `OptinCompanyDetailSchema` for details
 
 
 
@@ -14792,33 +18278,52 @@ Schema: `OptinCompanyDetail`
 #### getCompanyBrandDetail
 Get the Company Brand details of Optin.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getCompanyBrandDetail(companyId,isActive,q,pageNo,pageSize,marketplace);
+const promise = catalog.getCompanyBrandDetail( {  companyId : value,
+ isActive : value,
+ q : value,
+ pageNo : value,
+ pageSize : value,
+ marketplace : value });
 
 // Async/Await
-const data = await catalog.getCompanyBrandDetail(companyId,isActive,q,pageNo,pageSize,marketplace);
+const data = await catalog.getCompanyBrandDetail( {  companyId : value,
+ isActive : value,
+ q : value,
+ pageNo : value,
+ pageSize : value,
+ marketplace : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | The company id for which the detail needs to be retrieved. | 
-| isActive | boolean | The is_active status for the optin id. | 
-| q | boolean | The search value to filter the list. | 
-| pageNo | integer | The number of page for the company id. | 
-| pageSize | integer | Number of records that can be seen on the page for the company id. | 
-| marketplace | string | The marketplace platform associated with the company id. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | The company id for which the detail needs to be retrieved. |    
+| isActive | boolean? | no | The is_active status for the optin id. |    
+| q | boolean? | no | The search value to filter the list. |    
+| pageNo | number? | no | The number of page for the company id. |    
+| pageSize | number? | no | Number of records that can be seen on the page for the company id. |    
+| marketplace | string? | no | The marketplace platform associated with the company id. |  
+
+
 
 Get the details of the Brands associated with the given company_id passed.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 See example below or refer `OptinCompanyBrandDetailsView` for details
 
 
-Schema: `OptinCompanyBrandDetailsView`
+[OptinCompanyBrandDetailsView](#OptinCompanyBrandDetailsView)
+
+See example below or refer `OptinCompanyBrandDetailsView` for details
 
 
 
@@ -14834,28 +18339,37 @@ Schema: `OptinCompanyBrandDetailsView`
 #### getCompanyMetrics
 Get the Company metrics
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getCompanyMetrics(companyId);
+const promise = catalog.getCompanyMetrics( {  companyId : value });
 
 // Async/Await
-const data = await catalog.getCompanyMetrics(companyId);
+const data = await catalog.getCompanyMetrics( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | The company id for which the detail needs to be retrieved. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | The company id for which the detail needs to be retrieved. |  
+
+
 
 Get the Company metrics associated with the company ID passed.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 See example below or refer `OptinCompanyMetrics` for details
 
 
-Schema: `OptinCompanyMetrics`
+[OptinCompanyMetrics](#OptinCompanyMetrics)
+
+See example below or refer `OptinCompanyMetrics` for details
 
 
 
@@ -14871,31 +18385,46 @@ Schema: `OptinCompanyMetrics`
 #### getStoreDetail
 Get the Store details.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getStoreDetail(companyId,q,pageNo,pageSize);
+const promise = catalog.getStoreDetail( {  companyId : value,
+ q : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await catalog.getStoreDetail(companyId,q,pageNo,pageSize);
+const data = await catalog.getStoreDetail( {  companyId : value,
+ q : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | The company id for which the detail needs to be retrieved. | 
-| q | string | The search related the store for the company id. | 
-| pageNo | integer | The number of page for the company id. | 
-| pageSize | integer | Number of records that can be seen on the page for the company id. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | The company id for which the detail needs to be retrieved. |    
+| q | string? | no | The search related the store for the company id. |    
+| pageNo | number? | no | The number of page for the company id. |    
+| pageSize | number? | no | Number of records that can be seen on the page for the company id. |  
+
+
 
 Get the details of the store associated with the company ID passed.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 See example below or refer `OptinStoreDetailsSchema` for details
 
 
-Schema: `OptinStoreDetails`
+[OptinStoreDetails](#OptinStoreDetails)
+
+See example below or refer `OptinStoreDetailsSchema` for details
 
 
 
@@ -14911,29 +18440,40 @@ Schema: `OptinStoreDetails`
 #### getGenderAttribute
 Get gender attribute details
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getGenderAttribute(companyId,attributeSlug);
+const promise = catalog.getGenderAttribute( {  companyId : value,
+ attributeSlug : value });
 
 // Async/Await
-const data = await catalog.getGenderAttribute(companyId,attributeSlug);
+const data = await catalog.getGenderAttribute( {  companyId : value,
+ attributeSlug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company for which you want to view the genders | 
-| attributeSlug | string | slug of the attribute for which you want to view the genders | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company for which you want to view the genders |    
+| attributeSlug | string? | no | slug of the attribute for which you want to view the genders |  
+
+
 
 This API allows to view the gender attribute details.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Size guide object. See example below or refer `GenderDetailSchema` for details
 
 
-Schema: `GenderDetail`
+[GenderDetail](#GenderDetail)
+
+Size guide object. See example below or refer `GenderDetailSchema` for details
 
 
 
@@ -14949,30 +18489,43 @@ Schema: `GenderDetail`
 #### listProductTemplateCategories
 List Department specifiec product categories
 
+
+
 ```javascript
 // Promise
-const promise = catalog.listProductTemplateCategories(companyId,departments,itemType);
+const promise = catalog.listProductTemplateCategories( {  companyId : value,
+ departments : value,
+ itemType : value });
 
 // Async/Await
-const data = await catalog.listProductTemplateCategories(companyId,departments,itemType);
+const data = await catalog.listProductTemplateCategories( {  companyId : value,
+ departments : value,
+ itemType : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| departments | string | A `department` is name of a departments whose category needs to be listed. Can specify multiple departments. | 
-| itemType | string | An `item_type` is the type of item, it can be `set`, `standard`, `digital`, etc. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| departments | string? | no | A `department` is name of a departments whose category needs to be listed. Can specify multiple departments. |    
+| itemType | string? | no | An `item_type` is the type of item, it can be `set`, `standard`, `digital`, etc. |  
+
+
 
 Allows you to list all product categories values for the departments specified
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of all categories attached to departments specified. See example below or refer `ProdcutTemplateCategoriesResponse` for details
 
 
-Schema: `ProdcutTemplateCategoriesResponse`
+[ProdcutTemplateCategoriesResponse](#ProdcutTemplateCategoriesResponse)
+
+List of all categories attached to departments specified. See example below or refer `ProdcutTemplateCategoriesResponse` for details
 
 
 
@@ -14988,33 +18541,52 @@ Schema: `ProdcutTemplateCategoriesResponse`
 #### listDepartmentsData
 List all Departments
 
+
+
 ```javascript
 // Promise
-const promise = catalog.listDepartmentsData(companyId,pageNo,pageSize,name,search,isActive);
+const promise = catalog.listDepartmentsData( {  companyId : value,
+ pageNo : value,
+ pageSize : value,
+ name : value,
+ search : value,
+ isActive : value });
 
 // Async/Await
-const data = await catalog.listDepartmentsData(companyId,pageNo,pageSize,name,search,isActive);
+const data = await catalog.listDepartmentsData( {  companyId : value,
+ pageNo : value,
+ pageSize : value,
+ name : value,
+ search : value,
+ isActive : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
-| name | string | Can search departments by passing name. | 
-| search | string | Can search departments by passing name of the department in search parameter. | 
-| isActive | boolean | Can query for departments based on whether they are active or inactive. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 10. |    
+| name | string? | no | Can search departments by passing name. |    
+| search | string? | no | Can search departments by passing name of the department in search parameter. |    
+| isActive | boolean? | no | Can query for departments based on whether they are active or inactive. |  
+
+
 
 Allows you to list all departments, also can search using name and filter active and incative departments, and item type
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of departments data. See example below or refer `DepartmentsResponse` for details
 
 
-Schema: `DepartmentsResponse`
+[DepartmentsResponse](#DepartmentsResponse)
+
+List of departments data. See example below or refer `DepartmentsResponse` for details
 
 
 
@@ -15030,29 +18602,40 @@ Schema: `DepartmentsResponse`
 #### getDepartmentData
 Get specific departments details by passing in unique id of the department
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getDepartmentData(companyId,uid);
+const promise = catalog.getDepartmentData( {  companyId : value,
+ uid : value });
 
 // Async/Await
-const data = await catalog.getDepartmentData(companyId,uid);
+const data = await catalog.getDepartmentData( {  companyId : value,
+ uid : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| uid | string | A `uid` is a unique identifier of a department. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| uid | string? | no | A `uid` is a unique identifier of a department. |  
+
+
 
 Allows you to get department data, by uid
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Departments Data. See example below or refer `DepartmentsResponse` for details
 
 
-Schema: `DepartmentsResponse`
+[DepartmentsResponse](#DepartmentsResponse)
+
+Departments Data. See example below or refer `DepartmentsResponse` for details
 
 
 
@@ -15068,29 +18651,40 @@ Schema: `DepartmentsResponse`
 #### listProductTemplate
 List all Templates
 
+
+
 ```javascript
 // Promise
-const promise = catalog.listProductTemplate(companyId,departments);
+const promise = catalog.listProductTemplate( {  companyId : value,
+ departments : value });
 
 // Async/Await
-const data = await catalog.listProductTemplate(companyId,departments);
+const data = await catalog.listProductTemplate( {  companyId : value,
+ departments : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| departments | string | A `departments` is the name of a particular department. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| departments | string? | no | A `departments` is the name of a particular department. |  
+
+
 
 Allows you to list all product templates, also can filter by department
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of product templates. See example below or refer `TemplatesResponse` for details
 
 
-Schema: `TemplatesResponse`
+[TemplatesResponse](#TemplatesResponse)
+
+List of product templates. See example below or refer `TemplatesResponse` for details
 
 
 
@@ -15106,29 +18700,40 @@ Schema: `TemplatesResponse`
 #### validateProductTemplate
 Validate Product Template Schema
 
+
+
 ```javascript
 // Promise
-const promise = catalog.validateProductTemplate(companyId,slug);
+const promise = catalog.validateProductTemplate( {  companyId : value,
+ slug : value });
 
 // Async/Await
-const data = await catalog.validateProductTemplate(companyId,slug);
+const data = await catalog.validateProductTemplate( {  companyId : value,
+ slug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| slug | string | A `slug` is a unique identifier for a particular template. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| slug | string? | no | A `slug` is a unique identifier for a particular template. |  
+
+
 
 Allows you to list all product templates validation values for all the fields present in the database
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of fields and validation values fro each. See example below or refer `TemplatesValidationResponse` for details
 
 
-Schema: `TemplatesValidationResponse`
+[TemplatesValidationResponse](#TemplatesValidationResponse)
+
+List of fields and validation values fro each. See example below or refer `TemplatesValidationResponse` for details
 
 
 
@@ -15144,29 +18749,40 @@ Schema: `TemplatesValidationResponse`
 #### downloadProductTemplateViews
 Download Product Template View
 
+
+
 ```javascript
 // Promise
-const promise = catalog.downloadProductTemplateViews(companyId,slug);
+const promise = catalog.downloadProductTemplateViews( {  companyId : value,
+ slug : value });
 
 // Async/Await
-const data = await catalog.downloadProductTemplateViews(companyId,slug);
+const data = await catalog.downloadProductTemplateViews( {  companyId : value,
+ slug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| slug | string | A `slug` is a unique identifier for a particular template. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| slug | string? | no | A `slug` is a unique identifier for a particular template. |  
+
+
 
 Allows you to download product template data
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 CSV File of product template data. See example below or refer `TemplatesResponse` for details
 
 
-Schema: `string`
+[string](#string)
+
+CSV File of product template data. See example below or refer `TemplatesResponse` for details
 
 
 
@@ -15182,29 +18798,40 @@ Schema: `string`
 #### downloadProductTemplateView
 Download Product Template View
 
+
+
 ```javascript
 // Promise
-const promise = catalog.downloadProductTemplateView(companyId,itemType);
+const promise = catalog.downloadProductTemplateView( {  companyId : value,
+ itemType : value });
 
 // Async/Await
-const data = await catalog.downloadProductTemplateView(companyId,itemType);
+const data = await catalog.downloadProductTemplateView( {  companyId : value,
+ itemType : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| itemType | string | An `item_type` defines the type of item. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| itemType | string? | no | An `item_type` defines the type of item. |  
+
+
 
 Allows you to download product template data
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 CSV File of product template data.
 
 
-Schema: `string`
+[string](#string)
+
+CSV File of product template data.
 
 
 
@@ -15220,29 +18847,40 @@ Schema: `string`
 #### validateProductTemplateSchema
 Validate Product Template Schema
 
+
+
 ```javascript
 // Promise
-const promise = catalog.validateProductTemplateSchema(companyId,itemType);
+const promise = catalog.validateProductTemplateSchema( {  companyId : value,
+ itemType : value });
 
 // Async/Await
-const data = await catalog.validateProductTemplateSchema(companyId,itemType);
+const data = await catalog.validateProductTemplateSchema( {  companyId : value,
+ itemType : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| itemType | string | An `item_type` defines the type of item. The default value is standard. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| itemType | string? | no | An `item_type` defines the type of item. The default value is standard. |  
+
+
 
 Allows you to list all product templates validation values for all the fields present in the database
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of fields and validation values fro each. See example below or refer `InventoryValidationResponse` for details
 
 
-Schema: `InventoryValidationResponse`
+[InventoryValidationResponse](#InventoryValidationResponse)
+
+List of fields and validation values fro each. See example below or refer `InventoryValidationResponse` for details
 
 
 
@@ -15258,28 +18896,37 @@ Schema: `InventoryValidationResponse`
 #### listHSNCodes
 List HSN Codes
 
+
+
 ```javascript
 // Promise
-const promise = catalog.listHSNCodes(companyId);
+const promise = catalog.listHSNCodes( {  companyId : value });
 
 // Async/Await
-const data = await catalog.listHSNCodes(companyId);
+const data = await catalog.listHSNCodes( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |  
+
+
 
 Allows you to list all hsn Codes
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of all HSN Codes. See example below or refer `HSNCodesResponse` for details
 
 
-Schema: `HSNCodesResponse`
+[HSNCodesResponse](#HSNCodesResponse)
+
+List of all HSN Codes. See example below or refer `HSNCodesResponse` for details
 
 
 
@@ -15295,28 +18942,37 @@ Schema: `HSNCodesResponse`
 #### listProductTemplateExportDetails
 Allows you to list all product templates export list details
 
+
+
 ```javascript
 // Promise
-const promise = catalog.listProductTemplateExportDetails(companyId);
+const promise = catalog.listProductTemplateExportDetails( {  companyId : value });
 
 // Async/Await
-const data = await catalog.listProductTemplateExportDetails(companyId);
+const data = await catalog.listProductTemplateExportDetails( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |  
+
+
 
 Can view details including trigger data, task id , etc.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
 
 
-Schema: `ProductDownloadsResponse`
+[ProductDownloadsResponse](#ProductDownloadsResponse)
+
+List of Product Downloads Data. See example below or refer `ProductDownloadsResponse` for details
 
 
 
@@ -15332,66 +18988,40 @@ Schema: `ProductDownloadsResponse`
 #### listTemplateBrandTypeValues
 Allows you to list all values for Templates, Brands or Type
 
+
+
 ```javascript
 // Promise
-const promise = catalog.listTemplateBrandTypeValues(companyId,filter);
+const promise = catalog.listTemplateBrandTypeValues( {  companyId : value,
+ filter : value });
 
 // Async/Await
-const data = await catalog.listTemplateBrandTypeValues(companyId,filter);
+const data = await catalog.listTemplateBrandTypeValues( {  companyId : value,
+ filter : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| filter | string | A `filter` is the unique identifier of the type of value required. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| filter | string? | no | A `filter` is the unique identifier of the type of value required. |  
+
+
 
 The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 See example below or refer `ProductConfigurationDownloadsSchema` for details
 
 
-Schema: `ProductConfigurationDownloads`
+[ProductConfigurationDownloads](#ProductConfigurationDownloads)
 
-
-
-
-
-
-
-
-
----
-
-
-#### createCategories
-Create product categories
-
-```javascript
-// Promise
-const promise = catalog.createCategories(companyId,body);
-
-// Async/Await
-const data = await catalog.createCategories(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API lets user create product categories
-
-*Success Response:*
-
-
-
-Category Meta. See example below or refer `CategoryCreateResponse` for details
-
-
-Schema: `CategoryCreateResponse`
+See example below or refer `ProductConfigurationDownloadsSchema` for details
 
 
 
@@ -15407,33 +19037,52 @@ Schema: `CategoryCreateResponse`
 #### listCategories
 Get product categories list
 
+
+
 ```javascript
 // Promise
-const promise = catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
+const promise = catalog.listCategories( {  companyId : value,
+ level : value,
+ departments : value,
+ q : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await catalog.listCategories(companyId,level,departments,q,pageNo,pageSize);
+const data = await catalog.listCategories( {  companyId : value,
+ level : value,
+ departments : value,
+ q : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| level | string | Get category for multiple levels | 
-| departments | string | Get category for multiple departments filtered | 
-| q | string | Get multiple categories filtered by search string | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| level | string? | no | Get category for multiple levels |    
+| departments | string? | no | Get category for multiple departments filtered |    
+| q | string? | no | Get multiple categories filtered by search string |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 10. |  
+
+
 
 This API gets meta associated to product categories.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Category Meta. See example below or refer `CategoryResponse` for details
 
 
-Schema: `CategoryResponse`
+[CategoryResponse](#CategoryResponse)
+
+Category Meta. See example below or refer `CategoryResponse` for details
 
 
 
@@ -15446,32 +19095,42 @@ Schema: `CategoryResponse`
 ---
 
 
-#### getCategoryData
-Get product category by uid
+#### createCategories
+Create product categories
+
+
 
 ```javascript
 // Promise
-const promise = catalog.getCategoryData(companyId,uid);
+const promise = catalog.createCategories( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.getCategoryData(companyId,uid);
+const data = await catalog.createCategories( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| uid | string | Category unique id | 
-
-This API gets meta associated to product categories.
-
-*Success Response:*
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |  
+| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
 
-Get Data for one category. See example below or refer `CategoryResponse` for details
+
+This API lets user create product categories
+
+*Returned Response:*
 
 
-Schema: `SingleCategoryResponse`
+
+
+Category Meta. See example below or refer `CategoryCreateResponse` for details
+
+
+[CategoryCreateResponse](#CategoryCreateResponse)
+
+Category Meta. See example below or refer `CategoryCreateResponse` for details
 
 
 
@@ -15487,29 +19146,42 @@ Schema: `SingleCategoryResponse`
 #### updateCategory
 Update product categories
 
+
+
 ```javascript
 // Promise
-const promise = catalog.updateCategory(companyId,uid,body);
+const promise = catalog.updateCategory( {  companyId : value,
+ uid : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.updateCategory(companyId,uid,body);
+const data = await catalog.updateCategory( {  companyId : value,
+ uid : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| uid | string | Category unique id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| uid | string? | no | Category unique id |  
+| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
+
 
 Update a product category using this apu
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
-Schema: `CategoryUpdateResponse`
+[CategoryUpdateResponse](#CategoryUpdateResponse)
+
+Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
 
@@ -15522,31 +19194,43 @@ Schema: `CategoryUpdateResponse`
 ---
 
 
-#### createProduct
-Create a product.
+#### getCategoryData
+Get product category by uid
+
+
 
 ```javascript
 // Promise
-const promise = catalog.createProduct(companyId,body);
+const promise = catalog.getCategoryData( {  companyId : value,
+ uid : value });
 
 // Async/Await
-const data = await catalog.createProduct(companyId,body);
+const data = await catalog.getCategoryData( {  companyId : value,
+ uid : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-
-This API allows to create product.
-
-*Success Response:*
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| uid | string? | no | Category unique id |  
 
-Returns a success response
 
 
-Schema: `SuccessResponse`
+This API gets meta associated to product categories.
+
+*Returned Response:*
+
+
+
+
+Get Data for one category. See example below or refer `CategoryResponse` for details
+
+
+[SingleCategoryResponse](#SingleCategoryResponse)
+
+Get Data for one category. See example below or refer `CategoryResponse` for details
 
 
 
@@ -15562,34 +19246,55 @@ Schema: `SuccessResponse`
 #### getProducts
 Get product list
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getProducts(companyId,brandIds,categoryIds,departmentIds,q,pageNo,pageSize);
+const promise = catalog.getProducts( {  companyId : value,
+ brandIds : value,
+ categoryIds : value,
+ departmentIds : value,
+ q : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await catalog.getProducts(companyId,brandIds,categoryIds,departmentIds,q,pageNo,pageSize);
+const data = await catalog.getProducts( {  companyId : value,
+ brandIds : value,
+ categoryIds : value,
+ departmentIds : value,
+ q : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | number | Get list of products filtered by company Id | 
-| brandIds | array | Get multiple products filtered by Brand Ids | 
-| categoryIds | array | Get multiple products filtered by Category Ids | 
-| departmentIds | array | Get multiple products filtered by Department Ids | 
-| q | string | Get multiple products filtered by q string | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Get list of products filtered by company Id |    
+| brandIds | Array<number>? | no | Get multiple products filtered by Brand Ids |    
+| categoryIds | Array<number>? | no | Get multiple products filtered by Category Ids |    
+| departmentIds | Array<number>? | no | Get multiple products filtered by Department Ids |    
+| q | string? | no | Get multiple products filtered by q string |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 10. |  
+
+
 
 This API gets meta associated to products.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Product Meta. See example below for details
 
 
-Schema: `ProductListingResponse`
+[ProductListingResponse](#ProductListingResponse)
+
+Product Meta. See example below for details
 
 
 
@@ -15602,73 +19307,42 @@ Schema: `ProductListingResponse`
 ---
 
 
-#### deleteProduct
-Delete a product.
+#### createProduct
+Create a product.
+
+
 
 ```javascript
 // Promise
-const promise = catalog.deleteProduct(companyId,itemId);
+const promise = catalog.createProduct( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.deleteProduct(companyId,itemId);
+const data = await catalog.createProduct( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to product that is to be deleted. | 
-| itemId | integer | Id of the product to be updated. | 
 
-This API allows to delete product.
 
-*Success Response:*
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company associated to product that is to be viewed. |  
+| body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
+
+
+This API allows to create product.
+
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[SuccessResponse](#SuccessResponse)
 
-
-
-
-
-
-
-
-
----
-
-
-#### getProduct
-Get a single product.
-
-```javascript
-// Promise
-const promise = catalog.getProduct(companyId,itemId,itemCode,brandUid,uid);
-
-// Async/Await
-const data = await catalog.getProduct(companyId,itemId,itemCode,brandUid,uid);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| itemCode | string | Item code of the product. | 
-| companyId | integer | Company Id of the product. | 
-| itemId | integer | Item Id of the product. | 
-| brandUid | integer | Brand Id of the product. | 
-| uid | integer | Id of the product. | 
-
-This API helps to get data associated to a particular product.
-
-*Success Response:*
-
-
-
-Product object. See example below or refer `product.utils.format_product_response` for details
-
-
-Schema: `Product`
+Returns a success response
 
 
 
@@ -15684,29 +19358,149 @@ Schema: `Product`
 #### editProduct
 Edit a product.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.editProduct(companyId,itemId,body);
+const promise = catalog.editProduct( {  companyId : value,
+ itemId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.editProduct(companyId,itemId,body);
+const data = await catalog.editProduct( {  companyId : value,
+ itemId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | integer | Id of the product to be updated. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company associated to product that is to be viewed. |    
+| itemId | number? | no | Id of the product to be updated. |  
+| body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
+
 
 This API allows to edit product.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getProduct
+Get a single product.
+
+
+
+```javascript
+// Promise
+const promise = catalog.getProduct( {  companyId : value,
+ itemId : value,
+ itemCode : value,
+ brandUid : value,
+ uid : value });
+
+// Async/Await
+const data = await catalog.getProduct( {  companyId : value,
+ itemId : value,
+ itemCode : value,
+ brandUid : value,
+ uid : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| itemCode | string? | no | Item code of the product. |    
+| companyId | number? | no | Company Id of the product. |    
+| itemId | number? | no | Item Id of the product. |    
+| brandUid | number? | no | Brand Id of the product. |    
+| uid | number? | no | Id of the product. |  
+
+
+
+This API helps to get data associated to a particular product.
+
+*Returned Response:*
+
+
+
+
+Product object. See example below or refer `product.utils.format_product_response` for details
+
+
+[Product](#Product)
+
+Product object. See example below or refer `product.utils.format_product_response` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteProduct
+Delete a product.
+
+
+
+```javascript
+// Promise
+const promise = catalog.deleteProduct( {  companyId : value,
+ itemId : value });
+
+// Async/Await
+const data = await catalog.deleteProduct( {  companyId : value,
+ itemId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id of the company associated to product that is to be deleted. |    
+| itemId | number? | no | Id of the product to be updated. |  
+
+
+
+This API allows to delete product.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -15722,28 +19516,37 @@ Schema: `SuccessResponse`
 #### getProductValidation
 Validate product/size data
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getProductValidation(companyId);
+const promise = catalog.getProductValidation( {  companyId : value });
 
 // Async/Await
-const data = await catalog.getProductValidation(companyId);
+const data = await catalog.getProductValidation( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | number | Validates data against given company | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Validates data against given company |  
+
+
 
 This API validates product data.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Validate Meta. See example below for details
 
 
-Schema: `ValidateProduct`
+[ValidateProduct](#ValidateProduct)
+
+Validate Meta. See example below for details
 
 
 
@@ -15759,69 +19562,49 @@ Schema: `ValidateProduct`
 #### getProductSize
 Get a single product size.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getProductSize(companyId,itemId,itemCode,brandUid,uid);
+const promise = catalog.getProductSize( {  companyId : value,
+ itemId : value,
+ itemCode : value,
+ brandUid : value,
+ uid : value });
 
 // Async/Await
-const data = await catalog.getProductSize(companyId,itemId,itemCode,brandUid,uid);
+const data = await catalog.getProductSize( {  companyId : value,
+ itemId : value,
+ itemCode : value,
+ brandUid : value,
+ uid : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| itemCode | string | Item code of the product size. | 
-| companyId | integer | Company Id of the product size. | 
-| itemId | integer | Item Id of the product size. | 
-| brandUid | integer | Brand Id of the product size. | 
-| uid | integer | Id of the product size. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| itemCode | string? | no | Item code of the product size. |    
+| companyId | number? | no | Company Id of the product size. |    
+| itemId | number? | no | Item Id of the product size. |    
+| brandUid | number? | no | Brand Id of the product size. |    
+| uid | number? | no | Id of the product size. |  
+
+
 
 This API helps to get data associated to a particular product size.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Product object. See example below for details
 
 
-Schema: `ProductListingResponse`
+[ProductListingResponse](#ProductListingResponse)
 
-
-
-
-
-
-
-
-
----
-
-
-#### updateProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-```javascript
-// Promise
-const promise = catalog.updateProductAssetsInBulk(companyId,body);
-
-// Async/Await
-const data = await catalog.updateProductAssetsInBulk(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to create a bulk asset upload job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
+Product object. See example below for details
 
 
 
@@ -15837,30 +19620,43 @@ Schema: `SuccessResponse`
 #### getProductBulkUploadHistory
 Get a list of all bulk product upload jobs.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getProductBulkUploadHistory(companyId,pageNo,pageSize);
+const promise = catalog.getProductBulkUploadHistory( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await catalog.getProductBulkUploadHistory(companyId,pageNo,pageSize);
+const data = await catalog.getProductBulkUploadHistory( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id of of which Product Bulk Upload History to be obtained. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id of of which Product Bulk Upload History to be obtained. |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 12. |  
+
+
 
 This API helps to get bulk product upload jobs data.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 
 
-Schema: `ProductBulkRequestList`
+[ProductBulkRequestList](#ProductBulkRequestList)
+
+List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 
 
 
@@ -15873,32 +19669,42 @@ Schema: `ProductBulkRequestList`
 ---
 
 
-#### createProductsInBulk
-Create products in bulk associated with given batch Id.
+#### updateProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+
 
 ```javascript
 // Promise
-const promise = catalog.createProductsInBulk(companyId,batchId,body);
+const promise = catalog.updateProductAssetsInBulk( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.createProductsInBulk(companyId,batchId,body);
+const data = await catalog.updateProductAssetsInBulk( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-| batchId | string | Batch Id in which assets to be uploaded. | 
 
-This API helps to create products in bulk push to kafka for approval/creation.
 
-*Success Response:*
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id in which assets to be uploaded. |  
+| body | [BulkJob](#BulkJob) | yes | Request body |
+
+
+This API helps to create a bulk asset upload job.
+
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -15914,29 +19720,91 @@ Schema: `SuccessResponse`
 #### deleteProductBulkJob
 Delete Bulk product job.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.deleteProductBulkJob(companyId,batchId);
+const promise = catalog.deleteProductBulkJob( {  companyId : value,
+ batchId : value });
 
 // Async/Await
-const data = await catalog.deleteProductBulkJob(companyId,batchId);
+const data = await catalog.deleteProductBulkJob( {  companyId : value,
+ batchId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to size that is to be deleted. | 
-| batchId | integer | Batch Id of the bulk product job to be deleted. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id of the company associated to size that is to be deleted. |    
+| batchId | number? | no | Batch Id of the bulk product job to be deleted. |  
+
+
 
 This API allows to delete bulk product job associated with company.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createProductsInBulk
+Create products in bulk associated with given batch Id.
+
+
+
+```javascript
+// Promise
+const promise = catalog.createProductsInBulk( {  companyId : value,
+ batchId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createProductsInBulk( {  companyId : value,
+ batchId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id in which assets to be uploaded. |    
+| batchId | string? | no | Batch Id in which assets to be uploaded. |  
+| body | [BulkProductRequest](#BulkProductRequest) | yes | Request body |
+
+
+This API helps to create products in bulk push to kafka for approval/creation.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -15952,65 +19820,37 @@ Schema: `SuccessResponse`
 #### getCompanyTags
 Get a list of all tags associated with company.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getCompanyTags(companyId);
+const promise = catalog.getCompanyTags( {  companyId : value });
 
 // Async/Await
-const data = await catalog.getCompanyTags(companyId);
+const data = await catalog.getCompanyTags( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id of the product size. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id of the product size. |  
+
+
 
 This API helps to get tags data associated to a particular copmpany.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Tag List. See example below for details
 
 
-Schema: `ProductTagsViewResponse`
+[ProductTagsViewResponse](#ProductTagsViewResponse)
 
-
-
-
-
-
-
-
-
----
-
-
-#### createProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-```javascript
-// Promise
-const promise = catalog.createProductAssetsInBulk(companyId,body);
-
-// Async/Await
-const data = await catalog.createProductAssetsInBulk(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
-
-This API helps to create a bulk asset upload job.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
+Tag List. See example below for details
 
 
 
@@ -16026,30 +19866,91 @@ Schema: `SuccessResponse`
 #### getProductAssetsInBulk
 Get a list of all bulk asset jobs.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getProductAssetsInBulk(companyId,pageNo,pageSize);
+const promise = catalog.getProductAssetsInBulk( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await catalog.getProductAssetsInBulk(companyId,pageNo,pageSize);
+const data = await catalog.getProductAssetsInBulk( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id of the product size. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id of the product size. |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 12. |  
+
+
 
 This API helps to get bulk asset jobs data associated to a particular company.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of bulk asset jobs List. See `BulkUtil.modify_batch_response` for details
 
 
-Schema: `BulkAssetResponse`
+[BulkAssetResponse](#BulkAssetResponse)
+
+List of bulk asset jobs List. See `BulkUtil.modify_batch_response` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+
+
+```javascript
+// Promise
+const promise = catalog.createProductAssetsInBulk( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createProductAssetsInBulk( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id in which assets to be uploaded. |  
+| body | [ProductBulkAssets](#ProductBulkAssets) | yes | Request body |
+
+
+This API helps to create a bulk asset upload job.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -16065,69 +19966,43 @@ Schema: `BulkAssetResponse`
 #### deleteSize
 Delete a Size associated with product.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.deleteSize(companyId,itemId,size);
+const promise = catalog.deleteSize( {  companyId : value,
+ itemId : value,
+ size : value });
 
 // Async/Await
-const data = await catalog.deleteSize(companyId,itemId,size);
+const data = await catalog.deleteSize( {  companyId : value,
+ itemId : value,
+ size : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id of the company associated to size that is to be deleted. | 
-| itemId | integer | Item Id of the product associated with size to be deleted. | 
-| size | integer | size to be deleted. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id of the company associated to size that is to be deleted. |    
+| itemId | number? | no | Item Id of the product associated with size to be deleted. |    
+| size | number? | no | size to be deleted. |  
+
+
 
 This API allows to delete size associated with product.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `ProductSizeDeleteResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### addInventory
-Add Inventory for particular size and store.
-
-```javascript
-// Promise
-const promise = catalog.addInventory(companyId,itemId,size,body);
-
-// Async/Await
-const data = await catalog.addInventory(companyId,itemId,size,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | number | Item code of the product of which size is to be get. | 
-| size | string | Size in which inventory is to be added. | 
-
-This API allows add Inventory for particular size and store.
-
-*Success Response:*
-
-
+[ProductSizeDeleteResponse](#ProductSizeDeleteResponse)
 
 Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -16143,33 +20018,106 @@ Schema: `SuccessResponse`
 #### getInventoryBySize
 Get Inventory for company
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getInventoryBySize(companyId,itemId,size,pageNo,pageSize,q);
+const promise = catalog.getInventoryBySize( {  companyId : value,
+ itemId : value,
+ size : value,
+ pageNo : value,
+ pageSize : value,
+ q : value });
 
 // Async/Await
-const data = await catalog.getInventoryBySize(companyId,itemId,size,pageNo,pageSize,q);
+const data = await catalog.getInventoryBySize( {  companyId : value,
+ itemId : value,
+ size : value,
+ pageNo : value,
+ pageSize : value,
+ q : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | string | Item code of the product of which size is to be get. | 
-| size | string | Size of which inventory is to get. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-| q | string | Search with help of store code. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company associated to product that is to be viewed. |    
+| itemId | string? | no | Item code of the product of which size is to be get. |    
+| size | string? | no | Size of which inventory is to get. |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 12. |    
+| q | string? | no | Search with help of store code. |  
+
+
 
 This API allows get Inventory data for particular company grouped by size and store.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 returns a list of all inventory grouped by size and store
 
 
-Schema: `InventoryResponse`
+[InventoryResponse](#InventoryResponse)
+
+returns a list of all inventory grouped by size and store
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addInventory
+Add Inventory for particular size and store.
+
+
+
+```javascript
+// Promise
+const promise = catalog.addInventory( {  companyId : value,
+ itemId : value,
+ size : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.addInventory( {  companyId : value,
+ itemId : value,
+ size : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company associated to product that is to be viewed. |    
+| itemId | number? | no | Item code of the product of which size is to be get. |    
+| size | string? | no | Size in which inventory is to be added. |  
+| body | [InventoryRequest](#InventoryRequest) | yes | Request body |
+
+
+This API allows add Inventory for particular size and store.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -16185,34 +20133,55 @@ Schema: `InventoryResponse`
 #### getInventoryBySizeIdentifier
 Get Inventory for company
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getInventoryBySizeIdentifier(companyId,itemId,sizeIdentifier,pageNo,pageSize,q,locationIds);
+const promise = catalog.getInventoryBySizeIdentifier( {  companyId : value,
+ itemId : value,
+ sizeIdentifier : value,
+ pageNo : value,
+ pageSize : value,
+ q : value,
+ locationIds : value });
 
 // Async/Await
-const data = await catalog.getInventoryBySizeIdentifier(companyId,itemId,sizeIdentifier,pageNo,pageSize,q,locationIds);
+const data = await catalog.getInventoryBySizeIdentifier( {  companyId : value,
+ itemId : value,
+ sizeIdentifier : value,
+ pageNo : value,
+ pageSize : value,
+ q : value,
+ locationIds : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| itemId | string | Item code of the product of which size is to be get. | 
-| sizeIdentifier | string | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-| q | string | Search with help of store code. | 
-| locationIds | array | Search by store ids. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company associated to product that is to be viewed. |    
+| itemId | string? | no | Item code of the product of which size is to be get. |    
+| sizeIdentifier | string? | no | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 12. |    
+| q | string? | no | Search with help of store code. |    
+| locationIds | Array<number>? | no | Search by store ids. |  
+
+
 
 This API allows get Inventory data for particular company grouped by size and store.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 returns a list of all inventory grouped by size and store
 
 
-Schema: `InventoryResponse`
+[InventoryResponse](#InventoryResponse)
+
+returns a list of all inventory grouped by size and store
 
 
 
@@ -16228,68 +20197,46 @@ Schema: `InventoryResponse`
 #### deleteInventory
 Delete a Inventory.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.deleteInventory(companyId,size,itemId,locationId);
+const promise = catalog.deleteInventory( {  companyId : value,
+ size : value,
+ itemId : value,
+ locationId : value });
 
 // Async/Await
-const data = await catalog.deleteInventory(companyId,size,itemId,locationId);
+const data = await catalog.deleteInventory( {  companyId : value,
+ size : value,
+ itemId : value,
+ locationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id of the company associated with Inventory that is to be deleted. | 
-| size | string | size that is to be deleted. | 
-| itemId | integer | Id of the product associated with Inventory to be deleted. | 
-| locationId | number | Location ID of store of which inventory is to be deleted. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id of the company associated with Inventory that is to be deleted. |    
+| size | string? | no | size that is to be deleted. |    
+| itemId | number? | no | Id of the product associated with Inventory to be deleted. |    
+| locationId | number? | no | Location ID of store of which inventory is to be deleted. |  
+
+
 
 This API allows to delete inventory of a particular product for particular company.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `InventoryDelete`
-
-
-
-
-
-
-
-
-
----
-
-
-#### createBulkInventoryJob
-Create a Bulk Inventory upload Job.
-
-```javascript
-// Promise
-const promise = catalog.createBulkInventoryJob(companyId,body);
-
-// Async/Await
-const data = await catalog.createBulkInventoryJob(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which Inventory to be uploaded. | 
-
-This API helps to create a bulk Inventory upload job.
-
-*Success Response:*
-
-
+[InventoryDelete](#InventoryDelete)
 
 Returns a success response
-
-
-Schema: `CommonResponse`
 
 
 
@@ -16305,30 +20252,43 @@ Schema: `CommonResponse`
 #### getInventoryBulkUploadHistory
 Get a list of all bulk Inventory upload jobs.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getInventoryBulkUploadHistory(companyId,pageNo,pageSize);
+const promise = catalog.getInventoryBulkUploadHistory( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await catalog.getInventoryBulkUploadHistory(companyId,pageNo,pageSize);
+const data = await catalog.getInventoryBulkUploadHistory( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id of of which Inventory Bulk Upload History to be obtained. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id of of which Inventory Bulk Upload History to be obtained. |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 12. |  
+
+
 
 This API helps to get bulk Inventory upload jobs data.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
 
 
-Schema: `BulkInventoryGet`
+[BulkInventoryGet](#BulkInventoryGet)
+
+List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
 
 
 
@@ -16341,32 +20301,42 @@ Schema: `BulkInventoryGet`
 ---
 
 
-#### createBulkInventory
-Create products in bulk associated with given batch Id.
+#### createBulkInventoryJob
+Create a Bulk Inventory upload Job.
+
+
 
 ```javascript
 // Promise
-const promise = catalog.createBulkInventory(companyId,batchId,body);
+const promise = catalog.createBulkInventoryJob( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.createBulkInventory(companyId,batchId,body);
+const data = await catalog.createBulkInventoryJob( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which Inventory is to be uploaded. | 
-| batchId | string | Batch Id of the bulk create job. | 
 
-This API helps to create products in bulk push to kafka for approval/creation.
 
-*Success Response:*
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id in which Inventory to be uploaded. |  
+| body | [BulkJob](#BulkJob) | yes | Request body |
+
+
+This API helps to create a bulk Inventory upload job.
+
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[CommonResponse](#CommonResponse)
+
+Returns a success response
 
 
 
@@ -16382,29 +20352,40 @@ Schema: `SuccessResponse`
 #### deleteBulkInventoryJob
 Delete Bulk Inventory job.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.deleteBulkInventoryJob(companyId,batchId);
+const promise = catalog.deleteBulkInventoryJob( {  companyId : value,
+ batchId : value });
 
 // Async/Await
-const data = await catalog.deleteBulkInventoryJob(companyId,batchId);
+const data = await catalog.deleteBulkInventoryJob( {  companyId : value,
+ batchId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id of the company of which bulk Inventory job is to be deleted. | 
-| batchId | string | Batch Id of the bulk delete job. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id of the company of which bulk Inventory job is to be deleted. |    
+| batchId | string? | no | Batch Id of the bulk delete job. |  
+
+
 
 This API allows to delete bulk Inventory job associated with company.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -16417,31 +20398,45 @@ Schema: `SuccessResponse`
 ---
 
 
-#### createInventoryExportJob
-Create a Inventory export Job.
+#### createBulkInventory
+Create products in bulk associated with given batch Id.
+
+
 
 ```javascript
 // Promise
-const promise = catalog.createInventoryExportJob(companyId,body);
+const promise = catalog.createBulkInventory( {  companyId : value,
+ batchId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.createInventoryExportJob(companyId,body);
+const data = await catalog.createBulkInventory( {  companyId : value,
+ batchId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
 
-This API helps to create a Inventory export job.
 
-*Success Response:*
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id in which Inventory is to be uploaded. |    
+| batchId | string? | no | Batch Id of the bulk create job. |  
+| body | [InventoryBulkRequest](#InventoryBulkRequest) | yes | Request body |
+
+
+This API helps to create products in bulk push to kafka for approval/creation.
+
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -16457,28 +20452,85 @@ Schema: `SuccessResponse`
 #### getInventoryExport
 Get Inventory export history.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getInventoryExport(companyId);
+const promise = catalog.getInventoryExport( {  companyId : value });
 
 // Async/Await
-const data = await catalog.getInventoryExport(companyId);
+const data = await catalog.getInventoryExport( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id in which assets to be uploaded. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id in which assets to be uploaded. |  
+
+
 
 This API helps to get Inventory export history.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a list of inventory export jobs
 
 
-Schema: `InventoryExportJob`
+[InventoryExportJob](#InventoryExportJob)
+
+Returns a list of inventory export jobs
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createInventoryExportJob
+Create a Inventory export Job.
+
+
+
+```javascript
+// Promise
+const promise = catalog.createInventoryExportJob( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createInventoryExportJob( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id in which assets to be uploaded. |  
+| body | [InventoryExportRequest](#InventoryExportRequest) | yes | Request body |
+
+
+This API helps to create a Inventory export job.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -16494,66 +20546,40 @@ Schema: `InventoryExportJob`
 #### exportInventoryConfig
 Get List of different filters for inventory export
 
+
+
 ```javascript
 // Promise
-const promise = catalog.exportInventoryConfig(companyId,filterType);
+const promise = catalog.exportInventoryConfig( {  companyId : value,
+ filterType : value });
 
 // Async/Await
-const data = await catalog.exportInventoryConfig(companyId,filterType);
+const data = await catalog.exportInventoryConfig( {  companyId : value,
+ filterType : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to product that is to be viewed. | 
-| filterType | string | filter type from any one of ['brand', 'store', 'type'] | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company associated to product that is to be viewed. |    
+| filterType | string? | no | filter type from any one of ['brand', 'store', 'type'] |  
+
+
 
 This API allows get List of different filters like brand, store, and type for inventory export.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 returns filters configuration for inventory export
 
 
-Schema: `InventoryConfig`
+[InventoryConfig](#InventoryConfig)
 
-
-
-
-
-
-
-
-
----
-
-
-#### createHsnCode
-Create Hsn Code.
-
-```javascript
-// Promise
-const promise = catalog.createHsnCode(companyId,body);
-
-// Async/Await
-const data = await catalog.createHsnCode(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-
-Create Hsn Code.
-
-*Success Response:*
-
-
-
-See example below for details
-
-
-Schema: `HsnCode`
+returns filters configuration for inventory export
 
 
 
@@ -16569,31 +20595,46 @@ Schema: `HsnCode`
 #### getAllHsnCodes
 Hsn Code List.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getAllHsnCodes(companyId,pageNo,pageSize,q);
+const promise = catalog.getAllHsnCodes( {  companyId : value,
+ pageNo : value,
+ pageSize : value,
+ q : value });
 
 // Async/Await
-const data = await catalog.getAllHsnCodes(companyId,pageNo,pageSize,q);
+const data = await catalog.getAllHsnCodes( {  companyId : value,
+ pageNo : value,
+ pageSize : value,
+ q : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| pageNo | integer | page no | 
-| pageSize | integer | page size | 
-| q | string | search using hsn code. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| pageNo | number? | no | page no |    
+| pageSize | number? | no | page size |    
+| q | string? | no | search using hsn code. |  
+
+
 
 Hsn Code List.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema` for details
 
 
-Schema: `HsnCodesListingResponse`
+[HsnCodesListingResponse](#HsnCodesListingResponse)
+
+List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema` for details
 
 
 
@@ -16606,32 +20647,42 @@ Schema: `HsnCodesListingResponse`
 ---
 
 
-#### getHsnCode
-Fetch Hsn Code.
+#### createHsnCode
+Create Hsn Code.
+
+
 
 ```javascript
 // Promise
-const promise = catalog.getHsnCode(companyId,id);
+const promise = catalog.createHsnCode( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.getHsnCode(companyId,id);
+const data = await catalog.createHsnCode( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| id | string | Unique id | 
-
-Fetch Hsn Code.
-
-*Success Response:*
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |  
+| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
 
-See example below details
+
+Create Hsn Code.
+
+*Returned Response:*
 
 
-Schema: `HsnCode`
+
+
+See example below for details
+
+
+[HsnCode](#HsnCode)
+
+See example below for details
 
 
 
@@ -16647,29 +20698,91 @@ Schema: `HsnCode`
 #### updateHsnCode
 Update Hsn Code.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.updateHsnCode(companyId,id,body);
+const promise = catalog.updateHsnCode( {  companyId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.updateHsnCode(companyId,id,body);
+const data = await catalog.updateHsnCode( {  companyId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| id | string | Unique id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| id | string? | no | Unique id |  
+| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
+
 
 Update Hsn Code.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 See example below for details
 
 
-Schema: `HsnCode`
+[HsnCode](#HsnCode)
+
+See example below for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getHsnCode
+Fetch Hsn Code.
+
+
+
+```javascript
+// Promise
+const promise = catalog.getHsnCode( {  companyId : value,
+ id : value });
+
+// Async/Await
+const data = await catalog.getHsnCode( {  companyId : value,
+ id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| id | string? | no | Unique id |  
+
+
+
+Fetch Hsn Code.
+
+*Returned Response:*
+
+
+
+
+See example below details
+
+
+[HsnCode](#HsnCode)
+
+See example below details
 
 
 
@@ -16685,28 +20798,39 @@ Schema: `HsnCode`
 #### bulkHsnCode
 Bulk Create or Update Hsn Code.
 
+
+
 ```javascript
 // Promise
-const promise = catalog.bulkHsnCode(companyId,body);
+const promise = catalog.bulkHsnCode( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.bulkHsnCode(companyId,body);
+const data = await catalog.bulkHsnCode( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |  
+| body | [BulkHsnUpsert](#BulkHsnUpsert) | yes | Request body |
+
 
 Bulk Create or Update Hsn Code.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 See example below for details
 
 
-Schema: `BulkHsnResponse`
+[BulkHsnResponse](#BulkHsnResponse)
+
+See example below for details
 
 
 
@@ -16722,32 +20846,49 @@ Schema: `BulkHsnResponse`
 #### getApplicationBrands
 List all the brands
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getApplicationBrands(companyId,applicationId,department,pageNo,pageSize);
+const promise = catalog.getApplicationBrands( {  companyId : value,
+ applicationId : value,
+ department : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await catalog.getApplicationBrands(companyId,applicationId,department,pageNo,pageSize);
+const data = await catalog.getApplicationBrands( {  companyId : value,
+ applicationId : value,
+ department : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| department | string | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| department | string? | no | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 12. |  
+
+
 
 A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of Brands. See example below or refer `BrandListingResponse` for details
 
 
-Schema: `BrandListingResponse`
+[BrandListingResponse](#BrandListingResponse)
+
+List of Brands. See example below or refer `BrandListingResponse` for details
 
 
 
@@ -16763,29 +20904,40 @@ Schema: `BrandListingResponse`
 #### getDepartments
 List all the departments
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getDepartments(companyId,applicationId);
+const promise = catalog.getDepartments( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await catalog.getDepartments(companyId,applicationId);
+const data = await catalog.getDepartments( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |  
+
+
 
 Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of Departments. See example below or refer `DepartmentResponse` for details.
 
 
-Schema: `DepartmentResponse`
+[DepartmentResponse](#DepartmentResponse)
+
+List of Departments. See example below or refer `DepartmentResponse` for details.
 
 
 
@@ -16801,30 +20953,43 @@ Schema: `DepartmentResponse`
 #### getCategories
 List all the categories
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getCategories(companyId,applicationId,department);
+const promise = catalog.getCategories( {  companyId : value,
+ applicationId : value,
+ department : value });
 
 // Async/Await
-const data = await catalog.getCategories(companyId,applicationId,department);
+const data = await catalog.getCategories( {  companyId : value,
+ applicationId : value,
+ department : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| department | string | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| department | string? | no | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API |  
+
+
 
 List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of Categories. See example below or refer `CategoryListingResponse` for details.
 
 
-Schema: `CategoryListingResponse`
+[CategoryListingResponse](#CategoryListingResponse)
+
+List of Categories. See example below or refer `CategoryListingResponse` for details.
 
 
 
@@ -16840,37 +21005,64 @@ Schema: `CategoryListingResponse`
 #### getAppicationProducts
 List the products
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getAppicationProducts(companyId,applicationId,q,f,filters,sortOn,pageId,pageSize,pageNo,pageType);
+const promise = catalog.getAppicationProducts( {  companyId : value,
+ applicationId : value,
+ q : value,
+ f : value,
+ filters : value,
+ sortOn : value,
+ pageId : value,
+ pageSize : value,
+ pageNo : value,
+ pageType : value });
 
 // Async/Await
-const data = await catalog.getAppicationProducts(companyId,applicationId,q,f,filters,sortOn,pageId,pageSize,pageNo,pageType);
+const data = await catalog.getAppicationProducts( {  companyId : value,
+ applicationId : value,
+ q : value,
+ f : value,
+ filters : value,
+ sortOn : value,
+ pageId : value,
+ pageSize : value,
+ pageNo : value,
+ pageType : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| q | string | The search query. This can be a partial or complete name of a either a product, brand or category | 
-| f | string | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts** | 
-| filters | boolean | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters | 
-| sortOn | string | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. | 
-| pageId | string | Each response will contain **page_id** param, which should be sent back to make pagination work. | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 12. | 
-| pageNo | integer | If page_type is number then pass it to fetch page items. Default is 1. | 
-| pageType | string | For pagination type should be cursor or number. Default is cursor. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| q | string? | no | The search query. This can be a partial or complete name of a either a product, brand or category |    
+| f | string? | no | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts** |    
+| filters | boolean? | no | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters |    
+| sortOn | string? | no | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. |    
+| pageId | string? | no | Each response will contain **page_id** param, which should be sent back to make pagination work. |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 12. |    
+| pageNo | number? | no | If page_type is number then pass it to fetch page items. Default is 1. |    
+| pageType | string? | no | For pagination type should be cursor or number. Default is cursor. |  
+
+
 
 List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 List of Products. See example below or refer `ApplicationProductListingResponse` for details
 
 
-Schema: `ApplicationProductListingResponse`
+[ApplicationProductListingResponse](#ApplicationProductListingResponse)
+
+List of Products. See example below or refer `ApplicationProductListingResponse` for details
 
 
 
@@ -16886,30 +21078,43 @@ Schema: `ApplicationProductListingResponse`
 #### getProductDetailBySlug
 Get a product
 
+
+
 ```javascript
 // Promise
-const promise = catalog.getProductDetailBySlug(companyId,applicationId,slug);
+const promise = catalog.getProductDetailBySlug( {  companyId : value,
+ applicationId : value,
+ slug : value });
 
 // Async/Await
-const data = await catalog.getProductDetailBySlug(companyId,applicationId,slug);
+const data = await catalog.getProductDetailBySlug( {  companyId : value,
+ applicationId : value,
+ slug : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-| applicationId | string | A `application_id` is a unique identifier for a particular sale channel. | 
-| slug | string | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string? | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| slug | string? | no | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |  
+
+
 
 Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 The Product object. See example below or refer `ProductDetail` for details.
 
 
-Schema: `ProductDetail`
+[ProductDetail](#ProductDetail)
+
+The Product object. See example below or refer `ProductDetail` for details.
 
 
 
@@ -16923,74 +21128,93 @@ Schema: `ProductDetail`
 
 
 
----
 
 
 ## CompanyProfile
 
 
-#### updateCompany
-Edit company profile
-
-```javascript
-// Promise
-const promise = companyprofile.updateCompany(companyId,body);
-
-// Async/Await
-const data = await companyprofile.updateCompany(companyId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
-
-This API allows to edit the company profile of the seller account.
-
-*Success Response:*
-
-
-
-Returns a success message
-
-
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
 #### cbsOnboardGet
 Get company profile
 
+
+
 ```javascript
 // Promise
-const promise = companyprofile.cbsOnboardGet(companyId);
+const promise = companyprofile.cbsOnboardGet( {  companyId : value });
 
 // Async/Await
-const data = await companyprofile.cbsOnboardGet(companyId);
+const data = await companyprofile.cbsOnboardGet( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |  
+
+
 
 This API allows to view the company profile of the seller account.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
 
 
-Schema: `GetCompanyProfileSerializerResponse`
+[GetCompanyProfileSerializerResponse](#GetCompanyProfileSerializerResponse)
+
+Company profile object. See example below or refer `GetCompanyProfileSerializerResponse` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateCompany
+Edit company profile
+
+
+
+```javascript
+// Promise
+const promise = companyprofile.updateCompany( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await companyprofile.updateCompany( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |  
+| body | [UpdateCompany](#UpdateCompany) | yes | Request body |
+
+
+This API allows to edit the company profile of the seller account.
+
+*Returned Response:*
+
+
+
+
+Returns a success message
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success message
 
 
 
@@ -17006,66 +21230,37 @@ Schema: `GetCompanyProfileSerializerResponse`
 #### getCompanyMetrics
 Get company metrics
 
+
+
 ```javascript
 // Promise
-const promise = companyprofile.getCompanyMetrics(companyId);
+const promise = companyprofile.getCompanyMetrics( {  companyId : value });
 
 // Async/Await
-const data = await companyprofile.getCompanyMetrics(companyId);
+const data = await companyprofile.getCompanyMetrics( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | A `company_id` is a unique identifier for a particular seller account. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | A `company_id` is a unique identifier for a particular seller account. |  
+
+
 
 This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Metrics response object. See example below or refer `MetricsSerializer` for details
 
 
-Schema: `MetricsSerializer`
+[MetricsSerializer](#MetricsSerializer)
 
-
-
-
-
-
-
-
-
----
-
-
-#### editBrand
-Edit a brand.
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand(companyId,brandId,body);
-
-// Async/Await
-const data = await companyprofile.editBrand(companyId,brandId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
-
-This API allows to edit meta of a brand.
-
-*Success Response:*
-
-
-
-Returns a success response
-
-
-Schema: `SuccessResponse`
+Metrics response object. See example below or refer `MetricsSerializer` for details
 
 
 
@@ -17081,29 +21276,91 @@ Schema: `SuccessResponse`
 #### getBrand
 Get a single brand.
 
+
+
 ```javascript
 // Promise
-const promise = companyprofile.getBrand(companyId,brandId);
+const promise = companyprofile.getBrand( {  companyId : value,
+ brandId : value });
 
 // Async/Await
-const data = await companyprofile.getBrand(companyId,brandId);
+const data = await companyprofile.getBrand( {  companyId : value,
+ brandId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company associated to brand that is to be viewed. | 
-| brandId | string | Id of the brand to be viewed. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company associated to brand that is to be viewed. |    
+| brandId | string? | no | Id of the brand to be viewed. |  
+
+
 
 This API helps to get data associated to a particular brand.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Brand object. See example below or refer `GetBrandResponseSerializer` for details
 
 
-Schema: `GetBrandResponseSerializer`
+[GetBrandResponseSerializer](#GetBrandResponseSerializer)
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### editBrand
+Edit a brand.
+
+
+
+```javascript
+// Promise
+const promise = companyprofile.editBrand( {  companyId : value,
+ brandId : value,
+ body : value });
+
+// Async/Await
+const data = await companyprofile.editBrand( {  companyId : value,
+ brandId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company associated to brand that is to be viewed. |    
+| brandId | string? | no | Id of the brand to be viewed. |  
+| body | [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer) | yes | Request body |
+
+
+This API allows to edit meta of a brand.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -17119,28 +21376,39 @@ Schema: `GetBrandResponseSerializer`
 #### createBrand
 Create a Brand.
 
+
+
 ```javascript
 // Promise
-const promise = companyprofile.createBrand(companyId,body);
+const promise = companyprofile.createBrand( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await companyprofile.createBrand(companyId,body);
+const data = await companyprofile.createBrand( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company. |  
+| body | [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer) | yes | Request body |
+
 
 This API allows to create a brand associated to a company.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -17156,30 +21424,43 @@ Schema: `SuccessResponse`
 #### getBrands
 Get brands associated to a company
 
+
+
 ```javascript
 // Promise
-const promise = companyprofile.getBrands(companyId,pageNo,pageSize);
+const promise = companyprofile.getBrands( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await companyprofile.getBrands(companyId,pageNo,pageSize);
+const data = await companyprofile.getBrands( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company. |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 10. |  
+
+
 
 This API helps to get view brands associated to a particular company.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Brand object. See example below or refer `CompanyBrandListSerializer` for details
 
 
-Schema: `CompanyBrandListSerializer`
+[CompanyBrandListSerializer](#CompanyBrandListSerializer)
+
+Brand object. See example below or refer `CompanyBrandListSerializer` for details
 
 
 
@@ -17195,28 +21476,39 @@ Schema: `CompanyBrandListSerializer`
 #### createCompanyBrandMapping
 Create a company brand mapping.
 
+
+
 ```javascript
 // Promise
-const promise = companyprofile.createCompanyBrandMapping(companyId,body);
+const promise = companyprofile.createCompanyBrandMapping( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await companyprofile.createCompanyBrandMapping(companyId,body);
+const data = await companyprofile.createCompanyBrandMapping( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the brand is to be mapped. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company inside which the brand is to be mapped. |  
+| body | [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer) | yes | Request body |
+
 
 This API allows to create a company brand mapping, for a already existing brand in the system.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -17232,33 +21524,52 @@ Schema: `SuccessResponse`
 #### getLocations
 Get list of locations
 
+
+
 ```javascript
 // Promise
-const promise = companyprofile.getLocations(companyId,storeType,q,stage,pageNo,pageSize);
+const promise = companyprofile.getLocations( {  companyId : value,
+ storeType : value,
+ q : value,
+ stage : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await companyprofile.getLocations(companyId,storeType,q,stage,pageNo,pageSize);
+const data = await companyprofile.getLocations( {  companyId : value,
+ storeType : value,
+ q : value,
+ stage : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company whose locations are to fetched | 
-| storeType | string | Helps to sort the location list on the basis of location type. | 
-| q | string | Query that is to be searched. | 
-| stage | string | to filter companies on basis of verified or unverified companies. | 
-| pageNo | integer | The page number to navigate through the given set of results | 
-| pageSize | integer | Number of items to retrieve in each page. Default is 10. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company whose locations are to fetched |    
+| storeType | string? | no | Helps to sort the location list on the basis of location type. |    
+| q | string? | no | Query that is to be searched. |    
+| stage | string? | no | to filter companies on basis of verified or unverified companies. |    
+| pageNo | number? | no | The page number to navigate through the given set of results |    
+| pageSize | number? | no | Number of items to retrieve in each page. Default is 10. |  
+
+
 
 This API allows to view all the locations asscoiated to a company.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Company profile object. See example below or refer `LocationListSerializer` for details
 
 
-Schema: `LocationListSerializer`
+[LocationListSerializer](#LocationListSerializer)
+
+Company profile object. See example below or refer `LocationListSerializer` for details
 
 
 
@@ -17274,66 +21585,39 @@ Schema: `LocationListSerializer`
 #### createLocation
 Create a location asscoiated to a company.
 
+
+
 ```javascript
 // Promise
-const promise = companyprofile.createLocation(companyId,body);
+const promise = companyprofile.createLocation( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await companyprofile.createLocation(companyId,body);
+const data = await companyprofile.createLocation( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company inside which the location is to be created. |  
+| body | [LocationSerializer](#LocationSerializer) | yes | Request body |
+
 
 This API allows to create a location associated to a company.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateLocation
-Edit a location asscoiated to a company.
-
-```javascript
-// Promise
-const promise = companyprofile.updateLocation(companyId,locationId,body);
-
-// Async/Await
-const data = await companyprofile.updateLocation(companyId,locationId,body);
-```
-
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
-| locationId | string | Id of the location which you want to edit. | 
-
-This API allows to edit a location associated to a company.
-
-*Success Response:*
-
-
+[SuccessResponse](#SuccessResponse)
 
 Returns a success response
-
-
-Schema: `SuccessResponse`
 
 
 
@@ -17349,29 +21633,91 @@ Schema: `SuccessResponse`
 #### getLocationDetail
 Get details of a specific location.
 
+
+
 ```javascript
 // Promise
-const promise = companyprofile.getLocationDetail(companyId,locationId);
+const promise = companyprofile.getLocationDetail( {  companyId : value,
+ locationId : value });
 
 // Async/Await
-const data = await companyprofile.getLocationDetail(companyId,locationId);
+const data = await companyprofile.getLocationDetail( {  companyId : value,
+ locationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location lies. | 
-| locationId | string | Id of the location which you want to view. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company inside which the location lies. |    
+| locationId | string? | no | Id of the location which you want to view. |  
+
+
 
 This API helps to get data associated to a specific location.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Brand object. See example below or refer `GetLocationSerializer` for details
 
 
-Schema: `GetLocationSerializer`
+[GetLocationSerializer](#GetLocationSerializer)
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateLocation
+Edit a location asscoiated to a company.
+
+
+
+```javascript
+// Promise
+const promise = companyprofile.updateLocation( {  companyId : value,
+ locationId : value,
+ body : value });
+
+// Async/Await
+const data = await companyprofile.updateLocation( {  companyId : value,
+ locationId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company inside which the location is to be created. |    
+| locationId | string? | no | Id of the location which you want to edit. |  
+| body | [LocationSerializer](#LocationSerializer) | yes | Request body |
+
+
+This API allows to edit a location associated to a company.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -17387,28 +21733,39 @@ Schema: `GetLocationSerializer`
 #### createLocationBulk
 Create a location asscoiated to a company in bulk.
 
+
+
 ```javascript
 // Promise
-const promise = companyprofile.createLocationBulk(companyId,body);
+const promise = companyprofile.createLocationBulk( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await companyprofile.createLocationBulk(companyId,body);
+const data = await companyprofile.createLocationBulk( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Id of the company inside which the location is to be created. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Id of the company inside which the location is to be created. |  
+| body | [BulkLocationSerializer](#BulkLocationSerializer) | yes | Request body |
+
 
 This API allows to create a location associated to a company.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Returns a success response
 
 
-Schema: `SuccessResponse`
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -17422,7 +21779,6 @@ Schema: `SuccessResponse`
 
 
 
----
 
 
 ## FileStorage
@@ -17431,18 +21787,28 @@ Schema: `SuccessResponse`
 #### startUpload
 This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
 
+
+
 ```javascript
 // Promise
-const promise = filestorage.startUpload(namespace,companyId,body);
+const promise = filestorage.startUpload( {  namespace : value,
+ companyId : value,
+ body : value });
 
 // Async/Await
-const data = await filestorage.startUpload(namespace,companyId,body);
+const data = await filestorage.startUpload( {  namespace : value,
+ companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| namespace | string | bucket name | 
-| companyId | integer | company_id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| namespace | string? | no | bucket name |    
+| companyId | number? | no | company_id |  
+| body | [StartRequest](#StartRequest) | no | Request body |
+
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -17464,14 +21830,17 @@ After successfully upload, call `completeUpload` api to complete the upload proc
 This operation will return the url for the uploaded file.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `StartResponse`
+[StartResponse](#StartResponse)
+
+Success
 
 
 
@@ -17487,18 +21856,28 @@ Schema: `StartResponse`
 #### completeUpload
 This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
 
+
+
 ```javascript
 // Promise
-const promise = filestorage.completeUpload(namespace,companyId,body);
+const promise = filestorage.completeUpload( {  namespace : value,
+ companyId : value,
+ body : value });
 
 // Async/Await
-const data = await filestorage.completeUpload(namespace,companyId,body);
+const data = await filestorage.completeUpload( {  namespace : value,
+ companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| namespace | string | bucket name | 
-| companyId | integer | company_id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| namespace | string? | no | bucket name |    
+| companyId | number? | no | company_id |  
+| body | [StartResponse](#StartResponse) | no | Request body |
+
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -17520,14 +21899,17 @@ After successfully upload, call `completeUpload` api to complete the upload proc
 This operation will return the url for the uploaded file.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CompleteResponse`
+[CompleteResponse](#CompleteResponse)
+
+Success
 
 
 
@@ -17543,19 +21925,31 @@ Schema: `CompleteResponse`
 #### appStartUpload
 This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
 
+
+
 ```javascript
 // Promise
-const promise = filestorage.appStartUpload(namespace,companyId,applicationId,body);
+const promise = filestorage.appStartUpload( {  namespace : value,
+ companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await filestorage.appStartUpload(namespace,companyId,applicationId,body);
+const data = await filestorage.appStartUpload( {  namespace : value,
+ companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| namespace | string | bucket name | 
-| companyId | integer | company_id | 
-| applicationId | string | application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| namespace | string? | no | bucket name |    
+| companyId | number? | no | company_id |    
+| applicationId | string? | no | application id |  
+| body | [StartRequest](#StartRequest) | no | Request body |
+
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -17577,14 +21971,17 @@ After successfully upload, call `appCompleteUpload` api to complete the upload p
 This operation will return the url for the uploaded file.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `StartResponse`
+[StartResponse](#StartResponse)
+
+Success
 
 
 
@@ -17600,19 +21997,31 @@ Schema: `StartResponse`
 #### appCompleteUpload
 This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
 
+
+
 ```javascript
 // Promise
-const promise = filestorage.appCompleteUpload(namespace,companyId,applicationId,body);
+const promise = filestorage.appCompleteUpload( {  namespace : value,
+ companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await filestorage.appCompleteUpload(namespace,companyId,applicationId,body);
+const data = await filestorage.appCompleteUpload( {  namespace : value,
+ companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| namespace | string | bucket name | 
-| companyId | integer | company_id | 
-| applicationId | string | application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| namespace | string? | no | bucket name |    
+| companyId | number? | no | company_id |    
+| applicationId | string? | no | application id |  
+| body | [StartResponse](#StartResponse) | no | Request body |
+
 
 Uploads an arbitrarily sized buffer or blob.
 
@@ -17634,14 +22043,17 @@ After successfully upload, call `appCompleteUpload` api to complete the upload p
 This operation will return the url for the uploaded file.
 
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CompleteResponse`
+[CompleteResponse](#CompleteResponse)
+
+Success
 
 
 
@@ -17657,28 +22069,39 @@ Schema: `CompleteResponse`
 #### getSignUrls
 Explain here
 
+
+
 ```javascript
 // Promise
-const promise = filestorage.getSignUrls(companyId,body);
+const promise = filestorage.getSignUrls( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await filestorage.getSignUrls(companyId,body);
+const data = await filestorage.getSignUrls( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |  
+| body | [SignUrlRequest](#SignUrlRequest) | no | Request body |
+
 
 Describe here
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SignUrlResponse`
+[SignUrlResponse](#SignUrlResponse)
+
+Success
 
 
 
@@ -17694,29 +22117,42 @@ Schema: `SignUrlResponse`
 #### copyFiles
 Copy Files
 
+
+
 ```javascript
 // Promise
-const promise = filestorage.copyFiles(companyId,body,sync);
+const promise = filestorage.copyFiles( {  companyId : value,
+ body : value,
+ sync : value });
 
 // Async/Await
-const data = await filestorage.copyFiles(companyId,body,sync);
+const data = await filestorage.copyFiles( {  companyId : value,
+ body : value,
+ sync : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| sync | boolean | sync | 
-| companyId | integer | company_id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| sync | boolean? | no | sync |    
+| companyId | number? | no | company_id |  
+| body | [BulkRequest](#BulkRequest) | no | Request body |
+
 
 Copy Files
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `BulkResponse`
+[BulkResponse](#BulkResponse)
+
+Success
 
 
 
@@ -17732,30 +22168,45 @@ Schema: `BulkResponse`
 #### appCopyFiles
 Copy Files
 
+
+
 ```javascript
 // Promise
-const promise = filestorage.appCopyFiles(companyId,applicationId,body,sync);
+const promise = filestorage.appCopyFiles( {  companyId : value,
+ applicationId : value,
+ body : value,
+ sync : value });
 
 // Async/Await
-const data = await filestorage.appCopyFiles(companyId,applicationId,body,sync);
+const data = await filestorage.appCopyFiles( {  companyId : value,
+ applicationId : value,
+ body : value,
+ sync : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| sync | boolean | sync | 
-| companyId | integer | company_id | 
-| applicationId | integer | application_id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| sync | boolean? | no | sync |    
+| companyId | number? | no | company_id |    
+| applicationId | number? | no | application_id |  
+| body | [BulkRequest](#BulkRequest) | no | Request body |
+
 
 Copy Files
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `BulkResponse`
+[BulkResponse](#BulkResponse)
+
+Success
 
 
 
@@ -17771,30 +22222,43 @@ Schema: `BulkResponse`
 #### browse
 Browse Files
 
+
+
 ```javascript
 // Promise
-const promise = filestorage.browse(namespace,companyId,pageNo);
+const promise = filestorage.browse( {  namespace : value,
+ companyId : value,
+ pageNo : value });
 
 // Async/Await
-const data = await filestorage.browse(namespace,companyId,pageNo);
+const data = await filestorage.browse( {  namespace : value,
+ companyId : value,
+ pageNo : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| namespace | string | bucket name | 
-| companyId | integer | company_id | 
-| pageNo | integer | page no | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| namespace | string? | no | bucket name |    
+| companyId | number? | no | company_id |    
+| pageNo | number? | no | page no |  
+
+
 
 Browse Files
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `BrowseResponse`
+[BrowseResponse](#BrowseResponse)
+
+Success
 
 
 
@@ -17810,31 +22274,46 @@ Schema: `BrowseResponse`
 #### browse
 Browse Files
 
+
+
 ```javascript
 // Promise
-const promise = filestorage.browse(namespace,companyId,applicationId,pageNo);
+const promise = filestorage.browse( {  namespace : value,
+ companyId : value,
+ applicationId : value,
+ pageNo : value });
 
 // Async/Await
-const data = await filestorage.browse(namespace,companyId,applicationId,pageNo);
+const data = await filestorage.browse( {  namespace : value,
+ companyId : value,
+ applicationId : value,
+ pageNo : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| namespace | string | bucket name | 
-| companyId | integer | company_id | 
-| applicationId | integer | application_id | 
-| pageNo | integer | page no | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| namespace | string? | no | bucket name |    
+| companyId | number? | no | company_id |    
+| applicationId | number? | no | application_id |    
+| pageNo | number? | no | page no |  
+
+
 
 Browse Files
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `BrowseResponse`
+[BrowseResponse](#BrowseResponse)
+
+Success
 
 
 
@@ -17850,29 +22329,40 @@ Schema: `BrowseResponse`
 #### proxy
 Proxy
 
+
+
 ```javascript
 // Promise
-const promise = filestorage.proxy(companyId,url);
+const promise = filestorage.proxy( {  companyId : value,
+ url : value });
 
 // Async/Await
-const data = await filestorage.proxy(companyId,url);
+const data = await filestorage.proxy( {  companyId : value,
+ url : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
-| url | string | url | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |    
+| url | string? | no | url |  
+
+
 
 Proxy
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `string`
+[string](#string)
+
+Success
 
 
 
@@ -17886,7 +22376,6 @@ Schema: `string`
 
 
 
----
 
 
 ## Share
@@ -17895,29 +22384,42 @@ Schema: `string`
 #### createShortLink
 Create short link
 
+
+
 ```javascript
 // Promise
-const promise = share.createShortLink(companyId,applicationId,body);
+const promise = share.createShortLink( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await share.createShortLink(companyId,applicationId,body);
+const data = await share.createShortLink( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+| body | [ShortLinkReq](#ShortLinkReq) | no | Request body |
+
 
 Create short link
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ShortLinkRes`
+[ShortLinkRes](#ShortLinkRes)
+
+Success
 
 
 
@@ -17933,34 +22435,55 @@ Schema: `ShortLinkRes`
 #### getShortLinks
 Get short links
 
+
+
 ```javascript
 // Promise
-const promise = share.getShortLinks(companyId,applicationId,pageNo,pageSize,createdBy,active,q);
+const promise = share.getShortLinks( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ createdBy : value,
+ active : value,
+ q : value });
 
 // Async/Await
-const data = await share.getShortLinks(companyId,applicationId,pageNo,pageSize,createdBy,active,q);
+const data = await share.getShortLinks( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ createdBy : value,
+ active : value,
+ q : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| pageNo | integer | Current page number | 
-| pageSize | integer | Current page size | 
-| createdBy | string | Short link creator | 
-| active | string | Short link active status | 
-| q | string | Search text for original and short url | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| pageNo | number? | no | Current page number |    
+| pageSize | number? | no | Current page size |    
+| createdBy | string? | no | Short link creator |    
+| active | string? | no | Short link active status |    
+| q | string? | no | Search text for original and short url |  
+
+
 
 Get short links
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ShortLinkList`
+[ShortLinkList](#ShortLinkList)
+
+Success
 
 
 
@@ -17976,30 +22499,43 @@ Schema: `ShortLinkList`
 #### getShortLinkByHash
 Get short link by hash
 
+
+
 ```javascript
 // Promise
-const promise = share.getShortLinkByHash(companyId,applicationId,hash);
+const promise = share.getShortLinkByHash( {  companyId : value,
+ applicationId : value,
+ hash : value });
 
 // Async/Await
-const data = await share.getShortLinkByHash(companyId,applicationId,hash);
+const data = await share.getShortLinkByHash( {  companyId : value,
+ applicationId : value,
+ hash : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| hash | string | Hash of short url | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| hash | string? | no | Hash of short url |  
+
+
 
 Get short link by hash
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ShortLinkRes`
+[ShortLinkRes](#ShortLinkRes)
+
+Success
 
 
 
@@ -18015,30 +22551,45 @@ Schema: `ShortLinkRes`
 #### updateShortLinkById
 Update short link by id
 
+
+
 ```javascript
 // Promise
-const promise = share.updateShortLinkById(companyId,applicationId,id,body);
+const promise = share.updateShortLinkById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await share.updateShortLinkById(companyId,applicationId,id,body);
+const data = await share.updateShortLinkById( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| id | string | Short link document identifier | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| id | string? | no | Short link document identifier |  
+| body | [ShortLinkReq](#ShortLinkReq) | no | Request body |
+
 
 Update short link by id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ShortLinkRes`
+[ShortLinkRes](#ShortLinkRes)
+
+Success
 
 
 
@@ -18052,7 +22603,6 @@ Schema: `ShortLinkRes`
 
 
 
----
 
 
 ## Inventory
@@ -18061,30 +22611,43 @@ Schema: `ShortLinkRes`
 #### getJobsByCompany
 Get Job Configs For A Company
 
+
+
 ```javascript
 // Promise
-const promise = inventory.getJobsByCompany(companyId,pageNo,pageSize);
+const promise = inventory.getJobsByCompany( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await inventory.getJobsByCompany(companyId,pageNo,pageSize);
+const data = await inventory.getJobsByCompany( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| pageNo | number? | no | Page Number |    
+| pageSize | number? | no | Page Size |  
+
+
 
 REST Endpoint that returns all job configs for a company
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Successful operation
 
 
-Schema: `ResponseEnvelopeListJobConfigRawDTO`
+[ResponseEnvelopeListJobConfigRawDTO](#ResponseEnvelopeListJobConfigRawDTO)
+
+Successful operation
 
 
 
@@ -18100,21 +22663,30 @@ Schema: `ResponseEnvelopeListJobConfigRawDTO`
 #### updateJob
 Updates An Existing Job Config
 
+
+
 ```javascript
 // Promise
-const promise = inventory.updateJob(companyId,body);
+const promise = inventory.updateJob( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await inventory.updateJob(companyId,body);
+const data = await inventory.updateJob( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |  
+| body | [JobConfigDTO](#JobConfigDTO) | yes | Request body |
+
 
 REST Endpoint that updates a job config
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
@@ -18125,28 +22697,39 @@ REST Endpoint that updates a job config
 #### createJob
 Creates A New Job Config
 
+
+
 ```javascript
 // Promise
-const promise = inventory.createJob(companyId,body);
+const promise = inventory.createJob( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await inventory.createJob(companyId,body);
+const data = await inventory.createJob( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |  
+| body | [JobConfigDTO](#JobConfigDTO) | yes | Request body |
+
 
 REST Endpoint that creates a new job config
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Job Config Created Successfully
 
 
-Schema: `ResponseEnvelopeString`
+[ResponseEnvelopeString](#ResponseEnvelopeString)
+
+Job Config Created Successfully
 
 
 
@@ -18162,31 +22745,46 @@ Schema: `ResponseEnvelopeString`
 #### getJobByCompanyAndIntegration
 Get Job Configs By Company And Integration
 
+
+
 ```javascript
 // Promise
-const promise = inventory.getJobByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+const promise = inventory.getJobByCompanyAndIntegration( {  companyId : value,
+ integrationId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await inventory.getJobByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+const data = await inventory.getJobByCompanyAndIntegration( {  companyId : value,
+ integrationId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| integrationId | string | Integration Id | 
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| integrationId | string? | no | Integration Id |    
+| pageNo | number? | no | Page Number |    
+| pageSize | number? | no | Page Size |  
+
+
 
 REST Endpoint that returns all job configs by company And integration
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Successful operation
 
 
-Schema: `ResponseEnvelopeListJobConfigDTO`
+[ResponseEnvelopeListJobConfigDTO](#ResponseEnvelopeListJobConfigDTO)
+
+Successful operation
 
 
 
@@ -18202,28 +22800,37 @@ Schema: `ResponseEnvelopeListJobConfigDTO`
 #### getJobConfigDefaults
 Get Job Configs Defaults
 
+
+
 ```javascript
 // Promise
-const promise = inventory.getJobConfigDefaults(companyId);
+const promise = inventory.getJobConfigDefaults( {  companyId : value });
 
 // Async/Await
-const data = await inventory.getJobConfigDefaults(companyId);
+const data = await inventory.getJobConfigDefaults( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |  
+
+
 
 REST Endpoint that returns default fields job configs by company And integration
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Successful operation
 
 
-Schema: `ResponseEnvelopeJobConfigDTO`
+[ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
+
+Successful operation
 
 
 
@@ -18239,29 +22846,40 @@ Schema: `ResponseEnvelopeJobConfigDTO`
 #### getJobByCode
 Get Job Config By Code
 
+
+
 ```javascript
 // Promise
-const promise = inventory.getJobByCode(companyId,code);
+const promise = inventory.getJobByCode( {  companyId : value,
+ code : value });
 
 // Async/Await
-const data = await inventory.getJobByCode(companyId,code);
+const data = await inventory.getJobByCode( {  companyId : value,
+ code : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| code | string | Job Code | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| code | string? | no | Job Code |  
+
+
 
 REST Endpoint that returns job config by code
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Successful operation
 
 
-Schema: `ResponseEnvelopeJobConfigDTO`
+[ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
+
+Successful operation
 
 
 
@@ -18277,31 +22895,46 @@ Schema: `ResponseEnvelopeJobConfigDTO`
 #### getJobCodeMetrics
 Get Job Metrics
 
+
+
 ```javascript
 // Promise
-const promise = inventory.getJobCodeMetrics(companyId,code,pageNo,pageSize);
+const promise = inventory.getJobCodeMetrics( {  companyId : value,
+ code : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await inventory.getJobCodeMetrics(companyId,code,pageNo,pageSize);
+const data = await inventory.getJobCodeMetrics( {  companyId : value,
+ code : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| code | string | Code | 
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| code | string? | no | Code |    
+| pageNo | number? | no | Page Number |    
+| pageSize | number? | no | Page Size |  
+
+
 
 REST Endpoint that returns Inventory Run History For A Job Code
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Successful operation
 
 
-Schema: `ResponseEnvelopeJobMetricsDto`
+[ResponseEnvelopeJobMetricsDto](#ResponseEnvelopeJobMetricsDto)
+
+Successful operation
 
 
 
@@ -18317,31 +22950,46 @@ Schema: `ResponseEnvelopeJobMetricsDto`
 #### getJobCodesByCompanyAndIntegration
 Get Job Codes By Company And Integration
 
+
+
 ```javascript
 // Promise
-const promise = inventory.getJobCodesByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+const promise = inventory.getJobCodesByCompanyAndIntegration( {  companyId : value,
+ integrationId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await inventory.getJobCodesByCompanyAndIntegration(companyId,integrationId,pageNo,pageSize);
+const data = await inventory.getJobCodesByCompanyAndIntegration( {  companyId : value,
+ integrationId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | Company Id | 
-| integrationId | string | Integration Id | 
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | Company Id |    
+| integrationId | string? | no | Integration Id |    
+| pageNo | number? | no | Page Number |    
+| pageSize | number? | no | Page Size |  
+
+
 
 REST Endpoint that returns all job codes by company And integration
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Successful operation
 
 
-Schema: `ResponseEnvelopeListJobConfigListDTO`
+[ResponseEnvelopeListJobConfigListDTO](#ResponseEnvelopeListJobConfigListDTO)
+
+Successful operation
 
 
 
@@ -18355,7 +23003,6 @@ Schema: `ResponseEnvelopeListJobConfigListDTO`
 
 
 
----
 
 
 ## Configuration
@@ -18364,30 +23011,43 @@ Schema: `ResponseEnvelopeListJobConfigListDTO`
 #### getBuildConfig
 Get latest build config
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getBuildConfig(companyId,applicationId,platformType);
+const promise = configuration.getBuildConfig( {  companyId : value,
+ applicationId : value,
+ platformType : value });
 
 // Async/Await
-const data = await configuration.getBuildConfig(companyId,applicationId,platformType);
+const data = await configuration.getBuildConfig( {  companyId : value,
+ applicationId : value,
+ platformType : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| platformType | string | Current platform name | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |    
+| platformType | string? | no | Current platform name |  
+
+
 
 Get latest build config
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `MobileAppConfiguration`
+[MobileAppConfiguration](#MobileAppConfiguration)
+
+Success
 
 
 
@@ -18403,30 +23063,45 @@ Schema: `MobileAppConfiguration`
 #### updateBuildConfig
 Update build config for next build
 
+
+
 ```javascript
 // Promise
-const promise = configuration.updateBuildConfig(companyId,applicationId,platformType,body);
+const promise = configuration.updateBuildConfig( {  companyId : value,
+ applicationId : value,
+ platformType : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.updateBuildConfig(companyId,applicationId,platformType,body);
+const data = await configuration.updateBuildConfig( {  companyId : value,
+ applicationId : value,
+ platformType : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| platformType | string | Current platform name | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |    
+| platformType | string? | no | Current platform name |  
+| body | [MobileAppConfigRequest](#MobileAppConfigRequest) | no | Request body |
+
 
 Update build config for next build
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `MobileAppConfiguration`
+[MobileAppConfiguration](#MobileAppConfiguration)
+
+Success
 
 
 
@@ -18442,30 +23117,43 @@ Schema: `MobileAppConfiguration`
 #### getPreviousVersions
 Get previous build versions
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getPreviousVersions(companyId,applicationId,platformType);
+const promise = configuration.getPreviousVersions( {  companyId : value,
+ applicationId : value,
+ platformType : value });
 
 // Async/Await
-const data = await configuration.getPreviousVersions(companyId,applicationId,platformType);
+const data = await configuration.getPreviousVersions( {  companyId : value,
+ applicationId : value,
+ platformType : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| platformType | string | Current platform name | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |    
+| platformType | string? | no | Current platform name |  
+
+
 
 Get previous build versions
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `BuildVersionHistory`
+[BuildVersionHistory](#BuildVersionHistory)
+
+Success
 
 
 
@@ -18481,29 +23169,40 @@ Schema: `BuildVersionHistory`
 #### getAppFeatures
 Get features of application
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getAppFeatures(companyId,applicationId);
+const promise = configuration.getAppFeatures( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await configuration.getAppFeatures(companyId,applicationId);
+const data = await configuration.getAppFeatures( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+
+
 
 Get features of application
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `AppFeatureResponse`
+[AppFeatureResponse](#AppFeatureResponse)
+
+Success
 
 
 
@@ -18519,29 +23218,42 @@ Schema: `AppFeatureResponse`
 #### updateAppFeatures
 Update features of application
 
+
+
 ```javascript
 // Promise
-const promise = configuration.updateAppFeatures(companyId,applicationId,body);
+const promise = configuration.updateAppFeatures( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.updateAppFeatures(companyId,applicationId,body);
+const data = await configuration.updateAppFeatures( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [AppFeatureRequest](#AppFeatureRequest) | yes | Request body |
+
 
 Update features of application
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `AppFeature`
+[AppFeature](#AppFeature)
+
+Success
 
 
 
@@ -18557,29 +23269,40 @@ Schema: `AppFeature`
 #### getAppBasicDetails
 Get basic application details
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getAppBasicDetails(companyId,applicationId);
+const promise = configuration.getAppBasicDetails( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await configuration.getAppBasicDetails(companyId,applicationId);
+const data = await configuration.getAppBasicDetails( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+
+
 
 Get basic application details like name
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ApplicationDetail`
+[ApplicationDetail](#ApplicationDetail)
+
+Success
 
 
 
@@ -18595,29 +23318,42 @@ Schema: `ApplicationDetail`
 #### updateAppBasicDetails
 Add or update application's basic details
 
+
+
 ```javascript
 // Promise
-const promise = configuration.updateAppBasicDetails(companyId,applicationId,body);
+const promise = configuration.updateAppBasicDetails( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.updateAppBasicDetails(companyId,applicationId,body);
+const data = await configuration.updateAppBasicDetails( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [ApplicationDetail](#ApplicationDetail) | yes | Request body |
+
 
 Add or update application's basic details
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ApplicationDetail`
+[ApplicationDetail](#ApplicationDetail)
+
+Success
 
 
 
@@ -18633,29 +23369,40 @@ Schema: `ApplicationDetail`
 #### getAppContactInfo
 Get application information
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getAppContactInfo(companyId,applicationId);
+const promise = configuration.getAppContactInfo( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await configuration.getAppContactInfo(companyId,applicationId);
+const data = await configuration.getAppContactInfo( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+
+
 
 Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ApplicationInformation`
+[ApplicationInformation](#ApplicationInformation)
+
+Success
 
 
 
@@ -18671,29 +23418,42 @@ Schema: `ApplicationInformation`
 #### updateAppContactInfo
 Get application information
 
+
+
 ```javascript
 // Promise
-const promise = configuration.updateAppContactInfo(companyId,applicationId,body);
+const promise = configuration.updateAppContactInfo( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.updateAppContactInfo(companyId,applicationId,body);
+const data = await configuration.updateAppContactInfo( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [ApplicationInformation](#ApplicationInformation) | yes | Request body |
+
 
 Save Application Current Information. This includes information about social links, address and contact information of an application.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ApplicationInformation`
+[ApplicationInformation](#ApplicationInformation)
+
+Success
 
 
 
@@ -18709,29 +23469,40 @@ Schema: `ApplicationInformation`
 #### getAppApiTokens
 Get social tokens
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getAppApiTokens(companyId,applicationId);
+const promise = configuration.getAppApiTokens( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await configuration.getAppApiTokens(companyId,applicationId);
+const data = await configuration.getAppApiTokens( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+
+
 
 Get social tokens.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TokenResponse`
+[TokenResponse](#TokenResponse)
+
+Success
 
 
 
@@ -18747,29 +23518,42 @@ Schema: `TokenResponse`
 #### updateAppApiTokens
 Add social tokens
 
+
+
 ```javascript
 // Promise
-const promise = configuration.updateAppApiTokens(companyId,applicationId,body);
+const promise = configuration.updateAppApiTokens( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.updateAppApiTokens(companyId,applicationId,body);
+const data = await configuration.updateAppApiTokens( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [TokenResponse](#TokenResponse) | no | Request body |
+
 
 Add social tokens.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `TokenResponse`
+[TokenResponse](#TokenResponse)
+
+Success
 
 
 
@@ -18785,31 +23569,46 @@ Schema: `TokenResponse`
 #### getAppCompanies
 Application inventory enabled companies
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getAppCompanies(companyId,applicationId,pageNo,pageSize);
+const promise = configuration.getAppCompanies( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await configuration.getAppCompanies(companyId,applicationId,pageNo,pageSize);
+const data = await configuration.getAppCompanies( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |  
+
+
 
 Application inventory enabled companies.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CompaniesResponse`
+[CompaniesResponse](#CompaniesResponse)
+
+Success
 
 
 
@@ -18825,31 +23624,46 @@ Schema: `CompaniesResponse`
 #### getAppStores
 Application inventory enabled stores
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getAppStores(companyId,applicationId,pageNo,pageSize);
+const promise = configuration.getAppStores( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await configuration.getAppStores(companyId,applicationId,pageNo,pageSize);
+const data = await configuration.getAppStores( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |  
+
+
 
 Application inventory enabled stores.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `StoresResponse`
+[StoresResponse](#StoresResponse)
+
+Success
 
 
 
@@ -18865,29 +23679,40 @@ Schema: `StoresResponse`
 #### getInventoryConfig
 Get application configuration
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getInventoryConfig(companyId,applicationId);
+const promise = configuration.getInventoryConfig( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await configuration.getInventoryConfig(companyId,applicationId);
+const data = await configuration.getInventoryConfig( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+
+
 
 Get application configuration for various features and data
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ApplicationInventory`
+[ApplicationInventory](#ApplicationInventory)
+
+Success
 
 
 
@@ -18903,29 +23728,42 @@ Schema: `ApplicationInventory`
 #### updateInventoryConfig
 Update application configuration
 
+
+
 ```javascript
 // Promise
-const promise = configuration.updateInventoryConfig(companyId,applicationId,body);
+const promise = configuration.updateInventoryConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.updateInventoryConfig(companyId,applicationId,body);
+const data = await configuration.updateInventoryConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [ApplicationInventory](#ApplicationInventory) | no | Request body |
+
 
 Update application configuration for various features and data
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ApplicationInventory`
+[ApplicationInventory](#ApplicationInventory)
+
+Success
 
 
 
@@ -18941,29 +23779,42 @@ Schema: `ApplicationInventory`
 #### partiallyUpdateInventoryConfig
 Partially update application configuration
 
+
+
 ```javascript
 // Promise
-const promise = configuration.partiallyUpdateInventoryConfig(companyId,applicationId,body);
+const promise = configuration.partiallyUpdateInventoryConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.partiallyUpdateInventoryConfig(companyId,applicationId,body);
+const data = await configuration.partiallyUpdateInventoryConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [AppInventoryPartialUpdate](#AppInventoryPartialUpdate) | no | Request body |
+
 
 Partially update application configuration for various features and data
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ApplicationInventory`
+[ApplicationInventory](#ApplicationInventory)
+
+Success
 
 
 
@@ -18979,29 +23830,40 @@ Schema: `ApplicationInventory`
 #### getAppCurrencyConfig
 Get application enabled currency list
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getAppCurrencyConfig(companyId,applicationId);
+const promise = configuration.getAppCurrencyConfig( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await configuration.getAppCurrencyConfig(companyId,applicationId);
+const data = await configuration.getAppCurrencyConfig( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+
+
 
 Get application enabled currency list
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `AppSupportedCurrency`
+[AppSupportedCurrency](#AppSupportedCurrency)
+
+Success
 
 
 
@@ -19017,29 +23879,42 @@ Schema: `AppSupportedCurrency`
 #### updateAppCurrencyConfig
 Add initial application supported currency
 
+
+
 ```javascript
 // Promise
-const promise = configuration.updateAppCurrencyConfig(companyId,applicationId,body);
+const promise = configuration.updateAppCurrencyConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.updateAppCurrencyConfig(companyId,applicationId,body);
+const data = await configuration.updateAppCurrencyConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [AppSupportedCurrency](#AppSupportedCurrency) | no | Request body |
+
 
 Add initial application supported currency for various features and data. Default INR will be enabled.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `AppSupportedCurrency`
+[AppSupportedCurrency](#AppSupportedCurrency)
+
+Success
 
 
 
@@ -19055,31 +23930,48 @@ Schema: `AppSupportedCurrency`
 #### getOrderingStoresByFilter
 Get ordering store by filter
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getOrderingStoresByFilter(companyId,applicationId,body,pageNo,pageSize);
+const promise = configuration.getOrderingStoresByFilter( {  companyId : value,
+ applicationId : value,
+ body : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await configuration.getOrderingStoresByFilter(companyId,applicationId,body,pageNo,pageSize);
+const data = await configuration.getOrderingStoresByFilter( {  companyId : value,
+ applicationId : value,
+ body : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |  
+| body | [FilterOrderingStoreRequest](#FilterOrderingStoreRequest) | no | Request body |
+
 
 Get ordering store by filter
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `OrderingStores`
+[OrderingStores](#OrderingStores)
+
+Success
 
 
 
@@ -19095,29 +23987,42 @@ Schema: `OrderingStores`
 #### updateOrderingStoreConfig
 Add/Update ordering store config
 
+
+
 ```javascript
 // Promise
-const promise = configuration.updateOrderingStoreConfig(companyId,applicationId,body);
+const promise = configuration.updateOrderingStoreConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.updateOrderingStoreConfig(companyId,applicationId,body);
+const data = await configuration.updateOrderingStoreConfig( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [OrderingStoreConfig](#OrderingStoreConfig) | no | Request body |
+
 
 Add/Update ordering store config.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `DeploymentMeta`
+[DeploymentMeta](#DeploymentMeta)
+
+Success
 
 
 
@@ -19133,29 +24038,40 @@ Schema: `DeploymentMeta`
 #### getDomains
 Get attached domain list
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getDomains(companyId,applicationId);
+const promise = configuration.getDomains( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await configuration.getDomains(companyId,applicationId);
+const data = await configuration.getDomains( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+
+
 
 Get attached domain list.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `DomainsResponse`
+[DomainsResponse](#DomainsResponse)
+
+Success
 
 
 
@@ -19171,29 +24087,42 @@ Schema: `DomainsResponse`
 #### addDomain
 Add new domain to application
 
+
+
 ```javascript
 // Promise
-const promise = configuration.addDomain(companyId,applicationId,body);
+const promise = configuration.addDomain( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.addDomain(companyId,applicationId,body);
+const data = await configuration.addDomain( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [DomainAddRequest](#DomainAddRequest) | no | Request body |
+
 
 Add new domain to application.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Domain`
+[Domain](#Domain)
+
+Success
 
 
 
@@ -19209,30 +24138,43 @@ Schema: `Domain`
 #### removeDomainById
 Remove attached domain
 
+
+
 ```javascript
 // Promise
-const promise = configuration.removeDomainById(companyId,applicationId,id);
+const promise = configuration.removeDomainById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await configuration.removeDomainById(companyId,applicationId,id);
+const data = await configuration.removeDomainById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| id | string | Domain _id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |    
+| id | string? | no | Domain _id |  
+
+
 
 Remove attached domain.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SuccessMessageResponse`
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Success
 
 
 
@@ -19248,29 +24190,42 @@ Schema: `SuccessMessageResponse`
 #### changeDomainType
 Change domain type
 
+
+
 ```javascript
 // Promise
-const promise = configuration.changeDomainType(companyId,applicationId,body);
+const promise = configuration.changeDomainType( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.changeDomainType(companyId,applicationId,body);
+const data = await configuration.changeDomainType( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [UpdateDomainTypeRequest](#UpdateDomainTypeRequest) | no | Request body |
+
 
 Change a domain to Primary or Shortlink domain
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `DomainsResponse`
+[DomainsResponse](#DomainsResponse)
+
+Success
 
 
 
@@ -19286,29 +24241,42 @@ Schema: `DomainsResponse`
 #### getDomainStatus
 Get domain connected status.
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getDomainStatus(companyId,applicationId,body);
+const promise = configuration.getDomainStatus( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.getDomainStatus(companyId,applicationId,body);
+const data = await configuration.getDomainStatus( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+| body | [DomainStatusRequest](#DomainStatusRequest) | no | Request body |
+
 
 Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `DomainStatusResponse`
+[DomainStatusResponse](#DomainStatusResponse)
+
+Success
 
 
 
@@ -19324,28 +24292,39 @@ Schema: `DomainStatusResponse`
 #### createApplication
 Create application
 
+
+
 ```javascript
 // Promise
-const promise = configuration.createApplication(companyId,body);
+const promise = configuration.createApplication( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.createApplication(companyId,body);
+const data = await configuration.createApplication( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |  
+| body | [CreateApplicationRequest](#CreateApplicationRequest) | no | Request body |
+
 
 Create new application
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CreateAppResponse`
+[CreateAppResponse](#CreateAppResponse)
+
+Success
 
 
 
@@ -19361,31 +24340,46 @@ Schema: `CreateAppResponse`
 #### getApplications
 Get list of application under company
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getApplications(companyId,pageNo,pageSize,q);
+const promise = configuration.getApplications( {  companyId : value,
+ pageNo : value,
+ pageSize : value,
+ q : value });
 
 // Async/Await
-const data = await configuration.getApplications(companyId,pageNo,pageSize,q);
+const data = await configuration.getApplications( {  companyId : value,
+ pageNo : value,
+ pageSize : value,
+ q : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| pageNo | integer |  | 
-| pageSize | integer |  | 
-| q | string | Url encoded object used as mongodb query | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| pageNo | number? | no |  |    
+| pageSize | number? | no |  |    
+| q | string? | no | Url encoded object used as mongodb query |  
+
+
 
 Get list of application under company
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ApplicationsResponse`
+[ApplicationsResponse](#ApplicationsResponse)
+
+Success
 
 
 
@@ -19401,29 +24395,40 @@ Schema: `ApplicationsResponse`
 #### getApplicationById
 Get application data from id
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getApplicationById(companyId,applicationId);
+const promise = configuration.getApplicationById( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await configuration.getApplicationById(companyId,applicationId);
+const data = await configuration.getApplicationById( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |  
+
+
 
 Get application data from id
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Application`
+[Application](#Application)
+
+Success
 
 
 
@@ -19439,28 +24444,37 @@ Schema: `Application`
 #### getCurrencies
 Get all currencies
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getCurrencies(companyId);
+const promise = configuration.getCurrencies( {  companyId : value });
 
 // Async/Await
-const data = await configuration.getCurrencies(companyId);
+const data = await configuration.getCurrencies( {  companyId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |  
+
+
 
 Get all currencies
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Currencies Success response
 
 
-Schema: `CurrenciesResponse`
+[CurrenciesResponse](#CurrenciesResponse)
+
+Currencies Success response
 
 
 
@@ -19476,28 +24490,39 @@ Schema: `CurrenciesResponse`
 #### getDomainAvailibility
 Check domain availibility before linking to application
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getDomainAvailibility(companyId,body);
+const promise = configuration.getDomainAvailibility( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.getDomainAvailibility(companyId,body);
+const data = await configuration.getDomainAvailibility( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |  
+| body | [DomainSuggestionsRequest](#DomainSuggestionsRequest) | no | Request body |
+
 
 Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `DomainSuggestionsResponse`
+[DomainSuggestionsResponse](#DomainSuggestionsResponse)
+
+Success
 
 
 *Examples:*
@@ -19557,29 +24582,40 @@ Suggestions for custom domains
 #### getIntegrationById
 Get integration data
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getIntegrationById(companyId,id);
+const promise = configuration.getIntegrationById( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await configuration.getIntegrationById(companyId,id);
+const data = await configuration.getIntegrationById( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | integer | Integration id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| id | number? | no | Integration id |  
+
+
 
 Get integration data
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `Integration`
+[Integration](#Integration)
+
+Success
 
 
 
@@ -19595,30 +24631,43 @@ Schema: `Integration`
 #### getAvailableOptIns
 Get all available integration opt-ins
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getAvailableOptIns(companyId,pageNo,pageSize);
+const promise = configuration.getAvailableOptIns( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await configuration.getAvailableOptIns(companyId,pageNo,pageSize);
+const data = await configuration.getAvailableOptIns( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |  
+
+
 
 Get all available integration opt-ins
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetIntegrationsOptInsResponse`
+[GetIntegrationsOptInsResponse](#GetIntegrationsOptInsResponse)
+
+Success
 
 
 
@@ -19634,32 +24683,49 @@ Schema: `GetIntegrationsOptInsResponse`
 #### getSelectedOptIns
 Get company/store level integration opt-ins
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getSelectedOptIns(companyId,level,uid,pageNo,pageSize);
+const promise = configuration.getSelectedOptIns( {  companyId : value,
+ level : value,
+ uid : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await configuration.getSelectedOptIns(companyId,level,uid,pageNo,pageSize);
+const data = await configuration.getSelectedOptIns( {  companyId : value,
+ level : value,
+ uid : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| level | string | Integration level | 
-| uid | integer | Integration level uid | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| level | string? | no | Integration level |    
+| uid | number? | no | Integration level uid |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |  
+
+
 
 Get company/store level integration opt-ins
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetIntegrationsOptInsResponse`
+[GetIntegrationsOptInsResponse](#GetIntegrationsOptInsResponse)
+
+Success
 
 
 
@@ -19675,32 +24741,49 @@ Schema: `GetIntegrationsOptInsResponse`
 #### getIntegrationLevelConfig
 Get integration level config
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getIntegrationLevelConfig(companyId,id,level,opted,checkPermission);
+const promise = configuration.getIntegrationLevelConfig( {  companyId : value,
+ id : value,
+ level : value,
+ opted : value,
+ checkPermission : value });
 
 // Async/Await
-const data = await configuration.getIntegrationLevelConfig(companyId,id,level,opted,checkPermission);
+const data = await configuration.getIntegrationLevelConfig( {  companyId : value,
+ id : value,
+ level : value,
+ opted : value,
+ checkPermission : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | string | Integration id | 
-| level | string | Integration level | 
-| opted | boolean | Filter on opted stores | 
-| checkPermission | boolean | Filter on if permissions are present | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| id | string? | no | Integration id |    
+| level | string? | no | Integration level |    
+| opted | boolean? | no | Filter on opted stores |    
+| checkPermission | boolean? | no | Filter on if permissions are present |  
+
+
 
 Get integration level config
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `IntegrationConfigResponse`
+[IntegrationConfigResponse](#IntegrationConfigResponse)
+
+Success
 
 
 
@@ -19716,31 +24799,46 @@ Schema: `IntegrationConfigResponse`
 #### getIntegrationByLevelId
 Get level data for integration
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getIntegrationByLevelId(companyId,id,level,uid);
+const promise = configuration.getIntegrationByLevelId( {  companyId : value,
+ id : value,
+ level : value,
+ uid : value });
 
 // Async/Await
-const data = await configuration.getIntegrationByLevelId(companyId,id,level,uid);
+const data = await configuration.getIntegrationByLevelId( {  companyId : value,
+ id : value,
+ level : value,
+ uid : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | string | Integration id | 
-| level | string | Integration level | 
-| uid | integer | Integration level uid | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| id | string? | no | Integration id |    
+| level | string? | no | Integration level |    
+| uid | number? | no | Integration level uid |  
+
+
 
 Get level data for integration
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `IntegrationLevel`
+[IntegrationLevel](#IntegrationLevel)
+
+Success
 
 
 
@@ -19756,31 +24854,46 @@ Schema: `IntegrationLevel`
 #### getLevelActiveIntegrations
 Check store has active integration
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getLevelActiveIntegrations(companyId,id,level,uid);
+const promise = configuration.getLevelActiveIntegrations( {  companyId : value,
+ id : value,
+ level : value,
+ uid : value });
 
 // Async/Await
-const data = await configuration.getLevelActiveIntegrations(companyId,id,level,uid);
+const data = await configuration.getLevelActiveIntegrations( {  companyId : value,
+ id : value,
+ level : value,
+ uid : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | string | Integration id | 
-| level | string | Integration level | 
-| uid | integer | Integration level uid | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| id | string? | no | Integration id |    
+| level | string? | no | Integration level |    
+| uid | number? | no | Integration level uid |  
+
+
 
 API checks if a store is already opted in any other integrations
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `OptedStoreIntegration`
+[OptedStoreIntegration](#OptedStoreIntegration)
+
+Success
 
 
 
@@ -19796,29 +24909,40 @@ Schema: `OptedStoreIntegration`
 #### getBrandsByCompany
 Get brands by company
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getBrandsByCompany(companyId,q);
+const promise = configuration.getBrandsByCompany( {  companyId : value,
+ q : value });
 
 // Async/Await
-const data = await configuration.getBrandsByCompany(companyId,q);
+const data = await configuration.getBrandsByCompany( {  companyId : value,
+ q : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| q | string | Search text for brand name | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| q | string? | no | Search text for brand name |  
+
+
 
 Get brands by company
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `BrandsByCompanyResponse`
+[BrandsByCompanyResponse](#BrandsByCompanyResponse)
+
+Success
 
 
 
@@ -19834,30 +24958,45 @@ Schema: `BrandsByCompanyResponse`
 #### getCompanyByBrands
 Get company by brand uids
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getCompanyByBrands(companyId,body,pageNo,pageSize);
+const promise = configuration.getCompanyByBrands( {  companyId : value,
+ body : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await configuration.getCompanyByBrands(companyId,body,pageNo,pageSize);
+const data = await configuration.getCompanyByBrands( {  companyId : value,
+ body : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |  
+| body | [CompanyByBrandsRequest](#CompanyByBrandsRequest) | no | Request body |
+
 
 Get company by brand uids
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CompanyByBrandsResponse`
+[CompanyByBrandsResponse](#CompanyByBrandsResponse)
+
+Success
 
 
 
@@ -19873,30 +25012,45 @@ Schema: `CompanyByBrandsResponse`
 #### getStoreByBrands
 Get stores by brand uids
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getStoreByBrands(companyId,body,pageNo,pageSize);
+const promise = configuration.getStoreByBrands( {  companyId : value,
+ body : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await configuration.getStoreByBrands(companyId,body,pageNo,pageSize);
+const data = await configuration.getStoreByBrands( {  companyId : value,
+ body : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |  
+| body | [StoreByBrandsRequest](#StoreByBrandsRequest) | no | Request body |
+
 
 Get stores by brand uids
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `StoreByBrandsResponse`
+[StoreByBrandsResponse](#StoreByBrandsResponse)
+
+Success
 
 
 
@@ -19912,30 +25066,43 @@ Schema: `StoreByBrandsResponse`
 #### getOtherSellerApplications
 Get other seller applications
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getOtherSellerApplications(companyId,pageNo,pageSize);
+const promise = configuration.getOtherSellerApplications( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await configuration.getOtherSellerApplications(companyId,pageNo,pageSize);
+const data = await configuration.getOtherSellerApplications( {  companyId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| pageNo | integer | Current page no | 
-| pageSize | integer | Current request items count | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| pageNo | number? | no | Current page no |    
+| pageSize | number? | no | Current request items count |  
+
+
 
 Get other seller applications who has opted current company as inventory
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `OtherSellerApplications`
+[OtherSellerApplications](#OtherSellerApplications)
+
+Success
 
 
 
@@ -19951,29 +25118,40 @@ Schema: `OtherSellerApplications`
 #### getOtherSellerApplicationById
 Get other seller applications
 
+
+
 ```javascript
 // Promise
-const promise = configuration.getOtherSellerApplicationById(companyId,id);
+const promise = configuration.getOtherSellerApplicationById( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await configuration.getOtherSellerApplicationById(companyId,id);
+const data = await configuration.getOtherSellerApplicationById( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| id | string? | no | Application Id |  
+
+
 
 Get other seller application
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `OptedApplicationResponse`
+[OptedApplicationResponse](#OptedApplicationResponse)
+
+Success
 
 
 
@@ -19989,29 +25167,42 @@ Schema: `OptedApplicationResponse`
 #### optOutFromApplication
 Opt out company or store from other seller application
 
+
+
 ```javascript
 // Promise
-const promise = configuration.optOutFromApplication(companyId,id,body);
+const promise = configuration.optOutFromApplication( {  companyId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await configuration.optOutFromApplication(companyId,id,body);
+const data = await configuration.optOutFromApplication( {  companyId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| id | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| id | string? | no | Application Id |  
+| body | [OptOutInventory](#OptOutInventory) | no | Request body |
+
 
 Opt out company or store from other seller application
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SuccessMessageResponse`
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Success
 
 
 
@@ -20025,7 +25216,6 @@ Schema: `SuccessMessageResponse`
 
 
 
----
 
 
 ## Cart
@@ -20034,37 +25224,64 @@ Schema: `SuccessMessageResponse`
 #### getCoupons
 Get with single coupon details or coupon list
 
+
+
 ```javascript
 // Promise
-const promise = cart.getCoupons(companyId,applicationId,pageNo,pageSize,isArchived,title,isPublic,isDisplay,typeSlug,code);
+const promise = cart.getCoupons( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ isArchived : value,
+ title : value,
+ isPublic : value,
+ isDisplay : value,
+ typeSlug : value,
+ code : value });
 
 // Async/Await
-const data = await cart.getCoupons(companyId,applicationId,pageNo,pageSize,isArchived,title,isPublic,isDisplay,typeSlug,code);
+const data = await cart.getCoupons( {  companyId : value,
+ applicationId : value,
+ pageNo : value,
+ pageSize : value,
+ isArchived : value,
+ title : value,
+ isPublic : value,
+ isDisplay : value,
+ typeSlug : value,
+ code : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-| pageNo | integer |  | 
-| pageSize | integer |  | 
-| isArchived | boolean |  | 
-| title | string |  | 
-| isPublic | boolean |  | 
-| isDisplay | boolean |  | 
-| typeSlug | string |  | 
-| code | string |  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current Application _id |    
+| pageNo | number? | no |  |    
+| pageSize | number? | no |  |    
+| isArchived | boolean? | no |  |    
+| title | string? | no |  |    
+| isPublic | boolean? | no |  |    
+| isDisplay | boolean? | no |  |    
+| typeSlug | string? | no |  |    
+| code | string? | no |  |  
+
+
 
 Get coupon list with pagination
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Coupon List for sent page_size and page_no
 
 
-Schema: `CouponsResponse`
+[CouponsResponse](#CouponsResponse)
+
+Coupon List for sent page_size and page_no
 
 
 *Examples:*
@@ -20135,22 +25352,33 @@ Coupon list for sent filter and page size
 #### createCoupon
 Create new coupon
 
+
+
 ```javascript
 // Promise
-const promise = cart.createCoupon(companyId,applicationId,body);
+const promise = cart.createCoupon( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await cart.createCoupon(companyId,applicationId,body);
+const data = await cart.createCoupon( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current Application _id |  
+| body | [CouponAdd](#CouponAdd) | no | Request body |
+
 
 Create new coupon
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
@@ -20161,30 +25389,43 @@ Create new coupon
 #### getCouponById
 Get with single coupon details or coupon list
 
+
+
 ```javascript
 // Promise
-const promise = cart.getCouponById(companyId,applicationId,id);
+const promise = cart.getCouponById( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await cart.getCouponById(companyId,applicationId,id);
+const data = await cart.getCouponById( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-| id | string |  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current Application _id |    
+| id | string? | no |  |  
+
+
 
 Get single coupon details with `id` in path param
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Coupon object for sent `id`
 
 
-Schema: `CouponUpdate`
+[CouponUpdate](#CouponUpdate)
+
+Coupon object for sent `id`
 
 
 
@@ -20200,30 +25441,45 @@ Schema: `CouponUpdate`
 #### updateCoupon
 Update existing coupon configuration
 
+
+
 ```javascript
 // Promise
-const promise = cart.updateCoupon(companyId,applicationId,id,body);
+const promise = cart.updateCoupon( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await cart.updateCoupon(companyId,applicationId,id,body);
+const data = await cart.updateCoupon( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-| id | string |  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current Application _id |    
+| id | string? | no |  |  
+| body | [CouponUpdate](#CouponUpdate) | no | Request body |
+
 
 Update coupon with id sent in `id`
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Coupon updated successfully
 
 
-Schema: `SuccessMessage`
+[SuccessMessage](#SuccessMessage)
+
+Coupon updated successfully
 
 
 
@@ -20239,30 +25495,45 @@ Schema: `SuccessMessage`
 #### updateCouponPartially
 Update coupon archive state and schedule
 
+
+
 ```javascript
 // Promise
-const promise = cart.updateCouponPartially(companyId,applicationId,id,body);
+const promise = cart.updateCouponPartially( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await cart.updateCouponPartially(companyId,applicationId,id,body);
+const data = await cart.updateCouponPartially( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current Application _id | 
-| id | string |  | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current Application _id |    
+| id | string? | no |  |  
+| body | [CouponPartialUpdate](#CouponPartialUpdate) | no | Request body |
+
 
 Update archive/unarchive and change schedule for coupon
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Coupon updated successfully
 
 
-Schema: `SuccessMessage`
+[SuccessMessage](#SuccessMessage)
+
+Coupon updated successfully
 
 
 *Examples:*
@@ -20300,7 +25571,6 @@ Coupon schedule updated successfully
 
 
 
----
 
 
 ## Rewards
@@ -20309,31 +25579,46 @@ Coupon schedule updated successfully
 #### getGiveaways
 List of giveaways of the current application.
 
+
+
 ```javascript
 // Promise
-const promise = rewards.getGiveaways(companyId,applicationId,pageId,pageSize);
+const promise = rewards.getGiveaways( {  companyId : value,
+ applicationId : value,
+ pageId : value,
+ pageSize : value });
 
 // Async/Await
-const data = await rewards.getGiveaways(companyId,applicationId,pageId,pageSize);
+const data = await rewards.getGiveaways( {  companyId : value,
+ applicationId : value,
+ pageId : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| pageId | string | pagination page id | 
-| pageSize | integer | pagination page size | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| pageId | string? | no | pagination page id |    
+| pageSize | number? | no | pagination page size |  
+
+
 
 List of giveaways of the current application.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `GiveawayResponse`
+[GiveawayResponse](#GiveawayResponse)
+
+ok
 
 
 
@@ -20349,29 +25634,42 @@ Schema: `GiveawayResponse`
 #### createGiveaway
 Adds a new giveaway.
 
+
+
 ```javascript
 // Promise
-const promise = rewards.createGiveaway(companyId,applicationId,body);
+const promise = rewards.createGiveaway( {  companyId : value,
+ applicationId : value,
+ body : value });
 
 // Async/Await
-const data = await rewards.createGiveaway(companyId,applicationId,body);
+const data = await rewards.createGiveaway( {  companyId : value,
+ applicationId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |  
+| body | [Giveaway](#Giveaway) | yes | Request body |
+
 
 Adds a new giveaway.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `Giveaway`
+[Giveaway](#Giveaway)
+
+ok
 
 
 
@@ -20387,30 +25685,43 @@ Schema: `Giveaway`
 #### getGiveawayByID
 Get giveaway by ID.
 
+
+
 ```javascript
 // Promise
-const promise = rewards.getGiveawayByID(companyId,applicationId,id);
+const promise = rewards.getGiveawayByID( {  companyId : value,
+ applicationId : value,
+ id : value });
 
 // Async/Await
-const data = await rewards.getGiveawayByID(companyId,applicationId,id);
+const data = await rewards.getGiveawayByID( {  companyId : value,
+ applicationId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| id | string | Giveaway ID | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| id | string? | no | Giveaway ID |  
+
+
 
 Get giveaway by ID.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `Giveaway`
+[Giveaway](#Giveaway)
+
+ok
 
 
 
@@ -20426,30 +25737,45 @@ Schema: `Giveaway`
 #### updateGiveaway
 Updates the giveaway by it's ID.
 
+
+
 ```javascript
 // Promise
-const promise = rewards.updateGiveaway(companyId,applicationId,id,body);
+const promise = rewards.updateGiveaway( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await rewards.updateGiveaway(companyId,applicationId,id,body);
+const data = await rewards.updateGiveaway( {  companyId : value,
+ applicationId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| id | string | Giveaway ID | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| id | string? | no | Giveaway ID |  
+| body | [Giveaway](#Giveaway) | yes | Request body |
+
 
 Updates the giveaway by it's ID.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `Giveaway`
+[Giveaway](#Giveaway)
+
+ok
 
 
 
@@ -20465,29 +25791,40 @@ Schema: `Giveaway`
 #### getOffers
 List of offer of the current application.
 
+
+
 ```javascript
 // Promise
-const promise = rewards.getOffers(companyId,applicationId);
+const promise = rewards.getOffers( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await rewards.getOffers(companyId,applicationId);
+const data = await rewards.getOffers( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |  
+
+
 
 List of offer of the current application.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `Array<Offer>`
+[Array<Offer>](#Array<Offer>)
+
+ok
 
 
 
@@ -20503,31 +25840,46 @@ Schema: `Array<Offer>`
 #### getOfferByName
 Get offer by name.
 
+
+
 ```javascript
 // Promise
-const promise = rewards.getOfferByName(companyId,applicationId,cookie,name);
+const promise = rewards.getOfferByName( {  companyId : value,
+ applicationId : value,
+ cookie : value,
+ name : value });
 
 // Async/Await
-const data = await rewards.getOfferByName(companyId,applicationId,cookie,name);
+const data = await rewards.getOfferByName( {  companyId : value,
+ applicationId : value,
+ cookie : value,
+ name : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| cookie | string | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. | 
-| name | string | Offer name | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| cookie | string? | no | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |    
+| name | string? | no | Offer name |  
+
+
 
 Get offer by name.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `Offer`
+[Offer](#Offer)
+
+ok
 
 
 
@@ -20543,30 +25895,45 @@ Schema: `Offer`
 #### updateOfferByName
 Updates the offer by name.
 
+
+
 ```javascript
 // Promise
-const promise = rewards.updateOfferByName(companyId,applicationId,name,body);
+const promise = rewards.updateOfferByName( {  companyId : value,
+ applicationId : value,
+ name : value,
+ body : value });
 
 // Async/Await
-const data = await rewards.updateOfferByName(companyId,applicationId,name,body);
+const data = await rewards.updateOfferByName( {  companyId : value,
+ applicationId : value,
+ name : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| name | string | Offer name | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| name | string? | no | Offer name |  
+| body | [Offer](#Offer) | yes | Request body |
+
 
 Updates the offer by name.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `Offer`
+[Offer](#Offer)
+
+ok
 
 
 
@@ -20582,30 +25949,43 @@ Schema: `Offer`
 #### getUserAvailablePoints
 User's reward details.
 
+
+
 ```javascript
 // Promise
-const promise = rewards.getUserAvailablePoints(companyId,applicationId,userId);
+const promise = rewards.getUserAvailablePoints( {  companyId : value,
+ applicationId : value,
+ userId : value });
 
 // Async/Await
-const data = await rewards.getUserAvailablePoints(companyId,applicationId,userId);
+const data = await rewards.getUserAvailablePoints( {  companyId : value,
+ applicationId : value,
+ userId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| userId | string | user id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| userId | string? | no | user id |  
+
+
 
 User's reward details.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `UserRes`
+[UserRes](#UserRes)
+
+ok
 
 
 
@@ -20621,30 +26001,45 @@ Schema: `UserRes`
 #### updateUserStatus
 Update User status
 
+
+
 ```javascript
 // Promise
-const promise = rewards.updateUserStatus(companyId,applicationId,userId,body);
+const promise = rewards.updateUserStatus( {  companyId : value,
+ applicationId : value,
+ userId : value,
+ body : value });
 
 // Async/Await
-const data = await rewards.updateUserStatus(companyId,applicationId,userId,body);
+const data = await rewards.updateUserStatus( {  companyId : value,
+ applicationId : value,
+ userId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| userId | string | user id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| userId | string? | no | user id |  
+| body | [AppUser](#AppUser) | yes | Request body |
+
 
 Update user status, active/archive
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `AppUser`
+[AppUser](#AppUser)
+
+Success
 
 
 
@@ -20660,34 +26055,53 @@ Schema: `AppUser`
 #### getUserPointsHistory
 Get list of points transactions.
 
+
+
 ```javascript
 // Promise
-const promise = rewards.getUserPointsHistory(companyId,applicationId,userId,pageId,pageLimit,pageSize);
+const promise = rewards.getUserPointsHistory( {  companyId : value,
+ applicationId : value,
+ userId : value,
+ pageId : value,
+ pageLimit : value,
+ pageSize : value });
 
 // Async/Await
-const data = await rewards.getUserPointsHistory(companyId,applicationId,userId,pageId,pageLimit,pageSize);
+const data = await rewards.getUserPointsHistory( {  companyId : value,
+ applicationId : value,
+ userId : value,
+ pageId : value,
+ pageLimit : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | company id | 
-| applicationId | string | application id | 
-| userId | string | user id | 
-| pageId | string | PageID is the ID of the requested page. For first request it should be kept empty. | 
-| pageLimit | integer | PageLimit is the number of requested items in response. | 
-| pageSize | integer | PageSize is the number of requested items in response. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | company id |    
+| applicationId | string? | no | application id |    
+| userId | string? | no | user id |    
+| pageId | string? | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
+| pageLimit | number? | no | PageLimit is the number of requested items in response. |    
+| pageSize | number? | no | PageSize is the number of requested items in response. |  
+
+
 
 Get list of points transactions.
 The list of points history is paginated.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 ok
 
 
-Schema: `HistoryRes`
+[HistoryRes](#HistoryRes)
+
+ok
 
 
 
@@ -20701,7 +26115,6 @@ Schema: `HistoryRes`
 
 
 
----
 
 
 ## Analytics
@@ -20710,29 +26123,40 @@ Schema: `HistoryRes`
 #### getStatiscticsGroups
 Get statistics groups
 
+
+
 ```javascript
 // Promise
-const promise = analytics.getStatiscticsGroups(companyId,applicationId);
+const promise = analytics.getStatiscticsGroups( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await analytics.getStatiscticsGroups(companyId,applicationId);
+const data = await analytics.getStatiscticsGroups( {  companyId : value,
+ applicationId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |  
+
+
 
 Get statistics groups
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `StatsGroups`
+[StatsGroups](#StatsGroups)
+
+Success
 
 
 
@@ -20748,30 +26172,43 @@ Schema: `StatsGroups`
 #### getStatiscticsGroupComponents
 Get statistics group components
 
+
+
 ```javascript
 // Promise
-const promise = analytics.getStatiscticsGroupComponents(companyId,applicationId,groupName);
+const promise = analytics.getStatiscticsGroupComponents( {  companyId : value,
+ applicationId : value,
+ groupName : value });
 
 // Async/Await
-const data = await analytics.getStatiscticsGroupComponents(companyId,applicationId,groupName);
+const data = await analytics.getStatiscticsGroupComponents( {  companyId : value,
+ applicationId : value,
+ groupName : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| groupName | string | Group name | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| groupName | string? | no | Group name |  
+
+
 
 Get statistics group components
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `StatsGroupComponents`
+[StatsGroupComponents](#StatsGroupComponents)
+
+Success
 
 
 
@@ -20787,30 +26224,43 @@ Schema: `StatsGroupComponents`
 #### getComponentStatsCSV
 Get component statistics csv
 
+
+
 ```javascript
 // Promise
-const promise = analytics.getComponentStatsCSV(companyId,applicationId,componentName);
+const promise = analytics.getComponentStatsCSV( {  companyId : value,
+ applicationId : value,
+ componentName : value });
 
 // Async/Await
-const data = await analytics.getComponentStatsCSV(companyId,applicationId,componentName);
+const data = await analytics.getComponentStatsCSV( {  companyId : value,
+ applicationId : value,
+ componentName : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| componentName | string | Component name | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| componentName | string? | no | Component name |  
+
+
 
 Get component statistics csv
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `string`
+[string](#string)
+
+Success
 
 
 
@@ -20826,30 +26276,43 @@ Schema: `string`
 #### getComponentStatsPDF
 Get component statistics pdf
 
+
+
 ```javascript
 // Promise
-const promise = analytics.getComponentStatsPDF(companyId,applicationId,componentName);
+const promise = analytics.getComponentStatsPDF( {  companyId : value,
+ applicationId : value,
+ componentName : value });
 
 // Async/Await
-const data = await analytics.getComponentStatsPDF(companyId,applicationId,componentName);
+const data = await analytics.getComponentStatsPDF( {  companyId : value,
+ applicationId : value,
+ componentName : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| componentName | string | Component name | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| componentName | string? | no | Component name |  
+
+
 
 Get component statistics pdf
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `string`
+[string](#string)
+
+Success
 
 
 
@@ -20865,30 +26328,43 @@ Schema: `string`
 #### getComponentStats
 Get component statistics
 
+
+
 ```javascript
 // Promise
-const promise = analytics.getComponentStats(companyId,applicationId,componentName);
+const promise = analytics.getComponentStats( {  companyId : value,
+ applicationId : value,
+ componentName : value });
 
 // Async/Await
-const data = await analytics.getComponentStats(companyId,applicationId,componentName);
+const data = await analytics.getComponentStats( {  companyId : value,
+ applicationId : value,
+ componentName : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| componentName | string | Component name | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| componentName | string? | no | Component name |  
+
+
 
 Get component statistics
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `StatsRes`
+[StatsRes](#StatsRes)
+
+Success
 
 
 
@@ -20904,33 +26380,52 @@ Schema: `StatsRes`
 #### getAbandonCartList
 Get abandon carts list
 
+
+
 ```javascript
 // Promise
-const promise = analytics.getAbandonCartList(companyId,applicationId,fromDate,toDate,pageNo,pageSize);
+const promise = analytics.getAbandonCartList( {  companyId : value,
+ applicationId : value,
+ fromDate : value,
+ toDate : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await analytics.getAbandonCartList(companyId,applicationId,fromDate,toDate,pageNo,pageSize);
+const data = await analytics.getAbandonCartList( {  companyId : value,
+ applicationId : value,
+ fromDate : value,
+ toDate : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| fromDate | string | From date | 
-| toDate | string | To date | 
-| pageNo | integer | Current page number | 
-| pageSize | integer | Current page size | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| fromDate | string? | no | From date |    
+| toDate | string? | no | To date |    
+| pageNo | number? | no | Current page number |    
+| pageSize | number? | no | Current page size |  
+
+
 
 Get abandon carts list
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `AbandonCartsList`
+[AbandonCartsList](#AbandonCartsList)
+
+Success
 
 
 
@@ -20946,31 +26441,46 @@ Schema: `AbandonCartsList`
 #### getAbandonCartsCSV
 Get abandon carts csv
 
+
+
 ```javascript
 // Promise
-const promise = analytics.getAbandonCartsCSV(companyId,applicationId,fromDate,toDate);
+const promise = analytics.getAbandonCartsCSV( {  companyId : value,
+ applicationId : value,
+ fromDate : value,
+ toDate : value });
 
 // Async/Await
-const data = await analytics.getAbandonCartsCSV(companyId,applicationId,fromDate,toDate);
+const data = await analytics.getAbandonCartsCSV( {  companyId : value,
+ applicationId : value,
+ fromDate : value,
+ toDate : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| fromDate | string | From date | 
-| toDate | string | To date | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| fromDate | string? | no | From date |    
+| toDate | string? | no | To date |  
+
+
 
 Get abandon carts csv
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `string`
+[string](#string)
+
+Success
 
 
 
@@ -20986,30 +26496,43 @@ Schema: `string`
 #### getAbandonCartDetail
 Get abandon carts details
 
+
+
 ```javascript
 // Promise
-const promise = analytics.getAbandonCartDetail(companyId,applicationId,cartId);
+const promise = analytics.getAbandonCartDetail( {  companyId : value,
+ applicationId : value,
+ cartId : value });
 
 // Async/Await
-const data = await analytics.getAbandonCartDetail(companyId,applicationId,cartId);
+const data = await analytics.getAbandonCartDetail( {  companyId : value,
+ applicationId : value,
+ cartId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| applicationId | string | Application Id | 
-| cartId | string | Cart Id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| applicationId | string? | no | Application Id |    
+| cartId | string? | no | Cart Id |  
+
+
 
 Get abandon cart details
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `AbandonCartDetail`
+[AbandonCartDetail](#AbandonCartDetail)
+
+Success
 
 
 
@@ -21025,29 +26548,42 @@ Schema: `AbandonCartDetail`
 #### createExportJob
 Create data export job in required format
 
+
+
 ```javascript
 // Promise
-const promise = analytics.createExportJob(companyId,exportType,body);
+const promise = analytics.createExportJob( {  companyId : value,
+ exportType : value,
+ body : value });
 
 // Async/Await
-const data = await analytics.createExportJob(companyId,exportType,body);
+const data = await analytics.createExportJob( {  companyId : value,
+ exportType : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| exportType | string | Export type / format | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| exportType | string? | no | Export type / format |  
+| body | [ExportJobReq](#ExportJobReq) | no | Request body |
+
 
 Create data export job in required format
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ExportJobRes`
+[ExportJobRes](#ExportJobRes)
+
+Success
 
 
 
@@ -21063,30 +26599,43 @@ Schema: `ExportJobRes`
 #### getExportJobStatus
 Get data export job status
 
+
+
 ```javascript
 // Promise
-const promise = analytics.getExportJobStatus(companyId,exportType,jobId);
+const promise = analytics.getExportJobStatus( {  companyId : value,
+ exportType : value,
+ jobId : value });
 
 // Async/Await
-const data = await analytics.getExportJobStatus(companyId,exportType,jobId);
+const data = await analytics.getExportJobStatus( {  companyId : value,
+ exportType : value,
+ jobId : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| exportType | string | Export type / format | 
-| jobId | string | Export job id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| exportType | string? | no | Export type / format |    
+| jobId | string? | no | Export job id |  
+
+
 
 Get data export job status
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ExportJobStatusRes`
+[ExportJobStatusRes](#ExportJobStatusRes)
+
+Success
 
 
 
@@ -21102,31 +26651,48 @@ Schema: `ExportJobStatusRes`
 #### getLogsList
 Get logs list
 
+
+
 ```javascript
 // Promise
-const promise = analytics.getLogsList(companyId,logType,body,pageNo,pageSize);
+const promise = analytics.getLogsList( {  companyId : value,
+ logType : value,
+ body : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await analytics.getLogsList(companyId,logType,body,pageNo,pageSize);
+const data = await analytics.getLogsList( {  companyId : value,
+ logType : value,
+ body : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| logType | string | Log type | 
-| pageNo | integer | Current page number | 
-| pageSize | integer | Current page size | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| logType | string? | no | Log type |    
+| pageNo | number? | no | Current page number |    
+| pageSize | number? | no | Current page size |  
+| body | [GetLogsListReq](#GetLogsListReq) | no | Request body |
+
 
 Get logs list
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `GetLogsListRes`
+[GetLogsListRes](#GetLogsListRes)
+
+Success
 
 
 
@@ -21142,31 +26708,48 @@ Schema: `GetLogsListRes`
 #### searchLogs
 Search logs
 
+
+
 ```javascript
 // Promise
-const promise = analytics.searchLogs(companyId,logType,body,pageNo,pageSize);
+const promise = analytics.searchLogs( {  companyId : value,
+ logType : value,
+ body : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await analytics.searchLogs(companyId,logType,body,pageNo,pageSize);
+const data = await analytics.searchLogs( {  companyId : value,
+ logType : value,
+ body : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id | 
-| pageNo | integer | Current page number | 
-| pageSize | integer | Current page size | 
-| logType | string | Log type | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id |    
+| pageNo | number? | no | Current page number |    
+| pageSize | number? | no | Current page size |    
+| logType | string? | no | Log type |  
+| body | [SearchLogReq](#SearchLogReq) | no | Request body |
+
 
 Search logs
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SearchLogRes`
+[SearchLogRes](#SearchLogRes)
+
+Success
 
 
 
@@ -21180,7 +26763,6 @@ Schema: `SearchLogRes`
 
 
 
----
 
 
 ## Discount
@@ -21189,37 +26771,64 @@ Schema: `SearchLogRes`
 #### getDiscounts
 Fetch discount list.
 
+
+
 ```javascript
 // Promise
-const promise = discount.getDiscounts(companyId,view,q,pageNo,pageSize,archived,month,year,type,appIds);
+const promise = discount.getDiscounts( {  companyId : value,
+ view : value,
+ q : value,
+ pageNo : value,
+ pageSize : value,
+ archived : value,
+ month : value,
+ year : value,
+ type : value,
+ appIds : value });
 
 // Async/Await
-const data = await discount.getDiscounts(companyId,view,q,pageNo,pageSize,archived,month,year,type,appIds);
+const data = await discount.getDiscounts( {  companyId : value,
+ view : value,
+ q : value,
+ pageNo : value,
+ pageSize : value,
+ archived : value,
+ month : value,
+ year : value,
+ type : value,
+ appIds : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
-| view | string | listing or calender.  Default is listing. | 
-| q | string | The search query. This can be a partial or complete name of a discount. | 
-| pageNo | integer | page number. Default is 1. | 
-| pageSize | integer | page size. Default is 12. | 
-| archived | boolean | archived. Default is false. | 
-| month | integer | month. Default is current month. | 
-| year | integer | year. Default is current year. | 
-| type | string | basic or custom. | 
-| appIds | array | application ids. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |    
+| view | string? | no | listing or calender.  Default is listing. |    
+| q | string? | no | The search query. This can be a partial or complete name of a discount. |    
+| pageNo | number? | no | page number. Default is 1. |    
+| pageSize | number? | no | page size. Default is 12. |    
+| archived | boolean? | no | archived. Default is false. |    
+| month | number? | no | month. Default is current month. |    
+| year | number? | no | year. Default is current year. |    
+| type | string? | no | basic or custom. |    
+| appIds | Array<string>? | no | application ids. |  
+
+
 
 Fetch discount list.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `ListOrCalender`
+[ListOrCalender](#ListOrCalender)
+
+Success
 
 
 
@@ -21235,28 +26844,39 @@ Schema: `ListOrCalender`
 #### createDiscount
 Create Discount.
 
+
+
 ```javascript
 // Promise
-const promise = discount.createDiscount(companyId,body);
+const promise = discount.createDiscount( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await discount.createDiscount(companyId,body);
+const data = await discount.createDiscount( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |  
+| body | [CreateUpdateDiscount](#CreateUpdateDiscount) | yes | Request body |
+
 
 Create Discount.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `DiscountJob`
+[DiscountJob](#DiscountJob)
+
+Success
 
 
 
@@ -21272,29 +26892,40 @@ Schema: `DiscountJob`
 #### getDiscount
 Fetch discount.
 
+
+
 ```javascript
 // Promise
-const promise = discount.getDiscount(companyId,id);
+const promise = discount.getDiscount( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await discount.getDiscount(companyId,id);
+const data = await discount.getDiscount( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
-| id | string | unique id. | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |    
+| id | string? | no | unique id. |  
+
+
 
 Fetch discount.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `DiscountJob`
+[DiscountJob](#DiscountJob)
+
+Success
 
 
 
@@ -21310,29 +26941,42 @@ Schema: `DiscountJob`
 #### updateDiscount
 Create Discount.
 
+
+
 ```javascript
 // Promise
-const promise = discount.updateDiscount(companyId,id,body);
+const promise = discount.updateDiscount( {  companyId : value,
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await discount.updateDiscount(companyId,id,body);
+const data = await discount.updateDiscount( {  companyId : value,
+ id : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
-| id | string | id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |    
+| id | string? | no | id |  
+| body | [CreateUpdateDiscount](#CreateUpdateDiscount) | yes | Request body |
+
 
 Create Discount.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `DiscountJob`
+[DiscountJob](#DiscountJob)
+
+Success
 
 
 
@@ -21348,29 +26992,42 @@ Schema: `DiscountJob`
 #### validateDiscountFile
 Validate File.
 
+
+
 ```javascript
 // Promise
-const promise = discount.validateDiscountFile(companyId,body,discount);
+const promise = discount.validateDiscountFile( {  companyId : value,
+ body : value,
+ discount : value });
 
 // Async/Await
-const data = await discount.validateDiscountFile(companyId,body,discount);
+const data = await discount.validateDiscountFile( {  companyId : value,
+ body : value,
+ discount : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
-| discount | string | discount | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |    
+| discount | string? | no | discount |  
+| body | [DiscountJob](#DiscountJob) | yes | Request body |
+
 
 Validate File.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `FileJobResponse`
+[FileJobResponse](#FileJobResponse)
+
+Success
 
 
 
@@ -21386,29 +27043,42 @@ Schema: `FileJobResponse`
 #### downloadDiscountFile
 Validate File.
 
+
+
 ```javascript
 // Promise
-const promise = discount.downloadDiscountFile(companyId,type,body);
+const promise = discount.downloadDiscountFile( {  companyId : value,
+ type : value,
+ body : value });
 
 // Async/Await
-const data = await discount.downloadDiscountFile(companyId,type,body);
+const data = await discount.downloadDiscountFile( {  companyId : value,
+ type : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
-| type | string | type | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |    
+| type | string? | no | type |  
+| body | [DownloadFileJob](#DownloadFileJob) | yes | Request body |
+
 
 Validate File.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `FileJobResponse`
+[FileJobResponse](#FileJobResponse)
+
+Success
 
 
 
@@ -21424,29 +27094,40 @@ Schema: `FileJobResponse`
 #### getValidationJob
 Validate File Job.
 
+
+
 ```javascript
 // Promise
-const promise = discount.getValidationJob(companyId,id);
+const promise = discount.getValidationJob( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await discount.getValidationJob(companyId,id);
+const data = await discount.getValidationJob( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
-| id | string | id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |    
+| id | string? | no | id |  
+
+
 
 Validate File Job.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `FileJobResponse`
+[FileJobResponse](#FileJobResponse)
+
+Success
 
 
 
@@ -21462,29 +27143,40 @@ Schema: `FileJobResponse`
 #### cancelValidationJob
 Cancel Validation Job.
 
+
+
 ```javascript
 // Promise
-const promise = discount.cancelValidationJob(companyId,id);
+const promise = discount.cancelValidationJob( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await discount.cancelValidationJob(companyId,id);
+const data = await discount.cancelValidationJob( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
-| id | string | id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |    
+| id | string? | no | id |  
+
+
 
 Cancel Validation Job.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CancelJobResponse`
+[CancelJobResponse](#CancelJobResponse)
+
+Success
 
 
 
@@ -21500,29 +27192,40 @@ Schema: `CancelJobResponse`
 #### getDownloadJob
 Download File Job.
 
+
+
 ```javascript
 // Promise
-const promise = discount.getDownloadJob(companyId,id);
+const promise = discount.getDownloadJob( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await discount.getDownloadJob(companyId,id);
+const data = await discount.getDownloadJob( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
-| id | string | id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |    
+| id | string? | no | id |  
+
+
 
 Download File Job.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `FileJobResponse`
+[FileJobResponse](#FileJobResponse)
+
+Success
 
 
 
@@ -21538,29 +27241,40 @@ Schema: `FileJobResponse`
 #### cancelDownloadJob
 Cancel Download Job.
 
+
+
 ```javascript
 // Promise
-const promise = discount.cancelDownloadJob(companyId,id);
+const promise = discount.cancelDownloadJob( {  companyId : value,
+ id : value });
 
 // Async/Await
-const data = await discount.cancelDownloadJob(companyId,id);
+const data = await discount.cancelDownloadJob( {  companyId : value,
+ id : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | integer | company_id | 
-| id | string | id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | number? | no | company_id |    
+| id | string? | no | id |  
+
+
 
 Cancel Download Job.
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `CancelJobResponse`
+[CancelJobResponse](#CancelJobResponse)
+
+Success
 
 
 
@@ -21574,7 +27288,6 @@ Schema: `CancelJobResponse`
 
 
 
----
 
 
 ## Partner
@@ -21583,30 +27296,45 @@ Schema: `CancelJobResponse`
 #### addProxyPath
 Add proxy path for external url
 
+
+
 ```javascript
 // Promise
-const promise = partner.addProxyPath(companyId,applicationId,extensionId,body);
+const promise = partner.addProxyPath( {  companyId : value,
+ applicationId : value,
+ extensionId : value,
+ body : value });
 
 // Async/Await
-const data = await partner.addProxyPath(companyId,applicationId,extensionId,body);
+const data = await partner.addProxyPath( {  companyId : value,
+ applicationId : value,
+ extensionId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| extensionId | string | Extension id | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |    
+| extensionId | string? | no | Extension id |  
+| body | [AddProxyReq](#AddProxyReq) | no | Request body |
+
 
 Add proxy path for external url
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `AddProxyResponse`
+[AddProxyResponse](#AddProxyResponse)
+
+Success
 
 
 
@@ -21622,33 +27350,45 @@ Schema: `AddProxyResponse`
 #### removeProxyPath
 Remove proxy path for external url
 
+
+
 ```javascript
 // Promise
-const promise = partner.removeProxyPath(companyId,applicationId,extensionId,attachedPath);
+const promise = partner.removeProxyPath( {  companyId : value,
+ applicationId : value,
+ extensionId : value,
+ attachedPath : value });
 
 // Async/Await
-const data = await partner.removeProxyPath(companyId,applicationId,extensionId,attachedPath);
+const data = await partner.removeProxyPath( {  companyId : value,
+ applicationId : value,
+ extensionId : value,
+ attachedPath : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Current company id | 
-| applicationId | string | Current application id | 
-| extensionId | string | Extension id | 
-| attachedPath | string | Attachaed path slug | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Current company id |    
+| applicationId | string? | no | Current application id |    
+| extensionId | string? | no | Extension id |    
+| attachedPath | string? | no | Attachaed path slug |  
+
+
 
 Remove proxy path for external url
 
-*Success Response:*
+*Returned Response:*
 
 
-
-
----
 
 
 
 ---
+
+
+
 
 
 ## Webhook
@@ -21657,31 +27397,46 @@ Remove proxy path for external url
 #### getSubscribersByCompanyAndEventId
 Get Subscribers By Company And Event
 
+
+
 ```javascript
 // Promise
-const promise = webhook.getSubscribersByCompanyAndEventId(companyId,eventId,pageNo,pageSize);
+const promise = webhook.getSubscribersByCompanyAndEventId( {  companyId : value,
+ eventId : value,
+ pageNo : value,
+ pageSize : value });
 
 // Async/Await
-const data = await webhook.getSubscribersByCompanyAndEventId(companyId,eventId,pageNo,pageSize);
+const data = await webhook.getSubscribersByCompanyAndEventId( {  companyId : value,
+ eventId : value,
+ pageNo : value,
+ pageSize : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| pageNo | integer | Page Number | 
-| pageSize | integer | Page Size | 
-| companyId | string | Company ID of the application | 
-| eventId | integer | Event Id of the application | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number? | no | Page Number |    
+| pageSize | number? | no | Page Size |    
+| companyId | string? | no | Company ID of the application |    
+| eventId | number? | no | Event Id of the application |  
+
+
 
 Get Subscribers By Company And Event
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SubscriberConfigList`
+[SubscriberConfigList](#SubscriberConfigList)
+
+Success
 
 
 
@@ -21697,28 +27452,39 @@ Schema: `SubscriberConfigList`
 #### registerSubscriberToEvent
 Register Subscriber
 
+
+
 ```javascript
 // Promise
-const promise = webhook.registerSubscriberToEvent(companyId,body);
+const promise = webhook.registerSubscriberToEvent( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await webhook.registerSubscriberToEvent(companyId,body);
+const data = await webhook.registerSubscriberToEvent( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company Id of the application | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company Id of the application |  
+| body | [SubscriberConfig](#SubscriberConfig) | no | Request body |
+
 
 Register Subscriber
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SubscriberConfig`
+[SubscriberConfig](#SubscriberConfig)
+
+Success
 
 
 
@@ -21734,28 +27500,39 @@ Schema: `SubscriberConfig`
 #### updateSubscriberConfig
 Update Subscriber
 
+
+
 ```javascript
 // Promise
-const promise = webhook.updateSubscriberConfig(companyId,body);
+const promise = webhook.updateSubscriberConfig( {  companyId : value,
+ body : value });
 
 // Async/Await
-const data = await webhook.updateSubscriberConfig(companyId,body);
+const data = await webhook.updateSubscriberConfig( {  companyId : value,
+ body : value });
 ```
 
-| Argument  |  Type  | Description |
-| --------- | ----  | --- |
-| companyId | string | Company ID of the application | 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string? | no | Company ID of the application |  
+| body | [SubscriberConfig](#SubscriberConfig) | no | Request body |
+
 
 Update Subscriber
 
-*Success Response:*
+*Returned Response:*
+
 
 
 
 Success
 
 
-Schema: `SubscriberConfig`
+[SubscriberConfig](#SubscriberConfig)
+
+Success
 
 
 
@@ -21769,8 +27546,10669 @@ Schema: `SubscriberConfig`
 
 
 
+
+
+### Schemas
+
+
+ 
+ 
+ #### [ProductDetailAttribute](#ProductDetailAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
+
 ---
 
 
+ 
+ 
+ #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[ProductDetailAttribute](#ProductDetailAttribute)] |  no  |  |
+ | title | string |  no  |  |
+
 ---
+
+
+ 
+ 
+ #### [Meta](#Meta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | source | string |  no  |  |
+
 ---
+
+
+ 
+ 
+ #### [Media](#Media)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ | meta | [Meta](#Meta) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingActionPage](#ProductListingActionPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | query | string |  no  |  |
+ | params | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingAction](#ProductListingAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | page | [ProductListingActionPage](#ProductListingActionPage) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBrand](#ProductBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | [Media](#Media) |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Price](#Price)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | currency_code | string |  no  |  |
+ | max | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingPrice](#ProductListingPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | [Price](#Price) |  no  |  |
+ | effective | [Price](#Price) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetail](#ProductDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rating_count | number |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | item_type | string |  no  |  |
+ | discount | string |  no  |  |
+ | item_code | string |  no  |  |
+ | slug | string? |  yes  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | color | string |  no  |  |
+ | uid | number |  no  |  |
+ | type | string |  no  |  |
+ | image_nature | string |  no  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | similars | [string] |  no  |  |
+ | product_online_date | string |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | rating | number |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | short_description | string |  no  |  |
+ | highlights | [string] |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | attributes | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSize](#ProductSize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_available | boolean |  no  |  |
+ | quantity | number |  no  |  |
+ | display | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChartValues](#SizeChartValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | col_1 | string |  no  |  |
+ | col_6 | string |  no  |  |
+ | col_3 | string |  no  |  |
+ | col_2 | string |  no  |  |
+ | col_5 | string |  no  |  |
+ | col_4 | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ColumnHeader](#ColumnHeader)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | convertable | boolean |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ColumnHeaders](#ColumnHeaders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChart](#SizeChart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  |
+ | title | string |  no  |  |
+ | image | string |  no  |  |
+ | size_tip | string |  no  |  |
+ | description | string |  no  |  |
+ | unit | string |  no  |  |
+ | headers | [ColumnHeaders](#ColumnHeaders) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSizeStores](#ProductSizeStores)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSizes](#ProductSizes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | [[ProductSize](#ProductSize)] |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | discount | string |  no  |  |
+ | size_chart | [SizeChart](#SizeChart) |  no  |  |
+ | stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
+ | sellable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Store](#Store)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StrategyWiseListing](#StrategyWiseListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pincode | number |  no  |  |
+ | quantity | number |  no  |  |
+ | distance | number |  no  |  |
+ | tat | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductStockPrice](#ProductStockPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | number |  no  |  |
+ | effective | number |  no  |  |
+ | currency | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReturnConfig](#ReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | time | number |  no  |  |
+ | unit | string |  no  |  |
+ | returnable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleAssignment](#ArticleAssignment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | strategy | string |  no  |  |
+ | level | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSetDistributionSize](#ProductSetDistributionSize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | string |  no  |  |
+ | pieces | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSetDistribution](#ProductSetDistribution)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | [[ProductSetDistributionSize](#ProductSetDistributionSize)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSet](#ProductSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | number |  no  |  |
+ | size_distribution | [ProductSetDistribution](#ProductSetDistribution) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Seller](#Seller)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Details](#Details)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MarketPlaceSttributes](#MarketPlaceSttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[Details](#Details)] |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSizePriceResponse](#ProductSizePriceResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | long_lat | [number] |  no  |  |
+ | store | [Store](#Store) |  no  |  |
+ | quantity | number |  no  |  |
+ | strategy_wise_listing | [[StrategyWiseListing](#StrategyWiseListing)] |  no  |  |
+ | article_id | string |  no  |  |
+ | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | item_type | string |  no  |  |
+ | price_per_price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | discount | string |  no  |  |
+ | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
+ | article_assignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
+ | set | [ProductSet](#ProductSet) |  no  |  |
+ | seller_count | number |  no  |  |
+ | pincode | number |  no  |  |
+ | seller | [Seller](#Seller) |  no  |  |
+ | special_badge | string |  no  |  |
+ | marketplace_attributes | [[MarketPlaceSttributes](#MarketPlaceSttributes)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSizeSellerFilter](#ProductSizeSellerFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_selected | boolean |  no  |  |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSizeSellersResponse](#ProductSizeSellersResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductSizePriceResponse](#ProductSizePriceResponse)] |  no  |  |
+ | sort_on | [[ProductSizeSellerFilter](#ProductSizeSellerFilter)] |  no  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeDetail](#AttributeDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | key | string |  no  |  |
+ | display | string |  no  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMetadata](#AttributeMetadata)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[AttributeDetail](#AttributeDetail)] |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductsComparisonResponse](#ProductsComparisonResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductCompareResponse](#ProductCompareResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subtitle | string |  no  |  |
+ | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
+ | items | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFrequentlyComparedSimilarResponse](#ProductFrequentlyComparedSimilarResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | similars | [ProductCompareResponse](#ProductCompareResponse) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSimilarItem](#ProductSimilarItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subtitle | string |  no  |  |
+ | items | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SimilarProductByTypeResponse](#SimilarProductByTypeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | similars | [ProductSimilarItem](#ProductSimilarItem) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductVariantItemResponse](#ProductVariantItemResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | color | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | uid | number |  no  |  |
+ | color_name | string |  no  |  |
+ | name | string |  no  |  |
+ | is_available | boolean |  no  |  |
+ | slug | string |  no  |  |
+ | value | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductVariantResponse](#ProductVariantResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | header | string |  no  |  |
+ | key | string |  no  |  |
+ | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
+ | display_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductVariantsResponse](#ProductVariantsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | variants | [[ProductVariantResponse](#ProductVariantResponse)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreDetail](#StoreDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | id | number |  no  |  |
+ | city | string |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyDetail](#CompanyDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductStockStatusItem](#ProductStockStatusItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store | [StoreDetail](#StoreDetail) |  no  |  |
+ | size | string |  no  |  |
+ | company | [CompanyDetail](#CompanyDetail) |  no  |  |
+ | quantity | number |  no  |  |
+ | identifier | string |  no  |  |
+ | uid | string |  no  |  |
+ | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | item_id | number |  no  |  |
+ | seller | [Seller](#Seller) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductStockStatusResponse](#ProductStockStatusResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductStockStatusItem](#ProductStockStatusItem)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductStockPolling](#ProductStockPolling)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductStockStatusItem](#ProductStockStatusItem)] |  no  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingDetail](#ProductListingDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rating_count | number |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | sellable | boolean |  no  |  |
+ | item_type | string |  no  |  |
+ | discount | string |  no  |  |
+ | item_code | string |  no  |  |
+ | slug | string? |  yes  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | color | string |  no  |  |
+ | uid | number |  no  |  |
+ | type | string |  no  |  |
+ | image_nature | string |  no  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | similars | [string] |  no  |  |
+ | product_online_date | string |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | rating | number |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | short_description | string |  no  |  |
+ | highlights | [string] |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | attributes | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFiltersKey](#ProductFiltersKey)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | kind | string |  no  |  |
+ | logo | string |  no  |  |
+ | display | string? |  yes  |  |
+ | name | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFiltersValue](#ProductFiltersValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | is_selected | boolean? |  yes  |  |
+ | display | string? |  yes  |  |
+ | currency_symbol | string |  no  |  |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
+ | display_format | string |  no  |  |
+ | query_format | string |  no  |  |
+ | value | string |  no  |  |
+ | selected_min | number |  no  |  |
+ | selected_max | number |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFilters](#ProductFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | [ProductFiltersKey](#ProductFiltersKey)? |  yes  |  |
+ | values | [[ProductFiltersValue](#ProductFiltersValue)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSortOn](#ProductSortOn)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_selected | boolean |  no  |  |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingResponse](#ProductListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ImageUrls](#ImageUrls)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | portrait | [Media](#Media) |  no  |  |
+ | landscape | [Media](#Media) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BrandItem](#BrandItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | discount | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | name | string |  no  |  |
+ | departments | [string] |  no  |  |
+ | slug | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BrandListingResponse](#BrandListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[BrandItem](#BrandItem)] |  no  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BrandDetailResponse](#BrandDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | [Media](#Media) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentIdentifier](#DepartmentIdentifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ThirdLevelChild](#ThirdLevelChild)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | childs | [string] |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SecondLevelChild](#SecondLevelChild)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Child](#Child)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryItems](#CategoryItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | childs | [[Child](#Child)] |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentCategoryTree](#DepartmentCategoryTree)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CategoryItems](#CategoryItems)] |  no  |  |
+ | department | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryListingResponse](#CategoryListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | departments | [[DepartmentIdentifier](#DepartmentIdentifier)] |  no  |  |
+ | data | [[DepartmentCategoryTree](#DepartmentCategoryTree)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryMetaResponse](#CategoryMetaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | [Media](#Media) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HomeListingResponse](#HomeListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Department](#Department)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | name | string |  no  |  |
+ | priority_order | number |  no  |  |
+ | slug | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentResponse](#DepartmentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Department](#Department)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AutocompleteItem](#AutocompleteItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | display | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AutoCompleteResponse](#AutoCompleteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AutocompleteItem](#AutocompleteItem)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCollectionDetailNest](#GetCollectionDetailNest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | badge | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | _schedule | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | slug | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | cron | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | query | string |  no  |  |
+ | uid | string |  no  |  |
+ | type | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | meta | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilterType](#CollectionListingFilterType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_selected | boolean |  no  |  |
+ | name | string |  no  |  |
+ | display | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilterTag](#CollectionListingFilterTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_selected | boolean |  no  |  |
+ | name | string |  no  |  |
+ | display | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilter](#CollectionListingFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | [[CollectionListingFilterType](#CollectionListingFilterType)] |  no  |  |
+ | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCollectionListingResponse](#GetCollectionListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  |
+ | filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionDetailResponse](#CollectionDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tag | [string] |  no  |  |
+ | query | string |  no  |  |
+ | _schedule | string |  no  |  |
+ | type | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | badge | string |  no  |  |
+ | description | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | cron | string |  no  |  |
+ | meta | string |  no  |  |
+ | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetFollowListingResponse](#GetFollowListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FollowPostResponse](#FollowPostResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | id | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FollowerCountResponse](#FollowerCountResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FollowIdsData](#FollowIdsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | collections | [number] |  no  |  |
+ | products | [number] |  no  |  |
+ | brands | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FollowIdsResponse](#FollowIdsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [FollowIdsData](#FollowIdsData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LatLong](#LatLong)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | coordinates | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Store1](#Store1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | state | string |  no  |  |
+ | store_email | string |  no  |  |
+ | uid | number |  no  |  |
+ | name | string |  no  |  |
+ | city | string |  no  |  |
+ | pincode | number |  no  |  |
+ | address | string |  no  |  |
+ | country | string |  no  |  |
+ | lat_long | [LatLong](#LatLong) |  no  |  |
+ | store_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreListingResponse](#StoreListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Store1](#Store1)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [CartCurrency](#CartCurrency)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  | Currency code defined by ISO 4217:2015 |
+ | symbol | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromiseFormatted](#PromiseFormatted)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | string |  no  |  |
+ | min | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromiseTimestamp](#PromiseTimestamp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentPromise](#ShipmentPromise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  |
+ | timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPrice](#ProductPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | selling | number |  no  |  |
+ | effective | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | add_on | number |  no  |  |
+ | marked | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | converted | [ProductPrice](#ProductPrice) |  no  |  |
+ | base | [ProductPrice](#ProductPrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | [string] |  no  |  |
+ | other_store_quantity | number |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | deliverable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string |  no  | Article idenfier generated by cart |
+
+---
+
+
+ 
+ 
+ #### [BaseInfo](#BaseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Image](#Image)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+ | aspect_ratio | string |  no  |  |
+ | secure_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ActionQuery](#ActionQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_slug | [string] |  no  | Contains list of product slug |
+
+---
+
+
+ 
+ 
+ #### [ProductAction](#ProductAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+ | type | string |  no  |  |
+ | query | [ActionQuery](#ActionQuery) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  | Product Category Id |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Product](#Product)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand | [BaseInfo](#BaseInfo) |  no  |  |
+ | images | [[Image](#Image)] |  no  |  |
+ | action | [ProductAction](#ProductAction) |  no  |  |
+ | slug | string |  no  | Unique product url name generated via product name and other meta data |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ | type | string |  no  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BasePrice](#BasePrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | converted | [BasePrice](#BasePrice) |  no  |  |
+ | base | [BasePrice](#BasePrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductArticle](#ProductArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | string |  no  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
+ | extra_meta | string |  no  |  |
+ | seller | [BaseInfo](#BaseInfo) |  no  |  |
+ | uid | string |  no  |  |
+ | quantity | number |  no  |  |
+ | type | string |  no  |  |
+ | store | [BaseInfo](#BaseInfo) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductInfo](#CartProductInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_message | string |  no  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | discount | string |  no  |  |
+ | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
+ | is_set | boolean |  no  |  |
+ | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
+ | message | string |  no  |  |
+ | key | string |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer)? |  yes  |  |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | product | [Product](#Product) |  no  |  |
+ | article | [ProductArticle](#ProductArticle) |  no  |  |
+ | quantity | number |  no  |  |
+ | bulk_offer | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentSelectionLock](#PaymentSelectionLock)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | default_options | string |  no  |  |
+ | enabled | boolean |  no  |  |
+ | payment_identifier | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayBreakup](#DisplayBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | value | number |  no  |  |
+ | message | [string] |  no  |  |
+ | key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | total | number |  no  |  |
+ | applicable | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | value | number |  no  |  |
+ | message | string |  no  |  |
+ | uid | string |  no  |  |
+ | type | string |  no  |  |
+ | is_applied | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RawBreakup](#RawBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | convenience_fee | number |  no  |  |
+ | vog | number |  no  |  |
+ | discount | number |  no  |  |
+ | you_saved | number |  no  |  |
+ | fynd_cash | number |  no  |  |
+ | mrp_total | string |  no  |  |
+ | coupon | number |  no  |  |
+ | total | number |  no  |  |
+ | cod_charge | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | gst_charges | number |  no  |  |
+ | subtotal | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartBreakup](#CartBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
+ | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
+ | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
+ | raw | [RawBreakup](#RawBreakup) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartResponse](#CartResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_text | string |  no  |  |
+ | gstin | string |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | last_modified | string |  no  |  |
+ | comment | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | message | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | uid | string |  no  |  |
+ | cart_id | number |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddProductCart](#AddProductCart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pos | boolean |  no  |  |
+ | display | string |  no  |  |
+ | article_assignment | string |  no  |  |
+ | item_id | number |  no  |  |
+ | extra_meta | string |  no  |  |
+ | article_id | string |  no  |  |
+ | store_id | number |  no  |  |
+ | item_size | string |  no  |  |
+ | seller_id | number |  no  |  |
+ | quantity | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddCartRequest](#AddCartRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AddProductCart](#AddProductCart)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddCartResponse](#AddCartResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
+ | message | string |  no  |  |
+ | partial | boolean |  no  | When adding multiple items check if all added. True if only few are added. |
+ | cart | [CartResponse](#CartResponse) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateProductCart](#UpdateProductCart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_id | number |  no  |  |
+ | extra_meta | string |  no  |  |
+ | item_index | number |  no  |  |
+ | article_id | string |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer)? |  yes  |  |
+ | item_size | string |  no  |  |
+ | quantity | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateCartRequest](#UpdateCartRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | operation | string? |  yes  |  |
+ | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateCartResponse](#UpdateCartResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
+ | message | string |  no  |  |
+ | cart | [CartResponse](#CartResponse) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartItemCountResponse](#CartItemCountResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_cart_items_count | number |  no  | Item count present in cart |
+
+---
+
+
+ 
+ 
+ #### [Coupon](#Coupon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_code | string |  no  |  |
+ | title | string |  no  |  |
+ | is_applicable | boolean |  no  |  |
+ | minimum_cart_value | number |  no  |  |
+ | sub_title | string |  no  |  |
+ | message | string |  no  |  |
+ | coupon_value | number |  no  |  |
+ | expires_on | string |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | max_discount_value | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageCoupon](#PageCoupon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | has_next | boolean |  no  |  |
+ | current | number |  no  |  |
+ | total_item_count | number |  no  |  |
+ | total | number |  no  |  |
+ | has_previous | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCouponResponse](#GetCouponResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | available_coupon_list | [[Coupon](#Coupon)] |  no  |  |
+ | page | [PageCoupon](#PageCoupon) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplyCouponRequest](#ApplyCouponRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_code | string? |  yes  | Coupon code to be applied |
+
+---
+
+
+ 
+ 
+ #### [OfferSeller](#OfferSeller)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  | Seller id |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OfferPrice](#OfferPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  | Currency code for all amounts |
+ | effective | number |  no  | Current per unit price of product after existing deductions |
+ | currency_symbol | string |  no  | Currency symbol for currency |
+ | bulk_effective | number |  no  | Discounted per unit price for current offer object |
+ | marked | number |  no  | Original price of product |
+
+---
+
+
+ 
+ 
+ #### [OfferItem](#OfferItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | margin | number |  no  | Percentage value of discount |
+ | price | [OfferPrice](#OfferPrice) |  no  |  |
+ | total | number |  no  | Total price of offer quantity with discount |
+ | best | boolean |  no  | Is true for best offer from all offers present for all sellers |
+ | type | string |  no  | Offer type |
+ | auto_applied | boolean |  no  |  |
+ | quantity | number |  no  | Quantity on which offer is applicable |
+
+---
+
+
+ 
+ 
+ #### [BulkPriceOffer](#BulkPriceOffer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | seller | [OfferSeller](#OfferSeller) |  no  |  |
+ | offers | [[OfferItem](#OfferItem)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkPriceResponse](#BulkPriceResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[BulkPriceOffer](#BulkPriceOffer)] |  no  | Consist of offers from multiple seller |
+
+---
+
+
+ 
+ 
+ #### [RewardPointRequest](#RewardPointRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | points | boolean? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GeoLocation](#GeoLocation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | latitude | number |  no  |  |
+ | longitude | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Address](#Address)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | city | string |  no  |  |
+ | google_map_point | string |  no  |  |
+ | uid | number |  no  |  |
+ | email | string |  no  |  |
+ | meta | string |  no  |  |
+ | geo_location | [GeoLocation](#GeoLocation) |  no  |  |
+ | area_code | string |  no  |  |
+ | name | string |  no  |  |
+ | address_type | string |  no  |  |
+ | state | string |  no  |  |
+ | country | string |  no  |  |
+ | user_id | string |  no  |  |
+ | is_default_address | boolean |  no  |  |
+ | landmark | string |  no  |  |
+ | address | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | phone | string |  no  |  |
+ | area | string |  no  |  |
+ | area_code_slug | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAddressesResponse](#GetAddressesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | [[Address](#Address)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SaveAddressResponse](#SaveAddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | string |  no  |  |
+ | is_default_address | boolean |  no  |  |
+ | address_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateAddressResponse](#UpdateAddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | is_default_address | boolean |  no  |  |
+ | address_id | number |  no  |  |
+ | is_updated | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteAddressResponse](#DeleteAddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_deleted | boolean |  no  |  |
+ | address_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SelectCartAddressRequest](#SelectCartAddressRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  no  |  |
+ | billing_address_id | number |  no  |  |
+ | address_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateCartPaymentRequest](#UpdateCartPaymentRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_identifier | string |  no  |  |
+ | payment_mode | string |  no  |  |
+ | address_id | number |  no  |  |
+ | merchant_code | string |  no  |  |
+ | aggregator_name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponValidity](#CouponValidity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | discount | number |  no  |  |
+ | valid | boolean |  no  |  |
+ | code | string |  no  |  |
+ | display_message_en | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentCouponValidate](#PaymentCouponValidate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
+ | message | string |  no  |  |
+ | coupon_validity | [CouponValidity](#CouponValidity) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentResponse](#ShipmentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dp_id | number |  no  |  |
+ | promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | order_type | string |  no  |  |
+ | shipment_type | string |  no  |  |
+ | shipments | number |  no  |  |
+ | box_type | string |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | dp_options | string |  no  |  |
+ | fulfillment_id | number |  no  |  |
+ | fulfillment_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartShipmentsResponse](#CartShipmentsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_text | string |  no  |  |
+ | gstin | string |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | shipments | [[ShipmentResponse](#ShipmentResponse)] |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | last_modified | string |  no  |  |
+ | comment | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | message | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | error | boolean |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | uid | string |  no  |  |
+ | cart_id | number |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartCheckoutRequest](#CartCheckoutRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | billing_address_id | number |  no  |  |
+ | payment_mode | string? |  yes  |  |
+ | address_id | number |  no  |  |
+ | payment_identifier | string |  no  |  |
+ | fyndstore_emp_id | string |  no  |  |
+ | callback_url | string |  no  |  |
+ | payment_params | string |  no  |  |
+ | aggregator | string |  no  |  |
+ | billing_address | string |  no  |  |
+ | merchant_code | string |  no  |  |
+ | payment_auto_confirm | boolean |  no  |  |
+ | staff | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | delivery_address | string |  no  |  |
+ | ordering_store | number |  no  |  |
+ | meta | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CheckCart](#CheckCart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | last_modified | string |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | user_type | string |  no  |  |
+ | uid | string |  no  |  |
+ | success | boolean |  no  |  |
+ | cart_id | number |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | delivery_charge_order_value | number |  no  |  |
+ | coupon_text | string |  no  |  |
+ | gstin | string |  no  |  |
+ | comment | string |  no  |  |
+ | store_emps | [string] |  no  |  |
+ | cod_charges | number |  no  |  |
+ | cod_message | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | error_message | string |  no  |  |
+ | message | string |  no  |  |
+ | delivery_charges | number |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | order_id | string |  no  |  |
+ | cod_available | boolean |  no  |  |
+ | store_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartCheckoutResponse](#CartCheckoutResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | callback_url | string |  no  |  |
+ | cart | [CheckCart](#CheckCart) |  no  |  |
+ | data | string |  no  |  |
+ | message | string |  no  |  |
+ | app_intercept_url | string |  no  |  |
+ | order_id | string |  no  |  |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartMetaRequest](#CartMetaRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gstin | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | comment | string |  no  |  |
+ | pick_up_customer_details | string |  no  | Customer contact details for customer pickup at store |
+
+---
+
+
+ 
+ 
+ #### [CartMetaResponse](#CartMetaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartMetaMissingResponse](#CartMetaMissingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | errors | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetShareCartLinkRequest](#GetShareCartLinkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number? |  yes  | Cart uid for generating sharing |
+ | meta | string |  no  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
+
+---
+
+
+ 
+ 
+ #### [GetShareCartLinkResponse](#GetShareCartLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | share_url | string |  no  | Short shareable final url |
+ | token | string |  no  | Short url unique id |
+
+---
+
+
+ 
+ 
+ #### [SharedCartDetails](#SharedCartDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | token | string |  no  | Short link id |
+ | source | string |  no  | Share link device and other source information |
+ | created_on | string |  no  |  |
+ | user | string |  no  | User details of who generated share link |
+ | meta | string |  no  | Meta data sent while generating share cart link |
+
+---
+
+
+ 
+ 
+ #### [SharedCart](#SharedCart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_text | string |  no  |  |
+ | gstin | string |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | last_modified | string |  no  |  |
+ | comment | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | shared_cart_details | [SharedCartDetails](#SharedCartDetails) |  no  |  |
+ | message | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | uid | string |  no  |  |
+ | cart_id | number |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SharedCartResponse](#SharedCartResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string |  no  |  |
+ | cart | [SharedCart](#SharedCart) |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [LocationDefaultLanguage](#LocationDefaultLanguage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDefaultCurrency](#LocationDefaultCurrency)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | symbol | string |  no  |  |
+ | code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationCountry](#LocationCountry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | capital | string |  no  |  |
+ | currency | string |  no  |  |
+ | iso2 | string |  no  |  |
+ | iso3 | string |  no  |  |
+ | name | string |  no  |  |
+ | parent | string |  no  |  |
+ | phone_code | string |  no  |  |
+ | type | string |  no  |  |
+ | uid | number |  no  |  |
+ | __v | number |  no  |  |
+ | _id | string |  no  |  |
+ | default_currency | [LocationDefaultCurrency](#LocationDefaultCurrency) |  no  |  |
+ | default_language | [LocationDefaultLanguage](#LocationDefaultLanguage) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Locations](#Locations)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[LocationCountry](#LocationCountry)] |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [TicketList](#TicketList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Ticket](#Ticket)] |  no  | List of tickets |
+ | filters | [Filter](#Filter) |  no  | All the filters available for tickets |
+ | page | [Page](#Page) |  no  | Describes the pagination state |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | has_next | boolean |  no  |  |
+ | current | number |  no  |  |
+ | type | string? |  yes  |  |
+ | size | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TicketHistoryList](#TicketHistoryList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[TicketHistory](#TicketHistory)] |  no  | List of ticket history |
+ | page | [Page](#Page) |  no  | Describes the pagination state |
+
+---
+
+
+ 
+ 
+ #### [CustomFormList](#CustomFormList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CustomForm](#CustomForm)] |  no  | List of forms |
+ | page | [Page](#Page) |  no  | Describes the pagination state |
+
+---
+
+
+ 
+ 
+ #### [CreateCustomFormPayload](#CreateCustomFormPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string? |  yes  | Slug for the form |
+ | title | string? |  yes  | Title for the form |
+ | inputs | [string]? |  yes  | List of all the form components |
+ | description | string |  no  | Description of the form |
+ | header_image | string |  no  | Header image that is to be shown for the form |
+ | priority | any? |  yes  | Describes the priority of the tickets created by the form |
+ | should_notify | boolean |  no  | Indicates if staff should be notified when a response is received |
+ | success_message | string |  no  | Success message that will be shown on submission |
+ | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Describes how polling will be done for the tickets createds |
+
+---
+
+
+ 
+ 
+ #### [EditCustomFormPayload](#EditCustomFormPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string? |  yes  | Title for the form |
+ | inputs | [string]? |  yes  | List of all the form components |
+ | description | string |  no  | Description of the form |
+ | priority | any? |  yes  | Describes the priority of the tickets created by the form |
+ | header_image | string |  no  | Header image that is to be shown for the form |
+ | should_notify | boolean |  no  | Indicates if staff should be notified when a response is received |
+ | login_required | boolean |  no  | Denotes if login is required to make a form response submission |
+ | success_message | string |  no  | Success message that will be shown on submission |
+ | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Describes how polling will be done for the tickets createds |
+
+---
+
+
+ 
+ 
+ #### [EditTicketPayload](#EditTicketPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | content | [TicketContent](#TicketContent) |  no  | Ticket conetent details |
+ | category | string |  no  | Category assigned to the ticket |
+ | sub_category | string |  no  | Sub-category assigned to the ticket |
+ | source | string |  no  | Denotes if the ticket was created at company or application level |
+ | status | string |  no  | Denotes in what state is the ticket |
+ | priority | any |  no  | Denotes the priority of ticket |
+ | assigned_to | [AgentChangePayload](#AgentChangePayload) |  no  | Details of support staff to whom ticket is assigned |
+ | tags | [string] |  no  | Tags relevant to ticket |
+
+---
+
+
+ 
+ 
+ #### [AgentChangePayload](#AgentChangePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | agent_id | string? |  yes  | Agent's unique ID |
+
+---
+
+
+ 
+ 
+ #### [CreateVideoRoomResponse](#CreateVideoRoomResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unique_name | string? |  yes  | Video Room's unique name |
+
+---
+
+
+ 
+ 
+ #### [CloseVideoRoomResponse](#CloseVideoRoomResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  | Denotes if operation was successfully |
+
+---
+
+
+ 
+ 
+ #### [CreateVideoRoomPayload](#CreateVideoRoomPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unique_name | string? |  yes  | Ticket id |
+ | notify | [[NotifyUser](#NotifyUser)] |  no  | List of people to be notified |
+
+---
+
+
+ 
+ 
+ #### [NotifyUser](#NotifyUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  | Country code |
+ | phone_number | string? |  yes  | Phone number |
+
+---
+
+
+ 
+ 
+ #### [Filter](#Filter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priorities | [[Priority](#Priority)]? |  yes  | List of possible priorities for tickets |
+ | categories | [[TicketCategory](#TicketCategory)] |  no  | List of possible categories for tickets |
+ | statuses | [[Status](#Status)]? |  yes  | List of possible statuses for tickets |
+ | assignees | [string]? |  yes  | List of support staff availble for tickets assignment |
+
+---
+
+
+ 
+ 
+ #### [TicketHistoryPayload](#TicketHistoryPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string? |  yes  | Details of history event |
+ | type | any? |  yes  | Type of history event |
+
+---
+
+
+ 
+ 
+ #### [CustomFormSubmissionPayload](#CustomFormSubmissionPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | response | [[KeyValue](#KeyValue)]? |  yes  | Form response |
+ | attachments | [[TicketAsset](#TicketAsset)] |  no  | List of all attachments related to the form |
+
+---
+
+
+ 
+ 
+ #### [KeyValue](#KeyValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  | Parameter for evaluating |
+ | value | string? |  yes  | Response for the parameter |
+
+---
+
+
+ 
+ 
+ #### [GetTokenForVideoRoomResponse](#GetTokenForVideoRoomResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | access_token | string? |  yes  | Access token to be used for video room |
+
+---
+
+
+ 
+ 
+ #### [GetParticipantsInsideVideoRoomResponse](#GetParticipantsInsideVideoRoomResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | participants | [[Participant](#Participant)]? |  yes  | List of participants of the video room |
+
+---
+
+
+ 
+ 
+ #### [Participant](#Participant)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  | Details of participant |
+ | identity | string |  no  | Unique identifier of participant |
+ | status | string |  no  | Status of participant |
+
+---
+
+
+ 
+ 
+ #### [PhoneNumber](#PhoneNumber)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  | Denotes if the phone number is active |
+ | primary | boolean |  no  | Denotes it's the primary phone number for the account |
+ | verified | boolean |  no  | Denotes it's a verified phone number |
+ | phone | string |  no  | Phone number |
+ | country_code | number |  no  | Country code |
+
+---
+
+
+ 
+ 
+ #### [Email](#Email)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | primary | boolean |  no  | Denotes it's the primary email for the account |
+ | verified | boolean |  no  | Denotes it's a verified email |
+ | email | string |  no  | Email Address |
+ | active | boolean |  no  | Denotes if the email is active |
+
+---
+
+
+ 
+ 
+ #### [Debug](#Debug)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | source | string |  no  | Source of user |
+ | platform | string |  no  | Platform of user |
+
+---
+
+
+ 
+ 
+ #### [SubmitCustomFormResponse](#SubmitCustomFormResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ticket | [Ticket](#Ticket)? |  yes  | Ticket created on form submission |
+
+---
+
+
+ 
+ 
+ #### [TicketContext](#TicketContext)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  | Application ID related to the ticket |
+ | company_id | string? |  yes  | Company ID related to the ticket |
+
+---
+
+
+ 
+ 
+ #### [CreatedOn](#CreatedOn)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_agent | string? |  yes  | Useragent details |
+
+---
+
+
+ 
+ 
+ #### [TicketAsset](#TicketAsset)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  | Display text for asset |
+ | value | string? |  yes  | To be used for details |
+ | type | any? |  yes  | Type of asset |
+
+---
+
+
+ 
+ 
+ #### [TicketContent](#TicketContent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string? |  yes  | Title for ticket |
+ | description | string |  no  | Long description of issue |
+ | attachments | [[TicketAsset](#TicketAsset)] |  no  | List of all attachments related to the ticket |
+
+---
+
+
+ 
+ 
+ #### [AddTicketPayload](#AddTicketPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_by | string |  no  | Creator of the ticket |
+ | status | string |  no  | Status of the ticket |
+ | priority | any |  no  | Priority of the ticket |
+ | category | string? |  yes  | Category of the ticket |
+ | content | [TicketContent](#TicketContent)? |  yes  | Content for the ticket |
+
+---
+
+
+ 
+ 
+ #### [Priority](#Priority)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | [PriorityEnum](#PriorityEnum)? |  yes  | Key for priority |
+ | display | string? |  yes  | Display text for priority |
+ | color | string? |  yes  | Color for priority |
+
+---
+
+
+ 
+ 
+ #### [Status](#Status)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  | Key for status |
+ | display | string? |  yes  | Display text for status |
+ | color | string? |  yes  | Color for status |
+
+---
+
+
+ 
+ 
+ #### [TicketCategory](#TicketCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  | Key for category |
+ | display | string? |  yes  | Display text for category |
+ | form | [CustomForm](#CustomForm) |  no  | Form related to the category |
+ | sub_categories | [[TicketSubCategory](#TicketSubCategory)] |  no  | Sub-category related to the category |
+ | feedback_form | [TicketFeedbackForm](#TicketFeedbackForm) |  no  | Feedback form of category used to submit ticket feedback |
+
+---
+
+
+ 
+ 
+ #### [TicketSubCategory](#TicketSubCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  | Key for sub-category |
+ | display | string? |  yes  | Display text for sub-category |
+
+---
+
+
+ 
+ 
+ #### [TicketFeedbackForm](#TicketFeedbackForm)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string? |  yes  | Feedback form title that will be shown to the user |
+ | display | [string] |  no  | List of all the form fields |
+
+---
+
+
+ 
+ 
+ #### [TicketFeedbackList](#TicketFeedbackList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[TicketFeedback](#TicketFeedback)] |  no  | List of all ticket feedback for the ticket |
+
+---
+
+
+ 
+ 
+ #### [TicketFeedbackPayload](#TicketFeedbackPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | form_response | string |  no  | Key-value pairs of all the form fields and their response |
+
+---
+
+
+ 
+ 
+ #### [SubmitButton](#SubmitButton)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string? |  yes  | Title for submit button |
+ | title_color | string? |  yes  | Title color submit button |
+ | background_color | string? |  yes  | Color for submit button |
+
+---
+
+
+ 
+ 
+ #### [PollForAssignment](#PollForAssignment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | number? |  yes  | Duration for polling of staff |
+ | message | string? |  yes  | Message for polling |
+ | success_message | string? |  yes  | Message for successful polling |
+ | failure_message | string? |  yes  | Message if polling failed |
+
+---
+
+
+ 
+ 
+ #### [CustomForm](#CustomForm)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string? |  yes  | Application ID for form |
+ | slug | string? |  yes  | Slug for the form, which is to be used for accessing the form |
+ | header_image | string |  no  | Form header image that will be shown to the user |
+ | title | string? |  yes  | Form title that will be shown to the user |
+ | description | string |  no  | Form description that will be shown to the user |
+ | priority | [Priority](#Priority)? |  yes  | Sets priority of tickets created by form response |
+ | login_required | boolean? |  yes  | Denotes if login is required to make a form response submission |
+ | should_notify | boolean? |  yes  | Denotes if new response submission for the form should be notified to the assignees |
+ | success_message | string |  no  | Message that is to be shown on succesfull form response submission |
+ | submit_button | [SubmitButton](#SubmitButton) |  no  | Details for submit button |
+ | inputs | [string]? |  yes  | List of all the form fields |
+ | created_on | [CreatedOn](#CreatedOn) |  no  | Gives details of when the form was created |
+ | created_by | string |  no  | Gives details of user who created the form |
+ | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Details of how polling should be done for support |
+ | _id | string? |  yes  | Unique identifier for the form |
+
+---
+
+
+ 
+ 
+ #### [FeedbackResponseItem](#FeedbackResponseItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string? |  yes  | Question/Title of the form field |
+ | key | string? |  yes  | Key of the form field |
+ | value | string? |  yes  | User response value for the form field |
+
+---
+
+
+ 
+ 
+ #### [TicketFeedback](#TicketFeedback)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | Unique identifier for the feedback |
+ | ticket_id | string? |  yes  | Readable ticket number |
+ | company_id | string? |  yes  | Company id for which ticket was raised |
+ | response | [[FeedbackResponseItem](#FeedbackResponseItem)]? |  yes  |  |
+ | category | string |  no  | Category of the ticket |
+ | user | string |  no  | User who submitted the feedback |
+ | updated_at | string |  no  | Time when the feedback was last updated |
+ | created_at | string |  no  | Time when the feedback was created |
+
+---
+
+
+ 
+ 
+ #### [TicketHistory](#TicketHistory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string? |  yes  | Type of the history event |
+ | value | string? |  yes  | Data of the history event |
+ | ticket_id | string? |  yes  | Readable ticket number |
+ | created_on | [CreatedOn](#CreatedOn) |  no  | Time of creation of the history event |
+ | created_by | string |  no  | User who created the history event |
+ | _id | string? |  yes  | Unique identifier of the history event |
+ | updated_at | string |  no  | Time of last update of the history event |
+ | created_at | string |  no  | Time of creation of the history event |
+
+---
+
+
+ 
+ 
+ #### [Ticket](#Ticket)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | context | [TicketContext](#TicketContext) |  no  | Details of company and application realated to the ticket |
+ | created_on | [CreatedOn](#CreatedOn) |  no  | Details of company and application realated to the ticket |
+ | response_id | string |  no  | Details of company and application realated to the ticket |
+ | content | [TicketContent](#TicketContent) |  no  | Ticket conetent details |
+ | ticket_id | string? |  yes  | Readable ticket number |
+ | category | [TicketCategory](#TicketCategory)? |  yes  | Category assigned to the ticket |
+ | sub_category | [TicketSubCategory](#TicketSubCategory) |  no  | Sub-category assigned to the ticket |
+ | source | any? |  yes  | Denotes if the ticket was created at company or application level |
+ | status | [Status](#Status)? |  yes  | Denotes in what state is the ticket |
+ | priority | [Priority](#Priority)? |  yes  | Denotes the priority of ticket |
+ | created_by | string |  no  | User details of ticket creator |
+ | assigned_to | string |  no  | Details of support staff to whom ticket is assigned |
+ | tags | [string] |  no  | Tags relevant to ticket |
+ | _custom_json | string |  no  | custom json relevant to the ticket |
+ | is_feedback_pending | boolean |  no  | Denotes if feedback submission is pending for the ticket |
+ | _id | string? |  yes  | Unique identifier for the ticket |
+ | updated_at | string |  no  | Time when the ticket was last updated |
+ | created_at | string |  no  | Time when the ticket was created |
+
+---
+
+
+
+
+ 
+ 
+ #### [AvailablePageSchema](#AvailablePageSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  |  |
+ | text | string |  no  |  |
+ | path | string |  no  |  |
+ | type | string |  no  |  |
+ | sections | [[AvailablePageSchemaSections](#AvailablePageSchemaSections)] |  no  |  |
+ | sections_meta | [[AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)] |  no  |  |
+ | theme | string |  no  |  |
+ | seo | [AvailablePageSeo](#AvailablePageSeo) |  no  |  |
+ | props | [string] |  no  |  |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AvailablePageSectionMetaAttributes](#AvailablePageSectionMetaAttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AvailablePageSeo](#AvailablePageSeo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AvailablePageSchemaSections](#AvailablePageSchemaSections)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | label | string |  no  |  |
+ | props | string |  no  |  |
+ | blocks | [string] |  no  |  |
+ | preset | string |  no  |  |
+ | predicate | [AvailablePagePredicate](#AvailablePagePredicate) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AvailablePageScreenPredicate](#AvailablePageScreenPredicate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mobile | boolean |  no  |  |
+ | desktop | boolean |  no  |  |
+ | tablet | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AvailablePageUserPredicate](#AvailablePageUserPredicate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | authenticated | boolean |  no  |  |
+ | anonymous | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AvailablePageRoutePredicate](#AvailablePageRoutePredicate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | selected | string |  no  |  |
+ | exact_url | string |  no  |  |
+ | query | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AvailablePagePredicate](#AvailablePagePredicate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | screen | [AvailablePageScreenPredicate](#AvailablePageScreenPredicate) |  no  |  |
+ | user | [AvailablePageUserPredicate](#AvailablePageUserPredicate) |  no  |  |
+ | route | [AvailablePageRoutePredicate](#AvailablePageRoutePredicate) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AllAvailablePageSchema](#AllAvailablePageSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pages | [[AvailablePageSchema](#AvailablePageSchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PaginationSchema](#PaginationSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | number |  no  |  |
+ | item_total | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | type | string |  no  |  |
+ | current | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ThemesListingResponseSchema](#ThemesListingResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ThemesSchema](#ThemesSchema)] |  no  |  |
+ | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddThemeRequestSchema](#AddThemeRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | theme_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpgradableThemeSchema](#UpgradableThemeSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | parent_theme | string |  no  |  |
+ | applied_theme | string |  no  |  |
+ | upgrade | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FontsSchema](#FontsSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [FontsSchemaItems](#FontsSchemaItems) |  no  |  |
+ | kind | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BlitzkriegApiErrorSchema](#BlitzkriegApiErrorSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BlitzkriegNotFoundSchema](#BlitzkriegNotFoundSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BlitzkriegInternalServerErrorSchema](#BlitzkriegInternalServerErrorSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FontsSchemaItems](#FontsSchemaItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | family | string |  no  |  |
+ | variants | [string] |  no  |  |
+ | subsets | [string] |  no  |  |
+ | version | string |  no  |  |
+ | last_modified | string |  no  |  |
+ | files | [FontsSchemaItemsFiles](#FontsSchemaItemsFiles) |  no  |  |
+ | category | string |  no  |  |
+ | kind | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FontsSchemaItemsFiles](#FontsSchemaItemsFiles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | regular | string |  no  |  |
+ | italic | string |  no  |  |
+ | bold | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ThemesSchema](#ThemesSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | string |  no  |  |
+ | applied | boolean |  no  |  |
+ | customized | boolean |  no  |  |
+ | published | boolean |  no  |  |
+ | archived | boolean |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | version | string |  no  |  |
+ | parent_theme_version | string |  no  |  |
+ | parent_theme | string |  no  |  |
+ | information | [Information](#Information) |  no  |  |
+ | tags | [string] |  no  |  |
+ | src | [Src](#Src) |  no  |  |
+ | assets | [AssetsSchema](#AssetsSchema) |  no  |  |
+ | available_sections | [[availableSectionSchema](#availableSectionSchema)] |  no  |  |
+ | constants | string |  no  |  |
+ | styles | string |  no  |  |
+ | config | [Config](#Config) |  no  |  |
+ | settings | string |  no  |  |
+ | font | [Font](#Font) |  no  |  |
+ | _id | string |  no  |  |
+ | __v | number |  no  |  |
+ | colors | [Colors](#Colors) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [availableSectionSchema](#availableSectionSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocks | [[Blocks](#Blocks)] |  no  |  |
+ | name | string |  no  |  |
+ | label | string |  no  |  |
+ | props | [[BlocksProps](#BlocksProps)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Information](#Information)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | images | [Images](#Images) |  no  |  |
+ | features | [string] |  no  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Images](#Images)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | [string] |  no  |  |
+ | android | [string] |  no  |  |
+ | ios | [string] |  no  |  |
+ | thumbnail | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Src](#Src)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AssetsSchema](#AssetsSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | umd_js | [UmdJs](#UmdJs) |  no  |  |
+ | common_js | [CommonJs](#CommonJs) |  no  |  |
+ | css | [Css](#Css) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UmdJs](#UmdJs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommonJs](#CommonJs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Css](#Css)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Seo](#Seo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Sections](#Sections)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Config](#Config)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | preset | [Preset](#Preset) |  no  |  |
+ | global_schema | [GlobalSchema](#GlobalSchema) |  no  |  |
+ | current | string |  no  |  |
+ | list | [[ListSchemaItem](#ListSchemaItem)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Preset](#Preset)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pages | [[AvailablePageSchema](#AvailablePageSchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GlobalSchema](#GlobalSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | [[GlobalSchemaProps](#GlobalSchemaProps)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListSchemaItem](#ListSchemaItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | global | string |  no  |  |
+ | page | [[ConfigPage](#ConfigPage)] |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Colors](#Colors)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bg_color | string |  no  |  |
+ | primary_color | string |  no  |  |
+ | secondary_color | string |  no  |  |
+ | accent_color | string |  no  |  |
+ | link_color | string |  no  |  |
+ | button_secondary_color | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Custom](#Custom)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigPage](#ConfigPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | settings | string |  no  |  |
+ | page | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Font](#Font)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | family | string |  no  |  |
+ | variants | [Variants](#Variants) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Variants](#Variants)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | medium | [Medium](#Medium) |  no  |  |
+ | semi_bold | [SemiBold](#SemiBold) |  no  |  |
+ | bold | [Bold](#Bold) |  no  |  |
+ | light | [Light](#Light) |  no  |  |
+ | regular | [Regular](#Regular) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Medium](#Medium)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | file | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SemiBold](#SemiBold)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | file | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Bold](#Bold)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | file | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Light](#Light)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | file | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Regular](#Regular)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | file | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Blocks](#Blocks)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | name | string |  no  |  |
+ | props | [[BlocksProps](#BlocksProps)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GlobalSchemaProps](#GlobalSchemaProps)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | label | string |  no  |  |
+ | type | string |  no  |  |
+ | category | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BlocksProps](#BlocksProps)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | label | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [EditEmailRequestSchema](#EditEmailRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendVerificationLinkMobileRequestSchema](#SendVerificationLinkMobileRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verified | boolean |  no  |  |
+ | active | boolean |  no  |  |
+ | country_code | string |  no  |  |
+ | phone | string |  no  |  |
+ | primary | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EditMobileRequestSchema](#EditMobileRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | phone | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EditProfileRequestSchema](#EditProfileRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema) |  no  |  |
+ | country_code | string |  no  |  |
+ | email | string |  no  |  |
+ | gender | string |  no  |  |
+ | dob | string |  no  |  |
+ | profile_pic_url | string |  no  |  |
+ | android_hash | string |  no  |  |
+ | sender | string |  no  |  |
+ | register_token | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EditProfileMobileSchema](#EditProfileMobileSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | phone | string |  no  |  |
+ | country_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendEmailOtpRequestSchema](#SendEmailOtpRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | action | string |  no  |  |
+ | token | string |  no  |  |
+ | register_token | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [VerifyEmailOtpRequestSchema](#VerifyEmailOtpRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | action | string |  no  |  |
+ | register_token | string |  no  |  |
+ | otp | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [VerifyOtpRequestSchema](#VerifyOtpRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | request_id | string |  no  |  |
+ | register_token | string |  no  |  |
+ | otp | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendMobileOtpRequestSchema](#SendMobileOtpRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mobile | string |  no  |  |
+ | country_code | string |  no  |  |
+ | action | string |  no  |  |
+ | token | string |  no  |  |
+ | android_hash | string |  no  |  |
+ | force | string |  no  |  |
+ | captcha_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdatePasswordRequestSchema](#UpdatePasswordRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | old_password | string |  no  |  |
+ | new_password | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FormRegisterRequestSchema](#FormRegisterRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | gender | string |  no  |  |
+ | email | string |  no  |  |
+ | password | string |  no  |  |
+ | phone | [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone) |  no  |  |
+ | register_token | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TokenRequestBodySchema](#TokenRequestBodySchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | token | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ForgotPasswordRequestSchema](#ForgotPasswordRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | password | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CodeRequestBodySchema](#CodeRequestBodySchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendResetPasswordEmailRequestSchema](#SendResetPasswordEmailRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | captcha_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PasswordLoginRequestSchema](#PasswordLoginRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | captcha_code | string |  no  |  |
+ | password | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendOtpRequestSchema](#SendOtpRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | captcha_code | string |  no  |  |
+ | mobile | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OAuthRequestSchema](#OAuthRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_signed_in | boolean |  no  |  |
+ | oauth2 | [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2) |  no  |  |
+ | profile | [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserObjectSchema](#UserObjectSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AuthSuccess](#AuthSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | register_token | string |  no  |  |
+ | user_exists | boolean |  no  |  |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendOtpResponse](#SendOtpResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | resend_timer | number |  no  |  |
+ | resend_token | string |  no  |  |
+ | success | boolean |  no  |  |
+ | request_id | string |  no  |  |
+ | message | string |  no  |  |
+ | mobile | string |  no  |  |
+ | country_code | string |  no  |  |
+ | email | string |  no  |  |
+ | resend_email_token | string |  no  |  |
+ | register_token | string |  no  |  |
+ | verify_email_otp | boolean |  no  |  |
+ | verify_mobile_otp | boolean |  no  |  |
+ | user_exists | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProfileEditSuccess](#ProfileEditSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ | register_token | string |  no  |  |
+ | user_exists | boolean |  no  |  |
+ | verify_email_link | boolean |  no  |  |
+ | verify_email_otp | boolean |  no  |  |
+ | verify_mobile_otp | boolean |  no  |  |
+ | email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LoginSuccess](#LoginSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ | request_id | string |  no  |  |
+ | register_token | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [VerifyOtpSuccess](#VerifyOtpSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ | user_exists | boolean |  no  |  |
+ | register_token | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResetPasswordSuccess](#ResetPasswordSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RegisterFormSuccess](#RegisterFormSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | resend_timer | number |  no  |  |
+ | resend_token | string |  no  |  |
+ | resend_email_token | string |  no  |  |
+ | register_token | string |  no  |  |
+ | success | boolean |  no  |  |
+ | request_id | string |  no  |  |
+ | message | string |  no  |  |
+ | mobile | string |  no  |  |
+ | country_code | string |  no  |  |
+ | verify_email_otp | boolean |  no  |  |
+ | verify_mobile_otp | boolean |  no  |  |
+ | user_exists | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [VerifyEmailSuccess](#VerifyEmailSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HasPasswordSuccess](#HasPasswordSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | result | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogoutSuccess](#LogoutSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logout | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OtpSuccess](#OtpSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | resend_timer | number |  no  |  |
+ | resend_token | string |  no  |  |
+ | register_token | string |  no  |  |
+ | success | boolean |  no  |  |
+ | request_id | string |  no  |  |
+ | message | string |  no  |  |
+ | mobile | string |  no  |  |
+ | country_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailOtpSuccess](#EmailOtpSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionListSuccess](#SessionListSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sessions | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [VerifyMobileOTPSuccess](#VerifyMobileOTPSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ | verify_mobile_link | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [VerifyEmailOTPSuccess](#VerifyEmailOTPSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ | verify_email_link | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendMobileVerifyLinkSuccess](#SendMobileVerifyLinkSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verify_mobile_link | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendEmailVerifyLinkSuccess](#SendEmailVerifyLinkSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verify_email_link | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserSearchResponseSchema](#UserSearchResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | users | [[UserSchema](#UserSchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CustomerListResponseSchema](#CustomerListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[UserSchema](#UserSchema)] |  no  |  |
+ | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UnauthorizedSchema](#UnauthorizedSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UnauthenticatedSchema](#UnauthenticatedSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | authenticated | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NotFoundSchema](#NotFoundSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AuthenticationInternalServerErrorSchema](#AuthenticationInternalServerErrorSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AuthenticationApiErrorSchema](#AuthenticationApiErrorSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProfileEditSuccessSchema](#ProfileEditSuccessSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | verify_email_otp | boolean |  no  |  |
+ | verify_email_link | boolean |  no  |  |
+ | verify_mobile_otp | boolean |  no  |  |
+ | user | string |  no  |  |
+ | register_token | string |  no  |  |
+ | user_exists | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | mobile | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | access_token | string |  no  |  |
+ | expiry | number |  no  |  |
+ | refresh_token | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | last_name | string |  no  |  |
+ | image | string |  no  |  |
+ | id | string |  no  |  |
+ | email | string |  no  |  |
+ | full_name | string |  no  |  |
+ | first_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AuthSuccessUser](#AuthSuccessUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug) |  no  |  |
+ | active | boolean |  no  |  |
+ | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AuthSuccessUserDebug](#AuthSuccessUserDebug)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | platform | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AuthSuccessUserEmails](#AuthSuccessUserEmails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | verified | boolean |  no  |  |
+ | primary | boolean |  no  |  |
+ | active | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUserRequestSchema](#CreateUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | phone_number | string? |  yes  |  |
+ | email | string |  no  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | gender | string |  no  |  |
+ | username | string? |  yes  |  |
+ | meta | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUserResponseSchema](#CreateUserResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domain | string |  no  |  |
+ | max_age | number |  no  |  |
+ | user_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domain | string |  no  |  |
+ | max_age | number |  no  |  |
+ | secure | boolean |  no  |  |
+ | http_only | boolean |  no  |  |
+ | cookie | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformSchema](#PlatformSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | look_and_feel | [LookAndFeel](#LookAndFeel) |  no  |  |
+ | updated_at | string |  no  |  |
+ | active | boolean |  no  |  |
+ | forgot_password | boolean |  no  |  |
+ | login | [Login](#Login) |  no  |  |
+ | skip_captcha | boolean |  no  |  |
+ | name | string |  no  |  |
+ | meta | [MetaSchema](#MetaSchema) |  no  |  |
+ | _id | string |  no  |  |
+ | social | [Social](#Social) |  no  |  |
+ | required_fields | [RequiredFields](#RequiredFields) |  no  |  |
+ | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields) |  no  |  |
+ | skip_login | boolean |  no  |  |
+ | flash_card | [FlashCard](#FlashCard) |  no  |  |
+ | subtext | string |  no  |  |
+ | social_tokens | [SocialTokens](#SocialTokens) |  no  |  |
+ | created_at | string |  no  |  |
+ | register | boolean |  no  |  |
+ | mobile_image | string |  no  |  |
+ | desktop_image | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LookAndFeel](#LookAndFeel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | card_position | string |  no  |  |
+ | background_color | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Login](#Login)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | password | boolean |  no  |  |
+ | otp | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MetaSchema](#MetaSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_default | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Social](#Social)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | account_kit | boolean |  no  |  |
+ | facebook | boolean |  no  |  |
+ | google | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RequiredFields](#RequiredFields)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [PlatformEmail](#PlatformEmail) |  no  |  |
+ | mobile | [PlatformMobile](#PlatformMobile) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformEmail](#PlatformEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_required | boolean |  no  |  |
+ | level | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformMobile](#PlatformMobile)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_required | boolean |  no  |  |
+ | level | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RegisterRequiredFields](#RegisterRequiredFields)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail) |  no  |  |
+ | mobile | [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_required | boolean |  no  |  |
+ | level | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_required | boolean |  no  |  |
+ | level | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FlashCard](#FlashCard)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string |  no  |  |
+ | text_color | string |  no  |  |
+ | background_color | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SocialTokens](#SocialTokens)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | facebook | [Facebook](#Facebook) |  no  |  |
+ | account_kit | [Accountkit](#Accountkit) |  no  |  |
+ | google | [Google](#Google) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Facebook](#Facebook)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Accountkit](#Accountkit)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Google](#Google)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | gender | string |  no  |  |
+ | meta | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserSchema](#UserSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | first_name | string |  no  |  |
+ | meta | string |  no  |  |
+ | last_name | string |  no  |  |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  |
+ | emails | [[Email](#Email)] |  no  |  |
+ | gender | string |  no  |  |
+ | dob | string |  no  |  |
+ | active | boolean |  no  |  |
+ | profile_pic_url | string |  no  |  |
+ | username | string |  no  |  |
+ | account_type | string |  no  |  |
+ | uid | string |  no  |  |
+ | debug | [Debug](#Debug) |  no  |  |
+ | has_old_password_hash | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [ApplicationLegal](#ApplicationLegal)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | string |  no  |  |
+ | tnc | string |  no  |  |
+ | policy | string |  no  |  |
+ | shipping | string |  no  |  |
+ | faq | [[ApplicationLegalFAQ](#ApplicationLegalFAQ)] |  no  |  |
+ | _id | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | created_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationLegalFAQ](#ApplicationLegalFAQ)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | question | string |  no  |  |
+ | answer | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SeoComponent](#SeoComponent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | seo | [SeoSchema](#SeoSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SeoSchema](#SeoSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app | string |  no  |  |
+ | _id | string |  no  |  |
+ | robots_txt | string |  no  |  |
+ | sitemap_enabled | boolean |  no  |  |
+ | custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)] |  no  |  |
+ | details | [Detail](#Detail) |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CustomMetaTag](#CustomMetaTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | content | string |  no  |  |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Detail](#Detail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AnnouncementPageSchema](#AnnouncementPageSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page_slug | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EditorMeta](#EditorMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | foreground_color | string |  no  |  |
+ | background_color | string |  no  |  |
+ | content_type | string |  no  |  |
+ | content | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AnnouncementAuthorSchema](#AnnouncementAuthorSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_by | string |  no  |  |
+ | modified_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AdminAnnouncementSchema](#AdminAnnouncementSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | platforms | [string] |  no  |  |
+ | title | string |  no  |  |
+ | announcement | string |  no  |  |
+ | pages | [[AnnouncementPageSchema](#AnnouncementPageSchema)] |  no  |  |
+ | editor_meta | [EditorMeta](#EditorMeta) |  no  |  |
+ | author | [AnnouncementAuthorSchema](#AnnouncementAuthorSchema) |  no  |  |
+ | created_at | string |  no  |  |
+ | app | string |  no  |  |
+ | modified_at | string |  no  |  |
+ | _schedule | [ScheduleSchema](#ScheduleSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ScheduleSchema](#ScheduleSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string |  no  |  |
+ | start | string |  no  |  |
+ | end | string |  no  |  |
+ | duration | number |  no  |  |
+ | next_schedule | [[NextSchedule](#NextSchedule)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NextSchedule](#NextSchedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start | string |  no  |  |
+ | end | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AnnouncementSchema](#AnnouncementSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | announcement | string |  no  |  |
+ | schedule | [ScheduleStartSchema](#ScheduleStartSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ScheduleStartSchema](#ScheduleStartSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start | string |  no  |  |
+ | end | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BlogGetResponse](#BlogGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[BlogSchema](#BlogSchema)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResourceContent](#ResourceContent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Asset](#Asset)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | id | string |  no  |  |
+ | secure_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Author](#Author)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | designation | string |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BlogSchema](#BlogSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | application | string |  no  |  |
+ | archived | boolean |  no  |  |
+ | author | [Author](#Author) |  no  |  |
+ | content | [[ResourceContent](#ResourceContent)] |  no  |  |
+ | feature_image | [Asset](#Asset) |  no  |  |
+ | published | boolean |  no  |  |
+ | reading_time | string |  no  |  |
+ | slug | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | seo | [SEO](#SEO) |  no  |  |
+ | _schedule | [CronSchedule](#CronSchedule) |  no  |  |
+ | title | string |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SEO](#SEO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | image | [SEOImage](#SEOImage) |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SEOImage](#SEOImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DateMeta](#DateMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BlogRequest](#BlogRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | author | [Author](#Author) |  no  |  |
+ | content | [[ResourceContent](#ResourceContent)] |  no  |  |
+ | feature_image | [Asset](#Asset) |  no  |  |
+ | published | boolean |  no  |  |
+ | reading_time | string |  no  |  |
+ | slug | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | title | string |  no  |  |
+ | seo | [SEO](#SEO) |  no  |  |
+ | _schedule | [CronSchedule](#CronSchedule) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAnnouncementListSchema](#GetAnnouncementListSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AdminAnnouncementSchema](#AdminAnnouncementSchema)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateAnnouncementSchema](#CreateAnnouncementSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | data | [AdminAnnouncementSchema](#AdminAnnouncementSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Navigation](#Navigation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | orientation | string |  no  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | _id | string |  no  |  |
+ | position | string |  no  |  |
+ | application | string |  no  |  |
+ | platform | string |  no  |  |
+ | navigation | [NavigationReference](#NavigationReference) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocaleLanguage](#LocaleLanguage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hi | [Language](#Language) |  no  |  |
+ | ar | [Language](#Language) |  no  |  |
+ | en_us | [Language](#Language) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Language](#Language)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Action](#Action)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [ActionPage](#ActionPage) |  no  |  |
+ | popup | [ActionPage](#ActionPage) |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ActionPage](#ActionPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | params | [String: [string]] |  no  |  |
+ | query | [String: [string]] |  no  |  |
+ | url | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NavigationReference](#NavigationReference)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | acl | [string] |  no  |  |
+ | tags | [string] |  no  |  |
+ | _locale_language | [LocaleLanguage](#LocaleLanguage) |  no  |  |
+ | image | string |  no  |  |
+ | type | string |  no  |  |
+ | action | [Action](#Action) |  no  |  |
+ | active | boolean |  no  |  |
+ | display | string |  no  |  |
+ | sort_order | number |  no  |  |
+ | sub_navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LandingPage](#LandingPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [LandingPageSchema](#LandingPageSchema) |  no  |  |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationSchema](#ConfigurationSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sleep_time | number |  no  |  |
+ | start_on_launch | boolean |  no  |  |
+ | duration | number |  no  |  |
+ | slide_direction | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SlideshowMedia](#SlideshowMedia)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ | bg_color | string |  no  |  |
+ | duration | number |  no  |  |
+ | auto_decide_duration | boolean |  no  |  |
+ | action | [Action](#Action) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Slideshow](#Slideshow)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [SlideshowSchema](#SlideshowSchema) |  no  |  |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AnnouncementsResponseSchema](#AnnouncementsResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | announcements | [String: [[AnnouncementSchema](#AnnouncementSchema)]] |  no  |  |
+ | refresh_rate | number |  no  | number of seconds after which api should hit again to fetch new announcements |
+ | refresh_pages | [string] |  no  | list of page slugs on which announcement should be fetched as soon as they are loaded |
+
+---
+
+
+ 
+ 
+ #### [FaqResponseSchema](#FaqResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | faqs | [[FaqSchema](#FaqSchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateHandpickedSchema](#UpdateHandpickedSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tag | [HandpickedTagSchema](#HandpickedTagSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HandpickedTagSchema](#HandpickedTagSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | position | string |  no  |  |
+ | attributes | string |  no  |  |
+ | name | string |  no  |  |
+ | url | string |  no  |  |
+ | type | string |  no  |  |
+ | sub_type | string |  no  |  |
+ | content | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RemoveHandpickedSchema](#RemoveHandpickedSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateTagSchema](#CreateTagSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | sub_type | string |  no  |  |
+ | _id | string |  no  |  |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ | position | string |  no  |  |
+ | attributes | string |  no  |  |
+ | content | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateTagRequestSchema](#CreateTagRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [[CreateTagSchema](#CreateTagSchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [APIError](#APIError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | status | number |  no  |  |
+ | code | string |  no  |  |
+ | exception | string |  no  |  |
+ | info | string |  no  |  |
+ | request_id | string |  no  |  |
+ | stack_trace | string |  no  |  |
+ | meta | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategorySchema](#CategorySchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | index | number |  no  |  |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+ | children | [string] |  no  |  |
+ | _id | string |  no  |  |
+ | slug | string |  no  |  |
+ | application | string |  no  |  |
+ | icon_url | string |  no  |  |
+ | _custom_json | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ChildrenSchema](#ChildrenSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | question | string |  no  |  |
+ | answer | string |  no  |  |
+ | slug | string |  no  |  |
+ | application | string |  no  |  |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryRequestSchema](#CategoryRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FAQCategorySchema](#FAQCategorySchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | index | number |  no  |  |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+ | children | [[ChildrenSchema](#ChildrenSchema)] |  no  |  |
+ | _id | string |  no  |  |
+ | slug | string |  no  |  |
+ | application | string |  no  |  |
+ | icon_url | string |  no  |  |
+ | _custom_json | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FaqSchema](#FaqSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | application | string |  no  |  |
+ | _id | string |  no  |  |
+ | question | string |  no  |  |
+ | answer | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FAQ](#FAQ)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | question | string |  no  |  |
+ | answer | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateFaqResponseSchema](#CreateFaqResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | faq | [FaqSchema](#FaqSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateFaqSchema](#CreateFaqSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | faq | [FAQ](#FAQ) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetFaqSchema](#GetFaqSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | faqs | [[FaqSchema](#FaqSchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [CategorySchema](#CategorySchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [CategoryRequestSchema](#CategoryRequestSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateFaqCategorySchema](#CreateFaqCategorySchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [CategorySchema](#CategorySchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetFaqCategoriesSchema](#GetFaqCategoriesSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | categories | [[CategorySchema](#CategorySchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetFaqCategoryBySlugSchema](#GetFaqCategoryBySlugSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [FAQCategorySchema](#FAQCategorySchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LandingPageGetResponse](#LandingPageGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[LandingPageSchema](#LandingPageSchema)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LandingPageSchema](#LandingPageSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | action | [Action](#Action) |  no  |  |
+ | platform | [string] |  no  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | _id | string |  no  |  |
+ | application | string |  no  |  |
+ | archived | boolean |  no  |  |
+ | _custom_json | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DefaultNavigationResponse](#DefaultNavigationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[NavigationSchema](#NavigationSchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NavigationGetResponse](#NavigationGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[NavigationSchema](#NavigationSchema)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Orientation](#Orientation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | portrait | [string] |  no  |  |
+ | landscape | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NavigationSchema](#NavigationSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | application | string |  no  |  |
+ | archived | boolean |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | platform | [string] |  no  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | orientation | [Orientation](#Orientation) |  no  |  |
+ | version | number |  no  |  |
+ | navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NavigationRequest](#NavigationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | platform | [string] |  no  |  |
+ | orientation | [Orientation](#Orientation) |  no  |  |
+ | navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CustomPageSchema](#CustomPageSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | platform | string |  no  |  |
+ | title | string |  no  |  |
+ | slug | string |  no  |  |
+ | type | string |  no  |  |
+ | orientation | string |  no  |  |
+ | application | string |  no  |  |
+ | description | string |  no  |  |
+ | published | boolean |  no  |  |
+ | tags | [string] |  no  |  |
+ | content | [string] |  no  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | _schedule | [ScheduleSchema](#ScheduleSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ContentSchema](#ContentSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CustomPage](#CustomPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CustomPageSchema](#CustomPageSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FeatureImage](#FeatureImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secure_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageGetResponse](#PageGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[PageSchema](#PageSchema)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageSpec](#PageSpec)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | specifications | [[PageSpecItem](#PageSpecItem)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageSpecParam](#PageSpecParam)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | required | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageSpecItem](#PageSpecItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page_type | string |  no  |  |
+ | display_name | string |  no  |  |
+ | params | [[PageSpecParam](#PageSpecParam)] |  no  |  |
+ | query | [[PageSpecParam](#PageSpecParam)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageSchema](#PageSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | application | string |  no  |  |
+ | component_ids | [string] |  no  | Components can be used to store multiple components |
+ | content | [[PageContent](#PageContent)] |  no  |  |
+ | created_by | [CreatedBySchema](#CreatedBySchema) |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | description | string |  no  |  |
+ | feature_image | [Asset](#Asset) |  no  |  |
+ | page_meta | [[PageMeta](#PageMeta)] |  no  |  |
+ | _schedule | [ScheduleSchema](#ScheduleSchema) |  no  |  |
+ | _custom_json | string |  no  |  |
+ | orientation | string |  no  |  |
+ | platform | string |  no  |  |
+ | published | boolean |  no  |  |
+ | slug | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | title | string |  no  |  |
+ | type | string |  no  |  |
+ | seo | [SEO](#SEO) |  no  |  |
+ | visibility | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreatedBySchema](#CreatedBySchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageContent](#PageContent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageMeta](#PageMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageRequest](#PageRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _schedule | [CronSchedule](#CronSchedule) |  no  |  |
+ | application | string |  no  |  |
+ | author | [Author](#Author) |  no  |  |
+ | _custom_json | string |  no  |  |
+ | orientation | string |  no  |  |
+ | content | [string] |  no  |  |
+ | feature_image | [Asset](#Asset) |  no  |  |
+ | published | boolean |  no  |  |
+ | reading_time | string |  no  |  |
+ | slug | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | seo | [SEO](#SEO) |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CronSchedule](#CronSchedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string |  no  |  |
+ | start | string |  no  |  |
+ | end | string |  no  |  |
+ | duration | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PagePublishRequest](#PagePublishRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | publish | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageMetaSchema](#PageMetaSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | system_pages | [[NavigationSchema](#NavigationSchema)] |  no  |  |
+ | custom_pages | [[PageSchema](#PageSchema)] |  no  |  |
+ | application_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SlideshowGetResponse](#SlideshowGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SlideshowSchema](#SlideshowSchema)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SlideshowSchema](#SlideshowSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | slug | string |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | application | string |  no  |  |
+ | platform | string |  no  |  |
+ | configuration | [ConfigurationSchema](#ConfigurationSchema) |  no  |  |
+ | media | [[SlideshowMedia](#SlideshowMedia)] |  no  |  |
+ | active | boolean |  no  |  |
+ | archived | boolean |  no  |  |
+ | _custom_json | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SlideshowRequest](#SlideshowRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | platform | string |  no  |  |
+ | configuration | [ConfigurationSchema](#ConfigurationSchema) |  no  |  |
+ | media | [SlideshowMedia](#SlideshowMedia) |  no  |  |
+ | active | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Support](#Support)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | config_type | string |  no  |  |
+ | application | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | contact | [ContactSchema](#ContactSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PhoneProperties](#PhoneProperties)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | code | string |  no  |  |
+ | number | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PhoneSchema](#PhoneSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | phone | [[PhoneProperties](#PhoneProperties)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailProperties](#EmailProperties)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailSchema](#EmailSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | email | [[EmailProperties](#EmailProperties)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ContactSchema](#ContactSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | phone | [PhoneSchema](#PhoneSchema) |  no  |  |
+ | email | [EmailSchema](#EmailSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TagsSchema](#TagsSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | string |  no  |  |
+ | _id | string |  no  |  |
+ | tags | [[TagSchema](#TagSchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TagSchema](#TagSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | url | string |  no  |  |
+ | type | string |  no  |  |
+ | sub_type | string |  no  |  |
+ | _id | string |  no  |  |
+ | position | string |  no  |  |
+ | attributes | string |  no  |  |
+ | content | string |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [CommunicationConsentReq](#CommunicationConsentReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | response | string |  no  |  |
+ | action | string |  no  |  |
+ | channel | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConsentRes](#CommunicationConsentRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ | user_id | string |  no  |  |
+ | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | response | string |  no  |  |
+ | display_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | response | string |  no  |  |
+ | display_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | response | string |  no  |  |
+ | display_name | string |  no  |  |
+ | country_code | string |  no  |  |
+ | phone_number | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConsentChannels](#CommunicationConsentChannels)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail) |  no  |  |
+ | sms | [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms) |  no  |  |
+ | whatsapp | [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConsent](#CommunicationConsent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ | user_id | string |  no  |  |
+ | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PushtokenReq](#PushtokenReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | bundle_identifier | string |  no  |  |
+ | push_token | string |  no  |  |
+ | unique_device_id | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PushtokenRes](#PushtokenRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | bundle_identifier | string |  no  |  |
+ | push_token | string |  no  |  |
+ | unique_device_id | string |  no  |  |
+ | type | string |  no  |  |
+ | platform | string |  no  |  |
+ | application_id | string |  no  |  |
+ | user_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | expired_at | string |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [QRCodeResp](#QRCodeResp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ | svg | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RedirectDevice](#RedirectDevice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [WebRedirect](#WebRedirect)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Redirects](#Redirects)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ios | [RedirectDevice](#RedirectDevice) |  no  |  |
+ | android | [RedirectDevice](#RedirectDevice) |  no  |  |
+ | web | [WebRedirect](#WebRedirect) |  no  |  |
+ | force_web | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CampaignShortLink](#CampaignShortLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | source | string |  no  |  |
+ | medium | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Attribution](#Attribution)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | campaign_cookie_expiry | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SocialMediaTags](#SocialMediaTags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+ | image | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShortLinkReq](#ShortLinkReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string? |  yes  | Give a name to the link. |
+ | url | string? |  yes  | The web address to shorten. |
+ | hash | string |  no  |  |
+ | active | boolean |  no  |  |
+ | expire_at | string |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | personalized | boolean |  no  | To create personalized short links. |
+ | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
+ | redirects | [Redirects](#Redirects) |  no  |  |
+ | attribution | [Attribution](#Attribution) |  no  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UrlInfo](#UrlInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | original | string |  no  |  |
+ | short | string |  no  |  |
+ | hash | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShortLinkRes](#ShortLinkRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | url | [UrlInfo](#UrlInfo) |  no  |  |
+ | created_by | string |  no  |  |
+ | app_redirect | boolean |  no  |  |
+ | fallback | string |  no  |  |
+ | active | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | expire_at | string |  no  |  |
+ | application | string |  no  |  |
+ | user_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | meta | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | personalized | boolean |  no  | To create personalized short links |
+ | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
+ | redirects | [Redirects](#Redirects) |  no  |  |
+ | attribution | [Attribution](#Attribution) |  no  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShortLinkList](#ShortLinkList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ShortLinkRes](#ShortLinkRes)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ErrorRes](#ErrorRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [FailedResponse](#FailedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CDN](#CDN)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Upload](#Upload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | expiry | number? |  yes  |  |
+ | url | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [StartResponse](#StartResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | file_name | string? |  yes  |  |
+ | file_path | string? |  yes  |  |
+ | content_type | string? |  yes  |  |
+ | method | string? |  yes  |  |
+ | namespace | string? |  yes  |  |
+ | operation | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | upload | [Upload](#Upload)? |  yes  |  |
+ | cdn | [CDN](#CDN)? |  yes  |  |
+ | tags | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StartRequest](#StartRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | file_name | string? |  yes  |  |
+ | content_type | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | tags | [string] |  no  |  |
+ | params | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompleteResponse](#CompleteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | file_name | string? |  yes  |  |
+ | file_path | string? |  yes  |  |
+ | content_type | string? |  yes  |  |
+ | method | string? |  yes  |  |
+ | namespace | string? |  yes  |  |
+ | operation | string? |  yes  |  |
+ | size | number? |  yes  |  |
+ | upload | [Upload](#Upload)? |  yes  |  |
+ | cdn | [CDN](#CDN)? |  yes  |  |
+ | success | string? |  yes  |  |
+ | tags | [string] |  no  |  |
+ | created_on | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Opts](#Opts)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attempts | number |  no  |  |
+ | timestamp | number |  no  |  |
+ | delay | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CopyFileTask](#CopyFileTask)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | data | [BulkRequest](#BulkRequest)? |  yes  |  |
+ | opts | [Opts](#Opts)? |  yes  |  |
+ | progress | number? |  yes  |  |
+ | delay | number? |  yes  |  |
+ | timestamp | number? |  yes  |  |
+ | attempts_made | number? |  yes  |  |
+ | stacktrace | [string] |  no  |  |
+ | finished_on | number? |  yes  |  |
+ | processed_on | number? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkResponse](#BulkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tracking_url | string? |  yes  |  |
+ | task | [CopyFileTask](#CopyFileTask)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ReqConfiguration](#ReqConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | concurrency | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Destination](#Destination)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | namespace | string? |  yes  |  |
+ | rewrite | string? |  yes  |  |
+ | basepath | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkRequest](#BulkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | urls | [string]? |  yes  |  |
+ | destination | [Destination](#Destination)? |  yes  |  |
+ | configuration | [ReqConfiguration](#ReqConfiguration) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Urls](#Urls)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string? |  yes  |  |
+ | signed_url | string? |  yes  |  |
+ | expiry | number? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SignUrlResponse](#SignUrlResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | urls | [[Urls](#Urls)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SignUrlRequest](#SignUrlRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | expiry | number? |  yes  |  |
+ | urls | [string]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DbRecord](#DbRecord)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | file_name | string? |  yes  |  |
+ | operation | string |  no  |  |
+ | namespace | string? |  yes  |  |
+ | content_type | string? |  yes  |  |
+ | file_path | string? |  yes  |  |
+ | upload | [Upload](#Upload)? |  yes  |  |
+ | cdn | [CDN](#CDN)? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BrowseResponse](#BrowseResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[DbRecord](#DbRecord)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [ApplicationAboutResponse](#ApplicationAboutResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_info | [ApplicationInfo](#ApplicationInfo) |  no  |  |
+ | company_info | [CompanyInfo](#CompanyInfo) |  no  |  |
+ | owner_info | [OwnerInfo](#OwnerInfo) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationInfo](#ApplicationInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | domain | [Domain](#Domain) |  no  |  |
+ | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
+ | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
+ | description | string |  no  |  |
+ | name | string |  no  |  |
+ | meta | [ApplicationMeta](#ApplicationMeta) |  no  |  |
+ | token | string |  no  |  |
+ | secret | string |  no  |  |
+ | created_at | string |  no  |  |
+ | banner | [SecureUrl](#SecureUrl) |  no  |  |
+ | logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | is_active | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyInfo](#CompanyInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | uid | number |  no  |  |
+ | created_on | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  no  |  |
+ | addresses | [[CompanyAboutAddress](#CompanyAboutAddress)] |  no  |  |
+ | notification_emails | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OwnerInfo](#OwnerInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | emails | [[UserEmail](#UserEmail)] |  no  |  |
+ | phone_numbers | [[UserPhoneNumber](#UserPhoneNumber)] |  no  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | profile_pic | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppVersionRequest](#AppVersionRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | [ApplicationVersionRequest](#ApplicationVersionRequest)? |  yes  |  |
+ | device | [Device](#Device)? |  yes  |  |
+ | locale | string |  no  |  |
+ | timezone | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationVersionRequest](#ApplicationVersionRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | name | string? |  yes  |  |
+ | namespace | string |  no  |  |
+ | token | string |  no  |  |
+ | version | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Device](#Device)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | build | number |  no  |  |
+ | model | string |  no  |  |
+ | os | [OS](#OS)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OS](#OS)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | version | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SupportedLanguage](#SupportedLanguage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LanguageResponse](#LanguageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SupportedLanguage](#SupportedLanguage)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppStaffResponse](#AppStaffResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | staff_users | [[AppStaff](#AppStaff)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateDialog](#UpdateDialog)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | interval | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderingStoreSelectRequest](#OrderingStoreSelectRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ordering_store | [OrderingStoreSelect](#OrderingStoreSelect)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderingStoreSelect](#OrderingStoreSelect)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number? |  yes  | store uid |
+
+---
+
+
+ 
+ 
+ #### [AppStaff](#AppStaff)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | order_incent | boolean |  no  |  |
+ | stores | [number] |  no  |  |
+ | application | string |  no  |  |
+ | title | string |  no  |  |
+ | user | string |  no  |  |
+ | employee_code | string |  no  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | profile_pic_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppTokenResponse](#AppTokenResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tokens | [Tokens](#Tokens) |  no  |  |
+ | _id | string |  no  |  |
+ | application | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Tokens](#Tokens)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | firebase | [Firebase](#Firebase) |  no  |  |
+ | moengage | [Moengage](#Moengage) |  no  |  |
+ | segment | [Segment](#Segment) |  no  |  |
+ | gtm | [Gtm](#Gtm) |  no  |  |
+ | freshchat | [Freshchat](#Freshchat) |  no  |  |
+ | safetynet | [Safetynet](#Safetynet) |  no  |  |
+ | fynd_rewards | [FyndRewards](#FyndRewards) |  no  |  |
+ | google_map | [GoogleMap](#GoogleMap) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Firebase](#Firebase)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [Credentials](#Credentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Credentials](#Credentials)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ios | [Ios](#Ios) |  no  |  |
+ | android | [Android](#Android) |  no  |  |
+ | project_id | string |  no  |  |
+ | gcm_sender_id | string |  no  |  |
+ | application_id | string |  no  |  |
+ | api_key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Ios](#Ios)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  |  |
+ | api_key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Android](#Android)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  |  |
+ | api_key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Moengage](#Moengage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [MoengageCredentials](#MoengageCredentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MoengageCredentials](#MoengageCredentials)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Segment](#Segment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [SegmentCredentials](#SegmentCredentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SegmentCredentials](#SegmentCredentials)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | write_key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Gtm](#Gtm)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [GtmCredentials](#GtmCredentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GtmCredentials](#GtmCredentials)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | api_key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Freshchat](#Freshchat)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [FreshchatCredentials](#FreshchatCredentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FreshchatCredentials](#FreshchatCredentials)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ | app_key | string |  no  |  |
+ | web_token | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Safetynet](#Safetynet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [SafetynetCredentials](#SafetynetCredentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SafetynetCredentials](#SafetynetCredentials)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | api_key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FyndRewards](#FyndRewards)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [FyndRewardsCredentials](#FyndRewardsCredentials) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FyndRewardsCredentials](#FyndRewardsCredentials)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | public_key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GoogleMap](#GoogleMap)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [GoogleMapCredentials](#GoogleMapCredentials) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GoogleMapCredentials](#GoogleMapCredentials)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | api_key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetailFeature](#ProductDetailFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | similar | [string] |  no  |  |
+ | seller_selection | boolean |  no  |  |
+ | update_product_meta | boolean |  no  |  |
+ | request_product | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LaunchPage](#LaunchPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page_type | string |  no  |  |
+ | params | string |  no  |  |
+ | query | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LandingPageFeature](#LandingPageFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | launch_page | [LaunchPage](#LaunchPage) |  no  |  |
+ | continue_as_guest | boolean |  no  |  |
+ | login_btn_text | string |  no  |  |
+ | show_domain_textbox | boolean |  no  |  |
+ | show_register_btn | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RegistrationPageFeature](#RegistrationPageFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ask_store_address | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppFeature](#AppFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_detail | [ProductDetailFeature](#ProductDetailFeature) |  no  |  |
+ | landing_page | [LandingPageFeature](#LandingPageFeature) |  no  |  |
+ | registration_page | [RegistrationPageFeature](#RegistrationPageFeature) |  no  |  |
+ | home_page | [HomePageFeature](#HomePageFeature) |  no  |  |
+ | common | [CommonFeature](#CommonFeature) |  no  |  |
+ | cart | [CartFeature](#CartFeature) |  no  |  |
+ | qr | [QrFeature](#QrFeature) |  no  |  |
+ | pcr | [PcrFeature](#PcrFeature) |  no  |  |
+ | order | [OrderFeature](#OrderFeature) |  no  |  |
+ | _id | string |  no  |  |
+ | app | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HomePageFeature](#HomePageFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order_processing | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommonFeature](#CommonFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature) |  no  |  |
+ | deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature) |  no  |  |
+ | listing_price | [ListingPriceFeature](#ListingPriceFeature) |  no  |  |
+ | listing_page | [ListingPageFeature](#ListingPageFeature) |  no  |  |
+ | currency | [CurrencyFeature](#CurrencyFeature) |  no  |  |
+ | revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature) |  no  |  |
+ | feedback | [FeedbackFeature](#FeedbackFeature) |  no  |  |
+ | compare_products | [CompareProductsFeature](#CompareProductsFeature) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | visibility | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListingPriceFeature](#ListingPriceFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  |  |
+ | sort | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListingPageFeature](#ListingPageFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sort_on | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CurrencyFeature](#CurrencyFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | [string] |  no  |  |
+ | type | string |  no  |  |
+ | default_currency | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RevenueEngineFeature](#RevenueEngineFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FeedbackFeature](#FeedbackFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompareProductsFeature](#CompareProductsFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartFeature](#CartFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gst_input | boolean |  no  |  |
+ | staff_selection | boolean |  no  |  |
+ | placing_for_customer | boolean |  no  |  |
+ | google_map | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [QrFeature](#QrFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | boolean |  no  |  |
+ | products | boolean |  no  |  |
+ | collections | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PcrFeature](#PcrFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | staff_selection | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderFeature](#OrderFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | buy_again | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppFeatureRequest](#AppFeatureRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | feature | [AppFeature](#AppFeature) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppFeatureResponse](#AppFeatureResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | feature | [AppFeature](#AppFeature) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Currency](#Currency)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  no  |  |
+ | code | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | decimal_digits | number |  no  |  |
+ | symbol | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Domain](#Domain)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verified | boolean |  no  |  |
+ | is_primary | boolean |  no  |  |
+ | is_default | boolean |  no  |  |
+ | is_shortlink | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationWebsite](#ApplicationWebsite)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | basepath | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationCors](#ApplicationCors)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domains | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationAuth](#ApplicationAuth)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationRedirections](#ApplicationRedirections)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | from | string |  no  |  |
+ | redirect_to | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationMeta](#ApplicationMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SecureUrl](#SecureUrl)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secure_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Application](#Application)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
+ | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
+ | auth | [ApplicationAuth](#ApplicationAuth) |  no  |  |
+ | description | string |  no  |  |
+ | channel_type | string |  no  |  |
+ | cache_ttl | number |  no  |  |
+ | is_internal | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | owner | string |  no  |  |
+ | company_id | number |  no  |  |
+ | token | string |  no  |  |
+ | redirections | [[ApplicationRedirections](#ApplicationRedirections)] |  no  |  |
+ | meta | [[ApplicationMeta](#ApplicationMeta)] |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+ | banner | [SecureUrl](#SecureUrl) |  no  |  |
+ | logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | favicon | [SecureUrl](#SecureUrl) |  no  |  |
+ | domains | [[Domain](#Domain)] |  no  |  |
+ | app_type | string |  no  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | domain | [Domain](#Domain) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NotFound](#NotFound)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UnhandledError](#UnhandledError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvalidPayloadRequest](#InvalidPayloadRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SuccessMessageResponse](#SuccessMessageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryBrandRule](#InventoryBrandRule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | criteria | string |  no  | Whether enable all or explicitly few brands as inventory |
+ | brands | [number] |  no  | Brand uids in case of explicit criteria |
+
+---
+
+
+ 
+ 
+ #### [StoreCriteriaRule](#StoreCriteriaRule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | companies | [number] |  no  | list of company uids |
+ | brands | [number] |  no  | list of brand uids |
+
+---
+
+
+ 
+ 
+ #### [InventoryStoreRule](#InventoryStoreRule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | criteria | string |  no  | Whether enable all or explicitly few stores or use filter of brands and company as inventory stores |
+ | rules | [[StoreCriteriaRule](#StoreCriteriaRule)] |  no  | List of rules with company and brands uids. Used when critera is `filter` |
+ | stores | [number] |  no  | List of store uids. Used when critera is `explicit` |
+
+---
+
+
+ 
+ 
+ #### [InventoryPaymentConfig](#InventoryPaymentConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mode_of_payment | string |  no  |  |
+ | source | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StorePriorityRule](#StorePriorityRule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | storetype_order | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleAssignmentRule](#ArticleAssignmentRule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store_priority | [StorePriorityRule](#StorePriorityRule) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryArticleAssignment](#InventoryArticleAssignment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | post_order_reassignment | boolean |  no  |  |
+ | enforced_stores | [number] |  no  |  |
+ | rules | [ArticleAssignmentRule](#ArticleAssignmentRule) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyAboutAddress](#CompanyAboutAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pincode | number |  no  |  |
+ | address1 | string |  no  |  |
+ | address2 | string |  no  |  |
+ | city | string |  no  |  |
+ | state | string |  no  |  |
+ | country | string |  no  |  |
+ | address_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserEmail](#UserEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ | email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserPhoneNumber](#UserPhoneNumber)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ | country_code | number |  no  |  |
+ | phone | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationInformation](#ApplicationInformation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | [InformationAddress](#InformationAddress) |  no  |  |
+ | support | [InformationSupport](#InformationSupport) |  no  |  |
+ | social_links | [SocialLinks](#SocialLinks) |  no  |  |
+ | links | [Links](#Links) |  no  |  |
+ | copyright_text | string |  no  |  |
+ | _id | string |  no  |  |
+ | business_highlights | [BusinessHighlights](#BusinessHighlights) |  no  |  |
+ | application | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InformationAddress](#InformationAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | loc | string |  no  |  |
+ | address_line | [string] |  no  |  |
+ | phone | [InformationPhone](#InformationPhone) |  no  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | pincode | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InformationPhone](#InformationPhone)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | number | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InformationSupport](#InformationSupport)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | phone | [string] |  no  |  |
+ | email | [string] |  no  |  |
+ | timing | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SocialLinks](#SocialLinks)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | facebook | [FacebookLink](#FacebookLink) |  no  |  |
+ | instagram | [InstagramLink](#InstagramLink) |  no  |  |
+ | twitter | [TwitterLink](#TwitterLink) |  no  |  |
+ | pinterest | [PinterestLink](#PinterestLink) |  no  |  |
+ | google_plus | [GooglePlusLink](#GooglePlusLink) |  no  |  |
+ | youtube | [YoutubeLink](#YoutubeLink) |  no  |  |
+ | linked_in | [LinkedInLink](#LinkedInLink) |  no  |  |
+ | vimeo | [VimeoLink](#VimeoLink) |  no  |  |
+ | blog_link | [BlogLink](#BlogLink) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FacebookLink](#FacebookLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InstagramLink](#InstagramLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TwitterLink](#TwitterLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PinterestLink](#PinterestLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GooglePlusLink](#GooglePlusLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [YoutubeLink](#YoutubeLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LinkedInLink](#LinkedInLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [VimeoLink](#VimeoLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BlogLink](#BlogLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Links](#Links)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | link | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BusinessHighlights](#BusinessHighlights)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | title | string |  no  |  |
+ | icon | string |  no  |  |
+ | sub_title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationDetail](#ApplicationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | domain | [Domain](#Domain) |  no  |  |
+ | domains | [[Domain](#Domain)] |  no  |  |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CurrenciesResponse](#CurrenciesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Currency](#Currency)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreLatLong](#StoreLatLong)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | coordinates | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptedStoreAddress](#OptedStoreAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | state | string |  no  |  |
+ | address1 | string |  no  |  |
+ | lat_long | [StoreLatLong](#StoreLatLong) |  no  |  |
+ | address2 | string |  no  |  |
+ | pincode | number |  no  |  |
+ | country | string |  no  |  |
+ | city | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderingStore](#OrderingStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  |
+ | _id | string |  no  |  |
+ | uid | number |  no  |  |
+ | name | string |  no  |  |
+ | display_name | string |  no  |  |
+ | store_type | string |  no  |  |
+ | store_code | string |  no  |  |
+ | pincode | number |  no  |  |
+ | code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderingStores](#OrderingStores)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
+ | items | [[OrderingStore](#OrderingStore)] |  no  |  |
+ | deployed_stores | [number] |  no  |  |
+ | all_stores | boolean |  no  |  |
+ | enabled | boolean |  no  |  |
+ | type | string |  no  |  |
+ | _id | string |  no  |  |
+ | app | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [AggregatorConfigDetail](#AggregatorConfigDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | api | string |  no  | Payment gateway api endpoint |
+ | merchant_key | string |  no  | Unique merchant key |
+ | merchant_id | string |  no  | Unique merchant id |
+ | key | string? |  yes  | Payment gateway api key |
+ | verify_api | string |  no  | Payment gateway verify payment api endpoint |
+ | config_type | string? |  yes  | Fynd or self payment gateway |
+ | sdk | boolean |  no  | SDK |
+ | secret | string? |  yes  | Masked payment gateway api secret |
+ | user_id | string |  no  | Registered User id |
+ | pin | string |  no  | Masked pin |
+
+---
+
+
+ 
+ 
+ #### [AggregatorsConfigDetailResponse](#AggregatorsConfigDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | success | boolean? |  yes  |  |
+ | env | string? |  yes  | Environment i.e Live or Test |
+
+---
+
+
+ 
+ 
+ #### [ErrorCodeAndDescription](#ErrorCodeAndDescription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | Error human understandable description. |
+ | code | string? |  yes  | Error descrption code. |
+
+---
+
+
+ 
+ 
+ #### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  | Response is successful or not |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttachCardRequest](#AttachCardRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | card_id | string? |  yes  | Card token of payment gateway. |
+ | refresh | boolean |  no  | Refresh cache flag. |
+ | name_on_card | string |  no  |  |
+ | nickname | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttachCardsResponse](#AttachCardsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Human readable message. |
+ | success | boolean? |  yes  | Response is successful or not. |
+ | data | string? |  yes  | List of cards of customer. |
+
+---
+
+
+ 
+ 
+ #### [CardPaymentGateway](#CardPaymentGateway)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string? |  yes  | Payment gateway name. |
+ | api | string |  no  | Payment gateway CARD api endpoint |
+ | customer_id | string |  no  | Payment gateway customer id. |
+
+---
+
+
+ 
+ 
+ #### [ActiveCardPaymentGatewayResponse](#ActiveCardPaymentGatewayResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  | Human readable message. |
+ | success | boolean? |  yes  | Response is successful or not. |
+ | cards | [CardPaymentGateway](#CardPaymentGateway)? |  yes  | Card's payment gateway with customer id. |
+
+---
+
+
+ 
+ 
+ #### [Card](#Card)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | card_isin | string |  no  | card_isin |
+ | card_id | string |  no  | card_id |
+ | card_reference | string |  no  | card_reference |
+ | card_type | string |  no  | card_type |
+ | card_name | string |  no  | card_name |
+ | nickname | string |  no  | nickname |
+ | card_token | string |  no  | card_token |
+ | exp_year | number |  no  | exp_year |
+ | card_brand_image | string |  no  | card_brand_image |
+ | expired | boolean |  no  | expired |
+ | card_fingerprint | string |  no  | card_fingerprint |
+ | card_brand | string |  no  | card_brand |
+ | exp_month | number |  no  | exp_month |
+ | card_number | string |  no  | card_number |
+ | aggregator_name | string? |  yes  | aggregator_name |
+ | card_issuer | string |  no  | card_issuer |
+
+---
+
+
+ 
+ 
+ #### [ListCardsResponse](#ListCardsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  | Human readable message. |
+ | success | boolean? |  yes  | Response is successful or not. |
+ | data | [[Card](#Card)] |  no  | List of cards of customer. |
+
+---
+
+
+ 
+ 
+ #### [DeletehCardRequest](#DeletehCardRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | card_id | string? |  yes  | Card token of payment gateway. |
+
+---
+
+
+ 
+ 
+ #### [DeleteCardsResponse](#DeleteCardsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Human readable message. |
+ | success | boolean? |  yes  | Response is successful or not. |
+
+---
+
+
+ 
+ 
+ #### [ValidateCustomerRequest](#ValidateCustomerRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payload | string? |  yes  | Hashed payload string. |
+ | aggregator | string? |  yes  | Payment gateway name in camel case i.e Simpl, Rupifi |
+ | transaction_amount_in_paise | number? |  yes  | Payable amount in paise |
+ | merchant_params | string? |  yes  | Extra meta fields. |
+ | phone_number | string? |  yes  | User mobile number without country code. |
+
+---
+
+
+ 
+ 
+ #### [ValidateCustomerResponse](#ValidateCustomerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  | Error or success message. |
+ | success | boolean? |  yes  | Response is successful or not |
+ | data | string? |  yes  | Payment gateway response data |
+
+---
+
+
+ 
+ 
+ #### [ChargeCustomerRequest](#ChargeCustomerRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string? |  yes  | Payment gateway name i.e Simpl, Mswipe |
+ | transaction_token | string |  no  | Transaction token of payment gateway. |
+ | verified | boolean |  no  | Already Verified flag from payment gateway i.e Mswipe |
+ | order_id | string? |  yes  | Unique order id. |
+ | amount | number? |  yes  | Chargable amount of order. |
+
+---
+
+
+ 
+ 
+ #### [ChargeCustomerResponse](#ChargeCustomerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cart_id | string |  no  | Cart id of customer |
+ | aggregator | string? |  yes  | Payment gateway name i.e Simpl, Mswipe |
+ | delivery_address_id | string |  no  | Delivery adddress id of customer |
+ | order_id | string? |  yes  | Unique order id. |
+ | status | string? |  yes  | Status of charged payment. |
+ | message | string? |  yes  | Human readable message. |
+ | success | boolean? |  yes  | Response is successful or not. |
+
+---
+
+
+ 
+ 
+ #### [PaymentInitializationRequest](#PaymentInitializationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | razorpay_payment_id | string? |  yes  | Payment gateway payment id |
+ | aggregator | string? |  yes  | Payment gateway name |
+ | method | string? |  yes  | Payment method |
+ | polling_url | string? |  yes  | Polling url to check payment status |
+ | aggregator_order_id | string? |  yes  | Payment gateway order id |
+ | customer_id | string? |  yes  | Payment gateway customer id. |
+ | timeout | number? |  yes  | Payment polling timeout if not recieved response |
+ | virtual_id | string |  no  | Bharat QR code virtual id |
+ | merchant_order_id | string? |  yes  | Unique fynd order id |
+
+---
+
+
+ 
+ 
+ #### [PaymentInitializationResponse](#PaymentInitializationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | razorpay_payment_id | string |  no  | Payment  id. |
+ | aggregator | string? |  yes  | Payment gateway name |
+ | method | string? |  yes  | Payment method |
+ | vpa | string |  no  | Customer vpa address |
+ | polling_url | string? |  yes  | Polling url. |
+ | aggregator_order_id | string |  no  | Payment order id |
+ | customer_id | string |  no  | Payment gateway customer id. |
+ | bqr_image | string |  no  | Bharath qr image url. |
+ | currency | string |  no  | Currency code. |
+ | status | string |  no  | Status of payment. |
+ | amount | number |  no  | Payable amount. |
+ | success | boolean? |  yes  | Response is successful or not. |
+ | virtual_id | string |  no  | Payment virtual address. |
+ | merchant_order_id | string? |  yes  | order id |
+ | timeout | number |  no  | timeout. |
+
+---
+
+
+ 
+ 
+ #### [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string? |  yes  | Payment gateway name |
+ | method | string? |  yes  | Payment method |
+ | email | string? |  yes  | Customer valid email |
+ | vpa | string? |  yes  | Customer vpa address |
+ | customer_id | string? |  yes  | Payment gateway customer id. |
+ | order_id | string? |  yes  | Payment gateway order id |
+ | currency | string? |  yes  | Currency code. |
+ | status | string? |  yes  | Status of payment. |
+ | amount | number? |  yes  | Payable amount. |
+ | contact | string? |  yes  | Customer valid mobile number |
+ | merchant_order_id | string? |  yes  | Unique fynd order id |
+
+---
+
+
+ 
+ 
+ #### [PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | retry | boolean? |  yes  | Response is successful or not. |
+ | aggregator_name | string? |  yes  | Payment gateway name |
+ | status | string? |  yes  | Payment status |
+
+---
+
+
+ 
+ 
+ #### [PaymentModeLogo](#PaymentModeLogo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | large | string? |  yes  | large |
+ | small | string? |  yes  | smalll |
+
+---
+
+
+ 
+ 
+ #### [PaymentModeList](#PaymentModeList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | intent_flow | string |  no  | intent_flow |
+ | nickname | string |  no  | nickname |
+ | card_token | string |  no  | card_token |
+ | fynd_vpa | string |  no  | fynd_vpa |
+ | name | string |  no  | name |
+ | aggregator_name | string? |  yes  | aggregator_name |
+ | display_priority | number |  no  | Dispaly Priority |
+ | card_id | string |  no  | card_id |
+ | exp_year | number |  no  | exp_year |
+ | intent_app_error_list | [string] |  no  | intent_app_error_list |
+ | card_number | string |  no  | card_number |
+ | card_reference | string |  no  | card_reference |
+ | retry_count | number |  no  | retry_count |
+ | card_name | string |  no  | card_name |
+ | merchant_code | string |  no  | merchant code |
+ | card_fingerprint | string |  no  | card_fingerprint |
+ | code | string |  no  | code |
+ | card_issuer | string |  no  | card_issuer |
+ | card_isin | string |  no  | card_isin |
+ | card_type | string |  no  | card_type |
+ | card_brand_image | string |  no  | card_brand_image |
+ | expired | boolean |  no  | expired |
+ | display_name | string |  no  | display name |
+ | card_brand | string |  no  | card_brand |
+ | timeout | number |  no  | timeout |
+ | exp_month | number |  no  | exp_month |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
+
+---
+
+
+ 
+ 
+ #### [RootPaymentMode](#RootPaymentMode)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
+ | display_priority | number? |  yes  | Dispaly Priority |
+ | display_name | string? |  yes  | Payment mode display name |
+ | add_card_enabled | boolean |  no  | Annonymous card flag |
+ | name | string? |  yes  | Payment mode name |
+ | aggregator_name | string |  no  | Dispaly Priority |
+ | anonymous_enable | boolean |  no  | Annonymous card flag |
+
+---
+
+
+ 
+ 
+ #### [AggregatorRoute](#AggregatorRoute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | api_link | string |  no  | api_link |
+ | data | string |  no  | Data |
+ | payment_flow | string |  no  | payment_flow |
+
+---
+
+
+ 
+ 
+ #### [PaymentFlow](#PaymentFlow)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rupifi | [AggregatorRoute](#AggregatorRoute) |  no  | Rupifi |
+ | upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | UPI_Razorpay |
+ | msipe | [AggregatorRoute](#AggregatorRoute) |  no  | mswipe |
+ | bqr_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | BQR_Razorpay |
+ | payubiz | [AggregatorRoute](#AggregatorRoute) |  no  | Payubiz |
+ | ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  | Ccavenue |
+ | stripe | [AggregatorRoute](#AggregatorRoute) |  no  | Stripe |
+ | simpl | [AggregatorRoute](#AggregatorRoute) |  no  | simpl |
+ | razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | Razorpay |
+ | juspay | [AggregatorRoute](#AggregatorRoute) |  no  | Juspay |
+ | fynd | [AggregatorRoute](#AggregatorRoute) |  no  | Fynd |
+
+---
+
+
+ 
+ 
+ #### [PaymentOptionAndFlow](#PaymentOptionAndFlow)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_option | [[RootPaymentMode](#RootPaymentMode)]? |  yes  | Payment options |
+ | payment_flows | [PaymentFlow](#PaymentFlow)? |  yes  | payment_flows |
+
+---
+
+
+ 
+ 
+ #### [PaymentModeRouteResponse](#PaymentModeRouteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  | Response is successful or not |
+ | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow)? |  yes  | payment_options |
+
+---
+
+
+ 
+ 
+ #### [RupifiBannerData](#RupifiBannerData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | kyc_url | string |  no  | Rupifi KYC banner url. |
+ | status | string |  no  | Rupifi KYC status |
+
+---
+
+
+ 
+ 
+ #### [RupifiBannerResponse](#RupifiBannerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  | Successful or not. |
+ | data | [RupifiBannerData](#RupifiBannerData)? |  yes  | Rupifi KYC banner details. |
+
+---
+
+
+ 
+ 
+ #### [TransferItemsDetails](#TransferItemsDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logo_small | string? |  yes  | Beneficiary small Logo |
+ | id | string? |  yes  |   |
+ | display_name | boolean |  no  | Beneficiary Display Name |
+ | name | string? |  yes  |  Beneficiary Name |
+ | logo_large | string? |  yes  | Beneficiary large Logo |
+
+---
+
+
+ 
+ 
+ #### [TransferModeDetails](#TransferModeDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  | Beneficiary Mode Name |
+ | items | [[TransferItemsDetails](#TransferItemsDetails)] |  no  | Beneficiary Mode Items |
+
+---
+
+
+ 
+ 
+ #### [TransferModeResponse](#TransferModeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[TransferModeDetails](#TransferModeDetails)]? |  yes  | Response Object |
+
+---
+
+
+ 
+ 
+ #### [UpdateRefundTransferModeRequest](#UpdateRefundTransferModeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | transfer_mode | string? |  yes  | Transfer Mode of the Beneficiary to be added |
+ | enable | boolean? |  yes  | True for enabling the Transfer Mode |
+
+---
+
+
+ 
+ 
+ #### [UpdateRefundTransferModeResponse](#UpdateRefundTransferModeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number? |  yes  |   |
+ | address | string? |  yes  | Address of User |
+ | title | string? |  yes  | Title Of Account |
+ | email | string? |  yes  | EMail of User |
+ | ifsc_code | string? |  yes  | Ifsc Code Of Account |
+ | mobile | boolean |  no  | MObile no of User |
+ | transfer_mode | string? |  yes  | Transfer Mode Of Account |
+ | account_no | string? |  yes  | Account Number |
+ | beneficiary_id | string? |  yes  | Benenficiary Id |
+ | branch_name | boolean |  no  | Branch Name Of Account |
+ | account_holder | string? |  yes  | Account Holder Name |
+ | subtitle | string? |  yes  | SHort Title Of Account |
+ | is_active | boolean? |  yes  | Boolean Flag whether Beneficiary set or not |
+ | comment | boolean |  no  | Remarks |
+ | display_name | string? |  yes  | Display Name Of Account |
+ | bank_name | string? |  yes  | Bank Name Of Account |
+ | created_on | string? |  yes  | Creation Date of Beneficiary |
+ | delights_user_name | string? |  yes  | User Id Who filled the Beneficiary  |
+ | modified_on | string? |  yes  | MOdification Date of Beneficiary |
+
+---
+
+
+ 
+ 
+ #### [OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)]? |  yes  | All Beneficiaries Of An Order |
+ | show_beneficiary_details | boolean |  no  | Show beneficiary details or not. |
+
+---
+
+
+ 
+ 
+ #### [NotFoundResourceError](#NotFoundResourceError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | Not Found |
+ | success | boolean? |  yes  | Response is successful or not |
+ | code | string? |  yes  | Bad Request Data |
+
+---
+
+
+ 
+ 
+ #### [IfscCodeResponse](#IfscCodeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | branch_name | string? |  yes  | Branch Name Of Account |
+ | success | boolean |  no  | Response is successful or not |
+ | bank_name | string? |  yes  | Bank Name Of Account |
+
+---
+
+
+ 
+ 
+ #### [ErrorCodeDescription](#ErrorCodeDescription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | Error human understandable description. |
+ | success | boolean? |  yes  | Response is successful or not |
+ | code | string? |  yes  | Error descrption code. |
+
+---
+
+
+ 
+ 
+ #### [AddBeneficiaryViaOtpVerificationRequest](#AddBeneficiaryViaOtpVerificationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hash_key | string? |  yes  | Hash key of the beneficiary Id |
+ | otp | string? |  yes  | Otp sent to the given Mobile No |
+ | request_id | string? |  yes  | Request Id sent in  |
+
+---
+
+
+ 
+ 
+ #### [AddBeneficiaryViaOtpVerificationResponse](#AddBeneficiaryViaOtpVerificationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hash_key | string? |  yes  | Hash key of the beneficiary Id |
+ | otp | string? |  yes  | Otp sent to the given Mobile No |
+ | request_id | string? |  yes  | Request Id of the otp  |
+
+---
+
+
+ 
+ 
+ #### [WrongOtpError](#WrongOtpError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | Wrong OTP Code |
+ | success | string? |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [BeneficiaryModeDetails](#BeneficiaryModeDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | string |  no  | Address of the User |
+ | branch_name | string? |  yes  | Branch Name of the Account |
+ | wallet | string |  no  |  |
+ | comment | string |  no  | Remarks added by The user |
+ | vpa | string |  no  |  |
+ | account_holder | string? |  yes  | Name of the Account Holder |
+ | bank_name | string? |  yes  | Bank Name of the Account |
+ | email | string? |  yes  | Email of the Account Holder |
+ | ifsc_code | string? |  yes  | Ifsc Code of the Account |
+ | mobile | string? |  yes  | Moblie Number of the User |
+ | account_no | string? |  yes  | Account NUmber of the Account Holder |
+
+---
+
+
+ 
+ 
+ #### [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | delights | boolean? |  yes  | True if  beneficiary to be added by delights or False if by User |
+ | request_id | string |  no  |  |
+ | shipment_id | string? |  yes  | Shipment Id of the respective Merchant Order Id |
+ | transfer_mode | string? |  yes  | Transfer Mode of the Beneficiary to be added |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails)? |  yes  | Beneficiary bank details |
+ | order_id | string? |  yes  | Merchant Order Id |
+ | otp | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RefundAccountResponse](#RefundAccountResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  | Response message |
+ | success | boolean? |  yes  | Success or failure flag. |
+ | data | string |  no  | Refund account data. |
+
+---
+
+
+ 
+ 
+ #### [WalletOtpRequest](#WalletOtpRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mobile | string? |  yes  | Wallet Moblie Number of the User |
+ | country_code | string? |  yes  | Country Code of the Mobile Number |
+
+---
+
+
+ 
+ 
+ #### [WalletOtpResponse](#WalletOtpResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_verified_flag | string? |  yes  | Boolean Flag whether OTP Validation is already done or not |
+ | success | boolean |  no  | Response is successful or not |
+ | request_id | string? |  yes  | request id  |
+
+---
+
+
+ 
+ 
+ #### [SetDefaultBeneficiaryRequest](#SetDefaultBeneficiaryRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | beneficiary_id | string? |  yes  | Beneficiary Hash Id of the beneficiary added |
+ | order_id | string? |  yes  | Merchant Order Id |
+
+---
+
+
+ 
+ 
+ #### [SetDefaultBeneficiaryResponse](#SetDefaultBeneficiaryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_beneficiary_set | boolean? |  yes  | Boolean Flag whether Beneficiary set or not |
+ | success | boolean |  no  | Response is successful or not |
+
+---
+
+
+
+
+ 
+ 
+ #### [OrderById](#OrderById)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order | [OrderSchema](#OrderSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderList](#OrderList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[OrderSchema](#OrderSchema)]? |  yes  |  |
+ | page | [OrderPage](#OrderPage)? |  yes  |  |
+ | filters | [OrderFilters](#OrderFilters)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderPage](#OrderPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_total | number |  no  |  |
+ | type | string |  no  |  |
+ | size | number |  no  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderFilters](#OrderFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | statuses | [[OrderStatuses](#OrderStatuses)] |  no  |  |
+ | months | [[OrderMonths](#OrderMonths)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderStatuses](#OrderStatuses)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | value | number |  no  |  |
+ | is_selected | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderMonths](#OrderMonths)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | from_date | string |  no  |  |
+ | id | string |  no  |  |
+ | is_selected | boolean |  no  |  |
+ | name | string |  no  |  |
+ | to_date | string |  no  |  |
+ | value | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentById](#ShipmentById)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment | [Shipments](#Shipments)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentReasons](#ShipmentReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reasons | [[Reasons](#Reasons)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentStatusUpdateBody](#ShipmentStatusUpdateBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | statuses | [[StatusesBody](#StatusesBody)]? |  yes  |  |
+ | force_transition | boolean? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [StatusesBody](#StatusesBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  |  |
+ | shipments | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentStatusUpdate](#ShipmentStatusUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [string]? |  yes  |  |
+ | status | boolean? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTrack](#ShipmentTrack)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | results | [[Track](#Track)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderSchema](#OrderSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order_id | string |  no  |  |
+ | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
+ | order_created_time | string |  no  |  |
+ | shipments | [[Shipments](#Shipments)] |  no  |  |
+ | total_shipments_in_order | number |  no  |  |
+ | user_info | [UserInfo](#UserInfo) |  no  |  |
+ | bags_for_reorder | [[BagsForReorder](#BagsForReorder)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagsForReorder](#BagsForReorder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_id | number |  no  |  |
+ | item_size | string |  no  |  |
+ | store_id | number |  no  |  |
+ | seller_id | number |  no  |  |
+ | quantity | number |  no  |  |
+ | article_assignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | level | string |  no  |  |
+ | strategy | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PosOrderById](#PosOrderById)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order | [OrderSchema](#OrderSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Bags](#Bags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item | [Item](#Item) |  no  |  |
+ | prices | [Prices](#Prices) |  no  |  |
+ | current_status | [CurrentStatus](#CurrentStatus) |  no  |  |
+ | id | number |  no  |  |
+ | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Item](#Item)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand | [ItemBrand](#ItemBrand) |  no  |  |
+ | name | string |  no  |  |
+ | size | string |  no  |  |
+ | slug_key | string |  no  |  |
+ | image | [string] |  no  |  |
+ | code | string |  no  |  |
+ | id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Prices](#Prices)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount_paid_roundoff | number |  no  |  |
+ | fynd_credits | number |  no  |  |
+ | cod_charges | number |  no  |  |
+ | cashback | number |  no  |  |
+ | added_to_fynd_cash | boolean |  no  |  |
+ | price_marked | number |  no  |  |
+ | transfer_price | number |  no  |  |
+ | coupon_value | number |  no  |  |
+ | price_effective | number |  no  |  |
+ | refund_credit | number |  no  |  |
+ | amount_paid | number |  no  |  |
+ | refund_amount | number |  no  |  |
+ | cashback_applied | number |  no  |  |
+ | gst_tax_percentage | number |  no  |  |
+ | value_of_good | number |  no  |  |
+ | brand_calculated_amount | number |  no  |  |
+ | promotion_effective_discount | number |  no  |  |
+ | discount | number |  no  |  |
+ | coupon_effective_discount | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CurrentStatus](#CurrentStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | updated_at | string |  no  |  |
+ | status | string |  no  |  |
+ | name | string |  no  |  |
+ | journey_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FinancialBreakup](#FinancialBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_calculated_amount | number |  no  |  |
+ | coupon_value | number |  no  |  |
+ | amount_paid_roundoff | number |  no  |  |
+ | gst_fee | string |  no  |  |
+ | refund_credit | number |  no  |  |
+ | cashback | number |  no  |  |
+ | refund_amount | number |  no  |  |
+ | value_of_good | number |  no  |  |
+ | promotion_effective_discount | number |  no  |  |
+ | size | string |  no  |  |
+ | total_units | number |  no  |  |
+ | discount | number |  no  |  |
+ | amount_paid | number |  no  |  |
+ | fynd_credits | number |  no  |  |
+ | added_to_fynd_cash | boolean |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | hsn_code | string |  no  |  |
+ | coupon_effective_discount | number |  no  |  |
+ | transfer_price | number |  no  |  |
+ | identifiers | [Identifiers](#Identifiers) |  no  |  |
+ | gst_tag | string |  no  |  |
+ | price_marked | number |  no  |  |
+ | price_effective | number |  no  |  |
+ | cod_charges | number |  no  |  |
+ | item_name | string |  no  |  |
+ | cashback_applied | number |  no  |  |
+ | gst_tax_percentage | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Identifiers](#Identifiers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ean | string |  no  |  |
+ | sku_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemBrand](#ItemBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BreakupValues](#BreakupValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | value | number |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeliveryAddress](#DeliveryAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pincode | string |  no  |  |
+ | landmark | string |  no  |  |
+ | contact_person | string |  no  |  |
+ | phone | string |  no  |  |
+ | state | string |  no  |  |
+ | version | string |  no  |  |
+ | address1 | string |  no  |  |
+ | created_at | string |  no  |  |
+ | address_type | string |  no  |  |
+ | address_category | string |  no  |  |
+ | area | string |  no  |  |
+ | city | string |  no  |  |
+ | latitude | number |  no  |  |
+ | longitude | number |  no  |  |
+ | email | string |  no  |  |
+ | country | string |  no  |  |
+ | address2 | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | name | string |  no  |  |
+ | address | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FulfillingStore](#FulfillingStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | id | number |  no  |  |
+ | name | string |  no  |  |
+ | company_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Invoice](#Invoice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | updated_date | string |  no  |  |
+ | invoice_url | string |  no  |  |
+ | label_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Promise](#Promise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | [Timestamp](#Timestamp) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Timestamp](#Timestamp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | string |  no  |  |
+ | max | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Reasons](#Reasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_text | string |  no  |  |
+ | show_text_area | boolean |  no  |  |
+ | feedback_type | string |  no  |  |
+ | flow | string |  no  |  |
+ | reason_id | number |  no  |  |
+ | priority | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentStatus](#ShipmentStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | hex_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentUserInfo](#ShipmentUserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gender | string |  no  |  |
+ | mobile | string |  no  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Shipments](#Shipments)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order_id | string |  no  |  |
+ | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
+ | track_url | string |  no  |  |
+ | traking_no | string |  no  |  |
+ | tracking_details | [[TrackingDetails](#TrackingDetails)] |  no  |  |
+ | beneficiary_details | boolean |  no  |  |
+ | can_return | boolean |  no  |  |
+ | prices | [Prices](#Prices) |  no  |  |
+ | need_help_url | string |  no  |  |
+ | shipment_id | string |  no  |  |
+ | total_bags | number |  no  |  |
+ | delivery_address | [DeliveryAddress](#DeliveryAddress) |  no  |  |
+ | invoice | [Invoice](#Invoice) |  no  |  |
+ | comment | string |  no  |  |
+ | order_type | string |  no  |  |
+ | promise | [Promise](#Promise) |  no  |  |
+ | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
+ | bags | [[Bags](#Bags)] |  no  |  |
+ | can_cancel | boolean |  no  |  |
+ | payment | [ShipmentPayment](#ShipmentPayment) |  no  |  |
+ | shipment_created_at | string |  no  |  |
+ | shipment_status | [ShipmentStatus](#ShipmentStatus) |  no  |  |
+ | user_info | [ShipmentUserInfo](#ShipmentUserInfo) |  no  |  |
+ | size_info | string |  no  |  |
+ | total_details | [ShipmentTotalDetails](#ShipmentTotalDetails) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTotalDetails](#ShipmentTotalDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total_price | number |  no  |  |
+ | sizes | number |  no  |  |
+ | pieces | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentPayment](#ShipmentPayment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | string |  no  |  |
+ | mode | string |  no  |  |
+ | status | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Track](#Track)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | awb | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | last_location_recieved_at | string |  no  |  |
+ | reason | string |  no  |  |
+ | shipment_type | string |  no  |  |
+ | status | string |  no  |  |
+ | updated_time | string |  no  |  |
+ | account_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TrackingDetails](#TrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_current | boolean |  no  |  |
+ | status | string |  no  |  |
+ | time | string |  no  |  |
+ | is_passed | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserInfo](#UserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gender | string |  no  |  |
+ | mobile | string |  no  |  |
+ | name | string |  no  |  |
+ | email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApefaceApiError](#ApefaceApiError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [ActionPageParams](#ActionPageParams)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CatalogueOrderRequest](#CatalogueOrderRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CatalogueOrderResponse](#CatalogueOrderResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DiscountProperties](#DiscountProperties)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | absolute | number |  no  |  |
+ | currency | string |  no  |  |
+ | display_absolute | string |  no  |  |
+ | display_percent | string |  no  |  |
+ | percent | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Error](#Error)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | number |  no  |  |
+ | exception | string |  no  |  |
+ | info | string |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Offer](#Offer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _schedule | [Schedule](#Schedule) |  no  |  |
+ | active | boolean |  no  |  |
+ | application_id | string |  no  |  |
+ | banner_image | [Asset](#Asset) |  no  |  |
+ | created_at | string |  no  |  |
+ | name | string |  no  |  |
+ | rule | string |  no  |  |
+ | share | [ShareMessages](#ShareMessages) |  no  |  |
+ | sub_text | string |  no  |  |
+ | text | string |  no  |  |
+ | type | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | updated_by | string |  no  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDiscountRequest](#OrderDiscountRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  |  |
+ | order_amount | number? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDiscountResponse](#OrderDiscountResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applied_rule_bucket | [OrderDiscountRuleBucket](#OrderDiscountRuleBucket) |  no  |  |
+ | base_discount | [DiscountProperties](#DiscountProperties) |  no  |  |
+ | discount | [DiscountProperties](#DiscountProperties) |  no  |  |
+ | order_amount | number |  no  |  |
+ | points | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDiscountRuleBucket](#OrderDiscountRuleBucket)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | high | number |  no  |  |
+ | low | number |  no  |  |
+ | max | number |  no  |  |
+ | value | number |  no  |  |
+ | value_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PointsHistory](#PointsHistory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | application_id | string |  no  |  |
+ | claimed | boolean |  no  |  |
+ | created_at | string |  no  |  |
+ | expires_on | string |  no  |  |
+ | meta | string |  no  |  |
+ | points | number |  no  |  |
+ | remaining_points | number |  no  |  |
+ | text_1 | string |  no  |  |
+ | text_2 | string |  no  |  |
+ | text_3 | string |  no  |  |
+ | txn_name | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | user_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PointsHistoryResponse](#PointsHistoryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | history | [[PointsHistory](#PointsHistory)] |  no  | History is the list of points transaction. |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PointsResponse](#PointsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | points | number |  no  | Points is the total available |
+
+---
+
+
+ 
+ 
+ #### [RedeemReferralCodeRequest](#RedeemReferralCodeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | device_id | string? |  yes  |  |
+ | referral_code | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RedeemReferralCodeResponse](#RedeemReferralCodeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | points | number |  no  |  |
+ | redeemed | boolean |  no  |  |
+ | referrer_id | string |  no  |  |
+ | referrer_info | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReferralDetailsResponse](#ReferralDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | referral | [Offer](#Offer) |  no  |  |
+ | referrer_info | string |  no  |  |
+ | share | [ShareMessages](#ShareMessages) |  no  |  |
+ | user | [ReferralDetailsUser](#ReferralDetailsUser) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReferralDetailsUser](#ReferralDetailsUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocked | boolean |  no  |  |
+ | points | number |  no  |  |
+ | redeemed | boolean |  no  |  |
+ | referral_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RewardsArticle](#RewardsArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | points | number |  no  |  |
+ | price | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Schedule](#Schedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string |  no  |  |
+ | duration | number |  no  |  |
+ | end | string |  no  |  |
+ | start | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShareMessages](#ShareMessages)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | facebook | string |  no  |  |
+ | fallback | string |  no  |  |
+ | message | string |  no  |  |
+ | messenger | string |  no  |  |
+ | sms | string |  no  |  |
+ | text | string |  no  |  |
+ | twitter | string |  no  |  |
+ | whatsapp | string |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [AbuseReport](#AbuseReport)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | abused | boolean |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | description | string |  no  |  |
+ | entity | [Entity](#Entity) |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | state | [FeedbackState](#FeedbackState) |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Access](#Access)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | answer | boolean |  no  |  |
+ | ask_question | boolean |  no  |  |
+ | comment | boolean |  no  |  |
+ | rnr | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddMediaListRequest](#AddMediaListRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entity_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | media_list | [[AddMediaRequest](#AddMediaRequest)] |  no  |  |
+ | ref_id | string |  no  |  |
+ | ref_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddMediaRequest](#AddMediaRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cloud_id | string |  no  |  |
+ | cloud_name | string |  no  |  |
+ | cloud_provider | string |  no  |  |
+ | entity_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | media_url | string |  no  |  |
+ | ref_id | string |  no  |  |
+ | ref_type | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | thumbnail_url | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationSchema](#ApplicationSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Attribute](#Attribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | description | string |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeObject](#AttributeObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | name | string? |  yes  |  |
+ | slug | string |  no  |  |
+ | title | string |  no  |  |
+ | type | string? |  yes  |  |
+ | value | number? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeResponse](#AttributeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Attribute](#Attribute)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AutoDetectors](#AutoDetectors)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text_detector | [[TextDetector](#TextDetector)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CheckEligibilityResponse](#CheckEligibilityResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | access | [Access](#Access) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Cloud](#Cloud)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | provider | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Comment](#Comment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | comment | [string] |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | entity | [Entity](#Entity) |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | state | [FeedbackState](#FeedbackState) |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+ | vote_count | [VoteCount](#VoteCount) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommentGetResponse](#CommentGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Comment](#Comment)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommentRequest](#CommentRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | comment | [string]? |  yes  |  |
+ | entity_id | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateQNARequest](#CreateQNARequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | choices | [string] |  no  |  |
+ | entity_id | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+ | max_len | number |  no  |  |
+ | sort_priority | number |  no  |  |
+ | tags | [string] |  no  |  |
+ | text | string? |  yes  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreatedBy](#CreatedBy)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CursorGetResponse](#CursorGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CustomerReview](#CustomerReview)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | auto_detectors | [AutoDetectors](#AutoDetectors) |  no  |  |
+ | created_on | string |  no  |  |
+ | device_meta | [DeviceMeta](#DeviceMeta) |  no  |  |
+ | entity | [ProductEntity](#ProductEntity) |  no  |  |
+ | id | string |  no  |  |
+ | location_meta | [LocationMeta](#LocationMeta) |  no  |  |
+ | modified_on | string |  no  |  |
+ | name | string |  no  |  |
+ | rating | [ReviewRating](#ReviewRating) |  no  |  |
+ | review | [Review](#Review) |  no  |  |
+ | slug | string |  no  |  |
+ | state | [State](#State) |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+ | template | [Template](#Template) |  no  |  |
+ | vote_count | [VoteCount](#VoteCount) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeviceMeta](#DeviceMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_version | string |  no  |  |
+ | platform | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Entity](#Entity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | type | string |  no  | entity type could be review/comment/ |
+
+---
+
+
+ 
+ 
+ #### [EntityMeta](#EntityMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order_id | string |  no  |  |
+ | type | string |  no  | product, delivery,seller |
+
+---
+
+
+ 
+ 
+ #### [FeedbackError](#FeedbackError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | exception | string |  no  |  |
+ | info | string |  no  |  |
+ | message | string |  no  |  |
+ | meta | string |  no  |  |
+ | request_id | string |  no  |  |
+ | stack_trace | string |  no  |  |
+ | status | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FeedbackMedia](#FeedbackMedia)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | [ApplicationSchema](#ApplicationSchema) |  no  |  |
+ | cloud | [Cloud](#Cloud) |  no  |  |
+ | created_by | [CreatedBy](#CreatedBy) |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | description | string |  no  |  |
+ | entity | [Entity](#Entity) |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | reference | [Entity](#Entity) |  no  |  |
+ | state | [MediaState](#MediaState) |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+ | type | string |  no  |  |
+ | url | [Url](#Url) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FeedbackState](#FeedbackState)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | archive | boolean |  no  |  |
+ | media | string |  no  |  |
+ | qna | boolean |  no  |  |
+ | rating | boolean |  no  |  |
+ | review | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GeoLoc](#GeoLoc)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | latitude | string |  no  |  |
+ | longitude | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InsertResponse](#InsertResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ids | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Location](#Location)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | flag_url | string |  no  |  |
+ | geo_loc | [GeoLoc](#GeoLoc) |  no  |  |
+ | name | string |  no  |  |
+ | pincode | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationMeta](#LocationMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | demand | [Location](#Location) |  no  |  |
+ | supply | [Location](#Location) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MediaGetResponse](#MediaGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[FeedbackMedia](#FeedbackMedia)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MediaMeta](#MediaMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cloud | [Cloud](#Cloud) |  no  |  |
+ | comment | [string] |  no  |  |
+ | description | string |  no  |  |
+ | id | string |  no  |  |
+ | type | string |  no  |  |
+ | url | [Url](#Url) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MediaState](#MediaState)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | approve | boolean |  no  |  |
+ | archive | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NumberGetResponse](#NumberGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
+ | page | [PageNumber](#PageNumber) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageNumber](#PageNumber)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductEntity](#ProductEntity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  | For products, ID will be product ID, delivery, ID will be order id, seller ID will be company ID |
+ | meta | [EntityMeta](#EntityMeta) |  no  |  |
+ | type | string |  no  | product, delivery, seller, app, order |
+
+---
+
+
+ 
+ 
+ #### [QNA](#QNA)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | comments | [[Comment](#Comment)] |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | entity | [Entity](#Entity) |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | question | [Question](#Question) |  no  |  |
+ | state | [QNAState](#QNAState) |  no  |  |
+ | tag | [string] |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [QNAGetResponse](#QNAGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[QNA](#QNA)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [QNAState](#QNAState)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | approve | boolean |  no  |  |
+ | modify | boolean |  no  |  |
+ | priority | number |  no  |  |
+ | reply | boolean |  no  |  |
+ | vote | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Question](#Question)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | choices | [string] |  no  |  |
+ | max_len | number |  no  |  |
+ | text | string |  no  |  |
+ | type | string |  no  | type could be single_choice/text/multi_choice |
+
+---
+
+
+ 
+ 
+ #### [Rating](#Rating)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | [[Attribute](#Attribute)] |  no  |  |
+ | attributes_slugs | [string] |  no  |  |
+ | ui | [UI](#UI) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RatingGetResponse](#RatingGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Rating](#Rating)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RatingMetric](#RatingMetric)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | avg | number |  no  |  |
+ | count | number |  no  | Valuetype could be average, count |
+ | name | string |  no  | Attribute name like Camera, Battery and rating name like a number 5,4,3 |
+ | slug | string |  no  |  |
+ | type | string |  no  | type could be attribute_rating and rating |
+
+---
+
+
+ 
+ 
+ #### [ReportAbuseGetResponse](#ReportAbuseGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AbuseReport](#AbuseReport)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReportAbuseRequest](#ReportAbuseRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | entity_id | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Review](#Review)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | answer_ids | [string] |  no  |  |
+ | comments | [string] |  no  |  |
+ | description | string |  no  |  |
+ | media_meta | [[MediaMeta](#MediaMeta)] |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReviewFacet](#ReviewFacet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | name | string |  no  |  |
+ | selected | boolean |  no  |  |
+ | slug | string |  no  |  |
+ | type | string |  no  | rating, attribute rating |
+
+---
+
+
+ 
+ 
+ #### [ReviewGetResponse](#ReviewGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | facets | [[ReviewFacet](#ReviewFacet)] |  no  |  |
+ | items | [[CustomerReview](#CustomerReview)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | sort | [[SortMethod](#SortMethod)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReviewMediaMeta](#ReviewMediaMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max_count | number |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReviewMetric](#ReviewMetric)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attribute_metric | [[RatingMetric](#RatingMetric)] |  no  |  |
+ | created_on | string |  no  |  |
+ | entity | [Entity](#Entity) |  no  | entity could be product, seller, delivery |
+ | id | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | rating_avg | number |  no  |  |
+ | rating_count | number |  no  | total rating count |
+ | rating_metric | [[RatingMetric](#RatingMetric)] |  no  |  |
+ | review_count | number |  no  | total review count |
+
+---
+
+
+ 
+ 
+ #### [ReviewMetricGetResponse](#ReviewMetricGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ReviewMetric](#ReviewMetric)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReviewRating](#ReviewRating)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | [[AttributeObject](#AttributeObject)] |  no  |  |
+ | value | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SaveAttributeRequest](#SaveAttributeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SortMethod](#SortMethod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | selected | boolean |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [State](#State)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | approve | boolean |  no  |  |
+ | auto_decided | boolean |  no  |  |
+ | status | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TagMeta](#TagMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | media | [[MediaMeta](#MediaMeta)] |  no  |  |
+ | name | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Template](#Template)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | entity | [Entity](#Entity) |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | rating | [Rating](#Rating) |  no  |  |
+ | review | [TemplateReview](#TemplateReview) |  no  |  |
+ | state | [FeedbackState](#FeedbackState) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TemplateGetResponse](#TemplateGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Template](#Template)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TemplateReview](#TemplateReview)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | header | string |  no  |  |
+ | image_meta | [ReviewMediaMeta](#ReviewMediaMeta) |  no  |  |
+ | title | string |  no  |  |
+ | video_meta | [ReviewMediaMeta](#ReviewMediaMeta) |  no  |  |
+ | vote_allowed | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TextDetector](#TextDetector)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | confidence | number |  no  |  |
+ | text | string |  no  |  |
+ | text_class | string |  no  |  |
+ | text_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UI](#UI)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | feedback_question | [string] |  no  |  |
+ | icon | [UIIcon](#UIIcon) |  no  |  |
+ | text | [string] |  no  |  |
+ | type | string |  no  | star | images | gifs | smileys |
+
+---
+
+
+ 
+ 
+ #### [UIIcon](#UIIcon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | string |  no  |  |
+ | inactive | string |  no  |  |
+ | selected | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateAbuseStatusRequest](#UpdateAbuseStatusRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | abusive | boolean |  no  |  |
+ | active | boolean |  no  |  |
+ | approve | boolean |  no  |  |
+ | description | string |  no  |  |
+ | entity_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateAttributeRequest](#UpdateAttributeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | name | string? |  yes  |  |
+ | slug | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateCommentRequest](#UpdateCommentRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | approve | boolean |  no  |  |
+ | comment | [string]? |  yes  |  |
+ | id | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateMediaListRequest](#UpdateMediaListRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | approve | boolean |  no  |  |
+ | archive | boolean |  no  |  |
+ | entity_type | string |  no  |  |
+ | ids | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateQNARequest](#UpdateQNARequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | approve | boolean |  no  |  |
+ | choices | [string] |  no  |  |
+ | id | string |  no  |  |
+ | tags | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateResponse](#UpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateReviewRequest](#UpdateReviewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | application | string |  no  |  |
+ | approve | boolean |  no  |  |
+ | archive | boolean |  no  |  |
+ | attributes_rating | [[AttributeObject](#AttributeObject)] |  no  |  |
+ | description | string |  no  |  |
+ | device_meta | [DeviceMeta](#DeviceMeta) |  no  |  |
+ | entity_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | media_resource | [[MediaMeta](#MediaMeta)] |  no  |  |
+ | rating | number |  no  |  |
+ | review_id | string |  no  |  |
+ | template_id | string |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateVoteRequest](#UpdateVoteRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | active | boolean |  no  |  |
+ | id | string |  no  |  |
+ | ref_id | string |  no  |  |
+ | ref_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Url](#Url)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | main | string |  no  |  |
+ | thumbnail | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Vote](#Vote)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  | upvote and downvote |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | entity | [Entity](#Entity) |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | reference | [Entity](#Entity) |  no  | review | comment |
+ | state | [FeedbackState](#FeedbackState) |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [VoteCount](#VoteCount)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | downvote | number |  no  |  |
+ | upvote | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [VoteRequest](#VoteRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | entity_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | ref_id | string |  no  |  |
+ | ref_type | string |  no  | review | comment |
+
+---
+
+
+ 
+ 
+ #### [VoteResponse](#VoteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Vote](#Vote)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [UpdateCartShipmentItem](#UpdateCartShipmentItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_type | string? |  yes  | Shipment delivery type |
+ | article_uid | string? |  yes  | Article mongo id |
+ | quantity | number |  no  | Quantity of product in shipment |
+
+---
+
+
+ 
+ 
+ #### [UpdateCartShipmentRequest](#UpdateCartShipmentRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments | [[UpdateCartShipmentItem](#UpdateCartShipmentItem)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Files](#Files)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | values | [string]? |  yes  |  |
+ | key | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartPosCheckoutRequest](#CartPosCheckoutRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | merchant_code | string |  no  |  |
+ | pos | boolean |  no  |  |
+ | order_type | string? |  yes  |  |
+ | extra_meta | string |  no  |  |
+ | staff | string |  no  |  |
+ | delivery_address | string |  no  |  |
+ | payment_identifier | string |  no  |  |
+ | aggregator | string |  no  |  |
+ | callback_url | string |  no  |  |
+ | billing_address_id | number |  no  |  |
+ | billing_address | string |  no  |  |
+ | address_id | number |  no  |  |
+ | payment_mode | string? |  yes  |  |
+ | fyndstore_emp_id | string |  no  |  |
+ | payment_auto_confirm | boolean |  no  |  |
+ | pick_at_store_uid | number |  no  |  |
+ | ordering_store | number |  no  |  |
+ | meta | string |  no  |  |
+ | payment_params | string |  no  |  |
+ | files | [[Files](#Files)] |  no  | List of file url |
+
+---
+
+
+ 
+ 
+ #### [CartDeliveryModesResponse](#CartDeliveryModesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | available_modes | [string] |  no  | Available delivery modes |
+ | pickup_stores | [number] |  no  | Store pick up available store uids |
+
+---
+
+
+ 
+ 
+ #### [PickupStoreDetail](#PickupStoreDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | state | string |  no  |  |
+ | store_code | string |  no  |  |
+ | address | string |  no  |  |
+ | landmark | string |  no  |  |
+ | pincode | number |  no  |  |
+ | area_code_slug | string |  no  |  |
+ | area_code | string |  no  |  |
+ | email | string |  no  |  |
+ | name | string |  no  |  |
+ | address_type | string |  no  |  |
+ | uid | number |  no  |  |
+ | phone | string |  no  |  |
+ | country | string |  no  |  |
+ | city | string |  no  |  |
+ | area | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreDetailsResponse](#StoreDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[PickupStoreDetail](#PickupStoreDetail)] |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [GetPincodeCityResponse](#GetPincodeCityResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | request_uuid | string? |  yes  |  |
+ | stormbreaker_uuid | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | data | [[LogisticPincodeData](#LogisticPincodeData)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticPincodeData](#LogisticPincodeData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [LogisticMeta](#LogisticMeta) |  no  |  |
+ | parents | [[LogisticParents](#LogisticParents)] |  no  |  |
+ | sub_type | string |  no  |  |
+ | name | string |  no  |  |
+ | error | [LogisticError](#LogisticError) |  no  |  |
+ | uid | string |  no  |  |
+ | display_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticMeta](#LogisticMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zone | string |  no  |  |
+ | deliverables | [any] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticParents](#LogisticParents)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sub_type | string |  no  |  |
+ | name | string |  no  |  |
+ | display_name | string |  no  |  |
+ | uid | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticError](#LogisticError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetTatProductReqBody](#GetTatProductReqBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | location_details | [[LocationDetailsReq](#LocationDetailsReq)]? |  yes  |  |
+ | to_pincode | string? |  yes  |  |
+ | action | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDetailsReq](#LocationDetailsReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | from_pincode | string |  no  |  |
+ | articles | [[TatReqProductArticles](#TatReqProductArticles)] |  no  |  |
+ | fulfillment_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TatReqProductArticles](#TatReqProductArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | [LogisticRequestCategory](#LogisticRequestCategory) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticRequestCategory](#LogisticRequestCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | level | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetTatProductResponse](#GetTatProductResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | location_details | [[LocationDetails](#LocationDetails)]? |  yes  |  |
+ | request_uuid | string? |  yes  |  |
+ | error | string? |  yes  |  |
+ | to_city | string? |  yes  |  |
+ | source | string? |  yes  |  |
+ | to_pincode | string? |  yes  |  |
+ | action | string? |  yes  |  |
+ | stormbreaker_uuid | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | identifier | string? |  yes  |  |
+ | journey | string? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDetails](#LocationDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | from_pincode | string |  no  |  |
+ | articles | [[TatProductArticles](#TatProductArticles)] |  no  |  |
+ | fulfillment_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TatProductArticles](#TatProductArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string |  no  |  |
+ | category | [LogisticResponseCategory](#LogisticResponseCategory) |  no  |  |
+ | promise | [LogisticPromise](#LogisticPromise) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticResponseCategory](#LogisticResponseCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | level | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticPromise](#LogisticPromise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | [LogisticTimestamp](#LogisticTimestamp) |  no  |  |
+ | formatted | [Formatted](#Formatted) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticTimestamp](#LogisticTimestamp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Formatted](#Formatted)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | string |  no  |  |
+ | max | string |  no  |  |
+
+---
+
+
+

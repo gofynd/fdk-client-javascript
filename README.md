@@ -26,7 +26,7 @@ const {
 } = require("fdk-client-javascript");
 ```
 
-### Sample Usage (ApplicationClient):
+### Sample Usage - ApplicationClient
 
 ```javascript
 const config = new ApplicationConfig({
@@ -38,9 +38,9 @@ const applicationClient = new ApplicationClient(config);
 
 async function getProductDetails() {
   try {
-    const product = await applicationClient.catalog.getProductDetailBySlug(
-      "product-slug"
-    );
+    const product = await applicationClient.catalog.getProductDetailBySlug({
+        slug: "product-slug"
+      });
     console.log(product.name);
   } catch (err) {
     console.log(err);
@@ -50,7 +50,7 @@ async function getProductDetails() {
 getProductDetails();
 ```
 
-### Sample Usage (PlatformClient):
+### Sample Usage - PlatformClient
 
 ```javascript
 const { PlatformConfig, PlatformClient } = require("fdk-client-javascript");
@@ -72,7 +72,7 @@ async function getData() {
 
     // API's with application_id
     const customers = await client
-      .application("5fa24ca5756695531fa1eefb")
+      .application("APPLICATION_ID")
       .user.getCustomers();
     console.log("customers", customers);
   } catch (err) {
