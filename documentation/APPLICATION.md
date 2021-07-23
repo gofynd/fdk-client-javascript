@@ -347,7 +347,7 @@ const data = await catalog.getProductDetailBySlug( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 
 
@@ -395,8 +395,8 @@ const data = await catalog.getProductSizesBySlug( {  slug : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
-| storeId | number? | no | The ID of the store that is selling the product, e.g. 1,2,3. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
+| storeId | number | no | The ID of the store that is selling the product, e.g. 1,2,3. |  
 
 
 
@@ -448,10 +448,10 @@ const data = await catalog.getProductPriceBySlug( {  slug : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
-| size | string? | no | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
-| pincode | string? | no | The PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
-| storeId | number? | no | The ID of the store that is selling the product, e.g. 1,2,3. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
+| size | string | no | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
+| pincode | string | no | The PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
+| storeId | number | no | The ID of the store that is selling the product, e.g. 1,2,3. |  
 
 
 
@@ -507,12 +507,12 @@ const data = await catalog.getProductSellersBySlug( {  slug : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
-| size | string? | no | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
-| pincode | string? | no | The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
-| strategy | string? | no | Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal. |    
-| pageNo | number? | no | The page number to navigate through the given set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
+| size | string | no | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
+| pincode | string | no | The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
+| strategy | string | no | Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal. |    
+| pageNo | number | no | The page number to navigate through the given set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -558,7 +558,7 @@ const data = await catalog.getProductComparisonBySlugs( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | Array<string>? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/. |  
+| slug | Array<string> | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/. |  
 
 
 
@@ -604,7 +604,7 @@ const data = await catalog.getSimilarComparisonProductBySlug( {  slug : value })
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 
 
@@ -650,7 +650,7 @@ const data = await catalog.getComparedFrequentlyProductBySlug( {  slug : value }
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 
 
@@ -698,8 +698,8 @@ const data = await catalog.getProductSimilarByIdentifier( {  slug : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
-| similarType | string? | no | Similarity criteria such as basic, visual, price, seller, category and spec. Visual - Products having similar patterns, Price - Products in similar price range, Seller - Products sold by the same seller, Category - Products belonging to the same category, e.g. sports shoes, Spec - Products having similar specifications, e.g. phones with same memory. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |    
+| similarType | string | no | Similarity criteria such as basic, visual, price, seller, category and spec. Visual - Products having similar patterns, Price - Products in similar price range, Seller - Products sold by the same seller, Category - Products belonging to the same category, e.g. sports shoes, Spec - Products having similar specifications, e.g. phones with same memory. |  
 
 
 
@@ -745,7 +745,7 @@ const data = await catalog.getProductVariantsBySlug( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 
 
@@ -799,11 +799,11 @@ const data = await catalog.getProductStockByIds( {  itemId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| itemId | string? | no | The Item ID of the product (Max. 50 allowed) |    
-| alu | string? | no | ALU of the product (limited upto 50 ALU identifier in a single request) |    
-| skuCode | string? | no | Stock-keeping Unit of the product (limited upto 50 SKU Code in a single request) |    
-| ean | string? | no | European Article Number of the product (limited upto 50 EAN identifier in a single request) |    
-| upc | string? | no | Universal Product Code of the product (limited upto 50 UPC identifier in a single request) |  
+| itemId | string | no | The Item ID of the product (Max. 50 allowed) |    
+| alu | string | no | ALU of the product (limited upto 50 ALU identifier in a single request) |    
+| skuCode | string | no | Stock-keeping Unit of the product (limited upto 50 SKU Code in a single request) |    
+| ean | string | no | European Article Number of the product (limited upto 50 EAN identifier in a single request) |    
+| upc | string | no | Universal Product Code of the product (limited upto 50 UPC identifier in a single request) |  
 
 
 
@@ -853,9 +853,9 @@ const data = await catalog.getProductStockForTimeByIds( {  timestamp : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| timestamp | string? | no | Timestamp in UTC format (2020-07-23T10:27:50Z) |    
-| pageSize | number? | no | The number of items to retrieve in each page. |    
-| pageId | string? | no | Page ID to retrieve next set of results. |  
+| timestamp | string | no | Timestamp in UTC format (2020-07-23T10:27:50Z) |    
+| pageSize | number | no | The number of items to retrieve in each page. |    
+| pageId | string | no | Page ID to retrieve next set of results. |  
 
 
 
@@ -915,14 +915,14 @@ const data = await catalog.getProducts( {  q : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | string? | no | The search query for entering partial or full name of product, brand, category, or collection. |    
-| f | string? | no | The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
-| filters | boolean? | no | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
-| sortOn | string? | no | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
-| pageId | string? | no | Page ID to retrieve next set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |    
-| pageNo | number? | no | The page number to navigate through the given set of results. |    
-| pageType | string? | no | Available pagination types are cursor or number. |  
+| q | string | no | The search query for entering partial or full name of product, brand, category, or collection. |    
+| f | string | no | The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
+| filters | boolean | no | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
+| sortOn | string | no | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
+| pageId | string | no | Page ID to retrieve next set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |    
+| pageNo | number | no | The page number to navigate through the given set of results. |    
+| pageType | string | no | Available pagination types are cursor or number. |  
 
 
 
@@ -972,9 +972,9 @@ const data = await catalog.getBrands( {  department : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| department | string? | no | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/ |    
-| pageNo | number? | no | The page number to navigate through the given set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| department | string | no | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/ |    
+| pageNo | number | no | The page number to navigate through the given set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -1020,7 +1020,7 @@ const data = await catalog.getBrandDetailBySlug( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/. |  
 
 
 
@@ -1066,7 +1066,7 @@ const data = await catalog.getCategories( {  department : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| department | string? | no | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/ |  
+| department | string | no | The name of the department. Use this parameter to filter products by a particular department. See the list of available departments below. Also, you can get available departments from the endpoint /service/application/catalog/v1.0/departments/ |  
 
 
 
@@ -1112,7 +1112,7 @@ const data = await catalog.getCategoryDetailBySlug( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a brand. You can get slug value from the endpoint /service/application/catalog/v1.0/brands/. |  
 
 
 
@@ -1162,9 +1162,9 @@ const data = await catalog.getHomeProducts( {  sortOn : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| sortOn | string? | no | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. |    
-| pageId | string? | no | Page ID to retrieve next set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| sortOn | string | no | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. |    
+| pageId | string | no | Page ID to retrieve next set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -1251,7 +1251,7 @@ const data = await catalog.getSearchResults( {  q : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | string? | no | The search query for entering partial or full name of a product, brand or category. For example, if the given search query `q` is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_, __skin cream_ etc. |  
+| q | string | no | The search query for entering partial or full name of a product, brand or category. For example, if the given search query `q` is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_, __skin cream_ etc. |  
 
 
 
@@ -1301,9 +1301,9 @@ const data = await catalog.getCollections( {  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number? | no | The page number to navigate through the given set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |    
-| tag | Array<string>? | no | List of tags  to filter collections |  
+| pageNo | number | no | The page number to navigate through the given set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |    
+| tag | Array<string> | no | List of tags  to filter collections |  
 
 
 
@@ -1359,12 +1359,12 @@ const data = await catalog.getCollectionItemsBySlug( {  slug : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. |    
-| f | string? | no | The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
-| filters | boolean? | no | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
-| sortOn | string? | no | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
-| pageId | string? | no | Page ID to retrieve next set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. |    
+| f | string | no | The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (||) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
+| filters | boolean | no | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
+| sortOn | string | no | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
+| pageId | string | no | Page ID to retrieve next set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -1410,7 +1410,7 @@ const data = await catalog.getCollectionDetailBySlug( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. |  
 
 
 
@@ -1460,9 +1460,9 @@ const data = await catalog.getFollowedListing( {  collectionType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| collectionType | string? | no | Type of collection followed, i.e. products, brands, or collections. |    
-| pageId | string? | no | Page ID to retrieve next set of results. |    
-| pageSize | number? | no | Page ID to retrieve next set of results. |  
+| collectionType | string | no | Type of collection followed, i.e. products, brands, or collections. |    
+| pageId | string | no | Page ID to retrieve next set of results. |    
+| pageSize | number | no | Page ID to retrieve next set of results. |  
 
 
 
@@ -1510,8 +1510,8 @@ const data = await catalog.unfollowById( {  collectionType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| collectionType | string? | no | Type of collection followed, i.e. products, brands, or collections. |    
-| collectionId | string? | no | The ID of the collection type. |  
+| collectionType | string | no | Type of collection followed, i.e. products, brands, or collections. |    
+| collectionId | string | no | The ID of the collection type. |  
 
 
 
@@ -1559,8 +1559,8 @@ const data = await catalog.followById( {  collectionType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| collectionType | string? | no | Type of collection followed, i.e. products, brands, or collections. |    
-| collectionId | string? | no | The ID of the collection type. |  
+| collectionType | string | no | Type of collection followed, i.e. products, brands, or collections. |    
+| collectionId | string | no | The ID of the collection type. |  
 
 
 
@@ -1608,8 +1608,8 @@ const data = await catalog.getFollowerCountById( {  collectionType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| collectionType | string? | no | Type of collection, i.e. products, brands, or collections. |    
-| collectionId | string? | no | The ID of the collection type. |  
+| collectionType | string | no | Type of collection, i.e. products, brands, or collections. |    
+| collectionId | string | no | The ID of the collection type. |  
 
 
 
@@ -1655,7 +1655,7 @@ const data = await catalog.getFollowIds( {  collectionType : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| collectionType | string? | no | Type of collection, i.e. products, brands, collections. |  
+| collectionType | string | no | Type of collection, i.e. products, brands, collections. |  
 
 
 
@@ -1711,12 +1711,12 @@ const data = await catalog.getStores( {  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number? | no | The page number to navigate through the given set of results. |    
-| pageSize | number? | no | Number of items to retrieve in each page. |    
-| q | string? | no | Search a store by its name or store_code. |    
-| range | number? | no | Use this to retrieve stores within a particular range in meters, e.g. 10000, to indicate a 10km range |    
-| latitude | number? | no | Latitude of the location from where one wants to retreive the nearest stores, e.g. 72.8691788 |    
-| longitude | number? | no | Longitude of the location from where one wants to retreive the nearest stores, e.g. 19.1174114 |  
+| pageNo | number | no | The page number to navigate through the given set of results. |    
+| pageSize | number | no | Number of items to retrieve in each page. |    
+| q | string | no | Search a store by its name or store_code. |    
+| range | number | no | Use this to retrieve stores within a particular range in meters, e.g. 10000, to indicate a 10km range |    
+| latitude | number | no | Latitude of the location from where one wants to retreive the nearest stores, e.g. 72.8691788 |    
+| longitude | number | no | Longitude of the location from where one wants to retreive the nearest stores, e.g. 19.1174114 |  
 
 
 
@@ -1774,10 +1774,10 @@ const data = await cart.getCart( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |    
-| i | boolean? | no |  |    
-| b | boolean? | no |  |    
-| assignCardId | number? | no |  |  
+| uid | number | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| assignCardId | number | no |  |  
 
 
 
@@ -1823,7 +1823,7 @@ const data = await cart.getCartLastModified( {  uid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |  
+| uid | number | no |  |  
 
 
 
@@ -1865,8 +1865,8 @@ const data = await cart.addItems( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| i | boolean? | no |  |    
-| b | boolean? | no |  |  
+| i | boolean | no |  |    
+| b | boolean | no |  |  
 | body | [AddCartRequest](#AddCartRequest) | no | Request body |
 
 
@@ -2551,9 +2551,9 @@ const data = await cart.updateCart( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |    
-| i | boolean? | no |  |    
-| b | boolean? | no |  |  
+| uid | number | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |  
 | body | [UpdateCartRequest](#UpdateCartRequest) | no | Request body |
 
 
@@ -2961,7 +2961,7 @@ const data = await cart.getItemCount( {  uid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no | The unique identifier of the cart. |  
+| uid | number | no | The unique identifier of the cart. |  
 
 
 
@@ -3007,7 +3007,7 @@ const data = await cart.getCoupons( {  uid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |  
+| uid | number | no |  |  
 
 
 
@@ -3061,10 +3061,10 @@ const data = await cart.applyCoupon( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| i | boolean? | no |  |    
-| b | boolean? | no |  |    
-| p | boolean? | no |  |    
-| uid | number? | no |  |  
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| p | boolean | no |  |    
+| uid | number | no |  |  
 | body | [ApplyCouponRequest](#ApplyCouponRequest) | no | Request body |
 
 
@@ -3096,7 +3096,7 @@ const data = await cart.removeCoupon( {  uid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no | The unique identifier of the cart |  
+| uid | number | no | The unique identifier of the cart |  
 
 
 
@@ -3148,10 +3148,10 @@ const data = await cart.getBulkDiscountOffers( {  itemId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| itemId | number? | no | The Item ID of the product |    
-| articleId | string? | no | Article Mongo ID |    
-| uid | number? | no | UID of the product |    
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+| itemId | number | no | The Item ID of the product |    
+| articleId | string | no | Article Mongo ID |    
+| uid | number | no | UID of the product |    
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 
 
@@ -3274,9 +3274,9 @@ const data = await cart.applyRewardPoints( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |    
-| i | boolean? | no |  |    
-| b | boolean? | no |  |  
+| uid | number | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |  
 | body | [RewardPointRequest](#RewardPointRequest) | no | Request body |
 
 
@@ -3330,11 +3330,11 @@ const data = await cart.getAddresses( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |    
-| mobileNo | string? | no |  |    
-| checkoutMode | string? | no |  |    
-| tags | string? | no |  |    
-| isDefault | boolean? | no |  |  
+| uid | number | no |  |    
+| mobileNo | string | no |  |    
+| checkoutMode | string | no |  |    
+| tags | string | no |  |    
+| isDefault | boolean | no |  |  
 
 
 
@@ -3435,12 +3435,12 @@ const data = await cart.getAddressById( {  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number? | no |  |    
-| uid | number? | no |  |    
-| mobileNo | string? | no |  |    
-| checkoutMode | string? | no |  |    
-| tags | string? | no |  |    
-| isDefault | boolean? | no |  |  
+| id | number | no |  |    
+| uid | number | no |  |    
+| mobileNo | string | no |  |    
+| checkoutMode | string | no |  |    
+| tags | string | no |  |    
+| isDefault | boolean | no |  |  
 
 
 
@@ -3488,7 +3488,7 @@ const data = await cart.updateAddress( {  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number? | no | ID allotted to the selected address |  
+| id | number | no | ID allotted to the selected address |  
 | body | [Address](#Address) | no | Request body |
 
 
@@ -3520,7 +3520,7 @@ const data = await cart.removeAddress( {  id : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number? | no | ID allotted to the selected address |  
+| id | number | no | ID allotted to the selected address |  
 
 
 
@@ -3558,9 +3558,9 @@ const data = await cart.selectAddress( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |    
-| i | boolean? | no |  |    
-| b | boolean? | no |  |  
+| uid | number | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |  
 | body | [SelectCartAddressRequest](#SelectCartAddressRequest) | no | Request body |
 
 
@@ -3594,7 +3594,7 @@ const data = await cart.selectPaymentMode( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | string? | no |  |  
+| uid | string | no |  |  
 | body | [UpdateCartPaymentRequest](#UpdateCartPaymentRequest) | no | Request body |
 
 
@@ -3650,12 +3650,12 @@ const data = await cart.validateCouponForPayment( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | string? | no |  |    
-| addressId | string? | no |  |    
-| paymentMode | string? | no |  |    
-| paymentIdentifier | string? | no |  |    
-| aggregatorName | string? | no |  |    
-| merchantCode | string? | no |  |  
+| uid | string | no |  |    
+| addressId | string | no |  |    
+| paymentMode | string | no |  |    
+| paymentIdentifier | string | no |  |    
+| aggregatorName | string | no |  |    
+| merchantCode | string | no |  |  
 
 
 
@@ -3707,10 +3707,10 @@ const data = await cart.getShipments( {  p : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| p | boolean? | no | This is a boolean value. Select `true` for getting a payment option in response. |    
-| uid | number? | no | The unique identifier of the cart |    
-| addressId | number? | no | ID allotted to the selected address |    
-| areaCode | string? | no | The PIN Code of the destination address, e.g. 400059 |  
+| p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
+| uid | number | no | The unique identifier of the cart |    
+| addressId | number | no | ID allotted to the selected address |    
+| areaCode | string | no | The PIN Code of the destination address, e.g. 400059 |  
 
 
 
@@ -4820,7 +4820,7 @@ const data = await cart.updateCartMeta( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no | The unique identifier of the cart |  
+| uid | number | no | The unique identifier of the cart |  
 | body | [CartMetaRequest](#CartMetaRequest) | no | Request body |
 
 
@@ -4925,7 +4925,7 @@ const data = await cart.getCartSharedItems( {  token : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| token | string? | no | Token of the shared short link |  
+| token | string | no | Token of the shared short link |  
 
 
 
@@ -4973,8 +4973,8 @@ const data = await cart.updateCartWithSharedItems( {  token : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| token | string? | no | Token of the shared short link |    
-| action | string? | no | Operation to perform on the existing cart merge or replace. |  
+| token | string | no | Token of the shared short link |    
+| action | string | no | Operation to perform on the existing cart merge or replace. |  
 
 
 
@@ -5314,8 +5314,8 @@ const data = await common.getLocations( {  locationType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| locationType | string? | no | Provide location type to query on |    
-| id | string? | no | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. |  
+| locationType | string | no | Provide location type to query on |    
+| id | string | no | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. |  
 
 
 
@@ -5367,7 +5367,7 @@ const data = await lead.getTicket( {  id : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string? | no | ID of ticket to be retrieved |  
+| id | string | no | ID of ticket to be retrieved |  
 
 
 
@@ -5617,7 +5617,7 @@ const data = await lead.createHistory( {  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string? | no | Ticket ID for which history is created |  
+| id | string | no | Ticket ID for which history is created |  
 | body | [TicketHistoryPayload](#TicketHistoryPayload) | no | Request body |
 
 
@@ -5955,7 +5955,7 @@ const data = await lead.getCustomForm( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | Slug of form whose response is getting submitted |  
+| slug | string | no | Slug of form whose response is getting submitted |  
 
 
 
@@ -6058,7 +6058,7 @@ const data = await lead.submitCustomForm( {  slug : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | Slug of form whose response is getting submitted |  
+| slug | string | no | Slug of form whose response is getting submitted |  
 | body | [CustomFormSubmissionPayload](#CustomFormSubmissionPayload) | no | Request body |
 
 
@@ -6308,7 +6308,7 @@ const data = await lead.getParticipantsInsideVideoRoom( {  uniqueName : value })
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uniqueName | string? | no | Unique name of Video Room |  
+| uniqueName | string | no | Unique name of Video Room |  
 
 
 
@@ -6367,7 +6367,7 @@ const data = await lead.getTokenForVideoRoom( {  uniqueName : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uniqueName | string? | no | Unique name of Video Room |  
+| uniqueName | string | no | Unique name of Video Room |  
 
 
 
@@ -6432,7 +6432,7 @@ const data = await theme.getAllPages( {  themeId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| themeId | string? | no | ID of the theme to be retrieved |  
+| themeId | string | no | ID of the theme to be retrieved |  
 
 
 
@@ -6491,8 +6491,8 @@ const data = await theme.getPage( {  themeId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| themeId | string? | no | ID of the theme to be retrieved |    
-| pageValue | string? | no | Value of the page to be retrieved |  
+| themeId | string | no | ID of the theme to be retrieved |    
+| pageValue | string | no | Value of the page to be retrieved |  
 
 
 
@@ -6601,7 +6601,7 @@ const data = await theme.getThemeForPreview( {  themeId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| themeId | string? | no | ID of the theme to be retrieved |  
+| themeId | string | no | ID of the theme to be retrieved |  
 
 
 
@@ -6890,7 +6890,7 @@ const data = await user.loginWithOTP( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [SendOtpRequestSchema](#SendOtpRequestSchema) | no | Request body |
 
 
@@ -7005,7 +7005,7 @@ const data = await user.sendResetPasswordEmail( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [SendResetPasswordEmailRequestSchema](#SendResetPasswordEmailRequestSchema) | no | Request body |
 
 
@@ -7210,7 +7210,7 @@ const data = await user.registerWithForm( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [FormRegisterRequestSchema](#FormRegisterRequestSchema) | no | Request body |
 
 
@@ -7475,7 +7475,7 @@ const data = await user.sendOTPOnMobile( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [SendMobileOtpRequestSchema](#SendMobileOtpRequestSchema) | no | Request body |
 
 
@@ -7523,7 +7523,7 @@ const data = await user.verifyMobileOTP( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [VerifyOtpRequestSchema](#VerifyOtpRequestSchema) | no | Request body |
 
 
@@ -7582,7 +7582,7 @@ const data = await user.sendOTPOnEmail( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [SendEmailOtpRequestSchema](#SendEmailOtpRequestSchema) | no | Request body |
 
 
@@ -7630,7 +7630,7 @@ const data = await user.verifyEmailOTP( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [VerifyEmailOtpRequestSchema](#VerifyEmailOtpRequestSchema) | no | Request body |
 
 
@@ -7780,7 +7780,7 @@ const data = await user.getPlatformConfig( {  name : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| name | string? | no | Name of the application, e.g. Fynd |  
+| name | string | no | Name of the application, e.g. Fynd |  
 
 
 
@@ -7828,7 +7828,7 @@ const data = await user.updateProfile( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [EditProfileRequestSchema](#EditProfileRequestSchema) | no | Request body |
 
 
@@ -7887,7 +7887,7 @@ const data = await user.addMobileNumber( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [EditMobileRequestSchema](#EditMobileRequestSchema) | no | Request body |
 
 
@@ -7954,12 +7954,12 @@ const data = await user.deleteMobileNumber( {  active : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |    
-| active | boolean? | no | This is a boolean value to check if mobile number is active 1.True - Number is active 2. False - Number is inactive |    
-| primary | boolean? | no | This is a boolean value to check if mobile number is primary number (main number) 1. True - Number is primary 2. False - Number is not primary |    
-| verified | boolean? | no | This is a boolean value to check if mobile number is verified 1. True - Number is verified 2.False - Number is not verified yet |    
-| countryCode | string? | no | Country code of the phone number, e.g. 91 |    
-| phone | string? | no | Phone number |  
+| platform | string | no | ID of the application |    
+| active | boolean | no | This is a boolean value to check if mobile number is active 1.True - Number is active 2. False - Number is inactive |    
+| primary | boolean | no | This is a boolean value to check if mobile number is primary number (main number) 1. True - Number is primary 2. False - Number is not primary |    
+| verified | boolean | no | This is a boolean value to check if mobile number is verified 1. True - Number is verified 2.False - Number is not verified yet |    
+| countryCode | string | no | Country code of the phone number, e.g. 91 |    
+| phone | string | no | Phone number |  
 
 
 
@@ -8074,7 +8074,7 @@ const data = await user.sendVerificationLinkToMobile( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [SendVerificationLinkMobileRequestSchema](#SendVerificationLinkMobileRequestSchema) | no | Request body |
 
 
@@ -8133,7 +8133,7 @@ const data = await user.addEmail( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [EditEmailRequestSchema](#EditEmailRequestSchema) | no | Request body |
 
 
@@ -8198,11 +8198,11 @@ const data = await user.deleteEmail( {  active : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |    
-| active | boolean? | no | This is a boolean value to check if email ID is active 1. True - Email ID is active 2.False - Email ID is inactive |    
-| primary | boolean? | no | This is a boolean value to check if email ID is primary (main email ID) 1. True - Email ID is primary 2.False - Email ID is not primary |    
-| verified | boolean? | no | This is a boolean value to check if email ID is verified 1. True - Email ID is verified 2.False - Email ID is not verified yet |    
-| email | string? | no | The email ID to delete |  
+| platform | string | no | ID of the application |    
+| active | boolean | no | This is a boolean value to check if email ID is active 1. True - Email ID is active 2.False - Email ID is inactive |    
+| primary | boolean | no | This is a boolean value to check if email ID is primary (main email ID) 1. True - Email ID is primary 2.False - Email ID is not primary |    
+| verified | boolean | no | This is a boolean value to check if email ID is verified 1. True - Email ID is verified 2.False - Email ID is not verified yet |    
+| email | string | no | The email ID to delete |  
 
 
 
@@ -8317,7 +8317,7 @@ const data = await user.sendVerificationLinkToEmail( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| platform | string? | no | ID of the application |  
+| platform | string | no | ID of the application |  
 | body | [EditEmailRequestSchema](#EditEmailRequestSchema) | no | Request body |
 
 
@@ -8434,8 +8434,8 @@ const data = await content.getBlog( {  slug : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a blog. You can get slug value from the endpoint /service/application/content/v1.0/blogs/. |    
-| rootId | string? | no | ID given to the HTML element |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a blog. You can get slug value from the endpoint /service/application/content/v1.0/blogs/. |    
+| rootId | string | no | ID given to the HTML element |  
 
 
 
@@ -8494,8 +8494,8 @@ const data = await content.getBlogs( {  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1.  |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -8645,7 +8645,7 @@ const data = await content.getFaqBySlug( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of an FAQ. You can get slug value from the endpoint /service/application/content/v1.0/faq. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of an FAQ. You can get slug value from the endpoint /service/application/content/v1.0/faq. |  
 
 
 
@@ -8691,7 +8691,7 @@ const data = await content.getFaqCategoryBySlug( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. |  
 
 
 
@@ -8737,7 +8737,7 @@ const data = await content.getFaqsByCategorySlug( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. |  
 
 
 
@@ -8889,8 +8889,8 @@ const data = await content.getNavigations( {  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1.  |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -8949,8 +8949,8 @@ const data = await content.getPage( {  slug : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v1.0/pages/. |    
-| rootId | string? | no | ID given to the HTML element |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v1.0/pages/. |    
+| rootId | string | no | ID given to the HTML element |  
 
 
 
@@ -9009,8 +9009,8 @@ const data = await content.getPages( {  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1.  |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -9121,8 +9121,8 @@ const data = await content.getSlideshows( {  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1.  |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -9179,7 +9179,7 @@ const data = await content.getSlideshow( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value from the endpoint /service/application/content/v1.0/slideshow/. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value from the endpoint /service/application/content/v1.0/slideshow/. |  
 
 
 
@@ -9560,7 +9560,7 @@ const data = await share.getProductQRCodeBySlug( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint. |  
 
 
 
@@ -9606,7 +9606,7 @@ const data = await share.getCollectionQRCodeBySlug( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint. |  
 
 
 
@@ -9652,7 +9652,7 @@ const data = await share.getUrlQRCode( {  url : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| url | string? | no | A link or a web address |  
+| url | string | no | A link or a web address |  
 
 
 
@@ -9743,7 +9743,7 @@ const data = await share.getShortLinkByHash( {  hash : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| hash | string? | no | A string value used for converting long URL to short URL and vice-versa. |  
+| hash | string | no | A string value used for converting long URL to short URL and vice-versa. |  
 
 
 
@@ -9789,7 +9789,7 @@ const data = await share.getOriginalShortLinkByHash( {  hash : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| hash | string? | no | A string value used for converting long URL to short URL and vice-versa. |  
+| hash | string | no | A string value used for converting long URL to short URL and vice-versa. |  
 
 
 
@@ -9843,7 +9843,7 @@ const data = await filestorage.startUpload( {  namespace : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| namespace | string? | no | Name of the bucket created for storing objects. |  
+| namespace | string | no | Name of the bucket created for storing objects. |  
 | body | [StartRequest](#StartRequest) | no | Request body |
 
 
@@ -9909,7 +9909,7 @@ const data = await filestorage.completeUpload( {  namespace : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| namespace | string? | no | Name of the bucket created for storing objects. |  
+| namespace | string | no | Name of the bucket created for storing objects. |  
 | body | [StartResponse](#StartResponse) | no | Request body |
 
 
@@ -10147,9 +10147,9 @@ const data = await configuration.getOrderingStores( {  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10. |    
-| q | string? | no | Store code or name of the ordering store. |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
+| q | string | no | Store code or name of the ordering store. |  
 
 
 
@@ -10318,7 +10318,7 @@ const data = await configuration.getCurrencyById( {  id : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string? | no | Object ID assigned to the currency |  
+| id | string | no | Object ID assigned to the currency |  
 
 
 
@@ -10495,9 +10495,9 @@ const data = await configuration.getAppStaffs( {  orderIncent : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| orderIncent | boolean? | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
-| orderingStore | number? | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
-| user | string? | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
+| orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
+| orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
+| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
 
 
 
@@ -10551,8 +10551,8 @@ const data = await payment.getAggregatorsConfig( {  xApiToken : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| xApiToken | string? | no | Used for basic authentication. |    
-| refresh | boolean? | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |  
+| xApiToken | string | no | Used for basic authentication. |    
+| refresh | boolean | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |  
 
 
 
@@ -10643,7 +10643,7 @@ const data = await payment.getActiveCardAggregator( {  refresh : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| refresh | boolean? | no |  |  
+| refresh | boolean | no |  |  
 
 
 
@@ -10689,7 +10689,7 @@ const data = await payment.getActiveUserCards( {  forceRefresh : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| forceRefresh | boolean? | no |  |  
+| forceRefresh | boolean | no |  |  
 
 
 
@@ -10972,13 +10972,13 @@ const data = await payment.getPaymentModeRoutes( {  amount : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| amount | number? | no | Payable amount. |    
-| cartId | string? | no | Identifier of the cart. |    
-| pincode | string? | no | The PIN Code of the destination address, e.g. 400059 |    
-| checkoutMode | string? | no | Option to checkout for self or for others. |    
-| refresh | boolean? | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |    
-| assignCardId | string? | no | Token of user's debit or credit card. |    
-| userDetails | string? | no | URIencoded JSON containing details of an anonymous user. |  
+| amount | number | no | Payable amount. |    
+| cartId | string | no | Identifier of the cart. |    
+| pincode | string | no | The PIN Code of the destination address, e.g. 400059 |    
+| checkoutMode | string | no | Option to checkout for self or for others. |    
+| refresh | boolean | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |    
+| assignCardId | string | no | Token of user's debit or credit card. |    
+| userDetails | string | no | URIencoded JSON containing details of an anonymous user. |  
 
 
 
@@ -11038,14 +11038,14 @@ const data = await payment.getPosPaymentModeRoutes( {  amount : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| amount | number? | no | Payable amount. |    
-| cartId | string? | no | Identifier of the cart. |    
-| pincode | string? | no | The PIN Code of the destination address, e.g. 400059 |    
-| checkoutMode | string? | no | Option to checkout for self or for others. |    
-| refresh | boolean? | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |    
-| assignCardId | string? | no | Token of user's debit or credit card. |    
-| orderType | string? | no | The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself. |    
-| userDetails | string? | no | URIencoded JSON containing details of an anonymous user. |  
+| amount | number | no | Payable amount. |    
+| cartId | string | no | Identifier of the cart. |    
+| pincode | string | no | The PIN Code of the destination address, e.g. 400059 |    
+| checkoutMode | string | no | Option to checkout for self or for others. |    
+| refresh | boolean | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |    
+| assignCardId | string | no | Token of user's debit or credit card. |    
+| orderType | string | no | The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself. |    
+| userDetails | string | no | URIencoded JSON containing details of an anonymous user. |  
 
 
 
@@ -11218,7 +11218,7 @@ const data = await payment.getUserBeneficiariesDetail( {  orderId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| orderId | string? | no | A unique number used for identifying and tracking your orders. |  
+| orderId | string | no | A unique number used for identifying and tracking your orders. |  
 
 
 
@@ -11264,7 +11264,7 @@ const data = await payment.verifyIfscCode( {  ifscCode : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| ifscCode | string? | no | A 11-digit alphanumeric code that uniquely identifies a bank branch. |  
+| ifscCode | string | no | A 11-digit alphanumeric code that uniquely identifies a bank branch. |  
 
 
 
@@ -11310,7 +11310,7 @@ const data = await payment.getOrderBeneficiariesDetail( {  orderId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| orderId | string? | no | A unique number used for identifying and tracking your orders. |  
+| orderId | string | no | A unique number used for identifying and tracking your orders. |  
 
 
 
@@ -11550,11 +11550,11 @@ const data = await order.getOrders( {  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number? | no | The number of items to retrieve in each page. Default value is 10. |    
-| fromDate | string? | no | The date from which the orders should be retrieved. |    
-| toDate | string? | no | The date till which the orders should be retrieved. |    
-| status | number? | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
+| fromDate | string | no | The date from which the orders should be retrieved. |    
+| toDate | string | no | The date till which the orders should be retrieved. |    
+| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |  
 
 
 
@@ -11600,7 +11600,7 @@ const data = await order.getOrderById( {  orderId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| orderId | string? | no | A unique number used for identifying and tracking your orders. |  
+| orderId | string | no | A unique number used for identifying and tracking your orders. |  
 
 
 
@@ -11646,7 +11646,7 @@ const data = await order.getShipmentById( {  shipmentId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | string? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| shipmentId | string | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
 
 
 
@@ -11692,7 +11692,7 @@ const data = await order.getShipmentReasons( {  shipmentId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | string? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| shipmentId | string | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
 
 
 
@@ -11740,7 +11740,7 @@ const data = await order.updateShipmentStatus( {  shipmentId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | string? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| shipmentId | string | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
 | body | [ShipmentStatusUpdateBody](#ShipmentStatusUpdateBody) | yes | Request body |
 
 
@@ -11786,7 +11786,7 @@ const data = await order.trackShipment( {  shipmentId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | string? | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| shipmentId | string | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
 
 
 
@@ -11832,7 +11832,7 @@ const data = await order.getPosOrderById( {  orderId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| orderId | string? | no | A unique number used for identifying and tracking your orders. |  
+| orderId | string | no | A unique number used for identifying and tracking your orders. |  
 
 
 
@@ -11929,7 +11929,7 @@ const data = await rewards.getOfferByName( {  name : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| name | string? | no | The name given to the offer. |  
+| name | string | no | The name given to the offer. |  
 
 
 
@@ -12063,8 +12063,8 @@ const data = await rewards.getUserPointsHistory( {  pageId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageId | string? | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -12300,11 +12300,11 @@ const data = await feedback.getAbuseReports( {  entityId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| entityId | string? | no | ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID). |    
-| entityType | string? | no | Type of entity, e.g. question, review or comment. |    
-| id | string? | no | abuse id |    
-| pageId | string? | no | Pagination page ID to retrieve next set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| entityId | string | no | ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID). |    
+| entityType | string | no | Type of entity, e.g. question, review or comment. |    
+| id | string | no | abuse id |    
+| pageId | string | no | Pagination page ID to retrieve next set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -12352,8 +12352,8 @@ const data = await feedback.getAttributes( {  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1.  |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -12444,7 +12444,7 @@ const data = await feedback.getAttribute( {  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. |  
 
 
 
@@ -12492,7 +12492,7 @@ const data = await feedback.updateAttribute( {  slug : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| slug | string? | no | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. |  
+| slug | string | no | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. |  
 | body | [UpdateAttributeRequest](#UpdateAttributeRequest) | yes | Request body |
 
 
@@ -12638,12 +12638,12 @@ const data = await feedback.getComments( {  entityType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| entityType | string? | no | Type of entity, e.g. question, review or comment. |    
-| id | string? | no | Comment ID |    
-| entityId | string? | no | ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID). |    
-| userId | string? | no | User ID - a flag/filter to get comments for a user. |    
-| pageId | string? | no | Pagination page ID to retrieve next set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| entityType | string | no | Type of entity, e.g. question, review or comment. |    
+| id | string | no | Comment ID |    
+| entityId | string | no | ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID). |    
+| userId | string | no | User ID - a flag/filter to get comments for a user. |    
+| pageId | string | no | Pagination page ID to retrieve next set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -12691,8 +12691,8 @@ const data = await feedback.checkEligibility( {  entityType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| entityType | string? | no | Type of entity, e.g. question, rate, review, answer, or comment. |    
-| entityId | string? | no | ID of the eligible entity as specified in the entity type. |  
+| entityType | string | no | Type of entity, e.g. question, rate, review, answer, or comment. |    
+| entityId | string | no | ID of the eligible entity as specified in the entity type. |  
 
 
 
@@ -12738,7 +12738,7 @@ const data = await feedback.deleteMedia( {  ids : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| ids | Array<string>? | no | List of media ID |  
+| ids | Array<string> | no | List of media ID |  
 
 
 
@@ -12884,12 +12884,12 @@ const data = await feedback.getMedias( {  entityType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| entityType | string? | no | Type of entity, e.g. question or product. |    
-| entityId | string? | no | ID of the eligible entity as specified in the entity type(question ID/product ID). |    
-| id | string? | no | ID of the media. |    
-| type | string? | no | Media type. |    
-| pageId | string? | no | Pagination page ID to retrieve next set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| entityType | string | no | Type of entity, e.g. question or product. |    
+| entityId | string | no | ID of the eligible entity as specified in the entity type(question ID/product ID). |    
+| id | string | no | ID of the media. |    
+| type | string | no | Media type. |    
+| pageId | string | no | Pagination page ID to retrieve next set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -12943,11 +12943,11 @@ const data = await feedback.getReviewSummaries( {  entityType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| entityType | string? | no | Type of entity, e.g. product, delivery, seller, order placed, order delivered, application, or template. |    
-| entityId | string? | no | ID of the eligible entity as specified in the entity type. |    
-| id | string? | no | Review summary identifier. |    
-| pageId | string? | no | Pagination page ID to retrieve next set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| entityType | string | no | Type of entity, e.g. product, delivery, seller, order placed, order delivered, application, or template. |    
+| entityId | string | no | ID of the eligible entity as specified in the entity type. |    
+| id | string | no | Review summary identifier. |    
+| pageId | string | no | Pagination page ID to retrieve next set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -13107,19 +13107,19 @@ const data = await feedback.getReviews( {  entityType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| entityType | string? | no | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, application, or template. |    
-| entityId | string? | no | ID of the eligible entity as specified in the entity type. |    
-| id | string? | no | ID of the review. |    
-| userId | string? | no | ID of the user. |    
-| media | string? | no | media type, e.g. image | video | video_file | video_link |    
-| rating | Array<number>? | no | rating filter, e.g. 1-5 |    
-| attributeRating | Array<string>? | no | Filter for attribute rating. |    
-| facets | boolean? | no | This is a boolean value for enabling metadata (facets). Selecting *true* will enable facets. |    
-| sort | string? | no | Sort by: default | top | recent |    
-| active | boolean? | no | Get the active reviews. |    
-| approve | boolean? | no | Get the approved reviews. |    
-| pageId | string? | no | Pagination page ID to retrieve next set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| entityType | string | no | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, application, or template. |    
+| entityId | string | no | ID of the eligible entity as specified in the entity type. |    
+| id | string | no | ID of the review. |    
+| userId | string | no | ID of the user. |    
+| media | string | no | media type, e.g. image | video | video_file | video_link |    
+| rating | Array<number> | no | rating filter, e.g. 1-5 |    
+| attributeRating | Array<string> | no | Filter for attribute rating. |    
+| facets | boolean | no | This is a boolean value for enabling metadata (facets). Selecting *true* will enable facets. |    
+| sort | string | no | Sort by: default | top | recent |    
+| active | boolean | no | Get the active reviews. |    
+| approve | boolean | no | Get the approved reviews. |    
+| pageId | string | no | Pagination page ID to retrieve next set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -13169,9 +13169,9 @@ const data = await feedback.getTemplates( {  templateId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| templateId | string? | no | ID of the feedback template. |    
-| entityId | string? | no | ID of the eligible entity as specified in the entity type. |    
-| entityType | string? | no | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, or application. |  
+| templateId | string | no | ID of the feedback template. |    
+| entityId | string | no | ID of the eligible entity as specified in the entity type. |    
+| entityType | string | no | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, or application. |  
 
 
 
@@ -13319,13 +13319,13 @@ const data = await feedback.getQuestionAndAnswers( {  entityType : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| entityType | string? | no | Type of entity, e.g. product, l3, etc. |    
-| entityId | string? | no | ID of the eligible entity as specified in the entity type. |    
-| id | string? | no | QNA ID |    
-| userId | string? | no | User ID |    
-| showAnswer | boolean? | no | This is a boolean value. Select *true* to display answers given. |    
-| pageId | string? | no | Pagination page ID to retrieve next set of results. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| entityType | string | no | Type of entity, e.g. product, l3, etc. |    
+| entityId | string | no | ID of the eligible entity as specified in the entity type. |    
+| id | string | no | QNA ID |    
+| userId | string | no | User ID |    
+| showAnswer | boolean | no | This is a boolean value. Select *true* to display answers given. |    
+| pageId | string | no | Pagination page ID to retrieve next set of results. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -13377,10 +13377,10 @@ const data = await feedback.getVotes( {  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | string? | no | vote ID |    
-| refType | string? | no | Entity type, e.g. review | comment. |    
-| pageNo | number? | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number? | no | The number of items to retrieve in each page. |  
+| id | string | no | vote ID |    
+| refType | string | no | Entity type, e.g. review | comment. |    
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
@@ -13528,10 +13528,10 @@ const data = await poscart.getCart( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |    
-| i | boolean? | no |  |    
-| b | boolean? | no |  |    
-| assignCardId | number? | no |  |  
+| uid | number | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| assignCardId | number | no |  |  
 
 
 
@@ -13577,7 +13577,7 @@ const data = await poscart.getCartLastModified( {  uid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |  
+| uid | number | no |  |  
 
 
 
@@ -13619,8 +13619,8 @@ const data = await poscart.addItems( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| i | boolean? | no |  |    
-| b | boolean? | no |  |  
+| i | boolean | no |  |    
+| b | boolean | no |  |  
 | body | [AddCartRequest](#AddCartRequest) | no | Request body |
 
 
@@ -14305,9 +14305,9 @@ const data = await poscart.updateCart( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |    
-| i | boolean? | no |  |    
-| b | boolean? | no |  |  
+| uid | number | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |  
 | body | [UpdateCartRequest](#UpdateCartRequest) | no | Request body |
 
 
@@ -14715,7 +14715,7 @@ const data = await poscart.getItemCount( {  uid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no | The unique identifier of the cart. |  
+| uid | number | no | The unique identifier of the cart. |  
 
 
 
@@ -14761,7 +14761,7 @@ const data = await poscart.getCoupons( {  uid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |  
+| uid | number | no |  |  
 
 
 
@@ -14815,10 +14815,10 @@ const data = await poscart.applyCoupon( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| i | boolean? | no |  |    
-| b | boolean? | no |  |    
-| p | boolean? | no |  |    
-| uid | number? | no |  |  
+| i | boolean | no |  |    
+| b | boolean | no |  |    
+| p | boolean | no |  |    
+| uid | number | no |  |  
 | body | [ApplyCouponRequest](#ApplyCouponRequest) | no | Request body |
 
 
@@ -14850,7 +14850,7 @@ const data = await poscart.removeCoupon( {  uid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no | The unique identifier of the cart |  
+| uid | number | no | The unique identifier of the cart |  
 
 
 
@@ -14902,10 +14902,10 @@ const data = await poscart.getBulkDiscountOffers( {  itemId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| itemId | number? | no | The Item ID of the product |    
-| articleId | string? | no | Article Mongo ID |    
-| uid | number? | no | UID of the product |    
-| slug | string? | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
+| itemId | number | no | The Item ID of the product |    
+| articleId | string | no | Article Mongo ID |    
+| uid | number | no | UID of the product |    
+| slug | string | no | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |  
 
 
 
@@ -15028,9 +15028,9 @@ const data = await poscart.applyRewardPoints( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |    
-| i | boolean? | no |  |    
-| b | boolean? | no |  |  
+| uid | number | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |  
 | body | [RewardPointRequest](#RewardPointRequest) | no | Request body |
 
 
@@ -15084,11 +15084,11 @@ const data = await poscart.getAddresses( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |    
-| mobileNo | string? | no |  |    
-| checkoutMode | string? | no |  |    
-| tags | string? | no |  |    
-| isDefault | boolean? | no |  |  
+| uid | number | no |  |    
+| mobileNo | string | no |  |    
+| checkoutMode | string | no |  |    
+| tags | string | no |  |    
+| isDefault | boolean | no |  |  
 
 
 
@@ -15189,12 +15189,12 @@ const data = await poscart.getAddressById( {  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number? | no |  |    
-| uid | number? | no |  |    
-| mobileNo | string? | no |  |    
-| checkoutMode | string? | no |  |    
-| tags | string? | no |  |    
-| isDefault | boolean? | no |  |  
+| id | number | no |  |    
+| uid | number | no |  |    
+| mobileNo | string | no |  |    
+| checkoutMode | string | no |  |    
+| tags | string | no |  |    
+| isDefault | boolean | no |  |  
 
 
 
@@ -15242,7 +15242,7 @@ const data = await poscart.updateAddress( {  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number? | no | ID allotted to the selected address |  
+| id | number | no | ID allotted to the selected address |  
 | body | [Address](#Address) | no | Request body |
 
 
@@ -15274,7 +15274,7 @@ const data = await poscart.removeAddress( {  id : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number? | no | ID allotted to the selected address |  
+| id | number | no | ID allotted to the selected address |  
 
 
 
@@ -15312,9 +15312,9 @@ const data = await poscart.selectAddress( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |    
-| i | boolean? | no |  |    
-| b | boolean? | no |  |  
+| uid | number | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |  
 | body | [SelectCartAddressRequest](#SelectCartAddressRequest) | no | Request body |
 
 
@@ -15348,7 +15348,7 @@ const data = await poscart.selectPaymentMode( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | string? | no |  |  
+| uid | string | no |  |  
 | body | [UpdateCartPaymentRequest](#UpdateCartPaymentRequest) | no | Request body |
 
 
@@ -15404,12 +15404,12 @@ const data = await poscart.validateCouponForPayment( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | string? | no |  |    
-| addressId | string? | no |  |    
-| paymentMode | string? | no |  |    
-| paymentIdentifier | string? | no |  |    
-| aggregatorName | string? | no |  |    
-| merchantCode | string? | no |  |  
+| uid | string | no |  |    
+| addressId | string | no |  |    
+| paymentMode | string | no |  |    
+| paymentIdentifier | string | no |  |    
+| aggregatorName | string | no |  |    
+| merchantCode | string | no |  |  
 
 
 
@@ -15467,13 +15467,13 @@ const data = await poscart.getShipments( {  pickAtStoreUid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pickAtStoreUid | number? | no |  |    
-| orderingStoreId | number? | no |  |    
-| p | boolean? | no | This is a boolean value. Select `true` for getting a payment option in response. |    
-| uid | number? | no | The unique identifier of the cart |    
-| addressId | number? | no | ID allotted to the selected address |    
-| areaCode | string? | no | The PIN Code of the destination address, e.g. 400059 |    
-| orderType | string? | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
+| pickAtStoreUid | number | no |  |    
+| orderingStoreId | number | no |  |    
+| p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
+| uid | number | no | The unique identifier of the cart |    
+| addressId | number | no | ID allotted to the selected address |    
+| areaCode | string | no | The PIN Code of the destination address, e.g. 400059 |    
+| orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
 
 
 
@@ -16169,11 +16169,11 @@ const data = await poscart.updateShipments( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| i | boolean? | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
-| p | boolean? | no | This is a boolean value. Select `true` for getting a payment option in response. |    
-| uid | number? | no | The unique identifier of the cart |    
-| addressId | number? | no | ID allotted to an address |    
-| orderType | string? | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
+| i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
+| p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
+| uid | number | no | The unique identifier of the cart |    
+| addressId | number | no | ID allotted to an address |    
+| orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
 | body | [UpdateCartShipmentRequest](#UpdateCartShipmentRequest) | no | Request body |
 
 
@@ -16862,7 +16862,7 @@ const data = await poscart.checkoutCart( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no |  |  
+| uid | number | no |  |  
 | body | [CartPosCheckoutRequest](#CartPosCheckoutRequest) | no | Request body |
 
 
@@ -17287,7 +17287,7 @@ const data = await poscart.updateCartMeta( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number? | no | The unique identifier of the cart |  
+| uid | number | no | The unique identifier of the cart |  
 | body | [CartMetaRequest](#CartMetaRequest) | no | Request body |
 
 
@@ -17335,8 +17335,8 @@ const data = await poscart.getAvailableDeliveryModes( {  areaCode : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| areaCode | string? | no |  |    
-| uid | number? | no |  |  
+| areaCode | string | no |  |    
+| uid | number | no |  |  
 
 
 
@@ -17382,7 +17382,7 @@ const data = await poscart.getStoreAddressByUid( {  storeUid : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| storeUid | number? | no |  |  
+| storeUid | number | no |  |  
 
 
 
@@ -17487,7 +17487,7 @@ const data = await poscart.getCartSharedItems( {  token : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| token | string? | no | Token of the shared short link |  
+| token | string | no | Token of the shared short link |  
 
 
 
@@ -17535,8 +17535,8 @@ const data = await poscart.updateCartWithSharedItems( {  token : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| token | string? | no | Token of the shared short link |    
-| action | string? | no | Operation to perform on the existing cart merge or replace. |  
+| token | string | no | Token of the shared short link |    
+| action | string | no | Operation to perform on the existing cart merge or replace. |  
 
 
 
@@ -17919,7 +17919,7 @@ const data = await logistic.getPincodeCity( {  pincode : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pincode | string? | no | The PIN Code of the area, e.g. 400059 |  
+| pincode | string | no | The PIN Code of the area, e.g. 400059 |  
 
 
 
@@ -18096,7 +18096,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | image_nature | string |  no  |  |
  | attributes | string |  no  |  |
  | teaser_tag | string |  no  |  |
- | slug | string? |  yes  |  |
+ | slug | string |  yes  |  |
  | short_description | string |  no  |  |
  | similars | [string] |  no  |  |
  | item_type | string |  no  |  |
@@ -18402,7 +18402,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | sort_on | [[ProductSizeSellerFilter](#ProductSizeSellerFilter)] |  no  |  |
- | page | [Page](#Page)? |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
  | items | [[ProductSizePriceResponse](#ProductSizePriceResponse)] |  no  |  |
 
 ---
@@ -18601,7 +18601,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
  | items | [[ProductStockStatusItem](#ProductStockStatusItem)] |  no  |  |
 
 ---
@@ -18628,8 +18628,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | ---------- | ---- | -------- | ----------- |
  | logo | string |  no  |  |
  | kind | string |  no  |  |
- | name | string? |  yes  |  |
- | display | string? |  yes  |  |
+ | name | string |  yes  |  |
+ | display | string |  yes  |  |
 
 ---
 
@@ -18647,10 +18647,10 @@ Success. Returns a JSON object containing the city name, state and country ident
  | currency_code | string |  no  |  |
  | count | number |  no  |  |
  | min | number |  no  |  |
- | display | string? |  yes  |  |
+ | display | string |  yes  |  |
  | selected_max | number |  no  |  |
  | max | number |  no  |  |
- | is_selected | boolean? |  yes  |  |
+ | is_selected | boolean |  yes  |  |
  | value | string |  no  |  |
 
 ---
@@ -18662,8 +18662,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | [ProductFiltersKey](#ProductFiltersKey)? |  yes  |  |
- | values | [[ProductFiltersValue](#ProductFiltersValue)]? |  yes  |  |
+ | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
+ | values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
 
 ---
 
@@ -18697,7 +18697,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | image_nature | string |  no  |  |
  | attributes | string |  no  |  |
  | teaser_tag | string |  no  |  |
- | slug | string? |  yes  |  |
+ | slug | string |  yes  |  |
  | short_description | string |  no  |  |
  | similars | [string] |  no  |  |
  | item_type | string |  no  |  |
@@ -18712,7 +18712,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
- | page | [Page](#Page)? |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
  | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
  | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
 
@@ -18755,7 +18755,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
  | items | [[BrandItem](#BrandItem)] |  no  |  |
 
 ---
@@ -18898,7 +18898,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
  | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
  | message | string |  no  |  |
 
@@ -19030,7 +19030,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  |
- | page | [Page](#Page)? |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
  | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  |
 
 ---
@@ -19069,8 +19069,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  yes  |  |
 
 ---
 
@@ -19081,8 +19081,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | message | string? |  yes  |  |
+ | id | string |  yes  |  |
+ | message | string |  yes  |  |
 
 ---
 
@@ -19160,8 +19160,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
- | items | [[Store1](#Store1)]? |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
+ | items | [[Store1](#Store1)] |  yes  |  |
 
 ---
 
@@ -19513,7 +19513,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | quantity | number |  no  |  |
  | article | [ProductArticle](#ProductArticle) |  no  |  |
  | coupon_message | string |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer)? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
  | product | [Product](#Product) |  no  |  |
  | discount | string |  no  |  |
  | message | string |  no  |  |
@@ -19602,7 +19602,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | ---------- | ---- | -------- | ----------- |
  | quantity | number |  no  |  |
  | item_index | number |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer)? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
  | item_size | string |  no  |  |
  | article_id | string |  no  |  |
  | extra_meta | string |  no  |  |
@@ -19617,7 +19617,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | operation | string? |  yes  |  |
+ | operation | string |  yes  |  |
  | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
 
 ---
@@ -19700,7 +19700,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon_code | string? |  yes  | Coupon code to be applied |
+ | coupon_code | string |  yes  | Coupon code to be applied |
 
 ---
 
@@ -19778,7 +19778,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | points | boolean? |  yes  |  |
+ | points | boolean |  yes  |  |
 
 ---
 
@@ -19927,7 +19927,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
+ | success | boolean |  yes  |  |
  | coupon_validity | [CouponValidity](#CouponValidity) |  no  |  |
  | message | string |  no  |  |
 
@@ -19988,7 +19988,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | billing_address | string |  no  |  |
- | payment_mode | string? |  yes  |  |
+ | payment_mode | string |  yes  |  |
  | delivery_address | string |  no  |  |
  | address_id | number |  no  |  |
  | callback_url | string |  no  |  |
@@ -20104,7 +20104,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | meta | string |  no  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
- | uid | number? |  yes  | Cart uid for generating sharing |
+ | uid | number |  yes  | Cart uid for generating sharing |
 
 ---
 
@@ -20262,7 +20262,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | has_previous | boolean |  no  |  |
  | has_next | boolean |  no  |  |
  | current | number |  no  |  |
- | type | string? |  yes  |  |
+ | type | string |  yes  |  |
  | size | number |  no  |  |
 
 ---
@@ -20298,12 +20298,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string? |  yes  | Slug for the form |
- | title | string? |  yes  | Title for the form |
- | inputs | [string]? |  yes  | List of all the form components |
+ | slug | string |  yes  | Slug for the form |
+ | title | string |  yes  | Title for the form |
+ | inputs | [string] |  yes  | List of all the form components |
  | description | string |  no  | Description of the form |
  | header_image | string |  no  | Header image that is to be shown for the form |
- | priority | any? |  yes  | Describes the priority of the tickets created by the form |
+ | priority | any |  yes  | Describes the priority of the tickets created by the form |
  | should_notify | boolean |  no  | Indicates if staff should be notified when a response is received |
  | success_message | string |  no  | Success message that will be shown on submission |
  | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Describes how polling will be done for the tickets createds |
@@ -20317,10 +20317,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string? |  yes  | Title for the form |
- | inputs | [string]? |  yes  | List of all the form components |
+ | title | string |  yes  | Title for the form |
+ | inputs | [string] |  yes  | List of all the form components |
  | description | string |  no  | Description of the form |
- | priority | any? |  yes  | Describes the priority of the tickets created by the form |
+ | priority | any |  yes  | Describes the priority of the tickets created by the form |
  | header_image | string |  no  | Header image that is to be shown for the form |
  | should_notify | boolean |  no  | Indicates if staff should be notified when a response is received |
  | login_required | boolean |  no  | Denotes if login is required to make a form response submission |
@@ -20354,7 +20354,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | agent_id | string? |  yes  | Agent's unique ID |
+ | agent_id | string |  yes  | Agent's unique ID |
 
 ---
 
@@ -20365,7 +20365,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_name | string? |  yes  | Video Room's unique name |
+ | unique_name | string |  yes  | Video Room's unique name |
 
 ---
 
@@ -20376,7 +20376,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  | Denotes if operation was successfully |
+ | success | boolean |  yes  | Denotes if operation was successfully |
 
 ---
 
@@ -20387,7 +20387,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_name | string? |  yes  | Ticket id |
+ | unique_name | string |  yes  | Ticket id |
  | notify | [[NotifyUser](#NotifyUser)] |  no  | List of people to be notified |
 
 ---
@@ -20399,8 +20399,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  | Country code |
- | phone_number | string? |  yes  | Phone number |
+ | country_code | string |  yes  | Country code |
+ | phone_number | string |  yes  | Phone number |
 
 ---
 
@@ -20411,10 +20411,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | priorities | [[Priority](#Priority)]? |  yes  | List of possible priorities for tickets |
+ | priorities | [[Priority](#Priority)] |  yes  | List of possible priorities for tickets |
  | categories | [[TicketCategory](#TicketCategory)] |  no  | List of possible categories for tickets |
- | statuses | [[Status](#Status)]? |  yes  | List of possible statuses for tickets |
- | assignees | [string]? |  yes  | List of support staff availble for tickets assignment |
+ | statuses | [[Status](#Status)] |  yes  | List of possible statuses for tickets |
+ | assignees | [string] |  yes  | List of support staff availble for tickets assignment |
 
 ---
 
@@ -20425,8 +20425,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string? |  yes  | Details of history event |
- | type | any? |  yes  | Type of history event |
+ | value | string |  yes  | Details of history event |
+ | type | any |  yes  | Type of history event |
 
 ---
 
@@ -20437,7 +20437,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | [[KeyValue](#KeyValue)]? |  yes  | Form response |
+ | response | [[KeyValue](#KeyValue)] |  yes  | Form response |
  | attachments | [[TicketAsset](#TicketAsset)] |  no  | List of all attachments related to the form |
 
 ---
@@ -20449,8 +20449,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  | Parameter for evaluating |
- | value | string? |  yes  | Response for the parameter |
+ | key | string |  yes  | Parameter for evaluating |
+ | value | string |  yes  | Response for the parameter |
 
 ---
 
@@ -20461,7 +20461,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | access_token | string? |  yes  | Access token to be used for video room |
+ | access_token | string |  yes  | Access token to be used for video room |
 
 ---
 
@@ -20472,7 +20472,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | participants | [[Participant](#Participant)]? |  yes  | List of participants of the video room |
+ | participants | [[Participant](#Participant)] |  yes  | List of participants of the video room |
 
 ---
 
@@ -20537,7 +20537,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ticket | [Ticket](#Ticket)? |  yes  | Ticket created on form submission |
+ | ticket | [Ticket](#Ticket) |  yes  | Ticket created on form submission |
 
 ---
 
@@ -20549,7 +20549,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | application_id | string |  no  | Application ID related to the ticket |
- | company_id | string? |  yes  | Company ID related to the ticket |
+ | company_id | string |  yes  | Company ID related to the ticket |
 
 ---
 
@@ -20560,7 +20560,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_agent | string? |  yes  | Useragent details |
+ | user_agent | string |  yes  | Useragent details |
 
 ---
 
@@ -20572,8 +20572,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | display | string |  no  | Display text for asset |
- | value | string? |  yes  | To be used for details |
- | type | any? |  yes  | Type of asset |
+ | value | string |  yes  | To be used for details |
+ | type | any |  yes  | Type of asset |
 
 ---
 
@@ -20584,7 +20584,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string? |  yes  | Title for ticket |
+ | title | string |  yes  | Title for ticket |
  | description | string |  no  | Long description of issue |
  | attachments | [[TicketAsset](#TicketAsset)] |  no  | List of all attachments related to the ticket |
 
@@ -20600,8 +20600,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | created_by | string |  no  | Creator of the ticket |
  | status | string |  no  | Status of the ticket |
  | priority | any |  no  | Priority of the ticket |
- | category | string? |  yes  | Category of the ticket |
- | content | [TicketContent](#TicketContent)? |  yes  | Content for the ticket |
+ | category | string |  yes  | Category of the ticket |
+ | content | [TicketContent](#TicketContent) |  yes  | Content for the ticket |
 
 ---
 
@@ -20612,9 +20612,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | [PriorityEnum](#PriorityEnum)? |  yes  | Key for priority |
- | display | string? |  yes  | Display text for priority |
- | color | string? |  yes  | Color for priority |
+ | key | [PriorityEnum](#PriorityEnum) |  yes  | Key for priority |
+ | display | string |  yes  | Display text for priority |
+ | color | string |  yes  | Color for priority |
 
 ---
 
@@ -20625,9 +20625,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  | Key for status |
- | display | string? |  yes  | Display text for status |
- | color | string? |  yes  | Color for status |
+ | key | string |  yes  | Key for status |
+ | display | string |  yes  | Display text for status |
+ | color | string |  yes  | Color for status |
 
 ---
 
@@ -20638,8 +20638,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  | Key for category |
- | display | string? |  yes  | Display text for category |
+ | key | string |  yes  | Key for category |
+ | display | string |  yes  | Display text for category |
  | form | [CustomForm](#CustomForm) |  no  | Form related to the category |
  | sub_categories | [[TicketSubCategory](#TicketSubCategory)] |  no  | Sub-category related to the category |
  | feedback_form | [TicketFeedbackForm](#TicketFeedbackForm) |  no  | Feedback form of category used to submit ticket feedback |
@@ -20653,8 +20653,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  | Key for sub-category |
- | display | string? |  yes  | Display text for sub-category |
+ | key | string |  yes  | Key for sub-category |
+ | display | string |  yes  | Display text for sub-category |
 
 ---
 
@@ -20665,7 +20665,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string? |  yes  | Feedback form title that will be shown to the user |
+ | title | string |  yes  | Feedback form title that will be shown to the user |
  | display | [string] |  no  | List of all the form fields |
 
 ---
@@ -20699,9 +20699,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string? |  yes  | Title for submit button |
- | title_color | string? |  yes  | Title color submit button |
- | background_color | string? |  yes  | Color for submit button |
+ | title | string |  yes  | Title for submit button |
+ | title_color | string |  yes  | Title color submit button |
+ | background_color | string |  yes  | Color for submit button |
 
 ---
 
@@ -20712,10 +20712,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | duration | number? |  yes  | Duration for polling of staff |
- | message | string? |  yes  | Message for polling |
- | success_message | string? |  yes  | Message for successful polling |
- | failure_message | string? |  yes  | Message if polling failed |
+ | duration | number |  yes  | Duration for polling of staff |
+ | message | string |  yes  | Message for polling |
+ | success_message | string |  yes  | Message for successful polling |
+ | failure_message | string |  yes  | Message if polling failed |
 
 ---
 
@@ -20726,21 +20726,21 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application_id | string? |  yes  | Application ID for form |
- | slug | string? |  yes  | Slug for the form, which is to be used for accessing the form |
+ | application_id | string |  yes  | Application ID for form |
+ | slug | string |  yes  | Slug for the form, which is to be used for accessing the form |
  | header_image | string |  no  | Form header image that will be shown to the user |
- | title | string? |  yes  | Form title that will be shown to the user |
+ | title | string |  yes  | Form title that will be shown to the user |
  | description | string |  no  | Form description that will be shown to the user |
- | priority | [Priority](#Priority)? |  yes  | Sets priority of tickets created by form response |
- | login_required | boolean? |  yes  | Denotes if login is required to make a form response submission |
- | should_notify | boolean? |  yes  | Denotes if new response submission for the form should be notified to the assignees |
+ | priority | [Priority](#Priority) |  yes  | Sets priority of tickets created by form response |
+ | login_required | boolean |  yes  | Denotes if login is required to make a form response submission |
+ | should_notify | boolean |  yes  | Denotes if new response submission for the form should be notified to the assignees |
  | success_message | string |  no  | Message that is to be shown on succesfull form response submission |
  | submit_button | [SubmitButton](#SubmitButton) |  no  | Details for submit button |
- | inputs | [string]? |  yes  | List of all the form fields |
+ | inputs | [string] |  yes  | List of all the form fields |
  | created_on | [CreatedOn](#CreatedOn) |  no  | Gives details of when the form was created |
  | created_by | string |  no  | Gives details of user who created the form |
  | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Details of how polling should be done for support |
- | _id | string? |  yes  | Unique identifier for the form |
+ | _id | string |  yes  | Unique identifier for the form |
 
 ---
 
@@ -20751,9 +20751,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string? |  yes  | Question/Title of the form field |
- | key | string? |  yes  | Key of the form field |
- | value | string? |  yes  | User response value for the form field |
+ | display | string |  yes  | Question/Title of the form field |
+ | key | string |  yes  | Key of the form field |
+ | value | string |  yes  | User response value for the form field |
 
 ---
 
@@ -20764,10 +20764,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  | Unique identifier for the feedback |
- | ticket_id | string? |  yes  | Readable ticket number |
- | company_id | string? |  yes  | Company id for which ticket was raised |
- | response | [[FeedbackResponseItem](#FeedbackResponseItem)]? |  yes  |  |
+ | _id | string |  yes  | Unique identifier for the feedback |
+ | ticket_id | string |  yes  | Readable ticket number |
+ | company_id | string |  yes  | Company id for which ticket was raised |
+ | response | [[FeedbackResponseItem](#FeedbackResponseItem)] |  yes  |  |
  | category | string |  no  | Category of the ticket |
  | user | string |  no  | User who submitted the feedback |
  | updated_at | string |  no  | Time when the feedback was last updated |
@@ -20782,12 +20782,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string? |  yes  | Type of the history event |
- | value | string? |  yes  | Data of the history event |
- | ticket_id | string? |  yes  | Readable ticket number |
+ | type | string |  yes  | Type of the history event |
+ | value | string |  yes  | Data of the history event |
+ | ticket_id | string |  yes  | Readable ticket number |
  | created_on | [CreatedOn](#CreatedOn) |  no  | Time of creation of the history event |
  | created_by | string |  no  | User who created the history event |
- | _id | string? |  yes  | Unique identifier of the history event |
+ | _id | string |  yes  | Unique identifier of the history event |
  | updated_at | string |  no  | Time of last update of the history event |
  | created_at | string |  no  | Time of creation of the history event |
 
@@ -20804,18 +20804,18 @@ Success. Returns a JSON object containing the city name, state and country ident
  | created_on | [CreatedOn](#CreatedOn) |  no  | Details of company and application realated to the ticket |
  | response_id | string |  no  | Details of company and application realated to the ticket |
  | content | [TicketContent](#TicketContent) |  no  | Ticket conetent details |
- | ticket_id | string? |  yes  | Readable ticket number |
- | category | [TicketCategory](#TicketCategory)? |  yes  | Category assigned to the ticket |
+ | ticket_id | string |  yes  | Readable ticket number |
+ | category | [TicketCategory](#TicketCategory) |  yes  | Category assigned to the ticket |
  | sub_category | [TicketSubCategory](#TicketSubCategory) |  no  | Sub-category assigned to the ticket |
- | source | any? |  yes  | Denotes if the ticket was created at company or application level |
- | status | [Status](#Status)? |  yes  | Denotes in what state is the ticket |
- | priority | [Priority](#Priority)? |  yes  | Denotes the priority of ticket |
+ | source | any |  yes  | Denotes if the ticket was created at company or application level |
+ | status | [Status](#Status) |  yes  | Denotes in what state is the ticket |
+ | priority | [Priority](#Priority) |  yes  | Denotes the priority of ticket |
  | created_by | string |  no  | User details of ticket creator |
  | assigned_to | string |  no  | Details of support staff to whom ticket is assigned |
  | tags | [string] |  no  | Tags relevant to ticket |
  | _custom_json | string |  no  | custom json relevant to the ticket |
  | is_feedback_pending | boolean |  no  | Denotes if feedback submission is pending for the ticket |
- | _id | string? |  yes  | Unique identifier for the ticket |
+ | _id | string |  yes  | Unique identifier for the ticket |
  | updated_at | string |  no  | Time when the ticket was last updated |
  | created_at | string |  no  | Time when the ticket was created |
 
@@ -22113,12 +22113,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone_number | string? |  yes  |  |
+ | phone_number | string |  yes  |  |
  | email | string |  no  |  |
  | first_name | string |  no  |  |
  | last_name | string |  no  |  |
  | gender | string |  no  |  |
- | username | string? |  yes  |  |
+ | username | string |  yes  |  |
  | meta | string |  no  |  |
 
 ---
@@ -23916,8 +23916,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string? |  yes  | Give a name to the link. |
- | url | string? |  yes  | The web address to shorten. |
+ | title | string |  yes  | Give a name to the link. |
+ | url | string |  yes  | The web address to shorten. |
  | hash | string |  no  |  |
  | active | boolean |  no  |  |
  | expire_at | string |  no  |  |
@@ -24006,7 +24006,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
+ | message | string |  yes  |  |
 
 ---
 
@@ -24017,7 +24017,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | string? |  yes  |  |
+ | url | string |  yes  |  |
 
 ---
 
@@ -24028,8 +24028,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | expiry | number? |  yes  |  |
- | url | string? |  yes  |  |
+ | expiry | number |  yes  |  |
+ | url | string |  yes  |  |
 
 ---
 
@@ -24040,15 +24040,15 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | file_name | string? |  yes  |  |
- | file_path | string? |  yes  |  |
- | content_type | string? |  yes  |  |
- | method | string? |  yes  |  |
- | namespace | string? |  yes  |  |
- | operation | string? |  yes  |  |
- | size | number? |  yes  |  |
- | upload | [Upload](#Upload)? |  yes  |  |
- | cdn | [CDN](#CDN)? |  yes  |  |
+ | file_name | string |  yes  |  |
+ | file_path | string |  yes  |  |
+ | content_type | string |  yes  |  |
+ | method | string |  yes  |  |
+ | namespace | string |  yes  |  |
+ | operation | string |  yes  |  |
+ | size | number |  yes  |  |
+ | upload | [Upload](#Upload) |  yes  |  |
+ | cdn | [CDN](#CDN) |  yes  |  |
  | tags | [string] |  no  |  |
 
 ---
@@ -24060,9 +24060,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | file_name | string? |  yes  |  |
- | content_type | string? |  yes  |  |
- | size | number? |  yes  |  |
+ | file_name | string |  yes  |  |
+ | content_type | string |  yes  |  |
+ | size | number |  yes  |  |
  | tags | [string] |  no  |  |
  | params | string |  no  |  |
 
@@ -24075,20 +24075,20 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | file_name | string? |  yes  |  |
- | file_path | string? |  yes  |  |
- | content_type | string? |  yes  |  |
- | method | string? |  yes  |  |
- | namespace | string? |  yes  |  |
- | operation | string? |  yes  |  |
- | size | number? |  yes  |  |
- | upload | [Upload](#Upload)? |  yes  |  |
- | cdn | [CDN](#CDN)? |  yes  |  |
- | success | string? |  yes  |  |
+ | _id | string |  yes  |  |
+ | file_name | string |  yes  |  |
+ | file_path | string |  yes  |  |
+ | content_type | string |  yes  |  |
+ | method | string |  yes  |  |
+ | namespace | string |  yes  |  |
+ | operation | string |  yes  |  |
+ | size | number |  yes  |  |
+ | upload | [Upload](#Upload) |  yes  |  |
+ | cdn | [CDN](#CDN) |  yes  |  |
+ | success | string |  yes  |  |
  | tags | [string] |  no  |  |
- | created_on | string? |  yes  |  |
- | modified_on | string? |  yes  |  |
+ | created_on | string |  yes  |  |
+ | modified_on | string |  yes  |  |
 
 ---
 
@@ -24112,17 +24112,17 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | name | string? |  yes  |  |
- | data | [BulkRequest](#BulkRequest)? |  yes  |  |
- | opts | [Opts](#Opts)? |  yes  |  |
- | progress | number? |  yes  |  |
- | delay | number? |  yes  |  |
- | timestamp | number? |  yes  |  |
- | attempts_made | number? |  yes  |  |
+ | id | string |  yes  |  |
+ | name | string |  yes  |  |
+ | data | [BulkRequest](#BulkRequest) |  yes  |  |
+ | opts | [Opts](#Opts) |  yes  |  |
+ | progress | number |  yes  |  |
+ | delay | number |  yes  |  |
+ | timestamp | number |  yes  |  |
+ | attempts_made | number |  yes  |  |
  | stacktrace | [string] |  no  |  |
- | finished_on | number? |  yes  |  |
- | processed_on | number? |  yes  |  |
+ | finished_on | number |  yes  |  |
+ | processed_on | number |  yes  |  |
 
 ---
 
@@ -24133,8 +24133,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tracking_url | string? |  yes  |  |
- | task | [CopyFileTask](#CopyFileTask)? |  yes  |  |
+ | tracking_url | string |  yes  |  |
+ | task | [CopyFileTask](#CopyFileTask) |  yes  |  |
 
 ---
 
@@ -24156,8 +24156,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | namespace | string? |  yes  |  |
- | rewrite | string? |  yes  |  |
+ | namespace | string |  yes  |  |
+ | rewrite | string |  yes  |  |
  | basepath | string |  no  |  |
 
 ---
@@ -24169,8 +24169,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | urls | [string]? |  yes  |  |
- | destination | [Destination](#Destination)? |  yes  |  |
+ | urls | [string] |  yes  |  |
+ | destination | [Destination](#Destination) |  yes  |  |
  | configuration | [ReqConfiguration](#ReqConfiguration) |  no  |  |
 
 ---
@@ -24182,9 +24182,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | string? |  yes  |  |
- | signed_url | string? |  yes  |  |
- | expiry | number? |  yes  |  |
+ | url | string |  yes  |  |
+ | signed_url | string |  yes  |  |
+ | expiry | number |  yes  |  |
 
 ---
 
@@ -24195,7 +24195,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | urls | [[Urls](#Urls)]? |  yes  |  |
+ | urls | [[Urls](#Urls)] |  yes  |  |
 
 ---
 
@@ -24206,8 +24206,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | expiry | number? |  yes  |  |
- | urls | [string]? |  yes  |  |
+ | expiry | number |  yes  |  |
+ | urls | [string] |  yes  |  |
 
 ---
 
@@ -24218,18 +24218,18 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | _id | string? |  yes  |  |
- | file_name | string? |  yes  |  |
+ | success | boolean |  yes  |  |
+ | tags | [string] |  yes  |  |
+ | _id | string |  yes  |  |
+ | file_name | string |  yes  |  |
  | operation | string |  no  |  |
- | namespace | string? |  yes  |  |
- | content_type | string? |  yes  |  |
- | file_path | string? |  yes  |  |
- | upload | [Upload](#Upload)? |  yes  |  |
- | cdn | [CDN](#CDN)? |  yes  |  |
- | created_on | string? |  yes  |  |
- | modified_on | string? |  yes  |  |
+ | namespace | string |  yes  |  |
+ | content_type | string |  yes  |  |
+ | file_path | string |  yes  |  |
+ | upload | [Upload](#Upload) |  yes  |  |
+ | cdn | [CDN](#CDN) |  yes  |  |
+ | created_on | string |  yes  |  |
+ | modified_on | string |  yes  |  |
 
 ---
 
@@ -24240,8 +24240,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[DbRecord](#DbRecord)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
+ | items | [[DbRecord](#DbRecord)] |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
 
 ---
 
@@ -24323,8 +24323,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | [ApplicationVersionRequest](#ApplicationVersionRequest)? |  yes  |  |
- | device | [Device](#Device)? |  yes  |  |
+ | application | [ApplicationVersionRequest](#ApplicationVersionRequest) |  yes  |  |
+ | device | [Device](#Device) |  yes  |  |
  | locale | string |  no  |  |
  | timezone | string |  no  |  |
 
@@ -24338,10 +24338,10 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | id | string |  no  |  |
- | name | string? |  yes  |  |
+ | name | string |  yes  |  |
  | namespace | string |  no  |  |
  | token | string |  no  |  |
- | version | string? |  yes  |  |
+ | version | string |  yes  |  |
 
 ---
 
@@ -24354,7 +24354,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | ---------- | ---- | -------- | ----------- |
  | build | number |  no  |  |
  | model | string |  no  |  |
- | os | [OS](#OS)? |  yes  |  |
+ | os | [OS](#OS) |  yes  |  |
 
 ---
 
@@ -24365,7 +24365,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string? |  yes  |  |
+ | name | string |  yes  |  |
  | version | string |  no  |  |
 
 ---
@@ -24423,7 +24423,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ordering_store | [OrderingStoreSelect](#OrderingStoreSelect)? |  yes  |  |
+ | ordering_store | [OrderingStoreSelect](#OrderingStoreSelect) |  yes  |  |
 
 ---
 
@@ -24434,7 +24434,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number? |  yes  | store uid |
+ | uid | number |  yes  | store uid |
 
 ---
 
@@ -25555,12 +25555,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string? |  yes  |  |
- | description | string? |  yes  |  |
- | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
- | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
- | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
- | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | name | string |  yes  |  |
+ | description | string |  yes  |  |
+ | logo | [SecureUrl](#SecureUrl) |  yes  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl) |  yes  |  |
+ | favicon | [SecureUrl](#SecureUrl) |  yes  |  |
+ | banner | [SecureUrl](#SecureUrl) |  yes  |  |
  | domain | [Domain](#Domain) |  no  |  |
  | domains | [[Domain](#Domain)] |  no  |  |
  | _id | string |  no  |  |
@@ -25658,12 +25658,12 @@ Success. Returns a JSON object containing the city name, state and country ident
  | pin | string |  no  | Masked pin |
  | merchant_key | string |  no  | Unique merchant key |
  | sdk | boolean |  no  | SDK |
- | secret | string? |  yes  | Masked payment gateway api secret |
+ | secret | string |  yes  | Masked payment gateway api secret |
  | merchant_id | string |  no  | Unique merchant id |
  | user_id | string |  no  | Registered User id |
  | verify_api | string |  no  | Payment gateway verify payment api endpoint |
- | config_type | string? |  yes  | Fynd or self payment gateway |
- | key | string? |  yes  | Payment gateway api key |
+ | config_type | string |  yes  | Fynd or self payment gateway |
+ | key | string |  yes  | Payment gateway api key |
 
 ---
 
@@ -25682,8 +25682,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
  | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
  | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | env | string? |  yes  | Environment i.e Live or Test |
- | success | boolean? |  yes  |  |
+ | env | string |  yes  | Environment i.e Live or Test |
+ | success | boolean |  yes  |  |
 
 ---
 
@@ -25694,8 +25694,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  | Error descrption code. |
- | description | string? |  yes  | Error human understandable description. |
+ | code | string |  yes  | Error descrption code. |
+ | description | string |  yes  | Error human understandable description. |
 
 ---
 
@@ -25706,8 +25706,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription)? |  yes  |  |
- | success | boolean? |  yes  | Response is successful or not |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -25721,7 +25721,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | nickname | string |  no  |  |
  | refresh | boolean |  no  | Refresh cache flag. |
  | name_on_card | string |  no  |  |
- | card_id | string? |  yes  | Card token of payment gateway. |
+ | card_id | string |  yes  | Card token of payment gateway. |
 
 ---
 
@@ -25732,8 +25732,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string? |  yes  | List of cards of customer. |
- | success | boolean? |  yes  | Response is successful or not. |
+ | data | string |  yes  | List of cards of customer. |
+ | success | boolean |  yes  | Response is successful or not. |
  | message | string |  no  | Human readable message. |
 
 ---
@@ -25745,7 +25745,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string? |  yes  | Payment gateway name. |
+ | aggregator | string |  yes  | Payment gateway name. |
  | api | string |  no  | Payment gateway CARD api endpoint |
  | customer_id | string |  no  | Payment gateway customer id. |
 
@@ -25758,9 +25758,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cards | [CardPaymentGateway](#CardPaymentGateway)? |  yes  | Card's payment gateway with customer id. |
- | success | boolean? |  yes  | Response is successful or not. |
- | message | string? |  yes  | Human readable message. |
+ | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  | Card's payment gateway with customer id. |
+ | success | boolean |  yes  | Response is successful or not. |
+ | message | string |  yes  | Human readable message. |
 
 ---
 
@@ -25786,7 +25786,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | nickname | string |  no  | nickname |
  | card_brand | string |  no  | card_brand |
  | card_isin | string |  no  | card_isin |
- | aggregator_name | string? |  yes  | aggregator_name |
+ | aggregator_name | string |  yes  | aggregator_name |
 
 ---
 
@@ -25798,8 +25798,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [[Card](#Card)] |  no  | List of cards of customer. |
- | success | boolean? |  yes  | Response is successful or not. |
- | message | string? |  yes  | Human readable message. |
+ | success | boolean |  yes  | Response is successful or not. |
+ | message | string |  yes  | Human readable message. |
 
 ---
 
@@ -25810,7 +25810,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | card_id | string? |  yes  | Card token of payment gateway. |
+ | card_id | string |  yes  | Card token of payment gateway. |
 
 ---
 
@@ -25821,7 +25821,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  | Response is successful or not. |
+ | success | boolean |  yes  | Response is successful or not. |
  | message | string |  no  | Human readable message. |
 
 ---
@@ -25833,11 +25833,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string? |  yes  | Payment gateway name in camel case i.e Simpl, Rupifi |
- | payload | string? |  yes  | Hashed payload string. |
- | transaction_amount_in_paise | number? |  yes  | Payable amount in paise |
- | phone_number | string? |  yes  | User mobile number without country code. |
- | merchant_params | string? |  yes  | Extra meta fields. |
+ | aggregator | string |  yes  | Payment gateway name in camel case i.e Simpl, Rupifi |
+ | payload | string |  yes  | Hashed payload string. |
+ | transaction_amount_in_paise | number |  yes  | Payable amount in paise |
+ | phone_number | string |  yes  | User mobile number without country code. |
+ | merchant_params | string |  yes  | Extra meta fields. |
 
 ---
 
@@ -25848,9 +25848,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string? |  yes  | Payment gateway response data |
- | success | boolean? |  yes  | Response is successful or not |
- | message | string? |  yes  | Error or success message. |
+ | data | string |  yes  | Payment gateway response data |
+ | success | boolean |  yes  | Response is successful or not |
+ | message | string |  yes  | Error or success message. |
 
 ---
 
@@ -25861,9 +25861,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string? |  yes  | Payment gateway name i.e Simpl, Mswipe |
- | amount | number? |  yes  | Chargable amount of order. |
- | order_id | string? |  yes  | Unique order id. |
+ | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
+ | amount | number |  yes  | Chargable amount of order. |
+ | order_id | string |  yes  | Unique order id. |
  | verified | boolean |  no  | Already Verified flag from payment gateway i.e Mswipe |
  | transaction_token | string |  no  | Transaction token of payment gateway. |
 
@@ -25876,13 +25876,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string? |  yes  | Payment gateway name i.e Simpl, Mswipe |
+ | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
  | cart_id | string |  no  | Cart id of customer |
- | message | string? |  yes  | Human readable message. |
- | order_id | string? |  yes  | Unique order id. |
- | status | string? |  yes  | Status of charged payment. |
+ | message | string |  yes  | Human readable message. |
+ | order_id | string |  yes  | Unique order id. |
+ | status | string |  yes  | Status of charged payment. |
  | delivery_address_id | string |  no  | Delivery adddress id of customer |
- | success | boolean? |  yes  | Response is successful or not. |
+ | success | boolean |  yes  | Response is successful or not. |
 
 ---
 
@@ -25893,15 +25893,15 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string? |  yes  | Payment gateway name |
- | razorpay_payment_id | string? |  yes  | Payment gateway payment id |
- | polling_url | string? |  yes  | Polling url to check payment status |
- | customer_id | string? |  yes  | Payment gateway customer id. |
+ | aggregator | string |  yes  | Payment gateway name |
+ | razorpay_payment_id | string |  yes  | Payment gateway payment id |
+ | polling_url | string |  yes  | Polling url to check payment status |
+ | customer_id | string |  yes  | Payment gateway customer id. |
  | virtual_id | string |  no  | Bharat QR code virtual id |
- | aggregator_order_id | string? |  yes  | Payment gateway order id |
- | timeout | number? |  yes  | Payment polling timeout if not recieved response |
- | merchant_order_id | string? |  yes  | Unique fynd order id |
- | method | string? |  yes  | Payment method |
+ | aggregator_order_id | string |  yes  | Payment gateway order id |
+ | timeout | number |  yes  | Payment polling timeout if not recieved response |
+ | merchant_order_id | string |  yes  | Unique fynd order id |
+ | method | string |  yes  | Payment method |
 
 ---
 
@@ -25912,20 +25912,20 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string? |  yes  | Payment gateway name |
+ | aggregator | string |  yes  | Payment gateway name |
  | amount | number |  no  | Payable amount. |
  | razorpay_payment_id | string |  no  | Payment  id. |
  | customer_id | string |  no  | Payment gateway customer id. |
- | polling_url | string? |  yes  | Polling url. |
+ | polling_url | string |  yes  | Polling url. |
  | virtual_id | string |  no  | Payment virtual address. |
  | aggregator_order_id | string |  no  | Payment order id |
  | vpa | string |  no  | Customer vpa address |
  | timeout | number |  no  | timeout. |
  | status | string |  no  | Status of payment. |
  | bqr_image | string |  no  | Bharath qr image url. |
- | merchant_order_id | string? |  yes  | order id |
- | method | string? |  yes  | Payment method |
- | success | boolean? |  yes  | Response is successful or not. |
+ | merchant_order_id | string |  yes  | order id |
+ | method | string |  yes  | Payment method |
+ | success | boolean |  yes  | Response is successful or not. |
  | currency | string |  no  | Currency code. |
 
 ---
@@ -25937,17 +25937,17 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string? |  yes  | Payment gateway name |
- | amount | number? |  yes  | Payable amount. |
- | customer_id | string? |  yes  | Payment gateway customer id. |
- | vpa | string? |  yes  | Customer vpa address |
- | contact | string? |  yes  | Customer valid mobile number |
- | order_id | string? |  yes  | Payment gateway order id |
- | status | string? |  yes  | Status of payment. |
- | email | string? |  yes  | Customer valid email |
- | merchant_order_id | string? |  yes  | Unique fynd order id |
- | method | string? |  yes  | Payment method |
- | currency | string? |  yes  | Currency code. |
+ | aggregator | string |  yes  | Payment gateway name |
+ | amount | number |  yes  | Payable amount. |
+ | customer_id | string |  yes  | Payment gateway customer id. |
+ | vpa | string |  yes  | Customer vpa address |
+ | contact | string |  yes  | Customer valid mobile number |
+ | order_id | string |  yes  | Payment gateway order id |
+ | status | string |  yes  | Status of payment. |
+ | email | string |  yes  | Customer valid email |
+ | merchant_order_id | string |  yes  | Unique fynd order id |
+ | method | string |  yes  | Payment method |
+ | currency | string |  yes  | Currency code. |
 
 ---
 
@@ -25958,9 +25958,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string? |  yes  | Payment status |
- | retry | boolean? |  yes  | Response is successful or not. |
- | aggregator_name | string? |  yes  | Payment gateway name |
+ | status | string |  yes  | Payment status |
+ | retry | boolean |  yes  | Response is successful or not. |
+ | aggregator_name | string |  yes  | Payment gateway name |
 
 ---
 
@@ -25971,8 +25971,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | small | string? |  yes  | smalll |
- | large | string? |  yes  | large |
+ | small | string |  yes  | smalll |
+ | large | string |  yes  | large |
 
 ---
 
@@ -26009,7 +26009,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | intent_flow | string |  no  | intent_flow |
  | card_name | string |  no  | card_name |
  | merchant_code | string |  no  | merchant code |
- | aggregator_name | string? |  yes  | aggregator_name |
+ | aggregator_name | string |  yes  | aggregator_name |
 
 ---
 
@@ -26020,10 +26020,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string? |  yes  | Payment mode name |
+ | name | string |  yes  | Payment mode name |
  | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
- | display_name | string? |  yes  | Payment mode display name |
- | display_priority | number? |  yes  | Dispaly Priority |
+ | display_name | string |  yes  | Payment mode display name |
+ | display_priority | number |  yes  | Dispaly Priority |
  | add_card_enabled | boolean |  no  | Annonymous card flag |
  | aggregator_name | string |  no  | Dispaly Priority |
  | anonymous_enable | boolean |  no  | Annonymous card flag |
@@ -26071,8 +26071,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_option | [[RootPaymentMode](#RootPaymentMode)]? |  yes  | Payment options |
- | payment_flows | [PaymentFlow](#PaymentFlow)? |  yes  | payment_flows |
+ | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  | Payment options |
+ | payment_flows | [PaymentFlow](#PaymentFlow) |  yes  | payment_flows |
 
 ---
 
@@ -26083,8 +26083,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow)? |  yes  | payment_options |
- | success | boolean? |  yes  | Response is successful or not |
+ | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  yes  | payment_options |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -26107,8 +26107,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RupifiBannerData](#RupifiBannerData)? |  yes  | Rupifi KYC banner details. |
- | success | boolean? |  yes  | Successful or not. |
+ | data | [RupifiBannerData](#RupifiBannerData) |  yes  | Rupifi KYC banner details. |
+ | success | boolean |  yes  | Successful or not. |
 
 ---
 
@@ -26119,11 +26119,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string? |  yes  |  Beneficiary Name |
- | logo_small | string? |  yes  | Beneficiary small Logo |
+ | name | string |  yes  |  Beneficiary Name |
+ | logo_small | string |  yes  | Beneficiary small Logo |
  | display_name | boolean |  no  | Beneficiary Display Name |
- | id | string? |  yes  |   |
- | logo_large | string? |  yes  | Beneficiary large Logo |
+ | id | string |  yes  |   |
+ | logo_large | string |  yes  | Beneficiary large Logo |
 
 ---
 
@@ -26134,7 +26134,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  | Beneficiary Mode Name |
+ | display_name | string |  yes  | Beneficiary Mode Name |
  | items | [[TransferItemsDetails](#TransferItemsDetails)] |  no  | Beneficiary Mode Items |
 
 ---
@@ -26146,7 +26146,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[TransferModeDetails](#TransferModeDetails)]? |  yes  | Response Object |
+ | data | [[TransferModeDetails](#TransferModeDetails)] |  yes  | Response Object |
 
 ---
 
@@ -26157,8 +26157,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enable | boolean? |  yes  | True for enabling the Transfer Mode |
- | transfer_mode | string? |  yes  | Transfer Mode of the Beneficiary to be added |
+ | enable | boolean |  yes  | True for enabling the Transfer Mode |
+ | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
 
 ---
 
@@ -26180,25 +26180,25 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string? |  yes  | Account Holder Name |
- | address | string? |  yes  | Address of User |
- | email | string? |  yes  | EMail of User |
- | bank_name | string? |  yes  | Bank Name Of Account |
- | delights_user_name | string? |  yes  | User Id Who filled the Beneficiary  |
- | is_active | boolean? |  yes  | Boolean Flag whether Beneficiary set or not |
- | modified_on | string? |  yes  | MOdification Date of Beneficiary |
+ | account_holder | string |  yes  | Account Holder Name |
+ | address | string |  yes  | Address of User |
+ | email | string |  yes  | EMail of User |
+ | bank_name | string |  yes  | Bank Name Of Account |
+ | delights_user_name | string |  yes  | User Id Who filled the Beneficiary  |
+ | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
+ | modified_on | string |  yes  | MOdification Date of Beneficiary |
  | mobile | boolean |  no  | MObile no of User |
- | transfer_mode | string? |  yes  | Transfer Mode Of Account |
- | subtitle | string? |  yes  | SHort Title Of Account |
- | display_name | string? |  yes  | Display Name Of Account |
- | created_on | string? |  yes  | Creation Date of Beneficiary |
- | account_no | string? |  yes  | Account Number |
- | title | string? |  yes  | Title Of Account |
+ | transfer_mode | string |  yes  | Transfer Mode Of Account |
+ | subtitle | string |  yes  | SHort Title Of Account |
+ | display_name | string |  yes  | Display Name Of Account |
+ | created_on | string |  yes  | Creation Date of Beneficiary |
+ | account_no | string |  yes  | Account Number |
+ | title | string |  yes  | Title Of Account |
  | branch_name | boolean |  no  | Branch Name Of Account |
- | ifsc_code | string? |  yes  | Ifsc Code Of Account |
+ | ifsc_code | string |  yes  | Ifsc Code Of Account |
  | comment | boolean |  no  | Remarks |
- | id | number? |  yes  |   |
- | beneficiary_id | string? |  yes  | Benenficiary Id |
+ | id | number |  yes  |   |
+ | beneficiary_id | string |  yes  | Benenficiary Id |
 
 ---
 
@@ -26209,7 +26209,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)]? |  yes  | All Beneficiaries Of An Order |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  yes  | All Beneficiaries Of An Order |
  | show_beneficiary_details | boolean |  no  | Show beneficiary details or not. |
 
 ---
@@ -26221,9 +26221,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  | Bad Request Data |
- | description | string? |  yes  | Not Found |
- | success | boolean? |  yes  | Response is successful or not |
+ | code | string |  yes  | Bad Request Data |
+ | description | string |  yes  | Not Found |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -26234,8 +26234,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | branch_name | string? |  yes  | Branch Name Of Account |
- | bank_name | string? |  yes  | Bank Name Of Account |
+ | branch_name | string |  yes  | Branch Name Of Account |
+ | bank_name | string |  yes  | Bank Name Of Account |
  | success | boolean |  no  | Response is successful or not |
 
 ---
@@ -26247,9 +26247,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  | Error descrption code. |
- | description | string? |  yes  | Error human understandable description. |
- | success | boolean? |  yes  | Response is successful or not |
+ | code | string |  yes  | Error descrption code. |
+ | description | string |  yes  | Error human understandable description. |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -26260,9 +26260,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | request_id | string? |  yes  | Request Id sent in  |
- | otp | string? |  yes  | Otp sent to the given Mobile No |
- | hash_key | string? |  yes  | Hash key of the beneficiary Id |
+ | request_id | string |  yes  | Request Id sent in  |
+ | otp | string |  yes  | Otp sent to the given Mobile No |
+ | hash_key | string |  yes  | Hash key of the beneficiary Id |
 
 ---
 
@@ -26273,9 +26273,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | request_id | string? |  yes  | Request Id of the otp  |
- | otp | string? |  yes  | Otp sent to the given Mobile No |
- | hash_key | string? |  yes  | Hash key of the beneficiary Id |
+ | request_id | string |  yes  | Request Id of the otp  |
+ | otp | string |  yes  | Otp sent to the given Mobile No |
+ | hash_key | string |  yes  | Hash key of the beneficiary Id |
 
 ---
 
@@ -26286,8 +26286,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  | Wrong OTP Code |
- | success | string? |  yes  | Response is successful or not |
+ | description | string |  yes  | Wrong OTP Code |
+ | success | string |  yes  | Response is successful or not |
 
 ---
 
@@ -26299,16 +26299,16 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | wallet | string |  no  |  |
- | account_no | string? |  yes  | Account NUmber of the Account Holder |
- | account_holder | string? |  yes  | Name of the Account Holder |
- | branch_name | string? |  yes  | Branch Name of the Account |
- | email | string? |  yes  | Email of the Account Holder |
+ | account_no | string |  yes  | Account NUmber of the Account Holder |
+ | account_holder | string |  yes  | Name of the Account Holder |
+ | branch_name | string |  yes  | Branch Name of the Account |
+ | email | string |  yes  | Email of the Account Holder |
  | comment | string |  no  | Remarks added by The user |
- | ifsc_code | string? |  yes  | Ifsc Code of the Account |
+ | ifsc_code | string |  yes  | Ifsc Code of the Account |
  | address | string |  no  | Address of the User |
  | vpa | string |  no  |  |
- | mobile | string? |  yes  | Moblie Number of the User |
- | bank_name | string? |  yes  | Bank Name of the Account |
+ | mobile | string |  yes  | Moblie Number of the User |
+ | bank_name | string |  yes  | Bank Name of the Account |
 
 ---
 
@@ -26319,13 +26319,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment_id | string? |  yes  | Shipment Id of the respective Merchant Order Id |
+ | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
  | otp | string |  no  |  |
  | request_id | string |  no  |  |
- | order_id | string? |  yes  | Merchant Order Id |
- | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails)? |  yes  | Beneficiary bank details |
- | delights | boolean? |  yes  | True if  beneficiary to be added by delights or False if by User |
- | transfer_mode | string? |  yes  | Transfer Mode of the Beneficiary to be added |
+ | order_id | string |  yes  | Merchant Order Id |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  | Beneficiary bank details |
+ | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
+ | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
 
 ---
 
@@ -26337,8 +26337,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string |  no  | Refund account data. |
- | success | boolean? |  yes  | Success or failure flag. |
- | message | string? |  yes  | Response message |
+ | success | boolean |  yes  | Success or failure flag. |
+ | message | string |  yes  | Response message |
 
 ---
 
@@ -26349,8 +26349,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mobile | string? |  yes  | Wallet Moblie Number of the User |
- | country_code | string? |  yes  | Country Code of the Mobile Number |
+ | mobile | string |  yes  | Wallet Moblie Number of the User |
+ | country_code | string |  yes  | Country Code of the Mobile Number |
 
 ---
 
@@ -26361,8 +26361,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | request_id | string? |  yes  | request id  |
- | is_verified_flag | string? |  yes  | Boolean Flag whether OTP Validation is already done or not |
+ | request_id | string |  yes  | request id  |
+ | is_verified_flag | string |  yes  | Boolean Flag whether OTP Validation is already done or not |
  | success | boolean |  no  | Response is successful or not |
 
 ---
@@ -26374,8 +26374,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiary_id | string? |  yes  | Beneficiary Hash Id of the beneficiary added |
- | order_id | string? |  yes  | Merchant Order Id |
+ | beneficiary_id | string |  yes  | Beneficiary Hash Id of the beneficiary added |
+ | order_id | string |  yes  | Merchant Order Id |
 
 ---
 
@@ -26387,7 +26387,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  no  | Response is successful or not |
- | is_beneficiary_set | boolean? |  yes  | Boolean Flag whether Beneficiary set or not |
+ | is_beneficiary_set | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
 
 ---
 
@@ -26400,7 +26400,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order | [OrderSchema](#OrderSchema)? |  yes  |  |
+ | order | [OrderSchema](#OrderSchema) |  yes  |  |
 
 ---
 
@@ -26411,9 +26411,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[OrderSchema](#OrderSchema)]? |  yes  |  |
- | page | [OrderPage](#OrderPage)? |  yes  |  |
- | filters | [OrderFilters](#OrderFilters)? |  yes  |  |
+ | items | [[OrderSchema](#OrderSchema)] |  yes  |  |
+ | page | [OrderPage](#OrderPage) |  yes  |  |
+ | filters | [OrderFilters](#OrderFilters) |  yes  |  |
 
 ---
 
@@ -26463,7 +26463,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment | [Shipments](#Shipments)? |  yes  |  |
+ | shipment | [Shipments](#Shipments) |  yes  |  |
 
 ---
 
@@ -26474,7 +26474,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reasons | [[Reasons](#Reasons)]? |  yes  |  |
+ | reasons | [[Reasons](#Reasons)] |  yes  |  |
 
 ---
 
@@ -26485,8 +26485,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [[StatusesBody](#StatusesBody)]? |  yes  |  |
- | force_transition | boolean? |  yes  |  |
+ | statuses | [[StatusesBody](#StatusesBody)] |  yes  |  |
+ | force_transition | boolean |  yes  |  |
 
 ---
 
@@ -26509,8 +26509,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | [string]? |  yes  |  |
- | status | boolean? |  yes  |  |
+ | message | [string] |  yes  |  |
+ | status | boolean |  yes  |  |
 
 ---
 
@@ -26521,7 +26521,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | results | [[Track](#Track)]? |  yes  |  |
+ | results | [[Track](#Track)] |  yes  |  |
 
 ---
 
@@ -26577,7 +26577,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order | [OrderSchema](#OrderSchema)? |  yes  |  |
+ | order | [OrderSchema](#OrderSchema) |  yes  |  |
 
 ---
 
@@ -27067,7 +27067,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | currency | string |  no  |  |
- | order_amount | number? |  yes  |  |
+ | order_amount | number |  yes  |  |
 
 ---
 
@@ -27155,8 +27155,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | device_id | string? |  yes  |  |
- | referral_code | string? |  yes  |  |
+ | device_id | string |  yes  |  |
+ | referral_code | string |  yes  |  |
 
 ---
 
@@ -27354,11 +27354,11 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | description | string |  no  |  |
- | name | string? |  yes  |  |
+ | name | string |  yes  |  |
  | slug | string |  no  |  |
  | title | string |  no  |  |
- | type | string? |  yes  |  |
- | value | number? |  yes  |  |
+ | type | string |  yes  |  |
+ | value | number |  yes  |  |
 
 ---
 
@@ -27446,9 +27446,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | comment | [string]? |  yes  |  |
- | entity_id | string? |  yes  |  |
- | entity_type | string? |  yes  |  |
+ | comment | [string] |  yes  |  |
+ | entity_id | string |  yes  |  |
+ | entity_type | string |  yes  |  |
 
 ---
 
@@ -27460,12 +27460,12 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | choices | [string] |  no  |  |
- | entity_id | string? |  yes  |  |
- | entity_type | string? |  yes  |  |
+ | entity_id | string |  yes  |  |
+ | entity_type | string |  yes  |  |
  | max_len | number |  no  |  |
  | sort_priority | number |  no  |  |
  | tags | [string] |  no  |  |
- | text | string? |  yes  |  |
+ | text | string |  yes  |  |
  | type | string |  no  |  |
 
 ---
@@ -27864,8 +27864,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | description | string |  no  |  |
- | entity_id | string? |  yes  |  |
- | entity_type | string? |  yes  |  |
+ | entity_id | string |  yes  |  |
+ | entity_type | string |  yes  |  |
 
 ---
 
@@ -27977,8 +27977,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | description | string |  no  |  |
- | name | string? |  yes  |  |
- | slug | string? |  yes  |  |
+ | name | string |  yes  |  |
+ | slug | string |  yes  |  |
 
 ---
 
@@ -28133,7 +28133,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | description | string |  no  |  |
- | name | string? |  yes  |  |
+ | name | string |  yes  |  |
  | slug | string |  no  |  |
 
 ---
@@ -28147,8 +28147,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | ---------- | ---- | -------- | ----------- |
  | active | boolean |  no  |  |
  | approve | boolean |  no  |  |
- | comment | [string]? |  yes  |  |
- | id | string? |  yes  |  |
+ | comment | [string] |  yes  |  |
+ | id | string |  yes  |  |
 
 ---
 
@@ -28310,8 +28310,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | quantity | number |  no  | Quantity of product in shipment |
- | shipment_type | string? |  yes  | Shipment delivery type |
- | article_uid | string? |  yes  | Article mongo id |
+ | shipment_type | string |  yes  | Shipment delivery type |
+ | article_uid | string |  yes  | Article mongo id |
 
 ---
 
@@ -28322,7 +28322,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [[UpdateCartShipmentItem](#UpdateCartShipmentItem)]? |  yes  |  |
+ | shipments | [[UpdateCartShipmentItem](#UpdateCartShipmentItem)] |  yes  |  |
 
 ---
 
@@ -28333,8 +28333,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | values | [string]? |  yes  |  |
+ | key | string |  yes  |  |
+ | values | [string] |  yes  |  |
 
 ---
 
@@ -28351,14 +28351,14 @@ Success. Returns a JSON object containing the city name, state and country ident
  | pos | boolean |  no  |  |
  | aggregator | string |  no  |  |
  | files | [[Files](#Files)] |  no  | List of file url |
- | order_type | string? |  yes  |  |
+ | order_type | string |  yes  |  |
  | extra_meta | string |  no  |  |
  | payment_params | string |  no  |  |
  | billing_address | string |  no  |  |
  | callback_url | string |  no  |  |
  | payment_auto_confirm | boolean |  no  |  |
  | meta | string |  no  |  |
- | payment_mode | string? |  yes  |  |
+ | payment_mode | string |  yes  |  |
  | address_id | number |  no  |  |
  | billing_address_id | number |  no  |  |
  | pick_at_store_uid | number |  no  |  |
@@ -28425,10 +28425,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | request_uuid | string? |  yes  |  |
- | stormbreaker_uuid | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- | data | [[LogisticPincodeData](#LogisticPincodeData)]? |  yes  |  |
+ | request_uuid | string |  yes  |  |
+ | stormbreaker_uuid | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ | data | [[LogisticPincodeData](#LogisticPincodeData)] |  yes  |  |
 
 ---
 
@@ -28495,8 +28495,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | location_details | [[LocationDetailsReq](#LocationDetailsReq)]? |  yes  |  |
- | to_pincode | string? |  yes  |  |
+ | location_details | [[LocationDetailsReq](#LocationDetailsReq)] |  yes  |  |
+ | to_pincode | string |  yes  |  |
  | action | string |  no  |  |
 
 ---
@@ -28544,17 +28544,17 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | location_details | [[LocationDetails](#LocationDetails)]? |  yes  |  |
- | request_uuid | string? |  yes  |  |
- | error | string? |  yes  |  |
- | to_city | string? |  yes  |  |
- | source | string? |  yes  |  |
- | to_pincode | string? |  yes  |  |
- | action | string? |  yes  |  |
- | stormbreaker_uuid | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- | identifier | string? |  yes  |  |
- | journey | string? |  yes  |  |
+ | location_details | [[LocationDetails](#LocationDetails)] |  yes  |  |
+ | request_uuid | string |  yes  |  |
+ | error | string |  yes  |  |
+ | to_city | string |  yes  |  |
+ | source | string |  yes  |  |
+ | to_pincode | string |  yes  |  |
+ | action | string |  yes  |  |
+ | stormbreaker_uuid | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ | identifier | string |  yes  |  |
+ | journey | string |  yes  |  |
 
 ---
 
