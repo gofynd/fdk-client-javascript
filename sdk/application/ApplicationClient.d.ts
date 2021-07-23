@@ -520,10 +520,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -533,10 +533,10 @@ declare class Catalog {
      *   products, brands, or collections.* @param {string} arg.collectionId -
      *   The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -2174,18 +2174,18 @@ declare class Order {
      *   value is 10.* @param {string} [arg.fromDate] - The date from which the
      *   orders should be retrieved.* @param {string} [arg.toDate] - The date
      *   till which the orders should be retrieved.* @param {number}
-     *   [arg.orderStatus] - A filter to retrieve orders by their current status
-     *   such as *placed*, *delivered*, etc.
+     *   [arg.status] - A filter to retrieve orders by their current status such
+     *   as *placed*, *delivered*, etc.
      * @returns {Promise<OrderList>} - Success response
      * @summary: Get all orders
      * @description: Use this API to retrieve all the orders.
      */
-    getOrders({ pageNo, pageSize, fromDate, toDate, orderStatus }?: {
+    getOrders({ pageNo, pageSize, fromDate, toDate, status }?: {
         pageNo?: number;
         pageSize?: number;
         fromDate?: string;
         toDate?: string;
-        orderStatus?: number;
+        status?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
