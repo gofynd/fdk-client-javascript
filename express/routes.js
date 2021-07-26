@@ -55,7 +55,7 @@ function setupRoutes(ext) {
             req.extension = ext;
 
             const compCookieName = `${SESSION_COOKIE_NAME}_${companyId}`
-            res.header['x-seller-id'] = companyId;
+            res.header['x-company-id'] = companyId;
             res.cookie(compCookieName, session.id, { 
                 secure: true,
                 httpOnly: true,
@@ -119,7 +119,7 @@ function setupRoutes(ext) {
                 signed: true,
                 sameSite: "None"
             });
-            res.header['x-seller-id'] = req.fdkSession.company_id;
+            res.header['x-company-id'] = req.fdkSession.company_id;
 
             req.extension = ext;
             let redirectUrl = await ext.callbacks.auth(req);
