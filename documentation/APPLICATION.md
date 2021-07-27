@@ -1758,13 +1758,13 @@ Fetch all items added to the cart
 
 ```javascript
 // Promise
-const promise = cart.getCart( {  uid : value,
+const promise = cart.getCart( {  id : value,
  i : value,
  b : value,
  assignCardId : value });
 
 // Async/Await
-const data = await cart.getCart( {  uid : value,
+const data = await cart.getCart( {  id : value,
  i : value,
  b : value,
  assignCardId : value });
@@ -1774,7 +1774,7 @@ const data = await cart.getCart( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |    
+| id | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |    
 | assignCardId | number | no |  |  
@@ -1788,12 +1788,12 @@ Use this API to get details of all the items added to a cart.
 
 
 
-Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
 
 
-[CartResponse](#CartResponse)
+[CartDetailResponse](#CartDetailResponse)
 
-Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
 
 
 
@@ -1813,17 +1813,17 @@ Fetch last-modified timestamp
 
 ```javascript
 // Promise
-const promise = cart.getCartLastModified( {  uid : value });
+const promise = cart.getCartLastModified( {  id : value });
 
 // Async/Await
-const data = await cart.getCartLastModified( {  uid : value });
+const data = await cart.getCartLastModified( {  id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |  
+| id | string | no |  |  
 
 
 
@@ -1877,12 +1877,12 @@ Use this API to add items to the cart.
 
 
 
-Success. Returns a cart object as shown below. Refer `AddCartResponse` for more details.
+Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for more details.
 
 
-[AddCartResponse](#AddCartResponse)
+[AddCartDetailResponse](#AddCartDetailResponse)
 
-Success. Returns a cart object as shown below. Refer `AddCartResponse` for more details.
+Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for more details.
 
 
 *Examples:*
@@ -2536,13 +2536,13 @@ Update items in the cart
 ```javascript
 // Promise
 const promise = cart.updateCart( {  body : value,
- uid : value,
+ id : value,
  i : value,
  b : value });
 
 // Async/Await
 const data = await cart.updateCart( {  body : value,
- uid : value,
+ id : value,
  i : value,
  b : value });
 ```
@@ -2551,7 +2551,7 @@ const data = await cart.updateCart( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |    
+| id | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |  
 | body | [UpdateCartRequest](#UpdateCartRequest) | no | Request body |
@@ -2564,12 +2564,12 @@ Use this API to update items added to the cart with the help of a request object
 
 
 
-Success. Updates and returns a cart object as shown below. Refer `UpdateCartResponse` for more details.
+Success. Updates and returns a cart object as shown below. Refer `UpdateCartDetailResponse` for more details.
 
 
-[UpdateCartResponse](#UpdateCartResponse)
+[UpdateCartDetailResponse](#UpdateCartDetailResponse)
 
-Success. Updates and returns a cart object as shown below. Refer `UpdateCartResponse` for more details.
+Success. Updates and returns a cart object as shown below. Refer `UpdateCartDetailResponse` for more details.
 
 
 *Examples:*
@@ -2951,17 +2951,17 @@ Count items in the cart
 
 ```javascript
 // Promise
-const promise = cart.getItemCount( {  uid : value });
+const promise = cart.getItemCount( {  id : value });
 
 // Async/Await
-const data = await cart.getItemCount( {  uid : value });
+const data = await cart.getItemCount( {  id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no | The unique identifier of the cart. |  
+| id | string | no | The unique identifier of the cart. |  
 
 
 
@@ -2997,17 +2997,17 @@ Fetch Coupon
 
 ```javascript
 // Promise
-const promise = cart.getCoupons( {  uid : value });
+const promise = cart.getCoupons( {  id : value });
 
 // Async/Await
-const data = await cart.getCoupons( {  uid : value });
+const data = await cart.getCoupons( {  id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |  
+| id | string | no |  |  
 
 
 
@@ -3047,14 +3047,14 @@ const promise = cart.applyCoupon( {  body : value,
  i : value,
  b : value,
  p : value,
- uid : value });
+ id : value });
 
 // Async/Await
 const data = await cart.applyCoupon( {  body : value,
  i : value,
  b : value,
  p : value,
- uid : value });
+ id : value });
 ```
 
 
@@ -3064,7 +3064,7 @@ const data = await cart.applyCoupon( {  body : value,
 | i | boolean | no |  |    
 | b | boolean | no |  |    
 | p | boolean | no |  |    
-| uid | number | no |  |  
+| id | string | no |  |  
 | body | [ApplyCouponRequest](#ApplyCouponRequest) | no | Request body |
 
 
@@ -3086,17 +3086,17 @@ Remove Coupon Applied
 
 ```javascript
 // Promise
-const promise = cart.removeCoupon( {  uid : value });
+const promise = cart.removeCoupon( {  id : value });
 
 // Async/Await
-const data = await cart.removeCoupon( {  uid : value });
+const data = await cart.removeCoupon( {  id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no | The unique identifier of the cart |  
+| id | string | no | The unique identifier of the cart |  
 
 
 
@@ -3107,12 +3107,12 @@ Remove Coupon applied on the cart by passing uid in request body.
 
 
 
-Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartResponse` for more details.
+Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartDetailResponse` for more details.
 
 
-[CartResponse](#CartResponse)
+[CartDetailResponse](#CartDetailResponse)
 
-Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartResponse` for more details.
+Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartDetailResponse` for more details.
 
 
 
@@ -3259,13 +3259,13 @@ Apply reward points at cart
 ```javascript
 // Promise
 const promise = cart.applyRewardPoints( {  body : value,
- uid : value,
+ id : value,
  i : value,
  b : value });
 
 // Async/Await
 const data = await cart.applyRewardPoints( {  body : value,
- uid : value,
+ id : value,
  i : value,
  b : value });
 ```
@@ -3274,7 +3274,7 @@ const data = await cart.applyRewardPoints( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |    
+| id | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |  
 | body | [RewardPointRequest](#RewardPointRequest) | no | Request body |
@@ -3287,12 +3287,12 @@ Use this API to redeem a fixed no. of reward points by applying it to the cart.
 
 
 
-Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
 
 
-[CartResponse](#CartResponse)
+[CartDetailResponse](#CartDetailResponse)
 
-Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
 
 
 
@@ -3312,14 +3312,14 @@ Fetch address
 
 ```javascript
 // Promise
-const promise = cart.getAddresses( {  uid : value,
+const promise = cart.getAddresses( {  cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
  isDefault : value });
 
 // Async/Await
-const data = await cart.getAddresses( {  uid : value,
+const data = await cart.getAddresses( {  cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
@@ -3330,7 +3330,7 @@ const data = await cart.getAddresses( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |    
+| cartId | string | no |  |    
 | mobileNo | string | no |  |    
 | checkoutMode | string | no |  |    
 | tags | string | no |  |    
@@ -3416,7 +3416,7 @@ Fetch a single address by its ID
 ```javascript
 // Promise
 const promise = cart.getAddressById( {  id : value,
- uid : value,
+ cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
@@ -3424,7 +3424,7 @@ const promise = cart.getAddressById( {  id : value,
 
 // Async/Await
 const data = await cart.getAddressById( {  id : value,
- uid : value,
+ cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
@@ -3435,8 +3435,8 @@ const data = await cart.getAddressById( {  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number | no |  |    
-| uid | number | no |  |    
+| id | string | no |  |    
+| cartId | string | no |  |    
 | mobileNo | string | no |  |    
 | checkoutMode | string | no |  |    
 | tags | string | no |  |    
@@ -3488,7 +3488,7 @@ const data = await cart.updateAddress( {  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number | no | ID allotted to the selected address |  
+| id | string | no | ID allotted to the selected address |  
 | body | [Address](#Address) | no | Request body |
 
 
@@ -3520,7 +3520,7 @@ const data = await cart.removeAddress( {  id : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number | no | ID allotted to the selected address |  
+| id | string | no | ID allotted to the selected address |  
 
 
 
@@ -3543,13 +3543,13 @@ Select an address from available addresses
 ```javascript
 // Promise
 const promise = cart.selectAddress( {  body : value,
- uid : value,
+ cartId : value,
  i : value,
  b : value });
 
 // Async/Await
 const data = await cart.selectAddress( {  body : value,
- uid : value,
+ cartId : value,
  i : value,
  b : value });
 ```
@@ -3558,7 +3558,7 @@ const data = await cart.selectAddress( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |    
+| cartId | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |  
 | body | [SelectCartAddressRequest](#SelectCartAddressRequest) | no | Request body |
@@ -3583,18 +3583,18 @@ Update cart payment
 ```javascript
 // Promise
 const promise = cart.selectPaymentMode( {  body : value,
- uid : value });
+ id : value });
 
 // Async/Await
 const data = await cart.selectPaymentMode( {  body : value,
- uid : value });
+ id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | string | no |  |  
+| id | string | no |  |  
 | body | [UpdateCartPaymentRequest](#UpdateCartPaymentRequest) | no | Request body |
 
 
@@ -3605,12 +3605,12 @@ Use this API to update cart payment.
 
 
 
-Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.
+Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.
 
 
-[CartResponse](#CartResponse)
+[CartDetailResponse](#CartDetailResponse)
 
-Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.
+Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.
 
 
 
@@ -3630,7 +3630,7 @@ Verify the coupon eligibility against the payment mode
 
 ```javascript
 // Promise
-const promise = cart.validateCouponForPayment( {  uid : value,
+const promise = cart.validateCouponForPayment( {  id : value,
  addressId : value,
  paymentMode : value,
  paymentIdentifier : value,
@@ -3638,7 +3638,7 @@ const promise = cart.validateCouponForPayment( {  uid : value,
  merchantCode : value });
 
 // Async/Await
-const data = await cart.validateCouponForPayment( {  uid : value,
+const data = await cart.validateCouponForPayment( {  id : value,
  addressId : value,
  paymentMode : value,
  paymentIdentifier : value,
@@ -3650,7 +3650,7 @@ const data = await cart.validateCouponForPayment( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | string | no |  |    
+| id | string | no |  |    
 | addressId | string | no |  |    
 | paymentMode | string | no |  |    
 | paymentIdentifier | string | no |  |    
@@ -3692,13 +3692,13 @@ Get delivery date and options before checkout
 ```javascript
 // Promise
 const promise = cart.getShipments( {  p : value,
- uid : value,
+ id : value,
  addressId : value,
  areaCode : value });
 
 // Async/Await
 const data = await cart.getShipments( {  p : value,
- uid : value,
+ id : value,
  addressId : value,
  areaCode : value });
 ```
@@ -3708,8 +3708,8 @@ const data = await cart.getShipments( {  p : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
-| uid | number | no | The unique identifier of the cart |    
-| addressId | number | no | ID allotted to the selected address |    
+| id | string | no | The unique identifier of the cart |    
+| addressId | string | no | ID allotted to the selected address |    
 | areaCode | string | no | The PIN Code of the destination address, e.g. 400059 |  
 
 
@@ -4396,7 +4396,7 @@ const data = await cart.checkoutCart( {  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CartCheckoutRequest](#CartCheckoutRequest) | no | Request body |
+| body | [CartCheckoutDetailRequest](#CartCheckoutDetailRequest) | no | Request body |
 
 
 Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
@@ -4406,12 +4406,12 @@ Use this API to checkout all items in the cart for payment and order generation.
 
 
 
-Success. Returns the status of cart checkout. Refer `CartCheckoutResponse` for more details.
+Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema` for more details.
 
 
 [CartCheckoutResponse](#CartCheckoutResponse)
 
-Success. Returns the status of cart checkout. Refer `CartCheckoutResponse` for more details.
+Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema` for more details.
 
 
 *Examples:*
@@ -4809,18 +4809,18 @@ Update the cart meta
 ```javascript
 // Promise
 const promise = cart.updateCartMeta( {  body : value,
- uid : value });
+ id : value });
 
 // Async/Await
 const data = await cart.updateCartMeta( {  body : value,
- uid : value });
+ id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no | The unique identifier of the cart |  
+| id | string | no | The unique identifier of the cart |  
 | body | [CartMetaRequest](#CartMetaRequest) | no | Request body |
 
 
@@ -13512,13 +13512,13 @@ Fetch all items added to the cart
 
 ```javascript
 // Promise
-const promise = poscart.getCart( {  uid : value,
+const promise = poscart.getCart( {  id : value,
  i : value,
  b : value,
  assignCardId : value });
 
 // Async/Await
-const data = await poscart.getCart( {  uid : value,
+const data = await poscart.getCart( {  id : value,
  i : value,
  b : value,
  assignCardId : value });
@@ -13528,7 +13528,7 @@ const data = await poscart.getCart( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |    
+| id | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |    
 | assignCardId | number | no |  |  
@@ -13542,12 +13542,12 @@ Use this API to get details of all the items added to a cart.
 
 
 
-Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
 
 
-[CartResponse](#CartResponse)
+[CartDetailResponse](#CartDetailResponse)
 
-Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
 
 
 
@@ -13567,17 +13567,17 @@ Fetch last-modified timestamp
 
 ```javascript
 // Promise
-const promise = poscart.getCartLastModified( {  uid : value });
+const promise = poscart.getCartLastModified( {  id : value });
 
 // Async/Await
-const data = await poscart.getCartLastModified( {  uid : value });
+const data = await poscart.getCartLastModified( {  id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |  
+| id | string | no |  |  
 
 
 
@@ -13631,12 +13631,12 @@ Use this API to add items to the cart.
 
 
 
-Success. Returns a cart object as shown below. Refer `AddCartResponse` for more details.
+Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for more details.
 
 
-[AddCartResponse](#AddCartResponse)
+[AddCartDetailResponse](#AddCartDetailResponse)
 
-Success. Returns a cart object as shown below. Refer `AddCartResponse` for more details.
+Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for more details.
 
 
 *Examples:*
@@ -14290,13 +14290,13 @@ Update items in the cart
 ```javascript
 // Promise
 const promise = poscart.updateCart( {  body : value,
- uid : value,
+ id : value,
  i : value,
  b : value });
 
 // Async/Await
 const data = await poscart.updateCart( {  body : value,
- uid : value,
+ id : value,
  i : value,
  b : value });
 ```
@@ -14305,7 +14305,7 @@ const data = await poscart.updateCart( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |    
+| id | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |  
 | body | [UpdateCartRequest](#UpdateCartRequest) | no | Request body |
@@ -14318,12 +14318,12 @@ Use this API to update items added to the cart with the help of a request object
 
 
 
-Success. Updates and returns a cart object as shown below. Refer `UpdateCartResponse` for more details.
+Success. Updates and returns a cart object as shown below. Refer `UpdateCartDetailResponse` for more details.
 
 
-[UpdateCartResponse](#UpdateCartResponse)
+[UpdateCartDetailResponse](#UpdateCartDetailResponse)
 
-Success. Updates and returns a cart object as shown below. Refer `UpdateCartResponse` for more details.
+Success. Updates and returns a cart object as shown below. Refer `UpdateCartDetailResponse` for more details.
 
 
 *Examples:*
@@ -14705,17 +14705,17 @@ Count items in the cart
 
 ```javascript
 // Promise
-const promise = poscart.getItemCount( {  uid : value });
+const promise = poscart.getItemCount( {  id : value });
 
 // Async/Await
-const data = await poscart.getItemCount( {  uid : value });
+const data = await poscart.getItemCount( {  id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no | The unique identifier of the cart. |  
+| id | string | no | The unique identifier of the cart. |  
 
 
 
@@ -14751,17 +14751,17 @@ Fetch Coupon
 
 ```javascript
 // Promise
-const promise = poscart.getCoupons( {  uid : value });
+const promise = poscart.getCoupons( {  id : value });
 
 // Async/Await
-const data = await poscart.getCoupons( {  uid : value });
+const data = await poscart.getCoupons( {  id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |  
+| id | string | no |  |  
 
 
 
@@ -14801,14 +14801,14 @@ const promise = poscart.applyCoupon( {  body : value,
  i : value,
  b : value,
  p : value,
- uid : value });
+ id : value });
 
 // Async/Await
 const data = await poscart.applyCoupon( {  body : value,
  i : value,
  b : value,
  p : value,
- uid : value });
+ id : value });
 ```
 
 
@@ -14818,7 +14818,7 @@ const data = await poscart.applyCoupon( {  body : value,
 | i | boolean | no |  |    
 | b | boolean | no |  |    
 | p | boolean | no |  |    
-| uid | number | no |  |  
+| id | string | no |  |  
 | body | [ApplyCouponRequest](#ApplyCouponRequest) | no | Request body |
 
 
@@ -14840,17 +14840,17 @@ Remove Coupon Applied
 
 ```javascript
 // Promise
-const promise = poscart.removeCoupon( {  uid : value });
+const promise = poscart.removeCoupon( {  id : value });
 
 // Async/Await
-const data = await poscart.removeCoupon( {  uid : value });
+const data = await poscart.removeCoupon( {  id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no | The unique identifier of the cart |  
+| id | string | no | The unique identifier of the cart |  
 
 
 
@@ -14861,12 +14861,12 @@ Remove Coupon applied on the cart by passing uid in request body.
 
 
 
-Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartResponse` for more details.
+Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartDetailResponse` for more details.
 
 
-[CartResponse](#CartResponse)
+[CartDetailResponse](#CartDetailResponse)
 
-Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartResponse` for more details.
+Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartDetailResponse` for more details.
 
 
 
@@ -15013,13 +15013,13 @@ Apply reward points at cart
 ```javascript
 // Promise
 const promise = poscart.applyRewardPoints( {  body : value,
- uid : value,
+ id : value,
  i : value,
  b : value });
 
 // Async/Await
 const data = await poscart.applyRewardPoints( {  body : value,
- uid : value,
+ id : value,
  i : value,
  b : value });
 ```
@@ -15028,7 +15028,7 @@ const data = await poscart.applyRewardPoints( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |    
+| id | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |  
 | body | [RewardPointRequest](#RewardPointRequest) | no | Request body |
@@ -15041,12 +15041,12 @@ Use this API to redeem a fixed no. of reward points by applying it to the cart.
 
 
 
-Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
 
 
-[CartResponse](#CartResponse)
+[CartDetailResponse](#CartDetailResponse)
 
-Success. Returns a Cart object. Check the example shown below or refer `CartResponse` for more details.
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
 
 
 
@@ -15066,14 +15066,14 @@ Fetch address
 
 ```javascript
 // Promise
-const promise = poscart.getAddresses( {  uid : value,
+const promise = poscart.getAddresses( {  cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
  isDefault : value });
 
 // Async/Await
-const data = await poscart.getAddresses( {  uid : value,
+const data = await poscart.getAddresses( {  cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
@@ -15084,7 +15084,7 @@ const data = await poscart.getAddresses( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |    
+| cartId | string | no |  |    
 | mobileNo | string | no |  |    
 | checkoutMode | string | no |  |    
 | tags | string | no |  |    
@@ -15170,7 +15170,7 @@ Fetch a single address by its ID
 ```javascript
 // Promise
 const promise = poscart.getAddressById( {  id : value,
- uid : value,
+ cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
@@ -15178,7 +15178,7 @@ const promise = poscart.getAddressById( {  id : value,
 
 // Async/Await
 const data = await poscart.getAddressById( {  id : value,
- uid : value,
+ cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
@@ -15189,8 +15189,8 @@ const data = await poscart.getAddressById( {  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number | no |  |    
-| uid | number | no |  |    
+| id | string | no |  |    
+| cartId | string | no |  |    
 | mobileNo | string | no |  |    
 | checkoutMode | string | no |  |    
 | tags | string | no |  |    
@@ -15242,7 +15242,7 @@ const data = await poscart.updateAddress( {  id : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number | no | ID allotted to the selected address |  
+| id | string | no | ID allotted to the selected address |  
 | body | [Address](#Address) | no | Request body |
 
 
@@ -15274,7 +15274,7 @@ const data = await poscart.removeAddress( {  id : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| id | number | no | ID allotted to the selected address |  
+| id | string | no | ID allotted to the selected address |  
 
 
 
@@ -15297,13 +15297,13 @@ Select an address from available addresses
 ```javascript
 // Promise
 const promise = poscart.selectAddress( {  body : value,
- uid : value,
+ cartId : value,
  i : value,
  b : value });
 
 // Async/Await
 const data = await poscart.selectAddress( {  body : value,
- uid : value,
+ cartId : value,
  i : value,
  b : value });
 ```
@@ -15312,7 +15312,7 @@ const data = await poscart.selectAddress( {  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |    
+| cartId | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |  
 | body | [SelectCartAddressRequest](#SelectCartAddressRequest) | no | Request body |
@@ -15337,18 +15337,18 @@ Update cart payment
 ```javascript
 // Promise
 const promise = poscart.selectPaymentMode( {  body : value,
- uid : value });
+ id : value });
 
 // Async/Await
 const data = await poscart.selectPaymentMode( {  body : value,
- uid : value });
+ id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | string | no |  |  
+| id | string | no |  |  
 | body | [UpdateCartPaymentRequest](#UpdateCartPaymentRequest) | no | Request body |
 
 
@@ -15359,12 +15359,12 @@ Use this API to update cart payment.
 
 
 
-Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.
+Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.
 
 
-[CartResponse](#CartResponse)
+[CartDetailResponse](#CartDetailResponse)
 
-Success. Returns a Cart object as shown below. Refer `CartResponse` for more details.
+Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.
 
 
 
@@ -15384,7 +15384,7 @@ Verify the coupon eligibility against the payment mode
 
 ```javascript
 // Promise
-const promise = poscart.validateCouponForPayment( {  uid : value,
+const promise = poscart.validateCouponForPayment( {  id : value,
  addressId : value,
  paymentMode : value,
  paymentIdentifier : value,
@@ -15392,7 +15392,7 @@ const promise = poscart.validateCouponForPayment( {  uid : value,
  merchantCode : value });
 
 // Async/Await
-const data = await poscart.validateCouponForPayment( {  uid : value,
+const data = await poscart.validateCouponForPayment( {  id : value,
  addressId : value,
  paymentMode : value,
  paymentIdentifier : value,
@@ -15404,7 +15404,7 @@ const data = await poscart.validateCouponForPayment( {  uid : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | string | no |  |    
+| id | string | no |  |    
 | addressId | string | no |  |    
 | paymentMode | string | no |  |    
 | paymentIdentifier | string | no |  |    
@@ -15448,7 +15448,7 @@ Get delivery date and options before checkout
 const promise = poscart.getShipments( {  pickAtStoreUid : value,
  orderingStoreId : value,
  p : value,
- uid : value,
+ id : value,
  addressId : value,
  areaCode : value,
  orderType : value });
@@ -15457,7 +15457,7 @@ const promise = poscart.getShipments( {  pickAtStoreUid : value,
 const data = await poscart.getShipments( {  pickAtStoreUid : value,
  orderingStoreId : value,
  p : value,
- uid : value,
+ id : value,
  addressId : value,
  areaCode : value,
  orderType : value });
@@ -15470,8 +15470,8 @@ const data = await poscart.getShipments( {  pickAtStoreUid : value,
 | pickAtStoreUid | number | no |  |    
 | orderingStoreId | number | no |  |    
 | p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
-| uid | number | no | The unique identifier of the cart |    
-| addressId | number | no | ID allotted to the selected address |    
+| id | string | no | The unique identifier of the cart |    
+| addressId | string | no | ID allotted to the selected address |    
 | areaCode | string | no | The PIN Code of the destination address, e.g. 400059 |    
 | orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
 
@@ -16152,7 +16152,7 @@ Update shipment delivery type and quantity before checkout
 const promise = poscart.updateShipments( {  body : value,
  i : value,
  p : value,
- uid : value,
+ id : value,
  addressId : value,
  orderType : value });
 
@@ -16160,7 +16160,7 @@ const promise = poscart.updateShipments( {  body : value,
 const data = await poscart.updateShipments( {  body : value,
  i : value,
  p : value,
- uid : value,
+ id : value,
  addressId : value,
  orderType : value });
 ```
@@ -16171,8 +16171,8 @@ const data = await poscart.updateShipments( {  body : value,
 | --------- | -----  | -------- | ----------- |  
 | i | boolean | no | This is a boolean value. Select `true` to retrieve all the items added in the cart. |    
 | p | boolean | no | This is a boolean value. Select `true` for getting a payment option in response. |    
-| uid | number | no | The unique identifier of the cart |    
-| addressId | number | no | ID allotted to an address |    
+| id | string | no | The unique identifier of the cart |    
+| addressId | string | no | ID allotted to an address |    
 | orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. |  
 | body | [UpdateCartShipmentRequest](#UpdateCartShipmentRequest) | no | Request body |
 
@@ -16851,19 +16851,19 @@ Checkout all items in the cart
 ```javascript
 // Promise
 const promise = poscart.checkoutCart( {  body : value,
- uid : value });
+ id : value });
 
 // Async/Await
 const data = await poscart.checkoutCart( {  body : value,
- uid : value });
+ id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no |  |  
-| body | [CartPosCheckoutRequest](#CartPosCheckoutRequest) | no | Request body |
+| id | string | no |  |  
+| body | [CartPosCheckoutDetailRequest](#CartPosCheckoutDetailRequest) | no | Request body |
 
 
 Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
@@ -17276,18 +17276,18 @@ Update the cart meta
 ```javascript
 // Promise
 const promise = poscart.updateCartMeta( {  body : value,
- uid : value });
+ id : value });
 
 // Async/Await
 const data = await poscart.updateCartMeta( {  body : value,
- uid : value });
+ id : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| uid | number | no | The unique identifier of the cart |  
+| id | string | no | The unique identifier of the cart |  
 | body | [CartMetaRequest](#CartMetaRequest) | no | Request body |
 
 
@@ -17324,11 +17324,11 @@ Get available delivery modes for cart
 ```javascript
 // Promise
 const promise = poscart.getAvailableDeliveryModes( {  areaCode : value,
- uid : value });
+ id : value });
 
 // Async/Await
 const data = await poscart.getAvailableDeliveryModes( {  areaCode : value,
- uid : value });
+ id : value });
 ```
 
 
@@ -17336,7 +17336,7 @@ const data = await poscart.getAvailableDeliveryModes( {  areaCode : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | areaCode | string | no |  |    
-| uid | number | no |  |  
+| id | string | no |  |  
 
 
 
@@ -17972,8 +17972,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | url | string |  no  |  |
- | meta | [Meta](#Meta) |  no  |  |
  | type | string |  no  |  |
+ | meta | [Meta](#Meta) |  no  |  |
 
 ---
 
@@ -17984,9 +17984,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | params | string |  no  |  |
  | type | string |  no  |  |
  | query | string |  no  |  |
+ | params | string |  no  |  |
 
 ---
 
@@ -18009,10 +18009,36 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
  | logo | [Media](#Media) |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Price](#Price)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingPrice](#ProductListingPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | [Price](#Price) |  no  |  |
+ | effective | [Price](#Price) |  no  |  |
 
 ---
 
@@ -18023,9 +18049,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
  | key | string |  no  |  |
  | value | string |  no  |  |
- | type | string |  no  |  |
 
 ---
 
@@ -18044,62 +18070,36 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [Price](#Price)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_symbol | string |  no  |  |
- | max | number |  no  |  |
- | currency_code | string |  no  |  |
- | min | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductListingPrice](#ProductListingPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | effective | [Price](#Price) |  no  |  |
- | marked | [Price](#Price) |  no  |  |
-
----
-
-
- 
- 
  #### [ProductDetail](#ProductDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  yes  |  |
- | description | string |  no  |  |
- | teaser_tag | string |  no  |  |
- | product_online_date | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | item_code | string |  no  |  |
- | similars | [string] |  no  |  |
- | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | discount | string |  no  |  |
- | attributes | string |  no  |  |
- | rating | number |  no  |  |
+ | item_type | string |  no  |  |
+ | short_description | string |  no  |  |
+ | uid | number |  no  |  |
  | image_nature | string |  no  |  |
- | tryouts | [string] |  no  |  |
+ | highlights | [string] |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | discount | string |  no  |  |
+ | product_online_date | string |  no  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | slug | string |  yes  |  |
+ | rating_count | number |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | similars | [string] |  no  |  |
+ | item_code | string |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | color | string |  no  |  |
+ | description | string |  no  |  |
+ | type | string |  no  |  |
+ | name | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | has_variant | boolean |  no  |  |
- | item_type | string |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | uid | number |  no  |  |
- | name | string |  no  |  |
- | color | string |  no  |  |
- | short_description | string |  no  |  |
- | type | string |  no  |  |
- | highlights | [string] |  no  |  |
- | rating_count | number |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | attributes | string |  no  |  |
+ | rating | number |  no  |  |
 
 ---
 
@@ -18117,14 +18117,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [ProductSize](#ProductSize)
+ #### [ProductSizeStores](#ProductSizeStores)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | is_available | boolean |  no  |  |
- | quantity | number |  no  |  |
- | value | string |  no  |  |
+ | count | number |  no  |  |
 
 ---
 
@@ -18147,12 +18144,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
  | col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
 
 ---
 
@@ -18163,12 +18160,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | col_2 | string |  no  |  |
- | col_4 | string |  no  |  |
- | col_1 | string |  no  |  |
- | col_3 | string |  no  |  |
- | col_5 | string |  no  |  |
  | col_6 | string |  no  |  |
+ | col_3 | string |  no  |  |
+ | col_2 | string |  no  |  |
+ | col_1 | string |  no  |  |
+ | col_5 | string |  no  |  |
+ | col_4 | string |  no  |  |
 
 ---
 
@@ -18180,23 +18177,26 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | headers | [ColumnHeaders](#ColumnHeaders) |  no  |  |
+ | image | string |  no  |  |
+ | unit | string |  no  |  |
  | title | string |  no  |  |
+ | description | string |  no  |  |
  | sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  |
  | size_tip | string |  no  |  |
- | image | string |  no  |  |
- | description | string |  no  |  |
- | unit | string |  no  |  |
 
 ---
 
 
  
  
- #### [ProductSizeStores](#ProductSizeStores)
+ #### [ProductSize](#ProductSize)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
+ | display | string |  no  |  |
+ | quantity | number |  no  |  |
+ | is_available | boolean |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
@@ -18207,12 +18207,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sizes | [[ProductSize](#ProductSize)] |  no  |  |
+ | stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
  | size_chart | [SizeChart](#SizeChart) |  no  |  |
  | sellable | boolean |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
+ | sizes | [[ProductSize](#ProductSize)] |  no  |  |
  | discount | string |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
 
 ---
 
@@ -18223,61 +18223,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tat | number |  no  |  |
- | distance | number |  no  |  |
  | quantity | number |  no  |  |
+ | tat | number |  no  |  |
  | pincode | number |  no  |  |
-
----
-
-
- 
- 
- #### [Details](#Details)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [MarketPlaceSttributes](#MarketPlaceSttributes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | details | [[Details](#Details)] |  no  |  |
-
----
-
-
- 
- 
- #### [Store](#Store)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | count | number |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ReturnConfig](#ReturnConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | time | number |  no  |  |
- | unit | string |  no  |  |
- | returnable | boolean |  no  |  |
+ | distance | number |  no  |  |
 
 ---
 
@@ -18288,22 +18237,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | effective | number |  no  |  |
  | marked | number |  no  |  |
  | currency | string |  no  |  |
-
----
-
-
- 
- 
- #### [Seller](#Seller)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | count | number |  no  |  |
- | name | string |  no  |  |
+ | effective | number |  no  |  |
 
 ---
 
@@ -18345,12 +18281,76 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
+ #### [ReturnConfig](#ReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unit | string |  no  |  |
+ | time | number |  no  |  |
+ | returnable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ArticleAssignment](#ArticleAssignment)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | level | string |  no  |  |
  | strategy | string |  no  |  |
+ | level | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Seller](#Seller)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Store](#Store)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Details](#Details)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MarketPlaceSttributes](#MarketPlaceSttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | details | [[Details](#Details)] |  no  |  |
 
 ---
 
@@ -18361,23 +18361,23 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | strategy_wise_listing | [[StrategyWiseListing](#StrategyWiseListing)] |  no  |  |
- | marketplace_attributes | [[MarketPlaceSttributes](#MarketPlaceSttributes)] |  no  |  |
- | store | [Store](#Store) |  no  |  |
  | item_type | string |  no  |  |
+ | long_lat | [number] |  no  |  |
+ | strategy_wise_listing | [[StrategyWiseListing](#StrategyWiseListing)] |  no  |  |
+ | price_per_price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | pincode | number |  no  |  |
+ | set | [ProductSet](#ProductSet) |  no  |  |
+ | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
+ | article_assignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
+ | quantity | number |  no  |  |
+ | article_id | string |  no  |  |
  | special_badge | string |  no  |  |
  | seller_count | number |  no  |  |
- | quantity | number |  no  |  |
- | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
- | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
- | pincode | number |  no  |  |
- | long_lat | [number] |  no  |  |
- | article_id | string |  no  |  |
  | seller | [Seller](#Seller) |  no  |  |
- | set | [ProductSet](#ProductSet) |  no  |  |
- | article_assignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
+ | store | [Store](#Store) |  no  |  |
  | discount | string |  no  |  |
- | price_per_price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | marketplace_attributes | [[MarketPlaceSttributes](#MarketPlaceSttributes)] |  no  |  |
 
 ---
 
@@ -18389,8 +18389,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | is_selected | boolean |  no  |  |
- | value | string |  no  |  |
  | name | string |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
@@ -18401,9 +18401,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sort_on | [[ProductSizeSellerFilter](#ProductSizeSellerFilter)] |  no  |  |
  | page | [Page](#Page) |  yes  |  |
  | items | [[ProductSizePriceResponse](#ProductSizePriceResponse)] |  no  |  |
+ | sort_on | [[ProductSizeSellerFilter](#ProductSizeSellerFilter)] |  no  |  |
 
 ---
 
@@ -18414,9 +18414,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | logo | string |  no  |  |
  | description | string |  no  |  |
+ | logo | string |  no  |  |
+ | key | string |  no  |  |
  | display | string |  no  |  |
 
 ---
@@ -18454,8 +18454,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | ---------- | ---- | -------- | ----------- |
  | title | string |  no  |  |
  | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
- | items | [[ProductDetail](#ProductDetail)] |  no  |  |
  | subtitle | string |  no  |  |
+ | items | [[ProductDetail](#ProductDetail)] |  no  |  |
 
 ---
 
@@ -18478,8 +18478,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | title | string |  no  |  |
- | items | [[ProductDetail](#ProductDetail)] |  no  |  |
  | subtitle | string |  no  |  |
+ | items | [[ProductDetail](#ProductDetail)] |  no  |  |
 
 ---
 
@@ -18501,15 +18501,15 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | color_name | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
+ | slug | string |  no  |  |
  | is_available | boolean |  no  |  |
  | color | string |  no  |  |
  | uid | number |  no  |  |
  | value | string |  no  |  |
+ | color_name | string |  no  |  |
  | name | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
 
 ---
 
@@ -18520,9 +18520,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | header | string |  no  |  |
  | key | string |  no  |  |
  | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
+ | header | string |  no  |  |
  | display_type | string |  no  |  |
 
 ---
@@ -18545,8 +18545,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | number |  no  |  |
  | name | string |  no  |  |
+ | id | number |  no  |  |
 
 ---
 
@@ -18559,8 +18559,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | ---------- | ---- | -------- | ----------- |
  | code | string |  no  |  |
  | city | string |  no  |  |
- | id | number |  no  |  |
  | name | string |  no  |  |
+ | id | number |  no  |  |
 
 ---
 
@@ -18571,15 +18571,15 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | string |  no  |  |
  | company | [CompanyDetail](#CompanyDetail) |  no  |  |
- | store | [StoreDetail](#StoreDetail) |  no  |  |
- | identifier | string |  no  |  |
- | quantity | number |  no  |  |
- | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
- | seller | [Seller](#Seller) |  no  |  |
- | item_id | number |  no  |  |
  | uid | string |  no  |  |
+ | size | string |  no  |  |
+ | quantity | number |  no  |  |
+ | seller | [Seller](#Seller) |  no  |  |
+ | identifier | string |  no  |  |
+ | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | store | [StoreDetail](#StoreDetail) |  no  |  |
+ | item_id | number |  no  |  |
 
 ---
 
@@ -18609,13 +18609,22 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [ProductSortOn](#ProductSortOn)
+ #### [ProductFiltersValue](#ProductFiltersValue)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_selected | boolean |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | count | number |  no  |  |
+ | selected_max | number |  no  |  |
+ | display | string |  yes  |  |
  | value | string |  no  |  |
- | name | string |  no  |  |
+ | min | number |  no  |  |
+ | is_selected | boolean |  yes  |  |
+ | query_format | string |  no  |  |
+ | display_format | string |  no  |  |
+ | currency_code | string |  no  |  |
+ | max | number |  no  |  |
+ | selected_min | number |  no  |  |
 
 ---
 
@@ -18626,32 +18635,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  yes  |  |
  | logo | string |  no  |  |
  | kind | string |  no  |  |
  | name | string |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductFiltersValue](#ProductFiltersValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | count | number |  no  |  |
- | selected_min | number |  no  |  |
- | query_format | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | display_format | string |  no  |  |
- | selected_max | number |  no  |  |
- | min | number |  no  |  |
  | display | string |  yes  |  |
- | is_selected | boolean |  yes  |  |
- | value | string |  no  |  |
- | currency_code | string |  no  |  |
 
 ---
 
@@ -18662,8 +18649,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
  | values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
+ | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
 
 ---
 
@@ -18674,33 +18661,46 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  yes  |  |
- | description | string |  no  |  |
- | teaser_tag | string |  no  |  |
- | product_online_date | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | item_code | string |  no  |  |
- | similars | [string] |  no  |  |
- | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | discount | string |  no  |  |
- | attributes | string |  no  |  |
- | rating | number |  no  |  |
+ | item_type | string |  no  |  |
+ | short_description | string |  no  |  |
+ | uid | number |  no  |  |
  | image_nature | string |  no  |  |
- | tryouts | [string] |  no  |  |
+ | sellable | boolean |  no  |  |
+ | highlights | [string] |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | discount | string |  no  |  |
+ | product_online_date | string |  no  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | slug | string |  yes  |  |
+ | rating_count | number |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | similars | [string] |  no  |  |
+ | item_code | string |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | color | string |  no  |  |
+ | description | string |  no  |  |
+ | type | string |  no  |  |
+ | name | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | has_variant | boolean |  no  |  |
- | item_type | string |  no  |  |
- | sellable | boolean |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | uid | number |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | attributes | string |  no  |  |
+ | rating | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSortOn](#ProductSortOn)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_selected | boolean |  no  |  |
  | name | string |  no  |  |
- | color | string |  no  |  |
- | short_description | string |  no  |  |
- | type | string |  no  |  |
- | highlights | [string] |  no  |  |
- | rating_count | number |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
@@ -18711,10 +18711,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
  | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
  | page | [Page](#Page) |  yes  |  |
  | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
 
 ---
 
@@ -18725,8 +18725,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | portrait | [Media](#Media) |  no  |  |
  | landscape | [Media](#Media) |  no  |  |
+ | portrait | [Media](#Media) |  no  |  |
 
 ---
 
@@ -18737,14 +18737,14 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | uid | number |  no  |  |
- | discount | string |  no  |  |
- | departments | [string] |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ | departments | [string] |  no  |  |
+ | discount | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
 
 ---
 
@@ -18767,10 +18767,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -18781,8 +18781,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
  | slug | string |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -18793,10 +18793,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | childs | [string] |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
+ | childs | [string] |  no  |  |
  | _custom_json | string |  no  |  |
  | uid | number |  no  |  |
  | name | string |  no  |  |
@@ -18810,10 +18810,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
+ | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
  | _custom_json | string |  no  |  |
  | uid | number |  no  |  |
  | name | string |  no  |  |
@@ -18827,10 +18827,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
+ | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
  | _custom_json | string |  no  |  |
  | uid | number |  no  |  |
  | name | string |  no  |  |
@@ -18844,10 +18844,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | childs | [[Child](#Child)] |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
+ | childs | [[Child](#Child)] |  no  |  |
  | uid | number |  no  |  |
  | name | string |  no  |  |
 
@@ -18884,10 +18884,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -18898,8 +18898,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | page | [Page](#Page) |  yes  |  |
+ | message | string |  no  |  |
  | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
 
 ---
@@ -18911,11 +18911,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | priority_order | number |  no  |  |
- | uid | number |  no  |  |
  | name | string |  no  |  |
+ | priority_order | number |  no  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
 
 ---
 
@@ -18937,10 +18937,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | type | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | display | string |  no  |  |
 
 ---
 
@@ -18962,9 +18962,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
  | is_selected | boolean |  no  |  |
  | name | string |  no  |  |
+ | display | string |  no  |  |
 
 ---
 
@@ -18975,9 +18975,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
  | is_selected | boolean |  no  |  |
  | name | string |  no  |  |
+ | display | string |  no  |  |
 
 ---
 
@@ -19000,25 +19000,25 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cron | string |  no  |  |
+ | uid | string |  no  |  |
+ | app_id | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | slug | string |  no  |  |
+ | meta | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
  | query | string |  no  |  |
  | description | string |  no  |  |
- | is_active | boolean |  no  |  |
- | badge | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | allow_sort | boolean |  no  |  |
- | meta | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | tag | [string] |  no  |  |
  | _schedule | string |  no  |  |
- | uid | string |  no  |  |
- | name | string |  no  |  |
- | app_id | string |  no  |  |
- | cron | string |  no  |  |
  | type | string |  no  |  |
+ | name | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | badge | string |  no  |  |
+ | tag | [string] |  no  |  |
 
 ---
 
@@ -19042,23 +19042,23 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
- | slug | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | cron | string |  no  |  |
+ | name | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
+ | cron | string |  no  |  |
  | query | string |  no  |  |
- | tag | [string] |  no  |  |
+ | badge | string |  no  |  |
+ | app_id | string |  no  |  |
  | description | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
  | allow_sort | boolean |  no  |  |
  | _schedule | string |  no  |  |
+ | tag | [string] |  no  |  |
  | meta | string |  no  |  |
- | is_active | boolean |  no  |  |
- | badge | string |  no  |  |
- | allow_facets | boolean |  no  |  |
  | type | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | name | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | is_active | boolean |  no  |  |
 
 ---
 
@@ -19081,8 +19081,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  yes  |  |
  | message | string |  yes  |  |
+ | id | string |  yes  |  |
 
 ---
 
@@ -19128,8 +19128,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coordinates | [number] |  no  |  |
  | type | string |  no  |  |
+ | coordinates | [number] |  no  |  |
 
 ---
 
@@ -19140,15 +19140,15 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | string |  no  |  |
- | city | string |  no  |  |
- | store_email | string |  no  |  |
- | store_code | string |  no  |  |
  | pincode | number |  no  |  |
+ | city | string |  no  |  |
  | state | string |  no  |  |
- | address | string |  no  |  |
  | uid | number |  no  |  |
  | lat_long | [LatLong](#LatLong) |  no  |  |
+ | store_email | string |  no  |  |
+ | store_code | string |  no  |  |
+ | address | string |  no  |  |
+ | country | string |  no  |  |
  | name | string |  no  |  |
 
 ---
@@ -19170,82 +19170,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [LoyaltyPoints](#LoyaltyPoints)
+ #### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total | number |  no  |  |
- | description | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | applicable | number |  no  |  |
-
----
-
-
- 
- 
- #### [RawBreakup](#RawBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subtotal | number |  no  |  |
- | cod_charge | number |  no  |  |
- | coupon | number |  no  |  |
- | total | number |  no  |  |
- | discount | number |  no  |  |
- | mrp_total | string |  no  |  |
- | delivery_charge | number |  no  |  |
- | gst_charges | number |  no  |  |
- | convenience_fee | number |  no  |  |
- | vog | number |  no  |  |
- | you_saved | number |  no  |  |
- | fynd_cash | number |  no  |  |
-
----
-
-
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_applied | boolean |  no  |  |
- | code | string |  no  |  |
- | value | number |  no  |  |
- | uid | string |  no  |  |
- | type | string |  no  |  |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | key | string |  no  |  |
- | value | number |  no  |  |
- | display | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | message | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [CartBreakup](#CartBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
- | raw | [RawBreakup](#RawBreakup) |  no  |  |
- | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
- | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
+ | code | string |  no  | Currency code defined by ISO 4217:2015 |
+ | symbol | string |  no  |  |
 
 ---
 
@@ -19256,97 +19186,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_identifier | string |  no  |  |
- | default_options | string |  no  |  |
  | enabled | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [PromiseTimestamp](#PromiseTimestamp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | number |  no  |  |
- | max | number |  no  |  |
-
----
-
-
- 
- 
- #### [PromiseFormatted](#PromiseFormatted)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | string |  no  |  |
- | max | string |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentPromise](#ShipmentPromise)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
- | formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  |
-
----
-
-
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  | Article idenfier generated by cart |
-
----
-
-
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_valid | boolean |  no  |  |
- | deliverable | boolean |  no  |  |
- | sizes | [string] |  no  |  |
- | other_store_quantity | number |  no  |  |
- | out_of_stock | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [BasePrice](#BasePrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marked | number |  no  |  |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | effective | number |  no  |  |
-
----
-
-
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [BasePrice](#BasePrice) |  no  |  |
- | base | [BasePrice](#BasePrice) |  no  |  |
+ | default_options | string |  no  |  |
+ | payment_identifier | string |  no  |  |
 
 ---
 
@@ -19357,8 +19199,34 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
  | name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BasePrice](#BasePrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | effective | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | marked | number |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [BasePrice](#BasePrice) |  no  |  |
+ | converted | [BasePrice](#BasePrice) |  no  |  |
 
 ---
 
@@ -19369,13 +19237,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
- | seller | [BaseInfo](#BaseInfo) |  no  |  |
- | uid | string |  no  |  |
- | type | string |  no  |  |
- | extra_meta | string |  no  |  |
  | size | string |  no  |  |
+ | quantity | number |  no  |  |
+ | seller | [BaseInfo](#BaseInfo) |  no  |  |
+ | extra_meta | string |  no  |  |
+ | uid | string |  no  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
+ | type | string |  no  |  |
  | store | [BaseInfo](#BaseInfo) |  no  |  |
 
 ---
@@ -19383,39 +19251,15 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [ProductPrice](#ProductPrice)
+ #### [ProductAvailability](#ProductAvailability)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | add_on | number |  no  |  |
- | currency_code | string |  no  |  |
- | marked | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | selling | number |  no  |  |
- | effective | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [ProductPrice](#ProductPrice) |  no  |  |
- | base | [ProductPrice](#ProductPrice) |  no  |  |
-
----
-
-
- 
- 
- #### [PromoMeta](#PromoMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | other_store_quantity | number |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | sizes | [string] |  no  |  |
+ | deliverable | boolean |  no  |  |
 
 ---
 
@@ -19426,9 +19270,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | secure_url | string |  no  |  |
  | url | string |  no  |  |
+ | secure_url | string |  no  |  |
+ | aspect_ratio | string |  no  |  |
 
 ---
 
@@ -19463,8 +19307,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  | Product Category Id |
  | name | string |  no  |  |
+ | uid | number |  no  | Product Category Id |
 
 ---
 
@@ -19475,14 +19319,64 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | images | [[Image](#Image)] |  no  |  |
- | brand | [BaseInfo](#BaseInfo) |  no  |  |
- | action | [ProductAction](#ProductAction) |  no  |  |
- | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
- | uid | number |  no  |  |
  | slug | string |  no  | Unique product url name generated via product name and other meta data |
- | type | string |  no  |  |
+ | brand | [BaseInfo](#BaseInfo) |  no  |  |
+ | images | [[Image](#Image)] |  no  |  |
+ | uid | number |  no  |  |
  | name | string |  no  |  |
+ | action | [ProductAction](#ProductAction) |  no  |  |
+ | type | string |  no  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string |  no  | Article idenfier generated by cart |
+
+---
+
+
+ 
+ 
+ #### [ProductPrice](#ProductPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ | add_on | number |  no  |  |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | selling | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [ProductPrice](#ProductPrice) |  no  |  |
+ | converted | [ProductPrice](#ProductPrice) |  no  |  |
 
 ---
 
@@ -19493,58 +19387,163 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | discount | string |  no  |  |
- | is_set | boolean |  no  |  |
- | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
  | article | [ProductArticle](#ProductArticle) |  no  |  |
- | key | string |  no  |  |
+ | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
+ | quantity | number |  no  |  |
+ | product | [Product](#Product) |  no  |  |
+ | bulk_offer | string |  no  |  |
+ | is_set | boolean |  no  |  |
+ | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
+ | discount | string |  no  |  |
+ | message | string |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
  | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
  | coupon_message | string |  no  |  |
- | bulk_offer | string |  no  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
- | product | [Product](#Product) |  no  |  |
+ | key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromiseTimestamp](#PromiseTimestamp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromiseFormatted](#PromiseFormatted)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | string |  no  |  |
+ | min | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentPromise](#ShipmentPromise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
+ | formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayBreakup](#DisplayBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [string] |  no  |  |
+ | display | string |  no  |  |
+ | value | number |  no  |  |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RawBreakup](#RawBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | you_saved | number |  no  |  |
+ | gst_charges | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | cod_charge | number |  no  |  |
+ | total | number |  no  |  |
+ | discount | number |  no  |  |
+ | subtotal | number |  no  |  |
+ | mrp_total | string |  no  |  |
+ | vog | number |  no  |  |
+ | convenience_fee | number |  no  |  |
+ | fynd_cash | number |  no  |  |
+ | coupon | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total | number |  no  |  |
+ | description | string |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | applicable | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartCurrency](#CartCurrency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | symbol | string |  no  |  |
- | code | string |  no  | Currency code defined by ISO 4217:2015 |
-
----
-
-
- 
- 
- #### [CartResponse](#CartResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | comment | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | cart_id | number |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | gstin | string |  no  |  |
+ | is_applied | boolean |  no  |  |
  | uid | string |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | last_modified | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | checkout_mode | string |  no  |  |
+ | code | string |  no  |  |
+ | type | string |  no  |  |
+ | value | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartBreakup](#CartBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
+ | raw | [RawBreakup](#RawBreakup) |  no  |  |
+ | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
+ | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartDetailResponse](#CartDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | currency | [CartCurrency](#CartCurrency) |  no  |  |
  | coupon_text | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
  | message | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | gstin | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | comment | string |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | id | string |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | last_modified | string |  no  |  |
 
 ---
 
@@ -19555,16 +19554,16 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
- | item_size | string |  no  |  |
- | pos | boolean |  no  |  |
- | item_id | number |  no  |  |
  | seller_id | number |  no  |  |
- | display | string |  no  |  |
- | article_id | string |  no  |  |
- | article_assignment | string |  no  |  |
- | extra_meta | string |  no  |  |
+ | item_id | number |  no  |  |
+ | quantity | number |  no  |  |
+ | pos | boolean |  no  |  |
  | store_id | number |  no  |  |
+ | article_assignment | string |  no  |  |
+ | article_id | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | display | string |  no  |  |
+ | item_size | string |  no  |  |
 
 ---
 
@@ -19582,14 +19581,14 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [AddCartResponse](#AddCartResponse)
+ #### [AddCartDetailResponse](#AddCartDetailResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [CartResponse](#CartResponse) |  no  |  |
+ | message | string |  no  |  |
  | partial | boolean |  no  | When adding multiple items check if all added. True if only few are added. |
  | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
- | message | string |  no  |  |
+ | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
 
 ---
 
@@ -19600,13 +19599,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
- | item_size | string |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
  | item_id | number |  no  |  |
- | item_index | number |  no  |  |
+ | quantity | number |  no  |  |
  | article_id | string |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
  | extra_meta | string |  no  |  |
+ | item_index | number |  no  |  |
+ | item_size | string |  no  |  |
 
 ---
 
@@ -19617,21 +19616,21 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | operation | string |  yes  |  |
  | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
+ | operation | string |  yes  |  |
 
 ---
 
 
  
  
- #### [UpdateCartResponse](#UpdateCartResponse)
+ #### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [CartResponse](#CartResponse) |  no  |  |
- | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
  | message | string |  no  |  |
+ | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
+ | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
 
 ---
 
@@ -19643,26 +19642,6 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | user_cart_items_count | number |  no  | Item count present in cart |
-
----
-
-
- 
- 
- #### [Coupon](#Coupon)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coupon_value | number |  no  |  |
- | max_discount_value | number |  no  |  |
- | is_applied | boolean |  no  |  |
- | expires_on | string |  no  |  |
- | minimum_cart_value | number |  no  |  |
- | is_applicable | boolean |  no  |  |
- | title | string |  no  |  |
- | sub_title | string |  no  |  |
- | coupon_code | string |  no  |  |
- | message | string |  no  |  |
 
 ---
 
@@ -19684,12 +19663,32 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
+ #### [Coupon](#Coupon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | is_applicable | boolean |  no  |  |
+ | message | string |  no  |  |
+ | sub_title | string |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | coupon_value | number |  no  |  |
+ | max_discount_value | number |  no  |  |
+ | coupon_code | string |  no  |  |
+ | expires_on | string |  no  |  |
+ | minimum_cart_value | number |  no  |  |
+
+---
+
+
+ 
+ 
  #### [GetCouponResponse](#GetCouponResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | available_coupon_list | [[Coupon](#Coupon)] |  no  |  |
  | page | [PageCoupon](#PageCoupon) |  no  |  |
+ | available_coupon_list | [[Coupon](#Coupon)] |  no  |  |
 
 ---
 
@@ -19711,11 +19710,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  | Currency code for all amounts |
- | marked | number |  no  | Original price of product |
- | currency_symbol | string |  no  | Currency symbol for currency |
- | bulk_effective | number |  no  | Discounted per unit price for current offer object |
  | effective | number |  no  | Current per unit price of product after existing deductions |
+ | marked | number |  no  | Original price of product |
+ | bulk_effective | number |  no  | Discounted per unit price for current offer object |
+ | currency_code | string |  no  | Currency code for all amounts |
+ | currency_symbol | string |  no  | Currency symbol for currency |
 
 ---
 
@@ -19726,13 +19725,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  | Quantity on which offer is applicable |
- | total | number |  no  | Total price of offer quantity with discount |
- | best | boolean |  no  | Is true for best offer from all offers present for all sellers |
- | price | [OfferPrice](#OfferPrice) |  no  |  |
- | margin | number |  no  | Percentage value of discount |
- | type | string |  no  | Offer type |
  | auto_applied | boolean |  no  |  |
+ | quantity | number |  no  | Quantity on which offer is applicable |
+ | best | boolean |  no  | Is true for best offer from all offers present for all sellers |
+ | total | number |  no  | Total price of offer quantity with discount |
+ | margin | number |  no  | Percentage value of discount |
+ | price | [OfferPrice](#OfferPrice) |  no  |  |
+ | type | string |  no  | Offer type |
 
 ---
 
@@ -19743,8 +19742,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  | Seller id |
  | name | string |  no  |  |
+ | uid | number |  no  | Seller id |
 
 ---
 
@@ -19801,28 +19800,28 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | city | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | phone | string |  no  |  |
+ | address | string |  no  |  |
+ | country | string |  no  |  |
+ | landmark | string |  no  |  |
+ | country_code | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | area_code_slug | string |  no  |  |
+ | state | string |  no  |  |
+ | area | string |  no  |  |
+ | name | string |  no  |  |
  | address_type | string |  no  |  |
  | geo_location | [GeoLocation](#GeoLocation) |  no  |  |
- | is_default_address | boolean |  no  |  |
- | area_code_slug | string |  no  |  |
- | tags | [string] |  no  |  |
- | meta | string |  no  |  |
- | area | string |  no  |  |
- | phone | string |  no  |  |
- | user_id | string |  no  |  |
- | uid | number |  no  |  |
- | area_code | string |  no  |  |
- | is_active | boolean |  no  |  |
- | country | string |  no  |  |
- | country_code | string |  no  |  |
- | address | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | name | string |  no  |  |
  | email | string |  no  |  |
+ | meta | string |  no  |  |
  | google_map_point | string |  no  |  |
- | landmark | string |  no  |  |
- | state | string |  no  |  |
+ | city | string |  no  |  |
+ | area_code | string |  no  |  |
+ | is_default_address | boolean |  no  |  |
+ | user_id | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
@@ -19844,9 +19843,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | success | boolean |  no  |  |
  | is_default_address | boolean |  no  |  |
- | success | string |  no  |  |
- | address_id | number |  no  |  |
 
 ---
 
@@ -19857,9 +19856,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address_id | number |  no  |  |
- | is_default_address | boolean |  no  |  |
  | success | boolean |  no  |  |
+ | is_default_address | boolean |  no  |  |
+ | id | string |  no  |  |
  | is_updated | boolean |  no  |  |
 
 ---
@@ -19872,7 +19871,7 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | is_deleted | boolean |  no  |  |
- | address_id | number |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
@@ -19883,9 +19882,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | billing_address_id | number |  no  |  |
- | address_id | string |  no  |  |
- | uid | string |  no  |  |
+ | cart_id | string |  no  |  |
+ | billing_address_id | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
@@ -19896,12 +19895,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_code | string |  no  |  |
- | payment_identifier | string |  no  |  |
  | aggregator_name | string |  no  |  |
- | uid | number |  no  |  |
+ | address_id | string |  no  |  |
  | payment_mode | string |  no  |  |
- | address_id | number |  no  |  |
+ | merchant_code | string |  no  |  |
+ | id | string |  no  |  |
+ | payment_identifier | string |  no  |  |
 
 ---
 
@@ -19912,11 +19911,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
  | valid | boolean |  no  |  |
- | code | string |  no  |  |
  | discount | number |  no  |  |
  | display_message_en | string |  no  |  |
- | title | string |  no  |  |
+ | code | string |  no  |  |
 
 ---
 
@@ -19927,9 +19926,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon_validity | [CouponValidity](#CouponValidity) |  no  |  |
- | success | boolean |  yes  |  |
  | message | string |  no  |  |
+ | success | boolean |  yes  |  |
+ | coupon_validity | [CouponValidity](#CouponValidity) |  no  |  |
 
 ---
 
@@ -19940,16 +19939,16 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_type | string |  no  |  |
  | fulfillment_type | string |  no  |  |
- | box_type | string |  no  |  |
- | fulfillment_id | number |  no  |  |
- | promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | dp_options | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | shipments | number |  no  |  |
  | shipment_type | string |  no  |  |
+ | promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
  | dp_id | number |  no  |  |
+ | box_type | string |  no  |  |
+ | shipments | number |  no  |  |
+ | order_type | string |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | dp_options | string |  no  |  |
+ | fulfillment_id | number |  no  |  |
 
 ---
 
@@ -19960,49 +19959,64 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | comment | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | cart_id | number |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | gstin | string |  no  |  |
- | uid | string |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | last_modified | string |  no  |  |
  | checkout_mode | string |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
  | shipments | [[ShipmentResponse](#ShipmentResponse)] |  no  |  |
  | error | boolean |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | uid | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | cart_id | number |  no  |  |
+ | gstin | string |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | last_modified | string |  no  |  |
  | coupon_text | string |  no  |  |
  | message | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | comment | string |  no  |  |
+ | id | string |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
 
 ---
 
 
  
  
- #### [CartCheckoutRequest](#CartCheckoutRequest)
+ #### [StaffCheckout](#StaffCheckout)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_auto_confirm | boolean |  no  |  |
- | merchant_code | string |  no  |  |
- | meta | string |  no  |  |
- | payment_identifier | string |  no  |  |
- | delivery_address | string |  no  |  |
+ | user | string |  yes  |  |
+ | last_name | string |  yes  |  |
+ | first_name | string |  yes  |  |
+ | _id | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartCheckoutDetailRequest](#CartCheckoutDetailRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address_id | string |  no  |  |
+ | ordering_store | number |  no  |  |
+ | callback_url | string |  no  |  |
+ | billing_address_id | string |  no  |  |
  | fyndstore_emp_id | string |  no  |  |
- | staff | string |  no  |  |
  | aggregator | string |  no  |  |
  | payment_mode | string |  yes  |  |
- | callback_url | string |  no  |  |
  | extra_meta | string |  no  |  |
+ | staff | [StaffCheckout](#StaffCheckout) |  no  |  |
+ | delivery_address | string |  no  |  |
+ | merchant_code | string |  no  |  |
  | payment_params | string |  no  |  |
- | billing_address_id | number |  no  |  |
- | address_id | number |  no  |  |
- | ordering_store | number |  no  |  |
+ | payment_identifier | string |  no  |  |
+ | payment_auto_confirm | boolean |  no  |  |
  | billing_address | string |  no  |  |
+ | meta | string |  no  |  |
 
 ---
 
@@ -20013,33 +20027,34 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | cart_id | number |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | error_message | string |  no  |  |
+ | store_emps | [string] |  no  |  |
+ | cod_charges | number |  no  |  |
+ | delivery_charges | number |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | uid | string |  no  |  |
  | restrict_checkout | boolean |  no  |  |
- | coupon_text | string |  no  |  |
- | delivery_charge_order_value | number |  no  |  |
  | success | boolean |  no  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | user_type | string |  no  |  |
- | delivery_charges | number |  no  |  |
- | uid | string |  no  |  |
- | cod_message | string |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | last_modified | string |  no  |  |
- | store_emps | [string] |  no  |  |
- | is_valid | boolean |  no  |  |
- | order_id | string |  no  |  |
- | error_message | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | store_code | string |  no  |  |
- | comment | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | cod_available | boolean |  no  |  |
  | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | store_code | string |  no  |  |
+ | cart_id | number |  no  |  |
  | gstin | string |  no  |  |
- | cod_charges | number |  no  |  |
+ | user_type | string |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | cod_available | boolean |  no  |  |
+ | last_modified | string |  no  |  |
+ | coupon_text | string |  no  |  |
  | message | string |  no  |  |
+ | delivery_charge_order_value | number |  no  |  |
+ | order_id | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | comment | string |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | id | string |  no  |  |
+ | cod_message | string |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
 
 ---
 
@@ -20050,13 +20065,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | data | string |  no  |  |
+ | callback_url | string |  no  |  |
+ | message | string |  no  |  |
  | order_id | string |  no  |  |
  | app_intercept_url | string |  no  |  |
- | callback_url | string |  no  |  |
+ | success | boolean |  no  |  |
+ | data | string |  no  |  |
  | cart | [CheckCart](#CheckCart) |  no  |  |
- | message | string |  no  |  |
 
 ---
 
@@ -20067,9 +20082,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | checkout_mode | string |  no  |  |
- | comment | string |  no  |  |
  | gstin | string |  no  |  |
+ | comment | string |  no  |  |
+ | checkout_mode | string |  no  |  |
  | pick_up_customer_details | string |  no  | Customer contact details for customer pickup at store |
 
 ---
@@ -20103,8 +20118,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  yes  | Cart uid for generating sharing |
  | meta | string |  no  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
+ | id | string |  no  | Cart uid for generating sharing |
+ | uid | number |  yes  | Cart uid for generating sharing |
 
 ---
 
@@ -20115,8 +20131,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | share_url | string |  no  | Short shareable final url |
  | token | string |  no  | Short url unique id |
+ | share_url | string |  no  | Short shareable final url |
 
 ---
 
@@ -20127,11 +20143,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | source | string |  no  | Share link device and other source information |
- | meta | string |  no  | Meta data sent while generating share cart link |
- | created_on | string |  no  |  |
- | user | string |  no  | User details of who generated share link |
  | token | string |  no  | Short link id |
+ | created_on | string |  no  |  |
+ | source | string |  no  | Share link device and other source information |
+ | user | string |  no  | User details of who generated share link |
+ | meta | string |  no  | Meta data sent while generating share cart link |
 
 ---
 
@@ -20142,23 +20158,24 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | comment | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | cart_id | number |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | gstin | string |  no  |  |
- | uid | string |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | last_modified | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | checkout_mode | string |  no  |  |
  | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | shared_cart_details | [SharedCartDetails](#SharedCartDetails) |  no  |  |
  | coupon_text | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
  | message | string |  no  |  |
+ | uid | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | cart_id | number |  no  |  |
+ | gstin | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | id | string |  no  |  |
+ | comment | string |  no  |  |
+ | shared_cart_details | [SharedCartDetails](#SharedCartDetails) |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | last_modified | string |  no  |  |
 
 ---
 
@@ -20169,8 +20186,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [SharedCart](#SharedCart) |  no  |  |
  | error | string |  no  |  |
+ | cart | [SharedCart](#SharedCart) |  no  |  |
 
 ---
 
@@ -25654,16 +25671,16 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api | string |  no  | Payment gateway api endpoint |
- | pin | string |  no  | Masked pin |
  | merchant_key | string |  no  | Unique merchant key |
- | sdk | boolean |  no  | SDK |
- | secret | string |  yes  | Masked payment gateway api secret |
- | merchant_id | string |  no  | Unique merchant id |
- | user_id | string |  no  | Registered User id |
- | verify_api | string |  no  | Payment gateway verify payment api endpoint |
- | config_type | string |  yes  | Fynd or self payment gateway |
+ | pin | string |  no  | Masked pin |
+ | api | string |  no  | Payment gateway api endpoint |
  | key | string |  yes  | Payment gateway api key |
+ | sdk | boolean |  no  | SDK |
+ | verify_api | string |  no  | Payment gateway verify payment api endpoint |
+ | secret | string |  yes  | Masked payment gateway api secret |
+ | config_type | string |  yes  | Fynd or self payment gateway |
+ | user_id | string |  no  | Registered User id |
+ | merchant_id | string |  no  | Unique merchant id |
 
 ---
 
@@ -25674,15 +25691,15 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
  | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
  | env | string |  yes  | Environment i.e Live or Test |
+ | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
  | success | boolean |  yes  |  |
 
 ---
@@ -25694,8 +25711,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  | Error descrption code. |
  | description | string |  yes  | Error human understandable description. |
+ | code | string |  yes  | Error descrption code. |
 
 ---
 
@@ -25718,10 +25735,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | nickname | string |  no  |  |
- | refresh | boolean |  no  | Refresh cache flag. |
  | name_on_card | string |  no  |  |
  | card_id | string |  yes  | Card token of payment gateway. |
+ | refresh | boolean |  no  | Refresh cache flag. |
+ | nickname | string |  no  |  |
 
 ---
 
@@ -25733,8 +25750,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string |  yes  | List of cards of customer. |
- | success | boolean |  yes  | Response is successful or not. |
  | message | string |  no  | Human readable message. |
+ | success | boolean |  yes  | Response is successful or not. |
 
 ---
 
@@ -25745,9 +25762,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | customer_id | string |  no  | Payment gateway customer id. |
  | aggregator | string |  yes  | Payment gateway name. |
  | api | string |  no  | Payment gateway CARD api endpoint |
- | customer_id | string |  no  | Payment gateway customer id. |
 
 ---
 
@@ -25759,8 +25776,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  | Card's payment gateway with customer id. |
- | success | boolean |  yes  | Response is successful or not. |
  | message | string |  yes  | Human readable message. |
+ | success | boolean |  yes  | Response is successful or not. |
 
 ---
 
@@ -25771,22 +25788,22 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | exp_year | number |  no  | exp_year |
- | card_fingerprint | string |  no  | card_fingerprint |
- | card_brand_image | string |  no  | card_brand_image |
  | card_reference | string |  no  | card_reference |
- | exp_month | number |  no  | exp_month |
- | card_type | string |  no  | card_type |
- | card_token | string |  no  | card_token |
- | card_name | string |  no  | card_name |
- | card_issuer | string |  no  | card_issuer |
- | card_id | string |  no  | card_id |
- | expired | boolean |  no  | expired |
- | card_number | string |  no  | card_number |
- | nickname | string |  no  | nickname |
  | card_brand | string |  no  | card_brand |
- | card_isin | string |  no  | card_isin |
  | aggregator_name | string |  yes  | aggregator_name |
+ | card_brand_image | string |  no  | card_brand_image |
+ | card_issuer | string |  no  | card_issuer |
+ | card_name | string |  no  | card_name |
+ | card_type | string |  no  | card_type |
+ | expired | boolean |  no  | expired |
+ | exp_month | number |  no  | exp_month |
+ | card_token | string |  no  | card_token |
+ | nickname | string |  no  | nickname |
+ | card_fingerprint | string |  no  | card_fingerprint |
+ | exp_year | number |  no  | exp_year |
+ | card_id | string |  no  | card_id |
+ | card_number | string |  no  | card_number |
+ | card_isin | string |  no  | card_isin |
 
 ---
 
@@ -25798,8 +25815,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [[Card](#Card)] |  no  | List of cards of customer. |
- | success | boolean |  yes  | Response is successful or not. |
  | message | string |  yes  | Human readable message. |
+ | success | boolean |  yes  | Response is successful or not. |
 
 ---
 
@@ -25821,8 +25838,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not. |
  | message | string |  no  | Human readable message. |
+ | success | boolean |  yes  | Response is successful or not. |
 
 ---
 
@@ -25833,11 +25850,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name in camel case i.e Simpl, Rupifi |
  | payload | string |  yes  | Hashed payload string. |
  | transaction_amount_in_paise | number |  yes  | Payable amount in paise |
- | phone_number | string |  yes  | User mobile number without country code. |
+ | aggregator | string |  yes  | Payment gateway name in camel case i.e Simpl, Rupifi |
  | merchant_params | string |  yes  | Extra meta fields. |
+ | phone_number | string |  yes  | User mobile number without country code. |
 
 ---
 
@@ -25849,8 +25866,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string |  yes  | Payment gateway response data |
- | success | boolean |  yes  | Response is successful or not |
  | message | string |  yes  | Error or success message. |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -25861,11 +25878,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
- | amount | number |  yes  | Chargable amount of order. |
- | order_id | string |  yes  | Unique order id. |
  | verified | boolean |  no  | Already Verified flag from payment gateway i.e Mswipe |
+ | order_id | string |  yes  | Unique order id. |
  | transaction_token | string |  no  | Transaction token of payment gateway. |
+ | amount | number |  yes  | Chargable amount of order. |
+ | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
 
 ---
 
@@ -25876,12 +25893,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
- | cart_id | string |  no  | Cart id of customer |
- | message | string |  yes  | Human readable message. |
- | order_id | string |  yes  | Unique order id. |
- | status | string |  yes  | Status of charged payment. |
  | delivery_address_id | string |  no  | Delivery adddress id of customer |
+ | cart_id | string |  no  | Cart id of customer |
+ | order_id | string |  yes  | Unique order id. |
+ | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
+ | message | string |  yes  | Human readable message. |
+ | status | string |  yes  | Status of charged payment. |
  | success | boolean |  yes  | Response is successful or not. |
 
 ---
@@ -25893,15 +25910,15 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name |
  | razorpay_payment_id | string |  yes  | Payment gateway payment id |
- | polling_url | string |  yes  | Polling url to check payment status |
+ | method | string |  yes  | Payment method |
+ | aggregator | string |  yes  | Payment gateway name |
+ | merchant_order_id | string |  yes  | Unique fynd order id |
  | customer_id | string |  yes  | Payment gateway customer id. |
  | virtual_id | string |  no  | Bharat QR code virtual id |
  | aggregator_order_id | string |  yes  | Payment gateway order id |
+ | polling_url | string |  yes  | Polling url to check payment status |
  | timeout | number |  yes  | Payment polling timeout if not recieved response |
- | merchant_order_id | string |  yes  | Unique fynd order id |
- | method | string |  yes  | Payment method |
 
 ---
 
@@ -25912,21 +25929,21 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name |
- | amount | number |  no  | Payable amount. |
  | razorpay_payment_id | string |  no  | Payment  id. |
- | customer_id | string |  no  | Payment gateway customer id. |
  | polling_url | string |  yes  | Polling url. |
- | virtual_id | string |  no  | Payment virtual address. |
- | aggregator_order_id | string |  no  | Payment order id |
- | vpa | string |  no  | Customer vpa address |
- | timeout | number |  no  | timeout. |
- | status | string |  no  | Status of payment. |
+ | method | string |  yes  | Payment method |
+ | amount | number |  no  | Payable amount. |
+ | aggregator | string |  yes  | Payment gateway name |
  | bqr_image | string |  no  | Bharath qr image url. |
  | merchant_order_id | string |  yes  | order id |
- | method | string |  yes  | Payment method |
- | success | boolean |  yes  | Response is successful or not. |
+ | vpa | string |  no  | Customer vpa address |
+ | customer_id | string |  no  | Payment gateway customer id. |
  | currency | string |  no  | Currency code. |
+ | virtual_id | string |  no  | Payment virtual address. |
+ | status | string |  no  | Status of payment. |
+ | timeout | number |  no  | timeout. |
+ | aggregator_order_id | string |  no  | Payment order id |
+ | success | boolean |  yes  | Response is successful or not. |
 
 ---
 
@@ -25937,16 +25954,16 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name |
- | amount | number |  yes  | Payable amount. |
- | customer_id | string |  yes  | Payment gateway customer id. |
- | vpa | string |  yes  | Customer vpa address |
- | contact | string |  yes  | Customer valid mobile number |
- | order_id | string |  yes  | Payment gateway order id |
- | status | string |  yes  | Status of payment. |
  | email | string |  yes  | Customer valid email |
- | merchant_order_id | string |  yes  | Unique fynd order id |
+ | order_id | string |  yes  | Payment gateway order id |
  | method | string |  yes  | Payment method |
+ | amount | number |  yes  | Payable amount. |
+ | aggregator | string |  yes  | Payment gateway name |
+ | merchant_order_id | string |  yes  | Unique fynd order id |
+ | contact | string |  yes  | Customer valid mobile number |
+ | vpa | string |  yes  | Customer vpa address |
+ | customer_id | string |  yes  | Payment gateway customer id. |
+ | status | string |  yes  | Status of payment. |
  | currency | string |  yes  | Currency code. |
 
 ---
@@ -25959,8 +25976,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | status | string |  yes  | Payment status |
- | retry | boolean |  yes  | Response is successful or not. |
  | aggregator_name | string |  yes  | Payment gateway name |
+ | retry | boolean |  yes  | Response is successful or not. |
 
 ---
 
@@ -25971,8 +25988,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | small | string |  yes  | smalll |
  | large | string |  yes  | large |
+ | small | string |  yes  | smalll |
 
 ---
 
@@ -25983,33 +26000,33 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | retry_count | number |  no  | retry_count |
- | exp_month | number |  no  | exp_month |
- | card_id | string |  no  | card_id |
- | fynd_vpa | string |  no  | fynd_vpa |
- | exp_year | number |  no  | exp_year |
- | card_isin | string |  no  | card_isin |
- | card_token | string |  no  | card_token |
- | code | string |  no  | code |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
- | name | string |  no  | name |
- | timeout | number |  no  | timeout |
- | expired | boolean |  no  | expired |
- | display_priority | number |  no  | Dispaly Priority |
- | nickname | string |  no  | nickname |
- | card_brand_image | string |  no  | card_brand_image |
- | card_reference | string |  no  | card_reference |
- | display_name | string |  no  | display name |
- | intent_app_error_list | [string] |  no  | intent_app_error_list |
- | card_number | string |  no  | card_number |
- | card_brand | string |  no  | card_brand |
- | card_issuer | string |  no  | card_issuer |
- | card_fingerprint | string |  no  | card_fingerprint |
- | card_type | string |  no  | card_type |
  | intent_flow | string |  no  | intent_flow |
- | card_name | string |  no  | card_name |
- | merchant_code | string |  no  | merchant code |
  | aggregator_name | string |  yes  | aggregator_name |
+ | code | string |  no  | code |
+ | fynd_vpa | string |  no  | fynd_vpa |
+ | expired | boolean |  no  | expired |
+ | card_fingerprint | string |  no  | card_fingerprint |
+ | nickname | string |  no  | nickname |
+ | card_reference | string |  no  | card_reference |
+ | card_brand | string |  no  | card_brand |
+ | card_name | string |  no  | card_name |
+ | display_name | string |  no  | display name |
+ | card_type | string |  no  | card_type |
+ | exp_month | number |  no  | exp_month |
+ | card_brand_image | string |  no  | card_brand_image |
+ | card_issuer | string |  no  | card_issuer |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
+ | display_priority | number |  no  | Dispaly Priority |
+ | name | string |  no  | name |
+ | exp_year | number |  no  | exp_year |
+ | card_id | string |  no  | card_id |
+ | timeout | number |  no  | timeout |
+ | retry_count | number |  no  | retry_count |
+ | intent_app_error_list | [string] |  no  | intent_app_error_list |
+ | card_token | string |  no  | card_token |
+ | merchant_code | string |  no  | merchant code |
+ | card_number | string |  no  | card_number |
+ | card_isin | string |  no  | card_isin |
 
 ---
 
@@ -26020,13 +26037,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  | Payment mode name |
- | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
- | display_name | string |  yes  | Payment mode display name |
- | display_priority | number |  yes  | Dispaly Priority |
- | add_card_enabled | boolean |  no  | Annonymous card flag |
  | aggregator_name | string |  no  | Dispaly Priority |
+ | display_name | string |  yes  | Payment mode display name |
+ | add_card_enabled | boolean |  no  | Annonymous card flag |
+ | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
+ | display_priority | number |  yes  | Dispaly Priority |
  | anonymous_enable | boolean |  no  | Annonymous card flag |
+ | name | string |  yes  | Payment mode name |
 
 ---
 
@@ -26037,8 +26054,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | api_link | string |  no  | api_link |
  | data | string |  no  | Data |
+ | api_link | string |  no  | api_link |
  | payment_flow | string |  no  | payment_flow |
 
 ---
@@ -26050,16 +26067,16 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | stripe | [AggregatorRoute](#AggregatorRoute) |  no  | Stripe |
- | juspay | [AggregatorRoute](#AggregatorRoute) |  no  | Juspay |
- | payubiz | [AggregatorRoute](#AggregatorRoute) |  no  | Payubiz |
- | ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  | Ccavenue |
- | rupifi | [AggregatorRoute](#AggregatorRoute) |  no  | Rupifi |
+ | razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | Razorpay |
  | simpl | [AggregatorRoute](#AggregatorRoute) |  no  | simpl |
  | bqr_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | BQR_Razorpay |
- | razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | Razorpay |
- | upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | UPI_Razorpay |
+ | payubiz | [AggregatorRoute](#AggregatorRoute) |  no  | Payubiz |
+ | ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  | Ccavenue |
  | fynd | [AggregatorRoute](#AggregatorRoute) |  no  | Fynd |
+ | rupifi | [AggregatorRoute](#AggregatorRoute) |  no  | Rupifi |
+ | stripe | [AggregatorRoute](#AggregatorRoute) |  no  | Stripe |
+ | juspay | [AggregatorRoute](#AggregatorRoute) |  no  | Juspay |
+ | upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | UPI_Razorpay |
  | msipe | [AggregatorRoute](#AggregatorRoute) |  no  | mswipe |
 
 ---
@@ -26119,11 +26136,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  Beneficiary Name |
- | logo_small | string |  yes  | Beneficiary small Logo |
  | display_name | boolean |  no  | Beneficiary Display Name |
- | id | string |  yes  |   |
  | logo_large | string |  yes  | Beneficiary large Logo |
+ | id | string |  yes  |   |
+ | logo_small | string |  yes  | Beneficiary small Logo |
+ | name | string |  yes  |  Beneficiary Name |
 
 ---
 
@@ -26182,23 +26199,23 @@ Success. Returns a JSON object containing the city name, state and country ident
  | ---------- | ---- | -------- | ----------- |
  | account_holder | string |  yes  | Account Holder Name |
  | address | string |  yes  | Address of User |
+ | account_no | string |  yes  | Account Number |
+ | ifsc_code | string |  yes  | Ifsc Code Of Account |
+ | branch_name | boolean |  no  | Branch Name Of Account |
+ | created_on | string |  yes  | Creation Date of Beneficiary |
+ | beneficiary_id | string |  yes  | Benenficiary Id |
+ | subtitle | string |  yes  | SHort Title Of Account |
  | email | string |  yes  | EMail of User |
+ | display_name | string |  yes  | Display Name Of Account |
+ | modified_on | string |  yes  | MOdification Date of Beneficiary |
+ | title | string |  yes  | Title Of Account |
+ | mobile | boolean |  no  | MObile no of User |
  | bank_name | string |  yes  | Bank Name Of Account |
+ | id | number |  yes  |   |
+ | transfer_mode | string |  yes  | Transfer Mode Of Account |
  | delights_user_name | string |  yes  | User Id Who filled the Beneficiary  |
  | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
- | modified_on | string |  yes  | MOdification Date of Beneficiary |
- | mobile | boolean |  no  | MObile no of User |
- | transfer_mode | string |  yes  | Transfer Mode Of Account |
- | subtitle | string |  yes  | SHort Title Of Account |
- | display_name | string |  yes  | Display Name Of Account |
- | created_on | string |  yes  | Creation Date of Beneficiary |
- | account_no | string |  yes  | Account Number |
- | title | string |  yes  | Title Of Account |
- | branch_name | boolean |  no  | Branch Name Of Account |
- | ifsc_code | string |  yes  | Ifsc Code Of Account |
  | comment | boolean |  no  | Remarks |
- | id | number |  yes  |   |
- | beneficiary_id | string |  yes  | Benenficiary Id |
 
 ---
 
@@ -26221,8 +26238,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  | Bad Request Data |
  | description | string |  yes  | Not Found |
+ | code | string |  yes  | Bad Request Data |
  | success | boolean |  yes  | Response is successful or not |
 
 ---
@@ -26234,8 +26251,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | branch_name | string |  yes  | Branch Name Of Account |
  | bank_name | string |  yes  | Bank Name Of Account |
+ | branch_name | string |  yes  | Branch Name Of Account |
  | success | boolean |  no  | Response is successful or not |
 
 ---
@@ -26247,8 +26264,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  | Error descrption code. |
  | description | string |  yes  | Error human understandable description. |
+ | code | string |  yes  | Error descrption code. |
  | success | boolean |  yes  | Response is successful or not |
 
 ---
@@ -26298,17 +26315,17 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | email | string |  yes  | Email of the Account Holder |
+ | account_holder | string |  yes  | Name of the Account Holder |
+ | address | string |  no  | Address of the User |
  | wallet | string |  no  |  |
  | account_no | string |  yes  | Account NUmber of the Account Holder |
- | account_holder | string |  yes  | Name of the Account Holder |
- | branch_name | string |  yes  | Branch Name of the Account |
- | email | string |  yes  | Email of the Account Holder |
- | comment | string |  no  | Remarks added by The user |
- | ifsc_code | string |  yes  | Ifsc Code of the Account |
- | address | string |  no  | Address of the User |
- | vpa | string |  no  |  |
- | mobile | string |  yes  | Moblie Number of the User |
  | bank_name | string |  yes  | Bank Name of the Account |
+ | comment | string |  no  | Remarks added by The user |
+ | vpa | string |  no  |  |
+ | ifsc_code | string |  yes  | Ifsc Code of the Account |
+ | branch_name | string |  yes  | Branch Name of the Account |
+ | mobile | string |  yes  | Moblie Number of the User |
 
 ---
 
@@ -26319,13 +26336,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
- | otp | string |  no  |  |
  | request_id | string |  no  |  |
+ | otp | string |  no  |  |
  | order_id | string |  yes  | Merchant Order Id |
  | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  | Beneficiary bank details |
  | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
  | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
+ | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
 
 ---
 
@@ -26337,8 +26354,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string |  no  | Refund account data. |
- | success | boolean |  yes  | Success or failure flag. |
  | message | string |  yes  | Response message |
+ | success | boolean |  yes  | Success or failure flag. |
 
 ---
 
@@ -26349,8 +26366,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mobile | string |  yes  | Wallet Moblie Number of the User |
  | country_code | string |  yes  | Country Code of the Mobile Number |
+ | mobile | string |  yes  | Wallet Moblie Number of the User |
 
 ---
 
@@ -26386,8 +26403,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  | Response is successful or not |
  | is_beneficiary_set | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
+ | success | boolean |  no  | Response is successful or not |
 
 ---
 
@@ -28310,8 +28327,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | quantity | number |  no  | Quantity of product in shipment |
- | shipment_type | string |  yes  | Shipment delivery type |
  | article_uid | string |  yes  | Article mongo id |
+ | shipment_type | string |  yes  | Shipment delivery type |
 
 ---
 
@@ -28341,30 +28358,30 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [CartPosCheckoutRequest](#CartPosCheckoutRequest)
+ #### [CartPosCheckoutDetailRequest](#CartPosCheckoutDetailRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address_id | number |  no  |  |
- | extra_meta | string |  no  |  |
- | fyndstore_emp_id | string |  no  |  |
- | callback_url | string |  no  |  |
- | staff | string |  no  |  |
- | payment_auto_confirm | boolean |  no  |  |
- | payment_identifier | string |  no  |  |
- | aggregator | string |  no  |  |
- | merchant_code | string |  no  |  |
- | files | [[Files](#Files)] |  no  | List of file url |
- | order_type | string |  yes  |  |
- | ordering_store | number |  no  |  |
- | delivery_address | string |  no  |  |
- | pos | boolean |  no  |  |
  | pick_at_store_uid | number |  no  |  |
+ | merchant_code | string |  no  |  |
+ | billing_address_id | string |  no  |  |
+ | aggregator | string |  no  |  |
+ | payment_auto_confirm | boolean |  no  |  |
+ | order_type | string |  yes  |  |
+ | callback_url | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | billing_address | string |  no  |  |
  | payment_mode | string |  yes  |  |
  | payment_params | string |  no  |  |
- | billing_address | string |  no  |  |
+ | staff | [StaffCheckout](#StaffCheckout) |  no  |  |
+ | fyndstore_emp_id | string |  no  |  |
+ | ordering_store | number |  no  |  |
+ | pos | boolean |  no  |  |
+ | address_id | string |  no  |  |
  | meta | string |  no  |  |
- | billing_address_id | number |  no  |  |
+ | delivery_address | string |  no  |  |
+ | payment_identifier | string |  no  |  |
+ | files | [[Files](#Files)] |  no  | List of file url |
 
 ---
 
@@ -28375,8 +28392,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | available_modes | [string] |  no  | Available delivery modes |
  | pickup_stores | [number] |  no  | Store pick up available store uids |
+ | available_modes | [string] |  no  | Available delivery modes |
 
 ---
 
@@ -28387,21 +28404,22 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | area_code | string |  no  |  |
- | area | string |  no  |  |
  | address_type | string |  no  |  |
- | area_code_slug | string |  no  |  |
- | city | string |  no  |  |
- | phone | string |  no  |  |
- | store_code | string |  no  |  |
- | name | string |  no  |  |
+ | pincode | number |  no  |  |
+ | area_code | string |  no  |  |
+ | country | string |  no  |  |
  | uid | number |  no  |  |
+ | store_code | string |  no  |  |
+ | id | number |  no  |  |
  | landmark | string |  no  |  |
  | email | string |  no  |  |
+ | area | string |  no  |  |
+ | phone | string |  no  |  |
  | state | string |  no  |  |
+ | area_code_slug | string |  no  |  |
+ | name | string |  no  |  |
  | address | string |  no  |  |
- | country | string |  no  |  |
- | pincode | number |  no  |  |
+ | city | string |  no  |  |
 
 ---
 
