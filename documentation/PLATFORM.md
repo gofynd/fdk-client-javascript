@@ -300,24 +300,24 @@
 
 * ## [Catalog](#Catalog)
   * Methods
-    * [getSearchKeywords](#getsearchkeywords)
-    * [updateSearchKeywords](#updatesearchkeywords)
     * [deleteSearchKeywords](#deletesearchkeywords)
+    * [updateSearchKeywords](#updatesearchkeywords)
+    * [getSearchKeywords](#getsearchkeywords)
     * [createCustomKeyword](#createcustomkeyword)
     * [getAllSearchKeyword](#getallsearchkeyword)
-    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-    * [updateAutocompleteKeyword](#updateautocompletekeyword)
     * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
+    * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getAutocompleteConfig](#getautocompleteconfig)
     * [createProductBundle](#createproductbundle)
     * [getProductBundle](#getproductbundle)
-    * [getProductBundleDetail](#getproductbundledetail)
     * [updateProductBundle](#updateproductbundle)
+    * [getProductBundleDetail](#getproductbundledetail)
     * [createSizeGuide](#createsizeguide)
     * [getSizeGuides](#getsizeguides)
-    * [getSizeGuide](#getsizeguide)
     * [updateSizeGuide](#updatesizeguide)
+    * [getSizeGuide](#getsizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
     * [getConfigurations](#getconfigurations)
@@ -327,8 +327,8 @@
     * [createCollection](#createcollection)
     * [getAllCollections](#getallcollections)
     * [getCollectionDetail](#getcollectiondetail)
-    * [updateCollection](#updatecollection)
     * [deleteCollection](#deletecollection)
+    * [updateCollection](#updatecollection)
     * [addCollectionItems](#addcollectionitems)
     * [getCollectionItems](#getcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
@@ -353,13 +353,13 @@
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
     * [createCategories](#createcategories)
     * [listCategories](#listcategories)
-    * [getCategoryData](#getcategorydata)
     * [updateCategory](#updatecategory)
+    * [getCategoryData](#getcategorydata)
     * [createProduct](#createproduct)
     * [getProducts](#getproducts)
-    * [getProduct](#getproduct)
-    * [editProduct](#editproduct)
     * [deleteProduct](#deleteproduct)
+    * [editProduct](#editproduct)
+    * [getProduct](#getproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
@@ -383,8 +383,8 @@
     * [exportInventoryConfig](#exportinventoryconfig)
     * [createHsnCode](#createhsncode)
     * [getAllHsnCodes](#getallhsncodes)
-    * [getHsnCode](#gethsncode)
     * [updateHsnCode](#updatehsncode)
+    * [getHsnCode](#gethsncode)
     * [bulkHsnCode](#bulkhsncode)
     * [getApplicationBrands](#getapplicationbrands)
     * [getDepartments](#getdepartments)
@@ -398,15 +398,15 @@
     * [updateCompany](#updatecompany)
     * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [editBrand](#editbrand)
     * [getBrand](#getbrand)
+    * [editBrand](#editbrand)
     * [createBrand](#createbrand)
     * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
     * [getLocations](#getlocations)
     * [createLocation](#createlocation)
-    * [updateLocation](#updatelocation)
     * [getLocationDetail](#getlocationdetail)
+    * [updateLocation](#updatelocation)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -16515,19 +16515,19 @@ Success
 ## Catalog
 
 
-#### getSearchKeywords
-Get a Search Keywords Details
+#### deleteSearchKeywords
+Delete a Search Keywords
 
 
 
 ```javascript
 // Promise
-const promise = catalog.getSearchKeywords( {  companyId : value,
+const promise = catalog.deleteSearchKeywords( {  companyId : value,
  applicationId : value,
  id : value });
 
 // Async/Await
-const data = await catalog.getSearchKeywords( {  companyId : value,
+const data = await catalog.deleteSearchKeywords( {  companyId : value,
  applicationId : value,
  id : value });
 ```
@@ -16538,23 +16538,23 @@ const data = await catalog.getSearchKeywords( {  companyId : value,
 | --------- | -----  | -------- | ----------- |  
 | companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
 | applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
 
 
-Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
 *Returned Response:*
 
 
 
 
-The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
-[GetSearchWordsDetailResponse](#GetSearchWordsDetailResponse)
+[DeleteResponse](#DeleteResponse)
 
-The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
 
@@ -16621,19 +16621,19 @@ The Collection object. See example below or refer `GetSearchWordsDataSchema` for
 ---
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
+#### getSearchKeywords
+Get a Search Keywords Details
 
 
 
 ```javascript
 // Promise
-const promise = catalog.deleteSearchKeywords( {  companyId : value,
+const promise = catalog.getSearchKeywords( {  companyId : value,
  applicationId : value,
  id : value });
 
 // Async/Await
-const data = await catalog.deleteSearchKeywords( {  companyId : value,
+const data = await catalog.getSearchKeywords( {  companyId : value,
  applicationId : value,
  id : value });
 ```
@@ -16644,23 +16644,23 @@ const data = await catalog.deleteSearchKeywords( {  companyId : value,
 | --------- | -----  | -------- | ----------- |  
 | companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
 | applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
 
 
 
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
 
 *Returned Response:*
 
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
 
 
-[DeleteResponse](#DeleteResponse)
+[GetSearchWordsDetailResponse](#GetSearchWordsDetailResponse)
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+The Collection object. See example below or refer `GetSearchWordsDetailResponseSchema` for details
 
 
 
@@ -16773,19 +16773,19 @@ List of custom search keywords. See example below or refer `GetSearchWordsRespon
 ---
 
 
-#### getAutocompleteKeywordDetail
-Get a Autocomplete Keywords Details
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
 
 
 
 ```javascript
 // Promise
-const promise = catalog.getAutocompleteKeywordDetail( {  companyId : value,
+const promise = catalog.deleteAutocompleteKeyword( {  companyId : value,
  applicationId : value,
  id : value });
 
 // Async/Await
-const data = await catalog.getAutocompleteKeywordDetail( {  companyId : value,
+const data = await catalog.deleteAutocompleteKeyword( {  companyId : value,
  applicationId : value,
  id : value });
 ```
@@ -16796,23 +16796,23 @@ const data = await catalog.getAutocompleteKeywordDetail( {  companyId : value,
 | --------- | -----  | -------- | ----------- |  
 | companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
 | applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
 
 
-Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
 *Returned Response:*
 
 
 
 
-The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
-[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+[DeleteResponse](#DeleteResponse)
 
-The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
 
@@ -16879,19 +16879,19 @@ The Mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 ---
 
 
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
+#### getAutocompleteKeywordDetail
+Get a Autocomplete Keywords Details
 
 
 
 ```javascript
 // Promise
-const promise = catalog.deleteAutocompleteKeyword( {  companyId : value,
+const promise = catalog.getAutocompleteKeywordDetail( {  companyId : value,
  applicationId : value,
  id : value });
 
 // Async/Await
-const data = await catalog.deleteAutocompleteKeyword( {  companyId : value,
+const data = await catalog.getAutocompleteKeywordDetail( {  companyId : value,
  applicationId : value,
  id : value });
 ```
@@ -16902,23 +16902,23 @@ const data = await catalog.deleteAutocompleteKeyword( {  companyId : value,
 | --------- | -----  | -------- | ----------- |  
 | companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
 | applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
 
 
 
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
 
 *Returned Response:*
 
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
 
 
-[DeleteResponse](#DeleteResponse)
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+The mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details
 
 
 
@@ -17128,55 +17128,6 @@ List of bundle configured for a company. See example below or refer `GetProductB
 ---
 
 
-#### getProductBundleDetail
-Get a particular Product Bundle details
-
-
-
-```javascript
-// Promise
-const promise = catalog.getProductBundleDetail( {  companyId : value,
- id : value });
-
-// Async/Await
-const data = await catalog.getProductBundleDetail( {  companyId : value,
- id : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
-
-
-
-Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-
-*Returned Response:*
-
-
-
-
-The Collection object. See example below or refer `GetProductBundleResponse` for details
-
-
-[GetProductBundleResponse](#GetProductBundleResponse)
-
-The Collection object. See example below or refer `GetProductBundleResponse` for details
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateProductBundle
 Update a Product Bundle
 
@@ -17216,6 +17167,55 @@ The Collection object. See example below or refer `GetProductBundleCreateRespons
 [GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
 
 The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getProductBundleDetail
+Get a particular Product Bundle details
+
+
+
+```javascript
+// Promise
+const promise = catalog.getProductBundleDetail( {  companyId : value,
+ id : value });
+
+// Async/Await
+const data = await catalog.getProductBundleDetail( {  companyId : value,
+ id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
+| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+
+
+
+Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+
+*Returned Response:*
+
+
+
+
+The Collection object. See example below or refer `GetProductBundleResponse` for details
+
+
+[GetProductBundleResponse](#GetProductBundleResponse)
+
+The Collection object. See example below or refer `GetProductBundleResponse` for details
 
 
 
@@ -17337,55 +17337,6 @@ Size guide object. See example below or refer `ListSizeGuide` for details
 ---
 
 
-#### getSizeGuide
-Get a single size guide.
-
-
-
-```javascript
-// Promise
-const promise = catalog.getSizeGuide( {  companyId : value,
- id : value });
-
-// Async/Await
-const data = await catalog.getSizeGuide( {  companyId : value,
- id : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to size guide. |    
-| id | string | no | Id of the size guide to be viewed. |  
-
-
-
-This API helps to get data associated to a size guide.
-
-*Returned Response:*
-
-
-
-
-Brand object. See example below or refer `SizeGuideResponseSchema` for details
-
-
-[SizeGuideResponse](#SizeGuideResponse)
-
-Brand object. See example below or refer `SizeGuideResponseSchema` for details
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateSizeGuide
 Edit a size guide.
 
@@ -17425,6 +17376,55 @@ Returns a success response
 [SuccessResponse](#SuccessResponse)
 
 Returns a success response
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSizeGuide
+Get a single size guide.
+
+
+
+```javascript
+// Promise
+const promise = catalog.getSizeGuide( {  companyId : value,
+ id : value });
+
+// Async/Await
+const data = await catalog.getSizeGuide( {  companyId : value,
+ id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string | no | Id of the company associated to size guide. |    
+| id | string | no | Id of the size guide to be viewed. |  
+
+
+
+This API helps to get data associated to a size guide.
+
+*Returned Response:*
+
+
+
+
+Brand object. See example below or refer `SizeGuideResponseSchema` for details
+
+
+[SizeGuideResponse](#SizeGuideResponse)
+
+Brand object. See example below or refer `SizeGuideResponseSchema` for details
 
 
 
@@ -17893,6 +17893,58 @@ The Collection object. See example below or refer `CollectionDetailResponse` for
 ---
 
 
+#### deleteCollection
+Delete a Collection
+
+
+
+```javascript
+// Promise
+const promise = catalog.deleteCollection( {  companyId : value,
+ applicationId : value,
+ id : value });
+
+// Async/Await
+const data = await catalog.deleteCollection( {  companyId : value,
+ applicationId : value,
+ id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
+| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| id | string | no | A `id` is a unique identifier of a collection. |  
+
+
+
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+
+*Returned Response:*
+
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+
+
+
+
+
+
+
+---
+
+
 #### updateCollection
 Update a collection
 
@@ -17935,58 +17987,6 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 [UpdateCollection](#UpdateCollection)
 
 The Collection object. See example below or refer `UpdateCollectionSchema` for details.
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteCollection
-Delete a Collection
-
-
-
-```javascript
-// Promise
-const promise = catalog.deleteCollection( {  companyId : value,
- applicationId : value,
- id : value });
-
-// Async/Await
-const data = await catalog.deleteCollection( {  companyId : value,
- applicationId : value,
- id : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier of a collection. |  
-
-
-
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-
-*Returned Response:*
-
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-[DeleteResponse](#DeleteResponse)
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
 
@@ -19226,55 +19226,6 @@ Category Meta. See example below or refer `CategoryResponse` for details
 ---
 
 
-#### getCategoryData
-Get product category by uid
-
-
-
-```javascript
-// Promise
-const promise = catalog.getCategoryData( {  companyId : value,
- uid : value });
-
-// Async/Await
-const data = await catalog.getCategoryData( {  companyId : value,
- uid : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| uid | string | no | Category unique id |  
-
-
-
-This API gets meta associated to product categories.
-
-*Returned Response:*
-
-
-
-
-Get Data for one category. See example below or refer `CategoryResponse` for details
-
-
-[SingleCategoryResponse](#SingleCategoryResponse)
-
-Get Data for one category. See example below or refer `CategoryResponse` for details
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateCategory
 Update product categories
 
@@ -19314,6 +19265,55 @@ Category Meta. See example below or refer `CategoryUpdateResponse` for details
 [CategoryUpdateResponse](#CategoryUpdateResponse)
 
 Category Meta. See example below or refer `CategoryUpdateResponse` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCategoryData
+Get product category by uid
+
+
+
+```javascript
+// Promise
+const promise = catalog.getCategoryData( {  companyId : value,
+ uid : value });
+
+// Async/Await
+const data = await catalog.getCategoryData( {  companyId : value,
+ uid : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
+| uid | string | no | Category unique id |  
+
+
+
+This API gets meta associated to product categories.
+
+*Returned Response:*
+
+
+
+
+Get Data for one category. See example below or refer `CategoryResponse` for details
+
+
+[SingleCategoryResponse](#SingleCategoryResponse)
+
+Get Data for one category. See example below or refer `CategoryResponse` for details
 
 
 
@@ -19438,52 +19438,43 @@ Product Meta. See example below for details
 ---
 
 
-#### getProduct
-Get a single product.
+#### deleteProduct
+Delete a product.
 
 
 
 ```javascript
 // Promise
-const promise = catalog.getProduct( {  companyId : value,
- itemId : value,
- itemCode : value,
- brandUid : value,
- uid : value });
+const promise = catalog.deleteProduct( {  companyId : value,
+ itemId : value });
 
 // Async/Await
-const data = await catalog.getProduct( {  companyId : value,
- itemId : value,
- itemCode : value,
- brandUid : value,
- uid : value });
+const data = await catalog.deleteProduct( {  companyId : value,
+ itemId : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| itemCode | string | no | Item code of the product. |    
-| companyId | number | no | Company Id of the product. |    
-| itemId | number | no | Item Id of the product. |    
-| brandUid | number | no | Brand Id of the product. |    
-| uid | number | no | Id of the product. |  
+| companyId | string | no | Company Id of the company associated to product that is to be deleted. |    
+| itemId | number | no | Id of the product to be updated. |  
 
 
 
-This API helps to get data associated to a particular product.
+This API allows to delete product.
 
 *Returned Response:*
 
 
 
 
-Product object. See example below or refer `product.utils.format_product_response` for details
+Returns a success response
 
 
-[Product](#Product)
+[SuccessResponse](#SuccessResponse)
 
-Product object. See example below or refer `product.utils.format_product_response` for details
+Returns a success response
 
 
 
@@ -19547,43 +19538,52 @@ Returns a success response
 ---
 
 
-#### deleteProduct
-Delete a product.
+#### getProduct
+Get a single product.
 
 
 
 ```javascript
 // Promise
-const promise = catalog.deleteProduct( {  companyId : value,
- itemId : value });
+const promise = catalog.getProduct( {  companyId : value,
+ itemId : value,
+ itemCode : value,
+ brandUid : value,
+ uid : value });
 
 // Async/Await
-const data = await catalog.deleteProduct( {  companyId : value,
- itemId : value });
+const data = await catalog.getProduct( {  companyId : value,
+ itemId : value,
+ itemCode : value,
+ brandUid : value,
+ uid : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id of the company associated to product that is to be deleted. |    
-| itemId | number | no | Id of the product to be updated. |  
+| itemCode | string | no | Item code of the product. |    
+| companyId | number | no | Company Id of the product. |    
+| itemId | number | no | Item Id of the product. |    
+| brandUid | number | no | Brand Id of the product. |    
+| uid | number | no | Id of the product. |  
 
 
 
-This API allows to delete product.
+This API helps to get data associated to a particular product.
 
 *Returned Response:*
 
 
 
 
-Returns a success response
+Product object. See example below or refer `product.utils.format_product_response` for details
 
 
-[SuccessResponse](#SuccessResponse)
+[Product](#Product)
 
-Returns a success response
+Product object. See example below or refer `product.utils.format_product_response` for details
 
 
 
@@ -20778,55 +20778,6 @@ List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema
 ---
 
 
-#### getHsnCode
-Fetch Hsn Code.
-
-
-
-```javascript
-// Promise
-const promise = catalog.getHsnCode( {  companyId : value,
- id : value });
-
-// Async/Await
-const data = await catalog.getHsnCode( {  companyId : value,
- id : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| id | string | no | Unique id |  
-
-
-
-Fetch Hsn Code.
-
-*Returned Response:*
-
-
-
-
-See example below details
-
-
-[HsnCode](#HsnCode)
-
-See example below details
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateHsnCode
 Update Hsn Code.
 
@@ -20866,6 +20817,55 @@ See example below for details
 [HsnCode](#HsnCode)
 
 See example below for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getHsnCode
+Fetch Hsn Code.
+
+
+
+```javascript
+// Promise
+const promise = catalog.getHsnCode( {  companyId : value,
+ id : value });
+
+// Async/Await
+const data = await catalog.getHsnCode( {  companyId : value,
+ id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string | no | company id |    
+| id | string | no | Unique id |  
+
+
+
+Fetch Hsn Code.
+
+*Returned Response:*
+
+
+
+
+See example below details
+
+
+[HsnCode](#HsnCode)
+
+See example below details
 
 
 
@@ -21356,6 +21356,55 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 ---
 
 
+#### getBrand
+Get a single brand.
+
+
+
+```javascript
+// Promise
+const promise = companyprofile.getBrand( {  companyId : value,
+ brandId : value });
+
+// Async/Await
+const data = await companyprofile.getBrand( {  companyId : value,
+ brandId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string | no | Id of the company associated to brand that is to be viewed. |    
+| brandId | string | no | Id of the brand to be viewed. |  
+
+
+
+This API helps to get data associated to a particular brand.
+
+*Returned Response:*
+
+
+
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+[GetBrandResponseSerializer](#GetBrandResponseSerializer)
+
+Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+
+
+
+
+
+
+
+---
+
+
 #### editBrand
 Edit a brand.
 
@@ -21395,55 +21444,6 @@ Returns a success response
 [SuccessResponse](#SuccessResponse)
 
 Returns a success response
-
-
-
-
-
-
-
-
-
----
-
-
-#### getBrand
-Get a single brand.
-
-
-
-```javascript
-// Promise
-const promise = companyprofile.getBrand( {  companyId : value,
- brandId : value });
-
-// Async/Await
-const data = await companyprofile.getBrand( {  companyId : value,
- brandId : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to brand that is to be viewed. |    
-| brandId | string | no | Id of the brand to be viewed. |  
-
-
-
-This API helps to get data associated to a particular brand.
-
-*Returned Response:*
-
-
-
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
-
-
-[GetBrandResponseSerializer](#GetBrandResponseSerializer)
-
-Brand object. See example below or refer `GetBrandResponseSerializer` for details
 
 
 
@@ -21713,6 +21713,55 @@ Returns a success response
 ---
 
 
+#### getLocationDetail
+Get details of a specific location.
+
+
+
+```javascript
+// Promise
+const promise = companyprofile.getLocationDetail( {  companyId : value,
+ locationId : value });
+
+// Async/Await
+const data = await companyprofile.getLocationDetail( {  companyId : value,
+ locationId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| companyId | string | no | Id of the company inside which the location lies. |    
+| locationId | string | no | Id of the location which you want to view. |  
+
+
+
+This API helps to get data associated to a specific location.
+
+*Returned Response:*
+
+
+
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+[GetLocationSerializer](#GetLocationSerializer)
+
+Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+
+
+
+
+
+
+
+---
+
+
 #### updateLocation
 Edit a location asscoiated to a company.
 
@@ -21752,55 +21801,6 @@ Returns a success response
 [SuccessResponse](#SuccessResponse)
 
 Returns a success response
-
-
-
-
-
-
-
-
-
----
-
-
-#### getLocationDetail
-Get details of a specific location.
-
-
-
-```javascript
-// Promise
-const promise = companyprofile.getLocationDetail( {  companyId : value,
- locationId : value });
-
-// Async/Await
-const data = await companyprofile.getLocationDetail( {  companyId : value,
- locationId : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company inside which the location lies. |    
-| locationId | string | no | Id of the location which you want to view. |  
-
-
-
-This API helps to get data associated to a specific location.
-
-*Returned Response:*
-
-
-
-
-Brand object. See example below or refer `GetLocationSerializer` for details
-
-
-[GetLocationSerializer](#GetLocationSerializer)
-
-Brand object. See example below or refer `GetLocationSerializer` for details
 
 
 
@@ -36964,7 +36964,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | history | [[PointsHistory](#PointsHistory)] |  no  | History is the list of points transaction. |
+ | items | [[PointsHistory](#PointsHistory)] |  no  | History is the list of points transaction. |
  | page | [Page](#Page) |  no  |  |
 
 ---

@@ -27274,7 +27274,7 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | history | [[PointsHistory](#PointsHistory)] |  no  | History is the list of points transaction. |
+ | items | [[PointsHistory](#PointsHistory)] |  no  | History is the list of points transaction. |
  | page | [Page](#Page) |  no  |  |
 
 ---

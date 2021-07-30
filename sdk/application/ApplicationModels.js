@@ -8056,7 +8056,7 @@ class Validator {
 
       expires_on: Joi.string().allow(""),
 
-      meta: Joi.string().allow(""),
+      meta: Joi.any(),
 
       points: Joi.number(),
 
@@ -8078,7 +8078,7 @@ class Validator {
 
   static PointsHistoryResponse() {
     return Joi.object({
-      history: Joi.array().items(this.PointsHistory()),
+      items: Joi.array().items(this.PointsHistory()),
 
       page: this.Page(),
     });
