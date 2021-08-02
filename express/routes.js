@@ -54,7 +54,9 @@ function setupRoutes(ext) {
             req.fdkSession = session;
             req.extension = ext;
 
-            res.cookie(SESSION_COOKIE_NAME, session.id, { 
+            const compCookieName = `${SESSION_COOKIE_NAME}_${companyId}`
+            res.header['x-company-id'] = companyId;
+            res.cookie(compCookieName, session.id, { 
                 secure: true,
                 httpOnly: true,
                 expires: session.expires,
@@ -109,13 +111,15 @@ function setupRoutes(ext) {
             req.fdkSession.refresh_token = token.refresh_token;
             await SessionStorage.saveSession(req.fdkSession);
 
-            res.cookie(SESSION_COOKIE_NAME, req.fdkSession.id, { 
+            const compCookieName = `${SESSION_COOKIE_NAME}_${req.fdkSession.company_id}`
+            res.cookie(compCookieName, req.fdkSession.id, { 
                 secure: true,
                 httpOnly: true,
                 expires: sessionExpires,
                 signed: true,
                 sameSite: "None"
             });
+            res.header['x-company-id'] = req.fdkSession.company_id;
 
             req.extension = ext;
             let redirectUrl = await ext.callbacks.auth(req);

@@ -5,7 +5,9 @@ const SessionStorage = require("../session/session_storage");
 function sessionMiddleware(strict) {
     return async (req, res, next) => {
         try {
-            let sessionId = req.signedCookies[SESSION_COOKIE_NAME];
+            const companyId = req.headers['x-company-id'] || req.query['company_id'];
+            const compCookieName = `${SESSION_COOKIE_NAME}_${companyId}`
+            let sessionId = req.signedCookies[compCookieName];
             req.fdkSession = await SessionStorage.getSession(sessionId);
     
             if(strict && !req.fdkSession) {
