@@ -1220,19 +1220,21 @@ class Catalog {
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results.* @param {number} [arg.pageSize] - Number of items
    *   to retrieve in each page.* @param {string} [arg.q] - Search a store by
-   *   its name or store_code.* @param {number} [arg.range] - Use this to
-   *   retrieve stores within a particular range in meters, e.g. 10000, to
-   *   indicate a 10km range* @param {number} [arg.latitude] - Latitude of the
-   *   location from where one wants to retreive the nearest stores, e.g.
-   *   72.8691788* @param {number} [arg.longitude] - Longitude of the location
-   *   from where one wants to retreive the nearest stores, e.g. 19.1174114
+   *   its name or store_code.* @param {string} [arg.city] - Search stores by
+   *   the city in which they are situated.* @param {number} [arg.range] - Use
+   *   this to retrieve stores within a particular range in meters, e.g.
+   *   10000, to indicate a 10km range* @param {number} [arg.latitude] -
+   *   Latitude of the location from where one wants to retreive the nearest
+   *   stores, e.g. 72.8691788* @param {number} [arg.longitude] - Longitude of
+   *   the location from where one wants to retreive the nearest stores, e.g.
+   *   19.1174114
    * @returns {Promise<StoreListingResponse>} - Success response
    * @summary: Get store meta information.
    * @description: Use this API to get a list of stores in a specific application.
    */
-  getStores({ pageNo, pageSize, q, range, latitude, longitude } = {}) {
+  getStores({ pageNo, pageSize, q, city, range, latitude, longitude } = {}) {
     const { error } = CatalogValidator.getStores().validate(
-      { pageNo, pageSize, q, range, latitude, longitude },
+      { pageNo, pageSize, q, city, range, latitude, longitude },
       { abortEarly: false }
     );
     if (error) {
@@ -1242,6 +1244,7 @@ class Catalog {
     query["page_no"] = pageNo;
     query["page_size"] = pageSize;
     query["q"] = q;
+    query["city"] = city;
     query["range"] = range;
     query["latitude"] = latitude;
     query["longitude"] = longitude;
@@ -1259,6 +1262,7 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
    * @param {string} [arg.q] - Search a store by its name or store_code.
+   * @param {string} [arg.city] - Search stores by the city in which they are situated.
    * @param {number} [arg.range] - Use this to retrieve stores within a
    *   particular range in meters, e.g. 10000, to indicate a 10km range
    * @param {number} [arg.latitude] - Latitude of the location from where one
@@ -1268,7 +1272,7 @@ class Catalog {
    * @summary: Get store meta information.
    * @description: Use this API to get a list of stores in a specific application.
    */
-  getStoresPaginator({ pageSize, q, range, latitude, longitude } = {}) {
+  getStoresPaginator({ pageSize, q, city, range, latitude, longitude } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -1278,6 +1282,7 @@ class Catalog {
         pageNo: pageNo,
         pageSize: pageSize,
         q: q,
+        city: city,
         range: range,
         latitude: latitude,
         longitude: longitude,
@@ -4861,9 +4866,9 @@ class Payment {
    *   arg.checkoutMode - Option to checkout for self or for others.* @param
    *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
    *   remove temporary cache files on payment gateway and replace with the
-   *   latest one.* @param {string} [arg.assignCardId] - Token of user's debit
-   *   or credit card.* @param {string} [arg.userDetails] - URIencoded JSON
-   *   containing details of an anonymous user.
+   *   latest one.* @param {string} [arg.cardReference] - Card reference id of
+   *   user's debit or credit card.* @param {string} [arg.userDetails] -
+   *   URIencoded JSON containing details of an anonymous user.
    * @returns {Promise<PaymentModeRouteResponse>} - Success response
    * @summary: Get applicable payment options
    * @description: Use this API to get all valid payment options for doing a payment.
@@ -4874,7 +4879,7 @@ class Payment {
     pincode,
     checkoutMode,
     refresh,
-    assignCardId,
+    cardReference,
     userDetails,
   } = {}) {
     const { error } = PaymentValidator.getPaymentModeRoutes().validate(
@@ -4884,7 +4889,7 @@ class Payment {
         pincode,
         checkoutMode,
         refresh,
-        assignCardId,
+        cardReference,
         userDetails,
       },
       { abortEarly: false }
@@ -4898,7 +4903,7 @@ class Payment {
     query["pincode"] = pincode;
     query["checkout_mode"] = checkoutMode;
     query["refresh"] = refresh;
-    query["assign_card_id"] = assignCardId;
+    query["card_reference"] = cardReference;
     query["user_details"] = userDetails;
 
     return APIClient.execute(
@@ -4918,9 +4923,9 @@ class Payment {
    *   arg.checkoutMode - Option to checkout for self or for others.* @param
    *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
    *   remove temporary cache files on payment gateway and replace with the
-   *   latest one.* @param {string} [arg.assignCardId] - Token of user's debit
-   *   or credit card.* @param {string} arg.orderType - The order type of
-   *   shipment * HomeDelivery - If the customer wants the order
+   *   latest one.* @param {string} [arg.cardReference] - Card reference id of
+   *   user's debit or credit card.* @param {string} arg.orderType - The order
+   *   type of shipment * HomeDelivery - If the customer wants the order
    *   home-delivered * PickAtStore - If the customer wants the handover of an
    *   order at the store itself.* @param {string} [arg.userDetails] -
    *   URIencoded JSON containing details of an anonymous user.
@@ -4935,7 +4940,7 @@ class Payment {
     checkoutMode,
     orderType,
     refresh,
-    assignCardId,
+    cardReference,
     userDetails,
   } = {}) {
     const { error } = PaymentValidator.getPosPaymentModeRoutes().validate(
@@ -4946,7 +4951,7 @@ class Payment {
         checkoutMode,
         orderType,
         refresh,
-        assignCardId,
+        cardReference,
         userDetails,
       },
       { abortEarly: false }
@@ -4960,7 +4965,7 @@ class Payment {
     query["pincode"] = pincode;
     query["checkout_mode"] = checkoutMode;
     query["refresh"] = refresh;
-    query["assign_card_id"] = assignCardId;
+    query["card_reference"] = cardReference;
     query["order_type"] = orderType;
     query["user_details"] = userDetails;
 

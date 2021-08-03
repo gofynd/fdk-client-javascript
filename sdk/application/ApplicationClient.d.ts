@@ -569,20 +569,23 @@ declare class Catalog {
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.* @param {number} [arg.pageSize] - Number of items
      *   to retrieve in each page.* @param {string} [arg.q] - Search a store by
-     *   its name or store_code.* @param {number} [arg.range] - Use this to
-     *   retrieve stores within a particular range in meters, e.g. 10000, to
-     *   indicate a 10km range* @param {number} [arg.latitude] - Latitude of the
-     *   location from where one wants to retreive the nearest stores, e.g.
-     *   72.8691788* @param {number} [arg.longitude] - Longitude of the location
-     *   from where one wants to retreive the nearest stores, e.g. 19.1174114
+     *   its name or store_code.* @param {string} [arg.city] - Search stores by
+     *   the city in which they are situated.* @param {number} [arg.range] - Use
+     *   this to retrieve stores within a particular range in meters, e.g.
+     *   10000, to indicate a 10km range* @param {number} [arg.latitude] -
+     *   Latitude of the location from where one wants to retreive the nearest
+     *   stores, e.g. 72.8691788* @param {number} [arg.longitude] - Longitude of
+     *   the location from where one wants to retreive the nearest stores, e.g.
+     *   19.1174114
      * @returns {Promise<StoreListingResponse>} - Success response
      * @summary: Get store meta information.
      * @description: Use this API to get a list of stores in a specific application.
      */
-    getStores({ pageNo, pageSize, q, range, latitude, longitude }?: {
+    getStores({ pageNo, pageSize, q, city, range, latitude, longitude }?: {
         pageNo?: number;
         pageSize?: number;
         q?: string;
+        city?: string;
         range?: number;
         latitude?: number;
         longitude?: number;
@@ -591,6 +594,7 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
      * @param {string} [arg.q] - Search a store by its name or store_code.
+     * @param {string} [arg.city] - Search stores by the city in which they are situated.
      * @param {number} [arg.range] - Use this to retrieve stores within a
      *   particular range in meters, e.g. 10000, to indicate a 10km range
      * @param {number} [arg.latitude] - Latitude of the location from where one
@@ -600,9 +604,10 @@ declare class Catalog {
      * @summary: Get store meta information.
      * @description: Use this API to get a list of stores in a specific application.
      */
-    getStoresPaginator({ pageSize, q, range, latitude, longitude }?: {
+    getStoresPaginator({ pageSize, q, city, range, latitude, longitude }?: {
         pageSize?: number;
         q?: string;
+        city?: string;
         range?: number;
         latitude?: number;
         longitude?: number;
@@ -2037,14 +2042,14 @@ declare class Payment {
      *   arg.checkoutMode - Option to checkout for self or for others.* @param
      *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
      *   remove temporary cache files on payment gateway and replace with the
-     *   latest one.* @param {string} [arg.assignCardId] - Token of user's debit
-     *   or credit card.* @param {string} [arg.userDetails] - URIencoded JSON
-     *   containing details of an anonymous user.
+     *   latest one.* @param {string} [arg.cardReference] - Card reference id of
+     *   user's debit or credit card.* @param {string} [arg.userDetails] -
+     *   URIencoded JSON containing details of an anonymous user.
      * @returns {Promise<PaymentModeRouteResponse>} - Success response
      * @summary: Get applicable payment options
      * @description: Use this API to get all valid payment options for doing a payment.
      */
-    getPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, refresh, assignCardId, userDetails, }?: {
+    getPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, refresh, cardReference, userDetails, }?: {
         amount: number;
         cartId: string;
         pincode: string;
@@ -2058,9 +2063,9 @@ declare class Payment {
      *   arg.checkoutMode - Option to checkout for self or for others.* @param
      *   {boolean} [arg.refresh] - This is a boolean value. Select `true` to
      *   remove temporary cache files on payment gateway and replace with the
-     *   latest one.* @param {string} [arg.assignCardId] - Token of user's debit
-     *   or credit card.* @param {string} arg.orderType - The order type of
-     *   shipment * HomeDelivery - If the customer wants the order
+     *   latest one.* @param {string} [arg.cardReference] - Card reference id of
+     *   user's debit or credit card.* @param {string} arg.orderType - The order
+     *   type of shipment * HomeDelivery - If the customer wants the order
      *   home-delivered * PickAtStore - If the customer wants the handover of an
      *   order at the store itself.* @param {string} [arg.userDetails] -
      *   URIencoded JSON containing details of an anonymous user.
@@ -2068,7 +2073,7 @@ declare class Payment {
      * @summary: Get applicable payment options for Point-of-Sale (POS)
      * @description: Use this API to get all valid payment options for doing a payment in POS.
      */
-    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, assignCardId, userDetails, }?: {
+    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, cardReference, userDetails, }?: {
         amount: number;
         cartId: string;
         pincode: string;
