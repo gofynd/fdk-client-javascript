@@ -364,8 +364,8 @@
     * [getProductSize](#getproductsize)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
     * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
-    * [createProductsInBulk](#createproductsinbulk)
     * [deleteProductBulkJob](#deleteproductbulkjob)
+    * [createProductsInBulk](#createproductsinbulk)
     * [getCompanyTags](#getcompanytags)
     * [createProductAssetsInBulk](#createproductassetsinbulk)
     * [getProductAssetsInBulk](#getproductassetsinbulk)
@@ -376,8 +376,8 @@
     * [deleteInventory](#deleteinventory)
     * [createBulkInventoryJob](#createbulkinventoryjob)
     * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
-    * [createBulkInventory](#createbulkinventory)
     * [deleteBulkInventoryJob](#deletebulkinventoryjob)
+    * [createBulkInventory](#createbulkinventory)
     * [createInventoryExportJob](#createinventoryexportjob)
     * [getInventoryExport](#getinventoryexport)
     * [exportInventoryConfig](#exportinventoryconfig)
@@ -401,10 +401,10 @@
     * [getBrand](#getbrand)
     * [editBrand](#editbrand)
     * [createBrand](#createbrand)
-    * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
-    * [getLocations](#getlocations)
+    * [getBrands](#getbrands)
     * [createLocation](#createlocation)
+    * [getLocations](#getlocations)
     * [getLocationDetail](#getlocationdetail)
     * [updateLocation](#updatelocation)
     * [createLocationBulk](#createlocationbulk)
@@ -653,8 +653,8 @@ const data = await lead.getTickets( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID for which the data will be returned |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID for which the data will be returned |    
 | items | boolean | no | Decides that the reponse will contain the list of tickets |    
 | filters | boolean | no | Decides that the reponse will contain the ticket filters |    
 | q | string | no | Search through ticket titles and description |    
@@ -1083,8 +1083,8 @@ const data = await lead.createTicket( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID for which the data will be returned |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID for which the data will be returned |  
 | body | [AddTicketPayload](#AddTicketPayload) | no | Request body |
 
 
@@ -1344,9 +1344,9 @@ const data = await lead.getTickets( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for which the data will be returned |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for which the data will be returned |    
 | items | boolean | no | Decides that the reponse will contain the list of tickets |    
 | filters | boolean | no | Decides that the reponse will contain the ticket filters |    
 | q | string | no | Search through ticket titles and description |    
@@ -1773,9 +1773,9 @@ const data = await lead.getTicket( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID for which the data will be returned |    
-| id | string | no | Tiket ID of the ticket to be fetched |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID for which the data will be returned |   
+| id | string | yes | Tiket ID of the ticket to be fetched |  
 
 
 
@@ -2025,9 +2025,9 @@ const data = await lead.editTicket( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID for ticket |    
-| id | string | no | Ticket ID of ticket to be edited |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID for ticket |   
+| id | string | yes | Ticket ID of ticket to be edited |  
 | body | [EditTicketPayload](#EditTicketPayload) | no | Request body |
 
 
@@ -2277,10 +2277,10 @@ const data = await lead.getTicket( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for which the data will be returned |    
-| id | string | no | Tiket ID of the ticket to be fetched |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for which the data will be returned |   
+| id | string | yes | Tiket ID of the ticket to be fetched |  
 
 
 
@@ -2533,10 +2533,10 @@ const data = await lead.editTicket( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for ticket |    
-| id | string | no | Ticket ID of ticket to be edited |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for ticket |   
+| id | string | yes | Ticket ID of ticket to be edited |  
 | body | [EditTicketPayload](#EditTicketPayload) | no | Request body |
 
 
@@ -2787,9 +2787,9 @@ const data = await lead.createHistory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID for ticket |    
-| id | string | no | Ticket ID for which history is created |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID for ticket |   
+| id | string | yes | Ticket ID for which history is created |  
 | body | [TicketHistoryPayload](#TicketHistoryPayload) | no | Request body |
 
 
@@ -2881,9 +2881,9 @@ const data = await lead.getTicketHistory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID for ticket |    
-| id | string | no | Ticket ID for which history is to be fetched |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID for ticket |   
+| id | string | yes | Ticket ID for which history is to be fetched |  
 
 
 
@@ -3079,9 +3079,9 @@ const data = await lead.getFeedbacks( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID for ticket |    
-| id | string | no | Ticket ID for which feedbacks are to be fetched |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID for ticket |   
+| id | string | yes | Ticket ID for which feedbacks are to be fetched |  
 
 
 
@@ -3162,9 +3162,9 @@ const data = await lead.submitFeedback( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID for ticket |    
-| id | string | no | Ticket ID for which feedback is to be submitted |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID for ticket |   
+| id | string | yes | Ticket ID for which feedback is to be submitted |  
 | body | [TicketFeedbackPayload](#TicketFeedbackPayload) | no | Request body |
 
 
@@ -3243,10 +3243,10 @@ const data = await lead.createHistory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for ticket |    
-| id | string | no | Ticket ID for which history is created |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for ticket |   
+| id | string | yes | Ticket ID for which history is created |  
 | body | [TicketHistoryPayload](#TicketHistoryPayload) | no | Request body |
 
 
@@ -3340,10 +3340,10 @@ const data = await lead.getTicketHistory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of application |    
-| applicationId | string | no | Application ID for ticket |    
-| id | string | no | Ticket ID for which history is to be fetched |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of application |   
+| applicationId | string | yes | Application ID for ticket |   
+| id | string | yes | Ticket ID for which history is to be fetched |  
 
 
 
@@ -3541,10 +3541,10 @@ const data = await lead.getCustomForm( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for the form |    
-| slug | string | no | Slug of form whose response is getting submitted |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for the form |   
+| slug | string | yes | Slug of form whose response is getting submitted |  
 
 
 
@@ -3650,10 +3650,10 @@ const data = await lead.editCustomForm( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for the form |    
-| slug | string | no | Slug of form whose response is getting submitted |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for the form |   
+| slug | string | yes | Slug of form whose response is getting submitted |  
 | body | [EditCustomFormPayload](#EditCustomFormPayload) | no | Request body |
 
 
@@ -3765,9 +3765,9 @@ const data = await lead.getCustomForms( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for the form |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for the form |  
 
 
 
@@ -3960,9 +3960,9 @@ const data = await lead.createCustomForm( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for the form |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for the form |  
 | body | [CreateCustomFormPayload](#CreateCustomFormPayload) | no | Request body |
 
 
@@ -4074,9 +4074,9 @@ const data = await lead.getTokenForVideoRoom( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id for video room |    
-| uniqueName | string | no | Unique name of video room |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id for video room |   
+| uniqueName | string | yes | Unique name of video room |  
 
 
 
@@ -4138,10 +4138,10 @@ const data = await lead.getTokenForVideoRoom( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for video room |    
-| uniqueName | string | no | Unique name of video room |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for video room |   
+| uniqueName | string | yes | Unique name of video room |  
 
 
 
@@ -4201,9 +4201,9 @@ const data = await lead.getVideoParticipants( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id for video room |    
-| uniqueName | string | no | Unique name of Video Room |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id for video room |   
+| uniqueName | string | yes | Unique name of Video Room |  
 
 
 
@@ -4265,10 +4265,10 @@ const data = await lead.getVideoParticipants( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for video room |    
-| uniqueName | string | no | Unique name of Video Room |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for video room |   
+| uniqueName | string | yes | Unique name of Video Room |  
 
 
 
@@ -4330,9 +4330,9 @@ const data = await lead.openVideoRoom( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for video room |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for video room |  
 | body | [CreateVideoRoomPayload](#CreateVideoRoomPayload) | no | Request body |
 
 
@@ -4394,10 +4394,10 @@ const data = await lead.closeVideoRoom( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID of the application |    
-| applicationId | string | no | Application ID for video room |    
-| uniqueName | string | no | Unique name of Video Room |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID of the application |   
+| applicationId | string | yes | Application ID for video room |   
+| uniqueName | string | yes | Unique name of Video Room |  
 
 
 
@@ -4467,9 +4467,9 @@ const data = await feedback.getAttributes( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |    
 | pageNo | number | no | pagination page no |    
 | pageSize | number | no | pagination page size |  
 
@@ -4548,9 +4548,9 @@ const data = await feedback.getCustomerReviews( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |    
 | id | string | no | review id |    
 | entityId | string | no | entity id |    
 | entityType | string | no | entity type |    
@@ -4616,10 +4616,10 @@ const data = await feedback.updateApprove( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| reviewId | string | no | review id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| reviewId | string | yes | review id |  
 | body | [ApproveRequest](#ApproveRequest) | yes | Request body |
 
 
@@ -4668,10 +4668,10 @@ const data = await feedback.getHistory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| reviewId | string | no | review id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| reviewId | string | yes | review id |  
 
 
 
@@ -4722,9 +4722,9 @@ const data = await feedback.getApplicationTemplates( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |    
 | pageId | string | no | pagination page id |    
 | pageSize | number | no | pagination page size |  
 
@@ -4775,9 +4775,9 @@ const data = await feedback.createTemplate( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |  
 | body | [TemplateRequestList](#TemplateRequestList) | yes | Request body |
 
 
@@ -4829,10 +4829,10 @@ const data = await feedback.getTemplateById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| id | string | no | template id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| id | string | yes | template id |  
 
 
 
@@ -4883,10 +4883,10 @@ const data = await feedback.updateTemplate( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| id | string | no | template id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| id | string | yes | template id |  
 | body | [UpdateTemplateRequest](#UpdateTemplateRequest) | yes | Request body |
 
 
@@ -4937,10 +4937,10 @@ const data = await feedback.updateTemplateStatus( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| id | string | no | template id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| id | string | yes | template id |  
 | body | [UpdateTemplateStatusRequest](#UpdateTemplateStatusRequest) | yes | Request body |
 
 
@@ -4995,10 +4995,10 @@ const data = await theme.getAllPages( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID |    
-| applicationId | string | no | Application ID |    
-| themeId | string | no | ID of the theme to be retrieved |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID |   
+| applicationId | string | yes | Application ID |   
+| themeId | string | yes | ID of the theme to be retrieved |  
 
 
 
@@ -5060,10 +5060,10 @@ const data = await theme.createPage( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID |    
-| applicationId | string | no | Application ID |    
-| themeId | string | no | ID of the theme |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID |   
+| applicationId | string | yes | Application ID |   
+| themeId | string | yes | ID of the theme |  
 | body | [AvailablePageSchema](#AvailablePageSchema) | no | Request body |
 
 
@@ -5125,10 +5125,10 @@ const data = await theme.updateMultiplePages( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID |    
-| applicationId | string | no | Application ID |    
-| themeId | string | no | ID of the theme to be retrieved |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID |   
+| applicationId | string | yes | Application ID |   
+| themeId | string | yes | ID of the theme to be retrieved |  
 | body | [AllAvailablePageSchema](#AllAvailablePageSchema) | no | Request body |
 
 
@@ -5190,11 +5190,11 @@ const data = await theme.getPage( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID |    
-| applicationId | string | no | Application ID |    
-| themeId | string | no | ID of the theme to be retrieved |    
-| pageValue | string | no | Value of the page to be retrieved |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID |   
+| applicationId | string | yes | Application ID |   
+| themeId | string | yes | ID of the theme to be retrieved |   
+| pageValue | string | yes | Value of the page to be retrieved |  
 
 
 
@@ -5258,11 +5258,11 @@ const data = await theme.updatePage( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID |    
-| applicationId | string | no | Application ID |    
-| themeId | string | no | ID of the theme |    
-| pageValue | string | no | Value of the page to be updated |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID |   
+| applicationId | string | yes | Application ID |   
+| themeId | string | yes | ID of the theme |   
+| pageValue | string | yes | Value of the page to be updated |  
 | body | [AvailablePageSchema](#AvailablePageSchema) | no | Request body |
 
 
@@ -5324,11 +5324,11 @@ const data = await theme.deletePage( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID |    
-| applicationId | string | no | Application ID |    
-| themeId | string | no | ID of the theme |    
-| pageValue | string | no | Value of the page to be updated |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID |   
+| applicationId | string | yes | Application ID |   
+| themeId | string | yes | ID of the theme |   
+| pageValue | string | yes | Value of the page to be updated |  
 
 
 
@@ -5390,9 +5390,9 @@ const data = await theme.getThemeLibrary( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10.  |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |  
 
@@ -5454,9 +5454,9 @@ const data = await theme.addToThemeLibrary( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 | body | [AddThemeRequestSchema](#AddThemeRequestSchema) | no | Request body |
 
 
@@ -5516,9 +5516,9 @@ const data = await theme.applyTheme( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 | body | [AddThemeRequestSchema](#AddThemeRequestSchema) | no | Request body |
 
 
@@ -5578,10 +5578,10 @@ const data = await theme.isUpgradable( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| themeId | string | no | Theme ID |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | string | yes | Theme ID |  
 
 
 
@@ -5641,10 +5641,10 @@ const data = await theme.upgradeTheme( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| themeId | string | no | ID allotted to the theme. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | string | yes | ID allotted to the theme. |  
 
 
 
@@ -5706,9 +5706,9 @@ const data = await theme.getPublicThemes( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10.  |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
 
@@ -5770,9 +5770,9 @@ const data = await theme.createTheme( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 | body | [ThemesSchema](#ThemesSchema) | no | Request body |
 
 
@@ -5830,9 +5830,9 @@ const data = await theme.getAppliedTheme( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -5890,9 +5890,9 @@ const data = await theme.getFonts( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -5952,10 +5952,10 @@ const data = await theme.getThemeById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| themeId | string | no | ID allotted to the theme. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | string | yes | ID allotted to the theme. |  
 
 
 
@@ -6017,10 +6017,10 @@ const data = await theme.updateTheme( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| themeId | string | no | ID allotted to the theme. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | string | yes | ID allotted to the theme. |  
 | body | [ThemesSchema](#ThemesSchema) | no | Request body |
 
 
@@ -6080,10 +6080,10 @@ const data = await theme.deleteTheme( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| themeId | string | no | ID allotted to the theme. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | string | yes | ID allotted to the theme. |  
 
 
 
@@ -6143,10 +6143,10 @@ const data = await theme.getThemeForPreview( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| themeId | string | no | ID allotted to the theme. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | string | yes | ID allotted to the theme. |  
 
 
 
@@ -6206,10 +6206,10 @@ const data = await theme.publishTheme( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| themeId | string | no | ID allotted to the theme. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | string | yes | ID allotted to the theme. |  
 
 
 
@@ -6269,10 +6269,10 @@ const data = await theme.unpublishTheme( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| themeId | string | no | ID allotted to the theme. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | string | yes | ID allotted to the theme. |  
 
 
 
@@ -6332,10 +6332,10 @@ const data = await theme.archiveTheme( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| themeId | string | no | ID allotted to the theme. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | string | yes | ID allotted to the theme. |  
 
 
 
@@ -6395,10 +6395,10 @@ const data = await theme.unarchiveTheme( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| themeId | string | no | ID allotted to the theme. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| themeId | string | yes | ID allotted to the theme. |  
 
 
 
@@ -6468,9 +6468,9 @@ const data = await user.getCustomers( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |    
 | q | string | no | The search query. Mobile number or email ID of a customer. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
@@ -6533,9 +6533,9 @@ const data = await user.searchUsers( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |    
 | q | string | no | The search query. Mobile number or email ID of a customer. |  
 
 
@@ -6585,9 +6585,9 @@ const data = await user.createUser( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID |    
-| applicationId | string | no | Application ID |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID |   
+| applicationId | string | yes | Application ID |  
 | body | [CreateUserRequestSchema](#CreateUserRequestSchema) | yes | Request body |
 
 
@@ -6638,10 +6638,10 @@ const data = await user.updateUser( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID |    
-| applicationId | string | no | Application ID |    
-| userId | string | no | User ID |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID |   
+| applicationId | string | yes | Application ID |   
+| userId | string | yes | User ID |  
 | body | [UpdateUserRequestSchema](#UpdateUserRequestSchema) | yes | Request body |
 
 
@@ -6690,9 +6690,9 @@ const data = await user.createUserSession( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company ID |    
-| applicationId | string | no | Application ID |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company ID |   
+| applicationId | string | yes | Application ID |  
 | body | [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema) | yes | Request body |
 
 
@@ -6739,9 +6739,9 @@ const data = await user.getPlatformConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -6790,9 +6790,9 @@ const data = await user.updatePlatformConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 | body | [PlatformSchema](#PlatformSchema) | yes | Request body |
 
 
@@ -6849,9 +6849,9 @@ const data = await content.getAnnouncementsList( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
 
@@ -6913,9 +6913,9 @@ const data = await content.createAnnouncement( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 | body | [AdminAnnouncementSchema](#AdminAnnouncementSchema) | yes | Request body |
 
 
@@ -6975,10 +6975,10 @@ const data = await content.getAnnouncementById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| announcementId | string | no | ID allotted to the announcement. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| announcementId | string | yes | ID allotted to the announcement. |  
 
 
 
@@ -7040,10 +7040,10 @@ const data = await content.updateAnnouncement( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| announcementId | string | no | ID allotted to the announcement. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| announcementId | string | yes | ID allotted to the announcement. |  
 | body | [AdminAnnouncementSchema](#AdminAnnouncementSchema) | yes | Request body |
 
 
@@ -7105,10 +7105,10 @@ const data = await content.updateAnnouncementSchedule( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| announcementId | string | no | ID allotted to the announcement. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| announcementId | string | yes | ID allotted to the announcement. |  
 | body | [ScheduleSchema](#ScheduleSchema) | yes | Request body |
 
 
@@ -7168,10 +7168,10 @@ const data = await content.deleteAnnouncement( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| announcementId | string | no | ID allotted to the announcement. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| announcementId | string | yes | ID allotted to the announcement. |  
 
 
 
@@ -7231,9 +7231,9 @@ const data = await content.createBlog( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 | body | [BlogRequest](#BlogRequest) | yes | Request body |
 
 
@@ -7295,9 +7295,9 @@ const data = await content.getBlogs( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
 
@@ -7361,10 +7361,10 @@ const data = await content.updateBlog( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to the blog. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to the blog. |  
 | body | [BlogRequest](#BlogRequest) | yes | Request body |
 
 
@@ -7424,10 +7424,10 @@ const data = await content.deleteBlog( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to the blog. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to the blog. |  
 
 
 
@@ -7487,10 +7487,10 @@ const data = await content.getComponentById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| slug | string | no | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. |  
 
 
 
@@ -7548,9 +7548,9 @@ const data = await content.getFaqCategories( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 
 
 
@@ -7599,10 +7599,10 @@ const data = await content.getFaqCategoryBySlugOrId( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| idOrSlug | string | no | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| idOrSlug | string | yes | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
 
 
 
@@ -7651,9 +7651,9 @@ const data = await content.createFaqCategory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 | body | [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema) | no | Request body |
 
 
@@ -7704,10 +7704,10 @@ const data = await content.updateFaqCategory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to an FAQ category. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to an FAQ category. |  
 | body | [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema) | no | Request body |
 
 
@@ -7756,10 +7756,10 @@ const data = await content.deleteFaqCategory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to an FAQ category. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to an FAQ category. |  
 
 
 
@@ -7808,10 +7808,10 @@ const data = await content.getFaqsByCategoryIdOrSlug( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| idOrSlug | string | no | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| idOrSlug | string | yes | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
 
 
 
@@ -7862,10 +7862,10 @@ const data = await content.addFaq( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| categoryId | string | no | ID allotted to an FAQ category. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| categoryId | string | yes | ID allotted to an FAQ category. |  
 | body | [CreateFaqSchema](#CreateFaqSchema) | no | Request body |
 
 
@@ -7918,11 +7918,11 @@ const data = await content.updateFaq( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| categoryId | string | no | ID allotted to an FAQ category. |    
-| faqId | string | no | ID allotted to an FAQ. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| categoryId | string | yes | ID allotted to an FAQ category. |   
+| faqId | string | yes | ID allotted to an FAQ. |  
 | body | [CreateFaqSchema](#CreateFaqSchema) | no | Request body |
 
 
@@ -7973,11 +7973,11 @@ const data = await content.deleteFaq( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| categoryId | string | no | ID allotted to an FAQ category. |    
-| faqId | string | no | ID allotted to an FAQ. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| categoryId | string | yes | ID allotted to an FAQ category. |   
+| faqId | string | yes | ID allotted to an FAQ. |  
 
 
 
@@ -8026,10 +8026,10 @@ const data = await content.getFaqByIdOrSlug( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| idOrSlug | string | no | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| idOrSlug | string | yes | ID or the slug allotted to an FAQ category. Slug is a short, human-readable, URL-friendly identifier of an object. You can get slug value of an FAQ category from `getFaqCategories` API. |  
 
 
 
@@ -8080,9 +8080,9 @@ const data = await content.getLandingPages( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
 
@@ -8144,9 +8144,9 @@ const data = await content.createLandingPage( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 | body | [LandingPageSchema](#LandingPageSchema) | yes | Request body |
 
 
@@ -8208,10 +8208,10 @@ const data = await content.updateLandingPage( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to a landing page. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to a landing page. |  
 | body | [LandingPageSchema](#LandingPageSchema) | yes | Request body |
 
 
@@ -8271,10 +8271,10 @@ const data = await content.deleteLandingPage( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to a landing page. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to a landing page. |  
 
 
 
@@ -8355,9 +8355,9 @@ const data = await content.getLegalInformation( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 
 
 
@@ -8417,9 +8417,9 @@ const data = await content.updateLegalInformation( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 | body | [ApplicationLegal](#ApplicationLegal) | yes | Request body |
 
 
@@ -8472,10 +8472,10 @@ const data = await content.getNavigations( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| devicePlatform | string | no | Filter navigations by platform. Acceptable values are: web, android, ios, all |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| devicePlatform | string | yes | Filter navigations by platform. Acceptable values are: web, android, ios, all |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
 
@@ -8537,9 +8537,9 @@ const data = await content.createNavigation( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 | body | [NavigationRequest](#NavigationRequest) | yes | Request body |
 
 
@@ -8597,9 +8597,9 @@ const data = await content.getDefaultNavigations( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 
 
 
@@ -8661,11 +8661,11 @@ const data = await content.getNavigationBySlug( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| slug | string | no | A short, human-readable, URL-friendly identifier of a navigation. You can get slug value of a navigation from `getNavigations` API. |    
-| devicePlatform | string | no | Filter navigations by platform. Acceptable values are: web, android, ios, all |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a navigation. You can get slug value of a navigation from `getNavigations` API. |   
+| devicePlatform | string | yes | Filter navigations by platform. Acceptable values are: web, android, ios, all |  
 
 
 
@@ -8727,10 +8727,10 @@ const data = await content.updateNavigation( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to the navigation. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to the navigation. |  
 | body | [NavigationRequest](#NavigationRequest) | yes | Request body |
 
 
@@ -8790,10 +8790,10 @@ const data = await content.deleteNavigation( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to the navigation. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to the navigation. |  
 
 
 
@@ -9031,9 +9031,9 @@ const data = await content.getPageMeta( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 
 
 
@@ -9091,9 +9091,9 @@ const data = await content.getPageSpec( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 
 
 
@@ -9179,9 +9179,9 @@ const data = await content.createPage( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 | body | [PageRequest](#PageRequest) | yes | Request body |
 
 
@@ -9243,9 +9243,9 @@ const data = await content.getPages( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
 
@@ -9307,9 +9307,9 @@ const data = await content.createPagePreview( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 | body | [PageRequest](#PageRequest) | yes | Request body |
 
 
@@ -9371,10 +9371,10 @@ const data = await content.updatePagePreview( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| slug | string | no | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
 | body | [PagePublishRequest](#PagePublishRequest) | yes | Request body |
 
 
@@ -9436,10 +9436,10 @@ const data = await content.updatePage( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to the page. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to the page. |  
 | body | [PageSchema](#PageSchema) | yes | Request body |
 
 
@@ -9499,10 +9499,10 @@ const data = await content.deletePage( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to the page. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to the page. |  
 
 
 
@@ -9562,10 +9562,10 @@ const data = await content.getPageBySlug( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| slug | string | no | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
 
 
 
@@ -9623,9 +9623,9 @@ const data = await content.getSEOConfiguration( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 
 
 
@@ -9685,9 +9685,9 @@ const data = await content.updateSEOConfiguration( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 | body | [SeoComponent](#SeoComponent) | yes | Request body |
 
 
@@ -9774,10 +9774,10 @@ const data = await content.getSlideshows( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| devicePlatform | string | no | Filter slideshows by platform. Acceptable values are: web, android, ios and all |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| devicePlatform | string | yes | Filter slideshows by platform. Acceptable values are: web, android, ios and all |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
 
@@ -9839,9 +9839,9 @@ const data = await content.createSlideshow( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
 | body | [SlideshowRequest](#SlideshowRequest) | yes | Request body |
 
 
@@ -9903,11 +9903,11 @@ const data = await content.getSlideshowBySlug( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| slug | string | no | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value of a page from `getSlideshows` API. |    
-| devicePlatform | string | no | Filter slideshows by platform. Acceptable values are: web, android, ios and all |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value of a page from `getSlideshows` API. |   
+| devicePlatform | string | yes | Filter slideshows by platform. Acceptable values are: web, android, ios and all |  
 
 
 
@@ -9969,10 +9969,10 @@ const data = await content.updateSlideshow( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to the slideshow. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to the slideshow. |  
 | body | [SlideshowRequest](#SlideshowRequest) | yes | Request body |
 
 
@@ -10032,10 +10032,10 @@ const data = await content.deleteSlideshow( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform |    
-| applicationId | string | no | Numeric ID allotted to an application created within a business account. |    
-| id | string | no | ID allotted to the slideshow. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
+| applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
+| id | string | yes | ID allotted to the slideshow. |  
 
 
 
@@ -10132,9 +10132,9 @@ const data = await content.getSupportInformation( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -10194,9 +10194,9 @@ const data = await content.updateSupportInformation( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 | body | [Support](#Support) | yes | Request body |
 
 
@@ -10256,9 +10256,9 @@ const data = await content.updateInjectableTag( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 | body | [CreateTagRequestSchema](#CreateTagRequestSchema) | no | Request body |
 
 
@@ -10305,9 +10305,9 @@ const data = await content.deleteAllInjectableTags( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -10354,9 +10354,9 @@ const data = await content.getInjectableTags( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -10405,9 +10405,9 @@ const data = await content.addInjectableTag( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 | body | [CreateTagRequestSchema](#CreateTagRequestSchema) | no | Request body |
 
 
@@ -10456,9 +10456,9 @@ const data = await content.removeInjectableTag( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 | body | [RemoveHandpickedSchema](#RemoveHandpickedSchema) | no | Request body |
 
 
@@ -10509,10 +10509,10 @@ const data = await content.editInjectableTag( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Numeric ID allotted to a business account on Fynd Platform. |    
-| applicationId | string | no | Alphanumeric ID allotted to an application created within a business account. |    
-| tagId | string | no | ID allotted to the tag. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
+| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
+| tagId | string | yes | ID allotted to the tag. |  
 | body | [UpdateHandpickedSchema](#UpdateHandpickedSchema) | no | Request body |
 
 
@@ -10567,9 +10567,9 @@ const data = await assignment.createPickupLocation( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 | body | [PickupPointSchema](#PickupPointSchema) | no | Request body |
 
 
@@ -10626,9 +10626,9 @@ const data = await assignment.getPickupLocation( {  companyId : value,
 | --------- | -----  | -------- | ----------- |  
 | q | string | no | Search query |    
 | pageNo | number | no | Request a page number |    
-| pageSize | number | no | Request a page size |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| pageSize | number | no | Request a page size |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 
 
 
@@ -10680,10 +10680,10 @@ const data = await assignment.updatePickupLocation( {  id : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | number | no | Pickup Point ID |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| id | number | yes | Pickup Point ID |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 | body | [PickupPointSchema](#PickupPointSchema) | no | Request body |
 
 
@@ -10735,10 +10735,10 @@ const data = await assignment.getPickupLocationById( {  id : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | number | no | Pickup Point Id |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| id | number | yes | Pickup Point Id |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 
 
 
@@ -10789,9 +10789,9 @@ const data = await assignment.createPickupConfiguration( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 | body | [PickupConfiguration](#PickupConfiguration) | no | Request body |
 
 
@@ -10840,9 +10840,9 @@ const data = await assignment.getPickupConfiguration( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 
 
 
@@ -10891,9 +10891,9 @@ const data = await assignment.getAllocationConfiguration( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 
 
 
@@ -10945,9 +10945,9 @@ const data = await assignment.createAllocationConfiguration( {  companyId : valu
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 | body | [ShippingSchema](#ShippingSchema) | no | Request body |
 
 
@@ -10999,9 +10999,9 @@ const data = await assignment.updateAllocationConfiguration( {  companyId : valu
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 | body | [ShippingSchema](#ShippingSchema) | no | Request body |
 
 
@@ -11063,9 +11063,9 @@ const data = await assignment.getAllocationLocations( {  companyId : value,
 | q | string | no | Search query |    
 | pageNo | number | no | Request a page number |    
 | pageSize | number | no | Request a page size |    
-| type | string | no | Type can be 'standard' or 'advanced' |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| type | string | no | Type can be 'standard' or 'advanced' |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 
 
 
@@ -11117,10 +11117,10 @@ const data = await assignment.getAllocationLocationById( {  id : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | number | no | Store Id |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| id | number | yes | Store Id |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 
 
 
@@ -11174,10 +11174,10 @@ const data = await assignment.updateAllocationLocation( {  id : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | number | no | Store Id |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| id | number | yes | Store Id |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 | body | [StoreSchema](#StoreSchema) | no | Request body |
 
 
@@ -11228,9 +11228,9 @@ const data = await assignment.createAllocationLocation( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 | body | [StoreSchema](#StoreSchema) | no | Request body |
 
 
@@ -11290,9 +11290,9 @@ const data = await assignment.getDestinationZones( {  companyId : value,
 | --------- | -----  | -------- | ----------- |  
 | q | string | no | Search query |    
 | pageNo | number | no | Request a page number |    
-| pageSize | number | no | Request a page size |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| pageSize | number | no | Request a page size |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 
 
 
@@ -11343,9 +11343,9 @@ const data = await assignment.postDestinationZone( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 | body | [ZoneSchema](#ZoneSchema) | no | Request body |
 
 
@@ -11397,10 +11397,10 @@ const data = await assignment.getDestinationZoneById( {  id : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | number | no | Store Id |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| id | number | yes | Store Id |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 
 
 
@@ -11453,10 +11453,10 @@ const data = await assignment.updateDestinationZone( {  id : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | number | no | Store Id |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| id | number | yes | Store Id |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 | body | [ZoneSchema](#ZoneSchema) | no | Request body |
 
 
@@ -11513,9 +11513,9 @@ const data = await billing.createSubscriptionCharge( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |    
-| extensionId | string | no | Extension _id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |   
+| extensionId | string | yes | Extension _id |  
 | body | [CreateSubscriptionCharge](#CreateSubscriptionCharge) | no | Request body |
 
 
@@ -11564,10 +11564,10 @@ const data = await billing.getSubscriptionCharge( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |    
-| extensionId | string | no | Extension _id |    
-| subscriptionId | string | no | Subscription charge _id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |   
+| extensionId | string | yes | Extension _id |   
+| subscriptionId | string | yes | Subscription charge _id |  
 
 
 
@@ -11616,10 +11616,10 @@ const data = await billing.cancelSubscriptionCharge( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |    
-| extensionId | string | no | Extension _id |    
-| subscriptionId | string | no | Subscription charge _id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |   
+| extensionId | string | yes | Extension _id |   
+| subscriptionId | string | yes | Subscription charge _id |  
 
 
 
@@ -11664,8 +11664,8 @@ const data = await billing.getInvoices( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -11723,9 +11723,9 @@ const data = await billing.getInvoiceById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |    
-| invoiceId | string | no | Invoice id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |   
+| invoiceId | string | yes | Invoice id |  
 
 
 
@@ -11781,8 +11781,8 @@ const data = await billing.getCustomerDetail( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -11840,8 +11840,8 @@ const data = await billing.upsertCustomerDetail( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 | body | [SubscriptionCustomerCreate](#SubscriptionCustomerCreate) | yes | Request body |
 
 
@@ -11897,8 +11897,8 @@ const data = await billing.getSubscription( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -11962,8 +11962,8 @@ const data = await billing.getFeatureLimitConfig( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -12021,8 +12021,8 @@ const data = await billing.activateSubscriptionPlan( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 | body | [SubscriptionActivateReq](#SubscriptionActivateReq) | yes | Request body |
 
 
@@ -12080,8 +12080,8 @@ const data = await billing.cancelSubscriptionPlan( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Customer unique id. In case of company it will be company id. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 | body | [CancelSubscriptionReq](#CancelSubscriptionReq) | yes | Request body |
 
 
@@ -12151,9 +12151,9 @@ const data = await communication.getCampaigns( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -12216,9 +12216,9 @@ const data = await communication.createCampaign( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |  
 | body | [CampaignReq](#CampaignReq) | yes | Request body |
 
 
@@ -12278,10 +12278,10 @@ const data = await communication.getCampaignById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Campaign id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Campaign id |  
 
 
 
@@ -12343,10 +12343,10 @@ const data = await communication.updateCampaignById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Campaign id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Campaign id |  
 | body | [CampaignReq](#CampaignReq) | yes | Request body |
 
 
@@ -12406,10 +12406,10 @@ const data = await communication.getStatsOfCampaignById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Campaign id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Campaign id |  
 
 
 
@@ -12473,9 +12473,9 @@ const data = await communication.getAudiences( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -12538,9 +12538,9 @@ const data = await communication.createAudience( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |  
 | body | [AudienceReq](#AudienceReq) | yes | Request body |
 
 
@@ -12600,9 +12600,9 @@ const data = await communication.getBigqueryHeaders( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |  
 | body | [BigqueryHeadersReq](#BigqueryHeadersReq) | yes | Request body |
 
 
@@ -12662,10 +12662,10 @@ const data = await communication.getAudienceById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Audience id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Audience id |  
 
 
 
@@ -12727,10 +12727,10 @@ const data = await communication.updateAudienceById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Audience id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Audience id |  
 | body | [AudienceReq](#AudienceReq) | yes | Request body |
 
 
@@ -12790,9 +12790,9 @@ const data = await communication.getNSampleRecordsFromCsv( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |  
 | body | [GetNRecordsCsvReq](#GetNRecordsCsvReq) | yes | Request body |
 
 
@@ -12856,9 +12856,9 @@ const data = await communication.getEmailProviders( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -12921,9 +12921,9 @@ const data = await communication.createEmailProvider( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |  
 | body | [EmailProviderReq](#EmailProviderReq) | yes | Request body |
 
 
@@ -12983,10 +12983,10 @@ const data = await communication.getEmailProviderById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Email provider id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Email provider id |  
 
 
 
@@ -13048,10 +13048,10 @@ const data = await communication.updateEmailProviderById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Email provider id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Email provider id |  
 | body | [EmailProviderReq](#EmailProviderReq) | yes | Request body |
 
 
@@ -13115,9 +13115,9 @@ const data = await communication.getEmailTemplates( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -13180,9 +13180,9 @@ const data = await communication.createEmailTemplate( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |  
 | body | [EmailTemplateReq](#EmailTemplateReq) | yes | Request body |
 
 
@@ -13246,9 +13246,9 @@ const data = await communication.getSystemEmailTemplates( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -13311,10 +13311,10 @@ const data = await communication.getEmailTemplateById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Email template id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Email template id |  
 
 
 
@@ -13376,10 +13376,10 @@ const data = await communication.updateEmailTemplateById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Email template id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Email template id |  
 | body | [EmailTemplateReq](#EmailTemplateReq) | yes | Request body |
 
 
@@ -13439,10 +13439,10 @@ const data = await communication.deleteEmailTemplateById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Email template id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Email template id |  
 
 
 
@@ -13506,9 +13506,9 @@ const data = await communication.getEventSubscriptions( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | populate | string | no | populate fields |  
@@ -13575,9 +13575,9 @@ const data = await communication.getJobs( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -13640,9 +13640,9 @@ const data = await communication.triggerCampaignJob( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |  
 | body | [TriggerJobRequest](#TriggerJobRequest) | yes | Request body |
 
 
@@ -13706,9 +13706,9 @@ const data = await communication.getJobLogs( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -13777,9 +13777,9 @@ const data = await communication.getCommunicationLogs( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageId | string | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on _id |    
@@ -13843,8 +13843,8 @@ const data = await communication.getSystemNotifications( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |  
 
@@ -13910,9 +13910,9 @@ const data = await communication.getSmsProviders( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -13975,9 +13975,9 @@ const data = await communication.createSmsProvider( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |  
 | body | [SmsProviderReq](#SmsProviderReq) | yes | Request body |
 
 
@@ -14037,10 +14037,10 @@ const data = await communication.getSmsProviderById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Sms provider id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Sms provider id |  
 
 
 
@@ -14102,10 +14102,10 @@ const data = await communication.updateSmsProviderById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Sms provider id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Sms provider id |  
 | body | [SmsProviderReq](#SmsProviderReq) | yes | Request body |
 
 
@@ -14169,9 +14169,9 @@ const data = await communication.getSmsTemplates( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -14234,9 +14234,9 @@ const data = await communication.createSmsTemplate( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |  
 | body | [SmsTemplateReq](#SmsTemplateReq) | yes | Request body |
 
 
@@ -14296,10 +14296,10 @@ const data = await communication.getSmsTemplateById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Sms template id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Sms template id |  
 
 
 
@@ -14361,10 +14361,10 @@ const data = await communication.updateSmsTemplateById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Sms template id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Sms template id |  
 | body | [SmsTemplateReq](#SmsTemplateReq) | yes | Request body |
 
 
@@ -14424,10 +14424,10 @@ const data = await communication.deleteSmsTemplateById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
-| id | string | no | Sms template id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |   
+| id | string | yes | Sms template id |  
 
 
 
@@ -14491,9 +14491,9 @@ const data = await communication.getSystemSystemTemplates( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company id |    
-| applicationId | string | no | Application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company id |   
+| applicationId | string | yes | Application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -14560,9 +14560,9 @@ const data = await payment.getBrandPaymentGatewayConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application id |  
 
 
 
@@ -14611,9 +14611,9 @@ const data = await payment.saveBrandPaymentGatewayConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application id |  
 | body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | no | Request body |
 
 
@@ -14662,9 +14662,9 @@ const data = await payment.updateBrandPaymentGatewayConfig( {  companyId : value
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application id |  
 | body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | no | Request body |
 
 
@@ -14715,11 +14715,11 @@ const data = await payment.getPaymentModeRoutes( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application id |    
-| refresh | boolean | no |  |    
-| requestType | string | no |  |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application id |   
+| refresh | boolean | yes |  |   
+| requestType | string | yes |  |  
 
 
 
@@ -14766,8 +14766,8 @@ const data = await payment.getAllPayouts( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |    
 | uniqueExternalId | string | no | Fetch payouts using unique external id |  
 
 
@@ -14815,8 +14815,8 @@ const data = await payment.savePayout( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |  
 | body | [PayoutRequest](#PayoutRequest) | no | Request body |
 
 
@@ -14865,9 +14865,9 @@ const data = await payment.updatePayout( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| uniqueTransferNo | string | no | Unique transfer id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| uniqueTransferNo | string | yes | Unique transfer id |  
 | body | [PayoutRequest](#PayoutRequest) | no | Request body |
 
 
@@ -14916,9 +14916,9 @@ const data = await payment.activateAndDectivatePayout( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| uniqueTransferNo | string | no | Unique transfer id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| uniqueTransferNo | string | yes | Unique transfer id |  
 | body | [UpdatePayoutRequest](#UpdatePayoutRequest) | no | Request body |
 
 
@@ -14965,9 +14965,9 @@ const data = await payment.deletePayout( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| uniqueTransferNo | string | no | Unique transfer id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| uniqueTransferNo | string | yes | Unique transfer id |  
 
 
 
@@ -15012,8 +15012,8 @@ const data = await payment.getSubscriptionPaymentMethod( {  companyId : value })
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |  
 
 
 
@@ -15062,10 +15062,10 @@ const data = await payment.deleteSubscriptionPaymentMethod( {  companyId : value
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| uniqueExternalId | string | no |  |    
-| paymentMethodId | string | no |  |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| uniqueExternalId | string | yes |  |   
+| paymentMethodId | string | yes |  |  
 
 
 
@@ -15110,8 +15110,8 @@ const data = await payment.getSubscriptionConfig( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |  
 
 
 
@@ -15158,8 +15158,8 @@ const data = await payment.saveSubscriptionSetupIntent( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |  
 | body | [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest) | no | Request body |
 
 
@@ -15208,9 +15208,9 @@ const data = await payment.addBeneficiaryDetails( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application id |  
 | body | [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest) | no | Request body |
 
 
@@ -15257,8 +15257,8 @@ const data = await payment.verifyIfscCode( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |    
 | ifscCode | string | no |  |  
 
 
@@ -15308,10 +15308,10 @@ const data = await payment.getUserOrderBeneficiaries( {  orderId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| orderId | string | no |  |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes |  |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application id |  
 
 
 
@@ -15360,10 +15360,10 @@ const data = await payment.getUserBeneficiaries( {  orderId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| orderId | string | no |  |    
-| companyId | number | no | Company Id |    
-| applicationId | string | no | Application id |  
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes |  |   
+| companyId | number | yes | Company Id |   
+| applicationId | string | yes | Application id |  
 
 
 
@@ -15416,8 +15416,8 @@ const data = await order.shipmentStatusUpdate( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |  
 | body | [UpdateShipmentStatusBody](#UpdateShipmentStatusBody) | yes | Request body |
 
 
@@ -15464,9 +15464,9 @@ const data = await order.activityStatus( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| bagId | string | no | Bag Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| bagId | string | yes | Bag Id |  
 
 
 
@@ -15513,8 +15513,8 @@ const data = await order.storeProcessShipmentUpdate( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |  
 | body | [UpdateProcessShipmenstRequestBody](#UpdateProcessShipmenstRequestBody) | yes | Request body |
 
 
@@ -15561,9 +15561,9 @@ const data = await order.checkRefund( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| shipmentId | string | no | Shipment Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| shipmentId | string | yes | Shipment Id |  
 
 
 
@@ -15632,8 +15632,8 @@ const data = await order.getOrdersByCompanyId( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |    
 | pageNo | string | no | Current page number |    
 | pageSize | string | no | Page limit |    
 | fromDate | string | no | From Date |    
@@ -15714,8 +15714,8 @@ const data = await order.getOrderLanesCountByCompanyId( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |    
 | pageNo | string | no | Current page number |    
 | pageSize | string | no | Page limit |    
 | fromDate | string | no | From Date |    
@@ -15778,8 +15778,8 @@ const data = await order.getOrderDetails( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |    
 | orderId | string | no | Order Id |    
 | next | string | no | Next |    
 | previous | string | no | Previous |  
@@ -15851,8 +15851,8 @@ const data = await order.getPicklistOrdersByCompanyId( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |    
 | pageNo | string | no | Current page number |    
 | pageSize | string | no | Page limit |    
 | fromDate | string | no | From Date |    
@@ -15913,10 +15913,10 @@ const data = await order.trackShipmentPlatform( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| shipmentId | string | no | Shipment Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| shipmentId | string | yes | Shipment Id |  
 
 
 
@@ -15965,10 +15965,10 @@ const data = await order.trackOrder( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| orderId | string | no | Order Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| orderId | string | yes | Order Id |  
 
 
 
@@ -16015,9 +16015,9 @@ const data = await order.failedOrders( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 
 
 
@@ -16066,10 +16066,10 @@ const data = await order.reprocessOrder( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| orderId | string | no | Order Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| orderId | string | yes | Order Id |  
 
 
 
@@ -16120,10 +16120,10 @@ const data = await order.updateShipment( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| shipmentId | string | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
 | body | [ShipmentUpdateRequest](#ShipmentUpdateRequest) | yes | Request body |
 
 
@@ -16172,10 +16172,10 @@ const data = await order.getPlatformShipmentReasons( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| action | string | no | Action |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| action | string | yes | Action |  
 
 
 
@@ -16226,11 +16226,11 @@ const data = await order.getShipmentTrackDetails( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| orderId | string | no | ID of the order. |    
-| shipmentId | string | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| orderId | string | yes | ID of the order. |   
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
 
 
 
@@ -16279,10 +16279,10 @@ const data = await order.getShipmentAddress( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| shipmentId | string | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |    
-| addressCategory | string | no | Category of the address it falls into(billing or delivery). |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| addressCategory | string | yes | Category of the address it falls into(billing or delivery). |  
 
 
 
@@ -16333,10 +16333,10 @@ const data = await order.updateShipmentAddress( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| shipmentId | string | no | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |    
-| addressCategory | string | no | Category of the address it falls into(billing or delivery). |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| addressCategory | string | yes | Category of the address it falls into(billing or delivery). |  
 | body | [UpdateShipmentAddressRequest](#UpdateShipmentAddressRequest) | yes | Request body |
 
 
@@ -16381,8 +16381,8 @@ const data = await order.getPing( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |  
 
 
 
@@ -16427,8 +16427,8 @@ const data = await order.voiceCallback( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |  
 
 
 
@@ -16477,10 +16477,10 @@ const data = await order.voiceClickToCall( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| caller | string | no | Caller contact number |    
-| receiver | string | no | Receiver contact number |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| caller | string | yes | Caller contact number |   
+| receiver | string | yes | Receiver contact number |  
 
 
 
@@ -16535,10 +16535,10 @@ const data = await catalog.deleteSearchKeywords( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
 
 
@@ -16589,10 +16589,10 @@ const data = await catalog.updateSearchKeywords( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 | body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
 
 
@@ -16641,10 +16641,10 @@ const data = await catalog.getSearchKeywords( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
 
 
 
@@ -16693,9 +16693,9 @@ const data = await catalog.createCustomKeyword( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 | body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
 
 
@@ -16742,9 +16742,9 @@ const data = await catalog.getAllSearchKeyword( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 
 
 
@@ -16793,10 +16793,10 @@ const data = await catalog.deleteAutocompleteKeyword( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
 
 
@@ -16847,10 +16847,10 @@ const data = await catalog.updateAutocompleteKeyword( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 | body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
 
 
@@ -16899,10 +16899,10 @@ const data = await catalog.getAutocompleteKeywordDetail( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
 
 
 
@@ -16951,9 +16951,9 @@ const data = await catalog.createCustomAutocompleteRule( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 | body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
 
 
@@ -17000,9 +17000,9 @@ const data = await catalog.getAutocompleteConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 
 
 
@@ -17049,8 +17049,8 @@ const data = await catalog.createProductBundle( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
 | body | [ProductBundleRequest](#ProductBundleRequest) | yes | Request body |
 
 
@@ -17097,8 +17097,8 @@ const data = await catalog.getProductBundle( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |    
 | q | string | no | A search string that is searched with product bundle name. |  
 
 
@@ -17148,9 +17148,9 @@ const data = await catalog.updateProductBundle( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 | body | [ProductBundleUpdateRequest](#ProductBundleUpdateRequest) | yes | Request body |
 
 
@@ -17197,9 +17197,9 @@ const data = await catalog.getProductBundleDetail( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| id | string | no | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
 
 
 
@@ -17246,8 +17246,8 @@ const data = await catalog.createSizeGuide( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company inside which the size guide is to be created. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company inside which the size guide is to be created. |  
 | body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
 
 
@@ -17302,8 +17302,8 @@ const data = await catalog.getSizeGuides( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company for which the size guides are to be fetched. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company for which the size guides are to be fetched. |    
 | active | boolean | no | filter size guide on basis of active, in-active |    
 | q | string | no | Query that is to be searched. |    
 | tag | string | no | to filter size guide on basis of tag. |    
@@ -17357,9 +17357,9 @@ const data = await catalog.updateSizeGuide( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company. |    
-| id | string | no | Mongo id of the size guide to be edited |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company. |   
+| id | string | yes | Mongo id of the size guide to be edited |  
 | body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
 
 
@@ -17406,9 +17406,9 @@ const data = await catalog.getSizeGuide( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to size guide. |    
-| id | string | no | Id of the size guide to be viewed. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to size guide. |   
+| id | string | yes | Id of the size guide to be viewed. |  
 
 
 
@@ -17455,9 +17455,9 @@ const data = await catalog.getCatalogConfiguration( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 
 
 
@@ -17506,9 +17506,9 @@ const data = await catalog.createConfigurationProductListing( {  companyId : val
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 | body | [AppConfiguration](#AppConfiguration) | yes | Request body |
 
 
@@ -17555,9 +17555,9 @@ const data = await catalog.getConfigurations( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 
 
 
@@ -17608,10 +17608,10 @@ const data = await catalog.createConfigurationByType( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| type | string | no | type can be brands, categories etc. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| type | string | yes | type can be brands, categories etc. |  
 | body | [AppConfiguration](#AppConfiguration) | yes | Request body |
 
 
@@ -17660,10 +17660,10 @@ const data = await catalog.getConfigurationByType( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| type | string | no | type can be brands, categories etc. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| type | string | yes | type can be brands, categories etc. |  
 
 
 
@@ -17710,9 +17710,9 @@ const data = await catalog.getQueryFilters( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 
 
 
@@ -17761,9 +17761,9 @@ const data = await catalog.createCollection( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 | body | [CreateCollection](#CreateCollection) | yes | Request body |
 
 
@@ -17810,9 +17810,9 @@ const data = await catalog.getAllCollections( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 
 
 
@@ -17861,10 +17861,10 @@ const data = await catalog.getCollectionDetail( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| slug | string | no | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| slug | string | yes | A `slug` is a human readable, URL friendly unique identifier of an object. Pass the `slug` of the collection which you want to retrieve. |  
 
 
 
@@ -17913,10 +17913,10 @@ const data = await catalog.deleteCollection( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier of a collection. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier of a collection. |  
 
 
 
@@ -17967,10 +17967,10 @@ const data = await catalog.updateCollection( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier of a collection. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier of a collection. |  
 | body | [UpdateCollection](#UpdateCollection) | yes | Request body |
 
 
@@ -18021,10 +18021,10 @@ const data = await catalog.addCollectionItems( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier of a collection. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier of a collection. |  
 | body | [CollectionItemRequest](#CollectionItemRequest) | yes | Request body |
 
 
@@ -18079,10 +18079,10 @@ const data = await catalog.getCollectionItems( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| id | string | no | A `id` is a unique identifier of a collection. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier of a collection. |    
 | sortOn | string | no | Each response will contain sort_on param, which should be sent back to make pagination work. |    
 | pageId | string | no | Each response will contain next_id param, which should be sent back to make pagination work. |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
@@ -18134,9 +18134,9 @@ const data = await catalog.getCatalogInsights( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |    
 | brand | string | no | Brand slug |  
 
 
@@ -18184,9 +18184,9 @@ const data = await catalog.getSellerInsights( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| sellerAppId | string | no | Id of the seller application which is serving the invetory/catalog of the company |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| sellerAppId | string | yes | Id of the seller application which is serving the invetory/catalog of the company |  
 
 
 
@@ -18235,9 +18235,9 @@ const data = await catalog.createMarketplaceOptin( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | The company id for which the detail needs to be retrieved. |    
-| marketplace | string | no | The marketplace for which the detail needs to be retrieved. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | The company id for which the detail needs to be retrieved. |   
+| marketplace | string | yes | The marketplace for which the detail needs to be retrieved. |  
 | body | [OptInPostRequest](#OptInPostRequest) | yes | Request body |
 
 
@@ -18282,8 +18282,8 @@ const data = await catalog.getMarketplaceOptinDetail( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no |  |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes |  |  
 
 
 
@@ -18328,8 +18328,8 @@ const data = await catalog.getCompanyDetail( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | The company id for which the detail needs to be retrieved. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | The company id for which the detail needs to be retrieved. |  
 
 
 
@@ -18384,8 +18384,8 @@ const data = await catalog.getCompanyBrandDetail( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | The company id for which the detail needs to be retrieved. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | The company id for which the detail needs to be retrieved. |    
 | isActive | boolean | no | The is_active status for the optin id. |    
 | q | boolean | no | The search value to filter the list. |    
 | pageNo | number | no | The number of page for the company id. |    
@@ -18435,8 +18435,8 @@ const data = await catalog.getCompanyMetrics( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | The company id for which the detail needs to be retrieved. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | The company id for which the detail needs to be retrieved. |  
 
 
 
@@ -18487,8 +18487,8 @@ const data = await catalog.getStoreDetail( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | The company id for which the detail needs to be retrieved. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | The company id for which the detail needs to be retrieved. |    
 | q | string | no | The search related the store for the company id. |    
 | pageNo | number | no | The number of page for the company id. |    
 | pageSize | number | no | Number of records that can be seen on the page for the company id. |  
@@ -18538,9 +18538,9 @@ const data = await catalog.getGenderAttribute( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company for which you want to view the genders |    
-| attributeSlug | string | no | slug of the attribute for which you want to view the genders |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company for which you want to view the genders |   
+| attributeSlug | string | yes | slug of the attribute for which you want to view the genders |  
 
 
 
@@ -18589,10 +18589,10 @@ const data = await catalog.listProductTemplateCategories( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| departments | string | no | A `department` is name of a departments whose category needs to be listed. Can specify multiple departments. |    
-| itemType | string | no | An `item_type` is the type of item, it can be `set`, `standard`, `digital`, etc. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| departments | string | yes | A `department` is name of a departments whose category needs to be listed. Can specify multiple departments. |   
+| itemType | string | yes | An `item_type` is the type of item, it can be `set`, `standard`, `digital`, etc. |  
 
 
 
@@ -18647,8 +18647,8 @@ const data = await catalog.listDepartmentsData( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
 | name | string | no | Can search departments by passing name. |    
@@ -18700,9 +18700,9 @@ const data = await catalog.getDepartmentData( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| uid | string | no | A `uid` is a unique identifier of a department. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| uid | string | yes | A `uid` is a unique identifier of a department. |  
 
 
 
@@ -18749,9 +18749,9 @@ const data = await catalog.listProductTemplate( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| departments | string | no | A `departments` is the name of a particular department. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| departments | string | yes | A `departments` is the name of a particular department. |  
 
 
 
@@ -18798,9 +18798,9 @@ const data = await catalog.validateProductTemplate( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| slug | string | no | A `slug` is a unique identifier for a particular template. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| slug | string | yes | A `slug` is a unique identifier for a particular template. |  
 
 
 
@@ -18847,9 +18847,9 @@ const data = await catalog.downloadProductTemplateViews( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| slug | string | no | A `slug` is a unique identifier for a particular template. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| slug | string | yes | A `slug` is a unique identifier for a particular template. |  
 
 
 
@@ -18896,9 +18896,9 @@ const data = await catalog.downloadProductTemplateView( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| itemType | string | no | An `item_type` defines the type of item. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| itemType | string | yes | An `item_type` defines the type of item. |  
 
 
 
@@ -18945,9 +18945,9 @@ const data = await catalog.validateProductTemplateSchema( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| itemType | string | no | An `item_type` defines the type of item. The default value is standard. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| itemType | string | yes | An `item_type` defines the type of item. The default value is standard. |  
 
 
 
@@ -18992,8 +18992,8 @@ const data = await catalog.listHSNCodes( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
 
 
 
@@ -19038,8 +19038,8 @@ const data = await catalog.listProductTemplateExportDetails( {  companyId : valu
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
 
 
 
@@ -19086,9 +19086,9 @@ const data = await catalog.listTemplateBrandTypeValues( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| filter | string | no | A `filter` is the unique identifier of the type of value required. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| filter | string | yes | A `filter` is the unique identifier of the type of value required. |  
 
 
 
@@ -19135,8 +19135,8 @@ const data = await catalog.createCategories( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
 | body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
 
 
@@ -19191,8 +19191,8 @@ const data = await catalog.listCategories( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |    
 | level | string | no | Get category for multiple levels |    
 | departments | string | no | Get category for multiple departments filtered |    
 | q | string | no | Get multiple categories filtered by search string |    
@@ -19246,9 +19246,9 @@ const data = await catalog.updateCategory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| uid | string | no | Category unique id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| uid | string | yes | Category unique id |  
 | body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
 
 
@@ -19295,9 +19295,9 @@ const data = await catalog.getCategoryData( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| uid | string | no | Category unique id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| uid | string | yes | Category unique id |  
 
 
 
@@ -19344,8 +19344,8 @@ const data = await catalog.createProduct( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to product that is to be viewed. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |  
 | body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
 
 
@@ -19406,8 +19406,8 @@ const data = await catalog.getProducts( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Get list of products filtered by company Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Get list of products filtered by company Id |    
 | brandIds | Array<number> | no | Get multiple products filtered by Brand Ids |    
 | categoryIds | Array<number> | no | Get multiple products filtered by Category Ids |    
 | itemIds | Array<number> | no | Get multiple products filtered by Item Ids |    
@@ -19462,9 +19462,9 @@ const data = await catalog.deleteProduct( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id of the company associated to product that is to be deleted. |    
-| itemId | number | no | Id of the product to be updated. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id of the company associated to product that is to be deleted. |   
+| itemId | number | yes | Id of the product to be updated. |  
 
 
 
@@ -19513,9 +19513,9 @@ const data = await catalog.editProduct( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to product that is to be viewed. |    
-| itemId | number | no | Id of the product to be updated. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |   
+| itemId | number | yes | Id of the product to be updated. |  
 | body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
 
 
@@ -19569,9 +19569,9 @@ const data = await catalog.getProduct( {  companyId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| itemCode | string | no | Item code of the product. |    
-| companyId | number | no | Company Id of the product. |    
-| itemId | number | no | Item Id of the product. |    
+| itemCode | string | no | Item code of the product. |   
+| companyId | number | yes | Company Id of the product. |   
+| itemId | number | yes | Item Id of the product. |    
 | brandUid | number | no | Brand Id of the product. |    
 | uid | number | no | Id of the product. |  
 
@@ -19618,8 +19618,8 @@ const data = await catalog.getProductValidation( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Validates data against given company |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Validates data against given company |  
 
 
 
@@ -19673,9 +19673,9 @@ const data = await catalog.getProductSize( {  companyId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| itemCode | string | no | Item code of the product size. |    
-| companyId | number | no | Company Id of the product size. |    
-| itemId | number | no | Item Id of the product size. |    
+| itemCode | string | no | Item code of the product size. |   
+| companyId | number | yes | Company Id of the product size. |   
+| itemId | number | yes | Item Id of the product size. |    
 | brandUid | number | no | Brand Id of the product size. |    
 | uid | number | no | Id of the product size. |  
 
@@ -19724,8 +19724,8 @@ const data = await catalog.updateProductAssetsInBulk( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id in which assets to be uploaded. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which assets to be uploaded. |  
 | body | [BulkJob](#BulkJob) | yes | Request body |
 
 
@@ -19774,8 +19774,8 @@ const data = await catalog.getProductBulkUploadHistory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id of of which Product Bulk Upload History to be obtained. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id of of which Product Bulk Upload History to be obtained. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
 
@@ -19794,6 +19794,55 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 [ProductBulkRequestList](#ProductBulkRequestList)
 
 List of bulk product upload jobs. See `BulkRequestGetSchema` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteProductBulkJob
+Delete Bulk product job.
+
+
+
+```javascript
+// Promise
+const promise = catalog.deleteProductBulkJob( {  companyId : value,
+ batchId : value });
+
+// Async/Await
+const data = await catalog.deleteProductBulkJob( {  companyId : value,
+ batchId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id of the company associated to size that is to be deleted. |   
+| batchId | number | yes | Batch Id of the bulk product job to be deleted. |  
+
+
+
+This API allows to delete bulk product job associated with company.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -19826,62 +19875,13 @@ const data = await catalog.createProductsInBulk( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id in which assets to be uploaded. |    
-| batchId | string | no | Batch Id in which assets to be uploaded. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which assets to be uploaded. |   
+| batchId | string | yes | Batch Id in which assets to be uploaded. |  
 | body | [BulkProductRequest](#BulkProductRequest) | yes | Request body |
 
 
 This API helps to create products in bulk push to kafka for approval/creation.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteProductBulkJob
-Delete Bulk product job.
-
-
-
-```javascript
-// Promise
-const promise = catalog.deleteProductBulkJob( {  companyId : value,
- batchId : value });
-
-// Async/Await
-const data = await catalog.deleteProductBulkJob( {  companyId : value,
- batchId : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id of the company associated to size that is to be deleted. |    
-| batchId | number | no | Batch Id of the bulk product job to be deleted. |  
-
-
-
-This API allows to delete bulk product job associated with company.
 
 *Returned Response:*
 
@@ -19922,8 +19922,8 @@ const data = await catalog.getCompanyTags( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id of the product size. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id of the product size. |  
 
 
 
@@ -19970,8 +19970,8 @@ const data = await catalog.createProductAssetsInBulk( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id in which assets to be uploaded. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which assets to be uploaded. |  
 | body | [ProductBulkAssets](#ProductBulkAssets) | yes | Request body |
 
 
@@ -20020,8 +20020,8 @@ const data = await catalog.getProductAssetsInBulk( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id of the product size. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id of the product size. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
 
@@ -20072,10 +20072,10 @@ const data = await catalog.deleteSize( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id of the company associated to size that is to be deleted. |    
-| itemId | number | no | Item Id of the product associated with size to be deleted. |    
-| size | number | no | size to be deleted. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id of the company associated to size that is to be deleted. |   
+| itemId | number | yes | Item Id of the product associated with size to be deleted. |   
+| size | number | yes | size to be deleted. |  
 
 
 
@@ -20126,10 +20126,10 @@ const data = await catalog.addInventory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to product that is to be viewed. |    
-| itemId | number | no | Item code of the product of which size is to be get. |    
-| size | string | no | Size in which inventory is to be added. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |   
+| itemId | number | yes | Item code of the product of which size is to be get. |   
+| size | string | yes | Size in which inventory is to be added. |  
 | body | [InventoryRequest](#InventoryRequest) | yes | Request body |
 
 
@@ -20184,10 +20184,10 @@ const data = await catalog.getInventoryBySize( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to product that is to be viewed. |    
-| itemId | string | no | Item code of the product of which size is to be get. |    
-| size | string | no | Size of which inventory is to get. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |   
+| itemId | string | yes | Item code of the product of which size is to be get. |   
+| size | string | yes | Size of which inventory is to get. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
 | q | string | no | Search with help of store code. |  
@@ -20247,10 +20247,10 @@ const data = await catalog.getInventoryBySizeIdentifier( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to product that is to be viewed. |    
-| itemId | string | no | Item code of the product of which size is to be get. |    
-| sizeIdentifier | string | no | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |   
+| itemId | string | yes | Item code of the product of which size is to be get. |   
+| sizeIdentifier | string | yes | Size Identifier (Seller Identifier or Primary Identifier) of which inventory is to get. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
 | q | string | no | Search with help of store code. |    
@@ -20305,11 +20305,11 @@ const data = await catalog.deleteInventory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id of the company associated with Inventory that is to be deleted. |    
-| size | string | no | size that is to be deleted. |    
-| itemId | number | no | Id of the product associated with Inventory to be deleted. |    
-| locationId | number | no | Location ID of store of which inventory is to be deleted. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id of the company associated with Inventory that is to be deleted. |   
+| size | string | yes | size that is to be deleted. |   
+| itemId | number | yes | Id of the product associated with Inventory to be deleted. |   
+| locationId | number | yes | Location ID of store of which inventory is to be deleted. |  
 
 
 
@@ -20356,8 +20356,8 @@ const data = await catalog.createBulkInventoryJob( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id in which Inventory to be uploaded. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which Inventory to be uploaded. |  
 | body | [BulkJob](#BulkJob) | yes | Request body |
 
 
@@ -20406,8 +20406,8 @@ const data = await catalog.getInventoryBulkUploadHistory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id of of which Inventory Bulk Upload History to be obtained. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id of of which Inventory Bulk Upload History to be obtained. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
 
@@ -20426,6 +20426,55 @@ List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
 [BulkInventoryGet](#BulkInventoryGet)
 
 List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteBulkInventoryJob
+Delete Bulk Inventory job.
+
+
+
+```javascript
+// Promise
+const promise = catalog.deleteBulkInventoryJob( {  companyId : value,
+ batchId : value });
+
+// Async/Await
+const data = await catalog.deleteBulkInventoryJob( {  companyId : value,
+ batchId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id of the company of which bulk Inventory job is to be deleted. |   
+| batchId | string | yes | Batch Id of the bulk delete job. |  
+
+
+
+This API allows to delete bulk Inventory job associated with company.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
 
 
 
@@ -20458,62 +20507,13 @@ const data = await catalog.createBulkInventory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id in which Inventory is to be uploaded. |    
-| batchId | string | no | Batch Id of the bulk create job. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which Inventory is to be uploaded. |   
+| batchId | string | yes | Batch Id of the bulk create job. |  
 | body | [InventoryBulkRequest](#InventoryBulkRequest) | yes | Request body |
 
 
 This API helps to create products in bulk push to kafka for approval/creation.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-
-
-
-
-
----
-
-
-#### deleteBulkInventoryJob
-Delete Bulk Inventory job.
-
-
-
-```javascript
-// Promise
-const promise = catalog.deleteBulkInventoryJob( {  companyId : value,
- batchId : value });
-
-// Async/Await
-const data = await catalog.deleteBulkInventoryJob( {  companyId : value,
- batchId : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id of the company of which bulk Inventory job is to be deleted. |    
-| batchId | string | no | Batch Id of the bulk delete job. |  
-
-
-
-This API allows to delete bulk Inventory job associated with company.
 
 *Returned Response:*
 
@@ -20556,8 +20556,8 @@ const data = await catalog.createInventoryExportJob( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id in which assets to be uploaded. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which assets to be uploaded. |  
 | body | [InventoryExportRequest](#InventoryExportRequest) | yes | Request body |
 
 
@@ -20602,8 +20602,8 @@ const data = await catalog.getInventoryExport( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id in which assets to be uploaded. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which assets to be uploaded. |  
 
 
 
@@ -20650,8 +20650,8 @@ const data = await catalog.exportInventoryConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to product that is to be viewed. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |    
 | filterType | string | no | filter type from any one of ['brand', 'store', 'type'] |  
 
 
@@ -20699,8 +20699,8 @@ const data = await catalog.createHsnCode( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |  
 | body | [HsnUpsert](#HsnUpsert) | yes | Request body |
 
 
@@ -20751,8 +20751,8 @@ const data = await catalog.getAllHsnCodes( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |    
 | pageNo | number | no | page no |    
 | pageSize | number | no | page size |    
 | q | string | no | search using hsn code. |  
@@ -20804,9 +20804,9 @@ const data = await catalog.updateHsnCode( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| id | string | no | Unique id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| id | string | yes | Unique id |  
 | body | [HsnUpsert](#HsnUpsert) | yes | Request body |
 
 
@@ -20853,9 +20853,9 @@ const data = await catalog.getHsnCode( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| id | string | no | Unique id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| id | string | yes | Unique id |  
 
 
 
@@ -20902,8 +20902,8 @@ const data = await catalog.bulkHsnCode( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |  
 | body | [BulkHsnUpsert](#BulkHsnUpsert) | yes | Request body |
 
 
@@ -20956,9 +20956,9 @@ const data = await catalog.getApplicationBrands( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |    
 | department | string | no | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
@@ -21008,9 +21008,9 @@ const data = await catalog.getDepartments( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 
 
 
@@ -21059,9 +21059,9 @@ const data = await catalog.getCategories( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |    
 | department | string | no | The name of the department. Use this parameter to filter products by a particular department. See below the list of available departments. You can retrieve available departments from the **v1.0/departments/** API |  
 
 
@@ -21125,9 +21125,9 @@ const data = await catalog.getAppicationProducts( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |    
 | q | string | no | The search query. This can be a partial or complete name of a either a product, brand or category |    
 | f | string | no | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts** |    
 | filters | boolean | no | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters |    
@@ -21184,10 +21184,10 @@ const data = await catalog.getProductDetailBySlug( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |    
-| applicationId | string | no | A `application_id` is a unique identifier for a particular sale channel. |    
-| slug | string | no | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| slug | string | yes | The unique identifier of a product. i.e; `slug` of a product. You can retrieve these from the APIs that list products like **v1.0/products/** |  
 
 
 
@@ -21240,8 +21240,8 @@ const data = await companyprofile.updateCompany( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
 | body | [UpdateCompany](#UpdateCompany) | yes | Request body |
 
 
@@ -21286,8 +21286,8 @@ const data = await companyprofile.cbsOnboardGet( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
 
 
 
@@ -21332,8 +21332,8 @@ const data = await companyprofile.getCompanyMetrics( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | A `company_id` is a unique identifier for a particular seller account. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
 
 
 
@@ -21380,9 +21380,9 @@ const data = await companyprofile.getBrand( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to brand that is to be viewed. |    
-| brandId | string | no | Id of the brand to be viewed. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to brand that is to be viewed. |   
+| brandId | string | yes | Id of the brand to be viewed. |  
 
 
 
@@ -21431,9 +21431,9 @@ const data = await companyprofile.editBrand( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company associated to brand that is to be viewed. |    
-| brandId | string | no | Id of the brand to be viewed. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to brand that is to be viewed. |   
+| brandId | string | yes | Id of the brand to be viewed. |  
 | body | [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer) | yes | Request body |
 
 
@@ -21480,12 +21480,60 @@ const data = await companyprofile.createBrand( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company. |  
 | body | [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer) | yes | Request body |
 
 
 This API allows to create a brand associated to a company.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createCompanyBrandMapping
+Create a company brand mapping.
+
+
+
+```javascript
+// Promise
+const promise = companyprofile.createCompanyBrandMapping( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await companyprofile.createCompanyBrandMapping( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company inside which the brand is to be mapped. |  
+| body | [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer) | yes | Request body |
+
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
 
 *Returned Response:*
 
@@ -21530,8 +21578,8 @@ const data = await companyprofile.getBrands( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company. |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 10. |  
 
@@ -21562,30 +21610,30 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
 
 
 
 ```javascript
 // Promise
-const promise = companyprofile.createCompanyBrandMapping( {  companyId : value,
+const promise = companyprofile.createLocation( {  companyId : value,
  body : value });
 
 // Async/Await
-const data = await companyprofile.createCompanyBrandMapping( {  companyId : value,
+const data = await companyprofile.createLocation( {  companyId : value,
  body : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company inside which the brand is to be mapped. |  
-| body | [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer) | yes | Request body |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company inside which the location is to be created. |  
+| body | [LocationSerializer](#LocationSerializer) | yes | Request body |
 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Returned Response:*
 
@@ -21636,8 +21684,8 @@ const data = await companyprofile.getLocations( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company whose locations are to fetched |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company whose locations are to fetched |    
 | storeType | string | no | Helps to sort the location list on the basis of location type. |    
 | q | string | no | Query that is to be searched. |    
 | stage | string | no | to filter companies on basis of verified or unverified companies. |    
@@ -21671,54 +21719,6 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
-
-
-
-```javascript
-// Promise
-const promise = companyprofile.createLocation( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await companyprofile.createLocation( {  companyId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company inside which the location is to be created. |  
-| body | [LocationSerializer](#LocationSerializer) | yes | Request body |
-
-
-This API allows to create a location associated to a company.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-
-
-
-
-
----
-
-
 #### getLocationDetail
 Get details of a specific location.
 
@@ -21737,9 +21737,9 @@ const data = await companyprofile.getLocationDetail( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company inside which the location lies. |    
-| locationId | string | no | Id of the location which you want to view. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company inside which the location lies. |   
+| locationId | string | yes | Id of the location which you want to view. |  
 
 
 
@@ -21788,9 +21788,9 @@ const data = await companyprofile.updateLocation( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company inside which the location is to be created. |    
-| locationId | string | no | Id of the location which you want to edit. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company inside which the location is to be created. |   
+| locationId | string | yes | Id of the location which you want to edit. |  
 | body | [LocationSerializer](#LocationSerializer) | yes | Request body |
 
 
@@ -21837,8 +21837,8 @@ const data = await companyprofile.createLocationBulk( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Id of the company inside which the location is to be created. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company inside which the location is to be created. |  
 | body | [BulkLocationSerializer](#BulkLocationSerializer) | yes | Request body |
 
 
@@ -21893,9 +21893,9 @@ const data = await filestorage.startUpload( {  namespace : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| namespace | string | no | bucket name |    
-| companyId | number | no | company_id |  
+| --------- | -----  | -------- | ----------- | 
+| namespace | string | yes | bucket name |   
+| companyId | number | yes | company_id |  
 | body | [StartRequest](#StartRequest) | no | Request body |
 
 
@@ -21962,9 +21962,9 @@ const data = await filestorage.completeUpload( {  namespace : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| namespace | string | no | bucket name |    
-| companyId | number | no | company_id |  
+| --------- | -----  | -------- | ----------- | 
+| namespace | string | yes | bucket name |   
+| companyId | number | yes | company_id |  
 | body | [StartResponse](#StartResponse) | no | Request body |
 
 
@@ -22033,10 +22033,10 @@ const data = await filestorage.appStartUpload( {  namespace : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| namespace | string | no | bucket name |    
-| companyId | number | no | company_id |    
-| applicationId | string | no | application id |  
+| --------- | -----  | -------- | ----------- | 
+| namespace | string | yes | bucket name |   
+| companyId | number | yes | company_id |   
+| applicationId | string | yes | application id |  
 | body | [StartRequest](#StartRequest) | no | Request body |
 
 
@@ -22105,10 +22105,10 @@ const data = await filestorage.appCompleteUpload( {  namespace : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| namespace | string | no | bucket name |    
-| companyId | number | no | company_id |    
-| applicationId | string | no | application id |  
+| --------- | -----  | -------- | ----------- | 
+| namespace | string | yes | bucket name |   
+| companyId | number | yes | company_id |   
+| applicationId | string | yes | application id |  
 | body | [StartResponse](#StartResponse) | no | Request body |
 
 
@@ -22173,8 +22173,8 @@ const data = await filestorage.getSignUrls( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |  
 | body | [SignUrlRequest](#SignUrlRequest) | no | Request body |
 
 
@@ -22224,8 +22224,8 @@ const data = await filestorage.copyFiles( {  companyId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| sync | boolean | no | sync |    
-| companyId | number | no | company_id |  
+| sync | boolean | no | sync |   
+| companyId | number | yes | company_id |  
 | body | [BulkRequest](#BulkRequest) | no | Request body |
 
 
@@ -22277,9 +22277,9 @@ const data = await filestorage.appCopyFiles( {  companyId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| sync | boolean | no | sync |    
-| companyId | number | no | company_id |    
-| applicationId | number | no | application_id |  
+| sync | boolean | no | sync |   
+| companyId | number | yes | company_id |   
+| applicationId | number | yes | application_id |  
 | body | [BulkRequest](#BulkRequest) | no | Request body |
 
 
@@ -22328,9 +22328,9 @@ const data = await filestorage.browse( {  namespace : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| namespace | string | no | bucket name |    
-| companyId | number | no | company_id |    
+| --------- | -----  | -------- | ----------- | 
+| namespace | string | yes | bucket name |   
+| companyId | number | yes | company_id |    
 | pageNo | number | no | page no |  
 
 
@@ -22382,10 +22382,10 @@ const data = await filestorage.browse( {  namespace : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| namespace | string | no | bucket name |    
-| companyId | number | no | company_id |    
-| applicationId | number | no | application_id |    
+| --------- | -----  | -------- | ----------- | 
+| namespace | string | yes | bucket name |   
+| companyId | number | yes | company_id |   
+| applicationId | number | yes | application_id |    
 | pageNo | number | no | page no |  
 
 
@@ -22433,9 +22433,9 @@ const data = await filestorage.proxy( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |    
-| url | string | no | url |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |   
+| url | string | yes | url |  
 
 
 
@@ -22490,9 +22490,9 @@ const data = await share.createShortLink( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 | body | [ShortLinkReq](#ShortLinkReq) | no | Request body |
 
 
@@ -22549,9 +22549,9 @@ const data = await share.getShortLinks( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |    
 | pageNo | number | no | Current page number |    
 | pageSize | number | no | Current page size |    
 | createdBy | string | no | Short link creator |    
@@ -22605,10 +22605,10 @@ const data = await share.getShortLinkByHash( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| hash | string | no | Hash of short url |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| hash | string | yes | Hash of short url |  
 
 
 
@@ -22659,10 +22659,10 @@ const data = await share.updateShortLinkById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| id | string | no | Short link document identifier |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| id | string | yes | Short link document identifier |  
 | body | [ShortLinkReq](#ShortLinkReq) | no | Request body |
 
 
@@ -22717,8 +22717,8 @@ const data = await inventory.getJobsByCompany( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |    
 | pageNo | number | no | Page Number |    
 | pageSize | number | no | Page Size |  
 
@@ -22767,8 +22767,8 @@ const data = await inventory.updateJob( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |  
 | body | [JobConfigDTO](#JobConfigDTO) | yes | Request body |
 
 
@@ -22815,8 +22815,8 @@ const data = await inventory.createJob( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |  
 | body | [JobConfigDTO](#JobConfigDTO) | yes | Request body |
 
 
@@ -22867,9 +22867,9 @@ const data = await inventory.getJobByCompanyAndIntegration( {  companyId : value
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| integrationId | string | no | Integration Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| integrationId | string | yes | Integration Id |    
 | pageNo | number | no | Page Number |    
 | pageSize | number | no | Page Size |  
 
@@ -22916,8 +22916,8 @@ const data = await inventory.getJobConfigDefaults( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |  
 
 
 
@@ -22964,9 +22964,9 @@ const data = await inventory.getJobByCode( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| code | string | no | Job Code |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| code | string | yes | Job Code |  
 
 
 
@@ -23017,9 +23017,9 @@ const data = await inventory.getJobCodeMetrics( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| code | string | no | Code |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| code | string | yes | Code |    
 | pageNo | number | no | Page Number |    
 | pageSize | number | no | Page Size |  
 
@@ -23072,9 +23072,9 @@ const data = await inventory.getJobCodesByCompanyAndIntegration( {  companyId : 
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id |    
-| integrationId | string | no | Integration Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id |   
+| integrationId | string | yes | Integration Id |    
 | pageNo | number | no | Page Number |    
 | pageSize | number | no | Page Size |  
 
@@ -23131,10 +23131,10 @@ const data = await configuration.getBuildConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |    
-| platformType | string | no | Current platform name |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |   
+| platformType | string | yes | Current platform name |  
 
 
 
@@ -23185,10 +23185,10 @@ const data = await configuration.updateBuildConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |    
-| platformType | string | no | Current platform name |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |   
+| platformType | string | yes | Current platform name |  
 | body | [MobileAppConfigRequest](#MobileAppConfigRequest) | no | Request body |
 
 
@@ -23237,10 +23237,10 @@ const data = await configuration.getPreviousVersions( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |    
-| platformType | string | no | Current platform name |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |   
+| platformType | string | yes | Current platform name |  
 
 
 
@@ -23287,9 +23287,9 @@ const data = await configuration.getAppFeatures( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 
 
 
@@ -23338,9 +23338,9 @@ const data = await configuration.updateAppFeatures( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [AppFeatureRequest](#AppFeatureRequest) | yes | Request body |
 
 
@@ -23387,9 +23387,9 @@ const data = await configuration.getAppBasicDetails( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 
 
 
@@ -23438,9 +23438,9 @@ const data = await configuration.updateAppBasicDetails( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [ApplicationDetail](#ApplicationDetail) | yes | Request body |
 
 
@@ -23487,9 +23487,9 @@ const data = await configuration.getAppContactInfo( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 
 
 
@@ -23538,9 +23538,9 @@ const data = await configuration.updateAppContactInfo( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [ApplicationInformation](#ApplicationInformation) | yes | Request body |
 
 
@@ -23587,9 +23587,9 @@ const data = await configuration.getAppApiTokens( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 
 
 
@@ -23638,9 +23638,9 @@ const data = await configuration.updateAppApiTokens( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [TokenResponse](#TokenResponse) | no | Request body |
 
 
@@ -23691,9 +23691,9 @@ const data = await configuration.getAppCompanies( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 
@@ -23746,9 +23746,9 @@ const data = await configuration.getAppStores( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 
@@ -23797,9 +23797,9 @@ const data = await configuration.getInventoryConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 
 
 
@@ -23848,9 +23848,9 @@ const data = await configuration.updateInventoryConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [ApplicationInventory](#ApplicationInventory) | no | Request body |
 
 
@@ -23899,9 +23899,9 @@ const data = await configuration.partiallyUpdateInventoryConfig( {  companyId : 
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [AppInventoryPartialUpdate](#AppInventoryPartialUpdate) | no | Request body |
 
 
@@ -23948,9 +23948,9 @@ const data = await configuration.getAppCurrencyConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 
 
 
@@ -23999,9 +23999,9 @@ const data = await configuration.updateAppCurrencyConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [AppSupportedCurrency](#AppSupportedCurrency) | no | Request body |
 
 
@@ -24054,9 +24054,9 @@ const data = await configuration.getOrderingStoresByFilter( {  companyId : value
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 | body | [FilterOrderingStoreRequest](#FilterOrderingStoreRequest) | no | Request body |
@@ -24107,9 +24107,9 @@ const data = await configuration.updateOrderingStoreConfig( {  companyId : value
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [OrderingStoreConfig](#OrderingStoreConfig) | no | Request body |
 
 
@@ -24156,9 +24156,9 @@ const data = await configuration.getDomains( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 
 
 
@@ -24207,9 +24207,9 @@ const data = await configuration.addDomain( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [DomainAddRequest](#DomainAddRequest) | no | Request body |
 
 
@@ -24258,10 +24258,10 @@ const data = await configuration.removeDomainById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |    
-| id | string | no | Domain _id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |   
+| id | string | yes | Domain _id |  
 
 
 
@@ -24310,9 +24310,9 @@ const data = await configuration.changeDomainType( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [UpdateDomainTypeRequest](#UpdateDomainTypeRequest) | no | Request body |
 
 
@@ -24361,9 +24361,9 @@ const data = await configuration.getDomainStatus( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 | body | [DomainStatusRequest](#DomainStatusRequest) | no | Request body |
 
 
@@ -24410,8 +24410,8 @@ const data = await configuration.createApplication( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |  
 | body | [CreateApplicationRequest](#CreateApplicationRequest) | no | Request body |
 
 
@@ -24462,8 +24462,8 @@ const data = await configuration.getApplications( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | q | string | no | Url encoded object used as mongodb query |  
@@ -24513,9 +24513,9 @@ const data = await configuration.getApplicationById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |  
 
 
 
@@ -24560,8 +24560,8 @@ const data = await configuration.getCurrencies( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |  
 
 
 
@@ -24608,8 +24608,8 @@ const data = await configuration.getDomainAvailibility( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |  
 | body | [DomainSuggestionsRequest](#DomainSuggestionsRequest) | no | Request body |
 
 
@@ -24700,9 +24700,9 @@ const data = await configuration.getIntegrationById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| id | number | no | Integration id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| id | number | yes | Integration id |  
 
 
 
@@ -24751,8 +24751,8 @@ const data = await configuration.getAvailableOptIns( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 
@@ -24807,10 +24807,10 @@ const data = await configuration.getSelectedOptIns( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| level | string | no | Integration level |    
-| uid | number | no | Integration level uid |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| level | string | yes | Integration level |   
+| uid | number | yes | Integration level uid |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 
@@ -24865,10 +24865,10 @@ const data = await configuration.getIntegrationLevelConfig( {  companyId : value
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| id | string | no | Integration id |    
-| level | string | no | Integration level |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| id | string | yes | Integration id |   
+| level | string | yes | Integration level |    
 | opted | boolean | no | Filter on opted stores |    
 | checkPermission | boolean | no | Filter on if permissions are present |  
 
@@ -24921,11 +24921,11 @@ const data = await configuration.getIntegrationByLevelId( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| id | string | no | Integration id |    
-| level | string | no | Integration level |    
-| uid | number | no | Integration level uid |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| id | string | yes | Integration id |   
+| level | string | yes | Integration level |   
+| uid | number | yes | Integration level uid |  
 
 
 
@@ -24976,11 +24976,11 @@ const data = await configuration.getLevelActiveIntegrations( {  companyId : valu
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| id | string | no | Integration id |    
-| level | string | no | Integration level |    
-| uid | number | no | Integration level uid |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| id | string | yes | Integration id |   
+| level | string | yes | Integration level |   
+| uid | number | yes | Integration level uid |  
 
 
 
@@ -25027,8 +25027,8 @@ const data = await configuration.getBrandsByCompany( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |    
 | q | string | no | Search text for brand name |  
 
 
@@ -25080,8 +25080,8 @@ const data = await configuration.getCompanyByBrands( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 | body | [CompanyByBrandsRequest](#CompanyByBrandsRequest) | no | Request body |
@@ -25134,8 +25134,8 @@ const data = await configuration.getStoreByBrands( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 | body | [StoreByBrandsRequest](#StoreByBrandsRequest) | no | Request body |
@@ -25186,8 +25186,8 @@ const data = await configuration.getOtherSellerApplications( {  companyId : valu
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 
@@ -25236,9 +25236,9 @@ const data = await configuration.getOtherSellerApplicationById( {  companyId : v
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| id | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| id | string | yes | Application Id |  
 
 
 
@@ -25287,9 +25287,9 @@ const data = await configuration.optOutFromApplication( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| id | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| id | string | yes | Application Id |  
 | body | [OptOutInventory](#OptOutInventory) | no | Request body |
 
 
@@ -25358,9 +25358,9 @@ const data = await cart.getCoupons( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current Application _id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current Application _id |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isArchived | boolean | no |  |    
@@ -25472,9 +25472,9 @@ const data = await cart.createCoupon( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current Application _id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current Application _id |  
 | body | [CouponAdd](#CouponAdd) | no | Request body |
 
 
@@ -25523,10 +25523,10 @@ const data = await cart.getCouponById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current Application _id |    
-| id | string | no |  |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current Application _id |   
+| id | string | yes |  |  
 
 
 
@@ -25577,10 +25577,10 @@ const data = await cart.updateCoupon( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current Application _id |    
-| id | string | no |  |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current Application _id |   
+| id | string | yes |  |  
 | body | [CouponUpdate](#CouponUpdate) | no | Request body |
 
 
@@ -25631,10 +25631,10 @@ const data = await cart.updateCouponPartially( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current Application _id |    
-| id | string | no |  |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current Application _id |   
+| id | string | yes |  |  
 | body | [CouponPartialUpdate](#CouponPartialUpdate) | no | Request body |
 
 
@@ -25715,9 +25715,9 @@ const data = await rewards.getGiveaways( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |    
 | pageId | string | no | pagination page id |    
 | pageSize | number | no | pagination page size |  
 
@@ -25768,9 +25768,9 @@ const data = await rewards.createGiveaway( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |  
 | body | [Giveaway](#Giveaway) | yes | Request body |
 
 
@@ -25819,10 +25819,10 @@ const data = await rewards.getGiveawayByID( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| id | string | no | Giveaway ID |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| id | string | yes | Giveaway ID |  
 
 
 
@@ -25873,10 +25873,10 @@ const data = await rewards.updateGiveaway( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| id | string | no | Giveaway ID |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| id | string | yes | Giveaway ID |  
 | body | [Giveaway](#Giveaway) | yes | Request body |
 
 
@@ -25923,9 +25923,9 @@ const data = await rewards.getOffers( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |  
 
 
 
@@ -25976,11 +25976,11 @@ const data = await rewards.getOfferByName( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| cookie | string | no | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |    
-| name | string | no | Offer name |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| cookie | string | yes | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |   
+| name | string | yes | Offer name |  
 
 
 
@@ -26031,10 +26031,10 @@ const data = await rewards.updateOfferByName( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| name | string | no | Offer name |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| name | string | yes | Offer name |  
 | body | [Offer](#Offer) | yes | Request body |
 
 
@@ -26083,10 +26083,10 @@ const data = await rewards.getUserAvailablePoints( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| userId | string | no | user id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| userId | string | yes | user id |  
 
 
 
@@ -26137,10 +26137,10 @@ const data = await rewards.updateUserStatus( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| userId | string | no | user id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| userId | string | yes | user id |  
 | body | [AppUser](#AppUser) | yes | Request body |
 
 
@@ -26195,10 +26195,10 @@ const data = await rewards.getUserPointsHistory( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | company id |    
-| applicationId | string | no | application id |    
-| userId | string | no | user id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| applicationId | string | yes | application id |   
+| userId | string | yes | user id |    
 | pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
 | pageLimit | number | no | PageLimit is the number of requested items in response. |    
 | pageSize | number | no | PageSize is the number of requested items in response. |  
@@ -26255,9 +26255,9 @@ const data = await analytics.getStatiscticsGroups( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |  
 
 
 
@@ -26306,10 +26306,10 @@ const data = await analytics.getStatiscticsGroupComponents( {  companyId : value
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| groupName | string | no | Group name |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| groupName | string | yes | Group name |  
 
 
 
@@ -26358,10 +26358,10 @@ const data = await analytics.getComponentStatsCSV( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| componentName | string | no | Component name |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| componentName | string | yes | Component name |  
 
 
 
@@ -26410,10 +26410,10 @@ const data = await analytics.getComponentStatsPDF( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| componentName | string | no | Component name |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| componentName | string | yes | Component name |  
 
 
 
@@ -26462,10 +26462,10 @@ const data = await analytics.getComponentStats( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| componentName | string | no | Component name |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| componentName | string | yes | Component name |  
 
 
 
@@ -26520,11 +26520,11 @@ const data = await analytics.getAbandonCartList( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| fromDate | string | no | From date |    
-| toDate | string | no | To date |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| fromDate | string | yes | From date |   
+| toDate | string | yes | To date |    
 | pageNo | number | no | Current page number |    
 | pageSize | number | no | Current page size |  
 
@@ -26577,11 +26577,11 @@ const data = await analytics.getAbandonCartsCSV( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| fromDate | string | no | From date |    
-| toDate | string | no | To date |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| fromDate | string | yes | From date |   
+| toDate | string | yes | To date |  
 
 
 
@@ -26630,10 +26630,10 @@ const data = await analytics.getAbandonCartDetail( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| applicationId | string | no | Application Id |    
-| cartId | string | no | Cart Id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| applicationId | string | yes | Application Id |   
+| cartId | string | yes | Cart Id |  
 
 
 
@@ -26682,9 +26682,9 @@ const data = await analytics.createExportJob( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| exportType | string | no | Export type / format |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| exportType | string | yes | Export type / format |  
 | body | [ExportJobReq](#ExportJobReq) | no | Request body |
 
 
@@ -26733,10 +26733,10 @@ const data = await analytics.getExportJobStatus( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| exportType | string | no | Export type / format |    
-| jobId | string | no | Export job id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| exportType | string | yes | Export type / format |   
+| jobId | string | yes | Export job id |  
 
 
 
@@ -26789,9 +26789,9 @@ const data = await analytics.getLogsList( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
-| logType | string | no | Log type |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |   
+| logType | string | yes | Log type |    
 | pageNo | number | no | Current page number |    
 | pageSize | number | no | Current page size |  
 | body | [GetLogsListReq](#GetLogsListReq) | no | Request body |
@@ -26846,11 +26846,11 @@ const data = await analytics.searchLogs( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Company Id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |    
 | pageNo | number | no | Current page number |    
-| pageSize | number | no | Current page size |    
-| logType | string | no | Log type |  
+| pageSize | number | no | Current page size |   
+| logType | string | yes | Log type |  
 | body | [SearchLogReq](#SearchLogReq) | no | Request body |
 
 
@@ -26919,8 +26919,8 @@ const data = await discount.getDiscounts( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |    
 | view | string | no | listing or calender.  Default is listing. |    
 | q | string | no | The search query. This can be a partial or complete name of a discount. |    
 | pageNo | number | no | page number. Default is 1. |    
@@ -26976,8 +26976,8 @@ const data = await discount.createDiscount( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |  
 | body | [CreateUpdateDiscount](#CreateUpdateDiscount) | yes | Request body |
 
 
@@ -27024,9 +27024,9 @@ const data = await discount.getDiscount( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |    
-| id | string | no | unique id. |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |   
+| id | string | yes | unique id. |  
 
 
 
@@ -27075,9 +27075,9 @@ const data = await discount.updateDiscount( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |    
-| id | string | no | id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |   
+| id | string | yes | id |  
 | body | [CreateUpdateDiscount](#CreateUpdateDiscount) | yes | Request body |
 
 
@@ -27126,8 +27126,8 @@ const data = await discount.validateDiscountFile( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |    
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |    
 | discount | string | no | discount |  
 | body | [DiscountJob](#DiscountJob) | yes | Request body |
 
@@ -27177,9 +27177,9 @@ const data = await discount.downloadDiscountFile( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |    
-| type | string | no | type |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |   
+| type | string | yes | type |  
 | body | [DownloadFileJob](#DownloadFileJob) | yes | Request body |
 
 
@@ -27226,9 +27226,9 @@ const data = await discount.getValidationJob( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |    
-| id | string | no | id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |   
+| id | string | yes | id |  
 
 
 
@@ -27275,9 +27275,9 @@ const data = await discount.cancelValidationJob( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |    
-| id | string | no | id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |   
+| id | string | yes | id |  
 
 
 
@@ -27324,9 +27324,9 @@ const data = await discount.getDownloadJob( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |    
-| id | string | no | id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |   
+| id | string | yes | id |  
 
 
 
@@ -27373,9 +27373,9 @@ const data = await discount.cancelDownloadJob( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | company_id |    
-| id | string | no | id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | company_id |   
+| id | string | yes | id |  
 
 
 
@@ -27432,10 +27432,10 @@ const data = await partner.addProxyPath( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |    
-| extensionId | string | no | Extension id |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |   
+| extensionId | string | yes | Extension id |  
 | body | [AddProxyReq](#AddProxyReq) | no | Request body |
 
 
@@ -27486,11 +27486,11 @@ const data = await partner.removeProxyPath( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | string | no | Current company id |    
-| applicationId | string | no | Current application id |    
-| extensionId | string | no | Extension id |    
-| attachedPath | string | no | Attachaed path slug |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Current company id |   
+| applicationId | string | yes | Current application id |   
+| extensionId | string | yes | Extension id |   
+| attachedPath | string | yes | Attachaed path slug |  
 
 
 
@@ -27547,8 +27547,8 @@ const data = await webhook.getSubscribersByCompany( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Page Number |    
-| pageSize | number | no | Page Size |    
-| companyId | number | no | Company ID of the application |  
+| pageSize | number | no | Page Size |   
+| companyId | number | yes | Company ID of the application |  
 
 
 
@@ -27595,8 +27595,8 @@ const data = await webhook.registerSubscriberToEvent( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company Id of the application |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id of the application |  
 | body | [SubscriberConfig](#SubscriberConfig) | no | Request body |
 
 
@@ -27643,8 +27643,8 @@ const data = await webhook.updateSubscriberConfig( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company ID of the application |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company ID of the application |  
 | body | [SubscriberConfig](#SubscriberConfig) | no | Request body |
 
 
@@ -27691,9 +27691,9 @@ const data = await webhook.getSubscriberById( {  companyId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company ID of the application |    
-| subscriberId | number | no | Subscriber ID |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company ID of the application |   
+| subscriberId | number | yes | Subscriber ID |  
 
 
 
@@ -27738,8 +27738,8 @@ const data = await webhook.fetchAllEventConfigurations( {  companyId : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| companyId | number | no | Company ID of the application |  
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company ID of the application |  
 
 
 
@@ -27791,8 +27791,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
  | meta | [Meta](#Meta) |  no  |  |
+ | type | string |  no  |  |
  | url | string |  no  |  |
 
 ---
@@ -27805,8 +27805,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | type | string |  no  |  |
- | params | string |  no  |  |
  | query | string |  no  |  |
+ | params | string |  no  |  |
 
 ---
 
@@ -27829,10 +27829,36 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | logo | [Media](#Media) |  no  |  |
  | uid | number |  no  |  |
+ | name | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Price](#Price)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_symbol | string |  no  |  |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingPrice](#ProductListingPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | [Price](#Price) |  no  |  |
+ | effective | [Price](#Price) |  no  |  |
 
 ---
 
@@ -27864,62 +27890,36 @@ Success
 
  
  
- #### [Price](#Price)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | min | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | max | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductListingPrice](#ProductListingPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | effective | [Price](#Price) |  no  |  |
- | marked | [Price](#Price) |  no  |  |
-
----
-
-
- 
- 
  #### [ProductDetail](#ProductDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | product_online_date | string |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | has_variant | boolean |  no  |  |
- | rating_count | number |  no  |  |
- | description | string |  no  |  |
- | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | similars | [string] |  no  |  |
- | color | string |  no  |  |
- | type | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | teaser_tag | string |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
  | highlights | [string] |  no  |  |
- | short_description | string |  no  |  |
- | rating | number |  no  |  |
- | uid | number |  no  |  |
- | name | string |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | tryouts | [string] |  no  |  |
- | slug | string |  yes  |  |
+ | teaser_tag | string |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
  | item_type | string |  no  |  |
- | image_nature | string |  no  |  |
  | discount | string |  no  |  |
- | item_code | string |  no  |  |
+ | similars | [string] |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | short_description | string |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | uid | number |  no  |  |
+ | type | string |  no  |  |
+ | description | string |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | attributes | string |  no  |  |
+ | image_nature | string |  no  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | name | string |  no  |  |
+ | color | string |  no  |  |
+ | rating_count | number |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | slug | string |  yes  |  |
+ | rating | number |  no  |  |
+ | item_code | string |  no  |  |
 
 ---
 
@@ -27937,81 +27937,6 @@ Success
 
  
  
- #### [ColumnHeader](#ColumnHeader)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | convertable | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [ColumnHeaders](#ColumnHeaders)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
-
----
-
-
- 
- 
- #### [SizeChartValues](#SizeChartValues)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | col_3 | string |  no  |  |
- | col_6 | string |  no  |  |
- | col_1 | string |  no  |  |
- | col_2 | string |  no  |  |
- | col_4 | string |  no  |  |
- | col_5 | string |  no  |  |
-
----
-
-
- 
- 
- #### [SizeChart](#SizeChart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | unit | string |  no  |  |
- | headers | [ColumnHeaders](#ColumnHeaders) |  no  |  |
- | description | string |  no  |  |
- | sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  |
- | image | string |  no  |  |
- | size_tip | string |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSize](#ProductSize)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_available | boolean |  no  |  |
- | quantity | number |  no  |  |
- | value | string |  no  |  |
- | display | string |  no  |  |
-
----
-
-
- 
- 
  #### [ProductSizeStores](#ProductSizeStores)
 
  | Properties | Type | Nullable | Description |
@@ -28023,16 +27948,118 @@ Success
 
  
  
+ #### [SizeChartValues](#SizeChartValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | col_6 | string |  no  |  |
+ | col_1 | string |  no  |  |
+ | col_5 | string |  no  |  |
+ | col_4 | string |  no  |  |
+ | col_2 | string |  no  |  |
+ | col_3 | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ColumnHeader](#ColumnHeader)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | convertable | boolean |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ColumnHeaders](#ColumnHeaders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChart](#SizeChart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | image | string |  no  |  |
+ | title | string |  no  |  |
+ | unit | string |  no  |  |
+ | sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  |
+ | size_tip | string |  no  |  |
+ | description | string |  no  |  |
+ | headers | [ColumnHeaders](#ColumnHeaders) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSize](#ProductSize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | quantity | number |  no  |  |
+ | value | string |  no  |  |
+ | is_available | boolean |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ProductSizes](#ProductSizes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sellable | boolean |  no  |  |
- | size_chart | [SizeChart](#SizeChart) |  no  |  |
- | discount | string |  no  |  |
- | sizes | [[ProductSize](#ProductSize)] |  no  |  |
  | stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
  | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | size_chart | [SizeChart](#SizeChart) |  no  |  |
+ | sizes | [[ProductSize](#ProductSize)] |  no  |  |
+ | sellable | boolean |  no  |  |
+ | discount | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StrategyWiseListing](#StrategyWiseListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | number |  no  |  |
+ | tat | number |  no  |  |
+ | distance | number |  no  |  |
+ | pincode | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Seller](#Seller)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
 
 ---
 
@@ -28043,9 +28070,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | count | number |  no  |  |
  | uid | number |  no  |  |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductStockPrice](#ProductStockPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  |  |
+ | marked | number |  no  |  |
+ | effective | number |  no  |  |
 
 ---
 
@@ -28079,8 +28119,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
  | size_distribution | [ProductSetDistribution](#ProductSetDistribution) |  no  |  |
+ | quantity | number |  no  |  |
 
 ---
 
@@ -28091,8 +28131,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | strategy | string |  no  |  |
  | level | string |  no  |  |
+ | strategy | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReturnConfig](#ReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unit | string |  no  |  |
+ | time | number |  no  |  |
+ | returnable | boolean |  no  |  |
 
 ---
 
@@ -28124,80 +28177,27 @@ Success
 
  
  
- #### [ReturnConfig](#ReturnConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | returnable | boolean |  no  |  |
- | unit | string |  no  |  |
- | time | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductStockPrice](#ProductStockPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | effective | number |  no  |  |
- | marked | number |  no  |  |
-
----
-
-
- 
- 
- #### [Seller](#Seller)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | count | number |  no  |  |
- | uid | number |  no  |  |
-
----
-
-
- 
- 
- #### [StrategyWiseListing](#StrategyWiseListing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tat | number |  no  |  |
- | distance | number |  no  |  |
- | pincode | number |  no  |  |
- | quantity | number |  no  |  |
-
----
-
-
- 
- 
  #### [ProductSizePriceResponse](#ProductSizePriceResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | long_lat | [number] |  no  |  |
- | store | [Store](#Store) |  no  |  |
- | item_type | string |  no  |  |
- | set | [ProductSet](#ProductSet) |  no  |  |
+ | strategy_wise_listing | [[StrategyWiseListing](#StrategyWiseListing)] |  no  |  |
  | quantity | number |  no  |  |
- | article_id | string |  no  |  |
- | special_badge | string |  no  |  |
  | seller_count | number |  no  |  |
+ | seller | [Seller](#Seller) |  no  |  |
+ | article_id | string |  no  |  |
+ | store | [Store](#Store) |  no  |  |
+ | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | set | [ProductSet](#ProductSet) |  no  |  |
+ | pincode | number |  no  |  |
+ | item_type | string |  no  |  |
+ | special_badge | string |  no  |  |
+ | price_per_piece | [ProductStockPrice](#ProductStockPrice) |  no  |  |
  | discount | string |  no  |  |
  | article_assignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
- | marketplace_attributes | [[MarketPlaceSttributes](#MarketPlaceSttributes)] |  no  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
- | pincode | number |  no  |  |
- | price_per_piece | [ProductStockPrice](#ProductStockPrice) |  no  |  |
- | seller | [Seller](#Seller) |  no  |  |
- | strategy_wise_listing | [[StrategyWiseListing](#StrategyWiseListing)] |  no  |  |
- | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | marketplace_attributes | [[MarketPlaceSttributes](#MarketPlaceSttributes)] |  no  |  |
 
 ---
 
@@ -28208,9 +28208,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
  | value | string |  no  |  |
+ | name | string |  no  |  |
+ | is_selected | boolean |  no  |  |
 
 ---
 
@@ -28221,8 +28221,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sort_on | [[ProductSizeSellerFilter](#ProductSizeSellerFilter)] |  no  |  |
  | items | [[ProductSizePriceResponse](#ProductSizePriceResponse)] |  no  |  |
+ | sort_on | [[ProductSizeSellerFilter](#ProductSizeSellerFilter)] |  no  |  |
  | page | [Page](#Page) |  yes  |  |
 
 ---
@@ -28235,9 +28235,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | key | string |  no  |  |
- | description | string |  no  |  |
- | logo | string |  no  |  |
  | display | string |  no  |  |
+ | logo | string |  no  |  |
+ | description | string |  no  |  |
 
 ---
 
@@ -28260,8 +28260,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
  | items | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
 
 ---
 
@@ -28272,10 +28272,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
+ | subtitle | string |  no  |  |
  | title | string |  no  |  |
  | items | [[ProductDetail](#ProductDetail)] |  no  |  |
- | subtitle | string |  no  |  |
+ | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
 
 ---
 
@@ -28297,9 +28297,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | subtitle | string |  no  |  |
  | title | string |  no  |  |
  | items | [[ProductDetail](#ProductDetail)] |  no  |  |
- | subtitle | string |  no  |  |
 
 ---
 
@@ -28321,15 +28321,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | color_name | string |  no  |  |
- | slug | string |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | uid | number |  no  |  |
- | value | string |  no  |  |
+ | color_name | string |  no  |  |
  | is_available | boolean |  no  |  |
+ | uid | number |  no  |  |
  | name | string |  no  |  |
  | color | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | slug | string |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
@@ -28340,10 +28340,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_type | string |  no  |  |
- | header | string |  no  |  |
- | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
  | key | string |  no  |  |
+ | display_type | string |  no  |  |
+ | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
+ | header | string |  no  |  |
 
 ---
 
@@ -28365,10 +28365,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | id | number |  no  |  |
  | code | string |  no  |  |
+ | name | string |  no  |  |
  | city | string |  no  |  |
+ | id | number |  no  |  |
 
 ---
 
@@ -28391,15 +28391,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | string |  no  |  |
- | store | [StoreDetail](#StoreDetail) |  no  |  |
- | identifier | string |  no  |  |
  | quantity | number |  no  |  |
- | item_id | number |  no  |  |
- | uid | string |  no  |  |
+ | store | [StoreDetail](#StoreDetail) |  no  |  |
  | seller | [Seller](#Seller) |  no  |  |
- | company | [CompanyDetail](#CompanyDetail) |  no  |  |
+ | item_id | number |  no  |  |
  | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | uid | string |  no  |  |
+ | size | string |  no  |  |
+ | identifier | string |  no  |  |
+ | company | [CompanyDetail](#CompanyDetail) |  no  |  |
 
 ---
 
@@ -28429,48 +28429,37 @@ Success
 
  
  
- #### [ProductFiltersKey](#ProductFiltersKey)
+ #### [ProductListingDetail](#ProductListingDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | string |  no  |  |
- | name | string |  yes  |  |
- | kind | string |  no  |  |
- | display | string |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductFiltersValue](#ProductFiltersValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_format | string |  no  |  |
- | display | string |  yes  |  |
- | is_selected | boolean |  yes  |  |
- | query_format | string |  no  |  |
- | selected_max | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | value | string |  no  |  |
- | currency_code | string |  no  |  |
- | min | number |  no  |  |
- | selected_min | number |  no  |  |
- | count | number |  no  |  |
- | max | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductFilters](#ProductFilters)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
- | values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
+ | product_online_date | string |  no  |  |
+ | highlights | [string] |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | item_type | string |  no  |  |
+ | discount | string |  no  |  |
+ | similars | [string] |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | short_description | string |  no  |  |
+ | sellable | boolean |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | uid | number |  no  |  |
+ | type | string |  no  |  |
+ | description | string |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | attributes | string |  no  |  |
+ | image_nature | string |  no  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | name | string |  no  |  |
+ | color | string |  no  |  |
+ | rating_count | number |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | slug | string |  yes  |  |
+ | rating | number |  no  |  |
+ | item_code | string |  no  |  |
 
 ---
 
@@ -28490,37 +28479,48 @@ Success
 
  
  
- #### [ProductListingDetail](#ProductListingDetail)
+ #### [ProductFiltersKey](#ProductFiltersKey)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | product_online_date | string |  no  |  |
- | sellable | boolean |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | has_variant | boolean |  no  |  |
- | rating_count | number |  no  |  |
- | description | string |  no  |  |
- | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | similars | [string] |  no  |  |
- | color | string |  no  |  |
- | type | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | teaser_tag | string |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | highlights | [string] |  no  |  |
- | short_description | string |  no  |  |
- | rating | number |  no  |  |
- | uid | number |  no  |  |
- | name | string |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | tryouts | [string] |  no  |  |
- | slug | string |  yes  |  |
- | item_type | string |  no  |  |
- | image_nature | string |  no  |  |
- | discount | string |  no  |  |
- | item_code | string |  no  |  |
- | attributes | string |  no  |  |
+ | display | string |  yes  |  |
+ | kind | string |  no  |  |
+ | name | string |  yes  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFiltersValue](#ProductFiltersValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  yes  |  |
+ | count | number |  no  |  |
+ | min | number |  no  |  |
+ | is_selected | boolean |  yes  |  |
+ | currency_code | string |  no  |  |
+ | max | number |  no  |  |
+ | selected_min | number |  no  |  |
+ | display_format | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | selected_max | number |  no  |  |
+ | value | string |  no  |  |
+ | query_format | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFilters](#ProductFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
+ | values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
 
 ---
 
@@ -28531,9 +28531,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
  | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
  | page | [Page](#Page) |  yes  |  |
 
 ---
@@ -28545,8 +28545,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | portrait | [Media](#Media) |  no  |  |
  | landscape | [Media](#Media) |  no  |  |
+ | portrait | [Media](#Media) |  no  |  |
 
 ---
 
@@ -28557,14 +28557,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | discount | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
  | uid | number |  no  |  |
- | departments | [string] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
+ | discount | string |  no  |  |
+ | departments | [string] |  no  |  |
 
 ---
 
@@ -28587,10 +28587,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | name | string |  no  |  |
  | logo | [Media](#Media) |  no  |  |
  | uid | number |  no  |  |
+ | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
 
 ---
 
@@ -28601,8 +28601,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
  | uid | number |  no  |  |
+ | slug | string |  no  |  |
 
 ---
 
@@ -28614,12 +28614,12 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string |  no  |  |
- | slug | string |  no  |  |
- | childs | [string] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | uid | number |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [string] |  no  |  |
+ | slug | string |  no  |  |
 
 ---
 
@@ -28631,12 +28631,12 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string |  no  |  |
- | slug | string |  no  |  |
- | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | uid | number |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
+ | slug | string |  no  |  |
 
 ---
 
@@ -28648,12 +28648,12 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string |  no  |  |
- | slug | string |  no  |  |
- | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | uid | number |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
+ | slug | string |  no  |  |
 
 ---
 
@@ -28664,12 +28664,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | childs | [[Child](#Child)] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | uid | number |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [[Child](#Child)] |  no  |  |
+ | slug | string |  no  |  |
 
 ---
 
@@ -28704,10 +28704,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | name | string |  no  |  |
  | logo | [Media](#Media) |  no  |  |
  | uid | number |  no  |  |
+ | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
 
 ---
 
@@ -28718,8 +28718,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | message | string |  no  |  |
  | page | [Page](#Page) |  yes  |  |
 
 ---
@@ -28731,11 +28731,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
  | logo | [Media](#Media) |  no  |  |
  | uid | number |  no  |  |
  | name | string |  no  |  |
  | priority_order | number |  no  |  |
+ | slug | string |  no  |  |
 
 ---
 
@@ -28757,10 +28757,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | display | string |  no  |  |
+ | type | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
 
 ---
 
@@ -28778,13 +28778,42 @@ Success
 
  
  
+ #### [GetCollectionDetailNest](#GetCollectionDetailNest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | [Media](#Media) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | query | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | app_id | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | badge | string |  no  |  |
+ | type | string |  no  |  |
+ | uid | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | description | string |  no  |  |
+ | _schedule | string |  no  |  |
+ | meta | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | cron | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [CollectionListingFilterType](#CollectionListingFilterType)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
  | display | string |  no  |  |
+ | name | string |  no  |  |
+ | is_selected | boolean |  no  |  |
 
 ---
 
@@ -28795,9 +28824,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
  | display | string |  no  |  |
+ | name | string |  no  |  |
+ | is_selected | boolean |  no  |  |
 
 ---
 
@@ -28816,41 +28845,12 @@ Success
 
  
  
- #### [GetCollectionDetailNest](#GetCollectionDetailNest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | allow_facets | boolean |  no  |  |
- | description | string |  no  |  |
- | type | string |  no  |  |
- | badge | string |  no  |  |
- | tag | [string] |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | meta | string |  no  |  |
- | allow_sort | boolean |  no  |  |
- | is_active | boolean |  no  |  |
- | uid | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | _schedule | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | name | string |  no  |  |
- | query | string |  no  |  |
- | slug | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | cron | string |  no  |  |
- | app_id | string |  no  |  |
-
----
-
-
- 
- 
  #### [GetCollectionListingResponse](#GetCollectionListingResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  |
  | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  |
+ | filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  |
  | page | [Page](#Page) |  yes  |  |
 
 ---
@@ -28862,23 +28862,23 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | slug | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | allow_facets | boolean |  no  |  |
- | badge | string |  no  |  |
- | tag | [string] |  no  |  |
- | description | string |  no  |  |
- | cron | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
  | meta | string |  no  |  |
  | allow_sort | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | badge | string |  no  |  |
+ | cron | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | type | string |  no  |  |
+ | name | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | query | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | tag | [string] |  no  |  |
+ | description | string |  no  |  |
+ | slug | string |  no  |  |
  | _schedule | string |  no  |  |
  | app_id | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | name | string |  no  |  |
- | query | string |  no  |  |
- | is_active | boolean |  no  |  |
 
 ---
 
@@ -28901,8 +28901,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
  | id | string |  yes  |  |
+ | message | string |  yes  |  |
 
 ---
 
@@ -28924,8 +28924,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | collections | [number] |  no  |  |
  | brands | [number] |  no  |  |
+ | collections | [number] |  no  |  |
  | products | [number] |  no  |  |
 
 ---
@@ -28961,15 +28961,15 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | state | string |  no  |  |
- | lat_long | [LatLong](#LatLong) |  no  |  |
- | city | string |  no  |  |
- | address | string |  no  |  |
  | uid | number |  no  |  |
- | country | string |  no  |  |
- | pincode | number |  no  |  |
- | store_code | string |  no  |  |
- | store_email | string |  no  |  |
  | name | string |  no  |  |
+ | address | string |  no  |  |
+ | pincode | number |  no  |  |
+ | store_email | string |  no  |  |
+ | store_code | string |  no  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | lat_long | [LatLong](#LatLong) |  no  |  |
 
 ---
 
