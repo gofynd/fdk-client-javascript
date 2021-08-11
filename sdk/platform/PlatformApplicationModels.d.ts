@@ -196,32 +196,33 @@ export class CatalogValidator {
     static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
-    static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
+    static createCustomKeyword(): any;
     static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
     static deleteCollection(): any;
     static updateCollection(): any;
-    static addCollectionItems(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
     static getApplicationBrands(): any;
     static getDepartments(): any;
     static getCategories(): any;
     static getAppicationProducts(): any;
     static getProductDetailBySlug(): any;
+    static getAppProducts(): any;
 }
 export class FileStorageValidator {
     static appStartUpload(): any;
@@ -269,6 +270,9 @@ export class CartValidator {
     static getCouponById(): any;
     static updateCoupon(): any;
     static updateCouponPartially(): any;
+    static fetchAndvalidateCartItems(): any;
+    static checkCartServiceability(): any;
+    static checkoutCart(): any;
 }
 export class RewardsValidator {
     static getGiveaways(): any;
