@@ -1109,34 +1109,6 @@ class Catalog {
    *   products, brands, or collections.* @param {string} arg.collectionId -
    *   The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Follow an entity (product/brand/collection)
-   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
-   */
-  followById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.followById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.* @param {string} arg.collectionId -
-   *   The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Unfollow an entity (product/brand/collection)
    * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
    */
@@ -1153,6 +1125,34 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "delete",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.* @param {string} arg.collectionId -
+   *   The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Follow an entity (product/brand/collection)
+   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+   */
+  followById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.followById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -2028,10 +2028,10 @@ class Common {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.locationType] - Provide location type to query on*
-   *   @param {string} [arg.id] - Field is optional when location_type is
-   *   country. If querying for state, provide id of country. If querying for
-   *   city, provide id of state.
+   * @param {string} [arg.locationType] - Provide location type to query on.
+   *   Possible values : country, state, city* @param {string} [arg.id] -
+   *   Field is optional when location_type is country. If querying for state,
+   *   provide id of country. If querying for city, provide id of state.
    * @returns {Promise<Locations>} - Success response
    * @summary: Get countries, states, cities
    * @description:
